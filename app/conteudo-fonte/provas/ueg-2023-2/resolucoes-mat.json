@@ -720,5 +720,129 @@
    "data": "2026-11-13",
    "lote": "mat-0062"
   }
+ },
+ "P71d9f870": {
+  "n": "17",
+  "conceito": "Comparar o gasto mensal com etanol e com GNV e achar em quantos meses a economia paga a adaptação.",
+  "equivocos": {
+   "A": "M11.2:prazo-sem-cobrir-o-investimento",
+   "B": "M11.2:confundiu-m3-com-meses",
+   "C": "M11.2:parou-na-economia-mensal",
+   "D": "M11.2:prazo-sem-cobrir-o-investimento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro descubra quantos quilômetros a pessoa roda por mês com 52 L de etanol. Depois veja quantos m³ de GNV fariam a mesma distância. A diferença de custo é a economia de cada mês; o investimento dividido por ela dá os meses.",
+    "formulas": [
+     "economia por mês = gasto com etanol − gasto com GNV",
+     "meses = investimento/(economia por mês)"
+    ],
+    "simbolos": [
+     [
+      "GNV",
+      "gás natural veicular, vendido por metro cúbico"
+     ],
+     [
+      "m³",
+      "metro cúbico"
+     ],
+     [
+      "autonomia",
+      "distância que se roda com aquela quantidade de combustível"
+     ]
+    ]
+   },
+   "pista": "Conte quantas vezes os 13 litros cabem nos 52 litros do mês: é o número de \"trechos de 90 km\" que a pessoa roda.",
+   "passos": [
+    {
+     "faz": "Ache quantos trechos de 90 km por mês",
+     "conta": "52/13 = 4 trechos → 4 · 90 = 360 km",
+     "porque": "Cada 13 L de etanol rendem 90 km; 52 L são 4 vezes isso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o GNV para a mesma distância",
+     "conta": "4 · 7,5 m³ → 30 m³",
+     "porque": "Cada 7,5 m³ de GNV rendem os mesmos 90 km, e são 4 trechos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os dois gastos do mês",
+     "conta": "etanol: 52 · 4,00 = 208 | GNV: 30 · 5,10 = 153",
+     "porque": "Preço por unidade vezes a quantidade de cada combustível.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a economia mensal",
+     "conta": "208 − 153 → 55 reais por mês",
+     "porque": "É o que a pessoa deixa de gastar a cada mês com o GNV.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida o investimento pela economia",
+     "conta": "4000/55 → 72,7 → 73 meses",
+     "porque": "Em 72 meses a economia ainda não cobre os R$ 4.000,00; no 73.º mês cobre. Alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — em 73 meses",
+   "checagem": "Multiplique de volta: 72 · 55 = 3 960 reais, ainda abaixo de 4 000; 73 · 55 = 4 015 reais, já passa. Então 73 meses é o primeiro mês em que compensa.",
+   "erradas": {
+    "A": "24 meses não confere: 24 · 55 = 1 320 reais de economia, muito abaixo dos 4 000 investidos.",
+    "B": "30 meses não confere: 30 · 55 = 1 650 reais. O número 30 é a quantidade de m³ de GNV por mês, não de meses.",
+    "C": "55 sai de parar na economia mensal: 208 − 153 = 55 reais por mês, que ainda precisa dividir os 4 000.",
+    "D": "61 meses não confere: 61 · 55 = 3 355 reais, abaixo dos 4 000 investidos."
+   },
+   "armadilha": "A conta de 208 − 153 dá 55, que é a economia em reais por mês, e não a resposta: ainda falta dividir o investimento por ela.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Em quantos meses a economia com GNV paga os R$ 4.000,00 da adaptação.",
+    "chave": "Mesma distância: 52 L de etanol (R$ 208) ou 30 m³ de GNV (R$ 153); economia de R$ 55 por mês, e 4000/55 ≈ 72,7 → 73 meses.",
+    "cuidado": "Compare os combustíveis para a mesma distância e arredonde para cima: 72 meses ainda não bastam."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "custo por quilômetro",
+    "ideia": "Etanol custa (13 · 4)/90 por km e GNV (7,5 · 5,10)/90 por km; a diferença vezes 360 km dá os mesmos 55 reais por mês."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "52/13 = 4",
+    "nota": "trechos de 90 km por mês"
+   },
+   {
+    "linha": "4 · 7,5 = 30 m³",
+    "nota": "GNV para a mesma distância"
+   },
+   {
+    "linha": "52 · 4,00 = 208",
+    "nota": "gasto com etanol"
+   },
+   {
+    "linha": "30 · 5,10 = 153",
+    "nota": "gasto com GNV"
+   },
+   {
+    "linha": "208 − 153 = 55",
+    "nota": "economia por mês"
+   },
+   {
+    "linha": "4000/55 ≈ 72,7 → 73",
+    "nota": "meses, arredondando para cima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
  }
 }

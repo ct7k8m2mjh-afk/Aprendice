@@ -665,5 +665,120 @@
    "data": "2026-11-13",
    "lote": "mat-0062"
   }
+ },
+ "Pc8b3f3b1": {
+  "n": "14",
+  "conceito": "Volume do prisma hexagonal regular usando a área de uma face lateral para eliminar a altura.",
+  "equivocos": {
+   "A": "M11.1:nao-usou-a-face-lateral",
+   "C": "M11.1:usou-formula-do-circulo",
+   "D": "M11.1:nao-usou-a-face-lateral",
+   "E": "M11.1:nao-usou-a-face-lateral"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada face lateral do prisma reto é um retângulo de lados b (aresta da base) e a (altura); o dado ab = 12 permite trocar a altura por 12/b. O hexágono regular é formado por 6 triângulos equiláteros de lado b. O volume é área da base vezes altura.",
+    "formulas": [
+     "área do triângulo equilátero de lado b = (b²√3)/4",
+     "área do hexágono regular = 6 × (b²√3)/4 = (3√3 b²)/2",
+     "volume = área da base × altura"
+    ],
+    "simbolos": [
+     [
+      "a",
+      "altura do prisma"
+     ],
+     [
+      "b",
+      "lado do hexágono da base"
+     ],
+     [
+      "hexágono regular",
+      "polígono de 6 lados iguais e 6 ângulos iguais"
+     ],
+     [
+      "√3",
+      "raiz quadrada de 3, cerca de 1,73"
+     ]
+    ]
+   },
+   "pista": "Use a face retangular para escrever a altura a em função de b.",
+   "passos": [
+    {
+     "faz": "Escreva a altura em função de b",
+     "conta": "a × b = 12 → a = 12/b",
+     "porque": "A face lateral é um retângulo com um lado igual à aresta b da base e o outro igual à altura a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área do hexágono",
+     "conta": "6 × (b²√3)/4 = (3√3 b²)/2",
+     "porque": "O hexágono regular se divide em 6 triângulos equiláteros de lado b.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique base por altura",
+     "conta": "V = (3√3 b²)/2 × 12/b = 18√3 b",
+     "porque": "Um b do denominador cancela com um b de b², e (3 × 12)/2 = 18.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "V = 18√3 b → alternativa B",
+     "porque": "A questão pede o volume como função de b, e é essa a expressão obtida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 18√3 b",
+   "checagem": "Teste b = 2: a = 12/2 = 6, base (3√3 × 4)/2 = 6√3 e volume 6√3 × 6 = 36√3 ≈ 62,35. A fórmula 18√3 × 2 = 36√3 dá o mesmo.",
+   "erradas": {
+    "A": "(1 + √5)b² não confere: para b = 2 dá cerca de 12,94, e o volume certo nesse caso é 36√3 ≈ 62,35.",
+    "C": "2πb não confere: π só aparece em círculo, e a base é um hexágono; para b = 2 dá cerca de 12,57, não 62,35.",
+    "D": "1 + 5b + 6b² não confere: para b = 2 dá 35, e o volume certo é 36√3 ≈ 62,35.",
+    "E": "(5 + 7b)/(3 + 2b) não confere: para b = 2 dá 19/7 ≈ 2,71, muito longe de 62,35."
+   },
+   "armadilha": "A altura a não é dada direto: ela vem da face lateral, a = 12/b, e por isso o volume fica proporcional a b, não a b².",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume do prisma hexagonal regular em função de b, sabendo que uma face lateral tem área 12.",
+    "chave": "a = 12/b e base (3√3 b²)/2; volume = 18√3 b.",
+    "cuidado": "Lembre que o hexágono regular são 6 triângulos equiláteros e simplifique o b."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste numérico",
+    "ideia": "Escolha b = 2 (então a = 6), calcule o volume 36√3 e veja qual alternativa dá esse valor para b = 2: só a B."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a × b = 12 → a = 12/b",
+    "nota": "face lateral retangular"
+   },
+   {
+    "linha": "6 × (b²√3)/4 = (3√3 b²)/2",
+    "nota": "área do hexágono regular"
+   },
+   {
+    "linha": "V = (3√3 b²)/2 × 12/b",
+    "nota": "área da base × altura"
+   },
+   {
+    "linha": "V = (36√3 b²)/(2b) = 18√3 b",
+    "nota": "cancela um b e divide 36 por 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
  }
 }

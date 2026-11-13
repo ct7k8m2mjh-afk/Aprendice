@@ -209,5 +209,127 @@
    "data": "2026-11-13",
    "lote": "mat-0060"
   }
+ },
+ "P61d40db1": {
+  "n": "21",
+  "conceito": "Reescrever cos² em função do seno e achar o máximo de uma expressão do 2.º grau em sen, com sen limitado entre −1 e 1.",
+  "equivocos": {
+   "A": "M10.5:seno-acima-de-1",
+   "B": "M10.5:nao-testou-o-extremo-do-seno",
+   "D": "M10.5:seno-acima-de-1"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A fórmula mistura cos² e sen do mesmo ângulo. Troque cos² por 1 − sen² e tudo vira uma expressão só em sen, do 2.º grau. Como sen fica entre −1 e 1, o maior valor sai de testar a expressão nesse intervalo.",
+    "formulas": [
+     "sen² x + cos² x = 1, logo cos² x = 1 − sen² x",
+     "−1 ≤ sen x ≤ 1"
+    ],
+    "simbolos": [
+     [
+      "TJM(t)",
+      "taxa de juros mensal, em %, no mês t"
+     ],
+     [
+      "s",
+      "nome curto para sen(πt/40)"
+     ],
+     [
+      "t",
+      "número do mês (natural), de 1 a 120 em 10 anos"
+     ]
+    ]
+   },
+   "pista": "Antes de pensar em gráfico, use a relação fundamental para deixar só o seno na fórmula.",
+   "passos": [
+    {
+     "faz": "Troque cos² por 1 − sen²",
+     "conta": "cos²(πt/40) − 0,8·s → 1 − s² − 0,8s",
+     "porque": "Com s = sen(πt/40), a relação fundamental dá cos² = 1 − s². Assim a fórmula passa a ter uma variável só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique a fórmula da taxa",
+     "conta": "(5,2 − 4(1 − s² − 0,8s))/2 → (1,2 + 4s² + 3,2s)/2 → 0,6 + 2s² + 1,6s",
+     "porque": "O −4 distribui e troca os sinais de dentro do colchete: 5,2 − 4 = 1,2, +4s² e +3,2s. Depois cada termo é dividido por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste os extremos de s",
+     "conta": "s = 1 → 0,6 + 2 + 1,6 = 4,2 | s = −1 → 0,6 + 2 − 1,6 = 1,0",
+     "porque": "Os dois termos com s crescem juntos quando s é positivo e grande, então o máximo fica em s = 1, o maior valor do seno.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Confira se o mês existe",
+     "conta": "πt/40 = π/2 → t = 20",
+     "porque": "s = 1 exige o ângulo π/2. Isso dá t = 20, um mês natural dentro dos 120 meses, então o máximo de 4,2 % acontece de verdade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "TJM máxima = 4,2 % → alternativa C",
+     "porque": "A pergunta é a maior taxa mensal praticada no período, e ela vale 4,2 %.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 4,2 %",
+   "checagem": "Pela fórmula original no mês 20: cos²(π/2) = 0 e sen(π/2) = 1, então o colchete vale 0 − 0,8 = −0,8 e TJM = (5,2 + 3,2)/2 = 8,4/2 = 4,2. Fecha.",
+   "erradas": {
+    "A": "5,5 % não confere: 0,6 + 2s² + 1,6s = 5,5 pede s ≈ 1,22, e o seno nunca passa de 1.",
+    "B": "3,1 % não confere como máximo: no mês 20 a taxa já chega a 4,2 %, que é maior que 3,1 %.",
+    "D": "5,2 % não confere: 0,6 + 2s² + 1,6s = 5,2 pede s ≈ 1,17, acima do maior valor possível do seno."
+   },
+   "armadilha": "Tratar cos² e sen como se variassem de forma independente, sem ver que os dois dependem do mesmo ângulo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A maior taxa mensal dada pela função em 10 anos.",
+    "chave": "Com cos² = 1 − sen², a taxa vira 0,6 + 2s² + 1,6s, máxima em s = 1: 4,2 %.",
+    "cuidado": "Confirme que s = 1 acontece num mês natural (t = 20)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "vértice da parábola",
+    "ideia": "f(s) = 2s² + 1,6s + 0,6 tem vértice em s = −0,4 (mínimo), então no intervalo [−1, 1] o máximo está numa ponta: f(1) = 4,2 > f(−1) = 1,0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "TJM = (5,2 − 4[cos² − 0,8·s])/2",
+    "nota": "fórmula com s = sen(πt/40)"
+   },
+   {
+    "linha": "cos² = 1 − s²",
+    "nota": "relação fundamental"
+   },
+   {
+    "linha": "TJM = (5,2 − 4 + 4s² + 3,2s)/2",
+    "nota": "distribui o −4"
+   },
+   {
+    "linha": "TJM = 0,6 + 2s² + 1,6s",
+    "nota": "divide cada termo por 2"
+   },
+   {
+    "linha": "s = 1 → TJM = 0,6 + 2 + 1,6 = 4,2",
+    "nota": "maior valor do seno"
+   },
+   {
+    "linha": "πt/40 = π/2 → t = 20",
+    "nota": "o mês existe"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
  }
 }

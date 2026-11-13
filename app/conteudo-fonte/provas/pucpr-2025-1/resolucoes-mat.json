@@ -342,5 +342,130 @@
    "data": "2026-11-13",
    "lote": "mat-0061"
   }
+ },
+ "P9b0745ff": {
+  "n": "32",
+  "conceito": "Volume de paralelepípedo e de cilindro, com frações e porcentagem de perda, para achar o número mínimo de viagens (arredondamento para cima).",
+  "equivocos": {
+   "A": "M11.2:esqueceu-a-fracao-do-balde",
+   "B": "M11.2:arredondou-para-baixo",
+   "C": "M11.2:esqueceu-o-desperdicio",
+   "E": "M11.2:desperdicio-sobre-a-capacidade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São três contas encadeadas: quanto de água o reservatório precisa (75% dele), quanto de água chega por viagem (4/5 do balde, menos 10% dessa água) e quantas viagens fecham a conta. As medidas vêm em metros e centímetros; passar tudo para litros evita erro. Como não existe meia viagem, o número de viagens arredonda para cima.",
+    "formulas": [
+     "volume do paralelepípedo = comprimento × largura × altura",
+     "volume do cilindro = πr²h, com π = 3",
+     "1 m³ = 1000 L ; 1 L = 1000 cm³"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "litro"
+     ],
+     [
+      "r",
+      "raio do balde, metade do diâmetro de 40 cm"
+     ],
+     [
+      "π ≈ 3",
+      "aproximação permitida pelo enunciado"
+     ]
+    ]
+   },
+   "pista": "Calcule separadamente a meta em litros e o que de fato chega ao reservatório em cada viagem.",
+   "passos": [
+    {
+     "faz": "Calcule a meta do reservatório",
+     "conta": "V = 2 × 0,6 × 0,86 = 1,032 m³ = 1032 L → 0,75 × 1032 = 774 L",
+     "porque": "Os 60 cm viram 0,6 m. A meta é ao menos 75% da capacidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a capacidade do balde",
+     "conta": "V = 3 × 20² × 50 = 60000 cm³ → 60000/1000 = 60 L",
+     "porque": "O diâmetro é 40 cm, então o raio é 20 cm; usa-se π = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a água que chega por viagem",
+     "conta": "(4/5) × 60 = 48 L → 48 − 0,1 × 48 = 43,2 L",
+     "porque": "Ele enche 4/5 do balde e perde 10% da água que estava no balde, ou seja, 10% de 48 L.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida a meta pela água útil",
+     "conta": "774/43,2 ≈ 17,9 → 18 viagens",
+     "porque": "Com 17 viagens chegam 17 × 43,2 = 734,4 L, menos que 774 L; com 18 chegam 777,6 L, que bastam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "mínimo de 18 viagens → alternativa D",
+     "porque": "O pedido é o número mínimo que garante os 75%.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 18 viagens",
+   "checagem": "Com o π da calculadora o balde tem cerca de 62,8 L, chegam cerca de 45,2 L por viagem e 774 ÷ 45,2 ≈ 17,1: ainda são 18 viagens. A aproximação π = 3 não muda a resposta.",
+   "erradas": {
+    "A": "15 sai de esquecer que o balde vai só com 4/5: 60 L menos 10% dá 54 L, e 774 ÷ 54 ≈ 14,3, arredondado para 15.",
+    "B": "16 não confere: 16 viagens levam 16 × 43,2 = 691,2 L, bem menos que os 774 L necessários.",
+    "C": "17 sai de esquecer o desperdício: 774 ÷ 48 ≈ 16,1, arredondado para 17. Mas chegam só 43,2 L por viagem, e 17 × 43,2 = 734,4 L não alcançam 774 L.",
+    "E": "19 sai de tirar os 10% da capacidade do balde (6 L) em vez da água que havia nele: 48 − 6 = 42 L, e 774 ÷ 42 ≈ 18,4, arredondado para 19."
+   },
+   "armadilha": "O desperdício é de 10% da água que estava no balde (48 L), não da capacidade dele; e o número de viagens arredonda para cima.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número mínimo de viagens para encher ao menos 75% do reservatório.",
+    "chave": "Meta 774 L; por viagem chegam 0,9 × 0,8 × 60 = 43,2 L; 774 ÷ 43,2 ≈ 17,9 → 18.",
+    "cuidado": "Aplique o 4/5 e o desconto de 10% sobre a água do balde, e arredonde para cima."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fator único",
+    "ideia": "Cada viagem entrega 0,8 × 0,9 = 0,72 do balde, 0,72 × 60 = 43,2 L; 774 ÷ 43,2 ≈ 17,9, então 18 viagens."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V = 2 × 0,6 × 0,86 = 1,032 m³ = 1032 L",
+    "nota": "reservatório"
+   },
+   {
+    "linha": "0,75 × 1032 = 774 L",
+    "nota": "meta de 75%"
+   },
+   {
+    "linha": "V = 3 × 20² × 50 = 60000 cm³ = 60 L",
+    "nota": "balde"
+   },
+   {
+    "linha": "(4/5) × 60 = 48 L",
+    "nota": "balde com 4/5"
+   },
+   {
+    "linha": "48 − 0,1 × 48 = 43,2 L",
+    "nota": "perde 10% no caminho"
+   },
+   {
+    "linha": "774/43,2 ≈ 17,9 → 18",
+    "nota": "arredonda para cima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
  }
 }
