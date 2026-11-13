@@ -216,5 +216,110 @@
    "data": "2026-11-13",
    "lote": "fis-0051"
   }
+ },
+ "P1e1f559a": {
+  "n": "53",
+  "conceito": "Rendimento de um gerador a biogás: energia útil/rendimento = energia que o biogás precisa fornecer.",
+  "equivocos": {
+   "A": "F04.4:sem-origem-identificada",
+   "B": "F04.4:ignorou-o-rendimento",
+   "C": "F04.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O motor entrega 5 000 kWh por mês, mas aproveita só 30% da energia do biogás. Então o biogás precisa fornecer mais: a energia útil dividida por 0,30. O poder calorífico vem em kJ por m³, por isso o kWh tem de virar joule antes.",
+    "formulas": [
+     "rendimento = energia útil/energia fornecida",
+     "energia fornecida = energia útil/rendimento",
+     "1 kWh = 3,6 × 10⁶ J"
+    ],
+    "simbolos": [
+     [
+      "kWh",
+      "quilowatt-hora: 1 000 W durante 3 600 s"
+     ],
+     [
+      "kJ",
+      "quilojoule, mil joules"
+     ],
+     [
+      "eficiência",
+      "fração da energia fornecida que sai como energia útil"
+     ]
+    ]
+   },
+   "pista": "A energia útil é só 30% do que o biogás fornece. E o kWh e o kJ precisam virar a mesma unidade.",
+   "passos": [
+    {
+     "faz": "Converta a energia útil para joule",
+     "conta": "5000 kWh × 3,6 × 10⁶ J/kWh = 1,8 × 10¹⁰ J",
+     "porque": "O poder calorífico está em kJ por m³; kWh e kJ precisam ficar na mesma unidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a energia que o biogás fornece",
+     "conta": "1,8 × 10¹⁰/0,30 = 6,0 × 10¹⁰ J",
+     "porque": "Só 30% vira energia útil; a energia de entrada é maior que a de saída.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pela energia de cada m³",
+     "conta": "6,0 × 10¹⁰/(5 × 10⁶) = 1,2 × 10⁴ m³",
+     "porque": "Cada m³ de biogás libera 5 000 kJ = 5 × 10⁶ J.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1,2 × 10⁴ m³",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1,2 × 10⁴ m³ de biogás.",
+   "checagem": "Ao contrário: 1,2 × 10⁴ m³ × 5 × 10⁶ J = 6 × 10¹⁰ J; 30% disso são 1,8 × 10¹⁰ J, que divididos por 3,6 × 10⁶ dão 5 000 kWh.",
+   "erradas": {
+    "A": "1,0 × 10³ m³ não confere: forneceria 5 × 10⁹ J; com 30%, 1,5 × 10⁹ J, cerca de 417 kWh, longe de 5 000 kWh.",
+    "B": "3,6 × 10³ sai de ignorar o rendimento: 1,8 × 10¹⁰/(5 × 10⁶) = 3,6 × 10³ m³, como se o motor aproveitasse 100%.",
+    "C": "8,1 × 10³ m³ não confere: forneceria 4,05 × 10¹⁰ J; com 30%, 1,215 × 10¹⁰ J, cerca de 3 375 kWh, menos que 5 000 kWh."
+   },
+   "armadilha": "Esquecer o rendimento: com 30%, o biogás precisa fornecer mais energia que a útil, não a mesma.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume de biogás (5 000 kJ por m³) para um motor de 30% gerar 5 000 kWh.",
+    "chave": "5 000 kWh = 1,8 × 10¹⁰ J; ÷ 0,30 = 6 × 10¹⁰ J; ÷ 5 × 10⁶ = 1,2 × 10⁴ m³.",
+    "cuidado": "Dividir pelo rendimento (não multiplicar) e converter kWh em joule."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em kWh por m³",
+    "ideia": "5 000 kJ = 5000/3600 kWh ≈ 1,39 kWh por m³; útil: 0,3 × 1,39 ≈ 0,417 kWh por m³; 5000/0,417 ≈ 1,2 × 10⁴ m³."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "5000 × 3,6 × 10⁶ = 1,8 × 10¹⁰ J",
+    "nota": "kWh em joule"
+   },
+   {
+    "linha": "1,8 × 10¹⁰/0,30 = 6,0 × 10¹⁰ J",
+    "nota": "divide pelo rendimento"
+   },
+   {
+    "linha": "6,0 × 10¹⁰/(5 × 10⁶) = 1,2 × 10⁴ m³",
+    "nota": "divide pela energia de 1 m³"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0053"
+  }
  }
 }

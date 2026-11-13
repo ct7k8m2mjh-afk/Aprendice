@@ -222,5 +222,116 @@
    "data": "2026-11-13",
    "lote": "fis-0052"
   }
+ },
+ "Pedf9e1ae": {
+  "n": "60",
+  "conceito": "Dimensionamento de painéis: energia diária necessária ÷ energia diária útil de um painel (potência × 80 % × horas de sol).",
+  "equivocos": {
+   "B": "F04.5:sem-origem-identificada",
+   "C": "F04.5:sem-origem-identificada",
+   "D": "F04.5:sem-origem-identificada",
+   "E": "F04.5:perda-lida-como-rendimento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Compare energia com energia no mesmo período. A casa precisa de 216 kWh em 30 dias, isto é, 7,2 kWh por dia. Cada painel tem 300 W, mas perde 20 % na conversão, então entrega 80 % disso durante as 6 horas de sol.",
+    "formulas": [
+     "E = P × Δt",
+     "potência útil = 0,80 × 300 W",
+     "número de painéis = energia necessária ÷ energia de um painel"
+    ],
+    "simbolos": [
+     [
+      "kWh",
+      "quilowatt-hora, unidade de energia: 1 kW funcionando por 1 hora"
+     ],
+     [
+      "W",
+      "watt, unidade de potência"
+     ],
+     [
+      "perda de 20 %",
+      "parte da energia que não vira eletricidade; sobram 80 %"
+     ]
+    ]
+   },
+   "pista": "Coloque a casa e o painel na mesma base: quanto a casa gasta por dia e quanto um painel gera por dia?",
+   "passos": [
+    {
+     "faz": "Ache o consumo por dia",
+     "conta": "216 kWh ÷ 30 = 7,2 kWh por dia",
+     "porque": "O painel trabalha por dia de sol, então é mais simples comparar dia com dia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte a perda do painel",
+     "conta": "300 W × 0,80 = 240 W = 0,24 kW",
+     "porque": "Perder 20 % significa aproveitar 80 % da potência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a energia de um painel por dia",
+     "conta": "0,24 kW × 6 h = 1,44 kWh",
+     "porque": "Energia é potência vezes tempo; kW vezes hora dá kWh, a unidade do consumo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e conclua",
+     "conta": "7,2 ÷ 1,44 = 5 painéis",
+     "porque": "Cinco painéis geram exatamente o necessário; é o número mínimo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 5 painéis.",
+   "checagem": "Pelo mês inteiro: 5 painéis × 1,44 kWh × 30 dias = 216 kWh, exatamente o consumo da casa.",
+   "erradas": {
+    "B": "8 não confere: 8 × 1,44 × 30 = 345,6 kWh por mês, bem mais que 216 kWh; não é o mínimo.",
+    "C": "10 não confere: 10 × 1,44 × 30 = 432 kWh, o dobro do consumo; não é o mínimo.",
+    "D": "12 não confere: 12 × 1,44 × 30 = 518,4 kWh, muito acima de 216 kWh.",
+    "E": "Sai de usar os 20 % como a parte aproveitada: 300 × 0,20 × 6 = 0,36 kWh por dia; 7,2 ÷ 0,36 = 20. A perda é de 20 %; aproveitam-se 80 %."
+   },
+   "armadilha": "Ler “perda de 20 %” como rendimento de 20 %: o painel aproveita 80 %, não 20 %.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número mínimo de painéis para 216 kWh por mês.",
+    "chave": "7,2 kWh por dia ÷ (0,24 kW × 6 h) = 7,2 ÷ 1,44 = 5.",
+    "cuidado": "Perda de 20 % deixa 80 %; comparar energia do dia com energia do dia."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo mês",
+    "ideia": "Um painel gera 0,24 kW × 6 h × 30 = 43,2 kWh no mês; 216 ÷ 43,2 = 5 painéis."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "216 ÷ 30 = 7,2 kWh",
+    "nota": "consumo por dia"
+   },
+   {
+    "linha": "300 × 0,80 = 240 W",
+    "nota": "potência útil"
+   },
+   {
+    "linha": "0,24 kW × 6 h = 1,44 kWh",
+    "nota": "um painel por dia"
+   },
+   {
+    "linha": "7,2/1,44 = 5",
+    "nota": "painéis"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0053"
+  }
  }
 }
