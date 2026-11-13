@@ -7,6 +7,10 @@ para gastar menos do limite semanal). Leia inteiro antes de agir. Atualize no fi
 A coordenadora só organiza: questões no site, classificação, prints, gabaritos, publicação e o andamento das sessões.
 NUNCA resolve questão. Fala com o dono em português do Brasil, direto, sem termos técnicos (CLAUDE.md).
 
+## Situação (13/11, 03h30)
+O dono mandou todas as sessões pararem depois do último lote. Não abrir sessões novas até ele mandar retomar.
+Respostas do dono no painel (9) cumpridas ou em andamento; "anulada pelo Aprendice" vale para gabarito oficial contra os fatos.
+
 ## Regras de economia (dono, 12/11/2026)
 - No máximo 5 sessões de resolução trabalhando ao mesmo tempo. Agora: Matemática, Física, Química, Biologia e Português.
 - Pausadas (retomar só quando uma das 5 acabar a matéria ou o dono pedir): Inglês, Geografia, Filosofia e Sociologia,
@@ -31,14 +35,14 @@ Avise a coordenadora (<id da coordenadora>) com TROCA quando chegar a hora (pass
 Ao abrir: extra_allowed_tools = ["Bash","Edit","Write","Read","Glob","Grep","Agent","Skill","WebFetch","WebSearch",
 "mcp__claude-code-remote__send_message"] (dono, 13/11: resolvedores não pedem autorização; também em .claude/settings.json).
 
-## Sessões (13/11/2026, 00h30 UTC)
+## Sessões (13/11/2026, 03h30 UTC) — TODAS PARADAS por ordem do dono (último lote)
 | Matéria | Sessão | Situação |
 |---|---|---|
-| Matemática | session_01PveEKZRuBiHmg4Hm9HT1J1 | trabalhando (Matemática 4, aberta 13/11 02h35; Matemática 3 session_01PveEKXeWuGGwuP9KHSuc9N mandou TROCA após mat-0056: pode arquivar) |
-| Física | session_01PveEKXmCjqipC4JbNj9w73 | trabalhando (Física 3, aberta 13/11 02h03; Física 2 session_01PveEKYTfpdPfG8PfUEbE3Q mandou TROCA após fis-0046: pode arquivar) |
-| Química | session_01PveEKadroQ4kNhHt52L2hy | trabalhando (Química 3, aberta 13/11 02h08; Química 2 session_01PveEKXnC2DKmBd64gp3Zn3 mandou TROCA após qui-0049: pode arquivar) |
-| Biologia | session_01PveEKaptKYR7JXwbmxDGXx | trabalhando (Biologia 2, aberta 13/11 02h04; antiga session_01PveEKaZX71znbULe85ap8G mandou TROCA após bio-0049: pode arquivar) |
-| Português | session_01PveEKaBDR2WGsLQUacMYFY | trabalhando (Português 3, aberta 13/11 01h38; Português 2 session_01PveEKaTKHh9kRmYcfPdmUA mandou TROCA após por-0079: pode arquivar) |
+| Matemática | session_01PveEKZRuBiHmg4Hm9HT1J1 | PARADA por ordem do dono (13/11 03h): último lote mat-0059, nada aberto; pode arquivar |
+| Física | session_01PveEKXmCjqipC4JbNj9w73 | PARADA por ordem do dono (13/11 03h): último lote fis-0056, nada aberto; pode arquivar |
+| Química | session_01PveEKadroQ4kNhHt52L2hy | PARADA por ordem do dono (13/11 03h): último lote qui-0059, nada aberto; pode arquivar |
+| Biologia | session_01PveEKaptKYR7JXwbmxDGXx | PARADA por ordem do dono (13/11 03h): último lote bio-0058, nada aberto; pode arquivar |
+| Português | session_01PveEKaBDR2WGsLQUacMYFY | PARADA por ordem do dono (13/11 03h): último lote por-0087, nada aberto; pode arquivar |
 | Inglês | session_01PveEKYvFj3v794d3jbEjQY | matéria concluída, tudo gravado: pode arquivar (dono avisado) |
 | Geografia | session_01PveEKYE1nkNeafq9SNBU2b | pausada, tudo gravado (até geo-0038; faltam 1.476): pode arquivar (dono avisado 13/11) |
 | Filosofia e Sociologia | session_01PveEKWgecw6NvvouAmBWM2 | matéria concluída (13/11), tudo gravado: pode arquivar (dono avisado) |
