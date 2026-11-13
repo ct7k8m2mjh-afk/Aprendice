@@ -94,5 +94,107 @@
    "data": "2026-11-13",
    "lote": "mat-0047"
   }
+ },
+ "Pb4dbe201": {
+  "n": "16",
+  "conceito": "Composição com função definida por partes: escolher o trecho certo a cada passo.",
+  "equivocos": {
+   "A": "M05.4:valor-sem-calculo",
+   "B": "M05.4:valor-sem-calculo",
+   "C": "M05.4:valor-sem-calculo",
+   "D": "M05.4:sinal-na-subtracao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em f(f(6)), calcule primeiro f(6) e depois f do resultado. A cada cálculo, olhe se o número é ≤ 5 (usa 2x − 7) ou > 5 (usa 18 − 3x).",
+    "formulas": [
+     "x ≤ 5: f(x) = 2x − 7",
+     "x > 5: f(x) = 18 − 3x"
+    ],
+    "simbolos": [
+     [
+      "f(f(6))",
+      "aplica f em 6 e depois f no resultado"
+     ]
+    ]
+   },
+   "pista": "Comece pelo de dentro e decida o trecho antes de cada substituição.",
+   "passos": [
+    {
+     "faz": "Calcule f(6)",
+     "conta": "6 > 5 → f(6) = 18 − 18 = 0",
+     "porque": "6 está no segundo trecho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule f(f(6))",
+     "conta": "f(0): 0 ≤ 5 → 2 · 0 − 7 = −7",
+     "porque": "0 está no primeiro trecho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule f(f(0))",
+     "conta": "f(0) = −7 → f(−7) = 2 · (−7) − 7 = −21",
+     "porque": "−7 também é ≤ 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia",
+     "conta": "−7 − (−21) = −7 + 21 = 14",
+     "porque": "Menos com menos vira mais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 14",
+   "checagem": "Confira os trechos usados: 6 > 5 usa 18 − 3x; 0 e −7 são ≤ 5 e usam 2x − 7. E os dois valores do primeiro trecho estão na mesma reta: de (−7, −21) a (0, −7), a inclinação é 14/7 = 2, o coeficiente de 2x − 7.",
+   "erradas": {
+    "A": "Não confere: as parcelas são −7 e −21, e −7 − (−21) = 14, não 26.",
+    "B": "Não confere: com −7 e −21, nem a soma (−28) nem a diferença (14) dão 39.",
+    "C": "Não confere: a diferença é 14; −13 não sai das parcelas −7 e −21.",
+    "D": "Sai de somar em vez de subtrair: −7 + (−21) = −28. A expressão pede −7 − (−21) = 14."
+   },
+   "armadilha": "Errar o jogo de sinais no fim: −7 − (−21) é −7 + 21.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de f(f(6)) − f(f(0)).",
+    "chave": "f(6) = 0, f(0) = −7, f(−7) = −21; −7 − (−21) = 14.",
+    "cuidado": "Escolha o trecho certo e cuide do sinal na subtração."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "reaproveitar",
+    "ideia": "f(f(6)) = f(0) = −7 e f(f(0)) = f(−7); só três valores de f são calculados."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(6) = 18 − 18 = 0",
+    "nota": "x > 5"
+   },
+   {
+    "linha": "f(f(6)) = f(0) = −7",
+    "nota": "x ≤ 5"
+   },
+   {
+    "linha": "f(f(0)) = f(−7) = −21",
+    "nota": "x ≤ 5"
+   },
+   {
+    "linha": "−7 − (−21) = −7 + 21 = 14",
+    "nota": "subtração"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0055"
+  }
  }
 }

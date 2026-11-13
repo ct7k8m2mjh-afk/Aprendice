@@ -400,5 +400,111 @@
    "data": "2026-11-13",
    "lote": "mat-0053"
   }
+ },
+ "Pf66ace17": {
+  "n": "11",
+  "conceito": "Área máxima com orçamento fixo e preços diferentes por lado.",
+  "equivocos": {
+   "A": "M05.2:raiz-no-lugar-do-vertice",
+   "B": "M05.2:valor-fora-do-maximo",
+   "C": "M05.2:valor-fora-do-maximo",
+   "E": "M05.2:valor-fora-do-maximo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O muro dispensa um lado de comprimento x. A tela cobre um lado x (R$ 8,00 por metro) e dois lados y (R$ 20,00 por metro cada). O orçamento de R$ 1.200,00 liga x a y, e a área x · y vira uma parábola em y.",
+    "formulas": [
+     "custo: 8x + 2 · 20y = 1 200",
+     "área = x · y"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "lado paralelo ao muro, cercado só uma vez"
+     ],
+     [
+      "y",
+      "lado perpendicular ao muro, cercado duas vezes"
+     ]
+    ]
+   },
+   "pista": "Escreva o custo total da tela e isole x.",
+   "passos": [
+    {
+     "faz": "Monte o custo",
+     "conta": "8x + 40y = 1 200 → x = 150 − 5y",
+     "porque": "Dois lados y a R$ 20,00 custam 40y; o lado x custa 8x.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a área",
+     "conta": "A(y) = y · (150 − 5y)",
+     "porque": "Área = x · y com x em função de y.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o máximo",
+     "conta": "raízes: y = 0 e y = 30 → yv = 15 → x = 150 − 75 = 75",
+     "porque": "O vértice fica no meio das raízes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte ao comando",
+     "conta": "lados 15 m e 75 m → maior lado = 75 m",
+     "porque": "A pergunta é a medida do maior lado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 75",
+   "checagem": "Confira o orçamento: 8 · 75 + 40 · 15 = 600 + 600 = 1 200. E metade do dinheiro em cada tipo de tela é o sinal do máximo neste problema.",
+   "erradas": {
+    "A": "Sai de pegar a raiz y = 30 da área y(150 − 5y), em vez do vértice. Com y = 30, x = 0 e o galinheiro some.",
+    "B": "Não confere: com x = 45 sobram 1 200 − 360 = 840 reais, y = 21, área 945 m², menor que 75 · 15 = 1 125 m².",
+    "C": "Não confere: com x = 60, y = (1 200 − 480)/40 = 18 e a área é 1 080 m², menor que 1 125 m².",
+    "E": "Não confere: com x = 90, y = (1 200 − 720)/40 = 12 e a área é 1 080 m², menor que 1 125 m²."
+   },
+   "armadilha": "Parar na raiz y = 30 de A(y) = y(150 − 5y) em vez de ir ao vértice y = 15: com y = 30 sobra x = 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A medida do maior lado do galinheiro de área máxima.",
+    "chave": "x = 150 − 5y; A(y) = y(150 − 5y), máximo em y = 15, x = 75.",
+    "cuidado": "Os lados y são dois; a resposta é o lado maior."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em função de x",
+    "ideia": "y = (1 200 − 8x)/40; A(x) = x(1 200 − 8x)/40, raízes 0 e 150, máximo em x = 75."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "8x + 40y = 1 200 → x = 150 − 5y",
+    "nota": "orçamento"
+   },
+   {
+    "linha": "A(y) = y · (150 − 5y)",
+    "nota": "área"
+   },
+   {
+    "linha": "yv = (0 + 30)/2 = 15",
+    "nota": "vértice"
+   },
+   {
+    "linha": "x = 150 − 5 · 15 = 75",
+    "nota": "maior lado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0055"
+  }
  }
 }
