@@ -414,5 +414,237 @@
    "data": "2026-11-13",
    "lote": "fis-0055"
   }
+ },
+ "P9cd70814": {
+  "n": "55",
+  "conceito": "Leitura de tabela de resfriamento: a taxa de perda de calor acompanha a queda de temperatura por intervalo de tempo.",
+  "equivocos": {
+   "A": "F08.4:inverteu-tendencia-da-taxa",
+   "C": "F08.4:confundiu-temperatura-caindo-com-taxa-constante",
+   "D": "F08.4:viu-trecho-constante-inexistente",
+   "E": "F08.4:inverteu-tendencia-da-taxa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com a mesma massa de suco e o mesmo calor específico, o calor perdido em cada intervalo é proporcional à queda de temperatura nele (Q = m · c · ΔT). Como os intervalos são todos de 5 minutos, basta comparar as quedas de temperatura de um intervalo para o seguinte.",
+    "formulas": [
+     "Q = m · c · ΔT → com m e c fixos, Q ∝ ΔT",
+     "taxa de perda = Q/Δt, com Δt = 5 min em todos os intervalos"
+    ],
+    "simbolos": [
+     [
+      "Q",
+      "calor perdido"
+     ],
+     [
+      "m",
+      "massa do suco"
+     ],
+     [
+      "c",
+      "calor específico do suco"
+     ],
+     [
+      "ΔT",
+      "queda de temperatura no intervalo"
+     ],
+     [
+      "Δt",
+      "duração do intervalo, 5 min"
+     ]
+    ]
+   },
+   "pista": "Calcule quanto a temperatura caiu em cada intervalo de 5 minutos.",
+   "passos": [
+    {
+     "faz": "Calcule a queda em cada intervalo",
+     "conta": "25,0 → 17,5 → 12,3 → 8,6 → 6,0 → 4,2 → 2,9 | quedas: 7,5; 5,2; 3,7; 2,6; 1,8; 1,3 °C",
+     "porque": "Intervalos iguais: a queda de temperatura mede a taxa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue queda de temperatura a calor",
+     "conta": "Q = m · c · ΔT → ΔT maior → Q maior",
+     "porque": "Massa e calor específico não mudam; o calor perdido acompanha ΔT.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Leia a tendência",
+     "conta": "7,5 > 5,2 > 3,7 > 2,6 > 1,8 > 1,3 → a taxa diminui o tempo todo",
+     "porque": "Quanto mais perto da temperatura do refrigerador, mais devagar o suco perde calor.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "maior no início, depois diminui → alternativa B",
+     "porque": "As quedas encolhem a cada intervalo, sem trecho constante.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a taxa de perda de calor foi maior no início e depois diminuiu.",
+   "checagem": "Pela diferença com o refrigerador: no começo o suco está bem mais quente que o interior do refrigerador e perde calor depressa; perto do fim, a diferença é pequena e a perda fica lenta, como mostram os últimos intervalos (1,8 e 1,3 °C).",
+   "erradas": {
+    "A": "Inverte a tendência: as quedas por intervalo diminuem (7,5 °C no primeiro, 1,3 °C no último).",
+    "C": "Taxa constante daria quedas iguais a cada 5 min; elas vão de 7,5 °C a 1,3 °C.",
+    "D": "Até 15 °C as quedas já mudam muito: 7,5 °C no primeiro intervalo e 5,2 °C no segundo. Não há trecho constante.",
+    "E": "Erra duas vezes: não há trecho constante até 15 °C, e a taxa diminui depois, não aumenta."
+   },
+   "armadilha": "Olhar a temperatura descendo e achar que 'cai sempre igual': o que importa é quanto ela cai em cada intervalo, e isso diminui.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Como variou a taxa de perda de calor do suco no refrigerador.",
+    "chave": "Quedas por 5 min: 7,5; 5,2; 3,7; 2,6; 1,8; 1,3 °C → a taxa diminui.",
+    "cuidado": "Comparar as diferenças entre linhas da tabela, não os valores de temperatura."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diferença com o refrigerador",
+    "ideia": "O suco perde calor mais rápido quanto maior a diferença de temperatura com o interior do refrigerador; essa diferença diminui com o tempo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "25,0 − 17,5 = 7,5 | 17,5 − 12,3 = 5,2 | 12,3 − 8,6 = 3,7",
+    "nota": "quedas nos primeiros 15 min"
+   },
+   {
+    "linha": "8,6 − 6,0 = 2,6 | 6,0 − 4,2 = 1,8 | 4,2 − 2,9 = 1,3",
+    "nota": "quedas nos últimos 15 min"
+   },
+   {
+    "linha": "Q = m · c · ΔT → ΔT ↓ → Q ↓ por intervalo",
+    "nota": "taxa diminui: alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0058"
+  }
+ },
+ "Paadbdbc2": {
+  "n": "56",
+  "conceito": "Gás ideal: com a mesma massa, a temperatura é proporcional ao produto p·V; a menor temperatura está no ponto de menor p·V.",
+  "equivocos": {
+   "A": "F08.6:so-pressao",
+   "C": "F08.6:so-volume",
+   "D": "F08.6:produto-pv-errado",
+   "E": "F08.6:maior-no-lugar-do-menor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Pela equação de Clapeyron, p·V = n·R·T. A massa do gás não muda, então n·R é constante e T é proporcional a p·V. Basta ler pressão e volume de cada ponto no gráfico e multiplicar: o menor produto é a menor temperatura.",
+    "formulas": [
+     "p · V = n · R · T",
+     "n fixo: T ∝ p · V"
+    ],
+    "simbolos": [
+     [
+      "p",
+      "pressão do gás"
+     ],
+     [
+      "V",
+      "volume do gás"
+     ],
+     [
+      "n",
+      "quantidade de matéria (mol), fixa porque a massa é a mesma"
+     ],
+     [
+      "R",
+      "constante universal dos gases"
+     ],
+     [
+      "T",
+      "temperatura absoluta"
+     ]
+    ]
+   },
+   "pista": "Escreva Clapeyron e veja qual combinação de p e V acompanha a temperatura.",
+   "passos": [
+    {
+     "faz": "Relacione T com p e V",
+     "conta": "p·V = n·R·T, n·R fixo → T ∝ p·V",
+     "porque": "Mesma massa de gás: comparar temperaturas é comparar produtos p·V.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia p e V de cada ponto",
+     "conta": "P: 1,5 e 0,5 | Q: 1,5 e 1,5 | R: 1,0 e 2,0 | S: 0,5 e 2,0 | T: 1,0 e 0,5",
+     "porque": "Pressão em 10⁵ Pa e volume em m³, tirados do diagrama.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule p·V de cada ponto",
+     "conta": "P: 1,5×0,5 = 0,75 | Q: 1,5×1,5 = 2,25 | R: 1,0×2,0 = 2,0 | S: 0,5×2,0 = 1,0 | T: 1,0×0,5 = 0,5",
+     "porque": "As unidades são as mesmas em todos, então os números já se comparam (em 10⁵ J).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o menor produto",
+     "conta": "T: 0,5 < P: 0,75 < S: 1,0 < R: 2,0 < Q: 2,25",
+     "porque": "O menor p·V é o de T, logo é o ponto mais frio.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — o ponto T, onde p·V = 0,5 × 10⁵ J é o menor do ciclo.",
+   "checagem": "Compare T com P, que têm o mesmo volume 0,5 m³: de T para P a pressão sobe a volume constante, então a temperatura sobe. E T tem a menor pressão entre os pontos de volume 0,5 m³ e o menor volume do ciclo; nenhum outro ponto combina p e V tão baixos.",
+   "erradas": {
+    "A": "Sai de olhar só a pressão: S tem a menor pressão (0,5), mas o volume 2,0 dá p·V = 1,0, o dobro de T.",
+    "C": "Sai de olhar só o volume: P tem o menor volume, mas a pressão 1,5 dá p·V = 0,75, maior que 0,5.",
+    "D": "Não confere: R tem p·V = 1,0 × 2,0 = 2,0, quatro vezes o de T.",
+    "E": "Q é o oposto: p·V = 1,5 × 1,5 = 2,25 é o maior produto, a maior temperatura do ciclo."
+   },
+   "armadilha": "Olhar só a pressão (menor em S) ou só o volume (menor em P e T): a temperatura depende do produto p·V.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O ponto do ciclo com a menor temperatura.",
+    "chave": "Mesma massa de gás ideal: T ∝ p·V.",
+    "cuidado": "Multiplicar p e V; não decidir por uma grandeza só."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "isotermas",
+    "ideia": "As curvas de mesma temperatura são hipérboles p·V = constante; T fica na mais próxima da origem."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p·V = n·R·T → T ∝ p·V",
+    "nota": "massa fixa"
+   },
+   {
+    "linha": "P: 1,5 × 0,5 = 0,75 | S: 0,5 × 2,0 = 1,0",
+    "nota": "produtos em 10⁵ J"
+   },
+   {
+    "linha": "Q: 2,25 | R: 2,0 | T: 1,0 × 0,5 = 0,5",
+    "nota": "T é o menor"
+   },
+   {
+    "linha": "menor p·V → menor temperatura → T",
+    "nota": "alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0058"
+  }
  }
 }

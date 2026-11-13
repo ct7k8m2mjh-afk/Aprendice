@@ -363,5 +363,130 @@
    "data": "2026-11-13",
    "lote": "fis-0055"
   }
+ },
+ "P201ee5a7": {
+  "n": "47",
+  "conceito": "Calor para aquecer a água do boiler convertido em joules e dividido pela potência do chuveiro dá o tempo.",
+  "equivocos": {
+   "A": "F08.3:tempo-sem-origem",
+   "C": "F08.3:tempo-sem-origem",
+   "D": "F08.3:tempo-sem-origem",
+   "E": "F08.3:tempo-sem-origem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O trabalho é igualar duas energias: o calor para aquecer 600 L de água em 10 °C e a energia que o chuveiro dissipa, P · Δt. O calor sai em calorias e a potência está em watt (joule por segundo), por isso a conversão 1 cal ≈ 4,2 J é o centro da questão. O tempo sai em segundos e precisa virar horas e minutos.",
+    "formulas": [
+     "Q = m · c · Δθ",
+     "1 cal ≈ 4,2 J",
+     "E = P · Δt, logo Δt = E/P"
+    ],
+    "simbolos": [
+     [
+      "ρ",
+      "densidade da água: 1 kg por litro"
+     ],
+     [
+      "c",
+      "calor específico da água: 1 cal/g·°C"
+     ],
+     [
+      "Δθ",
+      "variação de temperatura"
+     ],
+     [
+      "P",
+      "potência, em watt (J/s)"
+     ],
+     [
+      "Δt",
+      "tempo de funcionamento"
+     ]
+    ]
+   },
+   "pista": "Calcule o calor em calorias, mas lembre que o watt é joule por segundo: converta antes de dividir.",
+   "passos": [
+    {
+     "faz": "Ache a massa de água",
+     "conta": "m = ρ · V → m = 1 kg/L · 600 L → m = 600 kg = 600 000 g",
+     "porque": "O calor específico está em cal/g·°C, então a massa precisa estar em gramas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o calor em calorias",
+     "conta": "Q = m · c · Δθ → Q = 600 000 · 1 · (38 − 28) → Q = 6 000 000 cal",
+     "porque": "É o calor que o sistema auxiliar precisa dar à água do boiler.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta para joules",
+     "conta": "6 × 10⁶ cal · 4,2 J/cal → 2,52 × 10⁷ J",
+     "porque": "A potência do chuveiro está em watt, que é joule por segundo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pela potência",
+     "conta": "Δt = E/P → Δt = 2,52 × 10⁷/4600 → Δt ≈ 5478 s",
+     "porque": "Energia dividida por potência dá o tempo, em segundos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para horas e minutos",
+     "conta": "5478 s/60 ≈ 91,3 min → 1 h e 31 min ≈ 1 h 30 min",
+     "porque": "Das alternativas, a mais próxima de 91 minutos é 1 hora e 30 minutos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — cerca de 1 hora e 30 minutos.",
+   "checagem": "No sentido inverso: em 90 min o chuveiro dissipa 4600 × 5400 = 2,48 × 10⁷ J, praticamente os 2,52 × 10⁷ J do boiler; os vizinhos 70 e 110 min ficam cerca de 20 min longe.",
+   "erradas": {
+    "A": "Não confere: 70 min de chuveiro dão 4600 × 4200 s ≈ 1,93 × 10⁷ J, bem abaixo dos 2,52 × 10⁷ J necessários.",
+    "C": "Não confere: 110 min dão 4600 × 6600 s ≈ 3,04 × 10⁷ J, acima dos 2,52 × 10⁷ J necessários.",
+    "D": "Não confere: 130 min dão 4600 × 7800 s ≈ 3,59 × 10⁷ J, cerca de 1,4 vez a energia necessária.",
+    "E": "Não confere: 150 min dão 4600 × 9000 s ≈ 4,14 × 10⁷ J, mais de 1,6 vez a energia necessária."
+   },
+   "armadilha": "Dividir as calorias direto pelos watts; sem a conversão 1 cal ≈ 4,2 J o tempo sai cerca de 4 vezes menor.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quanto tempo um chuveiro de 4600 W leva para dissipar a energia que aquece 600 L de água de 28 °C para 38 °C.",
+    "chave": "Q = 600 000 · 1 · 10 = 6 × 10⁶ cal = 2,52 × 10⁷ J; Δt = 2,52 × 10⁷/4600 ≈ 5478 s ≈ 1 h 31 min.",
+    "cuidado": "Converter caloria em joule antes de dividir pela potência em watt e passar segundos para minutos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar a alternativa",
+    "ideia": "Multiplique 4600 W pelo tempo de cada alternativa em segundos e veja qual dá perto de 2,52 × 10⁷ J: só 90 min."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m = 600 L · 1 kg/L = 600 000 g",
+    "nota": "massa em gramas"
+   },
+   {
+    "linha": "Q = 600 000 · 1 · 10 = 6 × 10⁶ cal",
+    "nota": "calor sensível"
+   },
+   {
+    "linha": "6 × 10⁶ · 4,2 = 2,52 × 10⁷ J",
+    "nota": "cal → J"
+   },
+   {
+    "linha": "Δt = 2,52 × 10⁷/4600 ≈ 5478 s ≈ 91 min",
+    "nota": "≈ 1 h 30 min"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0058"
+  }
  }
 }

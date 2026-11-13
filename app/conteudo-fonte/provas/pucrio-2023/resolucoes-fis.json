@@ -585,5 +585,119 @@
    "data": "2026-11-13",
    "lote": "fis-0056"
   }
+ },
+ "P58fc5401": {
+  "n": "23",
+  "conceito": "Comparar o calor que a água quente cede até 0 °C com o calor que o gelo precisa para derreter, antes de montar a equação da mistura.",
+  "equivocos": {
+   "A": "F08.4:sem-troca-de-calor",
+   "B": "F08.4:ignorou-calor-latente",
+   "C": "F08.4:media-sem-calor-latente",
+   "D": "F08.4:ignorou-calor-latente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com gelo na mistura, não monte a equação direto: primeiro veja se dá para derreter todo o gelo. Compare o calor que a água cede ao esfriar até 0 °C com o calor que o gelo pede para derreter. Se os dois forem iguais, o gelo derrete inteiro e tudo para em 0 °C.",
+    "formulas": [
+     "Q = m · c · Δθ (aquecer ou esfriar)",
+     "Q = m · L (mudar de fase)"
+    ],
+    "simbolos": [
+     [
+      "Q",
+      "quantidade de calor, em cal"
+     ],
+     [
+      "c",
+      "calor específico: calor para 1 g variar 1 °C"
+     ],
+     [
+      "Δθ",
+      "variação de temperatura (final menos inicial)"
+     ],
+     [
+      "L",
+      "calor latente de fusão: calor para derreter 1 g, aqui 80 cal/g"
+     ]
+    ]
+   },
+   "pista": "Antes de qualquer equação, calcule quanto calor a água cede até chegar a 0 °C e compare com o que o gelo precisa para derreter.",
+   "passos": [
+    {
+     "faz": "Calcule o calor para derreter o gelo",
+     "conta": "Q_fusão = m · L → Q_fusão = 10 · 80 → Q_fusão = 800 cal",
+     "porque": "O gelo já está a 0 °C: todo calor recebido vai para a mudança de fase.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o calor da água até 0 °C",
+     "conta": "Q_água = m · c · Δθ → Q_água = 10 · 1,0 · 80 → Q_água = 800 cal",
+     "porque": "Esse é o máximo que a água pode ceder sem ficar abaixo de 0 °C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os dois calores",
+     "conta": "800 cal (cede a água) = 800 cal (pede o gelo)",
+     "porque": "O calor da água basta exatamente para derreter todo o gelo, e não sobra nada para aquecer a mistura.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua a temperatura final",
+     "conta": "20 g de água líquida a 0 °C → alternativa E",
+     "porque": "Com o gelo todo derretido e nenhum calor sobrando, o sistema fica em 0 °C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 0 °C.",
+   "checagem": "Teste qualquer valor acima de 0 °C, por exemplo 20 °C: o gelo precisaria de 800 + 10 · 20 = 1000 cal, e a água cederia só 10 · 60 = 600 cal. Não fecha; só em 0 °C o calor cedido iguala o recebido.",
+   "erradas": {
+    "A": "Não confere: a 80 °C a água não teria cedido calor nenhum, e o gelo precisa de 800 cal para derreter.",
+    "B": "Não confere: a 73 °C a água cederia só 10 · 7 = 70 cal, e o gelo precisaria de 800 + 10 · 73 = 1530 cal.",
+    "C": "Sai de ignorar o calor de fusão e tirar a média: (10 · 0 + 10 · 80)/20 = 40 °C. Derreter o gelo consome os 800 cal da água.",
+    "D": "Não confere: a 20 °C o gelo precisaria de 800 + 200 = 1000 cal, e a água cederia só 10 · 60 = 600 cal."
+   },
+   "armadilha": "Tratar o gelo como água a 0 °C e tirar a média, esquecendo o calor gasto só para derreter.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A temperatura final de gelo a 0 °C misturado com água a 80 °C.",
+    "chave": "A água cede 800 cal até 0 °C, exatamente o que o gelo pede para derreter: final em 0 °C.",
+    "cuidado": "Com gelo, compare os calores antes de montar a equação da mistura."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "equação com a fusão",
+    "ideia": "Suponha T > 0: 800 + 10 · T = 10 · (80 − T) → 20T = 0 → T = 0 °C."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Q_fusão = 10 · 80 = 800 cal",
+    "nota": "gelo a 0 °C só derrete"
+   },
+   {
+    "linha": "Q_água = 10 · 1,0 · (80 − 0) = 800 cal",
+    "nota": "água esfria até 0 °C"
+   },
+   {
+    "linha": "800 = 800",
+    "nota": "o calor da água derrete todo o gelo"
+   },
+   {
+    "linha": "T_final = 0 °C",
+    "nota": "não sobra calor para aquecer"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0058"
+  }
  }
 }

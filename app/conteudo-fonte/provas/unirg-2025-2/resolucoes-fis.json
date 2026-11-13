@@ -212,5 +212,121 @@
    "data": "2026-11-13",
    "lote": "fis-0054"
   }
+ },
+ "Pb3b00fc7": {
+  "n": "27",
+  "conceito": "Equilíbrio térmico com recipiente de capacidade térmica, água e um bloco de ferro.",
+  "equivocos": {
+   "A": "F08.4:balanco-de-calor-errado",
+   "C": "F08.4:esqueceu-recipiente",
+   "D": "F08.4:balanco-de-calor-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Três corpos trocam calor: o recipiente e a água começam a 10 °C e recebem calor; o ferro começa a 100 °C e cede. O recipiente entra com a capacidade térmica dada, 30 cal/°C. Some as capacidades do que está a 10 °C e iguale o calor recebido ao cedido.",
+    "formulas": [
+     "C = m · c",
+     "calor recebido = calor cedido: C_rec+água · (T − 10) = C_ferro · (100 − T)"
+    ],
+    "simbolos": [
+     [
+      "Q",
+      "quantidade de calor, em cal"
+     ],
+     [
+      "c",
+      "calor específico: calor para 1 g variar 1 °C"
+     ],
+     [
+      "Δθ",
+      "variação de temperatura (final menos inicial)"
+     ],
+     [
+      "C",
+      "capacidade térmica, em cal/°C"
+     ]
+    ]
+   },
+   "pista": "Não esqueça o recipiente: ele também está a 10 °C e também recebe calor.",
+   "passos": [
+    {
+     "faz": "Calcule as capacidades térmicas",
+     "conta": "C_água = 70 · 1 = 70 cal/°C | C_rec = 30 cal/°C | C_ferro = 200 · 0,1 = 20 cal/°C",
+     "porque": "Capacidade térmica = massa × calor específico; a do recipiente já vem pronta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some o que começa a 10 °C",
+     "conta": "C_frio = 70 + 30 = 100 cal/°C",
+     "porque": "Água e recipiente partem da mesma temperatura e recebem calor juntos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o balanço e resolva",
+     "conta": "100 · (T − 10) = 20 · (100 − T) → 100T + 20T = 2000 + 1000 → 120T = 3000 → T = 25 °C",
+     "porque": "O calor que o ferro cede ao esfriar é o que a água e o recipiente recebem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "T = 25 °C → alternativa B",
+     "porque": "A temperatura de equilíbrio é 25 °C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 25 °C.",
+   "checagem": "Substitua T = 25 °C: água e recipiente recebem 100 · 15 = 1500 cal; o ferro cede 20 · 75 = 1500 cal. Fecha.",
+   "erradas": {
+    "A": "Não confere: a 20 °C água e recipiente receberiam 100 · 10 = 1000 cal, mas o ferro cederia 20 · 80 = 1600 cal.",
+    "C": "Sai de esquecer o recipiente: 70 · (T − 10) = 20 · (100 − T) → 90T = 2700 → T = 30 °C.",
+    "D": "Não confere: a 35 °C água e recipiente receberiam 100 · 25 = 2500 cal, mas o ferro cederia só 20 · 65 = 1300 cal."
+   },
+   "armadilha": "Esquecer a capacidade térmica do recipiente, que também está a 10 °C e absorve calor.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A temperatura de equilíbrio de recipiente, água e esfera de ferro.",
+    "chave": "(30 + 70)(T − 10) = 20(100 − T) → T = 25 °C.",
+    "cuidado": "O recipiente entra na conta com a capacidade térmica dada."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média ponderada",
+    "ideia": "T = (100 · 10 + 20 · 100)/(100 + 20) = 3000/120 = 25 °C."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C_ferro = 200 · 0,1 = 20 cal/°C",
+    "nota": "capacidade do ferro"
+   },
+   {
+    "linha": "C_frio = 70 · 1 + 30 = 100 cal/°C",
+    "nota": "água + recipiente"
+   },
+   {
+    "linha": "100 · (T − 10) = 20 · (100 − T)",
+    "nota": "recebido = cedido"
+   },
+   {
+    "linha": "100T + 20T = 2000 + 1000",
+    "nota": "termos com T de um lado"
+   },
+   {
+    "linha": "120T = 3000 → T = 25 °C",
+    "nota": "alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0058"
+  }
  }
 }

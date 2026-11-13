@@ -535,5 +535,134 @@
    "data": "2026-11-13",
    "lote": "fis-0052"
   }
+ },
+ "P88eb56d2": {
+  "n": "66",
+  "conceito": "Fonte de potência constante: tempo de fusão e tempo de aquecimento ligam calor latente e calor sensível.",
+  "equivocos": {
+   "A": "F08.4:valor-nao-fecha-com-o-grafico",
+   "B": "F08.4:esqueceu-gelo-derretido-no-aquecimento",
+   "D": "F08.4:valor-nao-fecha-com-o-grafico",
+   "E": "F08.4:valor-nao-fecha-com-o-grafico"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O gráfico tem duas fases. De 0 a 40 min a temperatura fica em 0 °C: o calor só derrete o gelo (calor latente). De 40 a 60 min, já sem gelo, toda a água sobe de 0 °C a 8 °C. Como a fonte é constante, o calor é proporcional ao tempo: a fusão recebeu o dobro do calor do aquecimento. Cuidado: quem aquece na segunda fase é a água inicial MAIS o gelo que derreteu.",
+    "formulas": [
+     "Q = P · Δt (fonte constante: calor proporcional ao tempo)",
+     "fusão: Q = m · L",
+     "aquecimento: Q = M · c · ΔT"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "potência da fonte, calor por minuto (constante)"
+     ],
+     [
+      "m",
+      "massa inicial de gelo"
+     ],
+     [
+      "L",
+      "calor latente de fusão, 80 cal/g"
+     ],
+     [
+      "M",
+      "massa total de água na 2ª fase, 2000 + m"
+     ],
+     [
+      "c",
+      "calor específico da água, 1 cal/g°C"
+     ],
+     [
+      "ΔT",
+      "aumento de temperatura, 8 °C"
+     ]
+    ]
+   },
+   "pista": "Compare os tempos das duas fases do gráfico: a fonte é constante, então os calores estão na mesma razão.",
+   "passos": [
+    {
+     "faz": "Leia as fases no gráfico",
+     "conta": "0 a 40 min: T = 0 °C (fusão) | 40 a 60 min: 0 → 8 °C (aquecimento)",
+     "porque": "Temperatura parada indica mudança de estado; a subida começa quando o gelo acaba.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva o calor de cada fase",
+     "conta": "fusão: P · 40 = m · 80 | aquecimento: P · 20 = (2000 + m) · 1 · 8",
+     "porque": "Na segunda fase aquece toda a água: os 2000 g iniciais mais os m gramas que derreteram.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a razão dos tempos",
+     "conta": "P · 40 = 2 × (P · 20) → m · 80 = 2 × (2000 + m) · 8 → 80 m = 32000 + 16 m",
+     "porque": "A fusão durou o dobro, então recebeu o dobro do calor; P cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole m",
+     "conta": "80 m − 16 m = 32000 → 64 m = 32000 → m = 32000/64 = 500 g",
+     "porque": "O 16 m passa para a esquerda subtraindo; o 64 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "m = 500 g → alternativa C",
+     "porque": "É a massa que faz a fusão durar o dobro do aquecimento de 0 a 8 °C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 500 g de gelo.",
+   "checagem": "Com m = 500 g: a fusão pede 500 × 80 = 40 000 cal em 40 min, logo P = 1 000 cal/min. Em 20 min, 20 000 cal aquecem 2 500 g em 20000/2500 = 8 °C, exatamente o gráfico.",
+   "erradas": {
+    "A": "250 g não confere: a fonte seria de 250 × 80 ÷ 40 = 500 cal/min, e em 20 min aqueceria 2 250 g em só 10000/2250 ≈ 4,4 °C, não 8 °C.",
+    "B": "Sai de esquecer o gelo derretido na segunda fase: 80 m = 2 × 2000 × 8 → m = 400 g. Mas aquecem 2000 g + o gelo que virou água.",
+    "D": "640 g não confere: com P = 640 × 80 ÷ 40 = 1 280 cal/min, em 20 min 2 640 g subiriam cerca de 9,7 °C, não 8 °C.",
+    "E": "800 g não confere: com P = 800 × 80 ÷ 40 = 1 600 cal/min, em 20 min 2 800 g subiriam cerca de 11,4 °C, não 8 °C."
+   },
+   "armadilha": "Na fase de aquecimento, contar só os 2 000 g de água inicial e esquecer que o gelo derretido também esquenta (leva a 400 g).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A massa de gelo que derrete em 40 min se a mesma fonte aquece toda a água de 0 a 8 °C em 20 min.",
+    "chave": "m · 80 = 2 × (2000 + m) · 8 → 64 m = 32000 → m = 500 g.",
+    "cuidado": "Somar o gelo derretido à massa que aquece na segunda fase."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Para cada m, P = 80m/40 = 2m cal/min; em 20 min, 40m cal aquecem (2000 + m) g: só m = 500 dá 20000/2500 = 8 °C."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P · 40 = m · 80",
+    "nota": "fusão: 0 a 40 min"
+   },
+   {
+    "linha": "P · 20 = (2000 + m) · 1 · 8",
+    "nota": "aquecimento: 40 a 60 min"
+   },
+   {
+    "linha": "m · 80 = 2 · (2000 + m) · 8 → 80 m = 32000 + 16 m",
+    "nota": "tempo dobrado, calor dobrado"
+   },
+   {
+    "linha": "64 m = 32000 → m = 32000/64 = 500 g",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0058"
+  }
  }
 }

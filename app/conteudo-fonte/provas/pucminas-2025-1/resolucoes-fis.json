@@ -317,5 +317,137 @@
    "data": "2026-11-13",
    "lote": "fis-0054"
   }
+ },
+ "Pd59f0d9d": {
+  "n": "37",
+  "conceito": "Potência de refrigeração: calor sensível do ar do auditório por tempo, comparado com a potência do aparelho de referência.",
+  "equivocos": {
+   "A": "F08.4:inverteu-a-razao-das-potencias",
+   "B": "F08.4:potencia-insuficiente-para-o-tempo",
+   "C": "F08.4:potencia-insuficiente-para-o-tempo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O enunciado define a régua: um aparelho de 12 000 BTU congela 1 tonelada de água a 0 °C em 24 h. Daí sai a potência dele em kW. Depois calcule a potência necessária para o auditório: massa de ar (densidade × volume), calor para baixar 10 °C e divisão pelos 18 minutos. A razão entre as duas potências diz quantas vezes 12 000 BTU são necessárias.",
+    "formulas": [
+     "Q = m · L (congelar a água)",
+     "Q = m · c · ΔT (resfriar o ar)",
+     "m = d · V",
+     "P = Q/Δt"
+    ],
+    "simbolos": [
+     [
+      "BTU",
+      "unidade usada no comércio para a potência do ar-condicionado"
+     ],
+     [
+      "L",
+      "calor latente da água, 336 kJ/kg"
+     ],
+     [
+      "c",
+      "calor específico do ar, 1 kJ/kg·°C"
+     ],
+     [
+      "d",
+      "densidade do ar, 1,2 kg/m³"
+     ],
+     [
+      "V",
+      "volume do auditório"
+     ],
+     [
+      "P",
+      "potência: calor por segundo (kW = kJ/s)"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra a potência, em kW, do aparelho de 12 000 BTU usando a tonelada de gelo.",
+   "passos": [
+    {
+     "faz": "Ache a potência de 12 000 BTU",
+     "conta": "Q = 1000 × 336 = 336 000 kJ em 24 h = 86 400 s → P = 336000/86400 ≈ 3,89 kW",
+     "porque": "A régua do enunciado: o calor para congelar 1 tonelada dividido pelo tempo em segundos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a massa de ar",
+     "conta": "V = 10 × 10 × 7 = 700 m³ → m = 1,2 × 700 = 840 kg",
+     "porque": "A densidade transforma o volume do auditório em massa de ar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o calor a retirar do ar",
+     "conta": "Q = 840 × 1 × (30 − 20) = 8 400 kJ",
+     "porque": "Calor sensível: o ar baixa 10 °C sem mudar de estado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo tempo",
+     "conta": "18 min = 1 080 s → P = 8400/1080 ≈ 7,78 kW",
+     "porque": "Potência é calor por segundo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com a régua",
+     "conta": "7,78/3,89 = 2 → 2 × 12 000 = 24 000 BTU → alternativa D",
+     "porque": "É preciso o dobro da potência do aparelho de 12 000 BTU.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 24 000 BTU.",
+   "checagem": "Pelo tempo: um aparelho de 12 000 BTU (≈ 3,89 kW) levaria 8400/3,89 ≈ 2 160 s = 36 min para resfriar o auditório; para fazer em 18 min, metade do tempo, precisa do dobro: 24 000 BTU.",
+   "erradas": {
+    "A": "Sai de inverter a razão das potências: 3,89/7,78 = 0,5 → 0,5 × 12 000 = 6 000 BTU. Com 6 000 BTU o resfriamento levaria 72 min.",
+    "B": "12 000 BTU (≈ 3,89 kW) levaria 36 min para retirar os 8 400 kJ, o dobro dos 18 min pedidos.",
+    "C": "18 000 BTU (≈ 5,83 kW) levaria 24 min, ainda acima dos 18 min pedidos."
+   },
+   "armadilha": "Esquecer de passar as 24 horas para segundos (ou os 18 minutos), misturando kJ por hora com kJ por segundo na comparação das potências.",
+   "alerta": "Na linguagem do comércio, 'BTU' na potência do ar-condicionado é, na verdade, BTU por hora. Isso não muda a resposta, porque a questão trabalha só com a proporção em relação ao aparelho de 12 000 BTU.",
+   "essencial": {
+    "pede": "A potência de ar-condicionado que resfria 700 m³ de ar de 30 °C para 20 °C em 18 min.",
+    "chave": "Régua: 12 000 BTU ≈ 3,89 kW; necessário 8400 kJ/1080 s ≈ 7,78 kW = 2 × 3,89 kW → 24 000 BTU.",
+    "cuidado": "Tempos em segundos nas duas potências, e massa de ar = 1,2 × 700 = 840 kg."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo tempo",
+    "ideia": "12 000 BTU retira 8 400 kJ em 36 min; para 18 min, metade do tempo, precisa do dobro: 24 000 BTU."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P₁₂ = (1000 × 336)/86400 ≈ 3,89 kW",
+    "nota": "régua: 12 000 BTU"
+   },
+   {
+    "linha": "m = 1,2 × 10 × 10 × 7 = 840 kg",
+    "nota": "massa de ar"
+   },
+   {
+    "linha": "Q = 840 × 1 × 10 = 8400 kJ",
+    "nota": "ar baixa 10 °C"
+   },
+   {
+    "linha": "P = 8400/1080 ≈ 7,78 kW",
+    "nota": "18 min = 1 080 s"
+   },
+   {
+    "linha": "7,78/3,89 = 2 → 2 × 12 000 = 24 000 BTU",
+    "nota": "alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0058"
+  }
  }
 }
