@@ -37,7 +37,7 @@ questão. Fala com o dono em português do Brasil, simples. Mantém a própria c
 sem fazer nada. Senão, leia CLAUDE.md e siga integralmente docs/resolucoes/PROMPT-SESSAO-RESOLUCOES.md com a sua matéria =
 <m>, em especial o MODO ENXUTO (a sua conversa só organiza; resolver, conferir e abrir prints é sempre trabalho de agentes),
 o lote de 50 (`lote.py proximo <m> 50 --novo`) e o passo 9 (200 questões por sessão = 4 lotes de 50; ao gravar o 4º lote, ou se passar de 40% do contexto antes, termine os lotes abertos,
-escreva FIM na caixa e encerre). Retome antes os lotes abertos que o vez.py listar (`--retomar <lote>`). Prepare o
+escreva FIM na caixa e encerre). Retome antes os lotes abertos que o vez.py listar (`--retomar <lote>`). ESTEIRA (dono, 19/11: tudo resolvido nesta tarde): não espere a conferência de um lote para abrir o próximo — enquanto os conferentes trabalham no lote N, abra o N+1 e dispare os resolvedores (no máximo 2 lotes abertos ao mesmo tempo). Prepare o
 ambiente em segundo plano, LOGO NA PRIMEIRA AÇÃO e em dois comandos separados (o lote só abre com o banco montado; o
 converte leva ~4 min e não precisa do npm): (1) `cd app && python3 -m pip install -q --break-system-packages pillow numpy
 scipy && flock /tmp/converte.lock python3 scripts/converte.py`; (2) `cd app && (test -d node_modules || npm ci)`. Enquanto o
