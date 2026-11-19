@@ -196,3 +196,32 @@ RECLASS Pcec4dea1 Q05.3 -> Q05.2
 Último lote gravado: qui-0070. Nesta sessão: qui-0067 (49 ok, 1 PRINT), qui-0068 (49 ok, 1 é de Matemática), qui-0069 (49 ok, 1 para anular), qui-0070 (48 ok, 2 são de Física) = 195 resoluções. Nenhum lote aberto. Testes após o qui-0069: tsc ok, 786 passed.
 Pendências: PRINT Pba420dcb e Pcec4dea1; OUTRA/RECLASS P7b93c864 (Mat), P1e229c9e e P5e8f83b1 (Fís); ANULAR Pc4e32cc6; 4 gabaritos do Aprendice (P18b939f1, Pecea0117, P5894717e, Pa47a8d1b); aviso do formatador de fração com espaço de milhar; RECLASS e DADO nos blocos acima.
 Faltam 375 questões de Química (níveis 7-10 das provas-alvo e o resto). Próximo: `python3 ferramentas/resolucoes/lote.py proximo qui 50 --novo` (qui-0071).
+
+## 2026-11-19 17:22 UTC — PENDENCIAS — session_01PveEKYZfyAMFDV6N1z8smo
+Lote qui-0071 gravado (49 ok, 1 para anular). Aberto: qui-0072.
+DADO Pf2ef0700: texto_da_prova -> embaralhado; o print traz o enunciado completo, o esquema de duas pilhas Zn/Cu em série e os potenciais Zn2+/Zn −0,76 V e Cu2+/Cu +0,34 V
+DADO Pf2ef0700: alternativas.E -> "três pilhas Zn/Cu conectadas em série."
+DADO Pbd838465: alternativas.E -> "91 mV" (o quadro de Dados com Nernst, log 2 = 0,30 e K+ + e− → K, E° = −2,93 V, vai para o texto_da_prova)
+DADO Pe28a5b82: alternativas.E -> "Cobre, magnésio e chumbo, apenas." (a linha Al3+ + 3 e− → Al +1,66 V vai para a tabela do texto_da_prova; no print a alternativa E aparece cortada embaixo)
+DADO P19f2cbf9: texto_da_prova -> falta a tabela I Li+ −3,04 / II Fe2+ −0,44 / III Zn2+ −0,76 / IV Ni2+ −0,25 / V Ag+ +0,80 V (todas 1,0 M) e a equação de Nernst com log 2 = 0,3
+DADO P1f6de43d: alternativas A–E -> "I, II e IV" / "I, III e IV" / "I, IV e V" / "II, III e V" / "II, IV e V"
+DADO P1fcb066b: alternativas A–D -> o símbolo "Ҋ" é "⇌" no print
+RECLASS Pe28a5b82 Q09.1 -> Q09.3
+RECLASS P4f88f354 Q09.2 -> Q09.1
+DADO P8926370b: alternativas e texto_da_prova -> o símbolo é π (πC6H12O6, πKCℓ, πCa(NO3)2; "pressão osmótica (π)"), não "p"
+ANULAR P4bbfc2bf: a oficial C liga o fio do zinco (polo negativo da pilha) ao polo positivo do relógio, invertendo a polaridade; a alternativa A está toda correta (Estratégia Vestibulares confirma C sem justificar a ligação)
+DADO P8a254d15: alternativas.D -> "Cu2+;" (a referência JENKINS... e a linha de potenciais Pt2+/Pt +1,20 V, Au3+/Au +0,93 V, Ag+/Ag +0,80 V, Cu2+/Cu +0,34 V, Zn2+/Zn −0,76 V são Dados do enunciado)
+RECLASS P3a031163 Q09.1 -> Q03.3
+RECLASS Pda43d6b7 Q09.1 -> Q09.3
+RECLASS P6ae4df84 Q09.2 -> Q03.4 (UEL 2020 q30: oxirredução na metalurgia; só a afirmativa I fala de eletrólise)
+DADO P6ae4df84: alternativas.E -> "Somente as afirmativas II, III e IV são corretas." (sem o "27", número da página)
+DADO P5ce25a66: alternativas.E -> "Cr6+" (os "Dados: Massa molar do Cr = 52 g/mol; Constante de Faraday = 96500 C/mol" são do enunciado)
+DADO Pa8e4d3c0: alternativas -> A 200 s, B 300 s, C 400 s, D 500 s, E 600 s (hoje só dentro do texto_da_prova)
+DADO P1b4e9dba: texto_da_prova -> OCR com erros ("H>(9)", "H2WV", "||", "H.", "HI."); no print: I. "H2(g) é produzido no ânodo", II–V com "H2V"; alternativas com romanos I, II, III
+RECLASS P8797a849 Q11.3 -> Q11.6 (UFPR 2021 q56, enantiômeros da geosmina)
+RECLASS P8ef27978 Q11.3 -> Q11.7 (UEL 2024 q42, ponto de fusão de ácidos graxos)
+RECLASS P2df7bc90 Q11.3 -> Q02.3 (UFU 2020 q75, geometria do HCN)
+RECLASS Pdb4c037d Q11.4 -> Q11.7 (UFU 2022 q74, PE/PF de solventes)
+DADO P2d222dbc: alternativas ausentes -> A a E estão no print (A óxidos; B –COOH "carbonila"; C acético "metanóico"; D cadeia maior → maior temperatura de ebulição; E butanóico "C3H6O2"); texto_da_prova com lixo de OCR da tabela periódica ("CaHsO»" = C3H6O2)
+DADO Paca80445: print -> o anel da direita da Figura 3 tem só duas duplas e carbonos de fusão como CH, diferente da antraquinona do nome oficial (a resposta não muda; registrado no alerta)
+PRINT P2d222dbc (UDESC 2024.2 q78): o print pega a tabela periódica inteira e o título "HISTÓRIA"; recortar só a questão 28

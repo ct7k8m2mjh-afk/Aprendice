@@ -1,6 +1,6 @@
 # Química: resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 375 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 69; demais nível 7-10 306.
+Faltam 275 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 275.
 
 ## Lotes
 
@@ -76,6 +76,8 @@ Faltam 375 questões sem resolução (fora as que estão em lote, pendentes ou c
 | qui-0068 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
 | qui-0069 | provas-alvo nível 7-10 | 50 | gravado | 49 | 1 | 0 |
 | qui-0070 | provas-alvo nível 7-10 | 50 | gravado | 48 | 2 | 0 |
+| qui-0071 | provas-alvo nível 7-10 | 50 | gravado | 49 | 1 | 0 |
+| qui-0072 | provas-alvo nível 7-10 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -92,6 +94,7 @@ Faltam 375 questões sem resolução (fora as que estão em lote, pendentes ou c
 | P1e229c9e | UEL 2024 1ª fase · questão 58 | Q06.1 transformações gasosas e equação geral dos gases (tema Q06 Gases) | classificação: é de Física F07.1 — o próprio comando pede 'Com base nos conhecimentos de física termodinâmica' (equação geral dos gases: V2 = (101000 × 0,003 × 150)/(303 × 600) = 0,25 m³, a B oficial confere) |
 | P7f6fa922 | UEMA 2022 PAES · questão 52 | Q03.5 substância pura e mistura, alotropia e processos de separação de misturas (tema Q03 Funções inorgânicas e nox) | classificação: é de Biologia (cadeia alimentar, nível trófico e bioacumulação/magnificação trófica do mercúrio; a pergunta é qual peixe acumula mais mercúrio pela posição na cadeia, sem conteúdo de separação de misturas). Gabarito oficial E (peixe maior, 4º nível trófico). |
 | P523fcc4a | UFRR 2025 Vestibular 2025 – Prova Integral · questão 55 | Q04.2 fórmula percentual, mínima e molecular (tema Q04 Mol e estequiometria) | dados inconsistentes, possível anulação: 5,00 g de sal liberando 1,70 g de água dão n = (1,70/18) ÷ (3,30/58,44) ≈ 1,67 para NaCl (preliminar C), não 2; NaCl·2H2O perderia 1,91 g. Só KS (fórmula impossível) dá n ≈ 2,04. Gabarito oficial (Edital 97/24-CPV, https://editais.ufrr.br/editais/arquivo/568/edital-n-97-24-gabarito-oficial-vestibular-2025.pdf) não abriu daqui para conferir anulação. |
+| P4bbfc2bf | UFU 2022 1ª fase · questão 78 | Q09.1 pilhas: semirreações, potencial e espontaneidade (tema Q09 Pilhas, eletrólise e radioatividade) | anular: a alternativa C (oficial) manda ligar o fio da placa de zinco, polo negativo da pilha, ao polo POSITIVO do relógio, o que inverte a polaridade (na ligação correta, negativo da pilha vai ao negativo do aparelho e positivo ao positivo). A alternativa A está toda correta (cobre recebe os elétrons, é o polo positivo e vai ao polo positivo do relógio). A resolução publicada no Estratégia Vestibulares confirma C sem justificar a ligação. Fonte: https://vestibulares.estrategia.com/portal/atualidades-e-dicas/11-questoes-sobre-eletroquimica-que-ja-cairam-nos-vestibulares-e-no-enem/ |
 | P1ea356c5 | URCA 2025 2025.1 · questão 37 | Q11.6 isomeria espacial: geométrica e óptica, carbono quiral (tema Q11 Orgânica: estrutura e isomeria) | anular: a alternativa D também é verdadeira. No anel do canabidiol, o carbono ligado ao anel aromático (H e arila) e o vizinho ligado ao isopropenila (H e C(CH3)=CH2) têm, cada um, dois ligantes diferentes; por isso a molécula tem isomeria cis-trans de anel (o CBD natural é o trans; o cis-CBD é seu diastereoisômero). D e E corretas (E é a oficial). Os recursos do PSU 2025.1 (urca.br/cev) não tratam desta questão. |
 | P9535cdb8 | URCA 2025 2025.2 · questão 39 | Q11.6 isomeria espacial: geométrica e óptica, carbono quiral (tema Q11 Orgânica: estrutura e isomeria) | anular: os quatro compostos têm isomeria cis-trans. I (2-buteno): C2 com H/CH3 e C3 com H/CH3; II (1-cloropropeno): C1 com H/Cl e C2 com H/CH3; III (1,2-dicloroeteno): cada C com H/Cl; IV (ácido 2-butenoico, crotônico/isocrotônico): C2 com H/COOH e C3 com H/CH3. Assim A, B, C, D e E contêm 'apenas compostos que apresentam isomeria geométrica', e a oficial D faz o aluno crer que II e IV não têm. Os pareceres dos recursos do PSU 2025.2 (Iguatu) não tratam de Química. |
 | Pc3a9046b | Unesp 2022 1ª fase – Biológicas · questão 90 | Q05.1 concentração comum, densidade e massa de soluto (tema Q05 Soluções e concentração) | classificação: é de Matemática (Unesp 2022, questão 90: razão e proporção com inequações; a química aparece só como contexto). |
