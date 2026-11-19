@@ -12,6 +12,8 @@ Antes de tudo: `cd app && python3 scripts/converte.py` (o banco montado em app/p
   python3 ferramentas/resolucoes/lote.py proximo [grupo]    abre o próximo lote (escolhe a matéria pela prioridade;
                                                             grupo: animadas = mat bio qui fis, texto = por geo his ing fs)
   python3 ferramentas/resolucoes/lote.py proximo <m> [N]    abre o próximo lote da matéria (N questões, padrão 30)
+      ... --parte k                                         matéria dividida (docs/resolucoes/partes.json): só as
+                                                            provas da parte k (sem --parte = parte 1); lotes <m>-p<k>-NNNN
   python3 ferramentas/resolucoes/lote.py valida <saida>     confere o arquivo de saída sem gravar
   python3 ferramentas/resolucoes/lote.py grava <saida>      confere e grava (só depois da conferência do lote)
   python3 ferramentas/resolucoes/lote.py relatorio          refaz docs/resolucoes/lotes-<matéria>.md
@@ -24,6 +26,7 @@ import json
 import os
 import re
 import sys
+import zlib
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 PUB = os.path.join(RAIZ, 'app', 'public', 'conteudo')
@@ -38,6 +41,16 @@ if '--retomar' in sys.argv:
 NOVO = '--novo' in sys.argv
 if NOVO:
     sys.argv.remove('--novo')
+# matéria dividida em partes (docs/resolucoes/partes.json, ex. {"mat": 2}): duas ou mais sessões na mesma matéria, cada
+# uma com as provas da sua parte. Sem --parte = parte 1 (a sessão de sempre). Matéria não dividida: só existe a parte 1.
+PARTE = None
+if '--parte' in sys.argv:
+    i = sys.argv.index('--parte')
+    try:
+        PARTE = int(sys.argv[i + 1])
+    except (IndexError, ValueError):
+        sys.exit('--parte precisa de um número (ex.: --parte 2)')
+    del sys.argv[i:i + 2]
 TRAB = os.path.join(DOCS, 'trabalho')  # lotes abertos (fora do git; refeitos a partir do registro se sumirem)
 REGISTRO_ANTIGO = os.path.join(DOCS, 'registro.json')  # um só para todas (até 11/11/2026); hoje um por matéria
 
@@ -73,8 +86,42 @@ def gravar(f, d):
     os.replace(tmp, f)
 
 
-def caminho_registro(m):
-    return os.path.join(DOCS, f'registro-{m}.json')
+def partes(m):
+    """Em quantas partes a matéria está dividida (1 = não dividida)."""
+    try:
+        return max(1, int((ler(os.path.join(DOCS, 'partes.json'), {}) or {}).get(m) or 1))
+    except (ValueError, TypeError, json.JSONDecodeError):
+        return 1
+
+
+def parte_da_prova(m, prova):
+    """Parte k (1..n) de uma prova: por PROVA, para cada resolucoes-<m>.json ser tocado por uma só parte."""
+    n = partes(m)
+    return 1 if n == 1 else zlib.crc32(str(prova).encode()) % n + 1
+
+
+def parte_pedida(m):
+    k = PARTE or 1
+    if k < 1 or k > partes(m):
+        sys.exit(f'--parte {k}: {NOMES.get(m, m)} ' + (f'está dividida em {partes(m)} partes (use 1 a {partes(m)})'
+                 if partes(m) > 1 else 'não está dividida em partes (docs/resolucoes/partes.json); rode sem --parte'))
+    return k
+
+
+def lote_info(lote):
+    """(matéria, parte) pelo id do lote: 'geo-0012' -> ('geo', 1); 'geo-p2-0003' -> ('geo', 2)."""
+    x = re.match(r'^([a-z]+)-p(\d+)-\d+$', str(lote))
+    return (x.group(1), int(x.group(2))) if x else (str(lote).split('-')[0], 1)
+
+
+def caminho_registro(m, k=1):
+    return os.path.join(DOCS, f'registro-{m}.json' if k == 1 else f'registro-{m}-p{k}.json')
+
+
+def registro_parte(m, k=1):
+    """Registro de UMA parte (o único que a parte grava)."""
+    _migra_registro()
+    return ler(caminho_registro(m, k), {'lotes': {}, 'pendentes': {}, 'divergencias': {}})
 
 
 def _migra_registro():
@@ -93,10 +140,18 @@ def _migra_registro():
 
 
 def registro(m=None):
-    """Registro de uma matéria; sem matéria, a soma de todas (só para ler)."""
+    """Registro de uma matéria (a união das partes dela); sem matéria, a soma de todas (só para ler; para gravar,
+    registro_parte)."""
     _migra_registro()
     if m:
-        return ler(caminho_registro(m), {'lotes': {}, 'pendentes': {}, 'divergencias': {}})
+        tudo = registro_parte(m, 1)
+        ks = set(range(2, partes(m) + 1)) | {int(x) for x in re.findall(
+            rf'registro-{m}-p(\d+)\.json', ' '.join(os.listdir(DOCS)))}   # parte que existiu continua valendo
+        for k in sorted(ks - {1}):
+            r = registro_parte(m, k)
+            for c in tudo:
+                tudo[c].update(r.get(c, {}))
+        return tudo
     tudo = {'lotes': {}, 'pendentes': {}, 'divergencias': {}}
     for x in MATERIAS:
         r = registro(x)
@@ -353,6 +408,9 @@ def cmd_status():
         total += len(qs)
         por = [sum(1 for q in qs if faixa(q) == i) for i in range(len(FAIXAS))]
         print(f'{NOMES[m]:24} {len(qs):7}  ' + '  '.join(f'{n:>4}' for n in por))
+        for k in range(1, partes(m) + 1) if partes(m) > 1 else ():   # matéria dividida: uma linha por parte (vez.py lê)
+            qk = [q for q in qs if parte_da_prova(m, q['prova']) == k]
+            print(f'{NOMES[m]} parte {k}: {len(qk)}')
     print(f"{'total':24} {total:7}")
     print('faixas: ' + ' · '.join(f'f{i} {n}' for i, n in enumerate(FAIXAS)))
     abertos = [k for k, v in reg['lotes'].items() if v['estado'] == 'aberto']
@@ -390,7 +448,12 @@ def cmd_proximo(m=None, n=30):
             return
     if m not in MATERIAS:
         sys.exit(f'matéria inválida: {m} (use {" ".join(MATERIAS)})')
-    reg = registro(m)
+    if RETOMAR and not PARTE and lote_info(RETOMAR)[0] == m:
+        kp = lote_info(RETOMAR)[1]   # --retomar de um lote de outra parte: a parte vem do id do lote
+    else:
+        kp = parte_pedida(m)
+    tudo = registro(m)        # união das partes: nenhuma questão aberta ou feita por outra parte volta
+    reg = registro_parte(m, kp)   # o que esta parte grava
     # lote aberto da matéria DESTA sessão: devolve o mesmo (refaz a entrada se o arquivo sumiu). Lote aberto por outra
     # sessão não é devolvido (12/11/2026: duas sessões pegaram o mesmo lote e uma regravou por cima da outra).
     for nome, l in reg['lotes'].items():
@@ -403,7 +466,7 @@ def cmd_proximo(m=None, n=30):
                 continue
             if RETOMAR == nome and SESSAO and l.get('dono') != SESSAO:
                 l['dono'] = SESSAO   # esta sessão assume o lote
-                gravar(caminho_registro(m), reg)
+                gravar(caminho_registro(m, kp), reg)
             b, _ = banco(m)
             por_id = {q['id']: q for q in b}
             gravar(caminho_entrada(nome), {'lote': nome, 'materia': m, 'animada': m in ANIMADAS,
@@ -414,16 +477,21 @@ def cmd_proximo(m=None, n=30):
     if NOVO and sum(1 for l in reg['lotes'].values() if l['materia'] == m and l['estado'] == 'aberto'
                     and l.get('dono') == SESSAO) >= 3:
         sys.exit('Esta sessão já tem 3 lotes abertos nesta matéria: grave um antes de abrir outro.')
-    qs = sorted(faltam(m, reg, resolvidas_em_provas()), key=chave)[:n]
+    qs = faltam(m, tudo, resolvidas_em_provas())
+    if partes(m) > 1:
+        qs = [q for q in qs if parte_da_prova(m, q['prova']) == kp]
+    qs = sorted(qs, key=chave)[:n]
     if not qs:
-        print(f'{NOMES[m]}: nenhuma questão sem resolução.')
+        print(f'{NOMES[m]}' + (f' parte {kp}' if partes(m) > 1 else '') + ': nenhuma questão sem resolução.')
         return
     k = 1 + sum(1 for v in reg['lotes'].values() if v['materia'] == m)
-    nome = f'{m}-{k:04d}'
+    nome = f'{m}-{k:04d}' if kp == 1 else f'{m}-p{kp}-{k:04d}'
     reg['lotes'][nome] = {'materia': m, 'ids': [q['id'] for q in qs], 'estado': 'aberto', 'dono': SESSAO,
                           'aberto_em': datetime.date.today().isoformat(), 'faixa': FAIXAS[faixa(qs[0])]}
+    if kp > 1:
+        reg['lotes'][nome]['parte'] = kp
     gravar(caminho_entrada(nome), {'lote': nome, 'materia': m, 'animada': m in ANIMADAS, 'questoes': entrada(m, qs)})
-    gravar(caminho_registro(m), reg)
+    gravar(caminho_registro(m, kp), reg)
     print(f'Lote {nome}: {len(qs)} questões ({FAIXAS[faixa(qs[0])]}, conteúdos {", ".join(sorted({q["sub"] for q in qs}))})')
     print(f'Entrada: {caminho_entrada(nome)}')
     print(f'Saída (você escreve): {caminho_saida(nome)}')
@@ -449,7 +517,7 @@ def confere(saida):
     if d is None:
         sys.exit(f'arquivo não encontrado: {saida}')
     lote = d.get('lote')
-    reg = registro(str(lote).split('-')[0])
+    reg = registro_parte(*lote_info(lote))
     if lote not in reg['lotes']:
         sys.exit(f'lote desconhecido no registro: {lote}')
     ent = {q['id']: q for q in ler(caminho_entrada(lote), {}).get('questoes', [])}
@@ -626,8 +694,8 @@ def cmd_grava(saida):
         for e in erros:
             print('ERRO:', e)
         sys.exit(f'{lote}: nada gravado ({len(erros)} erro(s)).')
-    m = lote.split('-')[0]
-    reg = registro(m)
+    m, kp = lote_info(lote)
+    reg = registro_parte(m, kp)
     l0 = reg['lotes'].get(lote, {})
     if l0.get('estado') == 'gravado':
         sys.exit(f'{lote} já foi gravado (em {l0.get("gravado_em")}) por outra sessão ou antes: nada gravado por cima. '
@@ -673,21 +741,25 @@ def cmd_grava(saida):
                               ok=sum(len(v) for v in por_prova.values()),
                               pendentes=sum(1 for q in d['questoes'] if q['status'] == 'pendente'),
                               divergencias=sum(1 for q in d['questoes'] if q['status'] == 'divergencia'))
-    gravar(caminho_registro(m), reg)
-    cmd_relatorio(m, silencioso=True)
+    gravar(caminho_registro(m, kp), reg)
+    cmd_relatorio(m, silencioso=True, k=kp)
     l = reg['lotes'][lote]
     print(f"{lote} gravado: {l['ok']} resoluções em {len(por_prova)} prova(s) · {l['pendentes']} pendente(s) · {l['divergencias']} divergência(s)")
     print('Agora: cd app && python3 scripts/converte.py && npx tsc --noEmit -p . && npx vitest run')
 
 
-def cmd_relatorio(m=None, silencioso=False):
-    """docs/resolucoes/lotes-<m>.md: o que falta, os lotes, pendentes e divergências da matéria."""
+def cmd_relatorio(m=None, silencioso=False, k=None):
+    """docs/resolucoes/lotes-<m>.md: o que falta, os lotes, pendentes e divergências da matéria (parte k>1 de matéria
+    dividida: lotes-<m>-p<k>.md, só com o que é da parte, para as partes não conflitarem no git)."""
     hoje = datetime.date.today().isoformat()
     fp = resolvidas_em_provas()
-    for x in ([m] if m else MATERIAS):
-        reg = registro(x)
-        qs = faltam(x, reg, fp)
-        linhas = [f'# {NOMES[x]}: resoluções (gerado por lote.py em {hoje})', '',
+    for x, kx in [(x, kx) for x in ([m] if m else MATERIAS) for kx in ([k] if k else range(1, partes(x) + 1))]:
+        reg = registro_parte(x, kx)
+        qs = faltam(x, registro(x), fp)
+        if partes(x) > 1:
+            qs = [q for q in qs if parte_da_prova(x, q['prova']) == kx]
+        titulo = NOMES[x] + (f' (parte {kx})' if partes(x) > 1 or kx > 1 else '')
+        linhas = [f'# {titulo}: resoluções (gerado por lote.py em {hoje})', '',
                   f'Faltam {len(qs)} questões sem resolução (fora as que estão em lote, pendentes ou com divergência): '
                   + '; '.join(f'{FAIXAS[i]} {sum(1 for q in qs if faixa(q) == i)}' for i in range(len(FAIXAS))) + '.', '',
                   '## Lotes', '', '| Lote | Faixa | Questões | Estado | OK | Pendentes | Divergências |', '|---|---|---|---|---|---|---|']
@@ -702,7 +774,7 @@ def cmd_relatorio(m=None, silencioso=False):
             for qid, y in sorted(reg[alvo].items(), key=lambda kv: kv[1]['prova']):
                 linhas.append(f"| {qid} | {y['prova']} | {y['conteudo']} | {y['motivo'].replace('|', '/')} |")
         if reg['lotes'] or reg['pendentes'] or reg['divergencias']:
-            gravar_md(os.path.join(DOCS, f'lotes-{x}.md'), linhas)
+            gravar_md(os.path.join(DOCS, f'lotes-{x}.md' if kx == 1 else f'lotes-{x}-p{kx}.md'), linhas)
     if not silencioso:
         print('docs/resolucoes/lotes-<matéria>.md refeitos.')
 

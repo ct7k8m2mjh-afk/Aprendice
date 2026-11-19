@@ -113,6 +113,9 @@ Ao encerrar a sessão (bloco FIM), escreva na caixa (não em mensagem), em portu
 ## Falar com a coordenadora (dono, 13/11/2026)
 NUNCA use send_message (cada envio pede aprovação do dono). FIM, pendências e avisos vão para docs/resolucoes/caixa/<m>.md, como explica docs/resolucoes/caixa/LEIA.md, com commit e push. Cada pendência em UMA linha com etiqueta, para a coordenadora aplicar sem reler o lote: `RECLASS`, `PRINT`, `DADO` (texto da entrada errado ou colado), `GABARITO` (conferir pós-recursos/errata), `ANULAR`, `OBRA`, `AUTORAL`, `OUTRA` — sempre com id, prova e número da questão e o que fazer.
 
+## Matéria dividida em partes (19/11/2026)
+Quando a coordenadora divide uma matéria entre duas ou mais sessões (docs/resolucoes/partes.json, ex. {"mat": 2}), cada sessão recebe a sua parte k e cada parte fica com provas inteiras diferentes. Use sempre `--parte k`: `python3 ferramentas/resolucoes/vez.py <m> --parte k` e `python3 ferramentas/resolucoes/lote.py proximo <m> N --novo --parte k` (sem `--parte` vale a parte 1; `valida` e `grava` descobrem a parte pelo id do lote). A parte 1 continua com registro-<m>.json, lotes-<m>.md e caixa/<m>.md; a parte k>1 tem lotes `<m>-p<k>-NNNN`, registro-<m>-p<k>.json, lotes-<m>-p<k>.md e caixa docs/resolucoes/caixa/<m>-p<k>.md. No commit, só os arquivos da sua parte, com "parte k" na mensagem (ex.: "Matemática parte 2: grava o lote mat-p2-0003").
+
 ## Modo enxuto (dono, 13/11/2026: economizar o limite semanal melhorando o método)
 Cada passo relê a conversa principal inteira; por isso ela guarda só o necessário.
 - A conversa principal NUNCA abre print, NUNCA escreve resolução, NUNCA imprime JSON, entrada ou saída de teste longa. Ela abre lotes, dispara agentes, junta partes, valida, grava, faz commit e lê respostas de uma linha.
