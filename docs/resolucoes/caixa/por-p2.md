@@ -66,3 +66,28 @@ RECLASS P8c11541f P10.2 -> P05.3 (PUCRS 2023 Verão q26: grafia de parônimos/ho
 RECLASS Pdd2fb6fe P10.2 -> P09.3 (UFAM PSC3 2022 q4: função sintática do pronome relativo "que" em orações adjetivas)
 RECLASS Pb65050f0 P10.2 -> P05.2 (UFRR 2025 PI q2: duplo sentido literal/metafórico de "Democracia", nome do time na obra O jogo da democracia)
 RECLASS P08a600d8 P10.4 -> P04.1   (Cederj 2020.1 q6: referente de "nesse aspecto" é coesão referencial, não pontuação)
+
+## 2026-11-19 18:00 UTC — PENDENCIAS — sessão por-p2 (session_01PveEKYkycZkrPrW3hd17Vg)
+Último lote gravado: por-p2-0004 (50 ok). (O bloco anterior do por-p2-0003 foi enviado antes da gravação; o lote 0003 foi gravado agora, junto com o 0004.)
+RECLASS P7a24a93a P10.4 -> P05.1 (PUC Minas 2027/1 q3: substituição de palavra sem mudar o sentido, amalgamado × desagregado; equivocos já com P05.1)
+RECLASS Pa1420745 P10.4 -> acentuação gráfica (PUC Minas 2027/1 q7: regras de acentuação): não há código de acentuação no nomesub de Português; P10.4 mantido nos equivocos até criar o conteúdo
+RECLASS P589c500a P10.4 -> P10.2 (UFRR 2024 q3: acentuação gráfica com crase; não existe conteúdo de acentuação/ortografia e P10.2, que tem a crase, é o mais próximo; equívocos já gravados em P10.2)
+DADO Pfa349f68: alternativas -> vazias na entrada (UFSM 2026 questão 44); as alternativas A–E estão coladas no fim de texto_da_prova, separar conforme o print
+RECLASS P3acbc272 P11.1 -> P12.5 (UEG 2021/2 q12: poema "Orfandade", de Adélia Prado, poesia contemporânea; nada de Barroco ou Arcadismo)
+DADO P967b101f: texto_da_prova -> camada de texto embaralhada pelo OCR (UERR 2023 q8): falta o verso "Mudos quedaram de terror transidos.", faltam "Corisco" e "Hardido" no vocabulário e as alternativas A–E não vêm separadas; refazer pelo print
+DADO P4b02e433 (UFJF PISM III 2022 q6): alternativas -> vazias na entrada; as alternativas A–E estão coladas no fim de texto_da_prova (no print: A “Neste mundo é mais rico o que mais rapa” ... E “E mais não digo, porque a Musa topa”)
+DADO Pcc5f72f1 (UFJF PISM III 2022 q10): alternativas -> vazias na entrada; os cinco trechos A–E estão em texto_da_prova, sem as letras
+DADO P3e44a3a9 (UFJF PISM III 2023 q6): alternativas -> vazias na entrada; as alternativas A–E estão coladas no fim de texto_da_prova
+DADO P228ef049 (UFJF PISM III 2023 q8): alternativas -> vazias na entrada; as alternativas A–E estão coladas no fim de texto_da_prova
+DADO P2258b08b (UFRR 2024 PI q2): alternativas.E -> "O poema se insere na estética barroca, e revela problemas econômicos da Bahia em relação à cana de açúcar." (o "F) A máquina mercante..." é uma sexta alternativa impressa na prova); erro da própria prova: B cortada e C é só a continuação de B — resolvida com E e alerta
+GABARITO P00d5bbea (UFRR 2025 PI q3): sem oficial; gabarito preliminar (Edital 96/24-CPV, cópia Estratégia) = C, igual à letra do resolvedor; conferir no Edital 97/24-CPV quando editais.ufrr.br responder
+GABARITO P31aa3233 (UFRR 2026 PI q1): sem oficial; gabarito preliminar (Edital 89/25-CPV, cópia Estratégia) = C, igual à letra do resolvedor; conferir no Edital 93/25-CPV quando editais.ufrr.br responder
+RECLASS P0fb753e2 P11.1 -> Quinhentismo (teatro jesuítico do século XVI; UNIRG 2021/2 Paraíso q8): não há código de Quinhentismo no nomesub de Português; P11.1 mantido nos equivocos até criar o conteúdo
+DADO P0fb753e2 (UNIRG 2021/2 Paraíso q8): texto_da_prova -> palavras separadas por quebras de linha; no print: "A história do teatro no Brasil tem início com"
+DADO Pb3f5737a (UNIRG 2021/2 Paraíso q11): texto_da_prova -> palavras separadas por quebras de linha; no print: "Uma das características do movimento literário denominado Barroco mostrava o conflito entre"
+
+## 2026-11-19 18:00 UTC — FIM — sessão por-p2 (session_01PveEKYkycZkrPrW3hd17Vg)
+Lotes gravados nesta sessão: por-p2-0001 (49 ok, 1 pendente), por-p2-0002 (50 ok), por-p2-0003 (48 ok, 1 pendente, 1 divergência), por-p2-0004 (50 ok). Total: 197 resoluções. Nenhum lote aberto.
+Pendentes: P6c2f77f0 (ANULAR, UFT 2024/1 q7), Pcfeab3fb (ANULAR, Fema 2021 q23). Divergência: P2b2aa288 (UFRR 2026 PI q9, D × preliminar A; possível anulação não confirmada).
+Conferência no site (3 questões, 1280 e 390 px): OK. tsc: OK; vitest: ver aviso se houver.
+A seguir: próxima sessão continua com lote.py proximo por 50 --novo --parte 2 (faltam 533 questões na parte 2).
