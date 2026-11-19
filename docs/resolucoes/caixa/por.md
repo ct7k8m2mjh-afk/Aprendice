@@ -256,3 +256,40 @@ DADO P81fafc63: alternativas.D -> "rejeição contundente" (o "15" no fim é o n
 DADO P19faff2d: alternativas.D -> "a mentira é o degrau de todos os vícios" (o "16" no fim é o número da questão colado)
 DADO P9882569d: alternativas.D -> termina em "(povo oyibo)."; a referência "(ADICHIE, C. N. No seu pescoço. ...)" é a fonte da questão e veio colada na alternativa
 Testes: 786 passaram (converte, tsc e vitest verdes).
+
+## 19/11/2026 20:19 UTC — ACABOU (pendentes, demais) — sessão de pendentes de Português (classificação, print, outra, gabarito, motivos soltos)
+Lotes gravados: por-pend-0004 (14 ok), por-pend-0005 (6 ok), por-pend-0008 (4 ok); nas matérias novas: his-pend-0003 (2),
+fs-pend-0002 (1), fs-pend-0003 (1), qui-pend-0002 (1), mat-pend-0003 (1), ing-pend-0003 (2), bio-pend-0003 (2).
+Resolvidas: 35 (24 em Português + 11 reclassificadas e resolvidas na matéria nova). Todas conferidas por conferente independente.
+Reclassificações JÁ APLICADAS no prova.json: P7a252a7f his H02.1, P47b890b0 his H04.8, Pc401d7b0 fs L08.2, P45330cff fs S03.3,
+P15e171f5 qui Q08.6, Pb28d85a4 mat M14.2, Pb5cc8933 ing I01.8, P53983658 ing I01.10, Pb6aa2d50 bio B12.6, Pfa1a5f21 bio B02.5;
+subtema de Português: Pd23309d1 P12.5, Pd0bef1cb P12.5, Pa7a2c5de P11.3, P61659fe2 P08.2, P59e81ce0 P12.1.
+Outra matéria JÁ POSTAS em app/conteudo-fonte/outra-materia.json (confirmadas por especialista e conferente): Artes — Pc059bf56,
+P82bbfc0a, P61c6a142, Pd2b4fc8b, Pbf58c381, P9c0bfb8d, Pac376d90, Pb7962540, P398e2a29; Educação Física — Pd7165e02.
+Critério usado (dono vê a régua): questão de Linguagens com arte que se resolve só pelo texto verbal é Português (P5896fe96,
+Pad8d070f, ENEM 2023, resolvidas); a que pede movimento, artista ou técnica sem leitura do texto é Artes.
+Registro: tirei de registro-por.json 3 pendentes que já tinham resolução gravada na matéria nova (P41d362f2 fs, P8944ccb0 fis,
+Pbdaf3ef9 geo). lote.py: --pendentes aceita prefixo exato com "=" (ex.: =a), senão "a" pegava "anular" e "o" pegava "obra".
+Ficaram pendentes (4): ANULAR P93ec458e, P49978098, Pdaf43568 (para o dono decidir) e GABARITO Pb816c091 (abaixo).
+Fora do meu alcance: P2cc479e5, P0aaed1c4, Peefa95fe (outra: Artes) e Pba73d27d (classificação: geo G05.1) estão no lote
+por-0104, aberto por outra sessão; não mexi.
+ANULAR P93ec458e (UDESC 2025 Inverno 2025.2 q44): gabarito definitivo D (https://vestibulares.estrategia.com/portal/wp-content/uploads/2025/06/udesc-2025-2-gabarito-definitivo.pdf) exige a 5ª proposição verdadeira, mas ela classifica a conjunção 'Mas' como 'adjunto adnominal' (conjunção não exerce função sintática; adjunto adnominal modifica substantivo). Pela gramática a sequência certa é F–V–F–F–F, que não está entre as alternativas.
+ANULAR P49978098 (EMESCAM 2022/1 q4): sem gabarito definitivo na web (procurado em emescam.br, FUNDEP/gestaodeconcursos e buscas pelo enunciado). O preliminar B inclui a afirmativa II, que é falsa (transformar as adjetivas em orações substantivas mantém o período composto, contra o próprio comando). A única alternativa sem II é a A, mas ela exige IV falsa, e 'sem moradia' por 'que não têm onde morar' mantém o sentido. Nenhuma alternativa fecha com certeza.
+PRINT P8ce7e755 (UFJF 2024 PISM III q9): texto de apoio (TEXTO III, soneto "Ao mesmo assunto", de Gregório de Matos, com glossário) está em app/conteudo-fonte/provas/ufjf-pism3-2024/q/010.webp e no PDF oficial logo antes da questão 9; juntar ao print 009.webp
+PRINT Pb3cab0df (UFJF 2025 PISM III q7): texto de apoio (TEXTO II, "Ao casamento de Pedro Álvares da Neiva", de Gregório de Matos) está só no PDF oficial https://www2.ufjf.br/copese/wp-content/uploads/sites/42/2024/12/Pism-3-Saude-Dia-1.pdf, p. 6 (fim da coluna esquerda e topo da direita); nenhum q/*.webp o traz; juntar ao print 007.webp
+PRINT P875a491e (UFJF 2025 PISM III q9): texto de apoio (FIGURA I, Pereda, Alegoria da Vaidade, 1634) está no rodapé de app/conteudo-fonte/provas/ufjf-pism3-2025/q/008.webp e no PDF oficial p. 7; juntar ao print 009.webp
+PRINT P6b2a2eec (Unioeste 2022 q18): a prova não reproduz o poema (obra da lista de leituras); texto de apoio, a Lira I da Parte I de Marília de Dirceu, de Gonzaga (domínio público), está em https://digital.bbm.usp.br/bitstream/bbm/4717/1/009367-2_COMPLETO.pdf (ed. 1862) e https://www.portalsaofrancisco.com.br/?p=119514; juntar ao print
+PRINT Pee5e3224 (Unioeste 2022 q21): a prova não reproduz o poema (obra da lista de leituras); texto de apoio, "Benze-se o poeta de várias ações que observava na sua pátria" (domínio público), está em Obras poéticas de Gregório de Mattos, t. I, 1882, p. 45-47, https://digital.bbm.usp.br/bitstream/bbm/3884/1/009589_COMPLETO.pdf; juntar ao print
+PRINT Pbdf66d29 (UEMA PAES 2024 q4): texto de apoio (canção "Mulher (Sexo frágil)", de Erasmo Carlos) está em app/conteudo-fonte/provas/uema-paes-2024/q/003.webp (questão 03); juntar ao print 004.webp
+PRINT Pe98ee5d0 (URCA 2026.1 q100): texto de apoio está no print da q98 da mesma prova (app/conteudo-fonte/provas/urca-2026-1/q/098.webp, poema 'Carta a Stalingrado', de Drummond, id P74ed0f28); juntar ao print
+PRINT Pfeeca942 (Unespar 2024 Grupo I q17): texto de apoio está no print da q16 da mesma prova (app/conteudo-fonte/provas/unespar-2024/q/016.webp, trecho de O filho eterno, até a fonte 'TEZZA, Cristóvão'); juntar ao print
+PRINT P59e81ce0 (UPE SSA3 2024 q7): texto de apoio está nos prints da q4 (Texto 2, Auto da Compadecida) e da q5 (Texto 3, Clara dos Anjos) da mesma prova (app/conteudo-fonte/provas/upe-ssa3-2024/q/004.webp e 005.webp); juntar ao print
+PRINT P61659fe2 (URCA 2026.1 q96): texto de apoio está no print da q95 da mesma prova (app/conteudo-fonte/provas/urca-2026-1/q/095.webp, fragmento de Fanon, 'Racismo e Cultura'); juntar ao print
+PRINT Pdaf43568 (UNEMAT 2024/1 q26): texto de apoio está no caderno oficial, p. 12, sob 'As questões 26 e 27 tomam como base o excerto a seguir' (Clarice Lispector, Perto do coração selvagem); juntar ao print (vale também para a q27, Pe5c2001b). A questão sai como ANULAR (ver motivo)
+ANULAR Pdaf43568 (UNEMAT 2024/1 q26): gabarito D (todas corretas) exige aceitar trocas de tempo verbal 'sem mudança de sentido' que mudam o sentido (II e III); ver motivo
+GABARITO Pb816c091 (URCA 2024.1 q105): oficial C (13) depende de confirmar as afirmativas I e II; a III é de Machado de Assis, não de Castro Alves; conferir em Antonio Candido, Formação da literatura brasileira
+PRINT P56bd4868 (Unitins 2025/2 q42): texto de apoio está em app/conteudo-fonte/provas/unitins-2025-2/q/041.webp (poema de Drummond, Alguma poesia, "Gastei uma hora pensando um verso..."; prova.json q41, transcrição); juntar ao print
+DADO P2e08b381 (Unicamp Indígena 2022 q13): area -> prova.json marca 'Matemática', mas é leitura de texto (Português); resolvida em por P01.2
+DADO P112c6236 (UNEMAT 2022/2 q32): area -> prova.json marca 'Biologia', mas é gramática (haver impessoal); resolvida em por P10.1
+OBRA P63da1bf6 (ITA 2021 q25): resolvida com conhecimento do conto 'A sauna' (Seminário dos ratos), epítetos confirmados em dissertação da UEL (2024); fontes na questão
+DADO Pb28d85a4 (Fuvest 2026 q13, agora mat M14.2): alternativas.E -> sem o "#####" final, que não está no print
