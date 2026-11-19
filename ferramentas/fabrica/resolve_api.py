@@ -152,8 +152,18 @@ def esq_resolucao():
         }}
 
 
+# Decisão depois de três tentativas de regra por prompt (piloto -> por-0102): em Português o
+# resolvedor NÃO escreve `caminhos`. O campo é opcional na matéria (o lote.py só o exige nas
+# animadas), e em 100% das questões conferidas o modelo o preenchia com o resumo da eliminação que
+# os passos já faziam — além de concentrar ali os erros de fato (eliminação que não fecha, frase
+# agramatical, afirmação gramatical falsa). Questão de leitura normalmente tem um caminho só.
+# Quem confere acrescenta um caminho por patch quando achar um critério que não apareça em nenhum
+# outro campo; o aplicador aceita `caminhos[i].nome` e `caminhos[i].ideia`.
+PEDE_CAMINHOS = False
+
+
 def esq_extras():
-    return {
+    extras = {
         'equivocos': {'type': 'array', 'items': {
             'type': 'object', 'additionalProperties': False, 'required': ['letra', 'codigo'],
             'properties': {'letra': {'type': 'string', 'enum': LETRAS},
@@ -161,16 +171,18 @@ def esq_extras():
         'fontes': {'type': 'array', 'items': {
             'type': 'object', 'additionalProperties': False, 'required': ['nome', 'url'],
             'properties': {'nome': {'type': 'string'}, 'url': {'type': 'string'}}}},
-        'caminhos': {'type': 'array', 'items': {
-            'type': 'object', 'additionalProperties': False, 'required': ['nome', 'ideia'],
-            'properties': {'nome': {'type': 'string'}, 'ideia': {'type': 'string'}}}},
     }
+    if PEDE_CAMINHOS:
+        extras['caminhos'] = {'type': 'array', 'items': {
+            'type': 'object', 'additionalProperties': False, 'required': ['nome', 'ideia'],
+            'properties': {'nome': {'type': 'string'}, 'ideia': {'type': 'string'}}}}
+    return extras
 
 
 ESQ_RESOLVEDOR = {
     'type': 'object', 'additionalProperties': False,
     'required': ['id', 'problema', 'reclass', 'dado_divergente', 'depende_da_obra', 'obra',
-                 'conceito', 'letra', 'confianca', 'resolucao', 'equivocos', 'fontes', 'caminhos'],
+                 'conceito', 'letra', 'confianca', 'resolucao', 'equivocos', 'fontes'],
     'properties': {
         'id': {'type': 'string'},
         'problema': {'type': 'string'},
@@ -188,7 +200,7 @@ ESQ_RESOLVEDOR = {
 ESQ_RECONCILIACAO = {
     'type': 'object', 'additionalProperties': False,
     'required': ['id', 'decisao', 'motivo', 'leitura_da_banca', 'conceito', 'resolucao',
-                 'equivocos', 'fontes', 'caminhos'],
+                 'equivocos', 'fontes'],
     'properties': {
         'id': {'type': 'string'},
         'decisao': {'type': 'string', 'enum': ['oficial', 'anular', 'pendente']},

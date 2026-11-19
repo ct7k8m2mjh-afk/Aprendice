@@ -1,6 +1,6 @@
 # Português (parte 1): resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 501 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 209; ENEM nível 7-10 45; provas-alvo nível 7-10 111; demais nível 7-10 136.
+Faltam 451 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 159; ENEM nível 7-10 45; provas-alvo nível 7-10 111; demais nível 7-10 136.
 
 ## Lotes
 
@@ -105,8 +105,9 @@ Faltam 501 questões sem resolução (fora as que estão em lote, pendentes ou c
 | por-0097 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | por-0098 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | por-0099 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
-| por-0100 | demais nível 1-6 | 50 | aberto |  |  |  |
+| por-0100 | demais nível 1-6 | 50 | gravado | 47 | 3 | 0 |
 | por-0101 | demais nível 1-6 | 50 | aberto |  |  |  |
+| por-0102 | demais nível 1-6 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -171,6 +172,9 @@ Faltam 501 questões sem resolução (fora as que estão em lote, pendentes ou c
 | P19faff2d | UERJ 2025 1º Exame de Qualificação · questão 16 | P12.5 literatura contemporânea e autores africanos de língua portuguesa (tema P12 Literatura: Pré-Modernismo em diante) | obra: a questão pede a característica da mentira que João e Maria contam a Luíza e Pedro na crônica "A mentira", de Luis Fernando Verissimo, mas não reproduz a crônica nem a mentira; saber que ela cresce como "bola de neve" (C) e não é derrotada, tempero da verdade ou degrau dos vícios depende da leitura do texto. |
 | P8944ccb0 | UERJ 2026 1º Exame de Qualificação · questão 4 | P06.1 metáfora, comparação e metonímia (tema P06 Figuras de linguagem) | classificação: é de Física. O poema serve só de contexto; o comando pergunta "A grandeza física associada a processos reais de emersão" e as alternativas são grandezas físicas (vazão, pressão, densidade, temperatura). A resposta (densidade, gabarito C) depende do empuxo e da comparação de densidades, conteúdo de Física, não de figura de linguagem. |
 | P211d44ff | UERJ 2026 2º Exame de Qualificação · questão 13 | P11.2 Romantismo: poesia das três gerações e prosa (tema P11 Literatura: do Barroco ao Simbolismo) | obra: a letra D (antecipar a transformação sofrida por Fernando) só se confirma pelo desfecho do romance Senhora. Nem o trecho, nem o enunciado, nem a nota sobre Pigmalião mostram que Fernando muda; o enunciado diz apenas que Aurélia destaca no retrato uma expressão honesta que deseja reconhecer no marido. Sem trazer o enredo do livro, não há como provar a D nem derrubar a A e a B pelo texto. |
+| P8ce7e755 | UFJF 2024 PISM III · questão 9 | P11.1 Barroco e Arcadismo (tema P11 Literatura: do Barroco ao Simbolismo) | print: o print da questão não traz o soneto de Gregório de Matos a que o enunciado se refere ("No soneto apresentado logo acima"); ele está em q/010.webp da mesma prova. Resolução pronta (letra C) guardada em fabrica_saida/resolucoes/por-0100/patch-pendentes.json: aplicar depois de refazer o print com o TEXTO III |
+| Pb3cab0df | UFJF 2025 PISM III · questão 7 | P11.1 Barroco e Arcadismo (tema P11 Literatura: do Barroco ao Simbolismo) | print: o TEXTO II (poema de Gregório de Matos, "Ao casamento de Pedro Álvares da Neiva") não está em NENHUM print da prova (conferidos 004 a 011); só na camada de texto do PDF oficial. Resolução pronta (letra B) guardada em fabrica_saida/resolucoes/por-0100/patch-pendentes.json: aplicar depois de refazer o print 007.webp com o TEXTO II |
+| P875a491e | UFJF 2025 PISM III · questão 9 | P11.1 Barroco e Arcadismo (tema P11 Literatura: do Barroco ao Simbolismo) | print: o print da questão não traz a FIGURA I (Pereda, Alegoria da Vaidade, 1634), citada no enunciado; ela está no rodapé de q/008.webp da mesma prova. Resolução pronta (letra D) guardada em fabrica_saida/resolucoes/por-0100/patch-pendentes.json: aplicar depois de refazer o print com a figura |
 | P63e225b8 | UFPR 2021 Fase única · questão 14 | P11.3 Realismo e Naturalismo, com Machado de Assis (tema P11 Literatura: do Barroco ao Simbolismo) | obra: a questão não traz trecho de Casa de Pensão e as cinco alternativas dependem do enredo (ordem dos acontecimentos, construção da casa de Madame Brizard, motivo da ida de Amâncio ao Rio, trajetória de Sabino e Cora, relação entre as histórias dos hóspedes). Pelas datas e pela escola só se derruba com segurança a E (o enunciado chama a obra de romance, e não de coletânea de contos); A, B, C e D só se separam com o livro. |
 | Pb571aea8 | UFPR 2022 Fase única · questão 38 | P11.1 Barroco e Arcadismo (tema P11 Literatura: do Barroco ao Simbolismo) | obra: as afirmativas 2, 3 e 4, que decidem a letra, tratam de personagens e episódios de O Uraguai que o fragmento não traz (Cacambo, a feiticeira Tanajura, o sonho de Lindoia, a destruição dos Sete Povos, as vozes de líderes militares portugueses). Só a 1 se julga em parte pelo trecho (versos sem rima); julgar as outras exige o enredo da obra inteira. |
 | Pce7fa972 | UFPR 2022 Fase única · questão 40 | P12.5 literatura contemporânea e autores africanos de língua portuguesa (tema P12 Literatura: Pré-Modernismo em diante) | obra: o comando pede o fragmento "e na leitura integral" de Nove noites, de Bernardo Carvalho; o trecho é narrado por alguém que esteve numa aldeia e os abandonou, "como todos os brancos", e isso caberia tanto ao narrador jornalista (E) quanto a Buell Quain (A) ou a uma carta de Manoel Perna (C). Saber quem narra o fragmento, se o narrador visitou o Xingu criança com o pai e qual a visão que predomina no livro depende do enredo inteiro. |
