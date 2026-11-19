@@ -73,3 +73,27 @@ compreensão do aluno: mudança por gosto pessoal não entra. Se a resolução j
 `melhorias: []` e `didatica_ok: true`.
 
 Não invente citação nova nem acrescente informação que não está no print.
+
+## Os cinco erros que a conferência mais devolveu (piloto por-0094) — não repita
+1. **`checagem` que repete um passo.** A `checagem` confere por um caminho DIFERENTE do dos
+   `passos` e diferente do que está em `caminhos`. Em Português, isso quer dizer: uma segunda
+   marca no texto, um teste de substituição, o contraponto com outra alternativa, ou a inversão da
+   alternativa certa. Se a sua `checagem` repete a conta, a decomposição ou o raciocínio que já
+   está num `porque`, ela não serve: escreva outra.
+2. **`tipo: "calcular"` em Português.** Em Português não há conta. Use `localizar`, `comparar`,
+   `eliminar` ou `concluir`.
+3. **`erradas` fora do formato "Por que eu errei".** TODAS as letras, sem exceção, começam pelo que
+   FALTOU no raciocínio de quem marcou aquela letra ("Faltou notar que…", "Faltou voltar ao
+   trecho…") e depois mostram o fato ou o trecho que derruba a alternativa. Não deixe uma letra
+   nesse formato e as outras como afirmação neutra.
+4. **Fato que o aluno não pode conferir no que a prova mostra.** Não afirme nada sobre a obra, o
+   autor ou os personagens que não esteja no trecho da prova, a não ser que a pergunta dependa da
+   obra inteira. E não atribua uma classificação a um autor nomeado (crítico, gramático) sem uma
+   referência conferível: diga o fato sem a atribuição.
+5. **`alerta` que faz o aluno duvidar da questão.** O `alerta` é `""` quando não há problema real na
+   prova. Quando há polêmica de leitura, explique o ponto sutil e pare aí: nunca escreva frases
+   como "o gabarito oficial prevalece", que só plantam dúvida em quem está estudando.
+
+Mais uma: um `equivoco` é o ERRO de quem marcou aquela letra, com nome de erro
+(`P10.3:enclise-apos-palavra-atrativa`). Nunca um rótulo que diga que o uso é aceito ou que
+mencione o gabarito.

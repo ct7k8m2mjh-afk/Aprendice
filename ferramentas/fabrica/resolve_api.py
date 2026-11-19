@@ -274,15 +274,31 @@ def questao_cega(q):
     return {k: q[k] for k in campos if k in q}
 
 
-def bloco_questao(q, extra=None):
+def extras_do_lote(lote):
+    """fabrica_saida/resolucoes/<lote>/extras.json: {"<id>": {"prints_extra": ["caminho", ...],
+    "nota": "..."}}. Serve para a questão cujo texto de apoio está em OUTRO print da mesma prova
+    (texto comum a um bloco de questões) ou que precisa de um aviso da sessão."""
+    f = os.path.join(SAIDA, lote, 'extras.json')
+    return json.load(open(f, encoding='utf-8')) if os.path.exists(f) else {}
+
+
+def bloco_questao(q, extra=None, extras=None):
     d = questao_cega(q)
     if extra:
         d.update(extra)
-    return [imagem(q['print']),
-            {'type': 'text',
-             'text': 'PRINT DA PROVA acima (é a questão: vale sobre o texto transcrito).\n\n'
-                     'DADOS DA QUESTÃO:\n```json\n'
-                     + json.dumps(d, ensure_ascii=False, indent=1) + '\n```'}]
+    ex = (extras or {}).get(q['id'], {})
+    if ex.get('nota'):
+        d['aviso_da_sessao'] = ex['nota']
+    partes = [imagem(q['print'])]
+    texto = 'PRINT DA PROVA acima (é a questão: vale sobre o texto transcrito).'
+    for c in ex.get('prints_extra') or []:
+        partes.append(imagem(c))
+        texto = ('PRINTS DA PROVA acima: o primeiro é a questão; os outros trazem o texto de apoio '
+                 'comum ao bloco de questões. Todos valem sobre o texto transcrito.')
+    partes.append({'type': 'text',
+                   'text': texto + '\n\nDADOS DA QUESTÃO:\n```json\n'
+                           + json.dumps(d, ensure_ascii=False, indent=1) + '\n```'})
+    return partes
 
 
 def pedido(custom_id, modelo, sistema, conteudo, esquema, max_tokens=8000, efforto='high'):
@@ -582,7 +598,8 @@ def carrega_entrada(f):
 
 def etapa_resolvedor(cl, lote, qs, teto):
     sis = monta('por-resolvedor.md')
-    pedidos = [pedido(qid, MODELO_RESOLVEDOR, sis, bloco_questao(q), ESQ_RESOLVEDOR, 9000)
+    ex = extras_do_lote(lote)
+    pedidos = [pedido(qid, MODELO_RESOLVEDOR, sis, bloco_questao(q, extras=ex), ESQ_RESOLVEDOR, 9000)
                for qid, q in qs.items()]
     return roda_etapa(cl, lote, 'resolvedor', pedidos, teto)
 
@@ -591,13 +608,15 @@ def etapa_cego(cl, lote, qs, teto):
     """2º especialista às cegas, só nas questões sem gabarito publicado (princípio 2)."""
     alvo = {k: v for k, v in qs.items() if v.get('sem_gabarito_publicado')}
     sis = monta('por-gabarito-cego.md')
-    pedidos = [pedido(qid, MODELO_LENTE, sis, bloco_questao(q), ESQ_CEGO, 3000)
+    ex = extras_do_lote(lote)
+    pedidos = [pedido(qid, MODELO_LENTE, sis, bloco_questao(q, extras=ex), ESQ_CEGO, 3000)
                for qid, q in alvo.items()]
     return roda_etapa(cl, lote, 'gabarito-cego', pedidos, teto)
 
 
 def etapa_reconciliacao(cl, lote, qs, res, gabs, teto):
     sis = monta('por-reconciliacao.md')
+    ex = extras_do_lote(lote)
     pedidos = []
     for qid, r in res.items():
         if r.get('problema') or gabs.get(qid) in (None, '') or r.get('letra') == gabs[qid]:
@@ -605,13 +624,14 @@ def etapa_reconciliacao(cl, lote, qs, res, gabs, teto):
         extra = {'gabarito_oficial': gabs[qid],
                  'letra_do_especialista_as_cegas': r.get('letra'),
                  'resolucao_do_especialista': r.get('resolucao')}
-        pedidos.append(pedido(qid, MODELO_LENTE, sis, bloco_questao(qs[qid], extra),
+        pedidos.append(pedido(qid, MODELO_LENTE, sis, bloco_questao(qs[qid], extra, ex),
                               ESQ_RECONCILIACAO, 9000))
     return roda_etapa(cl, lote, 'reconciliacao', pedidos, teto)
 
 
-def etapa_fatos(cl, lote, qs, montadas, teto, etapa='lente-fatos', so=None):
+def etapa_fatos(cl, lote, qs, montadas, teto, etapa='lente-fatos', so=None, alertas=None):
     sis = monta('por-lente-fatos.md')
+    ex = extras_do_lote(lote)
     pedidos = []
     for qid, q in montadas.items():
         if so is not None and qid not in so:
@@ -619,19 +639,23 @@ def etapa_fatos(cl, lote, qs, montadas, teto, etapa='lente-fatos', so=None):
         extra = {'gabarito_oficial': qs[qid].get('gabarito_oficial') or '(não publicado)',
                  'resolucao_proposta': {'conceito': q['conceito'], 'resolucao': q['resolucao'],
                                         'equivocos': q.get('equivocos', {})}}
-        pedidos.append(pedido(qid, MODELO_LENTE, sis, bloco_questao(qs[qid], extra),
+        if (alertas or {}).get(qid):
+            # a lente didática viu um possível erro de FATO e, por regra, não corrigiu: é seu
+            extra['erro_de_fato_apontado_pela_lente_didatica'] = alertas[qid]
+        pedidos.append(pedido(qid, MODELO_LENTE, sis, bloco_questao(qs[qid], extra, ex),
                               ESQ_FATOS, 5000))
     return roda_etapa(cl, lote, etapa, pedidos, teto)
 
 
 def etapa_didatica(cl, lote, qs, montadas, teto):
     sis = monta('por-lente-didatica.md')
+    ex = extras_do_lote(lote)
     pedidos = []
     for qid, q in montadas.items():
         extra = {'resolucao_conferida_nos_fatos': {'conceito': q['conceito'],
                                                    'resolucao': q['resolucao'],
                                                    'caminhos': q.get('caminhos', [])}}
-        pedidos.append(pedido(qid, MODELO_LENTE, sis, bloco_questao(qs[qid], extra),
+        pedidos.append(pedido(qid, MODELO_LENTE, sis, bloco_questao(qs[qid], extra, ex),
                               ESQ_DIDATICA, 5000))
     return roda_etapa(cl, lote, 'lente-didatica', pedidos, teto)
 
@@ -747,6 +771,7 @@ def pipeline(cl, entrada, saida, teto):
     # ---- lente didática
     did = etapa_didatica(cl, lote, qs, montadas, teto)
     mudou_por_didatica = set()
+    alertas_didatica = {}
     for qid, f in did.items():
         if qid not in montadas:
             continue
@@ -755,14 +780,16 @@ def pipeline(cl, entrada, saida, teto):
             if aplica(montadas[qid], c['campo'], c['depois'], log):
                 mudou_por_didatica.add(qid)
         if f.get('alertas_de_fato'):
+            alertas_didatica[qid] = ' | '.join(f['alertas_de_fato'])
             diario.setdefault(qid, []).append('didática viu possível erro de fato: '
-                                              + ' | '.join(f['alertas_de_fato']))
+                                              + alertas_didatica[qid])
         if log:
             diario.setdefault(qid, []).append('didática: ' + ' | '.join(log))
 
     # ---- lente de fatos de novo, só no que a didática mudou
-    alvo = {qid for qid in mudou_por_didatica if qid in montadas}
-    fatos2 = etapa_fatos(cl, lote, qs, montadas, teto, etapa='lente-fatos-2', so=alvo)
+    alvo = {qid for qid in (mudou_por_didatica | set(alertas_didatica)) if qid in montadas}
+    fatos2 = etapa_fatos(cl, lote, qs, montadas, teto, etapa='lente-fatos-2', so=alvo,
+                         alertas=alertas_didatica)
     for qid, f in fatos2.items():
         if qid not in montadas:
             continue
@@ -835,7 +862,8 @@ def cmd_estima(entrada, teto):
                                 ('lente-fatos', MODELO_LENTE, sis['fatos'], 5000),
                                 ('lente-didatica', MODELO_LENTE, sis['didatica'], 5000),
                                 ('lente-fatos-2', MODELO_LENTE, sis['fatos'], 5000)):
-        p = pedido('x', modelo, s, bloco_questao(q0), ESQ_RESOLVEDOR, mx)['params']
+        p = pedido('x', modelo, s, bloco_questao(q0, extras=extras_do_lote(lote)),
+                   ESQ_RESOLVEDOR, mx)['params']
         tin = conta_tokens(cl, p)
         n = len(qs) if nome != 'lente-fatos-2' else max(1, len(qs) // 2)
         c = preco(modelo, tin * n, mx * 0.45 * n)
@@ -853,7 +881,8 @@ def cmd_teste(entrada, n, teto):
     sis = monta('por-resolvedor.md')
     escolhidas = list(qs.items())[:n]
     for qid, q in escolhidas:
-        p = pedido(qid, MODELO_RESOLVEDOR, sis, bloco_questao(q), ESQ_RESOLVEDOR, 9000)['params']
+        p = pedido(qid, MODELO_RESOLVEDOR, sis, bloco_questao(q, extras=extras_do_lote(lote)),
+                   ESQ_RESOLVEDOR, 9000)['params']
         r = cl.messages.create(**p)
         t = next((b.text for b in r.content if b.type == 'text'), '')
         d = json.loads(t)
@@ -892,8 +921,8 @@ def cmd_lente(entrada, saida, ids, teto, max_tokens=12000):
         extra = {'gabarito_oficial': qs[qid].get('gabarito_oficial') or '(não publicado)',
                  'resolucao_proposta': {'conceito': mq['conceito'], 'resolucao': mq['resolucao'],
                                         'equivocos': mq.get('equivocos', {})}}
-        p = pedido(qid, MODELO_LENTE, sis, bloco_questao(qs[qid], extra), ESQ_FATOS,
-                   max_tokens)['params']
+        p = pedido(qid, MODELO_LENTE, sis, bloco_questao(qs[qid], extra, extras_do_lote(lote)),
+                   ESQ_FATOS, max_tokens)['params']
         ja = gasto_total()
         est = preco(MODELO_LENTE, conta_tokens(cl, p), max_tokens * 0.5, batch=False)
         if ja + est > teto:
