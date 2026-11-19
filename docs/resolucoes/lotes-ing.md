@@ -93,6 +93,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | ing-0085 | provas-alvo nível 1-6 | 4 | gravado | 4 | 0 | 0 |
 | ing-pend-0001 | pendentes todos-menos-anular | 25 | gravado | 25 | 0 | 0 |
 | ing-pend-0002 | pendentes todos-menos-anular | 16 | gravado | 16 | 0 | 0 |
+| ing-pend-0003 | pendentes =reclassificada | 2 | gravado | 2 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 

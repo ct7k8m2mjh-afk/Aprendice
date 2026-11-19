@@ -90,7 +90,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | mat-0082 | provas-alvo nível 1-6 | 3 | gravado | 3 | 0 | 0 |
 | mat-pend-0001 | pendentes todos-menos-anular | 15 | gravado | 8 | 7 | 0 |
 | mat-pend-0002 | pendentes reclassificada | 2 | gravado | 2 | 0 | 0 |
-| mat-pend-0003 | pendentes =reclassificada | 1 | aberto |  |  |  |
+| mat-pend-0003 | pendentes =reclassificada | 1 | gravado | 1 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
