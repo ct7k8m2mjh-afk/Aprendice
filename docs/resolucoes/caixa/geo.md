@@ -197,3 +197,27 @@ RECLASS P8240e152 G04.4 -> G05.1
 RECLASS P1555f957 G04.4 -> G06.6
 DADO P5b2faf4b: alternativas.E -> sem o " 01" no fim (o "01" não aparece no print)
 ANULAR Pf675553a (Cederj 2023.2 q24): a foto mostra um pequizeiro, árvore do Cerrado (letra A); o gabarito oficial é D (Mata de Araucárias), e a própria justificativa da banca diz "característico do cerrado"; sem errata. Fontes: https://www.cecierj.edu.br/wp-content/uploads/2023/06/VestibularCederj_2023.2_Gabarito.pdf e https://www.cecierj.edu.br/wp-content/uploads/2023/06/VestibularCEDERJ_2023.2_Justificativas-de-Respostas.pdf (p. 5)
+
+## 2026-11-19 16:59 UTC — PENDENCIAS — sessão geo (19/11, 2ª)
+Lote gravado: geo-0050 (50 resoluções; 1 com gabarito do Aprendice, letra igual às cegas e ao preliminar: Pe803b013 A). Pendentes: nenhuma.
+RECLASS P1d30f324 G05.4 -> G12.5 (URCA 2026.1 q86: desertificação em Irauçuba)
+RECLASS Paacdee2b G05.4 -> G12.5 (Unitins 2022/2 q21: causas da desertificação)
+DADO Paacdee2b: alternativas.E -> "...impedindo assim, a chegada da umidade nos solos degradados." (na entrada "degradad ados")
+RECLASS Pb59d3d8d G05.4 -> G08.5 (impactos ambientais da agropecuária)
+RECLASS P9133ed1b G05.1 -> G05.3 (grandes biomas do mundo: tundra, taiga, savana, pradaria)
+RECLASS P134865b1 G05.2 -> G05.3 (floresta equatorial e outras vegetações do mundo, por foto)
+DADO Pb75f7f8e: alternativas.A -> "cerrado ~~strictu~~ sensu" ("strictu" em itálico no print)
+RECLASS P675ba32d G05.4 -> G05.2 (domínio morfoclimático, mares de morros)
+DADO Pc86fcd7c: texto_da_prova e alternativas -> texto embaralhado e sem campo de alternativas; o print tem o mapa e as cinco alternativas (A "O tamanho do estado é o fator de maior influência…" … E "O desmatamento pelas queimadas é o único…")
+DADO P9bf4f0f8: alternativas -> a entrada não traz o campo; estão no fim de texto_da_prova, iguais ao print
+DADO Pa862d018: texto_da_prova e alternativas.C -> "caracter´ısticas", "Dom´ınios" -> "características", "Domínios"
+DADO P5d76c52e: alternativas -> hifens de quebra soltos ("con­ tamina", "indiscrimina­ do", "prote­ gidas", "desen­ cadeia", "recur­ sos", "planta­ ção"); no print as palavras inteiras
+
+## 2026-11-19 16:59 UTC — FIM — sessão geo (19/11, 2ª)
+Lotes gravados nesta sessão: geo-0047, geo-0048, geo-0049, geo-0050 (último gravado: geo-0050). Nenhum lote aberto.
+Resoluções que entraram: 195 (48 + 48 + 49 + 50), todas conferidas por 2 conferentes com reconferência. 9 com gabarito do Aprendice (resolvedor e conferente às cegas com a mesma letra, igual ao preliminar).
+Pendentes: 5 — ANULAR P0ca47d8c (geo-0047), Pe625626c e Pb5cb0b0f (geo-0048; a Pb5cb0b0f é provável troca de gabarito, conferir o definitivo da Unitins), Pf675553a (geo-0049); classificação Paecc8f79 -> fis F08.5 (geo-0047). Detalhes nos blocos PENDENCIAS acima. Divergências: 0.
+Avisos: GABARITO P02be2531 (UFRR 2026 q37) entrou com gabarito do Aprendice B; a busca indica gabarito oficial pós-recursos B (Edital 93/25-CPV), não conferido no PDF.
+Checagem no site (P60f6cb69, P86d67d4f, P58ae45de; 390 e 1280 px): 4 blocos completos e na ordem, "Por que as outras estão erradas" fechado e abrindo, aviso do Gabarito do Aprendice presente, sem rolagem lateral nem erro no console.
+Testes: converte + tsc + vitest verdes (786 passed).
+A seguir: `python3 ferramentas/resolucoes/lote.py status` — Geografia faltam 837 (f2 676 · f3 21 · f4 91 · f5 49).

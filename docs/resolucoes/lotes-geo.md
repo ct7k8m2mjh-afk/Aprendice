@@ -55,7 +55,7 @@ Faltam 837 questões sem resolução (fora as que estão em lote, pendentes ou c
 | geo-0047 | demais nível 1-6 | 50 | gravado | 48 | 2 | 0 |
 | geo-0048 | demais nível 1-6 | 50 | gravado | 48 | 2 | 0 |
 | geo-0049 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
-| geo-0050 | demais nível 1-6 | 50 | aberto |  |  |  |
+| geo-0050 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
