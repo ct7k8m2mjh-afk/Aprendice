@@ -520,3 +520,45 @@ converte.py, tsc e vitest (791 testes) verdes.
 Medição (sem aplicar) da regra `equivocos_fora` do confere_amostra.py sobre as resoluções gravadas em
 app/conteudo-fonte/provas: questões apontadas / resoluções — por 405/4478 (já sem estes 34), bio 409/2659,
 qui 557/2688, mat 248/3058, fis 159/2769, geo 263/2565, his 210/2454, ing 4/2509, fs 6/1573.
+
+## 2026-11-19 23:30 UTC — ACABOU (parte 1) — session_01PveEKX1JnJpMCfgHmpRupU
+
+**A parte 1 de Português não tem mais questão sem resolução.** `lote.py proximo`
+responde "nenhuma questão sem resolução", e as partes 2, 3 e 4 também marcam
+zero. O que resta de Português são as pendências, que a coordenação já está
+tocando nos lotes `por-pend-*`.
+
+### Os dois últimos lotes
+
+- **por-0107**: 49 resoluções em 22 provas, 1 pendente por print. 24 achados de
+  conferência e 16 patches de obras; 18 fontes acadêmicas novas.
+- **por-0108**: 22 resoluções em 9 provas, **0 pendentes**. 14 achados de
+  conferência, 21 fontes novas em 11 questões, e **nenhuma afirmação de obra
+  precisou sair** — tudo o que sustentava letra foi confirmado em periódico
+  (PUC-SP, UFG, UFPA, UFJF, UFMA, USP, UFRGS, UnB, UFC, UNEMAT).
+
+### O que esta sessão deixa gravado
+
+13 lotes, de por-0094 a por-0108: **654 resoluções**, US$ 83 dos US$ 200 do teto
+do dono, cerca de **US$ 0,12 por questão**. Os três últimos lotes seguidos sem
+nenhuma pendência pedida pela fábrica.
+
+### Três coisas que a coordenação precisa decidir, e que não são minhas
+
+1. **41 RECLASS** (34% de 122 questões), em `docs/resolucoes/classificacao-pelo-texto-de-apoio.md`.
+2. **9 pendências de print com a resolução já escrita e conferida** — só falta
+   refazer o print: P8ce7e755, Pb3cab0df, P875a491e, P6b2a2eec, Pee5e3224,
+   Pbdf66d29, P56bd4868, P63da1bf6, Pedde3b3b.
+3. **As decisões de questão** já listadas nos blocos acima: P49978098 (três
+   especialistas contra o preliminar), P448cc999 e Pe350965f (só com o livro em
+   mãos), Pfc99ec33 (Artes ou Português), e os três defeitos de extração de
+   dados de prova em Pd83d608f e Pf3d20973.
+
+### Divergência entre dois agentes, registrada sem decidir
+
+Em **P8e32259d** (UEG 2026/2 q13, Cecília Meireles) o conferente pede RECLASS
+para P12.3 (Modernismo de 30), porque ela é da 2ª geração e não da Geração de
+45; o agente de conteúdos pede **P01.1** (tema e ideia principal), porque o
+comando já entrega "linguagem psicológica e intimista" e o aluno só identifica o
+tema. Deixei os prefixos em P01.1, coerente com a regra que escrevi (não
+classificar pelo autor do texto de apoio), e registro aqui que há duas leituras.
