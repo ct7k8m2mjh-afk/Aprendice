@@ -90,6 +90,11 @@ a.tit-mat:hover { text-decoration: none; filter: brightness(1.1); }
 .ft-seta:hover { border-color: color-mix(in srgb, var(--p) 45%, var(--linha)); color: var(--t-texto); }
 .ft-seta .ic { width: 16px; height: 16px; }
 .ft-seta.esq { left: 2px; } .ft-seta.dir { right: 2px; }
+/* a seta fica na altura do ícone, ao lado dele, e nunca em cima do nome do tema (revisão de 19/11/2026, item 21):
+   centro do ladrilho do ícone = respiro do rolo (6) + padding do cartão + metade do ladrilho */
+.faixa-temas .ft-seta { top: calc(6px + 8px + 64px - 20px); }
+.faixa-temas.compacta .ft-seta { top: calc(6px + 4px + 42px - 20px); }
+@media (max-width: 640px) { .faixa-temas:not(.compacta) .ft-seta { top: calc(6px + 8px + 50px - 20px); } }
 /* dentro de um tema ou conteúdo a faixa fica compacta (150 px, ladrilho de 84 px) */
 .faixa-temas.compacta .ft-item { flex-basis: 150px; width: 150px; padding-bottom: 20px; }
 .faixa-temas.compacta .ft-ic { height: 84px; }
@@ -547,7 +552,7 @@ kbd { font: 600 12.5px var(--fonte); border: 1px solid var(--borda2); border-bot
 .nivel-cartao { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; padding: 18px 20px; border-radius: var(--r-bloco); background: var(--folha); border: 1px solid var(--linha); box-shadow: var(--sombra-folha); }
 .nivel-cartao.vazio { opacity: .72; }
 .nivel-cartao .btn { margin-top: 6px; }
-.nivel-etq { font-size: 13px; font-weight: 600; letter-spacing: 0; padding: 3px 10px; border-radius: 20px; background: var(--sv); color: var(--t-texto); }
+.nivel-etq { font-size: 13px; font-weight: 600; letter-spacing: 0; padding: 3px 10px; border-radius: 8px; background: var(--sv); color: var(--t-texto); }
 /* intensidade crescente na cor da matéria (tons da paleta): básico no fundo suave, intermediário com contorno no tom de texto, avançado cheio */
 .nivel-etq.n-intermediario { background: var(--s); box-shadow: inset 0 0 0 1.5px var(--t); }
 .nivel-etq.n-avancado { background: var(--c); color: var(--ink); }
@@ -679,21 +684,19 @@ kbd { font: 600 12.5px var(--fonte); border: 1px solid var(--borda2); border-bot
 [data-theme='dark'] .arte-tg .arte-tg-claro { display: none; }
 [data-theme='dark'] .arte-tg .arte-tg-escuro { display: block; }
 .mat-duo .capa-tg .arte-tg { display: flex; width: 340px; height: 272px; margin: 4px 0; }
-@media (min-width: 1101px) and (max-width: 1500px) {
-  .mat-duo .capa-tg .arte-tg { display: flex; width: 260px; height: 210px; }
-  /* com a arte ao lado, os rótulos dos contadores quebram linha em vez de serem cortados */
-  .mat-duo .capa-tg .tg-n > i { white-space: normal; line-height: 1.25; }
-}
-@media (min-width: 1101px) and (max-width: 1350px) { .mat-duo .capa-tg .arte-tg { width: 230px; height: 190px; } }
+/* entre 1101 e 1500 px a capa divide a linha com "Meu progresso": a arte sai, para os 3 contadores terem a largura do
+   sistema (até 170 px) e o botão os 380 px mínimos (DESIGN.md, "Treino geral (capa)"; revisão de 19/11/2026, item 17) */
+@media (min-width: 1101px) and (max-width: 1500px) { .mat-duo .capa-tg .arte-tg { display: none; } }
 @media (min-width: 900px) and (max-width: 1100px) { .mat-duo .capa-tg .arte-tg { width: 300px; height: 240px; } }
 @media (max-width: 899px) { .mat-duo .capa-tg .arte-tg { width: min(340px, 100%); height: auto; aspect-ratio: 4 / 3; max-height: 260px; margin: 0 auto 4px; } }
 @media (max-width: 420px) { .mat-duo .capa-tg .arte-tg { width: min(290px, 100%); max-height: 220px; } }
 
 /* lista de temas por área (pedido do dono, 11/11/2026): colunas fixas e iguais em todas as áreas, para os temas
-   ficarem alinhados na vertical — 3 colunas no computador, 2 no tablet, 1 no celular */
-.area-lista { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+   ficarem alinhados na vertical. auto-fill (e não auto-fit) dá o mesmo número e a mesma largura de colunas em todas as
+   áreas, e cada coluna nunca fica abaixo de 340 px (DESIGN.md, "Folha das áreas"; revisão de 19/11/2026, item 16):
+   3 colunas só quando cabem (1440), 2 em 1280 e no tablet, 1 no celular */
+.area-lista { grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); }
 .area-tema { max-width: none; }
-@media (max-width: 1279px) { .area-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 900px) { .area-lista { grid-template-columns: minmax(0, 1fr); } }
 
 /* proteção contra falha de desenho (ui/Protecao.tsx; revisão de 19/11/2026): o aviso ocupa o lugar do pedaço que falhou */

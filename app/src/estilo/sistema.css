@@ -33,6 +33,9 @@
 .q-barq .n::after { content: ' ·'; color: var(--fraco); font-weight: 500; }
 .q-barq .t { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--lapis); font-weight: 500; font-size: 15px; }
 .q-barq .t b { color: var(--tinta); font-weight: 600; }
+/* computador: o rótulo ("Treino geral · 1 de 15") nunca é cortado; quando falta espaço, o nome da matéria quebra em
+   duas linhas ("Filosofia e / Sociologia"; revisão de 19/11/2026, item 28) */
+@media (min-width: 901px) { .q-barq .n { flex: 0 1000 auto; min-width: min-content; line-height: 1.2; } }
 .q-barq .p { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; }
 .q-barq .p i { display: block; height: 100%; border-radius: 2px; background: var(--c); transition: width .3s var(--curva); }
 .q-ajuda { width: 32px; height: 32px; flex: none; display: grid; place-items: center; border-radius: 8px; color: var(--lapis); cursor: help; }
@@ -75,7 +78,7 @@
 .q-cartao { --qc: 16px; display: flex; flex-direction: column; padding: var(--qc) var(--qc) 0; border-radius: var(--r-dest); box-shadow: var(--sombra-tema); }
 .q-enun { display: flex; flex-direction: column; }
 .q-meta { position: relative; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-height: 36px; margin: 0; font-size: 14px; }
-.q-meta .etq { padding: 4px 10px; border-radius: 20px; font-size: 13px; font-weight: 500; background: color-mix(in srgb, var(--tinta) 7%, transparent); color: var(--tinta); max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.q-meta .etq { padding: 4px 10px; border-radius: 8px; font-size: 13px; font-weight: 500; background: color-mix(in srgb, var(--tinta) 7%, transparent); color: var(--tinta); max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
 .q-meta .etq.cor { background: var(--sv); color: var(--t-texto); }
 .q-meta .q-fonte b { font-weight: 500; color: inherit; }
 .q-meta-acao { margin-left: auto; flex: none; display: flex; }
@@ -312,7 +315,7 @@
 .tg-nums { display: grid; grid-template-columns: repeat(3, minmax(0, 170px)); gap: 10px; width: 100%; margin-top: 16px; }
 .tg-n { display: flex; flex-direction: column; gap: 3px; min-width: 0; padding: 10px 12px; border-radius: 12px;
   background: color-mix(in srgb, var(--folha) 78%, transparent); border: 1px solid color-mix(in srgb, var(--c) 18%, transparent); }
-.tg-n > i { font-style: normal; font-size: 12.5px; font-weight: 600; color: var(--lapis); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tg-n > i { font-style: normal; font-size: var(--fs-info); font-weight: 600; line-height: 1.25; color: var(--lapis); } /* rótulo inteiro, no mínimo do sistema (item 17) */
 .tg-n > b { font-size: 22px; font-weight: 700; line-height: 1.1; color: var(--tinta); }
 .tg-n > b small { font-size: 13px; font-weight: 500; color: var(--lapis); }
 .tg-n > .barra { height: 4px; border-radius: 3px; margin: 3px 0 1px; background: color-mix(in srgb, var(--tinta) 10%, transparent); }
@@ -416,7 +419,7 @@
 .fc-faixa-nm b { display: block; font-weight: 600; }
 .fc-faixa-nm span { display: block; color: var(--lapis); }
 .fc-faixa-tg { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
-.fc-faixa-tg .etq { padding: 4px 10px; border-radius: 999px; background: color-mix(in srgb, var(--tinta) 7%, transparent); color: var(--lapis); white-space: nowrap; }
+.fc-faixa-tg .etq { padding: 4px 10px; border-radius: 8px; background: color-mix(in srgb, var(--tinta) 7%, transparent); color: var(--lapis); white-space: nowrap; }
 .fc-faixa-tg .etq.cor { background: var(--sv); color: var(--t-texto); }
 .flashcard > .fc-frente { margin-top: 18px; }
 .flashcard > .fc-lab { display: flex; align-items: center; gap: 8px; margin-top: 22px; font-weight: 600; color: var(--lapis); }
@@ -436,7 +439,7 @@
 }
 
 /* ---------- matéria: contadores da capa do treino com quatro linhas (rótulo, "n de N", barra, acertos): 170 x 102 ---------- */
-.tg-n > small { font-size: 12.5px; color: var(--lapis); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tg-n > small { font-size: var(--fs-info); color: var(--lapis); white-space: nowrap; }
 
 /* faixa compacta (tela do tema): cartão de 150 x 147. O nome usa a largura toda do cartão (com 15 px de letra do guia
    ele cabe em duas linhas) e o respiro de baixo fica em 16 px */

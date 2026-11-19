@@ -171,7 +171,7 @@
 .barra { height: 6px; border-radius: 6px; background: var(--linha); overflow: hidden; }
 .barra > i { display: block; height: 100%; background: var(--p); border-radius: 6px; transition: width .4s var(--curva); }
 
-.etq { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; padding: 4px 10px; border-radius: 20px; background: var(--malha); color: var(--lapis); white-space: nowrap; }
+.etq { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; padding: 4px 10px; border-radius: 8px; background: var(--malha); color: var(--lapis); white-space: nowrap; }
 .etq.cor { background: var(--sv); color: var(--t-texto); }
 .etq.ok { background: var(--certo-bg); color: var(--certo); }
 .etq.err { background: var(--errado-bg); color: var(--errado); }
@@ -206,7 +206,7 @@
 .abas button small { color: var(--fraco); font-weight: 500; margin-left: 4px; }
 
 .chips { display: flex; gap: 8px; flex-wrap: wrap; }
-.chip { border: 1px solid var(--linha); background: var(--folha); color: var(--lapis); border-radius: 20px; padding: 7px 14px; font-weight: 500; font-size: 14.5px; display: inline-flex; align-items: center; gap: 6px; }
+.chip { border: 1px solid var(--linha); background: var(--folha); color: var(--lapis); border-radius: 20px; padding: 7px 14px; font-weight: 500; font-size: 14.5px; line-height: 1.2; display: inline-flex; align-items: center; gap: 6px; }
 .chip:hover { border-color: var(--borda2); color: var(--tinta); }
 .chip[aria-pressed='true'], .chip[aria-checked='true'] { background: var(--tinta); border-color: var(--tinta); color: var(--papel); }
 
@@ -252,4 +252,15 @@ a.chip, a.chip:hover { text-decoration: none; }
 @media (max-width: 640px) {
   .busca-btn { height: auto; min-height: 44px; padding-block: 4px; }
   .busca-btn .txt { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.2; text-wrap: balance; }
+}
+
+/* alvo de toque de 44 × 44 px no celular (revisão de 19/11/2026: matérias 20, casca 6, 21 e 37; WCAG 2.5.5), como na
+   questão (sistema.css): o desenho não muda; uma área invisível centrada em cada controle pequeno recebe o toque. */
+@media (pointer: coarse), (max-width: 700px) {
+  .chip, .fr-trocar, .fr-aviso .link-sec, .link-sec, .migalhas a, .btn.peq, .sanfona, .tema-seg button, .crono, .folha-btn,
+  .l-esqueci, .l-trocar button, .tp-volta { position: relative; }
+  .chip::before, .fr-trocar::before, .fr-aviso .link-sec::before, .link-sec::before, .migalhas a::before, .btn.peq::before,
+  .sanfona::before, .tema-seg button::before, .crono::before, .folha-btn::before, .l-esqueci::before, .l-trocar button::before,
+  .l-olho::before, .ft-seta::before, .tp-volta::before {
+    content: ''; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%); }
 }
