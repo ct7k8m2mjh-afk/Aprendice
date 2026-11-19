@@ -232,138 +232,27 @@ DADO Pf5b95e48 (UFRR 2026 Vestibular 2026 – Prova Integral · questão 6): No 
 DADO Pfb341f53 (UNIRG 2024 Medicina 2024/2 · questão 15): No enunciado do print o fragmento aparece como “’Pobre Alphonsus! Pobre Alphonsus’”, sem o ponto de exclamação final. No poema, o verso tem as duas exclamações. A resolução cita a forma do poema, que 
 DADO Pff10eaf9 (Unitins 2025 Vestibular 2025/1 — Todos os Câmpus · questão 45): Na transcrição, os versos 'Papo reto, como esqueletos, de outro dialeto' e 'Só desafeto, vida de inseto imundo' aparecem colados numa linha só, assim como 'Nação sem teto...' e 'A cor de Eto...'. O tí
 
-## 2026-11-19 20:40 UTC — PENDENCIAS (lotes por-0097 a por-0105) — session_01PveEKX1JnJpMCfgHmpRupU
-
-As pendências questão por questão já estão em `docs/resolucoes/registro-por.json`
-(`pendentes`), com prova, conteúdo e motivo, e a coordenação já abriu lotes
-`por-pend-*` com elas. Este bloco traz **só o que o registro não carrega**: as
-decisões que não são minhas e os problemas que se repetem em muitas questões.
-
-### 1. Decisões que precisam da coordenação ou do dono
-
-**P49978098 — EMESCAM 2022 Medicina 2022/1, questão 4 (P09.3, orações adjetivas).**
-Três especialistas resolveram às cegas, sem ver a resposta um do outro, e os três
-deram **A**. O gabarito que a prova publicou é **preliminar** e dá **B**. Pela
-regra de 11/11/2026, o gabarito do Aprendice só vale quando bate com o
-preliminar — não bate. A questão está fora, marcada como pendente. Ela parece
-defeituosa (as duas leituras se sustentam). Decisão: **anular** (sai do banco de
-vez) ou **esperar** gabarito definitivo da banca, se houver.
-
-**P448cc999 — Viver é prejudicial à saúde, de Jamil Snege (UFPR/Gazeta).**
-A prova não traz trecho nenhum: a resposta depende de lembrar quem são Joana,
-Harry, Lucimara e Marcelo. Um agente procurou em fonte publicada (editora,
-repositórios, Cândido/Biblioteca Pública do Paraná, Rascunho, Gazeta do Povo) e
-só confirmou que o narrador-protagonista é arquiteto. Nada publicado descreve as
-personagens. Sustentar a letra assim seria palpite com cara de fato.
-Decisão: **só se resolve com o livro em mãos**, ou a questão fica fora.
-
-**Pe350965f — Tribo Cara Baixa (Editora Kelps).**
-Mesmo caso. A editora confirma tema e postura do autor e classifica o livro como
-não ficção, o que já derruba duas alternativas; mas nada publicado descreve a
-estrutura do livro ("pequenos textos cronísticos", a letra C) nem permite negar a
-letra A. Decisão: **só com o livro em mãos**.
-
-Nos três casos a pendência foi conferida por um agente que não escreveu a
-resolução, e confirmada. Não são pendências de preguiça da fábrica.
-
-### 2. Pendências de print: a resolução está pronta, falta a imagem
-
-Oito questões ficaram fora por um defeito do print, não do conteúdo. **A resolução
-inteira já está escrita e conferida**, guardada no `patch-*.json` do lote. Basta
-refazer o print e aplicar o patch.
-
-| Questão | Lote | O que falta no print |
-|---|---|---|
-| P8ce7e755 | por-0100 | o soneto de Gregório de Matos a que o enunciado se refere; está em `q/010.webp` da mesma prova |
-| Pb3cab0df | por-0100 | o TEXTO II (Gregório de Matos, "Ao casamento de Pedro Álvares da Neiva") não está em print nenhum da prova (conferidos 004 a 011), só na camada de texto do PDF oficial |
-| P875a491e | por-0100 | a FIGURA I (Pereda, *Alegoria da Vaidade*, 1634); está no rodapé de `q/008.webp` |
-| P6b2a2eec | por-0101 | o poema "Eu, Marília, não sou algum vaqueiro"; o print tem só o comando e as alternativas |
-| Pee5e3224 | por-0101 | o poema "Benze-se o poeta...", de Gregório de Matos |
-| Pbdf66d29 | por-0101 | a canção de Erasmo Carlos que o enunciado manda comparar com o poema de Gonçalves Dias |
-| P56bd4868 | por-0103 | os versos do texto de apoio; o print traz só "Texto para as questões 41 e 42", o comando e as alternativas |
-| P63da1bf6 | por-0103 | o conto "A Sauna"; o print traz só o comando e as alternativas |
-
-**Por que não resolvi juntando dois prints:** no banco, `print` é **um caminho só**
-e `figura` é um booleano — o aluno vê **uma imagem por questão**. Um agente
-chegou a recuperar o texto de apoio em prints vizinhos da mesma prova, e eu ia
-aceitar as quatro resoluções; conferi o banco antes e devolvi três para pendente.
-O texto de apoio tem de estar **dentro** do print da questão. Quem mexer no
-gerador de prints precisa saber disso.
-
-### 3. Questões de outra matéria caem em Português
-
-As que achei estão no registro, uma a uma (Artes: P0aaed1c4, Pb2f7e5d3,
-Pfc99ec33, Pbf58c381, P61c6a142; História: Peefa95fe; Filosofia: Pc401d7b0;
-Química: P15e171f5).
-
-O problema é maior que a lista. O `converte.py` conta hoje **156 questões do banco
-nacional que são de outra matéria**: 109 de **Artes** e 47 de **Educação Física** —
-matérias que o site não tem. Elas entram classificadas em Português porque pedem
-leitura de um texto de apoio. Hoje ficam só no simulado da prova inteira, fora
-dos exercícios, o que está certo; mas enquanto a classificação disser "por", elas
-vão continuar entrando nos meus lotes e gastando crédito. Vale classificá-las
-como `artes` / `edfis` na fonte, mesmo sem a matéria existir no site.
-
-### 4. Subtemas que faltam em Português
-
-Os 12 temas atuais (P01 a P12) não têm onde pôr três assuntos que as provas cobram:
-
-- **fonologia e fonética** (contagem de fonemas, encontros, dígrafos) — hoje cai em
-  P05.4 ou P07, que não é o lugar;
-- **acentuação e ortografia** — hoje cai em P10 "Norma e emprego", misturada com
-  regência e concordância;
-- **Classicismo** (Camões) — P11 começa no Barroco.
-
-Enquanto não existirem, essas questões viram RECLASS ou pendência de
-classificação a cada lote. Também registro que **P05.4 e P06 viraram depósito**:
-num levantamento de 100 questões desses dois conteúdos, 29 estavam classificadas
-em lugar errado.
-
-### 5. URCA: numeração e origem dos prints (princípio 10)
-
-- **Deslocamento de numeração:** nas provas da URCA, o número da questão no print
-  está **60 à frente** do número no `prova.json` em parte do caderno. Confirmei
-  caso a caso nos lotes, mas é um defeito do levantamento da prova, não das
-  questões: vale conferir o caderno inteiro de uma vez.
-- **Origem dos prints:** os prints de algumas provas da URCA têm cara de
-  compilação de terceiros (margem, marca d'água e recorte que não são do caderno
-  oficial), não de PDF da banca. Pelo princípio 10 isso é decisão do dono, e eu
-  só registro: **vale conferir de onde vieram antes de publicar**.
-
-### 6. "Brasil Escola" no acervo: dois casos diferentes
-
-**Caso 1 — registro de origem (não aparece ao aluno).** 94 arquivos `prova.json`
-citam Brasil Escola nos campos `origem.*` e `nota`: é o registro de onde saiu o
-PDF da prova, que o princípio 10 manda guardar. Conferi o código do site: nenhuma
-tela lê `prova.nota` nem `prova.origem`. **Não chega ao aluno. Nada a fazer.**
-
-**Caso 2 — a própria banca citou o site (aparece ao aluno).** 76 questões reais de
-prova trazem "Brasil Escola" ou "Mundo Educação" **na citação de fonte que a banca
-imprimiu** no enunciado: geo 25, bio 12, his 11, qui 7, **por 9**, fs 6, fis 5,
-mat 1. As 9 de Português são Pda751756 (UDESC 2023/2), Ped215a60 (UNEMAT 2025/1),
-P6bbd3303 (UTFPR 2024) e seis da Mackenzie 2026/1 (P4be591fb, Pc937c585,
-Pc02ba2c3, Pf19fc0df, Pf734dcad, P9ac700db) — **todas já com resolução no ar**.
-Isso não é questão de site didático: é questão de prova cujo texto de apoio a
-banca tirou de um site. O nome está dentro da imagem do print e não dá para
-apagar. Decisão do dono: **mantém** (é citação da banca, não nossa) ou **tira as
-76**. Enquanto não houver decisão, elas seguem no ar.
-
-### 7. O que a fábrica não pega (para quem for conferir os próximos lotes)
-
-Depois de 12 lotes, o defeito que as lentes da API **não** pegam é a **leitura
-invertida**: a resolução atribui a um personagem, a um texto ou a uma voz o que
-pertence a outro, e cada afirmação isolada continua defensável. Exemplo:
-`Pb9d8bba2`, em que a resolução atribuía aos sertanejos a falta de tática que o
-texto diz da coluna do Exército — letra certa, citação literal, e **as duas lentes
-de fatos assinaram**. Só a conferência humana (ou um agente com o print aberto)
-pega isso.
-
-O segundo defeito é o oposto: a fábrica **pede pendência demais**. Contando os
-lotes, de 10 pendências pedidas, até 8 eram infundadas. É o defeito mais caro,
-porque joga fora questão boa sem fazer barulho. Daí a regra: **toda pendência
-passa por um agente que não escreveu a resolução** antes de virar pendência de
-verdade.
-
-Terceiro: a nota "OBRA: confirmar" que a lente deixa é **uma pista, não uma
-ordem**. Numa delas (`Pe9950ce3`) a lente pediu para confirmar o **contrário** do
-que a resolução, correta, dizia; obedecer teria estragado conteúdo certo.
+## 2026-11-19 20:16 UTC — ACABOU (pendentes, obras) — sessão de pendentes de obra
+Lotes gravados: por-pend-0001 (23 ok, 2 pendentes), por-pend-0002 (25 ok), por-pend-0003 (25 ok), por-pend-0007 (5 ok, 1 pendente), por-pend-0009 (0 ok, 3 pendentes: as que sobraram, tentadas de novo).
+Resolvidas: 78 das 82 pendentes por obra, todas com dois conferentes independentes e fontes registradas. Ficaram 4: 3 por obra (sem fonte confiável) e 1 com proposta de anular.
+Pendências:
+OBRA P448cc999: Viver é prejudicial à saúde (Jamil Snege). A biografia da UFPR (Fuchs, 2006) confirma parte do enredo, mas nenhuma fonte diz que Harry é o sócio nem esclarece Joana, Lucimara, Marcelo, o prefeito de Paranaguá ou Bariloche. Falta ler a novela.
+OBRA P888a1ba3 (UDESC 2020.1 q38): a 5ª afirmativa (vertente política em O conto da mulher brasileira) decide entre A e B, e nenhuma edição, estudo ou resolução publicada a descreve. O blog Nave Literatura não serve e traz temas feministas e políticos.
+OBRA Pd7b11d0e (UNIRG 2020/1 q12): Tribo cara baixa (Deusimar Pires). Nenhuma fonte acessível traz o que a crônica diz sobre a felicidade (tentados Kelps, Amazon/Kindle, Storytel, Indagação, imprensa do Tocantins, site da UNIRG).
+ANULAR Pcfc26fc6 (UDESC 2025.1 q47): a II diz que Domingas é "nativa de Manaus", mas em Dois irmãos ela vem do Jurubaxi, perto de Santa Isabel do Rio Negro (revista Alere, Unemat); o gabarito E exige a II verdadeira
+GABARITO Pba1d50a5 (Acafe Verão 2022 q11, A) e P65543cce (Acafe Verão 2022 q12, D): prova comentada e pareceres de recurso da Acafe mantêm A e D ("Manter a questão e o gabarito"); pode virar gabarito definitivo
+GABARITO Pba1d50a5, P65543cce, P19846ee6 (Acafe Verão 2022 q11, q12 e a do Os Milagres do Cão Jerônimo): a Acafe publicou "Prova comentada" com A, D, C (https://storage.acafe.org.br/concurso/vestibular/2022/1/05%20-%20Provas/5.4%20-%20Prova%20comentada.pdf) e pareceres "Manter a questão e o gabarito"; a nota "sem gabarito publicado" está desatualizada — pode virar gabarito oficial. Gravadas como gabarito do Aprendice (resolvedor e conferente cego batem: A, D, C)
+RECLASS Pce2b8e45 P12.4 -> P12.5 (Hatoum, Dois irmãos, literatura contemporânea)
+RECLASS Pd0bacd15 P11.3 -> P12.5 (Fuvest 2022 q19)
+RECLASS P10912a6c P04.2 -> P12.1 (UDESC 2020.1 q41)
+RECLASS P64b3d9fa P12.4 -> P12.5 (UFPR 2024 q69, Quarto de despejo não é da geração de 45)
+RECLASS Pec8254af P12.4 -> P11.3 (UFPR 2023 q50, Casa de Pensão é do Naturalismo)
+RECLASS Pba1d50a5 P12.5 -> P11.4 (Acafe Verão 2022 q11)
+RECLASS P3bd2c3bc P12.4 -> P12.3 (Rachel de Queiroz, Modernismo de 30)
+RECLASS P9714da52 P03.1 -> P12.5 (UVA 2025.1 q5, Torto arado)
+DADO P2c52f513: texto_da_prova -> o título "Texto 10" está antes da segunda coluna de falas; no print essas falas ("Isso dá certo lá no sertão…" até "não condene João") são do Texto 9 e o Texto 10 é só o cartaz do filme
+DADO Pce2b8e45: alternativas -> campo vazio; no print: A V-F-F-F-F, B F-F-V-V-V, C V-V-F-V-V, D V-V-V-V-F, E F-V-F-V-F
+DADO P81fafc63: alternativas.D -> "rejeição contundente" (o "15" no fim é o número da questão colado)
+DADO P19faff2d: alternativas.D -> "a mentira é o degrau de todos os vícios" (o "16" no fim é o número da questão colado)
+DADO P9882569d: alternativas.D -> termina em "(povo oyibo)."; a referência "(ADICHIE, C. N. No seu pescoço. ...)" é a fonte da questão e veio colada na alternativa
+Testes: 786 passaram (converte, tsc e vitest verdes).
