@@ -131,3 +131,7 @@ RECLASS P9fb53fdf Q02.4 -> Q12.2
 RECLASS P2e251254 Q12.5 -> Q03.4
 RECLASS P88bb8cdb Q11.6 -> Q11.5
 RECLASS Pa23114cf Q05.2 -> Q05.6
+
+## 2026-11-19 16:07 UTC — PENDENCIAS — session_01PveEKXC1xdiGM81kadC8Xj
+Lote qui-0068 gravado (49 ok, 1 pendente: P7b93c864 é de Matemática). As linhas RECLASS/DADO do qui-0068 já foram no bloco anterior.
+OUTRA P7b93c864 (UEL 2023 q9): não é Química; reclassificar para Matemática M13.9 (funções f: X → X, contagem de involuções)

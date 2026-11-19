@@ -1,6 +1,6 @@
 # Química: resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 475 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 169; demais nível 7-10 306.
+Faltam 425 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 119; demais nível 7-10 306.
 
 ## Lotes
 
@@ -73,7 +73,8 @@ Faltam 475 questões sem resolução (fora as que estão em lote, pendentes ou c
 | qui-0065 | demais nível 1-6 | 60 | gravado | 58 | 2 | 0 |
 | qui-0066 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
 | qui-0067 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
-| qui-0068 | demais nível 1-6 | 50 | aberto |  |  |  |
+| qui-0068 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
+| qui-0069 | provas-alvo nível 7-10 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -84,6 +85,7 @@ Faltam 475 questões sem resolução (fora as que estão em lote, pendentes ou c
 | P1f92eb26 | IME 2024 Concurso 2023/2024 – 1ª fase (objetiva) · questão 36 | Q06.2 equação de Clapeyron, volume molar e CNTP (tema Q06 Gases) | errata: E https://www.ime.eb.mil.br/images/arquivos/admissao/cfg/provas-anteriores/2023-2024/Gabarito_Prova_Objetiva_1_FASE.pdf (gabarito definitivo do IME traz "36 E" no trecho da busca; o preliminar da entrada é D; resolvedor e conferente às cegas chegam a E: P proporcional a n·T, amônia 0,8 mol a 345 K dá 276, maior que 273 do metano nas CNTP). Resolução com E pronta para refazer. |
 | Pba420dcb | PUC-Rio 2026 Grupo 4 · questão 31 | Q12.4 bioquímica: carboidratos, lipídios, proteínas e ácidos nucleicos (tema Q12 Orgânica: reações, polímeros e ambiente) | print: figura cortada — o print mostra só as duas cadeias de hidrocarboneto; falta a parte polar da fosfatidilcolina (ésteres de glicerol, fosfato O− e colina N+), que está no caderno oficial (pág. 7 do PDF) e é o que decide a resposta B (caráter anfifílico). Refazer o print do PDF oficial. |
 | P904e00fe | UEL 2023 1ª fase · questão 18 | Q06.2 equação de Clapeyron, volume molar e CNTP (tema Q06 Gases) | classificação: é de Física (empuxo; princípio de Arquimedes) |
+| P7b93c864 | UEL 2023 1ª fase · questão 9 | Q02.4 forças intermoleculares e ponto de fusão, ebulição e solubilidade (tema Q02 Ligações e forças entre moléculas) | classificação: é de Matemática M13.9 (UEL 2023 q9: funções f: X → X com f(f(x)) = x e f(x) ≠ x, injetora/sobrejetora e contagem de involuções sem ponto fixo; não há química na questão) |
 | P7f6fa922 | UEMA 2022 PAES · questão 52 | Q03.5 substância pura e mistura, alotropia e processos de separação de misturas (tema Q03 Funções inorgânicas e nox) | classificação: é de Biologia (cadeia alimentar, nível trófico e bioacumulação/magnificação trófica do mercúrio; a pergunta é qual peixe acumula mais mercúrio pela posição na cadeia, sem conteúdo de separação de misturas). Gabarito oficial E (peixe maior, 4º nível trófico). |
 | P523fcc4a | UFRR 2025 Vestibular 2025 – Prova Integral · questão 55 | Q04.2 fórmula percentual, mínima e molecular (tema Q04 Mol e estequiometria) | dados inconsistentes, possível anulação: 5,00 g de sal liberando 1,70 g de água dão n = (1,70/18) ÷ (3,30/58,44) ≈ 1,67 para NaCl (preliminar C), não 2; NaCl·2H2O perderia 1,91 g. Só KS (fórmula impossível) dá n ≈ 2,04. Gabarito oficial (Edital 97/24-CPV, https://editais.ufrr.br/editais/arquivo/568/edital-n-97-24-gabarito-oficial-vestibular-2025.pdf) não abriu daqui para conferir anulação. |
 | P1ea356c5 | URCA 2025 2025.1 · questão 37 | Q11.6 isomeria espacial: geométrica e óptica, carbono quiral (tema Q11 Orgânica: estrutura e isomeria) | anular: a alternativa D também é verdadeira. No anel do canabidiol, o carbono ligado ao anel aromático (H e arila) e o vizinho ligado ao isopropenila (H e C(CH3)=CH2) têm, cada um, dois ligantes diferentes; por isso a molécula tem isomeria cis-trans de anel (o CBD natural é o trans; o cis-CBD é seu diastereoisômero). D e E corretas (E é a oficial). Os recursos do PSU 2025.1 (urca.br/cev) não tratam desta questão. |
