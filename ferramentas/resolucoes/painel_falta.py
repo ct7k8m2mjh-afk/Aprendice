@@ -164,7 +164,7 @@ def gera():
         p = 100 * x['feitas'] / max(1, tot)
         if x['faltam'] == 0:
             est = '<span class="pill ok">concluída</span>'
-        elif x['m'] == 'geo':
+        elif x['m'] in itens.get('pausadas', []):  # estado real vem do o-que-falta.json
             est = '<span class="pill pausa">pausada</span>'
         else:
             est = '<span class="pill and">em andamento</span>'
