@@ -82,3 +82,27 @@ RECLASS P85b5ae27 G12.3 -> G03.6
 RECLASS P11ae93d8 G12.4 -> G12.2
 RECLASS P3d13e8bf G12.4 -> G03.4
 RECLASS P89cd9902 G12.5 -> G02.3
+
+## 2026-11-19 — PENDENCIAS — sessão geo parte 2 (lote geo-p2-0006 gravado, 49 resoluções; geo-p2-0007 na conferência)
+OUTRA Pab319aea (Fuvest 2024 q40): classificação: é de Biologia B09.1 (ecossistema, teia alimentar e decompositores no jardim de chuva); reclassificar.
+DADO Pa9bd7a3f: alternativas -> faltam na entrada; no print: A variabilidade solar anual. | B temperatura média mensal. | C declividade do relevo local. | D dinâmica tectônica regional. | E gradação da turbidez fluvial. (texto_da_prova traz a marca d'água "ENEM2024..." repetida)
+DADO Pf1fdb053: alternativas.E -> termina em "...com o desenvolvimento de formas de mapear." (sem o " #####")
+DADO P84bd8a2c: alternativas.E -> termina em "...nas vertentes a barlavento." (sem o "#####")
+DADO Pe044b6d7: alternativas.E -> termina em "o processo de greening." (sem o "#####")
+DADO P44f8e976: alternativas.E -> termina em "na Cordilheira dos Andes." (sem o "#####")
+DADO P70cdeb9b: alternativas.E -> termina em "ocupada pela Armênia." (sem o "#####")
+DADO P536b26e4: alternativas.E -> termina em "Canais do Panamá e de Suez." (sem o "#####")
+DADO P293092e7: alternativas.D -> "III e IV" (sem o " A B" colado)
+DADO P179cf74b: texto_da_prova e alternativas -> proposições I, II, III e IV (a entrada traz "Il."/"Ill"/"|")
+DADO Pdca32124 (UDESC 2025.1 q92): texto_da_prova -> embaralhado pelo OCR; enunciado, proposições I a IV e mapas 2000/2010/2020 como no print; alternativas -> "Somente as proposições I e II / I e III / I e IV / II e IV / III e IV são verdadeiras."
+DADO P71dc0341 (URCA 2026.1 q80): texto_da_prova -> "país", "Disponível" (a entrada traz "pa´ıs", "Dispon´ıvel")
+RECLASS Pf460d264 G07.1 -> G07.4
+RECLASS Pd2b4027c G08.3 -> G08.6
+RECLASS P1638399d G08.4 -> G08.6
+RECLASS Pdf52a68a G10.3 -> G11.3
+RECLASS P536b26e4 G10.7 -> G09.6
+RECLASS P78de7abb G10.8 -> G10.2
+RECLASS P0830f881 G12.6 -> G10.1
+RECLASS Pbd28e08c G01.1 -> G09.4
+RECLASS P71dc0341 G03.1 -> G02.6
+RECLASS Pe8d98def G12.3 -> G05.4
