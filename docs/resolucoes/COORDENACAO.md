@@ -68,10 +68,10 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 | Matéria | Sessão | Situação |
 |---|---|---|
 | Matemática | session_01PveEKa7o3DaEHDo7jW4ttw | trabalhando (aberta 19/11 15h25, regra 50×4; anterior b7D6 deu FIM) |
-| Física | session_01PveEKZJQECSzmdn2ajLNFJ | trabalhando (aberta 19/11 14h58; retoma fis-0062) |
-| Química | session_01PveEKaFZ75HhzLpwG4RGm9 | trabalhando (aberta 19/11 14h58; retoma qui-0064) |
-| Geografia | session_01PveEKWnuQFkENPnSwCMngE | trabalhando (aberta 19/11 14h58; retoma geo-0039, geo-0040) |
-| Biologia | session_01PveEKYyQUcXXXACEDrbiVW | trabalhando (aberta 19/11 14h58) |
+| Física | session_01PveEKaozjku3Rmd3ikcUSN | trabalhando (aberta 19/11 15h45, regra 50×4) |
+| Química | session_01PveEKXC1xdiGM81kadC8Xj | trabalhando (aberta 19/11 15h45, regra 50×4) |
+| Geografia | session_01PveEKaf2jxoZVAwb8i9vXY | trabalhando (aberta 19/11 15h45, regra 50×4) |
+| Biologia | session_01PveEKY2istqnzKBoRGFXC5 | trabalhando (aberta 19/11 15h45, regra 50×4) |
 | Português | — | reservado para a FÁBRICA pela API (sessão Zx97 deu FIM 15h13; não reabrir) |
 Caídas pelo limite em 13/11 (o dono pode arquivar): Mat session_01PveEKWKTewFDUJvA5Y5s91, Fís session_01PveEKXXFLhp4ro4vnf1rh7,
 Quí session_01PveEKZxREDvirT6VTx5nKy, Geo session_01PveEKaHNFQdko42Ddhy3XZ, Bio session_01PveEKaPh1PAjF3bRbuJ5fG, Por session_01PveEKY3G8XPW7thJLdH3jL.
@@ -185,8 +185,7 @@ depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resoluco
 `url` = o link acima, de outra conversa; read antes).
 
 ## Publicação
-Última no ar: dpl_5xTE1MfLrc4mzG1QxsSmMzDEamEP (commit 78298a33, 13/11 06h, conferido no site): 19.483 resoluções.
-Disparada 19/11 15h35: dpl_F8v9o7JrqP5ZjCPwCTtv3cYTYbGu (commit 59890c48, build e 786 testes verdes). Conferir no site na próxima rodada e atualizar publicacao.json.
+Última no ar: dpl_F8v9o7JrqP5ZjCPwCTtv3cYTYbGu (commit 59890c48, 19/11 15h35, conferido no site): 20.423 resoluções. Próxima ao passar de 20.923.
 Próxima ao passar de 19.983.
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
