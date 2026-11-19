@@ -26,7 +26,12 @@ const Z_DO_SIMBOLO = new Map(ELEMENTOS.map((s, i) => [s, i + 1]));
 // (coeficiente e raiz juntos: "6√5/5" é (6√5) ÷ 5, o numerador inteiro vai em cima; letras: uma, ou um segmento
 // "AB", "Ab" (área da base), "xP" (abscissa de P))
 // "Δ" antes da letra ("ΔV²", "Δt", "ΔΦ") e índice depois dela ("v₂", "T₁", "B_f", "Δε_jul") fazem parte do termo
-const TERMO = String.raw`\([^()\n]{1,40}\)|(?:\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦ])?(?:_[A-Za-z0-9]+|[₀-₉]+|(?<=Δ[A-Za-z])\d+)?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
+// número com milhar separado por espaço ("27 000/96 500", "450 000/1 000 000") e grupo com um nível de parênteses dentro
+// ("((1 · 1)/2 · 1)/3", "(1 × (−1) × 18)/(1 × 2)"), com coeficiente, letra ou raiz colados antes ("k(k + 1)/2",
+// "√3(√3 − √2)/(3 − 2)", "Q(0)/2") (revisão de dados de 19/11/2026, item 3)
+const GRUPO = String.raw`\((?:[^()\n]|\([^()\n]*\)){1,60}\)`;
+const MILHAR = String.raw`\d{1,3}(?:[ \u00a0\u202f]\d{3})+(?:,\d+)?`;
+const TERMO = String.raw`(?:\d+(?:,\d+)?|√\d*|ln|log|sen|cos|tg|[A-Za-zα-ω])?${GRUPO}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦ])?(?:_[A-Za-z0-9]+|[₀-₉]+|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-z])[A-Za-z])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
 const RE = new RegExp(`(${TERMO})/(${TERMO})`, 'g');
 const LETRA = /[A-Za-zÀ-ÿα-ωπθ]/;
 const ANTES_PROIBIDO = /[A-Za-zÀ-ÿ0-9.,/_\\-]/; // colado a uma palavra, número, data ou link
@@ -35,7 +40,11 @@ const DEPOIS_PROIBIDO = /[A-Za-zÀ-ÿ0-9/_(]/;
 const UNIDADE = new Set(['m', 's', 'g', 'L', 'l', 'h', 'K', 'N', 'J', 'W', 'V']);
 
 function semParenteses(x: string): string {
-  return x.startsWith('(') && x.endsWith(')') ? x.slice(1, -1).trim() : x;
+  if (!(x.startsWith('(') && x.endsWith(')'))) return x;
+  // só quando o par de fora é um grupo só: "(a + b)" sim; "(a + b)(c + d)" não
+  let p = 0;
+  for (let i = 0; i < x.length - 1; i++) { if (x[i] === '(') p++; else if (x[i] === ')') { p--; if (p === 0) return x; } }
+  return x.slice(1, -1).trim();
 }
 
 function ehFracao(texto: string, ini: number, num: string, den: string): boolean {
@@ -52,15 +61,20 @@ function ehFracao(texto: string, ini: number, num: string, den: string): boolean
   if (charDepois && DEPOIS_PROIBIDO.test(charDepois)) return false;
   // código com hífen e número depois ("F/A-18", nome de avião)
   if (charDepois === '-' && /^-\d/.test(texto.slice(fim))) return false;
-  // número de lei, emenda ou processo com o ano embaixo ("PEC 48/2023", "Lei 12.519/2011", "Lei nº 3.353/1888")
-  if (/^\d+(?:[.,]\d+)*$/.test(num) && /^(1[89]|20)\d\d$/.test(den)) return false;
+  // número de lei, emenda ou processo com o ano embaixo ("PEC 48/2023", "Lei 12.519/2011", "Lei nº 3.353/1888"): o ano
+  // embaixo só é lei com o nome antes ou com o milhar com ponto; "1013/2026" numa conta é fração
+  if (/^\d+(?:[.,]\d+)*$/.test(num) && /^(1[89]|20)\d\d$/.test(den)
+    && (/\d\.\d{3}/.test(num) || /\b(?:lei|leis|pec|emendas?|decretos?|decreto-lei|n[º°o]\.?|resolu[çc](?:ão|ões)|portarias?|mp|medida provisória|processos?|adi|adpf|ec)\s*(?:n[º°o]\.?\s*)?$/i.test(antes))) return false;
   // tensão de rede trifásica ("220/127 V", "380/220 V") e par de valores com unidade elétrica depois
   if (/^\d+$/.test(num) && /^\d+$/.test(den) && /^\s?k?V(?![A-Za-zÀ-ÿ])/.test(texto.slice(fim))) return false;
+  // "0,5 mol de H2/2": a fórmula depois de "de" não é o numerador (a conta é da quantidade inteira)
+  if (/\bde\s$/.test(antes) && /^[A-Z]/.test(num)) return false;
   const nNum = /^\d+$/.test(num), nDen = /^\d+$/.test(den);
   // datas e anos: "05/11", "12/03", "2024/2", "2020/21"
   if (nNum && nDen) {
     if (/^0\d/.test(den) || /^0\d/.test(num)) return false;
-    if (/^(19|20)\d\d$/.test(num)) return false;
+    // ano com o semestre ou o ano seguinte embaixo ("2024/2", "2020/21"); "2000/500" e "2048/128" são conta
+    if (/^(19|20)\d\d$/.test(num) && den.length <= 2 && !/[=+−×·(]\s*$/.test(antes) && !/^\s*[=≈]/.test(texto.slice(fim))) return false;
   }
   const letraNum = !num.startsWith('(') && LETRA.test(num);
   const letraDen = !den.startsWith('(') && LETRA.test(den);
@@ -104,8 +118,17 @@ function nuclideo(texto: string, ini: number, num: string, den: string): string 
   return texto.slice(ini, fim) + (m[0].startsWith(' ') ? ' ' : '');
 }
 
-/** Divide o texto em trechos de texto e frações empilháveis. Sem fração, devolve um trecho só. */
+/** Divide o texto em trechos de texto e frações empilháveis. Sem fração, devolve um trecho só.
+ *  1ª passada: divisão com "÷" ou com "/" entre espaços (as de fora, que podem ter "a/b" dentro do numerador ou do
+ *  denominador: "(7/2) ÷ (37/10)", "800π ÷ (π/3)"); 2ª: "a/b" nos trechos de texto que sobraram. */
 export function partesFracao(texto: string): ParteFracao[] {
+  const fim: ParteFracao[] = [];
+  for (const p of divisoes(texto)) if (p.t === 'txt') fim.push(...barras(p.v)); else fim.push(p);
+  return fim.length ? fim : [{ t: 'txt', v: texto }];
+}
+
+/** frações escritas com "/" colado ("2/5", "27x/60", "(a + b)/2") e nuclídeos ("207/82 Pb") */
+function barras(texto: string): ParteFracao[] {
   const out: ParteFracao[] = [];
   let ult = 0;
   RE.lastIndex = 0;
@@ -130,55 +153,115 @@ export function partesFracao(texto: string): ParteFracao[] {
     ult = m.index + orig.length;
   }
   if (ult < texto.length) out.push({ t: 'txt', v: texto.slice(ult) });
-  // 2ª passada: divisão escrita com "÷" ou com "/" entre espaços também é fração empilhada (regra do dono: nunca
-  // "3 ÷ 5" nem "3 / 5" na mesma linha)
-  const fim: ParteFracao[] = [];
-  for (const p of out) if (p.t === 'txt') fim.push(...divisoes(p.v)); else fim.push(p);
-  return fim.length ? fim : [{ t: 'txt', v: texto }];
+  return out;
 }
 
 /* ---------------------------------------------------------------- divisão com "÷" e " / " */
-// operando simples: função opcional, número (milhar com espaço, decimal), raiz, letra(s), índice, expoente, porcentagem;
-// ou número com unidade ("1 g ÷ 2^4")
-const EXPO = String.raw`(?:\^\([^()\n]{1,24}\)|\^[−\-+]?[0-9a-zA-Z,]+[+−]?|[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺]+)?`;
-const SIMPLES = String.raw`(?:(?:log|ln|sen|cos|tg)\s?)?(?:\d{1,3}(?:[ \u00a0\u202f]\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθμΔ](?:_[A-Za-z0-9]+)?)?[₀-₉]*` + EXPO + '%?';
-const UNID = String.raw`\d+(?:[.,]\d+)?\s(?:mg|kg|μg|µg|g|mL|L|mol|mm|cm|km|nm|m|min|s|h|J|kJ|kcal|atm|K|C|A|V)`;
-const RE_ESQ = new RegExp(`(?:${UNID}|${SIMPLES})$`, 'u');
-const RE_DIR = new RegExp(`^(?:${UNID}(?![A-Za-z])|${SIMPLES})`, 'u');
+// operando simples: função opcional, número (milhar com espaço, decimal), raiz, letra(s), índice, expoente, fatorial,
+// porcentagem; ou número com unidade ("1 g ÷ 2^4", "90 g ÷ 18 g/mol", "108 km/h ÷ 3,6", "45° ÷ 15°")
+const EXPO = String.raw`(?:\^\([^()\n]{1,24}\)|\^[−\-+]?[0-9a-zA-Z,]+[+−]?|[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻ]+)?!?`;
+const NUM = String.raw`(?:\d{1,3}(?:[   ]\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)*)`;
+const SIMPLES = String.raw`(?:(?:log|ln|sen|cos|tg)\s?)?(?:\d{1,3}(?:[   ]\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθμΔℓ](?:_[A-Za-z0-9]+|\d(?!\d|[.,]\d))?)?[₀-₉]*` + EXPO + '%?';
+const UBASE = 'mmol|kmol|mol|mA|μA|µA|mV|kV|MW|GW|MJ|GJ|kN|MPa|GPa|GHz|MHz|kHz|hm|ha|mg|kg|μg|µg|g|mL|dL|L|mm|cm|dm|km|nm|m|min|s|h|kJ|J|kcal|cal|atm|kPa|Pa|K|kΩ|Ω|kWh|Wh|kW|W|N|V|A|C|Hz|eV|t|dias?|anos?|horas?|bi|mi|mil|milhão|milhões|bilhão|bilhões';
+const UNID_NOME = String.raw`(?:${UBASE})(?:[²³]|[23](?![\d,]))?(?:[·.\/](?:${UBASE})(?:[²³]|[23](?![\d,]))?){0,2}`;
+const CIENT = String.raw`${NUM}(?:\s?×\s?10(?:[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+|\^\(?[−\-]?\d+\)?))?`;
+const UNID = String.raw`${CIENT}(?:\s(?:${UNID_NOME})|°C?|\s?%)`;
+const UNID_SIMPLES = String.raw`\d+(?:[.,]\d+)?\s(?:mg|kg|μg|µg|g|mL|L|mol|mm|cm|km|nm|m|min|s|h|J|kJ|kcal|atm|K|C|A|V)`;
+// só com "÷" (nunca com " / ", que separa verso, par e alternativa): fração com "/" colado ("3π/4 ÷ 3", "1 ÷ 1/2"),
+// número com nome ("1 900 crianças ÷ 1 000 famílias"), letra com nome ("E total ÷ E fóton") e palavra ("massa ÷ volume")
+const BARRA = String.raw`[\d√a-zA-Zα-ωπ][\d,√a-zA-Zα-ωπ²³]*\/[\d√a-zA-Zα-ωπ][\d,a-zA-Zα-ωπ²³]*`;
+const NUM_NOME = String.raw`${NUM}\s[a-zà-ÿ]{3,}`;
+const LETRA_NOME = String.raw`[A-ZΔ]\s[a-zà-ÿ]{3,}`;
+// letra com raiz ("L√3 ÷ 2", "3ℓ²√3 ÷ 2")
+const LETRA_RAIZ = String.raw`\d*[A-Za-zℓ][²³]?√\d+`;
+// palavra, ou nome com o adjetivo que o completa ("carga total ÷ capacitância total", "cateto oposto ÷ hipotenusa")
+const ADJ = 'total|totais|médio|média|oposto|adjacente|inicial|final|útil|equivalente|resultante|retirado|retirada|molar|específico|específica|elétrica|elétrico|percorrida|percorrido|gasto|gasta';
+const PALAVRA_OP = String.raw`[A-Za-zÀ-ÿ]{2,}(?:\s(?:${ADJ})(?![A-Za-zÀ-ÿ]))?`;
+const FIM_UNID = String.raw`(?![A-Za-zÀ-ÿ\d])`;
+// quantidade de uma substância ou coisa ("8 mol de H+ ÷ 4 mol de ácido", "46 átomos de H ÷ 2", "15 g de sal ÷ 50 g de água")
+const QTD = String.raw`${CIENT}\s(?:${UNID_NOME}|[a-zà-ÿ]{3,})\sde\s(?:[A-Z][A-Za-z0-9⁺⁻²³⁴⁵⁶⁷⁸⁹¹⁰+−]*|[a-zà-ÿ]{3,})`;
+const RE_ESQ = new RegExp(`(?:${UNID_SIMPLES}|${SIMPLES})$`, 'u');
+const RE_DIR = new RegExp(`^(?:${UNID_SIMPLES}(?![A-Za-z])|${SIMPLES})`, 'u');
+const RE_ESQ_DIV = new RegExp(`(?:${QTD}|${UNID}|${NUM_NOME}|${LETRA_NOME}|${LETRA_RAIZ}|${BARRA}|${SIMPLES}|${PALAVRA_OP})$`, 'u');
+const RE_DIR_NOME = new RegExp(`^(?:${QTD}|${NUM_NOME}|${LETRA_NOME})${FIM_UNID}`, 'u');
+const RE_DIR_DIV = new RegExp(`^(?:${UNID}${FIM_UNID}|${LETRA_RAIZ}|${BARRA}|${SIMPLES}(?![A-Za-zÀ-ÿ])|${PALAVRA_OP})`, 'u');
 const RE_OP = /\s*÷\s*| \/ /g;
-const temValor = (x: string) => /[0-9a-zA-Zα-ωπθμΔ]/.test(x);
+const temValor = (x: string) => /[0-9a-zA-Zα-ωπθμΔÀ-ÿ]/.test(x);
+const SOBE = /[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺!]*$/;
+// coeficiente, raiz ou nome de função colado antes de um grupo: "2(x − 8)", "√3(…)", "m(soluto)", "sen(…)"
+const COEF = /(?:\d+(?:,\d+)?|√\d*|[A-Za-zα-ωπ]{1,4})$/;
+const PAR: Record<string, string> = { ')': '(', ']': '[' };
 
-/** operando que termina em `fim` (grupo entre parênteses com expoente, ou simples) */
-function opEsq(s: string, fim: number): number | null {
+/** operando que termina em `fim` (grupo entre parênteses, colchetes ou barras de módulo, com expoente; ou simples) */
+function opEsq(s: string, fim: number, amplo: boolean): number | null {
   const pre = s.slice(0, fim);
   let k = fim;
-  const sup = /[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺]*$/.exec(pre)![0];
-  k -= sup.length;
-  if (pre[k - 1] === ')') {
+  k -= SOBE.exec(pre)![0].length;
+  const fecha = pre[k - 1];
+  if (fecha === ')' || fecha === ']') {
+    const abre = PAR[fecha];
     let p = 0;
     for (let i = k - 1; i >= 0; i--) {
-      if (s[i] === ')') p++;
-      else if (s[i] === '(') { p--; if (p === 0) return i; }
+      if (s[i] === fecha) p++;
+      else if (s[i] === abre) {
+        p--;
+        if (p === 0) {
+          // expoente entre parênteses ("3^(x + 64)"): o operando começa na base
+          if (s[i - 1] === '^') { const base = /(?:\d+(?:[.,]\d+)*|[A-Za-zα-ωπ])$/.exec(s.slice(0, i - 1)); return base ? i - 1 - base[0].length : null; }
+          const c = amplo ? COEF.exec(s.slice(0, i)) : null; return c ? i - c[0].length : i;
+        }
+      }
     }
     return null;
   }
-  const m = RE_ESQ.exec(pre);
+  if (fecha === '|' && amplo) {
+    const i = s.lastIndexOf('|', k - 2);
+    return i >= 0 && temValor(s.slice(i + 1, k - 1)) ? i : null;
+  }
+  const m = (amplo ? RE_ESQ_DIV : RE_ESQ).exec(pre);
   if (!m || !temValor(m[0])) return null;
   return fim - m[0].length;
 }
 /** operando que começa em `ini` */
-function opDir(s: string, ini: number): number | null {
-  if (s[ini] === '(') {
+function opDir(s: string, ini: number, amplo: boolean, nome = false): number | null {
+  const resto = s.slice(ini);
+  // número ou letra com nome só depois de outro igual ("1 900 crianças ÷ 1 000 famílias", "E total ÷ E fóton"):
+  // sozinho, o nome depois do número é o resto da frase ("6 ÷ 2 vezes", "204 ÷ L tem")
+  if (amplo && nome) { const n = RE_DIR_NOME.exec(resto); if (n) return ini + n[0].length; }
+  const c = amplo ? /^(?:\d+(?:,\d+)?|√\d*|[A-Za-zα-ωπ]{1,4})?(?=[([])/.exec(resto) : /^(?=\()/.exec(resto);
+  if (c) {
+    const j = ini + c[0].length, abre = s[j], fecha = abre === '(' ? ')' : ']';
     let p = 0;
-    for (let i = ini; i < s.length; i++) {
-      if (s[i] === '(') p++;
-      else if (s[i] === ')') { p--; if (p === 0) { const sup = /^[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺]*/.exec(s.slice(i + 1))![0]; return i + 1 + sup.length; } }
+    for (let i = j; i < s.length; i++) {
+      if (s[i] === abre) p++;
+      else if (s[i] === fecha) { p--; if (p === 0) return i + 1 + /^[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺!]*/.exec(s.slice(i + 1))![0].length; }
     }
     return null;
   }
-  const m = RE_DIR.exec(s.slice(ini));
+  if (amplo && resto[0] === '|') {
+    const i = s.indexOf('|', ini + 1);
+    return i > ini + 1 && temValor(s.slice(ini + 1, i)) ? i + 1 + /^[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺!]*/.exec(s.slice(i + 1))![0].length : null;
+  }
+  const m = (amplo ? RE_DIR_DIV : RE_DIR).exec(resto);
   if (!m || !temValor(m[0])) return null;
   return ini + m[0].length;
+}
+/** a divisão está dentro de um grupo que é numerador ou denominador de uma fração com "/" ("(a ÷ b)/2", "2/(a ÷ b)"):
+ *  fica para a passada da barra, que empilha o grupo inteiro (e a divisão de dentro empilha dentro dele) */
+function dentroDeBarra(s: string, idx: number): boolean {
+  let p = 0;
+  for (let i = idx - 1; i >= 0; i--) {
+    if (s[i] === ')') p++;
+    else if (s[i] === '(') {
+      if (p > 0) { p--; continue; }
+      let q = 0;
+      for (let j = i; j < s.length; j++) {
+        if (s[j] === '(') q++;
+        else if (s[j] === ')') { q--; if (q === 0) { const dep = s.slice(j + 1).replace(/^[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺]+/, ''); if (dep[0] === '/' || s[i - 1] === '/') return true; break; } }
+      }
+    }
+  }
+  return false;
 }
 function divisoes(s: string): ParteFracao[] {
   if (!/÷| \/ /.test(s)) return [{ t: 'txt', v: s }];
@@ -188,19 +271,20 @@ function divisoes(s: string): ParteFracao[] {
   RE_OP.lastIndex = 0;
   for (let m = RE_OP.exec(s); m; m = RE_OP.exec(s)) {
     let prof = 0;
-    for (let i = 0; i < m.index; i++) { if (s[i] === '(') prof++; else if (s[i] === ')') prof--; }
+    for (let i = 0; i < m.index; i++) { if (s[i] === '(' || s[i] === '[') prof++; else if (s[i] === ')' || s[i] === ']') prof--; }
     ops.push({ ini: m.index, fim: m.index + m[0].length, txt: m[0], prof });
   }
   ops.sort((x, y) => x.prof - y.prof || y.ini - x.ini);
   const feitas: { a: number; b: number; p: ParteFracao }[] = [];
   const livre = (a: number, b: number) => !feitas.some((f) => a < f.b && f.a < b);
   for (const o of ops) {
-    if (!livre(o.ini, o.fim)) continue;
-    let a = opEsq(s, o.ini);
-    const b = opDir(s, o.fim);
+    if (!livre(o.ini, o.fim) || dentroDeBarra(s, o.ini)) continue;
+    const amplo = o.txt.includes('÷');
+    let a = opEsq(s, o.ini, amplo);
+    const b = opDir(s, o.fim, amplo, a != null && new RegExp(`^(?:${QTD}|${NUM_NOME}|${LETRA_NOME})$`, 'u').test(s.slice(a, o.ini)));
     // divisão encadeada (a ÷ b ÷ c = (a ÷ b) ÷ c): o numerador leva a divisão de antes, que empilha dentro dele
     for (let m = a == null ? null : /\s*÷\s*$/.exec(s.slice(0, a)); a != null && m; m = /\s*÷\s*$/.exec(s.slice(0, a))) {
-      const a2 = opEsq(s, m.index);
+      const a2 = opEsq(s, m.index, true);
       if (a2 == null) break;
       a = a2;
     }
@@ -210,12 +294,17 @@ function divisoes(s: string): ParteFracao[] {
     // colado a palavra, número, índice ou outra divisão: não é um operando inteiro
     if (/[A-Za-zÀ-ÿ0-9.,_^\\/÷]$/.test(antes) || /^[A-Za-zÀ-ÿ0-9(_^/]/.test(depois)) continue;
     if (/\s\/\s*$/.test(antes)) continue;
-    const espacada = !o.txt.includes('÷');
-    if (espacada) {
+    // "2 kmol de O2 ÷ 1,5", "V de Júpiter ÷ V da Terra": o operando é o complemento de um nome maior (antes de "de"
+    // ou depois dele), não o número inteiro; fica na linha
+    // palavra solta depois de número é unidade ("100 mA ÷ 1000"); depois de preposição é complemento ("calor por tempo")
+    if (amplo && /^[A-Za-zÀ-ÿ]+(?:\s[A-Za-zÀ-ÿ]+)?$/.test(num) && (/\d\s+$/.test(antes) || /(?:^|\s)(?:por|em|no|na|nos|nas|com|para|pelo|pela)\s$/i.test(antes))) continue;
+    if ((/(?:^|\s)(?:de|da|do|dos|das)\s$/.test(antes) && /^[A-Za-zÀ-ÿΔ]/.test(num))
+      || (/^\s(?:de|da|do|dos|das)\s/.test(depois) && /^[A-Za-zÀ-ÿΔ]/.test(den))) continue;
+    if (!amplo) {
       // "A / B" entre alternativas, unidade ("10 m / s"), verso ("enganos, / tu"), palavras
-      const so = (x: string) => /^[A-Za-zα-ωμ]+$/.test(x);
+      const so = (x: string) => /^[A-Za-zÀ-ÿα-ωμ]+$/.test(x);
       if (/^[A-E]$/.test(num) && /^[A-E]$/.test(den)) continue;
-      if (new RegExp(`^${UNID}$`, 'u').test(num) && /^(?:s|h|min|L|mL|mol|kg|g|m|cm|km)$/.test(den)) continue;
+      if (new RegExp(`^${UNID_SIMPLES}$`, 'u').test(num) && /^(?:s|h|min|L|mL|mol|kg|g|m|cm|km)$/.test(den)) continue;
       if (so(num) && /\d\s+$/.test(antes)) continue;
       if (so(num) && so(den) && !/(^|[=+−\-×·(≈])\s*$/.test(antes) && !/^\s*[=≈]/.test(depois)) continue;
     }

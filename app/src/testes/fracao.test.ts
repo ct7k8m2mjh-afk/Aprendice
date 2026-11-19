@@ -69,7 +69,7 @@ describe('fração empilhada', () => {
       for (const p of partesFracao(s)) expect(p.t === 'txt' && p.v.includes('√')).toBe(false);
   });
   it('frações algébricas com segmento, área da base, abscissa e grupos', () => {
-    expect(fr('o quadrado tem (AB/5)² = AB²/25. A fração é (AB²/25) ÷ (2AB²) = 2%')).toEqual(['AB|5', 'AB²|25', 'AB²|25']);
+    expect(fr('o quadrado tem (AB/5)² = AB²/25. A fração é (AB²/25) ÷ (2AB²) = 2%')).toEqual(['AB|5', 'AB²|25', 'AB²/25|2AB²']); // a de dentro empilha dentro da de fora (19/11/2026)
     expect(fr('como AB = BC/2, você pode escolher')).toEqual(['BC|2']);
     expect(fr('V(II) = (Ab/2) × 2P = Ab × P ; V(III) = (Ab/4) × 2P')).toEqual(['Ab|2', 'Ab|4']);
     expect(fr('multiplicou ℓ pelo fator (m + n)/(m × n) quando')).toEqual(['m + n|m × n']);
@@ -261,5 +261,57 @@ describe('fração com Δ, índice e raiz empilha (Física, 13/11/2026)', () => 
     expect(fr('10 m/s')).toEqual([]);
     expect(fr('concentração (g/L)')).toEqual([]);
     for (const s of ['C = 2U/ΔV²', 'Δε_jul/Δε_jan = 3/4']) expect(junta(s)).toBe(s);
+  });
+});
+
+// Revisão do site de 19/11/2026 (dados.md, itens 3 e 4): "÷", milhar com espaço e parênteses também empilham
+describe('fração sempre empilhada: "÷", milhar com espaço e parênteses (revisão de 19/11/2026)', () => {
+  it('milhar com espaço e parênteses dentro de parênteses', () => {
+    expect(fr('27 000/96 500 ≈ 0,28')).toEqual(['27 000|96 500']);
+    expect(fr('η = 450 000/1 000 000')).toEqual(['450 000|1 000 000']);
+    expect(fr('x = −40/(2 × (−10)) = 2')).toEqual(['40|2 × (−10)']);
+    expect(fr('V = ((1 · 1)/2 · 1)/3 = 1/6')).toEqual(['(1 · 1)/2 · 1|3', '1|6']);
+    expect(fr('(1 × (−1) × 18)/(1 × 2) = −9')).toEqual(['1 × (−1) × 18|1 × 2']);
+    expect(fr('os k(k + 1)/2 primeiros')).toEqual(['k(k + 1)|2']);
+    expect(fr('y = √3(√3 − √2)/(3 − 2) = 3 − √6')).toEqual(['√3(√3 − √2)|3 − 2']);
+    expect(fr('Q(0)/2 → metade')).toEqual(['Q(0)|2']);
+  });
+  it('número que parece ano só é data com o semestre embaixo, fora de conta', () => {
+    expect(fr('2000/500 = 4,0 h')).toEqual(['2000|500']);
+    expect(fr('fóssil 5: 4096/2048 = 2')).toEqual(['4096|2048']);
+    expect(fr('h(2026) = 2026/2 = 1013')).toEqual(['2026|2']);
+    expect(fr('= 1013/2026 − 1/2026')).toEqual(['1013|2026', '1|2026']);
+    for (const s of ['São Camilo 2024/2', 'prova de 2020/21', 'a PEC 4/2018 tramita', 'Lei 13.415/2017', 'Decreto-Lei 25/1937', 'Lei nº 11.340/2006', 'em 14/04 o bloqueio'])
+      expect(fr(s), s).toEqual([]);
+  });
+  it('"÷" com unidade, palavra, fatorial, módulo e fração dentro', () => {
+    expect(fr('90 g ÷ 18 g/mol = 5 mol de H2O')).toEqual(['90 g|18 g/mol']);
+    expect(fr('108 km/h ÷ 3,6 = 30 m/s')).toEqual(['108 km/h|3,6']);
+    expect(fr('45° ÷ 15° = 3')).toEqual(['45°|15°']);
+    expect(fr('2,64 × 10⁻³ mol ÷ 0,10 mol/L = 2,64 × 10⁻² L')).toEqual(['2,64 × 10⁻³ mol|0,10 mol/L']);
+    expect(fr('Velocidade média = distância ÷ tempo.')).toEqual(['distância|tempo']);
+    expect(fr('C = m(soluto) ÷ V(solução)')).toEqual(['m(soluto)|V(solução)']);
+    expect(fr('densidade = massa ÷ volume')).toEqual(['massa|volume']);
+    expect(fr('carga total ÷ capacitância total')).toEqual(['carga total|capacitância total']);
+    expect(fr('1,9 é a média: 1 900 crianças ÷ 1 000 famílias.')).toEqual(['1 900 crianças|1 000 famílias']);
+    expect(fr('32 cromossomos ÷ 2 = 16')).toEqual(['32 cromossomos|2']);
+    expect(fr('4! ÷ 2! = 12')).toEqual(['4!|2!']);
+    expect(fr('|5k − 3| ÷ 2')).toEqual(['|5k − 3||2']);
+    expect(fr('(7/2) ÷ (37/10) = 70/74')).toEqual(['7/2|37/10', '70|74']);
+    expect(fr('q = 1 ÷ 1/2 = 2')).toEqual(['1|1/2']);
+    expect(fr('3^(x + 64) ÷ 5 = 81^x ÷ 45')).toEqual(['3^(x + 64)|5', '81^x|45']);
+    expect(fr('P1 ÷ T1 = P2 ÷ T2, ou seja')).toEqual(['P1|T1', 'P2|T2']);
+    expect(fr('(a ÷ b)/2')).toEqual(['a ÷ b|2']);
+  });
+  it('o que não é divisão de dois operandos fica na linha', () => {
+    for (const s of ['100 mA ÷ 1000 = 0,1 A', 'k = calor por tempo ÷ (área × ΔT)', 'V de Júpiter ÷ V da Terra', '(÷ 2)', 'dividir: ÷ 4', '204 ÷ L tem de dar'])
+      expect(fr(s).filter((x) => !/^\d+\|\d+$/.test(x) && !/^100 mA/.test(x) && x !== '204|L'), s).toEqual([]);
+    expect(fr('100 mA ÷ 1000 = 0,1 A')).toEqual(['100 mA|1000']);
+    expect(fr('204 ÷ L tem de dar')).toEqual(['204|L']);
+  });
+  it('unidades continuam na linha e o texto não muda', () => {
+    for (const s of ['10 m/s', '22,4 L/mol', 'km/h', 'mol/L']) expect(fr(s)).toEqual([]);
+    for (const s of ['90 g ÷ 18 g/mol = 5 mol', '(7/2) ÷ (37/10) = 70/74', 'x = −40/(2 × (−10))', '27 000/96 500', '|5k − 3| ÷ 2'])
+      expect(junta(s)).toBe(s);
   });
 });
