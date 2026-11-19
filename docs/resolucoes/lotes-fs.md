@@ -62,6 +62,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | fs-0054 | demais nível 1-6 | 2 | gravado | 2 | 0 | 0 |
 | fs-pend-0001 | pendentes reclassificada | 8 | gravado | 8 | 0 | 0 |
 | fs-pend-0002 | pendentes =reclassificada | 1 | gravado | 1 | 0 | 0 |
+| fs-pend-0003 | pendentes =reclassificada | 1 | gravado | 1 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
