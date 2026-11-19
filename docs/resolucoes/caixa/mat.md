@@ -265,3 +265,42 @@ DADO P91b0c5c5 (UDESC 2020.1 q8): texto_da_prova -> f(x) = |x² − 4| − 2 e i
 DADO Pd56b12dc (UFPR 2024 q4): alternativas C -> −1/2 ; D -> 1/2 (sinal e fração perdidos na camada de texto)
 DADO Pd122f0a5 (UDESC 2026.1 q14): texto_da_prova -> L(x) = (x² + 6x)/(x + 1), L: R − {−1} → R (letras duplicadas na camada de texto)
 RECLASS Pd122f0a5 M05.5 -> M04.4 (UDESC 2026.1 q14: inequação quociente com quadro de sinais, sem composição nem inversa)
+
+## 2026-11-19 18:09 UTC — PENDENCIAS — session_01PveEKXYevuT6GfnZTi2dnc
+Lote mat-0075 gravado (49 resoluções + 1 pendente). Lote aberto: mat-0076.
+DADO P853cc142 (Famerp 2023 q80): texto_da_prova -> "Considerando 26^10 = b e 25^10 = c" (os expoentes 10 sumiram: "2610", "2510"); alternativas -> (A) 4^(b/c) (B) b/c (C) raiz décima de b·c (D) raiz quarta de b·c (E) c/b
+DADO Pccab24d6 (UPE SSA3 2022 q21): texto_da_prova -> falta a fórmula "f(x) = k · 4^(x+p)" depois de "é dada por"; alternativas estão coladas no texto (a) 3 375 b) 960 c) 750 d) 35 e) 18)
+DADO P9d952b71 (Fuvest 2022 q41): texto_da_prova -> log10 x, t0 e t1 com índices (caracteres embaralhados na camada de texto)
+DADO P709641af (UEL 2020 q41): alternativas -> frações 1/200, 1/300, 1/400, 1/500, 1/600 multiplicando log_e (a camada de texto tem "1 200", "1 300" etc.)
+DADO Pf7386fe5 (Acafe 2025 Inverno q24): texto_da_prova -> m(t) = a·b^(−t/2) e o número a/b² (expoente e fração quebrados em linhas na camada de texto)
+DADO Pa9b678ee (Unesp 2022 q89): texto_da_prova -> falta a fração 1/40 em "seja aproximadamente 1/40"; alternativas -> log_0,95 0,12 / log_0,95 0,19 / log_0,05 0,19 / log_1,05 1,9 / log_0,05 0,12 (base em índice)
+RECLASS Pa9b678ee M07.2 -> M06.5 (Unesp 2022 Biológicas q89: crescimento exponencial de likes e dislikes resolvido por logaritmo; a PG é só a forma do modelo)
+DADO Pb572cf81 (UEL 2020 q15): alternativas A -> "Somente as afirmativas I e II são corretas." (o "8 / 27" é o número da página); texto_da_prova -> V(n) = (20/27)^(n−1) − 7·20^(n−1)·(1/27)^n (parênteses embaralhados)
+DADO P79ed8249 (UEL 2022 q27): texto_da_prova -> C > 1/2, V1 = 1/4, V(n+1) = Vn/2, V0 ≤ C − 1/2, razão 1/4, Vn = n/4 (frações quebradas em linhas na camada de texto)
+RECLASS P79ed8249 M07.2 -> M07.3 (UEL 2022 q27: o centro é a soma infinita da PG)
+DADO Pcd72c3c6 (PUC-SP 2026 Verão q2): alternativas -> 2^63 / 2^7 − 1 / 2^5 + 1 / 2^64 − 1 / 2^5·(2^63 + 1) (expoentes perdidos; o "q q" em E é sujeira)
+DADO Pba9549df (PUC-Campinas 2025 q25): texto_da_prova -> 2x[1 + 2 + 3 + ... + (2x − 1)] / (4x[(2x + 1) + (2x + 2) + (2x + 3) + ... + (4x − 1)]); alternativas -> 1/2, 1/3, 1/4, 1/5, 1/6 (fonte codificada na camada de texto)
+PRINT Pba9549df (PUC-Campinas 2025 q25): o numerador está cortado no alto do print (legível, mas refazer o recorte do PDF oficial)
+RECLASS Pef595cc7 M07.3 -> M09.3 (Acafe 2025 Inverno q26: a alternativa correta, B, é incentro e semelhança de triângulos; só a A é de soma de termos)
+DADO P77c5b18b (UEL 2021 q31): alternativas.E -> p²/(5π) (na entrada veio com "Vestibular UEL 2021" colado)
+DADO P0697c323 (Fuvest 2022 q37): alternativas -> A) 1/8  B) 1/4  C) 1/2  D) √2/2  E) √3/2 (na entrada vieram com caracteres trocados)
+RECLASS P0697c323 M08.5 -> M10.3 (Fuvest 2022 q37: não há área; é lei dos cossenos e máximo de ângulo)
+RECLASS P4a72dbb2 M08.5 -> M09.1 (UEL 2020 q33: não há área; pede um comprimento por Pitágoras)
+DADO Pebdbeeb6 (UEL 2023 q46): alternativas.E -> r²((1/2)π − 1) (na entrada veio com caracteres trocados)
+DADO Pceb9be96 (Famerp 2023 q74): alternativas -> A) 225/289  B) 15/17  C) 64/225  D) 8/15  E) 64/289 (na entrada vieram vazias)
+RECLASS Pceb9be96 M08.5 -> M08.3 (Famerp 2023 q74: razão de áreas de dois círculos, sem região composta)
+RECLASS P2a454691 M08.5 -> M08.2 (UECE 2022.1 q22: área do trapézio comparada à do triângulo construído; sem região hachurada)
+DADO P71e28c8d (Unesp 2026/2 q88): texto_da_prova -> os nomes dos segmentos estão no print: "lado BC", "diâmetro AD", "QP é perpendicular a BC", "a medida de QP" (na entrada vieram em branco)
+RECLASS P6ab2abca M09.1 -> M08.4 (Acafe 2023 Inverno q28: hexágono regular e tangência; não usa Pitágoras)
+DADO P8b1111b5 (Fuvest 2021 q9): alternativas -> A 14 | B 15 | C 16 | D 17 | E 18 (o texto da entrada não traz a (C) 16 nem o campo alternativas)
+RECLASS P8b1111b5 M09.3 -> M09.1 (Fuvest 2021 q9: altura do equilátero e Pitágoras, sem semelhança)
+RECLASS Pea9b6cc5 M09.3 -> M02.3 (UEL 2021 q26: escala de mapa, sem semelhança de triângulos)
+DADO P7181cd45 (Santa Casa 2023 q76): alternativas -> A √(7/3) cm; B √(8/3) cm; C √6/2 cm; D √5/2 cm; E 16√3/25 cm; texto_da_prova -> 'Os ângulos CÂB e MD̂B são congruentes', 'CB + BD = 5√3/3 cm', 'a mediana CM'
+ANULAR P6fc4c995: dados incompatíveis. Com AB/AG = 5/4, HG = 32/5 e as tangentes (BD = 2, AC = 20) saem BC = 8, AB = 16, AC = 20; mas a reta pelo incentro paralela a BC corta os lados na razão 1 − r/h = 1 − BC/(AB + BC + CA) = 1 − 8/44 = 9/11, não 4/5. O triângulo descrito não existe; o caminho da banca (semelhança + tangentes) dá FH = 6 − 4 = 2 (letra A) ignorando o incentro, e outros subconjuntos dos dados dão FH ≈ 2,24 ou 2,8. Coordenadora decide entre anular e resolver com alerta. Texto da entrada: alternativa C é 3/2 cm no print.
+RECLASS P3ce63fa5 M09.4 -> M09.3 (UDESC 2020.1 q14: semelhança de triângulos com ângulo comum, não relações métricas)
+DADO Pea300408 (FMABC 2025 q79): texto_da_prova -> no print, "os pontos E e F sobre os lados CD e BC, respectivamente" (a entrada inverte para BC e CD) e "sen α = √10/10" (fração com raiz no numerador).
+RECLASS P25d6d5ac M10.4 -> M05.5 (Acafe 2023 Inverno q25: a alternativa correta é sobre a função totiente e sua inversa; trigonometria só aparece na A)
+RECLASS P19f0cc4a M10.4 -> M16.1 (Acafe 2024 Verão q27: a alternativa correta é teorema do resto de polinômio; trigonometria só aparece na A)
+DADO P26674878 (Unesp 2022 Biológicas q86): texto_da_prova -> 'Na figura, PQ representa o eixo dos pedais', 'O comprimento do eixo PQ é de'
+DADO Pc74d8f55 (Famerp 2020 q80): texto_da_prova -> 'de equações y = 5/2 e y = 1 + 3 sen (2x)'
+DADO P0bbe8a97 (Santa Casa 2020 q77): alternativas -> no print, A) 5π/6, B) 5π/3, C) 2π/3, D) 4π/3, E) 2π (na entrada estão vazias); texto_da_prova -> no print, "de ℝ em ℝ", "y = 3cos x", "y = 2sen² x" e "A medida de PQ" (faltam na entrada).

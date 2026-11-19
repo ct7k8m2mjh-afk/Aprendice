@@ -779,5 +779,124 @@
    "data": "2026-11-12",
    "lote": "mat-0038"
   }
+ },
+ "P0dbd3b61": {
+  "n": "17",
+  "conceito": "Somar áreas de figuras que compõem um triângulo, usando a mediatriz (D é ponto médio de BC) e o paralelismo de BF e DE para relacionar as alturas.",
+  "equivocos": {
+   "A": "M08.1:esqueceu-de-somar-as-pecas",
+   "B": "M08.1:contou-um-triangulo-so",
+   "D": "M08.1:trapezio-tratado-como-retangulo",
+   "E": "M08.1:soma-de-pecas-inexistentes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O triângulo ABC está cortado em três peças: o triângulo ABF, o trapézio BDEF e o triângulo EDC. Basta escrever as três áreas com as mesmas letras e somar. A mediatriz diz que D é o ponto médio de BC, e como DE e BF são paralelos (os dois perpendiculares a BC), a semelhança dos triângulos EDC e FBC diz que BF é o dobro de DE.",
+    "formulas": [
+     "área do triângulo = (base · altura)/2",
+     "área do trapézio = ((B + b) · h)/2",
+     "semelhança: BF/DE = BC/DC"
+    ],
+    "simbolos": [
+     [
+      "mediatriz",
+      "reta perpendicular a um segmento passando pelo ponto médio dele"
+     ],
+     [
+      "S",
+      "área de cada um dos triângulos escuros, ABF e EDC"
+     ],
+     [
+      "m",
+      "medida de BD, que é igual à de DC"
+     ],
+     [
+      "h",
+      "medida de DE"
+     ]
+    ]
+   },
+   "pista": "Dê nomes às medidas do triângulo EDC (DC e DE) e descubra quanto medem BF e BD em função delas.",
+   "passos": [
+    {
+     "faz": "Escreva a área de EDC com letras",
+     "conta": "DC = m | DE = h → S = (m · h)/2 → m · h = 2S",
+     "porque": "DE está na mediatriz, então é perpendicular a BC: o triângulo EDC é retângulo em D, com catetos DC e DE.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache BF pela semelhança",
+     "conta": "BF/DE = BC/DC → BF/h = (2m)/m → BF = 2h",
+     "porque": "BF e DE são paralelos e C é comum: os triângulos FBC e EDC são semelhantes. Como D é o ponto médio, BC é o dobro de DC, e BF é o dobro de DE.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área do trapézio BDEF",
+     "conta": "((2h + h) · m)/2 = (3 · m · h)/2 = (3 · 2S)/2 = 3S",
+     "porque": "BDEF tem bases paralelas BF = 2h e DE = h, e a distância entre elas é BD = m. Trocando m · h por 2S, tudo fica em S.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as três peças",
+     "conta": "S + 3S + S = 5S → alternativa C",
+     "porque": "ABC é formado exatamente por ABF, BDEF e EDC, sem sobra e sem sobreposição.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 5S",
+   "checagem": "Calcule ABC direto: a reta AC tem a mesma inclinação em todo o trecho; de C a D (m) ela sobe h, então de C até a vertical de A (5m/2, já que ABF = S dá a distância de A à reta BF igual a m/2) sobe 5h/2. Área = (2m · 5h/2)/2 = (5 · m · h)/2 = 5S.",
+   "erradas": {
+    "A": "3S sai de calcular só o trapézio BDEF, ((2h + h) · m)/2 = 3S, e esquecer de somar os dois triângulos escuros.",
+    "B": "4S sai de somar o trapézio a um só dos triângulos escuros: 3S + S = 4S. São dois triângulos de área S.",
+    "D": "6S sai de tratar BDEF como retângulo de altura BF: 2h · m = 4S, e 4S + 2S = 6S. Mas o lado FE é inclinado; BDEF é trapézio.",
+    "E": "7S não confere: o trapézio vale 3S e os dois triângulos, 2S; não há outra peça dentro de ABC para somar mais 2S."
+   },
+   "armadilha": "Esquecer que BF é o dobro de DE: quem usa BF = DE acha um retângulo de área 2S e chega a 4S.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do triângulo ABC em função de S.",
+    "chave": "D é ponto médio, então BF = 2·DE; o trapézio BDEF vale 3S e o total é S + 3S + S = 5S.",
+    "cuidado": "BDEF é trapézio, não retângulo: a base de cima é DE, metade de BF."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "área total direta",
+    "ideia": "A altura de A em relação a BC é 5h/2 (a reta AC sobe h a cada m), então ABC = (2m · 5h/2)/2 = 5S."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "S = (m · h)/2 → m · h = 2S",
+    "nota": "área do triângulo EDC"
+   },
+   {
+    "linha": "BF/h = (2m)/m → BF = 2h",
+    "nota": "semelhança de FBC e EDC"
+   },
+   {
+    "linha": "((2h + h) · m)/2 = (3 · 2S)/2 = 3S",
+    "nota": "área do trapézio BDEF"
+   },
+   {
+    "linha": "S + 3S + S = 5S",
+    "nota": "somar as três peças"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "O triângulo ABC aparece com a mediatriz; os dois triângulos escuros recebem o rótulo S; DC = m e DE = h são marcados; BF cresce até 2h; o trapézio claro recebe 3S; as três peças somam 5S."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
  }
 }

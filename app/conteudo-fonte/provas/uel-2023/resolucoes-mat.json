@@ -255,5 +255,232 @@
    "data": "2026-11-19",
    "lote": "mat-0074"
   }
+ },
+ "Pc3893c86": {
+  "n": "21",
+  "conceito": "Crescimento que dobra a cada período vira reta no gráfico de log10 N(t); reconhecer o gráfico pelos valores inicial e final.",
+  "equivocos": {
+   "A": "M06.1:log-do-valor-inicial-errado",
+   "B": "M06.1:achou-que-o-log-e-curvo",
+   "C": "M06.1:desenhou-n-em-vez-do-log",
+   "D": "M06.1:log-do-valor-inicial-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se N dobra a cada 2 anos, N é exponencial em t, e o logaritmo de uma exponencial é uma função afim: o gráfico de log10 N(t) é uma reta. Falta saber onde ela começa e termina: calcule log10 de N(1969) e de N(2017).",
+    "formulas": [
+     "N(t) = N(1969) · 2^((t − 1969)/2)",
+     "log10 N(t) = log10 N(1969) + ((t − 1969)/2) · log10 2"
+    ],
+    "simbolos": [
+     [
+      "N(t)",
+      "número de transistores no ano t"
+     ],
+     [
+      "log10",
+      "logaritmo na base 10: log10 1000 = 3"
+     ]
+    ]
+   },
+   "pista": "Pergunte primeiro qual forma tem o logaritmo de algo que dobra a intervalos iguais; depois veja a altura do primeiro ponto.",
+   "passos": [
+    {
+     "faz": "Identifique a forma do gráfico",
+     "conta": "N(t) = 1150 · 2^((t − 1969)/2) → log10 N(t) = log10 1150 + ((t − 1969)/2) · log10 2",
+     "porque": "O logaritmo transforma a multiplicação por 2 a cada 2 anos em soma de log10 2 a cada 2 anos: os pontos ficam alinhados numa reta crescente.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o primeiro ponto",
+     "conta": "log10 1150 = log10 (1,15 · 10³) ≈ 3,06",
+     "porque": "1150 está entre 10³ = 1000 e 10⁴, então o log está entre 3 e 4, pouco acima de 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o último ponto",
+     "conta": "log10 19293798400 = log10 (1,93 · 10^10) ≈ 10,29",
+     "porque": "O número tem 11 algarismos, então o log está entre 10 e 11.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o gráfico",
+     "conta": "reta de ≈ 3,06 (1969) até ≈ 10,29 (2017) → alternativa E",
+     "porque": "Só o gráfico E é uma reta que começa um pouco acima de 3 e termina um pouco acima de 10.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — os pontos em linha reta, de cerca de 3 em 1969 a cerca de 10,3 em 2017",
+   "checagem": "Confira a taxa: de 1969 a 2017 são 48 anos, 24 dobras, e 1150 · 2^24 = 19 293 798 400, o valor dado. Na reta, a subida total é 24 · log10 2 ≈ 24 · 0,301 = 7,22, e 3,06 + 7,22 = 10,28.",
+   "erradas": {
+    "A": "A não confere: é uma reta, mas começa em 1, e log10 1150 ≈ 3,06; termina perto de 8, e o certo é cerca de 10,3.",
+    "B": "B não confere: a curva sobe cada vez mais devagar, mas log10 N(t) sobe o mesmo log10 2 a cada 2 anos, então é reta; e começa em 0, não em 3,06.",
+    "C": "C sai de desenhar o próprio N(t), e não o seu logaritmo: o eixo vai até 25 bilhões e o último ponto está perto de 19,3 bilhões, que é N(2017).",
+    "D": "D não confere: é uma reta, mas vai de 0 a cerca de 2, e os valores certos vão de 3,06 a 10,29."
+   },
+   "armadilha": "Pedir log10 N(t) muda a forma: o crescimento explosivo de N vira uma reta, e o gráfico C é o de N, não o do logaritmo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O gráfico de log10 N(t) entre 1969 e 2017.",
+    "chave": "N dobra a cada 2 anos → log10 N é reta; vai de log10 1150 ≈ 3,06 a log10 (1,93 · 10^10) ≈ 10,29.",
+    "cuidado": "Conte os algarismos para achar a parte inteira do log antes de olhar os gráficos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem de algarismos",
+    "ideia": "1150 tem 4 algarismos (log entre 3 e 4) e 19293798400 tem 11 (log entre 10 e 11): só E serve"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "N(t) = 1150 · 2^((t − 1969)/2)",
+    "nota": "dobra a cada 2 anos"
+   },
+   {
+    "linha": "log10 N = log10 1150 + ((t − 1969)/2) · log10 2",
+    "nota": "o log vira reta"
+   },
+   {
+    "linha": "log10 1150 ≈ 3,06",
+    "nota": "ponto de 1969"
+   },
+   {
+    "linha": "log10 19293798400 ≈ 10,29",
+    "nota": "ponto de 2017"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
+ },
+ "Pebdbeeb6": {
+  "n": "46",
+  "conceito": "Área de uma região limitada por dois arcos: semicírculo de C1 mais o segmento circular de C2 sobre a corda PQ.",
+  "equivocos": {
+   "A": "M08.5:calculou-a-regiao-complementar",
+   "B": "M08.5:esqueceu-uma-das-pecas",
+   "C": "M08.5:fatoracao-errada",
+   "E": "M08.5:esqueceu-uma-das-pecas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A região sombreada é limitada à esquerda pelo arco de C1 que passa por A e à direita pelo arco de C2 entre P e Q. A corda PQ (diâmetro de C1) divide a região em duas peças: metade de C1 e o segmento circular de C2 que passa da corda. O raio de C2 é AP, hipotenusa do triângulo retângulo AOP.",
+    "formulas": [
+     "AP² = AO² + OP²",
+     "segmento circular = setor − triângulo",
+     "setor de 90° = (1/4) · π · R²"
+    ],
+    "simbolos": [
+     [
+      "C1",
+      "circunferência de centro O e raio r"
+     ],
+     [
+      "C2",
+      "circunferência de centro A e raio AP"
+     ],
+     [
+      "segmento circular",
+      "parte do círculo entre uma corda e o arco"
+     ]
+    ]
+   },
+   "pista": "Corte a região sombreada pela corda PQ e veja que figura conhecida fica de cada lado.",
+   "passos": [
+    {
+     "faz": "Calcule o raio de C2",
+     "conta": "AP² = r² + r² = 2r² → AP = r√2",
+     "porque": "O ângulo AÔP é reto e AO = OP = r (raios de C1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o ângulo do setor de C2",
+     "conta": "PÂQ = 45° + 45° = 90°",
+     "porque": "AOP e AOQ são retângulos isósceles, cada um com 45° em A.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o segmento de C2 além de PQ",
+     "conta": "(1/4) · π · (r√2)² − (2r · r)/2 = (πr²)/2 − r²",
+     "porque": "Setor de 90° de raio r√2 menos o triângulo APQ, de base PQ = 2r e altura AO = r.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some com o semicírculo de C1",
+     "conta": "(πr²)/2 + (πr²)/2 − r² = πr² − r² = r²(π − 1)",
+     "porque": "À esquerda da corda PQ a região é metade do círculo C1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "r²(π − 1) → alternativa D",
+     "porque": "É a área total da região sombreada.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — r²(π − 1)",
+   "checagem": "Pelo complemento: a parte de C1 fora da sombra é a lua da direita, semicírculo menos o segmento: (πr²)/2 − ((πr²)/2 − r²) = r². E πr² − r² = r²(π − 1), a mesma área sombreada.",
+   "erradas": {
+    "A": "r² sai da outra peça de C1: a lua clara à direita, (πr²)/2 − ((πr²)/2 − r²) = r². É a parte de C1 que não está sombreada.",
+    "B": "(1/2)πr² sai de contar só o semicírculo de C1 e esquecer o segmento de C2 que passa da corda PQ.",
+    "C": "r²π − 1 sai de errar a fatoração de πr² − r², tirando 1 em vez de r²; além disso, mistura área com número puro.",
+    "E": "r²((1/2)π − 1) sai de calcular só o segmento de C2, (πr²)/2 − r², sem somar o semicírculo de C1."
+   },
+   "armadilha": "Calcular só uma das duas peças: o semicírculo (B) ou o segmento circular (E).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área da região sombreada em função de r.",
+    "chave": "Semicírculo de C1 ((πr²)/2) + segmento de C2 (setor de 90° de raio r√2 menos o triângulo APQ, (πr²)/2 − r²) = r²(π − 1).",
+    "cuidado": "O raio de C2 é r√2, não r, e a região tem duas peças."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complemento em C1",
+    "ideia": "Área de C1 menos a lua clara da direita (que vale r², como na lúnula de Hipócrates): πr² − r²."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "AP² = r² + r² → AP = r√2",
+    "nota": "raio de C2"
+   },
+   {
+    "linha": "(1/4) · π · 2r² − r² = (πr²)/2 − r²",
+    "nota": "segmento de C2: setor − triângulo"
+   },
+   {
+    "linha": "(πr²)/2 + (πr²)/2 − r²",
+    "nota": "somar o semicírculo de C1"
+   },
+   {
+    "linha": "πr² − r² = r²(π − 1)",
+    "nota": "colocar r² em evidência"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "A corda PQ corta a sombra em duas partes; a da esquerda vira metade de C1; na da direita, o setor de 90° de C2 aparece e o triângulo APQ é retirado; as duas partes se juntam e dão r²(π − 1)."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
  }
 }

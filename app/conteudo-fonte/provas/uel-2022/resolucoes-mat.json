@@ -369,5 +369,125 @@
    "data": "2026-11-12",
    "lote": "mat-0024"
   }
+ },
+ "P79ed8249": {
+  "n": "27",
+  "conceito": "Reconhecer uma PG infinita de razão 1/2, somar seus termos e julgar afirmativas sobre ela.",
+  "equivocos": {
+   "A": "M07.3:pg-lida-como-pa",
+   "B": "M07.3:termo-geral-errado",
+   "D": "M07.3:soma-infinita-ignorada",
+   "E": "M07.3:pg-lida-como-pa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "V(n+1) = V(n)/2 diz que cada termo é a metade do anterior: é uma PG de razão 1/2, não uma PA. A soma infinita de uma PG com razão entre −1 e 1 é a1/(1 − q). Com ela você julga a primeira afirmativa; as outras saem do termo geral.",
+    "formulas": [
+     "termo geral da PG: V_n = V_1·q^(n−1)",
+     "soma infinita: S = V_1/(1 − q), se |q| < 1"
+    ],
+    "simbolos": [
+     [
+      "V_0",
+      "volume da Esperança"
+     ],
+     [
+      "V_n",
+      "volume do n-ésimo mal"
+     ],
+     [
+      "C",
+      "volume da caixa"
+     ],
+     [
+      "bijeção",
+      "correspondência um a um: cada n tem um único V_n e cada V_n vem de um único n"
+     ]
+    ]
+   },
+   "pista": "Descubra que tipo de sequência V_(n+1) = V_n/2 forma antes de julgar qualquer afirmativa.",
+   "passos": [
+    {
+     "faz": "Identifique a sequência dos males",
+     "conta": "V_(n+1) = V_n/2 → PG com V_1 = 1/4 e q = 1/2 → V_n = (1/4)·(1/2)^(n−1)",
+     "porque": "Dividir por 2 é multiplicar por 1/2 a cada passo: razão constante é PG.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some todos os males",
+     "conta": "S = (1/4)/(1 − 1/2) = (1/4)/(1/2) = 1/2",
+     "porque": "A razão 1/2 está entre −1 e 1, então a soma infinita existe e vale a1/(1 − q).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue a 1ª afirmativa",
+     "conta": "V_0 + 1/2 ≤ C → V_0 ≤ C − 1/2 → V",
+     "porque": "A soma de tudo o que há na caixa, Esperança mais males, não passa de C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue as outras quatro",
+     "conta": "PA de razão 1/4: F | V_2 = 1/8 ≠ 2/4 → V_n = n/4: F | n → V_n é um a um: V | V_(n+1) = V_n/2 < V_n: V",
+     "porque": "A diferença V_2 − V_1 = −1/8 não é 1/4; os termos são todos diferentes (estritamente decrescentes), então cada n corresponde a um único V_n; e metade de um positivo é menor que ele.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Monte a sequência",
+     "conta": "V, F, F, V, V → alternativa C",
+     "porque": "É a ordem de cima para baixo pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — V, F, F, V, V",
+   "checagem": "Some alguns termos: 1/4 + 1/8 + 1/16 + 1/32 = 15/32, e cada novo termo cobre metade do que falta até 1/2. A soma se aproxima de 1/2 sem passar, o que confirma V_0 ≤ C − 1/2.",
+   "erradas": {
+    "A": "Erra a 2ª e a 4ª: a sequência é PG de razão 1/2 (de 1/4 para 1/8 cai), não PA de razão 1/4; e a bijeção existe, porque os V_n são todos diferentes.",
+    "B": "Erra a 3ª e a 4ª: V_n = n/4 daria V_2 = 2/4, mas V_2 = 1/8; e a correspondência n → V_n é uma bijeção.",
+    "D": "Erra a 1ª, a 2ª e a 5ª: a soma dos males é 1/2, logo V_0 ≤ C − 1/2 é verdadeira; a sequência é PG, não PA; e ela é decrescente, V_(n+1) < V_n.",
+    "E": "Erra a 1ª, a 2ª, a 3ª e a 5ª: V_0 ≤ C − 1/2 é verdadeira, a sequência não é PA, V_n = (1/4)·(1/2)^(n−1) e não n/4, e cada termo é menor que o anterior."
+   },
+   "armadilha": "V_(n+1) = V_n/2 é PG de razão 1/2; quem lê como PA de razão 1/4 erra três afirmativas de uma vez.",
+   "alerta": "",
+   "essencial": {
+    "pede": "V ou F para cinco afirmativas sobre V_0, V_1, V_2, ...",
+    "chave": "PG com V_1 = 1/4 e q = 1/2; soma infinita 1/2, logo V_0 ≤ C − 1/2.",
+    "cuidado": "Razão constante na divisão é PG; use a soma infinita a1/(1 − q)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "a soma contém a si mesma",
+    "ideia": "S = 1/4 + (1/8 + 1/16 + ...) = 1/4 + S/2, porque o resto é a mesma soma pela metade; então S/2 = 1/4, S = 1/2, e V0 + 1/2 ≤ C dá V0 ≤ C − 1/2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V_(n+1) = V_n/2 → q = 1/2",
+    "nota": "razão constante: PG"
+   },
+   {
+    "linha": "V_n = (1/4)·(1/2)^(n−1)",
+    "nota": "termo geral"
+   },
+   {
+    "linha": "S = (1/4)/(1 − 1/2) = 1/2",
+    "nota": "soma infinita dos males"
+   },
+   {
+    "linha": "V_0 + 1/2 ≤ C → V_0 ≤ C − 1/2",
+    "nota": "o 1/2 passa subtraindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
  }
 }

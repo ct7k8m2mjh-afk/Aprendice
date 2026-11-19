@@ -227,5 +227,359 @@
    "data": "2026-11-12",
    "lote": "mat-0015"
   }
+ },
+ "P11e49da4": {
+  "n": "26",
+  "conceito": "Julgar três afirmações: subconjuntos de B − A, produto dos termos de uma PG e número de funções bijetoras de A em A.",
+  "equivocos": {
+   "A": "M05.5:julgou-todas-falsas",
+   "B": "M05.5:contou-todas-as-funcoes",
+   "C": "M05.5:contou-todas-as-funcoes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São três contas independentes; julgue uma de cada vez. Um conjunto com n elementos tem 2^n subconjuntos. Numa PG, o produto de termos equidistantes dos extremos é sempre o mesmo, a1 · a10. Uma função de A em A admite inversa só se for bijetora, e contar bijeções é contar permutações.",
+    "formulas": [
+     "número de subconjuntos = 2^n",
+     "produto dos n primeiros termos da PG = (a1 · an)^(n/2)",
+     "bijeções de um conjunto de n elementos nele mesmo = n!"
+    ],
+    "simbolos": [
+     [
+      "n(X)",
+      "número de elementos do conjunto X"
+     ],
+     [
+      "B − A",
+      "elementos de B que não estão em A"
+     ],
+     [
+      "C ⊂ B − A",
+      "C é subconjunto de B − A (inclui o vazio e o próprio B − A)"
+     ],
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes a razão q"
+     ],
+     [
+      "10!",
+      "10 · 9 · 8 · ... · 1 = 3 628 800"
+     ],
+     [
+      "bijetora",
+      "função em que cada elemento do contradomínio é imagem de exatamente um elemento"
+     ]
+    ]
+   },
+   "pista": "Em I, o 512 é uma potência de 2; descubra o expoente. Em II, emparelhe o 1º com o 10º termo.",
+   "passos": [
+    {
+     "faz": "Conte os elementos de B − A",
+     "conta": "2^n = 512 → 2^n = 2^9 → n = 9",
+     "porque": "Se todo x de A está em B, então A ⊂ B e B tem n(A) + n(B − A) elementos. O 512 é o número de subconjuntos de B − A, logo B − A tem 9 elementos: B tem 9 a mais que A. I é correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique os 10 termos da PG",
+     "conta": "a1 · a10 = 1 · 32 = 32 → 32^(10/2) = 32^5 = 2^25",
+     "porque": "Os 10 termos formam 5 pares equidistantes dos extremos (1º com 10º, 2º com 9º...), e cada par tem o mesmo produto 32. Como 32 = 2^5, o produto é (2^5)^5 = 2^25. II é correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as funções com inversa",
+     "conta": "n(A) = 10 → 10 · 9 · 8 · ... · 1 = 10! = 3628800",
+     "porque": "Ter inversa exige ser bijetora: a imagem do 0 tem 10 opções, a do 1 tem 9 (não pode repetir), e assim por diante. III é correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as corretas",
+     "conta": "I, II e III corretas → 3 → alternativa D",
+     "porque": "As três afirmações se verificam, e a pergunta é a quantidade de corretas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 3 afirmações corretas",
+   "checagem": "Em II, confira pela razão: a10 = q^9 = 32 dá q = 2^(5/9), e o produto é q^(0+1+...+9) = q^45 = 2^(5·45/9) = 2^25. Fecha com o par a par.",
+   "erradas": {
+    "A": "0 não confere: 2^9 = 512 confirma I, (1 · 32)^5 = 2^25 confirma II e 10! bijeções confirma III.",
+    "B": "1 sai de errar duas: em II elevar 32 a 10 em vez de 5 (32^10 = 2^50, contando cada par duas vezes) e em III contar todas as funções, 10^10, em vez das bijetoras.",
+    "C": "2 sai de errar uma só, por exemplo em III contar 10^10 funções de A em A: esse é o total de funções, mas só as bijetoras (10!) têm inversa."
+   },
+   "armadilha": "Em III, funções que admitem inversa são só as bijetoras (10!), não todas as 10^10 funções de A em A.",
+   "alerta": "Em I, o símbolo ⊂ inclui o próprio B − A; se fossem só subconjuntos próprios, seria 2^n − 1 = 512, que não tem n inteiro. A leitura da banca é a usual.",
+   "essencial": {
+    "pede": "Quantas das três afirmações são corretas.",
+    "chave": "2^9 = 512; produto da PG = (a1 · a10)^5 = 2^25; bijeções de 10 elementos = 10!.",
+    "cuidado": "Inversa exige bijeção; e no produto da PG são 5 pares, não 10."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razão da PG",
+    "ideia": "q^9 = 32 e o produto é q^(0+1+...+9) = q^45 = 2^25"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2^n = 512 = 2^9 → n(B − A) = 9",
+    "nota": "I: correta"
+   },
+   {
+    "linha": "(a1 · a10)^5 = 32^5 = 2^25",
+    "nota": "II: correta"
+   },
+   {
+    "linha": "10 · 9 · ... · 1 = 10!",
+    "nota": "III: correta"
+   },
+   {
+    "linha": "3 corretas → D",
+    "nota": "conclusão"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
+ },
+ "P6ab2abca": {
+  "n": "28",
+  "conceito": "Hexágono regular e semicircunferências iguais: a tangente comum paralela à reta dos centros mede a distância entre os centros.",
+  "equivocos": {
+   "A": "M08.4:base-media-errada",
+   "B": "M08.4:distancia-centros-errada",
+   "D": "M08.4:distancia-centros-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As duas semicircunferências têm o mesmo raio (metade do lado, 4 cm). Os raios até G e H são perpendiculares à tangente e têm o mesmo tamanho, então os centros e os pontos G e H formam um retângulo: GH é igual à distância entre os centros. Os centros são os pontos médios de EF e CD, e a distância entre eles é a base média do trapézio FCDE.",
+    "formulas": [
+     "raio ⟂ tangente no ponto de tangência",
+     "base média do trapézio = (base maior + base menor)/2",
+     "hexágono regular de lado ℓ: diagonal maior = 2ℓ"
+    ],
+    "simbolos": [
+     [
+      "M, N",
+      "pontos médios de EF e de CD, centros das semicircunferências"
+     ],
+     [
+      "base média",
+      "segmento que liga os pontos médios dos lados não paralelos de um trapézio"
+     ]
+    ]
+   },
+   "pista": "Marque os centros das duas semicircunferências e trace os raios até G e H. O que esses raios têm de especial em relação à reta GH?",
+   "passos": [
+    {
+     "faz": "Ache raios e centros",
+     "conta": "raio = 8/2 = 4 | M = ponto médio de EF | N = ponto médio de CD",
+     "porque": "Os arcos são semicircunferências com diâmetros EF e CD, lados do hexágono.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Veja que GH = MN",
+     "conta": "MG = NH = 4 | MG ⟂ GH | NH ⟂ GH → MGHN é retângulo → GH = MN",
+     "porque": "Os dois raios são perpendiculares à tangente e do mesmo tamanho, então são lados opostos de um retângulo.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Calcule MN pela base média",
+     "conta": "FC = 2 · 8 = 16 | ED = 8 → MN = (16 + 8)/2 = 12",
+     "porque": "FCDE é um trapézio (FC ∥ ED): FC é a diagonal maior do hexágono e ED um lado. M e N são pontos médios dos lados não paralelos, então MN é a base média.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "GH = MN = 12 cm → alternativa C",
+     "porque": "A distância pedida é exatamente a distância entre os centros.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 12 cm",
+   "checagem": "Por coordenadas com o centro do hexágono na origem: F(−8, 0), E(−4, −4√3), D(4, −4√3), C(8, 0). Então M(−6, −2√3) e N(6, −2√3), e MN = 6 − (−6) = 12.",
+   "erradas": {
+    "A": "10 cm não confere: GH = MN é a base média do trapézio FCDE, (16 + 8)/2 = 12, e não 10.",
+    "B": "11 cm não confere: como M e N estão à mesma altura, MN = 6 − (−6) = 12 nas coordenadas da checagem; 11 não aparece em nenhuma medida da figura.",
+    "D": "13 cm não confere: GH = MN = 16 − 2 − 2 = 12 (a diagonal FC menos as projeções horizontais de FM e NC, 2 cm cada), não 13."
+   },
+   "armadilha": "Tentar calcular GH pelos pontos de tangência; o atalho é ver que GH é igual à distância entre os centros.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O comprimento do segmento GH tangente às duas semicircunferências.",
+    "chave": "Raios iguais perpendiculares à tangente: GH = MN = base média (16 + 8)/2 = 12.",
+    "cuidado": "A diagonal maior do hexágono regular é o dobro do lado: 16 cm."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas",
+    "ideia": "Com o hexágono centrado na origem, os centros são (−6, −2√3) e (6, −2√3): distância 12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "raio = 8/2 = 4",
+    "nota": "metade do lado"
+   },
+   {
+    "linha": "GH = MN",
+    "nota": "MGHN é retângulo"
+   },
+   {
+    "linha": "FC = 2 · 8 = 16",
+    "nota": "diagonal maior do hexágono"
+   },
+   {
+    "linha": "MN = (16 + 8)/2 = 12",
+    "nota": "base média do trapézio FCDE"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "Marca os centros M e N, traça os raios até G e H formando o retângulo MGHN; depois destaca o trapézio FCDE e a base média MN."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
+ },
+ "P25d6d5ac": {
+  "n": "25",
+  "conceito": "Julgar quatro afirmações de temas diferentes: identidade trigonométrica, função totiente de Euler e inversa, inequação logarítmica e inequação modular.",
+  "equivocos": {
+   "A": "M10.4:inverteu-a-desigualdade-da-identidade",
+   "C": "M06.4:esqueceu-a-condicao-da-base",
+   "D": "M04.4:incluiu-o-extremo-da-desigualdade-estrita"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Questão de várias frentes: cada alternativa é um teste rápido. Na B, a chave é que um número primo p só não tem divisor comum com ele mesmo, então a função E vale p − 1 nos primos; a inversa devolve o primo. Nas outras, faça a conta e compare com o que a frase afirma.",
+    "formulas": [
+     "(sen θ + cos θ)² = 1 + 2 · sen θ · cos θ",
+     "se p é primo, E(p) = p − 1",
+     "log_x(A) > 2 com x > 1 ⇔ A > x²",
+     "|u| < k ⇔ −k < u < k"
+    ],
+    "simbolos": [
+     [
+      "E(x)",
+      "função totiente: quantos inteiros de 1 a x têm MDC 1 com x"
+     ],
+     [
+      "E⁻¹",
+      "função inversa de E: devolve o x que tem aquele valor"
+     ],
+     [
+      "MDC",
+      "máximo divisor comum"
+     ],
+     [
+      "| |",
+      "módulo, valor sem sinal"
+     ],
+     [
+      "ℕ",
+      "conjunto dos números naturais"
+     ]
+    ]
+   },
+   "pista": "Na B, pense em quantos números de 1 a p não têm divisor comum com um primo p.",
+   "passos": [
+    {
+     "faz": "Teste a identidade da alternativa A",
+     "conta": "n² = (sen θ + cos θ)² = 1 + 2m → n² > 2m",
+     "porque": "Elevando a soma ao quadrado, sen² + cos² vale 1 e sobra 2 sen cos = 2m. Então n² é 2m mais 1, sempre maior que 2m: a A inverte a desigualdade.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Calcule as inversas da alternativa B",
+     "conta": "E(p) = p − 1 → E⁻¹(88) = 89 | E⁻¹(96) = 97 → 89 + 97 = 186",
+     "porque": "Todo número de 1 a p − 1 tem MDC 1 com o primo p, e o próprio p não. 89 e 97 são primos menores que 100, então são as imagens inversas de 88 e 96.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a inequação da alternativa C",
+     "conta": "x > 1: 2x + 1 > x² → x² − 2x − 1 < 0 → 1 < x < 1 + √2 ≈ 2,41",
+     "porque": "Com base maior que 1 o log preserva a desigualdade. Com base entre 0 e 1 ela se inverte e pede x² > 2x + 1, que não tem solução entre 0 e 1. Só o inteiro 2 cabe, um valor, não dois.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Resolva a inequação modular da alternativa D",
+     "conta": "−x − 6 < 3x − 6 < x + 6 → 0 < x < 6 → 1 + 2 + 3 + 4 + 5 = 15",
+     "porque": "O módulo menor que x + 6 vira uma desigualdade dupla. Os inteiros de 1 a 5 somam 15, não 21.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Marque a única verdadeira",
+     "conta": "A falsa | B verdadeira | C falsa | D falsa → alternativa B",
+     "porque": "Só a soma das inversas da função totiente confere com o que a frase afirma.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — sendo E a função totiente de Euler, bijetora de A em B, então E⁻¹(88) + E⁻¹(96) = 186 (89 + 97)",
+   "checagem": "Confira na direção de ida: E(89) = 88, porque os 88 números de 1 a 88 não têm divisor comum com o primo 89; E(97) = 96 pelo mesmo motivo. As imagens batem com 88 e 96.",
+   "erradas": {
+    "A": "A inverte a desigualdade: (sen θ + cos θ)² = 1 + 2 sen θ cos θ, logo n² = 1 + 2m, que é sempre maior que 2m.",
+    "C": "C não confere: a solução é 1 < x < 1 + √2 ≈ 2,41, com um só inteiro, o 2. O 3 já falha: 3² = 9 > 2 · 3 + 1 = 7.",
+    "D": "21 sai de incluir o 6 (ou o 0 e o 6) na soma: 1 + 2 + 3 + 4 + 5 + 6 = 21. A desigualdade é estrita, 0 < x < 6, e os inteiros somam 15."
+   },
+   "armadilha": "Em questão de \"assinale a correta\" com temas misturados, cada frase precisa de sua própria conta; na D, a desigualdade estrita tira o 6 da soma.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual das quatro afirmações é verdadeira.",
+    "chave": "Para p primo, E(p) = p − 1, então E⁻¹(88) = 89 e E⁻¹(96) = 97, somando 186.",
+    "cuidado": "Confira cada alternativa por conta própria e respeite as desigualdades estritas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Derrube A, C e D com as contas rápidas (n² = 1 + 2m; só o 2 na C; soma 15 na D) e fique com a B."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(sen θ + cos θ)² = 1 + 2m → n² > 2m",
+    "nota": "A é falsa"
+   },
+   {
+    "linha": "E⁻¹(88) + E⁻¹(96) = 89 + 97 = 186",
+    "nota": "B é verdadeira"
+   },
+   {
+    "linha": "x² − 2x − 1 < 0 → 1 < x < 1 + √2",
+    "nota": "C: só o inteiro 2"
+   },
+   {
+    "linha": "0 < x < 6 → 1 + 2 + 3 + 4 + 5 = 15",
+    "nota": "D: soma 15, não 21"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
  }
 }

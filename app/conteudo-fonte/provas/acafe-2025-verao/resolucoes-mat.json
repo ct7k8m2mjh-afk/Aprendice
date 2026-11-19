@@ -229,5 +229,249 @@
    "data": "2026-11-19",
    "lote": "mat-0074"
   }
+ },
+ "Pc64b553f": {
+  "n": "24",
+  "conceito": "Achar as constantes de x = C · y^k com duas medições: dividir as equações para eliminar C e usar os logs dados.",
+  "equivocos": {
+   "B": "M06.4:trocou-as-constantes",
+   "C": "M06.4:log-da-potencia-errado",
+   "D": "M06.4:trocou-potencia-por-produto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada medição dá uma equação com C e k. Dividindo uma pela outra, C some e sobra uma equação só em k. Depois, com k, volte a uma das equações para achar C. Os logs dados existem para trocar potências de 10 por números.",
+    "formulas": [
+     "x = C · y^k",
+     "10^a = b ⇔ log b = a",
+     "log 8 = 3 · log 2"
+    ],
+    "simbolos": [
+     [
+      "C, k",
+      "constantes positivas da lei da Alometria"
+     ],
+     [
+      "x, y",
+      "comprimentos dos órgãos A e B, em mm"
+     ],
+     [
+      "log",
+      "logaritmo na base 10"
+     ]
+    ]
+   },
+   "pista": "Monte as duas equações e divida a segunda pela primeira.",
+   "passos": [
+    {
+     "faz": "Monte as duas equações",
+     "conta": "8 = C · 10^k | 64 = C · 100^k",
+     "porque": "Cada linha da tabela dá um par (x, y): 1ª medição x = 8 e y = 10; 2ª medição x = 64 e y = 100.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Divida para eliminar C",
+     "conta": "64/8 = (C · 100^k)/(C · 10^k) → 8 = 10^k",
+     "porque": "O C se cancela e 100^k/10^k = (100/10)^k = 10^k.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule k",
+     "conta": "10^k = 8 → k = log 8 = 3 · log 2 = 3 · 0,30 = 0,90 = 9/10",
+     "porque": "k é o expoente de 10 que dá 8, ou seja, log 8; e 8 = 2³.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule C",
+     "conta": "8 = C · 10^(9/10) → 10^0,90 = 7,95 → C = 8/7,95 = 800/795 = 160/159",
+     "porque": "Pelo dado log 7,95 = 0,90, 10^0,90 = 7,95. Dividindo 800 e 795 por 5, sobra 160/159.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "C = 160/159 | k = 9/10 → alternativa A",
+     "porque": "As duas constantes batem com a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — C = 160/159 e k = 9/10",
+   "checagem": "Use a 2ª medição: C · 100^0,9 = (160/159) · 10^1,8 = (160/159) · 7,95² ≈ 1,006 · 63,2 ≈ 63,6, perto dos 64 mm, com a diferença vinda do arredondamento dos logs dados.",
+   "erradas": {
+    "B": "B sai de trocar as constantes: os valores certos são C = 160/159 e k = 9/10, e a alternativa B inverte quem é quem.",
+    "C": "k = 27/1000 sai de calcular log 8 como (log 2)³ = 0,30³ = 0,027; o certo é log 2³ = 3 · log 2 = 0,90.",
+    "D": "C = 8/9 sai de trocar 10^k por 10 · k: 8 = C · 10 · 0,9 = 9C dá C = 8/9; o certo é 10^0,9 = 7,95."
+   },
+   "armadilha": "log 2³ é 3 · log 2, não (log 2)³; e 10^0,9 não é 10 · 0,9: o log 7,95 = 0,90 foi dado para isso.",
+   "alerta": "Com logaritmos exatos, k = log 8 e C = 8/10^(log 8) = 8/8 = 1; o valor 160/159 ≈ 1,006 vem dos arredondamentos que o enunciado manda adotar (log 2 = 0,30 e log 7,95 = 0,90). Com os valores adotados, a alternativa A é a correta.",
+   "essencial": {
+    "pede": "As constantes C e k da lei x = C · y^k para os dois órgãos.",
+    "chave": "Dividir as equações elimina C: 10^k = 8, k = 0,90; depois C = 8/7,95 = 160/159.",
+    "cuidado": "log 8 = 3 · log 2, e 10^0,9 é potência, não produto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "log nos dois lados",
+    "ideia": "aplique log: log x = log C + k · log y, e subtraia as medições: log 64 − log 8 = k · (log 100 − log 10) → 0,90 = k"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "8 = C · 10^k | 64 = C · 100^k",
+    "nota": "duas medições"
+   },
+   {
+    "linha": "64/8 = 10^k → 8 = 10^k",
+    "nota": "o C se cancela"
+   },
+   {
+    "linha": "k = log 8 = 3 · 0,30 = 9/10",
+    "nota": "log dado"
+   },
+   {
+    "linha": "C = 8/10^0,9 = 8/7,95 = 160/159",
+    "nota": "log 7,95 = 0,90"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
+ },
+ "Pb91c0777": {
+  "n": "25",
+  "conceito": "Julgar três afirmações: área de quadrilátero inscrito com diâmetro, número de arestas de poliedro pelas faces e área lateral de cone equilátero.",
+  "equivocos": {
+   "A": "M08.3:julgou-verdadeira-como-falsa",
+   "B": "M08.3:angulo-de-75-lido-como-acd",
+   "D": "M08.3:arestas-contadas-duas-vezes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada afirmação é uma conta curta. Em I, o diâmetro AC faz os ângulos em B e em D serem retos, e o quadrilátero se divide em dois triângulos retângulos. Em II, cada aresta é lado de duas faces, então a soma dos lados das faces conta cada aresta duas vezes. Em III, cone equilátero é aquele cuja geratriz é igual ao diâmetro da base.",
+    "formulas": [
+     "ângulo inscrito sobre o diâmetro = 90°",
+     "arestas = (soma dos lados de todas as faces)/2",
+     "cone equilátero: g = 2R; área lateral = π · R · g"
+    ],
+    "simbolos": [
+     [
+      "g",
+      "geratriz do cone, segmento do vértice até a borda da base"
+     ],
+     [
+      "R",
+      "raio da base do cone"
+     ],
+     [
+      "S_L",
+      "área lateral do cone"
+     ]
+    ]
+   },
+   "pista": "Em I, olhe o que o diâmetro AC faz com os ângulos em B e em D; em II, lembre que uma aresta é dividida por duas faces.",
+   "passos": [
+    {
+     "faz": "Divida ABCD pela diagonal AC",
+     "conta": "AC = 20 | AB = BC → AB = 20/√2 = 10√2 → área ABC = (10√2 · 10√2)/2 = 100",
+     "porque": "B enxerga o diâmetro, então o ângulo B é reto; com AB = BC o triângulo é retângulo isósceles e o ângulo ACB vale 45°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o triângulo ACD",
+     "conta": "ACD = 75° − 45° = 30° → AD = 20 · sen 30° = 10 | CD = 20 · cos 30° = 10√3 → área = (10 · 10√3)/2 = 50√3",
+     "porque": "O ângulo de 75° em C é o ângulo BCD inteiro; tirando os 45° de ACB, sobram 30° para ACD. D também enxerga o diâmetro, então é reto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e julgue I",
+     "conta": "100 + 50√3 = 50(2 + √3) → I correta",
+     "porque": "A área do quadrilátero é a soma dos dois triângulos, e o resultado coincide com o da afirmação.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conte as arestas em II",
+     "conta": "(12 · 5 + 20 · 6)/2 = (60 + 120)/2 = 180/2 = 90 → II errada",
+     "porque": "Cada aresta é lado de duas faces vizinhas, então somar os lados das faces conta cada aresta duas vezes. São 90 arestas, não 180.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área lateral em III",
+     "conta": "g = 2R = 2√3 → S_L = π · √3 · 2√3 = 6π → III correta",
+     "porque": "No cone equilátero a seção meridiana é um triângulo equilátero de lado 2R, então a geratriz vale 2R.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as corretas",
+     "conta": "I e III corretas → 2 → alternativa C",
+     "porque": "Só a II falha, por contar cada aresta duas vezes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 2 afirmações corretas (I e III)",
+   "checagem": "Em II, confira por Euler: com A = 90 e F = 32, V = 2 + A − F = 60, e cada vértice recebe 3 arestas: 60 · 3/2 = 90 (é o formato da bola de futebol). Com A = 180 daria V = 150 e 150 · 3/2 = 225 ≠ 180, incoerente.",
+   "erradas": {
+    "A": "0 não confere: em I a soma 100 + 50√3 bate com 50(2 + √3), e em III π · √3 · 2√3 = 6π; ao menos duas afirmações são verdadeiras.",
+    "B": "1 não confere: além de III (6π, que confere), a I também é verdadeira; ler os 75° como o ângulo ACD daria ACD de área 50 e total 150, mas o 75° da figura é o ângulo BCD inteiro.",
+    "D": "3 sai de aceitar II somando os lados das faces sem dividir por 2: 12 · 5 + 20 · 6 = 180. Cada aresta foi contada duas vezes; são 90."
+   },
+   "armadilha": "Em II, somar os lados das faces e esquecer que cada aresta pertence a duas faces (180 em vez de 90).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas das três afirmações são corretas.",
+    "chave": "I: 100 + 50√3 = 50(2 + √3); II: (60 + 120)/2 = 90 arestas; III: g = 2R, π · √3 · 2√3 = 6π.",
+    "cuidado": "Arestas = soma dos lados das faces dividida por 2; o 75° é o ângulo BCD inteiro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ângulos centrais",
+    "ideia": "Em I, os arcos AB = BC = 90°, CD = 2 · 60° = 120° e DA = 2 · 30° = 60° dão área = (10²/2)(sen 90° + sen 90° + sen 120° + sen 60°) = 50(2 + √3), I certa; com II errada (90 arestas) e III certa, são 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "AB = 20/√2 = 10√2 → (10√2 · 10√2)/2 = 100",
+    "nota": "triângulo ABC, retângulo isósceles"
+   },
+   {
+    "linha": "75° − 45° = 30° → (10 · 10√3)/2 = 50√3",
+    "nota": "triângulo ACD"
+   },
+   {
+    "linha": "100 + 50√3 = 50(2 + √3)",
+    "nota": "I correta"
+   },
+   {
+    "linha": "(60 + 120)/2 = 90",
+    "nota": "II errada: não são 180"
+   },
+   {
+    "linha": "π · √3 · 2√3 = 6π",
+    "nota": "III correta"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "A diagonal AC divide o quadrilátero; os ângulos retos em B e D acendem; 75° se separa em 45° + 30°; as áreas 100 e 50√3 se somam. Depois, uma aresta aparece compartilhada por duas faces; por fim, o cone equilátero mostra g = 2R."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
  }
 }

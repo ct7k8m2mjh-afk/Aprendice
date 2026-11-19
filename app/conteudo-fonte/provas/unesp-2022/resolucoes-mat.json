@@ -650,5 +650,232 @@
    "data": "2026-11-12",
    "lote": "mat-0039"
   }
+ },
+ "Pa9b678ee": {
+  "n": "89",
+  "conceito": "Montar duas progressões geométricas (likes e dislikes), igualar a razão entre elas a 1/40 e isolar t com logaritmo.",
+  "equivocos": {
+   "A": "M06.5:fator-do-mais-um-errado",
+   "C": "M06.5:base-do-log-errada",
+   "D": "M06.5:base-do-log-errada",
+   "E": "M06.5:base-do-log-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Aumento diário de 10 % é multiplicar por 1,1 a cada dia; de 4,5 %, multiplicar por 1,045. São duas PGs que começam em t = 1, então o expoente é t − 1. Na razão dislikes/likes, as duas razões se juntam em 1,045/1,1 = 0,95, e é por isso que as alternativas têm base 0,95.",
+    "formulas": [
+     "termo de PG: a_t = a_1·q^(t−1)",
+     "q^k = A → k = log_q A",
+     "log_q A + 1 = log_q A + log_q q = log_q (A·q)"
+    ],
+    "simbolos": [
+     [
+      "L(t)",
+      "likes acumulados no dia t"
+     ],
+     [
+      "D(t)",
+      "dislikes acumulados no dia t"
+     ],
+     [
+      "log_0,95",
+      "logaritmo na base 0,95"
+     ]
+    ]
+   },
+   "pista": "Escreva likes e dislikes como PGs com o mesmo expoente t − 1 e veja o que sobra quando você divide uma pela outra.",
+   "passos": [
+    {
+     "faz": "Escreva as duas PGs",
+     "conta": "L(t) = 800·1,1^(t−1) | D(t) = 100·1,045^(t−1)",
+     "porque": "No dia 1 o expoente é zero e sobram os valores iniciais; cada dia seguinte multiplica pelo fator do aumento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a razão e iguale a 1/40",
+     "conta": "D/L = (100/800)·(1,045/1,1)^(t−1) = (1/8)·0,95^(t−1) = 1/40",
+     "porque": "As potências de mesmo expoente se dividem juntando as bases: 1,045/1,1 = 0,95.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a potência",
+     "conta": "(1/8)·0,95^(t−1) = 1/40 → 0,95^(t−1) = 8/40 = 0,2",
+     "porque": "O 1/8 que multiplica passa para o outro lado multiplicando por 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o logaritmo na base 0,95",
+     "conta": "t − 1 = log_0,95 0,2 → t = log_0,95 0,2 + log_0,95 0,95 = log_0,95 (0,2·0,95) = log_0,95 0,19",
+     "porque": "O 1 que soma vira log_0,95 0,95, e soma de logs de mesma base é o log do produto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "t = log_0,95 0,19 ≈ 32,4 → alternativa B",
+     "porque": "É a forma escrita na alternativa B; o valor numérico, perto de 32, é o dia em que a razão chega a 1/40.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — t ≈ log0,95 0,19, o logaritmo de 0,19 na base 0,95",
+   "checagem": "Substitua t = 32: D/L = (1/8)·0,95^31 ≈ 0,0255 e 1/40 = 0,025. A razão no dia 32 está colada em 1/40, como log_0,95 0,19 ≈ 32,4 prevê.",
+   "erradas": {
+    "A": "log_0,95 0,12 não confere: se t valesse isso, 0,95^(t−1) = 0,12/0,95 ≈ 0,126, e não 0,2; a razão D/L ficaria perto de 0,016, abaixo de 1/40.",
+    "C": "log_0,05 0,19 não confere: a base 0,05 não é a razão 1,045/1,1 = 0,95 entre os fatores diários, e esse log vale cerca de 0,55, menor que o dia inicial t = 1.",
+    "D": "log_1,05 1,9 não confere: vale cerca de 13,2, e no dia 13 a razão é (1/8)·0,95^12 ≈ 0,068, longe de 1/40 = 0,025.",
+    "E": "log_0,05 0,12 não confere: a base 0,05 não é a razão entre os fatores diários (0,95), e esse log vale cerca de 0,71, antes do dia inicial t = 1."
+   },
+   "armadilha": "O expoente é t − 1, porque t = 1 é o dia inicial: o +1 que sobra entra no logaritmo como o fator 0,95 (0,2·0,95 = 0,19).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O dia t em que dislikes/likes ≈ 1/40.",
+    "chave": "(1/8)·0,95^(t−1) = 1/40 → 0,95^(t−1) = 0,2 → t = log_0,95 0,19.",
+    "cuidado": "Use t − 1 no expoente e junte as bases dividindo: 1,045/1,1 = 0,95."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "estimar e testar",
+    "ideia": "log_0,95 0,19 = ln 0,19 ÷ ln 0,95 ≈ 32,4; teste t = 32 na razão e veja 0,0255 ≈ 1/40."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "D/L = (100·1,045^(t−1))/(800·1,1^(t−1))",
+    "nota": "razão das duas PGs"
+   },
+   {
+    "linha": "D/L = (1/8)·0,95^(t−1) = 1/40",
+    "nota": "bases divididas: 1,045/1,1 = 0,95"
+   },
+   {
+    "linha": "0,95^(t−1) = 8/40 = 0,2",
+    "nota": "o 1/8 passa multiplicando por 8"
+   },
+   {
+    "linha": "t − 1 = log_0,95 0,2",
+    "nota": "definição de logaritmo"
+   },
+   {
+    "linha": "t = log_0,95 (0,2·0,95) = log_0,95 0,19",
+    "nota": "o 1 vira log_0,95 0,95"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
+ },
+ "P26674878": {
+  "n": "86",
+  "conceito": "Ler a amplitude da função h = 20 + 10cos(πt) como o raio da volta do pedal e achar o comprimento do eixo PQ.",
+  "equivocos": {
+   "A": "M10.5:nao-leu-a-amplitude",
+   "B": "M10.5:nao-leu-a-amplitude",
+   "D": "M10.5:nao-leu-a-amplitude",
+   "E": "M10.5:nao-leu-a-amplitude"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O ponto Q gira em torno do centro da coroa, e a altura dele sobe e desce entre um máximo e um mínimo. A distância entre a posição mais alta e a mais baixa de Q é o diâmetro da volta, e o eixo PQ atravessa o centro de uma ponta à outra dessa volta. Então PQ é a altura máxima menos a mínima.",
+    "formulas": [
+     "−1 ≤ cos(πt) ≤ 1",
+     "h máx − h mín = 2 · amplitude = comprimento de PQ"
+    ],
+    "simbolos": [
+     [
+      "h",
+      "altura do ponto Q ao chão, em cm"
+     ],
+     [
+      "t",
+      "tempo, em segundos"
+     ],
+     [
+      "amplitude",
+      "quanto a altura sobe ou desce em relação ao valor do meio (aqui, o 10)"
+     ]
+    ]
+   },
+   "pista": "Qual é a maior e qual é a menor altura que Q atinge? O cosseno só varia entre −1 e 1.",
+   "passos": [
+    {
+     "faz": "Ache a altura máxima de Q",
+     "conta": "cos(πt) = 1 → h = 20 + 10 · 1 = 30",
+     "porque": "Em t = 0, segundo o enunciado, Q está no ponto mais distante do chão, e cos 0 = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a altura mínima de Q",
+     "conta": "cos(πt) = −1 → h = 20 + 10 · (−1) = 10",
+     "porque": "Meia volta depois, Q está no ponto mais baixo, e o cosseno chega a −1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue a variação ao eixo PQ",
+     "conta": "PQ = 30 − 10 = 20",
+     "porque": "PQ passa pelo centro da coroa e suas pontas descrevem a mesma volta: da posição mais alta à mais baixa, Q percorre na vertical exatamente um comprimento de PQ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "PQ = 20 cm → alternativa C",
+     "porque": "A pergunta pede o comprimento do eixo inteiro, e não a amplitude de 10 cm.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 20 cm",
+   "checagem": "A amplitude 10 é o raio da volta de Q (distância de Q ao centro da coroa). O eixo PQ vai de um pedal ao outro passando pelo centro, então mede dois raios: 2 · 10 = 20 cm.",
+   "erradas": {
+    "A": "21 cm não confere: com esse eixo, a altura de Q oscilaria entre 20 − 10,5 = 9,5 cm e 20 + 10,5 = 30,5 cm; a função dá 10 cm e 30 cm.",
+    "B": "18 cm não confere: com esse eixo, a altura de Q oscilaria entre 11 cm e 29 cm, e a função dá 10 cm e 30 cm.",
+    "D": "15 cm não confere: com esse eixo, a altura de Q oscilaria entre 12,5 cm e 27,5 cm, e a função dá 10 cm e 30 cm.",
+    "E": "12 cm não confere: com esse eixo, a altura de Q oscilaria entre 14 cm e 26 cm, e a função dá 10 cm e 30 cm."
+   },
+   "armadilha": "A amplitude 10 da função é só a metade do eixo; o comprimento de PQ é a distância entre a altura máxima e a mínima.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O comprimento do eixo PQ dos pedais.",
+    "chave": "Q varia de 10 cm a 30 cm de altura; PQ = 30 − 10 = 20 cm, o dobro da amplitude.",
+    "cuidado": "Não pare na amplitude: o eixo inteiro tem dois raios."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "amplitude",
+    "ideia": "A amplitude 10 é o raio da volta do pedal; o eixo PQ é o diâmetro, 2 · 10 = 20 cm."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "h máx = 20 + 10 · 1 = 30",
+    "nota": "cosseno igual a 1"
+   },
+   {
+    "linha": "h mín = 20 + 10 · (−1) = 10",
+    "nota": "cosseno igual a −1"
+   },
+   {
+    "linha": "PQ = 30 − 10 = 20",
+    "nota": "diferença = dois raios"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
  }
 }

@@ -351,5 +351,101 @@
    "data": "2026-11-12",
    "lote": "mat-0038"
   }
+ },
+ "Pcd72c3c6": {
+  "n": "2",
+  "conceito": "Somar a PG 1 + 2 + 4 + ... das 64 casas do tabuleiro.",
+  "equivocos": {
+   "A": "M07.3:ultimo-termo-no-lugar-da-soma",
+   "B": "M07.3:numero-de-termos-errado",
+   "C": "M07.3:numero-de-termos-errado",
+   "E": "M07.3:formula-da-soma-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada casa recebe o dobro da anterior: 1, 2, 4, ..., uma PG de razão 2. A casa 64 recebe 2^63 grãos, mas a pergunta é o total, a soma das 64 casas. A soma de 1 + 2 + ... + 2^(n−1) é 2^n − 1.",
+    "formulas": [
+     "casa n recebe 2^(n−1) grãos",
+     "soma da PG: S_n = a1·(q^n − 1)/(q − 1)"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes a razão"
+     ],
+     [
+      "q",
+      "razão da PG, aqui 2"
+     ]
+    ]
+   },
+   "pista": "Separe o que vai na última casa do total de todas as casas.",
+   "passos": [
+    {
+     "faz": "Identifique a PG",
+     "conta": "1, 2, 4, ... → a1 = 1 | q = 2 | n = 64",
+     "porque": "Vai dobrando de casa em casa, começando com 1 grão.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique a soma da PG",
+     "conta": "S_64 = 1·(2^64 − 1)/(2 − 1) = 2^64 − 1",
+     "porque": "O denominador q − 1 = 1 some e fica só 2^64 − 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "total = 2^64 − 1 → alternativa D",
+     "porque": "É o total pedido; bate com o número do título citado, 18.446.744.073.709.551.615.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 2^64 − 1 grãos",
+   "checagem": "Veja o padrão em casas poucas: 1 = 2 − 1; 1 + 2 = 3 = 2² − 1; 1 + 2 + 4 = 7 = 2³ − 1. O total de n casas é sempre 2^n − 1, e para 64 casas é 2^64 − 1 = 18.446.744.073.709.551.615, o número do título do texto.",
+   "erradas": {
+    "A": "2^63 sai de responder só a casa 64: 2^(64−1) = 2^63 é o que vai na última casa, não o total das 64.",
+    "B": "2^7 − 1 = 127 é a soma de só 7 casas (1 + 2 + ... + 64), não das 64.",
+    "C": "2^5 + 1 = 33 não confere: só a casa 7 já recebe 2^6 = 64 grãos, mais que 33.",
+    "E": "2^5·(2^63 + 1) não confere: dá 2^68 + 32, maior que 2^64; e a soma de 64 casas dobrando a partir de 1 é 2^64 − 1."
+   },
+   "armadilha": "2^63 é o que vai na casa 64; o total pedido soma todas as casas e dá 2^64 − 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A expressão do total de grãos nas 64 casas.",
+    "chave": "PG 1, 2, 4, ... de razão 2; S_64 = 2^64 − 1.",
+    "cuidado": "Não confunda o último termo (2^63) com a soma."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "padrão",
+    "ideia": "1 = 2¹ − 1, 1 + 2 = 2² − 1, 1 + 2 + 4 = 2³ − 1: com 64 casas, 2^64 − 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a1 = 1 ; q = 2 ; n = 64",
+    "nota": "dados da PG"
+   },
+   {
+    "linha": "S_64 = 1·(2^64 − 1)/(2 − 1)",
+    "nota": "fórmula da soma"
+   },
+   {
+    "linha": "S_64 = (2^64 − 1)/1 = 2^64 − 1",
+    "nota": "o denominador vale 1"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
  }
 }

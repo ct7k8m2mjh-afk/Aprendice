@@ -446,5 +446,125 @@
    "data": "2026-11-19",
    "lote": "mat-0074"
   }
+ },
+ "P0d79e2a5": {
+  "n": "24",
+  "conceito": "Julgar quatro afirmações: domínio de logaritmo com base variável, mínimo de expressão trigonométrica, união de conjuntos das partes e soma dos inversos das raízes.",
+  "equivocos": {
+   "A": "M06.3:esqueceu-base-diferente-de-1",
+   "B": "M06.3:nao-usou-sen2-mais-cos2",
+   "D": "M06.3:soma-dos-inversos-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Teste cada alternativa e marque a única verdadeira. No log com base variável, a base tem de ser positiva e diferente de 1, e o logaritmando positivo. Em P(A) ∪ P(B), lembre que o conjunto vazio é subconjunto dos dois.",
+    "formulas": [
+     "log_b a existe se a > 0, b > 0 e b ≠ 1",
+     "sen² x + cos² x = 1",
+     "n(P(X)) = 2^n(X)",
+     "1/x1 + 1/x2 = (x1 + x2)/(x1 · x2)"
+    ],
+    "simbolos": [
+     [
+      "P(A)",
+      "conjunto das partes de A: todos os subconjuntos de A"
+     ],
+     [
+      "n(X)",
+      "número de elementos de X"
+     ],
+     [
+      "disjuntos",
+      "sem elemento em comum"
+     ],
+     [
+      "]2, 3[",
+      "intervalo aberto de 2 a 3"
+     ]
+    ]
+   },
+   "pista": "Em C, pergunte que subconjunto está ao mesmo tempo em P(A) e em P(B).",
+   "passos": [
+    {
+     "faz": "Teste o domínio em A",
+     "conta": "2x − 4 > 0 → x > 2 | 2x − 4 ≠ 1 → x ≠ 5/2 | −x² + 2x + 3 > 0 → −1 < x < 3 → D = ]2, 3[ − {5/2}",
+     "porque": "A base não pode valer 1, e 2x − 4 = 1 em x = 5/2, que está dentro de ]2, 3[. A é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Simplifique f em B",
+     "conta": "3cos² x + 5sen² x + 2 = 3(cos² x + sen² x) + 2sen² x + 2 = 5 + 2sen² x → mínimo 5",
+     "porque": "O menor valor de sen² x é 0, então o mínimo de f é 5, não 3. B é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conte P(A) ∪ P(B) em C",
+     "conta": "n(P(A)) + n(P(B)) − n(P(A) ∩ P(B)) = 2^6 + 2^8 − 1 = 64 + 256 − 1 = 319",
+     "porque": "Como A e B são disjuntos, o único subconjunto comum é o vazio, contado uma vez só. C é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a soma dos inversos em D",
+     "conta": "1/x1 + 1/x2 = (x1 + x2)/(x1 · x2) = 8/4 = 2",
+     "porque": "Por soma e produto, x1 + x2 = 8 e x1 · x2 = 4. Dá 2, não 4. D é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Marque a verdadeira",
+     "conta": "A, B e D falsas | C verdadeira → alternativa C",
+     "porque": "A questão pede a afirmação correta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — com A e B disjuntos, n(A) = 6 e n(B) = 8, n[P(A) ∪ P(B)] = 319",
+   "checagem": "Em C, conte por complemento: P(A) tem 63 subconjuntos não vazios e P(B) tem 255; nenhum não vazio é comum (A e B são disjuntos). Junte o vazio uma vez: 63 + 255 + 1 = 319.",
+   "erradas": {
+    "A": "A é falsa porque esquece a base diferente de 1: em x = 5/2 a base 2x − 4 vale 1, e o domínio é ]2, 3[ sem o 5/2.",
+    "B": "B é falsa: f = 5 + 2sen² x, com mínimo 5 (em sen x = 0). O 3 é só o coeficiente do cos² x.",
+    "D": "D é falsa: (x1 + x2)/(x1 · x2) = 8/4 = 2; o 4 sai de usar só o produto das raízes, x1 · x2 = 4."
+   },
+   "armadilha": "Em A, o domínio parece ]2, 3[, mas a base do logaritmo não pode valer 1, o que tira o x = 5/2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A única afirmação correta.",
+    "chave": "2^6 + 2^8 − 1 = 319, porque o vazio é comum a P(A) e P(B).",
+    "cuidado": "No domínio do log, a base tem de ser diferente de 1, além de positiva."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complemento",
+    "ideia": "63 não vazios de A + 255 não vazios de B + o vazio = 319"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2x − 4 = 1 → x = 5/2 ∈ ]2, 3[",
+    "nota": "A: falta tirar o 5/2"
+   },
+   {
+    "linha": "f = 5 + 2sen² x → mín = 5",
+    "nota": "B: falsa"
+   },
+   {
+    "linha": "2^6 + 2^8 − 1 = 64 + 256 − 1 = 319",
+    "nota": "C: verdadeira"
+   },
+   {
+    "linha": "(x1 + x2)/(x1 · x2) = 8/4 = 2",
+    "nota": "D: falsa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
  }
 }

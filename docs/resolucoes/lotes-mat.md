@@ -1,6 +1,6 @@
 # Matemática (parte 1): resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 258 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 64; demais nível 7-10 194.
+Faltam 208 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 14; demais nível 7-10 194.
 
 ## Lotes
 
@@ -80,12 +80,14 @@ Faltam 258 questões sem resolução (fora as que estão em lote, pendentes ou c
 | mat-0072 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
 | mat-0073 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
 | mat-0074 | ENEM nível 7-10 | 50 | gravado | 49 | 1 | 0 |
-| mat-0075 | provas-alvo nível 7-10 | 50 | aberto |  |  |  |
+| mat-0075 | provas-alvo nível 7-10 | 50 | gravado | 49 | 1 | 0 |
+| mat-0076 | provas-alvo nível 7-10 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| P6fc4c995 | Acafe 2021 Inverno · questão 26 | M09.3 semelhança de triângulos (tema M09 Geometria plana — relações) | anular: dados incompatíveis. Com AB/AG = 5/4, HG = 32/5 e as tangentes (BD = 2, AC = 20) saem BC = 8, AB = 16, AC = 20; mas a reta pelo incentro paralela a BC corta os lados na razão 1 − r/h = 1 − BC/(AB + BC + CA) = 1 − 8/44 = 9/11, não 4/5. O triângulo descrito não existe; o caminho da banca (semelhança + tangentes) dá FH = 6 − 4 = 2 (letra A) ignorando o incentro, e outros subconjuntos dos dados dão FH ≈ 2,24 ou 2,8. Coordenadora decide entre anular e resolver com alerta. Texto da entrada: alternativa C é 3/2 cm no print. |
 | Pa9476dac | FCM-MG 2021 2º semestre · questão 47 | M14.1 média, mediana e moda (tema M14 Estatística) | anular: nenhuma alternativa é correta. Valores do gráfico: 93, 131, 115, 57, 97, 50, 59, 92, 272, 558, 324, 329, 200, 119 (14 semanas). A (oficial): média das 4 primeiras = 396/4 = 99 e das 4 seguintes = 298/4 = 74,5; 99/74,5 = 1,329, ou seja, 33% maior (25% é quanto a segunda é MENOR que a primeira: 24,5/99 = 24,7%). B: mediana = (115 + 119)/2 = 117, não 76, e não há moda (nenhum valor se repete). C: mesma mediana 117 e moda inexistente. D: média = 2496/14 = 178,3, não 200, e não há moda. Busca na web sem errata nem resolução publicada. |
 | Pc99e3797 | ITA 2025 1ª fase · questão 3 | M13.9 combinatória e probabilidade — outros casos (tema M13 Combinatória e probabilidade) | print: os expoentes do enunciado foram cortados no topo do print (aparece só (x + 1/x)(x − 2/x)); no PDF oficial a expressão é (x + 1/x)⁶ (x − 2/x)⁵. Refazer o print do PDF oficial (vestibular.ita.br/provas/2025_fase1.pdf, questão 3). |
 | P528013c1 | PUCPR 2024 Medicina 2024/2 · questão 36 | M16.1 polinômios e relações de Girard (tema M16 Polinômios e complexos) | print: o recorte corta a 1ª equação do sistema (1/x + 1/y + 1/z = 2) e o topo da 2ª; no PDF oficial (pág. 18) o sistema tem 3 equações. Refazer o print do PDF oficial; com o PDF, a conta confere com o gabarito B (m = 1, n = 0: 1/x = 17/7, 1/y = −1/7, 1/z = −2/7, x + y + z = −343/34; det = 0 só em m = 9/2). |

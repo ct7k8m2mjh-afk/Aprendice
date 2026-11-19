@@ -834,5 +834,239 @@
    "data": "2026-11-12",
    "lote": "mat-0038"
   }
+ },
+ "P5905688f": {
+  "n": "72",
+  "conceito": "Combinar uma PA e uma PG que compartilham termos, achar a razão e somar os seis termos da PA.",
+  "equivocos": {
+   "A": "M07.2:termo-medio-inexistente",
+   "B": "M07.2:somou-a-pg",
+   "D": "M07.2:razao-errada",
+   "E": "M07.2:incluiu-termo-de-fora"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escreva tudo em função de r a partir do termo conhecido, 9 = a3: a2 = 9 − r e a4 = 9 + r. Na PG a2, a4, 24, o termo do meio ao quadrado é o produto dos vizinhos. Isso dá uma equação em r; a condição r = q + 1 escolhe a raiz certa. A PA tem só seis termos: o 24 não é dela.",
+    "formulas": [
+     "PA: a_n = a_3 + (n − 3)·r",
+     "PG de três termos x, y, z: y² = x·z",
+     "soma da PA: S = (a1 + a6)·6/2"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "razão da PA (o que se soma de um termo ao próximo)"
+     ],
+     [
+      "q",
+      "razão da PG (o que se multiplica de um termo ao próximo)"
+     ]
+    ]
+   },
+   "pista": "Escreva a2 e a4 usando o 9 e a razão r da PA.",
+   "passos": [
+    {
+     "faz": "Escreva os termos em função de r",
+     "conta": "a2 = 9 − r | a4 = 9 + r",
+     "porque": "Na PA, um passo para trás tira r e um passo para frente soma r.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use a propriedade da PG",
+     "conta": "(9 + r)² = 24·(9 − r) → r² + 18r + 81 = 216 − 24r → r² + 42r − 135 = 0",
+     "porque": "Em a2, a4, 24, o termo do meio ao quadrado é o produto dos extremos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva e teste r = q + 1",
+     "conta": "r = 3 ou r = −45 | r = 3: 6, 12, 24 → q = 2 → q + 1 = 3 (serve) | r = −45: q = −2/3 → q + 1 = 1/3 ≠ −45",
+     "porque": "As duas raízes formam PG, mas só r = 3 cumpre a condição r = q + 1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Monte a PA e some",
+     "conta": "3, 6, 9, 12, 15, 18 → S = (3 + 18)·6/2 = 63",
+     "porque": "Com r = 3, a1 = 9 − 2·3 = 3 e a6 = 9 + 3·3 = 18.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "S = 63 → alternativa C",
+     "porque": "A pergunta é a soma dos termos da PA, os seis primeiros; o 24 fica de fora.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 63",
+   "checagem": "Confira a sequência inteira: 3, 6, 9, 12, 15, 18 sobe de 3 em 3 (PA de razão 3), e 6, 12, 24 dobra (PG de razão 2), com 3 = 2 + 1. Tudo fecha.",
+   "erradas": {
+    "A": "54 sai de tomar 9 como termo médio da PA: 6 × 9 = 54. Com seis termos não há termo central; a média é (3 + 18)/2 = 10,5, e 6 × 10,5 = 63.",
+    "B": "42 sai de somar a PG em vez da PA: 6 + 12 + 24 = 42.",
+    "D": "75 não confere: a soma da PA é 54 + 3r, e 75 exigiria r = 7, com a2 = 2 e a4 = 16; 16/2 = 8 e 24/16 = 3/2 não formam PG.",
+    "E": "87 sai de incluir o 24 na soma: 63 + 24 = 87. O 24 é da PG, não é termo da PA."
+   },
+   "armadilha": "A PA tem só seis termos (a1 a a6): o 24 entra só na PG, e a condição r = q + 1 é o que descarta a raiz r = −45.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos seis termos da PA.",
+    "chave": "(9 + r)² = 24(9 − r) → r = 3 (q = 2); PA 3, ..., 18 com soma 63.",
+    "cuidado": "Teste r = q + 1 nas duas raízes e não some o 24."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar a condição primeiro",
+    "ideia": "Com r = q + 1 e a4 = a2·q: 9 + r = (9 − r)(r − 1) dá r = 3 ou 6; só r = 3 faz 12·2 = 24."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a2 = 9 − r ; a4 = 9 + r",
+    "nota": "termos em função de r"
+   },
+   {
+    "linha": "(9 + r)² = 24·(9 − r)",
+    "nota": "PG: meio² = extremos"
+   },
+   {
+    "linha": "r² + 42r − 135 = 0 → r = 3 ou r = −45",
+    "nota": "o 216 − 24r passa para a esquerda"
+   },
+   {
+    "linha": "r = 3 → q = 12/6 = 2 → r = q + 1 vale",
+    "nota": "condição dada"
+   },
+   {
+    "linha": "S = (3 + 18)·6/2 = 63",
+    "nota": "soma da PA"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
+ },
+ "Pea300408": {
+  "n": "79",
+  "conceito": "Usar sen α para achar a tangente, localizar F e E por triângulos semelhantes e calcular a área de AEF por subtração do retângulo.",
+  "equivocos": {
+   "B": "M10.1:tomou-metade-do-retangulo",
+   "C": "M10.1:trocou-ce-por-de",
+   "D": "M10.1:esqueceu-um-triangulo-na-subtracao",
+   "E": "M10.1:pos-e-no-vertice-c"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com o seno de α você descobre a tangente, e a tangente dá onde F cai no lado BC. O ângulo reto em F faz o triângulo FCE ter o mesmo ângulo α em F, o que localiza E. Com os pontos no lugar, a área de AEF sai do retângulo menos os três triângulos retângulos dos cantos.",
+    "formulas": [
+     "sen² α + cos² α = 1",
+     "tg α = sen α / cos α",
+     "área do triângulo retângulo = (cateto · cateto)/2"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "ângulo BÂF, entre o lado AB e o segmento AF"
+     ],
+     [
+      "tg",
+      "tangente: cateto oposto dividido pelo cateto adjacente"
+     ],
+     [
+      "√10",
+      "raiz quadrada de 10"
+     ]
+    ]
+   },
+   "pista": "Transforme o seno em tangente: no triângulo ABF, a tangente de α liga BF ao lado AB, que você conhece.",
+   "passos": [
+    {
+     "faz": "Ache cos α e tg α",
+     "conta": "sen α = √10/10 → cos α = (3√10)/10 → tg α = 1/3",
+     "porque": "cos² α = 1 − 10/100 = 90/100, e √90 = 3√10. Dividindo seno por cosseno, os √10/10 se cancelam e sobra 1/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Localize F no lado BC",
+     "conta": "tg α = BF/AB → BF = 30 · 1/3 = 10 → CF = 40 − 10 = 30",
+     "porque": "No triângulo ABF, retângulo em B, BF é o cateto oposto a α e AB = 30 cm é o adjacente. O lado BC mede 40 cm, então sobram 30 cm até C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Localize E no lado CD",
+     "conta": "ângulo CFE = α → CE = CF · 1/3 = 30 · 1/3 = 10 → DE = 30 − 10 = 20",
+     "porque": "Em F, os ângulos AFB, AFE (reto) e EFC somam 180°; como AFB = 90° − α, sobra α para EFC. No triângulo FCE, retângulo em C, CE é oposto a esse ângulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia os três cantos do retângulo",
+     "conta": "40 · 30 − (30 · 10)/2 − (30 · 10)/2 − (40 · 20)/2 = 1200 − 150 − 150 − 400 = 500",
+     "porque": "O retângulo fica dividido em AEF e nos triângulos ABF, FCE e ADE, todos retângulos, cuja área é metade do produto dos catetos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue a área à alternativa",
+     "conta": "área de AEF = 500 cm² → alternativa A",
+     "porque": "A pergunta pede a área do triângulo destacado, AEF, que é o que sobrou do retângulo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 500 cm²",
+   "checagem": "Calcule direto pelos catetos de AEF, que é retângulo em F: AF = √(30² + 10²) = √1000 e FE = √(30² + 10²) = √1000. Área = (√1000 · √1000)/2 = 1000/2 = 500 cm². Fecha.",
+   "erradas": {
+    "B": "600 não confere: é metade do retângulo de 1200 cm², o que só valeria com E em D (CE = 30); pela tangente, CE = 10.",
+    "C": "550 sai de trocar CE por DE: com DE = 10 e CE = 20, fica 1200 − 150 − (30 · 20)/2 − (40 · 10)/2 = 1200 − 150 − 300 − 200 = 550.",
+    "D": "650 sai de esquecer o triângulo FCE na subtração: 1200 − 150 − 400 = 650.",
+    "E": "450 sai de pôr E no vértice C: o triângulo AFC tem área (30 · 30)/2 = 450. Mas E fica 10 cm acima de C."
+   },
+   "armadilha": "O ângulo α reaparece em F, no triângulo FCE, por causa do ângulo reto em F; sem enxergar isso não se acha a posição de E.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do triângulo AEF dentro do retângulo de 40 cm por 30 cm.",
+    "chave": "tg α = 1/3 dá BF = 10 e CE = 10; área = 1200 − 150 − 150 − 400 = 500 cm².",
+    "cuidado": "Transforme o seno em tangente e confira que o ângulo em F do triângulo FCE também é α."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "catetos de AEF",
+    "ideia": "AEF é retângulo em F com AF = FE = √1000, então a área é 1000/2 = 500 cm²."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "cos α = (3√10)/10 → tg α = 1/3",
+    "nota": "do seno à tangente"
+   },
+   {
+    "linha": "BF = 30 · 1/3 = 10 → CF = 30",
+    "nota": "onde F cai em BC"
+   },
+   {
+    "linha": "CE = 30 · 1/3 = 10 → DE = 20",
+    "nota": "onde E cai em CD"
+   },
+   {
+    "linha": "1200 − 150 − 150 − 400 = 500",
+    "nota": "retângulo menos os três cantos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
  }
 }

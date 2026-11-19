@@ -978,5 +978,107 @@
    "data": "2026-11-12",
    "lote": "mat-0038"
   }
+ },
+ "Pccab24d6": {
+  "n": "21",
+  "conceito": "Somar 3 ao expoente de uma exponencial de base 4 multiplica o valor por 4³ = 64.",
+  "equivocos": {
+   "A": "M06.2:elevou-o-resultado-ao-cubo",
+   "C": "M06.2:fator-errado-no-expoente",
+   "D": "M06.2:fator-errado-no-expoente",
+   "E": "M06.2:somou-3-ao-resultado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Não é preciso achar k nem p. Somar 3 a p soma 3 ao expoente, e somar no expoente é multiplicar a potência: 4^(a + 3) = 4^a · 4³. Então o novo f(5) é o antigo vezes 64.",
+    "formulas": [
+     "f(x) = k · 4^(x + p)",
+     "4^(a + 3) = 4^a · 4³"
+    ],
+    "simbolos": [
+     [
+      "k, p",
+      "constantes positivas da curva; p é o que foi corrigido"
+     ],
+     [
+      "4³",
+      "4 · 4 · 4 = 64"
+     ]
+    ]
+   },
+   "pista": "Escreva o f(5) novo com p + 3 e compare com o f(5) antigo, sem tentar descobrir k e p.",
+   "passos": [
+    {
+     "faz": "Escreva o f(5) errado",
+     "conta": "f(5) = k · 4^(5 + p) = 15",
+     "porque": "É o valor que o software mostrou antes da correção.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva o f(5) corrigido",
+     "conta": "p → p + 3 → f(5) = k · 4^(5 + p + 3) = k · 4^(5 + p) · 4³",
+     "porque": "Somar no expoente é multiplicar potências de mesma base, então o 4³ sai como fator separado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua o valor conhecido",
+     "conta": "f(5) = 15 · 4³ = 15 · 64 = 960",
+     "porque": "O bloco k · 4^(5 + p) vale 15, que o software já tinha mostrado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "f(5) real = 960 → alternativa B",
+     "porque": "A pergunta é o valor de f(5) depois da correção.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 960",
+   "checagem": "Conte de outro jeito: cada unidade somada a p multiplica f por 4. Três unidades: 15 → 60 → 240 → 960.",
+   "erradas": {
+    "A": "3 375 sai de elevar 15 ao cubo, 15³ = 3 375, como se somar 3 no expoente fosse elevar o resultado a 3; o certo é multiplicar por 4³.",
+    "C": "750 não confere: 750 ÷ 15 = 50, e o fator teria de ser uma potência de 4 (somar 3 a p dá 4³ = 64).",
+    "D": "35 não confere: 35 ÷ 15 ≈ 2,33, que não é potência de 4; o fator certo é 64.",
+    "E": "18 sai de somar 3 ao resultado, 15 + 3 = 18, mas o 3 foi somado ao expoente, não ao valor de f."
+   },
+   "armadilha": "O 3 é somado ao expoente, e isso multiplica o valor por 4³ = 64; não soma 3 nem eleva ao cubo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de f(5) depois de somar 3 a p.",
+    "chave": "k · 4^(5 + p + 3) = 15 · 4³ = 960.",
+    "cuidado": "Soma no expoente vira produto: 4^(a + 3) = 4^a · 64."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "um passo de cada vez",
+    "ideia": "cada +1 em p multiplica por 4: 15 → 60 → 240 → 960"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "k · 4^(5 + p) = 15",
+    "nota": "valor antes da correção"
+   },
+   {
+    "linha": "k · 4^(5 + p + 3) = k · 4^(5 + p) · 4³",
+    "nota": "p vira p + 3"
+   },
+   {
+    "linha": "15 · 64 = 960",
+    "nota": "valor corrigido"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
  }
 }

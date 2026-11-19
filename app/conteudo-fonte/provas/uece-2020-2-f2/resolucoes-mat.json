@@ -1323,5 +1323,229 @@
    "data": "2026-11-12",
    "lote": "mat-0042"
   }
+ },
+ "P6c880bed": {
+  "n": "51",
+  "conceito": "Produto telescópico que dá 1/100 e logaritmo na base 0,1.",
+  "equivocos": {
+   "A": "M06.3:expoente-errado",
+   "C": "M06.3:produto-telescopico-errado",
+   "D": "M06.3:expoente-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escreva cada fator como fração: 1 − 1/n = (n − 1)/n. No produto, o denominador de cada fator cancela com o numerador do seguinte, e sobra só 1/100. Depois, log na base 0,1 = 1/10 pergunta a que expoente 1/10 vira 1/100.",
+    "formulas": [
+     "xn = 1 − 1/n = (n − 1)/n",
+     "log_a y = k ⇔ a^k = y"
+    ],
+    "simbolos": [
+     [
+      "xn",
+      "n-ésimo termo: 1 − 1/n"
+     ],
+     [
+      "yn",
+      "produto x2 · x3 · ... · xn"
+     ],
+     [
+      "log_a",
+      "logaritmo na base a"
+     ]
+    ]
+   },
+   "pista": "Escreva os três primeiros fatores como frações e veja o que se cancela.",
+   "passos": [
+    {
+     "faz": "Reescreva cada fator",
+     "conta": "xn = 1 − 1/n = (n − 1)/n → x2 = 1/2 | x3 = 2/3 | x4 = 3/4",
+     "porque": "Com os fatores em fração, aparece o padrão: o numerador de cada um é o denominador do anterior.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique cancelando",
+     "conta": "y100 = (1/2) · (2/3) · (3/4) · ... · (99/100) = 1/100",
+     "porque": "O 2 de baixo cancela com o 2 de cima, o 3 com o 3, até o 99. Sobra o 1 do primeiro numerador e o 100 do último denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o logaritmo",
+     "conta": "log_0,1 (1/100) = k → (1/10)^k = 1/100 → k = 2",
+     "porque": "1/100 = (1/10)², então o expoente é 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "log_a y100 = 2 → alternativa B",
+     "porque": "É o valor do logaritmo pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 2",
+   "checagem": "Confira o padrão com poucos fatores: y4 = (1/2)(2/3)(3/4) = 1/4, ou seja, yn = 1/n. Então y100 = 1/100, e 0,1² = 0,01. Fecha.",
+   "erradas": {
+    "A": "10 não confere: 0,1^10 = 10^−10, e y100 vale 1/100 = 10^−2.",
+    "C": "1 não confere: 0,1¹ = 0,1 = 1/10, e y100 vale 1/100.",
+    "D": "5 não confere: 0,1^5 = 10^−5, e y100 vale 10^−2."
+   },
+   "armadilha": "O produto não tem de ser calculado fator por fator: tudo se cancela e sobra 1/100.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O logaritmo de y100 na base 0,1.",
+    "chave": "Produto telescópico: yn = 1/n, logo y100 = 1/100 = (0,1)².",
+    "cuidado": "Escreva 1 − 1/n como (n − 1)/n para ver o cancelamento."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "propriedade do log",
+    "ideia": "log_0,1 y100 = soma de log_0,1 ((n − 1)/n) = log_0,1 1 − log_0,1 100 = 0 − (−2) = 2"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 − 1/n = (n − 1)/n",
+    "nota": "cada fator em fração"
+   },
+   {
+    "linha": "(1/2) · (2/3) · ... · (99/100) = 1/100",
+    "nota": "cancelamento em cadeia"
+   },
+   {
+    "linha": "(1/10)^k = 1/100 → k = 2",
+    "nota": "definição de log"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
+ },
+ "P64148e25": {
+  "n": "58",
+  "conceito": "Descobrir a hora que o relógio atrasado marca depois de 3 dias e calcular o menor ângulo entre os ponteiros nessa hora.",
+  "equivocos": {
+   "A": "M09.5:errou-o-atraso-acumulado",
+   "C": "M09.5:deu-o-angulo-maior-que-180",
+   "D": "M09.5:errou-a-posicao-dos-ponteiros"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A questão tem duas partes: primeiro descobrir que hora o relógio marca depois de três dias de atraso; depois medir o ângulo entre os ponteiros nessa hora. O ponteiro das horas não fica parado no número: ele anda 0,5° a cada minuto. E o pedido é o MENOR ângulo, que nunca passa de 180°.",
+    "formulas": [
+     "atraso total = 30 s por hora × número de horas",
+     "ponteiro dos minutos: 6° por minuto",
+     "ponteiro das horas: 30° por hora + 0,5° por minuto",
+     "menor ângulo = 360° − ângulo, se o ângulo passar de 180°"
+    ],
+    "simbolos": [
+     [
+      "°",
+      "grau; a volta inteira do mostrador tem 360°"
+     ],
+     [
+      "s",
+      "segundo"
+     ],
+     [
+      "min",
+      "minuto"
+     ]
+    ]
+   },
+   "pista": "Conte quantas horas há em três dias e transforme o atraso acumulado em minutos antes de pensar nos ponteiros.",
+   "passos": [
+    {
+     "faz": "Calcule o atraso acumulado",
+     "conta": "3 · 24 h = 72 h → 72 · 30 s = 2160 s → 2160/60 = 36 min",
+     "porque": "Três dias depois, às 12 h reais, passaram 72 horas. Cada hora tira 30 segundos do relógio, e 2160 segundos são 36 minutos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descubra a hora que o relógio marca",
+     "conta": "12 h 00 − 36 min = 11 h 24",
+     "porque": "Relógio que atrasa fica para trás da hora certa: quando são 12 h, ele ainda mostra 11 h 24.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Posicione os dois ponteiros a partir do 12",
+     "conta": "horas: 11 · 30° + 24 · 0,5° = 342° | minutos: 24 · 6° = 144°",
+     "porque": "O ponteiro dos minutos anda 360° em 60 min, 6° por minuto. O das horas anda 30° por hora e, dentro da hora, 30/60 = 0,5° por minuto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o ângulo entre eles",
+     "conta": "342° − 144° = 198° → 360° − 198° = 162°",
+     "porque": "198° passa de 180°, então é o ângulo maior; o menor é o que completa a volta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "menor ângulo = 162° → alternativa B",
+     "porque": "A pergunta pede o menor ângulo depois de três dias, e é isso que a conta deu.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 162°",
+   "checagem": "Use a fórmula do ângulo entre ponteiros, |30·h − 5,5·m|: em 11 h 24, |330 − 5,5 · 24| = |330 − 132| = 198°, e 360° − 198° = 162°. Fecha com a conta das posições.",
+   "erradas": {
+    "A": "176° não confere: em 11 h 24 os ponteiros estão a 342° e 144°, ângulo menor de 162°; 176° seria o ângulo em 11 h 28.",
+    "C": "194 não confere: passa de 180°, então não pode ser o menor ângulo; e às 11 h 24 os ângulos entre os ponteiros são 198° e 162°.",
+    "D": "156 não confere: em 11 h 24 os ponteiros estão a 342° e 144° do 12, e a diferença dá 198°, ou seja, 162° pelo lado menor, não 156°."
+   },
+   "armadilha": "O ponteiro das horas não fica parado no 11: em 24 minutos ele anda mais 12°, e esquecer isso muda o ângulo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor ângulo entre os ponteiros de um relógio que atrasou 36 min em três dias.",
+    "chave": "Ele marca 11 h 24: ponteiros a 342° e 144°, diferença de 198°, menor ângulo de 162°.",
+    "cuidado": "Some os 0,5° por minuto ao ponteiro das horas e, se passar de 180°, tire de 360°."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula pronta",
+    "ideia": "Ângulo = |30·h − 5,5·m| = |330 − 132| = 198°, e o menor é 360° − 198° = 162°."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "72 · 30 s = 2160 s = 36 min",
+    "nota": "atraso em três dias"
+   },
+   {
+    "linha": "12 h 00 − 36 min = 11 h 24",
+    "nota": "hora que o relógio marca"
+   },
+   {
+    "linha": "11 · 30° + 24 · 0,5° = 342°",
+    "nota": "ponteiro das horas"
+   },
+   {
+    "linha": "24 · 6° = 144°",
+    "nota": "ponteiro dos minutos"
+   },
+   {
+    "linha": "342° − 144° = 198° → 360° − 198° = 162°",
+    "nota": "menor ângulo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
  }
 }
