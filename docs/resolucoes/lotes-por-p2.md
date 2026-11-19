@@ -12,7 +12,7 @@ Faltam 333 questões sem resolução (fora as que estão em lote, pendentes ou c
 | por-p2-0004 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | por-p2-0005 | demais nível 1-6 | 50 | gravado | 49 | 0 | 1 |
 | por-p2-0006 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
-| por-p2-0007 | demais nível 1-6 | 50 | aberto |  |  |  |
+| por-p2-0007 | demais nível 1-6 | 50 | gravado | 47 | 3 | 0 |
 | por-p2-0008 | demais nível 1-6 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
@@ -20,7 +20,10 @@ Faltam 333 questões sem resolução (fora as que estão em lote, pendentes ou c
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
 | Pcfeab3fb | Fema 2022 Processo Seletivo 2022 · questão 23 | P10.2 regência verbal e nominal, e crase (tema P10 Norma e emprego) | anular: o gabarito oficial B ('a - a - às') põe crase depois de 'após', que já é preposição; crase é a fusão da preposição 'a' com o artigo 'a', e depois de outra preposição ('após', 'desde', 'perante', 'entre') só cabe o artigo: 'após as 18 horas'. A resposta conforme a norma é A ('a - a - as': 'Informe a todos' — pronome masculino, sem artigo; 'a partir' — antes de verbo, sem crase; 'após as 18 horas'). Procurei errata na web e não achei. |
+| Pd2b4fc8b | UEG 2023 2023/2 · questão 10 | P12.2 Modernismo de 1922, vanguardas europeias e manifestos (tema P12 Literatura: Pré-Modernismo em diante) | outra matéria: Artes (história da arte contemporânea: Pop Art, Neodadaísmo, Novo Realismo, Op-Art, Minimalismo, Land Art; não é Português nem Literatura) |
+| Pca7bff31 | UFAM 2023 PSC 3ª etapa · questão 12 | P12.3 Modernismo de 30: romance do Nordeste, Drummond e Bandeira (tema P12 Literatura: Pré-Modernismo em diante) | obra: O quinze — não consegui confirmar em fonte didática confiável os pontos do enredo das afirmativas I (benefício a apadrinhados de coronéis em detrimento de Chico Bento) e III (Vicente, pecuarista, lucra em certa medida com a seca); as fontes encontradas divergem sobre as passagens de Chico Bento. |
 | P6c2f77f0 | UFT 2024 Vestibular 2024/1 · questão 7 | P08.1 sujeito e predicado, inclusive sujeito oculto e oração sem sujeito (tema P08 Período simples) | anular: o gabarito definitivo D exige que a afirmativa III esteja correta, mas “maltratando uma velhinha” não é predicado nominal. “Estão maltratando” é locução verbal (auxiliar estar + gerúndio do verbo transitivo direto maltratar), e “uma velhinha” é objeto direto: o predicado é verbal, e não há verbo de ligação nem predicativo. Corretas pelos fatos: só a IV (I é falsa: sujeito indeterminado; II é falsa: “uma velhinha” é objeto direto). Nenhuma alternativa reúne só a IV. Busca na web sem errata nem resolução publicada. |
+| P4211f481 | Unitins 2024 Vestibular 2024/1 – Caderno 1 · questão 45 | P12.2 Modernismo de 1922, vanguardas europeias e manifestos (tema P12 Literatura: Pré-Modernismo em diante) | anular: o gabarito oficial (A: I, II e III) exige a afirmativa III verdadeira, mas ela atribui ao 'Manifesto Antropófago' (1928) a defesa de 'uma poesia brasileira de exportação' e dos 'erros gramaticais' — ideias do Manifesto da Poesia Pau-Brasil (1924: 'poesia de exportação', 'a contribuição milionária de todos os erros'; https://www.ufrgs.br/cdrom/oandrade/index.htm). Com III falsa (e IV falsa: Bandeira não se distancia da 1ª fase por visão idealizada), a resposta seria C (I e II). |
 
 ## Divergências de gabarito (o dono decide)
 

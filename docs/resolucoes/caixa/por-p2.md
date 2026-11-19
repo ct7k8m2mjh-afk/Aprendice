@@ -125,3 +125,16 @@ RECLASS P684c79aa P11.3 -> P12.2 (Unitins 2022/2 q43: poemas de Oswald de Andrad
 RECLASS P19763d2a P11.4 -> P12.5 (FCM-MG 2026/2 q11: A última quimera, de Ana Miranda, romance contemporâneo de 1995)
 DADO Pbf8fd2b7 (Unifor 2025/1 q44): texto_da_prova "confi ssão", "biográfi co" -> "confissão", "biográfico"; alternativa C "o fl uir" -> "o fluir"
 RECLASS Pb1403fd1 P12.1 -> P06.2 (a questão cobra figura de linguagem; equivocos já usam P06.2)
+
+## 2026-11-19 18:36 UTC — PENDENCIAS — sessão por-p2 (session_01PveEKYbUNBrLzmbEMaYKtg)
+Último lote gravado: por-p2-0007 (47 ok, 3 pendentes; Pef116c84 com gabarito do Aprendice A, resolvedor = conferente às cegas = preliminar). Lote aberto: por-p2-0008.
+OUTRA Pd2b4fc8b (UEG 2023/2 q10): outra matéria, Artes (Pop Art, Neodadaísmo, Novo Realismo); não resolvida, pôr em app/conteudo-fonte/outra-materia.json
+RECLASS P5e76b7a0 P12.2 -> P05.1 (UEMA PAES 2020 q7: sentido de "buliu" no contexto, semântica)
+RECLASS P9e6e8323 P12.2 -> P02.1 (UEMA PAES 2021 q5: estratégia argumentativa do narrador)
+ANULAR P4211f481 (Unitins 2024/1 Caderno 1 q45): a afirmativa III põe no "Manifesto Antropófago" (1928) a "poesia brasileira de exportação" e os "erros gramaticais", que são do Manifesto da Poesia Pau-Brasil (1924; https://www.ufrgs.br/cdrom/oandrade/index.htm); o oficial A (I, II e III) depende disso; com a III falsa a resposta seria C (I e II)
+DADO Pb4715527 (Unitins 2020/1 q45): texto_da_prova "evando em consideração" -> "Levando em consideração"
+GABARITO Pef116c84 (UFRR 2025 q7): sem gabarito publicado achado; gabarito do Aprendice A (I, III e VI) se o conferente às cegas confirmar; conferir no Edital 97/24-CPV (editais.ufrr.br deu 503)
+RECLASS P05a057a3 P12.3 -> P05.1 (UEMA 2021 PAES q50: semântica da preposição "em" regida por "falar", relação de assunto)
+DADO P36f9b45d (UERR 2023 q4): texto_da_prova -> embaralhado pelas duas colunas e sem alternativas; refazer pelo print (texto de Luís Bueno + alternativas A–E)
+DADO P6e771f4c (UFSM 2025 q108): alternativas -> coladas no texto_da_prova; separar A–E como no print (em itálico)
+OBRA Pca7bff31 (UFAM 2023 PSC 3ª etapa q12): O quinze — não confirmado em fonte confiável o enredo das afirmativas I (apadrinhados de coronéis) e III (Vicente lucrar com a seca); gabarito oficial E
