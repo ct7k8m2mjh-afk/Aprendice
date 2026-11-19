@@ -116,3 +116,71 @@ RECLASS Pd02871f9 M03.1 -> M02.1
 RECLASS Pd5a9fc52 (FMABC 2023 q78) M12.4 -> M08.3
 RECLASS Pf05e8355 M06.4 -> M06.5
 RECLASS Pf2a5ac88 M03.2 -> M05.4
+
+## 2026-11-19 18:57 UTC — pendências dos lotes mat-p2-0005 a 0007
+
+DADO P0c874e41: texto_da_prova -> "retas r: 2x − y = 0 e s: 2x − y − 6 = 0 … A (1,2), B (3,0) e a distância entre B e C é 2√5"; alternativas -> D 2√5, E 4√10
+DADO P115d0dcc: alternativas (ausentes) -> estão só no texto_da_prova; separar pelo print
+DADO P1bb4be8a: alternativas (expoentes perdidos) -> (0,3%)² (99,7%)⁸; 45.(0,3%)² (99,7%)⁸; 10.(0,03)² (9,97%)⁸; 90.(0,03)² (9,97%)⁸
+DADO P1f1e9716: alternativas.E -> "13,4." (sem "Questão 08 Figura fora de escala")
+DADO P240f3760: alternativas -> A √3/4, B 5√3/4, C 15√3/2, D 5√3/3, E 15√3/4
+DADO P3827a9a2: alternativas.E -> "o crescimento de 2019/2020 em relação ao ano de 2015/2016 foi igual a 3828 km²." (rótulo do eixo colado)
+DADO P3ca782f1: alternativas (coladas no texto) -> A 12,5, B 24,5, C 25,0, D 10√2, E 49√2
+DADO P401b3840: texto_da_prova -> "2cos²|x| − cos|x| − 1 = 0 [...] intervalo (0, 2π)"; alternativas -> A π, B 2π/3, C 2π, D 4π/3
+DADO P4345eb1b: alternativas.E -> "12 000" (rótulos da figura colados)
+DADO P4e4c507b: alternativas -> A (0, 1/2); B (1/2, 1); C (1, 3/2); D (3/2, 2)
+DADO P53b34381: texto_da_prova -> falta a equação de r, "y = −(5/2)x + 10", e a fração "1/5" da área; alternativas -> A 7/9, B 1/3, C 5/8, D 4/7, E 4/5
+DADO P53fdf69e: texto_da_prova -> "(Considere π = 3,1)"
+DADO P59c88581: texto_da_prova -> "x² + y² − 2√2 x + 2√3 y = 0 e x² + y² − 2√2 x + 2√3 y = 2"; alternativas -> A π, B 2π, C 3π, D 4π
+DADO P6331e5f1: texto_da_prova -> "BC = 32 e AB/AC = 3"
+DADO P63532cd4: alternativas (vazias) -> A "48/7 cm", B "12 cm", C "16/3 cm", D "6 cm", E "4 cm"
+DADO P66109bca: texto_da_prova -> θ aparece como "„"; alternativas (ausentes, coladas no texto) -> A 2√3/3, B √6/2, C 3√3/4, D 2√6/3, E 3√3/2
+DADO P69300310: alternativas (ausentes) -> estão só no texto_da_prova; separar pelo print
+DADO P72418e95: texto_da_prova -> "circunferência C1 de raio igual a 6 cm e uma circunferência C2 inscrita"; alternativas -> A (1/3)√3 cm, B (1/2)√3 cm, C √3 cm, D 3√3 cm, E 2√3 cm
+DADO P7915613c: texto_da_prova -> "Três círculos de raio igual a 4 cm"; alternativas -> A 12 cm, B 16 cm, C 18 cm, D 24 cm, E 32 cm
+DADO P7efc11d3: alternativas (todas na E) -> A 1/6, B 1/3, C 5/9, D 7/9, E 17/36
+DADO P8389ddd3: alternativas -> frações empilhadas no print, ex.: A ((11+2√3)/2, (6+5√3)/2)
+DADO P8405f40f: texto_da_prova -> "r: 3x + 4y = −15" e "P: y = x² + x + 6"; alternativas -> A 13/500, B 25/4, C 105/8, D 147/8, E 126/5
+DADO P92f0a32c: texto_da_prova -> "Considere que tg(x) = 1/2, π < x < (3π/2)."; alternativas -> A (2√5)/5, B (√5)/5, C −(√5)/5, D −(3√5)/5
+DADO P96d06546: alternativas -> A x² + y²/10 = 1; B x² − 3y²/10 = 1; C −3x² + 3y²/5 = 1; D −x² − y²/10 = −3; E x² + y²/5 = 3
+DADO P99a448d4: alternativas (ausentes) -> A sen²(x) − sen(2x), B cos²(x) − sen(2x), C sen²(x) − sen³(2x), D sec²(x) − tg(x)
+DADO P9fb593b0: alternativas (ausentes) -> A 17/25, B 4/5, C 24/25, D 28/25, E 31/25
+DADO Pa1066bff: texto_da_prova -> "x, y ∈ ]0, π/2[ [...] tan(y)tan(y/2) = cos(2x)sec(y), sen(y)/cos(x) + cos(x)/sen(y) = 2"; alternativas -> A π²/24, B π⁴/324, C π²/50, D π²/16, E π²/18
+DADO Pa5fb72d6: alternativas (vazias) -> A 5/72, B 1/15, C 23/360, D 11/180, E 7/120
+DADO Pa67061f6: alternativas.E -> "1,12 cm." (rótulos da figura colados)
+DADO Pacaaed6d: alternativas (expoentes perdidos) -> A "16×10³ placas.", B "26³×10⁴ placas.", C "10×26³×10³ placas.", D "16×26³×10³ placas.", E "26⁴×10³ placas."
+DADO Pd105fa28: alternativas (vazias) -> A 4π, B 3π, C 2π, D π, E 0
+DADO Pd3e485fa: alternativas.B -> "as retas r e s são paralelas e α é igual a √2/2."; alternativas.E -> "a equação de r é igual a y = −x e α é igual a 2/√2."
+DADO Pe02178b3: texto_da_prova -> "Seja A = {1, 2, 3, 4, 5, 6, 7, 8}. A quantidade de bijeções F : A ⟶ A que satisfazem F(1) < F(5) < F(3) e F(7) < F(2) é"; alternativas -> A 3360, B 4200, C 5040, D 5880, E 6720
+DADO Pe889eadb: alternativas.E -> "Existem exatamente três soluções positivas para x que são solução do problema." (texto da figura colado)
+DADO Peccab88e: texto_da_prova -> λ aparece como "–"; alternativas (ausentes, coladas no texto) -> A 3, B 5, C 9, D 13, E 15
+DADO Ped957061: alternativas -> A 3√(2+√2) cm², B √(2+√2) cm², C 3√2 cm², D 3√(1+√2) cm², E 3(1+√2) cm²
+DADO Pf2f01bff: alternativas (ausentes) -> A 0, B π/3, C 2π/3, D 5π/6, E 13π/6
+PRINT P9b4640b2: no print as alternativas A e C têm o mesmo texto ("Apenas I e IV são verdadeiras."); resposta D não muda (alerta); conferir no caderno oficial
+RECLASS P0c874e41 (UEG 2023/1 q25) M12.2 -> M12.3
+RECLASS P11788208 (UTFPR 2026 q30) M15.1 -> M15.2
+RECLASS P3af453bc (UFJF 2020 PISM III q20) M13.3 -> M13.4
+RECLASS P3ca782f1 (UFJF 2020 PISM III q19) M12.2 -> M12.5
+RECLASS P4345eb1b (Fatec 2020.1 q34) M08.5 -> M08.1
+RECLASS P6cba1fb3 (UEMA PAES 2020 q49) M08.5 -> M11.4
+RECLASS P736fcbfd (PUCPR 2023/2 q33) M10.1 -> M09.1
+RECLASS P7915613c (UEG 2021/2 q14) M08.5 -> M08.3
+RECLASS P7aa271c5 (UFAM PSC3 2022 q52) M13.4 -> M14.1
+RECLASS Pa121f096 (ITA 2024 q47) M12.5 -> M12.2
+RECLASS Pa67061f6 M11.5 -> M11.2 (cilindro; equívocos já em M11.2)
+RECLASS Pb25da0f8 (Unifor 2027.1 q10) M08.5 -> M08.2
+RECLASS Pcebac8bc (PUCRS 2022 q11) M09.3 -> M10.1
+RECLASS Pd105fa28 M10.5 -> M10.4
+RECLASS Pe8547873 (UTFPR 2024 q51) M10.3 -> M10.1
+RECLASS Ped957061 (URCA 2024.1 q24) M08.5 -> M10.3
+RECLASS Pf562a746 (UFAM 2023 PSC3 q49) M12.2 -> M12.4
+GABARITO P4279710d (UFRR 2025 q18): gabarito do Aprendice E (resolvedor E, conferente cego E, preliminar E); PDF do gabarito definitivo (Edital 97/24-CPV) deu 503 — conferir e trocar pelo oficial
+AVISO P229ec8fe (ITA 2026 q12): no site, fração com raiz dentro de parênteses sai em linha, ex. "q = ((√(m² + 1) + 1)/m)²" e "(√(m²+1)+1)/(√(m²+1)−1)" (Por que eu errei, Resposta, passos 3 e 4, erradas C e D); é o motor de exibição, não o conteúdo — avaliar o empilhamento de fração com parênteses aninhados
+
+## 2026-11-19 18:57 UTC — FIM — sessão mat parte 2
+
+Lotes gravados nesta sessão: mat-p2-0005 (50), mat-p2-0006 (50), mat-p2-0007 (37) = 137 resoluções, 0 pendentes, 0 divergências. Último lote gravado: mat-p2-0007.
+Testes (converte + tsc + vitest): 786 passed. Site (P229ec8fe, P984fdc3e, P919e80b5 em 390 e 1280 px): 4 blocos e animação até o fim OK; fração em linha em P229ec8fe (AVISO acima).
+Pendentes da parte (de sessões anteriores): Pfe0deff6, P2fb6c20f, P56f8d4e7 (anular) e Pbfde8575 (print) — ver lotes-mat-p2.md.
+
+ACABOU — Matemática parte 2: faltam 0 questões sem resolução.
