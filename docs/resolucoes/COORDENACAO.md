@@ -83,11 +83,11 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 ## Sessões (19/11/2026, 14h58 UTC)
 | Matéria | Sessão | Situação |
 |---|---|---|
-| Matemática | session_01PveEKZJXRTXQ8BArELQfeu | trabalhando (aberta 19/11 16h49; anterior Ka7o3 deu FIM) |
+| Matemática parte 1 | session_01PveEKXYevuT6GfnZTi2dnc | trabalhando (aberta 19/11 17h44, --parte 1; anterior ZJXR deu FIM) |
 | Física | session_01PveEKWeU9BGX5xnf2nstPb | trabalhando (aberta 19/11 17h24 para TERMINAR Física, ~244, esteira; anterior YFao deu FIM) |
 | Química | session_01PveEKYZfyAMFDV6N1z8smo | trabalhando (aberta 19/11 17h02, largada rápida; anterior XC1x deu FIM) |
-| Geografia | session_01PveEKaxbgLPCyvGooHZvKw | trabalhando (aberta 19/11 17h04, largada rápida; anterior b6B5 deu FIM) |
-| Biologia | session_01PveEKYq8uSzJkiuk9txCUa | trabalhando (aberta 19/11 16h49; anterior Y2ist deu FIM) |
+| Geografia parte 1 | session_01PveEKZFZaaQtEjuACaowLy | trabalhando (aberta 19/11 17h44, --parte 1; anterior axbg deu FIM) |
+| Biologia | session_01PveEKXZwKo3vJj1Pbjeenm | trabalhando (aberta 19/11 17h44 para TERMINAR Biologia, ~130; anterior Yq8u deu FIM) |
 | Português | session_01PveEKX1JnJpMCfgHmpRupU (FÁBRICA pela API) | trabalhando: piloto por-0094 ok (US$ 6,11); o dono autorizou continuar, lotes por-0095/0096 em esteira. Não abrir outra sessão de Português |
 | Matemática parte 2 | session_01PveEKa42KpJLXPbhM1bBJc | trabalhando (aberta 19/11 17h29; --parte 2, caixa mat-p2.md) |
 | Geografia parte 2 | session_01PveEKYMtZPCNo9ZMeKjY5w | trabalhando (aberta 19/11 17h29; --parte 2, caixa geo-p2.md) |
@@ -204,8 +204,7 @@ depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resoluco
 `url` = o link acima, de outra conversa; read antes).
 
 ## Publicação
-Última no ar: dpl_CApcpGGUuAm2ph9hYDXjcsLjwJFN (commit 0352c889, 19/11 16h35, conferido no site 16h50): 21.658 resoluções. Próxima ao passar de 22.158.
-Disparada 19/11 17h33: dpl_BiZ7h9S452zmp35kGwEBCLiRBmoo (commit da7ef3f6, 786 testes verdes, 22.486 no relatório local). Conferir no site e atualizar publicacao.json; próxima depois ao passar de 22.986.
+Última no ar: dpl_BiZ7h9S452zmp35kGwEBCLiRBmoo (commit da7ef3f6, 19/11 17h33, conferido no site 17h45): 22.486 resoluções. Próxima ao passar de 22.986.
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
 Coordenadora atual: ver a tabela de sessões e a tarefa agendada (13/11: nova coordenadora enxuta).
