@@ -240,3 +240,23 @@ Testes depois do bio-0068: converte + tsc + vitest verdes (786 passed).
 Conferência no site local NÃO feita nesta sessão: o agente ficou parado esperando aprovação de comando (servidor local) e foi interrompido; a próxima sessão deve fazê-la.
 Status bio (lote.py status): 327 faltam.
 Observação: a faixa B12.3 está quase toda classificada no conteúdo errado (a maioria é B12.7, plantas); vale revisar a classificação dessa faixa de uma vez.
+
+## 2026-11-19 17:06 UTC — PENDENCIAS — session_01PveEKYq8uSzJkiuk9txCUa
+Lote gravado: bio-0071 (49 ok, 1 pendente). Abertos: bio-0072.
+PRINT Pc481e226 (q17): falta a figura dos estágios I a III (q/017.webp só tem enunciado e alternativas; não está em 016 nem 018)
+RECLASS P6dde646b B12.3 -> B12.7
+RECLASS P15f72759 B12.3 -> B12.7
+RECLASS P1ea1a15c B12.3 -> B12.7
+RECLASS Pa64d691c B12.4 -> B12.7
+RECLASS Pa321341c B12.4 -> B12.7
+RECLASS Pdc9ccde1 B12.4 -> B12.7
+RECLASS P5e6753a0 B12.4 -> B12.7
+RECLASS P0287d7bf B12.4 -> B12.7
+RECLASS P9ec697f8 B12.4 -> B12.7
+RECLASS P7d20622b B12.4 -> B12.3
+RECLASS P4c9f35e9 B12.4 -> B09.7
+RECLASS Pcf6eb70b B12.4 -> B12.7
+RECLASS Pc7b0adbe B12.4 -> B02.1
+DADO Pe211ee2a: alternativas.D -> "Giberelinas – causam o alongamento do caule em plantas normais." (o "18" no fim é número da página)
+DADO P4c9f35e9: alternativas -> faltam na entrada; no print: A "detergentes e demais produtos de limpeza." | B "organismos com ação patogênica em humanos, tais como vírus, bactérias, fungos, protozoários e animais parasitos." | C "produtos orgânicos ou inorgânicos e substâncias insolúveis." | D "resíduos radioativos gerados em hospitais, usinas e experiências nucleares." | E "tintas, herbicidas, plásticos, medicamentos, solventes, detergentes e aditivos alimentares."
+DADO P5f3ad73e: alternativas -> faltam na entrada; no print: A "O fóssil citado no texto é de um animal vertebrado." B "As águas-vivas pertencem ao filo Cnidaria." C "Auroralumina é o epíteto específico da espécie." D "O fóssil a que o texto se refere é classificado como icnofóssil." E "As águas-vivas possuem apenas um tipo de reprodução."

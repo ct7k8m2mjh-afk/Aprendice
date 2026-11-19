@@ -1,6 +1,6 @@
 # Biologia: resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 327 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 125; ENEM nível 7-10 16; provas-alvo nível 7-10 115; demais nível 7-10 71.
+Faltam 227 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 25; ENEM nível 7-10 16; provas-alvo nível 7-10 115; demais nível 7-10 71.
 
 ## Lotes
 
@@ -76,6 +76,8 @@ Faltam 327 questões sem resolução (fora as que estão em lote, pendentes ou c
 | bio-0068 | demais nível 1-6 | 50 | gravado | 48 | 2 | 0 |
 | bio-0069 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
 | bio-0070 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
+| bio-0071 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
+| bio-0072 | demais nível 1-6 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -104,6 +106,7 @@ Faltam 327 questões sem resolução (fora as que estão em lote, pendentes ou c
 | P112c6236 | UNEMAT 2022 2022/2 · questão 32 | B10.1 viroses e arboviroses (tema B10 Saúde e doenças) | classificação: é de Português P10.1 (concordância: verbo haver impessoal no pretérito perfeito, 'não houve nenhuma confirmação'); só o texto de apoio fala de coronavírus |
 | P3c8e2e61 | URCA 2023 2023.1 · questão 59 | B11.5 especiação, isolamento reprodutivo, irradiação adaptativa e origem da vida (tema B11 Evolução) | anular: alternativas C (ictiossauros e plesiossauros não são arcossauros) e D (aves no Triássico; surgiram no Jurássico) são ambas falsas; questão com duas respostas (gabarito D mantido após recurso: https://www.urca.br/cev/wp-content/uploads/sites/39/2023/03/respostas-recursos-primeiro-dia_psu_20231.pdf) |
 | P3c08d8ee | Unesp 2024 1ª fase – meio de ano · questão 78 | B12.6 vertebrados, classificação, nomenclatura e filogenia (tema B12 Diversidade dos seres vivos) | classificação: é de Física (propagação de calor: convecção em correntes de ar quente; não cobra Biologia) |
+| Pc481e226 | Unimontes 2020 PAES 2020 – 3ª etapa · questão 17 | B12.4 estômatos, transpiração, hormônios vegetais e fotoperiodismo (tema B12 Diversidade dos seres vivos) | print: falta a figura dos estágios I a III (fase de expansão celular) que o enunciado pede; q/017.webp só tem enunciado e alternativas, e a figura também não está em q/016.webp nem q/018.webp (prova páginas 11 e 12) |
 | Pd56b185c | Unitins 2022 Vestibular 2022/2 · questão 6 | B11.5 especiação, isolamento reprodutivo, irradiação adaptativa e origem da vida (tema B11 Evolução) | anular: o gabarito definitivo é B (https://vestibulares.estrategia.com/portal/wp-content/uploads/2022/06/637914398577390962GabaritodEFINITIVO2022_2-1.pdf), mas B afirma que a origem da vida data de "3,5 milhões de anos atrás"; o dado consolidado é cerca de 3,5 bilhões de anos (o mesmo erro de milhões por bilhões aparece em A, com 13,8 milhões para o Big Bang). A alternativa oficial é factualmente falsa e não há outra correta; a B também atribui 'organelas rudimentares' às primeiras células, que eram procariontes. |
 
 ## Divergências de gabarito (o dono decide)
