@@ -138,3 +138,96 @@ corrigidos, e `ferramentas/fabrica/confere_amostra.py`. Para rodar o lote seguin
 `python3 ferramentas/resolucoes/lote.py proximo por 50 --novo` e depois
 `python3 ferramentas/fabrica/resolve_api.py roda <entrada> --saida <saida> --teto <teto>`.
 As pendências deste lote estão no bloco AVISO PILOTO FÁBRICA logo acima.
+
+## 2026-11-19 17:50 UTC — PENDENCIAS — session_01PveEKX1JnJpMCfgHmpRupU
+Lotes gravados nesta leva: **por-0095** (50 ok, 0 pendentes) e **por-0096** (49 ok, 1 pendente), em 45 e 41
+provas. Gasto: US$ 5,22 e US$ 4,93; fábrica US$ 16,26 de US$ 200. Testes depois dos dois: converte ok, tsc sem
+erro, 786 testes passando. Lotes por-0097 e por-0098 em andamento na fábrica (esteira pedida pelo dono).
+
+Conferência: 4 agentes, 35 questões (100% das pendências, divergências, obras, gabarito do Aprendice, alerta de
+lente e das que as lentes mudaram muito, mais 10% por sorteio), ~50 itens apontados e TODOS aplicados (78
+correções de campo e um passo cortado por só repetir as `erradas`). As cinco regras do piloto deram resultado:
+nenhum dos dois lotes teve erro no lote.py valida, e a `checagem` que repete um passo caiu de 6 em 21 questões
+para 4 em 35. Dois furos da própria fábrica foram achados e tapados (o conserto mecânico desfazia o código de
+equívoco escolhido pelas lentes, em sete questões; e as lentes nunca viam o campo `caminhos`, onde estavam quase
+todos os erros que sobraram).
+
+Gabarito do Aprendice (duas letras às cegas, iguais ao preliminar): P59a37132 B, Pa7b6e203 B, Pb2efb20d D, Pc624b594 D, Pf5b95e48 B.
+Obras conferidas na web por esta sessão: P1cd41fe9 ("No meio do caminho", Drummond, Revista de Antropofagia 1928,
+depois em Alguma Poesia 1930) e Pc624b594 (Hércules-Quasímodo, parte "O Homem" de Os Sertões, de Euclides da
+Cunha). As duas sustentam a letra oficial, e a fonte acadêmica ficou gravada na questão.
+
+**Três coisas que precisam de decisão sua:**
+1. **ANULAR P97b8da45** (abaixo): o conferente refez a contagem de fonemas e o erro é da banca, não nosso.
+2. **O subtema P06.1/P06.2 está virando depósito de Português**, como o P05.4 no lote anterior: 29 das 100
+   questões destes dois lotes estão no conteúdo errado (lista de RECLASS abaixo). Vale uma passada de
+   reclassificação no banco antes de abrir muitos lotes, senão a revisão espaçada manda o aluno para o
+   conteúdo errado.
+3. **Falta um subtema de fonética/fonologia em Português.** Duas questões destes lotes são de contagem de
+   fonemas e não há conteúdo que as receba (ficaram em P06.3, figuras de som). Criar o subtema ou decidir o destino.
+
+PENDENCIAS
+ANULAR P97b8da45 (URCA 2025 PSU 2025.2/2026.1 q? — ver registro): a contagem correta de fonemas é semipenumbra 11, quarto 6, sorrir 5, carcomida 9, atravancam 9, e NENHUMA alternativa traz essa sequência. A oficial E dá 8 a "carcomida" (são 9: c-a-r-c-o-m-i-d-a, sem dígrafo). A banca não anulou. O conferente sugere a alternativa de manter com o gabarito E, resolvida por eliminação (E é a única certa nos itens 1, 2, 3 e 5), com `alerta` dizendo que o item 4 tem 9 fonemas e a alternativa traz 8 — erro da banca. Deixei como pendente para você escolher entre as duas saídas
+OUTRA por-0095/0096: criar um subtema de fonética/fonologia em Português (P72d7b23a e P97b8da45 são contagem de fonemas e estão em P06.3, figuras de som, que não cobre isso)
+OUTRA URCA: a numeração das questões da URCA está deslocada em exatamente 60 (a entrada diz 93, 94, 97, 103, 104, 105 e o print traz 33, 34, 37, 43, 44, 45). Parece a soma dos 60 itens da Prova I; conferir antes de publicar, porque o aluno vê o número
+OUTRA Unifor/Fatec/UFRR: em seis questões a transcrição colou na alternativa E um texto que no print não é dela (o aviso "ATENÇÃO: As questões de números 55 a 60...", o título "Questão 43/54", o "CLIC!" do balão da charge, o enunciado do texto seguinte). É defeito repetido da ingestão dessas provas, e o aluno vê a alternativa errada: vale uma correção em lote
+OUTRA URCA/UNIRG/Unifor: acentos quebrados na transcrição ("mem´oria", "ausˆencia", "avanc¸o", "L´ılia") e ligadura "fi" separada ("fi gueira", "fi lha"). Mesmo defeito do lote anterior; as resoluções usaram a forma correta do print
+RECLASS P1ba934c0 P07.1 -> P05.1
+RECLASS P1c014429 P06.3 -> P10.1
+RECLASS P1cd41fe9 P06.1 -> P02.3  (lente sugeriu P02.3/P04.4; equívocos usam P02.3)
+RECLASS P248d3a38 P06.1 -> P01.2
+RECLASS P3175dcda P07.1 -> P09.4  (lente sugeriu P04.2/P09.4; equívocos usam P09.4)
+RECLASS P362193fa P06.1 -> P01.2
+RECLASS P3b461aba P06.2 -> P02.2
+RECLASS P3e6070cb P06.2 -> P05.3  (lente sugeriu P02.3/P05.3; equívocos usam P05.3)
+RECLASS P473df78f P06.1 -> P06.3
+RECLASS P5931cbf4 P06.2 -> P03.1
+RECLASS P674b8154 P06.2 -> P01.4
+RECLASS P6ab9c2aa P06.2 -> P01.2
+RECLASS P6c9a2070 P06.2 -> P06.1
+RECLASS P6ca5459d P06.3 -> P04.3
+RECLASS P7ea629d0 P06.1 -> P01.1
+RECLASS P806a310e P07.1 -> P06.2
+RECLASS P82a63834 P06.2 -> P04.2
+RECLASS P8bd61891 P06.1 -> P01.2
+RECLASS P991f680d P06.1 -> P06.3
+RECLASS P9eac9f9e P07.1 -> P07.2
+RECLASS Pac9e8b3e P06.3 -> P08.1
+RECLASS Pae8fd1b8 P06.1 -> P06.2
+RECLASS Pb09e987b P06.3 -> P06.1
+RECLASS Pb2efb20d P06.1 -> P06.2
+RECLASS Pbccdcba8 P06.1 -> P06.2
+RECLASS Pc624b594 P06.1 -> P12.1
+RECLASS Pdd71e0f1 P06.1 -> P06.2
+RECLASS Pe3c9bfd7 P06.2 -> P06.3
+RECLASS Peb94b72e P06.1 -> P10.2
+RECLASS Pf114ba2e P06.1 -> P06.2
+RECLASS Pf939e2cc P07.1 -> P08.3
+RECLASS Pfb341f53 P06.1 -> P06.3
+DADO P1cd41fe9 (FCM-MG 2021 2º semestre · questão 9): alternativas -> no print, a alternativa A traz "No meio de meu rim tinha uma pedra" (o texto transcrito usa a mesma redação); a alternativa B termina com aspas simples e duplas coladas; sem outra dive
+DADO P362193fa (UEMA 2024 PAES · questão 3): Na alternativa E do print há aspas soltas no meio: '“Do barro de que você foi gerada/ “Me veio inspiração”'. A resolução cita sem essas aspas internas. A diferença é só tipográfica e não altera a anál
+DADO P3e68f939 (Unifor 2026 2º semestre · questão 52): A transcrição traz 'fi gueira' e 'fi lha' (ligadura quebrada); o print mostra 'figueira' e 'filha'. A resolução usou a forma correta, então nada muda.
+DADO P46e0daaf (URCA 2026 2026.1 · questão 104): A transcrição traz artefatos de digitação ('ru´ınas', 'expl´ıcito', 'cr´ıtico', 'impl´ıcita', 'ju´ızo', 'eu- femismo', 'desumani- zados') que não aparecem no print. A resolução cita a forma correta do
+DADO P473df78f (URCA 2024 2024.2 · questão 93): texto_da_prova -> no print o nome é "Vinícius" (a transcrição quebrou o acento) e o verso aparece como "E um grito de igualdade foi ouvido como um sino a soar"
+DADO P58777ca3 (URCA 2024 2024.2 · questão 104): alternativas.D -> no print está 'específico' e a alternativa E traz 'linguagem' inteiro; a transcrição quebrou acento e sílaba
+DADO P59a37132 (URCA 2027 PSU 2026.2/2027.1 (nov/2026) · questão 94): alternativas -> a transcrição traz acentos quebrados ('b´ıblica', 'atribu´ıda') e hifenização solta ('im- pede'); no print as palavras estão corretas: 'bíblica', 'atribuída', 'impede'
+DADO P65568ade (Unifor 2026 1º semestre · questão 49): No texto transcrito, a alternativa E aparece como "Hipálage CLIC!", mas no print ela é só "Hipálage": o "CLIC!" é o texto da charge, colado por engano. Há também "fi gura" e "geografi auenp" com espaç
+DADO P677a5ce5 (Unifor 2025 1º semestre · questão 43): No JSON, a alternativa E foi transcrita como 'Onomatopeia. Questão 43'. No print a alternativa é só 'Onomatopeia.'. A resolução não usou esse trecho, então não há impacto.
+DADO P6ab9c2aa (FCM-MG 2025 1º semestre · questão 1): alternativas A -> no print está "A interlocutora" (a transcrição colou "Ainterlocutora"); enunciado -> "CORRETA a respeito" (a transcrição colou "CORRETAa")
+DADO P7009a8a7 (Unifor 2026 1º semestre · questão 54): Na transcrição, a alternativa E absorveu o aviso 'ATENÇÃO: As questões de números 55 a 60...', que no print é um quadro separado, abaixo da questão. A resolução não usa esse trecho, então nada muda.
+DADO P70d906b4 (FCM-MG 2023 1º semestre · questão 6): A alternativa D diz 'Almoçou e fez barba', mas o poema diz 'Almoçou e fez a barba'. A resolução cita o texto da alternativa, então a diferença não afeta a análise.
+DADO P7ea629d0 (FCM-MG 2024 2º semestre · questão 1): O texto_da_prova junta os versos em blocos ('A cidade perfura o corpo até a medula.'). No print, cada verso ocupa uma linha ('A cidade perfura' / 'o corpo' / 'até a medula.'), num bloco único de 15 ve
+DADO P81b44e66 (Unifor 2026 2º semestre · questão 54): No JSON, a alternativa E inclui o texto do quadro 'ATENÇÃO' do rodapé da página. No print, ele não faz parte da alternativa. A resolução não usou esse trecho, então não houve prejuízo.
+DADO P82a63834 (Unicentro 2026 Vestibular · questão 3): texto_da_prova -> no print o texto tem sete parágrafos, com recuo de início em 'Essa foi uma das grandes pautas', 'O levantamento revelou', 'Apesar disso', 'A IA pode', 'No cenário internacional', 'A 
+DADO P991f680d (URCA 2023 2023.2 · questão 97): alternativas.D -> no print a frase termina em 'ressaltar o absurdo da situação' (a transcrição traz 'a absurdo'); acentos quebrados na transcrição (r´ıtmico, Ass´ındeto, Ant´ıtese, impl´ıcita) valem c
+DADO Pa7b6e203 (URCA 2027 PSU 2026.2/2027.1 (nov/2026) · questão 103): texto_da_prova e alternativas -> no print o enunciado começa por "43. (URCA/2027.1) Leia os três enunciados..." e os acentos aparecem corretos (a transcrição está com acentos quebrados)
+DADO Pabdc1e4c (UNIRG 2022 Medicina 2022/1 · questão 9): texto_da_prova -> no print está 'horrível', com acento
+DADO Pac9e8b3e (URCA 2025 2025.2 · questão 104): alternativas A -> "po- der" é só quebra de linha do print, a palavra é "poder"; texto_da_prova -> "dom´ınio" é "domínio" no print
+DADO Pd5ab7316 (Unitins 2021 Vestibular 2021/1 · questão 32): A transcrição traz 'obre o poema de Eliane Potiguara' onde o print mostra '32- Sobre o poema de Eliane Potiguara'; a resolução não usa esse trecho, então nada muda.
+DADO Pdfb1ef7e (UFJF 2023 PISM III · questão 9): O enunciado cita o verso como "um peito sem dureza!", com ponto de exclamação, mas no poema transcrito o verso termina em ponto. O título aparece como "Soneto XVVIII", numeração irregular. Nenhum dos 
+DADO Pe3c9bfd7 (UTFPR 2024 Verão · questão 9): O texto transcrito omite o que está escrito dentro da tirinha: "GRR..." no primeiro quadro, "POW" no segundo e "THE END" no canto inferior direito do último quadro. A resolução usou as duas primeiras 
+DADO Peb92d285 (UEMA 2022 PAES · questão 9): texto_da_prova -> no print, o parágrafo "Eles disseram que ela era generosa" abre um parágrafo separado; a transcrição o colou ao anterior
+DADO Pf49f3f6b (Fatec 2026 1º semestre · questão 54): alternativas E -> 'onomatopeia.' apenas; o trecho 'Questão 54' que aparece colado nela é o título da questão no print
+DADO Pf5b95e48 (UFRR 2026 Vestibular 2026 – Prova Integral · questão 6): No JSON, a alternativa E traz colado o enunciado do texto V ('Leia atentamente o texto V...'), que no print não faz parte da alternativa; a alternativa é só 'Mortalidade.'. As aspas do enunciado apare
+DADO Pfb341f53 (UNIRG 2024 Medicina 2024/2 · questão 15): No enunciado do print o fragmento aparece como “’Pobre Alphonsus! Pobre Alphonsus’”, sem o ponto de exclamação final. No poema, o verso tem as duas exclamações. A resolução cita a forma do poema, que 
+DADO Pff10eaf9 (Unitins 2025 Vestibular 2025/1 — Todos os Câmpus · questão 45): Na transcrição, os versos 'Papo reto, como esqueletos, de outro dialeto' e 'Só desafeto, vida de inseto imundo' aparecem colados numa linha só, assim como 'Nação sem teto...' e 'A cor de Eto...'. O tí
