@@ -1142,5 +1142,123 @@
    "data": "2026-11-19",
    "lote": "mat-0075"
   }
+ },
+ "P63a9f2f0": {
+  "n": "36",
+  "conceito": "Relação de Euler com a contagem de arestas pelas faces triangulares: 3F = 2A.",
+  "equivocos": {
+   "A": "M11.5:confundiu-com-poliedro-conhecido",
+   "B": "M11.5:nao-conferiu-euler",
+   "C": "M11.5:confundiu-faces-com-vertices",
+   "D": "M11.5:nao-conferiu-euler"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Só a relação de Euler não basta: são duas incógnitas, F e A. A segunda equação vem das faces: cada face é um triângulo, com 3 arestas, e cada aresta é compartilhada por exatamente 2 faces. Contando lados de todas as faces, cada aresta aparece duas vezes: 3F = 2A.",
+    "formulas": [
+     "F − A + V = 2",
+     "3F = 2A (faces triangulares)"
+    ],
+    "simbolos": [
+     [
+      "F",
+      "número de faces"
+     ],
+     [
+      "A",
+      "número de arestas"
+     ],
+     [
+      "V",
+      "número de vértices"
+     ],
+     [
+      "deltaedro",
+      "poliedro com todas as faces triângulos equiláteros"
+     ]
+    ]
+   },
+   "pista": "Você tem uma equação e duas incógnitas. Conte os lados de todas as faces juntas: quantas vezes cada aresta foi contada?",
+   "passos": [
+    {
+     "faz": "Relacione faces e arestas",
+     "conta": "3F = 2A → A = 3F/2",
+     "porque": "Cada triângulo tem 3 lados e cada aresta é lado de 2 faces.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua na relação de Euler",
+     "conta": "F − 3F/2 + 8 = 2",
+     "porque": "V = 8 é dado; A foi escrita em função de F.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para F",
+     "conta": "−F/2 = 2 − 8 → −F/2 = −6 → F = 12",
+     "porque": "O 8 passa subtraindo; depois o −1/2 que multiplica F passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira e conclua",
+     "conta": "F = 12 → A = 18 → 12 − 18 + 8 = 2 → alternativa E",
+     "porque": "Os três números satisfazem Euler.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 12 faces",
+   "checagem": "Um exemplo real: o snub disfenoide (um dos deltaedros convexos) tem 8 vértices e 12 faces triangulares. Também por graus: 18 arestas dão soma de graus 36 = 8 vértices com grau médio 4,5, coerente com vértices de grau 4 e 5.",
+   "erradas": {
+    "A": "4 é o tetraedro, que tem 4 vértices, não 8: com F = 4, A = 6 e 4 − 6 + 8 = 6 ≠ 2.",
+    "B": "6 não confere: F = 6 dá A = 9 e 6 − 9 + 8 = 5 ≠ 2 (6 faces é a bipirâmide triangular, de 5 vértices).",
+    "C": "8 sai de lembrar do octaedro, que tem 8 faces mas 6 vértices: com V = 8, A = 12 e 8 − 12 + 8 = 4 ≠ 2.",
+    "D": "10 não confere: F = 10 dá A = 15 e 10 − 15 + 8 = 3 ≠ 2 (10 faces é a bipirâmide pentagonal, de 7 vértices)."
+   },
+   "armadilha": "Tentar usar só Euler, com duas incógnitas: a equação que falta é 3F = 2A, vinda das faces triangulares.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de faces de um deltaedro convexo de 8 vértices.",
+    "chave": "3F = 2A e F − A + V = 2 dão F − 3F/2 + 8 = 2, logo F = 12.",
+    "cuidado": "Cada aresta é contada duas vezes quando se somam os lados das faces."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar alternativas",
+    "ideia": "Para cada F, faça A = 3F/2 e teste F − A + 8 = 2: só F = 12 (A = 18) fecha."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3F = 2A → A = 3F/2",
+    "nota": "contagem de arestas pelas faces"
+   },
+   {
+    "linha": "F − 3F/2 + 8 = 2",
+    "nota": "substitui em Euler"
+   },
+   {
+    "linha": "−F/2 = −6",
+    "nota": "o 8 passa subtraindo"
+   },
+   {
+    "linha": "F = 12",
+    "nota": "o −1/2 passa dividindo"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "Duas faces triangulares vizinhas aparecem e a aresta comum pisca duas vezes, uma por face; depois a equação de Euler recebe A = 3F/2 e V = 8."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
  }
 }

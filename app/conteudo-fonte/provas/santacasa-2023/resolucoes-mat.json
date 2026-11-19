@@ -855,5 +855,130 @@
    "data": "2026-11-19",
    "lote": "mat-0075"
   }
+ },
+ "Pf459e5b6": {
+  "n": "75",
+  "conceito": "Tirar os semieixos da elipse, o raio das circunferências e os pontos de tangência das retas que saem da origem.",
+  "equivocos": {
+   "B": "M12.4:usou-meio-lado",
+   "C": "M12.4:usou-so-um-quadrante",
+   "D": "M12.4:erro-de-conta-na-area",
+   "E": "M12.4:erro-de-conta-na-area"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro deixe a elipse na forma reduzida para ver onde ela corta o eixo x: ali as circunferências tocam a elipse, o que dá o raio. Depois, cada reta que sai da origem e tangencia uma circunferência forma com o centro e o ponto de tangência um triângulo retângulo. Os quatro pontos de tangência são simétricos em relação aos eixos e formam o retângulo.",
+    "formulas": [
+     "x²/a² + y²/b² = 1: corta o eixo x em ±a",
+     "tangente ⟂ raio no ponto de contato",
+     "área do retângulo = base · altura"
+    ],
+    "simbolos": [
+     [
+      "a",
+      "semieixo da elipse no eixo x"
+     ],
+     [
+      "R",
+      "raio de cada circunferência"
+     ],
+     [
+      "θ",
+      "ângulo da reta s com o eixo x"
+     ]
+    ]
+   },
+   "pista": "Divida a equação da elipse por 81 para achar onde ela corta o eixo x; isso dá o raio das circunferências.",
+   "passos": [
+    {
+     "faz": "Ache onde a elipse corta o eixo x",
+     "conta": "x²/16 + y²/25 = 81 → x²/1296 + y²/2025 = 1 → a = √1296 = 36",
+     "porque": "Dividindo por 81, a equação fica na forma reduzida; com y = 0, x = ±36.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o raio das circunferências",
+     "conta": "R = 36 − 20 = 16",
+     "porque": "A circunferência de centro (20, 0) toca a elipse em (36, 0), que está no eixo x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a distância da origem a D",
+     "conta": "OD² = 20² − 16² = 144 → OD = 12",
+     "porque": "No triângulo O, centro (20, 0) e D, o ângulo em D é reto: 20 é a hipotenusa e 16, o raio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache as coordenadas de D",
+     "conta": "sen θ = 16/20 = 4/5 | cos θ = 3/5 → D = (12 · 3/5, 12 · 4/5) = (36/5, 48/5)",
+     "porque": "θ é o ângulo de s com o eixo x, no vértice O do triângulo retângulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área do retângulo",
+     "conta": "(2 · 36/5) · (2 · 48/5) = 72/5 · 96/5 = 6912/25 → alternativa A",
+     "porque": "Por simetria, A, B, C e D têm coordenadas (±36/5, ±48/5); base 72/5 e altura 96/5.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 6912/25",
+   "checagem": "D está na circunferência: (36/5 − 20)² + (48/5)² = (64/5)² + (48/5)² = (4096 + 2304)/25 = 6400/25 = 256 = 16². E OD é perpendicular ao raio: (36/5) · (36/5 − 20) + (48/5)² = −2304/25 + 2304/25 = 0.",
+   "erradas": {
+    "B": "3456/25 sai de usar a metade de um dos lados: 36/5 · 96/5. A base do retângulo vai de −36/5 a 36/5, ou seja, 72/5.",
+    "C": "1728/25 sai de calcular só o retângulo de O até D: 36/5 · 48/5, um quarto do retângulo ABCD.",
+    "D": "13829/50 ≈ 276,58 não confere: a área certa é 6912/25 = 13824/50 ≈ 276,48, e 13829/50 não sai das medidas 72/5 e 96/5.",
+    "E": "13949/50 não confere: a área é 6912/25 = 13824/50 ≈ 276,5, e 13949/50 ≈ 279,0 não sai das medidas 72/5 e 96/5."
+   },
+   "armadilha": "Ler os semieixos sem dividir por 81: com a = 4 o raio das circunferências sai errado; o corte da elipse no eixo x é em 36.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do retângulo formado pelos quatro pontos de tangência.",
+    "chave": "a = 36 dá R = 16; o triângulo 12-16-20 dá D = (36/5, 48/5); área = 72/5 · 96/5.",
+    "cuidado": "Divida a equação por 81 antes de ler os semieixos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "semelhança",
+    "ideia": "O triângulo O-D-centro tem lados 12, 16 e 20; a altura de D até o eixo x é 12 · 16/20 = 48/5 e a projeção é 12² /20 = 36/5, então a área é 4 · 36/5 · 48/5 = 6912/25."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x²/1296 + y²/2025 = 1 → a = 36",
+    "nota": "dividir por 81"
+   },
+   {
+    "linha": "R = 36 − 20 = 16",
+    "nota": "raio das circunferências"
+   },
+   {
+    "linha": "OD² = 20² − 16² = 144 → OD = 12",
+    "nota": "Pitágoras, retângulo em D"
+   },
+   {
+    "linha": "D = (12 · 3/5, 12 · 4/5) = (36/5, 48/5)",
+    "nota": "coordenadas do ponto de tangência"
+   },
+   {
+    "linha": "72/5 · 96/5 = 6912/25",
+    "nota": "área do retângulo ABCD"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "A elipse aparece com o corte em (36, 0); a circunferência de centro (20, 0) e raio 16 encosta nesse ponto; a reta s sai da origem e toca a circunferência em D; o triângulo 12-16-20 é destacado; os quatro pontos A, B, C, D se ligam no retângulo de lados 72/5 e 96/5."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
  }
 }

@@ -1253,5 +1253,340 @@
    "data": "2026-11-12",
    "lote": "mat-0041"
   }
+ },
+ "Pcc60c7b7": {
+  "n": "13",
+  "conceito": "Soma dos quadrados dos cossenos dos ângulos entre a diagonal de um paralelepípedo e as três arestas que saem do mesmo vértice.",
+  "equivocos": {
+   "A": "M11.1:soma-dos-cossenos-sem-calculo",
+   "C": "M11.1:soma-dos-cossenos-sem-calculo",
+   "D": "M11.1:confundiu-angulo-com-cosseno",
+   "E": "M11.1:confundiu-angulo-com-cosseno"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A diagonal AG e cada aresta que sai de A formam um triângulo retângulo: o cosseno do ângulo é a aresta dividida pela diagonal. Elevando ao quadrado e somando, o numerador vira a² + b² + c², que é exatamente o quadrado da diagonal. Por isso a soma dá 1 para qualquer paralelepípedo reto.",
+    "formulas": [
+     "diagonal: d² = a² + b² + c²",
+     "cos(ângulo com a aresta a) = a/d"
+    ],
+    "simbolos": [
+     [
+      "AG",
+      "diagonal do paralelepípedo, de A ao vértice oposto G"
+     ],
+     [
+      "cos²(x)",
+      "o cosseno de x elevado ao quadrado"
+     ]
+    ]
+   },
+   "pista": "Escreva o cosseno de cada ângulo como aresta ÷ diagonal; antes de somar, calcule a diagonal.",
+   "passos": [
+    {
+     "faz": "Calcule a diagonal",
+     "conta": "AG² = 3² + 2² + 2² = 9 + 4 + 4 = 17 → AG = √17",
+     "porque": "AB = 3, AD = 2 e AE = 2 são as três arestas que saem de A; a diagonal é a raiz da soma dos quadrados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva os cossenos",
+     "conta": "cos x = 3/√17 ; cos y = 2/√17 ; cos z = 2/√17",
+     "porque": "No triângulo retângulo formado por AG e cada aresta, a aresta é o cateto adjacente ao ângulo e AG é a hipotenusa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os quadrados",
+     "conta": "9/17 + 4/17 + 4/17 = 17/17 = 1",
+     "porque": "Os quadrados dos numeradores somam 9 + 4 + 4 = 17, o mesmo valor de AG²: a fração vira 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "cos²(x) + cos²(y) + cos²(z) = 1 → alternativa B",
+     "porque": "A soma é 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1",
+   "checagem": "Teste num cubo de aresta 1: a diagonal é √3, cada cosseno é 1/√3 e a soma dos quadrados é 3 · 1/3 = 1. A soma não depende das medidas.",
+   "erradas": {
+    "A": "2 não confere: cada cos² é aresta² ÷ 17, e 9 + 4 + 4 = 17 dá soma exatamente 1.",
+    "C": "3 não confere: os três cos² valem 9/17, 4/17 e 4/17, cada um menor que 1; a soma 3 exigiria os três ângulos iguais a zero.",
+    "D": "3π² não confere: a soma é de cossenos ao quadrado, números entre 0 e 1 cada; o total fica no máximo 3, e 3π² ≈ 29,6.",
+    "E": "π²/3 não confere: π²/3 ≈ 3,29, mais que 3, impossível para uma soma de três cos²."
+   },
+   "armadilha": "Os cossenos usam a diagonal como hipotenusa; com d² = a² + b² + c², a soma dos cos² é sempre 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de cos²(x) + cos²(y) + cos²(z) para os ângulos da diagonal AG com as arestas AB, AD e AE.",
+    "chave": "Cada cosseno é aresta ÷ diagonal; a soma dos quadrados é (9 + 4 + 4)/17 = 1.",
+    "cuidado": "Calcule a diagonal com as três arestas (√17), não só com duas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "num cubo de aresta 1, cada cosseno é 1/√3 e 3 · 1/3 = 1; a identidade vale para qualquer paralelepípedo reto"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "AG² = 9 + 4 + 4 = 17",
+    "nota": "diagonal ao quadrado"
+   },
+   {
+    "linha": "cos x = 3/√17 ; cos y = cos z = 2/√17",
+    "nota": "aresta ÷ diagonal"
+   },
+   {
+    "linha": "9/17 + 4/17 + 4/17 = 1",
+    "nota": "somar os quadrados"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
+ },
+ "P1aee808c": {
+  "n": "11",
+  "conceito": "Área entre duas parábolas: a diferença das funções é outra função do 2º grau, e a fórmula de Kepler se aplica a ela.",
+  "equivocos": {
+   "A": "M05.2:area-subestimada",
+   "C": "M05.2:area-subestimada",
+   "D": "M05.2:esqueceu-o-fator-4",
+   "E": "M05.2:area-subestimada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A região hachurada fica entre duas parábolas, de x = 2 a x = 4. A diferença h(x) = f(x) − g(x) entre a de cima e a de baixo também é uma função do 2º grau, então a fórmula dada vale para h: a área entre as curvas é a área \"sob\" h. Primeiro leia no gráfico as duas leis.",
+    "formulas": [
+     "Área = (h(a) + 4·h(m) + h(b)) × (b − a)/6, com m = (a + b)/2",
+     "h(x) = f(x) − g(x)"
+    ],
+    "simbolos": [
+     [
+      "f",
+      "parábola de cima, com vértice (2, 4)"
+     ],
+     [
+      "g",
+      "parábola de baixo, com vértice (4, 0)"
+     ],
+     [
+      "m",
+      "ponto médio do intervalo"
+     ]
+    ]
+   },
+   "pista": "As duas curvas se cruzam em (2, 4) e (4, 0). Escreva a lei de cada parábola a partir dos pontos que o gráfico mostra.",
+   "passos": [
+    {
+     "faz": "Leia as duas parábolas",
+     "conta": "f: raízes 0 e 4, vértice (2, 4) → f(x) = −x² + 4x | g: vértice (4, 0), passa por (2, 4) → g(x) = (x − 4)²",
+     "porque": "f(x) = a·x(x − 4) com f(2) = 4 dá a = −1; g(x) = a(x − 4)² com g(2) = 4 dá a = 1.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a diferença nos três pontos",
+     "conta": "h(2) = 4 − 4 = 0 | h(3) = 3 − 1 = 2 | h(4) = 0 − 0 = 0",
+     "porque": "Com a = 2, b = 4 e m = 3: f(3) = −9 + 12 = 3 e g(3) = (3 − 4)² = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a fórmula de Kepler",
+     "conta": "Área = (0 + 4·2 + 0) × (4 − 2)/6 = 8 × 2/6 = 8/3",
+     "porque": "h = f − g é do 2º grau, então a fórmula vale para ela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "Área = 8/3 → alternativa B",
+     "porque": "A fórmula é exata para funções do 2º grau.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 8/3",
+   "checagem": "Pela fórmula em cada curva: sob f de 2 a 4, (4 + 4·3 + 0) × 2/6 = 16/3; sob g, (4 + 4·1 + 0) × 2/6 = 8/3; a diferença 16/3 − 8/3 = 8/3. Fecha.",
+   "erradas": {
+    "A": "8/5 não confere: h é côncava e vale 2 em x = 3, então fica acima do triângulo de base 2 e altura 2; a área é pelo menos 2, maior que 8/5 = 1,6.",
+    "C": "3/2 não confere: a região contém o triângulo de base 2 e altura 2 (área 2), e 3/2 = 1,5 é menor que isso.",
+    "D": "2/3 sai de esquecer o 4 na fórmula: (0 + 2 + 0) × 2/6 = 2/3.",
+    "E": "2/5 não confere: é menor que a área 2 do triângulo que cabe dentro da região."
+   },
+   "armadilha": "Usar a fórmula só na parábola de baixo ou de cima: a altura da região é a diferença f − g em cada ponto.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área entre as duas parábolas de x = 2 a x = 4.",
+    "chave": "h = f − g é do 2º grau: (0 + 4·2 + 0) × 2/6 = 8/3.",
+    "cuidado": "Leia as leis no gráfico antes; a fórmula pede o valor no ponto médio vezes 4."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diferença das áreas",
+    "ideia": "Aplique a fórmula em f (16/3) e em g (8/3) separadamente e subtraia: 8/3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(x) = −x² + 4x | g(x) = (x − 4)²",
+    "nota": "leis lidas no gráfico"
+   },
+   {
+    "linha": "h(2) = 0 | h(3) = 3 − 1 = 2 | h(4) = 0",
+    "nota": "diferença nos três pontos"
+   },
+   {
+    "linha": "(0 + 4·2 + 0) × 2/6 = 16/6",
+    "nota": "fórmula de Kepler"
+   },
+   {
+    "linha": "16/6 = 8/3",
+    "nota": "simplifica por 2"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "No gráfico, as duas parábolas se destacam; em x = 2, 3 e 4 surgem segmentos verticais entre elas com comprimentos 0, 2 e 0; esses valores entram na fórmula e a região hachurada se pinta com 8/3."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
+ },
+ "Pc43e876c": {
+  "n": "9",
+  "conceito": "Calcular o determinante 2×2, reconhecer a elipse na forma reduzida e achar a excentricidade e = c/a.",
+  "equivocos": {
+   "B": "M12.4:dividiu-pelo-semieixo-menor",
+   "C": "M15.2:sinal-trocado-no-determinante",
+   "D": "M12.4:excentricidade-sem-relacao-dos-eixos",
+   "E": "M12.4:esqueceu-a-raiz"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O determinante transforma a matriz numa equação em x e y. Com os dois termos positivos e o segundo membro 6, é uma elipse: divida tudo por 6 para chegar à forma reduzida. Na elipse, o maior denominador é a², o menor é b² e c² = a² − b². A excentricidade é c dividido pelo semieixo maior a.",
+    "formulas": [
+     "det [[a, b], [c, d]] = a·d − b·c",
+     "elipse: x²/a² + y²/b² = 1, com a² > b²",
+     "c² = a² − b²  e  e = c/a"
+    ],
+    "simbolos": [
+     [
+      "det(A)",
+      "determinante da matriz A"
+     ],
+     [
+      "a",
+      "semieixo maior da elipse"
+     ],
+     [
+      "b",
+      "semieixo menor"
+     ],
+     [
+      "c",
+      "distância do centro a cada foco"
+     ],
+     [
+      "e",
+      "excentricidade, c/a, entre 0 e 1 na elipse"
+     ]
+    ]
+   },
+   "pista": "Faça o produto da diagonal principal menos o da secundária com muito cuidado com o sinal de −3y.",
+   "passos": [
+    {
+     "faz": "Calcule o determinante",
+     "conta": "det(A) = 2x·x − y·(−3y) → det(A) = 2x² + 3y²",
+     "porque": "Diagonal principal menos secundária. O produto y·(−3y) é −3y², e o menos da fórmula o torna +3y².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a elipse na forma reduzida",
+     "conta": "2x² + 3y² = 6 → (2x²)/6 + (3y²)/6 = 1 → x²/3 + y²/2 = 1",
+     "porque": "Dividir por 6 deixa o 1 no segundo membro. Os dois termos positivos confirmam que é elipse.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache c pela relação da elipse",
+     "conta": "a² = 3 | b² = 2 → c² = 3 − 2 = 1 → c = 1",
+     "porque": "Na elipse o semieixo maior vem do maior denominador, e c² = a² − b².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a excentricidade",
+     "conta": "e = c/a = 1/√3 → alternativa A",
+     "porque": "A excentricidade divide c pelo semieixo maior a = √3.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1/√3",
+   "checagem": "Confira com a ideia de que a excentricidade da elipse está entre 0 e 1: 1/√3 ≈ 0,577 está nesse intervalo. Pela outra fórmula, e² = 1 − b²/a² = 1 − 2/3 = 1/3, e a raiz de 1/3 é 1/√3.",
+   "erradas": {
+    "B": "1/√2 sai de dividir c pelo semieixo menor: c/b = 1/√2. A excentricidade usa o semieixo maior, a = √3.",
+    "C": "√5/√3 sai de errar o sinal do determinante: 2x² − 3y² = 6 vira hipérbole, com c² = 3 + 2 = 5 e e = √5/√3. O correto é +3y².",
+    "D": "1/2 não confere: com e = 1/2, e² = 1/4, mas 1 − b²/a² = 1 − 2/3 = 1/3.",
+    "E": "1/3 sai de parar em e² = c²/a² = 1/3 e esquecer a raiz quadrada."
+   },
+   "armadilha": "O sinal: −y·(−3y) dá +3y²; errar aqui troca a elipse por uma hipérbole.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A excentricidade da curva det(A) = 6.",
+    "chave": "det(A) = 2x² + 3y² = 6 → x²/3 + y²/2 = 1, c² = 1, e = 1/√3.",
+    "cuidado": "Use o semieixo maior (a² = 3) no denominador e não esqueça a raiz."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "e² = 1 − b²/a²",
+    "ideia": "e² = 1 − 2/3 = 1/3, logo e = 1/√3, sem calcular c."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "det(A) = 2x·x − y·(−3y) = 2x² + 3y²",
+    "nota": "determinante 2×2"
+   },
+   {
+    "linha": "2x² + 3y² = 6 → x²/3 + y²/2 = 1",
+    "nota": "divide tudo por 6"
+   },
+   {
+    "linha": "c² = 3 − 2 = 1 → c = 1",
+    "nota": "c² = a² − b²"
+   },
+   {
+    "linha": "e = c/a = 1/√3",
+    "nota": "excentricidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
  }
 }

@@ -1,0 +1,109 @@
+{
+ "P2c0e1c17": {
+  "n": "89",
+  "conceito": "Calcular a área de uma região por diferença: o quadrado |x| + |y| ≤ 1 menos a parte do disco que fica dentro dele.",
+  "equivocos": {
+   "B": "M12.4:meio-disco-em-vez-de-quarto",
+   "C": "M12.4:somou-em-vez-de-subtrair",
+   "D": "M12.4:diagonal-tomada-como-lado",
+   "E": "M12.4:somou-em-vez-de-subtrair"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "B é o lado de fora do disco de centro (−1, 0) e raio 1 (com a borda). Então A ∩ B é o quadrado A menos o pedaço do disco que está dentro de A. Esse pedaço é um quarto de disco, porque os dois lados de A que saem do vértice (−1, 0) formam um ângulo reto.",
+    "formulas": [
+     "área de A ∩ B = área de A − área do disco dentro de A",
+     "quadrado pela diagonal: área = (d · d)/2",
+     "setor de 90°: área = (π · r²)/4"
+    ],
+    "simbolos": [
+     [
+      "A ∩ B",
+      "pontos que estão ao mesmo tempo em A e em B"
+     ],
+     [
+      "≥ 1",
+      "fora do disco ou na borda"
+     ]
+    ]
+   },
+   "pista": "Desenhe o disco de centro (−1, 0) e raio 1 por cima do quadrado e veja que forma tem a parte que fica dentro dele.",
+   "passos": [
+    {
+     "faz": "Calcule a área do quadrado A",
+     "conta": "área de A = (2 · 2)/2 = 2",
+     "porque": "A é um quadrado de vértices (±1, 0) e (0, ±1); as duas diagonais medem 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Localize o disco dentro de A",
+     "conta": "centro (−1, 0) = vértice de A | ângulo no vértice = 90°",
+     "porque": "O centro do disco é o vértice esquerdo de A, e os lados de A que saem dali formam ângulo reto: dentro de A fica um setor de 90° do disco.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a área desse quarto de disco",
+     "conta": "(π · 1²)/4 = π/4",
+     "porque": "O quarto de disco cabe inteiro em A: o ponto mais à direita dele é a origem, e o lado direito de A está mais longe.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia",
+     "conta": "área de A ∩ B = 2 − π/4 → alternativa A",
+     "porque": "A ∩ B é A sem os pontos de dentro do disco.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2 − π/4",
+   "checagem": "Tamanho do pedaço: o disco dentro de A fica todo na metade esquerda (x ≤ 0), um triângulo de área 1. O quarto de disco, π/4 ≈ 0,785, cabe nela; meio disco, π/2 ≈ 1,57, não caberia. Então sobra 2 − π/4 ≈ 1,21.",
+   "erradas": {
+    "B": "2 − π/2 sai de tirar meio disco em vez de um quarto: o ângulo de A no vértice (−1, 0) é 90°, não 180°.",
+    "C": "4 + π/2 não confere: A ∩ B está dentro de A, que tem área 2, e 4 + π/2 ≈ 5,57 passa disso.",
+    "D": "4 − π/4 sai de tomar a área de A como 4 (tratando a diagonal 2 como lado), mas a área de A é 2; 4 − π/4 ≈ 3,21 passa da área de A.",
+    "E": "2 + π/2 não confere: A ∩ B está dentro de A, e 2 + π/2 ≈ 3,57 é maior que a área de A, 2."
+   },
+   "armadilha": "Tomar a área de A como 4: o 2 é a diagonal do quadrado, não o lado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área dos pontos de A que ficam fora do disco de centro (−1, 0) e raio 1.",
+    "chave": "Área de A é 2 e o disco ocupa um quarto dentro dele: 2 − π/4.",
+    "cuidado": "A área do quadrado vem das diagonais: (2 · 2)/2 = 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por partes",
+    "ideia": "A metade esquerda de A (triângulo de área 1) perde o quarto de disco (π/4) e a metade direita (área 1) fica inteira: 1 − π/4 + 1 = 2 − π/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "área de A = (2 · 2)/2 = 2",
+    "nota": "quadrado pelas diagonais"
+   },
+   {
+    "linha": "(π · 1²)/4 = π/4",
+    "nota": "quarto de disco dentro de A"
+   },
+   {
+    "linha": "2 − π/4",
+    "nota": "área de A ∩ B"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "O quadrado A aparece hachurado; o disco de centro (−1, 0) e raio 1 é desenhado por cima; o quarto de disco que fica dentro de A é recortado e apagado; sobra a região A ∩ B com a área 2 − π/4."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
+ }
+}

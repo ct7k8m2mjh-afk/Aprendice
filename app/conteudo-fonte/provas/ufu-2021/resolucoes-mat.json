@@ -666,5 +666,237 @@
    "data": "2026-11-12",
    "lote": "mat-0038"
   }
+ },
+ "Pd41d41f3": {
+  "n": "71",
+  "conceito": "Escrever números pelos algarismos no sistema decimal e resolver a equação AII = 3·UAI com algarismos de 1 a 9.",
+  "equivocos": {
+   "A": "M04.5:solucao-nao-testada",
+   "B": "M04.5:solucao-nao-testada",
+   "D": "M04.5:solucao-nao-testada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Um número de três algarismos UAI vale 100U + 10A + I. A condição vira uma equação com três incógnitas inteiras entre 1 e 9. Simplifique e use a divisibilidade e os limites dos algarismos para achar a única solução.",
+    "formulas": [
+     "UAI = 100U + 10A + I",
+     "AII = 100A + 10I + I = 100A + 11I"
+    ],
+    "simbolos": [
+     [
+      "U, A, I",
+      "algarismos de 1 a 9 que formam os números"
+     ]
+    ]
+   },
+   "pista": "Escreva cada número como soma de centenas, dezenas e unidades antes de usar o triplo.",
+   "passos": [
+    {
+     "faz": "Escreva os números no sistema decimal",
+     "conta": "UAI = 100U + 10A + I | AII = 100A + 11I",
+     "porque": "A posição de cada algarismo diz quanto ele vale.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte e simplifique a equação",
+     "conta": "100A + 11I = 3·(100U + 10A + I) → 70A + 8I = 300U → 35A + 4I = 150U",
+     "porque": "Distribua o 3, passe os termos semelhantes para o mesmo lado e divida tudo por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste os valores de U",
+     "conta": "U = 1: 35A + 4I = 150 → sem solução | U = 2: 35A + 4I = 300 → A = 8, I = 5",
+     "porque": "Com A e I de 1 a 9, 35A + 4I vai de 39 a 351, então U é 1 ou 2. Para U = 1, nenhum A de 1 a 4 deixa I inteiro entre 1 e 9 (A = 2 daria I = 20); para U = 2, A = 8 dá 4I = 20, I = 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os algarismos",
+     "conta": "U + A + I = 2 + 8 + 5 = 15 → alternativa C",
+     "porque": "A pergunta é a soma dos algarismos, não o número.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 15",
+   "checagem": "Substitua: UAI = 285 e AII = 855; 3 × 285 = 855. A condição fecha.",
+   "erradas": {
+    "A": "16 não confere: a única solução é U = 2, A = 8, I = 5, de soma 15; com soma 16 nenhum UAI tem o triplo da forma AII.",
+    "B": "17 não confere: testando U = 1 e U = 2, só 285 e 855 satisfazem a condição, e 2 + 8 + 5 = 15.",
+    "D": "18 não confere: a equação 35A + 4I = 150U só tem a solução (2, 8, 5), cuja soma é 15."
+   },
+   "armadilha": "AII tem dois algarismos I: vale 100A + 11I, e esquecer o 11 estraga a equação.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma U + A + I sabendo que AII = 3·UAI.",
+    "chave": "100A + 11I = 3(100U + 10A + I) → 35A + 4I = 150U → (2, 8, 5).",
+    "cuidado": "Limite U pelos algarismos de 1 a 9 e confira 3 × 285 = 855."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "multiplicação armada",
+    "ideia": "3 × U A I termina em I: 3I termina em I só para I = 5 (15); seguindo o vai-um chega-se a 3 × 285 = 855."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "100A + 11I = 300U + 30A + 3I",
+    "nota": "distributiva do triplo"
+   },
+   {
+    "linha": "70A + 8I = 300U",
+    "nota": "termos semelhantes de um lado só"
+   },
+   {
+    "linha": "35A + 4I = 150U",
+    "nota": "divide por 2"
+   },
+   {
+    "linha": "U = 2 → 35·8 + 4·5 = 300",
+    "nota": "A = 8 e I = 5"
+   },
+   {
+    "linha": "2 + 8 + 5 = 15",
+    "nota": "soma pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
+ },
+ "Pf6a336bb": {
+  "n": "72",
+  "conceito": "Probabilidade com contagem de caminhos em grade: casos favoráveis pelo princípio multiplicativo sobre o total de caminhos.",
+  "equivocos": {
+   "B": "M13.4:contou-trecho-errado",
+   "C": "M13.4:contou-trecho-errado",
+   "D": "M13.4:esqueceu-trecho-final"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Todo caminho só para a direita ou para cima é uma sequência de passos D e C. De A(0,0) até B(6,6) são 6 passos D e 6 passos C em alguma ordem, e cada ordem é um caminho. Para passar por X e por Y, quebre o trajeto em três trechos e multiplique as contagens de cada trecho.",
+    "formulas": [
+     "caminhos de (a,b) até (c,d) = C(Δx + Δy, Δx)",
+     "favoráveis = (A→X) × (X→Y) × (Y→B)",
+     "probabilidade = favoráveis ÷ total"
+    ],
+    "simbolos": [
+     [
+      "D, C",
+      "um passo para a direita e um passo para cima"
+     ],
+     [
+      "C(n, k)",
+      "combinação de n elementos tomados k a k: de quantas formas se escolhem as k posições dos passos D entre n passos"
+     ],
+     [
+      "Δx, Δy",
+      "quantos passos para a direita e para cima o trecho exige"
+     ]
+    ]
+   },
+   "pista": "Escreva quantos passos para a direita e para cima cada trecho exige: A até X, X até Y e Y até B.",
+   "passos": [
+    {
+     "faz": "Conte todos os caminhos de A até B",
+     "conta": "6 D + 6 C → C(12, 6) = 924",
+     "porque": "São 12 passos, e basta escolher quais 6 deles são para a direita; o resto é para cima.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os caminhos de A até X",
+     "conta": "(0,0) → (2,2): C(4, 2) = 6",
+     "porque": "De A até X são 2 passos para a direita e 2 para cima: escolha as 2 posições dos D entre 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte X até Y e Y até B",
+     "conta": "(2,2) → (4,5): C(5, 2) = 10 | (4,5) → (6,6): C(3, 1) = 3",
+     "porque": "De X a Y são 2 D e 3 C; de Y a B são 2 D e 1 C. Cada trecho se conta do mesmo jeito.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique os trechos e divida pelo total",
+     "conta": "6 × 10 × 3 = 180 → 180/924 = 15/77",
+     "porque": "Para cada caminho de um trecho valem todos os do trecho seguinte, então as contagens se multiplicam. Simplificando por 12 sai 15/77.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "P = 15/77 → alternativa A",
+     "porque": "Os caminhos são escolhidos ao acaso entre os 924, todos igualmente prováveis.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 15/77",
+   "checagem": "Ordem de grandeza: só passar por X já tem 6 × C(8, 4) = 420 caminhos, menos da metade dos 924. Exigir também Y tem de dar bem menos que 420; 180 é cerca de 43% desses 420, plausível.",
+   "erradas": {
+    "B": "9/77 não confere: equivale a 108/924, mas os caminhos que passam por X e Y são 6 × 10 × 3 = 180.",
+    "C": "12/77 não confere: equivale a 144/924, e a contagem certa dos caminhos por X e Y é 180.",
+    "D": "3/22 sai de contar só os caminhos de A até Y: C(9, 4) = 126 e 126/924 = 3/22. Faltam o trecho de Y até B e a passagem por X."
+   },
+   "armadilha": "Esquecer um dos trechos (em especial o último, de Y até B) ou somar as contagens dos trechos em vez de multiplicá-las.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de um caminho sorteado de A a B passar por X e por Y.",
+    "chave": "Favoráveis = 6 × 10 × 3 = 180 sobre o total C(12, 6) = 924, ou seja, 15/77.",
+    "cuidado": "Conte cada trecho pelos passos D e C que ele exige e multiplique os três trechos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "anagramas",
+    "ideia": "Cada trecho é um anagrama de D e C: A→X é DDCC (4!/(2!·2!) = 6), X→Y é DDCCC (10), Y→B é DDC (3)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "total = C(12, 6) = 924",
+    "nota": "12 passos, 6 deles para a direita"
+   },
+   {
+    "linha": "A→X = C(4, 2) = 6",
+    "nota": "2 D e 2 C"
+   },
+   {
+    "linha": "X→Y = C(5, 2) = 10",
+    "nota": "2 D e 3 C"
+   },
+   {
+    "linha": "Y→B = C(3, 1) = 3",
+    "nota": "2 D e 1 C"
+   },
+   {
+    "linha": "6 × 10 × 3 = 180",
+    "nota": "multiplicar os trechos"
+   },
+   {
+    "linha": "180/924 = 15/77",
+    "nota": "dividir pelo total e simplificar por 12"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Prova oficial UFU 2021-2",
+    "url": "https://www.portalselecao.ufu.br/servicos/arquivo_administrativo/download/98f2d76d4d9caf408180b5abfa83ae87"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
  }
 }

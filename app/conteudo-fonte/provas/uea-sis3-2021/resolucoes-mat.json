@@ -613,5 +613,112 @@
    "data": "2026-11-12",
    "lote": "mat-0042"
   }
+ },
+ "P3368f441": {
+  "n": "37",
+  "conceito": "Distância entre pontos, ponto médio e Pitágoras: BD é o dobro de MB, hipotenusa do triângulo retângulo MAB.",
+  "equivocos": {
+   "A": "M12.1:parou-na-metade",
+   "B": "M12.1:pitagoras-errado",
+   "D": "M12.1:pitagoras-errado",
+   "E": "M12.1:pitagoras-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Como M é ponto médio de BD, basta achar MB e dobrar. MB é a hipotenusa do triângulo MAB, retângulo em A (o ângulo marcado na figura). Os catetos são MA (metade de AC) e AB (igual a AC).",
+    "formulas": [
+     "d(A, C) = √((xC − xA)² + (yC − yA)²)",
+     "MB² = MA² + AB²",
+     "BD = 2 × MB"
+    ],
+    "simbolos": [
+     [
+      "M",
+      "ponto médio de AC e de BD"
+     ]
+    ]
+   },
+   "pista": "Veja em que vértice está o ângulo reto de MAB e quais segmentos você já conhece a partir de AC.",
+   "passos": [
+    {
+     "faz": "Calcule AC",
+     "conta": "AC = √((3 − 0)² + (0 − 4)²) = √(9 + 16) = √25 = 5",
+     "porque": "Distância entre A = (0, 4) e C = (3, 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire MA e AB",
+     "conta": "MA = 5/2 = 2,5 | AB = AC = 5",
+     "porque": "M é ponto médio de AC; o enunciado diz que AB e AC têm a mesma medida.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use Pitágoras em MAB",
+     "conta": "MB² = 2,5² + 5² = 6,25 + 25 = 31,25 → MB = 2,5√5",
+     "porque": "O ângulo reto está em A, então MB é a hipotenusa; 31,25 = 6,25 × 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Dobre para achar BD",
+     "conta": "BD = 2 × 2,5√5 = 5√5 → alternativa C",
+     "porque": "M é ponto médio de BD.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 5√5",
+   "checagem": "Pelo outro triângulo: MCD é retângulo em C com MC = 2,5 e CD = 5, então MD = √31,25 = 2,5√5 = MB, como deve ser para M ser médio de BD; BD = MB + MD = 5√5 ≈ 11,2.",
+   "erradas": {
+    "A": "2,5√5 sai de parar em MB, a hipotenusa de MAB, sem dobrar para chegar a BD.",
+    "B": "10 não confere: daria MB = 5, mas MB é hipotenusa com cateto AB = 5, então MB > 5.",
+    "D": "12,5 não confere: daria MB = 6,25 e MB² = 39,0625, mas o Pitágoras dá MB² = 31,25.",
+    "E": "6√5 não confere: daria MB = 3√5 e MB² = 45, diferente de 31,25."
+   },
+   "armadilha": "Parar em MB: a pergunta é a distância de B a D, que é o dobro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A distância entre B e D.",
+    "chave": "AC = 5, MA = 2,5, AB = 5, MB = √31,25 = 2,5√5, BD = 2 × MB = 5√5.",
+    "cuidado": "O ângulo reto de MAB está em A: MB é a hipotenusa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas de B",
+    "ideia": "AB ⊥ AC com |AB| = 5 dá B = (−4, 1); com M = (1,5; 2), D = 2M − B = (7, 3), e BD = √(11² + 2²) = √125 = 5√5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "AC = √(9 + 16) = 5",
+    "nota": "distância entre A e C"
+   },
+   {
+    "linha": "MA = 2,5 | AB = 5",
+    "nota": "ponto médio e dado do enunciado"
+   },
+   {
+    "linha": "MB² = 6,25 + 25 = 31,25 → MB = 2,5√5",
+    "nota": "Pitágoras em MAB"
+   },
+   {
+    "linha": "BD = 2 × 2,5√5 = 5√5",
+    "nota": "M é médio de BD"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "AC acende com 5 e se divide em duas metades de 2,5 em M; AB acende com 5; o triângulo MAB mostra o ângulo reto em A e a hipotenusa MB; MB se duplica até D."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
  }
 }

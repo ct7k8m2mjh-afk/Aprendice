@@ -590,5 +590,107 @@
    "data": "2026-11-19",
    "lote": "mat-0075"
   }
+ },
+ "Pcb96eb9d": {
+  "n": "26",
+  "conceito": "Combinações sucessivas: escolher a equipe de sábado e depois a de domingo entre quem sobrou, para enfermeiras e médicas.",
+  "equivocos": {
+   "A": "M13.3:fatorial-no-numerador",
+   "C": "M13.3:arranjo-no-lugar-de-combinacao",
+   "D": "M13.3:arranjo-e-dobrou-os-dias",
+   "E": "M13.3:arranjo-no-lugar-de-combinacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dentro da equipe de um dia a ordem não importa: é combinação. Primeiro escolha as 15 enfermeiras e as 5 médicas de sábado; quem trabalhou no sábado não pode trabalhar no domingo, então a equipe de domingo sai das que sobraram. Sábado e domingo são dias diferentes, por isso não se divide por 2.",
+    "formulas": [
+     "C(n, p) = n!/(p!·(n − p)!)",
+     "etapas sucessivas: multiplica"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "número de grupos de p elementos escolhidos entre n, sem ordem"
+     ],
+     [
+      "n!",
+      "fatorial: n·(n − 1)·...·1"
+     ]
+    ]
+   },
+   "pista": "Escolha a equipe de sábado entre todos e a de domingo só entre os que sobraram.",
+   "passos": [
+    {
+     "faz": "Conte as enfermeiras",
+     "conta": "C(34, 15)·C(19, 15) = 34!/(15!·19!) · 19!/(15!·4!) → 34!/(15!·15!·4!)",
+     "porque": "Sábado: 15 entre 34. Domingo: 15 entre as 19 restantes. O 19! cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as médicas",
+     "conta": "C(12, 5)·C(7, 5) = 12!/(5!·7!) · 7!/(5!·2!) → 12!/(5!·5!·2!)",
+     "porque": "Sábado: 5 entre 12. Domingo: 5 entre as 7 restantes. O 7! cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as duas contagens",
+     "conta": "(34!·12!)/((15!·15!·4!)·(5!·5!·2!)) → (34!·12!)/((15!·5!)²·4!·2!)",
+     "porque": "Enfermeiras e médicas são escolhas independentes; junte os fatoriais iguais no quadrado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "(34!·12!)/((15!·5!)²·4!·2!) → alternativa B",
+     "porque": "A expressão bate com B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — (34!·12!)/((15!·5!)²·4!·2!)",
+   "checagem": "Confira pela divisão de todos de uma vez: separar as 34 enfermeiras em três grupos com rótulo (15 no sábado, 15 no domingo, 4 de folga) dá 34!/(15!·15!·4!), e as 12 médicas em 5, 5 e 2 dão 12!/(5!·5!·2!): o mesmo produto.",
+   "erradas": {
+    "A": "A sai de pôr o 2 das médicas que sobram no numerador em vez de dividir por 2!: (2·34!·12!)/((15!·5!)²·4!) é 4 vezes B.",
+    "C": "C não confere: sem (15!·5!)² no denominador, ela conta a ordem das pessoas dentro de cada equipe, e o fator 4 multiplica ainda mais; é 4·(15!·5!)² vezes B.",
+    "D": "D sai de contar a ordem dentro das equipes (arranjo, sem o (15!·5!)²) e ainda multiplicar por 2 trocando sábado e domingo, que já são dias distintos.",
+    "E": "E sai de usar arranjo em vez de combinação: 34!/4! e 12!/2! contam a ordem das pessoas, que não importa numa equipe de plantão."
+   },
+   "armadilha": "Equipe é grupo sem ordem: falta dividir por 15! e por 5! de cada dia, o que tira o (15!·5!)² do denominador.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de escalas diferentes de sábado e domingo.",
+    "chave": "C(34,15)·C(19,15)·C(12,5)·C(7,5) = (34!·12!)/((15!·5!)²·4!·2!).",
+    "cuidado": "Combinação dentro do dia, e não dividir nem multiplicar por 2 pela troca dos dias."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "partição com rótulos",
+    "ideia": "Divida as 34 enfermeiras em grupos 15, 15 e 4 e as 12 médicas em 5, 5 e 2: 34!/(15!15!4!) · 12!/(5!5!2!)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(34,15)·C(19,15) = 34!/(15!·15!·4!)",
+    "nota": "enfermeiras de sábado e de domingo"
+   },
+   {
+    "linha": "C(12,5)·C(7,5) = 12!/(5!·5!·2!)",
+    "nota": "médicas de sábado e de domingo"
+   },
+   {
+    "linha": "(34!·12!)/((15!·5!)²·4!·2!)",
+    "nota": "multiplica e agrupa os fatoriais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
  }
 }

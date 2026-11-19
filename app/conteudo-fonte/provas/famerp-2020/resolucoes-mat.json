@@ -879,5 +879,224 @@
    "data": "2026-11-19",
    "lote": "mat-0075"
   }
+ },
+ "P0feae392": {
+  "n": "72",
+  "conceito": "Calcular a área de um triângulo com vértices em dois cubos unidos, usando diagonais de face e do cubo.",
+  "equivocos": {
+   "B": "M11.1:area-sem-calculo",
+   "C": "M11.1:usou-aresta-no-lugar-da-diagonal",
+   "D": "M11.1:area-sem-calculo",
+   "E": "M11.1:area-sem-calculo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois cubos formam um bloco de 2 dm × 1 dm × 1 dm. Cada lado do triângulo é uma diagonal: PR é diagonal de face de um cubo, RQ é diagonal de um cubo e PQ é diagonal de um retângulo 2 × 1. Calcule os três lados e veja que eles fecham Pitágoras: o triângulo é retângulo em R.",
+    "formulas": [
+     "diagonal da face de aresta a = a√2",
+     "diagonal do cubo de aresta a = a√3",
+     "área do triângulo retângulo = (cateto · cateto)/2"
+    ],
+    "simbolos": [
+     [
+      "dm",
+      "decímetro, 10 cm"
+     ],
+     [
+      "d",
+      "diagonal"
+     ]
+    ]
+   },
+   "pista": "Descubra em que face (ou dentro de qual sólido) está cada lado do triângulo antes de calcular.",
+   "passos": [
+    {
+     "faz": "Localize os vértices no bloco",
+     "conta": "P: canto de cima, frente, esquerda | R: meio da aresta de cima de trás | Q: canto de baixo, frente, direita",
+     "porque": "Pela figura, P e R estão na face de cima do cubo da esquerda, R e Q são vértices opostos do cubo da direita, e P e Q estão na face da frente do bloco.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule os três lados",
+     "conta": "PR = √(1² + 1²) = √2 ; RQ = √(1² + 1² + 1²) = √3 ; PQ = √(2² + 1²) = √5",
+     "porque": "PR é diagonal de face, RQ é diagonal do cubo da direita e PQ é diagonal do retângulo 2 × 1 da frente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste Pitágoras",
+     "conta": "(√2)² + (√3)² = 2 + 3 = 5 = (√5)²",
+     "porque": "A soma dos quadrados dos dois menores dá o quadrado do maior: o ângulo em R é reto.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Calcule a área",
+     "conta": "(√2 · √3)/2 = √6/2",
+     "porque": "Com ângulo reto em R, PR e RQ são os catetos: a área é metade do produto deles.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "√6/2 dm² → alternativa A",
+     "porque": "A área do triângulo PQR é √6/2 dm².",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — √6/2 dm²",
+   "checagem": "Pela fórmula de Heron com lados √2, √3 e √5 (ou pelo produto vetorial dos vetores RP = (−1, −1, 0) e RQ = (1, −1, −1), cujo módulo é √6), a área sai √6/2 ≈ 1,22 dm². Fecha.",
+   "erradas": {
+    "B": "√6/3 não confere: com catetos √2 e √3 a área é (√2 · √3)/2 = √6/2 ≈ 1,22; √6/3 ≈ 0,82.",
+    "C": "√3/2 sai de tomar PR como uma aresta (1 dm) em vez da diagonal da face: (1 · √3)/2 = √3/2.",
+    "D": "√6/6 não confere: √6/6 ≈ 0,41 é um terço de √6/2, a área com catetos √2 e √3.",
+    "E": "2√3/3 não confere: 2√3/3 ≈ 1,15, e a área com catetos √2 e √3 é √6/2 ≈ 1,22."
+   },
+   "armadilha": "Os lados não são arestas: PR é diagonal de face (√2) e RQ é diagonal do cubo (√3).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do triângulo PQR com vértices em dois cubos de aresta 1 dm unidos.",
+    "chave": "PR = √2, RQ = √3, PQ = √5; como 2 + 3 = 5, é retângulo em R e a área é √6/2.",
+    "cuidado": "Identifique cada lado como diagonal de face, de cubo ou de retângulo antes de calcular."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas",
+    "ideia": "P = (0, 0, 1), R = (1, 1, 1), Q = (2, 0, 0); o produto vetorial de RP e RQ tem módulo √6, área √6/2"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "PR = √(1 + 1) = √2",
+    "nota": "diagonal da face"
+   },
+   {
+    "linha": "RQ = √(1 + 1 + 1) = √3",
+    "nota": "diagonal do cubo"
+   },
+   {
+    "linha": "PQ = √(4 + 1) = √5",
+    "nota": "diagonal do retângulo 2 × 1"
+   },
+   {
+    "linha": "2 + 3 = 5 → reto em R",
+    "nota": "Pitágoras"
+   },
+   {
+    "linha": "área = (√2 · √3)/2 = √6/2",
+    "nota": "metade do produto dos catetos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
+ },
+ "P3d225983": {
+  "n": "74",
+  "conceito": "A altura do triângulo relativa ao lado sobre uma reta é a distância do terceiro vértice a essa reta: aqui, a distância entre duas retas paralelas.",
+  "equivocos": {
+   "A": "M12.3:formula-do-equilatero-sem-lado",
+   "B": "M12.3:formula-do-equilatero-sem-lado",
+   "C": "M12.3:distancia-ate-a-origem",
+   "E": "M12.3:formula-do-equilatero-sem-lado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As duas retas têm a mesma inclinação 2, então são paralelas. A altura vai do terceiro vértice, perpendicular, até a reta do lado oposto; como esse vértice está na outra paralela, a altura é a distância entre as retas, seja qual for a posição do triângulo. O fato de ser equilátero não entra na conta.",
+    "formulas": [
+     "reta na forma geral: ax + by + c = 0",
+     "distância entre paralelas = |c₁ − c₂|/√(a² + b²)"
+    ],
+    "simbolos": [
+     [
+      "altura",
+      "segmento perpendicular de um vértice até a reta do lado oposto"
+     ],
+     [
+      "paralelas",
+      "retas com a mesma inclinação que não se cruzam"
+     ]
+    ]
+   },
+   "pista": "Compare as inclinações das duas retas antes de pensar no triângulo equilátero.",
+   "passos": [
+    {
+     "faz": "Reconheça as paralelas",
+     "conta": "y = 2x − 2 → 2x − y − 2 = 0 | y = 2x + 2 → 2x − y + 2 = 0",
+     "porque": "Mesmo coeficiente de x: as retas são paralelas e ficam na forma geral com os mesmos a e b.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ligue a altura à distância",
+     "conta": "altura = d(r₁, r₂)",
+     "porque": "O terceiro vértice está numa paralela e a base está na outra; a perpendicular entre elas tem sempre o mesmo comprimento.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a distância",
+     "conta": "d = |−2 − 2|/√(2² + (−1)²) → d = 4/√5",
+     "porque": "Fórmula da distância entre paralelas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Racionalize",
+     "conta": "4/√5 = (4√5)/(√5·√5) = 4√5/5 → alternativa D",
+     "porque": "Multiplique em cima e embaixo por √5.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 4√5/5",
+   "checagem": "Confira pela origem: a distância de (0, 0) até y = 2x − 2 é 2/√5 e até y = 2x + 2 também é 2/√5. A origem fica entre as retas, então a distância entre elas é 2/√5 + 2/√5 = 4/√5 = 4√5/5.",
+   "erradas": {
+    "A": "4√3/5 não confere: vale cerca de 1,386, e a distância entre as retas é 4/√5 ≈ 1,789.",
+    "B": "3√3/4 não confere: vale cerca de 1,299, diferente de 4/√5 ≈ 1,789; nenhum lado do triângulo é dado para usar ℓ√3/2.",
+    "C": "2√5/5 sai de medir a distância da origem até uma das retas, |−2|/√5 = 2/√5, que é só metade da faixa entre elas.",
+    "E": "√3/2 é a altura do equilátero de lado 1, e nenhum lado 1 é dado; vale cerca de 0,866, longe de 1,789."
+   },
+   "armadilha": "A palavra equilátero puxa para h = ℓ√3/2, mas a altura sai direto da distância entre as paralelas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A altura do triângulo com a base numa reta e o vértice oposto na paralela.",
+    "chave": "altura = distância entre 2x − y − 2 = 0 e 2x − y + 2 = 0 = 4/√5 = 4√5/5.",
+    "cuidado": "Divida por √(a² + b²) = √5 e não se prenda à fórmula do equilátero."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ponto e reta",
+    "ideia": "Pegue (0, 2) na reta y = 2x + 2 e meça até 2x − y − 2 = 0: |0 − 2 − 2|/√5 = 4/√5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2x − y − 2 = 0 | 2x − y + 2 = 0",
+    "nota": "forma geral, mesmos a e b"
+   },
+   {
+    "linha": "d = |−2 − 2|/√5 = 4/√5",
+    "nota": "distância entre paralelas"
+   },
+   {
+    "linha": "4/√5 = 4√5/5",
+    "nota": "racionaliza"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
  }
 }

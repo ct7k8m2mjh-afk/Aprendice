@@ -447,5 +447,237 @@
    "data": "2026-11-12",
    "lote": "mat-0040"
   }
+ },
+ "P66b003e1": {
+  "n": "27",
+  "conceito": "Volume de líquido num cilindro deitado: área do círculo menos o segmento circular vazio, vezes o comprimento.",
+  "equivocos": {
+   "A": "M11.2:volume-menor-que-a-metade",
+   "B": "M11.2:volume-menor-que-a-metade",
+   "C": "M11.2:volume-menor-que-a-metade",
+   "D": "M11.2:trocou-os-coeficientes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com o cilindro deitado, o líquido ocupa na boca circular um pedaço do círculo de raio 9 m, e o volume é essa área vezes o comprimento de 12 m. A linha do líquido fica 13,5 − 9 = 4,5 m acima do centro, e o pedaço vazio de cima é um segmento circular. Como 4,5 é metade do raio, o ângulo central desse segmento é de 120°.",
+    "formulas": [
+     "área do segmento = área do setor − área do triângulo",
+     "setor de 120° = (1/3) · πr²",
+     "triângulo com dois lados r e ângulo θ = (r² · sen θ)/2"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "raio da boca, 9 m"
+     ],
+     [
+      "C",
+      "centro da boca circular"
+     ],
+     [
+      "θ",
+      "ângulo central do segmento vazio"
+     ]
+    ]
+   },
+   "pista": "Ache primeiro o ângulo central do pedaço vazio usando a distância da linha do líquido ao centro.",
+   "passos": [
+    {
+     "faz": "Ache o ângulo do segmento vazio",
+     "conta": "r = 18/2 = 9 ; 13,5 − 9 = 4,5 → cos(θ/2) = 4,5/9 = 1/2 → θ/2 = 60° → θ = 120°",
+     "porque": "O raio até a ponta da linha do líquido e a distância 4,5 m formam um triângulo retângulo; cosseno 1/2 dá metade do ângulo igual a 60°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área vazia",
+     "conta": "27π − (81 · √3/2)/2 = 27π − (81√3)/4",
+     "porque": "Setor de 120° é um terço do círculo: 81π ÷ 3 = 27π. O triângulo de lados 9, 9 e ângulo 120° tem área (81 · sen 120°)/2. O segmento é o setor menos o triângulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área com líquido",
+     "conta": "81π − (27π − (81√3)/4) = 54π + (81√3)/4",
+     "porque": "A área com líquido é o círculo inteiro menos o segmento vazio; o sinal do triângulo vira mais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pelo comprimento",
+     "conta": "(54π + (81√3)/4) · 12 = 648π + 243√3",
+     "porque": "O tanque tem 12 m de altura, que, deitado, é o comprimento do prisma de seção circular.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "648π + 243√3 m³ → alternativa E",
+     "porque": "O volume de líquido é 648π + 243√3 m³.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 648π + 243√3 m³",
+   "checagem": "Por ordem de grandeza: o tanque inteiro tem 81π · 12 = 972π ≈ 3054 m³ e a parte vazia tem 12 · (27π − 81√3/4) ≈ 597 m³. Então o líquido é ≈ 3054 − 597 ≈ 2457 m³, e 648π + 243√3 ≈ 2457. Fecha.",
+   "erradas": {
+    "A": "81π + 162√3 não confere: ≈ 535 m³, menos da metade do tanque (≈ 1527 m³), mas o líquido passa do centro.",
+    "B": "162π + 81√3 não confere: ≈ 649 m³, menos da metade do tanque (≈ 1527 m³), mas o líquido passa do centro.",
+    "C": "328π + 243√3 não confere: ≈ 1451 m³, menos da metade do tanque (≈ 1527 m³), mas o líquido passa do centro.",
+    "D": "243π + 648√3 não confere: ≈ 1886 m³, e o certo é 972π − 12 · (27π − 81√3/4) ≈ 2457 m³."
+   },
+   "armadilha": "A conta pronta é a do segmento vazio; o líquido é o círculo menos ele, e o sinal do triângulo vira positivo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume de líquido num tanque cilíndrico deitado, de raio 9 m e comprimento 12 m, com líquido até 13,5 m do chão.",
+    "chave": "Segmento vazio de 120°: 27π − 81√3/4; líquido = 54π + 81√3/4 por metro, vezes 12 = 648π + 243√3.",
+    "cuidado": "Use o raio (9 m), não o diâmetro, e subtraia o segmento vazio do círculo inteiro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "metade mais faixa",
+    "ideia": "meia boca (81π/2) mais a faixa do centro até a linha do líquido (dois setores de 30° e dois triângulos de catetos 4,5 e 4,5√3) dá 54π + 81√3/4 por metro; vezes 12, 648π + 243√3"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "cos(θ/2) = 4,5/9 = 1/2 → θ = 120°",
+    "nota": "ângulo do segmento vazio"
+   },
+   {
+    "linha": "setor = 81π/3 = 27π",
+    "nota": "um terço do círculo"
+   },
+   {
+    "linha": "triângulo = (81 · √3/2)/2 = (81√3)/4",
+    "nota": "dois raios e 120°"
+   },
+   {
+    "linha": "81π − 27π + (81√3)/4 = 54π + (81√3)/4",
+    "nota": "área com líquido"
+   },
+   {
+    "linha": "12 · (54π + (81√3)/4) = 648π + 243√3",
+    "nota": "vezes o comprimento"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
+ },
+ "P1bbc96c0": {
+  "n": "25",
+  "conceito": "Probabilidade por combinação: as 3 caixas pretas ocupam 3 dos 32 compartimentos ao acaso e só uma escolha dá tempo total de 3 s.",
+  "equivocos": {
+   "A": "M13.4:tratou-iguais-como-distintos",
+   "B": "M13.4:esqueceu-permutacao-das-brancas",
+   "C": "M13.4:contagem-sem-base",
+   "E": "M13.4:misturou-ordem-e-sem-ordem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Como as caixas pretas são iguais entre si, o que importa é o conjunto de 3 compartimentos que elas ocupam entre os 32 preenchidos. Para gastar só 3 segundos retirando as três, cada uma tem de estar num compartimento de 1 s, o menor tempo da figura. Sobra contar quantos conjuntos de 3 compartimentos existem.",
+    "formulas": [
+     "total de posições das pretas = C(32, 3)",
+     "probabilidade = casos favoráveis ÷ casos possíveis"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "combinação: número de grupos de k elementos escolhidos entre n, sem importar a ordem"
+     ],
+     [
+      "n!",
+      "fatorial: n × (n − 1) × ... × 1"
+     ]
+    ]
+   },
+   "pista": "Antes de contar, procure na figura os menores tempos e veja quais trios de compartimentos somam exatamente 3 s.",
+   "passos": [
+    {
+     "faz": "Ache os trios que somam 3 s",
+     "conta": "1 + 1 + 1 = 3 | 1 + 1 + 1,5 = 3,5 > 3",
+     "porque": "O menor tempo da figura é 1 s e há exatamente três compartimentos de 1 s. Trocar qualquer um por outro de 1,5 s ou mais já passa de 3 s.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os casos favoráveis",
+     "conta": "favoráveis = 1",
+     "porque": "Só um conjunto de compartimentos serve: os três de 1 s, um preto em cada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as posições possíveis das pretas",
+     "conta": "C(32, 3) = (32 × 31 × 30)/(3 × 2 × 1) = 4960",
+     "porque": "O compartimento de 12 s ficou vazio, então as caixas estão em 32 lugares. As pretas são iguais, e a ordem entre elas não importa: é combinação.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e ligue à alternativa",
+     "conta": "P = 1/4960 → alternativa D",
+     "porque": "Todos os conjuntos de 3 compartimentos são igualmente prováveis no preenchimento aleatório.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1/4960",
+   "checagem": "Pelas caixas uma a uma: a 1ª preta cai num lugar de 1 s com chance 3/32, a 2ª em outro com 2/31 e a 3ª no último com 1/30; 3/32 × 2/31 × 1/30 = 6/29760 = 1/4960.",
+   "erradas": {
+    "A": "1/32! sai de tratar as 32 caixas como todas diferentes e aceitar uma única arrumação; as 29 brancas e as 3 pretas são iguais entre si.",
+    "B": "6/32! sai de contar as 3! ordens das pretas sem contar as 29! das brancas: o certo é 3! × 29!/32! = 1/4960.",
+    "C": "1/26! não confere: 26! tem 27 algarismos, e o total de posições das pretas é só C(32, 3) = 4960.",
+    "E": "3/2480 sai de multiplicar o caso favorável pelas 3! = 6 ordens das pretas e manter o total sem ordem: 6/4960 = 3/2480."
+   },
+   "armadilha": "Misturar contagem com ordem e sem ordem: se o numerador conta ordens das pretas, o denominador tem de contar também.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de as três caixas pretas estarem nos compartimentos que somam 3 s de retirada.",
+    "chave": "Só os três compartimentos de 1 s servem: 1 caso entre C(32, 3) = 4960.",
+    "cuidado": "Exclua o compartimento de 12 s, que ficou vazio, e não misture ordem e falta de ordem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sorteio em sequência",
+    "ideia": "3/32 × 2/31 × 1/30 = 1/4960: cada preta precisa cair num dos compartimentos de 1 s que ainda sobram."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 + 1 + 1 = 3 s",
+    "nota": "só os três compartimentos de 1 s servem"
+   },
+   {
+    "linha": "C(32, 3) = (32 × 31 × 30)/(3 × 2 × 1)",
+    "nota": "posições das 3 pretas nos 32 lugares"
+   },
+   {
+    "linha": "= 29760/6 = 4960",
+    "nota": "fazer a conta"
+   },
+   {
+    "linha": "P = 1/4960",
+    "nota": "1 caso favorável sobre o total"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Prova Geral de Medicina PUC-Campinas 2024",
+    "url": "https://vestibular.puc-campinas.edu.br/wp-content/uploads/2024/09/PROVA_GERAL_MEDICINA_VESTIBULAR_2024_compressed.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
  }
 }

@@ -751,5 +751,105 @@
    "data": "2026-11-12",
    "lote": "mat-0032"
   }
+ },
+ "Pf8f0339b": {
+  "n": "15",
+  "conceito": "Contar números de três algarismos com um algarismo de cada conjunto: permutar os conjuntos nas posições e multiplicar as escolhas.",
+  "equivocos": {
+   "A": "M13.2:total-nao-multiplo-das-ordens",
+   "C": "M13.2:total-nao-multiplo-das-ordens",
+   "D": "M13.2:total-nao-multiplo-das-ordens"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Como não pode haver dois algarismos do mesmo conjunto e são três algarismos, cada número usa exatamente um algarismo de M, um de P e um de Q. Falta decidir em que posição fica cada conjunto (uma permutação) e, para cada arranjo, escolher o algarismo dentro de cada conjunto.",
+    "formulas": [
+     "princípio multiplicativo: etapas independentes multiplicam",
+     "permutação de 3 objetos: 3! = 3·2·1"
+    ],
+    "simbolos": [
+     [
+      "M, P, Q",
+      "conjuntos com 2, 3 e 4 algarismos"
+     ],
+     [
+      "3!",
+      "fatorial de 3, número de ordens de três objetos"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra quantos algarismos de cada conjunto cada número tem; depois pense nas posições.",
+   "passos": [
+    {
+     "faz": "Traduza a restrição",
+     "conta": "3 algarismos, no máximo 1 por conjunto → 1 de M, 1 de P, 1 de Q",
+     "porque": "Três posições e três conjuntos, sem repetir conjunto: cada conjunto aparece uma vez.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Distribua os conjuntos nas posições",
+     "conta": "3! = 3·2·1 = 6",
+     "porque": "O conjunto da centena, o da dezena e o da unidade podem estar em qualquer ordem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha os algarismos",
+     "conta": "2·3·4 = 24",
+     "porque": "Em cada ordem, há 2 escolhas em M, 3 em P e 4 em Q, independentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as etapas",
+     "conta": "6·24 = 144 → alternativa B",
+     "porque": "Cada ordem dos conjuntos tem as mesmas 24 escolhas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 144",
+   "checagem": "Conte por posição: na centena entram os 9 algarismos; se ela vem de M (2 modos), as outras duas posições recebem P e Q em 2 ordens, com 3·4 escolhas: 2·(3·4·2) = 48. Do mesmo jeito, centena de P dá 3·(2·4·2) = 48 e de Q dá 4·(2·3·2) = 48. Total: 48 + 48 + 48 = 144.",
+   "erradas": {
+    "A": "132 não confere: cada ordem dos conjuntos gera 24 números, então o total é múltiplo de 24, e 132 = 5·24 + 12.",
+    "C": "140 não confere: o total é múltiplo de 24, e 140 = 5·24 + 20.",
+    "D": "152 não confere: o total é múltiplo de 24, e 152 = 6·24 + 8."
+   },
+   "armadilha": "Esquecer que os conjuntos podem trocar de posição dá só 2·3·4 = 24; a ordem dos conjuntos multiplica por 3! = 6.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos números de três algarismos usam um algarismo de cada conjunto.",
+    "chave": "3! ordens dos conjuntos × 2·3·4 escolhas = 6·24 = 144.",
+    "cuidado": "Não fixe M na centena: os conjuntos mudam de posição."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "trios primeiro",
+    "ideia": "Escolha os três algarismos, um por conjunto (2·3·4 = 24 trios), e depois permute-os nas três posições: 24·3! = 144."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3! = 6",
+    "nota": "ordem dos conjuntos nas posições"
+   },
+   {
+    "linha": "2·3·4 = 24",
+    "nota": "algarismo de cada conjunto"
+   },
+   {
+    "linha": "6·24 = 144",
+    "nota": "princípio multiplicativo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
  }
 }

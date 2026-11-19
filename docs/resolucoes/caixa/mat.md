@@ -304,3 +304,41 @@ RECLASS P19f0cc4a M10.4 -> M16.1 (Acafe 2024 Verão q27: a alternativa correta �
 DADO P26674878 (Unesp 2022 Biológicas q86): texto_da_prova -> 'Na figura, PQ representa o eixo dos pedais', 'O comprimento do eixo PQ é de'
 DADO Pc74d8f55 (Famerp 2020 q80): texto_da_prova -> 'de equações y = 5/2 e y = 1 + 3 sen (2x)'
 DADO P0bbe8a97 (Santa Casa 2020 q77): alternativas -> no print, A) 5π/6, B) 5π/3, C) 2π/3, D) 4π/3, E) 2π (na entrada estão vazias); texto_da_prova -> no print, "de ℝ em ℝ", "y = 3cos x", "y = 2sen² x" e "A medida de PQ" (faltam na entrada).
+
+## 2026-11-19 18:19 UTC — PENDENCIAS — session_01PveEKXYevuT6GfnZTi2dnc
+Lote mat-0076 gravado (50 resoluções). Lote aberto: mat-0077.
+Gabarito do Aprendice (resolvedor e conferente às cegas iguais; sem gabarito na web): Pbbeb215d D (igual ao preliminar).
+DADO Pe143550d (PUC-Campinas 2027 q28): alternativas.E -> "π/2" (o "Física" é o título da página seguinte)
+DADO P29481d93 (UPE 2021 SSA3 q19): texto_da_prova -> a função é "i(t) = 8,12 sen(2πt/3)" (a camada de texto perdeu a fórmula)
+DADO Pda5aa029 (UPE 2023 SSA3 q15): alternativas -> a) C(t) = 40 − 40cos[π/12 · (t − 12)] | b) C(t) = 40 + 40cos[π/12 · (t − 6)] | c) C(t) = 60 + 20cos[π/2 · (t − 6)] | d) C(t) = 80cos[π/12 · (t − 12)] | e) C(t) = 80cos[π/12 · (t − 6)], todas com 6 ≤ t ≤ 18 (vieram vazias)
+DADO P0feae392 (Famerp 2020 q72): alternativas -> A "√6/2 dm²", B "√6/3 dm²", C "√3/2 dm²", D "√6/6 dm²", E "2√3/3 dm²" (vieram vazias)
+DADO Pcc60c7b7 (UDESC 2024.1 q13): texto_da_prova -> alternativas "A. 2 | B. 1 | C. 3 | D. 3π² | E. π²/3" e "cos²(x) + cos²(y) + cos²(z)" (OCR embaralhado)
+DADO P49ff7162 (UDESC 2026.1 q2): texto_da_prova -> "o volume desse líquido em m³" (a camada de texto traz "𝑚𝑚3")
+DADO P390fc081 (UDESC 2026.2 q3): texto_da_prova -> alternativas "A. 2√6/3 | B. √6 | C. 4√6/3 | D. √6/2 | E. 3√6/2" e "cos(α) + cos(β) + cos(γ)" (OCR embaralhado)
+DADO P66b003e1 (PUC-Campinas 2024 q27): texto_da_prova -> alternativas "(A) 81π + 162√3 | (B) 162π + 81√3 | (C) 328π + 243√3 | (D) 243π + 648√3 | (E) 648π + 243√3" (OCR embaralhado)
+DADO P0c07f8d5 (Famerp 2021 q80): alternativas -> A 150√21 | B 200√21 | C 120√21 | D 180√21 | E 100√21 (vieram vazias)
+PRINT Pbbeb215d (Acafe 2022 Verão q28): print cortado no topo; falta a 1ª inequação do sistema, x − y + 1 ≥ 0 (página 22 do PDF oficial); refazer o print com o sistema inteiro
+DADO Pbbeb215d (Acafe 2022 Verão q28): texto_da_prova -> sistema com quatro inequações: x − y + 1 ≥ 0; x − y − 1 ≤ 0; x + y − 1 ≥ 0; x + y ≤ 1 + √2
+RECLASS Pbbeb215d M11.3 -> M11.2 (Acafe 2022 Verão q28: o sólido de revolução é um cilindro)
+DADO P63a9f2f0 (Fuvest 2022 q36): alternativas.E -> só "12"; o "Note e adote" (relação de Euler) é texto de apoio da questão, não da alternativa
+DADO P5c1a0424 (UFPR 2024 q9): texto_da_prova -> razão dos raios é a raiz cúbica de 7 (∛7) e a condição é q > 1 (caracteres embaralhados na camada de texto)
+DADO P1aee808c (UDESC 2024.1 q11): texto_da_prova -> OCR embaralhado; fórmula do print: Área = (f(a) + 4·f(m) + f(b))·(b − a)/6, m = (a + b)/2; alternativas A 8/5, B 8/3, C 3/2, D 2/3, E 2/5
+RECLASS P1aee808c M11.5 -> M05.2 (UDESC 2024.1 q11: área entre parábolas, função do 2º grau; não é geometria espacial)
+DADO P3368f441 (UEA 2021 SIS III q37): alternativas -> A 2,5√5 | B 10 | C 5√5 | D 12,5 | E 6√5 (vieram vazias)
+DADO P39555f3b (UPE 2022 SSA3 q24): texto_da_prova -> "Qual a medida, em graus, do menor ângulo formado pelas retas r e s na figura abaixo?" (vazio na entrada; estava colado na alternativa E)
+DADO P39555f3b (UPE 2022 SSA3 q24): alternativas.E -> "θ = 25°"
+DADO P9b396aaf (UFPR 2024 q7): alternativas -> A "2√2", B "3√2 − 1", C "1 + 2√2", D "4√2 − 2", E "2 + √2" (a entrada perdeu os radicais)
+DADO P31ab69b2 (Santa Casa 2020 q80): alternativas -> A 4/5 | B 7/8 | C 3/4 | D 5/6 | E 2/3 (vieram vazias)
+DADO Pf459e5b6 (Santa Casa 2023 q75): texto_da_prova -> falta a equação da elipse "x²/16 + y²/25 = 81"; alternativas -> A 6912/25, B 3456/25, C 1728/25, D 13829/50, E 13949/50 (vazias na entrada)
+DADO P0b14deda (UECE 2022.1 q15): alternativas.D -> "0,232." (o quadro "u.a. ≡ unidade astronômica" é do enunciado, não da alternativa)
+DADO P344fe9b9 (UDESC 2020.1 q9): texto_da_prova -> "Se as circunferências (x − a)² + (y − 2)² = 5 e (x − 6)² + (y − b)² = 11,25 são tangentes exteriores no ponto (3, 3), então o valor de a + b é igual a:"; alternativas -> A 11/2, B 14/5, C 19/2, D 5/2, E 13/2
+DADO Pc43e876c (UDESC 2024.1 q9): texto_da_prova -> "Seja A = [[2x, y], [−3y, x]] uma matriz 2x2. A excentricidade da elipse definida por det(A) = 6 é igual a:"; alternativas -> A 1/√3 | B 1/√2 | C √5/√3 | D 1/2 | E 1/3 (OCR embaralhado)
+DADO P0666aa96 (UDESC 2024.2 q9): texto_da_prova -> "Na Figura 5, o círculo tem centro no foco da parábola, dada pela equação y = x² − 4x + 5, e tangencia a parábola no seu vértice. [Figura 5] A área desse círculo é igual a:"; alternativas -> A π/2 | B π | C 4π | D π/4 | E π/16 (u.a.) (OCR embaralhado)
+RECLASS P3d225983 M12.5 -> M12.3 (Famerp 2020 q74: altura = distância entre retas paralelas, não é área por coordenadas)
+DADO P3d225983 (Famerp 2020 q74): alternativas -> A 4√3/5 | B 3√3/4 | C 2√5/5 | D 4√5/5 | E √3/2 (vieram vazias)
+RECLASS Pd41d41f3 M13.2 -> M04.5 (UFU 2021 q71: equação com algarismos no sistema decimal, sem contagem)
+DADO Pcb96eb9d (PUC-Campinas 2025 q26): alternativas -> A (2·34!·12!)/((15!·5!)²·4!) | B (34!·12!)/((15!·5!)²·4!·2!) | C (4·34!·12!)/(4!·2!) | D (2·34!·12!)/(4!·2!) | E (34!·12!)/(4!·2!) (vieram com símbolos trocados)
+DADO P1bbc96c0 (PUC-Campinas 2024 q25): alternativas -> A 1/32! | B 6/32! | C 1/26! | D 1/4960 | E 3/2480 (vieram vazias)
+RECLASS P02b21574 M13.4 -> M13.1 (Acafe 2025 Verão q26: questão de afirmações sem probabilidade; I é contagem 2^5 − 1, II é PA e III é equação modular)
+DADO Pb9eee94f (PUC-Campinas 2027 q27): alternativas -> no print A é π² (pi ao quadrado), D é π^−1 e E é π^−2 (expoentes negativos), não π−1 e π−2
+GABARITO Pb9eee94f (PUC-Campinas 2027 q27): o enunciado diz que os números estão em ordem crescente, mas a média e y − 4x = 1 dão x = π e y = 4π + 1 ≈ 13,57 < 16; a ordem não entra na conta (y/x = 4 + π^−1, alternativa D). Conferir o gabarito definitivo/anulação após recursos.

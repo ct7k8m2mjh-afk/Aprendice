@@ -226,5 +226,116 @@
    "data": "2026-11-19",
    "lote": "mat-0075"
   }
+ },
+ "P31ab69b2": {
+  "n": "80",
+  "conceito": "Girar uma reta em torno de um ponto externo até ela ficar tangente à circunferência e achar a tangente do ângulo de giro.",
+  "equivocos": {
+   "A": "M12.4:cosseno-no-lugar-da-tangente",
+   "B": "M12.4:reta-secante-tomada-por-tangente",
+   "D": "M12.4:reta-secante-tomada-por-tangente",
+   "E": "M12.4:reta-que-nao-toca-a-circunferencia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A reta r é horizontal (y = −21/4) e gira em torno de P = (0, −21/4). Ela toca λ pela primeira vez quando fica tangente. No triângulo formado por P, pelo centro C e pelo ponto de tangência Q, o ângulo em Q é reto, e você conhece a hipotenusa PC e o cateto CQ (o raio).",
+    "formulas": [
+     "tangente ⟂ raio no ponto de contato",
+     "Pitágoras: PQ² = PC² − R²",
+     "tg α = cateto oposto/cateto adjacente"
+    ],
+    "simbolos": [
+     [
+      "λ",
+      "a circunferência x² + (y − 1)² = 25, de centro C(0, 1) e raio 5"
+     ],
+     [
+      "P",
+      "ponto em que r corta o eixo y"
+     ],
+     [
+      "α",
+      "ângulo de giro da reta, medido a partir da horizontal"
+     ]
+    ]
+   },
+   "pista": "Comece pela distância de P até o centro da circunferência e use o fato de que a tangente é perpendicular ao raio.",
+   "passos": [
+    {
+     "faz": "Ache P e o centro de λ",
+     "conta": "4y + 21 = 0 → y = −21/4 → P = (0, −21/4) | C = (0, 1), R = 5",
+     "porque": "r é horizontal e corta o eixo y em −21/4; a equação de λ já está na forma reduzida.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule PC e PQ",
+     "conta": "PC = 1 + 21/4 = 25/4 → PQ² = (25/4)² − 5² = 225/16 → PQ = 15/4",
+     "porque": "P e C estão no eixo y; no triângulo PQC, retângulo em Q, PC é a hipotenusa e CQ = 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Relacione o ângulo de giro com o triângulo",
+     "conta": "α + ângulo QPC = 90° → tg α = PQ/CQ",
+     "porque": "r começa horizontal e PC é vertical. O ângulo entre a tangente e a horizontal é o complemento do ângulo QPC, então é o ângulo em C: cateto oposto PQ, cateto adjacente CQ.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Calcule a tangente",
+     "conta": "tg α = (15/4)/5 = 15/20 = 3/4 → alternativa C",
+     "porque": "A razão entre os catetos dá a tangente pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3/4",
+   "checagem": "Ache Q: andando 15/4 a partir de P com inclinação 3/4 (cos α = 4/5, sen α = 3/5), Q = (3, −21/4 + 9/4) = (3, −3). Ele está em λ: 3² + (−3 − 1)² = 9 + 16 = 25. E CQ = (3, −4) é perpendicular a PQ = (3, 9/4): 9 − 9 = 0.",
+   "erradas": {
+    "A": "4/5 sai de dar o cosseno de α em vez da tangente: cos α = CQ/PC = 5/(25/4) = 4/5, mas tg α = 3/4.",
+    "B": "7/8 não confere: com tg α = 7/8 a reta y = −21/4 + (7/8)x, levada em λ, corta a circunferência em dois pontos, então não é a reta do primeiro toque.",
+    "D": "5/6 não confere: com tg α = 5/6 a reta y = −21/4 + (5/6)x corta λ em dois pontos; o primeiro toque, a tangente, tem inclinação 3/4.",
+    "E": "2/3 não confere: com tg α = 2/3 a reta y = −21/4 + (2/3)x não chega a tocar λ; só com 3/4 ela fica tangente."
+   },
+   "armadilha": "Usar o ângulo errado do triângulo: α é o ângulo em C, então tg α = PQ/CQ = 3/4, e não CQ/PQ = 4/3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A tangente do ângulo de giro de r até tocar λ pela primeira vez.",
+    "chave": "O primeiro toque é a tangente: no triângulo PQC, PC = 25/4, CQ = 5 e PQ = 15/4.",
+    "cuidado": "O ângulo de giro é medido da horizontal, e é igual ao ângulo em C do triângulo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "distância de ponto à reta",
+    "ideia": "A reta y = mx − 21/4 é tangente quando a distância de C(0, 1) a ela é 5: (25/4)/√(m² + 1) = 5 → m² + 1 = 25/16 → m = 3/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "PC = 1 + 21/4 = 25/4",
+    "nota": "distância de P ao centro"
+   },
+   {
+    "linha": "PQ² = (25/4)² − 5² = 225/16 → PQ = 15/4",
+    "nota": "Pitágoras, retângulo em Q"
+   },
+   {
+    "linha": "tg α = (15/4)/5 = 3/4",
+    "nota": "cateto oposto sobre adjacente, ângulo em C"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "A reta horizontal r passa por P; ela gira no sentido anti-horário até encostar em λ no ponto Q(3, −3); o triângulo PQC aparece com o ângulo reto em Q, PC = 25/4, CQ = 5 e PQ = 15/4; o ângulo α é marcado junto à horizontal em P."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
  }
 }
