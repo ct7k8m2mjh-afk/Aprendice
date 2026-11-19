@@ -224,5 +224,379 @@
    "data": "2026-11-12",
    "lote": "mat-0024"
   }
+ },
+ "P6e1f0f1b": {
+  "n": "35",
+  "conceito": "Linearidade: escrever a nova entrada como combinação das duas conhecidas e combinar as saídas do mesmo jeito.",
+  "equivocos": {
+   "B": "M04.3:combinacao-linear-errada",
+   "C": "M04.3:combinacao-linear-errada",
+   "D": "M04.3:combinacao-linear-errada",
+   "E": "M04.3:combinacao-linear-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Num circuito só com fios, resistores ideais e fontes, as tensões medidas dependem das fontes de forma linear: somar fontes soma as respostas e multiplicar uma fonte por um número multiplica a resposta. Então não é preciso entender o circuito. Escreva (2, 1) como combinação de (5, 10) e (3, 3) e aplique a mesma combinação às medidas (5, 3) e (1, 2).",
+    "formulas": [
+     "se (c1, c2) = a·(5, 10) + b·(3, 3), então (x, y) = a·(5, 3) + b·(1, 2)"
+    ],
+    "simbolos": [
+     [
+      "c1, c2",
+      "tensões das duas fontes, em volts"
+     ],
+     [
+      "x, y",
+      "tensões medidas nos dois pontos indicados, em volts"
+     ],
+     [
+      "a, b",
+      "números que combinam os dois experimentos conhecidos"
+     ]
+    ]
+   },
+   "pista": "Não tente analisar o circuito: procure como montar (2, 1) a partir dos dois experimentos já feitos.",
+   "passos": [
+    {
+     "faz": "Escreva a nova entrada como combinação",
+     "conta": "(2, 1) = a·(5, 10) + b·(3, 3) → 5a + 3b = 2 e 10a + 3b = 1",
+     "porque": "Cada coordenada dá uma equação: a primeira para c1, a segunda para c2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia as equações para achar a",
+     "conta": "(10a + 3b) − (5a + 3b) = 1 − 2 → 5a = −1 → a = −1/5",
+     "porque": "O 3b aparece igual nas duas e se cancela na subtração. O 5 que multiplica o a passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache b",
+     "conta": "5·(−1/5) + 3b = 2 → −1 + 3b = 2 → 3b = 3 → b = 1",
+     "porque": "Substitua a na primeira equação; o −1 atravessa somando e o 3 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Combine as medidas do mesmo jeito",
+     "conta": "(x, y) = −1/5·(5, 3) + 1·(1, 2) → (−1 + 1, −3/5 + 2) → (0, 7/5)",
+     "porque": "Pela linearidade, a mesma mistura de fontes produz a mesma mistura de tensões medidas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o pedido",
+     "conta": "5(x + y) = 5(0 + 7/5) → 5·7/5 = 7 → alternativa A",
+     "porque": "O 5 cancela com o denominador 5. A pergunta é 5(x + y), não x + y.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 7 volts",
+   "checagem": "Confira a combinação nas fontes: −1/5·(5, 10) + (3, 3) = (−1, −2) + (3, 3) = (2, 1), exatamente a entrada pedida. Logo a mesma combinação vale para as saídas.",
+   "erradas": {
+    "B": "10 não confere: exigiria x + y = 2, mas a combinação −1/5·(5 + 3) + 1·(1 + 2) dá x + y = 7/5.",
+    "C": "1 não confere: exigiria x + y = 1/5, e a combinação das somas medidas dá 7/5.",
+    "D": "5 não confere: exigiria x + y = 1, e a combinação dá 7/5. Responder x + y sem o fator 5 daria 7/5, que também não é 1.",
+    "E": "2 não confere: exigiria x + y = 2/5, e −1/5·8 + 3 = 7/5."
+   },
+   "armadilha": "O coeficiente de (5, 10) é negativo (−1/5): combinar só com números positivos ou tentar resolver o circuito leva a contas sem saída.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de 5(x + y) quando as fontes valem (2, 1) V.",
+    "chave": "Linearidade: (2, 1) = −1/5·(5, 10) + 1·(3, 3), logo (x, y) = −1/5·(5, 3) + (1, 2) = (0, 7/5).",
+    "cuidado": "Aplique às medidas exatamente os mesmos coeficientes usados nas fontes, inclusive o sinal negativo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "só a soma",
+    "ideia": "Como só se pede x + y, combine direto as somas: −1/5·(5 + 3) + 1·(1 + 2) = 7/5, e 5 · 7/5 = 7."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "5a + 3b = 2 ; 10a + 3b = 1",
+    "nota": "(2, 1) como combinação dos experimentos"
+   },
+   {
+    "linha": "5a = −1 → a = −1/5",
+    "nota": "subtrai as equações: o 3b se cancela"
+   },
+   {
+    "linha": "3b = 3 → b = 1",
+    "nota": "substitui a"
+   },
+   {
+    "linha": "(x, y) = −1/5·(5, 3) + (1, 2) = (0, 7/5)",
+    "nota": "mesma combinação nas medidas"
+   },
+   {
+    "linha": "5(x + y) = 5·7/5 = 7",
+    "nota": "o 5 cancela com o denominador"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
+ },
+ "Pe173034e": {
+  "n": "37",
+  "conceito": "Comparar o custo total de posse de dois carros em 5 anos, calculando energia elétrica por potência × tempo.",
+  "equivocos": {
+   "B": "M04.5:bonus-insuficiente",
+   "C": "M04.5:bonus-insuficiente",
+   "D": "M04.5:esqueceu-o-preco-de-compra",
+   "E": "M04.5:so-comparou-o-preco-de-compra"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Custo total = preço de compra + gasto com combustível ou energia em 5 anos. Para o elétrico, a potência vem de P = V · i, e a energia de E = P · Δt; o tempo de uso sai de distância ÷ velocidade. O trabalho real é passar watts para quilowatts, porque a tarifa é por kWh. Depois, compare os totais e veja de quanto teria de ser o bônus.",
+    "formulas": [
+     "P = V · i",
+     "E = P · Δt (kW × h = kWh)",
+     "Δt = distância ÷ velocidade",
+     "custo total = preço + gasto mensal × 60 meses"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "potência elétrica, em watts (W) ou quilowatts (kW)"
+     ],
+     [
+      "V",
+      "diferença de potencial, em volts"
+     ],
+     [
+      "i",
+      "corrente elétrica, em ampères (A)"
+     ],
+     [
+      "kWh",
+      "quilowatt-hora: energia de 1 kW funcionando por 1 hora"
+     ],
+     [
+      "Δt",
+      "intervalo de tempo de uso"
+     ]
+    ]
+   },
+   "pista": "Comece pelo tempo que o carro fica ligado por mês: distância e velocidade dão isso.",
+   "passos": [
+    {
+     "faz": "Calcule a potência do motor",
+     "conta": "P = 400 V × 80 A → P = 32000 W → P = 32 kW",
+     "porque": "Potência é tensão vezes corrente. Divida por 1000 para chegar a kW, a unidade da tarifa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a energia de um mês",
+     "conta": "Δt = 2000/100 = 20 h → E = 32 kW × 20 h = 640 kWh",
+     "porque": "A 100 km/h, 2000 km levam 20 horas. Energia é potência vezes tempo; kW × h dá kWh.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o gasto de cada carro em 5 anos",
+     "conta": "elétrico: 640 × 0,80 = 512 por mês → 512 × 60 = 30720 ; gasolina: 0,50 × 2000 = 1000 por mês → 1000 × 60 = 60000",
+     "porque": "Cinco anos são 60 meses, e os preços ficam fixos segundo o Note e adote.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some compra e uso",
+     "conta": "gasolina: 120000 + 60000 = 180000 ; elétrico: 160000 + 30720 = 190720",
+     "porque": "O custo de posse junta o preço do carro e o que se gasta para rodar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare e ache o bônus necessário",
+     "conta": "190720 − 180000 = 10720 → bônus ≥ 10720 → com R$ 11.000 o elétrico vence; com 8.000 ou 5.000, não",
+     "porque": "Sem bônus o elétrico custa R$ 10.720 a mais. Só a alternativa com bônus de pelo menos R$ 11.000 garante que ele fique mais barato.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — o carro elétrico é o mais atrativo com bônus governamental de pelo menos R$ 11.000,00",
+   "checagem": "Pelo lado da economia: o elétrico poupa 60000 − 30720 = 29280 reais de uso, mas custa 40000 a mais na compra. Falta 40000 − 29280 = 10720, que só um bônus de pelo menos 11 mil cobre.",
+   "erradas": {
+    "B": "Com bônus de R$ 8.000 o elétrico sai 190720 − 8000 = 182720, ainda acima dos 180000 do carro a gasolina; não é suficiente.",
+    "C": "Com bônus de R$ 5.000 o elétrico sai 185720, acima dos 180000 do carro a gasolina; não é suficiente.",
+    "D": "D sai de comparar só o gasto de uso (30720 contra 60000) e esquecer os R$ 40.000 a mais do preço do elétrico.",
+    "E": "E sai de olhar só o preço de compra (160 mil contra 120 mil). Com bônus de R$ 11.000 o elétrico fica em 179720, mais barato."
+   },
+   "armadilha": "A potência sai em watts (32000 W), mas a tarifa é por kWh: sem dividir por 1000, o gasto do elétrico fica mil vezes maior.",
+   "alerta": "O valor exato de equilíbrio é R$ 10.720; a banca oferece R$ 11.000 como o menor bônus que garante a vantagem do elétrico.",
+   "essencial": {
+    "pede": "Em 5 anos, se o carro elétrico compensa e com que bônus.",
+    "chave": "Energia mensal 32 kW × 20 h = 640 kWh; elétrico 160000 + 30720 = 190720 contra 180000 da gasolina; diferença de 10720.",
+    "cuidado": "Converta W para kW e some o preço de compra ao gasto de uso."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por quilômetro",
+    "ideia": "O elétrico gasta 640 kWh ÷ 2000 km = 0,32 kWh por km, ou 0,256 real por km; economiza 0,244 × 120000 km = 29280, menos que os 40000 de diferença no preço."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P = 400 × 80 = 32000 W = 32 kW",
+    "nota": "potência = tensão × corrente"
+   },
+   {
+    "linha": "Δt = 2000/100 = 20 h",
+    "nota": "horas de uso por mês"
+   },
+   {
+    "linha": "E = 32 × 20 = 640 kWh",
+    "nota": "energia por mês"
+   },
+   {
+    "linha": "640 × 0,80 × 60 = 30720",
+    "nota": "energia em 5 anos"
+   },
+   {
+    "linha": "0,50 × 2000 × 60 = 60000",
+    "nota": "gasolina em 5 anos"
+   },
+   {
+    "linha": "160000 + 30720 − (120000 + 60000) = 10720",
+    "nota": "bônus mínimo para empatar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
+ },
+ "P34ca8641": {
+  "n": "34",
+  "conceito": "Calcular f(0) de uma função exponencial com constante C e reconhecer que ela é par por depender só de x².",
+  "equivocos": {
+   "A": "M06.1:ignorou-que-exponencial-e-positiva",
+   "C": "M06.1:confundiu-para-todo-com-existe",
+   "D": "M06.1:ignorou-que-exponencial-e-positiva",
+   "E": "M06.1:ignorou-paridade-da-funcao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Comece por f(0), porque e⁰ = 1 deixa tudo em função de C. Depois repare que x só aparece como x²: trocar x por −x não muda nada, então f(x) = f(−x) sempre. Por fim, numerador e denominador são positivos para C > 0, então f nunca é zero nem negativa.",
+    "formulas": [
+     "e⁰ = 1",
+     "f par: f(−x) = f(x) para todo x",
+     "e^(algo) > 0 para qualquer expoente"
+    ],
+    "simbolos": [
+     [
+      "e",
+      "número de Euler, cerca de 2,718; e^k é sempre positivo"
+     ],
+     [
+      "C",
+      "constante positiva da função"
+     ],
+     [
+      "f(−x)",
+      "valor de f no oposto de x"
+     ],
+     [
+      "função par",
+      "função com f(−x) = f(x) para todo x"
+     ]
+    ]
+   },
+   "pista": "Calcule f(0) deixando C como letra. Depois troque x por −x na fórmula e compare.",
+   "passos": [
+    {
+     "faz": "Calcule f(0)",
+     "conta": "f(0) = (2e⁰ + C)/(3Ce⁰) → f(0) = (2 + C)/(3C)",
+     "porque": "Com x = 0, cada exponencial vale 1 e sobra uma expressão só em C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o C que faz f(0) = 1",
+     "conta": "(2 + C)/(3C) = 1 → 2 + C = 3C → 2 = 2C → C = 1",
+     "porque": "Existe um C > 0 com f(0) = 1, e só um: C = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque x por −x",
+     "conta": "(−x)² = x² → f(−x) = (2e^(x²) + C)/(3Ce^(−x²/2)) = f(x)",
+     "porque": "Como x só aparece ao quadrado, f é par para qualquer C. Não existe x com f(x) < f(−x) ou f(x) > f(−x).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Veja o sinal de f",
+     "conta": "numerador 2e^(x²) + C > 0 e denominador 3Ce^(−x²/2) > 0 → f(x) > 0",
+     "porque": "Exponenciais são sempre positivas e C > 0: f nunca vale zero nem fica negativa. Isso derruba A, D e E.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "f(0) = 1 com C = 1 e f(x) = f(−x) para todo x → alternativa B",
+     "porque": "A B junta exatamente as duas verdades: existe um C > 0 (C = 1) e a paridade vale sempre.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — f(0) = 1 e f(x) = f(−x), para todo número real x e para um C > 0.",
+   "checagem": "Teste numérico com C = 1: f(1) = (2e + 1)/(3e^(−1/2)) ≈ 3,537 e f(−1) dá o mesmo 3,537. Com C = 2, f(0) = 4/6 ≈ 0,667, diferente de 1: só C = 1 serve.",
+   "erradas": {
+    "A": "A não confere: com C = 1, f(x) = (2e^(x²) + 1)/(3e^(−x²/2)) tem numerador e denominador positivos, então f(x) > 0 e nunca vale 0.",
+    "C": "C não confere: f(0) > 1 pede (2 + C)/(3C) > 1, isto é, C < 1, não todo C > 0 (C = 2 dá 2/3); e f(x) = f(−x), nunca menor.",
+    "D": "D não confere: f(1) = (2e + 1)/(3e^(−1/2)) ≈ 3,54 com C = 1, positivo. Nenhum valor de f é negativo.",
+    "E": "E não confere: f(1) > 0 para todo C > 0, nunca 0; e f(x) > f(−x) é impossível porque f é par."
+   },
+   "armadilha": "Ler as quantificações: \"para um C\" (existe) é diferente de \"para todo C\", e \"para todo x\" é diferente de \"para algum x\".",
+   "alerta": "",
+   "essencial": {
+    "pede": "O que se pode afirmar sobre f(0), o sinal de f e a comparação entre f(x) e f(−x).",
+    "chave": "f(0) = (2 + C)/(3C) vale 1 só para C = 1, e f depende só de x², logo é par.",
+    "cuidado": "Confira em cada alternativa se o texto diz \"para todo\" ou \"para algum\", tanto para x quanto para C."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação pelo sinal",
+    "ideia": "Como f(x) > 0 sempre, caem A, D e E; como f é par, cai C; sobra B."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(0) = (2 + C)/(3C)",
+    "nota": "e⁰ = 1"
+   },
+   {
+    "linha": "(2 + C)/(3C) = 1 → C = 1",
+    "nota": "existe um C > 0"
+   },
+   {
+    "linha": "f(−x) = f(x)",
+    "nota": "x só aparece como x²"
+   },
+   {
+    "linha": "f(x) > 0",
+    "nota": "exponenciais e C positivos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
  }
 }

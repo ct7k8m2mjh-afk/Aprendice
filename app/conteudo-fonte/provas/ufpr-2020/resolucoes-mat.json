@@ -714,5 +714,125 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0002"
   }
+ },
+ "Pd00373c0": {
+  "n": "13",
+  "conceito": "Calcular a soma de desvios absolutos de funções afins num conjunto de pontos e comparar.",
+  "equivocos": {
+   "B": "M05.4:escolheu-a-reta-que-acerta-mais-pontos",
+   "C": "M05.4:errou-a-soma-dos-erros",
+   "D": "M05.4:errou-a-soma-dos-erros",
+   "E": "M05.4:errou-a-soma-dos-erros"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O erro de uma função num ponto é a distância vertical entre o valor da função e o y do ponto. Some os três erros de cada função e escolha a menor soma. São cinco contas curtas, uma por alternativa.",
+    "formulas": [
+     "erro no ponto (x, y) = |f(x) − y|",
+     "erro no conjunto C = soma dos três erros"
+    ],
+    "simbolos": [
+     [
+      "|f(x) − y|",
+      "distância entre o valor da função e o y do ponto, sempre positiva ou zero"
+     ],
+     [
+      "C",
+      "conjunto dos três pontos (0, 5), (1, 3) e (2, −1)"
+     ]
+    ]
+   },
+   "pista": "Para cada função, calcule f(0), f(1) e f(2) e compare com 5, 3 e −1.",
+   "passos": [
+    {
+     "faz": "Calcule o erro de f_a",
+     "conta": "|5 − 5| + |2,5 − 3| + |0 − (−1)| = 0 + 0,5 + 1 = 1,5",
+     "porque": "f_a(0) = 5, f_a(1) = 2,5 e f_a(2) = 0; cada parcela é a distância até o y do ponto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os erros de f_b e f_c",
+     "conta": "f_b: |7 − 5| + |3 − 3| + |−1 − (−1)| = 2 | f_c: |6 − 5| + |3 − 3| + |0 − (−1)| = 2",
+     "porque": "f_b passa por dois pontos, mas erra 2 no primeiro; f_c erra 1 em dois pontos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os erros de f_d e f_e",
+     "conta": "f_d: |5 − 5| + |1,5 − 3| + |−2 − (−1)| = 2,5 | f_e: |6 − 5| + |2 − 3| + |−2 − (−1)| = 3",
+     "porque": "f_d(1) = 1,5 e f_d(2) = −2; f_e erra 1 em cada um dos três pontos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare as somas",
+     "conta": "1,5 < 2 = 2 < 2,5 < 3",
+     "porque": "O menor erro total é o de f_a.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "menor erro: f_a, com 1,5 → alternativa A",
+     "porque": "A pergunta é qual função tem o menor erro, não qual passa por mais pontos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — f_a(x) = −2,5x + 5, com erro total 1,5",
+   "checagem": "Confira f_a por outro caminho: ela passa por (0, 5) e (2, 0), e (0 − 5)/(2 − 0) = −2,5 bate com o coeficiente. Em x = 1 ela vale a média de 5 e 0, 2,5, a 0,5 de (1, 3); em x = 2 vale 0, a 1 de (2, −1). Total 1,5, e nenhuma das outras fica abaixo de 2.",
+   "erradas": {
+    "B": "B sai de escolher a reta que passa por mais pontos: f_b passa por (1, 3) e (2, −1), mas f_b(0) = 7 erra 2 em (0, 5). Soma 2, maior que 1,5.",
+    "C": "C não confere: f_c(0) = 6 e f_c(2) = 0 dão erros 1 + 0 + 1 = 2, maior que 1,5.",
+    "D": "D não confere: f_d(1) = 1,5 e f_d(2) = −2 dão erros 0 + 1,5 + 1 = 2,5.",
+    "E": "E não confere: f_e erra 1 em cada ponto, 1 + 1 + 1 = 3, o maior erro de todos."
+   },
+   "armadilha": "Passar por mais pontos não é ter menor erro: f_b acerta dois pontos e soma 2, enquanto f_a soma 1,5.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A função com a menor soma de |f(x) − y| nos três pontos de C.",
+    "chave": "Somas: f_a 1,5; f_b 2; f_c 2; f_d 2,5; f_e 3.",
+    "cuidado": "Some os três erros de cada função; não escolha pela quantidade de pontos acertados."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "corte pela melhor soma",
+    "ideia": "Calcule primeiro o erro de f_a (1,5) e pare cada outra função assim que a soma parcial passar de 1,5: f_b já erra 2 no primeiro ponto."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f_a: 0 + 0,5 + 1 = 1,5",
+    "nota": "erros de f_a"
+   },
+   {
+    "linha": "f_b: 2 + 0 + 0 = 2",
+    "nota": "acerta dois pontos, erra 2 no outro"
+   },
+   {
+    "linha": "f_c: 1 + 0 + 1 = 2",
+    "nota": "erros de f_c"
+   },
+   {
+    "linha": "f_d: 0 + 1,5 + 1 = 2,5",
+    "nota": "erros de f_d"
+   },
+   {
+    "linha": "f_e: 1 + 1 + 1 = 3",
+    "nota": "erros de f_e"
+   },
+   {
+    "linha": "1,5 < 2 < 2,5 < 3",
+    "nota": "menor erro: f_a"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
  }
 }

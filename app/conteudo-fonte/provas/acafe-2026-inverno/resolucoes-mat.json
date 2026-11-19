@@ -477,5 +477,122 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0002"
   }
+ },
+ "P341a0f0f": {
+  "n": "22",
+  "conceito": "Achar o parâmetro de um modelo logarítmico por um ponto dado e calcular o valor em outro tempo, com conversão de dias em meses.",
+  "equivocos": {
+   "A": "M06.5:errou-o-parametro-do-modelo",
+   "C": "M06.5:errou-o-parametro-do-modelo",
+   "D": "M06.5:errou-o-parametro-do-modelo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O modelo tem uma constante a desconhecida, e um ponto conhecido (t = 7 meses, V = 8,32 cm³) a revela. A segunda armadilha é a unidade: t está em meses, e o enunciado pede o volume em 51 dias. Convertido, t + 1 vira exatamente o valor de e que a prova manda usar.",
+    "formulas": [
+     "V(t) = a · ln(t + 1)",
+     "t em meses: 1 mês = 30 dias",
+     "ln e = 1"
+    ],
+    "simbolos": [
+     [
+      "V(t)",
+      "volume do tumor em cm³ no tempo t"
+     ],
+     [
+      "t",
+      "tempo em meses"
+     ],
+     [
+      "a",
+      "constante do modelo"
+     ],
+     [
+      "ln",
+      "logaritmo natural, de base e"
+     ],
+     [
+      "e",
+      "número de Euler; a prova manda usar e = 2,7"
+     ]
+    ]
+   },
+   "pista": "Use o dado de 7 meses para descobrir a. Depois, antes de substituir, veja em que unidade o modelo quer o tempo.",
+   "passos": [
+    {
+     "faz": "Ache a constante a",
+     "conta": "V(7) = a · ln 8 = 8,32 → a · 2,08 = 8,32 → a = 8,32/2,08 = 4",
+     "porque": "O ponto conhecido dá uma equação com uma só incógnita.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta 51 dias em meses",
+     "conta": "t = 51/30 → t = 1,7 mês",
+     "porque": "O modelo usa t em meses; substituir 51 direto seria tratar 51 dias como 51 meses.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o volume",
+     "conta": "V(1,7) = 4 · ln(1,7 + 1) = 4 · ln 2,7 → 4 · ln e = 4 · 1 = 4",
+     "porque": "Com e = 2,7, como manda a prova, ln 2,7 = ln e = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "V = 4 cm³ → alternativa B",
+     "porque": "O volume em 51 dias é 4 cm³.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 4 cm³.",
+   "checagem": "Confira pela razão entre os dois instantes, sem achar a: V(1,7)/V(7) = ln 2,7/ln 8 = 1/2,08, e 8,32/2,08 = 4. Também faz sentido ser menor que 8,32, porque 51 dias é menos que 7 meses.",
+   "erradas": {
+    "A": "A não confere: V = 3 com ln 2,7 = 1 exigiria a = 3, mas então V(7) = 3 · 2,08 = 6,24, não 8,32.",
+    "C": "C não confere: V = 4,8 com ln 2,7 = 1 exigiria a = 4,8, e V(7) = 4,8 · 2,08 = 9,984, não 8,32.",
+    "D": "D não confere: V = 5,1 com ln 2,7 = 1 exigiria a = 5,1, e V(7) = 5,1 · 2,08 = 10,608, não 8,32."
+   },
+   "armadilha": "Substituir t = 51 sem converter dias em meses: o modelo mede t em meses, e 51 dias são 1,7 mês.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume do tumor aos 51 dias, pelo modelo V(t) = a · ln(t + 1).",
+    "chave": "a = 8,32/2,08 = 4; 51 dias = 1,7 mês, e ln(1,7 + 1) = ln e = 1, logo V = 4.",
+    "cuidado": "Converta o tempo para a unidade do modelo antes de substituir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela razão",
+    "ideia": "V(1,7)/V(7) = ln 2,7/ln 8 = 1/2,08, então V(1,7) = 8,32/2,08 = 4 sem calcular a."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a · ln 8 = 8,32",
+    "nota": "ponto t = 7 meses"
+   },
+   {
+    "linha": "a = 8,32/2,08 = 4",
+    "nota": "isolar a"
+   },
+   {
+    "linha": "t = 51/30 = 1,7",
+    "nota": "dias em meses"
+   },
+   {
+    "linha": "V = 4 · ln(2,7) = 4 · 1 = 4",
+    "nota": "e = 2,7: ln e = 1"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
  }
 }

@@ -1928,5 +1928,128 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0002"
   }
+ },
+ "Pf5e5ff07": {
+  "n": "55",
+  "conceito": "Somar uma PG infinita de razão 1/2 dentro de uma equação exponencial e resolver com logaritmo.",
+  "equivocos": {
+   "A": "M06.2:trocou-sinal-do-logaritmo",
+   "C": "M07.3:soma-da-pg-infinita-errada",
+   "D": "M07.3:soma-da-pg-infinita-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os termos 2^x, 2^(x−1), 2^(x−2), ... formam uma PG infinita: cada um é a metade do anterior. A soma de uma PG infinita com razão entre −1 e 1 é o primeiro termo dividido por (1 − razão). Com a soma fechada, a equação vira uma potência de 2 igual a 9, e o logaritmo resolve.",
+    "formulas": [
+     "soma da PG infinita = a₁/(1 − q), com |q| < 1",
+     "2^k = 9 → k = log₂ 9",
+     "log₂ 9 = log₂ 3² = 2 log₂ 3"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes a razão q"
+     ],
+     [
+      "a₁",
+      "primeiro termo da PG"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ],
+     [
+      "log₂",
+      "logaritmo na base 2"
+     ]
+    ]
+   },
+   "pista": "Coloque os termos com sinal de menos do outro lado e veja que razão liga um termo ao seguinte.",
+   "passos": [
+    {
+     "faz": "Isole a soma",
+     "conta": "9 − 2^x − 2^(x−1) − 2^(x−2) − ... = 0 → 2^x + 2^(x−1) + 2^(x−2) + ... = 9",
+     "porque": "Todos os termos com x vão para o outro lado somando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a PG infinita",
+     "conta": "a₁ = 2^x e q = 1/2 → soma = 2^x/(1 − 1/2) = 2^x/(1/2) = 2 · 2^x = 2^(x+1)",
+     "porque": "Cada termo é a metade do anterior; como |q| < 1, a soma infinita existe.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o logaritmo",
+     "conta": "2^(x+1) = 9 → x + 1 = log₂ 9 → x + 1 = 2 log₂ 3",
+     "porque": "O expoente é o logaritmo de 9 na base 2, e 9 = 3².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole x",
+     "conta": "x + 1 = 2 log₂ 3 → x = −1 + 2 log₂ 3",
+     "porque": "O 1 passa para o outro lado subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "x = −1 + 2 log₂ 3 → alternativa B",
+     "porque": "É a forma exata da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — x = −1 + 2log2(3), isto é, x = −1 + 2 log₂ 3.",
+   "checagem": "Valor numérico: log₂ 3 ≈ 1,585, então x ≈ 2,17. Então 2^(x+1) ≈ 2^(3,17) ≈ 9, e 9 − 9 = 0: a soma infinita cancela o 9.",
+   "erradas": {
+    "A": "A não confere: com x = −1 − 2log₂ 3, a soma vale 2^(x+1) = 1/9, e 9 − 1/9 ≠ 0. O sinal do logaritmo está trocado.",
+    "C": "C não confere: com x = −2 − log₂ 3, a soma vale 2^(x+1) = 1/6, e 9 − 1/6 ≠ 0.",
+    "D": "D não confere: com x = −2 + log₂ 3, a soma vale 2^(x+1) = 3/2, e 9 − 3/2 ≠ 0."
+   },
+   "armadilha": "Parar a soma no termo 2^(x−n), como se a PG fosse finita: as reticências finais indicam infinitos termos, e a soma fecha em 2^(x+1).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A solução da equação com uma soma infinita de potências de 2.",
+    "chave": "Os termos formam PG infinita de razão 1/2, que soma 2^(x+1); 2^(x+1) = 9 dá x = −1 + 2 log₂ 3.",
+    "cuidado": "A soma infinita é a₁/(1 − q): não esqueça de dividir por 1/2, o que dobra o primeiro termo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por fator comum",
+    "ideia": "Ponha 2^x em evidência: 2^x · (1 + 1/2 + 1/4 + ...) = 2^x · 2 = 9, e daí 2^x = 9/2, x = log₂ 9 − 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2^x + 2^(x−1) + 2^(x−2) + ... = 9",
+    "nota": "isolar a soma"
+   },
+   {
+    "linha": "2^x/(1 − 1/2) = 9",
+    "nota": "PG infinita de razão 1/2"
+   },
+   {
+    "linha": "2^(x+1) = 9",
+    "nota": "dividir por 1/2 dobra"
+   },
+   {
+    "linha": "x + 1 = 2 log₂ 3",
+    "nota": "log₂ 9 = 2 log₂ 3"
+   },
+   {
+    "linha": "x = −1 + 2 log₂ 3",
+    "nota": "o 1 passa subtraindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
  }
 }

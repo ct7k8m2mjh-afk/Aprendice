@@ -340,5 +340,120 @@
    "data": "2026-11-12",
    "lote": "mat-0043"
   }
+ },
+ "P97355a6e": {
+  "n": "32",
+  "conceito": "Divisão de polinômio por n − 1 e divisores inteiros (positivos e negativos) do resto.",
+  "equivocos": {
+   "A": "M01.4:contagem-de-divisores-incompleta",
+   "C": "M01.4:esqueceu-divisores-negativos",
+   "D": "M01.4:contagem-de-divisores-incompleta",
+   "E": "M01.4:contou-divisores-que-nao-servem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "g(n) só é inteiro se a divisão por n − 1 for exata. Divida o numerador por n − 1: sobra uma parte que já é inteira para n inteiro, mais um resto sobre n − 1. Tudo depende então de n − 1 dividir esse resto. Conte os divisores inteiros, positivos e negativos.",
+    "formulas": [
+     "3n² − 13n = (n − 1)(3n − 10) − 10",
+     "g(n) = 3n − 10 − 10/(n − 1)"
+    ],
+    "simbolos": [
+     [
+      "n ≠ 1",
+      "n = 1 zera o denominador"
+     ],
+     [
+      "divisor",
+      "inteiro que divide outro sem deixar resto; pode ser negativo"
+     ],
+     [
+      "∈",
+      "pertence a"
+     ]
+    ]
+   },
+   "pista": "Separe g(n) em uma parte inteira mais uma fração simples, dividindo o numerador por n − 1.",
+   "passos": [
+    {
+     "faz": "Divida o numerador por n − 1",
+     "conta": "(n − 1)(3n − 10) = 3n² − 13n + 10 → 3n² − 13n = (n − 1)(3n − 10) − 10",
+     "porque": "O produto passa do numerador em 10; para voltar a 3n² − 13n, tira-se 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reescreva g(n)",
+     "conta": "g(n) = (3n² − 13n)/(n − 1) → g(n) = 3n − 10 − 10/(n − 1)",
+     "porque": "O fator n − 1 se cancela na primeira parte; para n inteiro, 3n − 10 é inteiro, e só a fração decide.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Exija n − 1 divisor de 10",
+     "conta": "n − 1 ∈ {1, −1, 2, −2, 5, −5, 10, −10} → n ∈ {2, 0, 3, −1, 6, −4, 11, −9}",
+     "porque": "10/(n − 1) é inteiro só quando n − 1 divide 10. Some 1 a cada divisor para achar n; nenhum deles dá n = 1.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os valores",
+     "conta": "8 divisores → 8 valores de n → alternativa B",
+     "porque": "Cada divisor gera um n diferente, e todos são permitidos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 8",
+   "checagem": "Teste dois valores no g(n) original: n = 6 dá (108 − 78)/5 = 30/5 = 6, inteiro; n = 4, em que n − 1 = 3 não divide 10, dá (48 − 52)/3 = −4/3, que não é inteiro.",
+   "erradas": {
+    "A": "2 não confere: os valores n = −9, −4, −1, 0, 2, 3, 6, 11 dão g(n) = −36, −20, −8, 0, −14, −6, 6, 22, todos inteiros; são 8, não 2.",
+    "C": "4 sai de contar só os divisores positivos de 10 (1, 2, 5, 10). Os negativos também servem: n − 1 = −1 dá n = 0, com g(0) = 0.",
+    "D": "6 não confere: a lista completa tem 8 valores de n com g(n) inteiro; por exemplo, g(11) = 22 e g(−9) = −36 também entram.",
+    "E": "10 não confere: só os 8 divisores de 10 deixam 10/(n − 1) inteiro; n = 4, por exemplo, dá g(4) = −4/3."
+   },
+   "armadilha": "Divisor também pode ser negativo: contar só 1, 2, 5 e 10 deixa de fora metade dos valores de n.",
+   "alerta": "O print da questão corta o alto do numerador; pelo PDF oficial da prova, a função é g(n) = (3n² − 13n)/(n − 1).",
+   "essencial": {
+    "pede": "Quantos inteiros n ≠ 1 tornam g(n) = (3n² − 13n)/(n − 1) inteiro.",
+    "chave": "g(n) = 3n − 10 − 10/(n − 1): n − 1 precisa dividir 10, e 10 tem 8 divisores inteiros.",
+    "cuidado": "Conte os divisores negativos junto com os positivos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "troca de variável",
+    "ideia": "Chame k = n − 1: o numerador vira 3k² − 7k − 10, e g = 3k − 7 − 10/k; k precisa dividir 10, o que dá 8 valores."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "g(n) = (3n² − 13n)/(n − 1)",
+    "nota": "função dada"
+   },
+   {
+    "linha": "3n² − 13n = (n − 1)(3n − 10) − 10",
+    "nota": "divisão pelo denominador"
+   },
+   {
+    "linha": "g(n) = 3n − 10 − 10/(n − 1)",
+    "nota": "parte inteira mais resto"
+   },
+   {
+    "linha": "n − 1 ∈ {±1, ±2, ±5, ±10} → 8 valores",
+    "nota": "divisores inteiros de 10"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "PUC-Campinas, Prova Geral Medicina 2021 (PDF oficial)",
+    "url": "https://vestibular.puc-campinas.edu.br/wp-content/uploads/2024/09/PROVA_GERAL_MEDICINA_VESTIBULAR_2021.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
  }
 }

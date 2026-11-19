@@ -347,5 +347,854 @@
    "data": "2026-11-19",
    "lote": "mat-0073"
   }
+ },
+ "Pb70ea6a8": {
+  "n": "146",
+  "conceito": "Maximizar a área de um retângulo com orçamento fixo de cerca: escrever a área como função quadrática de um lado e achar o vértice.",
+  "equivocos": {
+   "A": "M05.2:nao-maximizou-a-area",
+   "C": "M05.2:somou-os-lados",
+   "D": "M05.2:contou-cada-lado-uma-vez",
+   "E": "M05.2:contou-cada-lado-uma-vez-e-somou"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São dois lados de comprimento L com tela de R$ 20,00 o metro e dois lados de comprimento C com tela de R$ 15,00. Gastar tudo o que se pode amarra C a L, e a área L · C vira uma função quadrática de L só. A maior área está no vértice dessa parábola, que fica no meio das duas raízes. No fim, a pergunta é o MAIOR lado, não o valor de L.",
+    "formulas": [
+     "custo = 2 · 20 · L + 2 · 15 · C",
+     "área = L · C",
+     "vértice: x do vértice = média das raízes = −b/(2a)"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "comprimento, em metro, dos dois lados cercados com a tela de R$ 20,00"
+     ],
+     [
+      "C",
+      "comprimento, em metro, dos dois lados cercados com a tela de R$ 15,00"
+     ],
+     [
+      "A(L)",
+      "área do galinheiro escrita em função de L"
+     ],
+     [
+      "vértice",
+      "ponto mais alto da parábola, onde a área é máxima"
+     ]
+    ]
+   },
+   "pista": "Antes de pensar em área, escreva quanto custa a tela toda: são DOIS lados de cada tipo.",
+   "passos": [
+    {
+     "faz": "Monte a equação do custo",
+     "conta": "2 · 20 · L + 2 · 15 · C = 6000 → 40L + 30C = 6000",
+     "porque": "Cada tipo de tela cerca dois lados opostos do retângulo. Para a área ser a maior possível, o fazendeiro usa todo o dinheiro, então vale a igualdade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole C em função de L",
+     "conta": "30C = 6000 − 40L → C = (6000 − 40L)/30 → C = 200 − (4/3)L",
+     "porque": "O 40L passa subtraindo e o 30 que multiplica C passa dividindo. Assim a área fica com uma letra só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a área como função de L",
+     "conta": "A = L · C → A(L) = 200L − (4/3)L²",
+     "porque": "Substituindo C, a área vira uma quadrática com coeficiente de L² negativo: parábola com a boca para baixo, que tem ponto máximo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o L do vértice",
+     "conta": "A(L) = 0 → L = 0 ou L = 150 → L = (0 + 150)/2 = 75",
+     "porque": "A parábola é simétrica: o vértice fica no meio das raízes. As raízes saem de L · (200 − (4/3)L) = 0, sem Bhaskara.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule C e compare os lados",
+     "conta": "C = 200 − (4/3) · 75 → C = 200 − 100 = 100",
+     "porque": "Com L = 75 m, o outro lado é C = 100 m. O maior lado é o de 100 m, que leva a tela mais barata.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte ao comando",
+     "conta": "lados 75 m e 100 m → maior lado = 100 m → alternativa B",
+     "porque": "A questão pede a medida do maior lado, não L nem a soma dos lados.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 100 metros",
+   "checagem": "Confira o orçamento e um vizinho: 40 · 75 + 30 · 100 = 3000 + 3000 = 6000 reais, o limite exato. Com L = 74 m, C = 101,33 m e a área cai para 7 498,7 m², abaixo dos 7 500 m² de 75 × 100.",
+   "erradas": {
+    "A": "85 não confere: se um lado fosse 85 m, o outro sairia de 40 · L = 6000 − 30 · 85, ou seja, L = 86,25 m, e a área 7 331,25 m² fica abaixo de 7 500 m².",
+    "C": "175 sai de somar os dois lados: 75 + 100 = 175. Esse é o semiperímetro, não a medida do maior lado.",
+    "D": "200 sai de contar cada tela uma vez só: 20L + 15C = 6000 dá C = 400 − (4/3)L, vértice em L = 150 e C = 200. São dois lados de cada tipo.",
+    "E": "350 sai de contar cada tela uma vez só e ainda somar os lados: 150 + 200 = 350."
+   },
+   "armadilha": "São dois lados de cada tipo de tela: quem escreve 20L + 15C = 6000 dobra as medidas e cai em 200.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A medida do maior lado do galinheiro de maior área com gasto de até R$ 6 000,00.",
+    "chave": "40L + 30C = 6000 dá A(L) = 200L − (4/3)L², com vértice em L = 75 e C = 100.",
+    "cuidado": "Conte os dois lados de cada tipo de tela e responda o maior lado, não L."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "gasto igual por tipo",
+    "ideia": "No máximo de L · C com 40L + 30C fixo, cada tipo de tela leva metade do dinheiro: 40L = 3000 e 30C = 3000, logo L = 75 e C = 100."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "40L + 30C = 6000",
+    "nota": "custo dos quatro lados igual ao limite"
+   },
+   {
+    "linha": "C = 200 − (4/3)L",
+    "nota": "40L passa subtraindo e o 30 passa dividindo"
+   },
+   {
+    "linha": "A(L) = 200L − (4/3)L²",
+    "nota": "área L · C com C substituído"
+   },
+   {
+    "linha": "L = (0 + 150)/2 = 75",
+    "nota": "vértice no meio das raízes 0 e 150"
+   },
+   {
+    "linha": "C = 200 − 100 = 100",
+    "nota": "o outro lado; o maior é 100 m"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "INEP — caderno de prova ENEM 2024, 2º dia, caderno 7 (azul)",
+    "url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2024_PV_impresso_D2_CD7.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
+ },
+ "Pc37e42b8": {
+  "n": "161",
+  "conceito": "Ler o enchimento de um tanque com divisórias e escolher o gráfico da maior altura de água ao longo do tempo.",
+  "equivocos": {
+   "A": "M05.3:errou-o-tempo-do-trecho-constante",
+   "C": "M05.3:errou-o-tempo-do-trecho-constante",
+   "D": "M05.3:maior-altura-diminuindo",
+   "E": "M05.3:maior-altura-diminuindo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A vazão é constante e o tanque inteiro enche em 12 horas, então o tempo de cada etapa é proporcional ao volume que ela enche. A água cai no compartimento sob a entrada, que fica junto ao anteparo de altura H/2. Enquanto a água transborda e enche os outros compartimentos, a maior altura fica parada em H/2. A maior altura nunca diminui, porque nenhuma água sai do tanque.",
+    "formulas": [
+     "tempo da etapa = (volume da etapa)/(volume do tanque) · 12 h",
+     "volume de um compartimento até a altura h = (1/3) · (h/H) do volume do tanque"
+    ],
+    "simbolos": [
+     [
+      "H",
+      "altura do tanque"
+     ],
+     [
+      "L",
+      "comprimento do tanque, dividido em três partes iguais de L/3"
+     ],
+     [
+      "V",
+      "volume do tanque inteiro"
+     ],
+     [
+      "anteparo",
+      "divisória vertical dentro do tanque"
+     ]
+    ]
+   },
+   "pista": "Comece pelo compartimento que fica embaixo da entrada e veja até que altura ele enche antes de transbordar.",
+   "passos": [
+    {
+     "faz": "Localize a entrada e os anteparos",
+     "conta": "entrada sobre o 3º compartimento | anteparo vizinho: H/2 | outro anteparo: H/4",
+     "porque": "Na figura, a entrada fica no teto, no canto do compartimento da direita, ao lado do anteparo mais alto. A água sobe ali primeiro.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o tempo até transbordar",
+     "conta": "(1/3) · (1/2) · V = V/6 → (1/6) · 12 h = 2 h",
+     "porque": "O compartimento sob a entrada ocupa 1/3 da base e enche até H/2. A maior altura sobe de 0 a H/2 entre 0 e 2 h.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some o tempo dos outros dois até H/2",
+     "conta": "2 · (1/3) · (1/2) · V = V/3 → (1/3) · 12 h = 4 h",
+     "porque": "A água transborda para o compartimento do meio, que sobe até H/4 e transborda para o da esquerda; quando este chega a H/4, os dois sobem juntos até H/2. Nenhum passa de H/2, então a maior altura fica parada em H/2 de 2 h a 6 h.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o tempo da metade de cima",
+     "conta": "V − V/6 − V/3 = V/2 → (1/2) · 12 h = 6 h",
+     "porque": "Acima de H/2 o tanque enche como uma caixa só. A altura sobe de H/2 até H em 6 h, de 6 h a 12 h, mais devagar que no começo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com os gráficos",
+     "conta": "sobe 0 → 2 h | parada 2 → 6 h | sobe 6 → 12 h → alternativa B",
+     "porque": "Só o gráfico B sobe até 2 h, fica horizontal de 2 h a 6 h e volta a subir, mais devagar, até 12 h.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — o gráfico que sobe até 2 h, fica constante de 2 h a 6 h e sobe com inclinação menor até 12 h",
+   "checagem": "Some os tempos: 2 h + 4 h + 6 h = 12 h, o tempo total do enunciado. E as inclinações conferem: H/2 em 2 h no começo e H/2 em 6 h no fim, três vezes mais devagar, como no gráfico B.",
+   "erradas": {
+    "A": "A não confere: fica parado só de 2 h a 4 h, mas os dois compartimentos vizinhos levam 4 h para chegar a H/2 (V/3 de 12 h), então o trecho horizontal vai até 6 h.",
+    "C": "C não confere: fica parado de 2 h a 10 h, 8 h, mas encher os dois outros compartimentos até H/2 exige só V/3 do volume, ou seja, 4 h.",
+    "D": "D não confere: mostra a maior altura caindo depois de 2 h. Nenhuma água sai do tanque, e a água do primeiro compartimento continua em H/2, então a maior altura nunca diminui.",
+    "E": "E não confere: também mostra a maior altura descendo de 2 h a 4 h, o que é impossível com o tanque só recebendo água."
+   },
+   "armadilha": "Enquanto a água transborda para os outros compartimentos, a maior altura não muda: ela fica parada em H/2 por 4 horas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O gráfico da maior altura da água ao longo das 12 horas de enchimento.",
+    "chave": "Tempo proporcional ao volume: 2 h até H/2, 4 h parado enquanto os outros compartimentos enchem, 6 h para a metade de cima.",
+    "cuidado": "Comece pelo compartimento sob a entrada e lembre que a maior altura nunca desce."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "D e E caem porque a maior altura nunca desce; entre A, B e C, só B tem o trecho parado de 4 h (V/3 do volume)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(1/3) · (1/2) · V = V/6 → 2 h",
+    "nota": "1º compartimento até H/2"
+   },
+   {
+    "linha": "2 · (1/3) · (1/2) · V = V/3 → 4 h",
+    "nota": "outros dois até H/2: altura máxima parada"
+   },
+   {
+    "linha": "V − V/6 − V/3 = V/2 → 6 h",
+    "nota": "metade de cima, tanque inteiro"
+   },
+   {
+    "linha": "2 h + 4 h + 6 h = 12 h",
+    "nota": "fecha com o tempo total"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "INEP — caderno de prova ENEM 2024, 2º dia, caderno 7 (azul)",
+    "url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2024_PV_impresso_D2_CD7.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
+ },
+ "Pc842dd47": {
+  "n": "148",
+  "conceito": "Achar os parâmetros de uma função exponencial T(t) = a + 80 · b^t lendo dois pontos do gráfico.",
+  "equivocos": {
+   "A": "M06.1:base-negativa",
+   "B": "M06.1:nao-usou-t-zero",
+   "D": "M06.1:isolou-a-potencia-errado",
+   "E": "M06.1:confundiu-valor-lido-com-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Duas incógnitas pedem dois pontos do gráfico. Em t = 0 toda potência vale 1, e isso entrega a de imediato. Depois, o ponto final do gráfico, t = 20 min, dá uma equação só com b no expoente.",
+    "formulas": [
+     "b⁰ = 1",
+     "b^20 = 1/4 → b = (1/4)^(1/20)",
+     "(x^m)^n = x^(m·n)"
+    ],
+    "simbolos": [
+     [
+      "T(t)",
+      "temperatura da caneca, em °C, no instante t"
+     ],
+     [
+      "t",
+      "tempo, em minuto"
+     ],
+     [
+      "a, b",
+      "constantes da função que a questão pede"
+     ],
+     [
+      "b^(1/10)",
+      "raiz décima de b"
+     ]
+    ]
+   },
+   "pista": "Use o instante t = 0 primeiro: ali a potência some da conta.",
+   "passos": [
+    {
+     "faz": "Leia dois pontos do gráfico",
+     "conta": "t = 0: T = 100 | t = 20: T = 40",
+     "porque": "O gráfico começa em 100 °C e termina, em 20 minutos, em 40 °C. São dois pontos para duas incógnitas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use t = 0 para achar a",
+     "conta": "a + 80 · b⁰ = 100 → a + 80 = 100 → a = 20",
+     "porque": "Qualquer b elevado a zero vale 1. O 80 passa subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use t = 20 para isolar a potência",
+     "conta": "20 + 80 · b^20 = 40 → 80 · b^20 = 20 → b^20 = 20/80 = 1/4",
+     "porque": "O 20 passa subtraindo e o 80 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a raiz vigésima",
+     "conta": "b^20 = (0,5)² → b^10 = 0,5 → b = (0,5)^(1/10)",
+     "porque": "Como 1/4 = (0,5)², igualar os expoentes dá b^10 = 0,5. Com b positivo, b é a raiz décima de 0,5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "a = 20 ; b = (0,5)^(1/10) → alternativa C",
+     "porque": "É exatamente o par da alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a = 20 e b = (0,5)^(1/10)",
+   "checagem": "Teste o meio do gráfico: T(10) = 20 + 80 · ((0,5)^(1/10))^10 = 20 + 80 · 0,5 = 60 °C, e a curva passa mesmo por 60 em t = 10 min.",
+   "erradas": {
+    "A": "A não confere: log(0,5) ≈ −0,30 é negativo, e uma base negativa não define b^t para t fracionário; além disso, com b < 0 a temperatura não decresceria suavemente.",
+    "B": "B não confere: com a = 100 e b = 0,5, T(0) = 100 + 80 · 1 = 180 °C, e o gráfico começa em 100 °C.",
+    "D": "D não confere: com b = (40)^(1/10)/80 ≈ 0,018, T(20) = 20 + 80 · b^20 ≈ 20 °C, e o gráfico marca 40 °C em t = 20 min.",
+    "E": "E não confere: com b = 40 > 1, a potência cresce e T(20) seria enorme; o gráfico mostra a temperatura caindo, o que exige 0 < b < 1."
+   },
+   "armadilha": "Em t = 20 a equação é 80 · b^20 = 20, e não b = 40: o valor lido no gráfico é T, não b.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os valores de a e b em T(t) = a + 80 · b^t.",
+    "chave": "T(0) = 100 dá a = 20; T(20) = 40 dá b^20 = 1/4, logo b = (0,5)^(1/10).",
+    "cuidado": "Isole a potência antes de tirar a raiz e lembre que b⁰ = 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "meia-vida",
+    "ideia": "O excesso sobre 20 °C cai de 80 para 40 em 10 min (T = 60): a cada 10 min ele cai pela metade, então b^10 = 0,5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a + 80 · b⁰ = 100",
+    "nota": "ponto t = 0"
+   },
+   {
+    "linha": "a = 100 − 80 = 20",
+    "nota": "b⁰ = 1 e o 80 passa subtraindo"
+   },
+   {
+    "linha": "80 · b^20 = 40 − 20 → b^20 = 20/80 = 1/4",
+    "nota": "ponto t = 20; o 80 passa dividindo"
+   },
+   {
+    "linha": "b^20 = (0,5)² → b = (0,5)^(1/10)",
+    "nota": "expoentes divididos por 2 e raiz décima"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "INEP — caderno de prova ENEM 2024, 2º dia, caderno 7 (azul)",
+    "url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2024_PV_impresso_D2_CD7.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
+ },
+ "P62cdcc10": {
+  "n": "171",
+  "conceito": "Comparar as áreas do triângulo equilátero, do quadrado e do hexágono regular de mesmo perímetro k.",
+  "equivocos": {
+   "B": "M08.4:usou-perimetro-como-lado",
+   "C": "M08.4:nao-comparou-todas-as-areas",
+   "D": "M08.4:nao-comparou-todas-as-areas",
+   "E": "M08.4:usou-perimetro-como-lado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As três figuras têm o mesmo perímetro k, então o lado de cada uma é k dividido pelo número de lados. Calcule a área de cada uma em função de k e compare os coeficientes. O hexágono regular é formado por seis triângulos equiláteros iguais.",
+    "formulas": [
+     "triângulo equilátero de lado ℓ: área = (ℓ² · √3)/4",
+     "quadrado de lado ℓ: área = ℓ²",
+     "hexágono regular de lado ℓ: área = 6 · (ℓ² · √3)/4"
+    ],
+    "simbolos": [
+     [
+      "k",
+      "comprimento total da cerca, em metro"
+     ],
+     [
+      "ℓ",
+      "lado da figura"
+     ],
+     [
+      "√3",
+      "raiz quadrada de 3, cerca de 1,73"
+     ]
+    ]
+   },
+   "pista": "Primeiro ache o lado de cada figura: o perímetro k é o mesmo para as três.",
+   "passos": [
+    {
+     "faz": "Ache o lado de cada figura",
+     "conta": "triângulo: ℓ = k/3 | quadrado: ℓ = k/4 | hexágono: ℓ = k/6",
+     "porque": "A cerca inteira forma o contorno, então o perímetro é k e cada lado é k dividido pelo número de lados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área do triângulo",
+     "conta": "((k/3)² · √3)/4 → (k² · √3)/36",
+     "porque": "(k/3)² = k²/9, e dividir por 4 dá denominador 36.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área do quadrado",
+     "conta": "(k/4)² → k²/16",
+     "porque": "O lado ao quadrado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área do hexágono",
+     "conta": "6 · ((k/6)² · √3)/4 → (6 · k² · √3)/144 → (k² · √3)/24",
+     "porque": "São seis triângulos equiláteros de lado k/6; 6/144 simplifica para 1/24.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os coeficientes",
+     "conta": "√3/24 ≈ 0,072 > 1/16 = 0,0625 > √3/36 ≈ 0,048",
+     "porque": "O hexágono tem a maior área. Com o mesmo contorno, quanto mais lados o polígono regular tem, maior a área.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "hexágono, área (k² · √3)/24 → alternativa A",
+     "porque": "A alternativa A traz a figura certa e a área certa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — hexágono regular, com área de (k² · √3)/24 metros quadrados",
+   "checagem": "Teste com k = 12 m: triângulo de lado 4 tem área 4 · √3 ≈ 6,93 m²; quadrado de lado 3 tem 9 m²; hexágono de lado 2 tem 6 · √3 ≈ 10,39 m², e (144 · √3)/24 = 6 · √3. Fecha.",
+   "erradas": {
+    "B": "B sai de usar o lado k no hexágono: 6 · (k² · √3)/4 = (3 · k² · √3)/2. O lado é k/6, porque k é o perímetro.",
+    "C": "C traz a área certa do quadrado, k²/16 = 0,0625 · k², mas ela é menor que a do hexágono, cerca de 0,072 · k².",
+    "D": "D traz a área certa do triângulo, (k² · √3)/36 ≈ 0,048 · k², mas é a menor das três.",
+    "E": "E sai de usar o lado k no triângulo: (k² · √3)/4. O lado é k/3, e com a área certa, (k² · √3)/36, o triângulo é a menor das três."
+   },
+   "armadilha": "O k é o perímetro, não o lado: cada figura tem lado k dividido pelo número de lados.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual das três figuras de perímetro k tem a maior área, e qual é essa área.",
+    "chave": "Lados k/3, k/4 e k/6; áreas (k² · √3)/36, k²/16 e (k² · √3)/24; a maior é a do hexágono.",
+    "cuidado": "Divida o perímetro pelo número de lados antes de usar a fórmula da área."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "regra do perímetro fixo",
+    "ideia": "Com o mesmo perímetro, o polígono regular com mais lados tem mais área: o hexágono vence, e só resta conferir a fórmula entre A e B."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ℓ = k/6",
+    "nota": "lado do hexágono"
+   },
+   {
+    "linha": "6 · ((k/6)² · √3)/4 = (6 · k² · √3)/144",
+    "nota": "seis triângulos equiláteros"
+   },
+   {
+    "linha": "(6 · k² · √3)/144 = (k² · √3)/24",
+    "nota": "simplifica 6/144 para 1/24"
+   },
+   {
+    "linha": "√3/24 ≈ 0,072 > 1/16 > √3/36",
+    "nota": "hexágono maior que quadrado e triângulo"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "INEP — caderno de prova ENEM 2024, 2º dia, caderno 7 (azul)",
+    "url": "https://download.inep.gov.br/enem/provas_e_gabaritos/2024_PV_impresso_D2_CD7.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
+ },
+ "P3936ad62": {
+  "n": "180",
+  "conceito": "Contagem de equipes com restrição \"pelo menos\": soma de casos, cada um com produto de combinações.",
+  "equivocos": {
+   "A": "M13.3:arranjo-no-lugar-de-combinacao",
+   "B": "M13.3:esqueceu-casos-do-pelo-menos",
+   "C": "M13.3:somou-em-vez-de-multiplicar",
+   "D": "M13.3:trocou-soma-e-produto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Pelo menos 3 cardiologistas\" abre três casos: 3, 4 ou 5 cardiologistas, e os neurologistas completam a equipe de 5. Numa equipe a ordem não importa, então cada escolha é uma combinação. Dentro de um caso, escolher cardiologistas E neurologistas multiplica; casos diferentes (um OU outro) se somam.",
+    "formulas": [
+     "C(n, p) = n!/(p! × (n − p)!)",
+     "dentro de um caso: multiplique; entre casos: some"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "número de grupos de p pessoas escolhidas entre n, sem importar a ordem"
+     ],
+     [
+      "n!",
+      "fatorial: n × (n − 1) × ... × 1; vale 0! = 1"
+     ]
+    ]
+   },
+   "pista": "Liste as composições possíveis da equipe (quantos cardiologistas e quantos neurologistas) antes de escrever qualquer fatorial.",
+   "passos": [
+    {
+     "faz": "Separe os casos de \"pelo menos 3\"",
+     "conta": "cardiologistas + neurologistas = 5 → 3 + 2 | 4 + 1 | 5 + 0",
+     "porque": "Com 7 cardiologistas disponíveis, a equipe pode ter 3, 4 ou 5 deles; o resto até 5 vem dos neurologistas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte o caso 3 + 2",
+     "conta": "C(7, 3) × C(6, 2) = 7!/(3! × 4!) × 6!/(2! × 4!) → 35 × 15 = 525",
+     "porque": "Escolhem-se 3 dos 7 cardiologistas E 2 dos 6 neurologistas: as duas escolhas acontecem juntas, então multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os casos 4 + 1 e 5 + 0",
+     "conta": "7!/(4! × 3!) × 6!/(1! × 5!) = 35 × 6 = 210 | 7!/(5! × 2!) × 6!/(0! × 6!) = 21 × 1 = 21",
+     "porque": "Mesmo raciocínio: combinação para cada especialidade e produto dentro do caso. No último, nenhum neurologista: C(6, 0) = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os três casos",
+     "conta": "525 + 210 + 21 = 756",
+     "porque": "Uma equipe tem 3, OU 4, OU 5 cardiologistas, nunca dois desses ao mesmo tempo: os casos não se repetem e se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue a expressão à alternativa",
+     "conta": "(caso 3 + 2) + (caso 4 + 1) + (caso 5 + 0) → alternativa E",
+     "porque": "A alternativa E é exatamente a soma dos três produtos de combinações escritos com fatoriais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — (7!/(3! × 4!) × 6!/(2! × 4!)) + (7!/(4! × 3!) × 6!/(1! × 5!)) + (7!/(5! × 2!) × 6!/(0! × 6!))",
+   "checagem": "Conte pelo complemento: todas as equipes de 5 entre 13 médicos são C(13, 5) = 1287; as que têm 0, 1 ou 2 cardiologistas são 6 + 7 × 15 + 21 × 20 = 531. Então 1287 − 531 = 756, o mesmo total.",
+   "erradas": {
+    "A": "A sai de contar a ordem e ficar só no caso 3 + 2: 7!/4! = 210 e 6!/4! = 30 são arranjos. Faltou dividir por 3! e 2! e somar os casos de 4 e 5 cardiologistas.",
+    "B": "B é só o caso de exatamente 3 cardiologistas (525 equipes). Esquece as equipes com 4 ou 5 cardiologistas, que também têm pelo menos 3.",
+    "C": "C soma onde deveria multiplicar: escolher cardiologistas E neurologistas forma uma equipe só. Além disso, 5!/(1! × 4!) não corresponde a nenhum grupo de médicos do hospital.",
+    "D": "D troca as operações: soma dentro de cada caso, onde deveria multiplicar, e multiplica os casos, que deveriam ser somados; daria 50 × 41 × 22 = 45100."
+   },
+   "armadilha": "\"Pelo menos 3\" inclui 4 e 5 cardiologistas: são três casos que se somam, e dentro de cada um as escolhas se multiplicam.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A expressão que conta as equipes de 5 médicos com pelo menos 3 cardiologistas.",
+    "chave": "Três casos (3 + 2, 4 + 1, 5 + 0), cada um com produto de combinações, somados: 525 + 210 + 21 = 756.",
+    "cuidado": "Combinação, não arranjo (a ordem na equipe não importa), e soma entre casos, produto dentro de cada caso."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complemento",
+    "ideia": "Tire do total C(13, 5) = 1287 as equipes com 0, 1 ou 2 cardiologistas (6 + 105 + 420 = 531): sobram 756."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3 + 2: 7!/(3! × 4!) × 6!/(2! × 4!) = 35 × 15 = 525",
+    "nota": "exatamente 3 cardiologistas"
+   },
+   {
+    "linha": "4 + 1: 7!/(4! × 3!) × 6!/(1! × 5!) = 35 × 6 = 210",
+    "nota": "exatamente 4 cardiologistas"
+   },
+   {
+    "linha": "5 + 0: 7!/(5! × 2!) × 6!/(0! × 6!) = 21 × 1 = 21",
+    "nota": "os 5 são cardiologistas"
+   },
+   {
+    "linha": "525 + 210 + 21 = 756",
+    "nota": "casos excludentes se somam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
+ },
+ "Pd1e19170": {
+  "n": "165",
+  "conceito": "Probabilidade geométrica no tempo e produto de probabilidades de eventos independentes.",
+  "equivocos": {
+   "A": "M13.4:tratou-a-conjunta-como-tempo",
+   "C": "M13.4:errou-a-raiz-quadrada",
+   "D": "M13.4:usou-a-conjunta-em-cada-evento",
+   "E": "M13.4:dividiu-por-2-em-vez-de-raiz"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com chegada aleatória, a chance de encontrar um sinal vermelho é o tempo de vermelho dividido pelo ciclo de 60 s. Os dois sinais são independentes, então a chance de encontrar os dois vermelhos é o produto das duas. Como a redução é a mesma nos dois, as duas chances ficam iguais, e o produto vira p × p. A pergunta é a redução, não o novo tempo de vermelho.",
+    "formulas": [
+     "P(vermelho) = tempo de vermelho/60",
+     "independentes: P(A e B) = P(A) × P(B)"
+    ],
+    "simbolos": [
+     [
+      "p",
+      "nova probabilidade de encontrar um sinal vermelho"
+     ],
+     [
+      "r",
+      "redução do tempo de vermelho, em segundos"
+     ],
+     [
+      "independentes",
+      "o resultado de um sinal não muda a chance do outro"
+     ]
+    ]
+   },
+   "pista": "Escreva a nova chance de cada sinal com a redução como incógnita, lembrando que os dois sinais ficam iguais.",
+   "passos": [
+    {
+     "faz": "Dê nome à redução",
+     "conta": "vermelho: 15 → 15 − r → p = (15 − r)/60",
+     "porque": "Cada sinal perde r segundos de vermelho, e o ciclo continua de 60 s.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Iguale o produto a 4/100",
+     "conta": "p × p = 4/100 → p² = 4/100 → p = 2/10",
+     "porque": "Eventos independentes: a chance dos dois juntos é o produto. Probabilidade é positiva, então fica só a raiz positiva.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte para segundos",
+     "conta": "(15 − r)/60 = 2/10 → 15 − r = 60 × 2/10 → 15 − r = 12 → r = 3",
+     "porque": "O 60 que divide passa multiplicando; depois o r troca de lado com o 12.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue a redução à alternativa",
+     "conta": "redução de 3 s (15 s → 12 s) → alternativa B",
+     "porque": "A pergunta é quanto o vermelho diminuiu, e não quanto ele passou a durar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 3,00 segundos",
+   "checagem": "Com 12 s de vermelho, cada sinal fica vermelho 12/60 = 1/5 do ciclo; os dois juntos, 1/5 × 1/5 = 1/25, que é 4/100. Fecha.",
+   "erradas": {
+    "A": "1,35 sai de tratar a chance conjunta como se fosse tempo: (1/16 − 4/100) × 60 = 1,35, com 1/16 = (15/60)². A conversão para segundos vale para cada sinal, não para o produto.",
+    "C": "9,00 não confere: com 15 − 9 = 6 s de vermelho, a chance de encontrar os dois vermelhos é 6/60 × 6/60 = 1/100, e não 4/100.",
+    "D": "12,60 sai de usar 4/100 para cada sinal, sem tirar a raiz: (15 − r)/60 = 4/100 dá 15 − r = 2,4 e r = 12,6.",
+    "E": "13,80 sai de dividir 4/100 por 2 em vez de tirar a raiz: (15 − r)/60 = 2/100 dá 15 − r = 1,2 e r = 13,8."
+   },
+   "armadilha": "4/100 é a chance dos dois sinais juntos: para cada sinal vale a raiz, 2/10, e não 4/100 nem a metade disso.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A redução, em segundos, do vermelho de cada sinal para que a chance de pegar os dois vermelhos seja 4/100.",
+    "chave": "p² = 4/100 dá p = 2/10; 2/10 de 60 s são 12 s de vermelho, uma redução de 15 − 12 = 3 s.",
+    "cuidado": "Tire a raiz da chance conjunta antes de voltar para segundos e responda a redução, não o novo tempo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "direto no tempo",
+    "ideia": "A raiz de 4/100 é 2/10, e 2/10 de 60 s são 12 s de vermelho em cada sinal; de 15 s para 12 s, a redução é de 3 s."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p = (15 − r)/60",
+    "nota": "chance de cada sinal com a redução"
+   },
+   {
+    "linha": "p² = 4/100 → p = 2/10",
+    "nota": "independentes: produto; raiz positiva"
+   },
+   {
+    "linha": "(15 − r)/60 = 2/10 → 15 − r = 12",
+    "nota": "o 60 passa multiplicando"
+   },
+   {
+    "linha": "r = 3",
+    "nota": "redução em segundos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
+ },
+ "P5c6ce2a3": {
+  "n": "169",
+  "conceito": "Probabilidade de eventos sucessivos sem reposição: errar, errar e acertar na terceira tentativa.",
+  "equivocos": {
+   "A": "M13.5:ate-a-terceira-em-vez-de-apenas",
+   "B": "M13.5:somou-eventos-sucessivos",
+   "C": "M13.5:multiplicou-tres-acertos",
+   "D": "M13.5:nao-reduziu-o-denominador"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Há 25 padrões possíveis: o A pode ter virado qualquer uma das outras 25 letras (se virasse o próprio A, nada estaria codificado), e as alternativas usam esse 25. \"Apenas na terceira\" quer dizer errar a 1.ª, errar a 2.ª e acertar a 3.ª, em sequência, então as chances se multiplicam. Cada padrão errado é descartado, e o número de padrões que restam cai a cada tentativa.",
+    "formulas": [
+     "probabilidade = casos favoráveis/casos possíveis",
+     "eventos em sequência (\"e\"): multiplique as chances"
+    ],
+    "simbolos": [
+     [
+      "padrão",
+      "a letra que substituiu o A; ela define toda a cifra"
+     ],
+     [
+      "tentativa frustrada eliminada",
+      "o padrão errado não é testado de novo"
+     ]
+    ]
+   },
+   "pista": "Escreva o que precisa acontecer em cada tentativa e quantos padrões ainda estão de pé em cada uma.",
+   "passos": [
+    {
+     "faz": "Conte os padrões possíveis",
+     "conta": "26 letras − o próprio A → 25 padrões",
+     "porque": "O A codificado vira outra letra; só uma das 25 é a certa.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Erre a 1.ª tentativa",
+     "conta": "P(errar) = 24/25 → descarta 1 → sobram 24",
+     "porque": "Há 24 padrões errados entre 25; o testado sai da lista.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Erre a 2.ª tentativa",
+     "conta": "P(errar) = 23/24 → descarta 1 → sobram 23",
+     "porque": "Agora são 24 candidatos, 23 deles errados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Acerte a 3.ª e multiplique",
+     "conta": "24/25 × 23/24 × 1/23 → 1/25",
+     "porque": "Entre os 23 que restam, 1 é o certo. Os 24 e os 23 se cancelam no produto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue a expressão à alternativa",
+     "conta": "24/25 × 23/24 × 1/23 → alternativa E",
+     "porque": "É o produto de errar, errar e acertar, com o denominador caindo a cada descarte.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 24/25 × 23/24 × 1/23",
+   "checagem": "Pense na fila das 25 tentativas: com o descarte, o padrão certo tem a mesma chance de estar em qualquer posição dela, 1/25. O produto da alternativa E vale 1/25, e as 25 posições somam 25 × 1/25 = 1.",
+   "erradas": {
+    "A": "A soma 1/25 três vezes: 3/25 é a chance de acertar em até três tentativas (na 1.ª, na 2.ª ou na 3.ª), e não apenas na terceira.",
+    "B": "B soma etapas que precisam acontecer juntas (errar e errar e acertar), que se multiplicam; a soma passa de 1, pois 24/25 + 23/24 já é maior que 1.",
+    "C": "C multiplica três acertos: 1/25 × 1/24 × 1/23 seria acertar nas três tentativas, mas as duas primeiras têm de ser erros (24/25 e 23/24).",
+    "D": "D não confere: sem descarte seria 24/25 × 24/25 × 1/25; com descarte, os denominadores caem para 24 e 23. D mistura as duas situações."
+   },
+   "armadilha": "\"Apenas na terceira\" exige errar as duas primeiras: os fatores de erro entram no produto, e o descarte faz o denominador cair de 25 para 24 e 23.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A expressão da chance de descobrir o padrão só na terceira tentativa, descartando os padrões errados.",
+    "chave": "Errar, errar e acertar em sequência: 24/25 × 23/24 × 1/23.",
+    "cuidado": "Multiplique (não some) e reduza o denominador a cada tentativa descartada."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "árvore",
+    "ideia": "Desenhe o ramo errou → errou → acertou da árvore de tentativas e multiplique as chances de cada ramo: 24/25, 23/24 e 1/23."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1.ª: errar = 24/25",
+    "nota": "24 errados entre 25"
+   },
+   {
+    "linha": "2.ª: errar = 23/24",
+    "nota": "um padrão já descartado"
+   },
+   {
+    "linha": "3.ª: acertar = 1/23",
+    "nota": "1 certo entre os 23 restantes"
+   },
+   {
+    "linha": "24/25 × 23/24 × 1/23 = 1/25",
+    "nota": "eventos em sequência se multiplicam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
  }
 }

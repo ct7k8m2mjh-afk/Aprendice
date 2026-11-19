@@ -412,5 +412,130 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0002"
   }
+ },
+ "P2c9c0c8d": {
+  "n": "50",
+  "conceito": "Interpretar o modelo exponencial I(t) = I₀·2^(rt): crescimento, valores e tempo para passar de um limite.",
+  "equivocos": {
+   "A": "M06.1:confundiu-expoente-pequeno-com-decrescimento",
+   "B": "M06.1:atribuiu-maximo-a-exponencial",
+   "C": "M06.1:confundiu-dobrar-com-somar",
+   "E": "M06.1:inverteu-efeito-do-parametro"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com I₀ > 0 e r > 0, o expoente rt cresce com o tempo, e 2^(rt) cresce sem parar: o modelo nunca decresce nem tem máximo. Cada alternativa vira uma conta ou um teste de sinal. Na D, transforme 'maior que 1.000' numa desigualdade de expoentes usando potências de 2 conhecidas.",
+    "formulas": [
+     "I(t) = I₀ · 2^(rt)",
+     "2⁹ = 512 e 2¹⁰ = 1 024",
+     "base maior que 1: expoente maior ⇔ potência maior"
+    ],
+    "simbolos": [
+     [
+      "I(t)",
+      "número de infectados no dia t"
+     ],
+     [
+      "I₀",
+      "número inicial de infectados"
+     ],
+     [
+      "r",
+      "taxa de contágio, positiva"
+     ],
+     [
+      "t",
+      "tempo em dias desde o início"
+     ]
+    ]
+   },
+   "pista": "Comece pela D substituindo I₀ = 1 e r = 0,5 e pense em qual potência de 2 passa de 1.000.",
+   "passos": [
+    {
+     "faz": "Teste o crescimento (A, B e E)",
+     "conta": "r > 0 e t crescendo → rt cresce → 2^(rt) cresce",
+     "porque": "Para qualquer r > 0, inclusive entre 0 e 1, I(t) só aumenta: não decresce (A), não tem máximo (B), e r maior dá mais infectados (E).",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste a C",
+     "conta": "I(t) = 2^t → I(0) = 1, I(1) = 2, I(2) = 4, I(3) = 8",
+     "porque": "O número dobra a cada dia; o aumento é 1, 2, 4..., não sempre 2.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Monte a desigualdade da D",
+     "conta": "1 · 2^(0,5t) > 1000 → 2^(t/2) > 1000",
+     "porque": "Com I₀ = 1 e r = 0,5, o expoente é t/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com potências de 2",
+     "conta": "2^(t/2) > 1000; 2⁹ = 512 < 1000 < 1024 = 2¹⁰ → o limite de t/2 fica entre 9 e 10; t = 19: 2^9,5 ≈ 724 < 1000; t = 20: 2¹⁰ = 1024 > 1000",
+     "porque": "Como a base 2 é maior que 1, comparar potências é comparar expoentes. Em t = 19, I = 2^(9,5) ≈ 724; em t = 20, I = 2¹⁰ = 1 024.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "são necessários pelo menos 20 dias → alternativa D",
+     "porque": "Antes do 20º dia o número ainda não passou de 1.000.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — com I₀ = 1 e r = 0,5, são necessários pelo menos 20 dias para que o número de infectados passe de 1.000.",
+   "checagem": "Pelo logaritmo: t/2 > log₂ 1000 ≈ 9,966, então t > 19,93. O primeiro dia inteiro que serve é o 20º, e I(20) = 2¹⁰ = 1 024 > 1000.",
+   "erradas": {
+    "A": "A não confere: com 0 < r < 1, rt ainda cresce com t, e 2^(rt) também. Ex.: r = 0,5 dá I(2) = 2I₀ > I₀.",
+    "B": "B não confere: com I₀ = 3 e r = 2,3, I(t) = 3 · 2^(2,3t) só cresce; uma exponencial de base maior que 1 não tem máximo.",
+    "C": "C troca dobrar por somar 2: I(t) = 2^t vale 1, 2, 4, 8, com aumentos 1, 2, 4. O número dobra; o aumento não é constante.",
+    "E": "E inverte o efeito: r maior deixa o expoente rt maior para o mesmo t, e então há mais infectados, não menos."
+   },
+   "armadilha": "Chamar de decrescente uma exponencial com expoente rt só porque r está entre 0 e 1: o que decide é a base 2, maior que 1, e o sinal de r.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre o modelo I(t) = I₀ · 2^(rt) está correta.",
+    "chave": "Com r > 0, I(t) só cresce; na D, 2^(t/2) > 1000 exige t/2 > 9,97, ou seja, 20 dias.",
+    "cuidado": "Use 2⁹ = 512 e 2¹⁰ = 1 024 para situar 1.000 entre duas potências de 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por logaritmo",
+    "ideia": "t/2 > log₂ 1000 ≈ 9,97 dá t > 19,93, e o primeiro dia inteiro é o 20º."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I(t) = 1 · 2^(0,5t)",
+    "nota": "substituir I₀ = 1 e r = 0,5"
+   },
+   {
+    "linha": "2^(t/2) > 1000",
+    "nota": "condição pedida"
+   },
+   {
+    "linha": "2⁹ = 512 < 1000 < 1024 = 2¹⁰",
+    "nota": "situar 1.000"
+   },
+   {
+    "linha": "limite de t/2 entre 9 e 10 → t = 19: 2^9,5 ≈ 724 < 1000",
+    "nota": "comparar expoentes"
+   },
+   {
+    "linha": "t = 20 → I = 1024",
+    "nota": "primeiro dia inteiro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
  }
 }

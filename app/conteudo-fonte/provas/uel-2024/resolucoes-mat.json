@@ -583,5 +583,121 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0002"
   }
+ },
+ "P4d4298e1": {
+  "n": "8",
+  "conceito": "Aplicar uma função definida por partes conforme a paridade do número e testar afirmações.",
+  "equivocos": {
+   "A": "M05.4:ignorou-que-f-so-da-inteiros",
+   "C": "M05.4:nao-testou-a-linha-dos-impares",
+   "D": "M05.4:confundiu-injetora",
+   "E": "M05.4:usou-a-linha-errada-da-definicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "f manda cada par n em n/2 (positivo) e cada ímpar n em (−n + 1)/2 (zero ou negativo). Para testar uma afirmação, veja primeiro se o número que entra é par ou ímpar e use a linha certa. 2n é sempre par e 2n + 1 é sempre ímpar.",
+    "formulas": [
+     "n par: f(n) = n/2",
+     "n ímpar: f(n) = (−n + 1)/2"
+    ],
+    "simbolos": [
+     [
+      "ℕ",
+      "naturais, aqui {1, 2, 3, 4, 5, ...}, como no texto"
+     ],
+     [
+      "ℤ",
+      "inteiros: {..., −2, −1, 0, 1, 2, ...}"
+     ],
+     [
+      "n ≠ m",
+      "n diferente de m"
+     ]
+    ]
+   },
+   "pista": "Escreva o que é f(2n) e o que é f(2n + 1), cada um pela sua linha da definição.",
+   "passos": [
+    {
+     "faz": "Calcule f(2n), que é par",
+     "conta": "f(2n) = (2n)/2 → f(2n) = n",
+     "porque": "2n é par, então entra na linha n/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule f(2n + 1), que é ímpar",
+     "conta": "f(2n + 1) = (−(2n + 1) + 1)/2 → (−2n)/2 → −n",
+     "porque": "2n + 1 é ímpar, então entra na linha (−n + 1)/2 com 2n + 1 no lugar de n.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois valores",
+     "conta": "f(2n) + f(2n + 1) = n + (−n) → 0",
+     "porque": "A soma zera para qualquer n natural: B é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descarte A, C, D e E",
+     "conta": "A: (−10^23 + 1)/2 não é inteiro | C: f(31) = (−31 + 1)/2 = −15 | D: ímpares diferentes dão valores diferentes | E: f(2n) + n = 2n",
+     "porque": "f só devolve inteiros; −15 é atingido; f é injetora nos ímpares; e f(2n) + n vale 2n, não 1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "f(2n) + f(2n + 1) = 0 para todo n → alternativa B",
+     "porque": "É a única afirmação que vale.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — f(2n) + f(2n + 1) = 0 para todo n natural",
+   "checagem": "Teste com números: n = 1 dá f(2) + f(3) = 1 + (−1) = 0; n = 5 dá f(10) + f(11) = 5 + (−5) = 0.",
+   "erradas": {
+    "A": "A não confere: 10^23 é par, então −10^23 + 1 é ímpar e (−10^23 + 1)/2 não é inteiro, mas f só devolve inteiros. A linha dos ímpares pediria n = 10^23, que é par.",
+    "C": "C não confere: n = 31 é ímpar e f(31) = (−31 + 1)/2 = −15. Esse n existe.",
+    "D": "D não confere: para ímpares, f(n) = f(m) dá (−n + 1)/2 = (−m + 1)/2, logo n = m. A afirmação diz o contrário.",
+    "E": "E não confere: f(2n) = n, então f(2n) + n = 2n; com n = 1 dá 2, não 1."
+   },
+   "armadilha": "Escolher a linha da definição pela paridade de n, e não do número que entra: 2n + 1 é sempre ímpar, então usa (−n + 1)/2 com 2n + 1 no lugar de n.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A afirmação verdadeira sobre a função f definida por partes, de ℕ em ℤ.",
+    "chave": "f(2n) = n e f(2n + 1) = −n, então a soma é 0.",
+    "cuidado": "Decida a linha da definição pela paridade do número que entra em f."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lista dos primeiros valores",
+    "ideia": "f(1) = 0, f(2) = 1, f(3) = −1, f(4) = 2, f(5) = −2: cada par vira k e o ímpar seguinte vira −k, então cada dupla (2n, 2n + 1) soma zero."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(2n) = (2n)/2 → n",
+    "nota": "2n é par"
+   },
+   {
+    "linha": "f(2n + 1) = (−(2n + 1) + 1)/2",
+    "nota": "2n + 1 é ímpar"
+   },
+   {
+    "linha": "(−2n)/2 → −n",
+    "nota": "simplifica"
+   },
+   {
+    "linha": "n + (−n) → 0",
+    "nota": "a soma zera: B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
  }
 }

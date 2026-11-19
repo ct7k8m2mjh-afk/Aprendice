@@ -338,5 +338,111 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0002"
   }
+ },
+ "Pa6b0deed": {
+  "n": "11",
+  "conceito": "Contar inteiros num intervalo com soma dos algarismos fixa, separando por número de algarismos.",
+  "equivocos": {
+   "A": "M13.9:esqueceu-um-caso",
+   "B": "M13.9:esqueceu-um-caso",
+   "D": "M13.9:contagem-a-mais",
+   "E": "M13.9:contagem-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As três lembranças são condições ao mesmo tempo: inteiro, entre 51 e 199, com soma dos algarismos 6. Separe em dois casos: números de dois algarismos (51 a 99) e de três algarismos (100 a 199). Em cada caso, liste de forma organizada.",
+    "formulas": [
+     "maior que 50 e menor que 200: de 51 a 199",
+     "100 a 199: 1 + b + c = 6, logo b + c = 5"
+    ],
+    "simbolos": [
+     [
+      "b, c",
+      "algarismos das dezenas e das unidades de um número de três algarismos 1bc"
+     ]
+    ]
+   },
+   "pista": "Divida em casos pelo número de algarismos e comece pelo que tem o 1 na centena.",
+   "passos": [
+    {
+     "faz": "Traduza as condições",
+     "conta": "inteiro | 50 < valor < 200 → valor de 51 a 199 | soma dos algarismos = 6",
+     "porque": "Maior que 50 exclui o 50; menor que 200 exclui o 200.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os de dois algarismos",
+     "conta": "dezena + unidade = 6 com dezena ≥ 5 → 51, 60 → 2 valores",
+     "porque": "Com dezena 5 a unidade é 1; com dezena 6 a unidade é 0. Dezena 7 ou mais já passa de 6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os de três algarismos",
+     "conta": "1 + b + c = 6 → b + c = 5 → 105, 114, 123, 132, 141, 150 → 6 valores",
+     "porque": "O 1 da centena passa para o outro lado subtraindo; b pode ir de 0 a 5 e c completa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os casos",
+     "conta": "2 + 6 = 8 → alternativa C",
+     "porque": "Os dois casos não se repetem, então o total é a soma.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 8 valores possíveis",
+   "checagem": "Liste em ordem crescente e confira cada soma: 51, 60, 105, 114, 123, 132, 141, 150. Todos estão entre 51 e 199 e somam 6; o próximo, 204, já passa de 200.",
+   "erradas": {
+    "A": "6 sai de contar só os de três algarismos (105 a 150) e esquecer 51 e 60.",
+    "B": "7 sai de esquecer o 51: quem começa a busca em 60 perde o único caso com dezena 5.",
+    "D": "9 não confere: a lista completa de inteiros de 51 a 199 com soma 6 tem 8 números; não há um nono (50 soma 5 e 204 passa de 200).",
+    "E": "10 não confere: acima de 50 só existem 2 casos de dois algarismos e 6 de três; 2 + 6 = 8."
+   },
+   "armadilha": "O 51 entra: 5 + 1 = 6 e 51 é maior que 50, e é fácil pular esse caso.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos inteiros de 51 a 199 têm soma dos algarismos 6.",
+    "chave": "Dois casos: 51 e 60 (dois algarismos) e b + c = 5 (seis números de 105 a 150); 2 + 6 = 8.",
+    "cuidado": "Liste em ordem para não perder o 51 nem o 150."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela",
+    "ideia": "Para cada centena (0 ou 1), conte as soluções de dezena + unidade = 6 − centena, respeitando n > 50: 2 com centena 0 e 6 com centena 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "50 < n < 200 → 51 ≤ n ≤ 199",
+    "nota": "intervalo dos inteiros"
+   },
+   {
+    "linha": "d + u = 6, d ≥ 5 → 51, 60",
+    "nota": "dois algarismos: 2 valores"
+   },
+   {
+    "linha": "1 + b + c = 6 → b + c = 5",
+    "nota": "três algarismos"
+   },
+   {
+    "linha": "b = 0, 1, 2, 3, 4, 5 → 6 valores",
+    "nota": "c completa a soma"
+   },
+   {
+    "linha": "2 + 6 = 8",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
  }
 }

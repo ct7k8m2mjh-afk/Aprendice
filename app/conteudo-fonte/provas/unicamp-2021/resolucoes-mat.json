@@ -958,5 +958,113 @@
    "data": "2026-11-12",
    "lote": "mat-0041"
   }
+ },
+ "Pdaecbe3e": {
+  "n": "38",
+  "conceito": "Usar a PG para descobrir o sinal do coeficiente de x² e do discriminante de uma quadrática.",
+  "equivocos": {
+   "B": "M05.2:ignorou-o-discriminante",
+   "C": "M05.2:ignorou-o-discriminante",
+   "D": "M05.2:concavidade-pelo-coeficiente-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escreva a PG com a razão q: b = aq e c = aq². Como a > 0 e q² > 0, o coeficiente de x² é positivo e a parábola tem a boca para cima. Depois calcule o discriminante: ele dá negativo, então a parábola não toca o eixo x.",
+    "formulas": [
+     "PG: b = aq e c = aq²",
+     "Δ = b² − 4ac; Δ < 0 → sem raízes reais"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes a razão q"
+     ],
+     [
+      "q",
+      "razão da PG, diferente de zero"
+     ],
+     [
+      "Δ",
+      "discriminante da equação do 2.º grau"
+     ]
+    ]
+   },
+   "pista": "Atenção: em p(x) = a + bx + cx², quem multiplica x² é c, não a.",
+   "passos": [
+    {
+     "faz": "Escreva b e c em função de a",
+     "conta": "a, b, c em PG → b = aq | c = aq²",
+     "porque": "Cada termo é o anterior vezes a razão q, que não é zero porque nenhum termo é nulo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Decida a concavidade",
+     "conta": "c = aq² com a > 0 e q² > 0 → c > 0 → boca para cima",
+     "porque": "O sinal do termo de x² decide para onde a parábola abre. Isso já elimina a figura d.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Calcule o discriminante",
+     "conta": "Δ = b² − 4ca → (aq)² − 4·aq²·a → a²q² − 4a²q² = −3a²q² < 0",
+     "porque": "a²q² é positivo, então −3a²q² é negativo: não há raiz real e o gráfico não corta o eixo x. Isso elimina b e c.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha a figura",
+     "conta": "boca para cima | sem raízes | p(0) = a > 0 → figura a",
+     "porque": "Só a figura a mostra a parábola inteira acima do eixo x, aberta para cima.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — a parábola com boca para cima, toda acima do eixo x",
+   "checagem": "Teste um caso: a = 1 e q = 1 dá p(x) = 1 + x + x². Em x = −1/2 (vértice) vale 3/4 > 0, então nunca toca o eixo; é o desenho da figura a.",
+   "erradas": {
+    "B": "B não confere: corta o eixo x duas vezes, o que exige Δ > 0, mas Δ = −3a²q² é sempre negativo.",
+    "C": "C não confere: também mostra duas raízes reais, impossíveis com Δ = −3a²q² < 0.",
+    "D": "D tem a boca para baixo, o que exigiria c < 0; mas c = aq² é positivo quando a > 0."
+   },
+   "armadilha": "O polinômio está escrito ao contrário (a + bx + cx²): o coeficiente de x² é c, e é ele que decide a concavidade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual gráfico pode ser de p(x) = a + bx + cx² com a, b, c em PG e a > 0.",
+    "chave": "c = aq² > 0 (boca para cima) e Δ = −3a²q² < 0 (sem raízes).",
+    "cuidado": "Leia os coeficientes pela potência de x, não pela ordem das letras."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "Tome a = 1 e q = 1: p(x) = 1 + x + x², parábola para cima com Δ = 1 − 4 = −3; só a figura a serve."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "b = aq ; c = aq²",
+    "nota": "termos da PG"
+   },
+   {
+    "linha": "c = aq² > 0",
+    "nota": "boca para cima"
+   },
+   {
+    "linha": "Δ = (aq)² − 4·aq²·a",
+    "nota": "discriminante"
+   },
+   {
+    "linha": "Δ = a²q² − 4a²q² = −3a²q² < 0",
+    "nota": "sem raízes reais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
  }
 }

@@ -228,5 +228,128 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0002"
   }
+ },
+ "P9ee547c7": {
+  "n": "52",
+  "conceito": "Montar a função do raio que cresce em PG (exponencial) e a da área de um círculo com esse raio.",
+  "equivocos": {
+   "A": "M06.1:confundiu-exponencial-com-quadratica",
+   "B": "M08.3:esqueceu-pi-na-area-do-circulo",
+   "D": "M06.1:confundiu-exponencial-com-quadratica",
+   "E": "M06.1:confundiu-exponencial-com-quadratica"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Raio em PG de razão 1,2 quer dizer que a cada dia o raio é multiplicado por 1,2: é uma função exponencial do tempo. A área de um círculo é π vezes o raio ao quadrado, então a área também é exponencial, com base 1,2² = 1,44. Cada afirmação se testa contra essas duas fórmulas.",
+    "formulas": [
+     "PG de razão q: termo após t períodos = termo inicial × q^t",
+     "área do círculo = π · r²",
+     "(1,2^t)² = 1,2^(2t) = 1,44^t"
+    ],
+    "simbolos": [
+     [
+      "r₀",
+      "raio inicial da colônia, em mm"
+     ],
+     [
+      "R(t)",
+      "raio no dia t"
+     ],
+     [
+      "A(t)",
+      "área da colônia no dia t"
+     ],
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes a razão"
+     ],
+     [
+      "mm²",
+      "milímetro quadrado, unidade de área"
+     ]
+    ]
+   },
+   "pista": "Escreva primeiro o raio depois de t dias; só então eleve ao quadrado para a área.",
+   "passos": [
+    {
+     "faz": "Monte o raio (III)",
+     "conta": "R(0) = r₀ → R(1) = r₀ · 1,2 → R(t) = r₀ · (1,2)^t",
+     "porque": "Cada dia multiplica o raio por 1,2. A III está correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a área (I e II)",
+     "conta": "A(t) = π · R(t)² → A(t) = π · r₀² · (1,2)^(2t) = π · r₀² · 1,44^t",
+     "porque": "Na I faltam o π e o quadrado de r₀: está incorreta. A área tem t no expoente, então é exponencial, não quadrática: a II está incorreta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área em t = 4 (IV)",
+     "conta": "A(4) = π · 5² · 1,2⁸ = π · 25 · 4,29981696 ≈ 107,5π mm²",
+     "porque": "Com r₀ = 5 mm, a área passa de 105π mm². A IV está correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "corretas: III e IV → alternativa C",
+     "porque": "São exatamente as duas da alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — somente as afirmativas III e IV são corretas.",
+   "checagem": "Pelo raio: R(4) = 5 · 1,2⁴ = 5 · 2,0736 = 10,368 mm, e 10,368² ≈ 107,5. A área é 107,5π mm², acima de 105π.",
+   "erradas": {
+    "A": "A inclui I e II, ambas incorretas: a área é π · r₀² · 1,2^(2t) (falta π e r₀² na I) e é exponencial, não quadrática.",
+    "B": "B inclui a I, incorreta: r₀ · 1,2^(2t) não é área, falta o π e o quadrado de r₀. E deixa de fora a III, correta.",
+    "D": "D inclui I e II, incorretas, e deixa de fora a IV, correta: A(4) ≈ 107,5π mm² > 105π.",
+    "E": "E inclui a II, incorreta: A(t) = π · r₀² · 1,44^t tem t no expoente; é exponencial, não quadrática."
+   },
+   "armadilha": "Achar que a área é quadrática porque a fórmula tem r²: o quadrado está no raio, mas o raio é exponencial em t.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmações sobre raio e área de uma colônia com raio em PG são corretas.",
+    "chave": "R(t) = r₀ · 1,2^t e A(t) = π · r₀² · 1,44^t; com r₀ = 5, A(4) ≈ 107,5π.",
+    "cuidado": "Não confunda 'tem quadrado' com 'é quadrática': a variável t está no expoente."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo raio no dia 4",
+    "ideia": "R(4) = 5 · 1,2⁴ ≈ 10,37 mm e 10,37² ≈ 107,5, então a área passa de 105π."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R(t) = r₀ · 1,2^t",
+    "nota": "raio em PG: III correta"
+   },
+   {
+    "linha": "A(t) = π · (r₀ · 1,2^t)²",
+    "nota": "área do círculo"
+   },
+   {
+    "linha": "A(t) = π · r₀² · 1,44^t",
+    "nota": "exponencial: I e II incorretas"
+   },
+   {
+    "linha": "A(4) = π · 25 · 1,2⁸",
+    "nota": "r₀ = 5 e t = 4"
+   },
+   {
+    "linha": "A(4) ≈ 107,5π > 105π",
+    "nota": "IV correta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
  }
 }

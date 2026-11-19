@@ -1070,5 +1070,107 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0002"
   }
+ },
+ "P08081585": {
+  "n": "21",
+  "conceito": "Saldo devedor em juros compostos com pagamento parcial no meio do prazo.",
+  "equivocos": {
+   "A": "M03.4:pagamento-menor-que-o-saldo",
+   "C": "M03.4:juros-sobre-o-valor-pago",
+   "D": "M03.4:pagamento-maior-que-a-divida",
+   "E": "M03.4:pagamento-maior-que-a-divida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em juros compostos o saldo devedor cresce 5 % ao mês sobre o valor da vez. Um pagamento no meio do caminho abate o saldo naquele momento, e só o que sobra continua rendendo juros. Siga a dívida mês a mês: corrigir, abater, corrigir.",
+    "formulas": [
+     "saldo um mês depois = saldo × 1,05",
+     "saldo depois do pagamento = saldo − pagamento"
+    ],
+    "simbolos": [
+     [
+      "1,05",
+      "fator de aumento de 5 %: 100 % + 5 % = 105 %"
+     ],
+     [
+      "regime composto",
+      "juros calculados sobre o saldo atualizado, e não sobre o valor inicial"
+     ]
+    ]
+   },
+   "pista": "Atualize a dívida até o dia do primeiro pagamento e só então desconte o que foi pago.",
+   "passos": [
+    {
+     "faz": "Corrija a dívida por dois meses",
+     "conta": "8000 × 1,05 × 1,05 → 8000 × 1,1025 = 8820",
+     "porque": "Cada mês multiplica o saldo por 1,05; dois meses, por 1,05 duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Abata o primeiro pagamento",
+     "conta": "8820 − 5000 = 3820",
+     "porque": "Os R$ 5.000,00 saem do saldo no fim do 2.º mês; só R$ 3.820,00 seguem rendendo juros.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Corrija o saldo por mais um mês",
+     "conta": "3820 × 1,05 = 4011",
+     "porque": "No mês seguinte o saldo de R$ 3.820,00 recebe mais 5 % de juros, e esse é o valor que liquida a dívida.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "último pagamento = R$ 4.011,00 → alternativa B",
+     "porque": "A pergunta é o valor do último pagamento, que zera o saldo no 3.º mês.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — R$ 4.011,00",
+   "checagem": "Traga os dois pagamentos para a data do empréstimo: 5000/1,05² + 4011/1,05³ = 4535,15 + 3464,85 = 8000, exatamente o valor emprestado.",
+   "erradas": {
+    "A": "R$ 3.464,86 não confere: depois do pagamento o saldo já é R$ 3.820,00 e ainda rende um mês de juros, então o último pagamento tem de passar de R$ 3.820,00.",
+    "C": "R$ 5.250,00 sai de pôr os juros do 3.º mês sobre os R$ 5.000,00 pagos: 5000 × 1,05 = 5250. Os juros incidem sobre o saldo que ficou, R$ 3.820,00.",
+    "D": "R$ 5.464,86 não confere: somado aos R$ 5.000,00 já pagos, daria R$ 10.464,86, mais que os R$ 9.261,00 (8000 × 1,05³) da dívida inteira paga só no 3.º mês.",
+    "E": "R$ 6.011,00 não confere: com os R$ 5.000,00 já pagos, Ana teria pago R$ 11.011,00, mais que os R$ 9.261,00 que deveria se pagasse tudo no 3.º mês."
+   },
+   "armadilha": "O pagamento de R$ 5.000,00 abate a dívida no 2.º mês; os juros do 3.º mês incidem só sobre o saldo de R$ 3.820,00.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor do pagamento que liquida a dívida no 3.º mês, depois de R$ 5.000,00 pagos no 2.º.",
+    "chave": "8000 × 1,05² = 8820; 8820 − 5000 = 3820; 3820 × 1,05 = 4011.",
+    "cuidado": "Abata o pagamento no mês em que ele acontece e só aplique os juros seguintes ao saldo que sobrou."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tudo no 3.º mês",
+    "ideia": "Sem pagar nada, a dívida no 3.º mês seria 8000 × 1,05³ = 9261; os R$ 5.000,00 pagos valem 5000 × 1,05 = 5250 nessa data; 9261 − 5250 = 4011."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "8000 × 1,05² = 8820",
+    "nota": "dívida corrigida por 2 meses"
+   },
+   {
+    "linha": "8820 − 5000 = 3820",
+    "nota": "abate o primeiro pagamento"
+   },
+   {
+    "linha": "3820 × 1,05 = 4011",
+    "nota": "mais um mês de juros"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
  }
 }
