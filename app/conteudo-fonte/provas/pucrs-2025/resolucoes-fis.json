@@ -665,5 +665,119 @@
    "data": "2026-11-19",
    "lote": "fis-0073"
   }
+ },
+ "P911ab7eb": {
+  "n": "37",
+  "conceito": "Lâmpadas em paralelo na tensão da rede têm a mesma potência e podem ter interruptores independentes; em série, uma depende da outra.",
+  "equivocos": {
+   "A": "F11.5:serie-tratada-como-independente",
+   "B": "F11.5:lampada-no-ramo-principal",
+   "C": "F11.5:serie-com-mesma-potencia-que-paralelo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para uma lâmpada acender sozinha, ela precisa de um ramo próprio, ligado direto à rede, com o seu interruptor. Para duas lâmpadas acenderem juntas, basta um interruptor comum ao ramo delas. E potências iguais em lâmpadas iguais exigem a mesma tensão em cada uma: todas em paralelo, cada uma na tensão da rede.",
+    "formulas": [
+     "paralelo: mesma tensão U em cada lâmpada",
+     "série: mesma corrente, a tensão U se divide",
+     "P = U²/R"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "tensão nominal da rede"
+     ],
+     [
+      "R",
+      "resistência de cada lâmpada (iguais)"
+     ],
+     [
+      "P",
+      "potência dissipada pela lâmpada"
+     ]
+    ]
+   },
+   "pista": "Para cada figura, siga o caminho da corrente a partir de um fio da rede e veja que lâmpadas ficam no mesmo caminho e que interruptor corta cada uma.",
+   "passos": [
+    {
+     "faz": "Traduza as três exigências",
+     "conta": "i: ramo próprio com interruptor para 1 | ii: 2 e 3 com um interruptor comum | iii: as três na tensão U",
+     "porque": "Ligar e desligar sozinha exige ramo próprio; potências iguais em lâmpadas iguais exigem a mesma tensão nas três.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a potência em série e em paralelo",
+     "conta": "paralelo: P = U²/R | duas em série: P = (U/2)²/R → P = U²/(4R)",
+     "porque": "Em série a tensão da rede se divide; cada lâmpada fica com menos tensão e dissipa menos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine A, B e C",
+     "conta": "A: 1, 2 e 3 em série | B: 1 em série com 2 e 3 | C: 2 e 3 em série entre si",
+     "porque": "Em A e B a lâmpada 1 não acende sozinha; em B ela leva a corrente das outras duas; em C as lâmpadas 2 e 3 dividem a tensão e ficam com 1/4 da potência da 1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Confira D",
+     "conta": "1 // 2 // 3 na rede; interruptor da 1 sozinho; interruptor comum para 2 e 3",
+     "porque": "Cada lâmpada recebe a tensão U, a 1 tem o seu interruptor e o outro interruptor liga 2 e 3 juntas. Atende às três exigências.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — as três lâmpadas em paralelo, a 1 com interruptor próprio e a 2 e a 3 com um interruptor comum.",
+   "checagem": "Em D, com tudo aceso, cada lâmpada tem U nos terminais e dissipa U²/R: potências iguais (iii). Abrindo o interruptor da 1, só ela apaga (i). Com a 1 apagada, o outro interruptor acende e apaga 2 e 3 juntas (ii).",
+   "erradas": {
+    "A": "As três estão em série no mesmo fio: nenhuma acende sem as outras, então a lâmpada 1 não acende ou apaga individualmente (falha i).",
+    "B": "A lâmpada 1 está no caminho da corrente de 2 e 3: com ela apagada as outras não acendem (falha ii) e, com todas acesas, a 1 leva a soma das correntes e brilha mais (falha iii).",
+    "C": "As lâmpadas 2 e 3 estão em série entre si: cada uma recebe U/2 e dissipa U²/(4R), um quarto da potência da lâmpada 1 (falha iii)."
+   },
+   "armadilha": "Achar que basta ter dois interruptores: é a forma da ligação (série ou paralelo) que decide se as lâmpadas são independentes e se têm a mesma potência.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O esquema que liga três lâmpadas iguais com a 1 independente, 2 e 3 juntas e potências iguais.",
+    "chave": "Tudo em paralelo na rede: interruptor próprio para a 1 e interruptor comum para 2 e 3.",
+    "cuidado": "Seguir o caminho da corrente: lâmpada no mesmo fio que outra está em série."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "exigência mais forte primeiro",
+    "ideia": "A iii (potências iguais) já exige as três em paralelo; só D tem as três ligadas direto à rede."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "paralelo: tensão U em cada lâmpada",
+    "nota": "exigência iii"
+   },
+   {
+    "linha": "P = U²/R para as três",
+    "nota": "potências iguais"
+   },
+   {
+    "linha": "série de duas: P = (U/2)²/R = U²/(4R)",
+    "nota": "por que C falha"
+   },
+   {
+    "linha": "D: 1 // 2 // 3",
+    "nota": "interruptor próprio para a 1, comum para 2 e 3"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Prova PUCRS Verão 2025 (Medicina)",
+    "url": "https://portal.pucrs.br/wp-content/uploads/2024/11/2024_11_25-vestibular_verao_2025-00-oc_01-medicina-prova_23_nov-prova.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  }
  }
 }

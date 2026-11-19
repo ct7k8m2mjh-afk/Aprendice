@@ -521,5 +521,121 @@
    "data": "2026-11-19",
    "lote": "fis-0066"
   }
+ },
+ "Pb09a66d4": {
+  "n": "17",
+  "conceito": "Energia armazenada numa bateria: carga em ampère-hora vezes a tensão dá a energia em watt-hora.",
+  "equivocos": {
+   "A": "F11.6:potencia-de-dez-errada",
+   "B": "F11.6:potencia-de-dez-errada",
+   "D": "F11.6:mili-nao-convertido",
+   "E": "F11.6:mili-convertido-ao-contrario"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto diz que gerar uma imagem gasta a mesma energia que carregar o celular por completo. Então basta achar a energia de uma carga completa. A carga vem em mAh e a tensão em volt; como A·V = W, Ah·V dá Wh. O trabalho real é converter mAh para Ah.",
+    "formulas": [
+     "E = Q·U (energia = carga × tensão)",
+     "1 mAh = 1/1000 Ah",
+     "A·V = W, então Ah·V = Wh"
+    ],
+    "simbolos": [
+     [
+      "mAh",
+      "miliampère-hora, unidade de carga: 1 mA durante 1 h"
+     ],
+     [
+      "Ah",
+      "ampère-hora, 1 000 mAh"
+     ],
+     [
+      "Wh",
+      "watt-hora, unidade de energia"
+     ],
+     [
+      "IA Gen",
+      "inteligência artificial generativa"
+     ]
+    ]
+   },
+   "pista": "Leia o subtítulo do texto em inglês para saber com que energia comparar; depois cuide do prefixo mili.",
+   "passos": [
+    {
+     "faz": "Localize a comparação no texto",
+     "conta": "\"Generating one image takes as much energy as fully charging your smartphone.\"",
+     "porque": "Uma imagem gasta a energia de uma carga completa do celular; é essa energia que se calcula.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Converta a carga para Ah",
+     "conta": "3 000 mAh → 3000/1000 = 3 Ah",
+     "porque": "Para o resultado sair em Wh, a carga tem de estar em ampère-hora, sem o mili.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pela tensão",
+     "conta": "E = 3 Ah · 5,0 V → E = 15 Wh",
+     "porque": "Ampère vezes volt é watt; com a hora junto, sai watt-hora.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "E = 15 Wh",
+     "porque": "Corresponde à alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 15 Wh.",
+   "checagem": "Pela ordem de grandeza: carregadores de celular de 5 V fornecem por volta de 1 A a 2 A, isto é, 5 W a 10 W; uma carga de 1,5 h a 3 h dá dezenas de Wh no máximo. 15 Wh é plausível; 15 000 Wh seria o consumo de vários dias de uma casa.",
+   "erradas": {
+    "A": "Não confere: 0,000 000 15 Wh é 10⁸ vezes menor que 3 Ah·5 V = 15 Wh; nenhuma conversão de mili para a unidade dá esse fator.",
+    "B": "Não confere: 0,000 15 Wh é 10⁵ vezes menor que 15 Wh; o fator do prefixo mili é só 1 000.",
+    "D": "Sai de não converter mAh: 3 000 mAh·5 V = 15 000 mWh, que foi lido como Wh. Em Wh são 15.",
+    "E": "Sai de multiplicar por 1 000 em vez de dividir: 3 000·1 000 = 3 000 000 Ah, e 3 000 000·5 = 15 000 000."
+   },
+   "armadilha": "Multiplicar 3 000 por 5 e esquecer o mili: o resultado fica em mWh, mil vezes maior que em Wh.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A energia, em Wh, de uma imagem gerada por IA, igual à de uma carga completa do celular.",
+    "chave": "E = 3 Ah × 5,0 V = 15 Wh.",
+    "cuidado": "Converter 3 000 mAh para 3 Ah antes de multiplicar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em mWh",
+    "ideia": "3 000 mAh·5 V = 15 000 mWh; dividindo por 1 000, 15 Wh."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3 000 mAh = 3000/1000 Ah = 3 Ah",
+    "nota": "tira o mili"
+   },
+   {
+    "linha": "E = 3 Ah · 5,0 V",
+    "nota": "energia = carga × tensão"
+   },
+   {
+    "linha": "E = 15 Wh",
+    "nota": "A·V = W"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Prova Fatec 2º semestre 2025",
+    "url": "https://bkpsitecpsnew.blob.core.windows.net/uploadsitecps/sites/1/2025/07/prova-vestibular-2-sem-2025.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  }
  }
 }

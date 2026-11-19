@@ -991,5 +991,250 @@
    "data": "2026-11-19",
    "lote": "fis-0075"
   }
+ },
+ "Pcdb1d3e1": {
+  "n": "6",
+  "conceito": "Período do pêndulo simples cresce com a raiz do comprimento; diferença de dilatação gera defasagem acumulada entre dois pêndulos.",
+  "equivocos": {
+   "A": "F10.8:periodo-proporcional-ao-comprimento",
+   "C": "F10.8:defasagem-mal-contada",
+   "D": "F10.8:ciclo-inteiro-no-lugar-de-meio",
+   "E": "F10.8:defasagem-mal-contada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No dia quente, os dois fios se dilatam de forma diferente e os períodos deixam de ser iguais. A diferença de período por oscilação é minúscula, mas se acumula a cada ciclo. Meio ciclo de defasagem é quando o atraso acumulado chega à metade de um período, 1 s. Como T depende da raiz de L, a variação relativa do período é metade da variação relativa do comprimento.",
+    "formulas": [
+     "T = 2π·√(L/g), então T ∝ √L",
+     "L = L₀·(1 + α·Δθ)",
+     "√(1 + x) ≈ 1 + x/2 para x pequeno",
+     "N · (T₂ − T₁) = T/2"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "coeficiente de dilatação linear do fio"
+     ],
+     [
+      "Δθ",
+      "variação de temperatura"
+     ],
+     [
+      "N",
+      "número de oscilações até a defasagem"
+     ],
+     [
+      "T₁, T₂",
+      "períodos dos dois pêndulos no dia quente"
+     ]
+    ]
+   },
+   "pista": "Calcule quanto cada período cresceu numa oscilação e veja quantas oscilações são precisas para a diferença somar meio período.",
+   "passos": [
+    {
+     "faz": "Calcule a dilatação relativa de cada fio",
+     "conta": "Δθ = 30 − 10 = 20 °C | α₁·Δθ = 2 × 10⁻⁵ · 20 = 4 × 10⁻⁴ | α₂·Δθ = 7 × 10⁻⁵ · 20 = 1,4 × 10⁻³",
+     "porque": "O comprimento cresce na proporção α·Δθ; é isso que muda o período.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para o período de cada pêndulo",
+     "conta": "T₁ = 2·√(1 + 4 × 10⁻⁴) → T₁ ≈ 2·(1 + 2 × 10⁻⁴) = 2,0004 s | T₂ ≈ 2·(1 + 7 × 10⁻⁴) = 2,0014 s",
+     "porque": "T ∝ √L, então a variação relativa do período é metade da do comprimento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a diferença por oscilação",
+     "conta": "T₂ − T₁ = 2,0014 − 2,0004 → T₂ − T₁ = 1 × 10⁻³ s",
+     "porque": "A cada vaivém, o pêndulo mais lento fica 1 milésimo de segundo mais atrasado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as oscilações até meio ciclo",
+     "conta": "N · 10⁻³ = 2/2 → N = 1/10⁻³ → N = 1 000 oscilações",
+     "porque": "Meio ciclo de defasagem é um atraso acumulado de meio período, 1 s.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta em minutos e marque",
+     "conta": "t = 1 000 · 2 s = 2 000 s → t = 2000/60 → t ≈ 33 min",
+     "porque": "Cada oscilação dura cerca de 2 s; a conta exata, sem aproximar, dá 2 003 s, os mesmos 33 min.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — cerca de 33 min.",
+   "checagem": "Pelas frequências: t · (1/T₁ − 1/T₂) = 1/2 com T₁ = 2,000400 s e T₂ = 2,001400 s dá t = 2 003 s, ou 33,4 min. Ordem de grandeza: um atraso de 1 ms por ciclo leva mil ciclos para somar 1 s, o que é plausível para notar só depois de alguns minutos.",
+   "erradas": {
+    "A": "Sai de esquecer a raiz e tomar T proporcional a L: a diferença por ciclo vira 2 · 10⁻³ s, metade dos ciclos, 500 · 2 s = 1 000 s ≈ 17 min.",
+    "C": "Não confere: 40 min = 2 400 s seriam 1 200 oscilações, o que exigiria diferença de período de 1/1 200 s por ciclo; a conta dá 1 × 10⁻³ s.",
+    "D": "Sai de esperar uma defasagem de um ciclo inteiro (atraso acumulado de 2 s): 2 000 oscilações × 2 s ≈ 4 000 s ≈ 66 min.",
+    "E": "Não confere: 80 min = 4 800 s seriam 2 400 oscilações, e o atraso acumulado chegaria a 2,4 s, mais que um período inteiro, não meio."
+   },
+   "armadilha": "Esquecer que o período depende da raiz do comprimento, o que dobra a diferença por ciclo e corta o tempo pela metade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quanto tempo até os dois pêndulos ficarem meio ciclo defasados no dia a 30 °C.",
+    "chave": "ΔT/T = α·Δθ/2: diferença de 1 × 10⁻³ s por ciclo; 1 s de atraso pede 1 000 ciclos, 2 000 s ≈ 33 min.",
+    "cuidado": "Usar a metade de α·Δθ (raiz do comprimento) e meio período, não um período inteiro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "batimento",
+    "ideia": "As frequências diferem de 1/T₁ − 1/T₂ ≈ 2,5 × 10⁻⁴ Hz; meio ciclo de diferença leva t = 0,5/(2,5 × 10⁻⁴) ≈ 2 000 s."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "α₁·Δθ = 4 × 10⁻⁴ | α₂·Δθ = 1,4 × 10⁻³",
+    "nota": "dilatação relativa dos fios"
+   },
+   {
+    "linha": "T₁ ≈ 2,0004 s | T₂ ≈ 2,0014 s",
+    "nota": "metade da dilatação, pela raiz"
+   },
+   {
+    "linha": "T₂ − T₁ = 1 × 10⁻³ s",
+    "nota": "atraso por oscilação"
+   },
+   {
+    "linha": "N = 1/10⁻³ = 1 000",
+    "nota": "atraso de meio período, 1 s"
+   },
+   {
+    "linha": "t = 1 000 · 2 s = 2 000 s ≈ 33 min",
+    "nota": "converter para minutos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  }
+ },
+ "Pf62fc977": {
+  "n": "9",
+  "conceito": "Carga dentro de casca metálica aterrada: blindagem do exterior, carga induzida −Q e campo interno reforçado perto da parede pela carga induzida (método das imagens).",
+  "equivocos": {
+   "A": "F11.3:ignorou-carga-induzida",
+   "B": "F11.3:simetria-falsa-da-distancia",
+   "C": "F11.3:negou-carga-induzida",
+   "D": "F11.3:negou-blindagem-aterrada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Aterrada, a casca fica com potencial zero e não sobra carga na superfície externa; a superfície interna recebe exatamente −Q, que se concentra perto de Q. Por isso o campo de fora é nulo. Dentro, o campo é o de Q somado ao das cargas induzidas, e essas cargas negativas, mais densas na parte de cima, puxam o campo para cima nos dois pontos.",
+    "formulas": [
+     "E = k·Q/d² (carga pontual)",
+     "Gauss: superfície fechada no metal tem campo nulo, logo carga interna total zero",
+     "imagem de Q a R/2 do centro: carga −Q·R/(R/2) = −2Q em y = R²/(R/2) = 2R"
+    ],
+    "simbolos": [
+     [
+      "aterrada",
+      "ligada à terra: potencial zero, as cargas da terra podem entrar ou sair"
+     ],
+     [
+      "carga induzida",
+      "carga que aparece no metal por causa de Q"
+     ],
+     [
+      "método das imagens",
+      "troca a casca por uma carga fictícia fora dela que reproduz o campo de dentro"
+     ],
+     [
+      "k",
+      "constante eletrostática"
+     ]
+    ]
+   },
+   "pista": "Os dois pontos estão à mesma distância R/4 de Q. Então a diferença entre os campos vem só das cargas induzidas: onde elas estão mais concentradas?",
+   "passos": [
+    {
+     "faz": "Julgue a afirmação II",
+     "conta": "Gauss dentro do metal: E = 0 → Q + q_induzida_interna = 0 → q_interna = −Q",
+     "porque": "Uma superfície fechada dentro do metal tem campo nulo, então a carga envolvida é zero; como a casca está aterrada, a superfície externa fica sem carga, e o total induzido é −Q. II é correta.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Julgue a afirmação I",
+     "conta": "superfície externa: q = 0 e V = 0 → E fora = 0",
+     "porque": "Com o total (Q mais −Q) nulo e a casca em potencial zero, não há campo do lado de fora. I é correta.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Compare os campos com a carga imagem",
+     "conta": "(0, 3R/4): E = kQ/(R/4)² + 2kQ/(5R/4)² = 16kQ/R² + 1,28kQ/R² = 17,28kQ/R² → (0, R/4): E = 16kQ/R² − 2kQ/(7R/4)² ≈ 16kQ/R² − 0,65kQ/R² ≈ 15,35kQ/R²",
+     "porque": "A casca equivale, dentro, a uma carga −2Q em (0, 2R). Em (0, 3R/4) os campos de Q e da imagem apontam para cima e se somam; em (0, R/4) o de Q aponta para baixo e o da imagem para cima, e se subtraem. III é correta.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Junte as três e marque",
+     "conta": "I correta | II correta | III correta → I, II e III",
+     "porque": "As três afirmações se sustentam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — I, II e III",
+   "checagem": "Sem fazer conta: a carga induzida −Q se concentra no trecho da casca mais próximo de Q, que é o de cima. Em (0, 3R/4), entre Q e esse trecho, Q empurra para cima e a carga negativa puxa para cima: os efeitos se somam. Em (0, R/4), Q empurra para baixo e a carga negativa de cima puxa para cima: os efeitos se opõem. Logo o campo é maior em (0, 3R/4), como na conta.",
+   "erradas": {
+    "A": "Deixa de fora II e III. A II sai de Gauss no metal (carga induzida −Q) e a III vem da carga induzida, mais densa perto de Q, que reforça o campo em (0, 3R/4).",
+    "B": "Deixa de fora a III, como se os dois pontos tivessem o mesmo campo por estarem a R/4 de Q. A carga induzida soma em (0, 3R/4) e subtrai em (0, R/4).",
+    "C": "Deixa de fora a II. Para o metal ter campo nulo, a casca precisa da carga −Q na face interna; aterrada, não sobra nada na face externa.",
+    "D": "Deixa de fora a I. Com a casca aterrada, a face externa fica sem carga e com potencial zero, então não há campo fora: a casca blinda o exterior."
+   },
+   "armadilha": "Os dois pontos estão à mesma distância de Q, o que convida a dizer que os campos são iguais; a carga induzida, mais densa perto de Q, quebra essa simetria.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmações sobre campo e carga induzida numa casca aterrada com Q fora do centro são corretas.",
+    "chave": "Aterrada: carga induzida −Q, toda na face interna, e campo externo nulo; dentro, a carga induzida reforça o campo entre Q e a parede mais próxima.",
+    "cuidado": "Não ignore a carga induzida no campo de dentro: ela não é uniforme quando Q está fora do centro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "qualitativo",
+    "ideia": "A carga negativa induzida fica mais densa perto de Q, em cima; ela soma com Q acima dele e subtrai abaixo, então o campo é maior em (0, 3R/4)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Q + q_int = 0 → q_int = −Q",
+    "nota": "Gauss no metal: II correta"
+   },
+   {
+    "linha": "q_ext = 0, V = 0 → E fora = 0",
+    "nota": "aterramento: I correta"
+   },
+   {
+    "linha": "imagem: −2Q em (0, 2R)",
+    "nota": "q′ = −Q·R/(R/2), y = R²/(R/2)"
+   },
+   {
+    "linha": "E(3R/4) = 16kQ/R² + 1,28kQ/R² = 17,28kQ/R²",
+    "nota": "os campos se somam"
+   },
+   {
+    "linha": "E(R/4) ≈ 16kQ/R² − 0,65kQ/R² ≈ 15,35kQ/R²",
+    "nota": "os campos se opõem: III correta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  }
  }
 }

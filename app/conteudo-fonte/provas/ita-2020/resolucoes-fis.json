@@ -1452,5 +1452,131 @@
    "data": "2026-11-19",
    "lote": "fis-0075"
   }
+ },
+ "P0a0bda42": {
+  "n": "13",
+  "conceito": "Equilíbrio de três esferas carregadas penduradas num ponto: geometria do triângulo equilátero, soma de forças de Coulomb e tg θ = F/(m·g).",
+  "equivocos": {
+   "A": "F11.2:geometria-do-equilibrio-errada",
+   "B": "F11.2:esqueceu-sen-theta-na-distancia",
+   "D": "F11.2:raio-no-lugar-do-lado",
+   "E": "F11.2:uma-forca-so"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Por simetria, as três esferas ficam num plano horizontal, nos vértices de um triângulo equilátero centrado no eixo vertical de P. Cada uma está a r = l·sen θ do eixo, e o lado do triângulo é a = r·√3. A resultante elétrica sobre uma esfera aponta para fora do eixo; o equilíbrio de tração, peso e essa resultante dá tg θ = F/(m·g).",
+    "formulas": [
+     "F = (1/(4πε₀))·Q²/a²",
+     "lado do triângulo: a = r·√3",
+     "r = l·sen θ",
+     "F resultante = m·g·tg θ"
+    ],
+    "simbolos": [
+     [
+      "ε₀",
+      "permissividade elétrica do meio"
+     ],
+     [
+      "r",
+      "distância de cada esfera ao eixo vertical"
+     ],
+     [
+      "a",
+      "distância entre duas esferas"
+     ],
+     [
+      "θ",
+      "ângulo entre o fio e a vertical"
+     ]
+    ]
+   },
+   "pista": "Desenhe a vista de cima: as três esferas formam um triângulo equilátero. Ache o lado dele em função de l e θ.",
+   "passos": [
+    {
+     "faz": "Ache o lado do triângulo",
+     "conta": "r = l·sen θ → a = r·√3 → a = l·sen θ·√3",
+     "porque": "No triângulo equilátero, a distância do centro ao vértice é a/√3; logo a = √3·r.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as duas repulsões",
+     "conta": "F = Q²/(4πε₀a²) → R = 2·F·cos 30° → R = √3·Q²/(4πε₀a²)",
+     "porque": "As duas vizinhas empurram a 30° de cada lado da direção radial; as componentes laterais se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua o lado",
+     "conta": "R = √3·Q²/(4πε₀·3l²sen²θ) → R = Q²/(4πε₀·√3·l²sen²θ)",
+     "porque": "a² = 3l²sen²θ, e √3/3 = 1/√3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o equilíbrio da esfera",
+     "conta": "Q²/(4πε₀√3·l²sen²θ) = m·g·tg θ → Q² = 4πε₀·m·g·tg θ·√3·l²sen²θ",
+     "porque": "A tração equilibra peso e resultante elétrica: a razão horizontal/vertical é tg θ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a raiz e compare",
+     "conta": "Q = l·sen θ·√(4πε₀·m·g·tg θ·√3)",
+     "porque": "l·sen θ sai da raiz; o √3 fica dentro, multiplicando, como em C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — Q = l·sen θ·√(4πε₀·m·g·tg θ·√3).",
+   "checagem": "Caso extremo: com Q = 0 não há repulsão e θ = 0; a fórmula dá Q → 0 quando θ → 0, coerente. Unidade: 4πε₀·m·g tem C²/m², e l·sen θ dá metro, então Q sai em coulomb.",
+   "erradas": {
+    "A": "Não confere: para θ pequeno, Q deveria cair junto com sen θ·√(tg θ), mas l·√(12πε₀·m·g·sen θ·cos θ) cai só com √(sen θ), devagar demais.",
+    "B": "Sai de usar l no lugar de l·sen θ para a distância das esferas ao eixo: some o fator sen θ que vem da geometria.",
+    "D": "Sai de tomar o lado do triângulo como l·sen θ (o raio) em vez de √3·l·sen θ: a resultante fica √3·kQ²/(l²sen²θ) e o √3 vai para o denominador.",
+    "E": "Sai de usar uma só repulsão à distância l·sen θ, como se fossem duas esferas, sem o fator √3 da soma das duas vizinhas nem do lado do triângulo."
+   },
+   "armadilha": "Confundir a distância de cada esfera ao eixo (l·sen θ) com a distância entre as esferas (√3·l·sen θ).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A carga Q das esferas em função de l, θ, m, g e ε₀.",
+    "chave": "a = √3·l·sen θ, resultante √3·F, e F resultante = m·g·tg θ.",
+    "cuidado": "Somar as duas repulsões vetorialmente (2F·cos 30°) e usar o lado do triângulo, não o raio."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "análise dimensional e caso limite",
+    "ideia": "Só C, D e E têm l·sen θ (Q → 0 com θ → 0); entre elas, a soma de duas forças a 30° com lado √3·l·sen θ fixa o √3 multiplicando."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a = √3·l·sen θ",
+    "nota": "lado do triângulo"
+   },
+   {
+    "linha": "R = 2F·cos 30° = √3·Q²/(4πε₀a²)",
+    "nota": "soma das repulsões"
+   },
+   {
+    "linha": "R = Q²/(4πε₀√3·l²sen²θ)",
+    "nota": "substituir a²"
+   },
+   {
+    "linha": "R = m·g·tg θ → Q² = 4πε₀mg·tg θ·√3·l²sen²θ",
+    "nota": "equilíbrio"
+   },
+   {
+    "linha": "Q = l·sen θ·√(4πε₀mg·tg θ·√3)",
+    "nota": "raiz"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  }
  }
 }

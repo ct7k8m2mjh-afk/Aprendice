@@ -825,5 +825,120 @@
    "data": "2026-11-19",
    "lote": "fis-0072"
   }
+ },
+ "Pdd78a2dc": {
+  "n": "59",
+  "conceito": "Divisor de tensão com dois resistores em série: a fração da tensão em R2 é R2/(R1 + R2), e ela não muda com a tensão do painel.",
+  "equivocos": {
+   "A": "F11.5:fracao-do-divisor-sobre-r1",
+   "B": "F11.5:fracao-do-divisor-sobre-r1",
+   "C": "F11.5:leitura-do-divisor-errada",
+   "E": "F11.5:tensao-limite-no-resistor-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em série, a tensão do painel se divide entre R1 e R2 na proporção das resistências. O Arduino lê a tensão em R2, que pode ser no máximo 5,0 V quando o painel dá 20 V: a fração em R2 tem de ser no máximo 5/20 = 1/4. Escolhido R2, essa fração é fixa, e vale também para os 16 V. A potência de 150 W não entra na conta.",
+    "formulas": [
+     "U2 = U·R2/(R1 + R2)",
+     "fração em R2 = R2/(R1 + R2)"
+    ],
+    "simbolos": [
+     [
+      "d.d.p.",
+      "diferença de potencial, tensão elétrica"
+     ],
+     [
+      "U2",
+      "tensão sobre R2, a que o Arduino lê"
+     ],
+     [
+      "kΩ",
+      "quiloohm, 1 000 Ω"
+     ]
+    ]
+   },
+   "pista": "Escreva que fração dos 20 V pode ficar em R2; depois lembre que essa fração não depende da tensão do painel.",
+   "passos": [
+    {
+     "faz": "Monte a condição no valor máximo",
+     "conta": "U2 = 20·R2/(1000 + R2) = 5",
+     "porque": "O maior R2 é o que deixa exatamente 5,0 V sobre ele quando o painel dá 20 V.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole R2",
+     "conta": "20·R2 = 5·(1000 + R2) → 15·R2 = 5 000 → R2 = 333,3 Ω",
+     "porque": "Multiplica cruzado, o 5·R2 passa subtraindo e o 15 passa dividindo: R2 = 5000/15.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a leitura com 16 V",
+     "conta": "U2 = 16·333,3/1333,3 → U2 = 16/4 = 4,0 V",
+     "porque": "R2 é um quarto da resistência total, então R2 fica sempre com um quarto da tensão do painel.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os dois resultados",
+     "conta": "R2 = 333,3 Ω e U2 = 4,0 V",
+     "porque": "Corresponde à alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — R2 = 333,3 Ω e U2 = 4,0 V.",
+   "checagem": "Pela tensão em R1: com 20 V, R1 fica com 15 V e R2 com 5 V; como a corrente é a mesma, R2/R1 = 5/15 = 1/3, e R2 = 1000/3 = 333,3 Ω. Com 16 V, a mesma razão 1 para 3 dá 4 V em R2 e 12 V em R1.",
+   "erradas": {
+    "A": "250 Ω sai de tomar R2 como 5/20 de R1 (1 000·5/20 = 250 Ω), mas 5/20 é a fração da resistência TOTAL. E 3,0 V não confere: com 250 Ω e 16 V, U2 = 16·250/1250 = 3,2 V.",
+    "B": "250 Ω sai do mesmo erro de usar 5/20 de R1. Com ele, U2 a 16 V seria 3,2 V, e não 4,0 V; 250 Ω também não é o maior valor permitido.",
+    "C": "R2 está certo, mas 3,0 V não confere: com R2 = R1/3, U2 é sempre 1/4 da tensão do painel, e 16/4 = 4,0 V.",
+    "E": "3 000 Ω sai de pôr os 5 V em R1 em vez de R2 (R2 = 3·R1); assim R2 ficaria com 15 V, três vezes o limite do Arduino."
+   },
+   "armadilha": "Calcular R2 como fração de R1: a fração 5/20 é de R2 em relação à resistência total R1 + R2, não em relação a R1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O maior R2 que mantém 5 V sobre ele com 20 V no painel, e a leitura com 16 V.",
+    "chave": "R2/(R1 + R2) = 1/4 → R2 = R1/3 = 333,3 Ω; 16 V vezes 1/4 = 4,0 V.",
+    "cuidado": "A fração do divisor é sobre a resistência total; a potência de 150 W não entra."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razão das tensões",
+    "ideia": "Na série, R2/R1 = U2/U1 = 5/15 = 1/3, logo R2 = 333,3 Ω; e 16 V se divide 1 para 3: 4 V e 12 V."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "20·R2/(1000 + R2) = 5",
+    "nota": "limite de 5 V em R2"
+   },
+   {
+    "linha": "20·R2 = 5 000 + 5·R2",
+    "nota": "multiplica cruzado"
+   },
+   {
+    "linha": "15·R2 = 5 000 → R2 = 333,3 Ω",
+    "nota": "5·R2 passa subtraindo; o 15 divide"
+   },
+   {
+    "linha": "U2 = 16·(1/4) = 4,0 V",
+    "nota": "a fração do divisor é fixa"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Prova UTFPR Verão 2025",
+    "url": "https://www.utfpr.edu.br/cursos/estudenautfpr/vestibular/edicoes/2025-1/provas-e-gabaritos/prova-verao-2025-utfpr-em-17_11_2024.pdf/@@display-file/file"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  }
  }
 }

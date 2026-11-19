@@ -1193,5 +1193,233 @@
    "data": "2026-11-19",
    "lote": "fis-0075"
   }
+ },
+ "Peb8bbfb7": {
+  "n": "7",
+  "conceito": "Frequência do sistema massa-mola e aproximação binomial: pequena massa acrescentada reduz f numa fração m/(2M).",
+  "equivocos": {
+   "A": "F10.8:quadrado-no-lugar-da-raiz",
+   "B": "F10.8:fator-raiz-de-2-sem-origem",
+   "C": "F10.8:esqueceu-a-raiz-da-massa",
+   "D": "F10.8:fator-raiz-de-2-sem-origem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A mola é a mesma; só a massa muda de M para M + m. A frequência do massa-mola cai com a raiz da massa. Como a queda Δf é muito menor que f, a massa acrescentada é pequena perto de M, e a aproximação que o enunciado dá transforma a raiz numa conta de primeiro grau.",
+    "formulas": [
+     "f = (1/(2π)) · √(k/M)",
+     "(1 + x)ⁿ ≈ 1 + n·x, para |x| muito menor que 1"
+    ],
+    "simbolos": [
+     [
+      "f",
+      "frequência de oscilação, em Hz"
+     ],
+     [
+      "k",
+      "constante elástica da mola"
+     ],
+     [
+      "Δf",
+      "quanto a frequência diminuiu: f − f′"
+     ],
+     [
+      "f′",
+      "frequência com as duas massas"
+     ]
+    ]
+   },
+   "pista": "Escreva a razão f′/f: a constante k e o 2π somem, e sobra uma potência de (1 + m/M).",
+   "passos": [
+    {
+     "faz": "Escreva a razão entre as frequências",
+     "conta": "f′/f = √(M/(M + m)) → f′/f = (1 + m/M)^(−1/2)",
+     "porque": "A mola não muda, então k e 2π cancelam na razão; só a massa fica, dentro da raiz e no denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a aproximação do enunciado",
+     "conta": "(1 + m/M)^(−1/2) → 1 − m/(2M)",
+     "porque": "Δf pequeno significa m/M pequeno, e com n = −1/2 a potência vira 1 + n·x = 1 − m/(2M).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva Δf em função de f",
+     "conta": "f′ = f − f·m/(2M) → Δf = f − f′ → Δf = f·m/(2M)",
+     "porque": "A frequência nova perde exatamente a parcela f·m/(2M); essa parcela é a redução Δf.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole f e marque",
+     "conta": "Δf = f·m/(2M) → f = 2M·Δf/m",
+     "porque": "O 2M que divide passa multiplicando e o m que multiplica passa dividindo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — f = 2MΔf/m.",
+   "checagem": "Teste com números: M = 100, m = 1 e f = 1 Hz dão f′ = √(100/101) = 0,99504 Hz e Δf = 0,004963 Hz; então 2MΔf/m = 0,9926, praticamente o f = 1 Hz de partida. A unidade também fecha: kg · Hz/kg = Hz.",
+   "erradas": {
+    "A": "Sai de usar f proporcional a 1/M² (quadrado no lugar da raiz): Δf/f = 2m/M dá f = MΔf/(2m). No teste com M = 100 e m = 1, daria 0,248 Hz, e não 1 Hz.",
+    "B": "Não confere: no teste com M = 100, m = 1 e f = 1 Hz, √2·MΔf/(2m) = 0,351 Hz. Nenhum √2 aparece, porque o expoente da massa é −1/2, que vira o fator 1/2.",
+    "C": "Sai de esquecer a raiz e usar f proporcional a 1/M: Δf/f = m/M dá f = MΔf/m. No teste daria 0,496 Hz, metade do valor certo.",
+    "D": "Não confere: no teste com M = 100, m = 1 e f = 1 Hz, √2·MΔf/m = 0,702 Hz. A raiz de 2 não sai da aproximação, que só produz o fator 1/2."
+   },
+   "armadilha": "Esquecer que f depende da raiz da massa: o expoente −1/2 é que gera o fator 2 da resposta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A frequência f, sabendo a pequena redução Δf causada pela massa m acrescentada a M.",
+    "chave": "f′/f = (1 + m/M)^(−1/2) ≈ 1 − m/(2M), então Δf = f·m/(2M) e f = 2MΔf/m.",
+    "cuidado": "Usar o expoente −1/2 da raiz na aproximação, não −1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diferencial",
+    "ideia": "Como f ∝ M^(−1/2), uma pequena variação dá Δf/f = (1/2)·(ΔM/M) = m/(2M), o mesmo resultado sem escrever a potência."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f′/f = √(M/(M + m))",
+    "nota": "k e 2π cancelam"
+   },
+   {
+    "linha": "f′/f = (1 + m/M)^(−1/2)",
+    "nota": "raiz vira expoente −1/2"
+   },
+   {
+    "linha": "f′/f ≈ 1 − m/(2M)",
+    "nota": "aproximação do enunciado, n = −1/2"
+   },
+   {
+    "linha": "Δf = f·m/(2M)",
+    "nota": "a parcela perdida é Δf"
+   },
+   {
+    "linha": "f = 2M·Δf/m",
+    "nota": "2M passa multiplicando, m passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  }
+ },
+ "P0a80ed9f": {
+  "n": "11",
+  "conceito": "Contato entre esferas condutoras: as cargas se dividem na proporção dos raios (mesmo potencial); massa proporcional ao cubo do raio.",
+  "equivocos": {
+   "A": "F11.1:esferas-iguais-sem-teste",
+   "B": "F11.1:esqueceu-o-cubo-do-raio",
+   "C": "F11.1:carga-inversa-ao-raio",
+   "D": "F11.1:carga-inversa-ao-raio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Duas esferas condutoras em contato ficam no mesmo potencial, e o potencial de uma esfera é kQ/R. Por isso a carga se divide na proporção dos raios: a esfera maior fica com mais carga. No fim, a pergunta é sobre massas: mesmo material e esferas maciças, então a massa cresce com o cubo do raio.",
+    "formulas": [
+     "V = k·Q/R; no contato, Q₁/R₁ = Q₂/R₂",
+     "massa = densidade · (4/3)·π·R³, então m ∝ R³"
+    ],
+    "simbolos": [
+     [
+      "V",
+      "potencial elétrico da esfera"
+     ],
+     [
+      "Q₀",
+      "carga inicial de E1"
+     ],
+     [
+      "R₁, R₂, R₃",
+      "raios das esferas"
+     ]
+    ]
+   },
+   "pista": "Comece pelo segundo contato: se E2 e E3 terminam com cargas iguais, o que isso diz sobre os raios delas?",
+   "passos": [
+    {
+     "faz": "Use o segundo contato",
+     "conta": "q₂′/R₂ = q₃/R₃ com q₂′ = q₃ → R₂ = R₃ | q₂′ = q₃ = q₂/2",
+     "porque": "No contato o potencial se iguala; cargas iguais com mesmo potencial exigem raios iguais, e a carga de E2 se divide ao meio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o primeiro contato",
+     "conta": "q₁ = q₂/2 → q₁/R₁ = q₂/R₂ → R₂ = (q₂/q₁)·R₁ → R₂ = 2R₁",
+     "porque": "Para E1 terminar igual às outras, ela tem de ter ficado com metade da carga de E2 no primeiro contato; com o mesmo potencial, isso pede raio pela metade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe dos raios para as massas",
+     "conta": "R₁ : R₂ : R₃ = 1 : 2 : 2 → m ∝ R³ → 1³ : 2³ : 2³ = 1 : 8 : 8",
+     "porque": "Mesmo material e esferas maciças: a massa é proporcional ao volume, que vai com R³.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a proporção",
+     "conta": "m₁ : m₂ : m₃ = 1 : 8 : 8",
+     "porque": "A pergunta é das massas, não dos raios.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 1 : 8 : 8.",
+   "checagem": "Simule com Q₀ = 3 e raios 1, 2, 2: no primeiro contato E1 fica com 3 · 1/3 = 1 e E2 com 3 · 2/3 = 2; no segundo, E2 e E3 dividem 2 ao meio, 1 e 1. As três terminam com carga 1, como diz o enunciado.",
+   "erradas": {
+    "A": "Não confere: com esferas iguais, E1 e E2 ficam com Q₀/2 cada, e depois E2 e E3 com Q₀/4; E1 terminaria com o dobro das outras.",
+    "B": "Sai de parar nos raios, 1 : 2 : 2, e esquecer que a massa vai com o cubo do raio: 1³ : 2³ : 2³ = 1 : 8 : 8.",
+    "C": "Sai de supor a carga inversamente proporcional ao raio (a esfera menor ficaria com mais) e parar nos raios: R₂ = R₁/2 dá 2 : 1 : 1.",
+    "D": "Sai de supor a carga inversamente proporcional ao raio, R₂ = R₁/2, e elevar ao cubo: 2³ : 1³ : 1³ = 8 : 1 : 1. No contato, a esfera maior é que fica com mais carga."
+   },
+   "armadilha": "Responder a proporção dos raios (1 : 2 : 2) quando a pergunta é das massas, que vão com o cubo do raio.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A proporção entre as massas de E1, E2 e E3 para que terminem com cargas iguais.",
+    "chave": "Carga dividida na proporção dos raios: R₂ = R₃ e R₂ = 2R₁; massas 1 : 8 : 8.",
+    "cuidado": "A esfera maior fica com mais carga, e a massa vai com R³."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "de trás para a frente",
+    "ideia": "Se no fim cada uma tem q, E2 e E3 juntas tinham 2q, e E1 tinha q no mesmo potencial que 2q: raio de E2 é o dobro do de E1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "q₂′ = q₃ → R₂ = R₃",
+    "nota": "cargas iguais, potenciais iguais"
+   },
+   {
+    "linha": "q₂′ = q₃ = q₂/2",
+    "nota": "E2 divide ao meio"
+   },
+   {
+    "linha": "q₁ = q₂/2 → R₂ = 2R₁",
+    "nota": "carga proporcional ao raio"
+   },
+   {
+    "linha": "1 : 2 : 2 → 1³ : 2³ : 2³ = 1 : 8 : 8",
+    "nota": "massa vai com R³"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  }
  }
 }

@@ -1081,5 +1081,124 @@
    "data": "2026-11-19",
    "lote": "fis-0075"
   }
+ },
+ "P397cca39": {
+  "n": "7",
+  "conceito": "Sistema de duas massas e mola: período pela massa reduzida, energia da mola na fase em que a parede empurra e velocidade do centro de massa constante depois.",
+  "equivocos": {
+   "A": "F10.8:ignorou-a-forca-da-parede",
+   "B": "F10.8:periodo-de-uma-massa-so",
+   "C": "F10.8:esqueceu-a-massa-reduzida",
+   "D": "F10.8:velocidade-do-bloco-no-lugar-do-cm"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Enquanto a mola ainda está comprimida, o carrinho 2M fica encostado na parede, que o empurra: há força externa, e o centro de massa acelera. Quando a mola volta ao comprimento natural, toda a energia da mola está em M e o carrinho 2M sai da parede. Daí em diante não há força externa horizontal, e a velocidade do centro de massa fica constante: esse é o máximo. Falta só o k, que vem do período T das duas massas oscilando livres, com a massa reduzida.",
+    "formulas": [
+     "T = 2π · √(μ/k), com μ = (m₁ · m₂)/(m₁ + m₂)",
+     "(1/2) · k · l² = (1/2) · M · v₀²",
+     "v_cm = (M · v₀ + 2M · 0)/(3M)"
+    ],
+    "simbolos": [
+     [
+      "μ",
+      "massa reduzida do par de carrinhos"
+     ],
+     [
+      "v₀",
+      "velocidade de M quando a mola chega ao comprimento natural"
+     ],
+     [
+      "v_cm",
+      "velocidade do centro de massa"
+     ],
+     [
+      "l",
+      "compressão inicial da mola"
+     ]
+    ]
+   },
+   "pista": "Pergunte até quando a parede empurra o carrinho 2M; depois disso, o que acontece com a velocidade do centro de massa?",
+   "passos": [
+    {
+     "faz": "Tire k do período das massas livres",
+     "conta": "μ = (M · 2M)/(3M) = 2M/3 → T = 2π·√(2M/(3k)) → k = 8π²M/(3T²)",
+     "porque": "Duas massas ligadas só pela mola oscilam como uma massa só, igual à massa reduzida, presa a uma parede.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a velocidade de M na saída da parede",
+     "conta": "(1/2)·k·l² = (1/2)·M·v₀² → v₀ = l·√(k/M) → v₀ = l·√(8π²/(3T²)) → v₀ = √(8/3) · πl/T",
+     "porque": "Até a mola relaxar, 2M fica parado na parede e toda a energia elástica vai para M.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a velocidade do centro de massa",
+     "conta": "v_cm = (M·v₀ + 2M·0)/(3M) → v_cm = v₀/3 → v_cm = √(8/3)/3 · πl/T → v_cm = √(8/27) · πl/T",
+     "porque": "Nesse instante v_cm é a maior: antes a parede ainda acelerava o sistema; depois, sem força externa, ela não muda mais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "v_cm máx = √(8/27) × πl/T",
+     "porque": "O 3 que divide entra na raiz como 9: √(8/3)/3 = √(8/27).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — v_cm máxima = √(8/27) × πl/T.",
+   "checagem": "Unidade: l/T é metro por segundo, e √(8/27) e π são números puros, então o resultado é uma velocidade. Ordem: √(8/27) ≈ 0,544, e √(8/3) ≈ 1,633 é exatamente 3 vezes maior, como deve ser entre a velocidade de M e a do centro de massa de um sistema de massa 3M.",
+   "erradas": {
+    "A": "Supõe que o centro de massa não se move por falta de força externa. Mas a parede empurra o carrinho 2M enquanto a mola está comprimida, e isso acelera o centro de massa.",
+    "B": "Sai de usar T como se fosse o período de M sozinho, k = 4π²M/T², e dar a velocidade de M: v₀ = l·√(k/M) = 2πl/T. Faltam a massa reduzida e a divisão por 3.",
+    "C": "Sai de calcular k com M no lugar da massa reduzida (k = 4π²M/T²) e depois dividir por 3: v₀/3 = 2πl/(3T).",
+    "D": "É a velocidade do carrinho M quando a mola relaxa, v₀ = √(8/3)·πl/T. A pergunta é a do centro de massa, que é v₀/3."
+   },
+   "armadilha": "Responder a velocidade do carrinho M em vez da do centro de massa, ou calcular k como se T fosse o período de uma massa só.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A velocidade máxima do centro de massa dos dois carrinhos depois que M é liberado.",
+    "chave": "k = 8π²M/(3T²) pela massa reduzida; v₀ = √(8/3)·πl/T; v_cm = v₀/3 = √(8/27)·πl/T.",
+    "cuidado": "O período T é das duas massas livres: use a massa reduzida 2M/3, não M."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "quantidade de movimento",
+    "ideia": "Depois que 2M sai da parede, a quantidade de movimento M·v₀ se conserva; dividida pela massa total 3M, dá a mesma v_cm = v₀/3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "μ = (M · 2M)/(3M) = 2M/3",
+    "nota": "massa reduzida"
+   },
+   {
+    "linha": "k = 4π²μ/T² = 8π²M/(3T²)",
+    "nota": "k isolado do período"
+   },
+   {
+    "linha": "v₀ = l·√(k/M) = √(8/3) · πl/T",
+    "nota": "energia da mola toda em M"
+   },
+   {
+    "linha": "v_cm = v₀/3",
+    "nota": "2M ainda parado, massa total 3M"
+   },
+   {
+    "linha": "v_cm = √(8/27) · πl/T",
+    "nota": "o 3 entra na raiz como 9"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  }
  }
 }

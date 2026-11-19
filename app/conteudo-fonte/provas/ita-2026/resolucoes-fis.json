@@ -1217,5 +1217,131 @@
    "data": "2026-11-19",
    "lote": "fis-0075"
   }
+ },
+ "Pde75286a": {
+  "n": "21",
+  "conceito": "Divisor de tensão com carga: um resistor em paralelo com a parte de baixo do potenciômetro reduz a tensão lida, e quanto menor o resistor, maior a queda.",
+  "equivocos": {
+   "A": "F11.5:carga-menor-abaixa-menos-a-tensao",
+   "B": "F11.5:corrente-maior-no-resistor-maior",
+   "C": "F11.5:divisor-sem-carga-confundido-com-carga-pesada",
+   "E": "F11.5:divisor-com-carga-tratado-como-linear"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Pela figura, a bateria fica entre as duas pontas do potenciômetro: R1 liga o cursor ao terminal negativo e R2 liga o cursor ao positivo. A resistência do teste (R3 ou R4) vai do cursor ao negativo, ou seja, fica em paralelo com R1. Esse paralelo é sempre menor que R1, e fica menor ainda quando o resistor do teste é menor: a tensão no cursor cai. Basta comparar as curvas: a mais baixa é a do resistor menor.",
+    "formulas": [
+     "R1 // R = (R1·R)/(R1 + R)",
+     "V = 12·(R1 // R)/(R2 + R1 // R)",
+     "sem carga: V = 12·R1/(R1 + R2)"
+    ],
+    "simbolos": [
+     [
+      "potenciômetro",
+      "resistor com cursor que divide a resistência total em R1 e R2"
+     ],
+     [
+      "//",
+      "em paralelo com"
+     ],
+     [
+      "cursor",
+      "terminal central, ligado ao ponto entre R1 e R2"
+     ],
+     [
+      "R1/R2",
+      "abscissa do gráfico, em escala logarítmica"
+     ]
+    ]
+   },
+   "pista": "Identifique na figura em paralelo com qual parte do potenciômetro fica a resistência do teste; depois pense no que um paralelo faz com a resistência dessa parte.",
+   "passos": [
+    {
+     "faz": "Monte o circuito equivalente",
+     "conta": "+12 V → R2 → cursor → (R1 // R3) → negativo",
+     "porque": "Na figura, R1 vai do cursor ao fio de baixo (negativo), R2 vai do cursor ao + da bateria, e R3 sai do cursor e desce ao mesmo fio de baixo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva a tensão lida",
+     "conta": "V = 12·R1/(R1 + R2) → V = 12·(R1 // R)/(R2 + R1 // R)",
+     "porque": "O voltímetro lê a tensão no trecho de baixo do divisor; com a carga, esse trecho passa a ser R1 em paralelo com R.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os testes no gráfico",
+     "conta": "mesmo R1/R2: V(Teste 1) < V(Teste 2) → R1 // R3 < R1 // R4 → R3 < R4",
+     "porque": "Quanto menor o resistor em paralelo, menor o paralelo e menor a tensão. A curva do Teste 1 está abaixo da do Teste 2 em toda a faixa.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste as outras afirmações",
+     "conta": "A: R4 > R3 → falsa | B: i = V/R maior em R3 → falsa | C: sem carga, V = 6 V em R1/R2 = 1, perto do Teste 2 → falsa | E: razão → 1 no fim do gráfico → falsa",
+     "porque": "Cada afirmação é confrontada com o circuito equivalente e com a forma das curvas.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua pela curva mais baixa",
+     "conta": "curva com R3 (Teste 1) abaixo da curva com R4 (Teste 2) para a mesma abscissa",
+     "porque": "É o que a alternativa D afirma.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — para o mesmo valor de abscissa, a curva obtida com R3 tem tensões menores que a obtida com R4.",
+   "checagem": "Teste com números: potenciômetro de 1 000 Ω e cursor no meio (R1 = R2 = 500 Ω). Sem carga, V = 6 V. Com R = 100 Ω, V = 1,71 V; com R = 10 Ω, V = 0,23 V. O resistor menor puxa a tensão para baixo, como o Teste 1.",
+   "erradas": {
+    "A": "É o contrário: a curva do Teste 2 fica acima, então o paralelo com R4 é maior e R4 > R3.",
+    "B": "Não confere: a corrente no resistor do teste é i = 12·R1/(R2·(R1 + R) + R1·R), que cresce quando R diminui. Como R3 < R4, passa mais corrente em R3, e não menos.",
+    "C": "Sem R3 e R4, V = 12·R1/(R1 + R2): em R1/R2 = 1 dá 6 V, enquanto o Teste 1 está perto de 0 V e o Teste 2 perto de 5,5 V. A curva aberta fica junto da do Teste 2.",
+    "E": "Não é constante: com potenciômetro de 1 000 Ω, R3 = 10 Ω e R4 = 100 Ω, a razão chega a cerca de 7,4 e cai para 1,09 no fim do gráfico."
+   },
+   "armadilha": "Achar que a curva mais baixa vem do resistor maior: o resistor em paralelo com R1 'puxa' a tensão para baixo tanto mais quanto MENOR ele for.",
+   "alerta": "A alternativa D chama as curvas de 'V × R1/R3' e 'V × R1/R4', mas o gráfico tem abscissa R1/R2. A leitura que a banca aceita é: a curva do teste com R3 fica abaixo da do teste com R4 para a mesma abscissa. Mesmo tomando a abscissa literalmente como R1/R3 e R1/R4, a curva com R3 continua abaixo; o gabarito D se mantém.",
+   "essencial": {
+    "pede": "Qual afirmação sobre os dois testes do potenciômetro com carga é verdadeira.",
+    "chave": "A carga fica em paralelo com R1; resistor menor abaixa mais a tensão, então a curva de baixo (Teste 1) é a de R3, e R3 < R4.",
+    "cuidado": "Ler na figura em paralelo com qual trecho do potenciômetro está a carga."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "casos extremos",
+    "ideia": "Resistor do teste → 0 zera a tensão; resistor → ∞ é o divisor sem carga (6 V no meio): a curva mais baixa é a do resistor menor."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V = 12·R1/(R1 + R2)",
+    "nota": "divisor sem carga"
+   },
+   {
+    "linha": "R1 → R1 // R = (R1·R)/(R1 + R)",
+    "nota": "a carga entra em paralelo com R1"
+   },
+   {
+    "linha": "V = 12·(R1 // R)/(R2 + R1 // R)",
+    "nota": "tensão com carga"
+   },
+   {
+    "linha": "R menor → R1 // R menor → V menor",
+    "nota": "Teste 1 abaixo: R3 < R4"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Prova ITA 2026, 1ª fase",
+    "url": "https://vestibular.ita.br/provas/2026_fase1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  }
  }
 }

@@ -1210,5 +1210,124 @@
    "data": "2026-11-19",
    "lote": "fis-0072"
   }
+ },
+ "Paae3ea80": {
+  "n": "10",
+  "conceito": "Lei de Pouillet para circuito série com gerador e receptor: i = (ε − ε′)/(soma de todas as resistências).",
+  "equivocos": {
+   "A": "F11.7:somou-forca-contraeletromotriz",
+   "B": "F11.7:somou-forca-contraeletromotriz",
+   "C": "F11.7:inverteu-sinal-das-fems",
+   "D": "F11.7:subtraiu-resistencias-em-serie"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Num circuito série, a corrente é a mesma em todos os elementos. A bateria fornece ε por unidade de carga e o motor (receptor) consome ε′; o saldo, ε − ε′, é o que empurra a corrente contra TODAS as resistências do caminho, que em série se somam: as internas da bateria e do motor também.",
+    "formulas": [
+     "i = (ε − ε′)/(R1 + R2 + r + r′)",
+     "em série, as resistências se somam"
+    ],
+    "simbolos": [
+     [
+      "ε",
+      "força eletromotriz (eletromotância) da bateria"
+     ],
+     [
+      "ε′",
+      "força contraeletromotriz do motor"
+     ],
+     [
+      "r",
+      "resistência interna da bateria"
+     ],
+     [
+      "r′",
+      "resistência interna do motor"
+     ],
+     [
+      "R1, R2",
+      "resistências dos dois resistores"
+     ]
+    ]
+   },
+   "pista": "Percorra a malha no sentido da corrente e anote o que cada elemento ganha ou perde de ddp.",
+   "passos": [
+    {
+     "faz": "Percorra a malha",
+     "conta": "+ε − r · i − R1 · i − R2 · i − ε′ − r′ · i = 0",
+     "porque": "Lei das malhas: a bateria eleva o potencial em ε; o motor e todas as resistências o fazem cair.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os termos com i",
+     "conta": "ε − r · i − R1 · i − R2 · i − ε′ − r′ · i = 0 → ε − ε′ = (R1 + R2 + r + r′) · i",
+     "porque": "Os termos com i passam para um lado; a corrente é a mesma em todos, então ela fica em evidência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole i",
+     "conta": "ε − ε′ = (R1 + R2 + r + r′) · i → i = (ε − ε′)/(R1 + R2 + r + r′)",
+     "porque": "A soma das resistências, que multiplica i, passa para o outro lado dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "numerador ε − ε′ | denominador com todas as resistências somadas",
+     "porque": "É exatamente a expressão da alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — i = (ε − ε′)/(R1 + R2 + r + r′).",
+   "checagem": "Casos particulares: sem motor (ε′ = 0 e r′ = 0) a expressão vira i = ε/(R1 + R2 + r), a fórmula do gerador real; com ε′ = ε, a corrente é zero, porque o motor equilibra a bateria. Por unidade, volt sobre ohm dá ampère.",
+   "erradas": {
+    "A": "Soma ε + ε′ como se o motor também fornecesse energia; a força contraeletromotriz se opõe à corrente e entra subtraindo.",
+    "B": "Soma ε + ε′ e ainda subtrai resistências: em série, todas as resistências se somam, e o denominador nunca pode ter sinal de menos.",
+    "C": "Inverte o numerador (ε′ − ε, que daria corrente negativa, já que a bateria é quem move o circuito) e subtrai r′ no denominador.",
+    "D": "O numerador ε − ε′ está certo, mas o denominador subtrai R2 e r′: em série, as quatro resistências se somam."
+   },
+   "armadilha": "Esquecer que a contraeletromotriz do motor se SUBTRAI da fem, ou deixar de fora as resistências internas da bateria e do motor no denominador.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A expressão da corrente num circuito série com bateria, dois resistores e um motor.",
+    "chave": "i = (ε − ε′)/(R1 + R2 + r + r′): saldo das fems sobre a soma de todas as resistências.",
+    "cuidado": "A força contraeletromotriz entra com sinal de menos; as resistências, todas somando."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "Faça ε′ = 0 e r′ = 0: sobram A e E (ambas viram i = ε/(R1 + R2 + r)); depois faça ε′ = ε: a corrente tem de ser zero, e isso só acontece na E."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ε − r · i − R1 · i − R2 · i − ε′ − r′ · i = 0",
+    "nota": "lei das malhas"
+   },
+   {
+    "linha": "ε − ε′ = (R1 + R2 + r + r′) · i",
+    "nota": "termos com i para um lado"
+   },
+   {
+    "linha": "i = (ε − ε′)/(R1 + R2 + r + r′)",
+    "nota": "a soma passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Prova URCA 2025 2025.2",
+    "url": "https://www.urca.br/cev/wp-content/uploads/sites/39/2025/06/PROVA-I-FIS-MAT-QUI-E-BIO-2025.2.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  }
  }
 }

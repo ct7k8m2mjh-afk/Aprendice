@@ -379,3 +379,36 @@ GABARITO P6f60a2e4 (IME 2024 1ª fase q18): gabarito do Aprendice C; falta a let
 GABARITO Pa0db8474 (IME 2025 1ª fase q24): gabarito do Aprendice E; falta a letra do conferente às cegas e comparar com o preliminar; Estratégia Militares tem a questão, mas a letra não aparece na página pública
 RECLASS P4bdbab83 F10.5 -> F10.6
 GABARITO P5fb1646c (IME 2025 1ª fase, questão 21): sem gabarito publicado; letra do resolvedor A (f1 ≥ f2 ≥ f3 = ff ≥ f4 ≥ f5); nenhuma resolução publicada localizada na web; falta a letra do conferente às cegas e conferir com o preliminar do IME
+
+## 2026-11-19 18:06 UTC — PENDENCIAS — session_01PveEKWeU9BGX5xnf2nstPb
+Lote fis-0076 gravado (50 resoluções conferidas). Aberto: fis-0077 (o último de Física).
+Gabarito do Aprendice: P877ce3aa C, Pb9b4cfe3 C, P4ada453c B (resolvedor e conferente às cegas; iguais ao preliminar).
+RECLASS P8a70f9d5 F10.8 -> F03.1 (UEMA 2020 PAES q43: objeto pendurado em trem acelerado, a = g·tg θ; leis de Newton, não MHS)
+DADO P397cca39: texto_da_prova -> sobra a linha "E ( ) mg+ √8kmV 2." e os rótulos "M 2M F" da figura, que não fazem parte das alternativas; no print: A 0; B 2πl/T; C 2πl/(3T); D √(8/3) × πl/T; E √(8/27) × πl/T (ITA 2022 q7)
+DADO Peb8bbfb7: alternativas -> frações empilhadas no print: A MΔf/(2m); B √2MΔf/(2m); C MΔf/m; D √2MΔf/m; E 2MΔf/m (ITA 2021 q7; entrada sem o campo alternativas)
+DADO P877ce3aa: alternativas -> frações achatadas; print: A 2·kq²/L², B (9/4)·kq²/L², C (3/2)·kq²/L², D (1/4)·(kq²/L²)·(4 + √2), E (1/4)·(kq²/L²)·(2 + √2)
+DADO Pb9b4cfe3: texto_da_prova -> "E(r) = A·cos(3rπ/(2R)) + (2 − r)²/R − 1, para 0 ≤ r ≤ R; E(r) = 0, para r > R" (fórmula embaralhada na camada de texto)
+DADO P0a0bda42: alternativas -> ausentes na entrada (OCR embaralhado); print: A l·√(12πε₀mg·senθ·cosθ), B l·√(4πε₀mg·tgθ·√3), C l·senθ·√(4πε₀mg·tgθ·√3), D l·senθ·√(4πε₀mg·tgθ/√3), E l·senθ·√(4πε₀mg·tgθ); texto: "comprimento l", "ângulo ... é θ", "ε₀ a permissividade"
+DADO P053d5796: texto_da_prova -> "diferença de potencial igual a 6·10⁵ V" (está "6.105 V")
+DADO Pf3445538: texto_da_prova -> símbolos apagados; print: "de raio R", "toda sua carga Q", "módulo do campo elétrico E", "a uma distância r"; alternativas vazias, print: a) E = k₀·Q/R b) E = k₀·(Q/R)·r c) E = k₀·Q/r² d) E = k₀·Q/r e) E = k₀·(Q/R³)·r²
+DADO P25d79d22: alternativas -> C "E/9 e V/3" (está "E 9 e V 3")
+RECLASS Pbc3a3190 F11.1 -> F11.2
+GABARITO P877ce3aa (IME 2025 1ª fase q17): gabarito do Aprendice C; falta a letra do conferente às cegas e comparar com o preliminar; nenhuma resolução publicada achada na web
+GABARITO Pb9b4cfe3 (IME 2025 1ª fase q30): gabarito do Aprendice C; falta a letra do conferente às cegas e comparar com o preliminar; nenhuma resolução publicada achada na web
+DADO P190205c6: texto_da_prova -> "resistência total de 6,0 x 10³ Ω" (a entrada diz "6,0 x 10º O"); tabela no print: sem carga 2,0 | 1 a 3: 1,9 - 1,5 | 4 a 6: 1,4 - 1,0 | 7 a 9: 0,9 - 0,5 | 10 a 12: 0,4 - 0,1 (mA)
+DADO Pf9580bde: alternativas.E -> "0,05%" (o "Dado: 1 cal = 4,2 J; c_ar = 0,25 cal/g°C" é texto de apoio do enunciado, não da alternativa)
+DADO P0d961aaa: texto_da_prova/alternativas -> "E = 40 N/C" e velocidades em "m/s" (a entrada achatou para "40𝑁𝐶" e "15𝑚𝑠")
+DADO P4ada453c: alternativas -> frações empilhadas: A kqQ/(2am), B kqQ/(3am), C 4kqQ/(3am), D 3kqQ/(2am), E kqQ/(am)
+RECLASS Pf9c1c3d0 F11.3 -> F11.5
+RECLASS P8b03c753 F11.4 -> F11.5
+GABARITO P4ada453c (IME 2024 1ª fase, q. 29): sem gabarito publicado; letra do resolvedor B (v² = kqQ/(3am)); nenhuma resolução publicada achada na web; falta a letra do conferente às cegas e a comparação com o preliminar
+RECLASS P1c143527 F11.5 -> F12.4
+DADO P841bbcb2: texto_da_prova -> "diferença de potencial V ≠ 0 constante" (o sinal ≠ virou "=" na entrada)
+DADO Pa3fd2919: texto_da_prova -> "1,0 kΩ" e "6 kΩ" (o Ω sumiu na entrada); o print traz o número 17 no cabeçalho (entrada: questão 27)
+DADO P76cef88f: texto_da_prova -> falta a tabela da figura: BATERIA 1650 mAh; 3,7 V; 6,1 Wh | CARREGADOR Entrada AC: 100-240 V, 50-60 Hz; 0,3 A | Saída DC: 5 V; 1,55 A
+DADO P4de453e6: texto_da_prova -> "P = R.i²" e "P = U²/R" (expoentes perdidos na entrada: "R.i2", "U2/R")
+DADO Pbf50c69a: texto_da_prova -> IV: "6,25 × 10¹⁸ elétrons" e "1,6 × 10⁻¹⁹ Coulomb" (entrada com "1018" e "10–19")
+DADO Paae3ea80: alternativas -> frações: A) i = (ϵ + ϵ′)/(R1 + R2 + r + r′); B) i = (ϵ + ϵ′)/(R1 − R2 − r + r′); C) i = (ϵ′ − ϵ)/(R1 + R2 + r − r′); D) i = (ϵ − ϵ′)/(R1 − R2 + r − r′); E) i = (ϵ − ϵ′)/(R1 + R2 + r + r′) (barra de fração perdida na entrada)
+RECLASS Pbf50c69a F11.6 -> F11.4 (URCA 2025.1 q9: afirmativas sobre definição de corrente, campo no fio e carga elementar; só a V é de potência)
+RECLASS Pa902c913 F11.7 -> F11.5 (Unifor 2025.1 q19: associação de resistores iguais, simetria/ponte equilibrada, sem gerador)
+AVISO (site, conferência de 3 questões): Pe70050bf — o bloco "Resposta correta" mostra a fração em linha ("t = 5mLf/(2Ri²)"); na lousa ela aparece empilhada. Falta empilhar a fração no texto da resposta (é código/design, não mexi). Testes depois do fis-0075: tsc ok; vitest 786 de 786.

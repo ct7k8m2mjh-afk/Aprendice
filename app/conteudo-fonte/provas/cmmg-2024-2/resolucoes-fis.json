@@ -443,5 +443,118 @@
    "data": "2026-11-19",
    "lote": "fis-0074"
   }
+ },
+ "P8b03c753": {
+  "n": "44",
+  "conceito": "Resistores em série num chuveiro de tensão fixa: menos resistência no circuito dá mais potência (P = U²/R); um resistor rompido só abre as posições que passam por ele.",
+  "equivocos": {
+   "B": "F11.4:inverteu-resistencia-e-potencia",
+   "C": "F11.4:errou-o-resistor-rompido",
+   "D": "F11.4:inverteu-resistencia-e-potencia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com a tensão da rede fixa, a potência é U²/R: quanto menos resistência no circuito, mais o chuveiro esquenta. No arranjo das figuras, a chave escolhe quantos dos três resistores em série entram: três para MORNO, dois para QUENTE, um para SUPERQUENTE. O rompido é o que está em MORNO e QUENTE, mas não em SUPERQUENTE.",
+    "formulas": [
+     "P = U²/R (tensão fixa)",
+     "série: R_eq = R + R + …",
+     "trecho rompido em série: corrente zero"
+    ],
+    "simbolos": [
+     [
+      "R",
+      "resistência de cada trecho do resistor do chuveiro"
+     ],
+     [
+      "P",
+      "potência dissipada, que aquece a água"
+     ],
+     [
+      "U",
+      "tensão da rede, fixa"
+     ],
+     [
+      "chave",
+      "seletor que define até onde a corrente percorre os resistores"
+     ]
+    ]
+   },
+   "pista": "Associe cada posição a quantos resistores ficam em série e descubra qual trecho é usado em MORNO e QUENTE, mas não em SUPERQUENTE.",
+   "passos": [
+    {
+     "faz": "Associe cada posição à resistência",
+     "conta": "MORNO: 3R → P = U²/(3R) | QUENTE: 2R → P = U²/(2R) | SUPERQUENTE: R → P = U²/R",
+     "porque": "Com U fixa, mais resistores em série dão menos potência; a menor potência é a do MORNO.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Localize o trecho rompido",
+     "conta": "MORNO (3R) frio | QUENTE (2R) frio | SUPERQUENTE (R) aquece → rompido = 2º resistor",
+     "porque": "O trecho quebrado tem de estar nos caminhos de MORNO e QUENTE e fora do caminho de SUPERQUENTE: é o do meio.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Confira os diagramas",
+     "conta": "A: antes, chave no fim (3R) | depois, chave após o 1º R, resistor do meio rompido",
+     "porque": "O primeiro diagrama de A é o MORNO com os três em série; o segundo liga só o primeiro resistor e mostra o do meio aberto, sem impedir a corrente.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "antes: 3R em série | depois: só 1R, com o do meio rompido → A",
+     "porque": "Só A combina o estado de MORNO antes da queima com o SUPERQUENTE funcionando depois.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — antes, os três resistores em série (MORNO); depois, a chave liga só o primeiro resistor, com o do meio rompido (SUPERQUENTE).",
+   "checagem": "Teste a posição QUENTE em A: a chave pegaria o ponto depois do segundo resistor, e a corrente teria de passar pelo do meio, que está rompido: circuito aberto, água gelada, como Gustavo observou.",
+   "erradas": {
+    "B": "O primeiro diagrama liga só um resistor (SUPERQUENTE), mas antes o chuveiro estava em MORNO; e o segundo liga dois (QUENTE), não SUPERQUENTE.",
+    "C": "O primeiro está certo (MORNO, 3R), mas no segundo o rompido é o terceiro resistor; então QUENTE, com os dois primeiros, teria aquecido, o que não aconteceu.",
+    "D": "O primeiro liga só um resistor, não o MORNO; e no segundo o rompido está no caminho da corrente, então o chuveiro não aqueceria."
+   },
+   "armadilha": "Achar que MORNO tem a menor resistência: com tensão fixa, P = U²/R, então a posição mais fraca é a de maior resistência (três em série).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os diagramas do chuveiro em MORNO, antes da queima, e em SUPERQUENTE, depois.",
+    "chave": "MORNO = 3R em série, SUPERQUENTE = R; o rompido é o resistor usado em MORNO e QUENTE, mas não em SUPERQUENTE.",
+    "cuidado": "Com tensão fixa, mais resistência dá menos potência; conferir que o rompido fica fora do caminho em SUPERQUENTE."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar QUENTE",
+    "ideia": "Em cada alternativa, veja se a posição QUENTE passaria pelo trecho rompido: só em A ela fica fria e SUPERQUENTE ainda aquece."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P = U²/R",
+    "nota": "tensão fixa: menos R, mais potência"
+   },
+   {
+    "linha": "MORNO: 3R | QUENTE: 2R | SUPERQUENTE: R",
+    "nota": "três posições"
+   },
+   {
+    "linha": "frio em 3R e 2R, quente em R",
+    "nota": "o rompido é o 2º resistor"
+   },
+   {
+    "linha": "antes 3R; depois R com o do meio aberto → A",
+    "nota": "conferência dos diagramas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  }
  }
 }
