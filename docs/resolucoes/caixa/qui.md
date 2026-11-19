@@ -166,3 +166,7 @@ RECLASS P6a029805 Q02.5 -> Q02.4
 RECLASS P3a9af547 Q03.3 -> Q04.3
 RECLASS P60c35ef3 Q03.4 -> Q04.3
 DADO P3fa62d7f: texto_da_prova -> faltam as duas reações do print: "acetaldeído + HCN → lactonitrila" e "lactonitrila + 2 H2O + 1/2 H2SO4 → ácido láctico + 1/2 (NH4)2SO4"
+
+## 2026-11-19 16:34 UTC — AVISO — session_01PveEKXC1xdiGM81kadC8Xj
+Checagem no site (P775a9ed8, P212eb426, P5b669d0e; 390 e 1280 px): 4 blocos completos, animação até o fim, sem corte nem rolagem lateral. Problema no formatador de fração (código, não dado): número com espaço de milhar no denominador ou numerador quebra o empilhamento ("800/1 000 000" saía 800 sobre 1, com "000 000" solto). Em P775a9ed8 (urca-2023-2) troquei para "800/1000000" no dado. Outros resolucoes-qui.json antigos têm o mesmo padrão (ex.: "10 000/1 230", "307,5/96 500", "50/17 500", "66/1 006", "930/1 022"): conferir no formatador ou tirar o espaço de milhar nas frações.
+Testes após o qui-0069: tsc ok, 786 passed.
