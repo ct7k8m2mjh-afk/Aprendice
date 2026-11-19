@@ -1,6 +1,10 @@
 """Gera docs/resolucoes/o-que-falta.html: o painel "O que falta no Aprendice" publicado como artefato para o dono.
 
-Números das resoluções: lidos ao vivo (banco montado pelo converte.py + registros dos lotes).
+Números das resoluções: lidos ao vivo do banco montado pelo converte.py (app/public/conteudo/<m>/banco.json), dos
+registros dos lotes (todas as partes -p<k> e os lotes -pend-), de app/conteudo-fonte/indisponiveis.json, das provas
+(app/conteudo-fonte/provas/*/prova.json) e do relatorio.json do site no ar. Cada questão do banco cai numa só situação
+(situacoes()): pronta · na fila · em lote aberto · em espera · com gabarito em dúvida · nunca terá resolução
+(indisponível, anulada pelo Aprendice ou de outra matéria). Itens com "auto" têm o detalhe escrito aqui.
 Demais itens: docs/resolucoes/o-que-falta.json (lista mantida pela coordenadora; marque "estado": "feito" ao concluir).
 Uso: cd app && python3 scripts/converte.py && cd .. && python3 ferramentas/resolucoes/painel_falta.py
 Depois publique o HTML no mesmo artefato (URL em docs/resolucoes/COORDENACAO.md, seção Publicação).
@@ -27,57 +31,144 @@ def e(t):
     return html.escape(str(t))
 
 
-def numeros():
-    reg = lote.registro()
-    fp = lote.resolvidas_em_provas()
+BRT = datetime.timezone(datetime.timedelta(hours=-3))
+SITE_RELATORIO = 'https://aprendice.vercel.app/conteudo/relatorio.json'
+INDISPONIVEIS = os.path.join(RAIZ, 'app', 'conteudo-fonte', 'indisponiveis.json')
+# Situação de cada questão do banco montado (uma só categoria por questão, nesta ordem de precedência)
+NUNCA = ('outra', 'anulada', 'indisponivel')       # nunca terão resolução, por decisão do dono
+VAO_TER = ('fila', 'lote', 'espera', 'duvida')      # ainda vão ganhar resolução
+
+
+def fmt(n):
+    return f'{n:,}'.replace(',', '.')
+
+
+def situacoes():
+    """id -> (matéria, situação, questão), para todas as questões do banco montado (app/public/conteudo/<m>/banco.json):
+    feita (tem resolução, cr) · outra (de outra matéria) · anulada (anulada pelo Aprendice) · indisponivel ("Questão
+    indisponível", indisponiveis.json) · lote (em lote aberto comum, sendo resolvida) · espera (pendente: no registro de
+    qualquer parte, em lote de pendentes -pend- aberto ou em pendentes.md) · duvida (divergência de gabarito) · fila."""
+    import re
+    reg = lote.registro()   # união de todas as matérias e partes (-p<k>)
+    ind = set()
+    if os.path.exists(INDISPONIVEIS):
+        ind = set(json.load(open(INDISPONIVEIS)).get('questoes', {}))
+    lote_comum, lote_pend = set(), set()
+    for nome, l in reg['lotes'].items():
+        if l.get('estado') == 'aberto':
+            (lote_pend if lote.e_pend(nome) else lote_comum).update(l['ids'])
+    md = os.path.join(lote.DOCS, 'pendentes.md')
+    pend_md = set(re.findall(r'\bP[0-9a-f]{8}\b', open(md, encoding='utf-8').read())) if os.path.exists(md) else set()
+    sit = {}
+    for m in ORDEM:
+        for q in json.load(open(os.path.join(lote.PUB, m, 'banco.json'))):
+            i = q['id']
+            if q.get('cr'):
+                s = 'feita'
+            elif q.get('outraMateria'):
+                s = 'outra'
+            elif q.get('anuladaAprendice'):
+                s = 'anulada'
+            elif q.get('indisponivel') or i in ind or str(q.get('pendente', '')).startswith('indisponível'):
+                s = 'indisponivel'
+            elif i in lote_comum:
+                s = 'lote'
+            elif i in lote_pend or i in reg['pendentes'] or i in pend_md:
+                s = 'espera'
+            elif i in reg['divergencias']:
+                s = 'duvida'
+            else:
+                s = 'fila'
+            sit[i] = (m, s, q)
+    return sit
+
+
+def site():
+    """Resoluções publicadas: relatorio.json do site no ar; sem rede, a última publicação registrada."""
+    import urllib.request
+    try:
+        with urllib.request.urlopen(SITE_RELATORIO, timeout=20) as r:
+            d = json.load(r)['com_resolucao']
+        return {'por_materia': d, 'total': sum(d.values()), 'fonte': 'relatório do site no ar'}
+    except Exception:
+        try:
+            u = json.load(open(os.path.join(RAIZ, 'docs', 'resolucoes', 'publicacao.json')))['ultima']
+            return {'por_materia': u['por_materia'], 'total': u['resolvidas'],
+                    'fonte': f'última publicação registrada, {u.get("data", "")}'}
+        except Exception:
+            return {'por_materia': {}, 'total': 0, 'fonte': 'sem dado'}
+
+
+def numeros(sit, no_site):
+    import collections
     rel = json.load(open(os.path.join(lote.PUB, 'relatorio.json')))['com_resolucao']
     linhas = []
     for m in ORDEM:
-        qs = lote.faltam(m, reg, fp)
-        r = lote.registro(m)
-        linhas.append({
-            'm': m, 'nome': lote.NOMES[m], 'feitas': rel.get(m, 0), 'faltam': len(qs),
-            'enem_alvo_facil': sum(1 for q in qs if lote.faixa(q) in (0, 1)),
-            'pendentes': len(r.get('pendentes', {})), 'divergencias': len(r.get('divergencias', {})),
-        })
+        c = collections.Counter(s for (mm, s, _) in sit.values() if mm == m)
+        facil = sum(1 for (mm, s, q) in sit.values() if mm == m and s == 'fila' and lote.faixa(q) in (0, 1))
+        if c['feita'] != rel.get(m, 0):
+            sys.exit(f'{m}: {c["feita"]} com resolução no banco, {rel.get(m)} no relatorio.json: rode o converte de novo')
+        linhas.append({'m': m, 'nome': lote.NOMES[m], 'feitas': c['feita'], 'no_site': no_site['por_materia'].get(m, 0),
+                       'faltam': sum(c[k] for k in VAO_TER), 'nunca': sum(c[k] for k in NUNCA),
+                       'c': c, 'enem_alvo_facil': facil})
     return linhas
 
 
-def provas():
-    """Provas: no projeto, completas (todas as questões com resolução), com questões por resolver, e anos 2020-2026
-    sem prova nenhuma em cada vestibular do catálogo."""
+def provas(sit):
+    """Provas: no projeto; prontas (cada questão tem resolução ou nunca terá, por decisão); pendentes, separadas pelo que
+    resta (questões na fila; em lote aberto; só em espera ou com gabarito em dúvida); e anos 2020-2026 sem prova em
+    cada vestibular do catálogo. Questão duplicada de uma antiga do protótipo conta pelo id antigo
+    (public/conteudo/duplicatas-provas.json)."""
     import glob
     fonte = os.path.join(RAIZ, 'app', 'conteudo-fonte')
+    arq_dup = os.path.join(lote.PUB, 'duplicatas-provas.json')
+    dup = json.load(open(arq_dup)) if os.path.exists(arq_dup) else {}
     ids = {}
+    prontas = so_nunca = com_fila = com_lote = so_espera = 0
     for f in glob.glob(os.path.join(fonte, 'provas', '*', 'prova.json')):
         d = json.load(open(f))
         ids[d['id']] = (d.get('catalogoId'), str(d.get('ano', ''))[:4])
-    tot, com = {}, {}
-    for m in ORDEM:
-        arq = os.path.join(lote.PUB, m, 'banco.json')
-        if not os.path.exists(arq):
-            continue
-        for q in json.load(open(arq)):
-            p = q.get('prova')
-            if not p or q.get('outra_materia'):
-                continue
-            tot[p] = tot.get(p, 0) + 1
-            com[p] = com.get(p, 0) + (1 if q.get('cr') else 0)
-    completas = sum(1 for p in ids if tot.get(p) and com.get(p, 0) >= tot[p])
+        st = set()
+        for q in d['questoes']:
+            i = q['id'] if q['id'] in sit else dup.get(q['id'], '/').split('/')[-1]
+            s = sit.get(i, ('', 'fila'))[1]
+            st.add('indisponivel' if q.get('indisponivel') and s != 'feita' else s)
+        resta = st & set(VAO_TER)
+        if not resta:
+            prontas += 1
+            so_nunca += bool(st & set(NUNCA))
+        elif 'fila' in resta:
+            com_fila += 1
+        elif 'lote' in resta:
+            com_lote += 1
+        else:
+            so_espera += 1
     cat = json.load(open(os.path.join(fonte, 'catalogo-vestibulares.json')))['provas']
     anos = [str(a) for a in range(2020, 2027)]
     cobertos = {(c, a) for c, a in ids.values() if c and a in anos}
     vazios = sum(1 for v in cat for a in anos if (v['id'], a) not in cobertos)
     sem_nenhuma = sum(1 for v in cat if not any((v['id'], a) in cobertos for a in anos))
-    return {'projeto': len(ids), 'completas': completas, 'andamento': len(ids) - completas,
+    return {'projeto': len(ids), 'completas': prontas, 'so_nunca': so_nunca, 'andamento': len(ids) - prontas,
+            'com_fila': com_fila, 'com_lote': com_lote, 'so_espera': so_espera,
             'vestibulares': len(cat), 'anos_vazios': vazios, 'meta': len(cat) * len(anos), 'sem_nenhuma': sem_nenhuma}
 
 
-def no_ar():
-    try:
-        return json.load(open(os.path.join(RAIZ, 'docs', 'resolucoes', 'publicacao.json')))['ultima']
-    except Exception:
-        return {}
+def detalhe_auto(it, lin, no_site, quando):
+    """Itens do o-que-falta.json com "auto": o detalhe é escrito aqui, com os números do momento."""
+    a = it.get('auto')
+    if a == 'resolucoes':
+        ms = ', '.join(f'{x["nome"]} {fmt(x["no_site"])}' for x in lin)
+        fil = [x['nome'] for x in lin if x['c']['fila']]
+        return (f'{fmt(no_site["total"])} publicadas no site ({ms}); {fmt(sum(x["feitas"] for x in lin))} prontas no '
+                f'banco local em {quando}. Fila zerada em todas as matérias'
+                + (f' menos {", ".join(fil)}' if fil else '') + '; o resto está em lote aberto ou em espera.')
+    if a == 'espera':
+        xs = sorted(lin, key=lambda x: -x['c']['espera'])
+        return ('Hoje: ' + ', '.join(f'{x["nome"]} {x["c"]["espera"]}' for x in xs if x['c']['espera'])
+                + f' (total {sum(x["c"]["espera"] for x in lin)}, contando os pendentes de todas as partes e os que estão '
+                'sendo retomados nos lotes de pendentes). Regra (13/11): pergunta sobre a obra inteira passa a ser '
+                'resolvida com fonte didática confirmada na web; letra de música deixou de ser motivo de espera.')
+    return it.get('detalhe')
 
 
 def id_item(it):
@@ -142,14 +233,20 @@ SCRIPT = '''<script>
 def gera():
     pal = json.load(open(PALETA))['materias']
     cor = lambda m, k: pal.get(m, pal.get('fil', {})).get(k, '#888')  # noqa: E731
-    lin = numeros()
-    pv = provas()
+    sit = situacoes()
+    no_site = site()
+    lin = numeros(sit, no_site)
+    pv = provas(sit)
     itens = json.load(open(ITENS)) if os.path.exists(ITENS) else {'grupos': []}
-    pub = no_ar()
     tot_f = sum(x['feitas'] for x in lin)
     tot_r = sum(x['faltam'] for x in lin)
-    pct = round(100 * tot_f / max(1, tot_f + tot_r))
-    agora = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=-3))).strftime('%d/%m/%Y, %Hh%M')
+    tot_n = sum(x['nunca'] for x in lin)
+    so = {k: sum(x['c'][k] for x in lin) for k in VAO_TER + NUNCA}
+    pct = 100 * tot_f / max(1, tot_f + tot_r)
+    pct_txt = (f'{pct:.1f}'.replace('.', ',') if pct < 99.95 else '100') + '%'
+    agora = datetime.datetime.now(BRT).strftime('%d/%m/%Y, %Hh%M')
+    banco_em = datetime.datetime.fromtimestamp(os.path.getmtime(os.path.join(lote.PUB, 'relatorio.json')), BRT)
+    banco_em = banco_em.strftime('%d/%m/%Y, %Hh%M')
 
     css_cores = []
     for x in lin:
@@ -159,31 +256,38 @@ def gera():
         css_cores.append(f':root[data-theme="dark"] .m-{m}{{--ct:{cor(m, "texto_tema_escuro")}}}')
 
     linhas = []
-    for x in sorted(lin, key=lambda x: (x['faltam'] == 0, -x['faltam'])):
+    for x in sorted(lin, key=lambda x: (x['c']['fila'] == 0, -x['faltam'])):
+        c = x['c']
         tot = x['feitas'] + x['faltam']
         p = 100 * x['feitas'] / max(1, tot)
-        if x['faltam'] == 0:
+        # concluída = nenhuma questão na fila (todas já resolvidas ou entregues a um lote/à espera)
+        if c['fila'] == 0:
             est = '<span class="pill ok">concluída</span>'
         elif x['m'] in itens.get('pausadas', []):  # estado real vem do o-que-falta.json
             est = '<span class="pill pausa">pausada</span>'
         else:
             est = '<span class="pill and">em andamento</span>'
         obs = []
+        if x['faltam']:
+            partes_f = [f'{fmt(c["fila"])} na fila' if c['fila'] else '',
+                        f'{fmt(c["lote"])} em lote aberto' if c['lote'] else '',
+                        f'{fmt(c["espera"])} em espera (print, gabarito ou trecho)' if c['espera'] else '',
+                        f'{fmt(c["duvida"])} com gabarito em dúvida' if c['duvida'] else '']
+            obs.append('Faltam: ' + ', '.join(t for t in partes_f if t))
         if x['enem_alvo_facil']:
-            obs.append(f'{x["enem_alvo_facil"]} do ENEM ou provas-alvo (nível 1 a 6)')
-        if x['pendentes']:
-            obs.append(f'{x["pendentes"]} em espera (print, gabarito ou trecho)')
-        if x['divergencias']:
-            obs.append(f'{x["divergencias"]} com gabarito em dúvida')
+            obs.append(f'{fmt(x["enem_alvo_facil"])} da fila são do ENEM ou provas-alvo (nível 1 a 6)')
+        if x['nunca']:
+            obs.append(f'{fmt(x["nunca"])} nunca terão resolução (decisão: indisponível, anulada ou de outra matéria)')
+        obs.append(f'{fmt(x["no_site"])} no site agora')
         linhas.append(f'''<li class="mat m-{x["m"]}">
   <div class="mat-top"><span class="dot"></span><span class="mat-nome">{e(x["nome"])}</span>{est}</div>
   <div class="barra" role="img" aria-label="{p:.0f}% feito"><span style="width:{p:.1f}%"></span></div>
-  <div class="mat-num"><span><b>{x["feitas"]:,}</b> feitas</span><span><b>{x["faltam"]:,}</b> faltam</span></div>
-  {f'<p class="obs">{e(" · ".join(obs))}</p>' if obs else ''}
-</li>'''.replace(',', '.'))
+  <div class="mat-num"><span><b>{fmt(x["feitas"])}</b> prontas</span><span><b>{fmt(x["faltam"])}</b> faltam</span></div>
+  <p class="obs">{e(" · ".join(obs))}</p>
+</li>''')
 
     grupos = []
-    n_falta = n_feito = n_dec = 0
+    n_falta = n_feito = n_dec = n_and = 0
     for g in itens.get('grupos', []):
         lis = []
         for it in g.get('itens', []):
@@ -191,15 +295,16 @@ def gera():
             n_falta += st == 'falta'
             n_feito += st == 'feito'
             n_dec += st == 'decidir'
+            n_and += st == 'andamento'
             rot = {'falta': 'falta', 'feito': 'feito', 'decidir': 'você decide', 'andamento': 'em andamento'}.get(st, st)
-            det = f'<span class="det">{e(it["detalhe"])}</span>' if it.get('detalhe') else ''
+            dt = detalhe_auto(it, lin, no_site, banco_em)
+            det = f'<span class="det">{e(dt)}</span>' if dt else ''
             caixa = caixa_resposta(it) if st == 'decidir' else ''
             lis.append(f'<li class="it st-{st}"><span class="tag">{e(rot)}</span><span class="txt">{e(it["texto"])}{det}</span>{caixa}</li>')
         grupos.append(f'<section class="grupo"><h2>{e(g["area"])}</h2><ul class="itens">{"".join(lis)}</ul></section>')
 
-    pub_txt = ''
-    if pub:
-        pub_txt = f'No site agora: <b>{pub.get("resolvidas", 0):,}</b> resoluções (publicado em {e(pub.get("data", ""))}).'.replace(',', '.')
+    pub_txt = (f'No site agora: <b>{fmt(no_site["total"])}</b> resoluções ({e(no_site["fonte"])}). Prontas no banco local, '
+               f'montado em {banco_em}: <b>{fmt(tot_f)}</b> ({fmt(tot_f - no_site["total"])} ainda não publicadas).')
 
     pagina = f'''<title>O que falta no Aprendice</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -266,20 +371,22 @@ footer{{color:var(--suave);font-size:.82rem}}
 <div class="pag">
 <header>
   <h1>O que falta no Aprendice</h1>
-  <p class="sub">Atualizado em {agora} (horário de Brasília). {pub_txt}</p>
+  <p class="sub">Números calculados em {agora} (horário de Brasília, UTC-3). {pub_txt}</p>
   <p class="site">Site: <a href="https://aprendice.vercel.app" target="_blank" rel="noopener">aprendice.vercel.app</a></p>
 </header>
 <div class="resumo">
-  <div class="n"><b>{pct}%</b><span>das questões de prova já resolvidas</span></div>
-  <div class="n"><b>{f"{tot_f:,}".replace(",", ".")}</b><span>resoluções prontas</span></div>
-  <div class="n"><b>{f"{tot_r:,}".replace(",", ".")}</b><span>questões sem resolução</span></div>
+  <div class="n"><b>{pct_txt}</b><span>das questões de prova que terão resolução já estão prontas</span></div>
+  <div class="n"><b>{fmt(no_site["total"])}</b><span>resoluções no site agora (publicadas)</span></div>
+  <div class="n"><b>{fmt(tot_f)}</b><span>resoluções prontas no banco ({fmt(tot_f - no_site["total"])} ainda não publicadas)</span></div>
+  <div class="n"><b>{fmt(tot_r)}</b><span>questões que ainda vão ganhar resolução: {fmt(so["fila"])} na fila, {fmt(so["lote"])} em lote aberto, {fmt(so["espera"])} em espera, {fmt(so["duvida"])} com gabarito em dúvida</span></div>
+  <div class="n"><b>{fmt(tot_n)}</b><span>nunca terão resolução, por decisão: {fmt(so["indisponivel"])} indisponíveis, {fmt(so["anulada"])} anuladas pelo Aprendice, {fmt(so["outra"])} de outra matéria</span></div>
   <div class="n"><b>{n_dec}</b><span>decisões esperando você</span></div>
 </div>
 <section><h2>Provas</h2>
 <div class="resumo">
   <div class="n"><b>{pv["projeto"]}</b><span>provas no projeto e no site</span></div>
-  <div class="n"><b>{pv["completas"]}</b><span>provas prontas: todas as questões já com resolução</span></div>
-  <div class="n"><b>{pv["andamento"]}</b><span>provas pendentes: ainda têm questões sem resolução</span></div>
+  <div class="n"><b>{pv["completas"]}</b><span>provas prontas: toda questão tem resolução ou está fora por decisão ({pv["so_nunca"]} delas têm alguma questão fora)</span></div>
+  <div class="n"><b>{pv["andamento"]}</b><span>provas pendentes: {pv["com_fila"]} com questões na fila, {pv["com_lote"]} sem fila, mas com questões em lote aberto, {pv["so_espera"]} só com questões em espera ou com gabarito em dúvida</span></div>
   <div class="n"><b>{pv["anos_vazios"]}</b><span>faltam: anos de 2020 a 2026 sem prova, nos {pv["vestibulares"]} vestibulares do catálogo</span></div>
 </div>
 <p class="obs nota-provas">A meta é uma prova por ano de 2020 a 2026 em cada vestibular ({pv["meta"]} ao todo). {pv["sem_nenhuma"]} vestibulares ainda não têm nenhuma prova, por bloqueio do site da banca (baixar à mão), formato que o site não aceita, gabarito só preliminar ou por não terem prova própria.</p>
@@ -288,7 +395,7 @@ footer{{color:var(--suave);font-size:.82rem}}
 <div class="grupos">{"".join(grupos)}
 <section class="grupo"><h2>Outra instrução para a coordenação</h2><div class="itens geral">{caixa_resposta({"id": "geral", "texto": "Instrução geral do dono"}, "Escreva qualquer outra instrução")}</div></section>
 </div>
-<footer>{n_feito} itens concluídos · {n_falta} itens por fazer. A página é atualizada pela coordenação a cada 1.000 questões resolvidas; as suas instruções são lidas a cada rodada (3 em 3 horas).</footer>
+<footer>{n_feito} itens concluídos · {n_and} em andamento · {n_falta} por fazer · {n_dec} para você decidir. A página é atualizada pela coordenação a cada 1.000 questões resolvidas; as suas instruções são lidas a cada rodada (3 em 3 horas).</footer>
 </div>
 ''' + SCRIPT
     open(SAIDA, 'w').write(pagina)
