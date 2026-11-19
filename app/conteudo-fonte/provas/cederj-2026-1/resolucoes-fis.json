@@ -555,5 +555,113 @@
    "data": "2026-11-13",
    "lote": "fis-0061"
   }
+ },
+ "P33d52dd9": {
+  "n": "16",
+  "conceito": "Resistor em série com dois resistores iguais em paralelo: o paralelo vale R/2 e recebe metade da tensão de A.",
+  "equivocos": {
+   "B": "F11.5:razao-com-a-tensao-total",
+   "C": "F11.5:razao-com-a-tensao-total",
+   "D": "F11.5:razao-invertida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na figura, A está em série com a bateria, e B e C estão em paralelo entre si; o par B-C fica em série com A. Toda a corrente I passa por A e se divide igualmente entre B e C, porque são idênticos. Como a tensão é R × corrente, A, com o dobro da corrente de B, tem o dobro da tensão.",
+    "formulas": [
+     "U = R × i",
+     "dois resistores iguais em paralelo: R_eq = R/2"
+    ],
+    "simbolos": [
+     [
+      "V_A, V_B",
+      "tensões nos terminais dos resistores A e B"
+     ],
+     [
+      "R",
+      "resistência de cada resistor"
+     ],
+     [
+      "I",
+      "corrente que passa por A"
+     ]
+    ]
+   },
+   "pista": "Veja na figura por qual resistor passa a corrente inteira e onde ela se divide.",
+   "passos": [
+    {
+     "faz": "Leia o circuito",
+     "conta": "bateria → A → (B ∥ C) → bateria",
+     "porque": "B e C ligam nos mesmos dois pontos: paralelo; A fica sozinho no caminho da corrente toda.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache as correntes",
+     "conta": "i_A = I | i_B = I/2",
+     "porque": "B e C são iguais, então cada um leva metade de I.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva as tensões",
+     "conta": "V_A = R × I | V_B = R × I/2",
+     "porque": "Mesma resistência; a tensão segue a corrente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a razão",
+     "conta": "V_A/V_B = (R × I)/(R × I/2) → V_A/V_B = 2",
+     "porque": "R e I se cancelam; sobra 1 ÷ 1/2 = 2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2.",
+   "checagem": "Pelo divisor de tensão: R_BC = R/2, R_total = 3R/2. A fica com R/(3R/2) = 2/3 de V e o paralelo com 1/3 de V; B tem a tensão do paralelo. (2/3)/(1/3) = 2.",
+   "erradas": {
+    "B": "Sai de dividir a tensão total pela de A: V/V_A = 1/(2/3) = 3/2. A pergunta é V_A/V_B.",
+    "C": "Sai de calcular a fração da tensão total que fica em A: V_A/V = 2/3, em vez de comparar A com B.",
+    "D": "Sai de inverter a razão: V_B/V_A = 1/2. A, por onde passa toda a corrente, tem a tensão maior."
+   },
+   "armadilha": "Inverter a razão ou comparar com a tensão total: A leva a corrente toda, então sua tensão é o dobro da de B.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão entre as tensões em A e em B, com B e C iguais em paralelo e A em série.",
+    "chave": "i_A = I e i_B = I/2 com a mesma R, então V_A/V_B = 2.",
+    "cuidado": "Comparar A com B, não com a tensão total, e não inverter a razão."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "divisor de tensão",
+    "ideia": "R_total = R + R/2 = 3R/2: A fica com 2/3 de V e B com 1/3 de V; a razão é 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i_A = I | i_B = I/2",
+    "nota": "a corrente se divide entre B e C"
+   },
+   {
+    "linha": "V_A = RI | V_B = RI/2",
+    "nota": "U = R × i"
+   },
+   {
+    "linha": "V_A/V_B = (RI)/(RI/2)",
+    "nota": "monta a razão"
+   },
+   {
+    "linha": "V_A/V_B = 2",
+    "nota": "R e I se cancelam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0064"
+  }
  }
 }

@@ -69,7 +69,7 @@ Faltam 644 questões sem resolução (fora as que estão em lote, pendentes ou c
 | fis-0061 | demais nível 1-6 | 60 | gravado | 59 | 1 | 0 |
 | fis-0062 | demais nível 1-6 | 60 | gravado | 59 | 1 | 0 |
 | fis-0063 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
-| fis-0064 | demais nível 1-6 | 60 | aberto |  |  |  |
+| fis-0064 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 

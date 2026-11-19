@@ -568,5 +568,117 @@
    "data": "2026-11-13",
    "lote": "fis-0061"
   }
+ },
+ "P0da39e92": {
+  "n": "26",
+  "conceito": "Somar vetorialmente os campos de quatro cargas nos vértices de um quadrado, à mesma distância do centro.",
+  "equivocos": {
+   "A": "F11.2:somou-so-parte-das-cargas",
+   "C": "F11.2:somou-so-parte-das-cargas",
+   "D": "F11.2:inverteu-sentido-do-campo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As quatro cargas estão à mesma distância do centro, então o módulo de cada campo é proporcional ao valor da carga. O campo de carga positiva aponta para fora dela; o de carga negativa aponta para ela. O caminho mais curto é juntar as cargas das diagonais, que estão em linha com o centro.",
+    "formulas": [
+     "E = k · |Q|/d²",
+     "positiva: campo se afasta | negativa: campo aponta para a carga"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "campo elétrico de cada carga no centro"
+     ],
+     [
+      "k",
+      "constante eletrostática"
+     ],
+     [
+      "d",
+      "distância do vértice ao centro, igual para os quatro"
+     ],
+     [
+      "E₀",
+      "campo que uma carga q cria no centro: k · q/d²"
+     ]
+    ]
+   },
+   "pista": "Trabalhe por diagonal: em cada uma, para onde apontam os dois campos?",
+   "passos": [
+    {
+     "faz": "Some a diagonal 2q e q",
+     "conta": "2q (sup. esq.): 2E₀ ↘ | q (inf. dir.): E₀ ↖ → 2E₀ − E₀ = E₀ ↘",
+     "porque": "As duas são positivas e o campo de cada uma se afasta dela; estão em sentidos opostos na mesma diagonal, e a de 2q vence.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a diagonal −q e −2q",
+     "conta": "−q (sup. dir.): E₀ ↗ | −2q (inf. esq.): 2E₀ ↙ → 2E₀ − E₀ = E₀ ↙",
+     "porque": "As duas são negativas e o campo aponta para cada uma; a de −2q vence.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as duas resultantes",
+     "conta": "E₀ ↘ + E₀ ↙ → horizontais se cancelam → E resultante ↓",
+     "porque": "Os dois vetores têm o mesmo módulo e são simétricos em relação à vertical: sobra só a parte para baixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o segmento",
+     "conta": "↓ = segmento 2",
+     "porque": "O segmento 2 é o que aponta para baixo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — o segmento 2, apontando para baixo.",
+   "checagem": "Separe as cargas em duas partes: 2q, −q, q, −2q = (q, −q, q, −q) + (q, 0, 0, −q). Na primeira parte, cargas iguais alternadas: q (↘) com q (↖) e −q (↗) com −q (↙) se anulam. Sobra a segunda: q no canto superior esquerdo dá E₀ ↘ e −q no inferior esquerdo dá E₀ ↙, que somam para baixo. Mesmo resultado.",
+   "erradas": {
+    "A": "A sai de pensar só nas cargas de cima: 2q empurra para a direita e −q puxa para a direita. Faltou somar as de baixo, que cancelam essa parte horizontal.",
+    "C": "C não confere: a componente horizontal resultante é zero, então o campo não pode apontar para a esquerda.",
+    "D": "D sai de inverter o sentido do campo das cargas (positiva atraindo, negativa repelindo): todos os vetores mudam de sentido e a soma aponta para cima."
+   },
+   "armadilha": "Trocar o sentido do campo: ele se afasta da carga positiva e aponta para a negativa; quem inverte isso marca o segmento 4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O sentido do campo elétrico resultante no centro de um quadrado com 2q, −q, q e −2q nos vértices.",
+    "chave": "Por diagonal: E₀ ↘ e E₀ ↙; as horizontais se anulam e o campo resultante aponta para baixo.",
+    "cuidado": "Campo sai da positiva e entra na negativa; somar vetores, não módulos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "componentes",
+    "ideia": "Com o centro na origem e vértices em (±1, ±1), E ∝ −Σ Q · posição = −[2(−1,1) − (1,1) + (1,−1) − 2(−1,−1)] = (0, −2): para baixo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2E₀ − E₀ = E₀ ↘",
+    "nota": "diagonal das positivas"
+   },
+   {
+    "linha": "2E₀ − E₀ = E₀ ↙",
+    "nota": "diagonal das negativas"
+   },
+   {
+    "linha": "E₀ ↘ + E₀ ↙ = ↓",
+    "nota": "horizontais se cancelam"
+   },
+   {
+    "linha": "↓ = segmento 2",
+    "nota": "alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0064"
+  }
  }
 }

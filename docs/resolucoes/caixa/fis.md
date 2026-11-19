@@ -47,3 +47,26 @@ RECLASS P813c712a F10.8 -> F12.4
 RECLASS P15aa7c8d F11.2 -> F11.3
 DADO Pbd47938d: alternativas -> o "p" é o radical; A = f v/(v − √(2gL[1 − sen(θmax)])), B = f v/(v − √(2gL[1 − cos(θmax)])), C = (f/v){v − √(2gL[1 − sen(θmax)])}, D = (f/v){v − √(2gL[1 − cos(θmax)])}, E = f v/(v − √(2gL cos(θmax)))
 DADO Pa69a4a3c: texto_da_prova -> frações quebradas; no print (I) λ = 2ℓ/3, (II) λ = 4ℓ/5, (III) λ = ℓ, (IV) λ = 4ℓ/3, (V) λ = 4ℓ
+
+## 2026-11-19 15:27 UTC — PENDENCIAS — session_01PveEKZJQECSzmdn2ajLNFJ
+Lote gravado: fis-0064 (60 ok).
+DADO P23c75f16: texto_da_prova -> "resistência de 500 W" é "resistência de 500 Ω"
+DADO P8e8b51ef: alternativas.D -> "1,4 · 10³ V" (o "30" é o número da página)
+RECLASS Pb7570230 F11.4 -> F12.2
+RECLASS P8e8b51ef F11.4 -> F11.8
+RECLASS P23c75f16 F11.4 -> F11.6
+RECLASS P373ecb08 F11.4 -> F11.3
+RECLASS Pbcc564f3 F11.4 -> F01.5
+DADO P51a67e9c: alternativas -> A 2 × 10¹⁵, B 2 × 10¹³, C 6 × 10¹⁵, D 6 × 10¹³ (expoentes achatados e o quadro "Dado: K = 9 × 10⁹ N·m²/C²" colado na D)
+DADO Pc5b6fede: alternativas -> A mv²/(2Ed), B Ed/(mv²), C d/E, D mv/(Ed) (termos fora de ordem)
+DADO P203d9b91: alternativas -> A k·q0/F, B √(k/F)·q0/2, C 4·k·F·q0, D √(k/F)·q0/4 (termos fora de ordem)
+DADO P1960883e: alternativas -> são figuras (A B para cima, B entrando ⊗, C para a direita, D saindo ⊙); "Aterramento" na A é legenda da figura 2
+RECLASS P1960883e F11.2 -> F12.2
+DADO P58dd9bd5: texto_da_prova -> expoentes sem sobrescrito também no print ("6,0 . 108" = 6,0 · 10⁸; "1,0 . 103" = 1,0 · 10³)
+
+## 2026-11-19 15:27 UTC — FIM — session_01PveEKZJQECSzmdn2ajLNFJ
+Último lote gravado: fis-0064. Nenhum lote de Física aberto. Nesta sessão: fis-0062 (retomado; 59 ok, 1 pendente), fis-0063 (60 ok), fis-0064 (60 ok) = 179 resoluções. Física: faltam 644 (f2 128 · f3 31 · f4 186 · f5 299).
+Pendente: ANULAR Pf61a81be (já listado acima).
+Gabarito do Aprendice (sem gabarito publicado, resolvedor e conferente às cegas bateram, e o preliminar também quando existe): fis-0062 P862afdf8 A, P9ead8d05 B, Pfbfd31a7 B; fis-0063 Pdae9f5c6 D, Pe11ba1f8 E, P3aff7b0d E, P1653076e A, Pa9b2af01 B; fis-0064 P1960883e D, P855d55ed C, Pbcc564f3 A, P922cc49f B.
+Testes depois do fis-0063 (converte + tsc + vitest): tsc ok; vitest 786 de 786 passaram.
+Observação: o PROMPT mudou hoje para lotes de 50 e 200 questões por sessão; esta sessão fez 3 lotes de 60 (já abertos/no formato antigo), 179 resoluções.

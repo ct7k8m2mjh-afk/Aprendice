@@ -474,5 +474,128 @@
    "data": "2026-11-13",
    "lote": "fis-0061"
   }
+ },
+ "P51496256": {
+  "n": "40",
+  "conceito": "Carga elétrica como área sob o gráfico corrente × tempo, numa corrente em pulsos que fica ligada metade de cada período.",
+  "equivocos": {
+   "A": "F11.4:fracao-do-periodo-errada",
+   "B": "F11.4:fracao-do-periodo-errada",
+   "C": "F11.4:frequencia-no-lugar-do-tempo",
+   "E": "F11.4:ignorou-intervalo-sem-corrente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Carga é corrente vezes tempo, e no gráfico i × t ela é a área sob a curva. Aqui a corrente vale 30 mA durante metade de cada período e zero na outra metade, como mostram as marcas T/2 da figura. Então, em qualquer intervalo com muitos períodos, a corrente passa só metade do tempo. A frequência de 50 Hz serve só para confirmar que 1 minuto contém um número inteiro de períodos.",
+    "formulas": [
+     "Q = i × Δt (área sob o gráfico i × t)",
+     "T = 1/f",
+     "1 mA = 10⁻³ A; 1 min = 60 s"
+    ],
+    "simbolos": [
+     [
+      "Q",
+      "carga elétrica, em coulomb (C)"
+     ],
+     [
+      "i",
+      "corrente elétrica, em ampère (A)"
+     ],
+     [
+      "mA",
+      "miliampère, um milésimo de ampère"
+     ],
+     [
+      "T",
+      "período: tempo de um ciclo completo (pulso + intervalo)"
+     ],
+     [
+      "f",
+      "frequência: ciclos por segundo, em hertz (Hz)"
+     ],
+     [
+      "Hz",
+      "hertz, um ciclo por segundo"
+     ]
+    ]
+   },
+   "pista": "Olhe as marcas T/2 da figura: durante quanto de cada período a corrente realmente passa?",
+   "passos": [
+    {
+     "faz": "Leia o gráfico",
+     "conta": "i = 30 mA durante T/2 | i = 0 durante T/2",
+     "porque": "Cada período tem uma metade com corrente e outra sem; só a metade ligada transporta carga.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o tempo com corrente em 1 min",
+     "conta": "Δt_ligado = 60 s × 1/2 = 30 s",
+     "porque": "Em 1 min cabem 60 × 50 = 3 000 períodos inteiros, e em cada um a corrente fica ligada metade do tempo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta a corrente para ampère",
+     "conta": "30 mA = 30 × 10⁻³ A = 0,030 A",
+     "porque": "Com corrente em ampère e tempo em segundo, a carga sai em coulomb.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a carga e ligue à letra",
+     "conta": "Q = 0,030 A × 30 s = 0,90 C",
+     "porque": "A carga é a área dos retângulos: a altura de 30 mA vezes o tempo total em que a corrente passou. Dá 0,90 C, a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 0,90 C.",
+   "checagem": "Pela corrente média: metade do tempo 30 mA e metade 0 dá média de 15 mA = 0,015 A; em 60 s, 0,015 × 60 = 0,90 C. Mesmo valor, sem contar o tempo ligado.",
+   "erradas": {
+    "A": "A não confere: 0,60 C em 60 s exigiria corrente média de 10 mA, ou seja, pulso ligado só 1/3 do período, mas a figura mostra pulso e intervalo de T/2 cada.",
+    "B": "B não confere: 1,10 C em 60 s daria corrente média de cerca de 18 mA, que não corresponde a nenhuma fração simples do pulso de T/2 da figura.",
+    "C": "C sai de multiplicar a corrente pela frequência no lugar do tempo: 0,030 × 50 = 1,50. Hertz não é segundo; o tempo é 1 min = 60 s.",
+    "E": "E sai de tratar a corrente como contínua: 0,030 A × 60 s = 1,80 C. Esquece que metade de cada período a corrente é zero."
+   },
+   "armadilha": "A corrente não fica ligada o minuto inteiro: ela é zero metade de cada período, e quem usa os 60 s inteiros marca 1,80 C.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A carga que atravessa o resistor em 1 min, com corrente em pulsos de 30 mA.",
+    "chave": "Carga é a área sob i × t: 0,030 A durante metade de 60 s dá 0,90 C.",
+    "cuidado": "Contar só o tempo em que a corrente passa e converter mA em A."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "corrente média",
+    "ideia": "A média dos pulsos é 15 mA; 0,015 A × 60 s = 0,90 C."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i = 30 mA durante T/2; i = 0 durante T/2",
+    "nota": "leitura do gráfico"
+   },
+   {
+    "linha": "Δt_ligado = 60 s × 1/2 = 30 s",
+    "nota": "metade de cada período"
+   },
+   {
+    "linha": "i = 30 mA = 0,030 A",
+    "nota": "mA para A"
+   },
+   {
+    "linha": "Q = 0,030 × 30 = 0,90 C",
+    "nota": "área dos pulsos → D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0064"
+  }
  }
 }

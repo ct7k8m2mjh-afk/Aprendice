@@ -436,5 +436,135 @@
    "data": "2026-11-13",
    "lote": "fis-0059"
   }
+ },
+ "P9ba45f80": {
+  "n": "39",
+  "conceito": "Resistividade a partir de um ensaio: R = U/i e ρ = R·A/L, comparando com a tabela de materiais.",
+  "equivocos": {
+   "A": "F11.4:resistividade-calculada-errada",
+   "B": "F11.4:resistividade-calculada-errada",
+   "D": "F11.4:resistividade-calculada-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O ensaio dá tensão e corrente, que fornecem a resistência do trecho de solo pela 1ª lei de Ohm. A 2ª lei de Ohm liga essa resistência à resistividade, ao comprimento e à área. O trabalho real está na conversão de 6 mA para ampère.",
+    "formulas": [
+     "R = U/i (1ª lei de Ohm)",
+     "R = ρ × L/A, logo ρ = R × A/L (2ª lei de Ohm)"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "tensão aplicada, em volt (V)"
+     ],
+     [
+      "i",
+      "corrente medida, em ampère (A)"
+     ],
+     [
+      "R",
+      "resistência do trecho de solo, em ohm (Ω)"
+     ],
+     [
+      "ρ",
+      "resistividade, em Ω·m: característica do material"
+     ],
+     [
+      "L",
+      "distância entre os eletrodos, em metro"
+     ],
+     [
+      "A",
+      "área da seção transversal, em m²"
+     ],
+     [
+      "mA",
+      "miliampère, um milésimo de ampère"
+     ]
+    ]
+   },
+   "pista": "Primeiro tire a resistência do solo com a tensão e a corrente; só depois pense na resistividade.",
+   "passos": [
+    {
+     "faz": "Converta a corrente",
+     "conta": "6 mA = 6 × 10⁻³ A = 0,006 A",
+     "porque": "A lei de Ohm pede a corrente em ampère para a resistência sair em ohm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a resistência",
+     "conta": "R = U/i = 120/0,006 = 20 000 Ω",
+     "porque": "A resistência é a tensão aplicada dividida pela corrente que circula pelo solo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a resistividade",
+     "conta": "R = ρ × L/A → ρ = R × A/L",
+     "porque": "O comprimento L, que dividia, passa para o outro lado; a área A, que estava embaixo, passa multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua os valores",
+     "conta": "ρ = (20 000 × 4,5)/300 = 300 Ω·m",
+     "porque": "Comprimento de 300 m e área de 4,5 m², ambos já no SI.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com a tabela",
+     "conta": "300 Ω·m → basalto compacto",
+     "porque": "Na tabela, 300 Ω·m é a resistividade do basalto compacto: alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — basalto compacto.",
+   "checagem": "Volte com o basalto: R = ρ × L/A = 300 × 300/4,5 = 20 000 Ω, e i = 120/20 000 = 0,006 A = 6 mA, exatamente a corrente medida.",
+   "erradas": {
+    "A": "A não confere: com 600 Ω·m, R = 600 × 300/4,5 = 40 000 Ω e a corrente seria 3 mA, não 6 mA.",
+    "B": "B não confere: com 800 Ω·m, R ≈ 53 333 Ω e a corrente seria cerca de 2,25 mA, não 6 mA.",
+    "D": "D não confere: com 150 Ω·m, R = 10 000 Ω e a corrente seria 12 mA, o dobro da medida."
+   },
+   "armadilha": "A resistividade não é a resistência: depois de R = 20 000 Ω ainda falta multiplicar pela área e dividir pelo comprimento.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual material da tabela tem a resistividade medida no ensaio.",
+    "chave": "R = 120/0,006 = 20 000 Ω; ρ = 20 000 × 4,5/300 = 300 Ω·m.",
+    "cuidado": "Converter mA em A e não inverter área e comprimento."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste da tabela",
+    "ideia": "Para cada material, i = U ÷ (ρL/A); só 300 Ω·m devolve os 6 mA medidos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i = 6 mA = 0,006 A",
+    "nota": "mA para A"
+   },
+   {
+    "linha": "R = 120/0,006 = 20 000 Ω",
+    "nota": "1ª lei de Ohm"
+   },
+   {
+    "linha": "ρ = R × A/L",
+    "nota": "2ª lei isolada"
+   },
+   {
+    "linha": "ρ = (20 000 × 4,5)/300 = 300 Ω·m",
+    "nota": "basalto → C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0064"
+  }
  }
 }
