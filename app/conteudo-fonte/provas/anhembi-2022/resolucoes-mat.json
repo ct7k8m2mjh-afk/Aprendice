@@ -1021,5 +1021,121 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P8ff2dd57": {
+  "n": "19",
+  "conceito": "Achar um valor desconhecido a partir de uma condição sobre a média e calcular o aumento percentual em relação a outro mês.",
+  "equivocos": {
+   "A": "M14.1:media-montada-errada",
+   "C": "M03.1:diferenca-absoluta-como-percentual",
+   "D": "M14.1:media-montada-errada",
+   "E": "M14.1:media-montada-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O consumo de junho, x, entra na própria média dos seis meses: por isso a condição \"x superou a média em 17\" vira uma equação em x. Achado x, o aumento é comparado com o consumo de maio, que é a base da porcentagem.",
+    "formulas": [
+     "média = soma dos valores/quantidade",
+     "aumento percentual = (novo − antigo)/antigo"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "consumo de junho, em kWh"
+     ],
+     [
+      "kWh",
+      "quilowatt-hora, unidade de consumo de energia"
+     ]
+    ]
+   },
+   "pista": "Escreva a média dos seis meses com o x dentro dela e só depois use a frase dos 17 kWh.",
+   "passos": [
+    {
+     "faz": "Some os cinco meses conhecidos",
+     "conta": "191 + 185 + 180 + 194 + 183 = 933",
+     "porque": "São março, abril, maio, julho e agosto, lidos nas barras do gráfico.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a equação da média",
+     "conta": "x = (933 + x)/6 + 17 → 6x = 933 + x + 102",
+     "porque": "Junho entra na média dos seis meses e supera essa média em 17. Multiplicando tudo por 6, o 6 do denominador sai e o 17 vira 102.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a equação",
+     "conta": "6x − x = 1035 → 5x = 1035 → x = 1035/5 = 207",
+     "porque": "O x da direita passa subtraindo e o 5 que multiplica passa dividindo. Junho consumiu 207 kWh.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com maio",
+     "conta": "(207 − 180)/180 = 27/180 = 0,15 → 15%",
+     "porque": "O aumento é medido sobre o consumo de maio, 180 kWh, que é o valor de partida.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "15% → alternativa B",
+     "porque": "A pergunta é o aumento percentual de junho em relação a maio.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — aumento de 15%.",
+   "checagem": "Substitua no enunciado: com junho em 207, a soma dos seis meses é 933 + 207 = 1140 e a média é 1140/6 = 190; 207 − 190 = 17, como diz o texto. E 180 × 1,15 = 207.",
+   "erradas": {
+    "A": "21% não confere: 180 × 1,21 = 217,8 kWh; a média dos seis seria (933 + 217,8)/6 = 191,8 e junho superaria a média em 26 kWh, não em 17.",
+    "C": "27% sai de tomar a diferença em kWh como porcentagem: 207 − 180 = 27 kWh. É preciso dividir por 180: 27/180 = 15%.",
+    "D": "24% não confere: 180 × 1,24 = 223,2 kWh; a média seria (933 + 223,2)/6 = 192,7 e junho a superaria em 30,5 kWh, não em 17.",
+    "E": "18% não confere: 180 × 1,18 = 212,4 kWh; a média seria (933 + 212,4)/6 = 190,9 e junho a superaria em 21,5 kWh, não em 17."
+   },
+   "armadilha": "Junho entra na média que ele supera: quem tira a média só dos cinco meses conhecidos (933/5 = 186,6) chega a 203,6 kWh, e não a 207.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O aumento percentual do consumo de junho em relação ao de maio.",
+    "chave": "x = (933 + x)/6 + 17 dá x = 207; (207 − 180)/180 = 15%.",
+    "cuidado": "Inclua o próprio junho na média e divida a diferença pelo consumo de maio."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "desvios da média",
+    "ideia": "os desvios dos seis meses somam zero: junho está 17 acima, então os outros cinco somam 17 abaixo, 5m − 933 = 17, m = 190 e junho = 207"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x = (933 + x)/6 + 17",
+    "nota": "junho supera a média dos seis em 17"
+   },
+   {
+    "linha": "6x = 933 + x + 102",
+    "nota": "multiplica tudo por 6"
+   },
+   {
+    "linha": "5x = 1035",
+    "nota": "o x passa subtraindo"
+   },
+   {
+    "linha": "x = 1035/5 = 207",
+    "nota": "o 5 passa dividindo"
+   },
+   {
+    "linha": "(207 − 180)/180 = 0,15 = 15%",
+    "nota": "aumento sobre maio"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

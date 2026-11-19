@@ -289,5 +289,117 @@
    "data": "2026-11-13",
    "lote": "mat-0060"
   }
+ },
+ "P7bcf09fe": {
+  "n": "50",
+  "conceito": "Média de dados agrupados em classes: ponto médio de cada classe ponderado pela frequência.",
+  "equivocos": {
+   "A": "M14.4:incluiu-classe-fora-do-pedido",
+   "C": "M14.4:media-fora-dos-limites-das-classes",
+   "D": "M14.4:media-fora-dos-limites-das-classes",
+   "E": "M14.4:erro-de-arredondamento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Quando os dados vêm em classes de idade, cada classe é representada pelo seu ponto médio, e o peso é o número de infectados dela. A pergunta corta nas classes até 70: ficam de fora a barra \"> 70\" e a de \"Não informado\".",
+    "formulas": [
+     "ponto médio = (limite inferior + limite superior)/2",
+     "média = (soma de ponto médio × frequência)/(soma das frequências)"
+    ],
+    "simbolos": [
+     [
+      "classe",
+      "faixa de idades, como 10 a 19 anos"
+     ],
+     [
+      "frequência",
+      "número de infectados da classe (altura da barra)"
+     ]
+    ]
+   },
+   "pista": "Escolha um representante para cada classe de idade e decida quais barras entram na conta.",
+   "passos": [
+    {
+     "faz": "Separe as classes até 70",
+     "conta": "0–9: 12238 | 10–19: 27595 | 20–29: 58501 | 30–39: 77179 | 40–49: 64090 | 50–59: 47371 | 60–70: 33809",
+     "porque": "O comando pede só os intervalos até 70; a barra \"> 70\" e a de \"Não informado\" não entram.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o ponto médio de cada classe",
+     "conta": "4,5 | 14,5 | 24,5 | 34,5 | 44,5 | 54,5 | 65",
+     "porque": "O ponto médio representa a classe: (0 + 9)/2 = 4,5, e assim por diante; a última vai de 60 a 70, então (60 + 70)/2 = 65.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique e some",
+     "conta": "12238 × 4,5 + 27595 × 14,5 + … + 33809 × 65 → 12182458",
+     "porque": "Cada ponto médio pesa pelo número de infectados da classe.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo total de infectados",
+     "conta": "12182458/320783 → 37,98 → 38",
+     "porque": "O total das sete classes é 320783; a média 37,98 arredonda para 38, porque a casa decimal 9 é maior que 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "38 anos → alternativa B",
+     "porque": "É a média de idade dos infectados até 70 anos, arredondada ao inteiro mais próximo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 38 anos",
+   "checagem": "Troque o ponto médio por 5, 15, 25, …, 65 (o meio arredondado de cada classe): a média vira 12325945/320783 ≈ 38,42, que também arredonda para 38. A escolha do representante não muda a resposta.",
+   "erradas": {
+    "A": "41 sai de incluir a barra \"> 70\" como se fosse a classe de 70 a 80 (ponto médio 75): (12182458 + 30577 × 75)/351360 ≈ 41,2. O comando corta nos intervalos até 70.",
+    "C": "26 não confere: mesmo pondo cada classe no seu limite inferior (0, 10, …, 60), a média já é ≈ 33,4; nenhuma escolha dentro das classes desce a 26.",
+    "D": "31 não confere: o menor valor possível, com cada classe no limite inferior (0, 10, …, 60), já dá ≈ 33,4, acima de 31.",
+    "E": "39 não confere: com o ponto médio a média é ≈ 37,98, e mesmo com 5, 15, …, 65 fica em ≈ 38,42; as duas arredondam para 38, não para 39."
+   },
+   "armadilha": "Pôr na conta a barra \"> 70\" (ou a de \"Não informado\"): o comando pede só os intervalos até 70.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A média de idade dos infectados nos intervalos até 70 anos, arredondada.",
+    "chave": "Ponto médio de cada classe vezes a frequência: 12182458/320783 ≈ 37,98 ≈ 38.",
+    "cuidado": "Deixe de fora a barra acima de 70 e a de idade não informada."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média provisória",
+    "ideia": "parta de 34,5 (classe 30–39) e some os desvios ponderados: 34,5 + 1115444,5/320783 ≈ 34,5 + 3,48 ≈ 37,98"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4,5 | 14,5 | 24,5 | 34,5 | 44,5 | 54,5 | 65",
+    "nota": "ponto médio de cada classe"
+   },
+   {
+    "linha": "12238 × 4,5 + … + 33809 × 65 = 12182458",
+    "nota": "soma de ponto médio × frequência"
+   },
+   {
+    "linha": "12238 + … + 33809 = 320783",
+    "nota": "total de infectados até 70"
+   },
+   {
+    "linha": "12182458/320783 ≈ 37,98 ≈ 38",
+    "nota": "média arredondada"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

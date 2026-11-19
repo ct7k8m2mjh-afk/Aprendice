@@ -807,5 +807,106 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "Pc16adeeb": {
+  "n": "9",
+  "conceito": "Ler os seis valores de um gráfico de radar e calcular a média aritmética.",
+  "equivocos": {
+   "A": "M14.1:media-fora-do-intervalo-dos-dados",
+   "B": "M14.1:media-abaixo-do-minimo",
+   "C": "M14.2:leu-valores-a-menos-no-grafico",
+   "E": "M14.2:leu-valores-a-mais-no-grafico"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada eixo do radar é uma habilidade, e os anéis marcam os valores 0, 1, 2, 3, 4 e 5 a partir do centro. O trabalho real é ler os seis vértices do Personagem 1 contando anéis, não pela distância a olho. Depois é soma dividida por seis.",
+    "formulas": [
+     "média = (soma dos valores)/(quantidade de valores)"
+    ],
+    "simbolos": [
+     [
+      "gráfico de radar",
+      "gráfico em teia: cada eixo sai do centro, e o valor cresce para fora"
+     ],
+     [
+      "[3 ; 4[",
+      "intervalo dos números de 3 (incluído) até 4 (excluído)"
+     ]
+    ]
+   },
+   "pista": "Conte os anéis do centro até cada vértice do polígono escuro do Personagem 1, um eixo por vez.",
+   "passos": [
+    {
+     "faz": "Leia o valor de cada habilidade",
+     "conta": "Agilidade: 4 | Força: 5 | Equilíbrio: 4 | Precisão: 3 | Resistência: 2 | Técnica: 4",
+     "porque": "O vértice da Força encosta no anel de fora (5); Agilidade, Equilíbrio e Técnica param no 4.º anel; Precisão no 3.º e Resistência no 2.º.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some os seis valores",
+     "conta": "4 + 5 + 4 + 3 + 2 + 4 → 22",
+     "porque": "A média aritmética precisa do total das estatísticas antes da divisão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pela quantidade de habilidades",
+     "conta": "22/6 → 11/3 → 3,67",
+     "porque": "São seis eixos, então o total se divide por 6; 11/3 é um pouco mais que 3,6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Encaixe no intervalo",
+     "conta": "3 ≤ 3,67 < 4 → [3 ; 4[ → alternativa D",
+     "porque": "3,67 é maior que 3 e menor que 4, por isso cai no intervalo fechado em 3 e aberto em 4.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a média está no intervalo [3 ; 4[",
+   "checagem": "Pelos limites do intervalo: a média de 6 valores fica em [3 ; 4[ quando a soma fica entre 3 × 6 = 18 (incluído) e 4 × 6 = 24 (excluído). Como 18 ≤ 22 < 24, a média está em [3 ; 4[.",
+   "erradas": {
+    "A": "[−1 ; 1[ não confere: nenhuma habilidade fica abaixo de 2, e a média nunca é menor que o menor valor, então ela é pelo menos 2.",
+    "B": "[1 ; 2[ não confere: o menor valor do Personagem 1 é 2 (Resistência), e a média não pode ficar abaixo do menor valor.",
+    "C": "[2 ; 3[ não confere: uma média abaixo de 3 exigiria soma menor que 3 × 6 = 18, e os seis valores somam 22.",
+    "E": "[4 ; 5[ não confere: média 4 ou mais exigiria soma de pelo menos 4 × 6 = 24; só a Força passa de 4, e Precisão e Resistência puxam o total para 22."
+   },
+   "armadilha": "Ler o valor de cada eixo pela distância a olho: é preciso contar os anéis, e a Resistência para no 2, não no 3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O intervalo em que fica a média das seis habilidades do Personagem 1.",
+    "chave": "Valores 4, 5, 4, 3, 2 e 4 somam 22; 22/6 ≈ 3,67.",
+    "cuidado": "Conte os anéis do centro para fora em cada eixo e divida por 6, o número de habilidades."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "desvios em relação a 4",
+    "ideia": "desvios 0, +1, 0, −1, −2, 0 somam −2; média = 4 − 2/6 ≈ 3,67"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4 + 5 + 4 + 3 + 2 + 4 = 22",
+    "nota": "soma das seis habilidades"
+   },
+   {
+    "linha": "22/6 = 11/3",
+    "nota": "divide pela quantidade de eixos"
+   },
+   {
+    "linha": "11/3 ≈ 3,67",
+    "nota": "fica entre 3 e 4"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

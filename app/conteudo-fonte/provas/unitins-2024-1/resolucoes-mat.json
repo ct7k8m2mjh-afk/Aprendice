@@ -196,5 +196,104 @@
    "data": "2026-11-13",
    "lote": "mat-0062"
   }
+ },
+ "P834f2205": {
+  "n": "11",
+  "conceito": "União de dois públicos com a interseção dada em porcentagem de um deles.",
+  "equivocos": {
+   "A": "M13.6:interseccao-descontada-duas-vezes",
+   "B": "M13.6:somou-sem-descontar-interseccao",
+   "D": "M13.6:somou-a-interseccao",
+   "E": "M13.6:porcentagem-do-conjunto-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Vingadores ou Barbie\" quer dizer quem viu pelo menos um dos filmes. Os 40% que viram os dois estão nos dois públicos, então somar 1,6 milhão com 1,2 milhão conta essas pessoas duas vezes. Os 40% são do público de Vingadores, não do de Barbie.",
+    "formulas": [
+     "n(V ∪ B) = n(V) + n(B) − n(V ∩ B)"
+    ],
+    "simbolos": [
+     [
+      "V",
+      "público de Vingadores – Ultimato na estreia"
+     ],
+     [
+      "B",
+      "público de Barbie na estreia"
+     ],
+     [
+      "V ∩ B",
+      "quem viu os dois filmes"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro quantas pessoas viram os dois filmes, usando o público do filme certo.",
+   "passos": [
+    {
+     "faz": "Calcule quem viu os dois filmes",
+     "conta": "0,4 · 1.600.000 = 640.000",
+     "porque": "Os 40% são do público de Vingadores, que foi de 1,6 milhão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os públicos e desconte a interseção",
+     "conta": "1.600.000 + 1.200.000 − 640.000 = 2.800.000 − 640.000 = 2.160.000",
+     "porque": "Quem viu os dois está nas duas parcelas; tirando uma vez, cada pessoa fica contada uma vez só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "2.160.000 → alternativa C",
+     "porque": "Esse é o número de pessoas que viram Vingadores ou Barbie na estreia.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 2.160.000 pessoas",
+   "checagem": "Por regiões: só Vingadores = 1.600.000 − 640.000 = 960.000; só Barbie = 1.200.000 − 640.000 = 560.000; os dois = 640.000. Soma: 960.000 + 560.000 + 640.000 = 2.160.000.",
+   "erradas": {
+    "A": "1.520.000 sai de tirar a interseção duas vezes: 2.800.000 − 2 · 640.000 = 1.520.000. É quem viu só um dos filmes.",
+    "B": "2.800.000 sai de somar os públicos sem descontar quem viu os dois: 1.600.000 + 1.200.000.",
+    "D": "3.440.000 sai de somar a interseção em vez de tirar: 2.800.000 + 640.000.",
+    "E": "2.320.000 sai de tirar 40% do público de Barbie: 2.800.000 − 0,4 · 1.200.000 = 2.800.000 − 480.000. Os 40% são de Vingadores."
+   },
+   "armadilha": "Os 40% são do público de Vingadores (1,6 milhão), não do de Barbie, e a interseção sai uma vez só.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas pessoas viram Vingadores ou Barbie na estreia.",
+    "chave": "1.600.000 + 1.200.000 − 0,4 · 1.600.000 = 2.160.000.",
+    "cuidado": "Aplique os 40% ao público de Vingadores e desconte a interseção uma vez."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "um público inteiro mais o que falta do outro",
+    "ideia": "Só Barbie = 1,2 mi − 0,64 mi = 0,56 mi; a união é Vingadores inteiro mais só Barbie: 1,6 mi + 0,56 mi = 2,16 mi = 2.160.000."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V ∩ B = 0,4 · 1.600.000 = 640.000",
+    "nota": "quem viu os dois"
+   },
+   {
+    "linha": "V ∪ B = 1.600.000 + 1.200.000 − 640.000",
+    "nota": "união sem dupla contagem"
+   },
+   {
+    "linha": "V ∪ B = 2.160.000",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

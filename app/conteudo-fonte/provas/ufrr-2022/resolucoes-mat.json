@@ -513,5 +513,117 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P7cc48e4b": {
+  "n": "10",
+  "conceito": "Achar a interseção das duas vacinas pela união e tirar dela a parte só COVID-19.",
+  "equivocos": {
+   "B": "M13.6:valor-sem-teste-de-consistencia",
+   "C": "M13.6:usou-a-regiao-de-fora",
+   "D": "M13.6:esqueceu-de-tirar-nenhuma",
+   "E": "M13.6:conjunto-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se 20% não tomaram nenhuma, 80% tomaram pelo menos uma: essa é a união. A soma 45% + 64% passa de 80% porque conta duas vezes quem tomou as duas; a sobra é a interseção. Tirando a interseção dos 45%, fica quem tomou só a da COVID-19.",
+    "formulas": [
+     "união = COVID + H1N1 − as duas",
+     "só COVID = COVID − as duas"
+    ],
+    "simbolos": [
+     [
+      "união",
+      "quem tomou pelo menos uma das vacinas"
+     ],
+     [
+      "interseção",
+      "quem tomou as duas vacinas"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra a porcentagem que tomou pelo menos uma vacina; só depois compare com 45% + 64%.",
+   "passos": [
+    {
+     "faz": "Ache a porcentagem da união",
+     "conta": "100% − 20% = 80%",
+     "porque": "Quem não tomou nenhuma fica fora da união; o resto tomou pelo menos uma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache quem tomou as duas",
+     "conta": "45% + 64% − x = 80% → x = 109% − 80% = 29%",
+     "porque": "Somar as duas vacinas conta duas vezes quem tomou ambas; o excesso sobre a união é a interseção.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe só a da COVID-19",
+     "conta": "45% − 29% = 16%",
+     "porque": "Dos 45% imunizados contra a COVID-19, 29% também tomaram a da H1N1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta para habitantes",
+     "conta": "16% de 650 mil = 0,16 × 650 mil = 104 mil",
+     "porque": "A pergunta é em habitantes, não em porcentagem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "104 mil habitantes → alternativa A",
+     "porque": "É a população imunizada apenas contra a COVID-19.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 104 mil habitantes",
+   "checagem": "Some as quatro regiões: só COVID 16%, as duas 29%, só H1N1 64% − 29% = 35% e nenhuma 20%. 16 + 29 + 35 + 20 = 100%: fecha a população inteira.",
+   "erradas": {
+    "B": "286 mil não confere: é 44% de 650 mil; com 44% só de COVID-19, as duas seriam 45% − 44% = 1%, só H1N1 63%, e 44 + 1 + 63 + 20 = 128%, mais que a população.",
+    "C": "130 mil sai de usar os 20% que não tomaram nenhuma: 0,20 × 650 mil = 130 mil. Esse é o grupo de fora, não o da COVID-19.",
+    "D": "234 mil sai de 100% − 64% = 36%, quem não tomou a da H1N1: 0,36 × 650 mil = 234 mil. Faltou tirar os 20% que não tomaram nenhuma.",
+    "E": "416 mil sai de usar os 64% da H1N1: 0,64 × 650 mil = 416 mil. A pergunta é sobre a vacina da COVID-19."
+   },
+   "armadilha": "Os 45% da COVID-19 incluem quem também tomou a da H1N1; \"apenas\" exige tirar a interseção.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A população imunizada só com a vacina da COVID-19.",
+    "chave": "União 80% = 45% + 64% − x dá x = 29%; só COVID = 16% de 650 mil = 104 mil.",
+    "cuidado": "Tire a interseção dos 45% antes de converter em habitantes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo complementar",
+    "ideia": "Quem não tomou a da H1N1 é 36%; tirando os 20% sem nenhuma, sobram 16% só com a da COVID-19: 0,16 × 650 mil = 104 mil."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "união = 100% − 20% = 80%",
+    "nota": "quem tomou pelo menos uma"
+   },
+   {
+    "linha": "45% + 64% − x = 80% → x = 29%",
+    "nota": "a interseção é o excesso"
+   },
+   {
+    "linha": "só COVID = 45% − 29% = 16%",
+    "nota": "tirar a interseção"
+   },
+   {
+    "linha": "0,16 × 650 = 104 mil",
+    "nota": "converter em habitantes"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

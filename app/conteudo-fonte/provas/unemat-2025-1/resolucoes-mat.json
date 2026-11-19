@@ -375,5 +375,210 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "Pbb2be19f": {
+  "n": "15",
+  "conceito": "Média, moda e mediana de 10 notas.",
+  "equivocos": {
+   "B": "M14.1:erro-na-soma",
+   "C": "M14.1:pegou-so-um-dos-centrais",
+   "D": "M14.1:pegou-so-um-dos-centrais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Média é a soma das notas dividida por 10. Moda é a nota que se repete. Mediana pede a lista ORDENADA; com 10 notas (quantidade par), é a média da 5ª e da 6ª. A média e a moda batem em três alternativas; quem decide é a mediana.",
+    "formulas": [
+     "média = (soma)/(quantidade)",
+     "mediana (n par) = (valor central 1 + valor central 2)/2, com a lista em ordem"
+    ],
+    "simbolos": [
+     [
+      "moda",
+      "valor que mais se repete"
+     ],
+     [
+      "mediana",
+      "valor do meio da lista ordenada"
+     ]
+    ]
+   },
+   "pista": "Ordene as 10 notas antes de procurar o meio; o quadro não está em ordem.",
+   "passos": [
+    {
+     "faz": "Some e divida por 10",
+     "conta": "6,2 + 7,4 + 8,1 + 7,4 + 6,8 + 8,4 + 9,0 + 7,7 + 8,8 + 6,6 = 76,4 → 76,4/10 = 7,64",
+     "porque": "São 10 notas no quadro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a moda",
+     "conta": "7,4 aparece 2 vezes; as outras, 1 → moda = 7,4",
+     "porque": "É a única nota repetida.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ordene e ache os centrais",
+     "conta": "6,2; 6,6; 6,8; 7,4; [7,4; 7,7]; 8,1; 8,4; 8,8; 9,0",
+     "porque": "Com 10 notas, os centrais são a 5ª e a 6ª, com 4 notas de cada lado.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a mediana",
+     "conta": "(7,4 + 7,7)/2 = 15,1/2 = 7,55",
+     "porque": "A mediana de lista par é o ponto médio dos dois centrais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o trio à alternativa",
+     "conta": "7,64; 7,4; 7,55 → alternativa A",
+     "porque": "A ordem pedida é média, moda e mediana.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — média 7,64, moda 7,4 e mediana 7,55",
+   "checagem": "Confira a média pelos desvios em torno de 7,6: −1,4 + (−0,2) + 0,5 + (−0,2) + (−0,8) + 0,8 + 1,4 + 0,1 + 1,2 + (−1,0) = 0,4, e 0,4/10 = 0,04; 7,6 + 0,04 = 7,64.",
+   "erradas": {
+    "B": "7,54 não confere: 7,54 × 10 = 75,4, e as notas somam 76,4. A mediana 7,5 também não fecha: (7,4 + 7,7)/2 = 7,55.",
+    "C": "A mediana 7,7 sai de pegar só a 6ª nota ordenada; com 10 notas, é a média da 5ª e da 6ª: (7,4 + 7,7)/2 = 7,55.",
+    "D": "A mediana 7,4 sai de pegar só a 5ª nota ordenada (ou repetir a moda); o certo é (7,4 + 7,7)/2 = 7,55."
+   },
+   "armadilha": "Com 10 notas há dois valores centrais: a mediana é a média deles, não um só.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Média, moda e mediana das 10 notas.",
+    "chave": "Soma 76,4 dá média 7,64; moda 7,4; ordenadas, (7,4 + 7,7)/2 = 7,55.",
+    "cuidado": "Ordene e, com quantidade par, faça a média dos dois centrais."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "a média 7,64 e a moda 7,4 aparecem em A, C e D; só a mediana decide, e ela é a média de 7,4 e 7,7, ou seja, 7,55"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "soma = 76,4 → 76,4/10 = 7,64",
+    "nota": "média"
+   },
+   {
+    "linha": "7,4 duas vezes → moda 7,4",
+    "nota": "moda"
+   },
+   {
+    "linha": "ordenadas: 5ª = 7,4 | 6ª = 7,7",
+    "nota": "centrais de 10"
+   },
+   {
+    "linha": "(7,4 + 7,7)/2 = 15,1/2 = 7,55",
+    "nota": "mediana"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
+ },
+ "P77cf65f0": {
+  "n": "17",
+  "conceito": "Média ponderada de duas partes da turma: 80 % com média 5,5 e 20 % com a nota máxima.",
+  "equivocos": {
+   "A": "M14.4:nao-usou-o-caso-extremo",
+   "B": "M14.4:esqueceu-a-parte-restante",
+   "D": "M14.4:nao-usou-o-caso-extremo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A média final é uma média ponderada: 80 % das provas têm média 5,5 e os 20 % restantes ainda não foram corrigidos. A média final é a maior possível quando todas essas provas restantes tiram a nota máxima, 10.",
+    "formulas": [
+     "média final = 0,8 × (média das corrigidas) + 0,2 × (média das restantes)"
+    ],
+    "simbolos": [
+     [
+      "média ponderada",
+      "média em que cada parte pesa conforme o tamanho dela"
+     ],
+     [
+      "%",
+      "por cento: 80 % = 0,8"
+     ]
+    ]
+   },
+   "pista": "Pense no melhor caso: que nota tirariam as provas ainda não corrigidas?",
+   "passos": [
+    {
+     "faz": "Separe as duas partes",
+     "conta": "80 % corrigidas: média 5,5 | 20 % restantes: no máximo 10",
+     "porque": "As provas que faltam são 100 % − 80 % = 20 % da turma.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a média ponderada",
+     "conta": "média final = 0,8 × 5,5 + 0,2 × 10",
+     "porque": "Cada parte pesa a fração da turma que representa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule",
+     "conta": "0,8 × 5,5 + 0,2 × 10 = 4,4 + 2,0 = 6,4",
+     "porque": "Com as restantes no máximo, a média final atinge o maior valor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque",
+     "conta": "maior média possível = 6,4 → alternativa C",
+     "porque": "Qualquer nota menor que 10 nas restantes baixa a média.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 6,4 pontos",
+   "checagem": "Pense no quanto a média sobe: os 20 % restantes ficam 10 − 5,5 = 4,5 acima da média parcial, e pesam 0,2; a média sobe 0,2 × 4,5 = 0,9, de 5,5 para 5,5 + 0,9 = 6,4.",
+   "erradas": {
+    "A": "5,7 é possível, mas não é o maior: basta que as provas restantes tenham média 6,5, pois 4,4 + 0,2 × 6,5 = 5,7. Com 10, a média chega a 6,4.",
+    "B": "4,4 sai de calcular só 0,8 × 5,5 = 4,4 e esquecer de somar a parte dos 20 % restantes (0,2 × 10 = 2).",
+    "D": "6,0 é possível, mas não é o maior: exige média 8 nas restantes, pois 4,4 + 0,2 × 8 = 6,0. Com nota 10 elas levam a média a 6,4."
+   },
+   "armadilha": "O 0,8 × 5,5 = 4,4 é só a contribuição das corrigidas: falta somar os 20 % com nota máxima.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A maior média final possível depois de corrigir todas as provas.",
+    "chave": "Média ponderada no melhor caso: 0,8 × 5,5 + 0,2 × 10 = 6,4.",
+    "cuidado": "Os pesos 0,8 e 0,2 somam 1; não esqueça a parte que falta corrigir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "turma de 10 alunos",
+    "ideia": "8 provas com 5,5 somam 44; 2 provas com 10 somam 20; (44 + 20)/10 = 6,4"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,8 × 5,5 + 0,2 × 10",
+    "nota": "média ponderada no melhor caso"
+   },
+   {
+    "linha": "4,4 + 2,0 = 6,4",
+    "nota": "somar as contribuições"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

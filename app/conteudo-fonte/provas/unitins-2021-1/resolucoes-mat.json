@@ -285,5 +285,111 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "P1ca7c9fd": {
+  "n": "13",
+  "conceito": "Probabilidade da união de dois eventos com a interseção descontada.",
+  "equivocos": {
+   "B": "M13.6:uniao-menor-que-um-conjunto",
+   "C": "M13.6:uniao-menor-que-um-conjunto",
+   "D": "M13.6:uniao-menor-que-um-conjunto",
+   "E": "M13.6:uniao-menor-que-um-conjunto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"A ou B\" quer dizer usar pelo menos um dos aplicativos. Somar 648 com 470 conta duas vezes os 394 que usam os dois, então é preciso descontá-los uma vez. Depois divide-se pelo total de 1.304 pessoas.",
+    "formulas": [
+     "n(A ∪ B) = n(A) + n(B) − n(A ∩ B)",
+     "P = casos favoráveis/total"
+    ],
+    "simbolos": [
+     [
+      "A ∪ B",
+      "quem usa A, B ou os dois"
+     ],
+     [
+      "A ∩ B",
+      "quem usa os dois aplicativos"
+     ]
+    ]
+   },
+   "pista": "Antes de dividir, descubra quantas pessoas usam pelo menos um aplicativo, sem contar ninguém duas vezes.",
+   "passos": [
+    {
+     "faz": "Conte quem usa A ou B",
+     "conta": "648 + 470 − 394 = 1.118 − 394 = 724",
+     "porque": "Os 394 que usam os dois estão dentro dos 648 e dos 470; tirando uma vez, cada pessoa fica contada uma vez só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo total",
+     "conta": "724/1.304 ≈ 0,5552",
+     "porque": "O sorteio é entre as 1.304 pessoas da pesquisa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para porcentagem",
+     "conta": "0,5552 · 100 ≈ 55,5%",
+     "porque": "Multiplicar por 100 dá a porcentagem; a casa seguinte (2) arredonda para baixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "≈ 55,5% → alternativa A",
+     "porque": "A probabilidade de a pessoa usar A ou B é de cerca de 55,5%.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 55,5%",
+   "checagem": "A união não pode ser menor que o maior dos conjuntos: só A já dá 648/1.304 ≈ 49,7%. A única alternativa acima disso é 55,5%.",
+   "erradas": {
+    "B": "49,2% não confere: só os usuários de A já são 648/1.304 ≈ 49,7%, e a união com B não pode ser menor que isso.",
+    "C": "36,1% não confere: fica abaixo de P(A) ≈ 49,7%; a união tem pelo menos todos os usuários de A.",
+    "D": "30,8% não confere: fica abaixo de P(A) ≈ 49,7%; nem a interseção 394/1.304 ≈ 30,2% é a pergunta.",
+    "E": "28,7% não confere: fica abaixo de P(A) ≈ 49,7%; a união tem pelo menos os 648 usuários de A."
+   },
+   "armadilha": "Somar 648 + 470 sem tirar os 394 conta duas vezes quem usa os dois aplicativos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de uma pessoa sorteada usar o aplicativo A ou o B.",
+    "chave": "(648 + 470 − 394)/1.304 = 724/1.304 ≈ 55,5%.",
+    "cuidado": "Desconte a interseção uma vez antes de dividir pelo total."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "Nenhum aplicativo: 1.304 − 724 = 580 pessoas, 580/1.304 ≈ 44,5%; a união é 100% − 44,5% = 55,5%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "n(A ∪ B) = 648 + 470 − 394",
+    "nota": "união sem dupla contagem"
+   },
+   {
+    "linha": "n(A ∪ B) = 724",
+    "nota": "pessoas com pelo menos um aplicativo"
+   },
+   {
+    "linha": "P = 724/1.304 ≈ 0,5552",
+    "nota": "dividir pelo total"
+   },
+   {
+    "linha": "P ≈ 55,5%",
+    "nota": "virar porcentagem"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

@@ -397,5 +397,109 @@
    "data": "2026-11-13",
    "lote": "mat-0063"
   }
+ },
+ "Pe8efe147": {
+  "n": "57",
+  "conceito": "Ordenar valores lidos em gráfico de barras e decidir abaixo de qual valor fica pelo menos metade deles.",
+  "equivocos": {
+   "A": "M14.1:mediana-de-lista-impar-como-par",
+   "B": "M14.1:moda-no-lugar-da-mediana",
+   "C": "M14.1:contou-iguais-como-abaixo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O gráfico traz 15 taxas, de 2007 a 2021. Para saber abaixo de que valor fica metade delas, coloque as 15 em ordem e conte quantas ficam estritamente abaixo de cada alternativa. Com 15 valores, metade é 7,5: é preciso ter pelo menos 8 valores abaixo.",
+    "formulas": [
+     "metade de 15 valores = 15/2 = 7,5",
+     "contar os valores menores que cada alternativa"
+    ],
+    "simbolos": [
+     [
+      "taxa de fecundidade",
+      "número médio de filhos por mulher em idade fértil, segundo o texto"
+     ],
+     [
+      "mediana",
+      "valor do meio da lista ordenada"
+     ],
+     [
+      "moda",
+      "valor que mais se repete"
+     ]
+    ]
+   },
+   "pista": "Ordene as 15 taxas do gráfico e, para cada alternativa, conte quantas ficam abaixo dela.",
+   "passos": [
+    {
+     "faz": "Leia e ordene as 15 taxas",
+     "conta": "1,70 | 1,74 | 1,75 | 1,75 | 1,76 | 1,76 | 1,76 | 1,77 | 1,77 | 1,78 | 1,78 | 1,80 | 1,91 | 1,95 | 1,99",
+     "porque": "Os rótulos das barras dão os valores de 2007 a 2021; ordenar é o que permite contar quantos ficam abaixo de cada número.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache quantos valores são metade",
+     "conta": "15/2 = 7,5 → pelo menos 8 valores abaixo",
+     "porque": "Como 15 é ímpar, 50% dos valores são 7,5; para a frase valer, pelo menos 8 taxas têm de ficar abaixo do número.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os valores abaixo de cada alternativa",
+     "conta": "abaixo de 1,760: 4 | de 1,765: 7 | de 1,770: 7 | de 1,780: 9",
+     "porque": "Abaixo de 1,77 ficam só as 7 primeiras da lista (1,70 a 1,76); abaixo de 1,78 entram também os dois 1,77, e são 9.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Compare com a metade",
+     "conta": "9/15 = 60% ≥ 50% → alternativa D",
+     "porque": "Só 1,780 deixa pelo menos metade das taxas abaixo dele; nas outras, menos da metade fica abaixo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1,780.",
+   "checagem": "Conte pelo outro lado: as taxas iguais ou maiores que 1,78 são 1,78, 1,78, 1,80, 1,91, 1,95 e 1,99, ou seja, 6 de 15; logo 15 − 6 = 9 ficam abaixo, mais da metade.",
+   "erradas": {
+    "A": "1,765 sai de calcular a mediana como se a lista fosse par: (1,76 + 1,77)/2 = 1,765. Com 15 valores, abaixo de 1,765 ficam só 7 (46,7%).",
+    "B": "1,760 sai de tomar a moda: 1,76 aparece três vezes. Abaixo de 1,76 ficam só 4 dos 15 valores (26,7%).",
+    "C": "1,770 é a mediana (8º valor), mas abaixo dela ficam só 7 dos 15 (46,7%): os dois 1,77 não estão abaixo de 1,77."
+   },
+   "armadilha": "Abaixo de 1,77 não entram os próprios 1,77: ficam só 7 das 15 taxas, menos da metade.",
+   "alerta": "A mediana das 15 taxas é 1,77 (alternativa C), e muita gente associa \"50% abaixo\" à mediana. Pelo gabarito oficial (D), vale a leitura estrita da frase: estritamente abaixo de 1,77 há só 7 valores (46,7%), e a única alternativa com pelo menos metade das taxas abaixo dela é 1,780 (9 de 15). O comando diz \"de acordo com a tabela\", mas os dados estão num gráfico de barras.",
+   "essencial": {
+    "pede": "Abaixo de qual valor fica pelo menos metade das 15 taxas.",
+    "chave": "Ordenadas, abaixo de 1,78 ficam 9 de 15 (60%); abaixo de 1,77, só 7.",
+    "cuidado": "Conte só os valores estritamente menores; os iguais não estão abaixo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contar de cima",
+    "ideia": "6 taxas são iguais ou maiores que 1,78, então 15 − 6 = 9 ficam abaixo; para 1,77 são 8 iguais ou maiores e só 7 abaixo"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "15/2 = 7,5",
+    "nota": "metade das 15 taxas"
+   },
+   {
+    "linha": "abaixo de 1,77: 7 valores → 7/15 ≈ 46,7%",
+    "nota": "menos da metade"
+   },
+   {
+    "linha": "abaixo de 1,78: 9 valores → 9/15 = 60%",
+    "nota": "mais da metade: D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

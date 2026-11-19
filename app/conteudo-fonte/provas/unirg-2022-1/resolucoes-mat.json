@@ -530,5 +530,115 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P503c943e": {
+  "n": "41",
+  "conceito": "Montar o diagrama de três conjuntos, achar o total pesquisado e a região só caminhada.",
+  "equivocos": {
+   "B": "M13.6:esqueceu-a-intersecao-tripla",
+   "C": "M13.6:usou-o-conjunto-inteiro-em-vez-do-so",
+   "D": "M13.6:valor-sem-teste-de-consistencia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O total de pessoas não é dado: ele sai da união das três atividades mais as 26 que não praticam nenhuma. Os números das duplas (\"pedalam e caminham\") incluem os 4 que fazem as três, então comece pelo centro do diagrama. A pergunta é só caminhada: tire de 68 quem também pedala ou nada.",
+    "formulas": [
+     "união = P + C + N − (P e C) − (P e N) − (C e N) + (as três)",
+     "só C = C − (C e N) − (P e C) + (as três)"
+    ],
+    "simbolos": [
+     [
+      "P, C, N",
+      "pedalam, caminham, nadam"
+     ],
+     [
+      "só C",
+      "caminha e não pedala nem nada"
+     ]
+    ]
+   },
+   "pista": "Comece pelo centro do diagrama, os 4 que fazem as três, e lembre que o sorteio é entre todos os entrevistados, inclusive os 26.",
+   "passos": [
+    {
+     "faz": "Ache quantos praticam alguma",
+     "conta": "42 + 68 + 46 − 8 − 6 − 12 + 4 = 134",
+     "porque": "Somar as três atividades conta duas vezes quem faz duas; tirando as duplas, os 4 das três somem por completo e voltam com o + 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os que não praticam nenhuma",
+     "conta": "134 + 26 = 160",
+     "porque": "O espaço amostral são todos os entrevistados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe quem só caminha",
+     "conta": "68 − 6 − 12 + 4 = 54",
+     "porque": "Os 6 e os 12 incluem os 4 das três atividades; ao tirar os dois grupos, os 4 saem duas vezes, então se devolve uma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo total",
+     "conta": "54/160 = 27/80 = 0,3375 ≈ 34%",
+     "porque": "Casos favoráveis sobre os 160 possíveis.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "≈ 34% → alternativa A",
+     "porque": "33,75% arredonda para 34%.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — aproximadamente 34%",
+   "checagem": "Some todas as regiões: só P = 42 − 8 − 12 + 4 = 26, só N = 46 − 8 − 6 + 4 = 36, só C = 54, só P e N = 4, só N e C = 2, só P e C = 8, as três = 4, nenhuma = 26. 26 + 36 + 54 + 4 + 2 + 8 + 4 + 26 = 160: fecha.",
+   "erradas": {
+    "B": "36% sai de esquecer de tirar os 4 das três atividades: 68 − (6 − 4) − (12 − 4) = 58, e 58/160 = 36,25% ≈ 36%. Os 4 também nadam e pedalam.",
+    "C": "42% sai de usar todos os que caminham: 68/160 = 42,5% ≈ 42%. A pergunta é apenas caminhada.",
+    "D": "48% não confere: 48% de 160 dá 76,8 pessoas, mais do que os 68 que caminham ao todo."
+   },
+   "armadilha": "Os 6 e os 12 incluem os 4 que fazem as três: tire os dois grupos e devolva os 4 uma vez.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de sortear alguém que pratica apenas caminhada.",
+    "chave": "Total 134 + 26 = 160; só C = 68 − 6 − 12 + 4 = 54; 54/160 ≈ 34%.",
+    "cuidado": "Inclua os 26 no total e corrija os 4 das três atividades."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diagrama pelo centro",
+    "ideia": "Centro 4; C e N só 6 − 4 = 2; P e C só 12 − 4 = 8; só C = 68 − 4 − 2 − 8 = 54; 54/160 ≈ 34%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "42 + 68 + 46 − 8 − 6 − 12 + 4 = 134",
+    "nota": "praticam alguma"
+   },
+   {
+    "linha": "134 + 26 = 160",
+    "nota": "total de entrevistados"
+   },
+   {
+    "linha": "só C = 68 − 6 − 12 + 4 = 54",
+    "nota": "tirar as duplas e devolver o centro"
+   },
+   {
+    "linha": "54/160 = 0,3375 ≈ 34%",
+    "nota": "favoráveis sobre o total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

@@ -1524,5 +1524,133 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "P1128d9d9": {
+  "n": "25",
+  "conceito": "Termo geral do binômio de Newton: achar a constante pelo coeficiente de x³ e depois o termo independente.",
+  "equivocos": {
+   "A": "M13.9:valor-sem-teste-de-consistencia",
+   "C": "M13.9:valor-sem-teste-de-consistencia",
+   "D": "M13.9:valor-sem-teste-de-consistencia",
+   "E": "M13.9:binomial-do-termo-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Use o termo geral: cada termo de (x² + a/x)⁶ é escolher k vezes o a/x e 6 − k vezes o x². O expoente de x fica 2(6 − k) − k = 12 − 3k. Com isso, primeiro ache o k do termo em x³ para descobrir a; depois ache o k do termo independente (expoente 0).",
+    "formulas": [
+     "T(k) = C(6, k) · (x²)⁶⁻ᵏ · (a/x)ᵏ = C(6, k) · aᵏ · x¹²⁻³ᵏ",
+     "C(n, k) = n!/(k!(n − k)!)"
+    ],
+    "simbolos": [
+     [
+      "C(6, k)",
+      "número binomial: maneiras de escolher k fatores entre 6"
+     ],
+     [
+      "k",
+      "quantas vezes o a/x entra no termo"
+     ],
+     [
+      "termo independente",
+      "termo sem x (expoente 0)"
+     ]
+    ]
+   },
+   "pista": "Escreva o expoente de x no termo geral em função de k e iguale a 3.",
+   "passos": [
+    {
+     "faz": "Ache o k do termo em x³",
+     "conta": "12 − 3k = 3 → 3k = 9 → k = 3",
+     "porque": "O expoente de x no termo geral é 12 − 3k.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descubra a pelo coeficiente 160",
+     "conta": "C(6, 3) · a³ = 160 → 20a³ = 160 → a³ = 160/20 = 8 → a = 2",
+     "porque": "C(6, 3) = (6 · 5 · 4)/(3 · 2 · 1) = 20; o 20 que multiplica passa dividindo, e o único real com cubo 8 é 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o k do termo independente",
+     "conta": "12 − 3k = 0 → 3k = 12 → k = 4",
+     "porque": "Termo independente é o de expoente zero.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o coeficiente",
+     "conta": "C(6, 4) · a⁴ = 15 · 2⁴ = 15 · 16 = 240",
+     "porque": "C(6, 4) = (6 · 5)/(2 · 1) = 15 e a⁴ = 16.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "240 → alternativa B",
+     "porque": "O termo independente de x tem coeficiente 240.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 240",
+   "checagem": "Com a = 2, os coeficientes são C(6, k) · 2ᵏ: k = 3 dá 20 · 8 = 160 (bate com o enunciado) e a soma de todos, com x = 1, é (1 + 2)⁶ = 729 = 1 + 12 + 60 + 160 + 240 + 192 + 64. Fecha.",
+   "erradas": {
+    "A": "200 não confere: o termo independente vale 15a⁴, e 200 exigiria a⁴ = 200/15 = 40/3; com a = 2, a⁴ = 16.",
+    "C": "260 não confere: 15a⁴ = 260 exigiria a⁴ = 260/15 = 52/3; com a = 2, a⁴ = 16.",
+    "D": "300 não confere: 15a⁴ = 300 exigiria a⁴ = 20; mas a³ = 8 obriga a = 2 e a⁴ = 16.",
+    "E": "320 sai de usar o número binomial do termo em x³ no termo independente: C(6, 3) · 2⁴ = 20 · 16 = 320. O termo independente é k = 4, com C(6, 4) = 15."
+   },
+   "armadilha": "O expoente de x cai 3 a cada k (o x² perde 2 e o 1/x tira mais 1); quem usa o expoente errado escolhe o k errado e mistura os coeficientes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O coeficiente do termo sem x em (x² + a/x)⁶, sabendo que o de x³ é 160.",
+    "chave": "Termo geral C(6, k) · aᵏ · x¹²⁻³ᵏ: k = 3 dá 20a³ = 160, a = 2; k = 4 dá 15 · 16 = 240.",
+    "cuidado": "Use C(6, 4) = 15 no termo independente, não o C(6, 3) do termo em x³."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razão entre termos",
+    "ideia": "Termo independente/termo em x³ = (C(6, 4)/C(6, 3)) · a = (15/20) · 2 = 3/2, e 160 · 3/2 = 240."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "T(k) = C(6, k) · aᵏ · x¹²⁻³ᵏ",
+    "nota": "termo geral"
+   },
+   {
+    "linha": "12 − 3k = 3 → k = 3",
+    "nota": "termo em x³"
+   },
+   {
+    "linha": "20a³ = 160 → a³ = 8 → a = 2",
+    "nota": "achar a constante"
+   },
+   {
+    "linha": "12 − 3k = 0 → k = 4",
+    "nota": "termo independente"
+   },
+   {
+    "linha": "15 · 2⁴ = 240",
+    "nota": "coeficiente pedido"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

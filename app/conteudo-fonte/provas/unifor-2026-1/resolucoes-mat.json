@@ -842,5 +842,249 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "P2ef436b8": {
+  "n": "1",
+  "conceito": "Montar o diagrama de Venn de três conjuntos a partir das interseções e achar o total de um deles.",
+  "equivocos": {
+   "A": "M13.6:tomou-o-centro-pelo-conjunto",
+   "B": "M13.6:parou-na-regiao-so",
+   "C": "M13.6:conjunto-trocado",
+   "E": "M13.6:complemento-tomado-como-so-um"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"21 pessoas às alternativas i e ii\" inclui quem respondeu os três setores; não é \"só i e ii\". Por isso o primeiro trabalho é achar a região central (os três setores), e a informação \"4 pessoas apenas à alternativa i\" é a que destrava. Com o centro, as outras regiões saem por subtração e o total de 44 dá a região \"só ii\".",
+    "formulas": [
+     "só i = n(i) − n(i∩ii) − n(i∩iii) + n(i∩ii∩iii)",
+     "n(ii) = só ii + (i e ii sem iii) + (ii e iii sem i) + centro"
+    ],
+    "simbolos": [
+     [
+      "i, ii, iii",
+      "cirurgia geral, urgência e emergência, clínica médica"
+     ],
+     [
+      "∩",
+      "interseção: quem está nos dois conjuntos"
+     ],
+     [
+      "t",
+      "número de candidatos que atuaram nos três setores (o centro do diagrama)"
+     ]
+    ]
+   },
+   "pista": "Comece pelo centro do diagrama: use o total de i e o \"apenas i\" para descobrir quantos atuaram nos três setores.",
+   "passos": [
+    {
+     "faz": "Ache quem atuou nos três setores",
+     "conta": "28 − 21 − 13 + t = 4 → 28 − 34 + t = 4 → t = 10",
+     "porque": "Tirando de i as duas interseções, o centro sai duas vezes; somando t de volta, sobra só quem fez apenas i, que são 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Preencha as regiões de duas interseções",
+     "conta": "i e ii sem iii: 21 − 10 = 11 | i e iii sem ii: 13 − 10 = 3 | ii e iii sem i: 11 − 10 = 1",
+     "porque": "Cada interseção dada inclui o centro; tirando os 10, sobra a parte só daquelas duas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o total para achar só ii",
+     "conta": "44 − (4 + 1 + 11 + 3 + 1 + 10) = 44 − 30 = 14",
+     "porque": "Todos os 44 estão em pelo menos um setor, então só ii é o que falta para fechar o total.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as regiões de ii",
+     "conta": "14 + 11 + 1 + 10 = 36",
+     "porque": "Urgência e emergência conta só ii, as duas faixas com ii e o centro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "n(ii) = 36 → alternativa D",
+     "porque": "O número de candidatos com experiência em urgência e emergência é 36.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 36 candidatos",
+   "checagem": "Por fora do conjunto i: 44 − 28 = 16 candidatos não fizeram cirurgia; desses, só 1 fez apenas clínica médica, então 15 estão em ii. Somando os 21 que fizeram i e ii: 15 + 21 = 36.",
+   "erradas": {
+    "A": "10 é o centro do diagrama: quem atuou nos três setores, não todos os de urgência e emergência.",
+    "B": "14 sai de parar na região só ii: 44 − 30 = 14. Faltou somar as faixas 11 + 1 e o centro 10.",
+    "C": "28 é o total da alternativa i (cirurgia geral), dado no enunciado; a pergunta é sobre ii.",
+    "E": "38 sai de tomar os 44 − 28 = 16 que não fizeram i como \"só ii\": 16 + 21 + 11 − 10 = 38. Desses 16, 1 fez só iii e 1 fez ii e iii."
+   },
+   "armadilha": "\"21 pessoas às alternativas i e ii\" inclui quem fez os três setores; sem achar o centro (10) antes, todas as regiões saem erradas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos dos 44 candidatos atuaram em urgência e emergência.",
+    "chave": "Do \"apenas i\" sai o centro: 28 − 21 − 13 + t = 4, t = 10; depois só ii = 14 e n(ii) = 14 + 11 + 1 + 10 = 36.",
+    "cuidado": "Interseção dada inclui o centro; desconte-o antes de preencher as faixas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tirar quem está fora de ii",
+    "ideia": "Fora de ii ficam só i (4), só iii (1) e i e iii sem ii (13 − 10 = 3); n(ii) = 44 − 4 − 1 − 3 = 36."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "28 − 21 − 13 + t = 4",
+    "nota": "só i a partir do total de i"
+   },
+   {
+    "linha": "t = 10",
+    "nota": "centro do diagrama"
+   },
+   {
+    "linha": "11 | 3 | 1",
+    "nota": "interseções menos o centro"
+   },
+   {
+    "linha": "só ii = 44 − 30 = 14",
+    "nota": "fechar o total"
+   },
+   {
+    "linha": "n(ii) = 14 + 11 + 1 + 10 = 36",
+    "nota": "somar as regiões de ii"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
+ },
+ "Pe77091fe": {
+  "n": "4",
+  "conceito": "Escrever os dois conjuntos em função da interseção a partir de porcentagens e usar a união.",
+  "equivocos": {
+   "A": "M13.6:parou-na-regiao-so",
+   "B": "M13.6:valor-sem-teste-de-consistencia",
+   "D": "M13.6:valor-sem-teste-de-consistencia",
+   "E": "M13.6:valor-sem-teste-de-consistencia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As duas porcentagens falam do mesmo grupo, os que dominam as duas habilidades, mas cada uma é tomada de um conjunto diferente. Chame esse grupo de b: ele é 20% dos de imagem e 80% dos de procedimentos. Daí cada conjunto sai em função de b, e a união, que é o total de 105 (todos dominam ao menos uma), dá a equação.",
+    "formulas": [
+     "n(I ∪ C) = n(I) + n(C) − n(I ∩ C)",
+     "20% de n(I) = b → n(I) = b/0,2 = 5b"
+    ],
+    "simbolos": [
+     [
+      "I",
+      "médicos que interpretam exames de imagem"
+     ],
+     [
+      "C",
+      "médicos que realizam procedimentos cirúrgicos minimamente invasivos"
+     ],
+     [
+      "b",
+      "médicos que dominam as duas habilidades"
+     ],
+     [
+      "∪",
+      "união: quem está em pelo menos um dos conjuntos"
+     ]
+    ]
+   },
+   "pista": "Dê um nome ao grupo que domina as duas e escreva cada conjunto em função dele.",
+   "passos": [
+    {
+     "faz": "Escreva I em função de b",
+     "conta": "0,2 · n(I) = b → n(I) = b/0,2 = 5b",
+     "porque": "Os que dominam as duas são 20% dos de imagem, então os de imagem são 5 vezes esse grupo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva C em função de b",
+     "conta": "0,8 · n(C) = b → n(C) = b/0,8 = 5b/4",
+     "porque": "Os mesmos b são 80% dos que fazem procedimentos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a união igual a 105",
+     "conta": "5b + 5b/4 − b = 105 → 21b/4 = 105",
+     "porque": "Todo médico domina ao menos uma habilidade, então a união é o grupo inteiro; tira-se b uma vez porque foi contado nos dois conjuntos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a equação",
+     "conta": "21b/4 = 105 → b = (105 · 4)/21 → b = 20",
+     "porque": "O 4 que divide passa multiplicando e o 21 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "b = 20 → alternativa C",
+     "porque": "São 20 médicos com as duas habilidades.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 20 médicos",
+   "checagem": "Com b = 20: imagem = 100 e procedimentos = 25. Confira: 20% de 100 = 20 e 80% de 25 = 20; união 100 + 25 − 20 = 105, o total de docentes.",
+   "erradas": {
+    "A": "5 sai de calcular quem faz só procedimentos: 25 − 20 = 5. A pergunta é quem domina as duas habilidades.",
+    "B": "12 não confere: com b = 12, imagem = 60 e procedimentos = 15, e a união seria 60 + 15 − 12 = 63, não 105.",
+    "D": "28 não confere: com b = 28, os de imagem seriam 5 · 28 = 140, mais que os 105 médicos.",
+    "E": "35 não confere: com b = 35, os de imagem seriam 5 · 35 = 175, mais que os 105 médicos."
+   },
+   "armadilha": "As porcentagens são de conjuntos diferentes (20% dos de imagem, 80% dos de procedimentos), não de 105; tomar 20% de 105 não leva a lugar nenhum.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos dos 105 médicos dominam as duas habilidades.",
+    "chave": "n(I) = 5b, n(C) = 5b/4 e 5b + 5b/4 − b = 105 dão b = 20.",
+    "cuidado": "Cada porcentagem é de um conjunto, não do total; e a interseção sai da união uma vez."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "A união vale 5b + 5b/4 − b = 21b/4; só b = 20 dá 105 (b = 12 dá 63; b = 28 e 35 passam de 105 só no conjunto de imagem)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "n(I) = b/0,2 = 5b",
+    "nota": "20% dos de imagem"
+   },
+   {
+    "linha": "n(C) = b/0,8 = 5b/4",
+    "nota": "80% dos de procedimentos"
+   },
+   {
+    "linha": "5b + 5b/4 − b = 105",
+    "nota": "união é o total"
+   },
+   {
+    "linha": "21b/4 = 105",
+    "nota": "juntar os termos em b"
+   },
+   {
+    "linha": "b = (105 · 4)/21 = 20",
+    "nota": "isolar b"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

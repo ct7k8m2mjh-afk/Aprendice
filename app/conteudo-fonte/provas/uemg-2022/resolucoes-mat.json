@@ -367,5 +367,121 @@
    "data": "2026-11-13",
    "lote": "mat-0062"
   }
+ },
+ "P6a0e94b1": {
+  "n": "47",
+  "conceito": "Usar o complementar de 'pelo menos uma eficaz' e a independência das vacinas para achar a chance de B falhar.",
+  "equivocos": {
+   "A": "M13.6:valor-sem-teste-de-consistencia",
+   "B": "M13.6:calculou-a-intersecao-em-vez-do-evento",
+   "D": "M13.6:valor-sem-teste-de-consistencia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Pelo menos uma eficaz\" tem um complementar simples: as duas falharem. Se pelo menos uma funciona em 95% dos casos, as duas falham em 5%. Tratando as eficácias das duas vacinas como independentes, a chance de as duas falharem é o produto das chances de cada uma falhar, e daí sai a falha de B.",
+    "formulas": [
+     "P(pelo menos uma) = 1 − P(nenhuma)",
+     "independentes: P(A falha e B falha) = P(A falha) × P(B falha)"
+    ],
+    "simbolos": [
+     [
+      "P(Ā)",
+      "probabilidade de a vacina A não ser eficaz"
+     ],
+     [
+      "P(B̄)",
+      "probabilidade de a vacina B não ser eficaz"
+     ],
+     [
+      "independentes",
+      "o resultado de uma vacina não muda a chance da outra"
+     ]
+    ]
+   },
+   "pista": "Comece pelo contrário de \"pelo menos uma ser eficaz\": o que precisa acontecer para nenhuma funcionar?",
+   "passos": [
+    {
+     "faz": "Ache a chance de as duas falharem",
+     "conta": "P(pelo menos uma) = 95% → P(nenhuma) = 100% − 95% = 5%",
+     "porque": "Nenhuma eficaz é exatamente o contrário de pelo menos uma eficaz, então as duas chances somam 100%.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a chance de A falhar",
+     "conta": "P(A) = 75% → P(Ā) = 100% − 75% = 25%",
+     "porque": "A falha de A é o complementar da eficácia de A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe a falha de B no produto",
+     "conta": "P(Ā) × P(B̄) = 5% → 0,25 × P(B̄) = 0,05 → P(B̄) = 0,05/0,25 = 0,20",
+     "porque": "Com vacinas independentes, as duas falharem é o produto das falhas. O 0,25 que multiplica passa para o outro lado dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "P(B̄) = 0,20 = 20% → alternativa C",
+     "porque": "A pergunta é a chance de B NÃO ser eficaz, e é isso que a conta deu.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 20%",
+   "checagem": "Volte pela soma da união: se B falha em 20%, B funciona em 80%. P(A ou B) = 0,75 + 0,80 − 0,75 × 0,80 = 1,55 − 0,60 = 0,95, os 95% do enunciado.",
+   "erradas": {
+    "A": "12,5% não confere: com B falhando em 12,5%, as duas falhariam em 0,25 × 0,125 = 3,125%, e pelo menos uma funcionaria em 96,875%, não 95%.",
+    "B": "15% sai de calcular A eficaz e B não: 0,75 × 0,20 = 0,15. A pergunta é só a chance de B não ser eficaz, que é 20%.",
+    "D": "22,5% não confere: as duas falhariam em 0,25 × 0,225 = 5,625%, e pelo menos uma funcionaria em 94,375%, não 95%."
+   },
+   "armadilha": "O dado útil é o complementar: 95% de pelo menos uma eficaz quer dizer 5% de as duas falharem, e é nesse produto que a falha de B aparece.",
+   "alerta": "O enunciado não diz com todas as letras que as eficácias são independentes; a conta pressupõe isso, que é a leitura usual da questão. Sem independência, a chance de B falhar não ficaria determinada.",
+   "essencial": {
+    "pede": "A probabilidade de a vacina B não ser eficaz.",
+    "chave": "P(nenhuma) = 5% = P(Ā) × P(B̄) = 0,25 × P(B̄), logo P(B̄) = 0,05/0,25 = 20%.",
+    "cuidado": "Pergunta-se a falha de B, não A eficaz com B falhando (15%)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "união com independência",
+    "ideia": "0,75 + P(B) − 0,75 × P(B) = 0,95 → 0,25 × P(B) = 0,20 → P(B) = 0,8, logo B falha em 20%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(nenhuma) = 1 − 0,95 = 0,05",
+    "nota": "complementar de pelo menos uma"
+   },
+   {
+    "linha": "P(Ā) = 1 − 0,75 = 0,25",
+    "nota": "complementar da eficácia de A"
+   },
+   {
+    "linha": "0,25 × P(B̄) = 0,05",
+    "nota": "independência: as falhas se multiplicam"
+   },
+   {
+    "linha": "P(B̄) = 0,05/0,25 = 0,20",
+    "nota": "o 0,25 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

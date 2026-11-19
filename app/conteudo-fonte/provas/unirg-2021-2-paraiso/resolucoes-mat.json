@@ -545,5 +545,113 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "P5bf9c3fc": {
+  "n": "24",
+  "conceito": "Contar participações por área para descobrir quantos estão em exatamente duas de três áreas.",
+  "equivocos": {
+   "A": "M13.6:valor-sem-teste-de-consistencia",
+   "B": "M13.6:descontou-a-intersecao-tripla-uma-vez",
+   "D": "M13.6:respondeu-a-intersecao-tripla"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os 120 especialistas apresentaram propostas, e as propostas foram agrupadas nas três áreas: todos estão em pelo menos uma. Somando as três áreas (50 + 70 + 80 = 200), quem está em uma área conta uma vez, quem está em duas conta duas vezes e quem está nas três conta três vezes. Com o total de pessoas e o das três áreas, sai o das duas.",
+    "formulas": [
+     "pessoas: n1 + n2 + n3 = 120",
+     "participações: n1 + 2 × n2 + 3 × n3 = 50 + 70 + 80"
+    ],
+    "simbolos": [
+     [
+      "n1",
+      "especialistas em exatamente uma área"
+     ],
+     [
+      "n2",
+      "especialistas em exatamente duas áreas"
+     ],
+     [
+      "n3",
+      "especialistas nas três áreas (30)"
+     ]
+    ]
+   },
+   "pista": "Some as três áreas e pense: quantas vezes cada especialista entra nessa soma?",
+   "passos": [
+    {
+     "faz": "Some as participações",
+     "conta": "50 + 70 + 80 = 200 = n1 + 2 × n2 + 3 × 30",
+     "porque": "Cada um entra na soma uma vez por área em que apresentou proposta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire as três áreas das duas equações",
+     "conta": "n1 + 2n2 + 90 = 200 → n1 + 2n2 = 110 | n1 + n2 + 30 = 120 → n1 + n2 = 90",
+     "porque": "Os 30 das três áreas passam para o outro lado subtraindo, em cada equação.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia uma equação da outra",
+     "conta": "(n1 + 2n2) − (n1 + n2) = 110 − 90 → n2 = 20",
+     "porque": "O n1 se cancela e sobra exatamente quem está em duas áreas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "n2 = 20 → alternativa C",
+     "porque": "São 20 especialistas em exatamente duas áreas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 20",
+   "checagem": "Reconstrua: n1 = 90 − 20 = 70. Pessoas: 70 + 20 + 30 = 120. Participações: 70 + 2 × 20 + 3 × 30 = 70 + 40 + 90 = 200 = 50 + 70 + 80. Fecha.",
+   "erradas": {
+    "A": "15 não confere: daria 120 − 30 − 15 = 75 em uma só área e 75 + 2 × 15 + 3 × 30 = 195 participações, não 200.",
+    "B": "25 sai de descontar os 30 das três áreas uma vez só e dividir por 2: (200 − 120 − 30)/2 = 25. Quem está nas três entra duas vezes a mais na soma, não uma.",
+    "D": "30 é o número de quem está nas três áreas, dado no enunciado. A pergunta é exatamente duas."
+   },
+   "armadilha": "Na soma 50 + 70 + 80, quem está nas três áreas entra três vezes: o excesso de 80 sobre 120 não é só de quem está em duas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos especialistas estão em exatamente duas áreas.",
+    "chave": "n1 + n2 = 90 e n1 + 2n2 = 110 dão n2 = 20.",
+    "cuidado": "Cada especialista das três áreas soma 3 participações, não 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula da união",
+    "ideia": "120 = 200 − (soma das interseções duas a duas) + 30 dá soma = 110; exatamente duas = 110 − 3 × 30 = 20."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "50 + 70 + 80 = 200",
+    "nota": "somar as áreas"
+   },
+   {
+    "linha": "n1 + 2n2 + 90 = 200 → n1 + 2n2 = 110",
+    "nota": "o 90 passa subtraindo"
+   },
+   {
+    "linha": "n1 + n2 + 30 = 120 → n1 + n2 = 90",
+    "nota": "o 30 passa subtraindo"
+   },
+   {
+    "linha": "n2 = 110 − 90 = 20",
+    "nota": "subtrair as equações: n1 se cancela"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

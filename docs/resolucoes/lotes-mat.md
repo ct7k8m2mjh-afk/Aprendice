@@ -74,12 +74,14 @@ Faltam 895 questões sem resolução (fora as que estão em lote, pendentes ou c
 | mat-0066 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | mat-0067 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | mat-0068 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
-| mat-0069 | demais nível 1-6 | 50 | aberto |  |  |  |
+| mat-0069 | demais nível 1-6 | 50 | gravado | 48 | 2 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| Pa9476dac | FCM-MG 2021 2º semestre · questão 47 | M14.1 média, mediana e moda (tema M14 Estatística) | anular: nenhuma alternativa é correta. Valores do gráfico: 93, 131, 115, 57, 97, 50, 59, 92, 272, 558, 324, 329, 200, 119 (14 semanas). A (oficial): média das 4 primeiras = 396/4 = 99 e das 4 seguintes = 298/4 = 74,5; 99/74,5 = 1,329, ou seja, 33% maior (25% é quanto a segunda é MENOR que a primeira: 24,5/99 = 24,7%). B: mediana = (115 + 119)/2 = 117, não 76, e não há moda (nenhum valor se repete). C: mesma mediana 117 e moda inexistente. D: média = 2496/14 = 178,3, não 200, e não há moda. Busca na web sem errata nem resolução publicada. |
+| Pc99e3797 | ITA 2025 1ª fase · questão 3 | M13.9 combinatória e probabilidade — outros casos (tema M13 Combinatória e probabilidade) | print: os expoentes do enunciado foram cortados no topo do print (aparece só (x + 1/x)(x − 2/x)); no PDF oficial a expressão é (x + 1/x)⁶ (x − 2/x)⁵. Refazer o print do PDF oficial (vestibular.ita.br/provas/2025_fase1.pdf, questão 3). |
 | Pda63d44e | PUCPR 2026 Medicina 2026/2 · questão 35 | M11.3 pirâmides e cones (tema M11 Geometria espacial) | print: o topo da questão está cortado e os numeradores de H = 3R/2 e x = √(6πR³/V) ficam ilegíveis; conferido no PDF oficial (p. 16 do caderno-gabarito), a questão fecha com C (r² = 3R²/4, V = 3πR³/8, x = √16 = 4) — refazer o print e reenviar. |
 | P6272d008 | UEMA 2021 PAES · questão 30 | M11.3 pirâmides e cones (tema M11 Geometria espacial) | classificação: é de física (F06.2, dilatação térmica), está em M11.3 pirâmides e cones. A conta: V₀ = (4/3) · π · 10³ = 4000 m³ (π = 3); γ = 5,04 ÷ (4000 · 30) = 4,2 · 10⁻⁵ °C⁻¹; ΔV = 250 · 4,2 · 10⁻⁵ · 40 = 0,42 m³ = 42 · 10⁻² m³ (alternativa E). |
 | P5a76aa41 | UFPR 2021 Fase única · questão 47 | M10.4 ciclo trigonométrico e arcos (tema M10 Trigonometria) | print: a imagem da questão está cortada e corrompida; a figura da circunferência aparece só em parte e as alternativas b) a e) estão ilegíveis. A sessão principal precisa refazer o print a partir do caderno da UFPR 2021. |

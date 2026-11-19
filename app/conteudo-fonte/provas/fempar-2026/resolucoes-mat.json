@@ -882,5 +882,121 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P924e3527": {
+  "n": "72",
+  "conceito": "Frequência acumulada relativa: quantidade numa faixa = diferença entre duas frequências acumuladas.",
+  "equivocos": {
+   "A": "M14.2:erro-ao-achar-o-total",
+   "C": "M14.2:erro-ao-achar-o-total",
+   "D": "M14.2:subtraiu-acumulada-duas-vezes",
+   "E": "M14.2:parou-na-porcentagem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada barra é acumulada: \"até 20\" conta todos os atendimentos de até 20 minutos, inclusive os de até 10 e até 15. Por isso, a quantidade numa faixa sai da diferença entre duas barras. O dado dos 54 registros com mais de 20 minutos é o que revela T.",
+    "formulas": [
+     "mais de 20 min = T − (acumulada até 20)",
+     "entre 15 (exclusive) e 25 (inclusive) = (acumulada até 25) − (acumulada até 15)"
+    ],
+    "simbolos": [
+     [
+      "T",
+      "total de pacientes atendidos na semana"
+     ],
+     [
+      "frequência acumulada",
+      "quantos registros há até aquele tempo, somando as faixas anteriores"
+     ]
+    ]
+   },
+   "pista": "Comece pelo dado dos 54 registros: que fração de T são os atendimentos com mais de 20 minutos?",
+   "passos": [
+    {
+     "faz": "Escreva os de mais de 20 min",
+     "conta": "T − 11T/20 → 9T/20",
+     "porque": "Até 20 minutos há 11T/20 registros; o resto do total passou de 20 minutos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descubra o total T",
+     "conta": "9T/20 = 54 → 9T = 1080 → T = 120",
+     "porque": "O 20 que divide passa multiplicando e o 9 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Recorte a faixa pedida",
+     "conta": "17T/20 − 3T/20 → 14T/20 → 7T/10",
+     "porque": "\"Maior que 15 e no máximo 25\" é tudo o que está até 25 menos o que está até 15.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque T por 120",
+     "conta": "7 × 120/10 → 840/10 → 84",
+     "porque": "Com o total conhecido, a fração vira número de atendimentos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "84 atendimentos → alternativa B",
+     "porque": "É a quantidade de atendimentos entre 15 (exclusive) e 25 minutos (inclusive).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 84 atendimentos",
+   "checagem": "Monte as faixas com T = 120: até 15 são 3 × 120/20 = 18; de 15 a 20 são 66 − 18 = 48; de 20 a 25 são 102 − 66 = 36; acima de 25 são 120 − 102 = 18. Então 48 + 36 = 84, e 36 + 18 = 54 confere com os de mais de 20 minutos.",
+   "erradas": {
+    "A": "88 não confere: 88 = 14T/20 daria T = 1760/14 ≈ 125,7, que nem é inteiro, e os de mais de 20 minutos seriam 9T/20 ≈ 56,6, não 54.",
+    "C": "80 não confere: 80 = 14T/20 daria T ≈ 114,3, e os de mais de 20 minutos seriam 9T/20 ≈ 51,4, não 54.",
+    "D": "76 sai de descontar também a barra \"até 10\", como se a barra \"até 15\" não a incluísse: 102 − 18 − 8 = 76. A barra \"até 15\" já contém os 8 de até 10.",
+    "E": "70 sai de subtrair as porcentagens e parar aí: 85% − 15% = 70 pontos percentuais. Falta aplicar a T: 70% de 120 = 84."
+   },
+   "armadilha": "Esquecer que as barras são acumuladas: \"até 15\" já inclui \"até 10\", então a faixa sai de uma única subtração.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos atendimentos duraram mais de 15 e no máximo 25 minutos.",
+    "chave": "9T/20 = 54 dá T = 120; faixa = 17T/20 − 3T/20 = 7T/10 = 84.",
+    "cuidado": "Em frequência acumulada, a faixa é a diferença entre duas barras, sem subtrair as anteriores de novo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "porcentagens",
+    "ideia": "mais de 20 min são 100% − 55% = 45% de T = 54, logo T = 120; a faixa é 85% − 15% = 70% de 120 = 84"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "T − 11T/20 = 9T/20",
+    "nota": "atendimentos com mais de 20 min"
+   },
+   {
+    "linha": "9T/20 = 54",
+    "nota": "dado do enunciado"
+   },
+   {
+    "linha": "T = (54 × 20)/9 = 120",
+    "nota": "o 20 multiplica e o 9 divide"
+   },
+   {
+    "linha": "17T/20 − 3T/20 = 14T/20",
+    "nota": "até 25 menos até 15"
+   },
+   {
+    "linha": "(14 × 120)/20 = 84",
+    "nota": "atendimentos na faixa pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

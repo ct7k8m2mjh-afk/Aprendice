@@ -972,5 +972,207 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P3945e067": {
+  "n": "113",
+  "conceito": "Somar as regiões disjuntas do diagrama para achar a probabilidade da união.",
+  "equivocos": {
+   "A": "M13.6:usou-so-uma-regiao",
+   "B": "M13.6:usou-so-um-conjunto",
+   "C": "M13.6:usou-so-um-conjunto",
+   "E": "M13.6:contou-a-intersecao-duas-vezes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"A ou B verdadeira\" é a união: quem acreditou só em A, só em B ou nas duas. O enunciado já dá as três regiões separadas (\"apenas A\", \"apenas B\", \"as duas\"), então não há dupla contagem: basta somar e dividir pelas 800 pessoas.",
+    "formulas": [
+     "P(A ou B) = (só A + só B + as duas)/total"
+    ],
+    "simbolos": [
+     [
+      "A ou B",
+      "acreditou em pelo menos uma das notícias"
+     ],
+     [
+      "apenas A",
+      "acreditou em A e não em B"
+     ]
+    ]
+   },
+   "pista": "Repare na palavra \"apenas\": as três quantidades dadas já são regiões que não se sobrepõem.",
+   "passos": [
+    {
+     "faz": "Some as regiões da união",
+     "conta": "200 + 250 + 50 = 500",
+     "porque": "Só A, só B e as duas não se misturam, então somá-las não conta ninguém duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo total entrevistado",
+     "conta": "500/800 = 5/8 = 0,625",
+     "porque": "O sorteio é entre as 800 pessoas da pesquisa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "0,625 = 62,50% → alternativa D",
+     "porque": "É a chance de sortear alguém que acreditou em A ou em B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 62,50%",
+   "checagem": "Pelo complementar: quem não acreditou em nenhuma foi 800 − 500 = 300, ou 300/800 = 37,5%; e 100% − 37,5% = 62,5%. Pela fórmula da união: A = 250, B = 300, e (250 + 300 − 50)/800 = 500/800.",
+   "erradas": {
+    "A": "25,00% sai de usar só quem acreditou apenas em A: 200/800 = 0,25. A união inclui também B e as duas.",
+    "B": "31,25% sai de usar só a notícia A, incluindo as duas: (200 + 50)/800 = 250/800 = 0,3125. Falta quem acreditou só em B.",
+    "C": "37,50% sai de usar só a notícia B, incluindo as duas: (250 + 50)/800 = 300/800 = 0,375. É também a chance de não acreditar em nenhuma, o complementar.",
+    "E": "68,75% sai de contar as duas duas vezes: (200 + 250 + 50 + 50)/800 = 550/800 = 0,6875. As 50 pessoas já entraram uma vez."
+   },
+   "armadilha": "Os números vêm com \"apenas\": já são regiões separadas, e somar as 50 de novo seria contagem dupla.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de sortear alguém que considerou A ou B verdadeira.",
+    "chave": "Só A + só B + as duas = 200 + 250 + 50 = 500; 500/800 = 62,5%.",
+    "cuidado": "Não some as 50 duas vezes: os outros dados já vêm com \"apenas\"."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "Nenhuma das duas: 800 − 500 = 300; P = 1 − 300/800 = 1 − 3/8 = 5/8 = 62,5%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "200 + 250 + 50 = 500",
+    "nota": "somar as três regiões"
+   },
+   {
+    "linha": "P = 500/800",
+    "nota": "favoráveis sobre o total"
+   },
+   {
+    "linha": "500/800 = 5/8 = 0,625",
+    "nota": "simplificar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
+ },
+ "Pc696e6a2": {
+  "n": "101",
+  "conceito": "Média, mediana, amplitude e comparações lidas num gráfico de barras.",
+  "equivocos": {
+   "B": "M14.1:pegou-so-um-dos-centrais",
+   "C": "M14.1:amplitude-com-o-ultimo-valor",
+   "D": "M14.1:comparacao-sem-conta",
+   "E": "M14.1:anos-trocados-na-leitura"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Teste uma afirmação por vez com os números do topo das barras. Média é soma dividida pela quantidade; mediana exige ordenar os 10 anos e, como 10 é par, fazer a média dos dois centrais; amplitude é maior valor menos menor valor.",
+    "formulas": [
+     "média = (soma)/(quantidade)",
+     "mediana (10 valores) = (5º + 6º)/2, com a lista em ordem",
+     "amplitude = maior − menor"
+    ],
+    "simbolos": [
+     [
+      "mediana",
+      "valor do meio da lista ordenada"
+     ],
+     [
+      "amplitude",
+      "diferença entre o maior e o menor valor"
+     ]
+    ]
+   },
+   "pista": "Comece pela alternativa A: quais são os três últimos anos do gráfico?",
+   "passos": [
+    {
+     "faz": "Calcule a média dos três últimos anos",
+     "conta": "2020, 2021, 2022: (146 + 276 + 190)/3 = 612/3 = 204",
+     "porque": "Os últimos três anos do gráfico são 2020, 2021 e 2022; a média deles dá 204 bilhões, como diz A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a mediana (B)",
+     "conta": "15, 19, 25, 34, 54, 80, 96, 146, 190, 276 → (54 + 80)/2 = 134/2 = 67",
+     "porque": "Com 10 anos, a mediana é a média do 5º e do 6º valores ordenados; dá 67, não 54.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste C, D e E",
+     "conta": "amplitude: 276 − 15 = 261 | 2 × 146 = 292 ≠ 276 | 19 + 25 = 44 ≠ 34",
+     "porque": "A amplitude usa o maior valor (2021); 2021 não chega ao dobro de 2020; 2016 não iguala 2014 + 2015.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Marque a única verdadeira",
+     "conta": "média 2020–2022 = 204 bilhões → alternativa A",
+     "porque": "Só a afirmação A resiste ao teste.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — a média dos investimentos dos três últimos anos (2020 a 2022) equivale a 204 bilhões de dólares",
+   "checagem": "Volte da média à soma: 204 × 3 = 612, e 146 + 276 + 190 = 612. A média também fica entre o menor (146) e o maior (276) dos três valores, como precisa ser.",
+   "erradas": {
+    "B": "Sai de pegar só o 5º valor ordenado, 54 (2017). Com 10 anos, a mediana é (54 + 80)/2 = 67 bilhões.",
+    "C": "175 sai de usar o último ano como maior valor: 190 − 15 = 175. O maior é o de 2021: 276 − 15 = 261 bilhões.",
+    "D": "Não confere: o dobro de 2020 seria 2 × 146 = 292, e 2021 teve 276 bilhões.",
+    "E": "Sai de somar os anos errados: 2013 + 2014 = 15 + 19 = 34, o valor de 2016. Já 2014 + 2015 = 19 + 25 = 44."
+   },
+   "armadilha": "Na amplitude, o maior valor é o de 2021 (276), não o último ano do gráfico (190).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre o gráfico de investimentos em IA é verdadeira.",
+    "chave": "Os três últimos anos somam 612, e 612/3 = 204.",
+    "cuidado": "Ordene antes da mediana e use o pico de 2021 na amplitude."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "desvios em torno de 204",
+    "ideia": "146 está 58 abaixo, 276 está 72 acima e 190 está 14 abaixo: −58 + 72 − 14 = 0, então 204 é a média"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(146 + 276 + 190)/3",
+    "nota": "média de 2020 a 2022"
+   },
+   {
+    "linha": "612/3 = 204",
+    "nota": "dividir a soma por 3"
+   },
+   {
+    "linha": "mediana: (54 + 80)/2 = 67",
+    "nota": "derruba B"
+   },
+   {
+    "linha": "amplitude: 276 − 15 = 261",
+    "nota": "derruba C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

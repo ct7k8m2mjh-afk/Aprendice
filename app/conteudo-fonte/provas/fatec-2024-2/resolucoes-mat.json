@@ -547,5 +547,111 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "Pfe098717": {
+  "n": "9",
+  "conceito": "Filtrar os dados de uma tabela por um critério (países da América do Sul), calcular a média e achar o valor mais próximo dela.",
+  "equivocos": {
+   "A": "M14.1:ignorou-filtro-do-enunciado",
+   "B": "M14.1:ignorou-filtro-do-enunciado",
+   "C": "M14.1:ignorou-filtro-do-enunciado",
+   "E": "M14.1:media-calculada-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O enunciado restringe a conta aos países da América do Sul da lista: Argentina, Brasil, Peru, Suriname, Uruguai e Venezuela. Costa Rica, El Salvador, Panamá e México ficam na América Central e do Norte, e Haiti e Jamaica no Caribe. A resposta também tem de ser um país sul-americano.",
+    "formulas": [
+     "M = soma dos crescimentos de 2024/quantidade de países",
+     "distância = |crescimento − M|"
+    ],
+    "simbolos": [
+     [
+      "M",
+      "média do crescimento do PIB projetado para 2024 nos países sul-americanos da tabela"
+     ],
+     [
+      "PIB",
+      "produto interno bruto, a soma do que o país produz"
+     ],
+     [
+      "|a − b|",
+      "distância entre dois números, sem sinal"
+     ]
+    ]
+   },
+   "pista": "Primeiro separe da tabela só os países da América do Sul, e use a coluna de 2024.",
+   "passos": [
+    {
+     "faz": "Separe os países sul-americanos",
+     "conta": "Argentina: −1,0 | Brasil: 1,6 | Peru: 2,4 | Suriname: 3,0 | Uruguai: 3,2 | Venezuela: 4,0",
+     "porque": "Só eles entram na média, e o valor é o da coluna de 2024.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a média",
+     "conta": "M = (−1,0 + 1,6 + 2,4 + 3,0 + 3,2 + 4,0)/6 = 13,2/6 = 2,2",
+     "porque": "O −1,0 da Argentina entra com o sinal: é queda do PIB.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os sul-americanos das alternativas",
+     "conta": "Peru: |2,4 − 2,2| = 0,2 | Uruguai: |3,2 − 2,2| = 1,0",
+     "porque": "Entre as alternativas, só Peru e Uruguai são da América do Sul; o Peru fica mais perto de M.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "Peru → alternativa D",
+     "porque": "O comando pede um país da América do Sul com crescimento mais próximo de M.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — Peru.",
+   "checagem": "Use os desvios em relação a M = 2,2: −3,2; −0,6; +0,2; +0,8; +1,0; +1,8 somam zero, o que confirma a média; o menor desvio em módulo é o do Peru, 0,2.",
+   "erradas": {
+    "A": "Costa Rica não é da América do Sul (fica na América Central), e o crescimento de 3,8 está a 1,6 de M = 2,2.",
+    "B": "El Salvador sai de comparar todos os países da tabela: 2,0 está a 0,2 de M, como o Peru, mas fica na América Central e não é sul-americano.",
+    "C": "Jamaica não é da América do Sul (fica no Caribe); o crescimento de 1,9 está a 0,3 de M = 2,2.",
+    "E": "Uruguai é sul-americano, mas 3,2 está a 1,0 de M = 2,2, mais longe que o Peru (0,2)."
+   },
+   "armadilha": "El Salvador (2,0) fica tão perto de M quanto o Peru, mas não é da América do Sul.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O país sul-americano das alternativas com crescimento em 2024 mais próximo da média M dos sul-americanos.",
+    "chave": "M = 13,2/6 = 2,2; Peru (2,4) está a 0,2 de M.",
+    "cuidado": "Use só os países da América do Sul, na coluna de 2024, com o sinal do −1,0 da Argentina."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação geográfica",
+    "ideia": "Costa Rica, El Salvador e Jamaica não são da América do Sul; entre Peru (2,4) e Uruguai (3,2), basta ver que M fica perto de 2"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "−1,0 + 1,6 + 2,4 + 3,0 + 3,2 + 4,0 = 13,2",
+    "nota": "soma dos sul-americanos em 2024"
+   },
+   {
+    "linha": "M = 13,2/6 = 2,2",
+    "nota": "média"
+   },
+   {
+    "linha": "|2,4 − 2,2| = 0,2 < |3,2 − 2,2| = 1,0",
+    "nota": "Peru mais perto que Uruguai"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

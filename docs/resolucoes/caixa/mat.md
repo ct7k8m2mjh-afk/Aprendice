@@ -109,3 +109,32 @@ DADO P5387dc6a: alternativas.D -> 70% (a entrada traz '70% f')
 RECLASS P0020ce7f M13.5 -> M03.1 (não pede probabilidade: porcentagem de porcentagem numa tabela sexo × raça)
 ANULAR P35fad689 (URCA 2025.1, questão 26): gabarito oficial C (78,8%) contraria a conta; o certo é 60% (A). Recurso negado pela banca, ver motivo na questão.
 DADO Pbe5e1945: alternativas -> no print são frações empilhadas: A) 4/15 B) 4/13 C) 9/15 D) 9/13
+
+## 2026-11-19 — PENDENCIAS — session_01PveEKa7o3DaEHDo7jW4ttw
+Lote mat-0069 gravado (48 resoluções + 2 pendentes).
+PRINT Pc99e3797 (ITA 2025 1ª fase q3): expoentes cortados no topo do print; no PDF oficial é (x + 1/x)⁶ (x − 2/x)⁵ (vestibular.ita.br/provas/2025_fase1.pdf). Com o print novo, a conta fecha com a oficial C (termo independente 0).
+ANULAR Pa9476dac (FCM-MG 2021/2 q47): nenhuma alternativa confere; A (oficial) diz "25% maior", mas 99/74,5 ≈ 1,33 (33% maior); B, C e D também falsas (mediana das 14 semanas = 117). Conferente confirmou.
+GABARITO Pdc96e236 (UNEMAT 2026/1 q10): no caderno, duas alternativas saíram impressas como (C); a resolução trata a última como D e a oficial C = 32,27%. Conferir se o edital pós-recursos tratou o erro.
+RECLASS P1465e9bc M14.1 -> M13.1 (UEMA 2026 PAES q46: contagem, princípio multiplicativo)
+RECLASS P249e2de7 M13.6 -> M13.5 (Unitins 2026 Vestibular 2026/2, questão 15: probabilidade total com árvore chuva/atraso, é condicional, não união/complementar)
+Gabarito do Aprendice (resolvedor, conferente às cegas e preliminar iguais): P6a0e94b1 C, P8b6710f0 B, P1128d9d9 B, P7e60a880 C.
+DADO P25513608: texto_da_prova -> camada de texto mistura colunas de outras questões; vale o print (Funil 380, não Barata 200, as duas 290)
+DADO P25513608: alternativas -> A inferior a 78. | B superior a 79 e inferior a 87. | C superior a 88 e inferior a 96. | D superior a 97 e inferior a 105. | E superior a 105.
+DADO P03ba6758: alternativas -> frações empilhadas: A 1/20 | B 3/10 | C 9/20 | D 11/20 | E 7/10
+DADO Pc99e3797: texto_da_prova -> o print corta os expoentes; no PDF oficial a expressão é (x + 1/x)⁶ (x − 2/x)⁵ (refazer o print)
+ANULAR Pa9476dac FCM-MG 2021/2 q47: alternativa A (oficial) afirma 25% maior, mas 99/74,5 = 1,33 (33% maior); B, C e D também falsas (mediana 106, sem moda, média 178,3).
+DADO P73a16a41: alternativas.D -> "29 mm" (o "32" é o número da página do caderno colado na alternativa)
+RECLASS P73a16a41 M14.1 -> M14.4
+RECLASS P7bcf09fe M14.1 -> M14.4
+RECLASS P924e3527 M14.1 -> M14.2
+RECLASS P4557b07f M14.1 -> M14.2
+RECLASS P1465e9bc M14.1 -> M13.1
+RECLASS Pf994201f M14.1 -> M03.1
+DADO Pdc96e236: alternativas -> no print a 4ª alternativa aparece rotulada "(C) 132,27%" (rótulo repetido; é a D)
+
+## 2026-11-19 — FIM — session_01PveEKa7o3DaEHDo7jW4ttw
+Último lote gravado: mat-0069. Lotes gravados nesta vez: mat-0066 (50), mat-0067 (50), mat-0068 (49 + 1 pendente), mat-0069 (48 + 2 pendentes) = 197 resoluções.
+Lotes abertos: nenhum. Testes (após mat-0067): 786 passed, tsc OK. Site conferido (P42d0f21a, P2a3ada7e, P72b508fc): 4 blocos, fração empilhada, animação até o fim.
+Pendências desta vez: ANULAR P35fad689 e Pa9476dac; PRINT Pc99e3797; GABARITO Pdc96e236; RECLASS e DADO listados nos blocos acima.
+Obs.: o site empilha "a ÷ b" como fração (app/src/testes/fracao.test.ts); conferentes às vezes apontam "÷" como erro — não é.
+Próximo: `lote.py proximo mat 50 --novo` (conteúdos M14.x em diante). Faltam 895 questões de Matemática.

@@ -787,5 +787,111 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P25513608": {
+  "n": "20",
+  "conceito": "Montar o diagrama de duas cachoeiras a partir da interseção e achar quem não visitou nenhuma.",
+  "equivocos": {
+   "A": "M13.6:valor-sem-teste-de-consistencia",
+   "B": "M13.6:valor-sem-teste-de-consistencia",
+   "C": "M13.6:parou-na-regiao-so-de-um-conjunto",
+   "D": "M13.6:valor-sem-teste-de-consistencia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O total de entrevistados não é dado, e nem precisa: a informação \"200 não visitaram a do Barata\" junta duas regiões, quem foi só ao Funil e quem não foi a nenhuma. Descobrindo quantos foram só ao Funil, o resto dos 200 é a resposta.",
+    "formulas": [
+     "só Funil = Funil − as duas",
+     "não visitaram Barata = só Funil + nenhuma"
+    ],
+    "simbolos": [
+     [
+      "só Funil",
+      "foi ao Funil e não foi ao Barata"
+     ],
+     [
+      "nenhuma",
+      "não foi a nenhuma das duas cachoeiras"
+     ]
+    ]
+   },
+   "pista": "Pergunte quem são as 200 pessoas que não foram ao Barata: em quais regiões do diagrama elas estão?",
+   "passos": [
+    {
+     "faz": "Separe quem foi só ao Funil",
+     "conta": "380 − 290 = 90",
+     "porque": "Os 380 do Funil incluem os 290 que foram às duas; tirando esses, ficam os que foram só ao Funil.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reparta quem não foi ao Barata",
+     "conta": "não Barata = só Funil + nenhuma → 200 = 90 + nenhuma",
+     "porque": "Quem não foi ao Barata ou foi só ao Funil ou não foi a lugar nenhum.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole quem não foi a nenhuma",
+     "conta": "200 = 90 + nenhuma → nenhuma = 200 − 90 = 110",
+     "porque": "O 90 passa para o outro lado subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as faixas",
+     "conta": "110 > 105 → alternativa E",
+     "porque": "110 está acima de 105, a última faixa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — superior a 105",
+   "checagem": "Confira pela região do Funil: entre os que não foram ao Barata, 200 − 110 = 90 foram ao Funil; somando os 290 que foram às duas, o Funil recebe 90 + 290 = 380, como diz o enunciado.",
+   "erradas": {
+    "A": "Inferior a 78 não confere: com menos de 78 sem cachoeira nenhuma, mais de 200 − 78 = 122 teriam ido só ao Funil, mas só ao Funil foram 380 − 290 = 90.",
+    "B": "Entre 79 e 87 não confere: daria entre 200 − 87 = 113 e 200 − 79 = 121 só no Funil, e o enunciado garante 380 − 290 = 90.",
+    "C": "Entre 88 e 96 sai de parar no número de quem foi só ao Funil, 380 − 290 = 90. Esses 90 ainda precisam sair dos 200 que não foram ao Barata.",
+    "D": "Entre 97 e 105 não confere: daria entre 95 e 103 só no Funil, e o enunciado garante 380 − 290 = 90."
+   },
+   "armadilha": "\"Não visitaram o Barata\" não é \"não visitaram nenhuma\": esse grupo inclui quem foi só ao Funil.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos entrevistados não visitaram nenhuma das duas cachoeiras.",
+    "chave": "Só Funil = 380 − 290 = 90; os 200 sem Barata são 90 + nenhuma, logo nenhuma = 110.",
+    "cuidado": "Os 200 que não foram ao Barata incluem os 90 que foram só ao Funil."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar do Barata",
+    "ideia": "Quem não foi ao Barata = (só Funil) + (nenhuma); como Funil sem Barata é 380 − 290, nenhuma = 200 − 380 + 290 = 110."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "só Funil = 380 − 290 = 90",
+    "nota": "tirar a interseção do Funil"
+   },
+   {
+    "linha": "200 = 90 + nenhuma",
+    "nota": "quem não foi ao Barata"
+   },
+   {
+    "linha": "nenhuma = 200 − 90 = 110",
+    "nota": "o 90 passa subtraindo"
+   },
+   {
+    "linha": "110 > 105",
+    "nota": "faixa da alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

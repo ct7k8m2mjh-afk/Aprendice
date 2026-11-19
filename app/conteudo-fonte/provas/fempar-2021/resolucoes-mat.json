@@ -974,5 +974,111 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P16bc4231": {
+  "n": "75",
+  "conceito": "Média móvel: a troca de um registro muda a soma dos 7 valores em 7 vezes a variação da média.",
+  "equivocos": {
+   "A": "M14.1:dividiu-em-vez-de-multiplicar",
+   "B": "M14.1:diferenca-das-medias-como-resposta",
+   "C": "M14.1:media-das-medias",
+   "E": "M14.1:multiplicou-pelo-numero-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Média de 7 dias = soma dos 7 registros dividida por 7. De um dia para o outro, sai o registro mais antigo (dia 1) e entra o novo (dia 8); os dias 2 a 7 ficam nas duas somas. Então a diferença entre as somas é exatamente dia 8 menos dia 1.",
+    "formulas": [
+     "soma dos 7 dias = 7 × média móvel",
+     "dia 8 − dia 1 = 7 × (média nova − média antiga)"
+    ],
+    "simbolos": [
+     [
+      "média móvel",
+      "média dos últimos 7 registros, refeita a cada dia"
+     ],
+     [
+      "d₁, d₈",
+      "mortes registradas nos dias 1 e 8 de janeiro"
+     ]
+    ]
+   },
+   "pista": "Transforme cada média em soma de 7 dias e veja quais dias aparecem nas duas somas.",
+   "passos": [
+    {
+     "faz": "Transforme as médias em somas",
+     "conta": "d₁ + … + d₇ = 7 × 741 → 5187 | d₂ + … + d₈ = 7 × 872 → 6104",
+     "porque": "Média de 7 valores vezes 7 devolve a soma deles.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia uma soma da outra",
+     "conta": "(d₂ + … + d₈) − (d₁ + … + d₇) → d₈ − d₁",
+     "porque": "Os dias 2 a 7 estão nas duas somas e se cancelam; sobra só o dia que entrou menos o que saiu.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a diferença",
+     "conta": "d₈ − d₁ = 6104 − 5187 → 917",
+     "porque": "A diferença entre as somas é o número de mortes a mais no dia 8 em relação ao dia 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "917 óbitos a mais → alternativa D",
+     "porque": "A pergunta é quanto o dia 8 teve a mais que o dia 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 917 óbitos a mais",
+   "checagem": "Teste com um caso concreto: se os dias 1 a 7 tivessem 741 mortes cada, a soma dos dias 2 a 8 seria 6 × 741 + d₈ = 4446 + d₈ = 6104, logo d₈ = 1658 = 741 + 917. O dia 8 tem 917 a mais que o dia 1.",
+   "erradas": {
+    "A": "19 sai de dividir o aumento da média por 7: 131/7 ≈ 18,7 ≈ 19. O certo é multiplicar: 7 × 131 = 917.",
+    "B": "131 sai de subtrair as médias: 872 − 741 = 131. Isso é quanto a média subiu, não a diferença entre os dois dias, que é 7 × 131.",
+    "C": "806 sai de tirar a média das duas médias: (741 + 872)/2 = 806,5, truncado para 806. Essa conta não compara o dia 8 com o dia 1.",
+    "E": "1.834 não confere: é o dobro de 917 (14 × 131). A troca de um único registro muda a soma de 7 dias em 7 × 131 = 917."
+   },
+   "armadilha": "Responder a variação da média (131): a pergunta é a diferença entre dois registros, e cada unidade a mais na média de 7 dias vale 7 registros.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas mortes o dia 8 teve a mais que o dia 1.",
+    "chave": "Os dias 2 a 7 se cancelam: d₈ − d₁ = 7 × 872 − 7 × 741 = 917.",
+    "cuidado": "Não pare na diferença das médias; multiplique por 7."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "variação da média",
+    "ideia": "a média subiu 872 − 741 = 131; um registro trocado muda a soma em 7 × 131 = 917"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "7 × 741 = 5187",
+    "nota": "soma dos dias 1 a 7"
+   },
+   {
+    "linha": "7 × 872 = 6104",
+    "nota": "soma dos dias 2 a 8"
+   },
+   {
+    "linha": "d₈ − d₁ = 6104 − 5187",
+    "nota": "os dias 2 a 7 se cancelam"
+   },
+   {
+    "linha": "d₈ − d₁ = 917",
+    "nota": "mortes a mais no dia 8"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

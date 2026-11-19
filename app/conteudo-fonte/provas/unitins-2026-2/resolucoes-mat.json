@@ -276,5 +276,116 @@
    "data": "2026-11-13",
    "lote": "mat-0049"
   }
+ },
+ "P249e2de7": {
+  "n": "15",
+  "conceito": "Probabilidade total: somar os dois cenários (chuva e sem chuva), cada um pesado pela sua chance.",
+  "equivocos": {
+   "A": "M13.5:valor-sem-teste-de-consistencia",
+   "B": "M13.5:valor-sem-teste-de-consistencia",
+   "D": "M13.5:esqueceu-um-galho-da-arvore",
+   "E": "M13.5:peso-errado-no-galho"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O atraso pode acontecer de dois jeitos que não se misturam: chove e ele se atrasa, ou não chove e ele se atrasa. Em cada caminho, multiplica-se a chance do tempo pela chance de atraso naquele tempo; no fim, somam-se os dois. Se chove em 70% dos dias, não chove em 30%.",
+    "formulas": [
+     "P(atraso) = P(chuva) · P(atraso | chuva) + P(sem chuva) · P(atraso | sem chuva)"
+    ],
+    "simbolos": [
+     [
+      "P(atraso | chuva)",
+      "chance de atraso num dia chuvoso (60%)"
+     ],
+     [
+      "P(sem chuva)",
+      "1 − P(chuva)"
+     ]
+    ]
+   },
+   "pista": "Desenhe a árvore: primeiro o tempo (chove ou não), depois o atraso em cada galho.",
+   "passos": [
+    {
+     "faz": "Ache a chance de não chover",
+     "conta": "1 − 7/10 = 3/10",
+     "porque": "Chuva e sem chuva cobrem todos os dias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o galho da chuva",
+     "conta": "7/10 · 6/10 = 42/100",
+     "porque": "Chover e ele se atrasar: multiplica-se a chance de chuva pela de atraso na chuva.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o galho sem chuva",
+     "conta": "3/10 · 2/10 = 6/100",
+     "porque": "Não chover e ele se atrasar: 30% dos dias com 20% de atraso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois galhos",
+     "conta": "42/100 + 6/100 = 48/100 = 12/25",
+     "porque": "Os dois caminhos levam ao atraso e não acontecem juntos; 48/100 simplifica por 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "12/25 → alternativa C",
+     "porque": "A probabilidade de ele chegar atrasado é 12/25, ou 48%.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 12/25",
+   "checagem": "Num período de 100 dias: 70 chuvosos com 60% de atraso dão 42 atrasos; 30 secos com 20% dão 6 atrasos. São 48 atrasos em 100 dias, 48/100 = 12/25.",
+   "erradas": {
+    "A": "51/100 não confere: P = 20% + 40% · P(chuva); para dar 51/100 a chuva teria de ser 31/40 = 77,5%, não 70%.",
+    "B": "1/2 não confere: P = 20% + 40% · P(chuva); para dar 1/2 a chuva teria de ser 75%, não 70%.",
+    "D": "21/50 sai de parar no galho da chuva: 7/10 · 6/10 = 42/100 = 21/50. Faltou somar os 6/100 dos dias sem chuva.",
+    "E": "14/25 sai de usar 70% nos dois galhos: 7/10 · 6/10 + 7/10 · 2/10 = 56/100 = 14/25. O dia sem chuva tem chance de 30%."
+   },
+   "armadilha": "Esquecer o galho dos dias sem chuva (ou pesá-lo com 70% em vez de 30%).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de o funcionário chegar atrasado num dia qualquer.",
+    "chave": "7/10 · 6/10 + 3/10 · 2/10 = 48/100 = 12/25.",
+    "cuidado": "Some os dois galhos e pese o sem chuva por 3/10."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média ponderada",
+    "ideia": "O atraso é a média de 60% e 20% com pesos 70 e 30: (70 · 60 + 30 · 20)/100 = 48%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(sem chuva) = 1 − 7/10 = 3/10",
+    "nota": "complementar"
+   },
+   {
+    "linha": "7/10 · 6/10 = 42/100",
+    "nota": "galho chuva e atraso"
+   },
+   {
+    "linha": "3/10 · 2/10 = 6/100",
+    "nota": "galho sem chuva e atraso"
+   },
+   {
+    "linha": "42/100 + 6/100 = 48/100 = 12/25",
+    "nota": "somar e simplificar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

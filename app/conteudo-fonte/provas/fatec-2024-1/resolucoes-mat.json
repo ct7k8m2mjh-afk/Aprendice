@@ -392,5 +392,107 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pa81f75c7": {
+  "n": "6",
+  "conceito": "Achar a moda e a mediana de 16 valores lidos num gráfico de barras.",
+  "equivocos": {
+   "A": "M14.1:mediana-sem-ordenar",
+   "B": "M14.1:mediana-sem-ordenar",
+   "D": "M14.1:moda-como-maior-valor",
+   "E": "M14.1:moda-como-maior-valor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São 16 anos de dados, de 2007 a 2022. A moda é o valor que mais se repete; a maior barra não tem nada a ver com ela. A mediana exige pôr os 16 valores em ordem e tirar a média do 8º e do 9º.",
+    "formulas": [
+     "moda = valor que mais se repete",
+     "mediana de 16 valores = (8º + 9º)/2, depois de ordenar"
+    ],
+    "simbolos": [
+     [
+      "moda",
+      "valor que mais aparece"
+     ],
+     [
+      "mediana",
+      "média dos dois valores centrais da lista ordenada, quando há quantidade par"
+     ]
+    ]
+   },
+   "pista": "Conte quantas vezes cada valor aparece e só depois ordene os 16 para achar o meio.",
+   "passos": [
+    {
+     "faz": "Ache a moda",
+     "conta": "8,5 aparece 3 vezes (2008, 2009, 2010) | 9,3 aparece 2 vezes → moda = 8,5",
+     "porque": "Nenhum outro valor se repete tanto quanto 8,5.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ordene os 16 valores",
+     "conta": "2,7 | 2,8 | 7,3 | 7,7 | 8,1 | 8,3 | 8,5 | 8,5 | 8,5 | 8,6 | 8,9 | 9,3 | 9,3 | 9,6 | 9,7 | 10,2",
+     "porque": "A mediana só pode ser lida na lista em ordem crescente, não na ordem dos anos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a mediana",
+     "conta": "(8º + 9º)/2 = (8,5 + 8,5)/2 = 8,5",
+     "porque": "Com 16 valores, o meio fica entre o 8º e o 9º, e os dois são 8,5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "moda 8,5 e mediana 8,5 → alternativa C",
+     "porque": "A pergunta pede as duas medidas, nessa ordem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — moda 8,5 e mediana 8,5 milhões de visitantes.",
+   "checagem": "Conte em volta de 8,5: há 6 valores menores que 8,5 (2,7; 2,8; 7,3; 7,7; 8,1; 8,3) e 7 maiores (8,6 a 10,2); com os três 8,5 no meio, as posições 7, 8 e 9 são 8,5, e o meio da lista cai neles.",
+   "erradas": {
+    "A": "9,3 de mediana sai de não ordenar: na ordem dos anos, o 8º valor é o de 2014, 9,3. Ordenados, o 8º e o 9º são 8,5.",
+    "B": "8,6 de mediana sai de não ordenar: na ordem dos anos, o 9º valor é o de 2015, 8,6. Ordenados, o 8º e o 9º são 8,5.",
+    "D": "10,2 de moda sai de tomar a maior barra (2018) como moda; 10,2 aparece uma vez só. E 8,6 é o 9º valor na ordem dos anos, sem ordenar.",
+    "E": "10,2 de moda sai de tomar a maior barra (2018) como moda; 10,2 aparece uma vez só, enquanto 8,5 aparece três vezes."
+   },
+   "armadilha": "A moda é o valor que mais se repete (8,5), não a barra mais alta (10,2).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A moda e a mediana do número de visitantes de 2007 a 2022.",
+    "chave": "8,5 aparece 3 vezes (moda); ordenados, o 8º e o 9º valores são 8,5 (mediana).",
+    "cuidado": "Ordene antes de achar a mediana e não confunda moda com o maior valor."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "frequência acumulada",
+    "ideia": "Monte a tabela de frequência em ordem: 2,7; 2,8; 7,3; 7,7; 8,1; 8,3 levam o acumulado a 6; o 8,5, com frequência 3, leva de 7 a 9. As posições 8 e 9 caem no 8,5: mediana 8,5, e a maior frequência (3) dá a moda 8,5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "8,5 aparece 3 vezes → moda = 8,5",
+    "nota": "valor mais repetido"
+   },
+   {
+    "linha": "16 valores → posições 8 e 9",
+    "nota": "meio da lista ordenada"
+   },
+   {
+    "linha": "(8,5 + 8,5)/2 = 8,5",
+    "nota": "mediana"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

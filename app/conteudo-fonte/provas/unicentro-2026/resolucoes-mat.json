@@ -885,5 +885,111 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P9cc33ba5": {
+  "n": "71",
+  "conceito": "Termo geral do binômio de Newton com sinal: coeficiente de um termo pela posição.",
+  "equivocos": {
+   "A": "M13.9:sinal-errado-no-binomio",
+   "B": "M13.9:posicao-do-termo-trocada",
+   "C": "M13.9:linha-de-pascal-errada",
+   "D": "M13.9:posicao-do-termo-trocada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No binômio, o 1º termo corresponde a k = 0, então o 5º termo é k = 4: a posição é sempre k + 1. Como o segundo termo é −y, o sinal de cada termo é (−1)ᵏ: k par dá sinal positivo.",
+    "formulas": [
+     "T(k + 1) = C(8, k) · x⁸⁻ᵏ · (−y)ᵏ",
+     "C(n, k) = n!/(k!(n − k)!)"
+    ],
+    "simbolos": [
+     [
+      "C(8, k)",
+      "número binomial: maneiras de escolher k fatores entre 8"
+     ],
+     [
+      "k",
+      "quantas vezes o −y entra no termo"
+     ]
+    ]
+   },
+   "pista": "O 1º termo é o de k = 0; descubra qual k corresponde ao 5º termo antes de calcular.",
+   "passos": [
+    {
+     "faz": "Ache o k do 5º termo",
+     "conta": "k + 1 = 5 → k = 4",
+     "porque": "A contagem dos termos começa em k = 0.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva o termo",
+     "conta": "T5 = C(8, 4) · x⁴ · (−y)⁴",
+     "porque": "O −y entra 4 vezes e o x as outras 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o número binomial e o sinal",
+     "conta": "C(8, 4) = (8 · 7 · 6 · 5)/(4 · 3 · 2 · 1) = 1680/24 = 70 | (−1)⁴ = 1",
+     "porque": "Expoente par apaga o sinal negativo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "T5 = 70x⁴y⁴ → alternativa E",
+     "porque": "O coeficiente do 5º termo é 70.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 70",
+   "checagem": "Pelo triângulo de Pascal, a linha 8 é 1, 8, 28, 56, 70, 56, 28, 8, 1; o 5º número é 70, e os sinais alternam +, −, +, −, +: o 5º é positivo.",
+   "erradas": {
+    "A": "−70 sai de acertar C(8, 4) = 70 mas errar o sinal: (−y)⁴ é positivo, porque o expoente é par.",
+    "B": "−56 sai de tomar k = 5 como o 5º termo: C(8, 5) · (−1)⁵ = −56. Esse é o 6º termo.",
+    "C": "35 sai de usar a linha 7 em vez da 8: C(7, 4) = 35.",
+    "D": "56 sai de tomar k = 5 e esquecer o sinal: C(8, 5) = 56, que é o 6º termo, e (−1)⁵ é negativo."
+   },
+   "armadilha": "O 5º termo é k = 4, não k = 5: a contagem começa em k = 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O coeficiente do 5º termo de (x − y)⁸.",
+    "chave": "5º termo é k = 4: C(8, 4) · (−1)⁴ = 70.",
+    "cuidado": "Posição = k + 1, e o sinal vem de (−1)ᵏ."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "triângulo de Pascal",
+    "ideia": "Linha 8: 1, 8, 28, 56, 70...; o 5º é 70 e, com sinais alternando a partir de +, é positivo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "k + 1 = 5 → k = 4",
+    "nota": "posição do termo"
+   },
+   {
+    "linha": "T5 = C(8, 4) · x⁴ · (−y)⁴",
+    "nota": "termo geral"
+   },
+   {
+    "linha": "C(8, 4) = 1680/24 = 70",
+    "nota": "número binomial"
+   },
+   {
+    "linha": "(−1)⁴ = 1 → coeficiente 70",
+    "nota": "sinal do termo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

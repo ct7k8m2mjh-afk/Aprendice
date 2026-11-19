@@ -371,5 +371,105 @@
    "data": "2026-11-13",
    "lote": "mat-0063"
   }
+ },
+ "P73a16a41": {
+  "n": "43",
+  "conceito": "Média ponderada pela área: índice pluviométrico da cidade inteira em dois dias.",
+  "equivocos": {
+   "A": "M14.4:usou-so-um-setor",
+   "B": "M14.4:media-simples-em-vez-de-ponderada",
+   "D": "M14.4:usou-so-um-setor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O índice em mm é a altura da chuva em cada metro quadrado. Um setor maior pesa mais no índice da cidade, então a média dos setores é ponderada pela área, não simples. O final de semana inteiro é a chuva do sábado mais a do domingo.",
+    "formulas": [
+     "média ponderada = (soma de índice × área)/(soma das áreas)",
+     "índice do fim de semana = índice de sábado + índice de domingo"
+    ],
+    "simbolos": [
+     [
+      "mm",
+      "milímetro de chuva: altura de água acumulada sobre o chão"
+     ],
+     [
+      "km²",
+      "quilômetro quadrado, unidade de área"
+     ]
+    ]
+   },
+   "pista": "Some primeiro a chuva dos dois dias em cada setor; depois decida quanto cada setor pesa.",
+   "passos": [
+    {
+     "faz": "Some os dois dias em cada setor",
+     "conta": "Sul: 14 + 15 → 29 mm | Central: 10 + 9 → 19 mm | Norte: 13 + 14 → 27 mm",
+     "porque": "O índice do final de semana em cada setor é a chuva de sábado mais a de domingo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique cada índice pela área",
+     "conta": "15 × 29 → 435 | 10 × 19 → 190 | 25 × 27 → 675",
+     "porque": "Cada setor pesa pela sua área: o Norte, com 25 km², conta mais que o Central, com 10 km².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pela área total",
+     "conta": "(435 + 190 + 675)/(15 + 10 + 25) → 1300/50 → 26",
+     "porque": "A soma ponderada dividida pelos 50 km² da cidade dá o índice médio da cidade inteira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "26 mm → alternativa C",
+     "porque": "É o índice pluviométrico da cidade inteira no final de semana.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 26 mm",
+   "checagem": "Faça dia a dia: sábado (15 × 14 + 10 × 10 + 25 × 13)/50 = 635/50 = 12,7 mm; domingo (15 × 15 + 10 × 9 + 25 × 14)/50 = 665/50 = 13,3 mm. Somando, 12,7 + 13,3 = 26 mm.",
+   "erradas": {
+    "A": "19 mm sai de olhar só o setor Central: 10 + 9 = 19. A pergunta é sobre a cidade inteira.",
+    "B": "25 mm sai da média simples, sem pesar as áreas: (14 + 10 + 13)/3 + (15 + 9 + 14)/3 = 37/3 + 38/3 = 25. Setores de áreas diferentes não pesam igual.",
+    "D": "29 mm sai de olhar só o setor Sul: 14 + 15 = 29. A pergunta é sobre a cidade inteira."
+   },
+   "armadilha": "Fazer a média simples dos setores: o Norte tem 25 km² e o Central só 10 km², por isso a média tem de ser ponderada pela área.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O índice pluviométrico do final de semana na cidade inteira.",
+    "chave": "Média ponderada pela área: (15 × 29 + 10 × 19 + 25 × 27)/50 = 1300/50 = 26 mm.",
+    "cuidado": "Pese cada setor pela área e some os dois dias."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pesos das áreas",
+    "ideia": "Cada setor pesa a fração da área da cidade: 15/50 × 29 + 10/50 × 19 + 25/50 × 27 = 8,7 + 3,8 + 13,5 = 26 mm"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "29 | 19 | 27",
+    "nota": "sábado + domingo em cada setor"
+   },
+   {
+    "linha": "15 × 29 + 10 × 19 + 25 × 27 = 1300",
+    "nota": "cada índice vezes a área"
+   },
+   {
+    "linha": "1300/50 = 26",
+    "nota": "divide pela área total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

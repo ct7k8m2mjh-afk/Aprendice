@@ -371,5 +371,122 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "P2c9f2eaa": {
+  "n": "12",
+  "conceito": "Julgar três afirmações de contagem: probabilidade com algarismos distintos, anagrama com letra repetida e combinação simples.",
+  "equivocos": {
+   "A": "M13.2:ignorou-letra-repetida",
+   "C": "M13.1:nao-tratou-restricao-do-zero",
+   "D": "M13.2:ignorou-letra-repetida",
+   "E": "M13.3:usou-arranjo-no-lugar-de-combinacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada afirmação é uma conta separada; julgue uma por vez. Em I, conte os pares de três algarismos distintos começando pela restrição (o último algarismo), separando o caso em que ele é 0. Em II, PALMAS tem a letra A duas vezes: trocar os dois A de lugar não gera palavra nova. Em III, um grupo de viajantes não tem ordem: é combinação.",
+    "formulas": [
+     "probabilidade = casos favoráveis/casos possíveis",
+     "anagramas com repetição = n!/(a!)",
+     "C(n, p) = n!/(p!(n − p)!)"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "produto n × (n − 1) × … × 1"
+     ],
+     [
+      "C(n, p)",
+      "número de grupos de p elementos escolhidos entre n, sem ordem"
+     ],
+     [
+      "algarismos distintos",
+      "os três algarismos do número são diferentes entre si"
+     ]
+    ]
+   },
+   "pista": "Em I, escolha primeiro o algarismo das unidades e trate à parte o caso em que ele é 0; em II, olhe se alguma letra se repete.",
+   "passos": [
+    {
+     "faz": "Conte os pares com algarismos distintos",
+     "conta": "final 0: 9 × 8 = 72 | final 2, 4, 6 ou 8: 4 × 8 × 8 = 256 → 72 + 256 = 328",
+     "porque": "Com final 0, a centena tem 9 opções (1 a 9) e a dezena 8. Com final 2, 4, 6 ou 8, a centena não pode ser 0 nem o final (8 opções) e a dezena não pode repetir os dois já usados (8 opções).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelos 900 números do intervalo",
+     "conta": "999 − 100 + 1 = 900 → 328/900 = 82/225",
+     "porque": "Dividindo 328 e 900 por 4, sai 82/225: a afirmação I é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte a repetição do A em PALMAS",
+     "conta": "6!/2! = 720/2 = 360",
+     "porque": "São 6 letras com o A duas vezes. Os 720 de 6! contam cada anagrama duas vezes (os dois A trocados), então são 360, não 720: II é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os grupos de 5 entre 7",
+     "conta": "C(7, 5) = 7!/(5! 2!) = (7 × 6)/2 = 21",
+     "porque": "Num grupo de viajantes a ordem não importa, então é combinação. Saem 21 grupos: III é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os julgamentos",
+     "conta": "I V | II F | III V → I e III → alternativa B",
+     "porque": "Só I e III resistem às contas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — Somente I e III são verdadeiras.",
+   "checagem": "Em I, conte pela centena: centena ímpar (1, 3, 5, 7 ou 9) deixa 5 finais pares e 8 dezenas, 5 × 5 × 8 = 200; centena par não nula (2, 4, 6 ou 8) deixa só 4 finais pares diferentes dela e 8 dezenas, 4 × 4 × 8 = 128. Total 200 + 128 = 328, o mesmo de antes. Em III, conte com ordem e desconte as ordens: 7 × 6 × 5 × 4 × 3 = 2520 filas de 5, e cada grupo aparece em 5! = 120 ordens; 2520/120 = 21.",
+   "erradas": {
+    "A": "I e II sai de dois erros: tomar 6! = 720 sem descontar o A repetido e tratar III como arranjo, 7 × 6 × 5 × 4 × 3 = 2520, o que contaria cada grupo em todas as ordens.",
+    "C": "Só III sai de errar I contando 5 × 9 × 8 = 360 (centena sempre com 9 opções) → 360/900 = 2/5. Com final 2, 4, 6 ou 8 a centena tem só 8 opções.",
+    "D": "II e III sai de esquecer a repetição do A (6! = 720) e errar I com 5 × 9 × 8 = 360 → 2/5. A contagem certa dá 328/900 = 82/225 e 6!/2! = 360.",
+    "E": "Só I sai de tratar III como arranjo: 7 × 6 × 5 × 4 × 3 = 2520. Os mesmos 5 viajantes em outra ordem formam o mesmo grupo, por isso é C(7, 5) = 21."
+   },
+   "armadilha": "PALMAS tem dois A: 6! = 720 conta cada anagrama duas vezes, e o certo é 6!/2! = 360.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Julgar uma probabilidade com algarismos distintos, o número de anagramas de PALMAS e o número de grupos de 5 entre 7.",
+    "chave": "328/900 = 82/225; 6!/2! = 360; C(7, 5) = 21.",
+    "cuidado": "Separe o caso do final 0 em I, divida pela repetição do A em II e use combinação em III."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar na combinação",
+    "ideia": "escolher os 5 que viajam é escolher os 2 que ficam: C(7, 2) = (7 × 6)/2 = 21"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "72 + 256 = 328",
+    "nota": "pares com algarismos distintos"
+   },
+   {
+    "linha": "328/900 = 82/225",
+    "nota": "I verdadeira"
+   },
+   {
+    "linha": "6!/2! = 720/2 = 360",
+    "nota": "II falsa: o A se repete"
+   },
+   {
+    "linha": "C(7, 5) = (7 × 6)/2 = 21",
+    "nota": "III verdadeira"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

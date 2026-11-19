@@ -81,5 +81,103 @@
    "data": "2026-11-12",
    "lote": "mat-0044"
   }
+ },
+ "P1465e9bc": {
+  "n": "46",
+  "conceito": "Princípio multiplicativo com restrição de vizinhança: faixas consecutivas de cores diferentes.",
+  "equivocos": {
+   "A": "M13.1:restringiu-a-primeira-posicao",
+   "B": "M13.1:contagem-com-restricao-errada",
+   "D": "M13.1:esqueceu-uma-vizinhanca",
+   "E": "M13.1:exigiu-todas-diferentes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Pinte a bandeira faixa por faixa, de cima para baixo. Sem restrição, cada faixa tem as 4 cores. Com a restrição, só a vizinha de cima é proibida: a primeira faixa tem 4 opções e cada uma das outras tem 3. A razão compara as duas contagens.",
+    "formulas": [
+     "princípio multiplicativo: opções da 1.ª faixa × opções da 2.ª × …",
+     "razão = com restrição/sem restrição"
+    ],
+    "simbolos": [
+     [
+      "4⁴",
+      "4 × 4 × 4 × 4: quatro faixas com quatro cores cada"
+     ]
+    ]
+   },
+   "pista": "Conte as opções de cada faixa olhando só para a faixa que já foi pintada logo acima dela.",
+   "passos": [
+    {
+     "faz": "Conte sem restrição",
+     "conta": "4 × 4 × 4 × 4 → 4⁴ → 256",
+     "porque": "Cada uma das 4 faixas pode receber qualquer uma das 4 cores.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte com restrição",
+     "conta": "4 × 3 × 3 × 3 → 108",
+     "porque": "A 1.ª faixa tem 4 cores; cada faixa seguinte não pode repetir a cor da de cima, então sobram 3. Faixas não vizinhas podem repetir.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte e simplifique a razão",
+     "conta": "108/256 → 27/64",
+     "porque": "Dividindo numerador e denominador por 4: 108/4 = 27 e 256/4 = 64.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "27/64 → alternativa C",
+     "porque": "É a razão entre as pinturas com restrição e as sem restrição.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 27/64",
+   "checagem": "Pelo complemento: há 3 pares de faixas vizinhas. Pinturas com um par dado repetido: 4³ = 64; com dois pares dados: 4² = 16; com os três: 4. Com pelo menos uma repetição: 3 × 64 − 3 × 16 + 4 = 148; sem repetição: 256 − 148 = 108, e 108/256 = 27/64.",
+   "erradas": {
+    "A": "81/256 sai de dar 3 opções também à primeira faixa: 3 × 3 × 3 × 3 = 81. A 1.ª faixa não tem vizinha acima e pode receber qualquer uma das 4 cores.",
+    "B": "16/64 não confere: 16/64 = 64/256, e as pinturas com restrição são 4 × 3 × 3 × 3 = 108, não 64.",
+    "D": "144/256 sai de esquecer a vizinhança entre a 2.ª e a 3.ª faixas: (4 × 3) × (4 × 3) = 144, como se fossem dois pares independentes. A 3.ª faixa também não pode repetir a 2.ª.",
+    "E": "24/64 não confere: 24/64 = 96/256, e as pinturas com restrição são 108, não 96. O 24 = 4 × 3 × 2 × 1 contaria só bandeiras com as quatro cores diferentes, o que a regra não exige."
+   },
+   "armadilha": "Exigir que todas as faixas tenham cores diferentes, ou proibir repetir em faixas não vizinhas: só a faixa imediatamente de cima limita a cor.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão entre as pinturas com e sem a restrição de faixas vizinhas.",
+    "chave": "Com restrição 4 × 3 × 3 × 3 = 108; sem restrição 4⁴ = 256; 108/256 = 27/64.",
+    "cuidado": "A primeira faixa tem 4 opções; só faixas vizinhas não podem repetir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "probabilidade",
+    "ideia": "cada uma das 3 faixas de baixo tem chance 3/4 de não repetir a de cima: (3/4)³ = 27/64"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4 × 4 × 4 × 4 = 256",
+    "nota": "sem restrição"
+   },
+   {
+    "linha": "4 × 3 × 3 × 3 = 108",
+    "nota": "faixa vizinha não repete"
+   },
+   {
+    "linha": "108/256 = 27/64",
+    "nota": "simplifica por 4"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

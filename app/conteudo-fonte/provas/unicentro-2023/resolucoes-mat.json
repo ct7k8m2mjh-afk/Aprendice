@@ -870,5 +870,112 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P03ba6758": {
+  "n": "73",
+  "conceito": "Montar as quatro regiões de duas palestras a partir de frações e achar 'não A e B'.",
+  "equivocos": {
+   "A": "M13.6:calculou-a-regiao-trocada",
+   "C": "M13.6:respondeu-a-intersecao",
+   "D": "M13.6:complementar-no-lugar-do-evento",
+   "E": "M13.6:subtraiu-a-regiao-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Trabalhe com frações do total de arquitetos. \"Um quinto dos que não assistiram à B assistiu à A\" é uma fração de uma fração: 1/5 de 1/4. Com isso se sabe A sem B; daí sai A com B e, por fim, B sem A.",
+    "formulas": [
+     "P(B) = 1 − P(não B)",
+     "P(A e B) = P(A) − P(A e não B)",
+     "P(não A e B) = P(B) − P(A e B)"
+    ],
+    "simbolos": [
+     [
+      "P(A e não B)",
+      "chance de ter assistido à A e não à B"
+     ],
+     [
+      "P(não A e B)",
+      "chance de ter assistido à B e não à A"
+     ]
+    ]
+   },
+   "pista": "Traduza o terceiro dado primeiro: um quinto de quem? Ele dá uma das quatro regiões do diagrama.",
+   "passos": [
+    {
+     "faz": "Ache A sem B",
+     "conta": "P(A e não B) = 1/5 × 1/4 = 1/20",
+     "porque": "Os que não assistiram à B são 1/4 do total; um quinto deles assistiu à A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache A com B",
+     "conta": "P(A e B) = 1/2 − 1/20 = 10/20 − 1/20 = 9/20",
+     "porque": "Quem assistiu à A assistiu ou não à B; tirando a parte sem B, sobra a parte com B.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache B sem A",
+     "conta": "P(B) = 1 − 1/4 = 3/4 = 15/20 → P(não A e B) = 15/20 − 9/20 = 6/20 = 3/10",
+     "porque": "Quem assistiu à B é o complementar de quem não assistiu; tirando os que também viram A, sobra B sem A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "3/10 → alternativa B",
+     "porque": "É a chance de não ter visto a A e ter visto a B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 3/10",
+   "checagem": "Some as quatro regiões: A sem B 1/20, as duas 9/20, B sem A 6/20 e nenhuma 1/4 − 1/20 = 4/20. 1/20 + 9/20 + 6/20 + 4/20 = 20/20 = 1, o total. E não assistiram à A: 6/20 + 4/20 = 10/20 = 1/2, o complementar da metade que viu a A.",
+   "erradas": {
+    "A": "1/20 sai de parar no terceiro dado: 1/5 × 1/4 = 1/20 é quem viu A e não viu B, o contrário do pedido.",
+    "C": "9/20 sai de responder quem viu as duas: 1/2 − 1/20 = 9/20. Ainda falta tirar isso dos 3/4 que viram a B.",
+    "D": "11/20 sai do complementar de quem viu as duas: 1 − 9/20 = 11/20. Esse grupo inclui também quem viu só A e quem não viu nenhuma.",
+    "E": "7/10 sai de tirar de P(B) a região errada: 3/4 − 1/20 = 14/20 = 7/10. O 1/20 é A sem B, que nem está dentro de B; o certo é tirar A com B, 9/20."
+   },
+   "armadilha": "\"Um quinto dos que não assistiram à B\" é 1/5 de 1/4, não 1/5 do total, e dá A sem B, não o que se pede.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de um arquiteto ter assistido à B e não à A.",
+    "chave": "A sem B = 1/20; A com B = 9/20; B sem A = 3/4 − 9/20 = 3/10.",
+    "cuidado": "O 1/5 é dos que não viram a B (1/4), e de P(B) se tira A com B, não A sem B."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela 2 × 2 com 20 arquitetos",
+    "ideia": "Em 20: A = 10, sem B = 5, A sem B = 1, A com B = 9, B = 15, B sem A = 15 − 9 = 6; 6/20 = 3/10."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1/5 × 1/4 = 1/20",
+    "nota": "A sem B"
+   },
+   {
+    "linha": "1/2 − 1/20 = 9/20",
+    "nota": "A com B"
+   },
+   {
+    "linha": "1 − 1/4 = 3/4 = 15/20",
+    "nota": "assistiram à B"
+   },
+   {
+    "linha": "15/20 − 9/20 = 6/20 = 3/10",
+    "nota": "B sem A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }

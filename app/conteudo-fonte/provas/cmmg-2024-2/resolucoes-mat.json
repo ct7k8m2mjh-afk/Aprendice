@@ -102,5 +102,124 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "Pc30d40d7": {
+  "n": "59",
+  "conceito": "Comparar média, mediana e moda numa distribuição por faixas etárias com cauda longa para as idades altas.",
+  "equivocos": {
+   "A": "M14.1:inverteu-a-assimetria",
+   "C": "M14.1:supos-distribuicao-simetrica",
+   "D": "M14.1:relacao-sem-base-nos-dados"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Não é preciso calcular tudo: basta localizar a faixa da moda (a barra mais longa) e a faixa da mediana (onde a contagem acumulada passa da metade). Quando a moda fica à esquerda da mediana e a distribuição se estende até as idades altas, a média tende a ser puxada para a direita. A questão pede uma relação possível.",
+    "formulas": [
+     "moda: faixa com mais casos",
+     "mediana: faixa em que o acumulado passa da metade do total",
+     "média: puxada pela cauda mais longa"
+    ],
+    "simbolos": [
+     [
+      "ME",
+      "média das idades"
+     ],
+     [
+      "MD",
+      "mediana das idades"
+     ],
+     [
+      "MO",
+      "moda das idades"
+     ],
+     [
+      "acumulado",
+      "soma dos casos desde a primeira faixa até a faixa em questão"
+     ]
+    ]
+   },
+   "pista": "Ache a barra mais longa e depois some as barras de cima para baixo até passar da metade do total.",
+   "passos": [
+    {
+     "faz": "Localize a moda",
+     "conta": "maior barra: 30 a 39 anos (130,0 mil) → MO entre 30 e 39",
+     "porque": "A moda é a idade com mais casos, a faixa de barra mais longa.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some o total de casos",
+     "conta": "5,6 + 16,3 + 28,6 + 34,3 + 50,4 + 130,0 + 113,0 + 108,4 + 86,0 + 58,0 + 28,7 = 659,3 → 659,3/2 ≈ 329,7",
+     "porque": "A mediana é a idade de quem ocupa o meio da fila ordenada, cerca de 329,7 mil casos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a faixa da mediana pelo acumulado",
+     "conta": "até 29 anos: 135,2 | até 39: 265,2 | até 49: 378,2 → MD entre 40 e 49",
+     "porque": "O acumulado passa de 329,7 dentro da faixa de 40 a 49 anos, então a mediana está ali, acima da moda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine as relações impossíveis",
+     "conta": "MO < MD → A e C caem | D pediria ME ≈ 2·MD − MO, mais de 50 anos",
+     "porque": "A e C exigem moda maior ou igual à mediana. Em D, com MD perto de 45 e MO perto de 35, a média teria de passar de 50 anos, mais do que daria até pondo cada mulher no limite de cima da sua faixa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua pela cauda à direita",
+     "conta": "MO < MD < ME → alternativa B",
+     "porque": "Com a moda à esquerda da mediana e as faixas de idade alta puxando a média, a relação possível é a da assimetria à direita.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — MO < MD < ME.",
+   "checagem": "Estime a mediana por interpolação: 40 + ((329,65 − 265,2)/113) × 10 ≈ 45,7 anos, bem acima da faixa modal de 30 a 39; a moda é mesmo o menor dos três, e só B e D começam por ela abaixo da mediana.",
+   "erradas": {
+    "A": "ME < MD < MO não confere: a moda fica na faixa de 30 a 39 anos e a mediana na de 40 a 49, então a moda é menor que a mediana, não maior.",
+    "C": "MD = ME = MO não confere: vale só para distribuição simétrica, e aqui a moda (30 a 39) e a mediana (40 a 49) estão em faixas diferentes.",
+    "D": "MD = (ME + MO)/2 não confere: daria ME ≈ 91,4 − MO, mais de 51,4 anos com MO abaixo de 40; nem com cada mulher no topo da faixa (80 ou mais como 100) a média chega a 51 (dá cerca de 50,7)."
+   },
+   "armadilha": "A barra mais longa (30 a 39) não é a mediana: o acumulado só passa da metade na faixa de 40 a 49 anos.",
+   "alerta": "Com as faixas largas e a última aberta (80 ou mais), a média não pode ser calculada com exatidão: pelos pontos médios das faixas ela fica muito perto da mediana (cerca de 45 a 46 anos). Por isso a banca pede uma relação \"possível\": A, C e D são impossíveis com os dados, e B é a única compatível, coerente com a cauda que se estende até as idades altas. Gabarito oficial B.",
+   "essencial": {
+    "pede": "A relação possível entre média, mediana e moda das idades.",
+    "chave": "Moda na faixa de 30 a 39, mediana na de 40 a 49 (acumulado passa de 329,7 mil), média puxada pela cauda das idades altas.",
+    "cuidado": "Ache a mediana pelo acumulado, não pela barra mais longa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "forma do gráfico",
+    "ideia": "o pico está nas idades de 30 a 39 e as barras descem devagar até 80 ou mais: assimetria à direita, em que moda < mediana < média"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "total = 659,3 → 659,3/2 ≈ 329,7",
+    "nota": "posição da mediana"
+   },
+   {
+    "linha": "até 39 anos: 265,2 < 329,7",
+    "nota": "ainda não chegou à metade"
+   },
+   {
+    "linha": "até 49 anos: 378,2 > 329,7",
+    "nota": "mediana entre 40 e 49"
+   },
+   {
+    "linha": "MO (30 a 39) < MD (40 a 49) < ME",
+    "nota": "cauda à direita: B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
  }
 }
