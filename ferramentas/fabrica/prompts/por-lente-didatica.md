@@ -110,3 +110,12 @@ nem na `checagem`. Se o critério já está em qualquer um desses campos, o `cam
 é repetição, e repetição se apaga. Vazio não é falha: é o estado certo quando a questão tem um caminho só.
 E a ideia escrita ali é conferida como qualquer outra: eliminação com a conta errada no `caminhos` é
 erro de fato, não detalhe.
+
+## Questão que depende da obra inteira: avise o aluno de onde vem o dado
+Em muitas questões de literatura a banca não reproduz o texto: o print traz só o comando e as
+alternativas, e a resposta depende de ter lido a obra. Nessas questões, **pelo menos um passo tem de
+dizer, com todas as letras, que o dado vem da obra e não do print** ("o enredo de Dom Casmurro, que
+a prova não reproduz, …"). Sem esse aviso o aluno procura no print uma informação que não está lá,
+não acha, e conclui que entendeu errado — quando o problema é a questão pressupor a leitura.
+E nunca afirme sobre a obra algo que não seja consolidado em livro didático: métrica, verso citado
+ou detalhe de enredo que você não consiga sustentar não entra, nem nas `erradas`.
