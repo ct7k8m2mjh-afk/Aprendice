@@ -68,7 +68,11 @@ aprovação ou resposta: pendências e avisos vão para docs/resolucoes/caixa/<m
 | Português | session_01PveEKY3G8XPW7thJLdH3jL | trabalhando (aberta 13/11 05h47; anterior WhAd deu FIM) |
 Paradas do sistema novo (o dono pode arquivar): Mat session_01PveEKaSPVEijwvkvEUmmWx, Fís session_01PveEKX5T4pY3Xx4fn4PR8G,
 Por session_01PveEKWhAdHoSJKa5to3K8D, Bio session_01PveEKb648gnNx7gv9Y2Xbs.
-Última rodada: 13/11 06h04 UTC (caixa lida até f699d2d6). Novas: DADO P233b33fd (texto de apoio colado na E); GABARITO P0e5ecbdc (UFRR, Edital 93/25). Agente de pendências da caixa disparado 05h48 (um por vez).
+19/11 04h45 UTC: as 6 sessões acima CAÍRAM em 13/11 ~06h10 (limite semanal; status failed). Limite renovou 19/11 04h.
+vez.py: todas LIVRES; lotes a retomar: mat-0064, mat-0065, fis-0062, qui-0064, por-0091, por-0093, geo-0039, geo-0040 (bio nenhum).
+Abrir as 6 de novo ficou PARADO: create_session pede aprovação do dono e ninguém respondeu (2 tentativas para Mat, sem recusa).
+Próxima coordenadora/rodada: só reabrir quando o dono estiver presente para aprovar; não repetir a tentativa a cada rodada.
+Última rodada: 19/11 04h45 UTC (caixa lida até 57a5a8a5; nada novo desde 13/11). Novas: DADO P233b33fd (texto de apoio colado na E); GABARITO P0e5ecbdc (UFRR, Edital 93/25). Agente de pendências da caixa disparado 05h48 (um por vez).
 Antigas, todas paradas (o dono pode arquivar): Mat session_01PveEKZRuBiHmg4Hm9HT1J1, Fís session_01PveEKXmCjqipC4JbNj9w73,
 Quí session_01PveEKadroQ4kNhHt52L2hy, Bio session_01PveEKaptKYR7JXwbmxDGXx, Por session_01PveEKaBDR2WGsLQUacMYFY; e as
 anteriores já listadas para arquivar. Coordenadoras antigas: session_01PveEKWW3t7ZxcdDQKNiYWa, session_01PveEKabuyZnqVN65W5FfEc.
