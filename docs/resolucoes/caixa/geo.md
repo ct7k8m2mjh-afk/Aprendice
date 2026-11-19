@@ -67,3 +67,28 @@ RECLASS Pf90ecdd4 G11.6 -> G05.4
 RECLASS Pfb08161b G11.6 -> G11.3
 RECLASS Pfb24c8dc G10.6 -> G10.8
 RECLASS Pfb269107 G12.1 -> G12.2
+
+## 2026-11-19 16:01 UTC — PENDENCIAS — sessão geo (19/11)
+Lote gravado: geo-0043 (49 resoluções, 1 pendente). Abertos: geo-0044 (conferência), geo-0045 (resolvendo).
+RECLASS P854798b1 G12.5 -> G05.4
+RECLASS Pa726560e G12.5 -> G12.6
+RECLASS Pdb49e93d G12.6 -> G12.2
+DADO P854798b1: alternativas.E -> "Exploração de terras pelo setor primário da economia." (a fonte "Disponível em: https://g1.globo.com/natureza/noticia/2018/09/13. Acesso em: 13 maio 2025." é do infográfico, não da alternativa)
+DADO Pdb94fe55: texto_da_prova -> camada de texto embaralhada; no print: "Ela retrata um fenômeno que decorre de características ambientais e/ou antrópicas, impactando o solo com o excesso de sais minerais. Esse fenômeno tem efeitos diversos, atingindo desde a preservação da vida até as atividades humanas."
+RECLASS P1f98c85e G12.6 -> G07.4 (UFU 2024 q32: charge sobre população de rua, problema social urbano)
+RECLASS P4c5d2cac G12.6 -> G12.2 (UECE 2020.2 q123: práticas sustentáveis)
+RECLASS P6e535222 G12.6 -> G12.2 (UECE 2021.1 q122: ações de sustentabilidade)
+RECLASS P2628fafb G12.6 -> G13.2 (UECE 2022.2 q128: natureza X sociedade e categoria da totalidade, pensamento geográfico)
+RECLASS P25690525 G13.1 -> G10.6 (UERJ 2026 2º EQ q08: Estado e nação, Estados plurinacionais nas Ilhas Britânicas)
+DADO P87348d0c: alternativas.E -> "trabalhadores rurais no bioma da Caatinga." (sem o lixo "p ç p ," no fim)
+DADO Pcc2defda: alternativas -> as alternativas são fotos: A desfile de carnaval (riocarnaval.org); B grupo armado com fuzis numa rua de comunidade (istoe.com.br); C placa "ENTRADA PARA O BRASIL / PEDESTRE" na fronteira (veja.abril.com.br); D desfile da Oktoberfest de Blumenau (brasilturis.com.br); o campo D traz os créditos das quatro fotos colados
+RECLASS P1051f037 G13.1 -> G13.2 (UECE 2023.2 1ª fase q38: interdisciplinaridade, natureza da ciência geográfica, não é conceito-chave)
+RECLASS P726eb4b8 G13.1 -> G03.1 (UECE 2024.2 1ª fase q34: altitude e topografia como fatores naturais)
+RECLASS Pa1390009 G13.1 -> G13.2 (UECE 2026.1 1ª fase q36: autor que criou o termo geopolítica, Kjellén)
+DADO Pf1153beb (Fatec 2024 1º sem, q4): alternativas.E -> "México Norte 15 pressão" (a entrada traz "III II I IV" da tabela colado no fim); as alternativas são uma tabela de 4 colunas (I país, II hemisfério, III %, IV grandeza).
+DADO P63bf1f6d (Fatec 2026 2º sem, q51): alternativas.E -> "Sudoeste e Sul-sudoeste." (a entrada traz a legenda da rosa dos ventos colada no fim da E).
+RECLASS P1d3a7792 G01.1 -> G03.1
+RECLASS P9cded410 G01.1 -> G04.5
+DADO P1d3a7792: texto_da_prova -> no print as temperaturas têm o símbolo de grau: "49 °C", "2 °C", "38 °C" (a entrada traz "49 C", "2 C", "38 C")
+ANULAR P1c3226af (PUCPR 2024/1 Medicina, q. 48): oficial E (Sol à esquerda e atrás em todo o voo Foz → Curitiba, 14h–15h10, dezembro) contraria a posição real do Sol; azimute calculado vai de ~272–275º a ~263–265º, ou seja, atrás e passa da esquerda para a direita; detalhes no motivo
+ANULAR P1c3226af (PUCPR 2024 Medicina 2024/1 · questão 48): gabarito oficial E diz que o Sol fica "do lado esquerdo e atrás" durante todo o voo Foz do Iguaçu → Curitiba em dezembro; o cálculo da posição do Sol (algoritmo NOAA, UTC−3, rumo leste) dá azimute ~272–275º às 14h (atrás, levemente à esquerda) e ~263–265º às 15h10 (atrás, levemente à direita): o Sol passa de esquerda para direita, então "lado esquerdo ao longo de todo o percurso" é falso. A banca não anulou (gabarito definitivo marca E). Confirmado por dois agentes.

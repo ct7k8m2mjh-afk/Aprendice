@@ -1,0 +1,91 @@
+{
+ "Pb86da59d": {
+  "n": "48",
+  "conceito": "Direção entre dois pontos pela variação de latitude e longitude.",
+  "equivocos": {
+   "A": "G01.1:longitude-oeste-lida-como-leste",
+   "B": "G01.1:direcao-invertida",
+   "C": "G01.1:latitude-lida-ao-contrario",
+   "E": "G01.1:ignorou-a-latitude"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para saber a direção de um deslocamento, compare as coordenadas da saída e da chegada. A latitude diz se o movimento foi para norte ou sul; a longitude, se foi para leste ou oeste. No hemisfério oeste, longitude maior significa mais a oeste.",
+    "formulas": [
+     "latitude N aumenta → movimento para o norte",
+     "longitude W aumenta → movimento para o oeste",
+     "norte + oeste = noroeste"
+    ],
+    "simbolos": [
+     [
+      "latitude",
+      "distância em graus ao norte ou ao sul do Equador"
+     ],
+     [
+      "longitude",
+      "distância em graus a leste ou a oeste de Greenwich"
+     ],
+     [
+      "N / W",
+      "norte / oeste (west)"
+     ]
+    ]
+   },
+   "pista": "Compare primeiro só as latitudes; depois, só as longitudes.",
+   "passos": [
+    {
+     "faz": "Localize as duas coordenadas",
+     "conta": "saída: 31º N, 105º W | chegada: 32º N, 107º W",
+     "porque": "O helicóptero vai do local do lançamento para o do pouso.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Compare as latitudes",
+     "conta": "31º N → 32º N: mais longe do Equador, no norte",
+     "porque": "No hemisfério norte, latitude maior é mais ao norte.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Compare as longitudes",
+     "conta": "105º W → 107º W: mais longe de Greenwich, a oeste",
+     "porque": "No hemisfério ocidental, longitude maior é mais a oeste.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "norte + oeste = noroeste = alternativa D",
+     "porque": "Os dois movimentos juntos dão a direção intermediária noroeste.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — noroeste.",
+   "checagem": "Faça o caminho de volta: do pouso para o lançamento a latitude cai (sul) e a longitude W cai (leste), ou seja, sudeste; o oposto de sudeste é noroeste.",
+   "erradas": {
+    "A": "Acerta o norte, mas lê a longitude ao contrário: de 105º W para 107º W o ponto vai para oeste, não para leste.",
+    "B": "Inverte as duas coordenadas: sudeste é o caminho do pouso para o lançamento.",
+    "C": "Acerta o oeste, mas erra a latitude: de 31º N para 32º N é para o norte.",
+    "E": "Ignora a latitude e ainda troca o sentido da longitude, que aumenta para oeste."
+   },
+   "armadilha": "Achar que longitude maior é mais a leste: no hemisfério ocidental, número maior é mais a oeste.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A direção de um deslocamento entre duas coordenadas.",
+    "chave": "Latitude N subiu (norte) e longitude W subiu (oeste): noroeste.",
+    "cuidado": "No hemisfério W, longitude maior fica mais a oeste."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0043"
+  }
+ }
+}
