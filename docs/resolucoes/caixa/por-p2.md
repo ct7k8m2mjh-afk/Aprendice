@@ -91,3 +91,20 @@ Lotes gravados nesta sessão: por-p2-0001 (49 ok, 1 pendente), por-p2-0002 (50 o
 Pendentes: P6c2f77f0 (ANULAR, UFT 2024/1 q7), Pcfeab3fb (ANULAR, Fema 2021 q23). Divergência: P2b2aa288 (UFRR 2026 PI q9, D × preliminar A; possível anulação não confirmada).
 Conferência no site (3 questões, 1280 e 390 px): OK. tsc: OK; vitest: 786 passed.
 A seguir: próxima sessão continua com lote.py proximo por 50 --novo --parte 2 (faltam 533 questões na parte 2).
+
+## 2026-11-19 18:22 UTC — PENDENCIAS — sessão por-p2 (session_01PveEKYbUNBrLzmbEMaYKtg)
+Último lote gravado: por-p2-0005 (49 ok, 1 divergência). Lote aberto: por-p2-0006.
+RECLASS Pcab8cd8e P11.1 -> P11.3 (UNIRG 2024/2 q16: a resposta é Naturalismo, citação de Antonio Candido em "De cortiço a cortiço")
+DADO P4f117446: texto_da_prova -> camada de texto embaralhada pelo OCR; no print é o Texto 1A1-I (Roberto Schwarz, "A viravolta machadiana") e o enunciado da Questão 1 ("O texto 1A1-I apresenta uma comparação crítica entre Memórias Póstumas de Brás Cubas (1881) e o panorama das obras anteriores [...] é a mudança na configuração"); alternativas -> faltam na entrada; no print: A "do espaço e do tempo, em que o narrador abandona o presente e “os progressos estupendos do Rio de Janeiro” e passa a exaltar o passado na “beleza de nossas praias e florestas”." · B "do enredo, antes concentrado na “graça das mocinhas” e depois dedicado ao tema da “campanha cívica pela identidade e a cultura nacionais”." · C "do protagonista: de vilão “capaz de baixezas contra as personagens e o leitor” a herói “notavelmente culto”." · D "da linguagem, inicialmente culta e requintada – “uma espécie de padrão de elegância” – e posteriormente mais simples e próxima dos “costumes populares”." · E "do narrador: de “compatriota digno de aplauso” a defunto “acintoso, parcial, intrometido”."
+DADO Paf6bb205: texto_da_prova -> camada de texto embaralhada pelo OCR; no print é o Texto 1A1-I (Schwarz) e "O gênero e a forma artística da obra de Machado de Assis a que o texto 1A1-I faz referência são, respectivamente,"; alternativas -> faltam na entrada; no print: A "narrativo e crônica." · B "lírico e soneto." · C "narrativo e conto." · D "narrativo e romance." · E "dramático e comédia."
+DADO Pd4acbde0: texto_da_prova "om base na leitura dos textos 1 e 2" -> "44 - Com base na leitura dos textos 1 e 2"
+DADO P827e9ab6 (UNIRG 2021/2 Paraíso q9): texto_da_prova, afirmação II, "como a indígena" -> "como a questão indígena"
+DADO P3813c3e2 (UFSM 2025 q73): alternativas -> vazias na entrada; as alternativas A–E (cinco trechos de poema) estão coladas no fim de texto_da_prova
+RECLASS P7b0f6692 P11.2 -> P11.3 (UNIRG 2024/1 q16: trecho de O cortiço, a pergunta é sobre a estética naturalista)
+RECLASS P2fff7cec P11.2 -> P06.2 (Unespar 2024 Grupo I q14: a questão só pede a figura de linguagem, hipérbole)
+RECLASS P4dfefda9 P11.2 -> P06.1 (Unespar 2026 Grupo I q12: a questão só pede a figura de linguagem, comparação)
+RECLASS Pdfc2f9de P11.3 -> P06.3 (UNIRG 2022/1 Paraíso q9: aliteração, figura de som; equivocos já usam P06.3)
+DADO P8f150aad: alternativas -> vazias na entrada e texto_da_prova embaralhado pelo OCR; refazer pelo print
+DADO Pd28851dc: texto_da_prova -> embaralhado pelo OCR; refazer pelo print
+RECLASS P46ceca92 P11.3 -> P01.4 (a questão cobra função emotiva da linguagem)
+GABARITO Pe24503bc (UFRR 2026 Prova Integral q4, O Ateneu): divergência — resolvedor e conferente às cegas = A, preliminar (Edital 89/25-CPV) = C; A e C têm o mesmo defeito em espelho (duas incorretas); conferir no Edital 93/25-CPV se foi anulada ou mantida em C
