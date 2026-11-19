@@ -116,3 +116,4 @@ RECLASS P543cc3ee G06.5 -> G06.6
 RECLASS Pb5b4b8d3 G11.2 -> G06.3
 RECLASS P55eac2f3 G12.1 -> G03.6
 (As pendências dos lotes 0005 e 0006 estão nos blocos acima: ANULAR Pc75f2669; OUTRA Pe5380577 e Pab319aea.)
+Testes depois do último lote: tsc ok, vitest 786 passaram. Conferência no site (P3b1509a7, Pe044b6d7, Pfc6c3512, 390 e 1280 px): 4 blocos completos e na ordem, nada cortado.
