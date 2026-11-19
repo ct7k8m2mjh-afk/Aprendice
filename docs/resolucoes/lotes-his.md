@@ -1,4 +1,4 @@
-# História: resoluções (gerado por lote.py em 2026-11-13)
+# História: resoluções (gerado por lote.py em 2026-11-19)
 
 Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 0.
 
@@ -90,33 +90,14 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | his-0082 | demais nível 7-10 | 30 | gravado | 26 | 2 | 2 |
 | his-0083 | demais nível 7-10 | 15 | gravado | 15 | 0 | 0 |
 | his-0084 | demais nível 7-10 | 2 | gravado | 2 | 0 | 0 |
+| his-pend-0001 | pendentes fato,as | 4 | gravado | 3 | 1 | 0 |
+| his-pend-0002 | pendentes reclassificada | 2 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
-| P8b4fec38 | Acafe 2026 Inverno · questão 54 | H06.6 Revolução Industrial e mundo do trabalho (tema H06 Revoluções) | classificação: é de Biologia |
-| P106941e8 | Cederj 2025 2025.1 · questão 30 | H05.3 conflitos sociais na Primeira República (tema H05 República Brasileira) | classificação: é de Português — a questão associa autores e livros (Machado de Assis, Lima Barreto, João do Rio, García Márquez, Maquiavel, Hobbes), conteúdo de literatura |
-| P219afbbf | Cederj 2025 2025.2 · questão 30 | H05.4 tenentismo, Semana de 1922 e crise dos anos 1920 (tema H05 República Brasileira) | classificação: é de Português — a questão associa autores e obras literárias (Machado de Assis, Lima Barreto, Mário de Andrade, Casimiro de Abreu, João do Rio, Coelho Neto, Pedro Nava, Marques Rebelo) a séculos, conteúdo de literatura |
-| Pe9e82510 | Fatec 2025 2º semestre · questão 5 | H08.1 origens e blocos da Guerra Fria (tema H08 Guerra Fria) | classificação: é de Geografia |
-| P4227aeb2 | Fatec 2026 1º semestre · questão 51 | H06.6 Revolução Industrial e mundo do trabalho (tema H06 Revoluções) | classificação: é de Matemática |
-| Pbc25b11f | Fempar 2021 Medicina 2021 · questão 32 | H05.7 República de 1946: de Dutra a Jango (tema H05 República Brasileira) | classificação: é de Sociologia |
-| P61d9ea43 | Fuvest 2026 1ª fase · questão 12 | H05.5 Revolução de 1930 e governo constitucional de Vargas (tema H05 República Brasileira) | classificação: é de Português (literatura) — a questão pede a análise dos romances Caminho de pedras, de Rachel de Queiroz, e As meninas, de Lygia Fagundes Telles (personagens Angelita, Ana Clara, Noemi, Lorena); o contexto histórico dos direitos das mulheres é só introdução. |
-| P3a2fa1cd | Fuvest 2026 1ª fase · questão 42 | H06.9 nacionalismos, unificações e revoluções de 1848 (tema H06 Revoluções) | classificação: é de Português (artes) |
-| P90c57238 | Fuvest 2026 1ª fase · questão 46 | H02.7 Reformas protestantes e Contrarreforma (tema H02 Idade Média) | classificação: é de Português |
-| P916264a9 | Fuvest 2026 1ª fase · questão 9 | H04.9 crise do Império e proclamação da República (tema H04 Independência e Império) | classificação: é de Filosofia e Sociologia (a questão compara as ideias de Nísia Floresta e Émile Durkheim sobre a educação; é de Sociologia, e não de História do Brasil) |
-| P5615270b | PUC-Rio 2026 Grupo 4 · questão 45 | H05.7 República de 1946: de Dutra a Jango (tema H05 República Brasileira) | classificação: é de Geografia |
-| P881983dc | UECE 2020 2020.2 – 2ª fase · questão 151 | H02.4 reinos e impérios africanos (tema H02 Idade Média) | As afirmativas sobre o reino Bamun (islamização como resistência ao avanço cristão, diplomacia que teria evitado o domínio britânico sob o rei Njoya, introdução de tecnologia e indústria) não são conferíveis com certeza em conhecimento consolidado de livro didático, e a segunda parece não combinar com o domínio alemão e depois francês sobre Bamun. Sem certeza absoluta, a resolução não entra. |
-| P71e0926d | UEG 2025 Medicina 2025/2 · questão 17 | H05.8 ditadura militar: repressão, AI-5 e milagre econômico (tema H05 República Brasileira) | classificação: é de Sociologia (artes e autodeterminação das identidades indígenas, sem processo histórico central) |
-| P4cdceafd | UEG 2026 Medicina 2026/1 · questão 42 | H08.8 mundo atual: Oriente Médio, terrorismo e conflitos recentes (tema H08 Guerra Fria) | classificação: é de Sociologia |
-| Pdd624e83 | UEL 2024 1ª fase · questão 41 | H05.6 Estado Novo e trabalhismo (tema H05 República Brasileira) | classificação: é de Física — questão interdisciplinar em que três das cinco afirmativas pedem cálculos de ondas (comprimento de onda de 150 MHz, energia e frequência, frequência da luz vermelha); só duas tratam de História (Torre Eiffel e rádio no Estado Novo). |
-| Pf0d70f89 | UEMA 2020 PAES · questão 25 | H04.2 independência do Brasil (tema H04 Independência e Império) | classificação: é de Geografia (transformação atual da paisagem dos babaçuais no Maranhão) |
-| P3914c17c | UEMA 2021 PAES · questão 65 | H06.4 Revolução Francesa (tema H06 Revoluções) | classificação: é de Filosofia |
-| P4172ca46 | UERJ 2027 1º Exame de Qualificação · questão 59 | H06.10 Estados Unidos no século XIX: expansão e Guerra de Secessão (tema H06 Revoluções) | classificação: é de Geografia — a questão pede o fundamento teórico (subjetividade do conceito de região) que explica as respostas de uma pesquisa de 2014 sobre quais estados formam o Sul dos EUA; não trata de fato histórico. |
-| P7f87c73b | UNIRG 2026 Medicina 2026/2 · questão 54 | H08.6 contracultura e direitos civis nos anos 1960 (tema H08 Guerra Fria) | classificação: é de Sociologia |
-| Pe2ccb6d3 | UPE 2021 SSA3 · questão 76 | H05.8 ditadura militar: repressão, AI-5 e milagre econômico (tema H05 República Brasileira) | fato não confirmado: a pergunta pede a "principal característica socioeconômica" do governo Nilo Coelho em Pernambuco (1967-1971); o texto da prova só fala da escolha do candidato, e não consigo confirmar, com fonte consolidada, que a ampliação da rede elétrica rural foi a marca principal desse governo diante das outras obras citadas. |
-| P2998bf6c | UPE 2022 SSA3 · questão 73 | H05.3 conflitos sociais na Primeira República (tema H05 República Brasileira) | fato não confirmado: o texto da prova não traz as reivindicações das greves do Recife (1890-1896), e não consigo confirmar, com fonte consolidada, que o aumento salarial e a restrição da mão de obra feminina foram pautas comuns a todas as categorias citadas (carroceiros, estivadores, jóqueis etc.); a afirmação do gabarito depende do artigo citado. |
-| Pc5b18c12 | UPE 2023 SSA3 · questão 82 | H04.9 crise do Império e proclamação da República (tema H04 Independência e Império) | fato não verificável com segurança: a questão pede um evento do mandato de Joaquim Francisco como governador de Pernambuco (1991-1995), e nem o texto nem fontes consolidadas de livro didático dão base para confirmar a alternativa D; além disso, está classificada em H04.9 (Proclamação da República), mas trata da Nova República |
+| P881983dc | UECE 2020 2020.2 – 2ª fase · questão 151 | H02.4 reinos e impérios africanos (tema H02 Idade Média) | fato: tentado de novo (19/11): busca da questão resolvida (nenhum cursinho publicado achado), do texto de Macedo, História da África, pp. 132-135 (não disponível on-line) e de fontes sobre Njoya (https://en.wikipedia.org/wiki/Kingdom_of_Bamum; https://www.memoireonline.com/02/24/14488/m_Ladministration-coloniale-allemande-et-les-pouvoirs-politiques-traditionnels-Duala-et-Bamun-1884111.html; https://www.periodicoseletronicos.ufma.br/index.php/rbhr/article/download/26031/13765/86574). Gabarito A (V,V,F,V) exige a 2ª afirmativa verdadeira, mas as fontes mostram que a diplomacia de Njoya foi com os alemães e que, em dez. 1915, ele aceitou a ocupação britânica de Fumban, passando depois ao mandato francês; a 1ª (islã como resistência ao avanço cristão) também não aparece nas fontes. Sem o trecho de Macedo não dá para saber se a banca leu o livro corretamente nem para pedir anulação com prova. Falta: o texto das pp. 132-135 de Macedo (2019) ou resolução publicada da questão. |
 
 ## Divergências de gabarito (o dono decide)
 
