@@ -57,6 +57,12 @@ aprovação ou resposta: pendências e avisos vão para docs/resolucoes/caixa/<m
    list `respostas`), cumprir e gravar o retorno.
 6. Atualizar a tabela abaixo e encerrar.
 
+## Provas novas (dono, 19/11)
+As provas novas (baixadas pelo dono ou achadas depois; lista no artefato "Provas para baixar", docs/provas/ARTEFATO-PROVAS.md)
+só entram na fila de resolução DEPOIS que acabarem todas as questões atuais pendentes de todas as matérias (vez.py dando
+ACABOU em todas). Até lá: só registrar que existem; não integrar ao banco nem abrir lotes delas. Quando tudo acabar,
+integrar essas provas e mandar para as sessões de resolução.
+
 ## Fábrica pela API (dono, 19/11)
 Teto: US$ 200 de créditos da API. Matéria sugerida para a fábrica: Português (a sessão deu FIM em 19/11 ~15h; NÃO reabrir
 sessão de Português enquanto a fábrica estiver com a matéria, para não haver dois trabalhando nos mesmos lotes).
