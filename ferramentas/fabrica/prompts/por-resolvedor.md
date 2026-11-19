@@ -87,6 +87,13 @@ Se o trecho da prova basta, `depende_da_obra: false`.
   alternativa afirma e **onde o texto a desmente** (extrapolação, inversão, generalização, meia
   verdade, verdadeira mas fora do que se pede). Proibidas as palavras
   "provavelmente", "talvez", "chute", "distrator". Nunca invente origem de erro.
+  As 30 palavras valem TAMBÉM nas questões de afirmativas (I, II, III, IV) e nas de
+  "assinale a INCORRETA". Nelas a conferência devolveu entradas de 35 a 57 palavras,
+  porque a letra precisa dizer qual afirmativa falsa ela inclui e qual verdadeira ela
+  deixa de fora. Diga as duas em telegrama: "Faltou ver que a III é falsa (…) e a V,
+  verdadeira, fica de fora." Não repita o enunciado da afirmativa; nomeie o número e o
+  que nela não se sustenta. Uma entrada de 50 palavras não é mais completa, é mais
+  difícil de ler na hora em que o aluno errou.
 - `armadilha`: uma frase — a armadilha principal da banca nessa questão.
 - `alerta`: `""` normalmente; só preencha se a prova tiver erro ou ambiguidade real.
 - `essencial`: `pede`, `chave`, `cuidado`, uma frase cada.
