@@ -213,6 +213,7 @@ depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resoluco
 `url` = o link acima, de outra conversa; read antes).
 
 ## Publicação
+Disparada 19/11 20h33: dpl_HVBmf5cTNEmUBmpDrfzbnPijjmF8 (commit 178ab0a4, 786 testes verdes, 26.300 local; SEM o 'Questão indisponível', que vai na próxima, depois da revisão visual). Conferir no site e registrar.
 Última no ar: dpl_A2nhkZUDgu11ZWxKRZ58fpnvw2dF (commit 67afb1b5, 19/11 19h04, conferido no site 19h25): 25.019 resoluções. Próxima: quando Português acabar (publicação final).
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
