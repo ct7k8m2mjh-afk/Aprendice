@@ -91,3 +91,11 @@ DADO Pe9863f6b: alternativas.D -> termina em "considerados tensoativos." (o "28"
 DADO Pb7e15959: texto_da_prova -> "Os compostos _________ e _________, ao reagirem entre si, resultam na formação do composto etanoato de propila e água." (lacunas sumiram)
 DADO Pf3d8cb91: alternativas.E -> "I, II e V" (legenda do esquema colada)
 DADO Pbf8a2c7d: texto_da_prova começa com "16" (número da página); no print "QUESTÃO 36"
+
+## 2026-11-19 — AVISO — session_01PveEKaFZ75HhzLpwG4RGm9
+Checagem no site (P82a1b72a, P3cfb6cad, Pe0cdd866; 390 e 1280 px): 4 blocos completos, animação até o fim, sem corte nem rolagem lateral. Problema no formatador de fórmulas do texto da correção (código, não dado): "H3CO−" (ligação) aparece como carga "H₃CO⁻" em P82a1b72a (erradas B/C e pegadinha); "OH está no C2" (carbono 2) aparece como "C₂" em Pe0cdd866. Dentro da animação sai certo. Não mexi no código.
+
+## 2026-11-19 — FIM — session_01PveEKaFZ75HhzLpwG4RGm9
+Último lote gravado: qui-0066. Nesta sessão: qui-0064 (59 ok, 1 divergência), qui-0065 (58 ok, 2 pendentes para anular), qui-0066 (60 ok) = 177 resoluções. Nenhum lote aberto. Testes: tsc ok, 786 passed.
+Pendências: P0ffb2963 (divergência, EMESCAM 2022 q21: Aprendice B × preliminar C), ANULAR P1ea356c5 e P9535cdb8, PRINT P514d9f01, reclassificações e DADOs nos blocos acima.
+Próximo: `python3 ferramentas/resolucoes/lote.py proximo qui 60 --novo` (qui-0067).
