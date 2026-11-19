@@ -648,5 +648,117 @@
    "data": "2026-11-13",
    "lote": "mat-0061"
   }
+ },
+ "P3ba83008": {
+  "n": "76",
+  "conceito": "Área de polígono por coordenadas lidas na malha.",
+  "equivocos": {
+   "A": "M12.5:soma-errada",
+   "C": "M12.5:pedaco-esquecido",
+   "D": "M12.5:soma-errada",
+   "E": "M12.5:soma-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Leia os vértices na malha: A(0, 0), B(1, 4), C(4, 6), D(6, 3) e E(6, 0). Como o lado AE está no eixo x, o pentágono é a região entre o contorno de cima (A–B–C–D) e o eixo. Fatie em pedaços verticais: um triângulo e dois trapézios.",
+    "formulas": [
+     "trapézio: (base maior + base menor) · altura/2",
+     "triângulo: base · altura/2"
+    ],
+    "simbolos": [
+     [
+      "u.a.",
+      "unidades de área"
+     ],
+     [
+      "trapézio",
+      "quadrilátero com dois lados paralelos (aqui, os lados verticais)"
+     ]
+    ]
+   },
+   "pista": "Trace verticais por B, C e D até o eixo x e calcule cada pedaço.",
+   "passos": [
+    {
+     "faz": "Leia as coordenadas",
+     "conta": "A(0, 0) | B(1, 4) | C(4, 6) | D(6, 3) | E(6, 0)",
+     "porque": "Os pontos caem nos cruzamentos da malha, e o enunciado garante coordenadas inteiras.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o triângulo sob AB",
+     "conta": "1 · 4/2 → 2",
+     "porque": "De x = 0 a x = 1, a figura é um triângulo de base 1 e altura 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os trapézios sob BC e CD",
+     "conta": "(4 + 6)/2 · 3 → 15 | (6 + 3)/2 · 2 → 9",
+     "porque": "De x = 1 a 4, lados verticais 4 e 6; de x = 4 a 6, lados 6 e 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os pedaços",
+     "conta": "2 + 15 + 9 → 26",
+     "porque": "Os três pedaços cobrem o pentágono sem sobrepor; o lado DE é a vertical x = 6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "26 u.a. → alternativa B",
+     "porque": "É a área do pentágono.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 26",
+   "checagem": "Pelo quadrado 6 × 6 = 36: fora do pentágono ficam o triângulo C–(6, 6)–D, 2 · 3/2 = 3, e o quadrilátero A–B–C–(0, 6), de área 7 pelo determinante. 36 − 3 − 7 = 26.",
+   "erradas": {
+    "A": "27 não confere: as fatias verticais dão 2 + 15 + 9 = 26, uma unidade a menos.",
+    "C": "24 não confere: 2 + 15 + 9 = 26; para dar 24 faltariam 2 u.a., o triângulo inteiro sob AB.",
+    "D": "21 não confere: 36 − 3 − 7 = 26 pelo quadrado envolvente, não 21.",
+    "E": "18 não confere: as fatias verticais somam 2 + 15 + 9 = 26; só o trapézio sob BC já mede 15 e, com o de CD, passa de 18."
+   },
+   "armadilha": "Ler as coordenadas certas na malha: C é (4, 6) e D é (6, 3), e o lado DE é vertical.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do pentágono ABCDE.",
+    "chave": "Fatias verticais até o eixo x: 2 + 15 + 9 = 26.",
+    "cuidado": "Leia cada vértice nos cruzamentos da malha antes de calcular."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "determinante",
+    "ideia": "Fórmula do cadarço com A, E, D, C, B: os produtos cruzados somam 0 + 18 + 24 + 10 + 0 = 52, e 52/2 = 26."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 · 4/2 = 2",
+    "nota": "triângulo sob AB"
+   },
+   {
+    "linha": "(4 + 6)/2 · 3 = 15",
+    "nota": "trapézio sob BC"
+   },
+   {
+    "linha": "(6 + 3)/2 · 2 = 9",
+    "nota": "trapézio sob CD"
+   },
+   {
+    "linha": "2 + 15 + 9 = 26",
+    "nota": "soma"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
  }
 }

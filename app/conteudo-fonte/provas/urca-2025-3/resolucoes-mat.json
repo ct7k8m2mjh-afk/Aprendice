@@ -758,5 +758,119 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "P36f7c3ff": {
+  "n": "30",
+  "conceito": "Posição relativa de dois discos: completar quadrado e comparar distância entre centros com os raios.",
+  "equivocos": {
+   "A": "M12.4:negacao-esquecida",
+   "C": "M12.4:negacao-errada",
+   "D": "M12.4:negacao-esquecida",
+   "E": "M12.4:nao-completou-quadrado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Complete o quadrado em Q para enxergar que ele também é um disco. Q é x² + (y − 1)² ≤ r², o disco de centro (0, 1) e raio |r|. P, de centro (0, 0) e raio 1, cabe dentro de Q só quando |r| ≥ distância entre centros + 1. A questão pede o contrário disso.",
+    "formulas": [
+     "x² + y² − 2y = x² + (y − 1)² − 1",
+     "P ⊂ Q quando raio de Q ≥ distância dos centros + raio de P"
+    ],
+    "simbolos": [
+     [
+      "disco fechado",
+      "círculo com a borda incluída"
+     ],
+     [
+      "⊂",
+      "está contido em"
+     ],
+     [
+      "|r|",
+      "módulo de r: o raio de Q, já que r pode ser negativo"
+     ]
+    ]
+   },
+   "pista": "Some 1 dos dois lados da desigualdade de Q e veja o que aparece.",
+   "passos": [
+    {
+     "faz": "Complete o quadrado em Q",
+     "conta": "x² + y² − 2y ≤ r² − 1 → x² + (y − 1)² − 1 ≤ r² − 1 → x² + (y − 1)² ≤ r²",
+     "porque": "y² − 2y é (y − 1)² − 1; o −1 cancela com o −1 da direita.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia centro e raio dos dois discos",
+     "conta": "P: centro (0, 0), raio 1 | Q: centro (0, 1), raio |r|",
+     "porque": "A forma (x − a)² + (y − b)² ≤ R² mostra centro (a, b) e raio R; como r² = |r|², o raio é |r|.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva quando P cabe em Q",
+     "conta": "|r| ≥ 1 + 1 → |r| ≥ 2",
+     "porque": "O ponto de P mais longe do centro de Q é (0, −1), a distância 1 + 1 = 2 de (0, 1). P cabe em Q só se o raio de Q alcança esse ponto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Negue a condição",
+     "conta": "P ⊂ Q ⇔ |r| ≥ 2 → P ⊄ Q ⇔ |r| < 2",
+     "porque": "A pergunta é quando P NÃO está contido em Q: é o contrário de |r| ≥ 2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — |r| < 2",
+   "checagem": "Teste r = 2: Q é x² + (y − 1)² ≤ 4 e o ponto (0, −1) de P dá 0 + 4 = 4 ≤ 4, então P cabe. Com r = 1,9: 4 ≤ 3,61 é falso, e (0, −1) fica fora de Q. A fronteira é mesmo |r| = 2.",
+   "erradas": {
+    "A": "r ≥ 2 sai de esquecer o módulo e responder a condição de P estar DENTRO: é o oposto do pedido e ainda deixa de fora r ≤ −2.",
+    "C": "|r| > 2 não confere: com r = 3, x² + (y − 1)² ≤ 9 contém o ponto mais distante (0, −1), pois 4 ≤ 9; então P está contido em Q.",
+    "D": "|r| ≥ 2 sai de responder a condição de P estar contido em Q, e não a negação que o comando pede.",
+    "E": "Não confere: r = 0 dá Q = {(0, 1)}, um ponto só, e P certamente não está contido nele."
+   },
+   "armadilha": "O comando pede que P NÃO esteja contido em Q: a conta natural dá |r| ≥ 2, e a resposta é a negação.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os valores de r para os quais o disco P não fica dentro de Q.",
+    "chave": "Q é o disco de centro (0, 1) e raio |r|; P cabe nele só se |r| ≥ 2.",
+    "cuidado": "Negue a condição e use módulo, porque r pode ser negativo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ponto mais distante",
+    "ideia": "P ⊄ Q exatamente quando (0, −1) fica fora de Q: 0 + (−2)² > r², ou seja, r² < 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² + y² − 2y ≤ r² − 1",
+    "nota": "Q como foi dado"
+   },
+   {
+    "linha": "x² + (y − 1)² − 1 ≤ r² − 1",
+    "nota": "completar o quadrado"
+   },
+   {
+    "linha": "x² + (y − 1)² ≤ r²",
+    "nota": "o −1 cancela: centro (0, 1), raio |r|"
+   },
+   {
+    "linha": "|r| ≥ 1 + 1 = 2",
+    "nota": "P ⊂ Q"
+   },
+   {
+    "linha": "|r| < 2",
+    "nota": "negação: P ⊄ Q"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
  }
 }

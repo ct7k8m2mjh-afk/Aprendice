@@ -524,5 +524,104 @@
    "data": "2026-11-13",
    "lote": "mat-0063"
   }
+ },
+ "Pe94cc33a": {
+  "n": "36",
+  "conceito": "Combinação em cada curso e princípio multiplicativo entre os cursos.",
+  "equivocos": {
+   "A": "M13.1:somou-em-vez-de-multiplicar",
+   "C": "M13.1:arranjo-no-lugar-de-combinacao",
+   "D": "M13.1:arranjo-e-soma"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em cada curso escolhem-se 2 estudantes, e a ordem não importa: é combinação de n tomados 2 a 2. A comissão precisa de 2 de Produção E 2 de Elétrica E 2 de Telecomunicações, então os três números se multiplicam.",
+    "formulas": [
+     "C(n, 2) = n·(n − 1) ÷ 2",
+     "'e' multiplica; 'ou' soma"
+    ],
+    "simbolos": [
+     [
+      "C(n, 2)",
+      "maneiras de escolher 2 entre n, sem ordem"
+     ]
+    ]
+   },
+   "pista": "Pergunte em cada curso: trocar a ordem dos dois escolhidos muda a comissão?",
+   "passos": [
+    {
+     "faz": "Escolha 2 em cada curso, sem ordem",
+     "conta": "Produção: C(28, 2) = (28 × 27)/2 = 14 × 27\nElétrica: C(18, 2) = (18 × 17)/2 = 9 × 17\nTelecomunicações: C(12, 2) = (12 × 11)/2 = 6 × 11",
+     "porque": "Escolher Ana e Beto é a mesma dupla que Beto e Ana, então divide-se o arranjo por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os cursos multiplicando",
+     "conta": "C(28, 2) × C(18, 2) × C(12, 2) → 14 × 27 × 9 × 17 × 6 × 11",
+     "porque": "A comissão exige as três duplas ao mesmo tempo: cada dupla de um curso combina com todas as dos outros.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "14 × 27 × 9 × 17 × 6 × 11 → alternativa B",
+     "porque": "É exatamente o produto escrito na alternativa B (vale 3 817 044).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 14 × 27 × 9 × 17 × 6 × 11.",
+   "checagem": "Valores: C(28, 2) = 378, C(18, 2) = 153, C(12, 2) = 66, e 378 × 153 × 66 = 3 817 044, igual a 14 × 27 × 9 × 17 × 6 × 11. Fecha.",
+   "erradas": {
+    "A": "(14 × 27) + (9 × 17) + (6 × 11) sai de somar os cursos: isso conta comissões com dois alunos de um curso só. A comissão exige os três cursos, então multiplica.",
+    "C": "28 × 27 × 18 × 17 × 12 × 11 sai de contar a ordem dentro de cada dupla (arranjo): conta cada comissão 2 × 2 × 2 = 8 vezes.",
+    "D": "(28 × 27) + (18 × 17) + (12 × 11) junta os dois erros: conta a ordem dentro da dupla e soma os cursos em vez de multiplicar."
+   },
+   "armadilha": "Somar os cursos quando a comissão exige os três ao mesmo tempo, ou esquecer de dividir por 2 a ordem dentro de cada dupla.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas comissões com 2 formandos de cada curso podem ser formadas.",
+    "chave": "C(28, 2) × C(18, 2) × C(12, 2) = 14 × 27 × 9 × 17 × 6 × 11.",
+    "cuidado": "Sem ordem dentro do curso (÷ 2) e 'e' entre cursos (multiplica)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "valores",
+    "ideia": "378 × 153 × 66 = 3 817 044; só a B dá esse número (a C dá 8 vezes mais, 30 536 352)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(28, 2) = (28 × 27)/2 = 14 × 27",
+    "nota": "Produção"
+   },
+   {
+    "linha": "C(18, 2) = (18 × 17)/2 = 9 × 17",
+    "nota": "Elétrica"
+   },
+   {
+    "linha": "C(12, 2) = (12 × 11)/2 = 6 × 11",
+    "nota": "Telecomunicações"
+   },
+   {
+    "linha": "14 × 27 × 9 × 17 × 6 × 11",
+    "nota": "multiplicar os três cursos"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
  }
 }

@@ -422,5 +422,114 @@
    "data": "2026-11-13",
    "lote": "mat-0063"
   }
+ },
+ "Pca1e3c82": {
+  "n": "34",
+  "conceito": "Contar duplas de alunos de turmas diferentes pelo princípio multiplicativo e aditivo.",
+  "equivocos": {
+   "B": "M13.1:erro-na-soma-dos-casos",
+   "C": "M13.1:erro-na-soma-dos-casos",
+   "D": "M13.1:erro-na-soma-dos-casos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Uma dupla de turmas diferentes tem uma de três formas: A com B, A com C ou B com C. Em cada forma, escolher um aluno de cada turma é uma multiplicação ('e' multiplica). As três formas não se misturam, então somam ('ou' soma).",
+    "formulas": [
+     "duplas de turmas diferentes = A·B + A·C + B·C",
+     "C(n, 2) = n·(n − 1) ÷ 2"
+    ],
+    "simbolos": [
+     [
+      "k",
+      "número de duplas com alunos de turmas diferentes"
+     ],
+     [
+      "C(n, 2)",
+      "número de maneiras de escolher 2 entre n, sem ordem"
+     ]
+    ]
+   },
+   "pista": "Separe as duplas pelo par de turmas de onde vêm os dois alunos.",
+   "passos": [
+    {
+     "faz": "Liste os pares de turmas possíveis",
+     "conta": "A e B | A e C | B e C",
+     "porque": "Os dois alunos vêm de turmas diferentes, então só existem esses três pares.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Multiplique dentro de cada par",
+     "conta": "A e B: 24 × 32 = 768\nA e C: 24 × 18 = 432\nB e C: 32 × 18 = 576",
+     "porque": "Escolhe-se um aluno de uma turma e um da outra: cada escolha da primeira combina com todas da segunda. Não há ordem, pois cada aluno vem de uma turma fixa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os três casos",
+     "conta": "768 + 432 + 576 = 1 776",
+     "porque": "Os casos não se sobrepõem: uma dupla vem de um só par de turmas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "k = 1 776 → alternativa A",
+     "porque": "O valor bate com a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1776 duplas (k = 1 776).",
+   "checagem": "Pelo complemento: todas as duplas de 74 alunos, C(74, 2) = 2 701, menos as de mesma turma, C(24, 2) + C(32, 2) + C(18, 2) = 276 + 496 + 153 = 925: 2 701 − 925 = 1 776. Fecha.",
+   "erradas": {
+    "B": "1 784 não confere: as três parcelas são 768, 432 e 576, e a soma é 1 776. O complemento 2 701 − 925 também dá 1 776.",
+    "C": "1 836 não confere: passa 60 do total certo; nem a soma dos produtos (1 776) nem o complemento C(74, 2) − 925 chegam a esse valor.",
+    "D": "1 884 não confere: passa 108 do total certo; a contagem por casos e a por complemento dão, as duas, 1 776."
+   },
+   "armadilha": "Contar duplas com ordem (daria o dobro, 3 552) ou esquecer um dos três pares de turmas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas duplas de alunos de turmas diferentes podem ser formadas.",
+    "chave": "24·32 + 24·18 + 32·18 = 768 + 432 + 576 = 1 776.",
+    "cuidado": "Some os três pares de turmas e não conte a dupla duas vezes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complemento",
+    "ideia": "Todas as duplas menos as de mesma turma: 2 701 − (276 + 496 + 153) = 1 776."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "24 × 32 = 768",
+    "nota": "turmas A e B"
+   },
+   {
+    "linha": "24 × 18 = 432",
+    "nota": "turmas A e C"
+   },
+   {
+    "linha": "32 × 18 = 576",
+    "nota": "turmas B e C"
+   },
+   {
+    "linha": "768 + 432 + 576 = 1 776",
+    "nota": "soma dos casos"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
  }
 }

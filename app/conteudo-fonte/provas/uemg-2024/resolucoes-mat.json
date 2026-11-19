@@ -382,5 +382,126 @@
    "data": "2026-11-13",
    "lote": "mat-0060"
   }
+ },
+ "Pecb3320b": {
+  "n": "43",
+  "conceito": "Área de um quadrilátero dado pelas coordenadas dos vértices.",
+  "equivocos": {
+   "A": "M12.5:area-sem-calcular",
+   "B": "M12.5:erro-nos-produtos-cruzados",
+   "C": "M12.5:confundiu-area-com-perimetro"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com os quatro vértices em ordem, a área sai da fórmula do determinante (a regra do cadarço): metade do valor absoluto da soma dos produtos cruzados. Antes, vale olhar os lados: aqui os quatro medem 5, o que já sugere um quadrado.",
+    "formulas": [
+     "Área = |x₁y₂ − x₂y₁ + x₂y₃ − x₃y₂ + x₃y₄ − x₄y₃ + x₄y₁ − x₁y₄| ÷ 2",
+     "d² = (Δx)² + (Δy)²"
+    ],
+    "simbolos": [
+     [
+      "u.a.",
+      "unidades de área"
+     ],
+     [
+      "Δx, Δy",
+      "diferença entre as abscissas e entre as ordenadas de dois pontos"
+     ],
+     [
+      "| |",
+      "valor absoluto: o número sem o sinal"
+     ]
+    ]
+   },
+   "pista": "Escreva os vértices na ordem A, B, C, D e volte ao A no fim; depois multiplique em cruz.",
+   "passos": [
+    {
+     "faz": "Monte os produtos cruzados na ordem A, B, C, D",
+     "conta": "A(0, 0) | B(−4, 3) | C(−1, 7) | D(3, 4) | volta em A(0, 0)",
+     "porque": "A fórmula só funciona com os vértices em sequência ao redor da figura, fechando no primeiro.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule cada produto cruzado",
+     "conta": "0·3 − (−4)·0 = 0\n(−4)·7 − (−1)·3 = −28 + 3 = −25\n(−1)·4 − 3·7 = −4 − 21 = −25\n3·0 − 0·4 = 0",
+     "porque": "Cada parcela é x de um vértice vezes y do seguinte, menos x do seguinte vezes y do vértice.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e divida por 2",
+     "conta": "0 − 25 − 25 + 0 = −50 → |−50| ÷ 2 = 25",
+     "porque": "O sinal negativo só indica o sentido em que os vértices foram percorridos; a área é o valor absoluto dividido por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "Área = 25 u.a. → alternativa D",
+     "porque": "O valor bate com a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 25 u.a.",
+   "checagem": "Os lados: AB² = 4² + 3² = 25, BC² = 3² + 4² = 25, CD² = 4² + 3² = 25, DA² = 3² + 4² = 25, e AB·BC = (−4)·3 + 3·4 = 0 (ângulo reto). É um quadrado de lado 5: área 5² = 25.",
+   "erradas": {
+    "A": "16 não confere: o quadrilátero é um quadrado de lado 5 (todos os lados com d² = 25 e ângulo reto em B), e 5² = 25, não 16.",
+    "B": "18 não confere: a soma dos produtos cruzados é −50, e 50 ÷ 2 = 25. Nenhuma parcela correta leva a 36, que daria 18.",
+    "C": "20 sai de confundir área com perímetro: os quatro lados medem 5, e 4 × 5 = 20. A área do quadrado é 5 × 5 = 25."
+   },
+   "armadilha": "Esquecer a divisão por 2 (daria 50) ou trocar área por perímetro (daria 20).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do quadrilátero de vértices A(0, 0), B(−4, 3), C(−1, 7) e D(3, 4).",
+    "chave": "Produtos cruzados somam −50; área = 50 ÷ 2 = 25 (é um quadrado de lado 5).",
+    "cuidado": "Percorra os vértices em ordem e divida por 2 no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "quadrado",
+    "ideia": "Os quatro lados medem 5 e AB é perpendicular a BC: é um quadrado, área 5² = 25."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0·3 − (−4)·0 = 0",
+    "nota": "par A, B"
+   },
+   {
+    "linha": "(−4)·7 − (−1)·3 = −25",
+    "nota": "par B, C"
+   },
+   {
+    "linha": "(−1)·4 − 3·7 = −25",
+    "nota": "par C, D"
+   },
+   {
+    "linha": "3·0 − 0·4 = 0",
+    "nota": "par D, A"
+   },
+   {
+    "linha": "0 − 25 − 25 + 0 = −50",
+    "nota": "soma"
+   },
+   {
+    "linha": "|−50| ÷ 2 = 25",
+    "nota": "área"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
  }
 }

@@ -394,5 +394,126 @@
    "data": "2026-11-13",
    "lote": "mat-0056"
   }
+ },
+ "P3d21b94a": {
+  "n": "24",
+  "conceito": "Probabilidade geométrica: área da união de duas regiões dividida pela área do retângulo.",
+  "equivocos": {
+   "A": "M12.5:area-favoravel-errada",
+   "C": "M12.5:area-favoravel-errada",
+   "D": "M12.5:area-favoravel-errada",
+   "E": "M12.5:area-favoravel-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Probabilidade geométrica é área favorável sobre área total. A região favorável é a UNIÃO do triângulo ABC com o retângulo ECDF. As duas se sobrepõem num pequeno triângulo no canto de cima à direita, que não pode ser contado duas vezes.",
+    "formulas": [
+     "P = área favorável/área total",
+     "área(T ∪ R) = área(T) + área(R) − área(T ∩ R)",
+     "reta AC: y = x/2"
+    ],
+    "simbolos": [
+     [
+      "∪",
+      "união: pontos que estão em uma região ou na outra"
+     ],
+     [
+      "∩",
+      "interseção: pontos que estão nas duas"
+     ],
+     [
+      "AC",
+      "diagonal de A(0, 0) a C(40, 20)"
+     ]
+    ]
+   },
+   "pista": "Desenhe a sobreposição: onde o triângulo ABC entra no retângulo ECDF?",
+   "passos": [
+    {
+     "faz": "Calcule as áreas básicas",
+     "conta": "ABCD: 40 · 20 = 800 | ABC: 40 · 20/2 = 400 | ECDF: 10 · 20 = 200",
+     "porque": "Leia na figura: B(0, 20), C(40, 20), E(30, 20), F(30, 0), D(40, 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a sobreposição",
+     "conta": "reta AC: y = x/2 → em x = 30, y = 15 | triângulo E(30, 20), C(40, 20), (30, 15) → 10 · 5/2 → 25",
+     "porque": "Entre x = 30 e x = 40, o triângulo ABC é o pedaço acima da diagonal AC; dentro de ECDF ele forma um triângulo de base EC = 10 e altura 20 − 15 = 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some sem contar duas vezes",
+     "conta": "400 + 200 − 25 → 575",
+     "porque": "A parte comum entrou no triângulo e no retângulo; tira-se uma vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pela área total",
+     "conta": "575/800 → 0,71875 → ≈ 72%",
+     "porque": "Probabilidade é a fração da área favorável.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "≈ 72% → alternativa B",
+     "porque": "A questão pede o valor aproximado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — aproximadamente 72%",
+   "checagem": "Pelo complemento: a região desfavorável é o triângulo ACD (400) menos a parte dele dentro de ECDF, um trapézio de bases 15 e 20 e largura 10, (15 + 20)/2 · 10 = 175. Sobra 225, e 1 − 225/800 = 0,71875.",
+   "erradas": {
+    "A": "65% não confere: exigiria região favorável de 0,65 · 800 = 520, mas a união mede 400 + 200 − 25 = 575.",
+    "C": "77% não confere: exigiria 0,77 · 800 = 616, mais que 575; nem somando sem tirar a sobreposição (600 = 75%) se chega lá.",
+    "D": "80% não confere: exigiria 0,8 · 800 = 640, mais que 575 e até mais que a soma bruta 600.",
+    "E": "63% não confere: exigiria 0,63 · 800 = 504, bem menos que 575, a área da união."
+   },
+   "armadilha": "A sobreposição: o triângulo ABC entra um pouco no retângulo ECDF, e essa parte (25) só pode ser contada uma vez.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de um ponto do retângulo cair no triângulo ABC ou no retângulo ECDF.",
+    "chave": "União = 400 + 200 − 25 = 575; 575/800 ≈ 72%.",
+    "cuidado": "Desconte a parte comum, o triângulo acima da diagonal entre x = 30 e x = 40."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complemento",
+    "ideia": "Desfavorável = 400 − 175 = 225; 1 − 225/800 ≈ 72%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "800, 400, 200",
+    "nota": "retângulo, triângulo ABC e ECDF"
+   },
+   {
+    "linha": "x = 30 → y = 30/2 = 15",
+    "nota": "onde AC cruza EF"
+   },
+   {
+    "linha": "10 · 5/2 = 25",
+    "nota": "triângulo comum"
+   },
+   {
+    "linha": "400 + 200 − 25 = 575",
+    "nota": "união"
+   },
+   {
+    "linha": "575/800 ≈ 0,72",
+    "nota": "probabilidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
  }
 }

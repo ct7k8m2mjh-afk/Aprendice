@@ -332,5 +332,112 @@
    "data": "2026-11-13",
    "lote": "mat-0054"
   }
+ },
+ "Pbf195b76": {
+  "n": "68",
+  "conceito": "Área de um quadrilátero no plano cartesiano por decomposição em trapézio e triângulo.",
+  "equivocos": {
+   "A": "M12.5:so-um-triangulo-da-diagonal",
+   "B": "M12.5:so-um-triangulo-da-diagonal",
+   "C": "M12.5:ignorou-um-vertice",
+   "E": "M12.5:usou-retangulo-envolvente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O quadrilátero tem um lado no eixo y (AB) e outro no eixo x (AD). Uma reta vertical por C divide a figura em um trapézio (à esquerda) e um triângulo (à direita), com áreas fáceis. Os vértices estão em quilômetros, então a área sai em km².",
+    "formulas": [
+     "trapézio = (base maior + base menor) × altura ÷ 2",
+     "triângulo = base × altura ÷ 2"
+    ],
+    "simbolos": [
+     [
+      "km²",
+      "quilômetro quadrado"
+     ],
+     [
+      "(x, y)",
+      "x é a distância horizontal à origem e y a vertical"
+     ]
+    ]
+   },
+   "pista": "Trace a vertical que desce de C até o eixo x e veja as duas figuras que aparecem.",
+   "passos": [
+    {
+     "faz": "Divida a figura pela vertical por C",
+     "conta": "C(8, 9) → pé da vertical: E(8, 0)\nABCE: trapézio | ECD: triângulo",
+     "porque": "A vertical x = 8 corta a figura em duas partes com bases paralelas ao eixo y, de medidas que se leem nas coordenadas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o trapézio ABCE",
+     "conta": "(AB + CE) × AE ÷ 2 = (11 + 9) × 8 ÷ 2 → 20 × 8 ÷ 2 = 80",
+     "porque": "As bases paralelas são AB = 11 (no eixo y) e CE = 9 (a altura de C); a distância entre elas é 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o triângulo ECD",
+     "conta": "ED × CE ÷ 2 = (17 − 8) × 9 ÷ 2 → 9 × 9 ÷ 2 = 40,5",
+     "porque": "A base ED vai de x = 8 a x = 17, e a altura é a ordenada de C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as partes e ligue à alternativa",
+     "conta": "80 + 40,5 = 120,5 km² → alternativa D",
+     "porque": "As duas partes cobrem o quadrilátero inteiro sem sobrar nem sobrepor.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 120,5 km².",
+   "checagem": "Pela regra dos produtos cruzados, com A(0, 0), B(0, 11), C(8, 9), D(17, 0): 0 + (0·9 − 8·11) + (8·0 − 17·9) + 0 = −88 − 153 = −241; |−241| ÷ 2 = 120,5. Fecha.",
+   "erradas": {
+    "A": "44,0 sai de calcular só o triângulo ABC: AB × 8 ÷ 2 = 11 × 8 ÷ 2 = 44. Falta o triângulo ACD.",
+    "B": "76,5 sai de calcular só o triângulo ACD: AD × 9 ÷ 2 = 17 × 9 ÷ 2 = 76,5. Falta o triângulo ABC.",
+    "C": "93,5 sai de ignorar o vértice C e tomar o triângulo ABD: 11 × 17 ÷ 2 = 93,5.",
+    "E": "187,0 sai de tomar o retângulo 11 × 17 = 187, que ultrapassa o quadrilátero no canto de cima à direita."
+   },
+   "armadilha": "Usar só um dos dois triângulos formados pela diagonal AC, ou trocar o quadrilátero pelo triângulo ABD.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do quadrilátero A(0, 0), B(0, 11), C(8, 9), D(17, 0), em km².",
+    "chave": "Vertical por C: trapézio de 80 mais triângulo de 40,5 = 120,5 km².",
+    "cuidado": "As duas partes juntas têm de cobrir a figura inteira."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "produtos cruzados",
+    "ideia": "Regra do cadarço com A, B, C, D: |−88 − 153| ÷ 2 = 241 ÷ 2 = 120,5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(11 + 9) × 8 ÷ 2 = 20 × 8 ÷ 2 = 80",
+    "nota": "trapézio ABCE"
+   },
+   {
+    "linha": "(17 − 8) × 9 ÷ 2 = 9 × 9 ÷ 2 = 40,5",
+    "nota": "triângulo ECD"
+   },
+   {
+    "linha": "80 + 40,5 = 120,5",
+    "nota": "área total em km²"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
  }
 }
