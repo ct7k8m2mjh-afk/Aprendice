@@ -1,12 +1,12 @@
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { useMateria, useQuestaoComTexto, useResolucoes } from '../dados/conteudo';
+import { useMateria, useQuestaoComTexto, useResolucoes, type MateriaCarregada } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
 import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
 import { questoesVencidas } from '../logica/estatisticas';
 import { retirada } from '../estado/migracao';
 import { agendaDe, filaDe, emDias } from '../logica/revisao';
-import { ehNivel, nivelDe, nomeNivel } from '../logica/nivel';
+import { ehNivel, nivelDe, nomeNivel, ordemEvolucao } from '../logica/nivel';
 import { Carregando, cap, formataTempo, useTitulo } from '../ui/comum';
 import { Icone, type NomeIcone } from '../ui/Icone';
 import { AbasPainel, BotaoTelaCheia, Certeza, EnunciadoQuestao, FonteQuestao, RespostaCartao, mostraPainel, useCronometro, type AbaPainel, type Conf } from '../ui/QuestaoCartao';
@@ -17,7 +17,7 @@ import { urlPrint } from '../dados/conteudo';
 import type { Letra, MateriaId, Modulo, Questao } from '../dados/tipos';
 import type { Tentativa } from '../estado/tipos';
 import { regiaoDoEstado } from '../ui/FiltroRegiao';
-import { filtraRegiao } from '../logica/regiao';
+import { filtraRegiao, passa } from '../logica/regiao';
 
 export function registraTentativa(m: MateriaId, id: string, t: Tentativa) {
   atualizaMateria(m, (s) => {
@@ -130,7 +130,7 @@ export function QuestaoTela() {
 
   const mod = mc.conteudo.modulos.find((x) => x.id === q.modulo);
   const sub = mod?.subs.find((x) => x.id === q.sub);
-  if (q.indisponivel) return <QuestaoIndisponivel m={m} q={q} mod={mod} sub={sub} aoVoltar={() => nav(voltarPara)} />;
+  if (q.indisponivel) return <QuestaoIndisponivel m={m} q={q} mc={mc} mod={mod} sub={sub} ctx={ctx} aoVoltar={() => nav(voltarPara)} />;
   const r = res?.[q.id];
   const textoPista = q.pista || r?.pista;
   const eq = s.q[q.id];
@@ -240,12 +240,24 @@ export function QuestaoTela() {
 }
 
 /** Questão indisponível (decisão do dono, 19/11/2026): a banca do Aprendice acha o gabarito oficial errado e a banca da
- *  prova não publicou errata. O aluno vê o print e a fonte, com o aviso no lugar de responder: sem alternativas, sem
- *  gabarito e sem correção. Mesmos componentes da tela da questão (barra, cartão, aviso, abas Teoria e Fonte). */
-function QuestaoIndisponivel({ m, q, mod, sub, aoVoltar }: { m: MateriaId; q: Questao; mod?: Modulo; sub?: { id: string; nome: string }; aoVoltar: () => void }) {
+ *  prova não publicou errata. Mesma estrutura da questão normal (barra com o lugar na lista do conteúdo, etiqueta de nível,
+ *  marcador, cartão com o pé fixo, abas Teoria e Fonte, conteúdos relacionados); no lugar de "Sua resposta", o aviso
+ *  (.q-trava): sem alternativas, sem gabarito e sem correção. */
+function QuestaoIndisponivel({ m, q, mc, mod, sub, ctx, aoVoltar }: { m: MateriaId; q: Questao; mc: MateriaCarregada; mod?: Modulo; sub?: { id: string; nome: string }; ctx: string; aoVoltar: () => void }) {
   const [aba, setAba] = useState<AbaPainel>('teo');
+  const s = useMateriaEstado(m);
+  const eq = s.q[q.id];
   const nomeMat = infoMateria(m)?.nome || '';
   const cartoesTeoria = (() => { const l = mod?.cartoes.filter((c) => c.sub === q.sub) || []; return l.length ? l : mod?.cartoes || []; })();
+  const relacionados = (mod?.subs || []).filter((x) => x.id !== q.sub && mc.porSub.get(x.id)?.length).slice(0, 4);
+  // o lugar dela na lista do conteúdo (a mesma ordem da tela do conteúdo: do mais fácil ao mais difícil, região do aluno)
+  const lista = ctx === 'revisao' ? [] : (() => {
+    const conj = regiaoDoEstado(pegaEstado()).conj;
+    const fr = filtraRegiao(mc.porSub.get(q.sub) || [], conj);
+    const ind = (mc.indispPorSub?.get(q.sub) || []).filter((x) => fr.reserva || passa(x, conj) || x.id === q.id);
+    return [...fr.l, ...ind].sort(ordemEvolucao);
+  })();
+  const pos = lista.findIndex((x) => x.id === q.id);
   return (
     <div className={`questao-tela m-${m}`}>
       <div className="q-barra">
@@ -253,15 +265,19 @@ function QuestaoIndisponivel({ m, q, mod, sub, aoVoltar }: { m: MateriaId; q: Qu
         <div className="q-barq">
           <span className="g" aria-hidden><Icone nome={`m_${m}` as NomeIcone} /></span>
           <span className="n">{nomeMat}</span>
-          <span className="t"><b>{cap(mod?.nome || sub?.nome || '')}</b> · Questão indisponível</span>
+          <span className="t num"><b>{cap(mod?.nome || sub?.nome || '')}</b> · {nomeNivel(nivelDe(q.dif))}{pos >= 0 && <> · <b>{pos + 1}</b> de {lista.length}</>}</span>
+          {pos >= 0 && <span className="p" aria-hidden><i style={{ width: `${((pos + 1) / lista.length) * 100}%` }} /></span>}
         </div>
         <BotaoTelaCheia />
       </div>
       <div className="q-grade">
         <article className="folha q-cartao">
-          <EnunciadoQuestao m={m} q={q} depois={sub && <span className="etq q-sub" title={cap(sub.nome)}>{cap(sub.nome)}</span>} />
-          <div className="q-resp com-texto q-indisp">
-            <p className="fr-aviso" role="status"><span><b>Questão indisponível.</b> A banca do Aprendice encontrou um erro no gabarito oficial desta questão, e a banca da prova não publicou correção. Ela fica aqui só para consulta: não tem resposta nem correção e não conta nos treinos, simulados e revisões.</span></p>
+          <EnunciadoQuestao m={m} q={q}
+            antes={<span className={`etq cor nivel n-${nivelDe(q.dif)}`}>{nomeNivel(nivelDe(q.dif))}</span>}
+            depois={sub && <span className="etq q-sub" title={cap(sub.nome)}>{cap(sub.nome)}</span>}
+            acao={<button className={'q-marca' + (eq?.rev ? ' marcado' : '')} onClick={() => alternaMarcada(m, q.id)} aria-pressed={!!eq?.rev} aria-label="Revisar depois" title="Revisar depois"><Icone nome="marcador" /></button>} />
+          <div className={'q-resp' + (q.transcricao || !urlPrint(m, q.id) ? ' com-texto' : '')}>
+            <div className="q-trava" role="status"><Icone nome="info" /><div><b>Questão indisponível</b><p>A banca do Aprendice encontrou um erro no gabarito oficial desta questão, e a banca da prova não publicou correção. Ela fica aqui só para consulta: não tem resposta nem correção e não conta nos treinos, simulados e revisões.</p></div></div>
           </div>
         </article>
         <aside className="folha q-lado" id="q-lado" aria-label="Teoria e fonte">
@@ -274,6 +290,16 @@ function QuestaoIndisponivel({ m, q, mod, sub, aoVoltar }: { m: MateriaId; q: Qu
               </div>
             )}
             {aba === 'fon' && <FonteQuestao q={q} />}
+            {relacionados.length > 0 && (
+              <nav className="q-rel" aria-label="Conteúdos relacionados">
+                <h3>Conteúdos relacionados</h3>
+                <div className="q-rel-g">
+                  {relacionados.map((x) => (
+                    <Link key={x.id} to={`/m/${m}/escada/${x.id}`}><i className="ponto-sub" aria-hidden /><span>{cap(x.nome)}</span></Link>
+                  ))}
+                </div>
+              </nav>
+            )}
           </div>
         </aside>
       </div>

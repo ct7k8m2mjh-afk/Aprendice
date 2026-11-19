@@ -4,7 +4,7 @@ import { useMateria } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
 import { pegaEstado, useMateriaEstado } from '../estado/loja';
 import { progressoEscada } from '../logica/estatisticas';
-import { NIVEIS, desempenhoPorNivel, feedbackNiveis, nivelDe, nomeNivel } from '../logica/nivel';
+import { NIVEIS, desempenhoPorNivel, feedbackNiveis, nivelDe, nomeNivel, ordemEvolucao } from '../logica/nivel';
 import { agendaDe, filaDe, emDias } from '../logica/revisao';
 import { Barra, Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
@@ -122,7 +122,21 @@ export function Escada() {
           <section key={nv.id} className="secao">
             <h2 className="sec-tit">{nv.nome}</h2>
             <ol className="degraus">
-              {lv.map((q) => {
+              {/* a indisponível (dono, 19/11/2026) entra na ordem de dificuldade, com o selo */}
+              {[...lv, ...li].sort(ordemEvolucao).map((q) => {
+                if (q.indisponivel) return (
+                  <li key={q.id}>
+                    <Link to={`/m/${m}/q/${q.id}?ctx=escada`} className="degrau indisp">
+                      <span className="dg-n" aria-hidden><i className="dg-ponto" /></span>
+                      <span className="dg-txt">
+                        <b>{q.conceito || cap(conteudo.nome)}</b>
+                        <small>{q.escola} {q.ano}{q.n ? ` · questão ${numeroQuestao(q)}` : ''}</small>
+                        <span className="etq aviso">Questão indisponível</span>
+                      </span>
+                      <Icone nome="direita" />
+                    </Link>
+                  </li>
+                );
                 const t = s.q[q.id]?.tent || [];
                 const ult = t[t.length - 1];
                 const f = filaDe(s.q[q.id], ag);
@@ -139,19 +153,6 @@ export function Escada() {
                   </li>
                 );
               })}
-              {li.map((q) => (
-                <li key={q.id}>
-                  <Link to={`/m/${m}/q/${q.id}?ctx=escada`} className="degrau indisp">
-                    <span className="dg-n" aria-hidden><i className="dg-ponto" /></span>
-                    <span className="dg-txt">
-                      <b>{q.conceito || `${q.escola} ${q.ano}`}</b>
-                      <small>{q.escola} {q.ano}{q.n ? ` · questão ${numeroQuestao(q)}` : ''}</small>
-                      <span className="etq aviso">Questão indisponível</span>
-                    </span>
-                    <Icone nome="direita" />
-                  </Link>
-                </li>
-              ))}
             </ol>
           </section>
         );
