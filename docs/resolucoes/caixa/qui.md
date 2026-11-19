@@ -362,3 +362,30 @@ RECLASS P0e45a3ab Q09.2 -> Q08.6 (PUCRS 2022 Verão q41: sal de KOH + CO2 e hidr
 DADO P1ddae9c5 (UFJF 2024 PISM III q30): alternativas -> A "(I) e (II)", B "(II) e (III)", C "(III) e (IV)", D "(I) e (IV)", E "(II) e (IV)" (coladas no fim do texto_da_prova, sem o campo)
 DADO P1ddae9c5: n -> 10 no print (a entrada diz 30)
 GABARITO P2d15159f e P6135def7: gabarito do Aprendice C (bate com o preliminar C); sem fonte publicada
+
+## 2026-11-19 18:40 UTC — PENDENCIAS — session_01PveEKavURMVSSh5SgqLorw
+Lote qui-0077 gravado (50 ok; gabarito do Aprendice: Pd1b2c6cf A, P77184a68 B, P5fb068c7 B — resolvedor, conferente às cegas e preliminar iguais; sem fonte publicada).
+RECLASS Pa8675894 Q09.5 -> Q01.4 (UEMA 2022 PAES q57)
+RECLASS Pfecd6ec0 Q09.5 -> Q01.2 (Unespar 2024 Grupo I q30)
+RECLASS P449a7d6f Q10.1 -> Q08.5 (ITA 2023 q54)
+PRINT P4066b7cf (PUCPR 2023 Medicina 2023/2 q28): o enunciado fala em "equação mostrada a seguir", mas ela não aparece no print; refazer com a equação do PDF oficial (a conta não depende dela; registrado no alerta)
+DADO P6c272651 (Unifor 2026/1 q25): alternativas.E -> "alcoóis racêmicos." (o "Questão 25" grudou no fim)
+DADO Pab032923 (URCA 2024.2 q45): alternativas.C -> "sobreponíveis" (está "sobrepon´ıveis"); alternativas.D -> "mesmos" (está "mes- mos")
+RECLASS P6a357326 Q11.7 -> Q12.2 (FCM-MG 2025/1 q47: saponificação)
+DADO P0894cf6a (ITA 2025 q26): alternativas -> campo ausente, coladas no texto_da_prova; no print: A Apenas I; B Apenas I e II; C Apenas I, III e IV; D Apenas II e IV; E Apenas III e IV
+DADO Pcc5b5930 (UFJF 2020 PISM III q27): alternativas -> campo ausente; as 5 frases estão coladas no texto_da_prova sem as letras A–E
+DADO P6fbb3569 (UFJF 2022 PISM III q27): texto_da_prova embaralhado, termina em "Quantos isômeros monossubstituídos podem ser formados nessa reação?"; alternativas -> A 1; B 2; C 4; D 7; E 10
+DADO P8583f9ce (FCM-MG 2024-2 q53): alternativas.D -> termina em "não interconversíveis." (rótulos da figura colados)
+DADO Pc43e2c86 (UEG Medicina 2024-2 q54): alternativas C e D -> terminam em "respectivamente." e "entre os carbonos 3 e 4." (rótulos das figuras colados)
+RECLASS P0894cf6a Q11.5 -> Q12.2 (ITA 2025 q26: oxidação enérgica de alqueno com KMnO4)
+RECLASS Pcc5b5930 Q11.5 -> Q12.1 (UFJF 2020 PISM III q27: substituição aromática, orientação)
+RECLASS Pc49bba22 Q11.5 -> Q11.7 (UEG 2020/1 q37: ebulição dos isômeros do pentano)
+DADO P009c6499 (FCM-MG 2024/2 q50): alternativas.D -> termina em "também denominado carbono assimétrico." (rótulos da figura colados)
+DADO Pa06839c1 (UEG 2023/2 q39): alternativas.E -> "possui 19 ligações do tipo sigma (σ) e 8 ligações do tipo pi (π)." (faltam os símbolos)
+RECLASS P1ca7ee6f Q10.1 -> Q05.2 (UEG 2020/1 q38: concentração em mol/L)
+DADO P2d900e47 (FCM-MG 2026/2 q49): alternativas.D -> termina com "conforme o tipo de substituintes no nitrogênio e o tipo de solvente."
+DADO P473e70da (ITA 2024 q54): texto_da_prova -> o sinal "൐" é ">" nos itens I a IV; alternativas vazias (A a E estão no print)
+DADO Paf9b43dc (UFJF 2022 PISM III q28): texto_da_prova embaralhado -> Ka: 1 ácido acético 1,6 × 10⁻⁵; 2 fenol 1,0 × 10⁻¹⁰; 3 água 1,8 × 10⁻¹⁶; 4 2-cloroetanol 5,0 × 10⁻¹⁵; 5 ácido tricloroacético 2,2 × 10⁻¹; alternativas -> A 3,4,2,1,5 B 4,3,2,1,5 C 5,1,4,3,2 D 5,1,2,4,3 E 5,2,4,3,1
+DADO Pc2f38acf (ITA 2026 q34): texto_da_prova com erros de OCR -> I "(CH3)H2C–I é mais suscetível ... do que o (C3H7)3C–I"; II "(CH3)3C–F > (CH3)3C–Cl > (CH3)3C–Br > (CH3)3C–I"; III "(C3H7)3C⁺"; "carbono sp³"; alternativas -> A nenhuma B apenas I e II C apenas I e III D apenas II e III E todas
+RECLASS Pf03f6b33 Q12.1 -> Q12.2 (ITA 2024 q57: esterificação, oxidação e redução)
+GABARITO Pd1b2c6cf (IME 2025 q33) A, P77184a68 (UEMG 2022 q24) B, P5fb068c7 (IME 2025 q39) B: gabarito do Aprendice, bate com o preliminar
