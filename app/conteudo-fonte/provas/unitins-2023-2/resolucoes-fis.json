@@ -337,5 +337,128 @@
    "data": "2026-11-13",
    "lote": "fis-0058"
   }
+ },
+ "P1c86b29f": {
+  "n": "1",
+  "conceito": "Localização por GPS: distância = velocidade da onda eletromagnética × tempo, e o ponto fica na interseção dos três círculos.",
+  "equivocos": {
+   "A": "F02.1:nao-confere-com-as-tres-distancias",
+   "B": "F02.1:nao-confere-com-as-tres-distancias",
+   "C": "F02.1:nao-confere-com-as-tres-distancias",
+   "D": "F02.1:erro-de-um-quadriculo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada satélite define um círculo: a posição do aparelho está a uma distância d = v · t dele. Com três satélites, o ponto é onde os três círculos se cruzam. Na figura, os satélites estão nos cruzamentos das linhas da grade e cada quadrículo tem 100 km de lado.",
+    "formulas": [
+     "d = v · t",
+     "v ≈ 300 000 km/s",
+     "1 quadrículo = 100 km"
+    ],
+    "simbolos": [
+     [
+      "d",
+      "distância do aparelho ao satélite"
+     ],
+     [
+      "v",
+      "velocidade da onda eletromagnética"
+     ],
+     [
+      "t",
+      "tempo de ida do sinal"
+     ],
+     [
+      "quadrante",
+      "aqui, cada quadrículo da grade, nomeado por coluna (letra) e linha (número)"
+     ]
+    ]
+   },
+   "pista": "Transforme cada tempo em distância e depois em número de quadrículos.",
+   "passos": [
+    {
+     "faz": "Calcule as três distâncias",
+     "conta": "alpha: 300 000 × 1,33 · 10⁻³ = 399 km ≈ 400 km | beta: 300 000 × 1,00 · 10⁻³ = 300 km | gamma: 300 000 × 6,67 · 10⁻⁴ ≈ 200 km",
+     "porque": "Distância é velocidade vezes tempo; os tempos foram escolhidos para dar 4, 3 e 2 quadrículos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta em quadrículos",
+     "conta": "400 km/100 = 4 | 300 km/100 = 3 | 200 km/100 = 2",
+     "porque": "Cada quadrículo tem 100 km, então a conta fica em lados de quadrículo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Cruze beta e gamma",
+     "conta": "beta: canto L/M, linha 4/5 | gamma: canto L/M, linha 8/9 → 3 + 2 = 5 ≥ 4",
+     "porque": "Os dois estão na mesma vertical, a 4 quadrículos um do outro; os círculos de raio 3 e 2 se cruzam a 2,625 quadrículos abaixo de beta, 1,45 para cada lado: na linha 7, colunas K ou N.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Use alpha para escolher o lado",
+     "conta": "alpha: canto G/H, linha 5/6 → ponto em K7: ≈ 3,9 quadrículos ≈ 390 km, confere | ponto em N7: ≈ 6,7 quadrículos, não confere",
+     "porque": "Só o lado esquerdo fica a cerca de 400 km de alpha; o ponto cai no quadrículo K7.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — Quadrante K7.",
+   "checagem": "Meça do centro de K7 até cada satélite: cerca de 381 km de alpha, 292 km de beta e 212 km de gamma, perto de 400, 300 e 200 km. Os outros quadrantes ficam longe de pelo menos uma dessas distâncias.",
+   "erradas": {
+    "A": "Não confere: o centro de M6 fica a cerca de 158 km de beta, mas o sinal de beta indica 300 km; e a 552 km de alpha, não 400 km.",
+    "B": "Não confere: o centro de J3 fica a cerca de 604 km de gamma, três vezes os 200 km indicados pelo tempo de gamma.",
+    "C": "Não confere: o centro de J5 fica a cerca de 430 km de gamma, mais que o dobro dos 200 km medidos.",
+    "D": "Não confere por um quadrículo: o centro de K6 fica a cerca de 292 km de gamma, e o sinal indica 200 km; descendo uma linha (K7) a distância cai para cerca de 212 km."
+   },
+   "armadilha": "Contar a distância a partir do centro do quadrículo do satélite: os satélites estão nos cruzamentos das linhas da grade.",
+   "alerta": "A figura não marca as coordenadas exatas dos satélites; pela grade, eles ficam nos cruzamentos das linhas (alpha entre G e H, linha 5/6; beta entre L e M, linha 4/5; gamma entre L e M, linha 8/9). As distâncias foram medidas a partir desses pontos.",
+   "essencial": {
+    "pede": "O quadrante da posição do aparelho, dados os tempos do sinal de três satélites.",
+    "chave": "d = v · t dá 400, 300 e 200 km; os três círculos se cruzam em K7.",
+    "cuidado": "Converter os km em quadrículos (100 km cada) e usar o terceiro satélite para escolher entre os dois pontos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Meça do centro de cada quadrante até os três satélites; só K7 fica perto de 400, 300 e 200 km ao mesmo tempo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "d = v · t",
+    "nota": "distância de cada satélite"
+   },
+   {
+    "linha": "d(alpha) = 300 000 × 1,33 · 10⁻³ ≈ 400 km",
+    "nota": "4 quadrículos"
+   },
+   {
+    "linha": "d(beta) = 300 000 × 1,00 · 10⁻³ = 300 km",
+    "nota": "3 quadrículos"
+   },
+   {
+    "linha": "d(gamma) = 300 000 × 6,67 · 10⁻⁴ ≈ 200 km",
+    "nota": "2 quadrículos"
+   },
+   {
+    "linha": "círculos de beta e gamma → linha 7, colunas K ou N",
+    "nota": "interseção"
+   },
+   {
+    "linha": "alpha a ≈ 390 km → K7",
+    "nota": "escolhe o lado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0062"
+  }
  }
 }

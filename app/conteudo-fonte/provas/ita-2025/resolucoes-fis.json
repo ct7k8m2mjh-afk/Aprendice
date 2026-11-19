@@ -216,5 +216,120 @@
    "data": "2026-11-13",
    "lote": "fis-0060"
   }
+ },
+ "Pb0841172": {
+  "n": "19",
+  "conceito": "Mesma potência concentrada numa área menor: a intensidade cresce com (R1/R2)², e o ganho em dB é 10·log da razão das intensidades.",
+  "equivocos": {
+   "A": "F10.5:ganho-em-bel-sem-o-fator-10",
+   "B": "F10.5:fator-do-decibel-errado",
+   "D": "F10.5:20log-aplicado-a-intensidade",
+   "E": "F10.5:fator-do-decibel-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A energia que chega ao pistão maior passa inteira para o pistão menor, então a potência sonora é a mesma nas duas pontas. Intensidade é potência por área: a mesma potência numa área menor dá intensidade maior. O ganho em decibel vem de 10·log da razão das intensidades, e o quadrado dos raios vira um fator 2 na frente do log.",
+    "formulas": [
+     "I = P ÷ A, com A = π·R²",
+     "ganho (dB) = 10·log(I2/I1)",
+     "log(x²) = 2·log x"
+    ],
+    "simbolos": [
+     [
+      "I",
+      "intensidade sonora: potência por unidade de área"
+     ],
+     [
+      "P",
+      "potência sonora, igual nos dois pistões"
+     ],
+     [
+      "dB",
+      "decibel; o nível sonoro é 10·log da razão de intensidades"
+     ],
+     [
+      "R1, R2",
+      "raios da base maior e da base menor"
+     ]
+    ]
+   },
+   "pista": "O que é igual nos dois pistões: a pressão, a força ou a potência? Comece pelo que o enunciado garante.",
+   "passos": [
+    {
+     "faz": "Fixe o que se conserva",
+     "conta": "P1 = P2 = P",
+     "porque": "A energia do pistão maior é transferida integralmente ao menor, no mesmo intervalo de tempo: a potência é a mesma.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache a razão das intensidades",
+     "conta": "I2/I1 = (P/(π·R2²))/(P/(π·R1²)) → I2/I1 = (R1/R2)²",
+     "porque": "P e π cancelam; a intensidade fica inversamente proporcional à área.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para decibel",
+     "conta": "ganho = 10·log((R1/R2)²) → ganho = 10 × 2·log(R1/R2) = 20·log(R1/R2)",
+     "porque": "O expoente 2 desce para a frente do log e multiplica o 10 do decibel.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "20·log(R1/R2) → alternativa C",
+     "porque": "É a amplificação em dB em função dos raios.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 20·log(R1/R2).",
+   "checagem": "Teste com R1/R2 = 10: a área cai 100 vezes, a intensidade sobe 100 vezes, e 10·log 100 = 20 dB. A fórmula C dá 20·log 10 = 20 dB. Bate.",
+   "erradas": {
+    "A": "Sai de esquecer o 10 do decibel: log((R1/R2)²) = 2·log(R1/R2) é o ganho em bel, não em decibel.",
+    "B": "Não confere: com R1/R2 = 10, a intensidade sobe 100 vezes, o que dá 20 dB; B daria só 4 dB.",
+    "D": "Sai de usar 20·log, que é a fórmula para razão de amplitudes, com a razão de intensidades: 20·log((R1/R2)²) = 40·log(R1/R2).",
+    "E": "Não confere: com R1/R2 = 10, E daria 80 dB, uma intensidade 10⁸ vezes maior, quando a área só cai 100 vezes."
+   },
+   "armadilha": "Aplicar 20·log (de amplitude) à razão de intensidades: o 20·log da resposta já vem do quadrado dos raios dentro de 10·log.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A amplificação em dB do estetoscópio em função de R1 e R2.",
+    "chave": "Potência igual, área menor: I2/I1 = (R1/R2)², ganho = 10·log((R1/R2)²) = 20·log(R1/R2).",
+    "cuidado": "Usar 10·log para intensidades e não esquecer o quadrado dos raios."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso numérico",
+    "ideia": "R1 = 10·R2: área 100 vezes menor, intensidade 100 vezes maior, 20 dB; só 20·log(R1/R2) dá 20 dB."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P1 = P2 → I1·π·R1² = I2·π·R2²",
+    "nota": "mesma potência nos dois pistões"
+   },
+   {
+    "linha": "I2/I1 = R1²/R2² = (R1/R2)²",
+    "nota": "o π cancela"
+   },
+   {
+    "linha": "ganho = 10·log((R1/R2)²)",
+    "nota": "definição de decibel"
+   },
+   {
+    "linha": "ganho = 20·log(R1/R2)",
+    "nota": "o expoente 2 sai do log"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0062"
+  }
  }
 }

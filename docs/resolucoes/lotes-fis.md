@@ -1,6 +1,6 @@
-# Física: resoluções (gerado por lote.py em 2026-11-13)
+# Física: resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 764 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 248; ENEM nível 7-10 31; provas-alvo nível 7-10 186; demais nível 7-10 299.
+Faltam 704 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 188; ENEM nível 7-10 31; provas-alvo nível 7-10 186; demais nível 7-10 299.
 
 ## Lotes
 
@@ -67,7 +67,8 @@ Faltam 764 questões sem resolução (fora as que estão em lote, pendentes ou c
 | fis-0059 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
 | fis-0060 | demais nível 1-6 | 60 | gravado | 59 | 1 | 0 |
 | fis-0061 | demais nível 1-6 | 60 | gravado | 59 | 1 | 0 |
-| fis-0062 | demais nível 1-6 | 60 | aberto |  |  |  |
+| fis-0062 | demais nível 1-6 | 60 | gravado | 59 | 1 | 0 |
+| fis-0063 | demais nível 1-6 | 60 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -83,6 +84,7 @@ Faltam 764 questões sem resolução (fora as que estão em lote, pendentes ou c
 | Pb1b726b3 | UERJ 2025 2º Exame de Qualificação · questão 7 | F02.1 velocidade média e movimento uniforme (tema F02 Cinemática) | classificação: é de Geografia (UERJ 2025, 2º Exame de Qualificação, questão 7: redes de transporte na França; a resposta oficial, A, “posição relativa na rede técnica”, compara cidades ligadas ou não por linha de trem de alta velocidade). Está classificada em Física, F02.1 velocidade média. |
 | P9615ec2a | UERR 2023 · questão 44 | F08.2 dilatação térmica (tema F08 Termologia) | gabarito oficial C (Δθ entre 125 e 150 °C) contradiz a física: o disco passa quando 10(1 + 1,7×10⁻⁵Δθ) = 9,98(1 + 2,5×10⁻⁵Δθ) → Δθ = 0,02/(7,95×10⁻⁵) ≈ 252 °C (alternativa E; o mesmo com diâmetros ou áreas). C só sai usando 2α (superficial) na conta dos raios: 0,02/(1,59×10⁻⁴) ≈ 126 °C, um erro de método. Gabarito definitivo da UERR confirma C para a 44 e não há anulação nem resolução publicada que o justifique (https://vestibulares.estrategia.com/portal/wp-content/uploads/2022/11/Gab_DEFINITIVO_Matriz_741_VEST_UERR_001.pdf). Ensinar a conta da banca seria ensinar erro; conferir se a 44 do gabarito é mesmo esta questão no caderno. |
 | Pf32f80b2 | UPE 2021 SSA3 · questão 72 | F01.5 fóton, efeito fotoelétrico e modelo de Bohr (tema F01 Fundamentos e grandezas) | O print não traz as constantes necessárias (h, c, massa do elétron). Além disso, na aniquilação de um par lento saem dois fótons de 0,511 MeV, de comprimento de onda cerca de 0,024 angstrom, valor que não está nas alternativas; a letra oficial (E, 1,2 × 10⁻²) só sai tratando a energia total do par como um único fóton. Sem certeza de como ensinar isso sem erro, fica pendente. Busca na web não achou resolução publicada. |
+| Pf61a81be | Unicentro 2022 Vestibular · questão 48 | F10.3 reflexão, refração, difração e interferência de ondas (tema F10 Ondulatória e acústica) | anular: a afirmativa I diz que as ondas do mar AUMENTAM de velocidade ao se aproximarem da praia; o fato é o contrário (em água mais rasa a velocidade da onda diminui; é essa redução que produz a refração). Pelo fato, I é falsa; II e III corretas e IV falsa (contornar obstáculo é difração), e 'Somente II e III' não existe entre as alternativas. O gabarito oficial D só sai considerando I correta. Busca na web sem errata ou anulação. |
 
 ## Divergências de gabarito (o dono decide)
 

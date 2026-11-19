@@ -440,5 +440,117 @@
    "data": "2026-11-13",
    "lote": "fis-0061"
   }
+ },
+ "Pd9e0b3ab": {
+  "n": "27",
+  "conceito": "Na escala de decibéis, cada 10 dB a mais multiplica a intensidade por 10.",
+  "equivocos": {
+   "A": "F10.5:db-linear",
+   "B": "F10.5:db-linear",
+   "D": "F10.5:db-linear"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O decibel é uma escala logarítmica: somar 10 dB significa multiplicar a intensidade por 10. Por isso não se compara 70 com 40 por divisão. O que importa é a diferença de níveis, 30 dB, que vira três fatores de 10.",
+    "formulas": [
+     "β₂ − β₁ = 10 · log(I₂/I₁)",
+     "I₂/I₁ = 10^((β₂ − β₁)/10)"
+    ],
+    "simbolos": [
+     [
+      "β",
+      "nível de intensidade sonora, em dB"
+     ],
+     [
+      "I",
+      "intensidade sonora"
+     ],
+     [
+      "dB",
+      "decibel"
+     ],
+     [
+      "log",
+      "logaritmo na base 10"
+     ]
+    ]
+   },
+   "pista": "Calcule a diferença em dB antes de pensar em vezes.",
+   "passos": [
+    {
+     "faz": "Anote os níveis",
+     "conta": "aceitável: 40 dB | medido: 70 dB",
+     "porque": "A pergunta é quantas vezes a intensidade medida supera a aceitável.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a diferença de nível",
+     "conta": "70 dB − 40 dB = 30 dB",
+     "porque": "Na escala logarítmica, a razão das intensidades depende da diferença de níveis.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Transforme a diferença em razão",
+     "conta": "30 = 10 · log(I₂/I₁) → log(I₂/I₁) = 3 → I₂/I₁ = 10³",
+     "porque": "O 10 que multiplica o log passa dividindo: 30/10 = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "10³ = 1000",
+     "porque": "A intensidade medida é mil vezes a aceitável.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1000 vezes.",
+   "checagem": "Degrau por degrau: 40 → 50 dB (×10), 50 → 60 dB (×100), 60 → 70 dB (×1000).",
+   "erradas": {
+    "A": "A não confere: 10 vezes corresponde a +10 dB, ou seja, 50 dB, não 70 dB.",
+    "B": "B não confere: 100 vezes corresponde a +20 dB, ou seja, 60 dB, não 70 dB.",
+    "D": "D não confere: 10000 vezes corresponde a +40 dB, ou seja, 80 dB, não 70 dB."
+   },
+   "armadilha": "Tratar o decibel como escala linear: a diferença de 30 dB não é \"um pouco mais\", é intensidade mil vezes maior.",
+   "alerta": "O texto da prova chama a intensidade de \"propriedade fisiológica\"; a intensidade (potência por área) é grandeza física, e a sensação de forte ou fraco é que é fisiológica. Isso não muda a conta nem a resposta.",
+   "essencial": {
+    "pede": "Quantas vezes a intensidade de 70 dB supera a de 40 dB.",
+    "chave": "Cada +10 dB multiplica a intensidade por 10: 30 dB → 10³.",
+    "cuidado": "Usar a diferença de níveis, não a razão 70/40."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "degraus de 10 dB",
+    "ideia": "Três degraus de 10 dB: 10 × 10 × 10 = 1000."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Δβ = 70 − 40 = 30 dB",
+    "nota": "diferença de níveis"
+   },
+   {
+    "linha": "30 = 10 · log(I₂/I₁)",
+    "nota": "definição do decibel"
+   },
+   {
+    "linha": "log(I₂/I₁) = 30/10 = 3",
+    "nota": "o 10 passa dividindo"
+   },
+   {
+    "linha": "I₂/I₁ = 10³ = 1000",
+    "nota": "desfaz o log"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0062"
+  }
  }
 }

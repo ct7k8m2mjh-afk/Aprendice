@@ -113,5 +113,128 @@
    "data": "2026-11-13",
    "lote": "fis-0043"
   }
+ },
+ "P67004c26": {
+  "n": "21",
+  "conceito": "Termômetro infravermelho: o sensor capta a radiação térmica que chega a ele, que depende de T⁴ e da emissividade, sem ser radiação ionizante.",
+  "equivocos": {
+   "A": "F10.2:confunde-intensidade-com-temperatura",
+   "B": "F10.2:ignora-emissividade-do-material",
+   "C": "F10.2:so-ser-vivo-emite-iv",
+   "D": "F10.2:infravermelho-como-ionizante"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O termômetro não encosta na pessoa: ele recebe a radiação infravermelha que chega ao sensor e converte essa intensidade em temperatura, usando I = ε · σ · T⁴. Tudo o que emite infravermelho na direção do sensor entra na leitura. Infravermelho não é radiação ionizante.",
+    "formulas": [
+     "I = ε · σ · T⁴ (T em kelvin)",
+     "unidade de I: W/m² (σ em W m⁻² K⁻⁴ vezes K⁴)",
+     "ε alto: o corpo emite e absorve muito infravermelho"
+    ],
+    "simbolos": [
+     [
+      "I",
+      "intensidade da radiação emitida, potência por área"
+     ],
+     [
+      "ε",
+      "emissividade, entre 0 e 1"
+     ],
+     [
+      "σ",
+      "constante de Stefan-Boltzmann"
+     ],
+     [
+      "T",
+      "temperatura absoluta, em kelvin"
+     ],
+     [
+      "ionizante",
+      "radiação com energia para arrancar elétrons de átomos, como raios X e gama"
+     ]
+    ]
+   },
+   "pista": "Pense no que o sensor realmente recebe: toda radiação infravermelha que chega até ele, venha de onde vier.",
+   "passos": [
+    {
+     "faz": "Leia o funcionamento no texto",
+     "conta": "pele a 36 °C → emite IV → sensor recebe I = ε · σ · T⁴ → converte em T",
+     "porque": "O termômetro mede a radiação que chega, não toca a pele; a leitura é a intensidade convertida em temperatura.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Descarte A pela unidade",
+     "conta": "[I] = W m⁻² K⁻⁴ × K⁴ = W/m²",
+     "porque": "Intensidade é potência por área, em W/m². Grau Celsius é unidade de temperatura, a grandeza que o aparelho calcula a partir de I.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Descarte B, C e D",
+     "conta": "plástico claro: ε = 0,94 → absorve e emite como corpo quase negro",
+     "porque": "Com ε alto, o plástico absorve o infravermelho da pele e emite o seu próprio: o aparelho mede o plástico (B cai). Qualquer objeto emite (C cai). IV não é ionizante e o aparelho só recebe radiação (D cai).",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Confirme E",
+     "conta": "I ∝ T⁴: objeto mais quente emite muito mais IV",
+     "porque": "Se a radiação de um objeto quente chega ao sensor, por emissão direta ou refletida, ela soma à da pele e altera a temperatura indicada.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — Um objeto quente próximo ao ponto de medição pode interferir no valor da temperatura fornecido pelo termômetro.",
+   "checagem": "Ordem de grandeza: de 36 °C (309 K) para 100 °C (373 K), I cresce (373/309)⁴ ≈ 2,1 vezes. Uma fonte bem mais quente no campo do sensor pesa muito na leitura, o que confirma E.",
+   "erradas": {
+    "A": "Não confere: pela própria equação, I sai em W m⁻² K⁻⁴ × K⁴ = W/m². Graus Celsius medem temperatura, que é o que o aparelho calcula a partir de I.",
+    "B": "Não confere com o texto: o plástico claro tem ε = 0,94, então absorve quase todo o infravermelho e emite o seu; o aparelho leria a temperatura do plástico.",
+    "C": "Não confere: o texto diz que qualquer material por volta de 36 °C emite infravermelho; o termômetro mede objetos, não só seres vivos.",
+    "D": "Não confere: o aparelho só recebe a radiação infravermelha da pele, que não é ionizante; câncer por radiação está ligado a UV, raios X e gama."
+   },
+   "armadilha": "Achar que o aparelho mede só a pessoa: ele mede toda radiação infravermelha que chega ao sensor.",
+   "alerta": "A prova oficial não traz o comando da questão (o texto termina e seguem as alternativas); as alternativas são lidas como 'é correto afirmar que'. O valor de σ está impresso como 5,7 W m⁻² K⁻⁴; o valor correto é 5,67 × 10⁻⁸ W m⁻² K⁻⁴. Nada disso altera a resposta, que não depende de conta.",
+   "essencial": {
+    "pede": "A afirmação correta sobre o termômetro infravermelho.",
+    "chave": "O sensor converte em temperatura toda radiação IV que recebe, que cresce com T⁴.",
+    "cuidado": "Infravermelho não é ionizante, e materiais com ε alto, como o plástico, barram a medida."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela leitura do texto",
+    "ideia": "O texto já diz que qualquer material a 36 °C emite IV; logo o sensor também recebe IV de objetos vizinhos, e só E usa isso."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I = ε · σ · T⁴",
+    "nota": "radiação emitida"
+   },
+   {
+    "linha": "[I] = W/m²",
+    "nota": "A cai"
+   },
+   {
+    "linha": "ε(plástico) = 0,94",
+    "nota": "absorve IV: B cai"
+   },
+   {
+    "linha": "IV não ionizante",
+    "nota": "D cai"
+   },
+   {
+    "linha": "objeto quente → I ∝ T⁴ grande",
+    "nota": "interfere: E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0062"
+  }
  }
 }

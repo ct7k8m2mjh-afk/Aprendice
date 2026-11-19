@@ -115,5 +115,124 @@
    "data": "2026-11-13",
    "lote": "fis-0051"
   }
+ },
+ "P9b682b86": {
+  "n": "10",
+  "conceito": "Dupla fenda de Young: máximos em d · sen θ = m · λ e contagem das ordens dentro de uma faixa angular.",
+  "equivocos": {
+   "A": "F10.3:limite-de-ordem-errado",
+   "B": "F10.3:contou-um-lado-sem-o-central",
+   "C": "F10.3:contou-um-lado-so",
+   "D": "F10.3:esqueceu-o-maximo-central"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na dupla fenda, há um máximo em cada direção em que a diferença de caminho entre as duas fendas é um número inteiro de comprimentos de onda: m = 0 (central), ±1, ±2... A faixa de −30° a 30° limita o seno a 0,5 em módulo, e isso limita a maior ordem possível. A contagem tem de incluir os dois lados e o máximo central.",
+    "formulas": [
+     "máximos: d · sen θ = m · λ",
+     "m_máx = d · sen 30°/λ"
+    ],
+    "simbolos": [
+     [
+      "d",
+      "separação entre as fendas, 16 µm"
+     ],
+     [
+      "λ",
+      "comprimento de onda, 500 nm"
+     ],
+     [
+      "m",
+      "ordem do máximo, inteiro (0, ±1, ±2...)"
+     ],
+     [
+      "θ",
+      "ângulo em relação à direção central"
+     ]
+    ]
+   },
+   "pista": "Descubra qual é a maior ordem m que ainda cabe em 30° e depois conte dos dois lados.",
+   "passos": [
+    {
+     "faz": "Calcule a razão d/λ",
+     "conta": "d/λ = (16 × 10⁻⁶ m)/(500 × 10⁻⁹ m) = 32",
+     "porque": "Converta tudo para metro: µ = 10⁻⁶ e n = 10⁻⁹. A razão diz quantos comprimentos de onda cabem na separação.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a maior ordem dentro da faixa",
+     "conta": "m = (d/λ) · sen θ ≤ 32 × sen 30° = 32 × 0,5 = 16",
+     "porque": "O λ que multiplica m passa dividindo; como sen 30° = 0,5, a ordem vai até 16, e 30° está incluído (≤).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as ordens dos dois lados",
+     "conta": "m = −16, ..., −1, 0, 1, ..., 16 → 16 + 1 + 16 = 33",
+     "porque": "Há 16 máximos de cada lado mais o central.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "33 máximos",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 33 máximos.",
+   "checagem": "Conte de outro jeito: de m = −16 a m = 16 são 16 − (−16) + 1 = 33 inteiros. Ordem de grandeza: com d 32 vezes maior que λ, os máximos ficam perto um do outro (sen θ cresce de 1/32 em 1/32), então dezenas de máximos em ±30° é plausível.",
+   "erradas": {
+    "A": "Não confere: só de um lado já cabem 16 ordens (m = 1 a 16), mais que 8.",
+    "B": "Sai de contar só um lado e sem o central: m = 1, 2, ..., 16 → 16. A faixa vai de −30° a 30°.",
+    "C": "Sai de contar só um lado com o central: m = 0 a 16 → 17. Faltam os 16 máximos do lado negativo.",
+    "D": "Sai de contar os dois lados e esquecer o máximo central (m = 0): 16 + 16 = 32."
+   },
+   "armadilha": "Esquecer o máximo central ou o outro lado: a faixa é simétrica, de −30° a 30°, e m = 0 também é máximo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos máximos de interferência há entre −30° e 30° numa dupla fenda com d = 16 µm e λ = 500 nm.",
+    "chave": "d/λ = 32; m ≤ 32 × sen 30° = 16, e de −16 a 16 há 33 inteiros.",
+    "cuidado": "Contar os dois lados e o máximo central."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem de inteiros",
+    "ideia": "De −16 a 16 são 16 − (−16) + 1 = 33 valores de m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "d/λ = (16 × 10⁻⁶)/(500 × 10⁻⁹) = 32",
+    "nota": "razão adimensional"
+   },
+   {
+    "linha": "m = (d/λ) · sen θ",
+    "nota": "o λ passa dividindo"
+   },
+   {
+    "linha": "m ≤ 32 × 0,5 = 16",
+    "nota": "sen 30° = 0,5"
+   },
+   {
+    "linha": "−16 ≤ m ≤ 16 → 16 + 1 + 16 = 33",
+    "nota": "alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Prova oficial ITA 2021 1ª fase",
+    "url": "https://vestibular.ita.br/provas/2021_fase1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0062"
+  }
  }
 }
