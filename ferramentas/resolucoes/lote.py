@@ -539,7 +539,9 @@ def pede_prefixo(px, pedido):
     """pedido: 'obra,print' ou 'todos-menos-anular' (anular/anulada ficam para a decisão do dono)."""
     if pedido == 'todos-menos-anular':
         return not px.startswith('anula')
-    return any(px.startswith(x.strip()) for x in pedido.split(',') if x.strip())
+    # '=a' pede o prefixo exato (senão 'a' pegaria 'anular' e 'o' pegaria 'obra')
+    return any((px == x.strip()[1:]) if x.strip().startswith('=') else px.startswith(x.strip())
+               for x in pedido.split(',') if x.strip())
 
 
 def marca_anterior(qs, l):
