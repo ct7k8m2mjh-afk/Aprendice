@@ -81,7 +81,7 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 | Matéria | Sessão | Situação |
 |---|---|---|
 | Matemática | session_01PveEKZJXRTXQ8BArELQfeu | trabalhando (aberta 19/11 16h49; anterior Ka7o3 deu FIM) |
-| Física | session_01PveEKYFao9mdqzruhVmuPm | trabalhando (aberta 19/11 16h26, regra 50×4; anterior aozj deu FIM) |
+| Física | session_01PveEKWeU9BGX5xnf2nstPb | trabalhando (aberta 19/11 17h24 para TERMINAR Física, ~244, esteira; anterior YFao deu FIM) |
 | Química | session_01PveEKYZfyAMFDV6N1z8smo | trabalhando (aberta 19/11 17h02, largada rápida; anterior XC1x deu FIM) |
 | Geografia | session_01PveEKaxbgLPCyvGooHZvKw | trabalhando (aberta 19/11 17h04, largada rápida; anterior b6B5 deu FIM) |
 | Biologia | session_01PveEKYq8uSzJkiuk9txCUa | trabalhando (aberta 19/11 16h49; anterior Y2ist deu FIM) |
