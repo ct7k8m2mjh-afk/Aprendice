@@ -345,3 +345,37 @@ DADO P2ab1243e: alternativas -> frações: A γ = 1/T1; B γ = 1/T2; C γ = 2/T2
 DADO P39a488e6: alternativas -> expoentes: A 2 × 10⁻⁵ °C⁻¹; B 5 × 10⁻⁵ °C⁻¹; C −2 × 10⁻⁵ °C⁻¹; D 1,2 × 10⁻⁵ °C⁻¹; E −5 × 10⁻⁵ °C⁻¹
 RECLASS P074765f3 F08.3 -> F08.1
 RECLASS P39a488e6 F08.5 -> F08.2
+
+## 2026-11-19 17:55 UTC — PENDENCIAS — session_01PveEKWeU9BGX5xnf2nstPb
+Lote fis-0075 gravado (49 resoluções conferidas, 1 pendente). Aberto: fis-0076.
+Gabarito do Aprendice: P4164d3e5 D, P17ada06f A, P600246b2 B, P4cea0727 C, P6f60a2e4 C, Pa0db8474 E, P5fb1646c A (resolvedor e conferente às cegas; iguais ao preliminar).
+RECLASS P82169a8f F09.4 -> qui Q09.1 (pilha de limão: eletroquímica)
+GABARITO P0e87de45: resolvida com a oficial B (1ª lei: W = Q = 2500 cal), mas os dados se contradizem (p₁V₁·ln 4 ≈ 4495 J ≈ 1074 cal); alerta na resolução. Decidir se anula.
+RECLASS P57fd4393 F08.7 -> F08.6 (PUCRS 2023 Verão q32: só lê T ∝ pV no diagrama, sem trabalho nem 1ª lei; é transformação gasosa)
+DADO P4e91097e: texto_da_prova -> OCR embaralhado; no print: "três máquinas térmicas M1, M2 e M3", "aproveitados por M2", "M3 aproveita o rejeito de M2", "fonte fria de M1" e alternativa E "as afirmações I e III estão incorretas" (ITA 2020, questão 15)
+DADO P35980c5d: alternativas -> no print: A √(2g(H − 3h/2)); B √(2g(H − h)); C (1/2)√(2g(H − 3h/2)); D 2√(2g(H − 3h/2)); E 2√(2g(H − h)) (ITA 2024, questão 2; o texto da entrada traz as raízes quebradas)
+DADO Pdd874c02: texto_da_prova e alternativas -> no print: θ1 = 1° = π/180; n_i = 2·n_(i+1), i = 1..5; para ângulos < 5°, sen θ = θ e cos θ = 1; A θ3R = π/720; B θ3R = π/360; C θ3R = π/120; D θ3R = π/45 (UFT 2024/1, questão 60, impressa como QUESTÃO 28)
+GABARITO P4164d3e5: IME 2024 1ª fase questão 28 — nenhuma resolução publicada achada na web (projetoagathaedu dá 403); letra do Aprendice D (|v|² = 17 − 8 sen t, máx 5 m/s); conferir com o preliminar do IME
+GABARITO P17ada06f: IME 2024 1ª fase questão 27 — nenhuma resolução publicada achada na web; letra do Aprendice A (D = 15 m, a = 40/9 m/s², v = 5√5 m/s); conferir com o preliminar do IME
+RECLASS P82169a8f: UEMA PAES 2020 questão 56 (pilha de limão) é de Química Q09.1, não de Física F09.4 — saiu como pendente "classificação"
+DADO Pecd60126: alternativas.E -> "0,96" (o "Questão 17" colado não está na alternativa do print)
+DADO P3e48cf43: texto_da_prova -> "índice de refração n = √2" (a entrada diz "n = 2"); alternativas ausentes na entrada (OCR embaralhado); print: A 1 mm; B √2/2 mm; C (1 − √2/2) mm; D √3/3 mm; E (1 − √3/3) mm
+DADO Paa98b026: alternativas -> ausentes na entrada (estão no fim de texto_da_prova); print: A V F F; B F V F; C F F V; D V V F; E F V V
+DADO P2afa80e2: texto_da_prova -> equação embaralhada; no print: 1/f = (n − 1)[1/R1 + 1/R2]; alternativas -> B "f = 2fo." (sem "fo f f" colado); C "f = (3/2) fo"; D "f = (1/2) fo"
+DADO P4cea0727: alternativas -> D "−fΔn/(n² − 1)"; E "fΔn/(n² − 1)" (expoente achatado para "n2")
+DADO P5b4bed45: texto_da_prova -> "n(λ) = A + B/λ²"; alternativas -> frações: A αA(λ2² − λ1²)/(λ1λ2); B θ0A(λ2² − λ1²)/(λ1λ2); C αB(λ2² + λ1²)/(λ1λ2)²; D θ0B(λ2² − λ1²)/(λ1λ2)²; E αB(λ2² − λ1²)/(λ1λ2)²
+GABARITO P600246b2 (IME 2024 1ª fase q26): sem gabarito publicado; letra do Aprendice B (d = 120 cm); a web não trouxe gabarito nem resolução publicada; falta a letra do conferente às cegas e conferir com o preliminar
+GABARITO P4cea0727 (IME 2025 1ª fase q28): sem gabarito publicado; letra do Aprendice C (−fΔn/(n − 1)); a web não trouxe gabarito nem resolução publicada; falta a letra do conferente às cegas e conferir com o preliminar
+DADO P4c7b1c15: alternativas -> ausentes na entrada (no fim de texto_da_prova); print: A 7, B 14, C 25, D 75, E 175
+DADO Pee295349: texto_da_prova -> valores apagados na camada de texto; print: "energia cinética inicial de um elétron é 40.000 eV e que sua energia após a colisão seja 20.000 eV", "constante de Planck seja aproximadamente 4,0 × 10⁻¹⁵ eV·s"; alternativas vazias, print: a) 1,0 × 10¹² b) 2,0 × 10¹² c) 5,0 × 10¹⁸ d) 10,0 × 10¹⁸ e) 15,0 × 10¹⁸
+DADO P4c89caef: texto_da_prova -> "v(t) = 250 − 5 × 10⁶t [m/s]" (expoente 6 achatado em "106t")
+DADO P6f60a2e4: alternativas -> frações empilhadas: A (n² − 1)df/c ímpar, B (n² − 1)df/c par, C (n − 1)df/c inteiro, D 2(n − 1)df/c ímpar, E 2(n + 1)df/c par
+DADO Pa0db8474: texto_da_prova -> "n(x) = √(2L/(L + x)); 0 ≤ x ≤ L"; alternativas -> A λ/(2(2 + 3√2)), B λ/(3(2√2 − 2)), C λ/(3(2 − √2)), D λ/(2(3 + 2√2)), E λ/(2(3 − 2√2))
+DADO Pb7757677: alternativas -> ausentes na entrada; print: A (λm + (n − 1)R)·L/a, B (λm − nR)·L/a, C λm·L/a + (n − 1)R, D (λm + nR)·L/a, E (λm − nR)·L/(2a)
+DADO P1f316181: alternativas -> ausentes na entrada; print: A 40 nm, B 90 nm, C 100 nm, D 160 nm, E 200 nm
+RECLASS Pee295349 F10.2 -> F01.5
+RECLASS P95e563c2 F10.3 -> F01.5
+GABARITO P6f60a2e4 (IME 2024 1ª fase q18): gabarito do Aprendice C; falta a letra do conferente às cegas e comparar com o preliminar; nenhuma resolução publicada achada na web
+GABARITO Pa0db8474 (IME 2025 1ª fase q24): gabarito do Aprendice E; falta a letra do conferente às cegas e comparar com o preliminar; Estratégia Militares tem a questão, mas a letra não aparece na página pública
+RECLASS P4bdbab83 F10.5 -> F10.6
+GABARITO P5fb1646c (IME 2025 1ª fase, questão 21): sem gabarito publicado; letra do resolvedor A (f1 ≥ f2 ≥ f3 = ff ≥ f4 ≥ f5); nenhuma resolução publicada localizada na web; falta a letra do conferente às cegas e conferir com o preliminar do IME
