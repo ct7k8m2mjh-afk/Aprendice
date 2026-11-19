@@ -57,6 +57,11 @@ aprovação ou resposta: pendências e avisos vão para docs/resolucoes/caixa/<m
    list `respostas`), cumprir e gravar o retorno.
 6. Atualizar a tabela abaixo e encerrar.
 
+## Fábrica pela API (dono, 19/11)
+Teto: US$ 200 de créditos da API. Matéria sugerida para a fábrica: Português (a sessão deu FIM em 19/11 ~15h; NÃO reabrir
+sessão de Português enquanto a fábrica estiver com a matéria, para não haver dois trabalhando nos mesmos lotes).
+Aguardando o OK do dono para abrir a sessão "Fábrica" (ambiente Fabrica, env_01QMooYA98c8e8MNnWwkV34D).
+
 ## Sessões (19/11/2026, 14h58 UTC)
 | Matéria | Sessão | Situação |
 |---|---|---|
