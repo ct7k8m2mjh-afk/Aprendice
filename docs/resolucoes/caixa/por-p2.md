@@ -167,3 +167,12 @@ Conferência no site (3 questões, 1280 e 390 px): P8f674c90 e Pdae4242f OK (4 b
 AVISO P8f674c90: erradas.B começa por "B não confere:", e o site mostra a letra duas vezes ("B B não confere"); tirar o "B " inicial na próxima revisão.
 tsc: OK; vitest: 786 passed (rodados após o lote 0006).
 A seguir: próxima sessão continua com lote.py proximo por 50 --novo --parte 2 (faltam 333 questões na parte 2).
+
+## 2026-11-19 — PENDENCIAS — sessão por-p2 (session_01PveEKXDkPFmUNguid7UeTi)
+Último lote gravado: por-p2-0009 (50 ok). Lote aberto: por-p2-0010.
+Gabarito do Aprendice (resolvedor = conferente às cegas = preliminar): Pa0271438 D (UFRR 2025), P43b9c63e E (UFRR 2026).
+RECLASS P306b6407 P12.4 -> P12.5 (Unitins 2026/2 q44: "Não há vagas", Ferreira Gullar, poesia social pós-45)
+RECLASS P3a8b56f6 P12.5 -> P06.2 (UNEMAT 2023/2 q31: antítese "ao mal com o bem pagar", figura de linguagem)
+DADO Pa7a58868 (lote 0009): texto_da_prova -> começa por "42 - Leia com atenção" (entrada cortada em "eia"); alternativas.B -> "I e II estão corretas." (sobra um "l" no fim)
+GABARITO P669e7c8b (ITA 2024 q17, O avesso da pele): resolvida com a oficial B (onisciência do narrador); C também defensável (narrador-personagem), explicado no alerta; resolução publicada também dá B
+OBRA Pc430118e (UFT 2024/1 q10, O canto da carpideira): afirmativa IV (Ditinho Arrieiro) não confirmada na web; resolução chega à D por eliminação sem afirmar a IV
