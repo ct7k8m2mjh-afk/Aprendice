@@ -106,3 +106,13 @@ RECLASS P0830f881 G12.6 -> G10.1
 RECLASS Pbd28e08c G01.1 -> G09.4
 RECLASS P71dc0341 G03.1 -> G02.6
 RECLASS Pe8d98def G12.3 -> G05.4
+
+## 2026-11-19 — ACABOU — sessão geo parte 2
+Geografia parte 2 terminou: lote.py status dá "Geografia parte 2: 0" (e parte 1: 0). Nenhum lote aberto.
+Lotes gravados nesta sessão: geo-p2-0005 (48), geo-p2-0006 (49), geo-p2-0007 (19) = 116 resoluções; 4 pendentes; 0 divergências.
+Pendências do lote geo-p2-0007:
+OUTRA P6023bcc1: classificação: é de Filosofia e Sociologia S02.3 (o comando pede a análise "sociologicamente"; a resposta é controle social); reclassificar.
+RECLASS P543cc3ee G06.5 -> G06.6
+RECLASS Pb5b4b8d3 G11.2 -> G06.3
+RECLASS P55eac2f3 G12.1 -> G03.6
+(As pendências dos lotes 0005 e 0006 estão nos blocos acima: ANULAR Pc75f2669; OUTRA Pe5380577 e Pab319aea.)
