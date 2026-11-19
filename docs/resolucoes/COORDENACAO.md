@@ -67,12 +67,12 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 ## Sessões (19/11/2026, 14h58 UTC)
 | Matéria | Sessão | Situação |
 |---|---|---|
-| Matemática | session_01PveEKb7D6JK1CQcuUsmK6o | trabalhando (aberta 19/11 14h58; retoma mat-0064, mat-0065) |
+| Matemática | session_01PveEKa7o3DaEHDo7jW4ttw | trabalhando (aberta 19/11 15h25, regra 50×4; anterior b7D6 deu FIM) |
 | Física | session_01PveEKZJQECSzmdn2ajLNFJ | trabalhando (aberta 19/11 14h58; retoma fis-0062) |
 | Química | session_01PveEKaFZ75HhzLpwG4RGm9 | trabalhando (aberta 19/11 14h58; retoma qui-0064) |
 | Geografia | session_01PveEKWnuQFkENPnSwCMngE | trabalhando (aberta 19/11 14h58; retoma geo-0039, geo-0040) |
 | Biologia | session_01PveEKYyQUcXXXACEDrbiVW | trabalhando (aberta 19/11 14h58) |
-| Português | session_01PveEKZx97iNBdqEKjza4nT | trabalhando (aberta 19/11 14h58; retoma por-0091, por-0093) |
+| Português | — | reservado para a FÁBRICA pela API (sessão Zx97 deu FIM 15h13; não reabrir) |
 Caídas pelo limite em 13/11 (o dono pode arquivar): Mat session_01PveEKWKTewFDUJvA5Y5s91, Fís session_01PveEKXXFLhp4ro4vnf1rh7,
 Quí session_01PveEKZxREDvirT6VTx5nKy, Geo session_01PveEKaHNFQdko42Ddhy3XZ, Bio session_01PveEKaPh1PAjF3bRbuJ5fG, Por session_01PveEKY3G8XPW7thJLdH3jL.
 Paradas do sistema novo (o dono pode arquivar): Mat session_01PveEKaSPVEijwvkvEUmmWx, Fís session_01PveEKX5T4pY3Xx4fn4PR8G,
