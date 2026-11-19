@@ -597,5 +597,127 @@
    "data": "2026-11-13",
    "lote": "bio-0042"
   }
+ },
+ "P2d0f169a": {
+  "n": "42",
+  "conceito": "Probabilidade de criança afetada no casamento consanguíneo de uma mulher aa com primo cuja mãe tem 2/3 de chance de ser portadora.",
+  "equivocos": {
+   "A": "B06.3:ignorou-portador-oculto",
+   "C": "B06.1:portador-certo-sem-2-3",
+   "D": "B06.1:parou-no-portador",
+   "E": "B06.1:portador-certo-sem-2-3"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A mulher III-1 é afetada, então é aa e passa a todos os filhos. A criança só sai aa se o primo III-2 for Aa e lhe passar o a. O primo é normal; o pai dele é homozigoto e, sem outros casos na família, é AA. O a só pode vir da mãe dele, II-2, que é normal, filha de dois heterozigotos: 2/3 de chance de ser Aa.",
+    "formulas": [
+     "normal filho de Aa × Aa: 2/3 de ser Aa",
+     "Aa × AA → 1/2 Aa",
+     "aa × Aa → 1/2 aa",
+     "eventos que precisam acontecer juntos: multiplique"
+    ],
+    "simbolos": [
+     [
+      "consanguinidade",
+      "parentesco entre os pais; aumenta a chance de os dois carregarem o mesmo alelo"
+     ],
+     [
+      "homozigoto",
+      "indivíduo com dois alelos iguais (AA ou aa)"
+     ],
+     [
+      "portador sadio",
+      "heterozigoto Aa, sem a doença"
+     ]
+    ]
+   },
+   "pista": "Siga o alelo a desde os avós até o primo: em cada passagem, pergunte qual a chance de ele ser transmitido.",
+   "passos": [
+    {
+     "faz": "Defina o genótipo de cada um",
+     "conta": "III-1 = aa | pai de III-2 = AA (homozigoto e normal) | II-2 normal, de I-1 Aa × I-2 Aa",
+     "porque": "Afetada recessiva é aa. O pai do primo é homozigoto e não tem a doença, então só pode ser AA.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a chance de II-2 ser Aa",
+     "conta": "Aa × Aa → AA, Aa, aA (sem aa) → P(II-2 Aa) = 2/3",
+     "porque": "II-2 é normal, então o resultado aa sai da conta: dos três casos restantes, dois são portadores.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chance de o primo ser Aa",
+     "conta": "P(III-2 Aa) = 2/3 × 1/2 = 2/6 = 1/3",
+     "porque": "Se II-2 for Aa, ela passa o a ao filho em metade das vezes; o pai AA só passa A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chance da criança aa",
+     "conta": "aa × Aa → 1/2 aa → 1/3 × 1/2 = 1/6",
+     "porque": "A mãe sempre dá a; se o primo for Aa, a criança recebe o a dele em metade das vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1/6 ≈ 16,7% → alternativa B",
+     "porque": "A pergunta é sobre uma criança afetada, sem sexo, então não entra o 1/2 do sexo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1/6 (cerca de 16,7%).",
+   "checagem": "Pense em 6 casos para a mãe do primo: em 4 ela é Aa (2/3). Desses, em 2 o primo recebe o a (1/2) e, desses, em 1 a criança sai aa (1/2). Fica 1 em 6.",
+   "erradas": {
+    "A": "0% sai de achar que o primo, normal e com pai AA, não pode ser portador. O a pode vir da mãe dele, II-2, filha de dois heterozigotos.",
+    "C": "1/4 sai de tratar a mãe do primo como portadora certa: 1 × 1/2 × 1/2. Ela é normal, filha de Aa × Aa, e a chance é 2/3.",
+    "D": "1/3 sai de parar na chance de o primo ser Aa (2/3 × 1/2). Ainda falta o 1/2 de ele passar o a à criança.",
+    "E": "1/2 sai de tratar o primo como portador certo: aa × Aa → 1/2 aa. Ele só é Aa com chance 1/3."
+   },
+   "armadilha": "Parar no 1/3 (chance de o primo ser portador) ou tratar o primo ou a mãe dele como portadores certos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de a mulher aa e seu primo normal terem uma criança afetada.",
+    "chave": "2/3 (mãe do primo Aa) × 1/2 (primo recebe a) × 1/2 (criança recebe a) = 1/6.",
+    "cuidado": "Multiplique cada passagem do alelo; não pare na chance de o primo ser portador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo alelo a",
+    "ideia": "Siga o a: avós → II-2 (2/3) → primo (1/2) → criança (1/2); 2/3 × 1/2 × 1/2 = 1/6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(II-2 Aa) = 2/3",
+    "nota": "normal, filha de Aa × Aa"
+   },
+   {
+    "linha": "2/3 × 1/2 = 1/3",
+    "nota": "primo recebe o a da mãe"
+   },
+   {
+    "linha": "1/3 × 1/2 = 1/6",
+    "nota": "criança recebe o a do primo"
+   },
+   {
+    "linha": "1/6 ≈ 16,7%",
+    "nota": "alternativa B"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Quadro 1: os avós I-1 Aa e I-2 Aa. Quadro 2: dois filhos, II-1 (pai da mulher) e II-2 (mãe do primo); II-2 mostra a chance 2/3 de ter o a. Quadro 3: o alelo a desce de II-2 para o primo III-2 com 1/2, enquanto o pai AA manda só A. Quadro 4: III-1 aa × III-2 Aa; a criança recebe a da mãe e, com 1/2, a do pai. Quadro 5: os fatores 2/3 × 1/2 × 1/2 se juntam em 1/6."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0074"
+  }
  }
 }

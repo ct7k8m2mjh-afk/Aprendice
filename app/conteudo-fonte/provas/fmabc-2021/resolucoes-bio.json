@@ -807,5 +807,113 @@
    "data": "2026-11-13",
    "lote": "bio-0042"
   }
+ },
+ "Pe25e2616": {
+  "n": "49",
+  "conceito": "Aplicar as regras de transfusão ABO e Rh (quem cada tipo pode receber) e ler o estoque de cada tipo no gráfico.",
+  "equivocos": {
+   "A": "B06.4:rh-negativo-recebe-rh-positivo",
+   "C": "B06.4:o-positivo-nao-recebe-o-negativo",
+   "D": "B06.4:inverte-doador-e-receptor-ab",
+   "E": "B06.4:inverte-doador-e-receptor-ab"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada alternativa junta duas afirmações: a situação do estoque, lida no gráfico, e quem aquele tipo pode receber. As duas têm de estar certas. Na transfusão de hemácias, o receptor não pode receber um antígeno que ele não tem, porque o plasma dele tem (ou passa a ter) anticorpo contra esse antígeno. Por isso O− doa para todos e AB+ recebe de todos.",
+    "formulas": [
+     "receptor recebe só hemácias sem antígeno que ele não tenha",
+     "Rh−: recebe só Rh− | Rh+: recebe Rh+ e Rh−",
+     "A recebe A e O | B recebe B e O | AB recebe todos | O recebe só O"
+    ],
+    "simbolos": [
+     [
+      "antígeno (aglutinogênio)",
+      "molécula na superfície da hemácia: A, B ou D (o fator Rh)"
+     ],
+     [
+      "aglutinina",
+      "anticorpo do plasma: anti-A ou anti-B"
+     ],
+     [
+      "Rh+ e Rh−",
+      "hemácia com ou sem o antígeno D"
+     ],
+     [
+      "receptor universal",
+      "AB+: não tem anti-A, anti-B nem anti-D e recebe hemácias de todos os tipos"
+     ]
+    ]
+   },
+   "pista": "Confira cada alternativa em duas etapas: primeiro a cor da bolinha daquele tipo no gráfico, depois a lista de doadores. Basta uma das duas falhar.",
+   "passos": [
+    {
+     "faz": "Leia o estoque no gráfico",
+     "conta": "AB+: estável | A+: alerta | O+, B+, O−, A−, AB−, B−: crítico",
+     "porque": "Só a bolinha do AB+ está cheia (estável); a do A+ está pela metade (alerta); as outras estão quase vazias, como a do crítico na legenda.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte quem cada tipo pode receber",
+     "conta": "A− ← A−, O− | A+ ← A+, A−, O+, O− | B+ ← B+, B−, O+, O− | O+ ← O+, O− | AB+ ← todos",
+     "porque": "Quem é Rh− não pode receber o antígeno D; quem é A ou B não pode receber o antígeno que não tem. O tipo O não traz antígeno A nem B.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste as alternativas com Rh e ABO errados",
+     "conta": "A: A− recebe O+ e A+? não (Rh+) | D: B+ recebe AB? não (antígeno A) | E: A+ recebe AB? não (antígeno B)",
+     "porque": "As três listas incluem doadores com um antígeno que o receptor não tem. Além disso, nenhum desses três estoques está na situação indicada.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste a C",
+     "conta": "C: O+ crítico → certo | O+ ← só O+? não: O+ ← O+, O−",
+     "porque": "O estoque de O+ está mesmo crítico, mas quem é O+ também recebe O−, que não tem antígeno A, B nem D. A justificativa derruba a alternativa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "AB+: estável no gráfico | AB+ ← todos os tipos → B",
+     "porque": "As duas partes da B conferem: a bolinha cheia e a regra do receptor universal.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — o estoque de AB+ era estável, e quem é AB+ pode receber sangue de doadores de todos os tipos.",
+   "checagem": "Pense nos anticorpos: quem é AB+ não tem anti-A nem anti-B no plasma e não reage ao fator Rh, então nenhuma hemácia de doador é atacada. Faz sentido que esse estoque seja o menos pressionado, porque qualquer doação serve a esse paciente.",
+   "erradas": {
+    "A": "A− estava crítico, não em alerta, e quem é A− recebe só A− e O−; O+ e A+ levam o antígeno D, que o Rh− não pode receber.",
+    "C": "O estoque de O+ estava crítico, mas a justificativa falha: quem é O+ recebe O+ e também O−.",
+    "D": "B+ estava crítico, e quem é B+ não recebe AB+ nem AB−, que trazem o antígeno A; recebe B+, B−, O+ e O−.",
+    "E": "A+ estava em alerta, não estável, e quem é A+ não recebe AB+ nem AB−, que trazem o antígeno B; recebe A+, A−, O+ e O−."
+   },
+   "armadilha": "Confundir para quem o tipo doa com de quem ele recebe: AB pode doar para AB, mas não pode doar para A ou B, ao contrário do que dizem D e E.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual tipo sanguíneo tem a situação de estoque e a lista de doadores corretas.",
+    "chave": "O receptor só recebe hemácias sem antígeno que ele não tenha: AB+ recebe de todos, O+ recebe O+ e O−.",
+    "cuidado": "Confira as duas partes de cada alternativa: a cor no gráfico e a regra de transfusão."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo gráfico primeiro",
+    "ideia": "Só AB+ está estável e só A+ está em alerta: isso já derruba A, D e E; entre B e C, O+ também recebe O−, e sobra a B."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "Quadro 1: as oito bolinhas do gráfico com o rótulo de cada situação (AB+ estável, A+ alerta, demais críticas). Quadro 2: hemácia AB+ com antígenos A, B e D e plasma sem anticorpos; setas de todos os oito tipos chegando até ela. Quadro 3: hemácia O+ recebendo setas só de O+ e O−. Quadro 4: setas de AB para A e para B riscadas, com o antígeno que sobra em destaque. Quadro 5: alternativa B marcada."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0074"
+  }
  }
 }

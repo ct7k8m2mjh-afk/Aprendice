@@ -1084,5 +1084,109 @@
    "data": "2026-11-13",
    "lote": "bio-0043"
   }
+ },
+ "Pbe626d9c": {
+  "n": "24",
+  "conceito": "Relacionar genótipo e fenótipo numa série de quatro alelos com dominância hierárquica (pelagem de coelhos).",
+  "equivocos": {
+   "A": "B06.4:ignora-alelo-mais-dominante",
+   "C": "B06.4:ignora-alelo-mais-dominante",
+   "D": "B06.4:conta-errado-genotipos",
+   "E": "B06.4:homozigoto-gera-recessivo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com a ordem C > Cᶜʰ > Cʰ > Cᵃ, o fenótipo é dado pelo alelo mais alto da dupla. Basta escrever, para cada cor, os genótipos em que aquele alelo é o mais dominante. O selvagem aparece sempre que houver um C.",
+    "formulas": [
+     "fenótipo = alelo mais dominante do par",
+     "selvagem: C com qualquer outro | chinchila: Cᶜʰ com Cᶜʰ, Cʰ ou Cᵃ",
+     "himalaia: Cʰ com Cʰ ou Cᵃ | albino: só CᵃCᵃ"
+    ],
+    "simbolos": [
+     [
+      "polialelia (alelos múltiplos)",
+      "mais de dois alelos possíveis para o mesmo gene na população"
+     ],
+     [
+      "C > Cᶜʰ",
+      "C domina Cᶜʰ: no par CCᶜʰ aparece a cor selvagem"
+     ],
+     [
+      "homozigoto",
+      "com os dois alelos iguais, como CC ou CʰCʰ"
+     ]
+    ]
+   },
+   "pista": "Para cada genótipo citado, pergunte qual é o alelo mais alto na hierarquia. Esse alelo decide a cor.",
+   "passos": [
+    {
+     "faz": "Monte a tabela de genótipos por cor",
+     "conta": "selvagem: CC, CCᶜʰ, CCʰ, CCᵃ | chinchila: CᶜʰCᶜʰ, CᶜʰCʰ, CᶜʰCᵃ | himalaia: CʰCʰ, CʰCᵃ | albino: CᵃCᵃ",
+     "porque": "Cada genótipo vai para a cor do seu alelo mais dominante. São 4 + 3 + 2 + 1 = 10 genótipos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste a B com um cruzamento",
+     "conta": "CC × qualquer → todo filhote recebe C → C_ → selvagem",
+     "porque": "O progenitor CC só produz gametas C, e C domina todos os outros alelos. Qualquer filhote tem pelo menos um C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine A, C e D pela tabela",
+     "conta": "A: CCᶜʰ → selvagem, não chinchila | C: CᶜʰCʰ → chinchila, não himalaia | D: selvagem tem 4 genótipos, não 5",
+     "porque": "Cada uma põe um genótipo na cor errada ou conta errado as combinações do selvagem.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Elimine a E pelo cruzamento",
+     "conta": "fêmea CᵃCᵃ × macho CʰCʰ → todos CʰCᵃ → himalaia",
+     "porque": "O macho homozigoto só passa Cʰ, que domina Cᵃ: nenhum filhote recebe dois Cᵃ.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "B: um progenitor CC → todos os filhotes selvagens → B",
+     "porque": "Só a B resiste à tabela e aos cruzamentos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — se um dos progenitores for CC, os filhotes sempre nascerão com a cor selvagem.",
+   "checagem": "Confira a contagem total: com 4 alelos há 4 homozigotos e 6 heterozigotos, 10 genótipos, que fecham com 4 + 3 + 2 + 1 da tabela. O selvagem tem o maior número (4), mas não 5.",
+   "erradas": {
+    "A": "O genótipo CCᶜʰ tem C, que domina Cᶜʰ: o coelho é selvagem, não chinchila. Os outros três genótipos citados são mesmo chinchila.",
+    "C": "CᶜʰCʰ é chinchila, porque Cᶜʰ domina Cʰ; himalaia são só CʰCᵃ e CʰCʰ.",
+    "D": "A cor selvagem tem 4 genótipos (CC, CCᶜʰ, CCʰ, CCᵃ), não 5.",
+    "E": "Fêmea CᵃCᵃ com macho CʰCʰ só gera CʰCᵃ, que é himalaia; para nascer albino o filhote precisaria receber Cᵃ dos dois pais."
+   },
+   "armadilha": "Olhar só o primeiro alelo da dupla: em CCᶜʰ e CᶜʰCʰ quem decide é o alelo mais alto da hierarquia, que nem sempre é o que dá nome à cor procurada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre genótipos e cruzamentos da pelagem de coelhos está correta.",
+    "chave": "O fenótipo é dado pelo alelo mais dominante do par; um progenitor CC passa C a todos os filhotes, que são selvagens.",
+    "cuidado": "Confira cada genótipo citado contra a hierarquia, um por um."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelos cruzamentos",
+    "ideia": "Só B e E falam de cruzamento: CC passa C para todos (B certa) e CʰCʰ só passa Cʰ (E errada)."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "Quadro 1: escada da dominância C > Cᶜʰ > Cʰ > Cᵃ com o coelho de cada cor. Quadro 2: tabela com os 10 genótipos distribuídos nas quatro cores (4, 3, 2, 1). Quadro 3: cruzamento CC × qualquer, todos os filhotes com C e pelagem selvagem. Quadro 4: CᵃCᵃ × CʰCʰ → todos CʰCᵃ himalaia, com o albino riscado."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0074"
+  }
  }
 }

@@ -1058,5 +1058,120 @@
    "data": "2026-11-12",
    "lote": "bio-0034"
   }
+ },
+ "Pe2aeca1a": {
+  "n": "19",
+  "conceito": "Calcular a probabilidade de um casal heterozigoto para uma doença autossômica recessiva ter dois filhos sem a doença.",
+  "equivocos": {
+   "A": "B06.1:calculou-so-um-filho",
+   "B": "B06.1:usou-chance-de-heterozigoto",
+   "C": "B06.1:usou-chance-do-afetado",
+   "D": "B06.1:calculou-dois-afetados"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os pais não têm a doença, mas tiveram um filho afetado (aa): cada um passou um alelo a, então os dois são Aa. Em Aa × Aa, cada filho tem 3/4 de chance de não ter a doença. Cada filho é um evento independente, então dois filhos sem a doença é 3/4 × 3/4.",
+    "formulas": [
+     "Aa × Aa: 1/4 AA | 2/4 Aa | 1/4 aa",
+     "P(sem a doença) = 1/4 + 2/4 = 3/4",
+     "dois filhos: multiplique as probabilidades"
+    ],
+    "simbolos": [
+     [
+      "autossômico recessivo",
+      "o gene não está nos cromossomos sexuais, e a doença só aparece com dois alelos a (aa)"
+     ],
+     [
+      "heterozigoto",
+      "pessoa Aa: não tem a doença e carrega um alelo a"
+     ],
+     [
+      "regra do E",
+      "eventos independentes que precisam acontecer juntos: multiplique as probabilidades"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra o genótipo dos pais pelo filho que nasceu doente; só depois pense nos dois próximos filhos.",
+   "passos": [
+    {
+     "faz": "Descubra o genótipo dos pais",
+     "conta": "filho aa ← a do pai + a da mãe | pais sem a doença → Aa × Aa",
+     "porque": "O filho doente recebeu um a de cada pai. Como os pais vivem sem a doença, cada um tem também um A.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a chance de um filho sem a doença",
+     "conta": "Aa × Aa → AA, Aa, aA, aa → sem a doença: 3/4",
+     "porque": "Três dos quatro resultados têm pelo menos um A. O 1/4 que sobra é aa, o filho doente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique para os dois filhos",
+     "conta": "3/4 × 3/4 = 9/16 = 0,5625 = 56,25%",
+     "porque": "Os dois precisam nascer sem a doença, e um filho não muda a chance do outro: eventos independentes se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "9/16 = 56,25% → alternativa E",
+     "porque": "A pergunta não pede o sexo dos filhos, então não entra nenhum fator de 1/2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 56,25%.",
+   "checagem": "Faça o quadro de dois filhos: são 4 × 4 = 16 combinações igualmente prováveis; em 3 × 3 = 9 delas nenhum dos dois é aa. São 9 em 16, ou 56,25%.",
+   "erradas": {
+    "A": "A sai de parar em um filho: 3/4 = 75% é a chance de um filho sem a doença. A pergunta pede dois, 3/4 × 3/4.",
+    "B": "B não confere: 50% é a chance de um filho ser Aa (2/4), e não de dois filhos sem a doença, que é 3/4 × 3/4 = 56,25%.",
+    "C": "C sai de usar a chance de um filho ter a doença: aa = 1/4 = 25%. É o evento oposto ao pedido, e para um filho só.",
+    "D": "D sai de 1/4 × 1/4 = 1/16 = 6,25%: é a chance de os dois filhos terem a doença, o contrário do que se pede."
+   },
+   "armadilha": "Parar em 3/4 de um filho: o comando pede dois filhos sem a doença, e as duas chances precisam ser multiplicadas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de um casal que já teve um filho com Tay-Sachs ter dois filhos sem a doença.",
+    "chave": "Filho aa de pais normais → Aa × Aa; cada filho sem a doença 3/4; dois filhos 3/4 × 3/4 = 9/16.",
+    "cuidado": "Cada filho é independente: o primeiro filho doente não muda a chance dos próximos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo complemento",
+    "ideia": "Cada filho tem 1/4 de ser aa; para nenhum dos dois ser aa: (1 − 1/4) × (1 − 1/4) = 3/4 × 3/4 = 9/16 = 56,25%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "pais: Aa × Aa",
+    "nota": "o filho aa recebeu um a de cada"
+   },
+   {
+    "linha": "P(sem a doença) = 3/4",
+    "nota": "AA + Aa + aA"
+   },
+   {
+    "linha": "3/4 × 3/4 = 9/16",
+    "nota": "dois filhos independentes"
+   },
+   {
+    "linha": "9/16 = 0,5625 = 56,25%",
+    "nota": "vira porcentagem"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Quadro 1: casal Aa × Aa com o primeiro filho aa. Quadro 2: quadro de Punnett 2 × 2 com três casas sem a doença acesas (3/4). Quadro 3: dois quadros lado a lado, um para cada próximo filho, com 3/4 × 3/4. Quadro 4: o resultado 9/16 vira 56,25%; acende a alternativa E."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0074"
+  }
  }
 }

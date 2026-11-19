@@ -1267,5 +1267,130 @@
    "data": "2026-11-12",
    "lote": "bio-0034"
   }
+ },
+ "P0ee6f8f8": {
+  "n": "10",
+  "conceito": "Herança quantitativa: descobrir quanto vale cada alelo aditivo e calcular a chance de um fenótipo num cruzamento de três genes independentes.",
+  "equivocos": {
+   "A": "B06.6:valor-sem-conta",
+   "C": "B06.6:considerou-so-um-gene",
+   "D": "B06.6:considerou-so-um-gene",
+   "E": "B06.6:pelo-menos-um-em-vez-de-homozigoto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na herança quantitativa, cada alelo aditivo soma o mesmo tanto à altura. Com três genes há 6 alelos ao todo: a planta mais baixa (aabbcc) tem zero aditivos e a mais alta (AABBCC) tem seis. A diferença entre as duas, dividida por 6, dá o valor de cada alelo. Depois é só contar quantos aditivos a planta de 1,34 m precisa e somar, gene a gene, as combinações que chegam a esse número.",
+    "formulas": [
+     "valor de 1 alelo = (maior − menor)/nº de alelos",
+     "nº de aditivos = (altura − menor)/valor de 1 alelo",
+     "genes independentes: multiplique as probabilidades de cada gene"
+    ],
+    "simbolos": [
+     [
+      "herança quantitativa",
+      "característica controlada por vários genes que somam efeitos, gerando muitas classes de fenótipo"
+     ],
+     [
+      "alelo aditivo",
+      "alelo que acrescenta um valor fixo à característica (aqui, as letras maiúsculas)"
+     ],
+     [
+      "colmo",
+      "caule de gramíneas, como o do milho e da cana"
+     ]
+    ]
+   },
+   "pista": "Antes de cruzar, descubra quanto cada alelo maiúsculo acrescenta e quantos deles a planta de 1,34 m precisa ter.",
+   "passos": [
+    {
+     "faz": "Calcule o valor de cada alelo",
+     "conta": "1,46 m − 1,10 m = 0,36 m → 0,36/6 = 0,06 m por alelo",
+     "porque": "A diferença entre a planta com zero e a com seis aditivos é a soma dos seis alelos, e todos contribuem igualmente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os aditivos da planta de 1,34 m",
+     "conta": "1,34 m − 1,10 m = 0,24 m → 0,24/0,06 = 4 alelos aditivos",
+     "porque": "Tudo o que passa da altura mínima vem dos alelos aditivos, cada um com 0,06 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva cada gene do cruzamento",
+     "conta": "Aa × Aa → AA 1/4 | Aa 1/2 | aa 1/4\nBB × bb → Bb 1 (sempre 1 aditivo)\ncc × Cc → Cc 1/2 | cc 1/2",
+     "porque": "Como os genes segregam de forma independente, cada um se resolve como um monoibridismo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some até chegar a 4 aditivos",
+     "conta": "B dá 1 → faltam 3 de A + C → máximo de C é 1 → A precisa dar 2 (AA)\nP = 1/4 × 1 × 1/2 = 1/8",
+     "porque": "A única combinação que soma 4 é AA (2) + Bb (1) + Cc (1). As três coisas precisam acontecer juntas, então as chances se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "P(1,34 m) = 1/8 → alternativa B",
+     "porque": "O valor encontrado está na alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1/8.",
+   "checagem": "Liste todas as classes da prole: 1 aditivo (1,16 m) 1/8, 2 aditivos (1,22 m) 3/8, 3 aditivos (1,28 m) 3/8, 4 aditivos (1,34 m) 1/8. A soma dá 8/8, e 4 aditivos é o máximo possível nesse cruzamento, o que explica a chance pequena.",
+   "erradas": {
+    "A": "A não confere: neste cruzamento os denominadores vêm de 4 (gene A) × 2 (gene C), então toda probabilidade é múltiplo de 1/8; 1/6 não aparece em nenhuma classe.",
+    "C": "C sai de olhar só o gene C: P(Cc) = 1/2, esquecendo que o gene A também precisa dar AA.",
+    "D": "D sai de olhar só o gene A: P(AA) = 1/4, sem multiplicar pelo 1/2 de o gene C dar Cc.",
+    "E": "E sai de pedir apenas pelo menos um A: P(AA ou Aa) = 1/4 + 1/2 = 3/4, em vez de exigir AA e Cc juntos."
+   },
+   "armadilha": "Esquecer que BB × bb dá sempre Bb: esse aditivo vem garantido, e por isso a planta de 1,34 m exige AA e Cc ao mesmo tempo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de plantas com 1,34 m no cruzamento AaBBcc × AabbCc.",
+    "chave": "Cada aditivo vale 0,36/6 = 0,06 m; 1,34 m exige 4 aditivos, só possível com AA, Bb e Cc: 1/4 × 1 × 1/2 = 1/8.",
+    "cuidado": "Conte o aditivo garantido do gene B e multiplique os genes independentes; não pare em um gene só."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "distribuição completa",
+    "ideia": "Monte a prole por número de aditivos (1/8, 3/8, 3/8, 1/8 para 1 a 4 aditivos) e leia a classe de 4 aditivos, que é 1,34 m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1,46 − 1,10 = 0,36 m",
+    "nota": "diferença entre 6 e 0 aditivos"
+   },
+   {
+    "linha": "0,36/6 = 0,06 m",
+    "nota": "valor de cada alelo"
+   },
+   {
+    "linha": "(1,34 − 1,10)/0,06 = 4",
+    "nota": "aditivos da planta de 1,34 m"
+   },
+   {
+    "linha": "AA (2) + Bb (1) + Cc (1) = 4",
+    "nota": "a única combinação"
+   },
+   {
+    "linha": "1/4 × 1 × 1/2 = 1/8",
+    "nota": "multiplicar os genes"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Quadro 1: uma régua de 1,10 m a 1,46 m dividida em seis degraus de 0,06 m, cada degrau um alelo maiúsculo. Quadro 2: a marca de 1,34 m cai no quarto degrau: 4 aditivos. Quadro 3: três quadrinhos lado a lado, um por gene (Aa × Aa, BB × bb, cc × Cc), com as frações de cada resultado. Quadro 4: o Bb acende sozinho (garantido), e as setas buscam AA (1/4) e Cc (1/2). Quadro 5: as frações se multiplicam em 1/4 × 1 × 1/2 = 1/8 e a alternativa B acende."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0074"
+  }
  }
 }

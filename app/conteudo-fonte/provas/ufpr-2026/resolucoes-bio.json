@@ -676,5 +676,110 @@
    "data": "2026-11-13",
    "lote": "bio-0041"
   }
+ },
+ "Pfc0d3174": {
+  "n": "35",
+  "conceito": "Heredograma com valores de LDL: herança autossômica dominante em que o heterozigoto tem fenótipo intermediário (dominância incompleta).",
+  "equivocos": {
+   "A": "B06.3:regra-do-heredograma-invertida",
+   "B": "B06.6:classes-discretas-como-continuas",
+   "C": "B06.5:pai-passa-x-ao-filho",
+   "D": "B06.4:ignorou-fenotipo-intermediario"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A questão dá o fenótipo e também o número de LDL de cada pessoa. Os valores não formam uma escala contínua: caem em três grupos, perto de 90, perto de 270 e perto de 700 mg/dL. Três grupos de um gene só são AA, Aa e aa com fenótipos diferentes, ou seja, o heterozigoto é intermediário. O trabalho real é ler os números, não só a cor dos símbolos.",
+    "formulas": [
+     "afetado em toda geração e pai afetado com filho afetado → autossômica dominante",
+     "três classes de fenótipo (normal, intermediário, grave) → heterozigoto diferente do homozigoto → dominância incompleta"
+    ],
+    "simbolos": [
+     [
+      "LDL",
+      "lipoproteína de baixa densidade, que leva colesterol no sangue"
+     ],
+     [
+      "LDLR",
+      "gene do receptor de LDL"
+     ],
+     [
+      "dominância incompleta",
+      "o heterozigoto tem fenótipo intermediário entre os dois homozigotos"
+     ],
+     [
+      "codominância",
+      "o heterozigoto expressa os dois alelos"
+     ],
+     [
+      "herança poligênica",
+      "vários genes somam efeito e o fenótipo varia de forma contínua"
+     ]
+    ]
+   },
+   "pista": "Separe os indivíduos pelos números de LDL. Quantos grupos aparecem?",
+   "passos": [
+    {
+     "faz": "Agrupe os valores de LDL",
+     "conta": "87 a 91 mg/dL: normais | 270 a 280 mg/dL: afetados | 699 a 701 mg/dL: I-2, II-1 e III-1",
+     "porque": "São três faixas separadas, sem valores no meio: é o padrão de um gene com três genótipos, não de vários genes somando efeito.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste se é recessiva ou ligada ao X",
+     "conta": "I-2 (homem, 700) → filho II-2 e II-4 afetados | III-3 (270) × III-4 (89) → IV-2 (280)",
+     "porque": "Pai passa a característica a filho homem, o que descarta a ligação ao X. E afetado com normal tem filhos afetados em toda geração, o padrão da dominante.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue cada faixa a um genótipo",
+     "conta": "aa: ~90 normal | Aa: ~270 intermediário | AA: ~700 grave",
+     "porque": "I-2 (700) com I-1 normal teve todos os filhos na faixa de 270: ele passou um A a cada filho, que é Aa. Se o heterozigoto fosse igual ao homozigoto, não haveria duas faixas de afetados.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "autossômica dominante + heterozigoto intermediário → alternativa E",
+     "porque": "O alelo mutante se manifesta com uma cópia (dominante), mas duas cópias dão um quadro muito mais grave: dominância incompleta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — herança autossômica dominante, com dominância incompleta ou codominância.",
+   "checagem": "Teste um cruzamento: II-1 (699, AA) × II-2 (272, Aa) deveria dar filhos AA (~700) e Aa (~270), nunca normais. Os três filhos, III-1 (701), III-2 (272) e III-3 (270), ficam exatamente nessas duas faixas.",
+   "erradas": {
+    "A": "Recessiva não confere: I-2 (afetado) × I-1 (normal) teve todos os filhos afetados, e os afetados aparecem em todas as gerações. E a recessiva não explica duas faixas de afetados.",
+    "B": "Poligênica daria valores espalhados de forma contínua; aqui há três faixas separadas (~90, ~270, ~700), marca de um gene com três genótipos.",
+    "C": "Ligada ao X não confere: I-2, homem afetado, teve filhos homens afetados (II-2 e II-4), e o pai passa ao filho o Y, não o X.",
+    "D": "Na dominância completa o heterozigoto seria igual ao homozigoto. Aqui os heterozigotos têm cerca de 270 mg/dL e os homozigotos cerca de 700."
+   },
+   "armadilha": "Olhar só os símbolos preenchidos, concluir dominância completa e ignorar que há duas faixas de afetados (270 e 700 mg/dL).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O padrão de herança da hipercolesterolemia familiar no heredograma com os níveis de LDL.",
+    "chave": "Três faixas de LDL (normal, ~270, ~700) mostram heterozigoto intermediário numa herança autossômica dominante.",
+    "cuidado": "Leia os números: o fenótipo não é só 'afetado ou não'."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo homozigoto",
+    "ideia": "I-2 (700) com mulher normal teve todos os filhos com ~270: se ele fosse heterozigoto, metade dos filhos seria normal; logo é AA, e o heterozigoto é intermediário."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "Quadro 1: o heredograma com os valores de LDL. Quadro 2: os indivíduos saem do heredograma e caem numa régua de LDL, formando três montinhos separados: ~90, ~270 e ~700. Quadro 3: cada montinho ganha um genótipo, aa, Aa e AA. Quadro 4: o cruzamento I-1 (aa) × I-2 (AA) mostra todos os filhos caindo no montinho do meio."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0074"
+  }
  }
 }

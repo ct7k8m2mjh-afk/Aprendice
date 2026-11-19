@@ -600,5 +600,121 @@
    "data": "2026-11-13",
    "lote": "bio-0038"
   }
+ },
+ "Pac689c1a": {
+  "n": "1",
+  "conceito": "Aplicar a herança recessiva ligada ao X e a leitura de um mapa de prevalência para estimar quantas pessoas de uma região têm deficiência de G6PD.",
+  "equivocos": {
+   "A": "B06.5:filhos-de-afetados-ligado-ao-x",
+   "B": "B06.5:homem-heterozigoto-para-gene-do-x",
+   "D": "B06.5:superestima-risco-de-portador",
+   "E": "B06.5:x-do-filho-vem-do-pai"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A deficiência de G6PD é recessiva ligada ao X: o homem afetado tem um único Xᵈ, e a mulher precisa de dois. Por isso a maioria dos afetados é homem. O mapa dá a prevalência da deficiência em cada área, e o Note e adote dá a população de cada região: multiplicando os dois, sai o número de pessoas com deficiência, que são as que correm risco de anemia hemolítica com cloroquina.",
+    "formulas": [
+     "pessoas com deficiência = população × prevalência",
+     "homem XᵈY → deficiente | mulher XᴰXᵈ → portadora | XᵈXᵈ → deficiente"
+    ],
+    "simbolos": [
+     [
+      "G6PD",
+      "enzima glicose-6-fosfato desidrogenase, que protege as hemácias de lesões"
+     ],
+     [
+      "anemia hemolítica",
+      "anemia causada pela destruição das hemácias"
+     ],
+     [
+      "prevalência",
+      "fração da população que tem a condição"
+     ],
+     [
+      "Xᵈ",
+      "cromossomo X com o alelo da deficiência"
+     ]
+    ]
+   },
+   "pista": "Leia no mapa a prevalência da região Norte e cruze com a população dada no Note e adote.",
+   "passos": [
+    {
+     "faz": "Leia o mapa e o Note e adote",
+     "conta": "Norte: prevalência 5% | \"Norte = 18 milhões\"",
+     "porque": "Quase toda a região Norte está na faixa de 5%, e o Note e adote dá a população da região.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule os deficientes do Norte",
+     "conta": "18 000 000 × 5/100 → 900 000 pessoas",
+     "porque": "São essas pessoas que podem ter anemia hemolítica ao tomar cloroquina.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Diga por que a maioria é homem",
+     "conta": "homem: XᵈY → um alelo basta | mulher: XᵈXᵈ → precisa de dois",
+     "porque": "Como basta um alelo no homem e são necessários dois na mulher, há bem mais homens deficientes.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine as outras afirmações",
+     "conta": "A: os dois deficientes → XᵈXᵈ × XᵈY → 100% dos filhos deficientes | só a mãe → 100% dos meninos deficientes | só o pai → 100% das filhas portadoras | B: 8,5 mi = 1/2 de 17 mi, com prevalência de 1% a 3% | D: casal sem deficiência → P(filho com alelo) = P(mãe portadora) × 1/2 | E: X do menino vem da mãe",
+     "porque": "A ignora que, com deficiência no casal, sempre há filhos que herdam o alelo, seja só um ou sejam os dois os deficientes; B dá a metade da região como portadora, longe de 1% a 3%, e homem não tem dois alelos; D só passaria de 25% se mais da metade das mães sem deficiência fosse portadora; E manda investigar o lado errado da família.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "900 mil deficientes no Norte + maioria homens → C",
+     "porque": "O número e a explicação da maioria masculina conferem com a C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — cerca de 900 mil pessoas da região Norte podem ter anemia hemolítica com a cloroquina, a maioria do sexo masculino.",
+   "checagem": "Ordem de grandeza: 5% é 1 em 20; 18 milhões divididos por 20 dão 900 mil. E a maioria masculina confere com outras doenças recessivas ligadas ao X, como a hemofilia.",
+   "erradas": {
+    "A": "Casal com os dois deficientes (XᵈXᵈ × XᵈY): todos os filhos deficientes. Só a mãe: todos os meninos deficientes; só o pai: todas as filhas portadoras. O teste é sempre necessário.",
+    "B": "8,5 milhões é metade dos 17 milhões do Centro-Oeste, muito acima da prevalência de 1% a 3% do mapa; além disso, homens têm um X só e não podem ter \"somente um alelo recessivo\" com o outro normal.",
+    "D": "Se ninguém do casal tem deficiência, o pai é XᴰY e só a mãe pode passar o alelo: a chance é P(mãe portadora) × 1/2. Passar de 25% exigiria mais da metade das mães portadoras, o que não combina com prevalências de 1% a 5%.",
+    "E": "O menino recebe o X da mãe e o Y do pai: a investigação deve olhar a família materna, não a paterna."
+   },
+   "armadilha": "Na E, investigar a família paterna de um menino: o X dele vem sempre da mãe, e é lá que está o alelo da deficiência.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre deficiência de G6PD e cloroquina está correta, usando o mapa e as populações.",
+    "chave": "Norte: 18 milhões × 5% = 900 mil deficientes, a maioria homens, porque a herança é recessiva ligada ao X.",
+    "cuidado": "Homem recebe o X da mãe e não tem dois alelos do gene; leia a prevalência certa para cada região."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por eliminação genética",
+    "ideia": "E erra a origem do X do menino, A erra os filhos de dois afetados e B dá dois alelos ao homem: sobra conferir a conta da C, 18 milhões × 5% = 900 mil."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Norte: 18 000 000 pessoas | prevalência 5%",
+    "nota": "mapa e Note e adote"
+   },
+   {
+    "linha": "18 000 000 × 5/100 = 900 000",
+    "nota": "deficientes no Norte"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "Quadro 1: mapa com a região Norte destacada na faixa de 5% e o rótulo 18 milhões. Quadro 2: 18 milhões × 5% virando 900 mil. Quadro 3: homem XᵈY (afetado com um alelo) ao lado da mulher XᴰXᵈ (portadora) e XᵈXᵈ (afetada), mostrando por que há mais homens. Quadro 4: menino recebendo o X da mãe e o Y do pai, com a família paterna riscada."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0074"
+  }
  }
 }

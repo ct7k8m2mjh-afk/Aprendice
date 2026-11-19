@@ -799,5 +799,126 @@
    "data": "2026-11-13",
    "lote": "bio-0042"
   }
+ },
+ "Pfb4d9074": {
+  "n": "49",
+  "conceito": "Calcular uma probabilidade com alelo letal em homozigose, excluindo os embriões mortos do espaço amostral.",
+  "equivocos": {
+   "A": "B06.6:esqueceu-a-chance-do-sexo",
+   "B": "B06.6:nao-excluiu-o-letal",
+   "D": "B06.6:so-a-chance-do-sexo",
+   "E": "B06.6:nao-excluiu-o-letal"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O cruzamento de amarelos dá filhotes amarelos e agutis, e um embrião morre. Isso mostra que o amarelo é heterozigoto e que o homozigoto do alelo amarelo é letal. Os embriões mortos não nascem, então saem da conta: entre os que nascem, a proporção é 2 amarelos para 1 aguti. A pergunta ainda pede fêmea, o que acrescenta 1/2.",
+    "formulas": [
+     "Yy × Yy → 1/4 YY (morre), 2/4 Yy, 1/4 yy",
+     "nascidos: 2/3 Yy (amarelo), 1/3 yy (aguti)",
+     "fêmea e aguti: multiplique as chances"
+    ],
+    "simbolos": [
+     [
+      "alelo letal",
+      "alelo que, em certa dose, mata o embrião antes do nascimento"
+     ],
+     [
+      "aguti",
+      "pelagem cinza-acastanhada, a cor selvagem do camundongo"
+     ],
+     [
+      "Y",
+      "alelo do amarelo; em dose dupla (YY) é letal"
+     ]
+    ]
+   },
+   "pista": "Antes de calcular, decida quem entra no espaço amostral: a pergunta fala em nascimento.",
+   "passos": [
+    {
+     "faz": "Interprete o cruzamento da figura",
+     "conta": "amarelo × amarelo → embrião morto | amarelo | amarelo | aguti",
+     "porque": "Pais amarelos com filho aguti: amarelo é dominante e os pais são heterozigotos. O quarto resultado, o embrião morto, é o homozigoto do alelo amarelo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte o cruzamento",
+     "conta": "Yy × Yy → YY (morre) | Yy | Yy | yy",
+     "porque": "Das quatro combinações, uma nunca chega a nascer.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Exclua os embriões mortos",
+     "conta": "nascidos: 2 Yy + 1 yy = 3 → P(aguti) = 1/3",
+     "porque": "A pergunta é sobre o nascimento, então o espaço amostral cai de 4 para 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pela chance de ser fêmea",
+     "conta": "P(fêmea) × P(aguti) = 1/2 × 1/3 = 1/6",
+     "porque": "O sexo não depende do gene da cor. O filhote precisa ser fêmea e aguti ao mesmo tempo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1/6 → alternativa C",
+     "porque": "As duas condições da pergunta (fêmea e aguti) já estão na conta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1/6.",
+   "checagem": "Imagine 24 embriões: 6 morrem (YY), nascem 12 amarelos e 6 agutis. Dos 18 que nascem, metade dos agutis é fêmea: 3 em 18, ou seja, 1/6.",
+   "erradas": {
+    "A": "1/3 sai de parar na chance de ser aguti entre os nascidos. Faltou o 1/2 de ser fêmea.",
+    "B": "1/8 sai de não excluir o embrião morto: 1/4 de aguti × 1/2 de fêmea. Quem morre não nasce e sai da conta.",
+    "D": "1/2 é só a chance de ser fêmea; não leva em conta a cor.",
+    "E": "1/4 sai de usar o aguti entre as quatro combinações, sem tirar o embrião morto e sem o 1/2 de ser fêmea."
+   },
+   "armadilha": "Esquecer de tirar o embrião morto (YY) do total: entre os que nascem, o aguti é 1/3, não 1/4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de nascer uma fêmea aguti do cruzamento de dois camundongos amarelos.",
+    "chave": "YY é letal: entre os nascidos, 1/3 é aguti; × 1/2 de fêmea = 1/6.",
+    "cuidado": "Com alelo letal, o espaço amostral é dos que nascem (3), não dos quatro do quadro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem direta",
+    "ideia": "Entre os nascidos há 3 tipos com a mesma chance de sexo: 6 casos (3 × 2), e só 1 é fêmea aguti."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Yy × Yy → 1/4 YY + 2/4 Yy + 1/4 yy",
+    "nota": "cruzar os amarelos"
+   },
+   {
+    "linha": "YY morre → nascidos: 2 Yy + 1 yy",
+    "nota": "tirar o letal"
+   },
+   {
+    "linha": "P(aguti) = 1/3",
+    "nota": "aguti entre os 3 nascidos"
+   },
+   {
+    "linha": "1/2 × 1/3 = 1/6",
+    "nota": "multiplicar pela chance de fêmea"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Quadro 1: dois camundongos amarelos Yy. Quadro 2: setas formam os quatro embriões YY, Yy, Yy e yy. Quadro 3: o YY recebe um X e sai do quadro; ficam dois amarelos e um aguti (1/3). Quadro 4: o aguti se divide em macho e fêmea, e a fêmea aguti aparece como 1/2 × 1/3 = 1/6."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0074"
+  }
  }
 }

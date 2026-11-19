@@ -299,3 +299,25 @@ RECLASS P3d50a7c8 B12.6 -> B12.5
 RECLASS P86296b35 B09.1 -> B09.7
 RECLASS P0375cb42 B12.3 -> B12.7
 RECLASS P587bd6d0 B12.3 -> B12.7
+
+## 2026-11-19 17:34 UTC — FIM — session_01PveEKYq8uSzJkiuk9txCUa
+Encerrando a vez (4 lotes de 50). Último lote gravado: bio-0074. Nenhum lote aberto. A próxima sessão começa no bio-0075.
+Nesta sessão: bio-0071 (49 ok, 1 pendente), bio-0072 (49 ok, 1 pendente), bio-0073 (49 ok, 1 pendente), bio-0074 (49 ok, 1 pendente) = 196 resoluções; 4 pendentes: PRINT Pc481e226, ANULAR Pa8e26be1, ANULAR Pa39cb6fd, ANULAR P59dd9fdc (linhas nos blocos PENDENCIAS acima e abaixo). Divergências: 0.
+7 questões sem gabarito publicado gravadas com Gabarito do Aprendice (letra do resolvedor = conferente às cegas = preliminar).
+Testes depois do bio-0073: converte + tsc + vitest verdes (786 passed).
+Conferência no site local feita (P3b9445af, P4d7c487f, P75a3efb3, em 390 e 1280 px): 4 blocos completos, 'por que as outras' fechado e abrindo, animação até o fim, sem erro de console, sem rolagem lateral. Observação: o login não persiste no recarregar e as etapas de boas-vindas precisam ser concluídas antes de abrir uma questão pelo endereço direto.
+Status bio (lote.py status): 127 faltam (56 no f4, 71 no f5).
+Pendências do bio-0074:
+RECLASS Pa5310c70 B06.6 -> B06.2
+RECLASS P2cd81158 B06.6 -> B05.4
+RECLASS P1212f29c B06.6 -> B11.3
+RECLASS Pbe7ce12a B07.4 -> B08.6
+DADO P1c2f352c: alternativas.E -> "incrementa a força dos batimentos cardíacos."
+DADO Pc43dfd31: texto_da_prova -> figura saiu como OCR embaralhado; no print as proposições são I, II, III, IV e V (na entrada "|", "Il", "HI", "Iv"); alternativa D é "Somente as proposições I, II e IV são verdadeiras."
+RECLASS P916c0d6c B06.4 -> B06.5
+RECLASS P10c70f1f B06.4 -> B11.4
+DADO P916c0d6c: alternativas.E -> "Herança influenciada pelo sexo" (a fonte da imagem "Disponível em: https://www.hypeness.com.br/... Acesso em: maio 2021." veio colada)
+DADO Pac689c1a: alternativas.E -> termina em "...onde a malária é endêmica." (o "Note e adote" veio colado)
+DADO P18445047: alternativas -> faltam na entrada; no print: A "Ligado ao X recessivo | 50% caso seja menino", B "Ligado ao X recessivo | 25% caso seja menino", C "Ligado ao Y | 100% caso seja menino", D "Autossômico recessivo | 75% em qualquer caso", E "Autossômico recessivo | 12,5% em qualquer caso"
+ANULAR P59dd9fdc (UDESC 2026.1 Verão, q21): pede a incorreta e há duas: D (gabarito; Aa × Aa dá 3/4 de filhos com o alelo, não 50%) e C (III-1 é normal e filho de Aa × Aa, então P(não portador | normal) = 1/3, não 25%). Conferente confirmou a conta; ressalva: se "carregar o gene" na D for lido como ser heterozigoto (50%), a D vira correta e só a C fica incorreta, mas então o gabarito D estaria errado; em qualquer leitura a questão não fecha com uma única incorreta = D.
+RECLASS P1b73b180 B06.2 -> B04.2

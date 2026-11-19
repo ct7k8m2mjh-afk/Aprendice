@@ -580,5 +580,106 @@
    "data": "2026-11-13",
    "lote": "bio-0041"
   }
+ },
+ "P34d52bda": {
+  "n": "48",
+  "conceito": "Deduzir a hierarquia de dominância de três alelos e os genótipos a partir de cruzamentos e prever a proporção de um novo cruzamento.",
+  "equivocos": {
+   "A": "B06.4:nao-usa-cruzamento-teste",
+   "B": "B06.4:aplica-1-2-1-com-dominancia",
+   "D": "B06.4:troca-genotipo-de-um-dos-pais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com três alelos em hierarquia, cada cruzamento diz quem domina quem e quais pais são heterozigotos. Primeiro descubra a ordem; depois descubra o genótipo exato de cada planta que vai ser cruzada, usando o cruzamento de onde ela veio e, no caso da vermelha, o cruzamento V, que testa o genótipo dela.",
+    "formulas": [
+     "cruzamento com 50% : 50% → um dos pais é heterozigoto",
+     "vermelho (V) > rosa (R) > amarelo (A)"
+    ],
+    "simbolos": [
+     [
+      "V, R, A",
+      "alelos para flor vermelha, rosa e amarela"
+     ],
+     [
+      "cruzamento-teste",
+      "cruzar com o homozigoto recessivo (aqui a amarela AA) para revelar os alelos de uma planta"
+     ],
+     [
+      "heterozigoto",
+      "planta com dois alelos diferentes, como RA"
+     ]
+    ]
+   },
+   "pista": "Use a planta amarela como régua: ela só passa o alelo amarelo, então a cor dos filhos revela o outro alelo de cada planta cruzada com ela.",
+   "passos": [
+    {
+     "faz": "Descubra a ordem de dominância",
+     "conta": "I: VV × amarela → 100% vermelha → V > A | II: rosa × amarela → 50% rosa : 50% amarela → R > A | III: vermelha × rosa → 50% V : 50% R → V > R",
+     "porque": "Em cada cruzamento, a cor que aparece no heterozigoto é a do alelo dominante. A ordem é vermelho > rosa > amarelo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Descubra o genótipo da rosa do II",
+     "conta": "II: RA × AA → RA, AA | rosa filha do II → RA",
+     "porque": "A rosa do cruzamento II recebeu A da mãe amarela e R da outra; portanto é RA.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descubra o genótipo da vermelha do III",
+     "conta": "V: vermelha × AA → 50% vermelha : 50% rosa → gametas V e R → vermelha = VR",
+     "porque": "A amarela só passa A. Se metade dos filhos é rosa, a vermelha passou R; se fosse VA, sairiam amarelas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça o cruzamento pedido",
+     "conta": "RA × VR → VR, RR, VA, RA | vermelhas: VR, VA → 50% | rosas: RR, RA → 50% | amarelas: 0%",
+     "porque": "Nenhum filho recebe A dos dois pais, porque a vermelha VR não tem o alelo A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "amarelas : rosas : vermelhas = 0% : 50% : 50% → C",
+     "porque": "A ordem pedida é amarelas, rosas e vermelhas, respectivamente.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 0% de flores amarelas, 50% de rosas e 50% de vermelhas.",
+   "checagem": "Confira pelos alelos: para sair amarela é preciso receber A dos dois pais, e a vermelha VR não tem A, então amarela = 0. A vermelha passa V em metade dos gametas, e todo filho com V é vermelho: 50% de vermelhas.",
+   "erradas": {
+    "A": "25%, 25% e 50% sai de tomar a vermelha como VA: RA × VA dá 1/4 AA, 1/4 RA e 1/2 com V. O cruzamento V mostra que ela é VR.",
+    "B": "25%, 50% e 25% não confere: é a proporção 1:2:1 de herança sem dominância, e nenhum par de genótipos possíveis com V > R > A dá esse resultado.",
+    "D": "0%, 25% e 75% sai de cruzar duas plantas com V, como VR × VR; a planta do II é rosa (RA), e só metade dos filhos recebe V."
+   },
+   "armadilha": "Não usar o cruzamento V: a vermelha do III poderia ser VA ou VR, e é a proporção 50% vermelha : 50% rosa com a amarela que revela que ela é VR.",
+   "alerta": "A questão supõe que a vermelha usada no cruzamento final é a mesma testada no cruzamento V (VR); uma vermelha qualquer do III poderia ser VA, e o gabarito C depende dessa leitura.",
+   "essencial": {
+    "pede": "A proporção de amarelas, rosas e vermelhas na prole da rosa do II com a vermelha do III.",
+    "chave": "A ordem é vermelho > rosa > amarelo; a rosa do II é RA e a vermelha do III é VR, e RA × VR dá 0% : 50% : 50%.",
+    "cuidado": "Descubra o genótipo exato de cada planta pelo cruzamento de origem e confira a ordem do \"respectivamente\"."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo alelo amarelo",
+    "ideia": "Amarela exige A dos dois pais; como a vermelha é VR, amarela = 0%, e só a C e a D sobram; metade dos filhos recebe V, então vermelhas = 50%: C."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "Quadro 1: os cruzamentos I, II e III lado a lado, cada um com a seta de dominância que revela (V > A, R > A, V > R). Quadro 2: escada vermelho > rosa > amarelo. Quadro 3: cruzamento V com a amarela AA revelando os gametas V e R da vermelha. Quadro 4: quadro de Punnett RA × VR com as quatro casas pintadas: duas vermelhas, duas rosas, nenhuma amarela."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0074"
+  }
  }
 }

@@ -561,5 +561,108 @@
    "data": "2026-11-13",
    "lote": "bio-0042"
   }
+ },
+ "Pf60d707c": {
+  "n": "5",
+  "conceito": "Ler uma via metabólica com quatro genes para prever o fenótipo de genótipos e de cruzamentos (interação gênica).",
+  "equivocos": {
+   "B": "B06.6:ignorou-etapa-da-via",
+   "C": "B06.6:ignorou-enzima-4",
+   "D": "B06.6:enzima-4-age-sem-violeta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Pelo esquema, a enzima 1 (lócus A) prepara o precursor incolor. Dali, a enzima 2 (lócus B) faz azul e a enzima 3 (lócus C) faz violeta. A enzima 3 transforma azul em roxo, e a enzima 2 transforma violeta em roxo. A enzima 4 (lócus D) transforma violeta em azul. Quem é homozigoto recessivo num lócus não tem aquela enzima. O trabalho real é seguir as setas até a última que a planta consegue fazer.",
+    "formulas": [
+     "aa → incolor (a via não começa)",
+     "A_ B_ C_ → roxo | A_ B_ cc → azul",
+     "A_ bb C_ dd → violeta | A_ bb C_ D_ → violeta → azul → roxo",
+     "A_ bb cc → incolor"
+    ],
+    "simbolos": [
+     [
+      "lócus",
+      "lugar de um gene no cromossomo; aqui, cada lócus produz uma enzima"
+     ],
+     [
+      "homozigoto recessivo",
+      "dois alelos recessivos, como bb: a enzima daquele lócus fica inativa"
+     ],
+     [
+      "A_",
+      "AA ou Aa: tem pelo menos um alelo que faz a enzima"
+     ]
+    ]
+   },
+   "pista": "Monte a regra de cada cor seguindo as setas do esquema antes de testar os genótipos das afirmativas.",
+   "passos": [
+    {
+     "faz": "Monte a via pelo esquema",
+     "conta": "incolor →(A) incolor →(B) azul →(C) roxo | incolor →(C) violeta →(B) roxo | violeta →(D) azul",
+     "porque": "Cada seta só acontece se a planta tiver pelo menos um alelo dominante do lócus daquela enzima. A violeta só fica violeta se faltar a enzima 2 e a enzima 4.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste a afirmativa I",
+     "conta": "violeta = A_ bb C_ dd → AA ou Aa × CC ou Cc = 4 genótipos: AabbCcdd, AAbbCcdd, AAbbCCdd, AabbCCdd",
+     "porque": "Sem enzima 2 (bb), o violeta não vira roxo; sem enzima 4 (dd), não vira azul. São exatamente os quatro listados. I é verdadeira.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste a afirmativa II",
+     "conta": "AABbCcdd: A_ B_ C_ → roxo | aaBbCcDD: aa → incolor | AaBbccdd: A_ B_ cc → azul",
+     "porque": "Na terceira planta, a enzima 2 faz azul, mas sem a enzima 3 (cc) o azul não vira roxo. II é verdadeira.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste III e IV pelos cruzamentos",
+     "conta": "III: AAbbCCDd × aabbccdd → 1/2 AabbCcDd (roxo) : 1/2 AabbCcdd (violeta) | IV: AAbbCcDD × aabbccdd → 1/2 AabbCcDd (roxo) : 1/2 AabbccDd (incolor)",
+     "porque": "Na III, com D o violeta vira azul e depois roxo; sem D fica violeta: 1 violeta : 1 roxo, sem incolor. Na IV, quem é cc e bb não sai do incolor. As duas são falsas.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "I e II verdadeiras | III e IV falsas → alternativa A",
+     "porque": "A única alternativa com exatamente I e II é a A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — apenas I e II.",
+   "checagem": "Confira a IV por um caso: a planta Aabbcc Dd tem a enzima 1, mas não tem a 2 nem a 3, que são as únicas que tiram o pigmento do incolor. A enzima 4 só age sobre o violeta, que ela não produz. Logo nasce incolor, e a IV cai.",
+   "erradas": {
+    "B": "III e IV são as duas falsas: III dá 1 violeta : 1 roxo (sem incolor) e IV produz metade incolor (Aabbcc Dd).",
+    "C": "Inclui a III, que é falsa: no AAbbCCDd × aabbccdd todos têm A e C, então ninguém fica incolor; sai 1 violeta : 1 roxo.",
+    "D": "Inclui a IV, que é falsa: metade dos filhos de AAbbCcDD × aabbccdd é Aabbcc Dd, sem enzima 2 nem 3, e fica incolor."
+   },
+   "armadilha": "Esquecer a enzima 4: com D, o violeta vira azul e depois roxo, então a planta violeta precisa ser dd.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmativas sobre genótipos e cruzamentos batem com a via metabólica das cores.",
+    "chave": "Siga as setas: cada etapa exige um alelo dominante daquele lócus; violeta só fica violeta com bb e dd.",
+    "cuidado": "Teste cada filho do cruzamento pela via inteira, inclusive a seta da enzima 4."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela IV",
+    "ideia": "IV é falsa (Aabbcc Dd é incolor), o que derruba B e D; III também cai (sem incolor), o que derruba C."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Quadro 1: a via do esquema, com o incolor, o azul, o violeta e o roxo ligados por setas com o lócus de cada enzima. Quadro 2: um genótipo entra e as setas das enzimas ausentes se apagam (bb, cc, dd). Quadro 3: o pigmento caminha pelas setas acesas até a última cor possível. Quadro 4: os filhos dos cruzamentos III e IV percorrem a via: III termina em violeta e roxo; IV termina em roxo e incolor."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0074"
+  }
  }
 }
