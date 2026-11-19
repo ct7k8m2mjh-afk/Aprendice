@@ -1312,5 +1312,245 @@
    "data": "2026-11-19",
    "lote": "mat-0077"
   }
+ },
+ "P12681577": {
+  "n": "13",
+  "conceito": "Crescimento exponencial de 30 % ao ano: tempo para a área reflorestada chegar à área degradada, com logaritmo.",
+  "equivocos": {
+   "A": "M06.5:conta-de-log-errada",
+   "B": "M06.5:conta-de-log-errada",
+   "D": "M06.5:conta-de-log-errada",
+   "E": "M06.5:conta-de-log-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro ache a meta: 80 % de 800 ha estão degradados. A banca trata a área reflorestada como uma quantidade que, a cada ano, fica 30 % maior que no ano anterior: começa em 20 ha no 1º ano e é multiplicada por 1,3 a cada ano. A conta pede quando ela chega à área degradada inteira, e o tempo fica no expoente.",
+    "formulas": [
+     "área no ano t = 20 · 1,3^(t − 1)",
+     "log (aⁿ) = n · log a"
+    ],
+    "simbolos": [
+     [
+      "ha",
+      "hectare"
+     ],
+     [
+      "t",
+      "número do ano (t = 1 é o primeiro ano)"
+     ],
+     [
+      "log₁₀",
+      "logaritmo decimal"
+     ]
+    ]
+   },
+   "pista": "Calcule a área degradada e veja quantas vezes ela é maior que os 20 ha do 1º ano. Esse número aparece nos dados.",
+   "passos": [
+    {
+     "faz": "Calcule a área degradada",
+     "conta": "0,8 × 800 = 640 ha",
+     "porque": "Só os 80 % degradados precisam ser reflorestados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a condição",
+     "conta": "20 · 1,3^(t − 1) = 640 → 1,3^(t − 1) = 640/20 = 32",
+     "porque": "No 1º ano são 20 ha; cada ano seguinte multiplica por 1,3. O 20 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique log e isole o expoente",
+     "conta": "(t − 1) · log 1,3 = log 32 → (t − 1) · 0,114 = 1,505 → t − 1 = 1,505/0,114 ≈ 13,2",
+     "porque": "O logaritmo traz o expoente para a frente; o 0,114 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some o primeiro ano",
+     "conta": "t ≈ 13,2 + 1 = 14,2 anos → alternativa C",
+     "porque": "O expoente conta os anos depois do 1º; o próprio 1º ano entra somando 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — aproximadamente 14,2 anos.",
+   "checagem": "Volte com o resultado: 1,3^13,2 ≈ 31,9, e 20 × 31,9 ≈ 639 ha, praticamente os 640 ha. Ordem de grandeza: 1,3 dobra a cada 2,6 anos, mais ou menos; 32 = 2⁵ são cerca de 13 anos de crescimento.",
+   "erradas": {
+    "A": "8,4 anos não confere: 20 · 1,3^7,4 ≈ 139 ha, longe dos 640 ha.",
+    "B": "12,5 anos não confere: 20 · 1,3^11,5 ≈ 409 ha, ainda abaixo dos 640 ha.",
+    "D": "16,3 anos não confere: 20 · 1,3^15,3 ≈ 1108 ha, mais que a fazenda inteira.",
+    "E": "20,4 anos não confere: 20 · 1,3^19,4 ≈ 3247 ha, quatro vezes a fazenda."
+   },
+   "armadilha": "Esquecer de somar o 1º ano: o expoente dá 13,2, mas a contagem começa com 20 ha já no ano 1.",
+   "alerta": "Leitura da banca: o gabarito retificado (C) trata a área reflorestada acumulada como 20 · 1,3^(t − 1). Se cada ano reflorestasse uma parcela 30 % maior que a do ano anterior e as parcelas fossem somadas, 20 · (1,3ᵗ − 1)/0,3 = 640 daria t ≈ 9 anos, valor que não está nas alternativas; por isso vale a leitura da banca.",
+   "essencial": {
+    "pede": "Em quantos anos a área reflorestada, crescendo 30 % ao ano a partir de 20 ha, chega à área degradada.",
+    "chave": "20 · 1,3^(t − 1) = 640 dá 1,3^(t − 1) = 32; com os logs, t − 1 ≈ 13,2 e t ≈ 14,2.",
+    "cuidado": "A meta é 640 ha (80 % de 800), e o 1º ano entra somando 1 ao expoente."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dobras",
+    "ideia": "1,3 dobra a cada ≈ 2,64 anos (log 2 ÷ log 1,3); 32 = 2⁵ são ≈ 13,2 anos depois do 1º, ano 14,2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,8 × 800 = 640",
+    "nota": "área degradada (ha)"
+   },
+   {
+    "linha": "20 · 1,3^(t − 1) = 640",
+    "nota": "área reflorestada no ano t"
+   },
+   {
+    "linha": "1,3^(t − 1) = 32",
+    "nota": "o 20 passa dividindo"
+   },
+   {
+    "linha": "(t − 1) · 0,114 = 1,505",
+    "nota": "logaritmo dos dois lados"
+   },
+   {
+    "linha": "t − 1 ≈ 13,2 → t ≈ 14,2",
+    "nota": "isola t"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "P775547ce": {
+  "n": "10",
+  "conceito": "Área de paredes em forma de trapézio e retângulo, com a altura menor tirada da tangente, menos as aberturas.",
+  "equivocos": {
+   "A": "M08.5:area-do-todo-sem-subtrair",
+   "B": "M08.5:valor-que-nao-fecha",
+   "C": "M08.5:peca-a-menos",
+   "E": "M08.5:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A frente e o fundo são trapézios: base de 7 m, um lado de 6 m e o outro de L m. A tangente do ângulo do teto dá L: o teto desce 2 m a cada 7 m. A lateral é um retângulo de 18 m por L m. Tinta vai na parede, não na porta nem na janela: as aberturas saem da conta.",
+    "formulas": [
+     "tg θ = (cateto oposto)/(cateto adjacente)",
+     "área do trapézio = ((B + b) · h)/2",
+     "área do retângulo = base · altura"
+    ],
+    "simbolos": [
+     [
+      "θ",
+      "ângulo do teto com a horizontal"
+     ],
+     [
+      "tg θ",
+      "tangente de θ: quanto o teto desce dividido por quanto avança"
+     ],
+     [
+      "L",
+      "altura menor das paredes, em metros"
+     ]
+    ]
+   },
+   "pista": "Comece pelo L: no triângulo do teto, o cateto horizontal é 7 m e o vertical é 6 − L.",
+   "passos": [
+    {
+     "faz": "Calcule L pela tangente",
+     "conta": "(6 − L)/7 = 2/7 → 6 − L = 2 → L = 4",
+     "porque": "O teto desce 6 − L metros ao longo dos 7 m da parede; isso dividido por 7 é a tangente dada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as áreas das paredes",
+     "conta": "frente: ((6 + 4) · 7)/2 = 35 | trás: 35 | lateral: 18 · 4 = 72 → 35 + 35 + 72 = 142",
+     "porque": "Frente e fundo têm as mesmas medidas; a lateral é um retângulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as aberturas",
+     "conta": "2,3 · 2,6 + 1,2 · 2,4 + 4 · (1,8 · 1,5) + 2 · (0,4 · 0,4) = 5,98 + 2,88 + 10,8 + 0,32 = 19,98",
+     "porque": "Porta de entrada, porta lateral, quatro janelas e duas janelinhas não recebem tinta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte e escreva em fração",
+     "conta": "142 − 19,98 = 122,02 → 122,02 = 6101/50",
+     "porque": "As alternativas estão em fração; 122,02 · 50 = 6101.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "6101/50 m² → alternativa D",
+     "porque": "Essa é a área de parede a pintar, que é o que João calculou.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 6101/50 m², isto é, 122,02 m²",
+   "checagem": "Pela frente decomposta: retângulo 7 × 4 = 28 m² mais triângulo (7 · 2)/2 = 7 m² dá 35 m², igual ao trapézio. E 6101/50 + 999/50 (as aberturas, 19,98) = 7100/50 = 142. Fecha.",
+   "erradas": {
+    "A": "142 sai de esquecer as aberturas: 35 + 35 + 72 = 142 m² é a área das paredes inteiras, com portas e janelas.",
+    "B": "2168/25 = 86,72 não confere: as aberturas somam só 19,98 m², e 142 − 86,72 = 55,28 m² seria o que teria de ser descontado.",
+    "C": "3118/25 = 124,72 sai de descontar só 3 janelas grandes: 142 − (5,98 + 2,88 + 3 · 2,7 + 0,32) = 142 − 17,28 = 124,72.",
+    "E": "6307/50 = 126,14 não confere: daria 142 − 126,14 = 15,86 m² de aberturas, e nenhuma combinação das portas e janelas dadas soma 15,86."
+   },
+   "armadilha": "As quatro janelas grandes estão espalhadas: uma na frente, uma no fundo e duas na lateral; e tudo isso sai da área a pintar.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área das paredes a pintar, sem portas e janelas.",
+    "chave": "tg θ = 2/7 dá L = 4; paredes 142 m², aberturas 19,98 m², resultado 122,02 = 6101/50.",
+    "cuidado": "Desconte todas as aberturas: 2 portas, 4 janelas e 2 janelinhas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "frente como retângulo mais triângulo",
+    "ideia": "Cada parede de 7 m é um retângulo 7 × 4 = 28 m² com um triângulo (7 · 2)/2 = 7 m² em cima: 35 m², sem usar a fórmula do trapézio."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(6 − L)/7 = 2/7",
+    "nota": "tangente do teto"
+   },
+   {
+    "linha": "6 − L = 2 → L = 4",
+    "nota": "o 7 passa multiplicando"
+   },
+   {
+    "linha": "2 · ((6 + 4) · 7)/2 + 18 · 4 = 70 + 72 = 142",
+    "nota": "frente, fundo e lateral"
+   },
+   {
+    "linha": "5,98 + 2,88 + 10,8 + 0,32 = 19,98",
+    "nota": "aberturas"
+   },
+   {
+    "linha": "142 − 19,98 = 122,02 = 6101/50",
+    "nota": "área a pintar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
  }
 }

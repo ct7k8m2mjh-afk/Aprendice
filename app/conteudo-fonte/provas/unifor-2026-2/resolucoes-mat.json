@@ -701,5 +701,251 @@
    "data": "2026-11-19",
    "lote": "mat-0077"
   }
+ },
+ "Pe809b308": {
+  "n": "11",
+  "conceito": "Calcular a área de um terreno decompondo-o em paralelogramo e triângulo equilátero.",
+  "equivocos": {
+   "A": "M08.2:zero-a-menos",
+   "B": "M08.2:conta-sem-origem",
+   "C": "M08.5:subtraiu-a-parte-que-soma",
+   "E": "M08.1:triangulo-sem-dividir-por-2"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O terreno não tem fórmula pronta: corte-o com uma reta horizontal na altura de D. Embaixo fica um paralelogramo (AB paralelo a DC, AE paralelo a BC) e em cima um triângulo com ângulos de 60°, que é equilátero. A área é a soma das duas.",
+    "formulas": [
+     "área do paralelogramo = base × altura",
+     "altura relativa a um lado inclinado de 60° = lado · sen 60° = lado · √3/2",
+     "área do triângulo equilátero de lado ℓ = (ℓ² · √3)/4"
+    ],
+    "simbolos": [
+     [
+      "sen 60°",
+      "seno de 60°, igual a √3/2"
+     ],
+     [
+      "ℓ",
+      "lado do triângulo equilátero"
+     ],
+     [
+      "√3",
+      "raiz quadrada de 3"
+     ]
+    ]
+   },
+   "pista": "Prolongue DC para a esquerda até cortar AE: que figura fica acima dessa linha?",
+   "passos": [
+    {
+     "faz": "Corte o terreno na altura de D",
+     "conta": "DC prolongado corta AE em F → paralelogramo ABCF + triângulo FDE",
+     "porque": "O corte horizontal separa uma figura de lados paralelos e um triângulo no topo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Mostre que o triângulo FDE é equilátero",
+     "conta": "ângulo em F = 60° (paralela a AB) | ângulo em E = 60° → triângulo equilátero de lado ED = 400 m",
+     "porque": "Dois ângulos de 60° forçam o terceiro também a 60°; então FE = FD = ED = 400 m.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Calcule a altura e a área do paralelogramo",
+     "conta": "AF = 800 − 400 = 400 m → altura = 400 · √3/2 = 200√3 m → 1200 · 200√3 = 240.000√3 m²",
+     "porque": "O lado AF sobe a 60°, então a altura é AF vezes sen 60°; a base é AB = 1200 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área do triângulo e some",
+     "conta": "(400² · √3)/4 = 40.000√3 → 240.000√3 + 40.000√3 = 280.000√3 m²",
+     "porque": "O terreno é exatamente o paralelogramo mais o triângulo, sem sobreposição.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "280.000√3 m² → alternativa D",
+     "porque": "É a área total do terreno.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 280.000√3 m².",
+   "checagem": "Pelas coordenadas, com A = (0, 0): B = (1200, 0), C = (1400, 200√3), D = (600, 200√3), E = (400, 400√3). A fórmula do polígono (produtos cruzados) dá 280.000√3 m², o mesmo valor.",
+   "erradas": {
+    "A": "A não confere: 28.000√3 é a décima parte do certo, e só o paralelogramo de baixo já tem 1200 · 200√3 = 240.000√3 m².",
+    "B": "B não confere: 96.000√3 é menor que o paralelogramo de baixo, 240.000√3 m², que fica inteiro dentro do terreno.",
+    "C": "C sai de subtrair o triângulo em vez de somá-lo: 240.000√3 − 40.000√3 = 200.000√3. O triângulo FDE faz parte do terreno.",
+    "E": "E sai de esquecer a divisão por 2 na área do triângulo: base 400 · altura 200√3 = 80.000√3, e 240.000√3 + 80.000√3 = 320.000√3."
+   },
+   "armadilha": "Com os dois ângulos de 60° no topo, o triângulo é equilátero de lado 400 m: não use 800 m como lado do paralelogramo, use 800 − 400 = 400 m.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do terreno ABCDE.",
+    "chave": "Paralelogramo 1200 · 200√3 = 240.000√3 mais triângulo equilátero de lado 400, 40.000√3: total 280.000√3 m².",
+    "cuidado": "A altura vem do lado inclinado vezes sen 60°, e o triângulo tem área com divisão por 2 (ou por 4 na fórmula do equilátero)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas",
+    "ideia": "Ponha A na origem, ache B, C, D e E com sen e cos de 60° e aplique a fórmula dos produtos cruzados: dá 280.000√3 m²."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "AF = 800 − 400 = 400 m",
+    "nota": "o triângulo do topo é equilátero de lado 400"
+   },
+   {
+    "linha": "h = 400 · √3/2 = 200√3 m",
+    "nota": "altura pelo seno de 60°"
+   },
+   {
+    "linha": "1200 · 200√3 = 240.000√3",
+    "nota": "paralelogramo"
+   },
+   {
+    "linha": "(400² · √3)/4 = 40.000√3",
+    "nota": "triângulo equilátero"
+   },
+   {
+    "linha": "240.000√3 + 40.000√3 = 280.000√3 m²",
+    "nota": "soma das partes"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "Ped804008": {
+  "n": "13",
+  "conceito": "Usar o ângulo externo para achar um triângulo isósceles e, com Pitágoras, a altura vista sob dois ângulos de elevação.",
+  "equivocos": {
+   "A": "M10.1:nao-usou-o-angulo-metade",
+   "B": "M10.1:nao-usou-o-angulo-metade",
+   "C": "M10.1:nao-usou-o-angulo-metade",
+   "E": "M10.1:nao-usou-o-angulo-metade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Quando o ângulo de elevação cai pela metade, o triângulo formado pelas duas posições e pelo topo do quadro é isósceles: o ângulo externo α na 1ª posição é a soma de α/2 (na 2ª posição) com o ângulo no topo, que também vale α/2. Logo a linha de visada da 1ª posição mede 8 m, a distância andada. Com essa hipotenusa e a distância de 4 m no chão, Pitágoras dá a altura.",
+    "formulas": [
+     "ângulo externo = soma dos dois internos não adjacentes",
+     "lados opostos a ângulos iguais são iguais",
+     "Pitágoras: hipotenusa² = cateto² + cateto²"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "ângulo de elevação na 1ª posição (a 4 m)"
+     ],
+     [
+      "α/2",
+      "ângulo de elevação na 2ª posição (a 12 m)"
+     ],
+     [
+      "h",
+      "altura do topo do quadro"
+     ],
+     [
+      "P1, P2, T",
+      "1ª posição, 2ª posição e topo do quadro"
+     ]
+    ]
+   },
+   "pista": "Olhe o triângulo formado pelas duas posições do visitante e pelo topo do quadro: quanto vale o ângulo no topo?",
+   "passos": [
+    {
+     "faz": "Marque as posições e os ângulos",
+     "conta": "P1 a 4 m da parede (ângulo α) | P2 a 4 + 8 = 12 m (ângulo α/2)",
+     "porque": "O visitante se afasta 8 m em linha reta, então P2 fica a 12 m da parede.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ângulo no topo do triângulo P2P1T",
+     "conta": "α = α/2 + ∠T → ∠T = α − α/2 = α/2",
+     "porque": "O ângulo α em P1 é externo ao triângulo P2P1T; ele é a soma de α/2 com o ângulo do topo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o isósceles",
+     "conta": "∠P2 = ∠T = α/2 → P1T = P1P2 = 8 m",
+     "porque": "Ângulos iguais ficam em frente a lados iguais: a visada da 1ª posição tem o mesmo comprimento que os 8 m andados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique Pitágoras no triângulo da 1ª posição",
+     "conta": "8² = 4² + h² → h² = 64 − 16 = 48 → h = √48 = 4√3",
+     "porque": "O triângulo com o chão (4 m), a parede (h) e a visada (8 m) é retângulo na base da parede.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "h = 4√3 m ≈ 6,93 m → alternativa D",
+     "porque": "Desprezando a altura do observador, h é a altura pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — o quadro tem 4√3 m de altura",
+   "checagem": "Confira os ângulos: tg α = 4√3/4 = √3, então α = 60°; tg(α/2) = 4√3/12 = √3/3, que é tg 30°. De fato, 30° é a metade de 60°.",
+   "erradas": {
+    "A": "2√2 não confere: tg α = 2√2/4 dá α ≈ 35,3°, e tg(17,6°) ≈ 0,318 ≠ 2√2/12 ≈ 0,236.",
+    "B": "2√3 não confere: tg α = 2√3/4 dá α ≈ 40,9°, e tg 20,4° ≈ 0,373 ≠ 2√3/12 ≈ 0,289.",
+    "C": "4 não confere: tg α = 4/4 dá α = 45°, e tg 22,5° ≈ 0,414 ≠ 4/12 ≈ 0,333.",
+    "E": "4√5 não confere: tg α = √5 dá α ≈ 65,9°, e tg 33,0° ≈ 0,648 ≠ 4√5/12 ≈ 0,745."
+   },
+   "armadilha": "O ângulo cair pela metade esconde um triângulo isósceles: a visada da 1ª posição mede os mesmos 8 m andados, sem precisar da fórmula do arco duplo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A altura do quadro, vista de 4 m sob α e de 12 m sob α/2.",
+    "chave": "Ângulo externo: o topo vê o trecho P1P2 sob α/2, então a visada de P1 mede 8 m; Pitágoras dá h = 4√3.",
+    "cuidado": "Some 4 + 8 = 12 m para a 2ª posição; a hipotenusa de Pitágoras é a visada de 8 m."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "arco duplo",
+    "ideia": "tg α = h/4 e tg(α/2) = h/12; com tg α = 2t/(1 − t²) e t = h/12, sai h²/144 = 1/3, h = 4√3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "α = α/2 + ∠T",
+    "nota": "ângulo externo em P1"
+   },
+   {
+    "linha": "∠T = α/2 → P1T = 8",
+    "nota": "triângulo isósceles"
+   },
+   {
+    "linha": "8² = 4² + h²",
+    "nota": "Pitágoras na 1ª posição"
+   },
+   {
+    "linha": "h² = 64 − 16 = 48",
+    "nota": "4² passa subtraindo"
+   },
+   {
+    "linha": "h = √48 = 4√3",
+    "nota": "48 = 16 · 3"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
  }
 }

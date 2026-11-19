@@ -1015,5 +1015,389 @@
    "data": "2026-11-19",
    "lote": "mat-0077"
   }
+ },
+ "P369ac62b": {
+  "n": "7",
+  "conceito": "Termo geral de uma PA aplicado às posições da diagonal de uma matriz 100 × 100 e soma desses termos (traço).",
+  "equivocos": {
+   "A": "M07.1:somou-o-ultimo-termo",
+   "C": "M07.1:soma-da-pa-errada",
+   "D": "M07.1:soma-da-pa-errada",
+   "E": "M07.1:soma-da-pa-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O traço é a soma da diagonal principal: a₁,₁ + a₂,₂ + … + a₁₀₀,₁₀₀. Como a matriz é lida linha a linha, o elemento aᵢ,ⱼ ocupa a posição 100(i − 1) + j na PA. Ache a posição de cada elemento da diagonal: elas formam outra PA, e os valores também.",
+    "formulas": [
+     "aₖ = a₁ + (k − 1) · r",
+     "soma de uma PA = (primeiro + último) · (número de termos)/2"
+    ],
+    "simbolos": [
+     [
+      "aᵢ,ⱼ",
+      "elemento da linha i e coluna j"
+     ],
+     [
+      "traço",
+      "soma dos elementos da diagonal principal (i = j)"
+     ],
+     [
+      "k",
+      "posição do elemento na PA"
+     ],
+     [
+      "r",
+      "razão da PA, 5"
+     ]
+    ]
+   },
+   "pista": "Descubra em que posição da PA está aᵢ,ᵢ. De uma diagonal para a seguinte, quantas posições você anda?",
+   "passos": [
+    {
+     "faz": "Ache a posição de aᵢ,ᵢ na PA",
+     "conta": "aᵢ,ⱼ está na posição k = 100(i − 1) + j → aᵢ,ᵢ: k = 101i − 100",
+     "porque": "Antes da linha i há i − 1 linhas completas de 100 termos; dentro da linha, a coluna j acrescenta j.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva o valor de aᵢ,ᵢ",
+     "conta": "aᵢ,ᵢ = 10 + (101i − 101) · 5 → aᵢ,ᵢ = 10 + 505(i − 1)",
+     "porque": "Termo geral com a₁ = 10 e r = 5. A diagonal vira uma PA de razão 505, de 10 até 10 + 505 · 99 = 50005.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os 100 termos da diagonal",
+     "conta": "n = (10 + 50005) · 100/2 → n = 50015 · 50 = 2500750",
+     "porque": "Soma de PA: média do primeiro com o último, vezes o número de termos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os algarismos de n",
+     "conta": "2 + 5 + 0 + 0 + 7 + 5 + 0 = 19 → alternativa B",
+     "porque": "A pergunta não é o traço, e sim a soma dos seus algarismos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a soma dos algarismos do traço é 19.",
+   "checagem": "Separe o traço em duas partes: 100 parcelas de 10 dão 1000, e 505 · (0 + 1 + … + 99) = 505 · 4950 = 2499750. Total 1000 + 2499750 = 2500750, o mesmo n.",
+   "erradas": {
+    "A": "10 sai de somar os algarismos do último elemento, a₁₀₀,₁₀₀ = 10 + 5 · 9999 = 50005, em vez do traço: 5 + 0 + 0 + 0 + 5 = 10. O traço é 2500750, cujos algarismos somam 19.",
+    "C": "23 não confere: os algarismos de 2500750 somam 19, não 23.",
+    "D": "28 não confere: os algarismos de 2500750 somam 19, não 28.",
+    "E": "32 não confere: os algarismos de 2500750 somam 19, não 32."
+   },
+   "armadilha": "Achar que a diagonal anda 100 posições por linha: de aᵢ,ᵢ para aᵢ₊₁,ᵢ₊₁ são 101 posições (uma linha inteira mais uma coluna).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos algarismos do traço de uma matriz 100 × 100 preenchida linha a linha por uma PA (a₁ = 10, r = 5).",
+    "chave": "aᵢ,ᵢ = 10 + 505(i − 1) é outra PA; sua soma dá 2500750.",
+    "cuidado": "Entre dois elementos da diagonal há 101 posições, não 100."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "separar as parcelas",
+    "ideia": "Traço = 100 · 10 + 505 · (0 + 1 + … + 99) = 1000 + 505 · 4950 = 2500750."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "k = 100(i − 1) + i = 101i − 100",
+    "nota": "posição de aᵢ,ᵢ"
+   },
+   {
+    "linha": "aᵢ,ᵢ = 10 + 505(i − 1)",
+    "nota": "termo geral com r = 5"
+   },
+   {
+    "linha": "a₁₀₀,₁₀₀ = 10 + 505 · 99 = 50005",
+    "nota": "último da diagonal"
+   },
+   {
+    "linha": "n = (10 + 50005) · 100/2 = 2500750",
+    "nota": "soma da PA da diagonal"
+   },
+   {
+    "linha": "2 + 5 + 0 + 0 + 7 + 5 + 0 = 19",
+    "nota": "soma dos algarismos"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "P38d0f2f7": {
+  "n": "14",
+  "conceito": "Área da projeção ortogonal: a figura projetada tem área igual à original vezes o cosseno do ângulo entre os planos.",
+  "equivocos": {
+   "A": "M09.3:projecao-preserva-area",
+   "B": "M09.3:projecao-maior-que-a-original",
+   "D": "M09.3:tangente-no-lugar-do-cosseno",
+   "E": "M09.3:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As retas por A, B, C e D são perpendiculares a α. Então A é a projeção ortogonal de A′ sobre α, e ABCD é a projeção ortogonal de A′B′C′D′. Projetar uma figura plana num plano que forma ângulo θ com o dela multiplica a área por cos θ. O formato de trapézio e a diagonal paralela a r não mudam essa razão.",
+    "formulas": [
+     "área da projeção = área da figura · cos θ",
+     "cos 30° = √3/2"
+    ],
+    "simbolos": [
+     [
+      "α, β",
+      "os dois planos"
+     ],
+     [
+      "r",
+      "reta em que α e β se cortam"
+     ],
+     [
+      "diedro",
+      "ângulo entre dois planos, aqui π/6 = 30°"
+     ],
+     [
+      "A′",
+      "ponto de β que está sobre a perpendicular a α por A"
+     ]
+    ]
+   },
+   "pista": "Descubra qual das duas figuras é a sombra da outra: as retas são perpendiculares a qual plano?",
+   "passos": [
+    {
+     "faz": "Identifique quem é a projeção",
+     "conta": "AA′ ⊥ α → ABCD = projeção ortogonal de A′B′C′D′ sobre α",
+     "porque": "Cada segmento AA′ é perpendicular a α, que é exatamente como se projeta um ponto de β sobre α.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique o fator do cosseno",
+     "conta": "área(ABCD) = área(A′B′C′D′) · cos(π/6)",
+     "porque": "A projeção encolhe só a direção perpendicular a r pelo fator cos θ; a direção paralela a r não muda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a razão",
+     "conta": "área(ABCD)/área(A′B′C′D′) = cos 30° = √3/2",
+     "porque": "A área de A′B′C′D′ passa dividindo e sobra o cosseno do diedro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "√3/2 → alternativa C",
+     "porque": "A razão pedida é ABCD sobre A′B′C′D′, a projeção sobre a original, e por isso fica menor que 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — √3/2",
+   "checagem": "Use a diagonal AC, paralela a r: ela não encolhe, então A′C′ = AC. A altura de B (e de D) até AC é medida na direção perpendicular a r, que em β fica 1/cos 30° vez maior. Os triângulos ABC e ADC têm, cada um, área multiplicada por cos 30° ao passar de β para α: a razão é √3/2 de novo.",
+   "erradas": {
+    "A": "1 sai de achar que levar a figura de um plano para o outro preserva a área; isso só vale se os planos forem paralelos, e aqui o diedro é 30°.",
+    "B": "3/2 não confere: ABCD é a projeção, e uma projeção nunca tem área maior que a figura original; a razão tem de ser menor que 1.",
+    "D": "√3/3 sai de usar a tangente no lugar do cosseno: tg 30° = √3/3. O fator de área da projeção é cos 30° = √3/2.",
+    "E": "1/3 não confere: a razão é o cosseno do diedro, e cos 30° = √3/2 ≈ 0,87, não 1/3."
+   },
+   "armadilha": "O trapézio e a diagonal paralela a r são dados que não pesam: o fator de área da projeção é cos θ para qualquer figura plana.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão entre a área de ABCD e a de A′B′C′D′.",
+    "chave": "ABCD é a projeção ortogonal de A′B′C′D′ sobre α; a área é multiplicada por cos 30°.",
+    "cuidado": "Veja quem projeta sobre quem: a razão é cos 30°, não o inverso."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "retângulo de teste",
+    "ideia": "Pegue em β um retângulo com um lado paralelo a r (que não encolhe) e o outro perpendicular (que vira ele · cos 30°): a área cai pelo fator √3/2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "AA′ ⊥ α → ABCD = projeção de A′B′C′D′",
+    "nota": "quem é a sombra"
+   },
+   {
+    "linha": "área(ABCD) = área(A′B′C′D′) · cos(π/6)",
+    "nota": "fator da projeção"
+   },
+   {
+    "linha": "área(ABCD)/área(A′B′C′D′) = cos 30° = √3/2",
+    "nota": "a área da original passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "P82295c8b": {
+  "n": "11",
+  "conceito": "Somar arcos tangentes com a fórmula da tangente da soma até isolar o último arco.",
+  "equivocos": {
+   "A": "M10.4:somou-as-tangentes",
+   "B": "M10.4:somou-as-tangentes",
+   "C": "M10.4:somou-as-tangentes",
+   "E": "M10.4:errou-a-tangente-da-diferenca"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Somar arcos cuja tangente se conhece é trabalho da fórmula tg(a + b). Junte os três primeiros arcos um de cada vez; o que falta para chegar a π/4 é arctg(1/n). Como tg(π/4) = 1, a última conta é a tangente de uma diferença. Os três primeiros arcos são positivos e menores que π/4, e a soma deles também fica abaixo de π/2, então a fórmula vale em cada etapa.",
+    "formulas": [
+     "tg(a + b) = (tg a + tg b)/(1 − tg a · tg b)",
+     "tg(a − b) = (tg a − tg b)/(1 + tg a · tg b)",
+     "tg(π/4) = 1"
+    ],
+    "simbolos": [
+     [
+      "arctg(t)",
+      "o arco entre −π/2 e π/2 cuja tangente é t"
+     ],
+     [
+      "n ∈ ℕ",
+      "n é um número natural"
+     ]
+    ]
+   },
+   "pista": "Junte só os dois primeiros arcos com a fórmula da tangente da soma e veja que fração aparece.",
+   "passos": [
+    {
+     "faz": "Some os dois primeiros arcos",
+     "conta": "tg(a + b) = (1/3 + 1/4)/(1 − 1/12) → (7/12)/(11/12) → 7/11",
+     "porque": "Com tg a = 1/3 e tg b = 1/4, o produto é 1/12. Os 12 do denominador se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte o terceiro arco",
+     "conta": "(7/11 + 1/5)/(1 − 7/55) → (46/55)/(48/55) → 46/48 = 23/24",
+     "porque": "Agora a soma parcial tem tangente 7/11 e entra o arco de tangente 1/5. O 55 se cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole o arco que falta",
+     "conta": "arctg(1/n) = π/4 − θ, com tg θ = 23/24",
+     "porque": "θ é a soma dos três primeiros arcos. O que falta para π/4 é exatamente arctg(1/n).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use a tangente da diferença",
+     "conta": "1/n = (1 − 23/24)/(1 + 23/24) → (1/24)/(47/24) → 1/47",
+     "porque": "tg(π/4) = 1. O 24 se cancela e sobra 1/47.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia n e ligue à alternativa",
+     "conta": "1/n = 1/47 → n = 47",
+     "porque": "Duas frações de numerador 1 iguais têm denominadores iguais: n = 47, alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — n = 47",
+   "checagem": "Pela calculadora: arctg(1/3) + arctg(1/4) + arctg(1/5) ≈ 0,32175 + 0,24498 + 0,19740 = 0,76413 rad, e arctg(1/47) ≈ 0,02127 rad. A soma dá 0,78540 rad, que é π/4 ≈ 0,78540.",
+   "erradas": {
+    "A": "A não confere: com n = 10, a tangente da soma dos quatro arcos é (23/24 + 1/10)/(1 − 23/240) = 254/217, maior que 1. A soma passa de π/4.",
+    "B": "B não confere: com n = 6, a tangente da soma dá (23/24 + 1/6)/(1 − 23/144) = 162/121, diferente de 1 = tg(π/4).",
+    "C": "C não confere: com n = 7, a tangente da soma dá (23/24 + 1/7)/(1 − 23/168) = 37/29, diferente de 1.",
+    "E": "E não confere: com n = 52, a tangente da soma dá (23/24 + 1/52)/(1 − 23/1248) = 244/245, menor que 1. A soma fica abaixo de π/4."
+   },
+   "armadilha": "Arcos não se somam pelas tangentes: 1/3 + 1/4 + 1/5 + 1/n = 1 dá n = 60/13, que nem é natural; é preciso a fórmula tg(a + b).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O natural n que fecha a soma de quatro arcos tangentes em π/4.",
+    "chave": "Pela tangente da soma, os três primeiros arcos somam um arco de tangente 23/24; o que falta para π/4 tem tangente (1 − 23/24)/(1 + 23/24) = 1/47.",
+    "cuidado": "Some arco por arco com a fórmula, nunca as tangentes diretamente."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "números complexos",
+    "ideia": "O argumento de (3 + i)(4 + i)(5 + i)(n + i) deve ser π/4: (3 + i)(4 + i)(5 + i) = 48 + 46i, e (48 + 46i)(n + i) tem partes real e imaginária iguais só se 48n − 46 = 46n + 48, isto é, n = 47."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "tg(a + b) = (1/3 + 1/4)/(1 − 1/12) = 7/11",
+    "nota": "dois primeiros arcos"
+   },
+   {
+    "linha": "tg(θ) = (7/11 + 1/5)/(1 − 7/55) = 23/24",
+    "nota": "entra o terceiro arco"
+   },
+   {
+    "linha": "arctg(1/n) = π/4 − θ",
+    "nota": "o que falta para π/4"
+   },
+   {
+    "linha": "1/n = (1 − 23/24)/(1 + 23/24) = 1/47",
+    "nota": "tangente da diferença, tg(π/4) = 1"
+   },
+   {
+    "linha": "n = 47",
+    "nota": "denominadores iguais"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Estratégia Militares: gabarito preliminar dos professores, IME 1ª fase de 24/09/2023 (q11: D)",
+    "url": "https://militares.estrategia.com/portal/eventos/gabaritos/gabarito-ime-correcao-ao-vivo-2/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [
+    {
+     "url": "https://militares.estrategia.com/portal/eventos/gabaritos/gabarito-ime-correcao-ao-vivo-2/",
+     "letra": "D"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
  }
 }

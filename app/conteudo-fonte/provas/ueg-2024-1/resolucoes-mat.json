@@ -1035,5 +1035,239 @@
    "data": "2026-11-19",
    "lote": "mat-0069"
   }
+ },
+ "P4abfc5e2": {
+  "n": "15",
+  "conceito": "Meia-vida: quantidade de fármaco que resta depois de duas meias-vidas.",
+  "equivocos": {
+   "A": "M06.5:numero-de-meias-vidas-errado",
+   "B": "M06.5:numero-de-meias-vidas-errado",
+   "C": "M06.5:contou-uma-meia-vida-so",
+   "D": "M06.5:numero-de-meias-vidas-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Meia-vida de 6 horas quer dizer que, a cada 6 horas, a quantidade no organismo cai pela metade. A segunda dose vem 12 horas depois da primeira, e 12 horas são duas meias-vidas. Não é preciso descobrir a constante k da fórmula: basta dividir por 2 duas vezes.",
+    "formulas": [
+     "número de meias-vidas = tempo decorrido ÷ meia-vida",
+     "quantidade restante = quantidade inicial ÷ 2^(número de meias-vidas)"
+    ],
+    "simbolos": [
+     [
+      "f₀",
+      "quantidade inicial, 120 mg"
+     ],
+     [
+      "k",
+      "constante negativa do modelo exponencial"
+     ],
+     [
+      "meia-vida",
+      "tempo para a quantidade cair à metade"
+     ],
+     [
+      "mg",
+      "miligrama"
+     ]
+    ]
+   },
+   "pista": "Conte quantas meias-vidas cabem entre uma dose e a outra.",
+   "passos": [
+    {
+     "faz": "Conte as meias-vidas",
+     "conta": "12 h ÷ 6 h = 2 meias-vidas",
+     "porque": "A primeira dose é às 8h e a segunda às 20h; nesse intervalo a metade se repete duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pela metade a cada 6 h",
+     "conta": "120 mg → 60 mg (14h) → 30 mg (20h)",
+     "porque": "Cada meia-vida tira metade do que havia naquele momento, não metade da dose original.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao valor que resta",
+     "conta": "30 mg → alternativa E",
+     "porque": "A pergunta é o que resta quando ela vai tomar a segunda dose, antes de tomá-la.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — restam 30 mg no organismo.",
+   "checagem": "Pela fórmula: e^(6k) = 1/2, então e^(12k) = (e^(6k))² = 1/4, e 120 · 1/4 = 30 mg. Fecha com as metades.",
+   "erradas": {
+    "A": "18 mg não confere: 120 ÷ 18 ≈ 6,7, o que exigiria cerca de 2,7 meias-vidas (16,4 h), e não 12 h.",
+    "B": "12 mg não confere: seria um décimo da dose, cerca de 3,3 meias-vidas (19,9 h).",
+    "C": "60 mg sai de contar uma só meia-vida: 120 ÷ 2 = 60. Isso é o que resta às 14h; às 20h já são duas meias-vidas.",
+    "D": "26 mg não confere: 120 ÷ 26 ≈ 4,6, o que exigiria cerca de 2,2 meias-vidas (13,2 h)."
+   },
+   "armadilha": "Parar em 60 mg, como se 12 h fossem uma meia-vida só.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quanto resta de 120 mg de fármaco 12 h depois, com meia-vida de 6 h.",
+    "chave": "12 h são duas meias-vidas: 120 → 60 → 30 mg.",
+    "cuidado": "Cada metade é tirada do que sobrou, não da dose inicial."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela fórmula",
+    "ideia": "e^(6k) = 1/2 dá e^(12k) = 1/4, e 120 · 1/4 = 30 mg."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "12 ÷ 6 = 2",
+    "nota": "meias-vidas entre as doses"
+   },
+   {
+    "linha": "120 → 60",
+    "nota": "primeira meia-vida, 14h"
+   },
+   {
+    "linha": "60 → 30",
+    "nota": "segunda meia-vida, 20h"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "P172b9048": {
+  "n": "25",
+  "conceito": "Achar o raio de um arco pela corda e pela flecha (altura) e calcular o comprimento do arco como raio × ângulo em radianos.",
+  "equivocos": {
+   "B": "M08.3:raio-errado-no-arco",
+   "C": "M08.3:raio-errado-no-arco",
+   "D": "M08.3:raio-errado-no-arco",
+   "E": "M08.3:raio-errado-no-arco"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O comprimento de um arco é raio × ângulo central, com o ângulo em radianos; o ângulo já vem dado (1,85 rad). Falta o raio, e a figura dá isso escondido: o triângulo de 45° mostra que cada quarta parte de AB mede 6 m, igual à altura.",
+    "formulas": [
+     "comprimento do arco = R · θ (θ em radianos)",
+     "Pitágoras: R² = (metade da corda)² + (R − flecha)²",
+     "tan 45° = 1: cateto oposto = cateto adjacente"
+    ],
+    "simbolos": [
+     [
+      "R",
+      "raio do arco, distância de M à cobertura"
+     ],
+     [
+      "θ",
+      "ângulo central AMB, em radianos"
+     ],
+     [
+      "flecha",
+      "altura do arco acima da corda AB: 6 m"
+     ],
+     [
+      "rad",
+      "radiano"
+     ]
+    ]
+   },
+   "pista": "Olhe o triângulo retângulo com o ângulo de 45°: o cateto vertical mede 6 m. Quanto mede o horizontal?",
+   "passos": [
+    {
+     "faz": "Leia a corda pelo triângulo de 45°",
+     "conta": "tan 45° = 6/x = 1 → x = 6 m → AB = 4 · 6 = 24 m",
+     "porque": "No triângulo retângulo de 45°, os dois catetos são iguais; o horizontal é uma das quatro partes iguais de AB.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte Pitágoras com a metade da corda",
+     "conta": "R² = 12² + (R − 6)²",
+     "porque": "A distância de M até AB é R − 6, porque o topo do arco fica 6 m acima de AB; a metade da corda é 12 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para o raio",
+     "conta": "R² = 144 + R² − 12R + 36 → 12R = 180 → R = 15 m",
+     "porque": "Os R² dos dois lados se cancelam; o −12R passa somando e o 12 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o arco",
+     "conta": "15 · 1,85 = 27,75 m",
+     "porque": "Com o ângulo em radianos, o arco é o raio vezes o ângulo, sem π nem 360.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "27,75 m → alternativa A",
+     "porque": "É o comprimento do arco de A até B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 27,75 m.",
+   "checagem": "Confira o raio pelo ângulo: com R = 15 e meia corda 12, sen(θ/2) = 12/15 = 0,8, e θ/2 = 0,925 rad dá seno ≈ 0,798; bate com 1,85 rad. Em graus, 15 · 106 · π/180 ≈ 27,75 m.",
+   "erradas": {
+    "B": "28,75 m não confere: exigiria R = 28,75/1,85 ≈ 15,54 m, e esse raio não satisfaz R² = 12² + (R − 6)², que só vale para R = 15.",
+    "C": "24,75 m não confere: exigiria R ≈ 13,38 m; além disso, o arco precisa ser maior que a corda de 24 m bem mais que 0,75 m, porque a cobertura sobe 6 m.",
+    "D": "26,75 m não confere: exigiria R = 26,75/1,85 ≈ 14,46 m, e só R = 15 satisfaz R² = 12² + (R − 6)².",
+    "E": "25,75 m não confere: exigiria R = 25,75/1,85 ≈ 13,92 m, e só R = 15 satisfaz R² = 12² + (R − 6)²."
+   },
+   "armadilha": "O raio não é a altura de 6 m nem a meia corda de 12 m: o centro M está lá embaixo, e a distância de M até AB é R − 6.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O comprimento do arco AB da cobertura.",
+    "chave": "Cada quarto de AB mede 6 m (45°), corda 24 m; R² = 12² + (R − 6)² dá R = 15; arco = 15 · 1,85 = 27,75 m.",
+    "cuidado": "Use o ângulo em radianos direto (R · θ) e não confunda a flecha com o raio."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "seno do meio ângulo",
+    "ideia": "Na metade do triângulo AMB, sen 53° ≈ 0,8 = 12/R, então R = 15 e o arco é 15 · 1,85 = 27,75 m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6/x = tan 45° = 1 → x = 6 → AB = 24",
+    "nota": "os quatro pedaços iguais de AB"
+   },
+   {
+    "linha": "R² = 12² + (R − 6)²",
+    "nota": "Pitágoras com a meia corda"
+   },
+   {
+    "linha": "R² = 144 + R² − 12R + 36",
+    "nota": "desenvolver o quadrado"
+   },
+   {
+    "linha": "12R = 180 → R = 15",
+    "nota": "os R² se cancelam; o 12 passa dividindo"
+   },
+   {
+    "linha": "15 · 1,85 = 27,75 m",
+    "nota": "arco = raio × ângulo em radianos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
  }
 }

@@ -334,5 +334,125 @@
    "data": "2026-11-19",
    "lote": "mat-0071"
   }
+ },
+ "Pdc0be22e": {
+  "n": "19",
+  "conceito": "Perímetro do floco de Koch: a cada iteração o perímetro é multiplicado por 4/3, formando uma PG.",
+  "equivocos": {
+   "A": "M07.4:expoente-do-denominador",
+   "C": "M07.4:valor-que-nao-fecha",
+   "D": "M07.4:valor-que-nao-fecha",
+   "E": "M07.4:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em cada iteração, todo segmento vira 4 segmentos com 1/3 do comprimento. Então o número de lados é multiplicado por 4 e o tamanho de cada lado é dividido por 3: o perímetro é multiplicado por 4/3. O perímetro forma uma progressão geométrica que começa em 3 cm.",
+    "formulas": [
+     "P(n) = 3 · (4/3)ⁿ",
+     "aᵐ = aⁿ ⇒ m = n (mesma base)"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número da iteração (o triângulo é n = 0)"
+     ],
+     [
+      "P(n)",
+      "perímetro da figura na iteração n, em cm"
+     ],
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes a mesma razão"
+     ]
+    ]
+   },
+   "pista": "Veja o que acontece com um lado só: em quantos pedaços ele vira e de que tamanho.",
+   "passos": [
+    {
+     "faz": "Descubra o fator por iteração",
+     "conta": "1 lado → 4 lados de 1/3 → fator 4 · 1/3 = 4/3",
+     "porque": "O segmento do meio sai, mas entram dois do mesmo tamanho: ficam 4 pedaços de um terço.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva o perímetro na iteração n",
+     "conta": "P(0) = 3 · 1 = 3 → P(n) = 3 · (4/3)ⁿ",
+     "porque": "O triângulo inicial tem 3 lados de 1 cm, e cada iteração multiplica por 4/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale ao perímetro dado",
+     "conta": "3 · (4/3)ⁿ = 256/27 → (4/3)ⁿ = 256/81",
+     "porque": "O 3 que multiplica passa dividindo: 256/27 ÷ 3 = 256/81.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva como potência de 4/3",
+     "conta": "256/81 = 4⁴/3⁴ = (4/3)⁴ → n = 4",
+     "porque": "256 = 4⁴ e 81 = 3⁴; com a mesma base, os expoentes são iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "iteração 4 → alternativa B",
+     "porque": "A questão pede o número da iteração, que é o expoente n.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — iteração 4",
+   "checagem": "Conte lados e tamanho: na iteração 4 há 3 · 4⁴ = 768 lados de 1/3⁴ = 1/81 cm; 768/81 = 256/27 cm. Fecha.",
+   "erradas": {
+    "A": "3 sai de tirar o expoente do 27 = 3³; mas na iteração 3 o perímetro é 3 · (4/3)³ = 64/9 cm, e não 256/27.",
+    "C": "5 não confere: P(5) = 3 · (4/3)⁵ = 1024/81 cm, maior que 256/27 = 768/81.",
+    "D": "6 não confere: P(6) = 3 · (4/3)⁶ = 4096/243 cm, e 256/27 = 2304/243.",
+    "E": "7 não confere: P(7) = 3 · (4/3)⁷ = 16384/729 cm ≈ 22,47 cm, mais que o dobro de 256/27 ≈ 9,48 cm."
+   },
+   "armadilha": "O 27 do denominador é 3³, mas o expoente certo sai de 256/81 = (4/3)⁴, depois de dividir pelo 3 inicial.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A iteração em que o perímetro vale 256/27 cm.",
+    "chave": "P(n) = 3 · (4/3)ⁿ; (4/3)ⁿ = 256/81 = (4/3)⁴.",
+    "cuidado": "Divida pelo perímetro inicial 3 antes de comparar as potências."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela de iterações",
+    "ideia": "Multiplique por 4/3 em sequência: 3 → 4 → 16/3 → 64/9 → 256/27; o quinto termo é a iteração 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "fator = 4 · 1/3 = 4/3",
+    "nota": "cada lado vira 4 de um terço"
+   },
+   {
+    "linha": "P(n) = 3 · (4/3)ⁿ",
+    "nota": "PG que começa em 3 cm"
+   },
+   {
+    "linha": "3 · (4/3)ⁿ = 256/27",
+    "nota": "perímetro dado"
+   },
+   {
+    "linha": "(4/3)ⁿ = 256/81",
+    "nota": "o 3 passa dividindo"
+   },
+   {
+    "linha": "(4/3)ⁿ = (4/3)⁴ → n = 4",
+    "nota": "mesma base, mesmo expoente"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
  }
 }

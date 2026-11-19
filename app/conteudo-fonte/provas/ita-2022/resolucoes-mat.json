@@ -456,5 +456,367 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "P75cd0a82": {
+  "n": "55",
+  "conceito": "Combinar lei dos senos (com o raio circunscrito) e lei dos cossenos, separando os casos de ângulo agudo e obtuso.",
+  "equivocos": {
+   "A": "M10.3:valor-que-nao-satisfaz-a-lei-dos-cossenos",
+   "B": "M10.3:esqueceu-o-2-de-2r",
+   "D": "M10.3:valor-que-nao-satisfaz-a-lei-dos-cossenos",
+   "E": "M10.3:valor-que-nao-satisfaz-a-lei-dos-cossenos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O raio R = 5 entra pela lei dos senos: BC/sen A = 2R dá o seno do ângulo A. Mas o seno não decide se A é agudo ou obtuso, e cada caso gera um triângulo diferente. Resolva os dois pela lei dos cossenos e use a condição de B agudo para descartar um deles.",
+    "formulas": [
+     "lei dos senos: BC/sen A = 2R",
+     "lei dos cossenos: BC² = AB² + AC² − 2 · AB · AC · cos A",
+     "B agudo ⇔ AC² < AB² + BC²"
+    ],
+    "simbolos": [
+     [
+      "R",
+      "raio da circunferência circunscrita ao triângulo"
+     ],
+     [
+      "Â, B̂",
+      "ângulos com vértice em A e em B"
+     ],
+     [
+      "x",
+      "medida de AC, a incógnita"
+     ],
+     [
+      "inscritível",
+      "os três vértices ficam sobre uma mesma circunferência"
+     ]
+    ]
+   },
+   "pista": "Comece pelo lado BC e pelo seu ângulo oposto: R dá o seno desse ângulo, mas não o sinal do cosseno.",
+   "passos": [
+    {
+     "faz": "Lei dos senos com o raio",
+     "conta": "6/sen A = 2 · 5 → sen A = 6/10 = 3/5 → cos A = ±4/5",
+     "porque": "BC é oposto a A. O cosseno pode ser positivo (A agudo) ou negativo (A obtuso): os dois servem para o seno.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Caso A agudo: lei dos cossenos",
+     "conta": "36 = 20 + x² − 2 · 2√5 · x · (4/5) → x² − (16√5/5)x − 16 = 0 → x = 4√5",
+     "porque": "A raiz negativa da equação não serve como comprimento; sobra x = 4√5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste B no caso agudo",
+     "conta": "x² = 80 > AB² + BC² = 20 + 36 = 56 → B obtuso",
+     "porque": "Se o lado oposto a B ao quadrado passa da soma dos outros dois ao quadrado, B é obtuso; o enunciado diz que é agudo.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Caso A obtuso: lei dos cossenos",
+     "conta": "36 = 20 + x² + 2 · 2√5 · x · (4/5) → x² + (16√5/5)x − 16 = 0 → x = (−16√5/5 + 24√5/5)/2 = 4√5/5",
+     "porque": "Δ = 256/5 + 64 = 576/5, e √Δ = 24√5/5. A raiz positiva é 4√5/5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confirme B agudo e conclua",
+     "conta": "x² = 16/5 < 56 → B agudo → AC = 4√5/5 → alternativa C",
+     "porque": "Agora a condição do enunciado vale, e esse é o único triângulo possível.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — m(AC) = 4√5/5",
+   "checagem": "Volte pela lei dos senos: com AC = 4√5/5, a lei dos cossenos dá cos B = (20 + 36 − 16/5)/(24√5) = 11√5/25, então sen B = 2√5/25 e AC/sen B = (4√5/5)/(2√5/25) = 10 = 2R. Fecha com R = 5.",
+   "erradas": {
+    "A": "√5/5 não confere: em x² + (16√5/5)x = 16, dá 1/5 + 16/5 = 17/5 = 3,4, e não 16.",
+    "B": "2√5/5 sai de esquecer o 2 de 2R: AC = R · sen B = 5 · 2√5/25. Na equação dá 4/5 + 32/5 = 7,2, e não 16.",
+    "D": "8√5/5 não confere: em x² + (16√5/5)x = 16, dá 64/5 + 128/5 = 38,4, e não 16.",
+    "E": "14√5/5 não confere: em x² + (16√5/5)x = 16, dá 196/5 + 224/5 = 84, e não 16."
+   },
+   "armadilha": "sen A = 3/5 vale para A agudo e para A obtuso; o caso agudo dá AC = 4√5, que não está nas alternativas, e só o dado de B agudo decide.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A medida de AC num triângulo com AB = 2√5, BC = 6, R = 5 e B agudo.",
+    "chave": "BC = 2R · sen A dá sen A = 3/5; o caso A agudo deixa B obtuso, e com cos A = −4/5 a lei dos cossenos dá AC = 4√5/5.",
+    "cuidado": "Teste os dois sinais do cosseno e descarte o que contraria B agudo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "seno da soma",
+    "ideia": "sen C = 2√5/10 = √5/5 e sen A = 3/5; com A obtuso, sen B = sen(A + C) = (3/5)(2√5/5) − (4/5)(√5/5) = 2√5/25 e AC = 2R · sen B = 10 · 2√5/25 = 4√5/5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6/sen A = 10 → sen A = 3/5",
+    "nota": "lei dos senos com 2R = 10"
+   },
+   {
+    "linha": "cos A = ±4/5",
+    "nota": "dois casos possíveis"
+   },
+   {
+    "linha": "A agudo: x = 4√5 → x² = 80 > 56",
+    "nota": "B obtuso: descartado"
+   },
+   {
+    "linha": "A obtuso: x² + (16√5/5)x − 16 = 0",
+    "nota": "lei dos cossenos com cos A = −4/5"
+   },
+   {
+    "linha": "x = (−16√5/5 + 24√5/5)/2 = 4√5/5",
+    "nota": "raiz positiva"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "Pb3ca7386": {
+  "n": "47",
+  "conceito": "Condição para tan(x − r), tan x e tan(x + r) formarem PA, usando a tangente da soma e da diferença.",
+  "equivocos": {
+   "A": "M10.4:ignorou-pa-constante",
+   "B": "M10.4:dividiu-por-tan-x",
+   "C": "M10.4:condicao-de-pa-inventada",
+   "E": "M10.4:generalizou-um-caso-particular"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Três números estão em PA quando o do meio é a média dos outros dois: tan(x − r) + tan(x + r) = 2 tan x. Escreva as duas tangentes pelas fórmulas da soma e da diferença, com t = tan x e u = tan r. Não divida por t sem antes olhar o caso t = 0: é ele que decide a questão.",
+    "formulas": [
+     "a, b, c em PA ⇔ a + c = 2b",
+     "tan(x ± r) = (tan x ± tan r)/(1 ∓ tan x · tan r)"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: a diferença entre termos vizinhos é constante"
+     ],
+     [
+      "t",
+      "tan x"
+     ],
+     [
+      "u",
+      "tan r"
+     ]
+    ]
+   },
+   "pista": "Escreva a condição de PA e some as duas frações; depois desconfie de qualquer divisão por tan x.",
+   "passos": [
+    {
+     "faz": "Escreva a condição de PA",
+     "conta": "tan(x − r) + tan(x + r) = 2 tan x",
+     "porque": "Numa PA, o termo do meio é a média aritmética dos vizinhos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some as duas tangentes",
+     "conta": "(t − u)/(1 + tu) + (t + u)/(1 − tu) → (2t + 2tu²)/(1 − t²u²) → (2t(1 + u²))/(1 − t²u²)",
+     "porque": "No denominador comum, os termos com u e com t²u se cancelam entre as duas frações.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale a 2t e fatore",
+     "conta": "(2t(1 + u²))/(1 − t²u²) = 2t → 2t[(1 + u²) − (1 − t²u²)] = 0 → 2t · u²(1 + t²) = 0",
+     "porque": "Multiplique pelo denominador e ponha 2t em evidência, sem cancelar t.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia os dois casos",
+     "conta": "t = 0 → x = 0, qualquer r | u = 0 → r = 0, qualquer x",
+     "porque": "1 + t² nunca é zero. Com x = 0, a sequência é −tan r, 0, tan r: PA para todo r em [0, π/2).",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "x = 0 e 0 ≤ r < π/2 → PA para infinitos valores de r",
+     "porque": "O enunciado permite x = 0 com qualquer r em [0, π/2). Isso é a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — pode determinar uma PA para infinitos valores distintos de r",
+   "checagem": "Teste numérico: x = 0 e r = 1 rad (permitido, pois 1 < π/2) dão tan(−1) ≈ −1,557, 0 e tan 1 ≈ 1,557, uma PA de razão 1,557. Com r = 0,5 rad o mesmo acontece: já são dois valores de r diferentes de 0.",
+   "erradas": {
+    "A": "A não confere: r = 0 dá a sequência constante tan x, tan x, tan x, que é PA de razão zero; e x = 0 dá PA para qualquer r.",
+    "B": "B sai de dividir por tan x sem olhar o caso tan x = 0: sobra só u²(1 + t²) = 0, isto é, r = 0. Com x = 0, qualquer r serve.",
+    "C": "C não confere: com x = π/6 e r = √3/3, tan(x − r) + tan(x + r) ≈ 1,916, enquanto 2 tan x ≈ 1,155. Não é PA.",
+    "E": "E não confere: com x = π/6 e r = π/6 os termos são 0, √3/3 ≈ 0,577 e √3 ≈ 1,732; as diferenças 0,577 e 1,155 não são iguais."
+   },
+   "armadilha": "Dividir por tan x apaga o caso x = 0, que é justamente o que dá infinitos valores de r.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quando tan(x − r), tan x e tan(x + r) formam PA.",
+    "chave": "A condição de PA vira 2 tan x · tan² r · (1 + tan² x) = 0: ou r = 0, ou x = 0 com qualquer r em [0, π/2).",
+    "cuidado": "Ponha tan x em evidência em vez de cancelar; o caso tan x = 0 é o que importa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria",
+    "ideia": "Para x = 0, tan(−r) = −tan r: os termos −tan r, 0, tan r são simétricos em torno de 0 e formam PA para qualquer r, o que já derruba A, B, C; E cai com um contraexemplo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "tan(x − r) + tan(x + r) = 2 tan x",
+    "nota": "condição de PA"
+   },
+   {
+    "linha": "(2t(1 + u²))/(1 − t²u²) = 2t",
+    "nota": "soma das frações, t = tan x e u = tan r"
+   },
+   {
+    "linha": "2t · u²(1 + t²) = 0",
+    "nota": "multiplica pelo denominador e põe 2t em evidência"
+   },
+   {
+    "linha": "t = 0 ou u = 0",
+    "nota": "1 + t² nunca zera"
+   },
+   {
+    "linha": "x = 0: −tan r, 0, tan r",
+    "nota": "PA para todo r em [0, π/2)"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "P7428ceb2": {
+  "n": "54",
+  "conceito": "Reduzir equação trigonométrica a uma cúbica em cos² x e contar as soluções no intervalo.",
+  "equivocos": {
+   "A": "M10.4:esqueceu-o-mais-ou-menos",
+   "B": "M10.4:contagem-impar-de-solucoes",
+   "D": "M10.4:contagem-impar-de-solucoes",
+   "E": "M10.4:aceitou-cosseno-quadrado-negativo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Tudo na equação depende só de cos² x: chame c = cos² x, com 0 ≤ c ≤ 1. Como cos(2x) = 2c − 1, a equação vira uma cúbica em c. Ache as raízes de c que ficam entre 0 e 1 e conte quantos x de [0, 2π[ dão cada uma.",
+    "formulas": [
+     "cos(2x) = 2 cos² x − 1",
+     "cos⁶ x = (cos² x)³",
+     "0 ≤ cos² x ≤ 1"
+    ],
+    "simbolos": [
+     [
+      "c",
+      "cos² x"
+     ],
+     [
+      "[0, 2π[",
+      "de 0 (incluído) até 2π (excluído)"
+     ]
+    ]
+   },
+   "pista": "Escreva tudo em função de cos² x; o cos²(2x) também cabe nessa troca.",
+   "passos": [
+    {
+     "faz": "Troque tudo por c = cos² x",
+     "conta": "cos²(2x) = (2c − 1)² → (2c − 1)² = 3 − c³ − 5c",
+     "porque": "cos(2x) = 2c − 1 e cos⁶ x = c³.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a cúbica",
+     "conta": "4c² − 4c + 1 = 3 − c³ − 5c → c³ + 4c² + c − 2 = 0",
+     "porque": "Desenvolva o quadrado e passe tudo para a esquerda: −c³ vira +c³, −5c vira +5c e o 3 vira −3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore pela raiz c = −1",
+     "conta": "(−1)³ + 4 − 1 − 2 = 0 → (c + 1)(c² + 3c − 2) = 0",
+     "porque": "Testar ±1 e ±2 (divisores de 2) acha c = −1; a divisão dá o fator do 2º grau.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fique só com c entre 0 e 1",
+     "conta": "c = −1 (não serve) | c = (−3 ± √17)/2 → c = (√17 − 3)/2 ≈ 0,562",
+     "porque": "cos² x não é negativo, então c = −1 e c = (−3 − √17)/2 caem. Só (√17 − 3)/2 está entre 0 e 1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conte os x",
+     "conta": "cos x = ±√0,562 ≈ ±0,749 → 2 arcos para + e 2 para − → 4 soluções",
+     "porque": "Como 0 < 0,749 < 1, cada valor de cos x aparece em dois arcos de [0, 2π[. São 4: alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 4 soluções",
+   "checagem": "Pela paridade: se x é solução, 2π − x também é, e x ≠ 2π − x, pois em x = 0 ou π o cos² vale 1 ≠ 0,562. As soluções vêm em pares, o número é par. Pela calculadora: x ≈ 0,724; 2,418; 3,865 e 5,559 rad satisfazem a equação.",
+   "erradas": {
+    "A": "A sai de esquecer o ± na raiz: cos x = +0,749 dá só 2 arcos (x ≈ 0,724 e 5,559). O valor cos x = −0,749 dá outros 2.",
+    "B": "B não confere: as soluções vêm em pares (x e 2π − x são distintos, pois cos² x ≈ 0,562 ≠ 1), então o total é par.",
+    "D": "D não confere: o total é par, porque cada solução x tem a parceira 2π − x, distinta dela; 5 é ímpar.",
+    "E": "E não confere: 6 soluções exigiriam outro valor de c entre 0 e 1, mas as outras raízes da cúbica, −1 e (−3 − √17)/2 ≈ −3,56, são negativas."
+   },
+   "armadilha": "Depois de achar cos² x, a raiz dá cos x = ± √c: quem pega só o sinal + conta metade das soluções.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas soluções reais distintas a equação tem em [0, 2π[.",
+    "chave": "Com c = cos² x a equação vira (c + 1)(c² + 3c − 2) = 0; só c = (√17 − 3)/2 serve, e cos x = ±√c dá 4 arcos.",
+    "cuidado": "Descarte as raízes de c fora de [0, 1] e não esqueça o ± ao voltar para cos x."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ciclo trigonométrico",
+    "ideia": "cos x = 0,749 e cos x = −0,749 são duas retas verticais no ciclo; cada uma corta a circunferência em 2 pontos, total 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(2c − 1)² = 3 − c³ − 5c",
+    "nota": "c = cos² x e cos 2x = 2c − 1"
+   },
+   {
+    "linha": "c³ + 4c² + c − 2 = 0",
+    "nota": "tudo para a esquerda"
+   },
+   {
+    "linha": "(c + 1)(c² + 3c − 2) = 0",
+    "nota": "c = −1 é raiz"
+   },
+   {
+    "linha": "c = (√17 − 3)/2 ≈ 0,562",
+    "nota": "única raiz em [0, 1]"
+   },
+   {
+    "linha": "cos x = ±0,749 → 4 soluções",
+    "nota": "dois arcos para cada sinal"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
  }
 }

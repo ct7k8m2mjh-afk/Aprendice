@@ -1141,5 +1141,255 @@
    "data": "2026-11-19",
    "lote": "mat-0077"
   }
+ },
+ "P05a393c9": {
+  "n": "18",
+  "conceito": "Juros compostos: tempo para a dívida quadruplicar, com logaritmo decimal.",
+  "equivocos": {
+   "A": "M06.5:dividiu-pela-taxa-e-nao-pelo-log",
+   "C": "M06.5:conta-de-log-errada",
+   "D": "M06.5:conta-de-log-errada",
+   "E": "M06.5:conta-de-log-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sem pagamento, os juros de cada mês incidem sobre a dívida do mês anterior: é juro composto, e a dívida é multiplicada por 1,15 a cada mês. Quadruplicar é chegar a 4 vezes o valor inicial, então a incógnita fica no expoente e sai com logaritmo. O dado log 115 serve para obter log 1,15, que é log 115 − log 100.",
+    "formulas": [
+     "M = C · (1 + i)ⁿ",
+     "log (aⁿ) = n · log a",
+     "log (a/b) = log a − log b"
+    ],
+    "simbolos": [
+     [
+      "C",
+      "dívida inicial"
+     ],
+     [
+      "M",
+      "dívida depois de n meses"
+     ],
+     [
+      "i",
+      "taxa mensal, 15 % = 0,15"
+     ],
+     [
+      "n",
+      "número de meses"
+     ],
+     [
+      "a.m.",
+      "ao mês"
+     ]
+    ]
+   },
+   "pista": "Escreva a dívida depois de n meses como múltiplo da inicial. O log 115 dado ainda não é o que a conta usa: transforme-o.",
+   "passos": [
+    {
+     "faz": "Monte a condição de quadruplicar",
+     "conta": "C · 1,15ⁿ = 4C → 1,15ⁿ = 4",
+     "porque": "Cada mês multiplica a dívida por 1 + 0,15. O C aparece dos dois lados e se cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Obtenha log 1,15 do dado",
+     "conta": "log 1,15 = log (115/100) = log 115 − log 100 → 2,06 − 2 = 0,06",
+     "porque": "1,15 é 115 dividido por 100, e log 100 = 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique log e isole n",
+     "conta": "n · log 1,15 = log 4 → n · 0,06 = 0,60 → n = 0,60/0,06 = 10",
+     "porque": "O logaritmo traz o expoente n para a frente; depois o 0,06 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao número de meses",
+     "conta": "n = 10 meses → alternativa B",
+     "porque": "A pergunta é quantos meses, e foi isso que a conta deu.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — são necessários 10 meses.",
+   "checagem": "Dobre por etapas: 1,15⁵ ≈ 2,01, ou seja, em cerca de 5 meses a dívida dobra; quadruplicar é dobrar duas vezes, cerca de 10 meses.",
+   "erradas": {
+    "A": "4 sai de usar a taxa no lugar do logaritmo: 0,60 ÷ 0,15 = 4. Em 4 meses a dívida só vai a 1,15⁴ ≈ 1,75 vez.",
+    "C": "12 não confere: 1,15¹² ≈ 5,35, mais que 4 vezes a dívida.",
+    "D": "36 não confere: 36 · 0,06 = 2,16 = log 1,15³⁶, ou seja, pelos logs dados, a dívida multiplicada por cerca de 145, não por 4.",
+    "E": "100 não confere: 100 · 0,06 = 6, isto é, a dívida multiplicada por cerca de 10⁶."
+   },
+   "armadilha": "Usar log 115 = 2,06 direto, sem tirar log 100 = 2, ou dividir pela taxa 0,15 em vez de log 1,15.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos meses, a 15 % a.m. composto, a dívida leva para ficar 4 vezes maior.",
+    "chave": "1,15ⁿ = 4, com log 1,15 = log 115 − 2 = 0,06; n = 0,60 ÷ 0,06 = 10.",
+    "cuidado": "O logaritmo é de 1,15 (o fator), não de 115 nem da taxa 0,15."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dobrar duas vezes",
+    "ideia": "1,15⁵ ≈ 2: a dívida dobra a cada 5 meses, então quadruplica em cerca de 10."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C · 1,15ⁿ = 4C → 1,15ⁿ = 4",
+    "nota": "dívida quadruplicada"
+   },
+   {
+    "linha": "n · log 1,15 = log 4",
+    "nota": "logaritmo dos dois lados"
+   },
+   {
+    "linha": "log 1,15 = 2,06 − 2 = 0,06",
+    "nota": "log 115 − log 100"
+   },
+   {
+    "linha": "n = 0,60/0,06 = 10",
+    "nota": "isola n"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "Pd0ea9878": {
+  "n": "21",
+  "conceito": "Rotação de um ponto em torno da origem pela matriz de rotação, com ângulo no sentido horário e redução do arco a uma volta.",
+  "equivocos": {
+   "A": "M10.4:usou-giro-de-90-graus",
+   "B": "M10.4:ignorou-sentido-horario",
+   "C": "M10.4:rotacao-que-muda-a-distancia",
+   "E": "M10.4:usou-angulo-de-30-graus"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A matriz dada gira o ponto no sentido anti-horário de um ângulo θ. A questão pede o giro no sentido horário, então o ângulo entra com sinal negativo: θ = −7π/4. Antes de calcular seno e cosseno, reduza esse arco: somar uma volta inteira (2π) não muda a posição. O arco que sobra é um ângulo notável.",
+    "formulas": [
+     "x' = x·cos θ − y·sen θ",
+     "y' = x·sen θ + y·cos θ",
+     "giro horário de α = giro anti-horário de −α",
+     "arcos que diferem de 2π têm o mesmo seno e o mesmo cosseno"
+    ],
+    "simbolos": [
+     [
+      "θ",
+      "ângulo de rotação, medido no sentido anti-horário"
+     ],
+     [
+      "P'",
+      "posição do ponto P depois do giro"
+     ],
+     [
+      "rad",
+      "radiano; π rad = 180°"
+     ],
+     [
+      "sentido horário",
+      "o sentido em que andam os ponteiros do relógio"
+     ]
+    ]
+   },
+   "pista": "A fórmula só aceita ângulo anti-horário. Primeiro escreva o giro horário como ângulo negativo e reduza-o a um arco entre 0 e 2π.",
+   "passos": [
+    {
+     "faz": "Troque o giro horário por ângulo negativo",
+     "conta": "7π/4 horário → θ = −7π/4",
+     "porque": "A matriz gira no sentido anti-horário. Girar no sentido contrário é usar o mesmo ângulo com sinal trocado.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Reduza o arco somando uma volta",
+     "conta": "θ = −7π/4 + 2π → θ = π/4",
+     "porque": "Uma volta completa (2π = 8π/4) devolve o ponto ao lugar. Girar 7π/4 no sentido horário é o mesmo que girar π/4 (45°) no anti-horário.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule x' com cos e sen de 45°",
+     "conta": "x' = 1·(√2/2) − 3·(√2/2) → x' = (−2√2)/2 → x' = −√2",
+     "porque": "Em π/4 o seno e o cosseno valem √2/2, então o fator √2/2 multiplica a diferença 1 − 3 = −2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule y' do mesmo jeito",
+     "conta": "y' = 1·(√2/2) + 3·(√2/2) → y' = (4√2)/2 → y' = 2√2",
+     "porque": "Agora os dois termos se somam: 1 + 3 = 4, e 4 vezes √2/2 dá 2√2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o ponto à alternativa",
+     "conta": "P' = (−√2, 2√2) → alternativa D",
+     "porque": "As coordenadas obtidas são exatamente as da alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — P' = (−√2, 2√2)",
+   "checagem": "Rotação não muda a distância à origem: |OP| = √(1² + 3²) = √10 e |OP'| = √(2 + 8) = √10. E o produto escalar OP·OP' = 1·(−√2) + 3·2√2 = 5√2 = √10·√10·cos θ dá cos θ = √2/2, ou seja, 45°. Fecha.",
+   "erradas": {
+    "A": "(−3, 1) não confere: é P girado de π/2 (90°), pois (x, y) vira (−y, x). O giro pedido equivale a 45°, e cos 45° = √2/2, não 0.",
+    "B": "(2√2, √2) sai de ignorar a palavra horário e usar θ = 7π/4 (equivale a −45°): x' = (1 + 3)·√2/2 = 2√2 e y' = (−1 + 3)·√2/2 = √2.",
+    "C": "(√3, 3√2) não confere: a distância à origem seria √(3 + 18) = √21, mas a rotação preserva a distância √10.",
+    "E": "((√3 − 3)/2, (1 + 3√3)/2) não confere: é P girado de π/6 (30°). Com 45°, seno e cosseno valem √2/2 e não aparece √3."
+   },
+   "armadilha": "A matriz é de giro anti-horário: usar 7π/4 sem trocar o sinal leva ao ponto (2√2, √2), girado para o lado errado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As coordenadas de P(1, 3) depois de girar 7π/4 rad no sentido horário em torno da origem.",
+    "chave": "Horário vira θ = −7π/4, que equivale a π/4; com sen = cos = √2/2 sai P' = (−√2, 2√2).",
+    "cuidado": "Troque o sinal do ângulo antes de usar a matriz e reduza o arco somando 2π."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "geométrico",
+    "ideia": "Girar 7π/4 no horário é girar 45° no anti-horário; girar 45° multiplica o número complexo 1 + 3i por (√2/2)(1 + i), o que dá −√2 + 2√2 i."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "θ = −7π/4",
+    "nota": "giro horário vira ângulo negativo"
+   },
+   {
+    "linha": "θ = −7π/4 + 2π = π/4",
+    "nota": "somar uma volta não muda a posição"
+   },
+   {
+    "linha": "x' = 1·(√2/2) − 3·(√2/2) = −√2",
+    "nota": "primeira linha da matriz"
+   },
+   {
+    "linha": "y' = 1·(√2/2) + 3·(√2/2) = 2√2",
+    "nota": "segunda linha da matriz"
+   },
+   {
+    "linha": "P' = (−√2, 2√2)",
+    "nota": "alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
  }
 }

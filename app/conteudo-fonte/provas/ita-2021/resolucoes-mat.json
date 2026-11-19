@@ -624,5 +624,256 @@
    "data": "2026-11-19",
    "lote": "mat-0077"
   }
+ },
+ "Pa3738b21": {
+  "n": "47",
+  "conceito": "Equação exponencial com bases diferentes resolvida por logaritmo e localização da raiz num intervalo sem calculadora.",
+  "equivocos": {
+   "A": "M06.4:raiz-menor-que-1-impossivel",
+   "B": "M06.4:sinal-trocado-ao-isolar-x",
+   "D": "M06.4:comparacao-de-potencias-invertida",
+   "E": "M06.4:comparacao-de-potencias-invertida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As bases 7 e 59 não viram a mesma potência, então o caminho é aplicar logaritmo dos dois lados: o expoente desce e a equação vira do 1º grau em x. A questão não pede o valor exato, só o intervalo. Para decidir sem calculadora, compare potências inteiras de 7 e de 59 nos extremos do intervalo.",
+    "formulas": [
+     "log (aⁿ) = n · log a",
+     "log a > log b ⇔ a > b (base maior que 1)"
+    ],
+    "simbolos": [
+     [
+      "log",
+      "logaritmo; aqui pode ser em qualquer base maior que 1, porque a conta só compara"
+     ],
+     [
+      "t",
+      "o quociente log 7 ÷ log 59, um número entre 0 e 1"
+     ]
+    ]
+   },
+   "pista": "Tire o logaritmo dos dois lados e isole x. Depois, para testar um extremo do intervalo, troque a desigualdade em x por uma comparação entre potências de 7 e de 59.",
+   "passos": [
+    {
+     "faz": "Aplique logaritmo dos dois lados",
+     "conta": "7ˣ = 59⁽ˣ⁻¹⁾ → x · log 7 = (x − 1) · log 59",
+     "porque": "O logaritmo de uma potência traz o expoente para a frente; assim o x sai do expoente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole x",
+     "conta": "x · log 7 = x · log 59 − log 59 → x · (log 59 − log 7) = log 59 → x = (log 59)/(log 59 − log 7)",
+     "porque": "Os termos com x vão para um lado; o x · log 7 passa subtraindo e o log 59 passa somando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida tudo por log 59",
+     "conta": "x = 1/(1 − t), com t = (log 7)/(log 59) e 0 < t < 1",
+     "porque": "Como 1 < 7 < 59, log 7 é positivo e menor que log 59. Escrever x em função de t deixa cada teste de intervalo virar uma comparação simples.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste os extremos da alternativa C",
+     "conta": "x > 4/3 ⇔ t > 1/4 ⇔ 7⁴ > 59: 2401 > 59 | x ≤ 5/2 ⇔ t ≤ 3/5 ⇔ 7⁵ ≤ 59³: 16807 ≤ 205379",
+     "porque": "x = 1/(1 − t) cresce com t. Então x > 4/3 equivale a 1 − t < 3/4, e x ≤ 5/2 equivale a 1 − t ≥ 2/5. Multiplicando por log 59, cada uma vira potência contra potência.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue ao intervalo",
+     "conta": "4/3 < x ≤ 5/2 → alternativa C",
+     "porque": "As duas comparações são verdadeiras, então a raiz está no intervalo da C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a solução pertence ao intervalo (4/3, 5/2].",
+   "checagem": "Teste o sinal de 7ˣ − 59⁽ˣ⁻¹⁾ em dois pontos. Em x = 4/3, eleve ao cubo: 7⁴ = 2401 contra 59¹ = 59, o lado esquerdo ganha. Em x = 2: 7² = 49 contra 59, o direito ganha. A troca acontece entre 4/3 e 2, dentro de C. Com log 7 ≈ 0,845 e log 59 ≈ 1,771, x ≈ 1,91.",
+   "erradas": {
+    "A": "(0, 2/5] não confere: x = 1/(1 − t) com 0 < t < 1 é sempre maior que 1.",
+    "B": "(2/5, 4/3] não confere: exigiria x ≤ 4/3, isto é, 7⁴ ≤ 59, mas 7⁴ = 2401.",
+    "D": "(5/2, 10/3] não confere: exigiria x > 5/2, isto é, 7⁵ > 59³, mas 16807 < 205379.",
+    "E": "(10/3, 4] não confere: exigiria x > 10/3, isto é, 7¹⁰ > 59⁷, mas 7¹⁰ ≈ 2,8 · 10⁸ e 59⁷ ≈ 2,5 · 10¹²."
+   },
+   "armadilha": "Errar o sinal ao passar os termos com x, ou tentar calcular a raiz com logaritmos de cabeça em vez de comparar potências inteiras.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O intervalo que contém a raiz de 7ˣ = 59⁽ˣ⁻¹⁾.",
+    "chave": "Com logaritmo, x = 1/(1 − t), t = log 7 ÷ log 59; cada extremo vira uma comparação entre potências de 7 e de 59.",
+    "cuidado": "Ao multiplicar ou dividir a desigualdade, confira o sinal: log 59 e 1 − t são positivos, então nada se inverte."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "troca de sinal",
+    "ideia": "f(x) = 7ˣ − 59⁽ˣ⁻¹⁾ é positiva em x = 4/3 (7⁴ > 59) e negativa em x = 2 (49 < 59); a raiz única está entre 4/3 e 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "7ˣ = 59⁽ˣ⁻¹⁾",
+    "nota": "a equação"
+   },
+   {
+    "linha": "x · log 7 = (x − 1) · log 59",
+    "nota": "logaritmo dos dois lados"
+   },
+   {
+    "linha": "x · (log 59 − log 7) = log 59",
+    "nota": "termos com x de um lado"
+   },
+   {
+    "linha": "x = 1/(1 − t), t = (log 7)/(log 59)",
+    "nota": "divide por log 59"
+   },
+   {
+    "linha": "7⁴ = 2401 > 59 → x > 4/3",
+    "nota": "extremo esquerdo"
+   },
+   {
+    "linha": "7⁵ = 16807 ≤ 59³ = 205379 → x ≤ 5/2",
+    "nota": "extremo direito"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "P17c82bb3": {
+  "n": "45",
+  "conceito": "Com dois ângulos e um lado, achar os outros lados pela lei dos senos e o raio inscrito por área = r · semiperímetro.",
+  "equivocos": {
+   "A": "M10.2:dividiu-pelo-perimetro-inteiro",
+   "B": "M10.2:raio-inscrito-sem-a-area",
+   "C": "M10.2:raio-inscrito-sem-a-area",
+   "E": "M10.2:raio-inscrito-sem-a-area"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com um lado e os cossenos de dois ângulos, o triângulo está determinado. Os senos saem de sen² + cos² = 1, o terceiro ângulo sai de C = 180° − A − B, e a lei dos senos dá os outros dois lados. O raio inscrito vem da área: área = r · p, com p o semiperímetro.",
+    "formulas": [
+     "sen² x + cos² x = 1",
+     "sen C = sen(A + B) = sen A · cos B + cos A · sen B",
+     "lei dos senos: a/sen A = b/sen B = c/sen C",
+     "área = r · p (p = semiperímetro)"
+    ],
+    "simbolos": [
+     [
+      "Â, B̂, Ĉ",
+      "ângulos BAC, ABC e ACB"
+     ],
+     [
+      "a, b, c",
+      "lados BC, AC e AB, opostos a A, B e C"
+     ],
+     [
+      "p",
+      "semiperímetro, metade do perímetro"
+     ],
+     [
+      "r",
+      "raio da circunferência inscrita"
+     ]
+    ]
+   },
+   "pista": "Comece pelos senos dos dois ângulos dados; o terceiro ângulo é que liga tudo ao lado AB.",
+   "passos": [
+    {
+     "faz": "Ache os senos dos ângulos dados",
+     "conta": "cos A = 3/5 → sen A = 4/5 | cos B = 5/13 → sen B = 12/13",
+     "porque": "sen² + cos² = 1, com seno positivo porque ângulo de triângulo fica entre 0° e 180°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule sen C pelo seno da soma",
+     "conta": "sen C = (4/5)(5/13) + (3/5)(12/13) → sen C = 20/65 + 36/65 = 56/65",
+     "porque": "C = 180° − (A + B), e o seno de um ângulo é igual ao do seu suplemento: sen C = sen(A + B).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a lei dos senos com AB = 14",
+     "conta": "14/(56/65) = 65/4 → a = (65/4)(4/5) = 13 | b = (65/4)(12/13) = 15",
+     "porque": "AB é oposto a C; o quociente 65/4 vale para os três lados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule área e semiperímetro",
+     "conta": "p = (13 + 14 + 15)/2 = 21 → área = √(21 · 8 · 7 · 6) = 84",
+     "porque": "Fórmula de Heron com p − a = 8, p − b = 6 e p − c = 7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole o raio inscrito",
+     "conta": "84 = r · 21 → r = 84/21 = 4 → alternativa D",
+     "porque": "A área do triângulo é a soma de três triângulos de altura r com bases nos lados.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — o raio inscrito mede 4",
+   "checagem": "Pela altura relativa a AB: h = AC · sen A = 15 · 4/5 = 12, então área = (14 · 12)/2 = 84, o mesmo valor de Heron. E r = 84/21 = 4.",
+   "erradas": {
+    "A": "2 sai de dividir a área pelo perímetro inteiro: 84/42 = 2. A fórmula usa o semiperímetro, 21.",
+    "B": "2√2 não confere: r · p = 2√2 · 21 ≈ 59,4, e a área do triângulo 13-14-15 é 84.",
+    "C": "3 não confere: r · p = 3 · 21 = 63, e a área do triângulo é 84.",
+    "E": "4√2 não confere: r · p = 4√2 · 21 ≈ 118,8, bem acima da área 84."
+   },
+   "armadilha": "Área = r · p usa o semiperímetro; com o perímetro inteiro o raio sai pela metade, e 2 está nas alternativas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O raio da circunferência inscrita num triângulo com AB = 14, cos A = 3/5 e cos B = 5/13.",
+    "chave": "Senos 4/5 e 12/13, sen C = 56/65, lados 13, 14 e 15; área 84 = r · 21.",
+    "cuidado": "Use sen C = sen(A + B) e divida a área pelo semiperímetro, não pelo perímetro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "altura sobre AB",
+    "ideia": "Com h a altura de C, AH = h · 3/4 e HB = h · 5/12 somam 14h/12 = 14, logo h = 12, AC = 15, BC = 13 e r = 84/21 = 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "sen A = 4/5 | sen B = 12/13",
+    "nota": "sen² + cos² = 1"
+   },
+   {
+    "linha": "sen C = 20/65 + 36/65 = 56/65",
+    "nota": "seno da soma"
+   },
+   {
+    "linha": "2R = 14/(56/65) = 65/4",
+    "nota": "lei dos senos com AB"
+   },
+   {
+    "linha": "a = 13 | b = 15",
+    "nota": "lados opostos a A e B"
+   },
+   {
+    "linha": "84 = r · 21 → r = 4",
+    "nota": "área dividida pelo semiperímetro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
  }
 }

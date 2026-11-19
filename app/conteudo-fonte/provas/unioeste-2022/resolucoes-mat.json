@@ -311,5 +311,131 @@
    "data": "2026-11-19",
    "lote": "mat-0071"
   }
+ },
+ "Pbe0989e0": {
+  "n": "65",
+  "conceito": "Paridade, imagem e período de funções compostas f(x) = sen(cos x) e g(x) = cos(sen x).",
+  "equivocos": {
+   "A": "M10.5:par-tratada-como-inversivel",
+   "B": "M10.5:imagem-de-composta-errada",
+   "C": "M10.5:confundiu-sen-cos-com-cos-sen",
+   "D": "M10.5:periodo-de-g-estendido-a-f"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para julgar as afirmações, olhe o que acontece com x trocado por −x e com x trocado por x + π. O cosseno é par: cos(−x) = cos x. O seno é ímpar: sen(−x) = −sen x, mas ele entra dentro de um cosseno, que apaga o sinal. Um valor numérico, como x = 0, basta para derrubar as afirmações falsas.",
+    "formulas": [
+     "cos(−x) = cos x (cosseno é par)",
+     "sen(−x) = −sen x (seno é ímpar)",
+     "função par: h(−x) = h(x) para todo x",
+     "cos(x + π) = −cos x e sen(x + π) = −sen x"
+    ],
+    "simbolos": [
+     [
+      "f(x) = sen(cos x)",
+      "primeiro calcula-se cos x, depois o seno desse número"
+     ],
+     [
+      "função par",
+      "função com o mesmo valor em x e em −x"
+     ],
+     [
+      "período",
+      "o menor deslocamento T com h(x + T) = h(x) para todo x"
+     ],
+     [
+      "inversível",
+      "função que nunca repete valor e tem inversa"
+     ]
+    ]
+   },
+   "pista": "Troque x por −x dentro de cada função e veja se o sinal sobrevive à função de fora.",
+   "passos": [
+    {
+     "faz": "Teste a paridade de f",
+     "conta": "f(−x) = sen(cos(−x)) → sen(cos x) = f(x)",
+     "porque": "O cosseno é par, então cos(−x) já é igual a cos x, e o seno de fora recebe o mesmo número.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a paridade de g",
+     "conta": "g(−x) = cos(sen(−x)) = cos(−sen x) → cos(sen x) = g(x)",
+     "porque": "O seno troca o sinal, mas o cosseno de fora é par e devolve o mesmo valor para um número e para o seu oposto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Derrube A, B e C em x = 0",
+     "conta": "f(0) = sen 1 ≈ 0,841 | g(0) = cos 0 = 1",
+     "porque": "Os valores diferem, então C é falsa. Funções pares repetem valor em x e −x, logo não são inversíveis (A cai). E g atinge 1, mas f nunca passa de sen 1 < 1, então as imagens diferem (B cai).",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste o período π em f",
+     "conta": "f(x + π) = sen(cos(x + π)) = sen(−cos x) → −f(x)",
+     "porque": "Com π de deslocamento f troca de sinal; em x = 0, f(0) = sen 1 e f(π) = −sen 1. Então f não tem período π e D cai.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua pela paridade",
+     "conta": "f(−x) = f(x) e g(−x) = g(x) → alternativa E",
+     "porque": "Os dois primeiros passos mostraram que f e g são pares, que é exatamente o que diz a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — f(x) = f(−x) e g(x) = g(−x) para todo x real (as duas funções são pares)",
+   "checagem": "Teste numérico em x = 1 e x = −1: cos 1 = cos(−1) ≈ 0,540, logo f(1) = f(−1) ≈ 0,514; sen 1 ≈ 0,841 e sen(−1) ≈ −0,841, e cos(0,841) = cos(−0,841) ≈ 0,667, logo g(1) = g(−1). Fecha.",
+   "erradas": {
+    "A": "A não confere: f e g são pares, então repetem valor (f(1) = f(−1)); função que repete valor não é inversível.",
+    "B": "B não confere: cos x vai de −1 a 1, então f vai de −sen 1 ≈ −0,841 a sen 1 ≈ 0,841; já g vai de cos 1 ≈ 0,540 a 1. As imagens são diferentes.",
+    "C": "C não confere: em x = 0, f(0) = sen 1 ≈ 0,841 e g(0) = cos 0 = 1.",
+    "D": "D sai de estender a f o que vale só para g: g(x + π) = cos(−sen x) = g(x), mas f(x + π) = −f(x), e f(0) = sen 1 enquanto f(π) = −sen 1."
+   },
+   "armadilha": "g tem período π, o que torna D tentadora; mas f troca de sinal ao deslocar π, e a afirmação exige as duas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A afirmação correta sobre f(x) = sen(cos x) e g(x) = cos(sen x).",
+    "chave": "O cosseno é par: em f ele está por dentro, em g está por fora, e nos dois casos o sinal de x some.",
+    "cuidado": "Confira cada propriedade nas duas funções; uma valer só para g não basta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação numérica",
+    "ideia": "Calcule f e g em 0 e em π: f(0) = sen 1, f(π) = −sen 1, g(0) = g(π) = 1; isso derruba B, C e D, e A cai porque função par repete valor."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(−x) = sen(cos(−x)) = sen(cos x) = f(x)",
+    "nota": "cosseno par por dentro"
+   },
+   {
+    "linha": "g(−x) = cos(−sen x) = cos(sen x) = g(x)",
+    "nota": "cosseno par por fora"
+   },
+   {
+    "linha": "f(0) = sen 1 ≈ 0,841 ≠ g(0) = 1",
+    "nota": "derruba C e mostra imagens diferentes"
+   },
+   {
+    "linha": "f(x + π) = sen(−cos x) = −f(x)",
+    "nota": "f não tem período π: D cai"
+   },
+   {
+    "linha": "f e g pares → alternativa E",
+    "nota": "conclusão"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
  }
 }

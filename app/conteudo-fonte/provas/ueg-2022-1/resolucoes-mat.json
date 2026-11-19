@@ -907,5 +907,112 @@
    "data": "2026-11-19",
    "lote": "mat-0072"
   }
+ },
+ "P8a37c896": {
+  "n": "21",
+  "conceito": "Reduzir arcos à primeira volta, levar em conta o sentido horário e achar a distância angular entre os pontos.",
+  "equivocos": {
+   "B": "M10.4:errou-a-diferenca-de-arcos",
+   "C": "M10.4:arco-fora-dos-multiplos",
+   "D": "M10.4:ignorou-o-sentido-horario",
+   "E": "M10.4:olhou-so-um-ponto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na circunferência de raio 1, um arco de θ rad tem comprimento θ, então a posição de cada ponto é um arco. Tire as voltas inteiras (múltiplos de 2π) para saber onde cada ponto parou. O sentido horário é o negativo: andar 7π/6 no sentido horário leva ao mesmo lugar que andar 2π − 7π/6 no anti-horário.",
+    "formulas": [
+     "arco reduzido = arco − k · 2π",
+     "sentido horário: posição = −arco",
+     "−θ e 2π − θ marcam o mesmo ponto"
+    ],
+    "simbolos": [
+     [
+      "rad",
+      "radiano; no raio 1, o comprimento do arco"
+     ],
+     [
+      "2π",
+      "uma volta completa"
+     ]
+    ]
+   },
+   "pista": "Tire as voltas completas de cada percurso antes de comparar, e lembre qual dos dois anda no sentido negativo.",
+   "passos": [
+    {
+     "faz": "Reduza o percurso anti-horário",
+     "conta": "14π/3 − 4π → 14π/3 − 12π/3 → 2π/3",
+     "porque": "4π são duas voltas completas; o primeiro ponto para no arco 2π/3 = 4π/6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reduza o percurso horário",
+     "conta": "43π/6 − 6π → 43π/6 − 36π/6 → 7π/6 (horário)",
+     "porque": "6π são três voltas; sobram 7π/6 andados no sentido horário.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta para o sentido anti-horário",
+     "conta": "−7π/6 → 2π − 7π/6 → 5π/6",
+     "porque": "Andar 7π/6 no horário é parar no mesmo ponto do arco 5π/6 medido no sentido anti-horário.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare as posições finais",
+     "conta": "5π/6 − 4π/6 → π/6",
+     "porque": "Os pontos param em 4π/6 e 5π/6, vizinhos no ciclo, separados por π/6. É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — π/6 rad",
+   "checagem": "Em graus: 14π/3 = 840° = 2 · 360° + 120°, e 43π/6 = 1290° = 3 · 360° + 210° no sentido horário, que é o ponto de 150°. Entre 120° e 150° há 30° = π/6.",
+   "erradas": {
+    "B": "B não confere: os pontos param em 4π/6 e 5π/6; a distância entre eles é π/6, metade de π/3.",
+    "C": "C não confere: todos os percursos são múltiplos de π/6 (14π/3 = 28π/6 e 43π/6), então a distância também é; π/4 não é múltiplo de π/6.",
+    "D": "D sai de ignorar o sentido horário e marcar o segundo ponto em 7π/6 no anti-horário: 7π/6 − 2π/3 = 7π/6 − 4π/6 = π/2.",
+    "E": "E sai de olhar só o primeiro ponto: 2π/3 é a distância dele até o ponto de partida, não até o outro ponto."
+   },
+   "armadilha": "O segundo ponto anda no sentido horário: 7π/6 horário é o ponto 5π/6, não o ponto 7π/6.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A distância, em rad, entre os dois pontos depois dos percursos.",
+    "chave": "14π/3 reduz a 2π/3 e 43π/6 horário reduz a 7π/6 horário, que é 5π/6; a distância é 5π/6 − 4π/6 = π/6.",
+    "cuidado": "Tire as voltas inteiras e troque o sentido horário por 2π − arco antes de comparar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "graus",
+    "ideia": "840° anti-horário para em 120°; 1290° horário para em −210°, que é 150°; a diferença é 30° = π/6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "14π/3 − 4π = 2π/3",
+    "nota": "duas voltas a menos (anti-horário)"
+   },
+   {
+    "linha": "43π/6 − 6π = 7π/6",
+    "nota": "três voltas a menos (horário)"
+   },
+   {
+    "linha": "2π − 7π/6 = 5π/6",
+    "nota": "horário convertido para anti-horário"
+   },
+   {
+    "linha": "5π/6 − 4π/6 = π/6",
+    "nota": "distância entre os pontos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
  }
 }

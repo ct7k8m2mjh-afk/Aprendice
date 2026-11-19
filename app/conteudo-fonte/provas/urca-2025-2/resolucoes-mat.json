@@ -1362,5 +1362,134 @@
    "data": "2026-11-19",
    "lote": "mat-0077"
   }
+ },
+ "P464fe526": {
+  "n": "29",
+  "conceito": "Julgar afirmações sobre somatório de PA, PA e PG ao mesmo tempo, PA transformada por função afim e soma de PG infinita, achando a INCORRETA.",
+  "equivocos": {
+   "A": "M07.3:soma-da-pa-sem-o-termo-constante",
+   "B": "M07.1:acha-que-funcao-afim-desfaz-a-pa",
+   "C": "M07.2:pa-e-pg-ao-mesmo-tempo-nao-constante",
+   "E": "M07.1:inverso-de-pa-tomado-como-nao-pa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O comando pede a alternativa INCORRETA: quatro afirmações são verdadeiras e só uma é falsa. A afirmação que dá mais trabalho é a D, uma equação com uma PG infinita escondida: a partir do segundo termo, x + x/3 + x/9 + ... tem razão 1/3. Teste cada afirmação com a regra certa, sem pular nenhuma.",
+    "formulas": [
+     "soma da PG infinita (razão q com −1 < q < 1) = a1/(1 − q)",
+     "soma da PA = ((a1 + an) · n)/2",
+     "(a, b, c) é PA quando 2b = a + c"
+    ],
+    "simbolos": [
+     [
+      "Σ (n = 1 a 20)",
+      "soma dos termos para n indo de 1 até 20"
+     ],
+     [
+      "PA",
+      "progressão aritmética: diferença constante entre termos vizinhos"
+     ],
+     [
+      "PG",
+      "progressão geométrica: razão constante entre termos vizinhos"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ],
+     [
+      "a1",
+      "primeiro termo"
+     ],
+     [
+      "função afim",
+      "função do tipo f(x) = ax + b"
+     ]
+    ]
+   },
+   "pista": "Na alternativa D, separe o 1 do resto: a partir de x, cada parcela é a anterior dividida por 3.",
+   "passos": [
+    {
+     "faz": "Teste o somatório da alternativa A",
+     "conta": "Σ (3n + 1), n de 1 a 20: a1 = 4 | a20 = 61 → ((4 + 61) · 20)/2 = 650",
+     "porque": "As parcelas 4, 7, 10, ... formam uma PA de razão 3; a soma dá exatamente 650. A é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste B, C e E pela condição 2b = a + c",
+     "conta": "B: f(x) = ax + b preserva diferenças iguais | C: 2n = m + p e n² = mp → (m − p)² = 0 | E: multiplicando por mnp → (m, n, p)",
+     "porque": "Função afim multiplica as diferenças pelo mesmo número; PA e PG ao mesmo tempo obriga m = p e daí n = m; em E, 1/np, 1/mp, 1/mn são m, n, p divididos por mnp, logo seguem em PA. As três são verdadeiras.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Some a PG infinita da alternativa D",
+     "conta": "x + x/3 + x/9 + ... → x/(1 − 1/3) → (3x)/2",
+     "porque": "A partir de x, a razão é 1/3, que está entre −1 e 1, então a soma infinita existe e vale o primeiro termo dividido por 1 menos a razão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a equação",
+     "conta": "1 + (3x)/2 = 4 → (3x)/2 = 3 → 3x = 6 → x = 2",
+     "porque": "O 1 passa subtraindo, o 2 que divide passa multiplicando e o 3 passa dividindo. A solução é 2, e não 2/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa incorreta",
+     "conta": "x = 2 ≠ 2/3 → D é falsa → alternativa D",
+     "porque": "O comando pede a INCORRETA, e a única afirmação falsa é a D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a afirmação de que a solução de 1 + x + x/3 + x/9 + x/27 + x/81 + ... = 4 é x = 2/3; a solução verdadeira é x = 2.",
+   "checagem": "Substitua os dois valores na equação: com x = 2, 1 + (3 · 2)/2 = 1 + 3 = 4, fecha; com x = 2/3, 1 + (3 · 2/3)/2 = 1 + 1 = 2, que não é 4. A afirmação D falha.",
+   "erradas": {
+    "A": "A é verdadeira: a soma da PA 4, 7, ..., 61 dá ((4 + 61) · 20)/2 = 650. Quem a marca costuma somar 20 parcelas iguais a 3n ou esquecer o +1 de cada termo (3 · 210 = 630).",
+    "B": "B é verdadeira: com f(x) = ax + b, f(n) − f(m) = a(n − m) e f(p) − f(n) = a(p − n); diferenças iguais continuam iguais.",
+    "C": "C é verdadeira: 2n = m + p e n² = mp dão (m + p)² = 4mp, ou seja, (m − p)² = 0; logo m = p e n = m.",
+    "E": "E é verdadeira: 1/np, 1/mp, 1/mn são m/(mnp), n/(mnp), p/(mnp); como m, n, p está em PA, a sequência também está."
+   },
+   "armadilha": "O comando pede a INCORRETA, e o 1 da frente não faz parte da PG: quem soma 1 + x + x/3 + ... como uma PG só erra a equação.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A única afirmação falsa sobre PA, PG e somatório.",
+    "chave": "x + x/3 + x/9 + ... = (3x)/2, então 1 + (3x)/2 = 4 dá x = 2, e não 2/3.",
+    "cuidado": "Separe o 1 da PG e confira o comando: é a INCORRETA."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "substituição",
+    "ideia": "Ponha x = 2/3 na soma: 1 + 2/3 + 2/9 + ... = 1 + (2/3)/(1 − 1/3) = 2, não 4; D cai sem resolver a equação."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x + x/3 + x/9 + ... = x/(1 − 1/3)",
+    "nota": "soma da PG infinita de razão 1/3"
+   },
+   {
+    "linha": "x/(1 − 1/3) = (3x)/2",
+    "nota": "1 − 1/3 = 2/3; dividir por 2/3 é multiplicar por 3/2"
+   },
+   {
+    "linha": "1 + (3x)/2 = 4 → (3x)/2 = 3",
+    "nota": "o 1 passa subtraindo"
+   },
+   {
+    "linha": "3x = 6 → x = 2",
+    "nota": "o 2 passa multiplicando e o 3 dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
  }
 }

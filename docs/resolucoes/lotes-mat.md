@@ -1,6 +1,6 @@
 # Matemática (parte 1): resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 158 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 158.
+Faltam 58 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 58.
 
 ## Lotes
 
@@ -83,6 +83,8 @@ Faltam 158 questões sem resolução (fora as que estão em lote, pendentes ou c
 | mat-0075 | provas-alvo nível 7-10 | 50 | gravado | 49 | 1 | 0 |
 | mat-0076 | provas-alvo nível 7-10 | 50 | gravado | 50 | 0 | 0 |
 | mat-0077 | provas-alvo nível 7-10 | 50 | gravado | 50 | 0 | 0 |
+| mat-0078 | demais nível 7-10 | 50 | gravado | 49 | 1 | 0 |
+| mat-0079 | demais nível 7-10 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -94,6 +96,7 @@ Faltam 158 questões sem resolução (fora as que estão em lote, pendentes ou c
 | P528013c1 | PUCPR 2024 Medicina 2024/2 · questão 36 | M16.1 polinômios e relações de Girard (tema M16 Polinômios e complexos) | print: o recorte corta a 1ª equação do sistema (1/x + 1/y + 1/z = 2) e o topo da 2ª; no PDF oficial (pág. 18) o sistema tem 3 equações. Refazer o print do PDF oficial; com o PDF, a conta confere com o gabarito B (m = 1, n = 0: 1/x = 17/7, 1/y = −1/7, 1/z = −2/7, x + y + z = −343/34; det = 0 só em m = 9/2). |
 | P53f16b0b | PUCPR 2025 Medicina 2025/2 · questão 31 | M15.1 operações com matrizes (tema M15 Matrizes e determinantes) | print: o print corta a 1ª linha das duas matrizes. No PDF oficial (pág. 19) A e B têm 3 linhas: A = (1 2 3 4 ; −1 −2 −3 −4 ; 0 1 −1 2) e B = (1 0 2 1 −2 ; 2 1 0 −2 1 ; 0 −3 2 4 0). Com o print, c34 = (−3)(−2) + (−1)(4) = 2, sem alternativa; com o PDF, c34 = 3 × 1 + (−3)(−2) + (−1)(4) = 5 (C, gabarito). Refazer o print do PDF oficial. |
 | Pda63d44e | PUCPR 2026 Medicina 2026/2 · questão 35 | M11.3 pirâmides e cones (tema M11 Geometria espacial) | print: o topo da questão está cortado e os numeradores de H = 3R/2 e x = √(6πR³/V) ficam ilegíveis; conferido no PDF oficial (p. 16 do caderno-gabarito), a questão fecha com C (r² = 3R²/4, V = 3πR³/8, x = √16 = 4) — refazer o print e reenviar. |
+| P71aca1f8 | UEG 2020 2020/1 · questão 20 | M08.4 polígonos regulares (tema M08 Geometria plana — áreas) | anular: com todos os lados de 2 cm, os 16 losangos (8 rosa e 8 azuis, ângulo de 45°, já que 8 cabem em volta do centro) têm área 2 · 2 · sen 45° = 2√2 cada; com 8 quadrados (4 cada) e 8 triângulos retângulos isósceles de catetos 2 (2 cada), a área total é 32√2 + 32 + 16 = 48 + 32√2 ≈ 93,25 cm², que confere com o quadrado externo de lado 4 + 4√2: (4 + 4√2)² = 48 + 32√2. Nenhuma alternativa dá isso. O oficial A (112) só sai tratando cada losango como quadrado de área 4 (16 · 4 + 32 + 16 = 112), o que é falso. Busca na web sem errata nem anulação. |
 | Pe0819527 | UEG 2023 2023/1 · questão 20 | M15.1 operações com matrizes (tema M15 Matrizes e determinantes) | anular: duas alternativas verdadeiras. A 3ª equação (2x + 4y − 2z = 4) é o dobro da 1ª (x + 2y − z = 2), det = 0 e posto 2 com sistema compatível: há infinitas soluções (x = 3 − 2z/3, y = 5z/6 − 1/2), então a B é verdadeira; (1, 2, 3) também satisfaz as três equações (2, 7, 4), então a A (gabarito) é verdadeira. Gabarito definitivo A, sem anulação publicada; não dá para ensinar a B como errada. |
 | Peb68d097 | UEG 2024 2024/1 · questão 27 | M17.1 raciocínio lógico e dedução (tema M17 Lógica e algoritmos) | classificação: é de Física F09.2 reflexão e espelhos planos (quem se vê pelas janelas do prédio em frente usadas como espelho; leis da reflexão), está em M17.1. |
 | P151d953b | UEMA 2021 PAES · questão 29 | M14.2 leitura de tabelas e gráficos (tema M14 Estatística) | classificação: é de Física F03.5 colisões (conservação da quantidade de movimento em colisão perfeitamente inelástica), está em M14.2. A conta: Qx = 1600 · 20 = 32 000 kg·m/s; Qy = 2400 · 10 = 24 000 kg·m/s; Q = √(32 000² + 24 000²) = 40 000 kg·m/s; v = 40 000/4000 = 10 m/s (alternativa E, igual ao gabarito). |

@@ -724,5 +724,126 @@
    "data": "2026-11-19",
    "lote": "mat-0072"
   }
+ },
+ "P4196ada5": {
+  "n": "15",
+  "conceito": "Equação trigonométrica com sen⁴ x + cos⁴ x, reduzida ao arco duplo e resolvida num intervalo dado.",
+  "equivocos": {
+   "A": "M10.4:nao-dividiu-o-arco-por-2",
+   "B": "M10.4:perdeu-uma-solucao-do-intervalo",
+   "C": "M10.4:esqueceu-a-raiz-negativa",
+   "E": "M10.4:so-raiz-positiva-sem-dividir"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "sen⁴ x + cos⁴ x é o quadrado de uma soma menos o termo do meio: (sen² x + cos² x)² − 2 sen² x cos² x. Como sen² x + cos² x = 1, sobra 1 − 2 sen² x cos² x, e o produto sen x cos x é metade de sen 2x. A equação vira uma condição sobre sen 2x. O cuidado está no intervalo: se x vai de 0 a π, o arco 2x vai de 0 a 2π, e isso dobra o número de soluções.",
+    "formulas": [
+     "sen² x + cos² x = 1",
+     "sen 2x = 2 sen x cos x",
+     "sen⁴ x + cos⁴ x = 1 − 2 sen² x cos² x = 1 − (sen² 2x)/2"
+    ],
+    "simbolos": [
+     [
+      "sen⁴ x",
+      "(sen x)⁴, o seno de x elevado à quarta"
+     ],
+     [
+      "[0, π]",
+      "intervalo de 0 a π, com os extremos incluídos"
+     ],
+     [
+      "arco duplo",
+      "o arco 2x"
+     ]
+    ]
+   },
+   "pista": "Escreva sen⁴ x + cos⁴ x a partir de (sen² x + cos² x)², que vale 1.",
+   "passos": [
+    {
+     "faz": "Reescreva a soma das quartas potências",
+     "conta": "sen⁴ x + cos⁴ x = (sen² x + cos² x)² − 2 sen² x cos² x → 1 − 2 sen² x cos² x",
+     "porque": "O quadrado da soma tem o termo do meio 2 sen² x cos² x; tirando-o, sobram só as quartas potências. E sen² x + cos² x vale 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque o produto pelo arco duplo",
+     "conta": "2 sen² x cos² x = ((2 sen x cos x)²)/2 → (sen² 2x)/2",
+     "porque": "2 sen x cos x é sen 2x; elevando ao quadrado aparece 4 sen² x cos² x, por isso se divide por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para sen 2x",
+     "conta": "1 − (sen² 2x)/2 = 7/8 → sen² 2x = 1/4 → sen 2x = ±1/2",
+     "porque": "O 1 passa subtraindo (1 − 7/8 = 1/8), o 2 do denominador passa multiplicando (2 · 1/8 = 1/4) e a raiz quadrada dá os dois sinais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache 2x em [0, 2π]",
+     "conta": "sen 2x = 1/2 → 2x = π/6 ou 5π/6 | sen 2x = −1/2 → 2x = 7π/6 ou 11π/6",
+     "porque": "Como x está em [0, π], o arco 2x percorre uma volta inteira, e cada valor de seno aparece duas vezes nela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida por 2 e marque a alternativa",
+     "conta": "x = π/12, 5π/12, 7π/12, 11π/12 → alternativa D",
+     "porque": "Os quatro valores de x estão entre 0 e π, então todos entram no conjunto solução.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — {π/12, 5π/12, 7π/12, 11π/12}",
+   "checagem": "Teste x = π/12 direto: sen(π/12) ≈ 0,2588 e cos(π/12) ≈ 0,9659; as quartas potências são ≈ 0,0045 e ≈ 0,8705, que somam ≈ 0,875 = 7/8. Pela simetria x ↔ π/2 − x (troca seno e cosseno) e x ↔ π − x (só muda sinais), os outros três também valem.",
+   "erradas": {
+    "A": "{π/6, 5π/6, 7π/6, 11π/6} sai de parar nos valores de 2x e esquecer de dividir por 2. Além disso, 7π/6 e 11π/6 passam de π e nem estão no intervalo.",
+    "B": "{5π/12, 7π/12, 11π/12} não confere: falta π/12, que está em [0, π] e satisfaz a equação, pois sen(2 · π/12) = sen(π/6) = 1/2.",
+    "C": "{π/12, 5π/12} sai de tomar só sen 2x = +1/2 e esquecer a raiz negativa sen 2x = −1/2, que dá 7π/12 e 11π/12.",
+    "E": "{π/6, 5π/6} sai de usar só sen 2x = +1/2 e não dividir por 2. Teste: em x = π/6, sen⁴ x + cos⁴ x = 1/16 + 9/16 = 5/8, não 7/8."
+   },
+   "armadilha": "De sen² 2x = 1/4 saem dois sinais, e com x em [0, π] o arco 2x dá uma volta inteira: são quatro soluções, não duas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os valores de x em [0, π] com sen⁴ x + cos⁴ x = 7/8.",
+    "chave": "sen⁴ x + cos⁴ x = 1 − (sen² 2x)/2, que leva a sen 2x = ±1/2.",
+    "cuidado": "Considere os dois sinais, procure 2x em [0, 2π] e só no fim divida por 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "arco quádruplo",
+    "ideia": "Com sen² 2x = (1 − cos 4x)/2, a equação vira cos 4x = 1/2, e 4x em [0, 4π] dá π/3, 5π/3, 7π/3, 11π/3, isto é, os mesmos quatro valores de x."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "sen⁴ x + cos⁴ x = 1 − 2 sen² x cos² x",
+    "nota": "quadrado da soma menos o termo do meio"
+   },
+   {
+    "linha": "1 − (sen² 2x)/2 = 7/8",
+    "nota": "2 sen x cos x = sen 2x"
+   },
+   {
+    "linha": "sen² 2x = 2 · (1 − 7/8) = 1/4",
+    "nota": "isolar sen² 2x"
+   },
+   {
+    "linha": "sen 2x = ±1/2 → 2x = π/6, 5π/6, 7π/6, 11π/6",
+    "nota": "dois sinais, uma volta inteira"
+   },
+   {
+    "linha": "x = π/12, 5π/12, 7π/12, 11π/12",
+    "nota": "dividir por 2: alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
  }
 }

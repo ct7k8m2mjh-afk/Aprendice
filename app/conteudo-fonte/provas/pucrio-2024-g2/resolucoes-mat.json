@@ -882,5 +882,130 @@
    "data": "2026-11-19",
    "lote": "mat-0072"
   }
+ },
+ "Pf8709ca5": {
+  "n": "18",
+  "conceito": "Traduzir a razão áurea numa proporção e resolver a equação do 2º grau que ela gera, escolhendo a raiz positiva.",
+  "equivocos": {
+   "A": "M09.3:raiz-que-nao-satisfaz-a-equacao",
+   "B": "M09.3:parte-maior-que-o-todo",
+   "C": "M09.3:manteve-a-raiz-negativa",
+   "E": "M09.3:esqueceu-o-menos-b-em-bhaskara"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O enunciado já entrega a proporção: BE está para FE assim como FE está para BF. Com BE = 1 e FE = x, a parte menor é BF = 1 − x. A proporção vira uma equação do 2º grau, e só a raiz positiva e menor que 1 serve, porque x é um pedaço de um segmento de comprimento 1.",
+    "formulas": [
+     "BE/FE = FE/BF (razão áurea)",
+     "BF = BE − FE = 1 − x",
+     "x = (−b ± √Δ)/(2a), com Δ = b² − 4ac"
+    ],
+    "simbolos": [
+     [
+      "BE, FE, BF",
+      "comprimentos dos segmentos entre os pontos B, E e F"
+     ],
+     [
+      "x",
+      "comprimento de FE, a parte maior da diagonal"
+     ],
+     [
+      "Δ",
+      "discriminante, b² − 4ac"
+     ],
+     [
+      "√",
+      "raiz quadrada"
+     ]
+    ]
+   },
+   "pista": "Escreva a parte menor BF em função de x antes de montar a proporção.",
+   "passos": [
+    {
+     "faz": "Escreva os três segmentos em função de x",
+     "conta": "BE = 1 | FE = x | BF = 1 − x",
+     "porque": "F fica entre B e E, então as duas partes somam a diagonal inteira, que mede 1.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a proporção da razão áurea",
+     "conta": "1/x = x/(1 − x) → x · x = 1 · (1 − x) → x² = 1 − x",
+     "porque": "É a frase do enunciado: o inteiro está para a parte maior como a parte maior está para a menor. Multiplicando em cruz, some a fração.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe tudo para um lado",
+     "conta": "x² = 1 − x → x² + x − 1 = 0",
+     "porque": "O −x e o 1 atravessam o sinal de igual trocando de sinal; fica uma equação do 2º grau com a = 1, b = 1 e c = −1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva por Bhaskara",
+     "conta": "Δ = 1² − 4 · 1 · (−1) = 5 → x = (−1 ± √5)/2",
+     "porque": "Com Δ = 5, as duas raízes são (−1 + √5)/2 ≈ 0,618 e (−1 − √5)/2 ≈ −1,618.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descarte a raiz negativa",
+     "conta": "x = (−1 + √5)/2 ≈ 0,618 → alternativa D",
+     "porque": "Comprimento não pode ser negativo; e 0,618 é maior que a metade de 1, como deve ser a parte maior.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — x = (−1 + √5)/2",
+   "checagem": "Substitua o valor: x ≈ 0,618 e 1 − x ≈ 0,382. Então 1/x ≈ 1,618 e x/(1 − x) ≈ 0,618/0,382 ≈ 1,618. As duas razões são iguais: é o número de ouro.",
+   "erradas": {
+    "A": "√2/2 ≈ 0,707 não confere: na equação, x² + x − 1 = 0,5 + 0,707 − 1 ≈ 0,207, e não zero.",
+    "B": "(1 + √2)/2 ≈ 1,207 não confere: é maior que 1, e FE é só um pedaço da diagonal BE, que mede 1.",
+    "C": "(−1 − √5)/2 é a outra raiz de x² + x − 1 = 0, mas vale ≈ −1,618: negativo não pode ser comprimento.",
+    "E": "√5/2 sai de esquecer o −b na fórmula: (0 + √5)/2. Vale ≈ 1,118, maior que a diagonal inteira."
+   },
+   "armadilha": "A equação tem duas raízes; a negativa, (−1 − √5)/2, também está nas alternativas e precisa ser descartada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O comprimento x de FE, a parte maior da diagonal BE = 1.",
+    "chave": "1/x = x/(1 − x) dá x² + x − 1 = 0, cuja raiz positiva é (−1 + √5)/2.",
+    "cuidado": "Escreva BF = 1 − x e descarte a raiz negativa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Só D é positiva, menor que 1 e zera x² + x − 1: 0,382 + 0,618 − 1 = 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1/x = x/(1 − x)",
+    "nota": "proporção da razão áurea"
+   },
+   {
+    "linha": "x² = 1 − x",
+    "nota": "multiplicação cruzada"
+   },
+   {
+    "linha": "x² + x − 1 = 0",
+    "nota": "1 − x passa para o outro lado"
+   },
+   {
+    "linha": "Δ = 1 + 4 = 5",
+    "nota": "discriminante"
+   },
+   {
+    "linha": "x = (−1 + √5)/2 ≈ 0,618",
+    "nota": "raiz positiva; a negativa não serve"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
  }
 }

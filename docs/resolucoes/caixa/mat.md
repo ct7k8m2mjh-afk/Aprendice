@@ -379,3 +379,28 @@ Lotes abertos: nenhum. Testes (após mat-0075): 786 passed, tsc OK. Site conferi
 Gabarito do Aprendice nesta vez (4; resolvedor e conferente às cegas iguais ao preliminar): Pbbeb215d D, P9a25175b B, Pd2fe7a55 D, P5ba993c0 E.
 Pendências: ANULAR Pb279b256 (Unesp 2020, quilates em massa: dá A, não C), ANULAR P6fc4c995 (dados incompatíveis com a reta pelo incentro); PRINT Pbbeb215d (Acafe 2022 Verão q28: topo cortado, falta x − y + 1 ≥ 0); GABARITO Pb9eee94f (PUC-Campinas 2027 q27: conferir o definitivo); RECLASS e DADO nos blocos acima.
 Próximo: `lote.py proximo mat 50 --novo --parte 1`. Faltam 158 questões na parte 1 (295 em Matemática).
+
+## 2026-11-19 19:01 UTC — PENDÊNCIAS mat-0078 — session_01PveEKX1qHQh5Qz4UFj3KyL
+Gabarito do Aprendice (resolvedor = conferente às cegas = preliminar): P369ac62b B, Pe9cd1f75 D, P38d0f2f7 C, P697ff0a6 A, P82295c8b D, P37a5169b C, Pe922fcad E.
+DADO Ped68225b (UEMA PAES 2026 q50): texto_da_prova "jmin(n)=un+ v" -> "jmin(n) = u^n + v" (u no expoente)
+DADO P464fe526 (URCA 2025.2 q29): alternativas A, D, E embaralhadas -> A "Σ de n=1 a 20 de (3n + 1) = 650"; D "A solução da equação 1 + x + x/3 + x/9 + x/27 + x/81 + ··· = 4 é x = 2/3"; E "Se (m, n, p) é PA, então (1/np, 1/mp, 1/mn) também é PA"
+DADO Pe809b308 (Unifor 2026.2 q11): alternativas sem √3 e E com lixo colado -> A "28.000√3", B "96.000√3", C "200.000√3", D "280.000√3", E "320.000√3"
+RECLASS Pc6d9a1b4 M07.4 -> M07.3 (URCA 2023.1 q23: soma de PG infinita dos comprimentos)
+RECLASS P1fdc78bb M07.1 -> M07.4 (UEMA PAES 2026 q47: recorrência de ternas em que a soma dobra a cada termo, não é PA)
+ANULAR P71aca1f8: com lados de 2 cm, os 16 losangos de 45° têm 2√2 cm² cada; área total 48 + 32√2 ≈ 93,25 cm², fora das alternativas; o oficial A (112) só sai contando cada losango como quadrado de 4 cm²; sem errata/anulação na web
+DADO P17fd06a9 (UEG 2024/2 q18): texto_da_prova/alternativas -> fórmula A = (b − a)·h − ((b − t)³)/3 + ((a − t)³)/3, com t, b, a e h; alternativas A (4 + 2a³)/(3a), B 12/a, C (12 + a³)/(6a), D 2/a, E (6 + a³)/(3a)
+DADO Pdc0be22e (UEG Medicina 2024/2 q19): texto_da_prova -> "perímetro 256/27 cm"; alternativa E -> "7"
+RECLASS Pdc0be22e M08.5 -> M07.4 (UEG Medicina 2024/2 q19: perímetro do floco de Koch, padrão fractal/PG, não é área)
+RECLASS P72fb3c16 M09.4 -> M09.5 (ITA 2020 q46: ângulos em triângulos isósceles formados por raios e ângulo externo, sem relação métrica)
+RECLASS P9e33892e M10.3 -> M12.1 (UEG 2026/1 q20: distância entre dois pontos do plano cartesiano com escala, sem lei dos cossenos)
+RECLASS Pb8682fd2 M10.3 -> M10.1 (UEG Medicina 2026/1 q22: retângulo auxiliar e tangente de θ em triângulo retângulo, sem lei dos cossenos)
+DADO Pfa918462 (UEG 2020/1 q23): alternativas -> A 3,68π m³ | B 1,472π m³ | C 1,84π m³ | D 3,3856π m³ | E 4,232π m³
+DADO P34458029 (PUCPR Medicina 2024/1 q36): alternativas -> A 9π dm³ | B 12π dm³ | C 36π dm³ | D 54π dm³ | E 108π dm³
+DADO Pd0ea9878 (UEG 2022/2 q21): alternativas -> A (−3, 1) | B (2√2, √2) | C (√3, 3√2) | D (−√2, 2√2) | E ((√3 − 3)/2, (1 + 3√3)/2)
+DADO P4196ada5 (UFRR 2022 q15): alternativas -> A {π/6, 5π/6, 7π/6, 11π/6} | B {5π/12, 7π/12, 11π/12} | C {π/12, 5π/12} | D {π/12, 5π/12, 7π/12, 11π/12} | E {π/6, 5π/6}
+RECLASS Pfa918462 M11.1 -> M11.2 (UEG 2020/1 q23: volume de cilindro)
+RECLASS P34458029 M11.2 -> M11.4 (PUCPR Medicina 2024/1 q36: esfera circunscrita ao octaedro)
+DADO P8a37c896 (UEG 2022/1 q21): alternativas -> a) π/6 rad, b) π/3 rad, c) π/4 rad, d) π/2 rad, e) 2π/3 rad (vazias na entrada)
+DADO P8e9d8143 (Cederj 2023.2 q34): alternativas -> A √((2 − √3)/2), B −√((2 − √3)/2), C (√(2 − √3))/2, D −(√(2 − √3))/2
+DADO P68e93fb6 (Cederj 2025.1 q36): alternativas -> A −7/5, B −1/5, C 1/5, D 7/5
+DADO P947f7dc9 (ITA 2020 q47): texto_da_prova -> "Seja a um número real satisfazendo 0 < a < π/2. Então, a soma de todos os valores de x ∈ [0, 2π] que satisfazem a equação cos x sen(a + x) = sen a é igual a"; alternativas: A 5π + 2a, B 5π + a, C 5π, D 5π − a, E 5π − 2a

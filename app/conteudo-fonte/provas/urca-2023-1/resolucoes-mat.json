@@ -1143,5 +1143,119 @@
    "data": "2026-11-19",
    "lote": "mat-0072"
   }
+ },
+ "Pc6d9a1b4": {
+  "n": "23",
+  "conceito": "Reconhecer que os comprimentos sucessivos dos intervalos formam uma PG de razão 1/2 e somar a PG infinita.",
+  "equivocos": {
+   "B": "M07.3:soma-comecando-no-termo-errado",
+   "C": "M07.3:termo-no-lugar-da-soma",
+   "D": "M07.3:termo-no-lugar-da-soma",
+   "E": "M07.3:termo-no-lugar-da-soma"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada ponto é o meio do intervalo anterior começando em 0, então cada comprimento é a metade do anterior. Os comprimentos li formam uma PG de razão 1/2, e a soma pedida é a soma infinita dessa PG.",
+    "formulas": [
+     "soma da PG infinita (−1 < q < 1) = a1/(1 − q)",
+     "ponto médio de [0, a] = a/2"
+    ],
+    "simbolos": [
+     [
+      "xi",
+      "ponto i da sequência, dentro de [0, 1]"
+     ],
+     [
+      "li",
+      "comprimento do intervalo [0, xi], igual a xi"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ],
+     [
+      "a1",
+      "primeiro termo da PG"
+     ]
+    ]
+   },
+   "pista": "Escreva x1, x2, x3 como números e veja o que acontece de um para o outro.",
+   "passos": [
+    {
+     "faz": "Calcule os primeiros pontos",
+     "conta": "x1 = 1/2 | x2 = 1/4 | x3 = 1/8 | x4 = 1/16",
+     "porque": "O meio de [0, a] é a/2, então cada ponto é a metade do anterior.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue cada comprimento ao ponto",
+     "conta": "li = xi − 0 = xi → l1 = 1/2, l2 = 1/4, l3 = 1/8",
+     "porque": "O intervalo [0, xi] começa em 0, então seu comprimento é o próprio xi.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some a PG infinita",
+     "conta": "a1 = 1/2 | q = 1/2 → (1/2)/(1 − 1/2) = (1/2)/(1/2) = 1",
+     "porque": "A razão 1/2 está entre −1 e 1, então a soma infinita existe; dividir 1/2 por 1/2 dá 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "l1 + l2 + ... = 1 → alternativa A",
+     "porque": "A pergunta é a soma de todos os comprimentos, e não um comprimento só.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — a soma é 1.",
+   "checagem": "Pense no segmento [0, 1]: l1 = 1/2 ocupa metade dele, l2 = 1/4 metade do que faltava, l3 = 1/8 metade do resto, e assim por diante; o que falta para 1 cai à metade a cada passo e tende a zero, então a soma tende a 1.",
+   "erradas": {
+    "B": "1/2 sai de parar no primeiro comprimento, l1 = 1/2, ou de somar a partir de l2: 1/4 + 1/8 + ... = 1/2. A soma pedida começa em l1.",
+    "C": "1/4 não confere: 1/4 é só l2, e a soma já passa de l1 = 1/2 sozinho.",
+    "D": "1/8 não confere: 1/8 é só l3, e a soma já passa de l1 = 1/2 sozinho.",
+    "E": "1/16 não confere: 1/16 é só l4, e a soma já passa de l1 = 1/2 sozinho."
+   },
+   "armadilha": "Confundir um termo da sequência com a soma infinita: a soma começa em l1 = 1/2 e soma todas as metades seguintes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma infinita dos comprimentos l1 + l2 + l3 + ...",
+    "chave": "li = 1/2^i forma uma PG de razão 1/2; a soma é (1/2)/(1 − 1/2) = 1.",
+    "cuidado": "O primeiro termo é 1/2, não 1: o primeiro ponto já é o meio de [0, 1]."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "o que falta",
+    "ideia": "Depois de n termos falta 1/2^n para chegar a 1; esse resto vai a zero, então a soma é 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x1 = 1/2 → x2 = 1/4 → x3 = 1/8",
+    "nota": "cada ponto é metade do anterior"
+   },
+   {
+    "linha": "li = xi",
+    "nota": "o intervalo começa em 0"
+   },
+   {
+    "linha": "S = (1/2)/(1 − 1/2)",
+    "nota": "PG infinita, a1 = 1/2 e q = 1/2"
+   },
+   {
+    "linha": "S = (1/2)/(1/2) = 1",
+    "nota": "o 1/2 se cancela"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
  }
 }
