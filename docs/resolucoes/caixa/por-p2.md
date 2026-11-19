@@ -89,5 +89,5 @@ DADO Pb3f5737a (UNIRG 2021/2 Paraíso q11): texto_da_prova -> palavras separadas
 ## 2026-11-19 18:00 UTC — FIM — sessão por-p2 (session_01PveEKYkycZkrPrW3hd17Vg)
 Lotes gravados nesta sessão: por-p2-0001 (49 ok, 1 pendente), por-p2-0002 (50 ok), por-p2-0003 (48 ok, 1 pendente, 1 divergência), por-p2-0004 (50 ok). Total: 197 resoluções. Nenhum lote aberto.
 Pendentes: P6c2f77f0 (ANULAR, UFT 2024/1 q7), Pcfeab3fb (ANULAR, Fema 2021 q23). Divergência: P2b2aa288 (UFRR 2026 PI q9, D × preliminar A; possível anulação não confirmada).
-Conferência no site (3 questões, 1280 e 390 px): OK. tsc: OK; vitest: ver aviso se houver.
+Conferência no site (3 questões, 1280 e 390 px): OK. tsc: OK; vitest: 786 passed.
 A seguir: próxima sessão continua com lote.py proximo por 50 --novo --parte 2 (faltam 533 questões na parte 2).
