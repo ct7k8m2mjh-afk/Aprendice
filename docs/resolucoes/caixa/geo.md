@@ -259,3 +259,25 @@ RECLASS P9ef26cb3 G06.6 -> G07.4 (UNIRG 2027/1 q43: segregação socioespacial; 
 DADO P57b2db70: alternativas -> B e D trazem hifenização partida da camada de texto ("equi­ dade", "próxi­ mos", "ou­ tros"); no print: "equidade", "próximos", "outros" (Unioeste 2021 q23)
 OUTRA P9ef26cb3: sem gabarito publicado; busca na web não achou gabarito nem resolução da UNIRG 2027/1 q43 (fontes_web vazio); letra do resolvedor B
 DADO Peb94e0d6: texto_da_prova e alternativas -> "Genoc´ıdio" e acentos quebrados da extração; no print "Genocídio"
+
+## 2026-11-19 17:29 UTC — PENDENCIAS — sessão geo (19/11, 3ª)
+Lote gravado: geo-0053 (50 resoluções; 2 com gabarito do Aprendice, letras iguais às cegas e ao preliminar: Pbbc27a84 A, Pf22c96bb B). Pendentes: nenhuma.
+DADO P8e39b1f5: texto_da_prova -> falta o diálogo da charge (Cederj 2026.2 q21): 1º quadro "ASSUME A DIREÇÃO, QUE VOU DESCANSAR UM POUQUINHO!"; 2º quadro "POXA, COCHILEI SÓ 5 MINUTOS E JÁ ESTAMOS EM OUTRO PLANETA?" / "NÃO, AINDA É O MESMO!"
+RECLASS P8e39b1f5 G07.1 -> G07.4
+DADO Pb3f9bc80: alternativas -> campo ausente na entrada (UFJF PISM III 2020 q34); no print: A "Na atual fase do capitalismo, o progresso tecnológico garante à população mundial o acesso irrestrito à informação de base confiável." B "Os direitos humanos não deveriam ser um tema debatido pela Organização das Nações Unidas, pois estes são assegurados às populações no interior de cada país-membro da organização." C "Os discursos de ódio e as informações falsas difundidos por algumas empresas de tecnologia digital não devem ser temas de preocupação para a Organização das Nações Unidas." D "Em função dos avanços tecnológicos dos setores de informática e comunicação, as informações falsas não influenciam a opinião das pessoas sobre determinado tema." E "A liberdade de expressão é fundamental para o estabelecimento da dignidade, do diálogo, da democracia e do respeito às diferenças de gênero, etnia e crença."
+RECLASS Pb3f9bc80 G07.1 -> G10.1
+DADO P3ef51ce5: alternativas.C -> "Evita, efetivamente, o fenômeno da segregação socioespacial." (hífen de quebra de linha); alternativas.D -> "...regiões metropolitanas." (hífen de quebra de linha); alternativas.E -> "veículos" (acento corrompido "ve´ıculos")
+OUTRA Pedd2e657: print da Unitins 2024/2 q24 tem uma linha cortada/sobreposta logo abaixo de "apresenta" (texto legível, sem impacto na resposta).
+RECLASS P00d382f8 G07.2 -> G12.4 (PUC-Rio 2024 G4, q42/caderno 32: mapa de esgotamento sanitário na RM do Rio; é saneamento, não rede urbana)
+RECLASS P772bc208 G07.2 -> G11.1 (PUC-Rio 2025 G4, q43/caderno 33: Rio vira estado da Guanabara em 1960; formação territorial)
+RECLASS Pa36956a9 G07.2 -> G07.5 (FMJ 2024, q24: cidades inteligentes; ambiente urbano, não rede urbana)
+OUTRA Pb2abde02 (Cederj 2022.1, q23): o texto de apoio no print cita como fonte o site Brasil Escola (brasilescola.uol.com.br); questão é de prova real, mas o nome do site didático aparece no print — o dono decide se mantém.
+OUTRA P1d5759d6 (UNIRG 2020/1, q32): a prova grafa "Terezina" (alternativa D); registrado no alerta, sem efeito na resposta.
+DADO P6218b784: alternativas.E -> o título do gráfico ("GOIÁS – POPULAÇÃO URBANA E POPULAÇÃO RURAL -") veio colado no fim da alternativa E; no print (UEG 2021/2, q46) a E termina em "criou vários postos de trabalho no espaço urbano."
+DADO P2757650d: texto_da_prova -> camada de texto com acento quebrado ("pa´ıs", "Dispon´ıvel"); no print (URCA 2026.1, q79) está "país" e "Disponível".
+RECLASS Pe69b8791 G07.3 -> G07.1 (UEG Medicina 2024/2, q37: definição de conurbação/metropolização)
+RECLASS P60919dde G07.3 -> G09.3 (UEG 2024/1, q48: ramo da primeira industrialização paulista, têxtil)
+RECLASS P4200703c G07.3 -> G07.2 (UFRR 2024, q42: megarregião Rio–SP, rede urbana e cidades médias)
+RECLASS P2757650d G07.3 -> G06.4 (URCA 2026.1, q79: fluxo migratório inter-regional Nordeste → Sudeste)
+OUTRA P5320383c: UEG 2025/1, q48 — alternativa D (crescimento relativo maior em cidades pequenas e médias nos anos 1980) é defensável pela literatura; resolvida com a oficial A e explicada no alerta.
+RECLASS P4b71dcc1 G07.3 -> G07.4 (Unicentro 2023 q55: afirmativas I-III tratam de segregação, moradia precária e áreas de risco; resolvida com G07.4 nos equivocos)

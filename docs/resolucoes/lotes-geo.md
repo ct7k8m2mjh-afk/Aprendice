@@ -1,6 +1,6 @@
 # Geografia: resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 687 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 526; ENEM nível 7-10 21; provas-alvo nível 7-10 91; demais nível 7-10 49.
+Faltam 637 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 476; ENEM nível 7-10 21; provas-alvo nível 7-10 91; demais nível 7-10 49.
 
 ## Lotes
 
@@ -58,7 +58,8 @@ Faltam 687 questões sem resolução (fora as que estão em lote, pendentes ou c
 | geo-0050 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | geo-0051 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | geo-0052 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
-| geo-0053 | demais nível 1-6 | 50 | aberto |  |  |  |
+| geo-0053 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
+| geo-0054 | demais nível 1-6 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
