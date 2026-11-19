@@ -4,13 +4,13 @@ import { EH_PREVIA, useMateria } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
 import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
 import { cartoesAtivos } from '../logica/estatisticas';
-import { agendaDe, flashVencido, marcaFlash } from '../logica/revisao';
+import { agendaDe, emDias, flashVencido, marcaFlash } from '../logica/revisao';
 import { Barra, Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { Icone, type NomeIcone } from '../ui/Icone';
 import { IcTema } from '../ui/IconeTema';
 import { BotaoTelaCheia } from '../ui/QuestaoCartao';
 import { FlashcardView, type Nota } from '../ui/Cartoes';
-import { CabMateria, subMateria } from './Materia';
+import { CabMateria, FaixaTemas, subMateria } from './Materia';
 import type { Flashcard, MateriaId } from '../dados/tipos';
 
 const N_SESSAO = 20;
@@ -54,6 +54,26 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
   if (!mc) return <div className="conteudo"><Carregando /></div>;
   const info = infoMateria(m)!;
 
+  // matéria ainda sem cartões (a fábrica está criando; revisão de 19/11/2026, item 6): aviso honesto, nunca "Volte amanhã"
+  if (!todos.length) return (
+    <div className={`conteudo m-${m}`}>
+      <CabMateria m={m} nome={info.nome} titulo={false} sub={subMateria(mc.conteudo.modulos.length, mc.banco.length === 0)} />
+      <FaixaTemas mc={mc} s={s} compacta />
+      <section className="bloco preparo">
+        <span className="preparo-ic" aria-hidden><Icone nome="cartas" tam={28} /></span>
+        <h2>Flashcards de {info.nome} em preparação</h2>
+        <p className="miolo">Os cartões desta matéria estão sendo escritos e conferidos pela banca de especialistas. Eles entram no site só depois de passar por todas as revisões.</p>
+        <div className="preparo-acoes"><Link to={`/m/${m}`} className="btn sec">Voltar para {info.nome}</Link></div>
+      </section>
+    </div>
+  );
+  // quando volta o próximo cartão já visto (o "Volte …" só com a data certa)
+  const proxVence = (est: typeof s) => {
+    const l = ativos.map((c) => est.flash[c.id]).filter((x) => x?.hist?.length).map((x) => x!.vence);
+    return l.length ? Math.min(...l) : null;
+  };
+  const voltaTxt = (est: typeof s) => { const v = proxVence(est); return v ? `O próximo cartão que você já viu volta ${emDias(v)}.` : 'Não há cartões ativos agora.'; };
+
   if (!sessao) {
     // lista (sistema do protótipo): cabeçalho da matéria, capa lavada com os números e Começar, folha "Área" e folha "Tema"
     const areas = mc.conteudo.areas.filter((a) => ativos.some((c) => a.mods.includes(c.mod)));
@@ -71,6 +91,8 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
     return (
       <div className={`conteudo m-${m}`}>
         <CabMateria m={m} nome={info.nome} titulo={false} sub={subMateria(mc.conteudo.modulos.length, mc.banco.length === 0)} />
+        {/* faixa de temas sempre no topo da matéria (CLAUDE.md; revisão de 19/11/2026, item 14) */}
+        <FaixaTemas mc={mc} s={s} compacta />
         <section className="tp-capa fl-capa" aria-labelledby="fl-tit">
           <div className="fl-capa-g">
             <div className="fl-capa-txt">
@@ -87,7 +109,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
             <button className="btn tp-comecar" disabled={!nSessao} onClick={() => nav(`/m/${m}/flashcards/sessao${params ? `?${params}` : ''}`)}>
               <Icone nome="cartas" /> {venc ? 'Revisar agora' : novos ? 'Começar' : 'Tudo em dia'}
             </button>
-            <p className="tp-comp num">{nSessao ? `${plural(nSessao, 'cartão', 'cartões')} nesta sessão` : 'Volte amanhã para a revisão dos que você já viu.'}</p>
+            <p className="tp-comp num">{nSessao ? `${plural(nSessao, 'cartão', 'cartões')} nesta sessão` : voltaTxt(s)}</p>
           </div>
         </section>
         {areas.length > 1 && (
@@ -100,7 +122,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
           </section>
         )}
         <section className="tp-bloco fl-bloco" aria-labelledby="fl-tema">
-          <h2 className="tp-h" id="fl-tema">Tema <small>{mod ? mc.conteudo.modulos.find((x) => x.id === mod)?.nome : 'todos'}</small></h2>
+          <h2 className="tp-h" id="fl-tema">Tema <small>{mod ? mc.conteudo.modulos.find((x) => x.id === mod)?.nome : 'Todos os temas'}</small></h2>
           <div className="fl-temas" role="group" aria-label="Filtrar por tema">
             <button className="fl-tema" aria-pressed={!mod} onClick={() => setMod('')}>
               <span className="fl-tema-ic"><Icone nome="camadas" /></span>
@@ -125,7 +147,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
 
   const ids = montada;
   if (!ids.length) return (
-    <div className={`conteudo estreito m-${m}`}><div className="vazio"><h3>Nenhum cartão para agora</h3><p>Volte amanhã para a revisão dos que você já viu.</p><Link to={`/m/${m}/flashcards`} className="btn sec">Voltar</Link></div></div>
+    <div className={`conteudo estreito m-${m}`}><div className="vazio"><h3>Nenhum cartão para agora</h3><p>{voltaTxt(pegaEstado().materias[m] || s)}</p><Link to={`/m/${m}/flashcards`} className="btn sec">Voltar</Link></div></div>
   );
   const fim = i >= ids.length;
   if (fim) {

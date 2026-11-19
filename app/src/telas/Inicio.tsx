@@ -229,6 +229,9 @@ export function Inicio() {
   const todas = useTodasMaterias();
   if (!todas) return <div className="conteudo"><Carregando /></div>;
   const ultima: MateriaId = (e.pref.ultimaMateria as MateriaId) || ondeParou(todas, e)?.m || 'bio';
+  // atalho dos flashcards: a última matéria, se ela já tem cartões; senão a primeira que tem (revisão de 19/11/2026, item 6)
+  const temFlash = (id: MateriaId) => { const mc = todas.find((x) => x.id === id); return !mc || mc.conteudo.flash.length + mc.conteudo.flashImg.length > 0; };
+  const comFlash: MateriaId = temFlash(ultima) ? ultima : todas.find((x) => x.conteudo.flash.length + x.conteudo.flashImg.length > 0)?.id || 'bio';
   return (
     <div className="conteudo inicio-novo">
       <header className="in-cab">
@@ -245,7 +248,7 @@ export function Inicio() {
         <HoraDeRevisar todas={todas} e={e} />
       </div>
       <nav className="in-atalhos" aria-label="Atalhos">
-        <Link to={`/m/${ultima}/flashcards`} className="in-atalho">
+        <Link to={`/m/${comFlash}/flashcards`} className="in-atalho">
           <span className="in-at-ic" aria-hidden><Icone nome="cartas" tam={30} /></span>
           <span className="in-at-txt"><b>Flashcards</b><small>Revise conceitos em poucos minutos</small></span>
           <Icone nome="seta" tam={24} className="in-at-seta" />

@@ -127,8 +127,10 @@ export function Revisao() {
 
       {aba === 'flash' && (
         <div className="grade g2">
+          {/* só as matérias que já têm cartões (revisão de 19/11/2026, item 6) */}
           {MATERIAS_ATIVAS.map((m) => {
-            const x = porMat.find((y) => y.mc.id === m.id)!;
+            const x = porMat.find((y) => y.mc.id === m.id);
+            if (!x || !(x.mc.conteudo.flash.length + x.mc.conteudo.flashImg.length)) return null;
             return (
               <Link key={m.id} to={`/m/${m.id}/flashcards`} className={`cartao-obj m-${m.id}`}>
                 <span className="mini"><Icone nome="cartas" /></span>
