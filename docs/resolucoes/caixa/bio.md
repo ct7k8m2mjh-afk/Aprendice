@@ -151,3 +151,15 @@ Nesta sessão: bio-0064 (53 ok, 7 pendentes), bio-0065 (58 ok, 2 pendentes), bio
 Testes depois do bio-0065: converte + tsc + vitest verdes (786 passed). Site local: P8cc9c6a8, Pc8c0bdc2 e P8b8ff908 abertos, 4 blocos completos e animação até o fim, sem erro no console.
 Status bio (lote.py status): 527 faltam.
 Observação: muitas questões da faixa B09.6/B10.x estão classificadas no conteúdo errado (ver as linhas RECLASS); vale uma revisão de classificação dessa faixa.
+
+## 2026-11-19 UTC — PENDENCIAS — session_01PveEKY2istqnzKBoRGFXC5
+Lote bio-0067 gravado (50 ok, 0 pendentes). 3 sem gabarito publicado com Gabarito do Aprendice (resolvedor = conferente às cegas = preliminar): P0f0e8323 D, P834f4380 A, P409aa24f C.
+DADO P47fefe78: alternativas.D -> sem o "19" (número da página); no print termina em "adoecimento."
+DADO P834f4380: texto_da_prova e alternativas -> acentos normais como no print ("saúde pública", "multiplicação", "vírus"); tirar o "**/2027.1)" a mais do começo
+DADO P0ad523bf: alternativas -> não vieram na entrada; estão coladas no texto_da_prova (A variações genéticas dirigidas pelo ambiente; B origem da vida; C uso e desuso; D fixidez das espécies; E mutação aleatória e recombinação)
+DADO Pabc46fd2: texto_da_prova -> sem o "18" do fim (número da página)
+RECLASS P451ab74a B11.1 -> B11.3
+RECLASS Pf3c86bcb B11.2 -> B11.1
+RECLASS P409aa24f B11.1 -> B12.6
+RECLASS Pff6b9820 B11.2 -> B09.4
+RECLASS P1288366d B11.2 -> B11.1
