@@ -364,3 +364,66 @@ figura nenhuma: é só texto, e as cinco têm `texto_da_prova`. Pelo princípio 
 questão de prova só de texto deve aparecer **escrita**, copiada da camada de
 texto da prova, não como print. Não é defeito da resolução; é do levantamento
 da prova.
+
+## 2026-11-19 22:15 UTC — PENDENCIAS (lote por-0106) — session_01PveEKX1JnJpMCfgHmpRupU
+
+50 resoluções gravadas em 18 provas, **zero pendentes e zero divergências** — o
+primeiro lote assim. 60 achados de três conferentes e 11 patches do agente de
+obras, todos aplicados. 19 fontes acadêmicas novas em 7 questões.
+
+### RECLASS: 12 questões classificadas pelo assunto do texto, não pelo que cobram
+
+Dois agentes abriram o print de cada uma e decidiram em separado. Em todas
+estas o **prefixo dos equívocos está certo** (é o conteúdo que o aluno precisa
+rever) e a **classificação da questão** é que erra. Os prefixos ficaram onde
+estão; a reclassificação é da coordenação.
+
+| Questão | Prova | Hoje | Deveria ser | Por quê |
+|---|---|---|---|---|
+| P23d99f05 | UDESC 2024.2 q50 | P03.2 gêneros jornalísticos | **P01.2** explícito × inferência | É um conto de Alê Motta, não notícia nem editorial; o que separa as alternativas é o dito × o inferido |
+| Pd5c729d0 | UDESC 2024.2 q48 | P03.2 | **P04.1** referência e substituição | Uma crônica de Rubem Braga; o que decide é achar referentes ("cujo", "destes" = os Estados) |
+| P497ef33d | UDESC 2024.2 q49 | P03.2 | **P03.1** tipos textuais | Conto de Alê Motta; as proposições julgam a construção narrativa |
+| Pa8250845 | UEL 2022 q42 | P03.2 | **P07.3** verbo: tempo, modo, aspecto | Crônica de Scliar só como suporte; as quatro afirmativas julgam tempos verbais |
+| P930b3687 | PUC-SP 2024 Verão q44 | P12.2 Modernismo de 1922 | **P01.4** finalidade e interlocutor | Mário de Andrade é só o autor do texto; o comando pede o recurso que envolve o leitor (o "você") |
+| P25f6f6ef | ENEM 2020 q41 | P12.1 Pré-Modernismo | **P05.4** variação, registro e adequação | O comando pergunta por que a petição do Policarpo usa a norma-padrão |
+| Pb5f2a603 | PUC-SP 2026 q43 | P11.4 Parnasianismo e Simbolismo | **P01.1** tema, tese e ideia principal | A classificação veio do sobrenome: o simbolista é o pai, Alphonsus de Guimaraens; João Alphonsus é prosador modernista |
+| Pf811f664 | UEL 2022 q40 | P12.4 Geração de 45 | **P05.4** | As afirmativas julgam oralidade, variedade do grupo social e preconceito linguístico |
+| P568ad8ee | UFPR 2025 q67 | P12.4 Geração de 45 | **P12.5** contemporânea | *Poema sujo*, de Ferreira Gullar, escrito no exílio em 1975 |
+| Pa930e66b | FMABC 2024 q14 | P01.2 inferência | **P01.1** | O comando pede a citação que sintetiza a concepção de ciência, ideia que o texto enuncia |
+| Pc086241b | UPE 2022 SSA3 q12 | P07.2 | **P05.1** sentido da palavra no contexto | Nenhuma alternativa trata de pronome: julgam o "como" comparativo, a perífrase, a preposição |
+| Pfef78288 | UFU 2023 q55 | P02.2 | **P05.4** | As alternativas tratam de registro e interação |
+
+Em outras 3 (P62bced19, P9605fc0c, Pb23f5e86) era o prefixo que estava errado e
+já corrigi: 7 prefixos alinhados.
+
+**O padrão vale para as outras matérias.** Em 15 das 50 questões deste lote o
+código vinha do assunto do texto de apoio — literatura, porque o texto saiu de
+um romance — e não do que a questão cobra do aluno. Pus a verificação no
+`confere_amostra.py`: ela aponta sozinha, em todo lote, o prefixo que não bate.
+No por-0107 apontou 27 das 50.
+
+### Dois defeitos de dados de prova (não mexi: é texto de questão)
+
+1. **Pd83d608f** (`alternativas.E`, que é **a alternativa correta**) termina com
+   lixo de extração **`, j p p`**, que não está no print. O aluno vê isso hoje.
+   Texto limpo, conferido contra o print: `"j p p"` sai e o resto fica como está.
+2. **Pd83d608f** (`texto_da_prova`): os 14 versos de Pessoa vêm num bloco único,
+   sem as quatro estrofes do print (4+4+4+2) — e os passos da resolução falam em
+   "a 1ª e a 2ª estrofes". Princípio 1.
+3. **Pf3d20973**: o print traz em negrito as expressões que a questão compara
+   ("senso comum", "imaginário popular", "embranquecimento") e a transcrição
+   perdeu todos. Princípio 1. O conferente não escreveu a correção para não
+   introduzir erro redigitando o artigo.
+
+Em quatro questões da parte 3 e duas da parte 2 a `texto_da_prova` está
+corrompida ou truncada (a da PUC-SP vem em fonte codificada). Os conferentes
+resolveram pelo print nas seis. Vale uma passada na extração dessas provas.
+
+### A cadeia de conferência funcionou uma vez de forma visível
+
+Em P13ee722b (*O drible*) a resolução dizia que Merequendu era a cidade de
+Peralvo **e não** de Murilo Filho. O conferente achou a inversão e reescreveu; o
+agente de obras, depois, confirmou na resenha de Valdemar Valente (*Estudos de
+Literatura Brasileira Contemporânea*, n. 45, 2015) que os dois vieram de
+Merequendu — ou seja, o texto corrigido é o certo, e o original estava errado.
+As duas lentes de fatos da API tinham assinado a versão errada.

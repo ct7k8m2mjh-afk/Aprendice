@@ -662,6 +662,56 @@ def etapa_resolvedor(cl, lote, qs, teto):
     return roda_etapa(cl, lote, 'resolvedor', pedidos, teto)
 
 
+def garante_resolvedor(cl, lote, qs, res, teto):
+    """Questão que o batch do resolvedor não devolveu é refeita FORA do batch, antes de virar
+    pendente.
+
+    Um pedido pode falhar no batch por motivo que nada tem a ver com a questão (`errored`,
+    `expired`, cortado em max_tokens). Sem este passo a questão sai do lote como pendente, com o
+    motivo "a API não devolveu resposta válida" — e a conferência, que não sabe disso, lê como se
+    a questão fosse difícil. Aconteceu em Pedde3b3b (por-0107): o conferente abriu o print, viu
+    que a questão se resolve por eliminação com o que está nele, e devolveu a pendência como
+    errada. Refazer custa cerca de US$ 0,11; descartar uma questão boa custa a questão.
+
+    Devolve o `res` com as que deram certo acrescentadas, e a conta do que ficou de fora.
+    """
+    faltam = [qid for qid in qs if res.get(qid) is None]
+    if not faltam:
+        return res
+    print(f'[resolvedor] {len(faltam)} questão(ões) não voltaram do batch; refazendo fora dele: '
+          + ', '.join(faltam), flush=True)
+    sis = monta('por-resolvedor.md')
+    ex = extras_do_lote(lote)
+    for qid in faltam:
+        p_ = pedido(qid, MODELO_RESOLVEDOR, sis, bloco_questao(qs[qid], extras=ex),
+                    ESQ_RESOLVEDOR, 14000)['params']
+        est = preco(MODELO_RESOLVEDOR, conta_tokens(cl, p_), 7000, batch=False)
+        parar = cabe_no_orcamento(lote, est, teto)
+        if parar:
+            print(f'[resolvedor] {qid} fica pendente: {parar}', flush=True)
+            continue
+        try:
+            r = cl.messages.create(**p_)
+        except Exception as e:
+            print(f'[resolvedor] {qid} falhou fora do batch também: {e}', flush=True)
+            continue
+        custo = preco(MODELO_RESOLVEDOR, r.usage.input_tokens, r.usage.output_tokens,
+                      getattr(r.usage, 'cache_read_input_tokens', 0) or 0,
+                      getattr(r.usage, 'cache_creation_input_tokens', 0) or 0, batch=False)
+        anota_gasto(lote, 'resolvedor-refeito', MODELO_RESOLVEDOR, r.usage.input_tokens,
+                    r.usage.output_tokens, getattr(r.usage, 'cache_read_input_tokens', 0) or 0,
+                    getattr(r.usage, 'cache_creation_input_tokens', 0) or 0, custo, custo)
+        if r.stop_reason == 'max_tokens':
+            print(f'[resolvedor] {qid} cortado em max_tokens de novo · US$ {custo:.2f}', flush=True)
+            continue
+        try:
+            res[qid] = json.loads(next(b.text for b in r.content if b.type == 'text'))
+            print(f'[resolvedor] {qid} refeita · US$ {custo:.2f}', flush=True)
+        except Exception as e:
+            print(f'[resolvedor] {qid}: resposta ilegível ({e}) · US$ {custo:.2f}', flush=True)
+    return res
+
+
 def etapa_cego(cl, lote, qs, teto):
     """2º especialista às cegas, só nas questões sem gabarito publicado (princípio 2)."""
     alvo = {k: v for k, v in qs.items() if v.get('sem_gabarito_publicado')}
@@ -787,6 +837,7 @@ def pipeline(cl, entrada, saida, teto):
     diario = {}
 
     res = etapa_resolvedor(cl, lote, qs, teto)
+    res = garante_resolvedor(cl, lote, qs, res, teto)
     cego = etapa_cego(cl, lote, qs, teto)
 
     # gabarito do Aprendice: duas letras às cegas têm de bater (e com o preliminar, se houver)
@@ -809,7 +860,9 @@ def pipeline(cl, entrada, saida, teto):
     for qid in qs:
         r = res.get(qid)
         if r is None:
-            pendentes[qid] = 'a API não devolveu resposta válida para esta questão'
+            pendentes[qid] = ('falha da API, não da questão: o pedido não voltou do batch e '
+                              'também não deu certo fora dele. A questão não foi avaliada — '
+                              'rode `resolve` e depois `lente` nela antes de descartá-la')
             continue
         if r.get('problema'):
             pendentes[qid] = r['problema']
