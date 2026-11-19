@@ -82,7 +82,7 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 |---|---|---|
 | Matemática | session_01PveEKZJXRTXQ8BArELQfeu | trabalhando (aberta 19/11 16h49; anterior Ka7o3 deu FIM) |
 | Física | session_01PveEKYFao9mdqzruhVmuPm | trabalhando (aberta 19/11 16h26, regra 50×4; anterior aozj deu FIM) |
-| Química | session_01PveEKXC1xdiGM81kadC8Xj | trabalhando (aberta 19/11 15h45, regra 50×4) |
+| Química | session_01PveEKYZfyAMFDV6N1z8smo | trabalhando (aberta 19/11 17h02, largada rápida; anterior XC1x deu FIM) |
 | Geografia | session_01PveEKb6B5Ur2zRmWD8t5rK | trabalhando (aberta 19/11 16h26, regra 50×4; anterior af2j deu FIM) |
 | Biologia | session_01PveEKYq8uSzJkiuk9txCUa | trabalhando (aberta 19/11 16h49; anterior Y2ist deu FIM) |
 | Português | session_01PveEKX1JnJpMCfgHmpRupU (FÁBRICA pela API) | trabalhando: piloto por-0094 ok (US$ 6,11); o dono autorizou continuar, lotes por-0095/0096 em esteira. Não abrir outra sessão de Português |
