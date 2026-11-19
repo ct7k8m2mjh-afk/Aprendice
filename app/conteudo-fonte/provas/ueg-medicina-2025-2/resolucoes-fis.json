@@ -114,5 +114,123 @@
    "data": "2026-11-13",
    "lote": "fis-0059"
   }
+ },
+ "P95eb1584": {
+  "n": "28",
+  "conceito": "No topo da trajetória a velocidade é só a horizontal e a aceleração centrípeta é g; com isso o raio de curvatura sai de v0·cosθ, e a condição hmáx = 0,5R dá o ângulo.",
+  "equivocos": {
+   "A": "F02.5:angulo-sem-altura-maxima",
+   "B": "F02.5:leu-hmax-0-5r-como-sen-igual-a-0-5",
+   "D": "F02.5:leu-hmax-0-5r-como-cos-igual-a-0-5",
+   "E": "F02.5:usou-velocidade-total-no-topo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No ponto mais alto, a velocidade é horizontal e vale v0·cosθ, e a gravidade aponta para baixo, perpendicular a ela: é toda centrípeta. Então g = (v0·cosθ)²/R, o que dá o raio de curvatura. A altura máxima depende de v0·senθ. Igualando hmáx a 0,5R, v0 e g se cancelam e sobra uma relação só com o ângulo.",
+    "formulas": [
+     "no topo: g = (v0·cosθ)²/R → R = v0²·cos²θ/g",
+     "hmáx = v0²·sen²θ/(2g)"
+    ],
+    "simbolos": [
+     [
+      "R",
+      "raio de curvatura da trajetória no ponto mais alto"
+     ],
+     [
+      "hmáx",
+      "altura máxima"
+     ],
+     [
+      "v0",
+      "velocidade inicial"
+     ],
+     [
+      "θ",
+      "ângulo de lançamento com a horizontal"
+     ]
+    ]
+   },
+   "pista": "Escreva o raio de curvatura no topo usando a velocidade que sobra lá; depois escreva a altura máxima e use a relação dada.",
+   "passos": [
+    {
+     "faz": "Ache R no topo",
+     "conta": "g = (v0·cosθ)²/R → R = v0²·cos²θ/g",
+     "porque": "No topo sobra só a componente horizontal, e a gravidade faz o papel de aceleração centrípeta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a altura máxima",
+     "conta": "hmáx = v0²·sen²θ/(2g)",
+     "porque": "A componente vertical v0·senθ zera no topo; por Torricelli, (v0·senθ)² = 2·g·hmáx.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha hmáx = 0,5R",
+     "conta": "v0²·sen²θ/(2g) = 0,5·v0²·cos²θ/g → sen²θ = cos²θ",
+     "porque": "v0² e g aparecem dos dois lados e se cancelam; o 1/2 também.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o ângulo",
+     "conta": "tg²θ = 1 → tgθ = 1 → θ = 45° → C",
+     "porque": "Entre 0° e 90°, seno igual a cosseno só em 45°.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 45°.",
+   "checagem": "Teste numérico com v0 = 10 m/s e θ = 45°: R = 100·0,5/10 = 5 m e hmáx = 100·0,5/20 = 2,5 m, que é exatamente 0,5·5. Com θ = 30°, hmáx = R/6; com θ = 60°, hmáx = 1,5R: não servem.",
+   "erradas": {
+    "A": "Não confere: a 0° o projétil nem sobe, hmáx = 0, e a relação hmáx = 0,5R não se cumpre.",
+    "B": "Sai de ler o 0,5 de hmáx = 0,5R como sen θ = 0,5, que dá 30°. Não confere: a 30°, tg²θ = 1/3 e hmáx = tg²θ·R/2 = R/6, não 0,5R.",
+    "D": "Sai de ler o 0,5 de hmáx = 0,5R como cos θ = 0,5, que dá 60°. Não confere: a 60°, tg²θ = 3 e hmáx = 3R/2 = 1,5R, o triplo do pedido.",
+    "E": "Sai de usar a velocidade inteira v0 no topo, R = v0²/g: aí sen²θ = 1 e θ = 90°. Mas no topo a velocidade é só v0·cosθ (a 90° ela seria zero)."
+   },
+   "armadilha": "Usar v0 no lugar de v0·cosθ no raio de curvatura: no topo a componente vertical já é zero.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O ângulo de lançamento para que a altura máxima seja metade do raio de curvatura no topo.",
+    "chave": "R = v0²·cos²θ/g e hmáx = v0²·sen²θ/(2g); hmáx = 0,5R dá tgθ = 1, θ = 45°.",
+    "cuidado": "No topo a velocidade é só a horizontal, v0·cosθ."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "hmáx/R = tg²θ/2; só tgθ = 1 (45°) dá 0,5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "g = (v0·cosθ)²/R → R = v0²·cos²θ/g",
+    "nota": "gravidade é a centrípeta no topo"
+   },
+   {
+    "linha": "hmáx = v0²·sen²θ/(2g)",
+    "nota": "a vertical zera no topo"
+   },
+   {
+    "linha": "v0²·sen²θ/(2g) = 0,5·v0²·cos²θ/g",
+    "nota": "hmáx = 0,5R"
+   },
+   {
+    "linha": "sen²θ = cos²θ → tgθ = 1",
+    "nota": "v0², g e o 1/2 se cancelam"
+   },
+   {
+    "linha": "θ = 45°",
+    "nota": "seno igual a cosseno"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0072"
+  }
  }
 }

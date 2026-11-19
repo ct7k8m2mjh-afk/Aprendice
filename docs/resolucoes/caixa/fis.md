@@ -236,3 +236,46 @@ DADO P72cd4180: alternativas -> A 85%; B 71%; C 56%; D 44%; E 29% (vieram só de
 DADO P184df43b: texto_da_prova -> embaralhado; no print: lâmpadas de 20 Ω cada, mesma tensão nos três circuitos, pede a opção de corrente mínima
 ANULAR P8beaca57: Fe = 0,036 N; no topo v² = (0,3 + 0,036)·0,5/0,03 = 5,6 m²/s²; na base v0² = 5,6 + 4·10·0,5 = 25,6 → v0 ≈ 5,06 m/s, fora das alternativas (oficial C = 5,6 é o v² no topo, não v0)
 RECLASS P49037847 F11.6 -> F11.4
+
+## 2026-11-19 17:10 UTC — PENDENCIAS — session_01PveEKYFao9mdqzruhVmuPm
+Lote gravado: fis-0072 (49 ok, 1 pendente).
+Gabarito do Aprendice: P7ee5ebb6 D, Pd7d43de1 D, P0de0270a A (resolvedor e conferente às cegas; iguais ao preliminar).
+DADO Paa069ab9: alternativas.A -> "a velocidade da luz c depende do referencial em que se encontra o observador."; alternativas.E -> "duas partículas viajando com velocidade c, em sentidos opostos, possuem velocidade relativa igual a 2c."
+DADO P9cbc10e5: texto_da_prova -> "Contrações relativísticas ocorrem por um fator de √(1 − v²/c²)."
+DADO P0d8d3d39: alternativas -> faltam no campo; no print: A igual ao tempo de queda medido por S' e esse fato independe da magnitude da velocidade v do vagão; B maior... porque a trajetória vista pelo observador S é uma parábola; C menor... se a razão v/c é muito menor que 1; D maior... se a razão v/c é muito próxima de 1; E menor... se a razão v/c é muito próxima de 1
+DADO Pf06556ef: alternativas -> potências escritas 10^14 no print (expoente sobrescrito); a entrada traz "1014"; enunciado: "h = 4,1×10^-15 eV.s"
+DADO P12b479e4: texto_da_prova -> expoentes ilegíveis na camada de texto; no print: c = 3,0 × 10⁸ m/s, h = 6,6 × 10⁻³⁴ m²kg/s, 1 eV = 1,6 × 10⁻¹⁹ J
+RECLASS P3cd13987 F01.5 -> F11.9
+DADO P693b19a9: alternativas.E -> "(1) gama, (2) beta e (3) alfa" (a referência "Disponível em: ... Acesso em: 14 out. 2024." é crédito da figura, não da alternativa)
+DADO P45210cac: texto_da_prova -> no print: largura do bico 0,4 mm; velocidade 30 mm/s; altura de cada camada 0,2 mm
+RECLASS P0118f49e F02.1 -> F02.2
+RECLASS P799cb33c F02.1 -> F02.4
+DADO P193eb1d8: alternativas.C -> "... notação científica como 8x10³ N."
+DADO Pd7d43de1: alternativas -> A "5 m e 5 m/s²"; B "5 m e 10 m/s²"; C "10 m e 5 m/s²"; D "10 m e 10 m/s²"
+DADO Pd7d43de1: texto_da_prova -> no print: "No instante t = 0 [...] aceleração constante a. No instante t = 1 s, a esfera A é liberada [...] (de módulo g = 10 m/s²). No instante t = 2 s [...]"
+RECLASS Pd7d43de1 F02.2 -> F02.5
+DADO P0b65e6db: prova -> no print a questão aparece numerada como 22 (a entrada diz questão 32)
+DADO Pc2ea4980: alternativas -> D: '(2,0î − 2,5ĵ) e |v_m| = 6,4' (sem os zeros '−02, 5' e '06, 4' da camada de texto).
+DADO Pf4f19edd: texto_da_prova -> camada embaralhada com outras questões; pelo print: r = 2,017 m, ω = 200 rad/s, g = 10 m/s², 100 m de O ao centro da circunferência; alternativas (A) menos de 100 voltas (B) mais de 100 e menos de 110 (C) mais de 110 e menos de 120 (D) mais de 120 e menos de 130 (E) mais de 140 voltas.
+DADO P3793c002: alternativas -> (A) (x−y)/(2x−2y+1) (B) −(1+x+y)/(x+y) (C) −(x−y)/(x+y) (D) x/y − y/x (E) (1+x+y)/(1−x+y) (frações achatadas na camada de texto).
+DADO P0de0270a: alternativas -> a) u/(sen(β−α)/senβ + h senα/L) b) u cosβ/(cos(α+β) + h senα/L) c) u senβ/(senβ + h senα/L) d) u senβ/(sen(β+α) + h senα/L) e) u/(cosα + h senα cosβ/L) (frações achatadas na camada de texto).
+DADO P029ca95d: alternativas -> A V, V e V; B F, F e F; C V, F e V; D F, V e F; E F, V e V (camada de texto embaralhada).
+RECLASS P33701b89 F03.2 -> F03.3
+RECLASS P71d3d124 F03.2 -> F03.5
+ANULAR P5a4ec186 UFT 2023.1 q53 (Questão 21 no caderno): a correta é a = (mB/mA)·g = 2g (A: T = mA·a; B: T = mB·g), fora das alternativas; o gabarito D = 2/3 g vale só com C parado.
+AUTORAL P693b19a9 (UEG 2025/1 q27): a figura da prova traz crédito do Brasil Escola (site didático); o dono decide sobre o print
+DADO P0b65e6db: alternativas.E -> "II e III" (a caixa "Dado g = 10 m/s² sen 30° ..." veio grudada)
+PRINT P4a6ee173 (UEMA 2026 PAES · questão 42): a alternativa E está cortada na borda de baixo (legível); refazer do PDF oficial
+ANULAR P5a4ec186 (UFT 2023 Vestibular 2023/1 · questão 53): sem atrito, A dá T = mA·a e B (encostado em C) dá T = mB·g → a = (mB/mA)·g = 2g, fora das alternativas; a oficial D (2/3 g = mB·g/(mA+mB)) só vale com C parado
+
+## 2026-11-19 17:10 UTC — AVISO — session_01PveEKYFao9mdqzruhVmuPm
+Conferência no site (Pe2a025f3, Pfb36d3ec, P6de86a7a; 390 e 1280 px, tema claro): 4 blocos completos, fração empilhada, lousa até o fim, sem erro de console. Dois pontos para decidir (design, não mexi):
+- Pfb36d3ec a 390 px: a última linha da lousa ("T final = T inicial ≠ T constante no caminho") passa da borda e "caminho" fica cortado; em 1280 px cabe.
+- Unidades com barra em linha ("kJ/°C", "kJ/kg·°C") em Pe2a025f3, na lousa e nos textos: a regra da fração empilhada vale para unidades?
+
+## 2026-11-19 17:10 UTC — FIM — session_01PveEKYFao9mdqzruhVmuPm
+Último lote gravado: fis-0072. Nenhum lote de Física aberto. Nesta sessão: fis-0069 (49 ok, 1 pendente), fis-0070 (50 ok), fis-0071 (49 ok, 1 pendente), fis-0072 (49 ok, 1 pendente) = 197 resoluções. Física: faltam 244 (todas na faixa f5, demais nível 7-10).
+Pendentes desta sessão (ANULAR, linhas acima): Pa4042d98, P8beaca57, P5a4ec186. PRINT P4a6ee173. AUTORAL P693b19a9.
+Gabarito do Aprendice: Pbdfc7e79 E; P7ee5ebb6 D; Pd7d43de1 D; P0de0270a A.
+Testes depois do fis-0071 (converte + tsc + vitest): tsc ok; vitest 786 de 786.
+Observação para as próximas sessões: os conferentes devolvem equivocos que afirmam origem sem conta que a reproduza; quando a conta não chega ao valor exato da letra, usar equívoco de conceito específico daquela letra.

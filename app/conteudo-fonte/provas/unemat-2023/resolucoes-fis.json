@@ -108,5 +108,128 @@
    "data": "2026-11-13",
    "lote": "fis-0053"
   }
+ },
+ "P907c9d6b": {
+  "n": "14",
+  "conceito": "Montar a função horária do MUV, S = v0·t + a·t²/2, a partir da velocidade inicial e da aceleração, e confirmar na tabela.",
+  "equivocos": {
+   "B": "F02.2:escolheu-funcao-exponencial",
+   "C": "F02.2:funcao-linear-com-posicao-inicial-errada",
+   "D": "F02.2:esqueceu-o-meio-da-aceleracao",
+   "E": "F02.2:trocou-velocidade-inicial-e-aceleracao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com aceleração constante, a posição segue S = S0 + v0·t + a·t²/2. A tabela dá S0 = 0 (em t = 0, S = 0,00), e o enunciado dá v0 = 2 cm/s e a = 0,5 cm/s². O ponto que decide é o meio: a aceleração entra dividida por 2. A tabela serve para conferir a fórmula em qualquer instante.",
+    "formulas": [
+     "S = S0 + v0·t + a·t²/2"
+    ],
+    "simbolos": [
+     [
+      "S0",
+      "posição em t = 0"
+     ],
+     [
+      "v0",
+      "velocidade inicial"
+     ],
+     [
+      "a",
+      "aceleração constante"
+     ],
+     [
+      "MUV",
+      "movimento uniformemente variado: aceleração constante"
+     ]
+    ]
+   },
+   "pista": "Escreva a função horária do MUV com os dados do enunciado e repare no que acontece com a aceleração antes de multiplicar por t².",
+   "passos": [
+    {
+     "faz": "Separe os dados",
+     "conta": "S0: 0 cm | v0: 2 cm/s | a: 0,5 cm/s²",
+     "porque": "A tabela mostra S = 0,00 em t = 0; velocidade inicial e aceleração vêm do enunciado.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a função horária",
+     "conta": "S = 0 + 2·t + 0,5·t²/2 → S = 2t + 0,25t²",
+     "porque": "No MUV o termo da aceleração é a·t²/2: metade de 0,5 é 0,25.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reescreva 0,25 como fração",
+     "conta": "0,25t² = t²/4 → S = 2t + t²/4",
+     "porque": "0,25 é um quarto; é assim que a alternativa A escreve o mesmo termo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste na tabela",
+     "conta": "t = 2: S = 2·2 + 2²/4 = 4 + 1 = 5",
+     "porque": "A tabela dá 5,00 cm em t = 2 s: a fórmula reproduz a leitura.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "S(t) = 2t + t²/4 → A",
+     "porque": "É a única alternativa que coincide com a função montada e com a tabela.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — S(t) = 2t + t²/4.",
+   "checagem": "Outro ponto da tabela: em t = 10 s, 2·10 + 10²/4 = 20 + 25 = 45, igual aos 45,00 cm medidos. E em t = 0 a fórmula dá 0, como a primeira linha.",
+   "erradas": {
+    "B": "Não confere: em t = 2, 2^(0,5·2) − 1 = 2 − 1 = 1, e a tabela dá 5,00 cm. Exponencial não é a forma do MUV.",
+    "C": "Não confere: em t = 0, 2 + 0/2 = 2, mas a tabela começa em 0,00. É uma reta, e S × t no MUV é parábola.",
+    "D": "Sai de usar a aceleração inteira no lugar de a/2: 2t + 0,5t². Em t = 1 daria 2,5 cm, e a tabela dá 2,25 cm.",
+    "E": "Sai de trocar v0 e a de lugar: 0,5t + 2t². Em t = 1 daria 2,5 cm, e em t = 2, 9 cm, longe dos 5,00 cm da tabela."
+   },
+   "armadilha": "Esquecer o 1/2 do termo da aceleração e marcar 2t + 0,5t², que tem exatamente os números do enunciado.",
+   "alerta": "O enunciado diz \"inicialmente em repouso\" e, na mesma frase, \"velocidade inicial de 2 cm/s\": as duas coisas não valem juntas. A tabela (2,25 cm em 1 s) e o gabarito oficial confirmam a leitura com v0 = 2 cm/s; a expressão \"em repouso\" é imprecisão de redação da banca.",
+   "essencial": {
+    "pede": "A função S(t) do corpo em MUV com v0 = 2 cm/s e a = 0,5 cm/s².",
+    "chave": "S = v0·t + a·t²/2 = 2t + 0,25t² = 2t + t²/4.",
+    "cuidado": "A aceleração entra dividida por 2; teste sempre um ponto da tabela."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar a tabela",
+    "ideia": "Substitua t = 1 em cada alternativa: só a A dá 2,25 cm (2 + 1/4)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "S = S0 + v0·t + a·t²/2",
+    "nota": "função horária do MUV"
+   },
+   {
+    "linha": "S = 0 + 2t + 0,5·t²/2",
+    "nota": "substituir S0 = 0, v0 = 2, a = 0,5"
+   },
+   {
+    "linha": "S = 2t + 0,25t²",
+    "nota": "metade de 0,5 é 0,25"
+   },
+   {
+    "linha": "S = 2t + t²/4",
+    "nota": "0,25 é um quarto"
+   },
+   {
+    "linha": "t = 2: 4 + 1 = 5",
+    "nota": "bate com a tabela"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0072"
+  }
  }
 }

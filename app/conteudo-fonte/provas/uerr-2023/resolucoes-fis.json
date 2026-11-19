@@ -654,5 +654,139 @@
    "data": "2026-11-13",
    "lote": "fis-0057"
   }
+ },
+ "Pf4f19edd": {
+  "n": "41",
+  "conceito": "Achar o tempo de voo de um lançamento oblíquo a partir do alcance e contar quantas voltas um movimento circular uniforme completa nesse tempo.",
+  "equivocos": {
+   "A": "F02.5:tempo-de-voo-subestimado",
+   "C": "F02.5:alcance-maior-que-o-da-figura",
+   "D": "F02.5:alcance-maior-que-o-da-figura",
+   "E": "F02.5:tomou-o-eixo-y-como-vertical"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois movimentos começam juntos e o encontro acontece quando A volta ao chão, na borda da circunferência de B. Então o tempo do encontro é o tempo de voo de A. Repare nos eixos: aqui o eixo-y é o horizontal (o chão) e o eixo-x é o vertical, então os 30° são medidos a partir do chão.",
+    "formulas": [
+     "alcance: R = V0²·2·sen θ·cos θ/g",
+     "tempo de voo: T = 2·V0·sen θ/g",
+     "voltas: n = ω·T/(2π)"
+    ],
+    "simbolos": [
+     [
+      "V0",
+      "velocidade inicial do corpo A"
+     ],
+     [
+      "θ",
+      "ângulo do lançamento com o chão, 30°"
+     ],
+     [
+      "R",
+      "alcance horizontal do lançamento"
+     ],
+     [
+      "ω",
+      "velocidade angular de B, 200 rad/s"
+     ],
+     [
+      "n",
+      "número de voltas de B"
+     ]
+    ]
+   },
+   "pista": "Antes de usar os 30°, descubra qual eixo é o chão na figura e onde exatamente a parábola toca o solo.",
+   "passos": [
+    {
+     "faz": "Leia o alcance na figura",
+     "conta": "R = 100 + r → R = 100 + 2,017 = 102,017 m",
+     "porque": "Os 100 m vão de O até o centro da circunferência; a parábola chega ao chão na borda dela, um raio adiante.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache V0² pelo alcance",
+     "conta": "R = V0²·2·0,5·0,87/g → V0² = 102,017·10/0,87 → V0² ≈ 1172,6 → V0 ≈ 34,24 m/s",
+     "porque": "O ângulo de 30° é com o eixo-y, que é o chão; 2·sen 30°·cos 30° = 0,87.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o tempo de voo",
+     "conta": "T = 2·V0·0,5/10 → T = 34,24/10 → T ≈ 3,424 s",
+     "porque": "A componente vertical é V0·sen 30°; ela sobe e desce no tempo 2·V0·sen θ/g.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as voltas de B",
+     "conta": "n = 200·3,424/(2π) → n = 684,9/6,283 → n ≈ 109,0",
+     "porque": "Em cada volta B percorre 2π rad; com ω constante, o ângulo total é ω·T.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as faixas",
+     "conta": "100 < 109 < 110 → alternativa B",
+     "porque": "109 voltas cabem na faixa de 100 a 110.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — mais de 100 e menos de 110 voltas.",
+   "checagem": "O resultado dá 109,0 voltas inteiras, o que combina com o enunciado: θ = 2kπ no encontro, com k = 109. Mesmo usando só 100 m de alcance, T ≈ 3,39 s e n ≈ 107,9: a faixa não muda.",
+   "erradas": {
+    "A": "Não confere: menos de 100 voltas exigiria T < π s ≈ 3,14 s, o que corresponde a um alcance menor que 86 m, bem antes da circunferência de B.",
+    "C": "Não confere: 110 a 120 voltas exigiria T entre 3,46 s e 3,77 s, ou seja, alcance entre 103,9 m e 123,6 m, além da borda em 102,017 m.",
+    "D": "Não confere: 120 a 130 voltas exigiria T entre 3,77 s e 4,08 s, alcance entre 123,6 m e 145,1 m, longe do ponto de encontro.",
+    "E": "Sai de tomar o eixo-y como vertical e usar 60° com o chão: T = 2·34,24·0,87/10 ≈ 5,96 s e n = 200·5,96/(2π) ≈ 189,7 voltas."
+   },
+   "armadilha": "Na figura o eixo-y é o chão e o eixo-x é o vertical: quem lê os 30° como ângulo com a vertical troca seno por cosseno e quase dobra o tempo de voo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas voltas B dá até o encontro com A.",
+    "chave": "Tempo do encontro = tempo de voo de A, tirado do alcance de 102,017 m; n = ω·T/(2π) ≈ 109.",
+    "cuidado": "Os 30° são com o chão (eixo-y horizontal) e o alcance vai até a borda da circunferência."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tempo direto do alcance",
+    "ideia": "Combinando as duas fórmulas, T² = 2·R·tg θ/g = 2·102,017·(0,5/0,87)/10 ≈ 11,73, então T ≈ 3,424 s sem calcular V0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R = 100 + 2,017 = 102,017 m",
+    "nota": "alcance até a borda"
+   },
+   {
+    "linha": "V0² = 102,017·10/0,87 ≈ 1172,6",
+    "nota": "isolar V0² no alcance"
+   },
+   {
+    "linha": "V0 ≈ 34,24 m/s",
+    "nota": "raiz quadrada"
+   },
+   {
+    "linha": "T = 2·34,24·0,5/10 ≈ 3,424 s",
+    "nota": "tempo de voo"
+   },
+   {
+    "linha": "n = 200·3,424/(2π) ≈ 109,0",
+    "nota": "voltas de B"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "UERR Vestibular 2023 (Cebraspe), questão 41",
+    "url": "https://www.uerr.edu.br/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0072"
+  }
  }
 }

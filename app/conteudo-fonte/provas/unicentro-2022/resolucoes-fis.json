@@ -824,5 +824,127 @@
    "data": "2026-11-19",
    "lote": "fis-0067"
   }
+ },
+ "Pc2ea4980": {
+  "n": "43",
+  "conceito": "Calcular o vetor deslocamento entre duas posições, convertê-lo pela escala e dividir pelo tempo para obter a velocidade vetorial média e o seu módulo.",
+  "equivocos": {
+   "B": "F02.7:errou-o-sinal-da-componente",
+   "C": "F02.7:trocou-as-componentes-x-e-y",
+   "D": "F02.7:errou-a-escala-do-mapa",
+   "E": "F02.7:errou-a-escala-do-mapa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O deslocamento é a posição final menos a inicial; o percurso vai do Campus Cedeteg (início) ao Campus Santa Cruz (fim). Cada unidade do mapa vale 250 m = 0,25 km. Como o tempo é 1 h, a velocidade média em km/h tem os mesmos números do deslocamento em km.",
+    "formulas": [
+     "Δr = P_final − P_inicial",
+     "v_m = Δr/Δt",
+     "|v_m| = √(vx² + vy²)"
+    ],
+    "simbolos": [
+     [
+      "î, ĵ",
+      "vetores unitários dos eixos x e y"
+     ],
+     [
+      "Δr",
+      "vetor deslocamento"
+     ],
+     [
+      "v_m",
+      "velocidade vetorial média"
+     ]
+    ]
+   },
+   "pista": "Decida qual campus é o ponto de partida: ele é o que entra subtraindo.",
+   "passos": [
+    {
+     "faz": "Subtraia as posições",
+     "conta": "Δr = (10î + 1ĵ) − (2î + 11ĵ) → Δr = 8î − 10ĵ (unidades)",
+     "porque": "O percurso começa no Cedeteg e termina no Santa Cruz: final menos inicial.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta pela escala",
+     "conta": "8 × 0,25 = 2,0 km | −10 × 0,25 = −2,5 km → Δr = 2,0î − 2,5ĵ km",
+     "porque": "Cada unidade vale 250 m = 0,25 km.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo tempo",
+     "conta": "v_m = (2,0î − 2,5ĵ)/1 → v_m = 2,0î − 2,5ĵ km/h",
+     "porque": "Com Δt = 1 h, os números não mudam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o módulo",
+     "conta": "|v_m| = √(2,0² + 2,5²) → √10,25 → |v_m| ≈ 3,2 km/h",
+     "porque": "Pitágoras com as duas componentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "2,0î − 2,5ĵ e 3,2 → alternativa A",
+     "porque": "Componentes e módulo batem com A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — v_m = (2,0î − 2,5ĵ) km/h e |v_m| ≈ 3,2 km/h.",
+   "checagem": "Pela figura, o Santa Cruz está mais à direita e mais abaixo que o Cedeteg: componente x positiva e y negativa, como em 2,0î − 2,5ĵ. O módulo 3,2 fica entre 2,5 e 2,0 + 2,5 = 4,5, como deve.",
+   "erradas": {
+    "B": "Sai de errar o sinal de y: 1 − 11 = −10, não +10; o Santa Cruz está abaixo do Cedeteg.",
+    "C": "Sai de trocar as componentes: x vale 8 unidades = 2,0 km e y vale −10 unidades = −2,5 km, não o contrário.",
+    "D": "Componentes certas, mas o módulo sai de dobrar o valor: √(2,0² + 2,5²) ≈ 3,2, não 6,4 (6,4 seria usar 500 m por unidade).",
+    "E": "Troca as componentes e dobra o módulo: 6,4 sai de √(4² + 5²) ≈ 6,4, com 500 m por unidade em vez de 250 m."
+   },
+   "armadilha": "Fazer a subtração na ordem errada ou trocar x com y: o sinal de cada componente mostra para onde se anda no mapa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A velocidade vetorial média e o seu módulo do Cedeteg ao Santa Cruz em 1 h.",
+    "chave": "Δr = (8î − 10ĵ) × 0,25 km = 2,0î − 2,5ĵ km; módulo √10,25 ≈ 3,2 km/h.",
+    "cuidado": "Final menos inicial e conversão de 250 m por unidade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "módulo antes de converter",
+    "ideia": "|Δr| = √(8² + 10²) ≈ 12,8 unidades; 12,8 × 0,25 ≈ 3,2 km em 1 h."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Δr = (10 − 2)î + (1 − 11)ĵ = 8î − 10ĵ",
+    "nota": "final menos inicial"
+   },
+   {
+    "linha": "Δr = 2,0î − 2,5ĵ km",
+    "nota": "× 0,25 km por unidade"
+   },
+   {
+    "linha": "v_m = 2,0î − 2,5ĵ km/h",
+    "nota": "÷ 1 h"
+   },
+   {
+    "linha": "|v_m| = √(4 + 6,25) ≈ 3,2 km/h",
+    "nota": "Pitágoras"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Unicentro Vestibular 2022, caderno de provas",
+    "url": "https://www3.unicentro.br/vestibular/wp-content/uploads/sites/30/2022/03/Vestibular_de_2022_CADERNO_DE_PROVAS.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0072"
+  }
  }
 }

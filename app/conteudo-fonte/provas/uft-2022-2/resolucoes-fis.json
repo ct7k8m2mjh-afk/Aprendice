@@ -852,5 +852,120 @@
    "data": "2026-11-19",
    "lote": "fis-0066"
   }
+ },
+ "P45210cac": {
+  "n": "57",
+  "conceito": "Movimento uniforme do bico da impressora: tempo = comprimento total da faixa depositada dividido pela velocidade.",
+  "equivocos": {
+   "B": "F02.1:esqueceu-a-largura-da-faixa",
+   "C": "F02.1:calculou-uma-camada-so",
+   "D": "F02.1:errou-o-comprimento-do-caminho"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O bico anda com velocidade constante, então tempo = distância/velocidade. O trabalho real é achar a distância: cada camada é preenchida por faixas de 0,4 mm de largura, e o bloco de 30 mm de altura é feito de camadas de 0,2 mm.",
+    "formulas": [
+     "número de camadas = altura do bloco/altura da camada",
+     "caminho por camada = área da camada/largura da faixa",
+     "t = d/v"
+    ],
+    "simbolos": [
+     [
+      "d",
+      "comprimento do caminho percorrido pelo bico"
+     ],
+     [
+      "v",
+      "velocidade do bico, 30 mm/s"
+     ],
+     [
+      "camada",
+      "cada nível horizontal de plástico, com 0,2 mm de altura"
+     ]
+    ]
+   },
+   "pista": "Descubra quantas camadas o bloco tem e quanto o bico anda para preencher uma delas.",
+   "passos": [
+    {
+     "faz": "Conte as camadas",
+     "conta": "n = 30/0,2 → n = 150 camadas",
+     "porque": "Cada camada sobe 0,2 mm, e o bloco tem 30 mm de altura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o caminho de uma camada",
+     "conta": "d₁ = (90 × 160)/0,4 → d₁ = 14400/0,4 → d₁ = 36000 mm",
+     "porque": "Para cobrir a área de 90 mm × 160 mm com faixas de 0,4 mm de largura, o bico percorre a área dividida pela largura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o tempo de uma camada",
+     "conta": "t₁ = 36000/30 → t₁ = 1200 s",
+     "porque": "Com velocidade constante de 30 mm/s, tempo = distância/velocidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pelas camadas",
+     "conta": "t = 150 × 1200 → t = 180000 s → t = 180000/3600 → t = 50 h",
+     "porque": "O bloco inteiro é a repetição da mesma camada 150 vezes; 1 h = 3600 s.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "t = 50 h",
+     "porque": "É o tempo da alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 50 horas.",
+   "checagem": "Pelo volume: a cada segundo o bico deposita uma faixa de 0,4 mm × 0,2 mm × 30 mm = 2,4 mm³; o bloco tem 90 × 160 × 30 = 432000 mm³; 432000/2,4 = 180000 s = 50 h.",
+   "erradas": {
+    "B": "Sai de deixar de fora a largura do bico: (90 × 160 × 30)/(0,2 × 30) = 72000 s = 20 h.",
+    "C": "Sai de calcular uma camada só e usar 0,2 mm como largura da faixa: (90 × 160)/(0,2 × 30) = 2400 s = 40 min.",
+    "D": "Não confere: 67,5 min = 4050 s; divididos pelas 150 camadas, dão 27 s por camada, ou 810 mm de caminho, e cada camada exige 36000 mm."
+   },
+   "armadilha": "Calcular o tempo de uma camada só e esquecer que o bloco tem 150 camadas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o tempo de impressão do bloco de calibração",
+    "chave": "150 camadas × (36000 mm/30 mm/s) = 180000 s = 50 h",
+    "cuidado": "usar a largura 0,4 mm para o caminho e a altura 0,2 mm para contar as camadas"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas linhas",
+    "ideia": "Cada camada tem 160/0,4 = 400 linhas de 90 mm, ou 36000 mm; em 30 mm/s, 1200 s por camada, e 150 camadas dão 50 h."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "n = 30/0,2 = 150",
+    "nota": "camadas"
+   },
+   {
+    "linha": "d₁ = (90 × 160)/0,4 = 36000 mm",
+    "nota": "caminho de uma camada"
+   },
+   {
+    "linha": "t₁ = 36000/30 = 1200 s",
+    "nota": "tempo de uma camada"
+   },
+   {
+    "linha": "t = 150 × 1200 = 180000 s = 50 h",
+    "nota": "bloco inteiro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0072"
+  }
  }
 }

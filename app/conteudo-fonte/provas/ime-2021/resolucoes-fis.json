@@ -867,5 +867,120 @@
    "data": "2026-11-19",
    "lote": "fis-0066"
   }
+ },
+ "P3793c002": {
+  "n": "18",
+  "conceito": "Usar a simetria de rotação do problema das quatro perseguidoras para escrever a posição de B a partir da de A e calcular a inclinação do vetor AB.",
+  "equivocos": {
+   "A": "F02.7:tangente-com-sinal-errado-para-135-graus",
+   "B": "F02.7:inclinacao-de-ab-mais-ingreme-que-45-graus",
+   "D": "F02.7:dividiu-coordenadas-em-vez-de-componentes",
+   "E": "F02.7:tangente-positiva-para-reta-descendente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As quatro partículas começam nos vértices, têm a mesma velocidade escalar e cada uma persegue a seguinte: a figura continua sendo um quadrado centrado na origem, só que girando e encolhendo. Então B está sempre na posição de A girada de 90° em torno do centro. Essa simetria dá B em função de (x, y) sem resolver a trajetória.",
+    "formulas": [
+     "girar (x, y) de 90° no sentido anti-horário: (x, y) → (−y, x)",
+     "inclinação de AB: tg = (yB − yA)/(xB − xA)"
+    ],
+    "simbolos": [
+     [
+      "(x, y)",
+      "posição de A num instante qualquer"
+     ],
+     [
+      "(xB, yB)",
+      "posição de B no mesmo instante"
+     ],
+     [
+      "tg",
+      "tangente do ângulo do vetor AB com o eixo x positivo"
+     ]
+    ]
+   },
+   "pista": "Não tente achar a trajetória: compare onde A e B começam e veja que giro em torno do centro leva um no outro.",
+   "passos": [
+    {
+     "faz": "Ache o giro que leva A em B",
+     "conta": "A = (−1/2, −1/2) → B = (1/2, −1/2) = (−y, x)",
+     "porque": "Girar (−1/2, −1/2) de 90° no sentido anti-horário dá (1/2, −1/2); pela simetria, esse giro vale em todo instante.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva o vetor de A para B",
+     "conta": "AB = (−y − x, x − y)",
+     "porque": "Subtraia as coordenadas de A das de B.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a tangente",
+     "conta": "tg = (x − y)/(−y − x) → tg = −(x − y)/(x + y)",
+     "porque": "A tangente do ângulo com o eixo x é a componente y dividida pela componente x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "tg = −(x − y)/(x + y) → alternativa C",
+     "porque": "É exatamente a expressão da alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — tg = −(x − y)/(x + y).",
+   "checagem": "Teste com A sobre o eixo x positivo, em (x, 0): B está em (0, x), e AB aponta para cima e para a esquerda a 45°, com tg = −1; a fórmula dá −x/x = −1.",
+   "erradas": {
+    "A": "Não confere: com A em (x, 0), x > 0, dá x/(2x + 1) > 0, mas AB está a 135° do eixo x, com tg = −1.",
+    "B": "Não confere: com A em (x, 0) dá −(1 + x)/x, menor que −1 para todo x > 0, e a tangente certa ali é −1.",
+    "D": "Não confere: com A em (x, 0) a expressão x/y − y/x divide por zero, mas a tangente de AB ali existe e vale −1.",
+    "E": "Não confere: com A em (x, 0) dá (1 + x)/(1 − x) > 0, mas a tangente certa ali é −1."
+   },
+   "armadilha": "Querer resolver a curva de perseguição: a questão só pede a direção AB, que sai da simetria de rotação em uma linha.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A tangente do ângulo de AB com o eixo x quando A está em (x, y).",
+    "chave": "Por simetria, B = (−y, x); AB = (−x − y, x − y) e tg = −(x − y)/(x + y).",
+    "cuidado": "Confira o sentido do giro pelos vértices iniciais: de A para B é anti-horário."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de ponto",
+    "ideia": "Com A no eixo x positivo, B fica no eixo y positivo e tg = −1; só a alternativa C dá −1 nesse ponto."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A(−1/2, −1/2) → B(1/2, −1/2)",
+    "nota": "B é A girado 90°"
+   },
+   {
+    "linha": "B = (−y, x)",
+    "nota": "vale em todo instante"
+   },
+   {
+    "linha": "AB = (−y − x, x − y)",
+    "nota": "B menos A"
+   },
+   {
+    "linha": "tg = −(x − y)/(x + y)",
+    "nota": "componente y dividida pela x"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "IME, Concurso de Admissão 2020/2021, 1ª fase, questão 18",
+    "url": "https://www.ime.eb.mil.br/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0072"
+  }
  }
 }
