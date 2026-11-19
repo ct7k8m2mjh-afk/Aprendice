@@ -91,12 +91,13 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | his-0083 | demais nível 7-10 | 15 | gravado | 15 | 0 | 0 |
 | his-0084 | demais nível 7-10 | 2 | gravado | 2 | 0 | 0 |
 | his-pend-0001 | pendentes fato,as | 4 | gravado | 3 | 1 | 0 |
-| his-pend-0002 | pendentes reclassificada | 2 | aberto |  |  |  |
+| his-pend-0002 | pendentes reclassificada | 2 | gravado | 1 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| P3a2fa1cd | Fuvest 2026 1ª fase · questão 42 | H06.9 nacionalismos, unificações e revoluções de 1848 (tema H06 Revoluções) | outra matéria: Artes (história do circo; já em app/conteudo-fonte/outra-materia.json desde 13/11). Conferido no print de novo em 19/11: a questão trata da linguagem circense e do circo como arte contemporânea, não de nacionalismos ou de 1848; não se resolve. |
 | P881983dc | UECE 2020 2020.2 – 2ª fase · questão 151 | H02.4 reinos e impérios africanos (tema H02 Idade Média) | fato: tentado de novo (19/11): busca da questão resolvida (nenhum cursinho publicado achado), do texto de Macedo, História da África, pp. 132-135 (não disponível on-line) e de fontes sobre Njoya (https://en.wikipedia.org/wiki/Kingdom_of_Bamum; https://www.memoireonline.com/02/24/14488/m_Ladministration-coloniale-allemande-et-les-pouvoirs-politiques-traditionnels-Duala-et-Bamun-1884111.html; https://www.periodicoseletronicos.ufma.br/index.php/rbhr/article/download/26031/13765/86574). Gabarito A (V,V,F,V) exige a 2ª afirmativa verdadeira, mas as fontes mostram que a diplomacia de Njoya foi com os alemães e que, em dez. 1915, ele aceitou a ocupação britânica de Fumban, passando depois ao mandato francês; a 1ª (islã como resistência ao avanço cristão) também não aparece nas fontes. Sem o trecho de Macedo não dá para saber se a banca leu o livro corretamente nem para pedir anulação com prova. Falta: o texto das pp. 132-135 de Macedo (2019) ou resolução publicada da questão. |
 
 ## Divergências de gabarito (o dono decide)
