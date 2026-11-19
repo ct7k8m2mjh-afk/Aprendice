@@ -1343,5 +1343,138 @@
    "data": "2026-11-19",
    "lote": "fis-0071"
   }
+ },
+ "Ped0dc1fd": {
+  "n": "52",
+  "conceito": "Queda livre: do trecho final percorrido num tempo curto, achar a velocidade e a altura total da queda, e convertê-la em andares.",
+  "equivocos": {
+   "A": "F02.4:contou-o-terreo-como-andar-zero",
+   "B": "F02.4:altura-total-errada",
+   "C": "F02.4:altura-total-errada",
+   "E": "F02.4:altura-total-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O vaso parte do repouso e cai com g = 10 m/s² (valor do formulário da prova). O dado útil é o último trecho: 2 m em 0,1 s. Com ele você acha a velocidade no começo desse trecho; Torricelli dá a altura caída até ali, e somando os 2 m sai a altura total. O último movimento é contar quantos vãos de 3 m cabem nela e ligar isso ao número do andar.",
+    "formulas": [
+     "Δs = v₀ · t + (g · t²)/2",
+     "v² = 2 · g · h (partindo do repouso)"
+    ],
+    "simbolos": [
+     [
+      "v₀",
+      "velocidade do vaso no início do trecho final de 2 m"
+     ],
+     [
+      "g",
+      "aceleração da gravidade, 10 m/s²"
+     ],
+     [
+      "h₁",
+      "altura caída antes do trecho final"
+     ],
+     [
+      "H",
+      "altura total da queda"
+     ]
+    ]
+   },
+   "pista": "Trate os últimos 2 m como um movimento à parte: a incógnita é a velocidade com que o vaso entra nesse trecho.",
+   "passos": [
+    {
+     "faz": "Ache a velocidade no início do trecho final",
+     "conta": "2 = v₀ · 0,1 + (10 × 0,1²)/2 → 2 = 0,1 · v₀ + 0,05 → v₀ = 1,95/0,1 = 19,5 m/s",
+     "porque": "No trecho de 2 m o vaso já entra com velocidade e continua acelerando; a função horária com t = 0,1 s dá essa velocidade de entrada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a altura caída até ali",
+     "conta": "19,5² = 2 × 10 × h₁ → h₁ = 380,25/20 ≈ 19 m",
+     "porque": "Do repouso até 19,5 m/s não há tempo no enunciado: Torricelli resolve.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some o trecho final",
+     "conta": "H = 19 + 2 = 21 m",
+     "porque": "A queda total é o que caiu antes da câmera mais os 2 m filmados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os vãos de 3 m",
+     "conta": "21/3 = 7 vãos",
+     "porque": "Cada andar acrescenta 3 m entre janelas consecutivas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta vãos em andar",
+     "conta": "7 pavimentos = térreo + 6 andares → 6º andar",
+     "porque": "Na contagem da banca, a janela do térreo fica a 3 m do solo, a do 1º andar a 6 m, …, a do 6º andar a 21 m: os 21 m são a janela do 6º andar (ver alerta).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — o vaso caiu do sexto andar.",
+   "checagem": "Substitua de volta: caindo 21 m, o tempo total é √(2 × 21/10) ≈ 2,05 s, e até 19 m são ≈ 1,95 s. A diferença é 0,1 s, exatamente o tempo que a câmera registrou para os últimos 2 m.",
+   "erradas": {
+    "A": "Põe a janela do térreo no nível do chão, e aí 21 m seria o 7º andar. Na contagem da banca, a do térreo fica a 3 m e a do 6º andar a 21 m (ver alerta).",
+    "B": "Não confere: o 5º andar, nessa contagem, fica a 18 m; caindo 18 m, os últimos 2 m levariam cerca de 0,11 s, não 0,1 s.",
+    "C": "Não confere: o 4º andar fica a 15 m; os últimos 2 m levariam cerca de 0,12 s, mais que o 0,1 s filmado.",
+    "E": "Não confere: o 3º andar fica a 12 m; os últimos 2 m levariam cerca de 0,135 s, bem mais que 0,1 s."
+   },
+   "armadilha": "Tratar 2 m em 0,1 s como se o vaso começasse do repouso nesse trecho: ele já entra a 19,5 m/s.",
+   "alerta": "A conta não está em disputa (H ≈ 21 m, 7 vãos de 3 m), mas a contagem dos andares depende de convenção que o enunciado não fixa. Na contagem da banca, a janela do térreo fica a 3 m do solo, a do 1º andar a 6 m, …, a do 6º andar a 21 m. Pondo a janela do térreo no nível do chão, 21 m seria o 7º andar (A). O gabarito pós-recursos manteve D. Vale o gabarito oficial.",
+   "essencial": {
+    "pede": "De que andar caiu um vaso que percorre os últimos 2 m em 0,1 s, com janelas a cada 3 m.",
+    "chave": "v₀ = 19,5 m/s no trecho final → h₁ ≈ 19 m → H = 21 m = 7 pavimentos = térreo + 6 andares.",
+    "cuidado": "O vaso entra no trecho final já com velocidade; e o térreo conta como pavimento, não como andar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "velocidade média",
+    "ideia": "A velocidade média nos 2 m é 2/0,1 = 20 m/s, igual à velocidade no meio do intervalo: t = 20/10 + 0,05 = 2,05 s de queda e H = 5 × 2,05² ≈ 21 m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2 = v₀ · 0,1 + (10 × 0,1²)/2",
+    "nota": "trecho final: 2 m em 0,1 s"
+   },
+   {
+    "linha": "2 − 0,05 = 0,1 · v₀ → v₀ = 1,95/0,1 = 19,5 m/s",
+    "nota": "o 0,05 passa subtraindo; o 0,1 passa dividindo"
+   },
+   {
+    "linha": "h₁ = 19,5²/(2 × 10) = 380,25/20 ≈ 19 m",
+    "nota": "Torricelli desde o repouso"
+   },
+   {
+    "linha": "H = 19 + 2 = 21 m",
+    "nota": "soma o trecho filmado"
+   },
+   {
+    "linha": "21/3 = 7 pavimentos → térreo + 6 andares",
+    "nota": "6º andar: alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "UDESC, gabarito pós-recursos do Vestibular de Verão 2024.1 (vespertino, questão 2)",
+    "url": "https://www.udesc.br/arquivos/udesc/id_cpmenu/17802/2024_1___Gabarito_17133860755821_17802.pdf"
+   },
+   {
+    "nome": "UDESC, caderno do Vestibular de Verão 2024.1 vespertino (formulário: g = 10 m/s²)",
+    "url": "https://www.udesc.br/arquivos/udesc/id_cpmenu/17802/2024_1___Prova_Vespertino_17133860756063_17802.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-pend-0001"
+  }
  }
 }
