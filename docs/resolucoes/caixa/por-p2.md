@@ -157,3 +157,13 @@ RECLASS P0d93c353 P12.4 -> P01.2 (Unifor 2025.1 q45: inferência sobre um trecho
 DADO P6fd7e08c (UEMA 2021 PAES q51): texto_da_prova -> "mas as mais belas palavras estão pousadas nas frondes mais altas, como pássaros..." e "O poema está parado em meio da clareira." são versos separados no print
 DADO P4063770f (UFAM 2020 PSC3 q9): alternativas.E -> aspas no print são “Traduzir-se” (a entrada traz ―Traduzir-se‖)
 DADO Pb0621cbd (Unimontes 2024 PS1 q13): confirmado pelo conferente — fragmento e fonte colados no fim da D vão para texto_da_prova, antes do comando
+
+## 2026-11-19 18:41 UTC — FIM — sessão por-p2 (session_01PveEKYbUNBrLzmbEMaYKtg)
+Lotes gravados nesta sessão: por-p2-0005 (49 ok, 1 divergência), por-p2-0006 (50 ok), por-p2-0007 (47 ok, 3 pendentes), por-p2-0008 (49 ok, 1 pendente). Total: 195 resoluções. Nenhum lote aberto.
+Pendentes: Pd2b4fc8b (OUTRA: Artes, UEG 2023/2 q10), P4211f481 (ANULAR, Unitins 2024/1 q45), Pca7bff31 (OBRA: O quinze, UFAM 2023 PSC3 q12), Pe98ee5d0 (PRINT: falta o poema, URCA 2026.1 q40).
+Divergência: Pe24503bc (UFRR 2026 PI q4, O Ateneu): resolvedor e conferente às cegas = A × preliminar C; possível questão com duas incorretas, conferir anulação no Edital 93/25-CPV.
+Gabarito do Aprendice (resolvedor = conferente às cegas): Pf19e5f00 B, Pa7d9b281 B (UFRR 2025 q4 e q5), Pef116c84 A (UFRR 2025 q7, = preliminar).
+Conferência no site (3 questões, 1280 e 390 px): P8f674c90 e Pdae4242f OK (4 blocos completos, sem rolagem lateral). Pc1f8aead ainda sem correção no build testado porque o converte rodou antes da gravação do lote 0007; aparece no próximo converte.
+AVISO P8f674c90: erradas.B começa por "B não confere:", e o site mostra a letra duas vezes ("B B não confere"); tirar o "B " inicial na próxima revisão.
+tsc: OK; vitest: 786 passed (rodados após o lote 0006).
+A seguir: próxima sessão continua com lote.py proximo por 50 --novo --parte 2 (faltam 333 questões na parte 2).
