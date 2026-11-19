@@ -247,3 +247,30 @@ RECLASS P71af63fc Q12.4 -> Q11.7
 GABARITO P8bd920c8 (ITA 2021 q65): oficial C (9) aceita a proposição (1) como correta; há leitura que dá D (10); resolvida com C, explicado no alerta (fontes Poliedro e Indagação)
 GABARITO Pee411ee1 (UPE SSA3 2024 q60): a prova não dá valores; a oficial A bate com a tabela da QNEsc n. 11 (polianilina até 10³ S/cm), com alerta
 GABARITO Pde893c34 (UPE SSA3 2025 q87): a banca chama de "oxidação energética" a oxidação catalítica do propeno a ácido acrílico; resolvida com C, explicado no alerta
+
+## 2026-11-19 17:36 UTC — PENDENCIAS — session_01PveEKYZfyAMFDV6N1z8smo
+Lote qui-0073 gravado (46 ok, 4 para anular). Aberto: qui-0074.
+DADO P7dded9a0: texto_da_prova -> falta a seta "→" entre "H2SO4(aq)" e "K2SO4(aq)"
+DADO Pa70806f6: texto_da_prova -> "ΔH = - 851,5 kJ/mol" (falta o Δ)
+RECLASS P7d66b9ab Q03.2 -> Q03.3
+RECLASS Pa70806f6 Q03.4 -> Q07.1
+RECLASS P591c7573 Q03.4 -> Q04.3
+RECLASS P0ae25a5a Q03.4 -> Q05.1
+GABARITO P2a65d3d9 (UFSM 2026 q16): o print escreve o silicato como SiO4²⁻ (o certo é SiO4⁴⁻); resolvida com a oficial D, explicado no alerta
+ANULAR P7bdaef74: a equação balanceada é Zn + 2 MnO2 + 2 NH4+ → Zn2+ + Mn2O3 + 2 NH3 + H2O; 1,308/65,4 = 0,02 mol de Zn2+ → 0,04 mol de NH4+ × 18 = 0,72 g, fora das alternativas; a oficial A (0,34 g) só sai de 0,02 × 17 (razão 1:1 e massa do NH3)
+DADO P6022027d: texto_da_prova -> "C4H10(g) + 5/2 O2(g) → 4C(s) + 5H2O(g)" (falta a seta)
+DADO Pf60b98c7: alternativas.E -> "22." (a equação C8H18 + 25/2 O2 → 8 CO2 + 9 H2O é do enunciado)
+DADO P85c7f7c6: alternativas -> A 30,5 | B 55,5 | C 82,0 | D 112,0 | E 124,5 (entrada sem alternativas; texto_da_prova "Os"/"No" -> "O2"/"N2")
+DADO P17c32db3: alternativas.E -> "15%" (o "Dado: M (C) = 12 g mol-1, M (H) = 1 g mol-1" é do enunciado)
+DADO P2ca6abb4: alternativas.E -> "0,14" (o "Dado: M (K2CO3) = 138 g mol-1" é do enunciado)
+RECLASS Pe5d05a0a Q04.3 -> Q07.3
+ANULAR P5f4aa130 (UEG 2025/1 q36): 25/60 = 0,4167 mol de ácido acético → 19,17 g de etanol e 7,50 g de água; o etanol oficial (19,32 g) é 0,42 × 46 (banca arredondou para 0,42 mol), mas a água oficial 7,36 g não sai de conta nenhuma (com 0,42 mol daria 7,56 g); E é a mais próxima — coordenadora decide entre anular e resolver com E + alerta do arredondamento
+DADO P21ff9537: alternativas.E -> "56,3"
+RECLASS Pecd73277 Q04.3 -> Q05.6
+ANULAR Pa49ba080 (Cecierj 2020.1): o print diz 3,0 g de BaSO4; com 3,0 g a amostra mínima dá ~6,2 g e o BaSO4 máximo ~7,2 g, fora das alternativas; a oficial C (0,6 g e 0,7 g) só sai com 0,3 g, valor usado na justificativa oficial https://www.cecierj.edu.br/wp-content/uploads/2020/04/JUSTIFICATIVA-DE-RESPOSTAS-DA-MULTIPLA-ESCOLHA-2020-1.pdf
+DADO Pa3eb8c27: alternativas.A -> "(CH3)2N-NH2 (s) + N2O4 (l) → 2 N2(g) + 2 H2O(l) + CO2(g)." (seta no lugar de "è")
+DADO P5fd971ee: alternativas.E -> "90,0%" (sem o "Questão 22" colado)
+RECLASS P712b879b Q04.3 -> Q04.2
+RECLASS Pb071b094 Q04.3 -> Q04.4
+RECLASS P81fdbf5b Q04.3 -> Q04.4
+ANULAR Pecd73277 (Cederj): lido ao pé da letra, os 30 mL são o total das duas titulações → bicarbonato original 30 − 2 × 9,0 = 12 mL → 1,2 mmol × 84 = 100,8 mg = 33,6%, fora das alternativas; a oficial C (58,8%) só sai com 30 − 9 = 21 mL; sem resolução publicada nem errata
