@@ -339,3 +339,21 @@ RECLASS P6e553548 G10.2 -> G10.8
 DADO P47626daa: alternativas -> a entrada não traz o campo; as cinco alternativas vêm coladas no fim do texto_da_prova, sem as letras (no print estão em A–E, nesta ordem)
 DADO P7f455176: texto_da_prova -> truncado em colunas na entrada; vale o print
 AUTORAL Pbca1f0ab (URCA 2023.1 q87): o texto de apoio no print cita "Brasil Escola" como fonte (crédito da própria banca); dono decide pela regra dos sites didáticos
+
+## 2026-11-19 18:13 UTC — PENDENCIAS — sessão geo (19/11, 4ª; parte 1)
+Lote gravado: geo-0057 (50 resoluções; 3 com gabarito do Aprendice, letras iguais às cegas e ao preliminar: Paf7c1fe6 E, P7dafc389 B, P613340b8 B). Pendentes: 0.
+RECLASS P7531f22f G11.2 -> G11.1
+RECLASS Pf8543f23 G11.2 -> G10.1
+RECLASS Pf5e13bfb G11.2 -> G12.2
+RECLASS P127fd478 G11.2 -> G06.1
+DADO Pf5e13bfb: texto_da_prova e alternativas -> acentos quebrados ("limitac¸ ˜ao"); no print: "limitação", "turística", "econômico"
+DADO P127fd478: texto_da_prova e alternativas -> acentos quebrados; no print, B: "região amazônica."
+DADO Pc9434688: texto_da_prova -> embaralhado e faltam as alternativas; no print: manchete "Cisjordânia: o que explica pior onda de violência entre Israel e palestinos em 20 anos" (BBC, 04/07/2023), comando "Assinale a alternativa CORRETA que indica o principal motivo dos conflitos entre Israel e Palestina:", A "As ações do Estado Islâmico." B "A instituição da religião judaica." C "O controle dos poços de petróleo." D "O assassinato de lideranças israelenses." E "A ocupação de territórios palestinos por Israel."
+DADO P06f08baa: texto_da_prova/alternativas -> acentos quebrados ("n˜ao"); no print normais
+DADO P994234c2: texto_da_prova/alternativas -> acentos quebrados ("Ir˜a"); no print normais
+DADO P7315d1f6: texto_da_prova/alternativas -> acentos quebrados ("S´ıria"); no print normais
+RECLASS P994234c2 G10.5 -> G10.7
+RECLASS P87fd044b G10.5 -> G10.8
+RECLASS P2c5a2a96 G10.6 -> G10.3 (UFJF PISM III 2026 q31: desafios da ONU e organizações internacionais)
+RECLASS P613ac58a G10.5 -> G10.4
+DADO Paf7c1fe6: texto_da_prova -> acentos quebrados ("n˜ao", "expans˜ao"); no print normais
