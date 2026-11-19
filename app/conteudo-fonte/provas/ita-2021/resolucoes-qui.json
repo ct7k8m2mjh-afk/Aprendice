@@ -1619,5 +1619,136 @@
    "data": "2026-11-19",
    "lote": "qui-0074"
   }
+ },
+ "Pc80b5f52": {
+  "n": "59",
+  "conceito": "Determinar ordens, constante de velocidade e valores faltantes numa tabela de experimentos cinéticos.",
+  "equivocos": {
+   "A": "Q08.1:supos-ordem-1",
+   "B": "Q08.1:coeficiente-como-ordem",
+   "C": "Q08.1:coeficiente-como-ordem",
+   "D": "Q08.1:esqueceu-a-raiz"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada expoente sai de dois experimentos em que só uma concentração muda. Com α e β, qualquer linha completa dá k; depois a lei completa acha a concentração X e a velocidade Y que faltam. Os coeficientes da equação (1 e 2) não são os expoentes: a lei é experimental.",
+    "formulas": [
+     "v = k [A]^α [B]^β",
+     "concentração × 2 e velocidade × 4 → expoente 2",
+     "k = v ÷ ([A]^α [B]^β)"
+    ],
+    "simbolos": [
+     [
+      "α, β",
+      "ordens de reação em A e em B"
+     ],
+     [
+      "k",
+      "constante de velocidade"
+     ],
+     [
+      "mol⋅L⁻¹⋅min⁻¹",
+      "unidade de velocidade"
+     ]
+    ]
+   },
+   "pista": "Para β, compare os experimentos 1 e 3 (o A é o mesmo); para α, os experimentos 1 e 5 (o B é o mesmo).",
+   "passos": [
+    {
+     "faz": "Ache β (experimentos 1 e 3)",
+     "conta": "[B]: 0,010 → 0,005 (÷ 2) | v: 2,5 × 10⁻⁶ → 1,25 × 10⁻⁶ (÷ 2) → β = 1",
+     "porque": "Com A fixo, reduzir B à metade reduz a velocidade à metade.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ache α (experimentos 1 e 5)",
+     "conta": "[A]: 0,025 → 0,050 (× 2) | v: 2,5 × 10⁻⁶ → 1,0 × 10⁻⁵ (× 4) → 2^α = 4 → α = 2",
+     "porque": "Com B fixo, dobrar A quadruplica a velocidade.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Calcule k pelo experimento 1",
+     "conta": "k = (2,5 × 10⁻⁶)/(0,025² × 0,010) = (2,5 × 10⁻⁶)/(6,25 × 10⁻⁶) = 0,4",
+     "porque": "Divida a velocidade pelo produto das concentrações elevadas às ordens.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule X (experimento 2)",
+     "conta": "2,0 × 10⁻⁵ = 0,4 × X² × 0,020 → X² = 2,5 × 10⁻³ → X = 0,05 mol/L",
+     "porque": "Isole X² e tire a raiz: a ordem 2 em A pede a raiz no fim.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule Y (experimento 4)",
+     "conta": "Y = 0,4 × 0,100² × 0,005 = 2,0 × 10⁻⁵ mol⋅L⁻¹⋅min⁻¹",
+     "porque": "Com a lei completa, basta substituir as concentrações.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue os cinco valores à alternativa",
+     "conta": "α = 2 | β = 1 | k = 0,4 | X = 5,0 × 10⁻² | Y = 2,0 × 10⁻⁵ → alternativa E",
+     "porque": "Os cinco valores coincidem só na alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — α = 2; β = 1; k = 0,4; X = 5,0 × 10⁻²; Y = 2,0 × 10⁻⁵.",
+   "checagem": "Compare o experimento 4 com o 3: o A vai de 0,025 a 0,100 (× 4) com o mesmo B; com ordem 2, a velocidade multiplica por 4² = 16: 1,25 × 10⁻⁶ × 16 = 2,0 × 10⁻⁵ = Y.",
+   "erradas": {
+    "A": "Sai de supor ordem 1 nos dois sem testar o par 1 e 5: k = (2,5 × 10⁻⁶)/(0,025 × 0,010) = 1 × 10⁻², X = 0,1 e Y = 5,0 × 10⁻⁶. Mas dobrar A quadruplica v: α = 2.",
+    "B": "Sai de tomar os coeficientes da equação (1 A e 2 B) como expoentes: α = 1 e β = 2. O par 1 e 3 mostra que B pela metade reduz v à metade, logo β = 1.",
+    "C": "Também usa α = 1 e β = 2, os coeficientes da equação; os experimentos 1 e 3 mostram β = 1, e os 1 e 5, α = 2.",
+    "D": "Acerta α, β e k, mas para em X² = 2,5 × 10⁻³ sem tirar a raiz; e Y não confere: 0,4 × 0,100² × 0,005 = 2,0 × 10⁻⁵, não 2,0 × 10⁻³."
+   },
+   "armadilha": "Os coeficientes da equação (A + 2B) não são as ordens: os expoentes saem da tabela.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As ordens α e β, a constante k e os valores X e Y da tabela.",
+    "chave": "1 e 3: β = 1; 1 e 5: α = 2; k = 0,4; X = 0,05 mol/L; Y = 2,0 × 10⁻⁵.",
+    "cuidado": "Expoente vem do experimento, não do coeficiente; com α = 2, tirar a raiz para achar X."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razão entre experimentos",
+    "ideia": "Para Y, compare 4 com 3: [A] × 4 e ordem 2 dão v × 16 = 2,0 × 10⁻⁵, sem precisar de k."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 e 3: ÷ 2 em B → ÷ 2 em v → β = 1",
+    "nota": "ordem em B"
+   },
+   {
+    "linha": "1 e 5: × 2 em A → × 4 em v → α = 2",
+    "nota": "ordem em A"
+   },
+   {
+    "linha": "k = (2,5 × 10⁻⁶)/(6,25 × 10⁻⁶) = 0,4",
+    "nota": "constante pelo exp. 1"
+   },
+   {
+    "linha": "X² = (2,0 × 10⁻⁵)/(0,4 × 0,020) = 2,5 × 10⁻³ → X = 0,05",
+    "nota": "concentração do exp. 2"
+   },
+   {
+    "linha": "Y = 0,4 × 0,100² × 0,005 = 2,0 × 10⁻⁵",
+    "nota": "velocidade do exp. 4"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "Quadro 1: tabela com os experimentos 1 e 3 destacados e as setas '÷ 2'. Quadro 2: experimentos 1 e 5 com as setas '× 2' e '× 4'. Quadro 3: a lei v = 0,4[A]²[B] montada. Quadro 4: as células X e Y da tabela se preenchendo com 0,05 e 2,0 × 10⁻⁵."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0075"
+  }
  }
 }

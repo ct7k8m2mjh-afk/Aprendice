@@ -970,5 +970,142 @@
    "data": "2026-11-19",
    "lote": "qui-0074"
   }
+ },
+ "Pea7f9a22": {
+  "n": "31",
+  "conceito": "Calcular ΔH° de uma reação pela equação de van't Hoff a partir de K em duas temperaturas.",
+  "equivocos": {
+   "A": "Q08.3:temperatura-em-celsius",
+   "B": "Q08.3:temperatura-em-celsius",
+   "C": "Q08.3:vant-hoff-conta-errada",
+   "E": "Q08.3:dh-constante-lido-como-zero"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A constante de equilíbrio muda com a temperatura, e a equação de van't Hoff liga essa mudança ao ΔH°. Aqui K cai de 4,0 × 10²⁴ para 2,5 × 10¹⁰ quando a temperatura sobe: a reação é exotérmica, e o sinal de ΔH° já tem de sair negativo. O trabalho real é converter °C em kelvin e usar os ln dados.",
+    "formulas": [
+     "ln(K2/K1) = −(ΔH°/R) · (1/T2 − 1/T1)",
+     "T(K) = T(°C) + 273",
+     "K cai com T subindo → reação exotérmica (ΔH° < 0)"
+    ],
+    "simbolos": [
+     [
+      "K",
+      "constante de equilíbrio da reação"
+     ],
+     [
+      "ΔH°",
+      "variação de entalpia padrão da reação"
+     ],
+     [
+      "equação de van't Hoff",
+      "relação entre K e T quando ΔH° é constante"
+     ],
+     [
+      "R",
+      "constante dos gases, 8,3 J/(K·mol)"
+     ],
+     [
+      "ln",
+      "logaritmo natural"
+     ]
+    ]
+   },
+   "pista": "Antes de qualquer conta, olhe se K sobe ou cai com a temperatura: isso já dá o sinal do ΔH°.",
+   "passos": [
+    {
+     "faz": "Converta as temperaturas para kelvin",
+     "conta": "T1 = 27 + 273 = 300 K | T2 = 227 + 273 = 500 K",
+     "porque": "A equação de van't Hoff vem da termodinâmica e só vale em escala absoluta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule ln da razão das constantes",
+     "conta": "K2/K1 = (2,5 × 10¹⁰)/(4,0 × 10²⁴) = 1/(1,6 × 10¹⁴) → ln = −(0,47 + 14 × 2,3) = −32,67",
+     "porque": "Escrever a razão como 1 ÷ (1,6 × 10¹⁴) permite usar exatamente os ln dados: ln 1,6 e 14 vezes ln 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a diferença dos inversos",
+     "conta": "1/500 − 1/300 = (3 − 5)/1500 = −1/750 K⁻¹",
+     "porque": "Denominador comum 1500 deixa a conta exata.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole o ΔH°",
+     "conta": "−32,67 = −(ΔH°/8,3) × (−1/750) → ΔH° = −32,67 × 8,3 × 750 ≈ −203 400 J/mol",
+     "porque": "Os dois sinais de menos do lado direito viram mais; o 8,3 e o 750 passam multiplicando para o outro lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "ΔH° ≈ −203 kJ/mol → alternativa D",
+     "porque": "Negativo, como previsto pela queda de K com a temperatura, e em kJ/mol depois de dividir por 1000.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — ΔH° ≈ −203,0 kJ/mol.",
+   "checagem": "Sinal por Le Chatelier: aquecer desfavorece o sentido que libera calor; como K diminuiu ao aquecer, o sentido direto é exotérmico, ΔH° < 0, o que só as letras A, C e D têm. Entre elas, só −203 é compatível com K variar 14 ordens de grandeza em 200 K.",
+   "erradas": {
+    "A": "−8,3 sai de usar as temperaturas em °C: 1/227 − 1/27 ≈ −0,0326, e ΔH° = −32,67 × 8,3 ÷ 0,0326 ≈ −8 310 J/mol ≈ −8,3 kJ/mol.",
+    "B": "8,3 sai do mesmo erro de usar °C e ainda perder um sinal: ≈ 8 310 J/mol. Além disso, K caiu ao aquecer, então ΔH° não pode ser positivo.",
+    "C": "−74,1 não confere: com T em kelvin e os ln dados, ΔH° = −32,67 × 8,3 × 750 ≈ −203 kJ/mol; −74,1 kJ/mol faria K variar só cerca de 12 unidades de ln, não 32,67.",
+    "E": "0 não confere: ΔH° constante na faixa não quer dizer nulo; se ΔH° fosse 0, K não mudaria com a temperatura, e ela muda de 10²⁴ para 10¹⁰."
+   },
+   "armadilha": "Usar 27 e 227 em vez de 300 K e 500 K: a conta fica bonita e cai certinho na armadilha de 8,3.",
+   "alerta": "A conta com os ln dados dá −203,4 kJ/mol; a alternativa −203,0 é a mais próxima, e a diferença vem do arredondamento dos logaritmos.",
+   "essencial": {
+    "pede": "O ΔH° da síntese do SO3 sabendo K a 300 K e a 500 K.",
+    "chave": "ln(K2/K1) = −32,67 e 1/T2 − 1/T1 = −1/750 → ΔH° = −32,67 × 8,3 × 750 ≈ −203 kJ/mol.",
+    "cuidado": "Kelvin obrigatório; K caindo com T exige ΔH° negativo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sinal antes da conta",
+    "ideia": "K diminui ao aquecer → exotérmica → só A, C ou D; a ordem de grandeza (ln varia 32,67 em 1/750 K⁻¹) exige centenas de kJ/mol, logo D."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "T1 = 300 K | T2 = 500 K",
+    "nota": "°C + 273"
+   },
+   {
+    "linha": "ln(K2/K1) = ln(1/(1,6 × 10¹⁴)) = −(0,47 + 32,2) = −32,67",
+    "nota": "razão escrita para usar os ln dados"
+   },
+   {
+    "linha": "1/500 − 1/300 = −2/1500 = −1/750",
+    "nota": "denominador comum"
+   },
+   {
+    "linha": "−32,67 = −(ΔH°/8,3) × (−1/750)",
+    "nota": "van't Hoff com os números"
+   },
+   {
+    "linha": "ΔH° = −32,67 × 8,3 × 750",
+    "nota": "8,3 e 750 passam multiplicando"
+   },
+   {
+    "linha": "ΔH° ≈ −203 400 J/mol ≈ −203 kJ/mol",
+    "nota": "dividir por 1000"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "Quadro 1: a reação 2 SO2 + O2 ⇌ 2 SO3 com K enorme a 300 K (10²⁴). Quadro 2: termômetro sobe a 500 K e K encolhe para 10¹⁰, seta do equilíbrio pendendo para os reagentes. Quadro 3: reta ln K × 1/T com inclinação −ΔH°/R positiva, levando a ΔH° ≈ −203 kJ/mol."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0075"
+  }
  }
 }

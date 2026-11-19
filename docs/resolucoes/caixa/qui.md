@@ -303,3 +303,42 @@ GABARITO P4a79635f: gabarito do Aprendice A (resolvedor A, conferente às cegas 
 Último lote gravado: qui-0074. Nesta sessão: qui-0071 (49 ok, 1 ANULAR), qui-0072 (50 ok), qui-0073 (46 ok, 4 ANULAR), qui-0074 (50 ok) = 195 resoluções. Nenhum lote aberto. Testes após o qui-0073: tsc ok, 786 passed. Checagem no site (3 questões do qui-0072, 390 e 1280 px): ok.
 Pendências: ANULAR P4bbfc2bf, P7bdaef74, P5f4aa130 (coordenadora decide: anular ou resolver com E + alerta), Pa49ba080, Pecd73277; gabarito do Aprendice P4a79635f (A); PRINT P2d222dbc; RECLASS, DADO e GABARITO nos blocos acima.
 Faltam 175 questões de Química. Próximo: `python3 ferramentas/resolucoes/lote.py proximo qui 50 --novo` (qui-0075).
+
+## 2026-11-19 18:22 UTC — PENDENCIAS — session_01PveEKavURMVSSh5SgqLorw
+Lote qui-0075 gravado (50 ok; P9f3bd7a8 com gabarito do Aprendice B: resolvedor B, conferente às cegas B, preliminar B; sem fonte na web).
+DADO P162d845f (UFJF 2022 PISM III q30): alternativas -> estão dentro do texto_da_prova, sem campo separado; pelo print: A v = k[H2O2][I⁻][H⁺]; B v = k[H2O2][I⁻][H⁺]²; C v = k[H2O2][H⁺]; D v = k[H2O2][I⁻]; E v = k[I⁻][H⁺]
+DADO P95734fd9 (UFJF 2025 PISM III q30): alternativas.E -> pelo print é uma fração: v = k · ([N2]·[H2O]²)/([NO]²·[H2]²)
+DADO Pb4f62217 (UFAM 2026 PSC3 q40): alternativas B e C -> "1,5 × 10⁻² mol L⁻¹ s⁻¹" e "7,5 × 10⁻³ mol L⁻¹ s⁻¹" (na entrada falta o "×")
+DADO P9ccc9975 (Unifor 2026.2 q25): alternativas.E -> só "II e IV" (os textos dos gráficos foram colados nela)
+DADO P965bae21 (UNEMAT 2023/2 q4): alternativas.E -> termina em "caminho alternativo." (a palavra "Figura" foi colada nela)
+DADO Pfc0eb4c8 (ITA 2025 q31): alternativas -> estão dentro do texto_da_prova; pelo print: A KA = e^−0,002·KB; B KA = e^−2·KB; C KA = e^−20·KB; D KA = e^+0,002·KB; E KA = e^+20·KB
+RECLASS P162d845f Q08.1 -> Q08.8
+RECLASS P95734fd9 Q08.1 -> Q08.8
+RECLASS P6af8fcdc Q08.1 -> Q08.8
+RECLASS P9ccc9975 Q08.1 -> Q08.8
+RECLASS Pe2d15cbd Q08.1 -> Q08.8
+DADO Pd09e960c (PUCRS 2022 Verão q38): alternativas.D -> "I, II e III." (o "Pt" do texto, catalisador da 1ª etapa, foi parar na D)
+DADO Pfb442756 (UEG 2022/1 q39): texto_da_prova, equação -> "N2(g) + 3 H2(g) ⇌ 2 NH3(g)   ΔH = −92 kJ" (na entrada "H = 92 kJ", sem Δ e sem o sinal negativo)
+DADO P8cb0fd53 (UFJF PISM III 2020 q26): alternativas -> campo ausente; as alternativas A–E estão só no fim do texto_da_prova
+DADO P582857ea (ITA 2022 q68): alternativas -> campo ausente; no print: A 1,0 · B 1,5 · C 2,0 · D 2,5 · E 3,5
+DADO P6561fde9 (ITA 2020 q58): texto_da_prova -> o OCR troca "H2(g)/N2(g)" por "Hs(g)/Ns(g)/No(g)" e "III" por "WI"; alternativas no print: A apenas I · B apenas I e II · C apenas II e III · D apenas III e IV · E apenas IV
+RECLASS Pc8c8fee4 Q07.2 -> Q07.1 (Cederj 2023.1 q41: ΔE = ΔH − Δn·R·T, não é lei de Hess)
+RECLASS P52151803 Q07.3 -> Q04.3 (ITA 2020 q65: razão mássica combustível/O2)
+RECLASS P7a724d10 Q07.3 -> Q01.6 (ITA 2025 q36: energia do fóton, E = h·c/λ)
+DADO Pc8c8fee4: texto_da_prova/alternativas -> no print os ΔH são −393.5 e −110.5 kJ/mol; A = "− 393.5 kJ/mol e − 111.7 kJ/mol" (sinais de menos perdidos)
+DADO P0dc7b411: texto_da_prova -> no print A ( ) −185 e B ( ) −92,5 (sinais de menos perdidos)
+DADO Pe22225e7: texto_da_prova -> no print I diz "CxHy, em que x ≤ 8"; alternativas: A apenas I e II; B apenas I, II e III; C apenas I e IV; D apenas II, III e IV; E apenas III e IV
+DADO P52151803: texto_da_prova -> no print o querosene é C12H26 (o OCR leu C15H56)
+DADO P2a292f20 (UEG 2020/1 q39): alternativas A, B, D -> "−1367,4 kJ/mol", "−401,9 kJ/mol", "−348,6 kJ/mol" (falta o sinal de menos); texto_da_prova, entalpias de formação -> "−286", "−393,5", "−277,6 kJ/mol"
+DADO P5e2e9381 (ITA 2026 q25): texto_da_prova -> "2,0·10⁻³ s⁻¹" e "0,050 mol·L⁻¹"; alternativas -> A 79 kJ·mol⁻¹; 69 s · B 66 kJ·mol⁻¹; 69 s · C 72 kJ·mol⁻¹; 75 s · D 66 kJ·mol⁻¹; 75 s · E 79 kJ·mol⁻¹; 75 s
+DADO Pc80b5f52 (ITA 2021 q59): alternativas -> campo ausente; as alternativas A–E estão só dentro do texto_da_prova
+DADO P54a4bc85 (ITA 2026 q31): alternativas -> campo ausente; A–E (11,54 / 12,07 / 13,20 / 14,05 / 15,48 mmHg) só dentro do texto_da_prova
+DADO Pedc15c21 (Cederj 2021.2 q39): texto_da_prova, equação -> "CO(g) + NO2(g) → CO2(g) + NO(g)" (falta a seta)
+RECLASS P2a292f20 Q07.3 -> Q07.2
+RECLASS P224b1402 Q08.3 -> Q08.5 (ITA 2020 q69, lei de Henry + Ka/pH)
+RECLASS P6e67e781 Q08.3 -> Q08.4 (ITA 2022 q65, deslocamento de equilíbrio)
+RECLASS P7daaa818 Q08.3 -> Q01.1 (ITA 2024 q52, modelos atômicos)
+RECLASS P59c5d08e Q08.3 -> Q10.1 (ITA 2026 q30, ebulioscopia)
+RECLASS Pf22416ab Q08.3 -> Q06.3 (ITA 2026 q36, pressões parciais)
+DADO P224b1402 (ITA 2020 q69): texto_da_prova ilegível -> pelo print "4·10⁻² % (em volume) de CO2", "KH = 2,5·10⁻² mol L⁻¹ atm⁻¹", "Ka = 1·10⁻⁶,⁴"; alternativas ausentes -> A 10⁻² e 6,4 · B 10⁻⁵ e 5,7 · C 10⁻⁵ e 6,4 · D 10⁻⁷ e 5,7 · E 10⁻⁷ e 6,4
+GABARITO P9f3bd7a8 (IME 2025 q38): gabarito do Aprendice B (−11,1 kJ/mol; T ≈ 627 K); sem fonte publicada

@@ -811,5 +811,157 @@
    "data": "2026-11-19",
    "lote": "qui-0067"
   }
+ },
+ "P9f3bd7a8": {
+  "n": "38",
+  "conceito": "Espontaneidade e equilíbrio por energia livre de Gibbs (ΔG = ΔH − T·ΔS) calculando ΔH e ΔS com entalpias de formação e entropias-padrão.",
+  "equivocos": {
+   "A": "Q07.2:sinal-de-dh-invertido",
+   "C": "Q07.2:papeis-trocados-fonte-de-calor",
+   "D": "Q07.2:nao-calculou-dg-da-reacao-1",
+   "E": "Q07.2:ignorou-gas-formado-na-entropia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para julgar as cinco alternativas, você precisa de quatro números: ΔH e ΔS de cada reação. Os dois saem da tabela como produtos menos reagentes. Depois, ΔG = ΔH − T·ΔS decide espontaneidade (ΔG < 0) e equilíbrio (ΔG = 0, ou seja, T = ΔH ÷ ΔS).",
+    "formulas": [
+     "ΔH = Σ ΔHf(produtos) − Σ ΔHf(reagentes)",
+     "ΔS = Σ S(produtos) − Σ S(reagentes)",
+     "ΔG = ΔH − T · ΔS; espontânea se ΔG < 0",
+     "equilíbrio: ΔG = 0 → T = ΔH ÷ ΔS"
+    ],
+    "simbolos": [
+     [
+      "ΔHf",
+      "entalpia de formação; substância simples (Fe, C) vale zero"
+     ],
+     [
+      "S°",
+      "entropia-padrão, em J/(K·mol)"
+     ],
+     [
+      "ΔG",
+      "variação de energia livre de Gibbs"
+     ],
+     [
+      "endotérmica",
+      "absorve calor (ΔH > 0)"
+     ],
+     [
+      "exotérmica",
+      "libera calor (ΔH < 0)"
+     ],
+     [
+      "FeO",
+      "óxido de ferro II"
+     ]
+    ]
+   },
+   "pista": "Calcule primeiro ΔH e ΔS das duas reações. Cuidado com as unidades: ΔH está em kJ e S em J.",
+   "passos": [
+    {
+     "faz": "Calcule ΔH e ΔS da reação 1",
+     "conta": "FeO + C → Fe + CO | ΔH1 = −110,5 − (−271,9) = +161,4 kJ | ΔS1 = (27,3 + 197,9) − (60,8 + 5,7) = +158,7 J/K",
+     "porque": "Produtos menos reagentes. A reação 1 forma gás a partir só de sólidos, por isso a entropia aumenta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule ΔH e ΔS da reação 2",
+     "conta": "FeO + CO → Fe + CO2 | ΔH2 = −393,5 − (−271,9 − 110,5) = −11,1 kJ | ΔS2 = (27,3 + 213,7) − (60,8 + 197,9) = −17,7 J/K",
+     "porque": "Mesmo procedimento. Agora entra um gás e sai um gás, e a entropia cai um pouco.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine A e E pelos sinais",
+     "conta": "reação 1: ΔH > 0 (endotérmica), ΔS > 0 | reação 2: ΔH < 0 (exotérmica)",
+     "porque": "A troca as duas: a 1 é a endotérmica. E diz que a entropia da 1 diminui, mas ΔS1 = +158,7 J/K.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste C e D a 450 K",
+     "conta": "ΔG1 = 161,4 − 450 × 0,1587 ≈ +90,0 kJ | ΔG2 = −11,1 − 450 × (−0,0177) ≈ −3,1 kJ",
+     "porque": "A 450 K só a reação 2 é espontânea, o que derruba D. A reação 1 absorve calor, então não pode ser fonte de calor: C inverte os papéis.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Calcule a temperatura de equilíbrio da reação 2",
+     "conta": "ΔG2 = 0 → T = ΔH2/ΔS2 = (−11 100 J)/(−17,7 J/K) ≈ 627 K",
+     "porque": "No equilíbrio ΔG = 0; os dois sinais negativos se cancelam e dão uma temperatura positiva dentro da faixa de 298 a 650 K.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "reação 2 em equilíbrio a cerca de 627 K → alternativa B",
+     "porque": "É a única afirmação que os números confirmam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a cerca de 627 K, a reação 2 atinge o equilíbrio dinâmico.",
+   "checagem": "Substitua 627 K na reação 2: ΔG2 = −11,1 − 627 × (−0,0177) = −11,1 + 11,1 ≈ 0. Abaixo de 627 K o termo −TΔS é menor e ΔG2 fica negativo (espontânea, como a 450 K); acima, positivo.",
+   "erradas": {
+    "A": "Inverte os sinais: ΔH1 = +161,4 kJ (endotérmica) e ΔH2 = −11,1 kJ (exotérmica).",
+    "C": "Inverte os papéis: a reação 1 absorve 161,4 kJ e não fornece calor. A razão 161,4 ÷ 11,1 ≈ 15 indica que seriam cerca de 15 mol da reação 2 para aquecer 1 mol da reação 1.",
+    "D": "Só a reação 2 é espontânea a 450 K: ΔG1 = 161,4 − 450 × 0,1587 ≈ +90,0 kJ, positivo.",
+    "E": "A reação 1 forma CO gasoso a partir de dois sólidos: ΔS1 = +158,7 J/K, aumento de entropia."
+   },
+   "armadilha": "A alternativa C usa o número certo (cerca de 15) com os papéis trocados: quem libera calor é a reação 2, não a 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A única afirmação correta sobre ΔH, ΔS e ΔG das duas reduções do FeO.",
+    "chave": "ΔH2 = −11,1 kJ e ΔS2 = −17,7 J/K dão equilíbrio em T = ΔH ÷ ΔS ≈ 627 K.",
+    "cuidado": "Passar ΔS de J para kJ antes de multiplicar por T."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "direto pela B",
+    "ideia": "Calcule só a reação 2: T = 11 100 ÷ 17,7 ≈ 627 K confirma a B, e as demais caem pelos sinais da reação 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ΔH1 = −110,5 − (−271,9) = +161,4 kJ",
+    "nota": "produtos menos reagentes"
+   },
+   {
+    "linha": "ΔS1 = 225,2 − 66,5 = +158,7 J/K",
+    "nota": "forma gás a partir de sólidos"
+   },
+   {
+    "linha": "ΔH2 = −393,5 − (−382,4) = −11,1 kJ",
+    "nota": "reação 2 é exotérmica"
+   },
+   {
+    "linha": "ΔS2 = 241,0 − 258,7 = −17,7 J/K",
+    "nota": "entropia cai um pouco"
+   },
+   {
+    "linha": "ΔG2 = 0 → T = (−11 100)/(−17,7) ≈ 627 K",
+    "nota": "equilíbrio: ΔH dividido por ΔS"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "Quadro 1: tabela com as duas reações e os valores de ΔH e ΔS aparecendo com sinal. Quadro 2: gráfico de ΔG por T com duas retas; a reta da reação 1 fica acima de zero em toda a faixa de 298 a 650 K. Quadro 3: a reta da reação 2 começa abaixo de zero e cruza o eixo em 627 K, onde aparece o rótulo 'equilíbrio'. Quadro 4: uma vertical em 450 K mostra ΔG1 ≈ +90 e ΔG2 ≈ −3,1."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0075"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "qui-0075"
+  }
  }
 }

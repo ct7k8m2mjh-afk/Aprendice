@@ -919,5 +919,257 @@
    "data": "2026-11-19",
    "lote": "qui-0072"
   }
+ },
+ "P89dedb74": {
+  "n": "36",
+  "conceito": "Lei de velocidade de 2ª ordem quando um reagente tem solubilidade limitada: concentração constante enquanto há sólido em excesso.",
+  "equivocos": {
+   "A": "Q08.1:esqueceu-a-concentracao-de-b",
+   "B": "Q08.1:limite-de-conversao-trocado",
+   "C": "Q08.1:ignorou-a-solubilidade",
+   "D": "Q08.1:quadrado-na-fase-saturada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A lei é v = k[A][B]. O A está todo dissolvido: [A] = 2(1 − X) mol/L. O B, não: só 0,1 mol/L fica em solução, e o resto fica como sólido. Enquanto houver sólido, o B que reage é reposto e [B] fica fixa em 0,1. Quando sobrar menos de 0,1 mol de B no total, o sólido acaba e [B] passa a cair junto com [A].",
+    "formulas": [
+     "v = k [A] [B], com k = 10⁻³ L mol⁻¹ s⁻¹",
+     "[A] = 2(1 − X) mol/L em 1 L",
+     "solução saturada com sólido em excesso: [B] = 0,1 mol/L constante"
+    ],
+    "simbolos": [
+     [
+      "X",
+      "conversão de A: fração do A inicial que já reagiu"
+     ],
+     [
+      "solubilidade",
+      "máxima concentração de B que se mantém dissolvida, aqui 0,1 mol/L"
+     ],
+     [
+      "k",
+      "velocidade específica (constante de velocidade)"
+     ],
+     [
+      "n_A",
+      "número de mols de A num instante"
+     ]
+    ]
+   },
+   "pista": "Pergunte: até quando sobra B sólido no fundo? Esse é o ponto em que a lei muda de forma.",
+   "passos": [
+    {
+     "faz": "Escreva [A] em função de X",
+     "conta": "n_A = 2 − 2X = 2(1 − X) → [A] = 2(1 − X) mol/L",
+     "porque": "Como A e B reagem 1:1 e começam ambos com 2 mol, o B total também é 2(1 − X).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache quando o sólido de B acaba",
+     "conta": "B total = 2(1 − X) = 0,1 → 1 − X = 0,05 → X = 0,95",
+     "porque": "Enquanto o B total for maior que 0,1 mol, há sólido mantendo a solução saturada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva v na fase saturada",
+     "conta": "v = 10⁻³ × 2(1 − X) × 0,1 → v = 0,0002 (1 − X), 0 ≤ X ≤ 0,95",
+     "porque": "[B] fica fixa em 0,1 mol/L, então a velocidade cai só com o A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva v depois que o sólido acaba",
+     "conta": "v = 10⁻³ × 2(1 − X) × 2(1 − X) → v = 0,004 (1 − X)², 0,95 ≤ X ≤ 1",
+     "porque": "Sem sólido, todo o B está dissolvido e cai igual ao A: [B] = [A] = 2(1 − X).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue as duas fases à alternativa",
+     "conta": "0,0002 (1 − X) até X = 0,95 | 0,004 (1 − X)² depois → alternativa E",
+     "porque": "Coeficientes e limite de troca precisam bater ao mesmo tempo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — v = 0,0002 (1 − X) para 0 ≤ X ≤ 0,95 e v = 0,004 (1 − X)² para 0,95 ≤ X ≤ 1.",
+   "checagem": "Confira a continuidade em X = 0,95: 0,0002 × 0,05 = 1 × 10⁻⁵ e 0,004 × 0,05² = 1 × 10⁻⁵. As duas expressões dão a mesma velocidade no ponto de troca, como tem de ser.",
+   "erradas": {
+    "A": "Sai de usar v = k[A] sem o fator [B] = 0,1: 10⁻³ × 2(1 − X) = 0,002 (1 − X). No ponto X = 0,95 ela dá 1 × 10⁻⁴, e a segunda, 1 × 10⁻⁵: a velocidade pularia.",
+    "B": "Não confere: o sólido acaba quando o B total cai a 0,1 mol, isto é, 1 − X = 0,05 e X = 0,95, não 0,05; e a 2ª fase é 10⁻³ × [2(1 − X)]² = 0,004 (1 − X)².",
+    "C": "Sai de ignorar a solubilidade e tomar [B] = 2 mol/L desde o início; mas só 0,1 mol/L de B fica dissolvido enquanto há sólido.",
+    "D": "Não confere: enquanto há B sólido, [B] é constante e v depende de (1 − X) só uma vez, não ao quadrado."
+   },
+   "armadilha": "Enquanto há B sólido, a concentração de B dissolvido não muda: a lei é de 2ª ordem, mas se comporta como 1ª ordem em A.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A velocidade em função da conversão de A, com B pouco solúvel.",
+    "chave": "[B] = 0,1 até o sólido acabar (X = 0,95): v = 0,0002(1 − X); depois [B] = [A]: v = 0,004(1 − X)².",
+    "cuidado": "O ponto de troca é quando sobra 0,1 mol de B no total, 1 − X = 0,05."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "continuidade",
+    "ideia": "A velocidade não pode dar salto na troca de fase: só E tem as duas expressões iguais em X = 0,95 (1 × 10⁻⁵ mol L⁻¹ s⁻¹)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "v = k [A] [B] | [A] = 2(1 − X)",
+    "nota": "lei e concentração de A"
+   },
+   {
+    "linha": "2(1 − X) = 0,1 → X = 0,95",
+    "nota": "fim do sólido de B"
+   },
+   {
+    "linha": "v = 10⁻³ × 2(1 − X) × 0,1 → v = 0,0002 (1 − X)",
+    "nota": "fase saturada"
+   },
+   {
+    "linha": "v = 10⁻³ × [2(1 − X)]² → v = 0,004 (1 − X)²",
+    "nota": "fase sem sólido"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Quadro 1: frasco de 1 L com A todo dissolvido e B parte dissolvido (0,1 mol/L) e parte como sólido no fundo. Quadro 2: a reação consome B e o sólido vai se dissolvendo, a concentração de B parada em 0,1. Quadro 3: em X = 0,95 o último grão de sólido some. Quadro 4: dali em diante [A] e [B] caem juntas e a curva de v passa a ser quadrática."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0075"
+  }
+ },
+ "P8f9cbcf5": {
+  "n": "31",
+  "conceito": "Relacionar ΔG° de vaporização com a constante de equilíbrio (pressão de vapor) por ΔG° = −RT ln K.",
+  "equivocos": {
+   "A": "Q08.3:expoente-errado",
+   "C": "Q08.3:r-em-unidade-errada",
+   "D": "Q08.3:r-em-unidade-errada",
+   "E": "Q08.3:expoente-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A pressão de vapor é a constante de equilíbrio da vaporização: benzeno(l) ⇌ benzeno(g), K = P do vapor (em atm, com P° = 1 atm). O ΔG° dessa transformação sai da tabela: formação do gás menos formação do líquido. O trabalho real da questão é escolher o R em J com o ΔG em J.",
+    "formulas": [
+     "ΔG° = ΔG°f(produtos) − ΔG°f(reagentes)",
+     "ΔG° = −R · T · ln K → K = e^(−ΔG°/(RT))",
+     "vaporização: K = P de vapor (em atm)"
+    ],
+    "simbolos": [
+     [
+      "ΔG°",
+      "variação da energia livre de Gibbs padrão da transformação"
+     ],
+     [
+      "ΔG°f",
+      "energia livre de Gibbs padrão de formação, dada na tabela"
+     ],
+     [
+      "K",
+      "constante de equilíbrio; na vaporização, é a própria pressão de vapor"
+     ],
+     [
+      "pressão de vapor",
+      "pressão do vapor em equilíbrio com o líquido, numa dada temperatura"
+     ],
+     [
+      "e",
+      "base do logaritmo natural, ≈ 2,718"
+     ]
+    ]
+   },
+   "pista": "Escreva a vaporização como um equilíbrio e pergunte: quem é K aqui? Depois cuide da unidade do R.",
+   "passos": [
+    {
+     "faz": "Escreva a vaporização como equilíbrio",
+     "conta": "C6H6(l) ⇌ C6H6(g) | K = P(benzeno)",
+     "porque": "O líquido puro não entra na expressão de K; sobra só a pressão do vapor, em atm.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o ΔG° da vaporização",
+     "conta": "ΔG° = +129 − (+124) = +5 kJ/mol = 5000 J/mol",
+     "porque": "Produto (gás) menos reagente (líquido); passe para joule porque o R escolhido está em J/(K·mol).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o expoente com R em joule",
+     "conta": "ln K = −ΔG°/(RT) = −5000/(8,3 × 298) = −5000/2473,4 ≈ −2,02",
+     "porque": "J/mol dividido por J/(K·mol) × K dá número puro, como deve ser um expoente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a pressão de vapor",
+     "conta": "P = e^(−2,02) atm → alternativa B",
+     "porque": "K = e^(ln K); com ΔG° > 0, o expoente é negativo e P fica abaixo de 1 atm, como se espera do benzeno a 25 °C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a pressão de vapor do benzeno a 298 K é cerca de e^(−2,02) atm.",
+   "checagem": "Ordem de grandeza: e^(−2,02) ≈ 0,13 atm ≈ 100 mmHg, pressão de vapor plausível para um líquido volátil como o benzeno a 25 °C, e menor que 1 atm, coerente com ele ser líquido nessa temperatura.",
+   "erradas": {
+    "A": "e^(−4,77) não confere: com ΔG° = 5000 J/mol e R = 8,3 J/(K·mol), o expoente é −5000 ÷ (8,3 × 298) ≈ −2,02; nenhum R da lista, com unidades coerentes, leva a 4,77.",
+    "C": "e^(−0,21) sai de usar ΔG° em kJ com R = 0,08 atm·L/(K·mol): 5 ÷ (0,08 × 298) ≈ 0,21. kJ e atm·L não se cancelam.",
+    "D": "e^(−209,7) sai de usar ΔG° em J com R = 0,08 atm·L/(K·mol): 5000 ÷ (0,08 × 298) ≈ 209,7. A energia exige o R em J/(K·mol).",
+    "E": "e^(−12,4) não confere: o ΔG° da vaporização é 5 kJ/mol e o expoente correto é −2,02; nenhuma combinação coerente dos dados dá 12,4."
+   },
+   "armadilha": "Escolher o R pelo primeiro que aparece na lista: com ΔG em joule, só R = 8,3 J/(K·mol) deixa o expoente sem unidade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A pressão de vapor do benzeno a 298 K, pela tabela de ΔG°f.",
+    "chave": "Vaporização com ΔG° = +5 kJ/mol; P = K = e^(−ΔG°/RT) = e^(−5000/(8,3 × 298)) = e^(−2,02).",
+    "cuidado": "ΔG em J com R em J/(K·mol); a pressão de vapor é a própria K."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "unidade do R",
+    "ideia": "Teste os R pelo resultado: só 8,3 J/(K·mol) com ΔG em J dá expoente sem unidade (−2,02); com 0,08 saem 0,21 ou 209,7, que são as armadilhas C e D."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C6H6(l) ⇌ C6H6(g) → K = P",
+    "nota": "vaporização como equilíbrio"
+   },
+   {
+    "linha": "ΔG° = 129 − 124 = 5 kJ/mol = 5000 J/mol",
+    "nota": "gás menos líquido, em joule"
+   },
+   {
+    "linha": "ln K = −5000/(8,3 × 298)",
+    "nota": "ΔG° = −RT ln K, isolando ln K"
+   },
+   {
+    "linha": "ln K = −5000/2473,4 ≈ −2,02",
+    "nota": "dividir"
+   },
+   {
+    "linha": "P = e^(−2,02) atm",
+    "nota": "K = e elevado a ln K"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Quadro 1: frasco fechado com benzeno líquido e vapor acima, setas de evaporação e condensação iguais. Quadro 2: a escada de energia livre, líquido em 124 e gás em 129 kJ/mol, ΔG° = +5. Quadro 3: a conta −5000/(8,3 × 298) = −2,02 e o manômetro marcando e^(−2,02) atm ≈ 0,13 atm."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0075"
+  }
  }
 }
