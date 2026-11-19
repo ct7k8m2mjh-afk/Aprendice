@@ -1,6 +1,6 @@
-# Português: resoluções (gerado por lote.py em 2026-11-19)
+# Português (parte 1): resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 1584 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 1045; ENEM nível 7-10 53; provas-alvo nível 7-10 225; demais nível 7-10 261.
+Faltam 651 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 359; ENEM nível 7-10 45; provas-alvo nível 7-10 111; demais nível 7-10 136.
 
 ## Lotes
 
@@ -100,6 +100,10 @@ Faltam 1584 questões sem resolução (fora as que estão em lote, pendentes ou 
 | por-0092 | demais nível 1-6 | 60 | gravado | 59 | 1 | 0 |
 | por-0093 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
 | por-0094 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
+| por-0095 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
+| por-0096 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
+| por-0097 | demais nível 1-6 | 50 | aberto |  |  |  |
+| por-0098 | demais nível 1-6 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -192,6 +196,7 @@ Faltam 1584 questões sem resolução (fora as que estão em lote, pendentes ou 
 | Pb3cb3211 | UPE 2025 SSA3 · questão 16 | P03.3 charge, tirinha, cartaz e infográfico (tema P03 Gêneros e tipos textuais) | A questão pede a capa que antecipa "mais elementos do enredo" de Torto Arado. Decidir entre as capas exige conhecer o enredo do romance (o que cada objeto e cena das capas representa na história), que não está na questão. Sem fonte conferida sobre o livro, não há como fundamentar a E nem as eliminações. |
 | P2353388b | UPE 2026 SSA3 · questão 7 | P12.5 literatura contemporânea e autores africanos de língua portuguesa (tema P12 Literatura: Pré-Modernismo em diante) | obra: a notícia só lista as seis personagens aproveitadas na peça (Bibiana, Belonisia, Donana, Salu, Zeca Chapéu Grande e Severo); decidir entre as ações atribuídas a elas nas alternativas (quem desdenha das tradições, quem negocia a venda de terras, de quem é o ferimento na língua, quem denuncia as condições de trabalho) depende da leitura do romance Torto Arado, que a questão não reproduz. |
 | P81331b71 | UPE 2026 SSA3 · questão 8 | P12.5 literatura contemporânea e autores africanos de língua portuguesa (tema P12 Literatura: Pré-Modernismo em diante) | obra: as cinco alternativas leem os dois trechos de modo parecido e se separam pela segunda parte, que afirma se cada visão dura ou não em todo o enredo de Ponciá Vicêncio; saber que só a visão do Trecho I permanece (D) depende da leitura do romance inteiro, que a questão não reproduz. |
+| P97b8da45 | URCA 2025 2025.1 · questão 98 | P06.3 figuras de som e de construção: aliteração, anáfora, elipse, hipérbato, zeugma, pleonasmo (tema P06 Figuras de linguagem) | anular: a contagem correta de fonemas é semipenumbra 11, quarto 6, sorrir 5, carcomida 9 e atravancam 9. Nenhuma alternativa traz essa sequência. As que têm 11 em semipenumbra dão 8 a carcomida (c-a-r-c-o-m-i-d-a, 9 letras e 9 fonemas, sem dígrafo). As que dão 9 a carcomida erram semipenumbra. A alternativa E é a única que acerta os itens 1, 2, 3 e 5, e só falha no item 4. A decisão fica com a conferência. |
 | P9714da52 | UVA 2025 2025.1 · questão 5 | P03.1 tipos textuais: narração, descrição, dissertação e injunção (tema P03 Gêneros e tipos textuais) | obra: Torto arado — o comando pede o foco narrativo do romance inteiro (narradores das três partes, fora do trecho); o trecho só mostra narração em 1ª pessoa |
 | Pb6aa2d50 | Unesp 2022 1ª fase – Exatas e Humanidades · questão 61 | P06.3 figuras de som e de construção: aliteração, anáfora, elipse, hipérbato, zeugma, pleonasmo (tema P06 Figuras de linguagem) | classificação: é de Biologia (taxonomia: classe, gênero, espécie) |
 | P41d362f2 | Unesp 2024 1ª fase – meio de ano · questão 56 | P05.4 variação linguística, registro e adequação (tema P05 Semântica e vocabulário) | classificação: é de Filosofia e Sociologia. Na prova, a questão 56 está no bloco de Filosofia e Sociologia (questões 55, 57, 58, 59 e 60 são dessa área) e o comando pede a motivação da linguagem neutra "À luz dos Direitos Humanos". O texto permite eliminar A, B, D e E, mas ligar a invisibilização de pessoas trans e não binárias à "violência de gênero" é conteúdo de Sociologia e Direitos Humanos; o texto não fala em violência. |
