@@ -135,3 +135,34 @@ RECLASS Pa23114cf Q05.2 -> Q05.6
 ## 2026-11-19 16:07 UTC — PENDENCIAS — session_01PveEKXC1xdiGM81kadC8Xj
 Lote qui-0068 gravado (49 ok, 1 pendente: P7b93c864 é de Matemática). As linhas RECLASS/DADO do qui-0068 já foram no bloco anterior.
 OUTRA P7b93c864 (UEL 2023 q9): não é Química; reclassificar para Matemática M13.9 (funções f: X → X, contagem de involuções)
+
+## 2026-11-19 16:14 UTC — PENDENCIAS — session_01PveEKXC1xdiGM81kadC8Xj
+Lote qui-0069 gravado (49 ok, 1 pendente para anular: Pc4e32cc6).
+RECLASS P8ee03566 Q04.1 -> Q01.2
+RECLASS P962e0530 Q04.3 -> Q03.2
+RECLASS P23d28b17 Q04.3 -> Q07.1
+RECLASS Pfbd76a3d Q04.3 -> Q04.2
+DADO P23d28b17: texto_da_prova -> na Equação 1 o coeficiente do O2 é a fração 5/2 (o texto mostra "5\n2O2"); alternativas.E termina em "...que a reação 1." (o " 27" é número de página)
+DADO Pfbd76a3d: texto_da_prova "óxido cuproso [CuO]" é erro da própria banca (CuO é óxido cúprico); alerta explica
+DADO Pb571e391: texto_da_prova -> tabela do print com 5 colunas (Banha de Porco, Óleo de Girassol, Azeite de Oliva Extravirgem, Manteiga de Leite de Vaca, Manteiga de Coco): Saturados 39/12/14/58/95, Insaturados 61/80/78/26/5, Totais 100/92/92/84/100, Valor Energético 902/831/823/760/900 kcal/100g; proposições I a V ("Il."/"|" na entrada); alternativas B, C, D -> "Somente as proposições I, II e V" / "I, III e IV" / "I, II e III são verdadeiras."
+DADO P6a029805: alternativas.E -> termina em "...aumentam o volume molar do gelo em relação à água líquida." (tabela periódica e "HISTORIA (11 questões)" coladas)
+DADO Pd0d2db2f: alternativas.D -> "+ 3." ("O O" da estrutura colado)
+DADO Pf8b9ce77: alternativas.D -> termina em "...processos físicos de separação de misturas." ("CIÊNCIAS HUMANAS E SUAS TECNOLOGIAS" colado)
+DADO Pdb4cab1f: alternativas.E -> "41%." (texto de apoio colado na E; no print o enunciado começa com o parágrafo do alto-forno: Fe2O3 = 160, CO = 28, Fe = 56, CO2 = 44 g/mol e Fe2O3(s) + CO(g) → Fe(s) + CO2(g))
+ANULAR Pc4e32cc6 (UECE 2021.1 1ª fase): 1,70 g de XCO3 → 0,88 g de XO dá M(X) ≈ 31 g/mol, nem Mg (24,3) nem Ca (40,1); Mg daria 0,81 g e Ca 0,95 g de óxido, ambos a ~0,07 g de 0,88 — a conta não decide pela oficial A (só sai se 0,88 g for o CO2). Christus: "passível de anulação" https://www.christus.com.br/wp-content/uploads/2021/06/UECE20211_fase1_quimica.pdf
+DADO P5ffd94eb: texto_da_prova -> "Al (s) + 3HCl (aq) → AlCl3 (aq) + (3/2) H2 (g)" (falta o 3/2)
+RECLASS P39a0d1de Q04.3 -> Q08.1
+RECLASS Pd380fe69 Q04.3 -> Q05.1
+RECLASS Paca34b46 Q04.3 -> Q03.4
+RECLASS Pb1496adb Q04.3 -> Q04.4
+RECLASS P108d932c Q04.3 -> Q05.4
+RECLASS P5ffd94eb Q04.4 -> Q06.2
+DADO P7d8f2954: alternativas.E -> "209,0."
+DADO P15a69753: alternativas.E -> "4 m3" (o "Dado: Volume Molar nas CATP = 25 L . mol−1" fica fora das alternativas)
+DADO Paae5e95c: alternativas -> A "1 × 10^8", B "2 × 10^8", C "1 × 10^6", D "2 × 10^5", E "1 × 10^5" (expoentes; o "Dado: Volume molar..." fica fora da E)
+RECLASS P08061c3e Q04.3 -> Q03.4
+RECLASS Pe112e71d Q04.3 -> Q07.3
+RECLASS P6a029805 Q02.5 -> Q02.4
+RECLASS P3a9af547 Q03.3 -> Q04.3
+RECLASS P60c35ef3 Q03.4 -> Q04.3
+DADO P3fa62d7f: texto_da_prova -> faltam as duas reações do print: "acetaldeído + HCN → lactonitrila" e "lactonitrila + 2 H2O + 1/2 H2SO4 → ácido láctico + 1/2 (NH4)2SO4"
