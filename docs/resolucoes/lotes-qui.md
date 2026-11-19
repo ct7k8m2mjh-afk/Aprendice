@@ -79,7 +79,7 @@ Faltam 175 questões sem resolução (fora as que estão em lote, pendentes ou c
 | qui-0071 | provas-alvo nível 7-10 | 50 | gravado | 49 | 1 | 0 |
 | qui-0072 | provas-alvo nível 7-10 | 50 | gravado | 50 | 0 | 0 |
 | qui-0073 | demais nível 7-10 | 50 | gravado | 46 | 4 | 0 |
-| qui-0074 | demais nível 7-10 | 50 | aberto |  |  |  |
+| qui-0074 | demais nível 7-10 | 50 | gravado | 50 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 

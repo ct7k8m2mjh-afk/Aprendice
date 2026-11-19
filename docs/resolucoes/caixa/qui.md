@@ -274,3 +274,32 @@ RECLASS P712b879b Q04.3 -> Q04.2
 RECLASS Pb071b094 Q04.3 -> Q04.4
 RECLASS P81fdbf5b Q04.3 -> Q04.4
 ANULAR Pecd73277 (Cederj): lido ao pé da letra, os 30 mL são o total das duas titulações → bicarbonato original 30 − 2 × 9,0 = 12 mL → 1,2 mmol × 84 = 100,8 mg = 33,6%, fora das alternativas; a oficial C (58,8%) só sai com 30 − 9 = 21 mL; sem resolução publicada nem errata
+
+## 2026-11-19 17:45 UTC — PENDENCIAS — session_01PveEKYZfyAMFDV6N1z8smo
+Lote qui-0074 gravado (50 ok; P4a79635f com gabarito do Aprendice A).
+DADO P96c49ac6: alternativas ausentes -> A κCaCl2 = κNaCl = κKCl; B κCaCl2 = κNaCl > κKCl; C κCaCl2 > κNaCl > κKCl; D κCaCl2 < κNaCl = κKCl; E κCaCl2 < κNaCl < κKCl
+DADO Pad40b07d: alternativas.E -> "0,0010" (o "Dado 1 milimol = 10-3 mol" é caixa separada; o print numera a questão como 24, não 34)
+RECLASS Pb59f6844 Q05.2 -> Q05.6
+RECLASS Pd960b4c5 Q05.2 -> Q05.6
+RECLASS P8f75f70d Q05.2 -> Q04.2
+DADO P31f6aad2: alternativas -> A "1,50 × 10^12", B "2,46 × 10^12", C "7,50 × 10^12", D "4,50 × 10^14", E "1,84 × 10^14" (expoentes sobrescritos; a unidade de R colada na E é dos Dados)
+RECLASS P39c0b537 Q06.2 -> Q02.4
+RECLASS Pc6ce3669 Q05.2 -> Q03.4
+DADO Pc6ce3669: alternativas.E -> "Cr(VI) é oxidado a Cr(III)." (a equação e as cores do enunciado entraram coladas)
+DADO P94953138: alternativas -> "Cl⁻" com o sinal de carga (na entrada só "Cl")
+DADO P7e36e0a3: texto_da_prova -> "1,51 gramas por cm³" (na entrada "por cm")
+AVISO checagem no site (Pa6f4e564, Pbd8d4997, Pe51dca91; 390 e 1280 px): 4 blocos completos, animação até o fim, fração empilhada na conta, sem corte nem rolagem lateral. Ressalva: em Pa6f4e564 (qui-0072, gravada) o texto de erradas.B traz a divisão na linha ("÷ 0,100 = 60,0 mL"). E app/public/conteudo só mostra os lotes novos depois de `npm run conteudo`.
+RECLASS P74755e20 Q05.4 -> Q03.4
+DADO P74755e20: alternativas A/B -> "CrO4²⁻, Cr³⁺" (A) e "Cr2O7²⁻, CrO4²⁻" com carbono "−1" (B): a transcrição perdeu cargas e o sinal de menos
+DADO P338d0e8a: alternativas -> "7,5 × 10⁻⁸ mols" etc. (sem espaço depois da vírgula, expoente sobrescrito)
+RECLASS Pdbdb8068 Q06.3 -> Q06.1 (ITA 2025 q28: transformação gasosa P·V/T, não mistura)
+RECLASS Pad40b07d Q05.2 -> Q04.3
+RECLASS P3bdd3970 Q05.3 -> Q05.6
+RECLASS P9882a36f Q05.3 -> Q05.6
+RECLASS P9f4d730f Q05.2 -> Q05.6
+GABARITO P4a79635f: gabarito do Aprendice A (resolvedor A, conferente às cegas A, preliminar A; −37 kJ); sem fonte publicada na web
+
+## 2026-11-19 17:45 UTC — FIM — session_01PveEKYZfyAMFDV6N1z8smo
+Último lote gravado: qui-0074. Nesta sessão: qui-0071 (49 ok, 1 ANULAR), qui-0072 (50 ok), qui-0073 (46 ok, 4 ANULAR), qui-0074 (50 ok) = 195 resoluções. Nenhum lote aberto. Testes após o qui-0073: tsc ok, 786 passed. Checagem no site (3 questões do qui-0072, 390 e 1280 px): ok.
+Pendências: ANULAR P4bbfc2bf, P7bdaef74, P5f4aa130 (coordenadora decide: anular ou resolver com E + alerta), Pa49ba080, Pecd73277; gabarito do Aprendice P4a79635f (A); PRINT P2d222dbc; RECLASS, DADO e GABARITO nos blocos acima.
+Faltam 175 questões de Química. Próximo: `python3 ferramentas/resolucoes/lote.py proximo qui 50 --novo` (qui-0075).

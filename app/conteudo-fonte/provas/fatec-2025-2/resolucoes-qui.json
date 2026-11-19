@@ -530,5 +530,130 @@
    "data": "2026-11-19",
    "lote": "qui-0067"
   }
+ },
+ "P31f6aad2": {
+  "n": "55",
+  "conceito": "Clapeyron: volume, a 1 atm e 300 K, de 330 milhões de toneladas de CO2.",
+  "equivocos": {
+   "A": "Q06.2:conta-sem-base",
+   "B": "Q06.2:conta-sem-base",
+   "C": "Q06.2:parou-em-mol",
+   "D": "Q06.2:conta-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto dá a massa de CO2 em toneladas; o trabalho real é passar tonelada para grama, grama para mol e só então usar P·V = n·R·T. Com P = 1 atm e R em atm·L/(mol·K), o volume sai direto em litros.",
+    "formulas": [
+     "1 t = 10^6 g",
+     "n = m ÷ massa molar",
+     "P·V = n·R·T, logo V = n·R·T ÷ P"
+    ],
+    "simbolos": [
+     [
+      "CO2",
+      "dióxido de carbono, massa molar 44 g/mol"
+     ],
+     [
+      "n",
+      "quantidade de matéria, em mol"
+     ],
+     [
+      "R",
+      "constante dos gases, 0,082 atm·L/(mol·K)"
+     ],
+     [
+      "T",
+      "temperatura absoluta, em kelvin"
+     ]
+    ]
+   },
+   "pista": "Antes da equação dos gases, transforme a massa do texto em mol: tonelada → grama → mol.",
+   "passos": [
+    {
+     "faz": "Localize a massa e as condições",
+     "conta": "m: 330 milhões de t de CO2 | P: 1 atm | T: 300 K",
+     "porque": "A quantidade evitada é a do texto: \"mais de 330 milhões de toneladas de CO2 em 10 anos\".",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Converta tonelada em grama",
+     "conta": "330 × 10^6 t × 10^6 g/t = 3,3 × 10^14 g",
+     "porque": "A massa molar está em g/mol, então a massa tem de estar em grama.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta grama em mol",
+     "conta": "n = (3,3 × 10^14)/44 = 7,5 × 10^12 mol",
+     "porque": "A equação dos gases trabalha com quantidade de partículas, não com massa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique Clapeyron",
+     "conta": "V = (7,5 × 10^12 × 0,082 × 300)/1 = 7,5 × 10^12 × 24,6 = 1,845 × 10^14 L",
+     "porque": "Isolando V, o P = 1 atm passa dividindo; atm, mol e K se cancelam e sobra litro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1,845 × 10^14 L ≈ 1,84 × 10^14 L → alternativa E",
+     "porque": "É o volume aproximado pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — cerca de 1,84 × 10^14 litros de CO2 deixarão de ser emitidos.",
+   "checagem": "Por volume molar: a 1 atm e 300 K, 1 mol de gás ocupa 0,082 × 300 = 24,6 L. Então 7,5 × 10^12 mol × 24,6 L/mol = 1,845 × 10^14 L. Ordem de grandeza: 10^13 mol × ~25 L ≈ 2 × 10^14 L.",
+   "erradas": {
+    "A": "1,50 × 10^12 não confere: ÷ 24,6 L/mol × 44 g/mol dá cerca de 2,7 milhões de toneladas, muito menos que 330 milhões.",
+    "B": "2,46 × 10^12 não confere: ÷ 24,6 L/mol × 44 g/mol dá 4,4 milhões de toneladas de CO2, não 330 milhões.",
+    "C": "7,50 × 10^12 é a quantidade em mol, não o volume: parou antes de multiplicar por R·T/P.",
+    "D": "4,50 × 10^14 não confere: ÷ 24,6 L/mol × 44 g/mol dá cerca de 805 milhões de toneladas, bem acima de 330 milhões."
+   },
+   "armadilha": "Parar em 7,5 × 10^12 (mol) e marcar como se fosse o volume em litros.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume de CO2, a 1 atm e 300 K, correspondente a 330 milhões de toneladas.",
+    "chave": "3,3 × 10^14 g ÷ 44 = 7,5 × 10^12 mol; V = n·R·T/P = 7,5 × 10^12 × 24,6 ≈ 1,84 × 10^14 L.",
+    "cuidado": "Converter tonelada → grama (× 10^6) e não parar no número de mols."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "volume molar",
+    "ideia": "A 1 atm e 300 K o volume molar é 0,082 × 300 = 24,6 L/mol; 7,5 × 10^12 mol × 24,6 ≈ 1,84 × 10^14 L."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m = 330 × 10^6 × 10^6 = 3,3 × 10^14 g",
+    "nota": "tonelada para grama"
+   },
+   {
+    "linha": "n = (3,3 × 10^14)/44 = 7,5 × 10^12 mol",
+    "nota": "grama para mol"
+   },
+   {
+    "linha": "V = (n · R · T)/P = (7,5 × 10^12 × 0,082 × 300)/1",
+    "nota": "Clapeyron isolando V"
+   },
+   {
+    "linha": "V = 1,845 × 10^14 L ≈ 1,84 × 10^14 L",
+    "nota": "multiplicar e arredondar"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Quadro 1: pilha de toneladas de CO2 com o rótulo 330 milhões de t. Quadro 2: setas de conversão t → g → mol (× 10^6, ÷ 44). Quadro 3: cada mol vira um balão de 24,6 L (1 atm, 300 K). Quadro 4: o total, 1,84 × 10^14 L."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0074"
+  }
  }
 }

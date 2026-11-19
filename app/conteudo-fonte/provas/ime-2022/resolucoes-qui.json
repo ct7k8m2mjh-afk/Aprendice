@@ -704,5 +704,271 @@
    "data": "2026-11-19",
    "lote": "qui-0067"
   }
+ },
+ "P52033bfa": {
+  "n": "37",
+  "conceito": "Clapeyron em SI com estequiometria: a pressão do CO2 lida pelo cristal piezoelétrico dá a quantidade de ácido.",
+  "equivocos": {
+   "A": "Q06.2:volume-total-e-ml-como-litro",
+   "B": "Q06.2:ml-lido-como-litro",
+   "C": "Q06.2:conta-sem-base",
+   "E": "Q06.2:volume-total-do-recipiente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A questão é uma cadeia: tensão do cristal → pressão do gás → mols de CO2 → mols de ácido → concentração. O gás ocupa só o espaço acima da solução (74,9 − 50 = 24,9 mL), e com R = 8,3 J/(mol·K) tudo tem de estar no SI: pressão em Pa, volume em m³, espessura em metro.",
+    "formulas": [
+     "U = Φ·t·P, logo P = U ÷ (Φ·t)",
+     "P·V = n·R·T (SI: Pa, m³, K)",
+     "NaHCO3 + HA → NaA + H2O + CO2 (1 : 1)",
+     "concentração = n ÷ V da solução"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "potencial elétrico fornecido pelo cristal, em volt"
+     ],
+     [
+      "Φ",
+      "suscetibilidade voltaica do cristal, em V/(m·Pa)"
+     ],
+     [
+      "t",
+      "espessura do cristal, em metro"
+     ],
+     [
+      "Pa",
+      "pascal, unidade de pressão do SI"
+     ],
+     [
+      "ácido monoprótico",
+      "ácido que libera um H+ por molécula, aqui HA"
+     ],
+     [
+      "NaHCO3",
+      "bicarbonato de sódio"
+     ]
+    ]
+   },
+   "pista": "Comece pelo cristal: com U, Φ e t você acha a pressão. Depois pense em qual volume o gás realmente ocupa.",
+   "passos": [
+    {
+     "faz": "Ache a pressão pelo cristal",
+     "conta": "P = U/(Φ × t) = 1,0/(0,050 × 0,002) = 1,0/0,0001 = 10000 Pa",
+     "porque": "A espessura de 2 mm vira 0,002 m para casar com a unidade V/(m·Pa).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o volume do gás",
+     "conta": "V gás = 74,9 mL − 50 mL = 24,9 mL = 24,9 × 10^-6 m³",
+     "porque": "A solução ocupa 50 mL do recipiente rígido; o CO2 fica só no espaço livre acima dela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os mols de CO2",
+     "conta": "n = (P × V)/(R × T) = (10000 × 24,9 × 10^-6)/(8,3 × 300) = 0,249/2490 = 1 × 10^-4 mol",
+     "porque": "Com R = 8,3 J/(mol·K), Pa × m³ dá joule e a unidade fecha em mol.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia a proporção da reação",
+     "conta": "NaHCO3 + HA → NaA + H2O + CO2 → 1 mol HA : 1 mol CO2",
+     "porque": "Ácido monoprótico libera um H+, que forma um CO2 com cada bicarbonato.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a concentração do ácido",
+     "conta": "C = (1 × 10^-4 mol)/(0,050 L) = 0,002 mol/L",
+     "porque": "Todo o ácido virou CO2 (reação estequiométrica), e ele estava em 50 mL = 0,050 L.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "0,002 mol/L → alternativa D",
+     "porque": "É a concentração molar inicial pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a concentração inicial do ácido é 0,002 mol/L.",
+   "checagem": "Faça o caminho de volta: 0,002 mol/L × 0,050 L = 1 × 10^-4 mol de CO2; P = n·R·T ÷ V = 1 × 10^-4 × 8,3 × 300 ÷ (24,9 × 10^-6) = 10000 Pa; U = 0,050 × 0,002 × 10000 = 1,0 V, o valor do enunciado.",
+   "erradas": {
+    "A": "6 sai de usar o volume total, 74,9, e ainda lê-lo como litro: (10000 × 0,0749)/(8,3 × 300) ≈ 0,30 mol, ÷ 0,050 L ≈ 6 mol/L.",
+    "B": "2 sai do volume certo, 24,9, lido como litro (0,0249 m³) em vez de mL: n = 0,1 mol, ÷ 0,050 L = 2 mol/L.",
+    "C": "0,6 não confere: 0,6 × 0,050 = 0,03 mol de CO2 daria P = 0,03 × 8,3 × 300 ÷ (24,9 × 10^-6) = 3 × 10^6 Pa e U = 300 V, não 1,0 V.",
+    "E": "0,006 sai de usar o volume total do recipiente, 74,9 mL, como volume do gás: n ≈ 3,0 × 10^-4 mol, ÷ 0,050 L ≈ 0,006 mol/L."
+   },
+   "armadilha": "O gás não ocupa os 74,9 mL: 50 mL são da solução, e sobra 24,9 mL para o CO2.",
+   "alerta": "O enunciado não fala de ar no recipiente; a banca trata a pressão lida pelo cristal como a do CO2 formado, e é essa leitura que leva ao gabarito.",
+   "essencial": {
+    "pede": "A concentração inicial do ácido monoprótico a partir da tensão gerada pelo CO2 no cristal.",
+    "chave": "P = 1,0 ÷ (0,050 × 0,002) = 10000 Pa; n = P·V ÷ R·T = 10^-4 mol em 24,9 mL de gás; 10^-4 ÷ 0,050 = 0,002 mol/L.",
+    "cuidado": "Volume do gás = 74,9 − 50 mL, tudo em SI (m e m³)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "de trás para frente",
+    "ideia": "Teste cada concentração: só 0,002 mol/L gera 10^-4 mol de CO2, 10000 Pa no espaço de 24,9 mL e 1,0 V no cristal."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P = 1,0/(0,050 × 0,002) = 10000 Pa",
+    "nota": "pressão pelo cristal, t em metro"
+   },
+   {
+    "linha": "V = 74,9 − 50 = 24,9 mL = 24,9 × 10^-6 m³",
+    "nota": "espaço livre acima da solução"
+   },
+   {
+    "linha": "n = (10000 × 24,9 × 10^-6)/(8,3 × 300) = 0,249/2490 = 1 × 10^-4 mol",
+    "nota": "Clapeyron no SI"
+   },
+   {
+    "linha": "C = (1 × 10^-4)/0,050 = 0,002 mol/L",
+    "nota": "1 HA : 1 CO2, dividido pelo volume da solução"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Quadro 1: recipiente fechado com 50 mL de solução ácida e 24,9 mL livres em cima. Quadro 2: o bicarbonato reage, NaHCO3 + HA → NaA + H2O + CO2, e bolhas de CO2 sobem ao espaço livre. Quadro 3: o gás empurra o cristal (setas de pressão P = 10000 Pa) e o voltímetro marca 1,0 V. Quadro 4: a seta de volta: 10^-4 mol de CO2 = 10^-4 mol de ácido em 0,050 L = 0,002 mol/L."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0074"
+  }
+ },
+ "P6cc76ac3": {
+  "n": "34",
+  "conceito": "Gm × T: a inclinação de cada reta é −Sm, a fase de menor G é a mais estável e os cruzamentos são as transições de fase.",
+  "equivocos": {
+   "A": "Q07.1:ordem-das-fases-invertida",
+   "B": "Q07.1:inclinacao-de-g-com-t",
+   "C": "Q07.1:ordem-das-fases-invertida",
+   "D": "Q07.1:ordem-das-fases-invertida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com Gm = Hm − T·Sm, cada fase vira uma reta de inclinação −Sm. Como a entropia é sempre positiva, todas descem; desce mais quem tem mais entropia, e o gás tem bem mais que o líquido, que tem mais que o sólido. Em cada temperatura, a fase estável é a de menor G, e onde duas retas se cruzam as duas fases coexistem: é uma transição.",
+    "formulas": [
+     "Gm = Hm − T·Sm: inclinação = −Sm",
+     "Sm(sólido) < Sm(líquido) < Sm(gás)",
+     "fase estável = menor Gm",
+     "cruzamento de duas retas = temperatura de transição"
+    ],
+    "simbolos": [
+     [
+      "Gm",
+      "energia livre de Gibbs molar"
+     ],
+     [
+      "Hm",
+      "entalpia molar"
+     ],
+     [
+      "Sm",
+      "entropia molar, sempre positiva"
+     ],
+     [
+      "Ta, Tb",
+      "temperaturas marcadas no eixo, nos cruzamentos das retas"
+     ]
+    ]
+   },
+   "pista": "Compare as inclinações das três retas: qual desce mais rápido? Ligue isso à entropia de cada estado físico.",
+   "passos": [
+    {
+     "faz": "Julgue a I pela inclinação",
+     "conta": "Gm = Hm − T·Sm → inclinação = −Sm < 0 → I verdadeira",
+     "porque": "Sm é positiva para qualquer fase, então as três retas descem.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Identifique cada reta pela entropia",
+     "conta": "reta 1 (mais íngreme): gás | reta 2: líquido | reta 3 (mais suave): sólido → II falsa",
+     "porque": "Maior entropia, reta mais inclinada. A II põe 1, 2 e 3 como sólido, líquido e gás, a ordem invertida.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Leia os cruzamentos",
+     "conta": "Ta: reta 3 × reta 2 (sólido = líquido) → fusão → III verdadeira | Tb: reta 2 × reta 1 (líquido = gás) → ebulição",
+     "porque": "No cruzamento as duas fases têm o mesmo Gm e coexistem; o de mais baixa temperatura, entre sólido e líquido, é o ponto de fusão.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Julgue a IV pela fase mais baixa",
+     "conta": "T > Tb: reta 1 abaixo das outras → menor Gm → gás estável → IV verdadeira",
+     "porque": "A fase estável é sempre a de menor energia de Gibbs, e depois de Tb quem está embaixo é a reta 1.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "verdadeiras: I, III e IV → alternativa E",
+     "porque": "Só a II, que inverte as fases, é falsa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — somente as afirmativas I, III e IV são verdadeiras.",
+   "checagem": "Teste a estabilidade em baixa temperatura: à esquerda de Ta, a reta mais baixa é a 3. No frio, a fase estável tem de ser o sólido, o que confirma 3 = sólido e mostra que a II inverteu a ordem.",
+   "erradas": {
+    "A": "Inclui a II, mas a reta 1, a mais íngreme, tem a maior entropia e é o gás, não o sólido. E deixa de fora III e IV, que são verdadeiras.",
+    "B": "Deixa de fora a I, que é verdadeira: a inclinação de Gm × T é −Sm, negativa para todas as fases.",
+    "C": "Inclui a II, que inverte as fases (1 é gás e 3 é sólido), e deixa de fora a IV: acima de Tb a reta 1 é a mais baixa, logo a mais estável.",
+    "D": "Inclui a II, que inverte as fases, e deixa de fora a III: Ta é o cruzamento sólido × líquido, o ponto de fusão."
+   },
+   "armadilha": "Ler a numeração 1, 2, 3 como sólido, líquido e gás sem olhar a inclinação: a reta mais íngreme é o gás.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmativas sobre o gráfico Gm × T das três fases são verdadeiras.",
+    "chave": "Inclinação = −Sm: a mais íngreme (1) é o gás; Ta é fusão; acima de Tb o gás tem o menor G.",
+    "cuidado": "A fase estável é a de MENOR G, e a ordem das retas segue a entropia, não a numeração."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "A II é falsa (3 = sólido no frio); só B e E não a têm, e a B perde a I, que é verdadeira."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Gm = Hm − T·Sm → inclinação = −Sm",
+    "nota": "todas as retas descem"
+   },
+   {
+    "linha": "Sm(gás) > Sm(líquido) > Sm(sólido) → 1 = gás, 2 = líquido, 3 = sólido",
+    "nota": "mais íngreme = mais entropia"
+   },
+   {
+    "linha": "Ta: 3 × 2 → fusão | Tb: 2 × 1 → ebulição",
+    "nota": "cruzamentos"
+   },
+   {
+    "linha": "T > Tb: menor Gm na reta 1 → gás estável",
+    "nota": "fase estável = menor G"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "O gráfico Gm × T com as três retas. A reta 3 acende em azul com o rótulo 'sólido', a 2 em verde 'líquido', a 1 em vermelho 'gás', com setinhas mostrando que a 1 desce mais rápido. Um marcador percorre o eixo T e pinta sempre a reta mais baixa: sólido até Ta (pisca 'fusão'), líquido até Tb (pisca 'ebulição'), gás depois."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0074"
+  }
  }
 }

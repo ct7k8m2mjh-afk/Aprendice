@@ -230,5 +230,116 @@
    "data": "2026-11-19",
    "lote": "qui-0072"
   }
+ },
+ "P53893f98": {
+  "n": "59",
+  "conceito": "Clapeyron: massa de CO em 600 mL a 1 atm e 37 °C.",
+  "equivocos": {
+   "A": "Q06.2:conta-sem-base",
+   "B": "Q06.2:sem-converter-ml-e-celsius",
+   "C": "Q06.2:ml-sem-converter-para-litro",
+   "E": "Q06.2:temperatura-em-celsius"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto sobre intoxicação é só cenário: a conta é P·V = n·R·T. Os dados chegam em mL e °C de propósito; converter para L e K é o trabalho real da questão. A massa molar do CO (12 + 16 = 28 g/mol) transforma mol em grama.",
+    "formulas": [
+     "n = P·V ÷ (R·T)",
+     "massa = n × massa molar",
+     "T (K) = t (°C) + 273; 1 L = 1000 mL"
+    ],
+    "simbolos": [
+     [
+      "CO",
+      "monóxido de carbono, massa molar 12 + 16 = 28 g/mol"
+     ],
+     [
+      "R",
+      "constante dos gases, 0,082 atm·L/(mol·K)"
+     ],
+     [
+      "n",
+      "quantidade de gás, em mol"
+     ]
+    ]
+   },
+   "pista": "Antes de usar R, deixe o volume em litro e a temperatura em kelvin.",
+   "passos": [
+    {
+     "faz": "Converta os dados",
+     "conta": "V: 600 mL = 0,6 L | T: 37 °C = 37 + 273 = 310 K | P: 1 atm",
+     "porque": "O R dado está em atm·L/(mol·K): volume em L e temperatura em K.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os mols de CO",
+     "conta": "n = (1 × 0,6)/(0,082 × 310) = 0,6/25,42 ≈ 0,0236 mol",
+     "porque": "Isolando n, o produto R·T vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a massa",
+     "conta": "CO: 12 + 16 = 28 g/mol → m = 0,0236 × 28 ≈ 0,66 g",
+     "porque": "Mol vezes massa molar dá a massa em grama.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "0,66 g → alternativa D",
+     "porque": "É a massa de CO no volume dado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a massa de monóxido de carbono é de 0,66 g.",
+   "checagem": "Ordem de grandeza: a 310 K e 1 atm, 1 mol de gás ocupa 0,082 × 310 ≈ 25,4 L; 25,42 ÷ 0,6 ≈ 42,4, e 28 g ÷ 42,4 ≈ 0,66 g.",
+   "erradas": {
+    "A": "1,32 g não confere: 1,32 ÷ 28 ≈ 0,0471 mol ocupariam 0,0471 × 0,082 × 310 ≈ 1,2 L a 1 atm, o dobro dos 600 mL.",
+    "B": "5537,2 g sai de não converter nada: 600 mL usado como 600 L e 37 °C sem somar 273: 600 ÷ (0,082 × 37) × 28 ≈ 5537 g.",
+    "C": "660,9 g sai de usar 600 em vez de 0,6 L: n = 600 ÷ (0,082 × 310) ≈ 23,6 mol, × 28 ≈ 660,9 g.",
+    "E": "5,5 g sai de usar a temperatura em °C: n = 0,6 ÷ (0,082 × 37) ≈ 0,198 mol, × 28 ≈ 5,5 g."
+   },
+   "armadilha": "As alternativas trazem o resultado de cada conversão esquecida: mL sem virar L (660,9 g), °C sem virar K (5,5 g) e as duas (5537,2 g).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A massa de CO em 600 mL a 1 atm e 37 °C.",
+    "chave": "n = 1 × 0,6 ÷ (0,082 × 310) ≈ 0,0236 mol; × 28 g/mol ≈ 0,66 g.",
+    "cuidado": "Volume em litro e temperatura em kelvin antes de aplicar R."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "volume molar",
+    "ideia": "A 1 atm e 310 K, 1 mol ocupa 25,42 L; 0,6 ÷ 25,42 ≈ 0,0236 mol × 28 ≈ 0,66 g."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V = 600/1000 = 0,6 L | T = 37 + 273 = 310 K",
+    "nota": "converter para as unidades de R"
+   },
+   {
+    "linha": "n = (1 × 0,6)/(0,082 × 310) = 0,6/25,42 ≈ 0,0236 mol",
+    "nota": "Clapeyron isolando n"
+   },
+   {
+    "linha": "m = 0,0236 × 28 ≈ 0,66 g",
+    "nota": "mol vezes massa molar do CO"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Quadro 1: frasco de 600 mL com CO, setas convertendo 600 mL → 0,6 L e 37 °C → 310 K. Quadro 2: P·V = n·R·T com n isolado: 0,0236 mol. Quadro 3: balança marcando 0,66 g. Quadro 4: as alternativas 660,9 g, 5,5 g e 5537,2 g aparecem ligadas à conversão que faltou."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0074"
+  }
  }
 }
