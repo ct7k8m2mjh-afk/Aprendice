@@ -186,7 +186,7 @@ com update, e marcar o item como feito no o-que-falta.json.
 
 ## Painel "O que falta no Aprendice" (pedido do dono, 13/11)
 Artefato: https://claude.ai/artifact/L5VSRBJLyyadbmaWMmNwj4 (tem o link do site no topo). Atualizar SÓ a cada 1.000
-questões resolvidas a mais (dono, 13/11). Última atualização: 19.483 feitas (13/11 06h, com a lista de problemas achados na revisão do prompt) → próxima ao passar de 20.483. Para atualizar: mude o item em docs/resolucoes/o-que-falta.json (estado falta/andamento/decidir/feito), rode o converte,
+questões resolvidas a mais (dono, 13/11). Última atualização: 21.658 feitas (19/11 ~17h) → próxima ao passar de 22.658. Para atualizar: mude o item em docs/resolucoes/o-que-falta.json (estado falta/andamento/decidir/feito), rode o converte,
 depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resolucoes/o-que-falta.html nesse URL (Artifact,
 `url` = o link acima, de outra conversa; read antes).
 
