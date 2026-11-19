@@ -382,5 +382,127 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0005"
   }
+ },
+ "P1e7255e2": {
+  "n": "48",
+  "conceito": "Ler conjuntos num diagrama (círculos sobre um mapa) e aplicar união, interseção e diferença.",
+  "equivocos": {
+   "A": "M01.5:intersecao-com-elemento-de-fora",
+   "B": "M01.5:diferenca-invertida",
+   "C": "M01.5:incluiu-elemento-fora-dos-conjuntos",
+   "D": "M01.5:diferenca-sem-tirar-a-parte-comum"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Antes de testar as alternativas, liste as cidades que estão dentro de cada círculo. Com as listas na mão, união é juntar sem repetir, interseção é o que está em todos e diferença A − B é o que está em A e não está em B.",
+    "formulas": [
+     "A ∪ B: está em A ou em B",
+     "A ∩ B: está em A e em B",
+     "A − B: está em A e não em B"
+    ],
+    "simbolos": [
+     [
+      "S1, S2, S3, S4",
+      "conjunto das cidades cobertas por cada satélite"
+     ],
+     [
+      "∪",
+      "união"
+     ],
+     [
+      "∩",
+      "interseção"
+     ]
+    ]
+   },
+   "pista": "Monte a lista de cada satélite antes de ler as alternativas; cuidado com as cidades na borda e fora de todos os círculos.",
+   "passos": [
+    {
+     "faz": "Liste cada cobertura",
+     "conta": "S1 = {Mossoró, Natal, João Pessoa, Recife, Juazeiro} | S2 = {Caxias, Teresina, Picos, Juazeiro} | S3 = {Picos, Juazeiro, Petrolina} | S4 = {Juazeiro, Petrolina, Aracaju}",
+     "porque": "Lido no mapa: cada cidade marcada dentro do círculo da cor do satélite. Salvador, Maceió, Fortaleza e Codó ficam fora de todos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste a interseção de A",
+     "conta": "S2 ∩ S3 ∩ S4 = {Juazeiro}",
+     "porque": "Picos não está em S4 e Petrolina não está em S2.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste as diferenças de B e D",
+     "conta": "S1 − S4 = {Mossoró, Natal, João Pessoa, Recife} | S2 − S3 = {Caxias, Teresina}",
+     "porque": "Na diferença sai tudo o que também está no segundo conjunto.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste as uniões de C e E",
+     "conta": "S3 ∪ S4 = {Picos, Juazeiro, Petrolina, Aracaju} | S1 ∪ S2 ∪ S3 = 9 cidades",
+     "porque": "Salvador não está em nenhum círculo, então C cai. A união de S1, S2 e S3 junta as listas sem repetir Juazeiro e Picos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "S1 ∪ S2 ∪ S3 = {Caxias, Picos, João Pessoa, Juazeiro, Natal, Petrolina, Recife, Teresina, Mossoró}",
+     "porque": "São exatamente as nove cidades de E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — a união das coberturas dos satélites 1, 2 e 3 tem Caxias, Picos, João Pessoa, Juazeiro do Norte, Natal, Petrolina, Recife, Teresina e Mossoró",
+   "checagem": "Conte sem repetir: S1 tem 5, S2 tem 4, S3 tem 3 (12 ao todo); Juazeiro aparece nos três (conta 2 vezes a mais) e Picos em S2 e S3 (1 vez a mais): 12 − 2 − 1 = 9 cidades.",
+   "erradas": {
+    "A": "A trata a interseção como união parcial: Picos não está em S4 e Petrolina não está em S2; só Juazeiro está nos três.",
+    "B": "B faz a diferença ao contrário e erra: lista cidades de S4; Juazeiro está nos dois e sai, e S1 − S4 é Mossoró, Natal, João Pessoa e Recife.",
+    "C": "C acrescenta Salvador, que está fora de todos os círculos; S3 ∪ S4 tem só Picos, Juazeiro, Petrolina e Aracaju.",
+    "D": "D lista S2 inteiro: Picos e Juazeiro também estão em S3 e saem da diferença, que fica {Caxias, Teresina}."
+   },
+   "armadilha": "Na diferença A − B, sai tudo o que está em B, inclusive as cidades da região comum.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A operação de conjuntos que está certa para as coberturas.",
+    "chave": "Listar as cidades de cada círculo e depois aplicar ∪, ∩ e −.",
+    "cuidado": "Cidades fora de todos os círculos (Salvador) e da região comum na diferença."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Basta achar um elemento errado em cada alternativa: Petrolina em A, Juazeiro em B, Salvador em C, Picos em D."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "S1 = {Mossoró, Natal, João Pessoa, Recife, Juazeiro}",
+    "nota": "círculo branco"
+   },
+   {
+    "linha": "S2 = {Caxias, Teresina, Picos, Juazeiro}",
+    "nota": "círculo vermelho"
+   },
+   {
+    "linha": "S3 = {Picos, Juazeiro, Petrolina}",
+    "nota": "círculo verde"
+   },
+   {
+    "linha": "S1 ∪ S2 ∪ S3 → 5 + 4 + 3 − 3 = 9 cidades",
+    "nota": "tira as repetições de Juazeiro e Picos"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Caderno oficial UEMA PAES 2020, questão 48",
+    "url": "https://www.paes.uema.br/wp-content/uploads/2019/10/PROVA-PAES-2020.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0008"
+  }
  }
 }
