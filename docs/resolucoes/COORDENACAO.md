@@ -38,8 +38,10 @@ sem fazer nada. Senão, leia CLAUDE.md e siga integralmente docs/resolucoes/PROM
 <m>, em especial o MODO ENXUTO (a sua conversa só organiza; resolver, conferir e abrir prints é sempre trabalho de agentes),
 o lote de 50 (`lote.py proximo <m> 50 --novo`) e o passo 9 (200 questões por sessão = 4 lotes de 50; ao gravar o 4º lote, ou se passar de 40% do contexto antes, termine os lotes abertos,
 escreva FIM na caixa e encerre). Retome antes os lotes abertos que o vez.py listar (`--retomar <lote>`). Prepare o
-ambiente em segundo plano: `cd app && (test -d node_modules || npm ci); python3 -m pip install -q --break-system-packages
-pillow numpy scipy; flock /tmp/converte.lock python3 scripts/converte.py`. Nunca use send_message e nunca pare esperando
+ambiente em segundo plano, LOGO NA PRIMEIRA AÇÃO e em dois comandos separados (o lote só abre com o banco montado; o
+converte leva ~4 min e não precisa do npm): (1) `cd app && python3 -m pip install -q --break-system-packages pillow numpy
+scipy && flock /tmp/converte.lock python3 scripts/converte.py`; (2) `cd app && (test -d node_modules || npm ci)`. Enquanto o
+converte roda, leia o CLAUDE.md e o prompt; não use sleep: o `lote.py proximo` já espera o converte sozinho. Nunca use send_message e nunca pare esperando
 aprovação ou resposta: pendências e avisos vão para docs/resolucoes/caixa/<m>.md (veja caixa/LEIA.md), com commit e push."
 (Matemática: acrescentar a regra da animação — campo `conta` no formato que o motor anima; teste motorConta exige 70%.)
 
@@ -62,6 +64,11 @@ As provas novas (baixadas pelo dono ou achadas depois; lista no artefato "Provas
 só entram na fila de resolução DEPOIS que acabarem todas as questões atuais pendentes de todas as matérias (vez.py dando
 ACABOU em todas). Até lá: só registrar que existem; não integrar ao banco nem abrir lotes delas. Quando tudo acabar,
 integrar essas provas e mandar para as sessões de resolução.
+
+## Física acabando (dono, 19/11 ~17h)
+O dono avisou: o próximo lote de Física termina tudo o que falta (restavam pouco mais de 200). Quando o vez.py de Física der
+ACABOU, NÃO reabrir sessão de Física (Geografia já está aberta). Provas novas só depois que TODAS as matérias acabarem
+(seção "Provas novas").
 
 ## Fábrica pela API (dono, 19/11)
 Teto: US$ 200 de créditos da API. Matéria sugerida para a fábrica: Português (a sessão deu FIM em 19/11 ~15h; NÃO reabrir
