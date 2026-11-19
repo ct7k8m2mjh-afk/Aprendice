@@ -505,3 +505,18 @@ caixa, e não por falha de API. Entra quando o print trouxer os três textos.
    de virar pendente. Antes saía como pendência com motivo errado, e a
    conferência, sem saber, lia como questão difícil.
 2. `imagem()` mede o print e reduz o que passa de 8000 px, avisando no log.
+
+## 2026-11-19 21:15 UTC — AVISO — coordenação
+
+RECLASS aplicados: 34 (lotes por-0106 e por-0107), só `tema`/`conteudo` no prova.json; ids e resoluções intactos.
+Todos os códigos "Para" existem nos conteúdos de Português; nenhum "De" divergia do que estava gravado.
+por-0106 (12): P23d99f05, Pd5c729d0, P497ef33d, Pa8250845, P930b3687, P25f6f6ef, Pb5f2a603, Pf811f664, P568ad8ee,
+Pa930e66b, Pc086241b, Pfef78288.
+por-0107 (22): P778db3ab, Pe4921648, Pc1f664ef, Pb7f48a1b, Pe11dd740, Pc03d1d53, P6e3ec418, Pee7ebaca, P7623eae7,
+P8bbbd1e8, Pd1493c31, P3c3bc969, P99058e57, Pb2f84ba3, Pe453ba3f, P532d099f, P85e9b021, P22ef923d, P355dbff2,
+Pea87c782, P2cfe736f, P6033d517.
+converte.py, tsc e vitest (791 testes) verdes.
+
+Medição (sem aplicar) da regra `equivocos_fora` do confere_amostra.py sobre as resoluções gravadas em
+app/conteudo-fonte/provas: questões apontadas / resoluções — por 405/4478 (já sem estes 34), bio 409/2659,
+qui 557/2688, mat 248/3058, fis 159/2769, geo 263/2565, his 210/2454, ing 4/2509, fs 6/1573.
