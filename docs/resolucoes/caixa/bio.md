@@ -360,3 +360,15 @@ RECLASS P55fa50be B06.6 -> B06.5
 RECLASS Pb37e6d3f B04.4 -> B05.4
 ANULAR Pbc448a30 (URCA 2023.2, q47): a afirmação I é verdadeira (o nucléolo se forma nas regiões organizadoras do nucléolo, onde os genes de rRNA são transcritos intensamente) e a III é falsa (quem se liga às histonas é o DNA, não o RNA); com I e II verdadeiras a resposta seria C, não a B oficial. Sem errata; a correção do Estratégia Vestibulares também dá B, sem comentário.
 RECLASS P671465bb B12.6 -> B09.4
+
+## 2026-11-19 18:19 UTC — PENDENCIAS — session_01PveEKXZwKo3vJj1Pbjeenm
+Lote gravado: bio-0077 (26 ok, 1 pendente). Nenhum lote aberto.
+DADO P7126bf02: alternativas.D -> "6 − 5 – 3 − 4 – 1 − 2" (o texto da coluna 2 e o cabeçalho "LITERATURA, HISTÓRIA E" estão grudados)
+DADO P7126bf02: texto_da_prova -> falta a Coluna 2: "( ) cnidários ( ) anfíbios ( ) equinodermos ( ) anelídeos ( ) artrópodos ( ) poríferos"
+RECLASS P7e6bc295 B12.3 -> B12.7
+DADO Pefd11ed0: alternativas.E -> "Apenas I e III estão corretas." (sem o " 26" no final)
+PRINT Pd1fa689a (PISM III 2022 dia 1, q11): faltam a reportagem e os dados do estudo europeu sobre tipo sanguíneo e covid-19 (texto de apoio antes da q11); embaixo do print está "Pobreza menstrual", da questão seguinte
+RECLASS Pd1fa689a B10.1 -> B06.4
+RECLASS P2fd0e098 B09.4 -> B09.7
+RECLASS P1a1790e7 B09.3 -> B03.4
+RECLASS Pf8278c10 B09.3 -> B09.7
