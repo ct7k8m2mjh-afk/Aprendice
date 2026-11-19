@@ -1,6 +1,6 @@
-# Química: resoluções (gerado por lote.py em 2026-11-13)
+# Química: resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 755 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 242; ENEM nível 7-10 26; provas-alvo nível 7-10 181; demais nível 7-10 306.
+Faltam 635 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 122; ENEM nível 7-10 26; provas-alvo nível 7-10 181; demais nível 7-10 306.
 
 ## Lotes
 
@@ -69,6 +69,8 @@ Faltam 755 questões sem resolução (fora as que estão em lote, pendentes ou c
 | qui-0061 | demais nível 1-6 | 60 | gravado | 59 | 1 | 0 |
 | qui-0062 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
 | qui-0063 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
+| qui-0064 | demais nível 1-6 | 60 | gravado | 59 | 0 | 1 |
+| qui-0065 | demais nível 1-6 | 60 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -87,4 +89,5 @@ Faltam 755 questões sem resolução (fora as que estão em lote, pendentes ou c
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| P0ffb2963 | EMESCAM 2022 Medicina 2022/1 · questão 21 | Q11.4 funções nitrogenadas, haletos e funções mistas (tema Q11 Orgânica: estrutura e isomeria) | Aprendice B (resolvedor e conferente às cegas) × gabarito preliminar C; na C o anel de seis carbonos tem C=C, logo não é saturado; a B é a cetamina |
 | P4013ff98 | UFRR 2025 Vestibular 2025 – Prova Integral · questão 62 | Q08.6 pH, pOH e hidrólise de sais (tema Q08 Cinética, equilíbrio e pH) | sem gabarito publicado: resolvedor B (ácido fórmico fraco, 40000 mol contra 1602 mol de base, pH ≈ 2,1) × conferente às cegas E (modelo da banca, neutraliza só o H+ livre) e preliminar E; gabarito pós-recursos (Edital 97/24-CPV) não abriu |

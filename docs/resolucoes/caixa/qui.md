@@ -22,3 +22,30 @@ Lote qui-0062 gravado (60 ok). Lote aberto: qui-0063. Testes após 3 lotes: 786 
 Pendências acumuladas: P4013ff98 (divergência, gabarito pós-recursos UFRR), P49c155b4 (print cortado), reclassificações listadas nos blocos acima.
 Reclassificação do qui-0063 (resolvidas assim mesmo): Pbda63ed6 → Q02.3; Pa7fbdd71 → Q03.4; Pe09072a5 → Q03.3; P59c6bd00, P687807c1, Pae88aada → Q12; Pd5c27943 → Q11.6; P48b48360 → Q04.4.
 P4fa7aebb: oficial E; pela regra estrita da IUPAC o nome seria 2-bromo-4-etil-1-nitrobenzeno (não está nas alternativas); alerta explica.
+
+## 2026-11-19 — PENDENCIAS — session_01PveEKaFZ75HhzLpwG4RGm9
+Lote qui-0064 gravado (59 ok, 1 divergência). Lote aberto: qui-0065.
+GABARITO P0ffb2963 (EMESCAM 2022 q21, sem gabarito publicado): resolvedor e conferente às cegas = B (cetamina); preliminar = C, mas na C o anel tem C=C (não saturado). Conferir gabarito definitivo.
+GABARITO P03ff24db (URCA 2024.1 q39): resolvida com o oficial A; pelo critério cis/trans em anel a C também seria verdadeira (sertralina é cis). Alerta explica; sem errata.
+GABARITO Pc49a32f6 (UFRR 2023 q61): a figura da prova põe CH3 em dois carbonos onde o nirmatrelvir real tem H (real C23); resolvida pela figura (25 C), oficial A; alerta explica.
+RECLASS P4aff86f1 Q11.3 -> Q11.1
+RECLASS P0e083ebc Q11.3 -> Q11.1
+RECLASS P0c5254ab Q11.4 -> Q04.3
+RECLASS P077e42ba Q11.4 -> Q05.2
+RECLASS Pb55c19e7 Q11.4 -> Q11.6
+RECLASS Pbdbe0143 Q11.4 -> Q11.1
+RECLASS P03ff24db Q11.4 -> Q11.6
+RECLASS P455edc05 Q11.4 -> Q11.1
+RECLASS Pa105eecf Q11.4 -> Q05.5
+RECLASS P29ce3ea3 Q11.5 -> Q03.5
+RECLASS Pf735f5ec Q11.6 -> Q11.1
+RECLASS Pc1e2a547 Q11.6 -> Q04.2
+RECLASS Pea9dcea9 Q11.6 -> Q04.2
+RECLASS P5d909921 Q11.5 -> Q11.2
+DADO P70465e68: alternativas.B -> "O par 210/84 Po e 208/82 Pb e o par 52/24 Cr e 58/28 Ni representam, respectivamente, pares de isótonos." (entrada embaralhada)
+DADO Pc2e61667: alternativas -> vazias; letras A–E estão no fim do texto_da_prova
+DADO P15bc718b: alternativas -> vazias; no print: A I, II, III e V · B I e IV · C II, III e V · D II, IV e V · E III e IV
+DADO P1b56ab79: alternativas -> vazias; no print: A 1-pentanol, ciclopentanol, 3-propanona · B 1-pentanol, 2-metil-3-pentanol, pentanal · C 1-pentanol, 2-metil-3-butanol, ciclopentanona · D 2-pentanol, 3-metil-2-butanol, etil-propil éter · E 2-pentanol, 2-etil-2-pentanol, 2-propanona
+DADO P5fb50f4d: alternativas.E -> termina em "na endorfina."; "Dopamina Serotonina Acetilcolina Endorfina" são legendas da figura
+DADO P4be6c5d2: alternativas -> vazias (A–E são estruturas no print)
+DADO Pb46169e5: número -> o print traz "53", a entrada diz 74
