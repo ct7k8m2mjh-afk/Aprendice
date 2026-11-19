@@ -1,4 +1,5 @@
 import { materiaAtual, type MateriaId } from './tipos';
+import { fundosDaLetra, tomDeLetra } from '../logica/contraste';
 
 /**
  * As nove matérias do vestibular. Bio, Quí, Mat e Por têm conteúdo revisado do protótipo; as outras estão ativas
@@ -30,6 +31,9 @@ export interface MateriaInfo {
   botaoClaro: { c: string; ink: string };
   claro: Tons;
   escuro: Tons;
+  /** Cor da matéria só para LETRA (--t-texto; decisão do dono, 19/11/2026): o tom de texto da paleta, escurecido (claro) ou
+   *  clareado (escuro) só quando fica abaixo de 4,5:1 em algum fundo onde aparece (logica/contraste.ts). */
+  letra: { claro: string; escuro: string };
   descricao: string;
 }
 
@@ -41,6 +45,10 @@ function mat(id: MateriaId, nome: string, curto: string, principal: boolean, pal
     id, nome, curto, ativa: true, principal, paleta, botaoClaro, descricao,
     claro: { c: botaoClaro.c, ink: botaoClaro.ink, t: paleta.textoClaro, p: paleta.principal, pInk: paleta.sobrePrincipal, s: paleta.fundoClaro },
     escuro: { c: paleta.textoEscuro, ink: LETRA_ESCURA, t: paleta.textoEscuro, p: paleta.principal, pInk: paleta.sobrePrincipal, s: paleta.fundoEscuro },
+    letra: {
+      claro: tomDeLetra(paleta.textoClaro, fundosDaLetra(paleta.principal, paleta.fundoClaro, 'claro'), 'claro'),
+      escuro: tomDeLetra(paleta.textoEscuro, fundosDaLetra(paleta.principal, paleta.fundoEscuro, 'escuro'), 'escuro'),
+    },
   };
 }
 const BRANCO = '#FFFFFF';

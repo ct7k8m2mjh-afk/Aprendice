@@ -17,9 +17,10 @@ export function EstiloMaterias() {
   // porque uma variável derivada não acompanha a herança. --sv = fundo suave exato; --sv2 = o fundo suave mais leve, sobre a folha.
   const tons = (x: Tons) =>
     `--c:${x.c};--ink:${x.ink};--t:${x.t};--p:${x.p};--p-ink:${x.pInk};--s:${x.s};--sv:${x.s};--sv2:color-mix(in srgb,${x.s} 55%,var(--folha))`;
+  // --t-texto: a cor da matéria quando é letra (decisão do dono, 19/11/2026: ≥ 4,5:1 em todo fundo onde aparece)
   const css = MATERIAS.map((m) =>
-    `.m-${m.id},[data-theme='light'] .m-${m.id}{${tons(m.claro)}}` +
-    `[data-theme='dark'] .m-${m.id}{${tons(m.escuro)}}`).join('\n');
+    `.m-${m.id},[data-theme='light'] .m-${m.id}{${tons(m.claro)};--t-texto:${m.letra.claro}}` +
+    `[data-theme='dark'] .m-${m.id}{${tons(m.escuro)};--t-texto:${m.letra.escuro}}`).join('\n');
   return <style>{css}</style>;
 }
 
@@ -87,4 +88,10 @@ export function horasMin(seg: number): string {
   return h ? `${h} h ${m} min` : `${m} min`;
 }
 
-export function cap(s: string) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+/** Primeira letra maiúscula, menos quando a primeira palavra já tem a grafia própria com minúscula na frente ("pH", "pOH",
+ *  "mRNA", "tRNA", "pKa", "eV"; revisão de 19/11/2026, item 17: "PH, pOH e hidrólise de sais"). */
+export function cap(s: string) {
+  if (!s) return s;
+  if (/^[a-zα-ω][A-Z]/.test(s)) return s;
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
