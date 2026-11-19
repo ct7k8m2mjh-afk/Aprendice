@@ -110,3 +110,13 @@ letra proposta não se sustenta, o print não mostra a questão), deixe `correco
 Mais uma: um `equivoco` é o ERRO de quem marcou aquela letra, com nome de erro
 (`P10.3:enclise-apos-palavra-atrativa`). Nunca um rótulo que diga que o uso é aceito ou que
 mencione o gabarito.
+
+## `caminhos` é o OUTRO jeito de resolver, não o mesmo
+O campo `caminhos` existe para guardar um caminho **diferente** do que está nos `passos` — o segundo
+jeito de chegar à resposta, que o aluno vê. Se a ideia escrita ali é a mesma dos passos com outras
+palavras ("eliminação pela afirmativa IV", quando os passos já eliminaram pela IV), o campo não
+serve: ou se escreve um caminho de verdade diferente (teste de substituição, contraprova pelo
+contexto, montar a figura concorrente e ver que não encaixa, partir da alternativa certa e inverter),
+ou se deixa `caminhos` como lista vazia. Em Português o campo é opcional: vazio é melhor que repetido.
+E a ideia escrita ali é conferida como qualquer outra: eliminação com a conta errada no `caminhos` é
+erro de fato, não detalhe.
