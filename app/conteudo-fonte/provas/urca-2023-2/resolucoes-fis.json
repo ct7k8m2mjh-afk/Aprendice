@@ -1095,5 +1095,120 @@
    "data": "2026-11-19",
    "lote": "fis-0072"
   }
+ },
+ "P7b572098": {
+  "n": "2",
+  "conceito": "Equilíbrio de um nó com três fios e atrito estático máximo no bloco apoiado.",
+  "equivocos": {
+   "A": "F03.3:tracao-maior-que-atrito-maximo",
+   "B": "F03.3:tracao-maior-que-atrito-maximo",
+   "D": "F03.3:tracao-maior-que-atrito-maximo",
+   "E": "F03.3:tracao-maior-que-atrito-maximo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O nó onde os três fios se encontram está em equilíbrio. O fio inclinado é o único que puxa para cima, então sustenta o peso de B com a sua parte vertical; a sua parte horizontal puxa o fio que vai até A. O bloco A não desliza enquanto essa tração for no máximo o atrito estático máximo, μe · m_A · g.",
+    "formulas": [
+     "no nó: T · sen θ = m_B · g e T · cos θ = T_A",
+     "logo T_A = m_B · g/tg θ",
+     "A não desliza: T_A ≤ μe · m_A · g"
+    ],
+    "simbolos": [
+     [
+      "T",
+      "tração no fio inclinado"
+     ],
+     [
+      "T_A",
+      "tração no fio horizontal ligado a A"
+     ],
+     [
+      "μe",
+      "coeficiente de atrito estático"
+     ],
+     [
+      "θ",
+      "ângulo do fio inclinado com a horizontal (30°)"
+     ]
+    ]
+   },
+   "pista": "Faça o equilíbrio do nó, não do bloco A: é lá que o peso de B vira tração horizontal.",
+   "passos": [
+    {
+     "faz": "Ache o atrito máximo em A",
+     "conta": "Fat_máx = μe · m_A · g → Fat_máx = 0,5 · 50 · g → Fat_máx = 25 · g",
+     "porque": "A está numa superfície horizontal, então a normal é o peso de A; o fio horizontal não muda a normal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Equilibre o nó",
+     "conta": "T · sen 30° = m_B · g | T · cos 30° = T_A → T_A = m_B · g · (cos 30°)/(sen 30°) → T_A = √3 · m_B · g",
+     "porque": "A parte vertical do fio inclinado segura B; a horizontal é igual à tração que puxa A. Dividir uma equação pela outra elimina T.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha o limite do escorregamento",
+     "conta": "√3 · m_B · g = 25 · g → m_B = 25/√3 → m_B ≈ 14,4 kg",
+     "porque": "O maior m_B é o que leva a tração exatamente ao atrito máximo; g cancela dos dois lados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque",
+     "conta": "m_B ≈ 14,4 kg",
+     "porque": "Acima disso a tração passa do atrito máximo e A começa a deslizar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 14,4 kg.",
+   "checagem": "Substitua: com g = 10 m/s², T_A = √3 · 14,4 · 10 ≈ 249 N, logo abaixo do atrito máximo 0,5 · 500 = 250 N. Com qualquer outra alternativa, que é maior, a tração passa de 250 N.",
+   "erradas": {
+    "A": "Não confere: com 23,4 kg, T_A = √3 · 23,4 · 10 ≈ 405 N, acima dos 250 N de atrito máximo; A deslizaria.",
+    "B": "Não confere: com 33,4 kg, T_A ≈ 579 N, mais que o dobro dos 250 N que o atrito segura.",
+    "D": "Não confere: com 53,3 kg, T_A ≈ 923 N, muito acima dos 250 N; é maior até que o peso de A.",
+    "E": "Não confere: com 44,4 kg, T_A ≈ 769 N, acima dos 250 N do atrito máximo."
+   },
+   "armadilha": "Achar que a tração no fio de A é igual ao peso de B: com o fio a 30°, ela é √3 vezes o peso de B, por isso B tem de ser bem leve.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A maior massa de B que não faz A deslizar.",
+    "chave": "No nó, T_A = m_B · g/tg 30° = √3 · m_B · g; igualando a 25 · g, m_B = 25/√3 ≈ 14,4 kg.",
+    "cuidado": "O equilíbrio é do nó; tg 30° está no denominador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "triângulo de forças",
+    "ideia": "No nó, peso de B e T_A são os catetos de um triângulo com ângulo de 30°: m_B · g = T_A · tg 30°, e T_A máximo é 25 · g, então m_B = 25 · tg 30° ≈ 14,4 kg."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Fat_máx = 0,5 · 50 · g = 25 · g",
+    "nota": "atrito estático máximo em A"
+   },
+   {
+    "linha": "T_A = m_B · g · (cos 30°)/(sen 30°)",
+    "nota": "equilíbrio do nó"
+   },
+   {
+    "linha": "√3 · m_B · g = 25 · g",
+    "nota": "limite do escorregamento"
+   },
+   {
+    "linha": "m_B = 25/√3 ≈ 14,4 kg",
+    "nota": "g cancela: alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0073"
+  }
  }
 }

@@ -504,5 +504,126 @@
    "data": "2026-11-19",
    "lote": "fis-0072"
   }
+ },
+ "Paa96f802": {
+  "n": "3",
+  "conceito": "Centro de massa de esfera com cavidade, queda livre e coeficiente de restituição.",
+  "equivocos": {
+   "A": "F05.3:altura-de-subida-abaixo-do-possivel",
+   "B": "F05.3:esqueceu-altura-do-cm-no-contato",
+   "D": "F05.3:fracao-de-restituicao-errada",
+   "E": "F05.3:fracao-de-restituicao-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Quem cai e sobe é o centro de massa, e ele não fica no centro da esfera: a cavidade tira massa da parte de cima, então o centro de massa desce um pouco. Na colisão com coeficiente de restituição e, a velocidade de volta é e vezes a de chegada; como a altura vai com o quadrado da velocidade, a subida é e² vezes a queda do centro de massa.",
+    "formulas": [
+     "massa ∝ volume ∝ (raio)³",
+     "y_CM = (soma de massa × posição)/(massa total)",
+     "v' = e·v → h' = e²·h"
+    ],
+    "simbolos": [
+     [
+      "CM",
+      "centro de massa"
+     ],
+     [
+      "e",
+      "coeficiente de restituição: razão entre a velocidade de afastamento e a de aproximação"
+     ],
+     [
+      "R",
+      "raio da esfera externa"
+     ]
+    ]
+   },
+   "pista": "Trate a esfera com cavidade como esfera cheia menos uma esfera menor de massa negativa e ache quanto o centro de massa desce.",
+   "passos": [
+    {
+     "faz": "Compare as massas pelos volumes",
+     "conta": "esfera cheia: R³ | cavidade: (R/2)³ = R³/8 → sólido: R³ − R³/8 = 7R³/8",
+     "porque": "Com densidade uniforme, a massa é proporcional ao volume, e o volume da esfera vai com o cubo do raio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o deslocamento do centro de massa",
+     "conta": "d = ((R³/8)·(R/2))/(7R³/8) → d = R/14 abaixo do centro",
+     "porque": "O centro da cavidade está R/2 acima do centro da esfera; tirar essa massa empurra o CM para baixo na razão das massas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a queda do centro de massa",
+     "conta": "antes: 14R − R/14 | no contato: R − R/14 → queda = 13R",
+     "porque": "O ápice A está a 15R, então o centro da esfera está a 14R; ao tocar o solo, o centro está a R. O CM cai o mesmo que o centro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a restituição na subida",
+     "conta": "v' = 0,8·v → h' = 0,8²·13R = 0,64·13R = 8,32R",
+     "porque": "A altura é proporcional a v²: com 80 % da velocidade, sobem 64 % da queda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a altura do CM no contato",
+     "conta": "H_CM = (R − R/14) + 8,32R ≈ 0,93R + 8,32R ≈ 9,25R ≈ 9,3R",
+     "porque": "A subida começa com o CM a 13R/14 do solo, não do chão.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — cerca de 9,3R.",
+   "checagem": "Ordem de grandeza: sem a cavidade, o centro de massa ficaria no centro, a queda seria 13R e a altura final 8,32R + R = 9,32R. A cavidade só muda R/14 ≈ 0,07R, e as alternativas estão separadas de 0,8R: dá 9,3R de qualquer jeito.",
+   "erradas": {
+    "A": "Não confere: 7,7R é menor que os 8,32R que o CM sobe a partir do ponto de contato, sem nem somar a altura inicial de 0,93R.",
+    "B": "Não confere: 8,32R é só a subida; somando a altura do CM no contato (0,93R) chega-se a 9,25R, e 8,5R não sai de nenhuma das duas.",
+    "D": "Não confere: 10,1R exigiria subida de 9,17R, ou seja, 0,705 da queda de 13R; com e = 0,8 a fração é 0,64.",
+    "E": "Não confere: 10,9R exigiria subida de 9,97R, 0,767 da queda; nem e (0,8) nem e² (0,64) dão essa fração."
+   },
+   "armadilha": "A restituição age na velocidade, não na altura: a subida é e² = 0,64 da queda, e ela é medida a partir do CM no contato, a 13R/14 do solo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A altura máxima do centro de massa depois do quique.",
+    "chave": "CM R/14 abaixo do centro; queda de 13R; sobe 0,64·13R = 8,32R a partir de 0,93R.",
+    "cuidado": "Usar e² para alturas e somar a altura do CM no instante do contato."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "aproximação",
+    "ideia": "Ignore a cavidade (CM no centro): 1 + 0,64·13 = 9,32R; como a correção é só 0,07R, a alternativa é 9,3R."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "massa sólida ∝ R³ − R³/8 = 7R³/8",
+    "nota": "volumes"
+   },
+   {
+    "linha": "d = ((R³/8)·(R/2))/(7R³/8) = R/14",
+    "nota": "CM desce R/14"
+   },
+   {
+    "linha": "queda = (14R − R/14) − (R − R/14) = 13R",
+    "nota": "o desvio do CM cancela"
+   },
+   {
+    "linha": "h' = 0,8²·13R = 8,32R",
+    "nota": "restituição: altura com e²"
+   },
+   {
+    "linha": "H_CM = 13R/14 + 8,32R ≈ 9,25R",
+    "nota": "soma a altura no contato"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0073"
+  }
  }
 }

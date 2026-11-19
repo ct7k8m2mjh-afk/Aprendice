@@ -279,3 +279,35 @@ Pendentes desta sessão (ANULAR, linhas acima): Pa4042d98, P8beaca57, P5a4ec186.
 Gabarito do Aprendice: Pbdfc7e79 E; P7ee5ebb6 D; Pd7d43de1 D; P0de0270a A.
 Testes depois do fis-0071 (converte + tsc + vitest): tsc ok; vitest 786 de 786.
 Observação para as próximas sessões: os conferentes devolvem equivocos que afirmam origem sem conta que a reproduza; quando a conta não chega ao valor exato da letra, usar equívoco de conceito específico daquela letra.
+
+## 2026-11-19 17:43 UTC — PENDENCIAS — session_01PveEKWeU9BGX5xnf2nstPb
+Lote fis-0073 gravado (50 resoluções conferidas). Aberto: fis-0074.
+Gabarito do Aprendice: Pb540af3d A, P5e3c2b4d B, Pc5f97dfa A (resolvedor e conferente às cegas; iguais ao preliminar).
+DADO P52e4b871: alternativas.E -> "102 N." (texto da figura "α A B C" colado na alternativa)
+DADO P6c5f6e37: alternativas -> expoentes perdidos: A 6,4×10⁷; B 6,4×10⁵; C 6,4×10³; D 8,3×10⁴; E 8,3×10⁶ (E também traz colado o quadro "Lembre-se de que ac = V2/R" e a legenda da figura)
+DADO Pc861023e: texto_da_prova -> sobra a linha "E ( ) mg + √8kmV 2." que não existe no print; a E do print é "mg (1 − 2H/R)"
+RECLASS P5b8f3493 F03.4 -> F10.8 (ITA 2026 q17: pêndulo e massa-mola com períodos iguais, MHS e energia)
+RECLASS Pd208168a F03.5 -> F04.1 (PUCPR 2023/1 Medicina q42: túnel pela Terra, área sob a × d = v²/2; trabalho de força variável, não força centrípeta)
+DADO Pd687e6dc: alternativas.E -> "100" (PUC-Rio 2025 Grupo 4 q25/15: o quadro "Dado g = 10 m/s2" está colado na alternativa E)
+DADO P27e436ec: alternativas.D -> "T1 = T2 + T3" (PUCRS 2026 Verão q36: rótulos T1 T2 T3 da figura colados na alternativa D)
+DADO Pe70050bf: alternativas -> frações empilhadas no print: A mLf/(2Ri²), B 3mLf/(Ri²), C 5mLf/(2Ri²), D 11mLf/(2Ri²), E 2mLf/(Ri²) (IME 2021 q21)
+DADO P5e3c2b4d: alternativas -> no print: A (1/2)mg(cosα + senα); B (1/2)mg; C (1/2)mg cosα √(cos²α + (1/2)sen²α); D (1/2)mg cosα √(cos²α + (1/4)sen²α); E (1/2)mg cosα (IME 2025 q23)
+DADO Pd208168a: alternativas -> no print: A √(g₀·R); B m·g₀·R; C √(2·g₀·R); D √((m·g₀·R)/2); E (g₀·R)/2 (PUCPR 2023/1 q42; entrada veio vazia)
+GABARITO Pb540af3d: gabarito do Aprendice A (10 N); Estratégia Militares (gabarito IME 2024, q23) também dá A; falta a letra do conferente às cegas e conferir com o preliminar do IME
+GABARITO P5e3c2b4d: gabarito do Aprendice B (mg/2); Estratégia Vestibulares (gabarito IME 2025, q23) também dá B; falta a letra do conferente às cegas e conferir com o preliminar do IME
+RECLASS P1e81e234 F04.3 -> F02.5 (FCM-MG 2024/1 q45: lançamento oblíquo, velocidade da bola na parede; energia só confere)
+DADO P4bf65a1d: alternativas -> ausentes na entrada (estão no fim de texto_da_prova com acentos quebrados); print: A (1/3)(h − 4R + FR/(mg)), B (1/6)(4h − 5R + FR/(mg)), C (1/3)(h − 5R + FR/(mg)), D (1/6)(2h − 3R + FR/(mg)), E (1/6)(h − 2R + FR/(mg))
+DADO Paa96f802: alternativas -> ausentes na entrada (no fim de texto_da_prova); print: A 7,7R, B 8,5R, C 9,3R, D 10,1R, E 10,9R
+DADO Pe4b1e3e4: texto_da_prova -> "velocidade inicial v0 = 30,0 m/s" (não "vy"), "módulo constante fd = 2,00 N" (não "fy"); alternativas ausentes e embaralhadas, B no print: "45,0 m; 376 J"
+DADO Pe5c9b7f8: alternativas.D -> "70 m/s" (texto do gráfico colado)
+DADO Pc3ba0c94: alternativas.E -> "45 kN" ("Fmáx" do gráfico colado)
+DADO Pf8042133: alternativas -> A v²/(2·10⁶gd), B v/(2·10⁶gd), C v²/(10⁶gd), D v/(3·10⁶gd), E v²/(3·10⁶gd)
+DADO P5d6e3279: alternativas -> A (M/(m + M)) tan α, B (1 + m/M) tan α, C tan α, D √(1 + m/M) tan α, E (1 + √(m/M)) tan α
+RECLASS P83f2d681 F04.5 -> F12.4
+RECLASS Paa96f802 F04.3 -> F05.3
+RECLASS Pe2eff0bf F05.2 -> F08.1 (UEG 2021/1 q27: conversão °C -> °F, escalas termométricas)
+RECLASS Pe75e787b F06.1 -> F06.2 (UEMA PAES 2022 q41: razão de forças F = G M m/r², gravitação universal, não Kepler)
+DADO P82322ec8: alternativas -> (A) vA = −(1/3) v e ΔEc = 0; (B) vA = +(1/3) v e ΔEc = 0; (C) vA = −(1/3) v e ΔEc = +(8/9) v²; (D) vA = +(1/3) v e ΔEc = −(8/9) v² (frações desempilhadas na entrada)
+DADO P8963dd0f: texto_da_prova -> sem as três linhas "E ( ) mg + √8kmV 2." (lixo de outra questão; não estão no print)
+DADO Pbe492471: alternativas.E -> "I, II e III são verdadeiras." (sem o lixo "a a e a ar"); texto_da_prova começa em "Duas partículas X e Y" (sem "m e h. o m s i é")
+DADO Pe75e787b: alternativas -> a) 20/9  b) 9/20  c) 2√5/3  d) 2√5/9  e) 3√20 (entrada com A embaralhada, B–D vazias, E "3 20"; texto_da_prova termina com "20 9" solto)

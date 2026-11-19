@@ -1127,5 +1127,115 @@
    "data": "2026-11-19",
    "lote": "fis-0072"
   }
+ },
+ "P5d6e3279": {
+  "n": "27",
+  "conceito": "Conservação da quantidade de movimento horizontal no sistema cunha-bloco e composição de velocidades.",
+  "equivocos": {
+   "A": "F05.2:inverteu-fator-de-massas",
+   "C": "F05.2:supos-cunha-fixa",
+   "D": "F05.2:fator-de-massas-sem-ser-linear",
+   "E": "F05.2:fator-de-massas-sem-ser-linear"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sem atrito com o solo, nenhuma força externa horizontal age no sistema bloco + cunha: a quantidade de movimento horizontal, que começa nula, continua nula. Então, enquanto o bloco vai para um lado, a cunha recua para o outro. Em relação à cunha, o bloco desce ao longo do plano, inclinado de α; em relação ao solo, a velocidade fica mais inclinada, porque a componente horizontal diminui com o recuo da cunha.",
+    "formulas": [
+     "m·vx + M·Vc = 0 (horizontal)",
+     "velocidade relativa à cunha paralela ao plano: |vy|/(vx − Vc) = tan α"
+    ],
+    "simbolos": [
+     [
+      "vx, vy",
+      "componentes da velocidade do bloco em relação ao solo"
+     ],
+     [
+      "Vc",
+      "velocidade horizontal da cunha"
+     ],
+     [
+      "α",
+      "inclinação da cunha"
+     ]
+    ]
+   },
+   "pista": "Escreva a velocidade do bloco em relação à cunha: ela tem a direção do plano inclinado.",
+   "passos": [
+    {
+     "faz": "Conserve a quantidade de movimento horizontal",
+     "conta": "m·vx + M·Vc = 0 → Vc = −m·vx/M",
+     "porque": "Não há força horizontal externa e o sistema parte do repouso; a cunha recua em sentido oposto ao do bloco.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a direção da velocidade relativa",
+     "conta": "|vy|/(vx − Vc) = tan α",
+     "porque": "Em relação à cunha, o bloco desliza ao longo do plano, inclinado de α em relação à horizontal.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Substitua Vc",
+     "conta": "vx − Vc = vx + m·vx/M = vx·(1 + m/M) → |vy| = vx·(1 + m/M)·tan α",
+     "porque": "A velocidade relativa horizontal é maior que a absoluta, porque a cunha anda para trás.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pela componente horizontal",
+     "conta": "tan β = |vy|/vx = (1 + m/M)·tan α",
+     "porque": "β é o ângulo da velocidade do bloco com o eixo x, visto do solo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — (1 + m/M)·tan α.",
+   "checagem": "Caso extremo: se a cunha for muito pesada (M ≫ m), ela não se move e o bloco desce ao longo do plano, com tangente tan α; a fórmula dá (1 + 0)·tan α. Se m = M, a tangente dobra: 2·tan α.",
+   "erradas": {
+    "A": "Não confere: com m ≫ M a cunha é empurrada sem resistência e o bloco cai quase na vertical (tangente enorme), mas M/(m + M)·tan α tende a zero.",
+    "C": "Sai de supor a cunha parada: tan α só vale quando M é muito maior que m; aqui a cunha recua.",
+    "D": "Não confere: teste m = 3M; o certo dá (1 + 3)·tan α = 4·tan α, e esta alternativa dá √4·tan α = 2·tan α.",
+    "E": "Não confere: teste m = 3M; o certo dá 4·tan α, e esta alternativa dá (1 + √3)·tan α ≈ 2,73·tan α."
+   },
+   "armadilha": "A velocidade do bloco não tem a direção do plano: isso só vale em relação à cunha, que recua; vista do solo, ela é mais inclinada que α.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A tangente do ângulo da velocidade do bloco com a horizontal.",
+    "chave": "Quantidade de movimento horizontal nula + velocidade relativa ao longo do plano: tan β = (1 + m/M)·tan α.",
+    "cuidado": "Separar velocidade relativa à cunha de velocidade em relação ao solo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "casos extremos",
+    "ideia": "M ≫ m deve dar tan α e m ≫ M deve dar tangente enorme: só B, D e E passam; m = 3M (4·tan α) separa B das outras duas."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m·vx + M·Vc = 0 → Vc = −m·vx/M",
+    "nota": "quantidade de movimento horizontal"
+   },
+   {
+    "linha": "|vy| = (vx − Vc)·tan α",
+    "nota": "relativa ao longo do plano"
+   },
+   {
+    "linha": "|vy| = vx·(1 + m/M)·tan α",
+    "nota": "substitui Vc"
+   },
+   {
+    "linha": "tan β = (1 + m/M)·tan α",
+    "nota": "divide por vx"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0073"
+  }
  }
 }

@@ -1005,5 +1005,233 @@
    "data": "2026-11-19",
    "lote": "fis-0065"
   }
+ },
+ "P530f6a2c": {
+  "n": "23",
+  "conceito": "Equilíbrio de rotação do antebraço como alavanca: só a componente da força do bíceps perpendicular ao antebraço produz torque em torno do cotovelo.",
+  "equivocos": {
+   "A": "F03.6:peso-da-barra-na-ponta",
+   "C": "F03.6:torques-nao-equilibram",
+   "D": "F03.6:cosseno-no-lugar-do-seno",
+   "E": "F03.6:forca-inteira-sem-componente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escolha o cotovelo como ponto de giro: ali há uma força de contato desconhecida que, assim, não entra na conta. O bíceps puxa ao longo do braço, que faz 150° com o antebraço; só a parte da força perpendicular ao antebraço gira a barra, e ela vale F · sen 150°. O peso do antebraço com a mão age no meio da barra, a 20 cm do cotovelo.",
+    "formulas": [
+     "torque: M = F⊥ × d",
+     "equilíbrio: soma dos torques anti-horários = soma dos horários",
+     "F⊥ = F × sen θ"
+    ],
+    "simbolos": [
+     [
+      "torque (M)",
+      "efeito de girar de uma força: força perpendicular × distância ao ponto de giro"
+     ],
+     [
+      "F⊥",
+      "componente da força perpendicular ao antebraço"
+     ],
+     [
+      "θ",
+      "ângulo entre a força do bíceps e o antebraço (150°)"
+     ]
+    ]
+   },
+   "pista": "Antes de usar os 400 N, pergunte quanto dessa força é perpendicular ao antebraço.",
+   "passos": [
+    {
+     "faz": "Ache a parte útil da força do bíceps",
+     "conta": "F⊥ = 400 N × sen 150° → F⊥ = 400 × 0,5 = 200 N",
+     "porque": "A força do bíceps segue a direção do braço, a 150° do antebraço; só a componente perpendicular produz torque.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o torque do bíceps",
+     "conta": "M_bíceps = 200 N × 0,05 m → M_bíceps = 10 N·m",
+     "porque": "O bíceps se prende a 5 cm do cotovelo; 5 cm = 0,05 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o torque do antebraço",
+     "conta": "P = 2 kg × 10 m/s² = 20 N → M_barra = 20 N × 0,20 m = 4 N·m",
+     "porque": "A barra é homogênea de 40 cm, então o peso dela age no meio, a 20 cm do cotovelo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale os torques e isole a massa",
+     "conta": "10 = 4 + m × 10 × 0,30 → 3m = 10 − 4 = 6 → m = 6/3 = 2 kg",
+     "porque": "O bíceps gira para um lado; o peso da barra e o da rocha giram para o outro. No equilíbrio, os torques se igualam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 2,0 kg.",
+   "checagem": "Substitua de volta: rocha de 2 kg pesa 20 N e a 0,30 m dá 6 N·m; somado aos 4 N·m da barra, são 10 N·m, exatamente o torque dos 200 N úteis do bíceps a 0,05 m.",
+   "erradas": {
+    "A": "Sai de pôr o peso da barra na ponta, a 40 cm, e não no meio: 10 = 20 × 0,40 + 3m → m = 2/3 ≈ 0,7 kg. A barra é homogênea: o peso age a 20 cm.",
+    "C": "4,0 kg não confere: a rocha faria 40 N × 0,30 m = 12 N·m, que sozinho já passa dos 10 N·m do bíceps.",
+    "D": "Sai de usar o cosseno em módulo no lugar do seno: 400 × 0,9 × 0,05 = 18 N·m → 3m = 18 − 4 → m ≈ 4,7 kg. A parte perpendicular ao antebraço é F · sen 150°.",
+    "E": "Sai de usar os 400 N inteiros como perpendiculares: 400 × 0,05 = 20 N·m → 3m = 20 − 4 = 16 → m ≈ 5,3 kg."
+   },
+   "armadilha": "Usar os 400 N inteiros no torque: o bíceps puxa inclinado, e só 400 × sen 150° = 200 N giram o antebraço.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A massa da rocha que mantém o antebraço em equilíbrio com o bíceps fazendo 400 N.",
+    "chave": "Torques no cotovelo: 200 N × 0,05 m = 20 N × 0,20 m + m · 10 × 0,30 m → m = 2 kg.",
+    "cuidado": "Só a componente perpendicular (sen 150° = 0,5) gira; o peso da barra age no meio dela."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "braço de alavanca",
+    "ideia": "Em vez de decompor a força, use o braço perpendicular: 0,05 m × sen 150° = 0,025 m, e 400 N × 0,025 m dá os mesmos 10 N·m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "F⊥ = 400 × sen 150° = 400 × 0,5 = 200 N",
+    "nota": "componente que gira"
+   },
+   {
+    "linha": "200 × 0,05 = 20 × 0,20 + m × 10 × 0,30",
+    "nota": "torques no cotovelo"
+   },
+   {
+    "linha": "10 = 4 + 3m",
+    "nota": "valores dos torques"
+   },
+   {
+    "linha": "3m = 10 − 4 = 6",
+    "nota": "o 4 passa subtraindo"
+   },
+   {
+    "linha": "m = 6/3 = 2 kg",
+    "nota": "o 3 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0073"
+  }
+ },
+ "P74cf0635": {
+  "n": "15",
+  "conceito": "Conservação de energia na descida, energia mecânica dissipada e impulso da força resultante média.",
+  "equivocos": {
+   "A": "F05.1:comparou-velocidade-no-lugar-de-energia",
+   "B": "F05.1:nao-dividiu-impulso-pelo-tempo",
+   "C": "F05.1:comparou-velocidade-no-lugar-de-energia",
+   "E": "F05.1:comparou-velocidade-no-lugar-de-energia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada afirmativa pede uma conta curta. Sem frenagem, a energia potencial vira cinética. Com frenagem, compare energia final e inicial. O impulso da resultante é a variação da quantidade de movimento, e a força média é esse impulso dividido pelo tempo. A turista parte do repouso.",
+    "formulas": [
+     "v = √(2·g·h)",
+     "E = m·g·h; Ec = m·v²/2",
+     "I = m·Δv; F_média = I/Δt"
+    ],
+    "simbolos": [
+     [
+      "I",
+      "impulso da força resultante, em kg·m/s (= N·s)"
+     ],
+     [
+      "Δt",
+      "duração da descida, 5 s"
+     ]
+    ]
+   },
+   "pista": "Faça uma conta por afirmativa; na II, compare energias, não velocidades.",
+   "passos": [
+    {
+     "faz": "Teste I: velocidade sem frenagem",
+     "conta": "v = √(2·10·5) = √100 = 10 m/s",
+     "porque": "Sem atritos, toda a energia potencial vira cinética. I está correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste II: fração de energia que sobra",
+     "conta": "E_ini = 60·10·5 = 3 000 J | E_fim = 60·1²/2 = 30 J → 30/3000 = 1 %",
+     "porque": "Tomando o solo como referência, a energia final é só cinética; sobra 1 %, não 10 %. II está errada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste III: impulso da resultante",
+     "conta": "I = 60·(1 − 0) = 60 kg·m/s",
+     "porque": "O impulso da força resultante é a variação da quantidade de movimento. III está correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste IV: força resultante média",
+     "conta": "F = 60/5 = 12 N",
+     "porque": "Força média é impulso dividido pelo tempo da descida. IV está correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as corretas",
+     "conta": "corretas: I, III e IV",
+     "porque": "Só a II falhou.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — apenas I, III e IV.",
+   "checagem": "Confira a IV pela cinemática: aceleração média = (1 − 0)/5 = 0,2 m/s², e 60 kg × 0,2 m/s² = 12 N.",
+   "erradas": {
+    "A": "Marca só a II, que é a única falsa: sobra 1 % da energia (30 J de 3 000 J).",
+    "B": "Exclui a IV, que está certa: 60 kg·m/s ÷ 5 s = 12 N.",
+    "C": "Inclui a II, falsa, e exclui I e III, que estão certas.",
+    "E": "Inclui a II: os 10 % saem de comparar velocidades (1/10), mas a energia cinética vai com v², e (1/10)² = 1 %."
+   },
+   "armadilha": "Velocidade final 10 vezes menor não é 10 % da energia: a energia cinética depende de v², então sobra 1 %.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmativas sobre a descida no rapel estão corretas.",
+    "chave": "v ideal = 10 m/s; sobra 30 J de 3 000 J (1 %); I = 60 kg·m/s; F = 12 N.",
+    "cuidado": "Comparar energias, que dependem do quadrado da velocidade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "A II é falsa (1 %, não 10 %): caem A, C e E; a IV (12 N) está certa, então cai B."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "v = √(2·10·5) = 10 m/s",
+    "nota": "I correta"
+   },
+   {
+    "linha": "30/3000 = 1 %",
+    "nota": "II falsa"
+   },
+   {
+    "linha": "I = 60·(1 − 0) = 60 kg·m/s",
+    "nota": "III correta"
+   },
+   {
+    "linha": "F = 60/5 = 12 N",
+    "nota": "IV correta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0073"
+  }
  }
 }

@@ -619,5 +619,257 @@
    "data": "2026-11-19",
    "lote": "fis-0072"
   }
+ },
+ "P5b8f3493": {
+  "n": "17",
+  "conceito": "Pêndulo e massa-mola que chegam juntos ao equilíbrio têm o mesmo período; com a mesma velocidade máxima, a energia relaciona θ e a amplitude da mola.",
+  "equivocos": {
+   "B": "F10.8:trocou-cosseno-por-seno-na-altura",
+   "C": "F10.8:esqueceu-o-2-de-v2-2gh",
+   "D": "F10.8:trocou-cosseno-por-seno-e-inverteu-a-razao",
+   "E": "F10.8:esqueceu-o-2-e-inverteu-a-razao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois corpos partem do repouso no mesmo instante e chegam juntos ao ponto de equilíbrio (mola no comprimento natural, pêndulo na vertical). Do extremo ao centro passa um quarto de período, então os dois períodos são iguais: k/m = g/ℓ. Isso tira a constante da mola da conta, que é o truque da questão. Depois é só igualar as velocidades usando energia.",
+    "formulas": [
+     "períodos: 2π · √(m/k) = 2π · √(ℓ/g) → k/m = g/ℓ",
+     "mola: (1/2) · k · (x₀ − x₁)² = (1/2) · m · v²",
+     "pêndulo: m · g · ℓ · (1 − cos θ) = (1/2) · m · v²"
+    ],
+    "simbolos": [
+     [
+      "ℓ",
+      "comprimento do fio do pêndulo"
+     ],
+     [
+      "x₀",
+      "comprimento natural da mola"
+     ],
+     [
+      "x₁",
+      "comprimento da mola comprimida, no início"
+     ],
+     [
+      "k",
+      "constante elástica da mola (não é dada)"
+     ],
+     [
+      "θ",
+      "ângulo inicial do pêndulo com a vertical"
+     ]
+    ]
+   },
+   "pista": "A questão não dá k: use o fato de os dois chegarem juntos ao ponto mais baixo para descobrir k/m.",
+   "passos": [
+    {
+     "faz": "Iguale os períodos",
+     "conta": "T/4 da mola = T/4 do pêndulo → 2π · √(m/k) = 2π · √(ℓ/g) → k/m = g/ℓ",
+     "porque": "Os dois saem do repouso juntos e chegam juntos ao equilíbrio, e do extremo ao centro passa um quarto de período em cada um (o ângulo é pequeno, então o pêndulo também é um MHS).",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Velocidade da massa da mola",
+     "conta": "(1/2) · k · (x₁ − x₀)² = (1/2) · m · v² → v² = (k/m) · (x₁ − x₀)² → v² = (g/ℓ) · (x₁ − x₀)²",
+     "porque": "Sem atrito, toda a energia elástica vira cinética ao chegar ao comprimento natural; aqui entra k/m = g/ℓ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Velocidade do pêndulo",
+     "conta": "h = ℓ · (1 − cos θ) → m · g · ℓ · (1 − cos θ) = (1/2) · m · v² → v² = 2 · g · ℓ · (1 − cos θ)",
+     "porque": "O corpo do pêndulo desce a altura ℓ · (1 − cos θ) até a vertical, e essa energia potencial vira cinética.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale as velocidades e isole cos θ",
+     "conta": "2 · g · ℓ · (1 − cos θ) = (g/ℓ) · (x₁ − x₀)² → 1 − cos θ = (x₁ − x₀)²/(2ℓ²) → cos θ = 1 − (x₁ − x₀)²/(2ℓ²)",
+     "porque": "O enunciado diz que as velocidades são iguais na colisão; g cancela e o ℓ do denominador se junta ao 2ℓ.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — cos θ = 1 − (x₁ − x₀)²/(2ℓ²).",
+   "checagem": "Ângulo pequeno: 1 − cos θ ≈ θ²/2, então o resultado dá θ² = (x₁ − x₀)²/ℓ², isto é, ℓ · θ = |x₁ − x₀|. A amplitude do pêndulo medida no arco é igual à amplitude da mola, o que tem de acontecer quando os dois têm o mesmo período e a mesma velocidade máxima (v máx = amplitude × 2π/T).",
+   "erradas": {
+    "B": "Não confere: quando x₁ → x₀ (mola quase sem compressão), deveria dar θ → 0, mas sen θ → 1 daria θ = 90°.",
+    "C": "Não confere: falta o 2 de v² = 2 · g · ℓ · (1 − cos θ). No teste de ângulo pequeno, daria ℓ · θ = √2 · |x₁ − x₀|, amplitudes diferentes com mesmo período e mesma velocidade.",
+    "D": "Não confere: quando x₁ → x₀, o termo 2ℓ²/(x₁ − x₀)² cresce sem limite e sen θ ficaria muito abaixo de −1, o que é impossível.",
+    "E": "Não confere: a fração está invertida; quando x₁ → x₀, cos θ iria para −∞ em vez de tender a 1 (θ → 0)."
+   },
+   "armadilha": "Travar por falta da constante k: ela sai do dado escondido de que os dois chegam juntos ao equilíbrio, o que iguala os períodos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A relação entre o ângulo inicial do pêndulo e os parâmetros do sistema.",
+    "chave": "Mesmo período: k/m = g/ℓ; mesma velocidade: 2gℓ(1 − cos θ) = (g/ℓ)(x₁ − x₀)², logo cos θ = 1 − (x₁ − x₀)²/(2ℓ²).",
+    "cuidado": "Não esquecer o 2 de v² = 2gh nem trocar cosseno por seno na altura h = ℓ(1 − cos θ)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "amplitude",
+    "ideia": "Mesmo período e mesma velocidade máxima dão a mesma amplitude: ℓ · θ = |x₁ − x₀|, e para θ pequeno 1 − cos θ ≈ θ²/2 leva à alternativa A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "k/m = g/ℓ",
+    "nota": "mesmo período: chegam juntos"
+   },
+   {
+    "linha": "v² = (g/ℓ) · (x₁ − x₀)²",
+    "nota": "energia da mola"
+   },
+   {
+    "linha": "v² = 2 · g · ℓ · (1 − cos θ)",
+    "nota": "energia do pêndulo"
+   },
+   {
+    "linha": "1 − cos θ = (x₁ − x₀)²/(2ℓ²)",
+    "nota": "iguala e g cancela"
+   },
+   {
+    "linha": "cos θ = 1 − (x₁ − x₀)²/(2ℓ²)",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0073"
+  }
+ },
+ "Pe4b1e3e4": {
+  "n": "15",
+  "conceito": "Lançamento vertical com resistência do ar constante e balanço de energia com mola e força dissipativa.",
+  "equivocos": {
+   "A": "F04.3:ignorou-resistencia-do-ar",
+   "B": "F04.3:ignorou-resistencia-do-ar",
+   "C": "F04.3:esqueceu-dissipacao-na-compressao",
+   "E": "F04.3:dissipacao-maior-que-energia-disponivel"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Força de resistência constante muda a aceleração: na subida ela soma com o peso, na descida ela se opõe ao peso. Depois do impacto, tudo é balanço de energia: a energia cinética de chegada mais o trabalho do peso durante a compressão se dividem entre a energia elástica da mola e o trabalho da força dissipativa de 410 N. A energia dissipada total é a do ar mais a do atrito nos apoios. O enunciado não repete o valor de g; com g = 10 m/s² sai exatamente o 37,5 m das alternativas.",
+    "formulas": [
+     "subida: a = g + f/m; descida: a = g − f/m",
+     "H = v₀²/(2a)",
+     "Ec + m·g·x = k·x²/2 + F_d·x"
+    ],
+    "simbolos": [
+     [
+      "f_d",
+      "força de resistência do ar, 2,00 N"
+     ],
+     [
+      "k",
+      "constante elástica da mola, 800 N/m"
+     ],
+     [
+      "x",
+      "compressão máxima da mola"
+     ],
+     [
+      "F_d",
+      "força dissipativa nos apoios, 410 N"
+     ]
+    ]
+   },
+   "pista": "Na subida, o ar e o peso apontam para baixo juntos: comece achando a desaceleração.",
+   "passos": [
+    {
+     "faz": "Calcule a altura máxima com o ar",
+     "conta": "a = 10 + 2/1 = 12 m/s² → H = 30²/(2·12) = 900/24 = 37,5 m",
+     "porque": "Na subida, peso e resistência do ar freiam o objeto juntos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o que o ar dissipou e a energia de chegada",
+     "conta": "W_ar = 2·(37,5 + 37,5) = 150 J → Ec = 450 − 150 = 300 J",
+     "porque": "A resistência atua na subida e na descida; a energia inicial é m·v₀²/2 = 900/2 = 450 J.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o balanço de energia na compressão",
+     "conta": "300 + 10·x = 400·x² + 410·x → x² + x − 0,75 = 0 → x = 0,5 m",
+     "porque": "Durante a compressão o peso ainda realiza trabalho m·g·x; a energia vai para a mola (k·x²/2 = 400·x²) e para os 410 N dissipativos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as energias dissipadas",
+     "conta": "W_apoios = 410·0,5 = 205 J → total = 150 + 205 = 355 J",
+     "porque": "Energia dissipada é a do ar mais a da força constante dos apoios ao longo da compressão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o par 37,5 m e 355 J",
+     "conta": "H = 37,5 m | dissipada = 355 J",
+     "porque": "É o único par que combina a altura com ar e a soma das duas dissipações.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 37,5 m; 355 J.",
+   "checagem": "Feche o balanço inteiro: energia disponível = 450 J do lançamento + 10·0,5 = 5 J do peso na compressão = 455 J. Destino: 100 J na mola (400·0,5²) + 355 J dissipados = 455 J.",
+   "erradas": {
+    "A": "Os 45,0 m saem de ignorar o ar na subida: 30²/(2·10) = 45 m. Com o ar, a desaceleração é 12 m/s² e a altura é 37,5 m.",
+    "B": "Os 45,0 m saem de ignorar a resistência do ar: 30²/(2·10) = 45 m. A altura certa é 37,5 m, então o par já cai.",
+    "C": "150 J é só o que o ar dissipou na subida e na descida; faltam os 205 J da força de 410 N na compressão.",
+    "E": "Não confere: 765 J é mais que toda a energia disponível, 450 J do lançamento mais 5 J do peso na compressão."
+   },
+   "armadilha": "Parar na energia dissipada pelo ar (150 J) ou esquecer que o peso continua realizando trabalho enquanto a mola é comprimida.",
+   "alerta": "O enunciado não traz o valor de g; foi usado g = 10 m/s², o único que reproduz os 37,5 m das alternativas (com g = 9,8 m/s² a altura seria 38,1 m). A plataforma tem massa desprezível, então o impacto não dissipa energia.",
+   "essencial": {
+    "pede": "A altura máxima e a energia dissipada até a compressão máxima.",
+    "chave": "H = 900/24 = 37,5 m; ar 150 J; compressão de 0,5 m pela equação de energia; 150 + 205 = 355 J.",
+    "cuidado": "Usar g + f/m na subida e incluir m·g·x no balanço da mola."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "energia na subida",
+    "ideia": "m·v₀²/2 = m·g·H + f·H → 450 = 12·H → H = 37,5 m, sem calcular a aceleração."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a = g + f/m = 12 m/s²",
+    "nota": "subida: peso e ar juntos"
+   },
+   {
+    "linha": "H = 900/24 = 37,5 m",
+    "nota": "Torricelli"
+   },
+   {
+    "linha": "Ec = 450 − 2·75 = 300 J",
+    "nota": "ar dissipa 150 J"
+   },
+   {
+    "linha": "300 + 10·x = 400·x² + 410·x",
+    "nota": "balanço na compressão"
+   },
+   {
+    "linha": "x² + x − 0,75 = 0 → x = 0,5 m",
+    "nota": "divide por 400"
+   },
+   {
+    "linha": "150 + 410·0,5 = 355 J",
+    "nota": "dissipação total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0073"
+  }
  }
 }
