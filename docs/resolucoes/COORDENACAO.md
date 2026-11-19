@@ -95,6 +95,12 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 | Geografia parte 2 | — | ACABOU (19/11 18h49). Não reabrir. |
 | Português parte 2 | session_01PveEKaafKU4T97asCdKPew | trabalhando (aberta 19/11 19h25 para TERMINAR, ~44) |
 | Inglês + Filosofia e Sociologia | session_01PveEKYE6kLEFiYZofbLrF6 | trabalhando (aberta 19/11 19h25: as últimas 4 + 2) |
+| Pendentes Português (obras) | session_01PveEKarwcAv6DnMKjRm9gq | trabalhando (19/11 19h36; lotes por-pend-) |
+| Pendentes Português (demais) | session_01PveEKZS5bzVVPhT2waFk6m | trabalhando (19/11 19h36) |
+| Pendentes Inglês (prints) | session_01PveEKYYDuvaWJCLx4ExYYN | trabalhando (19/11 19h36) |
+| Pendentes Bio/Quí/Mat/Fís | session_01PveEKY2v3nNa3i6GFngYfE | trabalhando (19/11 19h36) |
+| Pendentes Geo/His/FS | session_01PveEKXiupD7oFga9rxZKiB | trabalhando (19/11 19h36) |
+"ANULAR" (53): lista para o dono em docs/resolucoes/anular-para-o-dono.md (fora do site ou entra com o oficial + aviso). Não reabrir sem a decisão.
 Caídas pelo limite em 13/11 (o dono pode arquivar): Mat session_01PveEKWKTewFDUJvA5Y5s91, Fís session_01PveEKXXFLhp4ro4vnf1rh7,
 Quí session_01PveEKZxREDvirT6VTx5nKy, Geo session_01PveEKaHNFQdko42Ddhy3XZ, Bio session_01PveEKaPh1PAjF3bRbuJ5fG, Por session_01PveEKY3G8XPW7thJLdH3jL.
 Paradas do sistema novo (o dono pode arquivar): Mat session_01PveEKaSPVEijwvkvEUmmWx, Fís session_01PveEKX5T4pY3Xx4fn4PR8G,
