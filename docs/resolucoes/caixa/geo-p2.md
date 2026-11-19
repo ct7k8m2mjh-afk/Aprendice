@@ -61,3 +61,12 @@ DADO P92e76085: alternativas.D -> "Centro-Oeste" (sem o crédito do mapa "Dispon
 DADO P92debcd8: alternativas.E -> termina em "...integração entre os aspectos naturais e socioecômicos." (sem o crédito "Disponível em: https://pt.wikipedia.org/wiki/Quatro_Brasis ...")
 RECLASS P1e8fb8f8 G10.7 -> G09.2
 RECLASS P5fd79c35 G10.6 -> G10.5
+
+## 2026-11-19 — FIM — sessão geo parte 2
+Lotes gravados nesta sessão: geo-p2-0001 (49 + 1 pendente), geo-p2-0002 (50), geo-p2-0003 (50), geo-p2-0004 (50). Último lote gravado: geo-p2-0004. Nenhum lote aberto.
+Total: 199 resoluções entraram; 1 pendente (ANULAR P20941f3b, no bloco do lote 0001); 0 divergências. Testes depois do 3º lote: tsc ok, vitest 786 passaram. Conferência no site (P02b83a60, Pc2d56bf9, Pc0cd33a4, 390 e 1280 px): 4 blocos completos, aviso de Gabarito do Aprendice aparece.
+Restante da parte 2 (lote.py status): Geografia parte 2: 120 questões a fazer.
+Pendências do lote geo-p2-0004:
+GABARITO P86d922dd, P78828e19, Pa6317a2d (UFRR): entraram com gabarito do Aprendice (resolvedor e conferente às cegas: B, D, B; iguais ao preliminar); o site da UFRR não respondeu; conferir o definitivo.
+DADO Pe1fbc0b2: alternativas.B -> termina em "...se massificava no Brasil." (sem o " 35" final)
+RECLASS Pa6317a2d G11.3 -> G11.6 (o conferente acha que é G11.3, Amazônia; a coordenadora decide)

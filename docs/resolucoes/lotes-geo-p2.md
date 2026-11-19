@@ -9,7 +9,7 @@ Faltam 120 questões sem resolução (fora as que estão em lote, pendentes ou c
 | geo-p2-0001 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
 | geo-p2-0002 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | geo-p2-0003 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
-| geo-p2-0004 | demais nível 1-6 | 50 | aberto |  |  |  |
+| geo-p2-0004 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
