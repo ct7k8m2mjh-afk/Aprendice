@@ -591,5 +591,108 @@
    "data": "2026-11-19",
    "lote": "geo-0041"
   }
+ },
+ "P3eadfc11": {
+  "n": "27",
+  "conceito": "Entre Wellington (UTC+12) e Honolulu (UTC−10) há 22 horas de diferença; cruzando a Linha de Data para leste, a chegada pode cair num dia anterior ao da partida.",
+  "equivocos": {
+   "A": "G01.3:hora-certa-dia-errado",
+   "B": "G01.3:fuso-com-sinal-trocado",
+   "C": "G01.3:fuso-com-sinal-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São duas contas independentes: o voo de 10 horas, que sempre soma, e a diferença de fuso entre as cidades. Wellington está em UTC+12 e Honolulu em UTC−10: 12 − (−10) = 22 horas. Honolulu está 22 horas atrás de Wellington, então quem vai da Nova Zelândia para o Havaí, rumo ao leste através da Linha Internacional de Data, volta no calendário. Teste cada alternativa com as duas contas.",
+    "formulas": [
+     "diferença de fuso = 12 − (−10) = 22 h (Honolulu está 22 h atrás)",
+     "de Wellington para Honolulu: hora de partida + 10 h de voo − 22 h",
+     "de Honolulu para Wellington: hora de partida + 10 h de voo + 22 h"
+    ],
+    "simbolos": [
+     [
+      "UTC",
+      "Tempo Universal Coordenado, a hora de referência; UTC+12 está 12 h adiantado e UTC−10 está 10 h atrasado"
+     ],
+     [
+      "Linha Internacional de Data",
+      "linha perto do meridiano de 180° onde o calendário muda de dia"
+     ],
+     [
+      "hora local",
+      "a hora do relógio na cidade onde a pessoa está"
+     ]
+    ]
+   },
+   "pista": "Calcule primeiro quantas horas separam os dois relógios. Depois teste uma alternativa de cada sentido.",
+   "passos": [
+    {
+     "faz": "Calcule a diferença de fuso",
+     "conta": "UTC+12 e UTC−10 → 12 − (−10) = 22 h; Honolulu está 22 h atrás",
+     "porque": "As duas cidades estão em lados opostos do UTC, então as horas se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste D: Wellington → Honolulu",
+     "conta": "segunda 06h00 + 10 h = segunda 16h00 (hora da NZ) → 16h00 − 22 h = domingo 18h00 (hora do Havaí)",
+     "porque": "O voo soma 10 h; para passar ao relógio do Havaí, tira 22 h e o dia volta para domingo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste A com a mesma conta",
+     "conta": "domingo 06h00 + 10 h = domingo 16h00 → − 22 h = sábado 18h00, não segunda",
+     "porque": "A hora da A está certa, mas o dia certo é sábado, um dia antes da partida.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste B e C: Honolulu → Wellington",
+     "conta": "B: segunda 06h00 + 10 h + 22 h = terça 14h00 | C: domingo 06h00 + 10 h + 22 h = segunda 14h00",
+     "porque": "No sentido oposto o fuso entra somando; nenhuma das duas bate com o que a alternativa diz.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "segunda 06h00 em Wellington → domingo 18h00 em Honolulu = D",
+     "porque": "Alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — partindo de Wellington numa segunda-feira às 6h (hora da Nova Zelândia), o avião chega a Honolulu no domingo às 18h (hora do Havaí).",
+   "checagem": "Refaça a D pelo UTC. Segunda 06h00 em UTC+12 é domingo 18h00 em UTC. Com 10 h de voo, a chegada é segunda 04h00 UTC. Em UTC−10, isso dá domingo 18h00. Mesmo resultado.",
+   "erradas": {
+    "A": "A não confere: domingo 06h00 + 10 h − 22 h dá sábado 18h00 em Honolulu. A hora bate, mas o dia está dois dias à frente.",
+    "B": "B sai de subtrair o fuso no sentido errado: segunda 06h00 + 10 h − 22 h = domingo 18h00. Indo para Wellington, as 22 h somam: terça 14h00.",
+    "C": "C não confere: domingo 06h00 + 10 h + 22 h = segunda 14h00 em Wellington, não terça 18h00."
+   },
+   "armadilha": "Achar que o avião não pode chegar “antes” do dia em que partiu: cruzando a Linha de Data rumo ao leste, o calendário volta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o dia e a hora de chegada de voos de 10 h entre Wellington e Honolulu",
+    "chave": "diferença de 22 h; rumo a Honolulu subtrai, rumo a Wellington soma, e o voo sempre soma",
+    "cuidado": "faça as duas contas, voo e fuso, e confira o dia além da hora"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo UTC",
+    "ideia": "Converta a partida para UTC, some as 10 h de voo e converta para a hora do destino."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "Geografia tem resolução em texto, passo a passo; a questão se resolve pela leitura do suporte.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0059"
+  }
  }
 }

@@ -382,3 +382,15 @@ AVISO site: enunciado de Pa050ec5b (UNIRG 2027 q46) em 1280 px mostra "(UNIRG 20
 Checagem no site (Pfd9141f8, P0b74c1bd, Pa050ec5b; 390 e 1280 px, com conteúdo gerado numa cópia): 4 blocos completos e na ordem, "Por que as outras estão erradas" fechado e abrindo, aviso do Gabarito do Aprendice presente, sem rolagem lateral nem erro no console.
 Testes: converte + tsc + vitest verdes (786 passed).
 A seguir: `python3 ferramentas/resolucoes/lote.py status` — Geografia faltam 237 (parte 1: 117 · parte 2: 120).
+
+## 2026-11-19 18:39 UTC — PENDENCIAS — sessão geo (19/11, 5ª; parte 1)
+Lote gravado: geo-0059 (50 resoluções; 4 com gabarito do Aprendice, letras iguais às cegas: P858b6a6c A, Pfd66a5bf C, Pca6f4a15 A, Pdc059cbe E). Pendentes: 0.
+RECLASS P062b3c35 G12.3 -> G03.2 (Unioeste 2021 q24: circulação geral da atmosfera)
+RECLASS Pb8514046 G12.3 -> G03.6 (Unitins 2025/2 q24: aquecimento global)
+RECLASS P858b6a6c G12.5 -> G03.6
+DADO P858b6a6c: texto_da_prova -> começa com "**/2027.1)" (cabeçalho cortado) e tem acentos quebrados (c¸, ˜a, ´o) no texto e nas alternativas; no print o texto está íntegro: "21. (URCA/2027.1) “Analisando as enchentes históricas de 2024 no território gaúcho..."
+DADO Pdc059cbe (URCA 2027.1 q76): texto_da_prova -> começa por "**/2027.1)**" (falta "16. (URCA") e tem acentos quebrados da camada de texto ("pr´oximos", "oposic¸˜ao"); no print o texto está correto
+DADO P3af906c1 (ENEM 2021 q89): alternativas -> faltam na entrada; no print: A norte, B sul, C leste, D oeste, E nordeste
+DADO P5d464e16 (ENEM 2020 q67): alternativas -> faltam na entrada (estão coladas no texto_da_prova); no print: A colisão de placas tectônicas, B rifteamento da crosta terrestre, C subducção da plataforma oceânica, D formação de cadeias montanhosas, E metamorfismo de bordas continentais
+RECLASS P321a7d7d G01.4 -> G01.2 (FMABC 2025 q40: a questão é sobre escala, não projeção)
+DADO Pcad4d264: alternativas -> no print as proposições são "I", "II", "III" (a entrada traz "|", "Il", "Ill" por OCR); texto_da_prova com OCR embaralhado dos esquemas (vale o print)
