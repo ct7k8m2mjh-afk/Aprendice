@@ -91,9 +91,7 @@ def main():
             motivo.append(f'as lentes mudaram {mudancas} campos')
         if qid in (a.erros or '').split(','):
             motivo.append('erro ou aviso do lote.py valida')
-        fora = equivocos_fora(q, ent.get(qid, {}))
-        if fora:
-            motivo.append(fora)
+
         if motivo:
             obrigatorias[qid] = '; '.join(motivo)
     resto = [q for q in por_id if q not in obrigatorias and por_id[q]['status'] == 'ok']
@@ -109,9 +107,29 @@ def main():
     for qid in sorted(motivos):
         print(f'  {qid} [{por_id[qid]["status"]}] {motivos[qid]}')
 
-    ids = sorted(motivos)
+    # Prefixo de conteúdo dos equívocos: decisão estreita (ler a questão e nomear um
+    # conteúdo), e em alguns lotes mais da metade das questões cai nela. Misturar isso
+    # na conferência dobra o pacote de cada conferente e desvia a atenção do que só ele
+    # pega — erro de fato e leitura invertida. Vai num arquivo separado, para um agente
+    # decidir todos de uma vez.
     destino = os.path.join(SAIDA, a.lote, 'conferencia')
     os.makedirs(destino, exist_ok=True)
+    conteudos = {}
+    for qid, q in por_id.items():
+        fora = equivocos_fora(q, ent.get(qid, {}))
+        if fora:
+            conteudos[qid] = {'conteudo_da_questao': ent[qid].get('conteudo', ''),
+                              'prefixos': sorted({str(v).split(':')[0]
+                                                  for v in (q.get('equivocos') or {}).values()}),
+                              'o_que_o_verificador_viu': fora,
+                              'prova': ent[qid].get('prova', ''),
+                              'print': ent[qid].get('print', '')}
+    if conteudos:
+        fc = os.path.join(destino, 'conteudos.json')
+        json.dump(conteudos, open(fc, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+        print(f'  prefixo de conteúdo a decidir: {len(conteudos)} questões -> {fc}')
+
+    ids = sorted(motivos)
     partes = [ids[i::a.agentes] for i in range(a.agentes)]
     for k, parte in enumerate(partes, 1):
         if not parte:
