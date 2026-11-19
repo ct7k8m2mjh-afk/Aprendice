@@ -46,7 +46,7 @@ aprovação ou resposta: pendências e avisos vão para docs/resolucoes/caixa/<m
 (Matemática: acrescentar a regra da animação — campo `conta` no formato que o motor anima; teste motorConta exige 70%.)
 
 ## RODADA (a cada despertar)
-MATÉRIAS DIVIDIDAS (19/11 17h29, docs/resolucoes/partes.json = por, geo, mat em 2 partes): ler também caixa/<m>-p2.md;
+MATÉRIAS DIVIDIDAS (19/11 17h29; 19h05 Português em 4 partes — partes.json): ler também caixa/<m>-p<k>.md;
 `vez.py <m> --parte 2`; ao reabrir a parte 2, o prompt leva "PARTE 2" e `--parte 2` (ver a seção "Matéria dividida em
 partes" do PROMPT-SESSAO-RESOLUCOES.md). A sessão sem --parte é a parte 1.
 1. `git pull -q --rebase --autostash origin app-prototipo-completo`.
@@ -85,12 +85,14 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 |---|---|---|
 | Matemática parte 1 | session_01PveEKX1qHQh5Qz4UFj3KyL | trabalhando (aberta 19/11 18h44 para TERMINAR a parte 1; anterior XYev deu FIM) |
 | Física | — | ACABOU (19/11 18h18). Não reabrir. |
-| Química | session_01PveEKavURMVSSh5SgqLorw | último lote qui-0078 (19/11 18h37); depois ACABOU, não reabrir |
-| Geografia parte 1 | session_01PveEKYqWE3LcZtAa7jJgxm | trabalhando (aberta 19/11 18h24 para TERMINAR a parte 1; anterior ZFZa deu FIM) |
+| Química | — | ACABOU (19/11 18h51). Não reabrir. |
+| Geografia parte 1 | — | ACABOU (19/11 18h51). Não reabrir. |
 | Biologia | — | ACABOU (19/11 18h19, bio-0077). Não reabrir. |
 | Português | session_01PveEKX1JnJpMCfgHmpRupU (FÁBRICA pela API) | trabalhando: piloto por-0094 ok (US$ 6,11); o dono autorizou continuar, lotes por-0095/0096 em esteira. Não abrir outra sessão de Português |
-| Matemática parte 2 | session_01PveEKWuGdwD9YpZh1MPfeW | trabalhando (aberta 19/11 18h24 para TERMINAR a parte 2; anterior a42K deu FIM) |
-| Geografia parte 2 | session_01PveEKXfwDwxpafRSJy8uyA | trabalhando (aberta 19/11 18h24 para TERMINAR a parte 2; anterior YMtZ deu FIM) |
+| Matemática parte 2 | — | ACABOU (19/11 18h57). Não reabrir. |
+| Português parte 3 | session_01PveEKawjpi7T2DjhNLhHCY | trabalhando (aberta 19/11 19h06 para TERMINAR a parte 3; caixa por-p3.md) |
+| Português parte 4 | session_01PveEKY6HCdr1w9dwUzwk8p | trabalhando (aberta 19/11 19h06 para TERMINAR a parte 4; caixa por-p4.md) |
+| Geografia parte 2 | — | ACABOU (19/11 18h49). Não reabrir. |
 | Português parte 2 | session_01PveEKXDkPFmUNguid7UeTi | trabalhando (aberta 19/11 18h44, --parte 2; anterior YbUN deu FIM) |
 Caídas pelo limite em 13/11 (o dono pode arquivar): Mat session_01PveEKWKTewFDUJvA5Y5s91, Fís session_01PveEKXXFLhp4ro4vnf1rh7,
 Quí session_01PveEKZxREDvirT6VTx5nKy, Geo session_01PveEKaHNFQdko42Ddhy3XZ, Bio session_01PveEKaPh1PAjF3bRbuJ5fG, Por session_01PveEKY3G8XPW7thJLdH3jL.
@@ -204,6 +206,7 @@ depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resoluco
 `url` = o link acima, de outra conversa; read antes).
 
 ## Publicação
+Disparada 19/11 19h04: dpl_A2nhkZUDgu11ZWxKRZ58fpnvw2dF (commit 67afb1b5, 786 testes verdes, 25.019 local): conferir no site e registrar.
 Última no ar: dpl_6EuVSRQh76CVcYZBe822yrYBf5aM (commit 0639901f, 19/11 18h13, conferido no site 18h25): 23.815 resoluções. Próxima ao passar de 24.315.
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
