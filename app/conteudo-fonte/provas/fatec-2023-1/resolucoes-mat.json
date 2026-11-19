@@ -388,5 +388,121 @@
    "data": "2026-11-19",
    "lote": "mat-0072"
   }
+ },
+ "Pbcc62968": {
+  "n": "50",
+  "conceito": "Usar a regra de formação de uma ordem cíclica (valor sobe 3, naipe segue paus, copas, espadas, ouros), que o corte não altera, para deduzir uma carta a partir de pistas parciais.",
+  "equivocos": {
+   "A": "M17.1:parou-uma-etapa-antes",
+   "B": "M17.1:aplicou-a-pista-na-carta-errada",
+   "D": "M17.1:errou-a-regra-da-sequencia",
+   "E": "M17.1:errou-a-regra-da-sequencia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro descubra a regra da sequência da figura. O corte só muda onde a sequência começa, não a ordem: as três cartas distribuídas são três cartas seguidas da sequência. Com a regra do valor e a regra do naipe, a pista do K e a do naipe de ouros bastam.",
+    "formulas": [
+     "valor: cada carta vale 3 a mais que a anterior (depois do K volta: K, 3, 6, …)",
+     "naipe: paus → copas → espadas → ouros → paus …"
+    ],
+    "simbolos": [
+     [
+      "ordem cíclica",
+      "sequência que se repete; ao chegar ao fim, recomeça"
+     ],
+     [
+      "corte",
+      "passar a parte de baixo do baralho para cima, o que mantém a ordem cíclica"
+     ],
+     [
+      "A, J, Q, K",
+      "valem 1, 11, 12 e 13"
+     ]
+    ]
+   },
+   "pista": "Encontre na figura a regra de dois em dois: como muda o valor e como muda o naipe de uma carta para a seguinte.",
+   "passos": [
+    {
+     "faz": "Descubra a regra do valor",
+     "conta": "A, 4, 7, 10, K, 3, 6 → 1, 4, 7, 10, 13, 16 − 13 = 3, 6",
+     "porque": "Cada carta vale 3 a mais; passando de 13, subtrai 13 (o K é 13, então depois dele vem o 3).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Descubra a regra do naipe",
+     "conta": "paus → copas → espadas → ouros → paus",
+     "porque": "Na figura os naipes se repetem sempre nessa ordem, de 4 em 4.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use o naipe de ouros da 2ª carta para achar o naipe do K",
+     "conta": "2ª carta: ouros → 1ª carta: espadas → K de espadas",
+     "porque": "O naipe que vem antes de ouros é espadas; então o primeiro espectador tem o K de espadas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Avance duas cartas a partir do K de espadas",
+     "conta": "K de espadas → 3 de ouros → 6 de paus",
+     "porque": "Valor: 13 + 3 = 16 → 3, e 3 + 3 = 6. Naipe: espadas → ouros → paus.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue a carta à letra",
+     "conta": "3ª carta: 6 de paus → alternativa C",
+     "porque": "O terceiro espectador segura o 6 de paus.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — o terceiro espectador está com o 6 de paus.",
+   "checagem": "Confira na própria figura o trecho K de paus → 3 de copas → 6 de espadas: depois de um K vem sempre um 3 e depois um 6, e o naipe anda dois passos. Começando em espadas, dois passos levam a paus: 6 de paus.",
+   "erradas": {
+    "A": "A sai de parar uma carta antes no valor: o 3 é o valor da 2ª carta (3 de ouros); a 3ª carta vale 3 + 3 = 6.",
+    "B": "B sai de pôr ouros na 1ª carta: K de ouros → 3 de paus → 6 de copas. Mas ouros é o naipe da 2ª carta, então o K é de espadas.",
+    "D": "D não confere: duas cartas depois de um K o valor é 13 + 6 = 19 → 6, nunca 10.",
+    "E": "E não confere: o valor da 3ª carta é 6 (K → 3 → 6), e não 10."
+   },
+   "armadilha": "Ouros é o naipe da 2ª carta, não da 1ª: aplicá-lo ao K leva ao 6 de copas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A carta do terceiro espectador.",
+    "chave": "O corte preserva a ordem cíclica: valor sobe 3 (mod 13) e naipe segue paus, copas, espadas, ouros.",
+    "cuidado": "Cada pista vale para uma carta: K na 1ª, naipe de ouros na 2ª."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "partir da 2ª carta",
+    "ideia": "A 2ª carta vem logo depois de um K, logo é um 3; com o naipe de ouros ela é o 3 de ouros, e a seguinte é 3 + 3 = 6 com naipe ouros → paus: 6 de paus."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "valor: 1, 4, 7, 10, 13, 16 − 13 = 3, 6",
+    "nota": "sobe 3; passou de 13, tira 13"
+   },
+   {
+    "linha": "naipe: paus → copas → espadas → ouros → paus",
+    "nota": "ciclo de 4"
+   },
+   {
+    "linha": "ouros na 2ª → espadas na 1ª → K de espadas",
+    "nota": "naipe anterior a ouros"
+   },
+   {
+    "linha": "K de espadas → 3 de ouros → 6 de paus",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0081"
+  }
  }
 }

@@ -443,3 +443,11 @@ DADO P3fb7bda1 (Unioeste 2021 q65): texto_da_prova -> "44. Seja a ∈ ℤ um nú
 DADO P539d0583 (UFJF 2024 q16): texto_da_prova -> p(x) = x^2 + x − 6 e q(x) = x^2 + x/2 − 1/2; r(x) = p(x) · q(x)
 DADO P97835893 (ITA 2020 q43): alternativas -> A) (−1 + 2cos 1)/(5 − 4cos 1); B) (−2 + 4cos 1)/(5 − 4cos 1); C) (4 − 2cos 1)/(5 − 4cos 1); D) (1 + 2cos 1)/(5 − 4cos 1); E) (2 + 4cos 1)/(5 − 4cos 1); termo geral a_n = (cos n + i · sen n)/2^n
 GABARITO P1ddbe8c2 (IME 2025 q3): segundo o Estratégia Militares, o definitivo oficial do IME (1ª fase 29/09/2024) é B — pode trocar o gabarito do Aprendice pelo oficial
+
+## 2026-11-19 19:20 UTC — PENDÊNCIAS mat-0081 — session_01PveEKX1qHQh5Qz4UFj3KyL
+DADO Pa2c94438 (UFRR 2023 q16): alternativas.E -> "0" (expressão de S colada na alternativa)
+DADO Pbcc62968 (Fatec 2023-1 q50): alternativas.D -> "10♥." (quadro "Cada carta possui um símbolo..." colado); texto_da_prova -> sequência da figura A♣ 4♥ 7♠ 10♦ K♣ 3♥ 6♠ 9♦ Q♣ 2♥ 5♠ 8♦ J♣ A♥ 4♠ 7♦ 10♣ K♥ 3♠ 6♦ 9♣ Q♥ 2♠ 5♦ … (ordem embaralhada e "(E) 8." de outra questão no começo)
+DADO P35ef5a54 (Unimontes PAES 2020 3ª etapa q37): alternativas -> A (−2 − √3) − i; B (−2 + √3) + i; C (−2 + √3) − i; D (−2 − √3) + i (entrada só tem "."; texto perdeu z1, z2, z3 e o raio 2)
+AVISO validador: recusa ♣ ♥ ♠ ♦ como emoji; em Pbcc62968 (Fatec 2023-1 q50) os naipes da resolução ficaram por extenso
+DADO P4a4aaf61 (ITA 2021 q54): texto_da_prova "z2" -> z²
+DADO Pc31f4b5e (ITA 2023 q43): texto_da_prova "z(2n+1)", "5021", "5020" -> z^(2n+1), z̄^(2n+1), 50^21, 50^20

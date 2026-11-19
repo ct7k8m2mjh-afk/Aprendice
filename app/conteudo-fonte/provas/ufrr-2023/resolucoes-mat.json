@@ -894,5 +894,118 @@
    "data": "2026-11-19",
    "lote": "mat-0080"
   }
+ },
+ "Pa2c94438": {
+  "n": "16",
+  "conceito": "Somar uma sequência de quocientes de números complexos percebendo que cada fração vale i e contando quantos termos há.",
+  "equivocos": {
+   "A": "M16.2:contou-termos-com-erro-de-um",
+   "C": "M16.2:esqueceu-de-multiplicar-pelo-numero-de-termos",
+   "D": "M16.2:contou-termos-com-erro-de-um",
+   "E": "M16.2:achou-que-as-parcelas-se-cancelam"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Não divida 1012 frações uma a uma. Olhe a primeira: multiplicar o denominador 2 − i por i dá exatamente o numerador 1 + 2i. Se o numerador é i vezes o denominador, a fração vale i. O trabalho real da questão é contar os termos sem errar por um.",
+    "formulas": [
+     "i² = −1",
+     "se numerador = i · denominador, então numerador/denominador = i",
+     "termos ímpares 1, 3, 5, …, 2m − 1: são m termos"
+    ],
+    "simbolos": [
+     [
+      "i",
+      "unidade imaginária, com i² = −1"
+     ],
+     [
+      "n",
+      "parte real do numerador de cada fração (1, 3, 5, …, 2023)"
+     ]
+    ]
+   },
+   "pista": "Multiplique o denominador da primeira fração por i e compare com o numerador.",
+   "passos": [
+    {
+     "faz": "Multiplique o primeiro denominador por i",
+     "conta": "i · (2 − i) → 2i − i² → 1 + 2i",
+     "porque": "Como i² = −1, o termo −i² vira +1. O resultado é o numerador, logo (1 + 2i)/(2 − i) = i.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Generalize para o termo de numerador n + (n + 1)i",
+     "conta": "i · ((n + 1) − ni) → (n + 1)i − ni² → n + (n + 1)i",
+     "porque": "Todas as frações têm a mesma forma: o numerador é sempre i vezes o denominador. Então cada fração vale i.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os termos pela parte real",
+     "conta": "n = 1, 3, 5, …, 2023 → 2m − 1 = 2023 → m = 1012",
+     "porque": "As partes reais dos numeradores são os ímpares de 1 a 2023. O ímpar 2m − 1 é o m-ésimo, e 2023 = 2 · 1012 − 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os termos iguais",
+     "conta": "S = i + i + … + i → S = 1012 · i → S = 1012i",
+     "porque": "São 1012 parcelas, todas iguais a i.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à letra",
+     "conta": "S = 1012i → alternativa B",
+     "porque": "1012i é o valor da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — S = 1012i.",
+   "checagem": "Faça a divisão da primeira fração pelo conjugado: ((1 + 2i)(2 + i))/((2 − i)(2 + i)) = (2 + i + 4i + 2i²)/5 = (0 + 5i)/5 = i. Confere com o atalho. E a última: i · (2024 − 2023i) = 2024i + 2023 = 2023 + 2024i, o numerador.",
+   "erradas": {
+    "A": "A sai de contar os termos com erro de um: (2023 − 1)/2 = 1011, esquecendo de somar 1; os ímpares de 1 a 2023 são 1012.",
+    "C": "C sai de parar no primeiro termo: viu que cada fração vale i, mas não multiplicou pelo número de parcelas (1012).",
+    "D": "D não confere: as partes reais 1, 3, …, 2023 são 1012 ímpares, e cada termo vale i; a soma é 1012i, não 1010i.",
+    "E": "E não confere: todas as parcelas valem i, nenhuma cancela outra; 1012 parcelas iguais a i somam 1012i, diferente de 0."
+   },
+   "armadilha": "Contar os termos de 1 a 2023 de dois em dois: são 1012, não 1011.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor da soma de frações complexas.",
+    "chave": "Cada numerador é i vezes o seu denominador, então cada fração vale i.",
+    "cuidado": "Contar os termos certo: os ímpares de 1 a 2023 são 1012."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "conjugado",
+    "ideia": "Dividir a primeira fração pelo conjugado (2 + i) também dá i; a forma geral repete o padrão em todas."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i · (2 − i) = 2i − i² = 1 + 2i",
+    "nota": "o numerador é i vezes o denominador"
+   },
+   {
+    "linha": "(1 + 2i)/(2 − i) = i",
+    "nota": "cada fração vale i"
+   },
+   {
+    "linha": "2m − 1 = 2023 → m = 1012",
+    "nota": "número de termos"
+   },
+   {
+    "linha": "S = 1012 · i = 1012i",
+    "nota": "alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0081"
+  }
  }
 }

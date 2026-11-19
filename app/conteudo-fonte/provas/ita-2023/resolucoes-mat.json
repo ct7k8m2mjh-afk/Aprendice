@@ -1305,5 +1305,144 @@
    "data": "2026-11-19",
    "lote": "mat-0080"
   }
+ },
+ "Pc31f4b5e": {
+  "n": "43",
+  "conceito": "Potência de complexo pela forma trigonométrica (De Moivre), soma com o conjugado e soma de PG.",
+  "equivocos": {
+   "A": "M16.2:soma-da-pg-errada",
+   "B": "M16.2:esqueceu-o-cosseno",
+   "C": "M16.2:soma-da-pg-errada",
+   "E": "M16.2:nao-simplificou-o-modulo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Um número somado ao seu conjugado dá o dobro da parte real. Na forma trigonométrica, z = 5 − 5i tem módulo 5√2 e argumento −π/4, e elevar à potência k multiplica o ângulo por k. Com expoente ímpar, o ângulo cai sempre num múltiplo ímpar de π/4, onde o cosseno vale ±√2/2. Assim f(n) vira uma progressão geométrica.",
+    "formulas": [
+     "w + w̄ = 2 · Re(w)",
+     "z^k = |z|^k · (cos kθ + i sen kθ)",
+     "soma de PG: S = a1 · (q^n − 1)/(q − 1)"
+    ],
+    "simbolos": [
+     [
+      "z̄",
+      "conjugado de z: troca o sinal da parte imaginária"
+     ],
+     [
+      "|z|",
+      "módulo de z"
+     ],
+     [
+      "θ",
+      "argumento: ângulo do ponto z no plano"
+     ],
+     [
+      "Re(w)",
+      "parte real de w"
+     ],
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes a razão q"
+     ],
+     [
+      "ℕ",
+      "conjunto dos números naturais"
+     ]
+    ]
+   },
+   "pista": "Passe z para a forma trigonométrica e veja o que acontece com o cosseno quando o expoente é ímpar.",
+   "passos": [
+    {
+     "faz": "Passe z para a forma trigonométrica",
+     "conta": "z = 5 − 5i → |z| = √(25 + 25) = 5√2 | θ = −π/4",
+     "porque": "O ponto (5, −5) está no 4º quadrante, a 45° abaixo do eixo real.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a potência com a do conjugado",
+     "conta": "z^(2n+1) + z̄^(2n+1) → 2 · (5√2)^(2n+1) · cos((2n + 1)π/4)",
+     "porque": "O conjugado tem o ângulo oposto, então as partes imaginárias se cancelam e sobra o dobro da parte real.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire o módulo do cosseno",
+     "conta": "|cos((2n + 1)π/4)| = √2/2 → f(n) = 2 · (5√2)^(2n+1) · √2/2 = √2 · (5√2)^(2n+1)",
+     "porque": "(2n + 1)π/4 é sempre um múltiplo ímpar de π/4, e nesses ângulos o cosseno vale √2/2 ou −√2/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique f(n)",
+     "conta": "√2 · (5√2)^(2n+1) → √2 · 5√2 · ((5√2)²)^n → 10 · 50^n",
+     "porque": "Separe uma potência e junte as outras em pares: (5√2)² = 50 e √2 · 5√2 = 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a PG de n = 1 a 20",
+     "conta": "500 + 25 000 + ... → 500 · (50^20 − 1)/(50 − 1) → 500(50^20 − 1)/49",
+     "porque": "f(1) = 500 e cada termo é 50 vezes o anterior; são 20 termos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "500(50^20 − 1)/49 → alternativa D",
+     "porque": "A expressão é exatamente a da alternativa D, então a E (nenhuma) não serve.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a soma vale 500(50^20 − 1)/49",
+   "checagem": "Calcule f(1) sem fórmula: z³ = (5 − 5i)³ = −250 − 250i e z̄³ = −250 + 250i; a soma é −500 e o módulo é 500 = 10 · 50. Pelo mesmo molde com um termo só, 500(50¹ − 1)/49 = 500. Fecha.",
+   "erradas": {
+    "A": "250(50^21 − 1)/49 não confere: dividida pela soma certa dá (50^21 − 1)/(2(50^20 − 1)), cerca de 25; a soma certa é 500(50^20 − 1)/49.",
+    "B": "500√2(50^20 − 1)/49 sai de esquecer o cosseno: tomar f(n) = 2 · (5√2)^(2n+1) = 10√2 · 50^n e somar de 1 a 20.",
+    "C": "1000(50^21 − 1)/49 não confere: é cerca de 100 vezes a soma certa; já o primeiro termo, f(1), vale só 500.",
+    "E": "nenhuma das anteriores não confere: a soma calculada, 500(50^20 − 1)/49, é exatamente a alternativa D."
+   },
+   "armadilha": "O módulo da soma não é 2 · |z|^(2n+1): as partes imaginárias se cancelam e a parte real carrega o fator √2/2 do cosseno.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma de f(n) = |z^(2n+1) + z̄^(2n+1)| para n de 1 a 20, com z = 5 − 5i.",
+    "chave": "z^k + z̄^k = 2 · Re(z^k); com expoente ímpar, |cos| = √2/2 e f(n) = 10 · 50^n, uma PG de razão 50.",
+    "cuidado": "Não esqueça o fator √2/2 do cosseno e comece a PG em n = 1, com primeiro termo 500."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "forma algébrica",
+    "ideia": "z² = (5 − 5i)² = −50i, então z^(2n+1) = z · (−50i)^n; somando com o conjugado, sobra 50^n vezes o dobro de ±5, e o módulo é 10 · 50^n."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "z = 5√2 · (cos(−π/4) + i sen(−π/4))",
+    "nota": "forma trigonométrica"
+   },
+   {
+    "linha": "z^(2n+1) + z̄^(2n+1) = 2 · (5√2)^(2n+1) · cos((2n + 1)π/4)",
+    "nota": "dobro da parte real"
+   },
+   {
+    "linha": "f(n) = 2 · (5√2)^(2n+1) · √2/2",
+    "nota": "|cos| = √2/2 em ângulo ímpar de π/4"
+   },
+   {
+    "linha": "f(n) = 10 · 50^n",
+    "nota": "(5√2)² = 50"
+   },
+   {
+    "linha": "S = 500 · (50^20 − 1)/49",
+    "nota": "PG de razão 50, 20 termos: alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0081"
+  }
  }
 }
