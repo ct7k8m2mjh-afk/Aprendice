@@ -73,6 +73,13 @@ O dono avisou: o próximo lote de Física termina tudo o que falta (restavam pou
 ACABOU, NÃO reabrir sessão de Física (Geografia já está aberta). Provas novas só depois que TODAS as matérias acabarem
 (seção "Provas novas").
 
+## Trabalho repetido (conferido 19/11 21h15)
+29 questões de Português foram resolvidas duas vezes em 19/11: pela fábrica (por-0104) e pela sessão da parte 3 (por-p3-0001),
+porque a sessão nova escolheu as questões antes de o registro do lote da fábrica chegar ao git (corrida). Mais 11 repetidas
+em 11–13/11 (por-0024/27/32/44 × por-0046; por-0075/78 × por-0082; por-0084/85/86 × por-0088). Custo extra da API ~US$ 3.
+REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, commit e push do registro ANTES de resolver
+(e `git pull` antes do proximo). Hoje só a fábrica trabalha em Português, sem risco.
+
 ## Fábrica pela API (dono, 19/11)
 Teto: US$ 200 de créditos da API. Matéria sugerida para a fábrica: Português (a sessão deu FIM em 19/11 ~15h; NÃO reabrir
 sessão de Português enquanto a fábrica estiver com a matéria, para não haver dois trabalhando nos mesmos lotes).
