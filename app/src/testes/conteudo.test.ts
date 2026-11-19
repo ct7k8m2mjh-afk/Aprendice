@@ -58,7 +58,7 @@ describe.skipIf(!temConteudo)('conteúdo convertido', () => {
 });
 
 // Questões das provas completas nos exercícios das matérias (comando 14): id estável, fonte, gabarito, sem duplicar.
-type QBanco = { id: string; gab: string; sub: string; modulo: string; url: string; escola: string; ano: string; n: string; dif: number; prova?: string; print?: string; txt?: number; pendente?: string };
+type QBanco = { id: string; gab: string; sub: string; modulo: string; url: string; escola: string; ano: string; n: string; dif: number; prova?: string; print?: string; txt?: number; pendente?: string; indisponivel?: true };
 const TODAS = ['bio', 'qui', 'mat', 'por', 'fis', 'geo', 'his', 'fs', 'ing'];
 const FONTE_PROVAS = join(RAIZ, 'conteudo-fonte', 'provas');
 
@@ -112,7 +112,9 @@ describe.skipIf(!temConteudo)('questões das provas nos exercícios', () => {
         if (!provas.has(q.prova!)) provas.set(q.prova!, ler(join(FONTE_PROVAS, q.prova!, 'prova.json')));
         const orig = provas.get(q.prova!)!.questoes.find((x) => x.id === q.id);
         expect(orig, `${q.id} está na prova ${q.prova}`).toBeTruthy();
-        if (orig!.gab) expect(q.gab, q.id).toBe(orig!.gab);
+        // a indisponível (dono, 19/11/2026) vai ao site sem gabarito: só o print e o selo
+        if (q.indisponivel) expect(q.gab, q.id).toBe('');
+        else if (orig!.gab) expect(q.gab, q.id).toBe(orig!.gab);
         // sem gabarito publicado: fora do ar até o gabarito do Aprendice (dois especialistas às cegas)
         else expect(q.gab === '' ? q.pendente : (q as { gabFonte?: string }).gabFonte, q.id).toBeTruthy();
         expect(q.url, q.id).toMatch(/^https?:\/\//);

@@ -43,6 +43,10 @@ OUTRA_MATERIA = os.path.join(APP, 'conteudo-fonte', 'outra-materia.json')
 # dado faltando) vale como anulada pela banca: fora do site e, no simulado da prova inteira, contada como anulada.
 # Lista única: conteudo-fonte/anuladas-aprendice.json.
 ANULADAS_APRENDICE = os.path.join(APP, 'conteudo-fonte', 'anuladas-aprendice.json')
+# Decisão do dono (19/11/2026): questão em que a banca do Aprendice acha o gabarito oficial errado (sem errata) fica no
+# site como "Questão indisponível": aparece na lista do conteúdo com o print, sem responder nem corrigir, e fica fora de
+# treinos, simulados, revisão e contagens. Lista única: conteudo-fonte/indisponiveis.json.
+INDISPONIVEIS = os.path.join(APP, 'conteudo-fonte', 'indisponiveis.json')
 
 
 def triagem():
@@ -379,15 +383,46 @@ def marca_anuladas_aprendice(provas):
     return len(achou)
 
 
+def indisponiveis():
+    """id da questão de prova -> motivo (conteudo-fonte/indisponiveis.json; decisão do dono de 19/11/2026)."""
+    if not os.path.exists(INDISPONIVEIS):
+        return {}
+    return {qid: v['motivo'] for qid, v in ler(INDISPONIVEIS)['questoes'].items()}
+
+
+def marca_indisponiveis(provas):
+    """Marca indisponivelDono na questão da prova completa (sai do simulado da prova inteira). Não usa a chave
+    'indisponivel' da fonte, que tira a questão do ar (pendente). Id da lista que não existe em nenhuma prova para a
+    conversão com erro (lista desatualizada)."""
+    ind = indisponiveis()
+    achou = set()
+    for p in provas:
+        for pq in p['questoes']:
+            if pq['id'] in ind:
+                pq['indisponivelDono'] = ind[pq['id']]
+                achou.add(pq['id'])
+    falta = sorted(set(ind) - achou)
+    if falta:
+        raise SystemExit(f'indisponiveis.json: ids que não estão em nenhuma prova: {falta}')
+    return len(achou)
+
+
 def prova_publicada(p):
     """A prova como vai ao site: a anulada pelo Aprendice sai, como a anulada pela banca (que o recorte já tira), e o
-    número dela fica em fora.anuladas_aprendice. A fonte não muda."""
+    número dela fica em fora.anuladas_aprendice; a indisponível (dono, 19/11/2026) também sai, com o número em
+    fora.indisponiveis. A fonte não muda."""
     fora_ap = [q['n'] for q in p['questoes'] if q.get('anuladaAprendice')]
-    if not fora_ap:
+    fora_ind = [q['n'] for q in p['questoes'] if q.get('indisponivelDono') and not q.get('anuladaAprendice')]
+    if not fora_ap and not fora_ind:
         return p
     out = dict(p)
-    out['questoes'] = [q for q in p['questoes'] if not q.get('anuladaAprendice')]
-    out['fora'] = dict(p.get('fora') or {}, anuladas_aprendice=sorted(fora_ap))
+    out['questoes'] = [q for q in p['questoes'] if not q.get('anuladaAprendice') and not q.get('indisponivelDono')]
+    fora = dict(p.get('fora') or {})
+    if fora_ap:
+        fora['anuladas_aprendice'] = sorted(fora_ap)
+    if fora_ind:
+        fora['indisponiveis'] = sorted(fora_ind)
+    out['fora'] = fora
     return out
 
 
@@ -804,6 +839,47 @@ def aplica_anuladas_aprendice():
     return rel
 
 
+def aplica_indisponiveis():
+    """Decisão do dono (19/11/2026): a questão indisponível fica no banco com indisponivel: true e sem gabarito (o site
+    mostra o print com o selo "Questão indisponível", sem responder nem corrigir) e sai do treino geral (essencial.abc).
+    Vale também para a questão antiga do banco que ficou no lugar de uma duplicata da prova. A pendência só de gabarito
+    (gabarito do Aprendice em preparação) dá lugar ao selo; as outras (ex.: sem link da fonte) continuam fora do ar.
+    Nada é apagado e o id não muda (princípio 7)."""
+    ind = indisponiveis()
+    dup = ler(os.path.join(DESTINO, 'duplicatas-provas.json')) if os.path.exists(os.path.join(DESTINO, 'duplicatas-provas.json')) else {}
+    alvo = dict(ind)
+    for pid, motivo in ind.items():
+        if pid in dup:
+            alvo[dup[pid].split('/', 1)[1]] = motivo
+    rel = {'lista': len(ind), 'no_banco': {}}
+    for m in MATERIAS + NOVAS:
+        f = os.path.join(DESTINO, m, 'banco.json')
+        if not os.path.exists(f):
+            continue
+        banco, n = ler(f), 0
+        for q in banco:
+            if q['id'] in alvo and not q.get('anuladaAprendice'):
+                q['indisponivel'] = True
+                q['gab'] = ''
+                q.pop('gabFonte', None)
+                q.pop('res', None)
+                if str(q.get('pendente') or '').startswith('gabarito do Aprendice'):
+                    del q['pendente']
+                n += 1
+        if n:
+            gravar(f, banco)
+            rel['no_banco'][m] = n
+        fm = os.path.join(DESTINO, m, 'materia.json')
+        mat = ler(fm)
+        abc = mat.get('essencial', {}).get('abc') or []
+        if any(i in alvo for i in abc):
+            mat['essencial']['abc'] = [i for i in abc if i not in alvo]
+            gravar(fm, mat)
+    if sum(rel['no_banco'].values()) < len(ind):
+        raise SystemExit(f"indisponiveis.json: {len(ind)} na lista, {sum(rel['no_banco'].values())} no banco")
+    return rel
+
+
 def pacotes_provas(pasta):
     """Prévia publicada: provas/indice.json + provas/<id>.json com os prints embutidos (reduzidos),
     servidos ao lado do HTML e lidos sob demanda."""
@@ -815,6 +891,7 @@ def pacotes_provas(pasta):
     provas = provas_fonte()
     marca_outra_materia_provas(provas)
     marca_anuladas_aprendice(provas)
+    marca_indisponiveis(provas)
     for p in map(prova_publicada, provas):
         prints = {}
         for q in p['questoes']:
@@ -950,7 +1027,7 @@ def treino_geral_novas():
 
         def valida(q):
             g = q.get('gab') or ''
-            return (q.get('origem') == 'prova' and not q.get('pendente') and not q.get('retirada') and len(g) == 1
+            return (q.get('origem') == 'prova' and not q.get('pendente') and not q.get('retirada') and not q.get('indisponivel') and len(g) == 1
                     and g in 'ABCDE' and 'ABCDE'.index(g) < len(q.get('alts') or []))
         validas = [q for q in banco if valida(q)]
         freq = {}
@@ -1035,6 +1112,7 @@ def main():
     provas = provas_fonte()
     relatorio['outra_materia_nas_provas'] = marca_outra_materia_provas(provas)
     relatorio['anuladas_aprendice_nas_provas'] = marca_anuladas_aprendice(provas)
+    relatorio['indisponiveis_nas_provas'] = marca_indisponiveis(provas)
     relatorio['provas'] = copia_provas(provas)
     print('provas completas', relatorio['provas'])
     relatorio['exercicios'] = liga_provas(provas)
@@ -1045,6 +1123,8 @@ def main():
     print('questões de outra matéria (só no simulado da prova inteira)', relatorio['outra_materia'])
     relatorio['anuladas_aprendice'] = aplica_anuladas_aprendice()
     print('questões anuladas pelo Aprendice (fora do site)', relatorio['anuladas_aprendice'])
+    relatorio['indisponiveis'] = aplica_indisponiveis()
+    print('questões indisponíveis (selo no site, fora de treinos e simulados)', relatorio['indisponiveis'])
     relatorio['regioes'] = marca_regioes()
     print('região da prova de cada questão', relatorio['regioes'])
     # revisão em slides: depois das matérias (alimenta a Teoria em cartões no materia.json de cada uma)

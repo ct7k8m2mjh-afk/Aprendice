@@ -41,6 +41,10 @@ export interface MateriaCarregada {
   /** questões de site retiradas sem questão de prova equivalente (comando 21): nunca aparecem; o histórico do aluno
    *  nelas continua contando no desempenho e na revisão do conteúdo (logica/estatisticas.ts) */
   retiradas?: Questao[];
+  /** questões indisponíveis (dono, 19/11/2026): fora do banco (treinos, simulados, revisão, contagens); só aparecem na
+   *  lista do conteúdo e pelo endereço direto, com o print e o selo "Questão indisponível" */
+  indisponiveis?: Map<string, Questao>;
+  indispPorSub?: Map<string, Questao[]>;
 }
 
 /** Marcador de uma questão retirada: só conteúdo, tema e dificuldade (o texto e o print não existem no site). */
@@ -57,7 +61,13 @@ const PRINTS_PROVA = new Map<string, string>();
 export function monta(id: MateriaId, bancoTodo: Questao[], conteudo: MateriaConteudo, amostra?: string[]): MateriaCarregada {
   // fora do ar (pendente), de outra matéria fora das 9 (decisão do dono, 13/11/2026: só no simulado da prova inteira)
   // e anulada pelo Aprendice (dono, 13/11/2026: vale como anulada pela banca)
-  const banco = bancoTodo.filter((q) => !q.pendente && !q.outraMateria && !q.anuladaAprendice);
+  const visivel = (q: Questao) => !q.pendente && !q.outraMateria && !q.anuladaAprendice;
+  const banco = bancoTodo.filter((q) => visivel(q) && !q.indisponivel);
+  // indisponível (dono, 19/11/2026): continua na lista do conteúdo, com o print, sem responder nem contar
+  const indisp = bancoTodo.filter((q) => visivel(q) && q.indisponivel);
+  const indispPorSub = new Map<string, Questao[]>();
+  for (const q of indisp) indispPorSub.set(q.sub, [...(indispPorSub.get(q.sub) || []), q]);
+  for (const l of indispPorSub.values()) l.sort(ordemEvolucao);
   const porSub = new Map<string, Questao[]>();
   for (const q of banco) {
     const l = porSub.get(q.sub) || [];
@@ -65,9 +75,10 @@ export function monta(id: MateriaId, bancoTodo: Questao[], conteudo: MateriaCont
     porSub.set(q.sub, l);
   }
   for (const l of porSub.values()) l.sort(ordemEvolucao);
-  for (const q of banco) if (q.print) PRINTS_PROVA.set(q.id, q.print);
+  for (const q of [...banco, ...indisp]) if (q.print) PRINTS_PROVA.set(q.id, q.print);
   const retiradas = retiradasDe(id).filter((r) => !r.para).map((r) => marcadorRetirada(r.id, r.sub, r.dif));
-  return { id, banco, porId: new Map(banco.map((q) => [q.id, q])), conteudo, porSub, amostra, retiradas };
+  return { id, banco, porId: new Map(banco.map((q) => [q.id, q])), conteudo, porSub, amostra, retiradas,
+    indisponiveis: new Map(indisp.map((q) => [q.id, q])), indispPorSub };
 }
 
 export function carregaMateria(id: MateriaId): Promise<MateriaCarregada> {

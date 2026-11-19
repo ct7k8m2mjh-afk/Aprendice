@@ -45,6 +45,10 @@ export interface Questao {
   /** anulada pelo Aprendice (motivo; conteudo-fonte/anuladas-aprendice.json, decisão do dono de 13/11/2026): vale como
    *  anulada pela banca, fora do site (vem com pendente) e fora do simulado da prova inteira */
   anuladaAprendice?: string;
+  /** questão indisponível (conteudo-fonte/indisponiveis.json, decisão do dono de 19/11/2026: a banca do Aprendice acha o
+   *  gabarito oficial errado, sem errata): aparece na lista do conteúdo com o print e o selo "Questão indisponível", sem
+   *  responder, sem gabarito e sem correção; fora de treinos, simulados, revisão e contagens */
+  indisponivel?: true;
   /** questão só de texto, transcrita da camada de texto da prova oficial (parágrafos como a banca organizou) */
   transcricao?: Transcricao;
   /** resolução embutida (questões de prova completa aprovadas pela banca) */

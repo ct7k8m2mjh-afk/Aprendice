@@ -18,6 +18,8 @@ const ler = <T,>(p: string): T => JSON.parse(readFileSync(p, 'utf-8')) as T;
 const montado = existsSync(join(PUB, 'fs', 'banco.json')) && existsSync(join(PUB, 'provas', 'indice.json'));
 const LISTA = ler<{ questoes: Record<string, { questao: string; motivo: string; decisao: string }> }>(
   join(APP, 'conteudo-fonte', 'anuladas-aprendice.json')).questoes;
+const IND = existsSync(join(APP, 'conteudo-fonte', 'indisponiveis.json'))
+  ? ler<{ questoes: Record<string, unknown> }>(join(APP, 'conteudo-fonte', 'indisponiveis.json')).questoes : {};
 const DECIDIDAS = ['Pc90de958', 'Pd7fbdc3f', 'P855bb53e', 'Pb1863457', 'Pe5a5d0ab', 'Pb024ee4d', 'P88f37147', 'P7f440cd0',
   'P525706b9', 'Pcc7ef326', 'Pd1c0ef9d', 'Pc520853b'];
 
@@ -75,7 +77,9 @@ describe.skipIf(!montado)('questões anuladas pelo Aprendice (fora do site)', ()
       for (const q of pub.questoes) expect(LISTA[q.id], `${e.id}/${q.id}`).toBeUndefined();
       if (!anul.length) { expect(pub.fora?.anuladas_aprendice).toBeUndefined(); continue; }
       for (const q of anul) vistas.add(q.id);
-      expect(pub.questoes).toHaveLength(fonte.questoes.length - anul.length);
+      // a indisponível (dono, 19/11/2026: conteudo-fonte/indisponiveis.json) também sai da prova publicada
+      const ind = fonte.questoes.filter((q) => IND[q.id] && !LISTA[q.id]);
+      expect(pub.questoes).toHaveLength(fonte.questoes.length - anul.length - ind.length);
       expect(e.questoes).toBe(pub.questoes.length);
       expect(pub.fora?.anuladas_aprendice).toEqual(anul.map((q) => q.n).sort((a, b) => a - b));
       expect(planoDaProva(pub).itens.some((x) => LISTA[x.id])).toBe(false);
@@ -88,6 +92,8 @@ describe.skipIf(!montado)('questões anuladas pelo Aprendice (fora do site)', ()
     expect(pub.fora?.anuladas).toEqual([17, 35]);
     expect(pub.fora?.anuladas_aprendice).toEqual([2]);
     expect(pub.questoes.some((q) => q.n === 2)).toBe(false);
-    expect(pub.questoes).toHaveLength(117);
+    // e as 5 indisponíveis (dono, 19/11/2026) também saem do simulado da prova inteira
+    expect(pub.fora?.indisponiveis).toEqual([25, 26, 30, 37, 98]);
+    expect(pub.questoes).toHaveLength(112);
   });
 });

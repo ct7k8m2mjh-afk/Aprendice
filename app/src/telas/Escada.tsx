@@ -15,7 +15,7 @@ import { numeroQuestao } from '../dados/tipos';
 import { useResumos } from '../dados/revisao';
 import { ResumoSubtemaView } from '../ui/revisao/ResumoSubtema';
 import { AvisoRegiao, FiltroRegiaoChips, useRegiao } from '../ui/FiltroRegiao';
-import { filtraRegiao } from '../logica/regiao';
+import { filtraRegiao, passa } from '../logica/regiao';
 
 /**
  * Conteúdo (rota antiga /escada, mantida para não quebrar links e progresso): as questões reais do conteúdo,
@@ -44,6 +44,8 @@ export function Escada() {
   const cartoes = mod.cartoes.filter((c) => c.sub === sub);
   const niveis = desempenhoPorNivel(l, s);
   const feedback = feedbackNiveis(niveis);
+  // questões indisponíveis (dono, 19/11/2026): na lista, com o selo, fora da contagem, do Treine sua evolução e dos níveis
+  const indisp = (mc.indispPorSub?.get(sub) || []).filter((q) => fr.reserva || passa(q, rg.conj));
 
   return (
     <div className={`conteudo m-${m}`}>
@@ -114,7 +116,8 @@ export function Escada() {
 
       {NIVEIS.map((nv) => {
         const lv = l.filter((q) => nivelDe(q.dif) === nv.id);
-        if (!lv.length) return null;
+        const li = indisp.filter((q) => nivelDe(q.dif) === nv.id);
+        if (!lv.length && !li.length) return null;
         return (
           <section key={nv.id} className="secao">
             <h2 className="sec-tit">{nv.nome}</h2>
@@ -136,6 +139,19 @@ export function Escada() {
                   </li>
                 );
               })}
+              {li.map((q) => (
+                <li key={q.id}>
+                  <Link to={`/m/${m}/q/${q.id}?ctx=escada`} className="degrau indisp">
+                    <span className="dg-n" aria-hidden><i className="dg-ponto" /></span>
+                    <span className="dg-txt">
+                      <b>{q.conceito || `${q.escola} ${q.ano}`}</b>
+                      <small>{q.escola} {q.ano}{q.n ? ` · questão ${numeroQuestao(q)}` : ''}</small>
+                      <span className="etq aviso">Questão indisponível</span>
+                    </span>
+                    <Icone nome="direita" />
+                  </Link>
+                </li>
+              ))}
             </ol>
           </section>
         );

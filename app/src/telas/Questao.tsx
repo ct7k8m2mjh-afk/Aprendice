@@ -14,7 +14,7 @@ import { CartaoTeoriaView } from './Tema';
 import { defineTelaCheia, useTelaCheia } from '../ui/telaCheia';
 import { ResolucaoView } from '../ui/Resolucao';
 import { urlPrint } from '../dados/conteudo';
-import type { Letra, MateriaId, Questao } from '../dados/tipos';
+import type { Letra, MateriaId, Modulo, Questao } from '../dados/tipos';
 import type { Tentativa } from '../estado/tipos';
 import { regiaoDoEstado } from '../ui/FiltroRegiao';
 import { filtraRegiao } from '../logica/regiao';
@@ -43,7 +43,8 @@ export function QuestaoTela() {
   const nav = useNavigate();
   const mc = useMateria(m);
   const s = useMateriaEstado(m);
-  const q0 = mc?.porId.get(id);
+  // questão indisponível (dono, 19/11/2026): fora do banco, aberta só para consulta (print e selo, sem responder)
+  const q0 = mc?.porId.get(id) || mc?.indisponiveis?.get(id);
   // questões das provas: o texto e a transcrição chegam à parte (txt/<conteúdo>.json)
   const qTexto = useQuestaoComTexto(m, q0);
   const q = qTexto || q0;
@@ -100,6 +101,7 @@ export function QuestaoTela() {
     const f = (e: KeyboardEvent) => {
       const alvo = e.target as HTMLElement;
       if (alvo && (alvo.tagName === 'INPUT' || alvo.tagName === 'TEXTAREA') || e.ctrlKey || e.metaKey || e.altKey) return;
+      if (q?.indisponivel) { if (e.key === 'Escape') { if (telaCheia) defineTelaCheia(false); else nav(voltarPara); } return; }
       const k = e.key.toUpperCase();
       const mapa: Record<string, Letra> = { '1': 'A', '2': 'B', '3': 'C', '4': 'D', '5': 'E' };
       const l = (['A', 'B', 'C', 'D', 'E'].includes(k) ? k : mapa[k]) as Letra | undefined;
@@ -128,6 +130,7 @@ export function QuestaoTela() {
 
   const mod = mc.conteudo.modulos.find((x) => x.id === q.modulo);
   const sub = mod?.subs.find((x) => x.id === q.sub);
+  if (q.indisponivel) return <QuestaoIndisponivel m={m} q={q} mod={mod} sub={sub} aoVoltar={() => nav(voltarPara)} />;
   const r = res?.[q.id];
   const textoPista = q.pista || r?.pista;
   const eq = s.q[q.id];
@@ -232,6 +235,48 @@ export function QuestaoTela() {
           </aside>
         </div>
       )}
+    </div>
+  );
+}
+
+/** Questão indisponível (decisão do dono, 19/11/2026): a banca do Aprendice acha o gabarito oficial errado e a banca da
+ *  prova não publicou errata. O aluno vê o print e a fonte, com o aviso no lugar de responder: sem alternativas, sem
+ *  gabarito e sem correção. Mesmos componentes da tela da questão (barra, cartão, aviso, abas Teoria e Fonte). */
+function QuestaoIndisponivel({ m, q, mod, sub, aoVoltar }: { m: MateriaId; q: Questao; mod?: Modulo; sub?: { id: string; nome: string }; aoVoltar: () => void }) {
+  const [aba, setAba] = useState<AbaPainel>('teo');
+  const nomeMat = infoMateria(m)?.nome || '';
+  const cartoesTeoria = (() => { const l = mod?.cartoes.filter((c) => c.sub === q.sub) || []; return l.length ? l : mod?.cartoes || []; })();
+  return (
+    <div className={`questao-tela m-${m}`}>
+      <div className="q-barra">
+        <button className="q-volta" onClick={aoVoltar} aria-label="Voltar" title="Voltar (Esc)"><Icone nome="esquerda" /><span>Voltar</span></button>
+        <div className="q-barq">
+          <span className="g" aria-hidden><Icone nome={`m_${m}` as NomeIcone} /></span>
+          <span className="n">{nomeMat}</span>
+          <span className="t"><b>{cap(mod?.nome || sub?.nome || '')}</b> · Questão indisponível</span>
+        </div>
+        <BotaoTelaCheia />
+      </div>
+      <div className="q-grade">
+        <article className="folha q-cartao">
+          <EnunciadoQuestao m={m} q={q} depois={sub && <span className="etq q-sub" title={cap(sub.nome)}>{cap(sub.nome)}</span>} />
+          <div className="q-resp com-texto q-indisp">
+            <p className="fr-aviso" role="status"><span><b>Questão indisponível.</b> A banca do Aprendice encontrou um erro no gabarito oficial desta questão, e a banca da prova não publicou correção. Ela fica aqui só para consulta: não tem resposta nem correção e não conta nos treinos, simulados e revisões.</span></p>
+          </div>
+        </article>
+        <aside className="folha q-lado" id="q-lado" aria-label="Teoria e fonte">
+          <AbasPainel aba={aba} aoMudar={setAba} sem={['res']} />
+          <div className="q-lado-corpo" id="q-lado-corpo">
+            {aba === 'teo' && (
+              <div className="q-teoria">
+                <p className="q-teo-rot"><i className="ponto-sub" aria-hidden /><span>Teoria desta questão · <b>{cap(sub?.nome || mod?.nome || '')}</b></span></p>
+                {cartoesTeoria.length ? cartoesTeoria.map((c, i) => <CartaoTeoriaView key={i} c={c} />) : <p className="miolo">A teoria deste conteúdo está em preparação.</p>}
+              </div>
+            )}
+            {aba === 'fon' && <FonteQuestao q={q} />}
+          </div>
+        </aside>
+      </div>
     </div>
   );
 }

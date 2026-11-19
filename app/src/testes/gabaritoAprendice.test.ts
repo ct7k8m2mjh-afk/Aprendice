@@ -22,7 +22,8 @@ describe.skipIf(!temBanco)('questões sem gabarito publicado no banco', () => {
     .map((m) => [m, JSON.parse(readFileSync(join(PUB, m, 'banco.json'), 'utf-8')) as Questao[]] as const);
   it('sem letra, a questão fica fora do ar', () => {
     for (const [m, b] of bancos) for (const q of b) {
-      if (!q.gab) expect(q.pendente, `${m} ${q.id}: sem gabarito e no ar`).toBeTruthy();
+      // a indisponível (dono, 19/11/2026) fica sem gabarito de propósito: só o print e o selo, sem responder
+      if (!q.gab) expect(q.pendente || q.indisponivel, `${m} ${q.id}: sem gabarito e no ar`).toBeTruthy();
     }
   });
   it('gabarito do Aprendice só com uma letra válida', () => {
