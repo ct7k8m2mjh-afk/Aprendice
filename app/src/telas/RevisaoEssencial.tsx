@@ -3,14 +3,15 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useMateria } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
 import { MATERIAS_ANIMADAS, useIndiceRevisao, useTemaRevisao, type Essencial, type TelaEssencial, type TemaRevisao } from '../dados/revisao';
-import type { MateriaId } from '../dados/tipos';
+import type { Letra, MateriaId, Questao, Resolucao } from '../dados/tipos';
 import { contaEhTexto } from '../logica/fracao';
 import { Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { Icone, type NomeIcone } from '../ui/Icone';
 import { BotaoTelaCheia } from '../ui/QuestaoCartao';
 
 import { Formula, textoRev } from '../ui/Formula';
-import { ResolucaoAnimada } from '../ui/ResolucaoAnimada';
+import { ResolucaoView } from '../ui/Resolucao';
+import { separaArmadilhas } from '../logica/questaoAprendice';
 import { animaEscrita } from '../ui/motorAnima';
 import { MapaMental } from '../ui/revisao/MapaMental';
 import { FotoSlide } from '../ui/revisao/FotoSlide';
@@ -30,7 +31,7 @@ export function itensEssencial(e: Essencial): Item[] {
   return out;
 }
 
-const ROTULO: Record<Item['t'], string> = { termometro: 'O que mais cai', mapa: 'Mapa mental', tela: 'Conteúdo', questao: 'Questão resolvida', conexao: 'Conexão' };
+const ROTULO: Record<Item['t'], string> = { termometro: 'O que mais cai', mapa: 'Mapa mental', tela: 'Conteúdo', questao: 'Questão Aprendice', conexao: 'Conexão' };
 
 /**
  * REVISÃO ESSENCIAL de um tema (comandos 33 e 34): o que todo aluno precisa saber e o que é primordial nas provas, em
@@ -181,6 +182,11 @@ function TelaConteudo({ m, tema, tela }: { m: MateriaId; tema: TemaRevisao; tela
 
 const LETRAS = ['A', 'B', 'C', 'D', 'E'];
 
+/**
+ * Questão Aprendice da revisão (identificada como tal; CLAUDE.md, princípio 1). Depois de responder, a correção é a mesma
+ * da questão de prova, nos 4 blocos e nesta ordem (revisão de 19/11/2026, item 20): Por que eu errei · Resposta correta +
+ * a pegadinha · Resolução (animada em Bio, Quí, Mat e Fís) · Por que as outras estão erradas (fechado).
+ */
 function QuestaoResolvida({ m, e }: { m: MateriaId; e: Essencial }) {
   const q = e.questao_resolvida!;
   const [esc, setEsc] = useState<string | null>(null);
@@ -189,10 +195,25 @@ function QuestaoResolvida({ m, e }: { m: MateriaId; e: Essencial }) {
   const res = useMemo(() => (q.passos?.length ? passosParaMotor(q.passos, prosa) : null), [q, prosa]);
   const alts = q.alternativas.map((a, k) => { const r = /^([A-E])\)\s*/.exec(a); return { l: r ? r[1] : LETRAS[k], t: r ? a.slice(r[0].length) : a }; });
   const enun = q.enunciado.replace(/^Questão Aprendice\.\s*/, '');
+  // a correção da questão de prova, com os campos que a Questão Aprendice tem (logica/questaoAprendice.ts)
+  const correcao = useMemo(() => {
+    const arm = separaArmadilhas(q.por_que_erram, q.gabarito);
+    const certa = alts.find((x) => x.l === q.gabarito);
+    const r: Resolucao = {
+      ...(res || {}),
+      resposta: certa ? `Alternativa ${certa.l} — ${certa.t}` : `Alternativa ${q.gabarito}`,
+      armadilha: arm.pegadinha || undefined,
+      erradas: arm.porLetra as Resolucao['erradas'],
+    };
+    const qq = { id: 'aprendice', escola: 'Questão Aprendice', ano: '', n: '', banca: '', fase: '', enun, alts: {}, gab: q.gabarito as Letra,
+      modulo: '', sub: '', dif: 0, degrau: 0, conceito: '', pista: '', url: '', origem: 'prova', figura: false } as Questao;
+    return { r, qq };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [q, res]);
   return (
     <>
       <h2 id="es-tit" className="rv-tit">Questão resolvida</h2>
-      <p className="es-qa"><span className="etq">Questão Aprendice</span> Questão nova, no estilo das provas, escrita para esta revisão.</p>
+      <p className="es-qa">Questão nova, no estilo das provas, escrita para esta revisão.</p>
       <p className="rv-texto">{textoRev(enun)}</p>
       <div className="es-alts" role="radiogroup" aria-label="Alternativas">
         {alts.map(({ l, t }) => (
@@ -210,11 +231,11 @@ function QuestaoResolvida({ m, e }: { m: MateriaId; e: Essencial }) {
         </div>
       ) : (
         <div className="es-res">
-          <p className={'rv-lembrou ' + (esc === q.gabarito ? 'v-a' : esc ? 'v-e' : 'v-q')}>{esc === q.gabarito ? 'Você acertou.' : esc ? `Você marcou ${esc}. A resposta é ${q.gabarito}.` : `A resposta é ${q.gabarito}.`}</p>
-          {res && (MATERIAS_ANIMADAS.has(m)
-            ? <div className="rv-conta"><ResolucaoAnimada r={res} materia={m} /></div>
-            : <ol className="rv-passos es-passos-txt">{q.passos!.map((p, k) => <li key={k}><span className="rv-passo-n num" aria-hidden>{k + 1}</span><div><b>{p.faz}</b><Formula tex={p.conta} prosa={prosa} /></div></li>)}</ol>)}
-          {q.por_que_erram && <p className="es-pegadinha"><b>Por que erram</b>{textoRev(q.por_que_erram)}</p>}
+          <ResolucaoView q={correcao.qq} r={correcao.r} marcada={(esc as Letra) || null} materia={m} semFonte
+            origem={<p className="fraco">Questão Aprendice: gabarito da banca do Aprendice, conferido pela lente de fatos.</p>} />
+          {!res && q.passos?.length ? (
+            <ol className="rv-passos es-passos-txt">{q.passos.map((p, k) => <li key={k}><span className="rv-passo-n num" aria-hidden>{k + 1}</span><div><b>{p.faz}</b><Formula tex={p.conta} prosa={prosa} /></div></li>)}</ol>
+          ) : null}
         </div>
       )}
     </>

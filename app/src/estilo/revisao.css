@@ -31,12 +31,12 @@
 .rv-tempos { list-style: none; margin: 4px 0 18px; padding: 0; display: flex; gap: 6px; counter-reset: none; }
 .rv-tempos li { flex: 1 1 0; min-width: 0; display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: var(--r-p); color: var(--lapis);
   background: color-mix(in srgb, var(--tinta) 4%, transparent); }
-.rv-tempos li.atual { background: var(--sv); color: var(--t); }
+.rv-tempos li.atual { background: var(--sv); color: var(--t-texto); }
 .rv-tempos li.feito { color: var(--tinta); }
 .rv-tp-n { width: 24px; height: 24px; flex: none; display: grid; place-items: center; border-radius: 50%; font: 600 13px/1 var(--fonte);
   border: 1.5px solid color-mix(in srgb, currentColor 45%, transparent); }
 .rv-tempos li.atual .rv-tp-n { background: var(--c); color: var(--ink); border-color: var(--c); }
-.rv-tempos li.feito .rv-tp-n { background: var(--sv); color: var(--t); border-color: transparent; }
+.rv-tempos li.feito .rv-tp-n { background: var(--sv); color: var(--t-texto); border-color: transparent; }
 .rv-tp-n .ic { width: 13px; height: 13px; }
 .rv-tp-t { min-width: 0; font: 600 var(--fs-info)/1.25 var(--fonte); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 @media (max-width: 900px) { .rv-tempos li:not(.atual) .rv-tp-t { display: none; } .rv-tempos li:not(.atual) { flex: none; } .rv-tempos li.atual { flex: 1 1 auto; } }
@@ -45,7 +45,7 @@
 .rv-capa h1, .rv-fim h1 { margin: 0 0 6px; }
 .rv-capa-passos { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 12px 24px; }
 .rv-capa-passos li { display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 12px; align-items: start; }
-.rv-capa-passos .rv-tp-n { color: var(--t); margin-top: 1px; }
+.rv-capa-passos .rv-tp-n { color: var(--t-texto); margin-top: 1px; }
 .rv-capa-passos b { display: block; font: 600 var(--fs-tema)/1.3 var(--fonte); }
 .rv-capa-passos small { display: block; margin-top: 2px; font: 400 var(--fs-info)/1.4 var(--fonte); color: var(--lapis); }
 .rv-capa-ult { margin-top: 18px; font: 400 var(--fs-info)/1.4 var(--fonte); color: var(--lapis); }
@@ -120,7 +120,7 @@
 
 /* lembrar sem olhar dentro do slide */
 .rv-tenta { padding: 14px 16px; border: 1.5px dashed color-mix(in srgb, var(--p) 55%, var(--linha)); border-radius: var(--r); background: var(--sv2); display: flex; flex-direction: column; gap: 12px; }
-.rv-tenta-p { display: flex; align-items: center; gap: 8px; margin: 0; font: 600 var(--fs-tema)/1.3 var(--fonte); color: var(--t); }
+.rv-tenta-p { display: flex; align-items: center; gap: 8px; margin: 0; font: 600 var(--fs-tema)/1.3 var(--fonte); color: var(--t-texto); }
 .rv-tenta-p .ic { flex: none; }
 .rv-opcoes { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
 .rv-opcao { min-width: 0; padding: 10px 14px; border: 1.5px solid var(--linha); border-radius: 12px; background: var(--folha); color: var(--cad-tinta); cursor: pointer; }
@@ -157,7 +157,7 @@
 .rv-lacunas > li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 12px; padding: 16px 0; }
 .rv-lacunas > li[hidden] { display: none; }
 .rv-lacunas > li + li { border-top: 1px solid var(--linha); }
-.rv-lac-n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--sv); color: var(--t); font: 600 14px var(--fonte); margin-top: 2px; }
+.rv-lac-n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--sv); color: var(--t-texto); font: 600 14px var(--fonte); margin-top: 2px; }
 .rv-lembrar-fim { display: flex; justify-content: flex-end; padding-top: 6px; }
 
 /* ---------- navegação dos slides ---------- */
@@ -179,7 +179,7 @@
 .rv-credito .ic { width: 12px; height: 12px; vertical-align: -1px; }
 .rv-palco { padding: 12px 14px 14px; border: 1px solid var(--linha); border-radius: var(--r); background: var(--folha2); min-width: 0; }
 .rv-palco-cab { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
-.rv-palco-tipo { font: 600 var(--fs-info)/1.3 var(--fonte); color: var(--t); text-transform: uppercase; letter-spacing: .04em; }
+.rv-palco-tipo { font: 600 var(--fs-info)/1.3 var(--fonte); color: var(--t-texto); text-transform: uppercase; letter-spacing: .04em; }
 .rv-palco-ctl { display: inline-flex; gap: 4px; }
 .rv-palco-ctl .ra-bt { min-height: 32px; min-width: 32px; }
 .rv-palco-ctl .ra-bt.ic { width: 32px; }
@@ -194,8 +194,8 @@
 .rv-beat.futuro { opacity: 0; visibility: hidden; }
 .rv-beat.atual { background: var(--folha); box-shadow: inset 3px 0 0 var(--p), var(--sombra-folha); animation: rv-entra .5s var(--curva) both; }
 .rv-beat.atual .rv-beat-n { background: var(--c); color: var(--ink); border-color: var(--c); }
-.rv-beat.feito .rv-beat-n { background: var(--sv); color: var(--t); border-color: transparent; }
-.rv-num { font-weight: 700; color: var(--t); font-variant-numeric: tabular-nums; }
+.rv-beat.feito .rv-beat-n { background: var(--sv); color: var(--t-texto); border-color: transparent; }
+.rv-num { font-weight: 700; color: var(--t-texto); font-variant-numeric: tabular-nums; }
 .rv-beat.atual .rv-num { background-image: linear-gradient(transparent 58%, color-mix(in srgb, var(--p) 32%, transparent) 58%); background-repeat: no-repeat; animation: rv-marca .7s .35s var(--curva) both; }
 .rv-linha { display: flex; gap: 4px; margin-top: 10px; }
 .rv-linha i { position: relative; flex: 1; height: 4px; border-radius: 2px; background: color-mix(in srgb, var(--tinta) 10%, transparent); overflow: hidden; }
@@ -281,7 +281,7 @@ span.fm:not(.fm-bloco) .fm-linha + .fm-linha { margin-left: 1em; }
 }
 .rv-linha-cont .det b { font-weight: 600; }
 .rv-cont-hoje { color: var(--aviso); }
-.rv-cont-and { color: var(--t); }
+.rv-cont-and { color: var(--t-texto); }
 .rv-fim-err a small { display: block; margin-top: 2px; font: 400 var(--fs-info)/1.4 var(--fonte); color: var(--lapis); }
 /* 390: o nome do tempo atual inteiro, em duas linhas se preciso */
 @media (max-width: 520px) { .rv-tempos li.atual .rv-tp-t { white-space: normal; overflow: visible; text-overflow: clip; } }
@@ -304,15 +304,16 @@ span.fm:not(.fm-bloco) .fm-linha + .fm-linha { margin-left: 1em; }
 .es-peso { display: inline-flex; align-items: center; gap: 3px; flex: none; }
 .es-peso i { width: 16px; height: 6px; border-radius: 3px; background: color-mix(in srgb, var(--tinta) 12%, transparent); }
 .es-peso.p1 i:nth-child(1), .es-peso.p2 i:nth-child(-n+2), .es-peso.p3 i { background: var(--p); }
-.es-peso small { margin-left: 6px; font: 600 var(--fs-info)/1 var(--fonte); color: var(--t); }
+.es-peso small { margin-left: 6px; font: 600 var(--fs-info)/1 var(--fonte); color: var(--t-texto); }
 /* tela de conteúdo */
 .es-pontos { margin: 0 0 4px; padding-left: 0; list-style: none; display: grid; gap: 8px; }
 .es-pontos li { position: relative; padding-left: 18px; font: 400 var(--fs-expl)/1.55 var(--fonte); }
 .es-pontos li::before { content: ''; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--p); }
 .es-pegadinha { margin: 0; padding: 12px 14px; border-radius: var(--r-p); background: var(--aviso-bg); font: 400 var(--fs-texto)/1.5 var(--fonte); color: var(--tinta); }
-.es-pegadinha b { display: block; margin-bottom: 2px; font-weight: 700; color: var(--aviso); font-size: var(--fs-info); text-transform: uppercase; letter-spacing: .04em; }
+/* rótulo da pegadinha como o da correção ("A pegadinha", Familjen 600), sem maiúsculas espaçadas (DESIGN.md: sem rótulo-chamada) */
+.es-pegadinha b { display: block; margin-bottom: 2px; font-weight: 600; color: var(--aviso); font-size: 15px; }
 .es-aprofundar { border-top: 1px solid var(--linha); padding-top: 10px; }
-.es-aprofundar summary { cursor: pointer; font: 600 var(--fs-botao)/1.3 var(--fonte); color: var(--t); width: max-content; max-width: 100%; }
+.es-aprofundar summary { cursor: pointer; font: 600 var(--fs-botao)/1.3 var(--fonte); color: var(--t-texto); width: max-content; max-width: 100%; }
 .es-aprofundar p { margin: 8px 0; color: var(--lapis); font: 400 var(--fs-info)/1.4 var(--fonte); }
 @container (min-width: 860px) { .rv-corpo.es-com-vis { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; } }
 /* questão resolvida */
@@ -385,7 +386,7 @@ span.fm:not(.fm-bloco) .fm-linha + .fm-linha { margin-left: 1em; }
 .rs-caixa { display: flex; gap: 10px; align-items: flex-start; min-height: 120px; padding: 14px 16px; border: 1.5px dashed color-mix(in srgb, var(--p) 50%, var(--borda2)); border-radius: 12px;
   background: var(--sv2); color: var(--lapis); font: 400 var(--fs-info)/1.45 var(--fonte); }
 .rs-caixa .ic { flex: none; margin-top: 1px; color: var(--t); }
-.rs-caixa b { display: block; margin-bottom: 2px; color: var(--t); font-weight: 600; }
+.rs-caixa b { display: block; margin-bottom: 2px; color: var(--t-texto); font-weight: 600; }
 @container (min-width: 700px) { .rs { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; } }
 .rs-grade { display: grid; grid-template-columns: minmax(0, 1fr); }
 .rs-secao .rs:first-of-type, .rs-fim .rs:first-of-type { padding-top: 4px; }
@@ -418,3 +419,5 @@ span.fm:not(.fm-bloco) .fm-linha + .fm-linha { margin-left: 1em; }
   .rv-geral-dest { padding: 16px; }
   .rv-gd-mats .chip { min-height: 40px; }
 }
+/* Questão Aprendice: a correção em 4 blocos dentro do slide, sem um cartão dentro do outro (revisão de 19/11/2026, item 20) */
+.es-res .resolucao { padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; animation: none; }
