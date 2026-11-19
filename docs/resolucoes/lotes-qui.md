@@ -71,7 +71,7 @@ Faltam 575 questões sem resolução (fora as que estão em lote, pendentes ou c
 | qui-0063 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
 | qui-0064 | demais nível 1-6 | 60 | gravado | 59 | 0 | 1 |
 | qui-0065 | demais nível 1-6 | 60 | gravado | 58 | 2 | 0 |
-| qui-0066 | demais nível 1-6 | 60 | aberto |  |  |  |
+| qui-0066 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 

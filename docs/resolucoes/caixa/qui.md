@@ -71,3 +71,23 @@ DADO Pba8e1627: alternativas.A -> "2ⁿ." e alternativas.E -> "n²."
 DADO P1e024d8f: alternativas.E -> termina em "...carbonos da dupla ligação." (entrada colou "Geografia - Objetivas")
 DADO P21face81: alternativas ausentes -> A 1. B 2. C 3. D 4. E 5.
 DADO Pffe22420: alternativas.B -> no print "ClH2 −COOH" (erro da prova; pretendido ClH2C–COOH); alerta explica
+
+## 2026-11-19 — PENDENCIAS — session_01PveEKaFZ75HhzLpwG4RGm9
+Lote qui-0066 gravado (60 ok; 4 sem gabarito publicado com gabarito do Aprendice: P4290aee9 A, P3bb04955 B, P807e71f9 B, P1b5ffaac C — resolvedor, conferente às cegas e preliminar iguais). Testes após o qui-0065: tsc ok, 786 passed.
+GABARITO P4290aee9 (IME 2024 q31), P3bb04955 (UFRR 2026 q63), P807e71f9 (UNIRG 2023/1 q36), P1b5ffaac (IME 2025 q32): gabarito do Aprendice; trocar pelo definitivo quando a banca publicar.
+GABARITO P1758004a (Cecierj): oficial D; a B ("nome oficial IUPAC é etanal") pode parecer correta (IUPAC 2013 prefere acetaldeído); alerta explica.
+AUTORAL P92207f56 (UEMA PAES 2022 q60): o texto de apoio da prova cita como fonte o Mundo Educação (site didático) — só a fonte do texto da banca; a questão é de prova.
+RECLASS Pbd644ac9 Q12.1 -> Q12.2
+RECLASS Pa2e913cd Q12.2 -> Q12.1
+RECLASS Pb6bc6c3b Q12.2 -> Q11.2
+RECLASS P1b5ffaac Q12.2 -> Q08.3
+RECLASS Pffedef4b Q12.2 -> Q04.3
+RECLASS Pf078f051 Q12.2 -> Q12.1
+RECLASS P7c91063f Q12.2 -> Q11.6
+RECLASS Pbf8a2c7d Q12.2 -> Q12.1
+DADO Pbe4759f8: alternativas ausentes -> A "combustão completa de etano." B "esterificação do ácido propanóico." C "hidratação de propeno." D "oxidação de éter etílico." E "redução de propanal."
+DADO P901f61f8: ligadura "fl" quebrada em enunciado e alternativas ("Tetrafl uoroeteno", "Tefl on") -> "Tetrafluoroeteno", "Teflon"
+DADO Pe9863f6b: alternativas.D -> termina em "considerados tensoativos." (o "28" é número de página)
+DADO Pb7e15959: texto_da_prova -> "Os compostos _________ e _________, ao reagirem entre si, resultam na formação do composto etanoato de propila e água." (lacunas sumiram)
+DADO Pf3d8cb91: alternativas.E -> "I, II e V" (legenda do esquema colada)
+DADO Pbf8a2c7d: texto_da_prova começa com "16" (número da página); no print "QUESTÃO 36"
