@@ -86,7 +86,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | bio-0078 | demais nível 1-6 | 1 | gravado | 1 | 0 | 0 |
 | bio-pend-0001 | pendentes todos-menos-anular | 20 | gravado | 2 | 18 | 0 |
 | bio-pend-0002 | pendentes reclassificada | 3 | gravado | 3 | 0 | 0 |
-| bio-pend-0003 | pendentes =reclassificada | 2 | aberto |  |  |  |
+| bio-pend-0003 | pendentes =reclassificada | 2 | gravado | 2 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
