@@ -186,5 +186,111 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P4a859da4": {
+  "n": "29",
+  "conceito": "Diagrama de Venn com dois conjuntos: contar quem faltou em exatamente um dos dois turnos.",
+  "equivocos": {
+   "A": "M01.5:so-uma-das-regioes",
+   "B": "M01.5:so-uma-das-regioes",
+   "D": "M01.5:incluiu-a-intersecao",
+   "E": "M01.5:nao-descontou-a-intersecao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Pense em dois grupos: quem NÃO votou no 1.º turno e quem NÃO votou no 2.º. O enunciado dá quem votou no 1.º, então o primeiro grupo sai por diferença. A expressão \"ou no primeiro ou no segundo\" quer quem faltou em um turno só: quem faltou nos dois fica de fora.",
+    "formulas": [
+     "não votou no 1.º = aptos − votaram no 1.º",
+     "só um turno = (faltou no 1.º − faltou nos dois) + (faltou no 2.º − faltou nos dois)"
+    ],
+    "simbolos": [
+     [
+      "1.º turno",
+      "primeira votação da eleição"
+     ],
+     [
+      "2.º turno",
+      "segunda votação da eleição"
+     ]
+    ]
+   },
+   "pista": "Comece transformando os 312 que votaram no 1.º turno em quantos faltaram nele.",
+   "passos": [
+    {
+     "faz": "Ache quem faltou no 1.º turno",
+     "conta": "400 − 312 = 88",
+     "porque": "Os 400 aptos se dividem entre quem votou e quem não votou; a diferença é quem faltou.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire quem faltou nos dois",
+     "conta": "88 − 80 = 8 (só o 1.º) | 100 − 80 = 20 (só o 2.º)",
+     "porque": "Os 80 que faltaram nos dois turnos estão dentro dos 88 e dentro dos 100; tirando-os, sobra quem faltou em um turno só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as duas regiões",
+     "conta": "8 + 20 = 28",
+     "porque": "\"Ou no primeiro ou no segundo\" junta quem faltou só no 1.º com quem faltou só no 2.º.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "28 eleitores → alternativa C",
+     "porque": "O pedido é quem faltou em exatamente um turno: 28.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 28 eleitores",
+   "checagem": "Monte as quatro regiões: votou nos dois = 400 − (8 + 20 + 80) = 292; votou no 1.º = 292 + 20 = 312, como diz o enunciado; faltou no 2.º = 20 + 80 = 100. Fecha.",
+   "erradas": {
+    "A": "8 é só quem faltou no 1.º turno e votou no 2.º (88 − 80); faltou somar os 20 que faltaram só no 2.º.",
+    "B": "20 é só quem faltou no 2.º turno e votou no 1.º (100 − 80); faltou somar os 8 do 1.º.",
+    "D": "108 sai de 88 + 100 − 80: é quem faltou em pelo menos um turno, incluindo os 80 que faltaram nos dois, que a pergunta exclui.",
+    "E": "188 sai de 88 + 100, somando os dois grupos sem descontar os 80 que estão nos dois."
+   },
+   "armadilha": "\"Ou no primeiro ou no segundo\" é exatamente um dos turnos: os 80 que faltaram nos dois não entram.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos faltaram em exatamente um dos dois turnos.",
+    "chave": "Faltou no 1.º: 88; só no 1.º: 8; só no 2.º: 20; total 28.",
+    "cuidado": "Desconte os 80 de cada grupo e não os conte na resposta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela união",
+    "ideia": "Quem faltou em pelo menos um turno é 88 + 100 − 80 = 108; tirando os 80 dos dois, 108 − 80 = 28."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "400 − 312 = 88",
+    "nota": "faltaram no 1.º turno"
+   },
+   {
+    "linha": "88 − 80 = 8",
+    "nota": "só no 1.º"
+   },
+   {
+    "linha": "100 − 80 = 20",
+    "nota": "só no 2.º"
+   },
+   {
+    "linha": "8 + 20 = 28",
+    "nota": "exatamente um turno"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
  }
 }

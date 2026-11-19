@@ -387,5 +387,118 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "Pefda1f8b": {
+  "n": "54",
+  "conceito": "Montante de juros compostos a 4% ao ano durante 4 anos.",
+  "equivocos": {
+   "B": "M03.4:prazo-muito-maior-que-o-real",
+   "C": "M03.4:prazo-muito-menor-que-o-real",
+   "D": "M03.4:montante-menor-que-o-capital",
+   "E": "M03.4:prazo-muito-maior-que-o-real"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A tabela e a média 4,27% são só contexto: a conta usa a taxa de 4% ao ano que o enunciado manda. De 1º de janeiro de 2019 a 31 de dezembro de 2022 passam 4 anos completos (2019, 2020, 2021 e 2022). Na poupança o rendimento é sobre o saldo do ano: juros compostos.",
+    "formulas": [
+     "M = C · (1 + i)^t"
+    ],
+    "simbolos": [
+     [
+      "M",
+      "montante, o valor retirado no fim"
+     ],
+     [
+      "C",
+      "capital depositado"
+     ],
+     [
+      "i",
+      "taxa por ano, em decimal"
+     ],
+     [
+      "t",
+      "número de anos"
+     ],
+     [
+      "a.a.",
+      "ao ano"
+     ]
+    ]
+   },
+   "pista": "Conte quantos anos completos o dinheiro fica aplicado antes de montar a potência.",
+   "passos": [
+    {
+     "faz": "Separe os dados",
+     "conta": "C: R$ 2 000 | i: 4% = 0,04 | t: 2019 a 2022 = 4 anos",
+     "porque": "Depósito em 1º/1/2019 e retirada em 31/12/2022 cobrem quatro anos inteiros.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte o fator de 4 anos",
+     "conta": "(1 + 0,04)^4 = 1,04^4 = 1,16985856",
+     "porque": "Cada ano multiplica o saldo por 1,04; quatro anos multiplicam por 1,04 quatro vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pelo capital",
+     "conta": "2 000 · 1,16985856 = 2 339,72",
+     "porque": "O montante é o capital vezes o fator acumulado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "≈ R$ 2 339,7 → alternativa A",
+     "porque": "O valor bate com a alternativa A, a única entre R$ 2 000 e R$ 2 400.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — R$ 2339,71 (aproximadamente)",
+   "checagem": "Ano a ano: 2 000 → 2 080 → 2 163,20 → 2 249,73 → 2 339,72. Pelos juros simples daria 2 000 + 4 · 80 = 2 320, um pouco menos, como se espera.",
+   "erradas": {
+    "B": "B não confere: R$ 3 839,41 exigiria cerca de 16,6 anos a 4% ao ano (2 000 · 1,04^16 = 3 745,96 e 1,04^17 já dá 3 895,80).",
+    "C": "C não confere: R$ 2 100,53 é só 5% acima do depósito, o que a 4% ao ano corresponde a pouco mais de 1 ano, e não a 4.",
+    "D": "D não confere: R$ 1 369,75 é menor que o depósito de R$ 2 000; com taxa positiva o saldo só cresce.",
+    "E": "E não confere: R$ 3 500,62 exigiria cerca de 14,3 anos a 4% ao ano (2 000 · 1,04^14 = 3 463,35)."
+   },
+   "armadilha": "Usar a média da tabela (4,27%) ou contar 3 anos (2022 − 2019) em vez dos 4 anos completos de aplicação.",
+   "alerta": "A alternativa A traz 2 339,71; a conta dá 2 339,717..., que arredonda para 2 339,72. A banca truncou os centavos, o que não muda a escolha.",
+   "essencial": {
+    "pede": "O valor retirado após aplicar R$ 2 000 a 4% ao ano de 2019 a 2022.",
+    "chave": "M = 2 000 · 1,04^4 ≈ 2 339,72.",
+    "cuidado": "São 4 anos completos e a taxa é a de 4% dada para a conta, não a da tabela."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ano a ano",
+    "ideia": "Some 4% ao saldo de cada ano: 2 080; 2 163,20; 2 249,73; 2 339,72."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "M = 2 000 · (1 + 0,04)^4",
+    "nota": "juros compostos, 4 anos"
+   },
+   {
+    "linha": "1,04^4 = 1,16985856",
+    "nota": "fator acumulado"
+   },
+   {
+    "linha": "2 000 · 1,16985856 = 2 339,72",
+    "nota": "montante"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
  }
 }

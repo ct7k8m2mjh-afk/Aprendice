@@ -499,5 +499,106 @@
    "data": "2026-11-13",
    "lote": "mat-0060"
   }
+ },
+ "P513ad04f": {
+  "n": "12",
+  "conceito": "Leitura de gráfico de duas linhas: contar os meses em que uma série fica acima da outra.",
+  "equivocos": {
+   "B": "M14.2:contou-a-serie-trocada",
+   "C": "M14.2:leu-errado-o-cruzamento",
+   "D": "M14.2:leu-errado-o-cruzamento",
+   "E": "M14.2:leu-errado-o-cruzamento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O gráfico tem 12 pontos por fundo, um por mês de 2018. A pergunta é em quantos meses o triângulo (Fundo B) fica acima do círculo (Fundo A). Compare mês a mês, prestando atenção nos meses em que as linhas se cruzam.",
+    "formulas": [
+     "B > A no mês: o triângulo fica acima do círculo"
+    ],
+    "simbolos": [
+     [
+      "rentabilidade",
+      "quanto o investimento rendeu, em percentual"
+     ]
+    ]
+   },
+   "pista": "Olhe onde as duas linhas se cruzam: entre os cruzamentos, uma fica sempre acima da outra.",
+   "passos": [
+    {
+     "faz": "Leia os meses de janeiro a maio",
+     "conta": "jan: A ≈ 17, B ≈ 2 | abr: A ≈ 32, B ≈ 5 | mai: A ≈ 16, B ≈ 15",
+     "porque": "De janeiro a maio o círculo fica acima do triângulo; em maio as linhas quase se tocam, mas A ainda está acima.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia os meses de junho a setembro",
+     "conta": "jun: A ≈ 9, B ≈ 21 | jul: A ≈ 12, B ≈ 21 | ago: A ≈ 9, B ≈ 33 | set: A ≈ 9, B ≈ 33",
+     "porque": "Nesses quatro meses o triângulo fica bem acima do círculo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia outubro a dezembro",
+     "conta": "out: A ≈ 26, B ≈ 18 | nov: A ≈ 34, B ≈ 24 | dez: A ≈ 35, B ≈ 15",
+     "porque": "Em outubro as linhas se cruzam de volta e A volta a ficar acima até o fim do ano.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os meses",
+     "conta": "jun, jul, ago, set → 4 meses → alternativa A",
+     "porque": "Só nesses quatro meses o Fundo B rendeu mais que o Fundo A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 4 meses",
+   "checagem": "Pelo complemento: A fica acima de B em jan, fev, mar, abr, mai, out, nov e dez, que são 8 meses; 12 − 8 = 4.",
+   "erradas": {
+    "B": "8 sai de contar a série trocada: são 8 os meses em que o Fundo A supera o B (jan a mai e out a dez); 12 − 4 = 8.",
+    "C": "7 não confere: nos meses de maio e outubro, os mais próximos dos cruzamentos, A ainda está acima (mai: 16 × 15; out: 26 × 18); B só fica acima de jun a set.",
+    "D": "2 não confere: além de agosto e setembro (B ≈ 33), B também supera A em junho (21 × 9) e julho (21 × 12).",
+    "E": "0 não confere: em junho, por exemplo, B rende cerca de 21% e A cerca de 9%."
+   },
+   "armadilha": "Contar os meses em que A supera B (8) em vez dos meses em que B supera A.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Em quantos meses o Fundo B rendeu mais que o Fundo A.",
+    "chave": "B fica acima de A só entre os dois cruzamentos: junho a setembro.",
+    "cuidado": "Confira os meses perto dos cruzamentos (maio e outubro)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "cruzamentos",
+    "ideia": "As linhas se cruzam entre maio e junho e entre setembro e outubro: B fica acima nos meses entre eles, jun a set."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "jan–mai: A > B",
+    "nota": "5 meses com A acima"
+   },
+   {
+    "linha": "jun–set: B > A",
+    "nota": "4 meses com B acima"
+   },
+   {
+    "linha": "out–dez: A > B",
+    "nota": "3 meses com A acima"
+   },
+   {
+    "linha": "12 − 8 = 4",
+    "nota": "conferência pelo complemento"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
  }
 }

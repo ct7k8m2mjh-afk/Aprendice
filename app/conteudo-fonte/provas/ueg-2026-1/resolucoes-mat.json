@@ -631,5 +631,216 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "P08162844": {
+  "n": "23",
+  "conceito": "Variação percentual de cada linha de uma tabela e o pior caso para uma afirmação do tipo \"em todas\".",
+  "equivocos": {
+   "B": "M03.1:nao-olhou-o-pior-caso",
+   "C": "M03.1:nao-olhou-o-pior-caso",
+   "D": "M14.2:aumento-no-lugar-de-queda",
+   "E": "M14.2:leitura-errada-da-tabela"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Em todas as modalidades\" obriga a afirmação a valer para cada linha da tabela; basta uma linha falhar para a alternativa cair. Todos os números de 2024 são menores que os de 2021, então houve queda. A pergunta vira: qual é a MENOR queda percentual? É ela que decide o \"pelo menos\".",
+    "formulas": [
+     "queda % = (valor de 2021 − valor de 2024)/(valor de 2021) × 100"
+    ],
+    "simbolos": [
+     [
+      "pelo menos 50%",
+      "50% ou mais"
+     ]
+    ]
+   },
+   "pista": "Procure a linha em que a queda foi mais fraca: é ela que limita o \"pelo menos\".",
+   "passos": [
+    {
+     "faz": "Veja se todas as linhas caíram",
+     "conta": "13797 → 5656 | 1892 → 755 | 1110 → 453 | 991 → 487 | 283 → 23",
+     "porque": "Em todas as modalidades o número de 2024 é menor que o de 2021. Aumento (D) e estabilidade (E) já estão fora.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a queda de cada modalidade",
+     "conta": "8141/13797 ≈ 59,0% | 1137/1892 ≈ 60,1% | 657/1110 ≈ 59,2% | 504/991 ≈ 50,9% | 260/283 ≈ 91,9%",
+     "porque": "A queda percentual é quanto diminuiu dividido pelo valor de 2021.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a menor queda",
+     "conta": "roubo em residência: (991 − 487)/991 = 504/991 ≈ 50,9%",
+     "porque": "A afirmação tem de valer para todas; a menor queda, 50,9%, é o máximo que se pode garantir.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue ao \"pelo menos\"",
+     "conta": "50,9% ≥ 50% e 50,9% < 60% → alternativa A",
+     "porque": "Todas caíram pelo menos 50%, mas a residência não chega a 60%, o que derruba B e C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — houve diminuição de pelo menos 50% dos registros em todas as modalidades",
+   "checagem": "Pela metade: 50% de 991 é 495,5, e 2024 teve 487, menos que isso; logo a residência caiu mais de 50%. Já 40% de 991 é 396,4, e 487 fica acima, logo não caiu 60%.",
+   "erradas": {
+    "B": "B sai de olhar só roubo de veículo (−60,1%) ou de carga (−91,9%). Roubo em residência caiu 504/991 ≈ 50,9%, menos de 60%.",
+    "C": "C sai de olhar só roubo de carga (−91,9%). Quatro modalidades caíram entre 50% e 61%, abaixo de 70%.",
+    "D": "D não confere: todos os números de 2024 são menores que os de 2021, então não houve aumento em nenhuma modalidade.",
+    "E": "E não confere: roubo a transeunte caiu de 13797 para 5656 registros; não há estabilidade em nenhuma linha."
+   },
+   "armadilha": "\"Em todas\" exige o pior caso: quem calcula só a linha maior (transeunte, 59%) ou a de carga (92%) erra o limite.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O que vale para todas as modalidades de 2021 a 2024.",
+    "chave": "A menor queda é a de roubo em residência: 504/991 ≈ 50,9%.",
+    "cuidado": "Com \"em todas\" e \"pelo menos\", decida pela linha que caiu menos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela metade",
+    "ideia": "Compare 2024 com a metade de 2021 em cada linha: todos ficam abaixo da metade (487 < 495,5 é o caso mais apertado)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "991 − 487 = 504",
+    "nota": "queda de roubo em residência"
+   },
+   {
+    "linha": "504/991 ≈ 0,509 = 50,9%",
+    "nota": "a menor queda da tabela"
+   },
+   {
+    "linha": "1137/1892 ≈ 60,1% | 8141/13797 ≈ 59,0%",
+    "nota": "as outras ficam acima de 50%"
+   },
+   {
+    "linha": "50% ≤ 50,9% < 60%",
+    "nota": "vale \"pelo menos 50%\", não vale 60%"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
+ },
+ "P45077197": {
+  "n": "26",
+  "conceito": "Reconhecer pelo gráfico o tipo de função (exponencial crescente) que aproxima os dados.",
+  "equivocos": {
+   "B": "M06.1:parabola-no-lugar-de-exponencial",
+   "C": "M06.1:reta-no-lugar-de-curva",
+   "D": "M06.1:log-no-lugar-de-exponencial",
+   "E": "M06.1:funcao-periodica-no-lugar-de-crescente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Olhe duas coisas no gráfico: onde a curva corta o eixo y e como ela sobe. Ela começa acima de zero em x = 0 e sobe cada vez mais rápido, sem limite e sem oscilar. Essa é a marca da exponencial com base maior que 1: a cada unidade de x, o valor de y é multiplicado pelo mesmo número.",
+    "formulas": [
+     "y = k·cˣ → em x = 0, y = k·c⁰ = k",
+     "x aumenta 1 → y fica multiplicado por c"
+    ],
+    "simbolos": [
+     [
+      "k, c",
+      "constantes reais positivas"
+     ],
+     [
+      "ℝ+*",
+      "números reais positivos, sem o zero"
+     ],
+     [
+      "cˣ",
+      "c elevado a x"
+     ],
+     [
+      "log_k",
+      "logaritmo na base k"
+     ]
+    ]
+   },
+   "pista": "Teste cada função no ponto x = 0 e compare com o lugar onde a curva começa.",
+   "passos": [
+    {
+     "faz": "Descreva a curva do gráfico",
+     "conta": "x = 0 → y > 0 | y sobe cada vez mais rápido",
+     "porque": "A curva parte de um valor positivo no eixo y e fica mais íngreme à medida que x cresce.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Descarte reta, seno e logaritmo",
+     "conta": "y = kx + c: reta | sen(kcx): entre −1 e 1 | log_k(cx): sem valor em x = 0",
+     "porque": "A reta sobe sempre no mesmo ritmo; o seno oscila e é limitado; o logaritmo nem existe em x = 0 e sobe cada vez mais devagar.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste x = 0 nas duas que sobram",
+     "conta": "kc·0² → 0 | k·c⁰ → k > 0",
+     "porque": "A parábola kcx² passa pela origem, mas a curva do gráfico começa acima de zero. A exponencial começa em y = k, positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua pelo tipo de crescimento",
+     "conta": "y = k·cˣ, com c > 1 → alternativa A",
+     "porque": "Só a exponencial começa acima de zero e cresce cada vez mais rápido, como os pontos e a curva do gráfico.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — y = k·cˣ, para x ≥ 0",
+   "checagem": "Pelo crescimento: na curva, de x = 0 a x = 1 y quase não muda, e de x = 4 a x = 5 dá um salto grande. Isso é multiplicar pelo mesmo fator a cada passo, comportamento da exponencial.",
+   "erradas": {
+    "B": "B não confere: y = kcx² dá y = 0 em x = 0, e a curva do gráfico corta o eixo y acima de zero.",
+    "C": "C não confere: y = kx + c é uma reta, sobe sempre no mesmo ritmo; a curva do gráfico fica cada vez mais íngreme.",
+    "D": "D não confere: log_k(cx) não existe em x = 0 e, quando cresce, cresce cada vez mais devagar, o contrário do gráfico.",
+    "E": "E não confere: sen(kcx) fica sempre entre −1 e 1 e oscila; a curva do gráfico só sobe."
+   },
+   "armadilha": "Confundir parábola com exponencial porque as duas sobem curvando: a parábola kcx² passa pela origem, e a curva do gráfico não passa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A função que descreve a curva do gráfico de dispersão.",
+    "chave": "Começa em y = k > 0 e cresce cada vez mais rápido: exponencial y = k·cˣ.",
+    "cuidado": "Teste o ponto x = 0 para separar a exponencial da parábola."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razões sucessivas",
+    "ideia": "Ler y em x = 1, 2, 3, 4, 5 e ver que cada valor é quase o anterior vezes o mesmo número: crescimento exponencial."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x = 0: y = k·c⁰ = k > 0",
+    "nota": "exponencial começa acima de zero, como a curva"
+   },
+   {
+    "linha": "x = 0: y = kc·0² = 0",
+    "nota": "a parábola passa pela origem: não serve"
+   },
+   {
+    "linha": "x → x + 1: y → y·c",
+    "nota": "a cada unidade, y multiplica por c"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
  }
 }

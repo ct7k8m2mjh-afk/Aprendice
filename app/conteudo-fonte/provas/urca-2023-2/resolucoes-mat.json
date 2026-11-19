@@ -1056,5 +1056,126 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "P81d7ed79": {
+  "n": "23",
+  "conceito": "Média e moda de dados agrupados em classes, usando os pontos médios e a classe de maior frequência.",
+  "equivocos": {
+   "B": "M14.1:dividiu-frequencias-pelo-numero-de-classes",
+   "C": "M14.1:media-de-dados-agrupados-errada",
+   "D": "M14.1:usou-limite-da-classe-como-moda",
+   "E": "M14.1:media-fora-do-intervalo-dos-dados"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em dados agrupados, cada classe é representada pelo seu ponto médio. A média é a soma de ponto médio × frequência dividida pelo total de frequências. A moda (moda bruta) é o ponto médio da classe com a maior frequência.",
+    "formulas": [
+     "ponto médio = (limite inferior + limite superior)/2",
+     "média = Σ(xi · fi)/Σfi",
+     "moda bruta = ponto médio da classe de maior fi"
+    ],
+    "simbolos": [
+     [
+      "fi",
+      "frequência da classe: quantos dados há nela"
+     ],
+     [
+      "xi",
+      "ponto médio da classe"
+     ],
+     [
+      "Σ",
+      "soma de todas as classes"
+     ],
+     [
+      "2 ⊢ 6",
+      "classe que inclui 2 e vai até antes de 6"
+     ]
+    ]
+   },
+   "pista": "Escreva o ponto médio de cada classe ao lado da frequência antes de qualquer média.",
+   "passos": [
+    {
+     "faz": "Ache os pontos médios",
+     "conta": "2 ⊢ 6 → 4 | 6 ⊢ 10 → 8 | 10 ⊢ 14 → 12 | 14 ⊢ 18 → 16",
+     "porque": "Sem os dados individuais, o ponto médio representa todos os valores da classe.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique e some",
+     "conta": "4 · 10 + 8 · 5 + 12 · 8 + 16 · 3 = 40 + 40 + 96 + 48 = 224 | Σfi = 10 + 5 + 8 + 3 = 26",
+     "porque": "Cada ponto médio vale tantas vezes quanto a frequência da classe.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "224/26 = 112/13 ≈ 8,6",
+     "porque": "A média é o total ponderado dividido pelo número de dados; dividindo 224 e 26 por 2 chega-se à fração da alternativa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a moda",
+     "conta": "maior fi = 10 → classe 2 ⊢ 6 → moda = 4",
+     "porque": "A classe mais frequente é a primeira, e a moda bruta é o seu ponto médio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os dois resultados",
+     "conta": "112/13 e 4 → alternativa A",
+     "porque": "A ordem pedida é média e depois moda.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — média 112/13 e moda 4",
+   "checagem": "Pelos desvios em relação ao ponto médio 8: (−4 · 10 + 0 · 5 + 4 · 8 + 8 · 3)/26 = 16/26 ≈ 0,62, então a média é 8 + 0,62 ≈ 8,62 = 112/13. A moda 4 está na classe que concentra 10 dos 26 dados.",
+   "erradas": {
+    "B": "26/4 = 6,5 é o total de frequências dividido pelo número de classes (frequência média por classe), não a média dos dados; e 8 é o ponto médio de 6 ⊢ 10, que tem frequência 5, não a maior.",
+    "C": "C não confere: 25/4 = 6,25 é diferente de 224/26 ≈ 8,6, e 12 é o ponto médio de 10 ⊢ 14, classe de frequência 8, não a maior.",
+    "D": "D não confere: 120/11 ≈ 10,9 é diferente de 224/26 ≈ 8,6, e 18 é o limite superior da última classe, que tem a menor frequência.",
+    "E": "E não confere: 121/3 ≈ 40,3 passa do maior valor possível, 18, e 16 é o ponto médio da classe de frequência 3."
+   },
+   "armadilha": "Usar os limites das classes (ou a própria frequência) no lugar do ponto médio da classe.",
+   "alerta": "A banca usa a moda bruta (ponto médio da classe modal). Pela fórmula de Czuber a moda daria 2 + 10/15 · 4 ≈ 4,7; nenhuma alternativa traz esse valor, então vale a moda bruta.",
+   "essencial": {
+    "pede": "Média e moda de uma tabela de classes.",
+    "chave": "Pontos médios 4, 8, 12, 16: média 224/26 = 112/13 e moda 4 (classe 2 ⊢ 6, a mais frequente).",
+    "cuidado": "Multiplique pelo ponto médio, não pelos limites, e divida pelo total de frequências."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "A classe de maior frequência é 2 ⊢ 6, de ponto médio 4: só a alternativa A tem moda 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "xi: 4, 8, 12, 16 | fi: 10, 5, 8, 3",
+    "nota": "pontos médios e frequências"
+   },
+   {
+    "linha": "4 · 10 + 8 · 5 + 12 · 8 + 16 · 3 = 224",
+    "nota": "soma ponderada"
+   },
+   {
+    "linha": "224/26 = 112/13",
+    "nota": "média simplificada por 2"
+   },
+   {
+    "linha": "fi máx = 10 → Mo = 4",
+    "nota": "moda bruta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
  }
 }

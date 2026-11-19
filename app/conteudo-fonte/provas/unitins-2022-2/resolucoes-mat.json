@@ -421,5 +421,107 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P2ed68628": {
+  "n": "15",
+  "conceito": "Valor total de venda a partir de duas tabelas e comparação percentual entre regiões.",
+  "equivocos": {
+   "A": "M14.2:leu-valor-errado",
+   "B": "M14.2:ignorou-o-preco",
+   "C": "M14.2:ignorou-o-preco",
+   "D": "M14.2:inverteu-a-razao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Preço de venda dos grãos\" de cada região é o valor total da produção: quantidade de cada grão × preço por tonelada, somando os três grãos. Depois compare A com B dividindo A por B.",
+    "formulas": [
+     "valor da região = soma de (quantidade × preço por tonelada)",
+     "A em comparação a B = A ÷ B"
+    ],
+    "simbolos": [
+     [
+      "tonelada",
+      "1.000 kg"
+     ]
+    ]
+   },
+   "pista": "Calcule o valor total de cada região antes de comparar; não compare só as toneladas.",
+   "passos": [
+    {
+     "faz": "Calcule o valor da região A",
+     "conta": "9 × 1.150 + 7 × 1.720 + 5 × 1.785 = 10.350 + 12.040 + 8.925 = 31.315",
+     "porque": "Cada grão vale quantidade vezes preço. As quantidades estão em milhões de toneladas, então o resultado está em milhões.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o valor da região B",
+     "conta": "13 × 1.150 + 18 × 1.720 + 11 × 1.785 = 14.950 + 30.960 + 19.635 = 65.545",
+     "porque": "Mesma conta, com as quantidades da região B.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare A com B",
+     "conta": "31.315/65.545 ≈ 0,478 = 47,8%",
+     "porque": "\"A representa em comparação a B\" é A dividido por B. Os milhões se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha a aproximação",
+     "conta": "47,8% ≈ 48% → alternativa E",
+     "porque": "48% é a alternativa mais próxima; não chega à metade.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — aproximadamente 48%",
+   "checagem": "Estimativa: B produz 42 milhões de toneladas e A, 21, a metade; mas B tem mais milho e soja, os grãos mais caros, então A deve ficar um pouco abaixo de 50%. Fecha com 47,8%.",
+   "erradas": {
+    "A": "10% não confere: 10% de 65.545 é cerca de 6.555, muito abaixo dos 31.315 da região A.",
+    "B": "1/3 sai de comparar só toneladas e com o total das duas regiões: 21/(21 + 42) = 21/63 = 1/3.",
+    "C": "Mais da metade não confere: 31.315/65.545 ≈ 47,8%, abaixo de 50%. Mesmo só em toneladas, 21/42 é exatamente a metade, não mais.",
+    "D": "O dobro sai da comparação invertida: 65.545/31.315 ≈ 2,09 é B em relação a A."
+   },
+   "armadilha": "Comparar só as toneladas (21 contra 42 dá a metade) ignora que os grãos têm preços diferentes.",
+   "alerta": "Na Tabela 2 o preço do milho aparece como \"1,720,00\", erro de digitação da prova; o valor é 1.720,00 por tonelada. A banca chama de \"preço de venda dos grãos\" o valor total de venda da produção de cada região.",
+   "essencial": {
+    "pede": "Quanto o valor de venda dos grãos de A representa do de B.",
+    "chave": "A = 31.315 e B = 65.545 (em milhões); 31.315/65.545 ≈ 47,8%.",
+    "cuidado": "Multiplique cada quantidade pelo preço antes de somar, e divida A por B, não o contrário."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "estimativa",
+    "ideia": "A tem metade das toneladas de B, mas menos dos grãos caros: um pouco menos de 50%, só 48% serve."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "9 × 1.150 + 7 × 1.720 + 5 × 1.785 = 31.315",
+    "nota": "valor de A"
+   },
+   {
+    "linha": "13 × 1.150 + 18 × 1.720 + 11 × 1.785 = 65.545",
+    "nota": "valor de B"
+   },
+   {
+    "linha": "31.315/65.545 ≈ 0,478",
+    "nota": "A dividido por B"
+   },
+   {
+    "linha": "0,478 ≈ 48%",
+    "nota": "alternativa mais próxima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
  }
 }

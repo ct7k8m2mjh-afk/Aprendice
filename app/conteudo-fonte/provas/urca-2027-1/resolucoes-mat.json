@@ -1652,5 +1652,119 @@
    "data": "2026-11-19",
    "lote": "mat-0069"
   }
+ },
+ "Pbfc6659b": {
+  "n": "27",
+  "conceito": "Achar o valor que, incluído no conjunto, iguala média e mediana mantendo a moda única.",
+  "equivocos": {
+   "A": "M14.1:ignorou-a-condicao-de-moda-unica",
+   "B": "M14.1:nao-testou-as-duas-condicoes",
+   "C": "M14.1:nao-testou-as-duas-condicoes",
+   "D": "M14.1:so-manteve-a-moda"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Há duas condições e as duas têm de valer juntas. A moda 5 só continua única se x não criar outro valor com duas aparições: x não pode ser 2, 3 nem 4. Com seis dados, a mediana é a média do 3º e do 4º termos.",
+    "formulas": [
+     "média = (2 + 3 + 4 + 5 + 5 + x)/6",
+     "mediana (n = 6) = (3º + 4º)/2"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "número de livros do sexto estudante"
+     ],
+     [
+      "moda única",
+      "um só valor com a maior repetição"
+     ]
+    ]
+   },
+   "pista": "Comece pela moda: ela já diz quais valores de x estão proibidos.",
+   "passos": [
+    {
+     "faz": "Use a condição da moda",
+     "conta": "x = 2, 3 ou 4 → empate com o 5 (duas aparições cada) → proibidos",
+     "porque": "Com x = 2, por exemplo, 2 e 5 aparecem duas vezes e o conjunto fica bimodal. Sobram x = 1 ou x ≥ 5.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ache a mediana para x ≥ 5",
+     "conta": "2, 3, 4, 5, 5, x → Md = (4 + 5)/2 = 4,5",
+     "porque": "Se x é 5 ou mais, ele vai para o fim do rol e o 3º e o 4º termos são 4 e 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale a média à mediana",
+     "conta": "(19 + x)/6 = 4,5 → 19 + x = 27 → x = 8",
+     "porque": "A soma dos cinco primeiros é 19; o 6 que divide passa multiplicando o 4,5, e o 19 passa subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira e ligue à alternativa",
+     "conta": "x = 8 ≥ 5 (vale) | moda 5 única (vale) → alternativa E",
+     "porque": "O valor achado cumpre a hipótese x ≥ 5 usada na mediana e não cria outra moda. (Com x = 1 a mediana seria 3,5 e a média 20/6 ≈ 3,3: não serve.)",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — x = 8",
+   "checagem": "Substitua: 2, 3, 4, 5, 5, 8 tem soma 27 e média 27/6 = 4,5; mediana (4 + 5)/2 = 4,5; e só o 5 se repete. As duas condições valem.",
+   "erradas": {
+    "A": "A sai de olhar só a primeira condição: com x = 2 a média (21/6 = 3,5) é igual à mediana (3,5), mas 2 e 5 empatam com duas aparições e o 5 deixa de ser moda única.",
+    "B": "B não confere: com x = 3 a média é 22/6 ≈ 3,67 e a mediana 3,5; além disso 3 e 5 empatam como moda.",
+    "C": "C não confere: com x = 4 a média é 23/6 ≈ 3,83 e a mediana 4; e 4 e 5 empatam como moda.",
+    "D": "D não confere: com x = 5 a moda continua única, mas a média é 24/6 = 4 e a mediana 4,5."
+   },
+   "armadilha": "x = 2 iguala média e mediana, mas cria uma segunda moda: as duas condições têm de valer ao mesmo tempo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de livros do sexto estudante que iguala média e mediana sem tirar do 5 a moda única.",
+    "chave": "Para x ≥ 5 a mediana é 4,5; (19 + x)/6 = 4,5 dá x = 8.",
+    "cuidado": "Teste as duas condições; x = 2 passa na primeira e falha na moda."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar as alternativas",
+    "ideia": "Teste cada valor: só 2 e 8 igualam média e mediana, e o 2 cria uma segunda moda; sobra 8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x ∉ {2, 3, 4}",
+    "nota": "moda 5 tem de ser única"
+   },
+   {
+    "linha": "x ≥ 5 → Md = (4 + 5)/2 = 4,5",
+    "nota": "mediana com seis dados"
+   },
+   {
+    "linha": "(19 + x)/6 = 4,5 → 19 + x = 27",
+    "nota": "o 6 passa multiplicando"
+   },
+   {
+    "linha": "x = 27 − 19 = 8",
+    "nota": "o 19 passa subtraindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  },
+  "gabarito_aprendice": {
+   "letra": "E",
+   "letra_conferente": "E",
+   "preliminar": "E",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
  }
 }

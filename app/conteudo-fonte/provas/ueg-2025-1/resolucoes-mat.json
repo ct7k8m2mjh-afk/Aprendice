@@ -949,5 +949,111 @@
    "data": "2026-11-19",
    "lote": "mat-0069"
   }
+ },
+ "P3f22ce41": {
+  "n": "16",
+  "conceito": "Percentual que cai pela metade a cada período aplicado sobre a área que ainda resta (porcentagens sucessivas).",
+  "equivocos": {
+   "A": "M03.2:valor-que-nao-fecha",
+   "B": "M03.2:metade-da-area-no-lugar-do-percentual",
+   "D": "M03.2:parou-na-primeira-etapa",
+   "E": "M03.2:partiu-da-area-inicial"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os 12% já viraram deserto: hoje sobram 88% da área, que é o ponto de partida. A cada dez anos, uma porcentagem da área AINDA não degradada vira deserto, e essa porcentagem cai pela metade: 6% na próxima década e 3% na seguinte. Cada porcentagem incide sobre o que sobrou, não sobre os 100.000 ha iniciais.",
+    "formulas": [
+     "perder p% = multiplicar por (1 − p/100)",
+     "área final = área de hoje × 0,94 × 0,97"
+    ],
+    "simbolos": [
+     [
+      "ha",
+      "hectare, unidade de área (10.000 m²)"
+     ],
+     [
+      "fator",
+      "número que multiplica a área a cada década"
+     ]
+    ]
+   },
+   "pista": "Comece pela área que está boa hoje, não pelos 100.000 ha. Depois descubra a porcentagem de cada uma das duas próximas décadas.",
+   "passos": [
+    {
+     "faz": "Ache a área não degradada de hoje",
+     "conta": "100.000 × (1 − 12/100) → 100.000 × 0,88 = 88.000 ha",
+     "porque": "Os 12% dos últimos dez anos já viraram deserto. O que importa daqui para a frente é a área que ainda está boa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a perda da 1ª década",
+     "conta": "12% ÷ 2 = 6% → 88.000 × 0,94 = 82.720 ha",
+     "porque": "O percentual cai pela metade: de 12% para 6%. Perder 6% é ficar com 94% do que havia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a perda da 2ª década",
+     "conta": "6% ÷ 2 = 3% → 82.720 × 0,97 = 80.238,4 ha",
+     "porque": "Mais uma metade: 3%. Ele incide sobre os 82.720 ha que sobraram, e não sobre a área inicial.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "80.238,4 ≈ 80.238 ha → alternativa C",
+     "porque": "A pergunta é a área não degradada daqui a 20 anos, ou seja, depois das duas décadas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — aproximadamente 80.238 hectares",
+   "checagem": "Pelo lado do deserto: na 1ª década vão 6% de 88.000 = 5.280 ha e na 2ª, 3% de 82.720 = 2.481,6 ha. 88.000 − 5.280 − 2.481,6 = 80.238,4 ha. Fecha.",
+   "erradas": {
+    "A": "10.843 não confere: em 20 anos só se perdem 6% e depois 3% do que resta, então a área boa fica acima de 88.000 × 0,91 = 80.080 ha; 10.843 é pequeno demais.",
+    "B": "22.000 sai de dividir a área pela metade duas vezes: 88.000 ÷ 2 ÷ 2 = 22.000. Quem cai pela metade é o percentual de perda, não a área.",
+    "D": "82.720 sai de parar na 1ª década: 88.000 × 0,94 = 82.720. Faltam mais dez anos com perda de 3%.",
+    "E": "91.180 sai de partir dos 100.000 ha: 100.000 × 0,94 × 0,97 = 91.180. Os 12% já degradados não voltam; o ponto de partida é 88.000 ha."
+   },
+   "armadilha": "O que cai pela metade é a porcentagem de perda, e ela incide sobre a área boa de hoje (88.000 ha), não sobre os 100.000 ha.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área não degradada daqui a 20 anos.",
+    "chave": "88.000 × 0,94 × 0,97 = 80.238,4 ha.",
+    "cuidado": "Desconte os 12% antes e aplique 6% e 3% em sequência, cada um sobre o que sobrou."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo deserto",
+    "ideia": "Some o que vira deserto em cada década (5.280 + 2.481,6 ha) e tire dos 88.000 ha: sobra 80.238,4 ha."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "100.000 × 0,88 = 88.000",
+    "nota": "tira os 12% que já viraram deserto"
+   },
+   {
+    "linha": "88.000 × 0,94 = 82.720",
+    "nota": "1ª década: perde 6%"
+   },
+   {
+    "linha": "82.720 × 0,97 = 80.238,4",
+    "nota": "2ª década: perde 3%"
+   },
+   {
+    "linha": "80.238,4 ≈ 80.238 ha",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
  }
 }

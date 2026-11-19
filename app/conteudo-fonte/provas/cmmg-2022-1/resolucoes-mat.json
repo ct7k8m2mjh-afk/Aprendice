@@ -390,5 +390,123 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "P543375d6": {
+  "n": "48",
+  "conceito": "Usar o princípio da inclusão e exclusão para três conjuntos e achar a porcentagem de quem ficou fora.",
+  "equivocos": {
+   "A": "M13.6:subtraiu-a-intersecao-tripla",
+   "B": "M13.6:uniao-mal-calculada",
+   "C": "M13.6:porcentagem-sobre-o-subgrupo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Quem escolheu \"A e B\" também está contado em A e em B: somar tudo conta as mesmas pessoas várias vezes. A união dos três grupos sai pela inclusão e exclusão: somam-se os grupos, tiram-se as interseções de dois e devolve-se a interseção dos três. Quem sobra das 900 é quem não respondeu ou não quer vacina.",
+    "formulas": [
+     "n(A ∪ B ∪ C) = n(A) + n(B) + n(C) − n(A∩B) − n(A∩C) − n(B∩C) + n(A∩B∩C)",
+     "porcentagem = parte ÷ total × 100"
+    ],
+    "simbolos": [
+     [
+      "A ∪ B ∪ C",
+      "quem escolheu pelo menos uma vacina"
+     ],
+     [
+      "A∩B",
+      "quem escolheu A e B"
+     ],
+     [
+      "n( )",
+      "número de pessoas do grupo"
+     ]
+    ]
+   },
+   "pista": "Antes de somar, pergunte: quem escolheu as três vacinas foi contado quantas vezes nas colunas da tabela?",
+   "passos": [
+    {
+     "faz": "Some os três grupos",
+     "conta": "468 + 367 + 284 = 1.119",
+     "porque": "Essa soma passa de 900 porque quem escolheu mais de uma vacina entrou em mais de uma coluna.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire as interseções de dois",
+     "conta": "1.119 − (145 + 105 + 137) → 1.119 − 387 → 732",
+     "porque": "Quem escolheu duas vacinas estava contado duas vezes; tirando cada interseção uma vez, ela passa a contar uma vez só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Devolva a interseção dos três",
+     "conta": "732 + 68 → 800",
+     "porque": "Quem escolheu A, B e C entrou 3 vezes na soma e saiu 3 vezes nas interseções: ficou com zero e precisa voltar uma vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule quem ficou fora",
+     "conta": "900 − 800 = 100 → 100/900 → 0,111... ≈ 11 %",
+     "porque": "As 100 pessoas que não estão em nenhum grupo são as que não responderam ou não querem vacina; a porcentagem é sobre os 900 entrevistados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "≈ 11 % → alternativa D",
+     "porque": "A pergunta é a porcentagem dos de fora sobre o total pesquisado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — aproximadamente 11 % dos entrevistados.",
+   "checagem": "Pelas regiões do diagrama: só A = 468 − 145 − 105 + 68 = 286; só B = 153; só C = 110; só A e B = 77; só A e C = 37; só B e C = 69; as três = 68. Soma: 800, sobram 100.",
+   "erradas": {
+    "A": "A sai de subtrair os 68 em vez de somá-los: 1.119 − 387 − 68 = 664, sobram 236, e 236/900 ≈ 26 %.",
+    "B": "Não confere: 22 % de 900 são 198 pessoas fora, o que exigiria 702 pessoas em algum grupo; a inclusão e exclusão dá 800.",
+    "C": "C sai de dividir pelas 800 que escolheram vacina: 100/800 = 12,5 % ≈ 13 %. A porcentagem pedida é sobre os 900 entrevistados."
+   },
+   "armadilha": "A interseção dos três sai três vezes junto com as interseções de dois: subtrair a interseção tripla em vez de devolvê-la leva a 26 %.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A porcentagem dos 900 entrevistados que não escolheram nenhuma vacina.",
+    "chave": "União = 1.119 − 387 + 68 = 800; fora = 100; 100/900 ≈ 11 %.",
+    "cuidado": "Devolva a interseção tripla e divida pelo total de 900, não pelos 800."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diagrama de Venn",
+    "ideia": "Comece pelo centro (68), desconte para achar cada região exclusiva, some as sete regiões (800) e subtraia de 900."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "468 + 367 + 284 = 1.119",
+    "nota": "somar os três grupos"
+   },
+   {
+    "linha": "1.119 − 387 = 732",
+    "nota": "tirar as interseções de dois (145 + 105 + 137)"
+   },
+   {
+    "linha": "732 + 68 = 800",
+    "nota": "devolver a interseção dos três"
+   },
+   {
+    "linha": "900 − 800 = 100",
+    "nota": "quem ficou fora"
+   },
+   {
+    "linha": "100/900 ≈ 0,11 = 11 %",
+    "nota": "porcentagem sobre o total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
  }
 }

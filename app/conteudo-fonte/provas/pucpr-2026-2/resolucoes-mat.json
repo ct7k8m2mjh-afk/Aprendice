@@ -638,5 +638,123 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "P5fb75f5d": {
+  "n": "30",
+  "conceito": "Inclusão e exclusão com três conjuntos e o complementar (quem não tem nenhuma condição negativa).",
+  "equivocos": {
+   "B": "M01.5:esqueceu-a-tripla",
+   "C": "M01.5:subtraiu-a-tripla",
+   "D": "M01.5:respondeu-outra-regiao",
+   "E": "M01.5:esqueceu-um-conjunto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Quem tem prática regular, alimentação adequada e sono bom é quem não está em nenhum dos três grupos negativos. Então calcule quantos têm pelo menos uma condição negativa (a união dos três) e tire de 200. Na união de três conjuntos, as interseções duplas são subtraídas e a tripla volta somando.",
+    "formulas": [
+     "n(A ∪ B ∪ C) = n(A) + n(B) + n(C) − n(A ∩ B) − n(A ∩ C) − n(B ∩ C) + n(A ∩ B ∩ C)",
+     "nenhuma = total − n(A ∪ B ∪ C)"
+    ],
+    "simbolos": [
+     [
+      "A",
+      "prática insuficiente de atividade física (100)"
+     ],
+     [
+      "B",
+      "alimentação inadequada (90)"
+     ],
+     [
+      "C",
+      "sono ruim (80)"
+     ],
+     [
+      "∪",
+      "união: está em pelo menos um"
+     ],
+     [
+      "∩",
+      "interseção: está nos dois ao mesmo tempo"
+     ]
+    ]
+   },
+   "pista": "Troque a pergunta: quem tem as três condições boas é quem está fora dos três grupos negativos.",
+   "passos": [
+    {
+     "faz": "Some os três grupos",
+     "conta": "100 + 90 + 80 = 270",
+     "porque": "É a primeira parcela da inclusão e exclusão; quem está em mais de um grupo foi contado mais de uma vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire as interseções duplas",
+     "conta": "270 − (40 + 30 + 20) = 270 − 90 = 180",
+     "porque": "Cada aluno de uma interseção dupla foi contado duas vezes; subtrair corrige isso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Devolva a interseção tripla",
+     "conta": "180 + 10 = 190",
+     "porque": "Os 10 com as três condições foram somados três vezes e subtraídos três vezes; precisam voltar uma vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a união do total",
+     "conta": "200 − 190 = 10 → alternativa A",
+     "porque": "Sobram os alunos que não têm nenhuma condição negativa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 10 alunos",
+   "checagem": "Pelas regiões do diagrama: só A = 100 − 40 − 30 + 10 = 40; só B = 90 − 40 − 20 + 10 = 40; só C = 80 − 30 − 20 + 10 = 40; só A e B = 30; só A e C = 20; só B e C = 10; os três = 10. Soma: 190. Fora: 200 − 190 = 10.",
+   "erradas": {
+    "B": "20 sai de esquecer de devolver a tripla: 200 − (270 − 90) = 20.",
+    "C": "30 sai de subtrair a tripla em vez de somar: 200 − (270 − 90 − 10) = 30.",
+    "D": "40 é uma região só do diagrama, por exemplo só prática insuficiente: 100 − 40 − 30 + 10 = 40.",
+    "E": "50 sai de esquecer o sono: 200 − (100 + 90 − 40) = 50."
+   },
+   "armadilha": "Na inclusão e exclusão a interseção tripla volta somando; sem ela a união fica 180 e a resposta sai 20.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos alunos não têm nenhuma das três condições negativas.",
+    "chave": "200 menos a união dos três grupos: 200 − 190 = 10.",
+    "cuidado": "Subtraia as duplas e some a tripla de volta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "regiões do diagrama",
+    "ideia": "Preencha do centro para fora (10; 30, 20, 10; 40, 40, 40), some 190 e tire de 200."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "100 + 90 + 80 = 270",
+    "nota": "soma dos três grupos"
+   },
+   {
+    "linha": "270 − 90 = 180",
+    "nota": "tira as duplas 40 + 30 + 20"
+   },
+   {
+    "linha": "180 + 10 = 190",
+    "nota": "devolve a tripla"
+   },
+   {
+    "linha": "200 − 190 = 10",
+    "nota": "quem está fora dos três"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
  }
 }

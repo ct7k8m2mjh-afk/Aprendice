@@ -494,5 +494,116 @@
    "data": "2026-11-19",
    "lote": "mat-0069"
   }
+ },
+ "P0969d73a": {
+  "n": "28",
+  "conceito": "Cruzar duas tabelas de frequência e decidir o que é obrigatoriamente verdadeiro (princípio da casa dos pombos).",
+  "equivocos": {
+   "B": "M14.2:possivel-tomado-como-certo",
+   "C": "M14.2:possivel-tomado-como-certo",
+   "D": "M14.2:possivel-tomado-como-certo",
+   "E": "M14.2:possivel-tomado-como-certo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada um dos 40 rolês aparece uma vez em cada quadro, mas as tabelas não dizem qual rolê de satisfação está em qual custo. Então \"é correto afirmar\" quer dizer: vale em qualquer distribuição possível. A ideia que resolve é a da contagem: se um grupo é maior do que tudo o que cabe fora de uma categoria, parte dele cai obrigatoriamente nela.",
+    "formulas": [
+     "se um grupo tem mais elementos do que as outras categorias juntas comportam, ao menos um elemento fica na categoria restante"
+    ],
+    "simbolos": [
+     [
+      "rolê",
+      "passeio avaliado pelo site"
+     ],
+     [
+      "casa dos pombos",
+      "se há mais pombos que casas, alguma casa recebe mais de um; aqui, se há mais rolês que vagas pagas, algum é gratuito"
+     ]
+    ]
+   },
+   "pista": "Para cada alternativa, tente montar uma distribuição que a desminta; a certa é a única em que isso é impossível.",
+   "passos": [
+    {
+     "faz": "Conte os rolês com 3 ou mais estrelas",
+     "conta": "9 + 14 + 10 → 33 rolês",
+     "porque": "A alternativa A fala só desse grupo: 5, 4 e 3 estrelas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as vagas pagas",
+     "conta": "3 + 16 + 9 → 28 rolês pagos",
+     "porque": "Alto, mediano e baixo somam 28 rolês no quadro de custo; o resto dos 40 é gratuito (12).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os dois números",
+     "conta": "33 − 28 = 5 → pelo menos 5 gratuitos com 3 ou mais estrelas",
+     "porque": "Mesmo que todos os 28 pagos estivessem entre os 33, sobrariam 5 rolês desse grupo sem custo pago: são gratuitos.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste as outras com um contraexemplo",
+     "conta": "B, C, D, E: cada uma pode falhar numa distribuição possível",
+     "porque": "Nada impede, por exemplo, que os 3 de custo alto tenham 3 ou menos estrelas (C cai) ou que os 9 de 5 estrelas sejam todos medianos (E cai).",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "única garantida → alternativa A",
+     "porque": "Só A vale em qualquer forma de cruzar as duas tabelas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — pelo menos um rolê com 3 ou mais estrelas é gratuito.",
+   "checagem": "Monte o caso extremo: os 28 pagos todos entre os de 3+ estrelas; os 33 − 28 = 5 que sobram desse grupo, mais os 7 de 1 e 2 estrelas, dão 12 gratuitos, exatamente o que o quadro de custo diz. Mesmo no caso mais desfavorável, A vale.",
+   "erradas": {
+    "B": "Não garantida: há 14 rolês de 4 estrelas e 16 vagas de custo mediano, mas nada obriga os 14 a estarem nelas; alguns podem ser gratuitos ou de custo baixo.",
+    "C": "Não garantida: são 17 rolês com 3 ou menos estrelas (10 + 5 + 2), e os 3 de custo alto podem estar entre eles.",
+    "D": "Não garantida: os 9 de custo baixo cabem todos entre os 26 rolês que não têm 4 estrelas, sem nenhum de 4 estrelas.",
+    "E": "Não garantida: os 9 rolês de 5 estrelas podem estar todos numa só categoria, por exemplo os 16 de custo mediano."
+   },
+   "armadilha": "\"É correto afirmar\" aqui é \"tem de ser verdade\": alternativa que pode acontecer, mas não é obrigatória, está errada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação vale em qualquer cruzamento das duas tabelas de 40 rolês.",
+    "chave": "Há 33 rolês com 3+ estrelas e só 28 rolês pagos: ao menos 33 − 28 = 5 são gratuitos.",
+    "cuidado": "Para derrubar uma alternativa, basta uma distribuição possível que a contrarie."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo complemento",
+    "ideia": "Os gratuitos são 12 e os rolês com 1 ou 2 estrelas são só 5 + 2 = 7: pelo menos 12 − 7 = 5 gratuitos têm 3 ou mais estrelas."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3+ estrelas: 9 + 14 + 10 = 33",
+    "nota": "o grupo da alternativa A"
+   },
+   {
+    "linha": "pagos: 3 + 16 + 9 = 28",
+    "nota": "alto + mediano + baixo"
+   },
+   {
+    "linha": "33 − 28 = 5",
+    "nota": "rolês de 3+ estrelas que não cabem nos pagos"
+   },
+   {
+    "linha": "≥ 5 gratuitos com 3+ estrelas → A",
+    "nota": "conclusão garantida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
  }
 }

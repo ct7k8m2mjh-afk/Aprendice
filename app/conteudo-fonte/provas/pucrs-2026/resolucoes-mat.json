@@ -752,5 +752,120 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "Pcbdf008e": {
+  "n": "20",
+  "conceito": "Transformar percentuais de gráfico de barras em número de estudantes, cada um sobre o seu total.",
+  "equivocos": {
+   "A": "M14.2:leu-o-percentual-como-quantidade",
+   "C": "M14.2:comparou-percentuais-de-totais-diferentes",
+   "D": "M14.2:comparou-percentuais-de-totais-diferentes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O gráfico dá percentuais, mas as afirmações falam de número de estudantes. Cada barra é um percentual do seu próprio grupo: 102 da PUCRS, 1 613 do RS e 4 529 da Região Sul. Converta cada percentual em pessoas antes de comparar grupos diferentes.",
+    "formulas": [
+     "número de estudantes = percentual × total do grupo"
+    ],
+    "simbolos": [
+     [
+      "PUCRS",
+      "102 estudantes"
+     ],
+     [
+      "RS",
+      "1 613 estudantes de Medicina do Rio Grande do Sul"
+     ],
+     [
+      "Região Sul",
+      "4 529 estudantes"
+     ],
+     [
+      "(80, 90)",
+      "faixa de notas entre 80 e 90"
+     ]
+    ]
+   },
+   "pista": "Comparar 25,2% com 14,5% não basta: veja de quantos estudantes é cada percentual.",
+   "passos": [
+    {
+     "faz": "Teste a afirmação I",
+     "conta": "29,4% × 102 = 0,294 × 102 ≈ 30",
+     "porque": "Cerca de 30 estudantes da PUCRS ficaram entre 80 e 90; 30 não é menor que 29, então I é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmação II",
+     "conta": "PUCRS: 0,088 × 102 ≈ 9 | RS: 0,038 × 1 613 ≈ 61 → 9/61 ≈ 0,15 = 15%",
+     "porque": "Os estudantes da PUCRS fazem parte dos do RS; 9 de cerca de 61 dá aproximadamente 15%, então II é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmação III",
+     "conta": "RS (70, 80): 0,252 × 1 613 ≈ 406 | Sul (80, 90): 0,145 × 4 529 ≈ 657",
+     "porque": "406 é menor que 657: o RS tem menos estudantes naquela faixa, então III é falsa.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Junte os resultados",
+     "conta": "I falsa, II verdadeira, III falsa → alternativa B",
+     "porque": "Só a II está correta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — apenas a afirmação II",
+   "checagem": "Na II, faça o contrário: se 15% dos cerca de 61 do RS fossem da PUCRS, seriam 0,15 × 61 ≈ 9, exatamente o que a PUCRS tem (8,8% de 102 ≈ 9). Na III, a Região Sul tem quase três vezes mais estudantes que o RS, o que basta para os 14,5% dela superarem os 25,2% do RS.",
+   "erradas": {
+    "A": "A não confere: 29,4% de 102 dá 29,988, cerca de 30 estudantes, que não é menor que 29; a I é falsa.",
+    "C": "C sai de comparar só os percentuais na III (25,2% > 14,5%), sem ver que a Região Sul tem 4 529 estudantes e o RS 1 613; além disso a I é falsa.",
+    "D": "D acerta a II, mas a III sai de comparar só os percentuais: em número, são cerca de 406 no RS contra 657 na Região Sul."
+   },
+   "armadilha": "Percentuais de grupos diferentes só se comparam depois de virar número de estudantes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmações sobre número de estudantes são verdadeiras.",
+    "chave": "Converter cada percentual pelo total do seu grupo: 30, 9 de 61 e 406 contra 657.",
+    "cuidado": "Não compare percentuais de grupos de tamanhos diferentes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ordem de grandeza na III",
+    "ideia": "A Região Sul tem 4529/1613 ≈ 2,8 vezes mais estudantes; 14,5% × 2,8 ≈ 41% do RS, bem mais que 25,2%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,294 × 102 ≈ 30",
+    "nota": "I: 30 não é menor que 29"
+   },
+   {
+    "linha": "0,088 × 102 ≈ 9",
+    "nota": "PUCRS de 90 a 100"
+   },
+   {
+    "linha": "0,038 × 1 613 ≈ 61",
+    "nota": "RS de 90 a 100"
+   },
+   {
+    "linha": "9/61 ≈ 15%",
+    "nota": "II verdadeira"
+   },
+   {
+    "linha": "0,252 × 1 613 ≈ 406 < 0,145 × 4 529 ≈ 657",
+    "nota": "III falsa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
  }
 }

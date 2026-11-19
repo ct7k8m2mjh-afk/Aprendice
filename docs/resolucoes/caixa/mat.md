@@ -138,3 +138,38 @@ Lotes abertos: nenhum. Testes (após mat-0067): 786 passed, tsc OK. Site conferi
 Pendências desta vez: ANULAR P35fad689 e Pa9476dac; PRINT Pc99e3797; GABARITO Pdc96e236; RECLASS e DADO listados nos blocos acima.
 Obs.: o site empilha "a ÷ b" como fração (app/src/testes/fracao.test.ts); conferentes às vezes apontam "÷" como erro — não é.
 Próximo: `lote.py proximo mat 50 --novo` (conteúdos M14.x em diante). Faltam 895 questões de Matemática.
+
+## 2026-11-19 — PENDENCIAS — session_01PveEKZJXRTXQ8BArELQfeu
+Lote mat-0070 gravado (48 resoluções + 2 pendentes).
+Gabarito do Aprendice (resolvedor e conferente às cegas iguais; sem gabarito na web): Pc5b5f0f8 A, Pbfc6659b E.
+ANULAR Pbe8f57aa (Unifor 2025 1º semestre, questão 8): 8x + 734 = 1438 dá x = 88; instalados em agosto = 50% de 476 = 238 (fora das alternativas); o gabarito C (476) é o número de VENDIDOS em agosto, e os instalados de junho (145,6) e julho (140,8) não são inteiros.
+RECLASS Pbe8f57aa M14.1 -> M04.5
+RECLASS Pefda1f8b M14.1 -> M03.4
+DADO P91aa3d1f (UNIRG 2020/1, questão 13): alternativas.D -> "carne." (rótulos e valores da figura colados na alternativa)
+DADO Pd12ea48a (UNIRG 2024/2, questão 39): alternativas.D -> "Embora com resultados diferentes entre si, não houve diferenciação nos valores de média, moda e mediana de cada paciente." (tabela colada na alternativa)
+DADO P81d7ed79 (URCA 2023.2, questão 23): alternativas -> A "112/13 e 4" | B "26/4 e 8" | C "25/4 e 12" | D "120/11 e 18" | E "121/3 e 16" (frações perderam a barra)
+GABARITO P9bee9d68 (Unitins 2020/1, questão 13): eixo do gráfico com rótulos trocados ("40k" vale 20k e "100k" vale 40k, pelo espaçamento); resolvida com o oficial C e alerta; a alternativa D é polêmica (o maior salto anual, 2009 para 2010, está dentro de 2009–2011).
+RECLASS P543375d6 M14.2 -> M13.6 (FCM-MG 2022 1º sem, q48: união de três conjuntos por inclusão e exclusão)
+RECLASS P0c8d442d M14.2 -> M03.1 (Fatec 2022 2º sem, q38: total a partir de 3 % = 1,5 milhão)
+RECLASS Pe2429eea M14.2 -> M04.5 (PUC Minas 2022/2 Medicina, q42: equação das doses de 7 e 13 gotas)
+RECLASS P4a859da4 M14.2 -> M01.5 (PUCPR 2023/2 q29: diagrama de Venn, dois conjuntos)
+RECLASS P5fb75f5d M14.2 -> M01.5 (PUCPR 2026/2 q30: Venn com três conjuntos)
+RECLASS Pf34a4a8e M14.2 -> M01.5 (UEG 2020/1 q24: Venn com três conjuntos)
+RECLASS P1389710f M14.2 -> M01.5 (UEG 2023/1 q24: Venn com dois conjuntos)
+RECLASS P6f701734 M14.2 -> M01.5 (UEG 2024/2 q14: Venn com dois conjuntos e porcentagem)
+RECLASS Pb576f3e5 M14.2 -> M14.1 (UEG 2022/2 q25: média e mediana)
+DADO P414f6e58 (PUCRS 2023 q16): alternativas -> A, B e C vazias e D com os rótulos dos 4 gráficos colados; no print cada alternativa é um gráfico de setores (A: E1 23%, E2 27%, A1 30%, A2 20%; B: E1 19%, E2 28%, A1 19%, A2 34%; C: E1 27%, E2 23%, A1 36%, A2 14%; D: E1 28%, E2 22%, A1 36%, A2 14%)
+DADO Pcbdf008e (PUCRS 2026 q20): alternativas.D -> "II e III." (dados do gráfico colados no fim)
+DADO Pb576f3e5 (UEG 2022/2 q25): alternativas.E -> "2,43% e 1,45%." (rótulos do gráfico colados no fim)
+DADO Pdffd5540 (UEG 2024/2 q20): alternativas.E -> "houve, no ano de 2024, um aumento em cerca de 33% no número de casos, comparado com o ano anterior." (valores do gráfico colados no fim)
+RECLASS P151d953b M14.2 -> F03.5 (UEMA 2021 PAES, questão 29: é de Física, colisão inelástica; conta no motivo, resposta 10 m/s = E, igual ao gabarito)
+RECLASS P45077197 M14.2 -> M06.1 (UEG 2026/1, questão 26: identificar função exponencial pelo gráfico)
+RECLASS P7d8ba75e M14.2 -> M04.5 (UFJF PISM III 2020, questão 16: sistema a partir de razão e diferença; sem gráfico nem tabela)
+RECLASS Pf2d4cf28 M14.2 -> M10.5 (UFSM 2025, questão 63: função trigonométrica como modelo)
+DADO P45077197: alternativas -> A y = k·cˣ, x ≥ 0 | B y = kcx², x ≥ 0 (UEG 2026/1, questão 26: expoentes achatados na entrada, "kcx" e "kcx2")
+DADO P7d8ba75e: alternativas -> A 380 | B 200 | C 38 | D 3,8 | E 2,0 (UFJF PISM III 2020, questão 16: alternativas vieram coladas no texto_da_prova, sem letras)
+DADO Pf2d4cf28: texto_da_prova -> T = 15 + 10cos(π(x/20 − 99)); alternativas -> A apenas I | B apenas II | C apenas III e IV | D apenas I, II e III | E I, II, III, IV (UFSM 2025, questão 63: fórmula embaralhada e alternativas coladas no texto)
+DADO P3d72f6d2: alternativas -> A V – F – V | B V – V – F | C V – V – V | D F – V – F | E F – F – V (UFSM 2026, questão 5: alternativas coladas no texto_da_prova)
+DADO Pf745b011: alternativas -> A apenas I e II | B apenas I e III | C apenas II e III | D apenas II e IV | E apenas III e IV (UFSM 2026, questão 70: alternativas coladas no texto_da_prova)
+DADO P1c82c206 (UFSM 2026, questão 105): texto_da_prova -> o comando termina em "então em que ano m será igual a 3,634?"; o fragmento solto "34?" depois das alternativas é resto do recorte (no print também aparece "34?" cortado no rodapé; refazer o print sem ele).
+DADO P513ad04f (UNEMAT 2023, questão 12): alternativas.E -> "0." (sem a palavra "Figura" colada)

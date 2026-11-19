@@ -733,5 +733,111 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "P1389710f": {
+  "n": "24",
+  "conceito": "Total de entrevistados com dois conjuntos que se cruzam (Brasil e exterior) mais os que não viajaram.",
+  "equivocos": {
+   "A": "M01.5:subtraiu-quem-esta-fora",
+   "C": "M01.5:nao-descontou-a-intersecao",
+   "D": "M01.5:nao-descontou-a-intersecao",
+   "E": "M01.5:somou-a-intersecao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os 589 que viajaram para o Brasil incluem os 57 que foram para o Brasil e para o exterior; os 260 do exterior também. Somar 589 + 260 conta esses 57 duas vezes. Desconte uma vez e some os 14 que não viajaram.",
+    "formulas": [
+     "n(B ∪ E) = n(B) + n(E) − n(B ∩ E)",
+     "total = n(B ∪ E) + não viajaram"
+    ],
+    "simbolos": [
+     [
+      "B",
+      "viajaram pelo Brasil (589)"
+     ],
+     [
+      "E",
+      "viajaram para o exterior (260)"
+     ],
+     [
+      "B ∩ E",
+      "foram aos dois (57)"
+     ]
+    ]
+   },
+   "pista": "Pergunte-se: os 57 de \"Brasil e Exterior\" já estão dentro dos 589 e dos 260?",
+   "passos": [
+    {
+     "faz": "Some os dois grupos",
+     "conta": "589 + 260 = 849",
+     "porque": "Quem foi aos dois destinos entra nas duas linhas da tabela, contado duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte quem foi aos dois",
+     "conta": "849 − 57 = 792",
+     "porque": "Tirando os 57 uma vez, cada viajante passa a ser contado uma só vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some quem não viajou",
+     "conta": "792 + 14 = 806",
+     "porque": "Os 14 também foram entrevistados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "806 pessoas → alternativa B",
+     "porque": "É o total de entrevistados.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 806 pessoas",
+   "checagem": "Por regiões: só Brasil 589 − 57 = 532; só exterior 260 − 57 = 203; os dois 57; não viajaram 14. Soma: 532 + 203 + 57 + 14 = 806.",
+   "erradas": {
+    "A": "778 sai de 589 + 260 − 57 − 14: subtraiu os 14 que não viajaram em vez de somá-los.",
+    "C": "849 sai de 589 + 260: não descontou os 57 contados duas vezes e esqueceu os 14.",
+    "D": "863 sai de 589 + 260 + 14: somou quem não viajou, mas não descontou os 57.",
+    "E": "920 sai de 589 + 260 + 57 + 14: tratou todas as linhas da tabela como grupos separados."
+   },
+   "armadilha": "\"Brasil e Exterior\" já está dentro de Brasil e dentro de Exterior: some uma vez só.",
+   "alerta": "A tabela não diz com todas as letras que os 589 e os 260 incluem os 57; o gabarito oficial (806) adota essa leitura, a usual nesse tipo de questão.",
+   "essencial": {
+    "pede": "Quantas pessoas foram entrevistadas.",
+    "chave": "589 + 260 − 57 + 14 = 806.",
+    "cuidado": "Desconte a interseção uma vez e não esqueça quem não viajou."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "regiões",
+    "ideia": "Só Brasil 532, só exterior 203, os dois 57, nenhum 14: 532 + 203 + 57 + 14 = 806."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "589 + 260 = 849",
+    "nota": "soma dos dois destinos"
+   },
+   {
+    "linha": "849 − 57 = 792",
+    "nota": "tira a dupla contagem"
+   },
+   {
+    "linha": "792 + 14 = 806",
+    "nota": "soma quem não viajou"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
  }
 }

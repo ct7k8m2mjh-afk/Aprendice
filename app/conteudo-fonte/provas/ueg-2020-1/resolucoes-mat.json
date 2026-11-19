@@ -670,5 +670,123 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "Pf34a4a8e": {
+  "n": "24",
+  "conceito": "Total de elementos com três conjuntos (inclusão e exclusão) mais os que não estão em nenhum.",
+  "equivocos": {
+   "A": "M01.5:sem-origem-identificada",
+   "B": "M01.5:sem-origem-identificada",
+   "C": "M01.5:sem-origem-identificada",
+   "D": "M01.5:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os 35 que gostam de salgado incluem quem gosta de salgado e de outra coisa; somar 35 + 33 + 52 conta essas pessoas mais de uma vez. A inclusão e exclusão corrige: subtrai as interseções duplas e devolve a tripla. No fim, entram os 8 que não gostam de nada.",
+    "formulas": [
+     "n(S ∪ D ∪ J) = n(S) + n(D) + n(J) − n(S ∩ D) − n(S ∩ J) − n(D ∩ J) + n(S ∩ D ∩ J)",
+     "total = n(S ∪ D ∪ J) + nenhum"
+    ],
+    "simbolos": [
+     [
+      "S",
+      "gostam de salgado (35)"
+     ],
+     [
+      "D",
+      "gostam de doce (33)"
+     ],
+     [
+      "J",
+      "gostam de suco (52)"
+     ],
+     [
+      "∪",
+      "união: gosta de pelo menos um"
+     ],
+     [
+      "∩",
+      "interseção: gosta dos dois"
+     ]
+    ]
+   },
+   "pista": "Comece perguntando quantos alunos gostam de pelo menos uma opção, sem contar ninguém duas vezes.",
+   "passos": [
+    {
+     "faz": "Some os três grupos",
+     "conta": "35 + 33 + 52 = 120",
+     "porque": "Primeira parcela; quem gosta de duas ou três opções está contado mais de uma vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire as duplas e devolva a tripla",
+     "conta": "120 − (7 + 5 + 3) + 3 = 120 − 15 + 3 = 108",
+     "porque": "As duplas foram contadas duas vezes; os 3 das três opções foram somados três vezes e subtraídos três vezes, por isso voltam uma vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some quem não gosta de nada",
+     "conta": "108 + 8 = 116",
+     "porque": "A pesquisa incluiu todas as crianças, inclusive as 8 de fora dos três grupos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "116 alunos → alternativa E",
+     "porque": "O total da escola é a união mais os que não gostam de nenhuma opção.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 116 alunos",
+   "checagem": "Pelas regiões: só salgado 35 − 7 − 5 + 3 = 26; só doce 33 − 7 − 3 + 3 = 26; só suco 52 − 5 − 3 + 3 = 47; só salgado e doce 4; só salgado e suco 2; só doce e suco 0; os três 3. Soma 108, mais 8: 116.",
+   "erradas": {
+    "A": "A não confere: 145 − 8 = 137 alunos gostariam de alguma opção, mais que 35 + 33 + 52 = 120, o máximo possível mesmo sem descontar nada.",
+    "B": "B não confere: só as regiões de uma opção já somam 26 + 26 + 47 = 99 alunos, mais que 98.",
+    "C": "C não confere: 137 − 8 = 129 passa de 120, a soma bruta dos três grupos.",
+    "D": "D não confere: as sete regiões do diagrama somam 108, e 108 + 8 = 116, não 114."
+   },
+   "armadilha": "Somar 35 + 33 + 52 conta duas ou três vezes quem gosta de mais de uma opção; e os 8 de fora também são alunos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número total de alunos da escola.",
+    "chave": "União de 108 pela inclusão e exclusão, mais 8 que não gostam de nada.",
+    "cuidado": "Subtraia as duplas, devolva a tripla e some quem está fora."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "regiões do diagrama",
+    "ideia": "Preencha do centro (3) para fora: 4, 2, 0 nas duplas; 26, 26, 47 nos sozinhos; some 108 e mais 8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "35 + 33 + 52 = 120",
+    "nota": "soma dos grupos"
+   },
+   {
+    "linha": "120 − 15 = 105",
+    "nota": "tira as duplas 7 + 5 + 3"
+   },
+   {
+    "linha": "105 + 3 = 108",
+    "nota": "devolve a tripla"
+   },
+   {
+    "linha": "108 + 8 = 116",
+    "nota": "soma quem não gosta de nada"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
  }
 }

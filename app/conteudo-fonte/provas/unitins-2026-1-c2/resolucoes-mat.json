@@ -315,5 +315,110 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "P13525e2d": {
+  "n": "14",
+  "conceito": "Calcular a mediana de oito tempos dados fora de ordem numa tabela.",
+  "equivocos": {
+   "A": "M14.1:mediana-fora-do-centro",
+   "B": "M14.1:mediana-sem-ordenar",
+   "C": "M14.1:media-no-lugar-da-mediana",
+   "E": "M14.1:centrais-errados"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A tabela lista os tempos pela ordem das raias, não pela ordem dos tempos. Mediana exige ordenar primeiro. Com oito tempos, a mediana é a média do 4.º e do 5.º valores da lista ordenada.",
+    "formulas": [
+     "mediana (n par) = média dos dois valores centrais, com os dados em ordem"
+    ],
+    "simbolos": [
+     [
+      "mediana",
+      "valor do meio da lista ordenada; com quantidade par, a média dos dois centrais"
+     ],
+     [
+      "s",
+      "segundo"
+     ]
+    ]
+   },
+   "pista": "Antes de procurar o meio, reescreva os oito tempos do menor para o maior.",
+   "passos": [
+    {
+     "faz": "Ordene os oito tempos",
+     "conta": "23,50 | 24,50 | 25,60 | 23,60 | 26,50 | 26,50 | 23,80 | 24,80 → 23,50 | 23,60 | 23,80 | 24,50 | 24,80 | 25,60 | 26,50 | 26,50",
+     "porque": "A ordem das raias não tem nada a ver com a ordem dos tempos; a mediana só vale na lista ordenada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache os dois centrais",
+     "conta": "8 valores → 4.º = 24,50 e 5.º = 24,80",
+     "porque": "Com quantidade par, o meio fica entre dois valores: três tempos antes do 4.º e três depois do 5.º.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Faça a média dos dois centrais",
+     "conta": "(24,50 + 24,80)/2 → 49,30/2 → 24,65 s",
+     "porque": "A mediana de uma lista par é a média dos dois valores do meio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "24,65 s → alternativa D",
+     "porque": "A pergunta é o tempo mediano, e foi ele que a conta deu.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 24,65 s",
+   "checagem": "Quatro tempos ficam abaixo de 24,65 s (23,50; 23,60; 23,80; 24,50) e quatro acima (24,80; 25,60; 26,50; 26,50): 24,65 divide o grupo ao meio.",
+   "erradas": {
+    "A": "Não confere: acima de 25,75 s só há dois tempos (26,50 e 26,50), e abaixo há seis; a mediana deixa quatro de cada lado.",
+    "B": "B sai de não ordenar: na tabela original, o 4.º e o 5.º tempos são 23,60 e 26,50, e (23,60 + 26,50)/2 = 25,05.",
+    "C": "C é a média, não a mediana: a soma dos oito tempos é 198,80, e 198,80/8 = 24,85.",
+    "E": "Não confere: na lista ordenada os centrais são 24,50 e 24,80, cuja média é 24,65; 24,55 não é a média desses dois."
+   },
+   "armadilha": "A tabela vem na ordem das raias: tirar a mediana sem ordenar os tempos leva a 25,05.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O tempo mediano dos oito competidores.",
+    "chave": "Ordenar os tempos e fazer a média do 4.º e do 5.º: (24,50 + 24,80)/2 = 24,65 s.",
+    "cuidado": "Ordene antes; e mediana não é média dos oito (24,85)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "riscar as pontas",
+    "ideia": "Risque o menor e o maior tempo, par a par, até sobrarem dois: 24,50 e 24,80, cuja média é 24,65."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "23,50 | 23,60 | 23,80 | 24,50 | 24,80 | 25,60 | 26,50 | 26,50",
+    "nota": "tempos em ordem crescente"
+   },
+   {
+    "linha": "centrais: 24,50 e 24,80",
+    "nota": "4.º e 5.º de 8 valores"
+   },
+   {
+    "linha": "(24,50 + 24,80)/2 = 49,30/2",
+    "nota": "média dos dois centrais"
+   },
+   {
+    "linha": "mediana = 24,65 s → D",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
  }
 }
