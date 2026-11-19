@@ -118,5 +118,142 @@
    "data": "2026-11-11",
    "lote": "mat-0007"
   }
+ },
+ "Pe9716302": {
+  "n": "13",
+  "conceito": "Montar a trajetória parabólica de um projétil como função quadrática e julgar ponto atingido, colisão, vértice e concavidade.",
+  "equivocos": {
+   "B": "M05.2:concavidade-por-f0",
+   "C": "M05.2:nao-testou-o-pico-do-morro",
+   "D": "M05.2:nao-substituiu-o-ponto",
+   "E": "M05.2:nao-testou-o-pico-do-morro"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O projétil sai de (0, 2) com 30 m/s a 30°. A trajetória é uma parábola y = 2 + tg φ · x − g·x²/(2·v₀²·cos²φ). Com ela, teste o ponto (45; 12,5), a altura sobre o pico do morro em x = 25 e o vértice. Use os valores que a questão manda: √3 = 1,7 e (√3)² = 3.",
+    "formulas": [
+     "y = y₀ + tg φ · x − (g · x²)/(2 · v₀² · cos²φ)",
+     "xv = −b ÷ (2a) ; yv = f(xv)"
+    ],
+    "simbolos": [
+     [
+      "φ",
+      "ângulo de lançamento, 30°"
+     ],
+     [
+      "v₀",
+      "velocidade inicial, 30 m/s"
+     ],
+     [
+      "g",
+      "aceleração da gravidade, 10 m/s²"
+     ],
+     [
+      "y₀",
+      "altura de saída, 2 m, lida na figura"
+     ]
+    ]
+   },
+   "pista": "Monte primeiro a equação da trajetória e compare com a f(x) dada no quarto item.",
+   "passos": [
+    {
+     "faz": "Monte a trajetória",
+     "conta": "tg 30° = √3/3 ; cos² 30° = 3/4 → 10/(2 · 900 · 3/4) = 10/1350 = 1/135 → f(x) = 2 + (√3/3)x − x²/135",
+     "porque": "É exatamente a função do quarto item, que portanto é verdadeiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste o ponto (45; 12,5)",
+     "conta": "f(45) = 2 + 45 · 1,7/3 − 2025/135 = 2 + 25,5 − 15 = 12,5",
+     "porque": "A trajetória passa pelo topo do obelisco: o primeiro item é verdadeiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira a passagem sobre o morro",
+     "conta": "f(25) = 2 + 25 · 1,7/3 − 625/135 ≈ 11,54 > 10",
+     "porque": "No pico do morro (x = 25, altura 10 m) o projétil está acima dele, então não colide: o segundo item é falso.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Calcule o vértice",
+     "conta": "xv = (√3/3) ÷ (2/135) = 22,5√3 = 22,5 · 1,7 = 38,25 ; yv = 2 + (1/3) · 135/4 = 2 + 11,25 = 13,25",
+     "porque": "O vértice da parábola é (38,25; 13,25): o terceiro item é verdadeiro. Em yv entra (√3/3)² = 3/9 = 1/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue o último item e conclua",
+     "conta": "f(0) = 2 > 0, mas a = −1/135 < 0 → F ; V, F, V, V, F → alternativa A",
+     "porque": "A concavidade é dada pelo sinal do coeficiente de x², não pelo de f(0). O quinto item é falso.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — V, F, V, V, F",
+   "checagem": "Pela simetria da parábola, f(0) = 2 deve repetir em x = 2 · 38,25 = 76,5: f(76,5) = 2 + 76,5 · 1,7/3 − 76,5²/135 = 2 + 43,35 − 43,35 = 2. O vértice confere.",
+   "erradas": {
+    "B": "V, F, V, F, V não confere: a f(x) do quarto item é exatamente a trajetória (coeficiente 10/1350 = 1/135), e a concavidade depende de a = −1/135, não de f(0).",
+    "C": "V, V, F, V, F não confere: f(25) ≈ 11,54 m passa acima do pico de 10 m, então não há colisão; e o vértice é (38,25; 13,25).",
+    "D": "F, F, F, V, V não confere: f(45) = 12,5 com √3 = 1,7, então o projétil acerta o ponto; e o sinal de f(0) não decide a concavidade.",
+    "E": "F, V, V, F, F não confere: o projétil não bate no morro (f(25) ≈ 11,54 > 10) e a f(x) dada é a trajetória."
+   },
+   "armadilha": "Concavidade se lê no sinal do coeficiente de x² (a = −1/135), não no valor de f(0), que só dá a altura de saída.",
+   "alerta": "Os valores 12,5 e (38,25; 13,25) saem com √3 = 1,7, como a questão manda adotar; com √3 exato, f(45) ≈ 12,98 e xv ≈ 38,97.",
+   "essencial": {
+    "pede": "A sequência de V e F sobre a trajetória do projétil.",
+    "chave": "f(x) = 2 + (√3/3)x − x²/135; f(45) = 12,5; f(25) ≈ 11,54 > 10; vértice (38,25; 13,25).",
+    "cuidado": "Use √3 = 1,7 como manda a questão e leia a concavidade no coeficiente a."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar a f dada",
+    "ideia": "Comece pela f(x) do quarto item: f(45) = 12,5 e f(25) ≈ 11,54 > 10 já decidem os dois primeiros itens."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10/(2 · 900 · 3/4) = 10/1350 = 1/135",
+    "nota": "coeficiente de x²"
+   },
+   {
+    "linha": "f(x) = 2 + (√3/3)x − x²/135",
+    "nota": "trajetória: item 4 V"
+   },
+   {
+    "linha": "f(45) = 2 + 25,5 − 15 = 12,5",
+    "nota": "acerta o obelisco: item 1 V"
+   },
+   {
+    "linha": "f(25) ≈ 11,54 > 10",
+    "nota": "passa o morro: item 2 F"
+   },
+   {
+    "linha": "xv = 22,5 · 1,7 = 38,25 ; yv = 2 + 11,25 = 13,25",
+    "nota": "vértice: item 3 V"
+   },
+   {
+    "linha": "a = −1/135 < 0",
+    "nota": "concavidade pelo a: item 5 F"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "o projétil sai de (0, 2), passa acima do pico do morro em x = 25, atinge o vértice (38,25; 13,25) e desce até o topo do obelisco em (45; 12,5)"
+  },
+  "fontes": [
+   {
+    "nome": "Prova oficial UEL 2023 (Conhecimentos Gerais)",
+    "url": "https://www.cops.uel.br/v2/download.php?Acesso=NTc0NTQyMzZjZTU3Mzg2MDZkNzAwMjMyMmVmZjA2MjJiM2EzNjg5NDhlYTY1NGM5NGU3N2Q0NGNkYTM2NTUzZmRhNDZjOTVjYTczNjk3NzE4NTY2OTEwNTZhNzY0NzVmNWQ0YjkyZTU2ZmNjZDk0MzNlOTdkZTk0MTE4ZTc5ZGM="
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0074"
+  }
  }
 }

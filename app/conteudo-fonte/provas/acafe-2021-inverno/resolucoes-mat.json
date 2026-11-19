@@ -312,5 +312,139 @@
    "data": "2026-11-12",
    "lote": "mat-0033"
   }
+ },
+ "P5e621c84": {
+  "n": "23",
+  "conceito": "Julgar cinco afirmações: bijeção de quadrática restrita, aumentos sucessivos, funções injetoras, equação modular e domínio com raiz de quociente.",
+  "equivocos": {
+   "B": "M05.2:ignorou-o-vertice-na-injetividade",
+   "C": "M05.2:aceitou-modulo-negativo",
+   "D": "M05.2:ignorou-o-vertice-na-injetividade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São cinco itens independentes; julgue cada um com uma conta curta. Aumentos sucessivos multiplicam fatores. Função injetora de A em B escolhe imagens distintas, uma de cada vez. Na equação modular, troque |x| por uma letra e descarte o valor negativo. No domínio, o quociente dentro da raiz precisa ser maior ou igual a zero.",
+    "formulas": [
+     "aumento de i% → fator (1 + i)",
+     "injetoras de 3 em 5 elementos = 5 · 4 · 3",
+     "√(N/D) existe se N/D ≥ 0 e D ≠ 0"
+    ],
+    "simbolos": [
+     [
+      "bijetora",
+      "injetora (valores diferentes de x dão imagens diferentes) e sobrejetora (atinge todo o contradomínio)"
+     ],
+     [
+      "|x|",
+      "módulo de x, sempre maior ou igual a zero"
+     ],
+     [
+      "domínio",
+      "valores de x para os quais a expressão existe"
+     ]
+    ]
+   },
+   "pista": "Comece pelos itens de conta direta (II e III) e depois teste o I calculando f em dois pontos de [7, +∞[.",
+   "passos": [
+    {
+     "faz": "Teste o item I",
+     "conta": "f(7) = −49 + 112 − 63 = 0 ; f(9) = −81 + 144 − 63 = 0 → I falsa",
+     "porque": "Dois valores do domínio têm a mesma imagem, então f não é injetora. Além disso o vértice é f(8) = 1, e o valor 2 do contradomínio nunca é atingido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique os fatores do item II",
+     "conta": "1,2 · 1,2 · 1,25 = 1,8 → aumento de 80% → II verdadeira",
+     "porque": "Cada acréscimo incide sobre o preço da vez, por isso os fatores se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as injetoras do item III",
+     "conta": "5 · 4 · 3 = 60 → III verdadeira",
+     "porque": "O 1º elemento de A tem 5 imagens possíveis, o 2º tem 4 (não pode repetir) e o 3º tem 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a equação do item IV",
+     "conta": "y = |x| : y² − y − 6 = 0 → y = 3 ou y = −2 → |x| = 3 → x = ±3 → IV falsa",
+     "porque": "Módulo não é negativo, então y = −2 cai. Sobram duas soluções inteiras, e não 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Estude o sinal do item V",
+     "conta": "(81 − x⁴)/(x² − x − 30) = (9 − x²)(9 + x²)/((x − 6)(x + 5)) ≥ 0 → ]−5, −3] ∪ [3, 6[ → −4, −3, 3, 4, 5 → V verdadeira",
+     "porque": "9 + x² é sempre positivo; o sinal depende de 9 − x² (raízes ±3) e de (x − 6)(x + 5) (raízes −5 e 6, excluídas). O quociente é positivo entre −5 e −3 e entre 3 e 6, e zero em ±3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as corretas",
+     "conta": "II, III e V verdadeiras → alternativa A",
+     "porque": "I e IV são falsas; só a alternativa A traz exatamente II, III e V.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — II, III e V",
+   "checagem": "Teste pontos no item V: em x = −4, (81 − 256)/(16 + 4 − 30) = −175/−10 = 17,5 ≥ 0; em x = 0, 81/(−30) < 0, fora do domínio; em x = 6 o denominador zera. A contagem de 5 inteiros se mantém.",
+   "erradas": {
+    "B": "I, III e IV não confere: o item I cai porque f(7) = f(9) = 0, e o IV cai porque |x| = 3 dá só x = 3 e x = −3, duas soluções.",
+    "C": "II, IV e V não confere: o IV é falso (duas soluções, ±3) e a alternativa deixa de fora o III, que é verdadeiro (5 · 4 · 3 = 60).",
+    "D": "I, IV e V não confere: I e IV são falsos (f(7) = f(9) = 0; só x = ±3), e ficam de fora II e III, verdadeiros."
+   },
+   "armadilha": "No item I, a parábola volta a descer depois do vértice x = 8, então [7, +∞[ começa antes do vértice e f deixa de ser injetora.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das cinco afirmações são corretas.",
+    "chave": "I cai por f(7) = f(9); II: 1,2 · 1,2 · 1,25 = 1,8; III: 5 · 4 · 3 = 60; IV: só ±3; V: ]−5, −3] ∪ [3, 6[ tem 5 inteiros.",
+    "cuidado": "Compare o início do domínio com o vértice e descarte |x| negativo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Basta ver que I é falsa (f(7) = f(9)) e IV é falsa (só ±3): a única alternativa sem I e sem IV é a A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(7) = 0 = f(9) → I F",
+    "nota": "duas entradas, mesma imagem"
+   },
+   {
+    "linha": "1,2 · 1,2 · 1,25 = 1,8 → II V",
+    "nota": "fatores multiplicam"
+   },
+   {
+    "linha": "5 · 4 · 3 = 60 → III V",
+    "nota": "imagens distintas"
+   },
+   {
+    "linha": "|x| = 3 → x = ±3 → IV F",
+    "nota": "|x| = −2 não serve"
+   },
+   {
+    "linha": "]−5, −3] ∪ [3, 6[ → 5 inteiros → V V",
+    "nota": "quadro de sinais"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "reta real com as raízes −5, −3, 3 e 6; sinais do quociente em cada intervalo; os inteiros −4, −3, 3, 4 e 5 se acendem"
+  },
+  "fontes": [
+   {
+    "nome": "Prova oficial Acafe Medicina 2021",
+    "url": "https://storage.acafe.org.br/concurso/vestibular/2021/2/05%20-%20Provas%20e%20Gabaritos/09%20-%20Prova%20de%20medicina%202021-1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0074"
+  }
  }
 }

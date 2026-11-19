@@ -782,5 +782,130 @@
    "data": "2026-11-12",
    "lote": "mat-0040"
   }
+ },
+ "P03e555c9": {
+  "n": "13",
+  "conceito": "Valor posicional dos algarismos: descobrir algarismos apagados a partir da soma de números de quatro algarismos.",
+  "equivocos": {
+   "A": "M04.5:errou-o-milhar",
+   "C": "M04.5:trocou-casas-do-terceiro-numero",
+   "D": "M04.5:nao-conferiu-a-soma",
+   "E": "M04.5:nao-conferiu-a-soma"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada algarismo vale conforme a casa onde está: na dezena vale 10 vezes ele, na centena 100 vezes, na unidade de milhar 1000 vezes. Some o que já se conhece e veja quanto falta para 12.345. Esse resto tem de ser montado só com as casas apagadas.",
+    "formulas": [
+     "número = 1000·(milhar) + 100·(centena) + 10·(dezena) + (unidade)",
+     "o que falta = 12.345 − (parte conhecida)"
+    ],
+    "simbolos": [
+     [
+      "d",
+      "algarismo apagado na dezena do segundo número"
+     ],
+     [
+      "m",
+      "algarismo apagado na unidade de milhar do terceiro número"
+     ],
+     [
+      "c",
+      "algarismo apagado na centena do terceiro número"
+     ]
+    ]
+   },
+   "pista": "Escreva o segundo e o terceiro números separando a parte conhecida da parte apagada, com o valor de cada casa.",
+   "passos": [
+    {
+     "faz": "Dê nome aos algarismos apagados",
+     "conta": "2 0 d 9 = 2009 + 10d | m c 3 7 = 1000m + 100c + 37",
+     "porque": "O d está na casa das dezenas, por isso vale 10d; m e c estão no milhar e na centena do terceiro número.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a soma",
+     "conta": "6789 + (2009 + 10d) + (1000m + 100c + 37) = 12345",
+     "porque": "A soma dos três números é 12.345, e o primeiro é 6.789.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe a parte conhecida para o outro lado",
+     "conta": "8835 + 10d + 1000m + 100c = 12345 → 1000m + 100c + 10d = 3510",
+     "porque": "6789 + 2009 + 37 = 8835; o 8835 passa subtraindo: 12345 − 8835 = 3510.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia cada casa de 3510",
+     "conta": "3510 = 1000·3 + 100·5 + 10·1 → m = 3, c = 5, d = 1",
+     "porque": "Como m, c e d são algarismos de 0 a 9, cada um ocupa uma casa de 3510 sem vai-um: milhar 3, centena 5, dezena 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ponha na ordem pedida",
+     "conta": "dezena do 2º = 1 ; milhar do 3º = 3 ; centena do 3º = 5 → 1, 3 e 5",
+     "porque": "A pergunta pede, nessa ordem, a dezena do segundo número, a unidade de milhar e a centena do terceiro.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1, 3 e 5",
+   "checagem": "Reescreva os números completos e some: 6.789 + 2.019 + 3.537 = 12.345. Fecha com o enunciado.",
+   "erradas": {
+    "A": "1, 2 e 5 não confere: o terceiro número seria 2.537 e a soma daria 6.789 + 2.019 + 2.537 = 11.345, mil a menos.",
+    "C": "1, 5 e 6 não confere: o terceiro número seria 5.637 e a soma daria 6.789 + 2.019 + 5.637 = 14.445.",
+    "D": "2, 4 e 6 não confere: com 2.029 e 4.637 a soma daria 6.789 + 2.029 + 4.637 = 13.455.",
+    "E": "3, 4 e 6 não confere: com 2.039 e 4.637 a soma daria 6.789 + 2.039 + 4.637 = 13.465."
+   },
+   "armadilha": "A ordem da resposta: primeiro a dezena do segundo número, depois o milhar e só então a centena do terceiro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os algarismos apagados nas casas indicadas.",
+    "chave": "12.345 − 8.835 = 3.510, e cada casa de 3.510 é um algarismo apagado: 3 no milhar, 5 na centena, 1 na dezena.",
+    "cuidado": "Respeite a ordem pedida: dezena do segundo, milhar e centena do terceiro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "conta armada",
+    "ideia": "Arme 6789 + 20d9 + mc37 = 12345 e complete coluna por coluna, da unidade para o milhar, controlando o vai-um."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6789 + (2009 + 10d) + (1000m + 100c + 37) = 12345",
+    "nota": "montar a soma com as casas apagadas"
+   },
+   {
+    "linha": "8835 + 1000m + 100c + 10d = 12345",
+    "nota": "somar a parte conhecida"
+   },
+   {
+    "linha": "1000m + 100c + 10d = 3510",
+    "nota": "o 8835 passa subtraindo"
+   },
+   {
+    "linha": "m = 3 ; c = 5 ; d = 1",
+    "nota": "ler casa por casa"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "os três números empilhados como conta armada; as casas vazias se acendem e recebem 1, 3 e 5; a soma 12.345 fecha embaixo"
+  },
+  "fontes": [
+   {
+    "nome": "Prova oficial UPE SSA3 2020",
+    "url": "https://processodeingresso.upe.pe.gov.br/processo2020/arquivos/ssa3/SSA3-FASE-1DIA.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0074"
+  }
  }
 }

@@ -1051,5 +1051,251 @@
    "data": "2026-11-12",
    "lote": "mat-0041"
   }
+ },
+ "P4c7b3b39": {
+  "n": "10",
+  "conceito": "Equação exponencial com bases primas diferentes e incógnitas inteiras: igualar expoentes pela fatoração única e depois calcular logaritmos.",
+  "equivocos": {
+   "A": "M06.2:termo-que-nao-se-anula",
+   "B": "M06.2:termo-que-nao-se-anula",
+   "C": "M06.2:expoente-errado-de-3",
+   "D": "M06.2:trocou-as-bases-do-log"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Fatore 144 em primos: 144 = 2⁴ · 3². Como x e y são inteiros, os expoentes de 2 e de 3 também são inteiros, e a fatoração em primos é única: o expoente do 2 tem de ser 4 e o do 3 tem de ser 2. Isso dá um sistema linear. Depois, log de 1 vale zero.",
+    "formulas": [
+     "2^m · 3^n = 2⁴ · 3² com m, n inteiros → m = 4 e n = 2",
+     "log_b(b^k) = k e log_b(a^k) = k · log_b a",
+     "log_b 1 = 0"
+    ],
+    "simbolos": [
+     [
+      "log₂ 3",
+      "o expoente a que se eleva 2 para obter 3"
+     ],
+     [
+      "fatoração única",
+      "todo inteiro maior que 1 se escreve de um só jeito como produto de primos"
+     ]
+    ]
+   },
+   "pista": "Escreva 144 como produto de potências de 2 e de 3 e compare com o lado esquerdo.",
+   "passos": [
+    {
+     "faz": "Fatore 144 e iguale os expoentes",
+     "conta": "2^(5x − 6y) · 3^(−x + 4y) = 2⁴ · 3² → 5x − 6y = 4 | −x + 4y = 2",
+     "porque": "Com x e y inteiros, os expoentes são inteiros, e a fatoração em primos é única; por isso cada expoente se iguala ao de 144.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva o sistema",
+     "conta": "x = 4y − 2 → 5(4y − 2) − 6y = 4 → 14y = 14 → y = 1, x = 2",
+     "porque": "Isole x na segunda equação e substitua na primeira; o 10 passa somando e o 14 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua em S",
+     "conta": "S = log₂(3^(1 + 1)) − log₃(2^(2 − 2)) = log₂(3²) − log₃(2⁰)",
+     "porque": "Basta trocar x e y pelos valores achados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique os logaritmos",
+     "conta": "log₂(3²) = 2 log₂ 3 | log₃ 1 = 0 → S = 2 log₂ 3",
+     "porque": "O expoente desce multiplicando, e 2⁰ = 1, cujo logaritmo em qualquer base é zero.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "S = 2 log₂ 3 → alternativa E",
+     "porque": "O segundo logaritmo some; só sobra o termo 2 log₂ 3.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — S = 2 log₂ 3",
+   "checagem": "Substitua x = 2 e y = 1 na equação: 2^(10 − 6) · 3^(−2 + 4) = 2⁴ · 3² = 16 · 9 = 144. Confere.",
+   "erradas": {
+    "A": "2 log₂ 3 − 3 log₃ 2 não confere: o termo −3 log₃ 2 exigiria 2^(x − 2) = 2³, ou x = 5, mas o sistema dá x = 2 e 2⁰ = 1.",
+    "B": "2 log₂ 3 − log₃ 2 não confere: o termo −log₃ 2 exigiria x − 2 = 1, ou x = 3, mas com x = 3 a equação −x + 4y = 2 daria y = 5/4, que não é inteiro.",
+    "C": "3 log₂ 3 − log₃ 2 não confere: 3 log₂ 3 exigiria y + 1 = 3, ou y = 2, e então 5x − 6y = 4 daria x = 3,2, que não é inteiro.",
+    "D": "3 log₃ 2 não confere: com y = 1 o primeiro termo é log₂ 9 = 2 log₂ 3, que não se anula; e o segundo termo é zero, não um múltiplo de log₃ 2."
+   },
+   "armadilha": "Achar que o segundo logaritmo sobra: com x = 2 ele vira log₃ 1 = 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de S depois de achar os inteiros x e y.",
+    "chave": "144 = 2⁴ · 3² dá 5x − 6y = 4 e −x + 4y = 2, logo x = 2, y = 1 e S = log₂ 9 − log₃ 1 = 2 log₂ 3.",
+    "cuidado": "A igualdade dos expoentes vale porque x e y são inteiros; e log de 1 é zero."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar o par",
+    "ideia": "Teste pequenos inteiros: x = 2 e y = 1 dão expoentes 4 e 2, exatamente 2⁴ · 3² = 144."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "144 = 2⁴ · 3²",
+    "nota": "fatorar"
+   },
+   {
+    "linha": "5x − 6y = 4 | −x + 4y = 2",
+    "nota": "igualar expoentes"
+   },
+   {
+    "linha": "x = 4y − 2 → 14y = 14 → y = 1",
+    "nota": "substituir e resolver"
+   },
+   {
+    "linha": "x = 4 · 1 − 2 = 2",
+    "nota": "voltar em x"
+   },
+   {
+    "linha": "S = log₂ 9 − log₃ 1 = 2 log₂ 3 − 0",
+    "nota": "calcular S"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0074"
+  }
+ },
+ "Pd122f0a5": {
+  "n": "14",
+  "conceito": "Estudar o sinal de uma função racional e resolver L(x) > 8 por quadro de sinais.",
+  "equivocos": {
+   "A": "M04.4:esqueceu-o-sinal-do-denominador",
+   "B": "M04.4:olhou-so-a-raiz-do-numerador",
+   "D": "M04.4:esqueceu-o-sinal-do-denominador",
+   "E": "M04.4:esqueceu-uma-raiz-do-numerador"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para comparar uma fração com 8, passe o 8 para o mesmo lado e junte numa fração só. Nunca multiplique cruzado pelo denominador: x + 1 muda de sinal. Depois, o quadro de sinais com as raízes do numerador e do denominador decide.",
+    "formulas": [
+     "L(x) > 8 ⇔ L(x) − 8 > 0",
+     "sinal de N/D: positivo quando N e D têm o mesmo sinal"
+    ],
+    "simbolos": [
+     [
+      "L(x)",
+      "a função racional (x² + 6x)/(x + 1)"
+     ],
+     [
+      "R − {−1}",
+      "todos os reais menos −1, onde o denominador zera"
+     ],
+     [
+      "]a, b[",
+      "intervalo aberto, sem as pontas"
+     ]
+    ]
+   },
+   "pista": "Monte L(x) − 8 numa fração só e fatore o numerador.",
+   "passos": [
+    {
+     "faz": "Junte numa fração só",
+     "conta": "(x² + 6x)/(x + 1) − 8 = (x² + 6x − 8x − 8)/(x + 1) = (x² − 2x − 8)/(x + 1)",
+     "porque": "O 8 vira 8(x + 1)/(x + 1) para entrar na mesma fração.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore o numerador",
+     "conta": "x² − 2x − 8 = (x − 4)(x + 2) → L(x) − 8 = (x − 4)(x + 2)/(x + 1)",
+     "porque": "Soma 2 e produto −8 dão as raízes 4 e −2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o quadro de sinais",
+     "conta": "x < −2: − | −2 < x < −1: + | −1 < x < 4: − | x > 4: + → L(x) > 8 ⇔ x ∈ ]−2, −1[ ∪ ]4, +∞[",
+     "porque": "As raízes −2, −1 e 4 dividem a reta; em cada trecho conta-se quantos fatores são negativos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Derrube as outras com um ponto",
+     "conta": "L(−3) = −9/−2 = 4,5 ≥ 0 ; L(−1,5) = 13,5 > 8 ; L(−0,5) = −5,5 < 0 ; L(−6) = 0",
+     "porque": "Cada valor é contraexemplo de uma das outras alternativas: A, B, D e E.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Marque a correta",
+     "conta": "]−2, −1[ ∪ ]4, +∞[ → alternativa C",
+     "porque": "É exatamente o conjunto onde L(x) − 8 é positivo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — L(x) > 8 se, e somente se, x ∈ ]−2, −1[ ∪ ]4, +∞[",
+   "checagem": "Teste um ponto de cada trecho de C e um de fora: L(5) = 55/6 ≈ 9,17 > 8 e L(−1,5) = 13,5 > 8, dentro; L(0) = 0 < 8 e L(−3) = 4,5 < 8, fora. Nas pontas, L(4) = 40/5 = 8 e L(−2) = −8/−1 = 8, por isso ficam abertas.",
+   "erradas": {
+    "A": "Não confere: L(−3) = (9 − 18)/(−2) = 4,5 ≥ 0 com x = −3 fora de [0, +∞[. Na verdade L ≥ 0 em [−6, −1[ ∪ [0, +∞[.",
+    "B": "Não confere: x = −1,5 está em ]−∞, 4] mas L(−1,5) = 13,5 > 8. Sai de olhar só a raiz 4 do numerador e esquecer −2 e −1.",
+    "D": "Não confere: L(−0,5) = −5,5 < 0 com x = −0,5 fora de ]−∞, −6[. L < 0 em ]−∞, −6[ ∪ ]−1, 0[.",
+    "E": "Não confere: L(−6) = (36 − 36)/(−5) = 0 também; o numerador x(x + 6) zera em 0 e em −6."
+   },
+   "armadilha": "Multiplicar a inequação por x + 1 sem olhar o sinal: para x < −1 o sentido da desigualdade se inverte e o trecho ]−2, −1[ some.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A afirmação correta sobre o sinal e os valores de L.",
+    "chave": "L(x) − 8 = (x − 4)(x + 2)/(x + 1) > 0 em ]−2, −1[ ∪ ]4, +∞[.",
+    "cuidado": "Junte numa fração e faça quadro de sinais; não multiplique cruzado pelo denominador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contraexemplos",
+    "ideia": "Teste x = −3, −1,5, −0,5 e −6 em L: cada um derruba A, B, D e E, e sobra C."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x² + 6x)/(x + 1) − 8 > 0",
+    "nota": "o 8 passa para o mesmo lado"
+   },
+   {
+    "linha": "(x² − 2x − 8)/(x + 1) > 0",
+    "nota": "uma fração só"
+   },
+   {
+    "linha": "(x − 4)(x + 2)/(x + 1) > 0",
+    "nota": "fatorar o numerador"
+   },
+   {
+    "linha": "x ∈ ]−2, −1[ ∪ ]4, +∞[",
+    "nota": "quadro de sinais"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "reta real com −2, −1 e 4 marcados; sinais −, +, −, + aparecem trecho a trecho e os intervalos positivos se acendem"
+  },
+  "fontes": [
+   {
+    "nome": "Prova oficial UDESC Verão 2026.1 (matutino)",
+    "url": "https://www.udesc.br/arquivos/udesc/id_cpmenu/21194/Prova_Matutino_2026_01_1764546991821_21194.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0074"
+  }
  }
 }

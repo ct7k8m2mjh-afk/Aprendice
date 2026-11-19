@@ -248,3 +248,20 @@ Lotes abertos: nenhum. Testes (após mat-0072): 786 passed, tsc OK. Site conferi
 Gabarito do Aprendice nesta vez (11): Pc5b5f0f8 A, Pbfc6659b E, P741209bd D, P368668ed C, P1bf589e2 C, P76c1f1a5 B, P84c242f6 C, Pd7f0ad5f D, Pe15a6d90 D, Pd61bcac8 E, P3b7c7e71 C.
 Pendências: ANULAR Pbe8f57aa, Pd589344f, Pc6951868, Pe0819527; PRINT P17aea30d, Pbc716955, P53f16b0b, P528013c1; classificação Física P151d953b (F03.5), Peb68d097 (F09.2); RECLASS e DADO nos blocos acima.
 Próximo: `lote.py proximo mat 50 --novo`. Faltam 695 questões de Matemática.
+
+## 2026-11-19 18:03 UTC — PENDENCIAS — session_01PveEKXYevuT6GfnZTi2dnc
+Lote mat-0074 gravado (49 resoluções + 1 pendente). Lote aberto: mat-0075.
+RECLASS Pe2ff8e40 M09.3 -> M07.1 (ENEM 2022 q152: fileiras de 1 em 1 m entre 0,6L e 2,9L, contagem de PA, sem semelhança de triângulos)
+RECLASS P4c7b3b39 M01.4 -> M06.2 (UDESC 2026.1 q10: equação exponencial com logaritmos, não divisibilidade/MMC)
+ANULAR Pb279b256 (Unesp 2020): com 18 quilates a fração 3/4 é em MASSA; volume 3 × 5² × 36 = 2700 cm³ e massa m = 2700/(0,75/19,3 + 0,25/6,1) ≈ 33 816 g ≈ 33,8 kg (alternativa A). O gabarito C (43,2 kg) só sai tratando 3/4 como fração de VOLUME (densidade 0,75 × 19,3 + 0,25 × 6,1 = 16 g/cm³), o que contradiz a definição de quilate do próprio enunciado. Estratégia Vestibulares aponta o mesmo erro (gabarito banca C, correto A): https://vestibulares.estrategia.com/portal/matematica/prova-matematica-unesp-2020/ ; não achei errata nem anulação da Vunesp.
+DADO P2d8375c2 (UDESC 2026.2 q13): texto_da_prova -> (x² + ax + 16)/(x² − x + 1) ≥ 0 ; alternativas C -> |a| ≤ 8
+RECLASS Pfc77bdfe M04.5 -> M10.5 (Acafe 2025 Verão q22: função trigonométrica de fenômeno periódico)
+DADO P5e621c84 (Acafe 2021 Inverno q23): texto_da_prova item V -> f(x) = √((81 − x⁴)/(x² − x − 30)), a fração inteira dentro da raiz
+RECLASS P5e621c84 M05.1 -> M05.2 (Acafe 2021 Inverno q23: o item que separa as alternativas é a bijeção da quadrática −x² + 16x − 63 com vértice em x = 8; nada de função afim)
+DADO P0c48fc58 (UFPR 2024 q6): texto_da_prova -> f(x) = −x² + 6x − 8 ; R = (a, b), com b > 0 (símbolos embaralhados na camada de texto)
+DADO P3916852b (UFU 2023 q67): alternativas D -> 36 (o texto da figura foi colado na alternativa)
+DADO P3c5d3eb4 (PUC-Campinas 2026 q23): alternativas -> A (−1 + 2√3)/2 ; B (1 + 2√3)/2 ; C 1 + √3 ; D (3 + 2√3)/2 ; E 2 + √3 (frações e raízes embaralhadas na camada de texto)
+DADO P91b0c5c5 (UDESC 2020.1 q8): texto_da_prova -> f(x) = |x² − 4| − 2 e inequação |x² − 4| ≤ 2 ; alternativas -> A [−√6, −√2] ∪ [√2, √6] ; B [−√2, √2] ; C ]−∞, −√6] ∪ [√6, +∞[ ; D R − [√2, √6] ; E [−√6, √6]
+DADO Pd56b12dc (UFPR 2024 q4): alternativas C -> −1/2 ; D -> 1/2 (sinal e fração perdidos na camada de texto)
+DADO Pd122f0a5 (UDESC 2026.1 q14): texto_da_prova -> L(x) = (x² + 6x)/(x + 1), L: R − {−1} → R (letras duplicadas na camada de texto)
+RECLASS Pd122f0a5 M05.5 -> M04.4 (UDESC 2026.1 q14: inequação quociente com quadro de sinais, sem composição nem inversa)
