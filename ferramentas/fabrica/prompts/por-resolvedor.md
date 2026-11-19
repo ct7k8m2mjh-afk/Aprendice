@@ -98,8 +98,17 @@ Se o trecho da prova basta, `depende_da_obra: false`.
 - `alerta`: `""` normalmente; só preencha se a prova tiver erro ou ambiguidade real.
 - `essencial`: `pede`, `chave`, `cuidado`, uma frase cada.
 - `equivocos`: para CADA letra errada, `<conteúdo>:<equívoco-em-minúsculas-com-hífen>`
-  (ex.: `P05.4:confundiu-registro-formal-com-norma-culta`). O conteúdo é o código do conteúdo
-  certo da questão. Só minúsculas, dígitos e hífen depois dos dois-pontos; sem acento.
+  (ex.: `P05.4:confundiu-registro-formal-com-norma-culta`). Só minúsculas, dígitos e hífen
+  depois dos dois-pontos; sem acento.
+  **O código antes dos dois-pontos é o MESMO nas letras todas, e é o conteúdo em que a questão
+  está classificada** — ou, se você preencheu `reclass`, o código que você pôs lá. Esse código
+  manda o aluno estudar aquele conteúdo na revisão espaçada, e é a única coisa que ele faz.
+  Dois erros que a conferência devolveu em 15 das 50 questões de um lote:
+  - cada letra com um código diferente (`P01.2` em A, `P08.3` em B, `P10.2` em D). O aluno cai
+    numa revisão diferente conforme a letra que marcou, na MESMA questão. Nunca faça isso.
+  - um código que não é o da questão, com `reclass` vazio. Aí ninguém sabe se o código está
+    errado ou se a classificação da questão está. Se você acha que a questão está no conteúdo
+    errado, **diga em `reclass`** e use o código novo nas letras todas; se não, use o da questão.
 - `fontes`: só o que você consultou de fato. Lista vazia se tudo vem da questão.
 - `caminhos`: opcional em Português; se houver um segundo jeito bom de chegar à resposta, uma linha.
 

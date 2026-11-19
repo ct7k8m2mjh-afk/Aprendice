@@ -19,6 +19,34 @@ SAIDA = os.path.join(RAIZ, 'fabrica_saida', 'resolucoes')
 MUITO = 12
 
 
+def equivocos_fora(questao, entrada):
+    """Diz o que há de errado nos prefixos de conteúdo dos `equivocos`, ou ''.
+
+    Cada `equivocos.<letra>` começa pelo código do conteúdo a que o aluno volta
+    na revisão espaçada. Dois defeitos aparecem e nenhum é pego pelo validador:
+
+    - os prefixos discordam ENTRE SI, e então o aluno cai numa revisão diferente
+      conforme a letra que marcou — na mesma questão;
+    - todos concordam mas apontam para um conteúdo que não é o da questão, e aí
+      ou o prefixo está errado, ou a classificação da questão está (RECLASS).
+
+    Conferir isso custa duas linhas e a conferência já o devolveu em 5 questões
+    de dois lotes, sempre como achado de forma que ninguém mais ia pegar.
+    """
+    eq = questao.get('equivocos')
+    if not isinstance(eq, dict) or not eq:
+        return ''
+    codigos = {str(v).split(':')[0] for v in eq.values()}
+    da_questao = str(entrada.get('conteudo', '')).split()[0]
+    if len(codigos) > 1:
+        return ('os equívocos apontam conteúdos diferentes entre si ('
+                + ', '.join(sorted(codigos)) + f'); a questão é {da_questao}')
+    unico = codigos.pop()
+    if da_questao and unico != da_questao:
+        return f'os equívocos apontam {unico} e a questão é {da_questao}'
+    return ''
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('lote')
@@ -61,6 +89,9 @@ def main():
             motivo.append(f'as lentes mudaram {mudancas} campos')
         if qid in (a.erros or '').split(','):
             motivo.append('erro ou aviso do lote.py valida')
+        fora = equivocos_fora(q, ent.get(qid, {}))
+        if fora:
+            motivo.append(fora)
         if motivo:
             obrigatorias[qid] = '; '.join(motivo)
     resto = [q for q in por_id if q not in obrigatorias and por_id[q]['status'] == 'ok']
