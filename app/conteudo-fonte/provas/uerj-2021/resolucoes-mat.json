@@ -670,5 +670,124 @@
    "data": "2026-11-12",
    "lote": "mat-0039"
   }
+ },
+ "P821546a4": {
+  "n": "24",
+  "conceito": "Coordenadas de pontos do círculo de raio 1 pelo seno e cosseno; área de triângulo com base horizontal.",
+  "equivocos": {
+   "B": "M10.1:trocou-seno-por-cosseno",
+   "C": "M10.1:esqueceu-metade-da-area",
+   "D": "M10.1:trocou-seno-por-cosseno"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No círculo de raio 1 com centro O, o ponto P a um ângulo α de OC tem distância horizontal cos α e vertical sen α até os diâmetros. Q é o ponto oposto a P, então fica cos α à esquerda e sen α abaixo. R está em OD, na mesma altura de Q, porque QR é paralelo a AC. Com isso, QR é uma base horizontal e a altura é a distância vertical de P até ela.",
+    "formulas": [
+     "Ponto do círculo de raio 1: horizontal = cos α, vertical = sen α",
+     "Área do triângulo = (base · altura)/2",
+     "sen 2α = 2 sen α · cos α (dado)"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "medida do ângulo CÔP"
+     ],
+     [
+      "diâmetro",
+      "corda que passa pelo centro; PQ diâmetro quer dizer Q oposto a P"
+     ],
+     [
+      "∥",
+      "paralelo"
+     ]
+    ]
+   },
+   "pista": "Escreva a distância de P e de Q aos diâmetros AC e BD usando sen α e cos α.",
+   "passos": [
+    {
+     "faz": "Localize P, Q e R",
+     "conta": "P: cos α à direita, sen α acima | Q: cos α à esquerda, sen α abaixo | R: em OD, sen α abaixo de O",
+     "porque": "Raio 1: as projeções de OP valem cos α e sen α. Q é simétrico de P em relação a O. QR ∥ AC deixa R na mesma altura de Q.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Meça a base QR",
+     "conta": "QR = distância horizontal de Q até OD → QR = cos α",
+     "porque": "R está sobre o diâmetro vertical BD, e Q está cos α à esquerda dele.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Meça a altura relativa a QR",
+     "conta": "altura = sen α (acima de AC) + sen α (abaixo de AC) → altura = 2 sen α",
+     "porque": "A altura é a distância vertical de P até a reta QR, que está sen α abaixo de AC; P está sen α acima.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área",
+     "conta": "(cos α · 2 sen α)/2 → sen α · cos α → (sen 2α)/2",
+     "porque": "O 2 da altura cancela com o 2 da fórmula; depois use o dado 2 sen α · cos α = sen 2α, logo sen α · cos α = (sen 2α)/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "(sen 2α)/2 → alternativa A",
+     "porque": "É exatamente a expressão da alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — a área do triângulo PQR é (sen 2α)/2",
+   "checagem": "Por outro caminho: O é ponto médio de PQ, então a área de PQR é o dobro da área de OQR. OQR é retângulo em R, com catetos QR = cos α e OR = sen α: área (sen α · cos α)/2. O dobro é sen α · cos α = (sen 2α)/2.",
+   "erradas": {
+    "B": "(cos 2α)/2 não confere: com α tendendo a 0, P vai para C, Q para A e R para O, os três pontos ficam sobre AC e a área vai a 0; mas (cos 0)/2 = 1/2.",
+    "C": "sen 2α sai de esquecer a metade da fórmula da área: cos α · 2 sen α = 2 sen α · cos α = sen 2α.",
+    "D": "cos 2α não confere: com α tendendo a 0 a área vai a 0, mas cos 0 = 1."
+   },
+   "armadilha": "A altura do triângulo não é sen α: P está acima de AC e a base QR está abaixo, então a altura é 2 sen α.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do triângulo PQR em função de α.",
+    "chave": "QR = cos α é base horizontal e a altura de P até QR é 2 sen α; área = sen α · cos α = (sen 2α)/2.",
+    "cuidado": "Não esqueça a metade da fórmula da área nem a parte da altura abaixo de AC."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dobro do OQR",
+    "ideia": "O é ponto médio de PQ, então área(PQR) = 2 · área(OQR) = 2 · (cos α · sen α)/2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "QR = cos α",
+    "nota": "base horizontal"
+   },
+   {
+    "linha": "h = sen α + sen α = 2 sen α",
+    "nota": "altura de P até QR"
+   },
+   {
+    "linha": "área = (cos α · 2 sen α)/2",
+    "nota": "fórmula da área"
+   },
+   {
+    "linha": "área = sen α · cos α",
+    "nota": "o 2 cancela"
+   },
+   {
+    "linha": "área = (sen 2α)/2",
+    "nota": "usar sen 2α = 2 sen α cos α"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
  }
 }

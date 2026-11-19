@@ -1183,5 +1183,133 @@
    "data": "2026-11-12",
    "lote": "mat-0039"
   }
+ },
+ "P399efb93": {
+  "n": "5",
+  "conceito": "Raios e distâncias ao centro de cortes paralelos na esfera e volume do tronco de cone.",
+  "equivocos": {
+   "A": "M11.4:distancia-ao-plano-errada",
+   "B": "M11.4:dobrou-a-altura",
+   "C": "M11.4:somou-radicais-diferentes",
+   "E": "M11.4:esqueceu-o-terco"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada corte forma, com o centro O, um triângulo isósceles de lados iguais ao raio da esfera (OA = OB = OC = OD = 12). A metade da corda é o raio do círculo e a altura desse triângulo é a distância de O ao plano. Pela figura, os planos ficam em lados opostos do centro, então a altura do tronco é a soma das duas distâncias.",
+    "formulas": [
+     "tronco de cone: V = (π × h)/3 × (R² + R × r + r²)",
+     "no triângulo AOB: raio do corte = 12 × sen(ângulo/2) e distância = 12 × cos(ângulo/2)"
+    ],
+    "simbolos": [
+     [
+      "O",
+      "centro da esfera"
+     ],
+     [
+      "AÔB",
+      "ângulo com vértice no centro, entre OA e OB"
+     ],
+     [
+      "R e r",
+      "raios dos círculos maior e menor"
+     ],
+     [
+      "h",
+      "altura do tronco, distância entre os planos"
+     ],
+     [
+      "tronco de cone",
+      "parte do cone entre dois cortes paralelos"
+     ]
+    ]
+   },
+   "pista": "Trace a perpendicular de O até cada corda: ela divide cada triângulo em dois triângulos retângulos.",
+   "passos": [
+    {
+     "faz": "Ache raio e distância do corte AB",
+     "conta": "AÔB = 90° → metade 45° → R = 12 × (√2)/2 = 6√2 ; d1 = 12 × (√2)/2 = 6√2",
+     "porque": "A perpendicular de O divide o ângulo de 90° em dois de 45°, e o raio da esfera é a hipotenusa 12.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache raio e distância do corte CD",
+     "conta": "CÔD = 60° → metade 30° → r = 12 × 1/2 = 6 ; d2 = 12 × (√3)/2 = 6√3",
+     "porque": "O triângulo COD é equilátero de lado 12; a metade da corda é 6 e a altura é 6√3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as distâncias para ter a altura",
+     "conta": "h = d1 + d2 → h = 6√2 + 6√3 = 6(√2 + √3)",
+     "porque": "Os dois planos estão em lados opostos do centro O.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a fórmula do tronco",
+     "conta": "(π × 6(√2 + √3))/3 × (72 + 36√2 + 36) → 2π(√2 + √3) × 36(3 + √2) = 72π(√2 + √3)(3 + √2)",
+     "porque": "R² = 72, R × r = 6√2 × 6 = 36√2 e r² = 36; 108 + 36√2 = 36(3 + √2).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "72π(√2 + √3)(3 + √2) cm³ → alternativa D",
+     "porque": "É exatamente a forma da alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 72π(√2 + √3)(3 + √2) cm³",
+   "checagem": "Confira a ordem de grandeza: o tronco vale cerca de 3 141 cm³, menos da metade do volume da esfera (4/3 × π × 12³ ≈ 7 238 cm³), o que é plausível para um tronco que não pega as calotas.",
+   "erradas": {
+    "A": "72π(2√2 + √3)(3 + √2) não confere: exigiria h = 12√2 + 6√3, ou seja, um plano a 12√2 ≈ 17 cm do centro, mais que o raio 12; esse plano nem cortaria a esfera.",
+    "B": "144π(√2 + √3)(3 + √2) não confere: é o dobro do certo e exigiria h = 12(√2 + √3) ≈ 37,8 cm, mais que o diâmetro de 24 cm.",
+    "C": "72√6π(3 + √2) sai de somar radicais como se √2 + √3 = √6: h viraria 6√6 no lugar de 6√2 + 6√3.",
+    "E": "216π(√2 + √3)(3 + √2) sai de esquecer o 1/3 da fórmula do tronco: π × h × 36(3 + √2) dá o triplo do certo."
+   },
+   "armadilha": "A altura do tronco é a soma das duas distâncias ao centro, porque os cortes ficam em lados opostos de O.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume do tronco de cone entre os dois cortes da esfera.",
+    "chave": "Em cada triângulo isósceles de lados 12, a metade da corda é o raio do corte e a altura é a distância a O; some as distâncias.",
+    "cuidado": "Use o 1/3 da fórmula do tronco e não some radicais diferentes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "cone grande menos cone pequeno",
+    "ideia": "Prolongue o tronco até o vértice: os raios 6√2 e 6 dão a semelhança, e a diferença dos dois cones dá o mesmo volume."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R = 6√2 ; d1 = 6√2",
+    "nota": "corte AB, metade de 90°"
+   },
+   {
+    "linha": "r = 6 ; d2 = 6√3",
+    "nota": "corte CD, metade de 60°"
+   },
+   {
+    "linha": "h = 6√2 + 6√3",
+    "nota": "planos em lados opostos de O"
+   },
+   {
+    "linha": "V = (π × h)/3 × (72 + 36√2 + 36)",
+    "nota": "fórmula do tronco"
+   },
+   {
+    "linha": "V = 72π(√2 + √3)(3 + √2)",
+    "nota": "36 em evidência"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
  }
 }

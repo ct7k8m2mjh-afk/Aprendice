@@ -1454,5 +1454,479 @@
    "data": "2026-11-12",
    "lote": "mat-0042"
   }
+ },
+ "Pae16f57e": {
+  "n": "49",
+  "conceito": "Comparar termos seguidos de uma sequência pela razão b(n+1)/b(n), com fatorial e potência.",
+  "equivocos": {
+   "A": "M07.4:parou-antes-da-fronteira",
+   "B": "M07.4:confundiu-n-com-posicao-do-maximo",
+   "D": "M07.4:passou-da-fronteira"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com fatorial e potência, o jeito mais limpo de comparar dois termos seguidos é dividir um pelo outro: quase tudo se cancela. A desigualdade b(n+1) > b(n) vira razão maior que 1, que vira uma inequação do 2º grau em n. A pergunta é o maior n que ainda satisfaz essa inequação.",
+    "formulas": [
+     "b(n+1) > b(n) ⇔ b(n+1)/b(n) > 1 (termos positivos)",
+     "(n + 1)! = (n + 1) · n!",
+     "5^(n+1) = 5 · 5^n"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "fatorial: 1 · 2 · 3 · ... · n"
+     ],
+     [
+      "bn",
+      "termo de posição n da sequência"
+     ],
+     [
+      "⇔",
+      "as duas afirmações são equivalentes"
+     ]
+    ]
+   },
+   "pista": "Divida b(n+1) por b(n) e veja o que sobra do fatorial e da potência de 5.",
+   "passos": [
+    {
+     "faz": "Monte a razão entre termos seguidos",
+     "conta": "b(n+1)/b(n) = [(2n + 3) · 5^(n+1) / (n + 1)!] · [n! / ((2n + 1) · 5^n)] → b(n+1)/b(n) = (5(2n + 3))/((n + 1)(2n + 1))",
+     "porque": "5^(n+1) dividido por 5^n sobra 5, e n! dividido por (n + 1)! sobra 1/(n + 1). Como os termos são positivos, comparar com 1 equivale a comparar os termos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha razão maior que 1",
+     "conta": "10n + 15 > (n + 1)(2n + 1) → 10n + 15 > 2n² + 3n + 1 → 2n² − 7n − 14 < 0",
+     "porque": "O denominador é positivo e passa multiplicando. Depois tudo vai para um lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a raiz positiva",
+     "conta": "n = (7 + √161)/4 ≈ (7 + 12,69)/4 ≈ 4,92",
+     "porque": "A parábola 2n² − 7n − 14 é negativa entre as raízes; a raiz negativa não interessa, então vale n < 4,92.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste os naturais na fronteira",
+     "conta": "n = 4: 2 · 16 − 28 − 14 = −10 < 0 (vale) ; n = 5: 2 · 25 − 35 − 14 = 1 > 0 (não vale)",
+     "porque": "Conferir os dois naturais em volta da raiz evita erro de arredondamento.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Responda o maior n",
+     "conta": "maior n com b(n+1) > b(n): n = 4 → alternativa C",
+     "porque": "Para n = 4 ainda há crescimento (b5 > b4); a partir de n = 5 a sequência passa a cair.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 4",
+   "checagem": "Calcule os termos: b4 = (9 · 625)/24 = 234,375, b5 = (11 · 3125)/120 ≈ 286,46 e b6 = (13 · 15625)/720 ≈ 282,12. Sobe de b4 para b5 e desce de b5 para b6.",
+   "erradas": {
+    "A": "3 não confere: para n = 4 ainda vale b5 > b4 (286,46 > 234,375), então 3 não é o maior n.",
+    "B": "5 sai de responder a posição do maior termo, b5. A pergunta é o maior n com b(n+1) > b(n); para n = 5, b6 ≈ 282,12 < b5 ≈ 286,46.",
+    "D": "6 não confere: b7 ≈ 232,51 é menor que b6 ≈ 282,12, logo n = 6 não satisfaz b(n+1) > b(n)."
+   },
+   "armadilha": "O maior termo é b5, mas a pergunta é o maior n com b(n+1) > b(n), que é n = 4 (b5 > b4).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O maior natural n com b(n+1) > b(n).",
+    "chave": "A razão b(n+1)/b(n) = (5(2n + 3))/((n + 1)(2n + 1)) > 1 dá 2n² − 7n − 14 < 0, ou seja, n ≤ 4.",
+    "cuidado": "Não confunda o n da condição com a posição do maior termo (b5)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "cálculo direto",
+    "ideia": "Calcule b4 ≈ 234,4, b5 ≈ 286,5, b6 ≈ 282,1: o último aumento é de b4 para b5, então n = 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "b(n+1)/b(n) = (5(2n + 3))/((n + 1)(2n + 1))",
+    "nota": "cancela 5^n e n!"
+   },
+   {
+    "linha": "10n + 15 > 2n² + 3n + 1",
+    "nota": "razão maior que 1"
+   },
+   {
+    "linha": "2n² − 7n − 14 < 0",
+    "nota": "tudo para um lado"
+   },
+   {
+    "linha": "n < (7 + √161)/4 ≈ 4,92",
+    "nota": "raiz positiva"
+   },
+   {
+    "linha": "n = 4: −10 < 0 ; n = 5: 1 > 0",
+    "nota": "maior natural: 4"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
+ },
+ "Pd24a7c2a": {
+  "n": "53",
+  "conceito": "Triângulo isósceles identificado pela mediatriz; altura relativa a um lado pela área e Pitágoras no triângulo retângulo PYZ.",
+  "equivocos": {
+   "A": "M09.3:area-acima-do-possivel",
+   "C": "M09.3:raiz-trocada",
+   "D": "M09.3:area-acima-do-possivel"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se a mediatriz de YZ passa pela mediana que sai de X, então X está na mediatriz e fica à mesma distância de Y e de Z: XY = XZ = 3 cm. A mediana XM vira também altura. O triângulo PYZ é retângulo em P; você precisa dos dois catetos ZP e YP. ZP é a altura do triângulo XYZ relativa ao lado XY, e sai da área calculada de dois jeitos.",
+    "formulas": [
+     "Área do triângulo = (base · altura)/2",
+     "Pitágoras: hipotenusa² = cateto² + cateto²"
+    ],
+    "simbolos": [
+     [
+      "mediatriz",
+      "reta perpendicular a um lado que passa pelo ponto médio dele"
+     ],
+     [
+      "mediana",
+      "segmento do vértice até o ponto médio do lado oposto"
+     ],
+     [
+      "M",
+      "ponto médio de YZ"
+     ],
+     [
+      "P",
+      "pé da perpendicular baixada de Z sobre a reta XY"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra que tipo de triângulo é XYZ a partir da mediatriz; depois pense em ZP como uma altura.",
+   "passos": [
+    {
+     "faz": "Ache YM no triângulo XMY",
+     "conta": "YM² = 3² − 2² → YM² = 5 → YM = √5 → YZ = 2√5",
+     "porque": "XY = XZ = 3 cm, e a mediana XM = 2 cm é perpendicular a YZ. No triângulo XMY, retângulo em M, XY é a hipotenusa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área de XYZ pela base YZ",
+     "conta": "(2√5 · 2)/2 = 2√5",
+     "porque": "Base YZ = 2√5 cm e altura XM = 2 cm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale à área pela base XY",
+     "conta": "(3 · ZP)/2 = 2√5 → ZP = (4√5)/3",
+     "porque": "ZP é perpendicular à reta XY, então é a altura relativa ao lado XY. O 2 passa multiplicando e o 3 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache YP no triângulo PYZ",
+     "conta": "YP² = (2√5)² − ((4√5)/3)² → YP² = 20 − 80/9 = 100/9 → YP = 10/3",
+     "porque": "PYZ é retângulo em P e YZ é a hipotenusa. YP = 10/3 cm passa de XY = 3 cm: P fica além de X, por isso a questão fala da reta que contém XY.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área de PYZ",
+     "conta": "(1/2) · (10/3) · ((4√5)/3) = (20√5)/9",
+     "porque": "Os catetos YP e ZP formam o ângulo reto, então um é base e o outro é altura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "(20√5)/9 cm² → alternativa B",
+     "porque": "É a área pedida, do triângulo PYZ, e não a de XYZ.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a área do triângulo PYZ é (20√5)/9 cm²",
+   "checagem": "Some as partes: PYZ = XYZ + XPZ. XP = YP − XY = 10/3 − 3 = 1/3 e a área de XPZ é (1/2) · (1/3) · ((4√5)/3) = (2√5)/9. Então 2√5 + (2√5)/9 = (20√5)/9. Fecha.",
+   "erradas": {
+    "A": "(20√5)/3 não confere: dá cerca de 14,9 cm². Um triângulo retângulo de hipotenusa YZ = 2√5 tem área de no máximo (2√5)²/4 = 5 cm².",
+    "C": "(20√3)/9 não confere: dá cerca de 3,85 cm², menos que a área de XYZ (2√5 ≈ 4,47 cm²), mas PYZ contém XYZ porque P fica além de X.",
+    "D": "(20√3)/3 não confere: dá cerca de 11,5 cm², acima do máximo de 5 cm² para um triângulo retângulo de hipotenusa 2√5."
+   },
+   "armadilha": "P não fica sobre o lado XY: YP = 10/3 cm é maior que XY = 3 cm, então P está no prolongamento, além de X.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do triângulo PYZ, retângulo em P.",
+    "chave": "XYZ é isósceles (XY = XZ = 3); a área 2√5 dá ZP = (4√5)/3, Pitágoras dá YP = 10/3, e a área é (20√5)/9.",
+    "cuidado": "Use YZ como hipotenusa de PYZ e não suponha P entre X e Y."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ângulo em Y",
+    "ideia": "cos Y = YM/XY = √5/3; no PYZ, YP = YZ · cos Y = 2√5 · (√5/3) = 10/3, e ZP = YZ · sen Y = 2√5 · (2/3)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "YM² = 3² − 2² = 5",
+    "nota": "Pitágoras no XMY"
+   },
+   {
+    "linha": "YZ = 2√5",
+    "nota": "YZ = 2 · YM"
+   },
+   {
+    "linha": "(3 · ZP)/2 = 2√5",
+    "nota": "área pela base XY"
+   },
+   {
+    "linha": "ZP = (4√5)/3",
+    "nota": "isolar ZP"
+   },
+   {
+    "linha": "YP² = 20 − 80/9 = 100/9",
+    "nota": "Pitágoras no PYZ"
+   },
+   {
+    "linha": "área = (1/2) · (10/3) · ((4√5)/3) = (20√5)/9",
+    "nota": "catetos como base e altura"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
+ },
+ "P759edea3": {
+  "n": "60",
+  "conceito": "Volume do poliedro dos pontos médios das arestas do cubo (cuboctaedro): cubo menos os oito cantos cortados.",
+  "equivocos": {
+   "B": "M11.5:volume-do-canto-errado",
+   "C": "M11.5:base-quadrada-no-canto",
+   "D": "M11.5:volume-do-canto-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ligar os pontos médios das arestas é cortar os oito cantos do cubo. Cada canto cortado é uma pirâmide de base triangular com três arestas de 1 cm, perpendiculares entre si (metade da aresta 2). O volume de P é o do cubo menos os oito cantos.",
+    "formulas": [
+     "volume do cubo = a³",
+     "pirâmide = (área da base × altura)/3",
+     "canto cortado: base = (1 × 1)/2 e altura = 1"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "o poliedro de 14 faces dentro do cubo"
+     ],
+     [
+      "ponto médio",
+      "ponto que divide a aresta em duas partes iguais"
+     ],
+     [
+      "canto cortado",
+      "pequena pirâmide de cada vértice do cubo que fica fora de P"
+     ]
+    ]
+   },
+   "pista": "Descubra o que sobra do cubo fora de P: que forma tem cada pedaço?",
+   "passos": [
+    {
+     "faz": "Calcule o volume do cubo",
+     "conta": "V = 2³ → V = 8 cm³",
+     "porque": "P está dentro do cubo de aresta 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule um canto cortado",
+     "conta": "((1 × 1)/2 × 1)/3 → (1/2)/3 = 1/6 cm³",
+     "porque": "A base é um triângulo retângulo de catetos 1 e 1, e a altura é a terceira aresta, 1 cm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire os oito cantos",
+     "conta": "8 − 8 × 1/6 → 8 − 4/3 = 24/3 − 4/3 = 20/3 cm³",
+     "porque": "O cubo tem 8 vértices, e cada um perde um canto igual.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "20/3 cm³ → alternativa A",
+     "porque": "É o volume de P.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 20/3 cm³",
+   "checagem": "Confira a contagem do enunciado: os oito cortes deixam 8 faces triangulares, e as 6 faces do cubo viram quadrados (a nota da prova): 8 + 6 = 14 faces; e os vértices são os 12 pontos médios. É mesmo esse o poliedro.",
+   "erradas": {
+    "B": "13/3 não confere: 8 − 13/3 = 11/3 cortados, ou 11/24 por canto, e cada canto mede 1/6 = 4/24 cm³.",
+    "C": "16/3 sai de usar como base do canto o quadrado 1 × 1 no lugar do triângulo: 8 − 8 × 1/3 = 16/3.",
+    "D": "19/3 não confere: 8 − 19/3 = 5/3 cortados, ou 5/24 por canto, e cada canto mede 1/6 = 4/24 cm³."
+   },
+   "armadilha": "A base do canto cortado é um triângulo (metade do quadrado 1 × 1): o canto vale 1/6, e não 1/3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume do poliedro formado pelos pontos médios das arestas do cubo de aresta 2.",
+    "chave": "Cubo menos 8 cantos, cada um uma pirâmide de volume (1/2 × 1)/3 = 1/6.",
+    "cuidado": "A base do canto é triangular; não esqueça o 1/3 nem o 1/2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "metade do cubo",
+    "ideia": "Pelo plano do meio, P fica dividido em duas metades iguais; cada metade é a metade do cubo (4) menos 4 cantos de 1/6, ou 4 − 2/3 = 10/3, e o dobro dá 20/3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V cubo = 2³ = 8",
+    "nota": "cubo inteiro"
+   },
+   {
+    "linha": "canto = ((1 × 1)/2 × 1)/3 = 1/6",
+    "nota": "pirâmide de cada vértice"
+   },
+   {
+    "linha": "8 − 8 × 1/6 = 8 − 4/3",
+    "nota": "tirar os oito cantos"
+   },
+   {
+    "linha": "= 20/3",
+    "nota": "volume de P"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
+ },
+ "P3f1b7f43": {
+  "n": "51",
+  "conceito": "Distância de ponto a reta com módulo: dois pontos da reta y = x, e a soma de todas as suas coordenadas.",
+  "equivocos": {
+   "A": "M12.3:soma-de-coordenadas-errada",
+   "B": "M12.3:soma-de-coordenadas-errada",
+   "C": "M12.3:soma-de-coordenadas-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Todo ponto da reta y = x tem a forma (t, t). A fórmula da distância tem um módulo, e o módulo dá duas soluções: há dois pontos, um de cada lado da reta 2y + x + 2 = 0. A questão pede a soma das coordenadas dos dois pontos.",
+    "formulas": [
+     "distância do ponto (x0, y0) à reta ax + by + c = 0: |a·x0 + b·y0 + c|/√(a² + b²)",
+     "|u| = k → u = k ou u = −k"
+    ],
+    "simbolos": [
+     [
+      "(t, t)",
+      "ponto genérico da reta y = x"
+     ],
+     [
+      "|u|",
+      "módulo: o valor de u sem o sinal"
+     ],
+     [
+      "√5",
+      "raiz de 1² + 2², o denominador da distância"
+     ]
+    ]
+   },
+   "pista": "Escreva o ponto da reta y = x com uma letra só e não se esqueça de que o módulo tem dois lados.",
+   "passos": [
+    {
+     "faz": "Escreva o ponto da reta y = x",
+     "conta": "P = (t, t)",
+     "porque": "Na reta y = x, abscissa e ordenada são iguais.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique a distância à reta x + 2y + 2 = 0",
+     "conta": "|t + 2t + 2|/√5 = 3 → |3t + 2| = 3√5",
+     "porque": "Na fórmula, a = 1 e b = 2, então o denominador é √(1 + 4) = √5, que passa multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Abra o módulo nos dois casos",
+     "conta": "3t + 2 = 3√5 → t1 = (−2 + 3√5)/3 | 3t + 2 = −3√5 → t2 = (−2 − 3√5)/3",
+     "porque": "Há um ponto de cada lado da reta, a 3 unidades dela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as coordenadas dos dois pontos",
+     "conta": "2t1 + 2t2 → 2 × ((−2 + 3√5)/3 + (−2 − 3√5)/3) = 2 × (−4/3) = −8/3",
+     "porque": "Cada ponto tem soma de coordenadas 2t; as partes com √5 se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "−8/3 → alternativa D",
+     "porque": "É a soma das quatro coordenadas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — −8/3",
+   "checagem": "Pela simetria: os dois pontos ficam à mesma distância da reta, um de cada lado, então o ponto médio deles está na própria reta. Ele é o cruzamento de y = x com x + 2y + 2 = 0: 3t + 2 = 0, t = −2/3. As quatro coordenadas somam 4 × (−2/3) = −8/3.",
+   "erradas": {
+    "A": "−7/3 não confere: o ponto médio dos dois pontos seria (−7/12, −7/12), e ele teria de estar na reta; mas 3 × (−7/12) + 2 = 1/4, e não 0.",
+    "B": "−5/3 não confere: o ponto médio seria (−5/12, −5/12), e 3 × (−5/12) + 2 = 3/4, e não 0; ele não está na reta.",
+    "C": "−10/3 não confere: o ponto médio seria (−5/6, −5/6), e 3 × (−5/6) + 2 = −1/2, e não 0; ele não está na reta."
+   },
+   "armadilha": "O módulo dá dois pontos, e a soma pedida junta as coordenadas dos dois, não só as de um.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma das coordenadas dos pontos de y = x que estão a 3 unidades da reta 2y + x + 2 = 0.",
+    "chave": "Ponto (t, t), |3t + 2| = 3√5, duas raízes de soma −4/3; soma das coordenadas 2 × (−4/3).",
+    "cuidado": "Abra o módulo nos dois sinais e some as duas coordenadas de cada ponto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma das raízes",
+    "ideia": "|3t + 2| = 3√5 é o mesmo que (3t + 2)² = 45, ou 9t² + 12t − 41 = 0; a soma das raízes é −12/9 = −4/3, e a soma pedida é 2 × (−4/3) = −8/3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "|t + 2t + 2|/√5 = 3",
+    "nota": "distância do ponto (t, t)"
+   },
+   {
+    "linha": "|3t + 2| = 3√5",
+    "nota": "o √5 passa multiplicando"
+   },
+   {
+    "linha": "3t + 2 = ±3√5 → t = (−2 ± 3√5)/3",
+    "nota": "dois casos do módulo"
+   },
+   {
+    "linha": "2t1 + 2t2 = 2 × (−4/3) = −8/3",
+    "nota": "as raízes de √5 se cancelam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
  }
 }

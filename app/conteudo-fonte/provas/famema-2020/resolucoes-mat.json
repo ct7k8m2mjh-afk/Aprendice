@@ -282,5 +282,130 @@
    "data": "2026-11-12",
    "lote": "mat-0031"
   }
+ },
+ "Pc5c6c160": {
+  "n": "18",
+  "conceito": "Área de quadrilátero côncavo como diferença de dois triângulos isósceles de mesma base; seno e cosseno de β.",
+  "equivocos": {
+   "A": "M10.1:area-maior-que-o-todo",
+   "B": "M10.1:area-maior-que-o-todo",
+   "C": "M10.1:arredondou-raiz",
+   "D": "M10.1:altura-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O quadrilátero ABDC é o triângulo ABC com o triângulo DBC recortado. Os dois têm a mesma base BC e as alturas caem no mesmo ponto médio M de BC, porque os dois são isósceles. Então a área pedida é (BC · (AM − DM))/2. Com sen β você acha cos β, e daí BC e DM saem do triângulo DMB.",
+    "formulas": [
+     "sen² β + cos² β = 1",
+     "No triângulo retângulo: cateto adjacente = hipotenusa · cos, cateto oposto = hipotenusa · sen",
+     "Área do triângulo = (base · altura)/2"
+    ],
+    "simbolos": [
+     [
+      "β",
+      "medida do ângulo DBC"
+     ],
+     [
+      "M",
+      "ponto médio de BC, pé das alturas dos dois triângulos isósceles"
+     ],
+     [
+      "côncavo",
+      "polígono com um ângulo interno maior que 180° (aqui, em D)"
+     ]
+    ]
+   },
+   "pista": "Trace a altura de A até BC e repare que ela passa por D.",
+   "passos": [
+    {
+     "faz": "Ache cos β",
+     "conta": "cos² β = 1 − (√6/4)² → cos² β = 1 − 6/16 = 10/16 → cos β = √10/4",
+     "porque": "β é agudo, então o cosseno é positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache BM e DM no triângulo DMB",
+     "conta": "BM = 2 · √10/4 = √10/2 | DM = 2 · √6/4 = √6/2",
+     "porque": "DMB é retângulo em M com hipotenusa DB = 2. BM é adjacente a β e DM é oposto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache AM no triângulo AMB",
+     "conta": "AM² = 4² − (√10/2)² → AM² = 16 − 10/4 = 54/4 → AM = (3√6)/2",
+     "porque": "AMB é retângulo em M com hipotenusa AB = 4 e cateto BM = √10/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia as áreas",
+     "conta": "(√10 · (3√6)/2)/2 − (√10 · √6/2)/2 → (√10 · √6)/2 → √60/2 = √15",
+     "porque": "As duas áreas têm a mesma base BC = 2 · BM = √10, então basta usar a diferença das alturas, AM − DM = √6. E √60 = 2√15.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "área de ABDC = √15 cm² → alternativa E",
+     "porque": "É a área do quadrilátero, já descontado o triângulo DBC.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — a área do quadrilátero ABDC é √15 cm²",
+   "checagem": "Pelos triângulos ABD e ACD, que são iguais: área de ABDC = 2 · (AD · BM)/2 = AD · BM, com AD = AM − DM = √6 e BM = √10/2. Dá √6 · √10/2 = √60/2 = √15.",
+   "erradas": {
+    "A": "√35 não confere: dá cerca de 5,92 cm², mais que a área do triângulo ABC inteiro, (√10 · (3√6)/2)/2 = (3√15)/2 ≈ 5,81 cm²; o quadrilátero é parte dele.",
+    "B": "6 não confere: é mais que os (3√15)/2 ≈ 5,81 cm² do triângulo ABC inteiro, que contém o quadrilátero.",
+    "C": "4 não confere: 4 = √16, e a diferença das áreas dá (√10 · √6)/2 = √15 ≈ 3,87.",
+    "D": "√5 não confere: exigiria AM − DM = √2 na fórmula (√10 · (AM − DM))/2, mas AM − DM = (3√6)/2 − √6/2 = √6."
+   },
+   "armadilha": "A área do triângulo DBC usa o ângulo β em B, entre BD e BC: não use (1/2) · DB · DC · sen β, porque β não é o ângulo entre DB e DC.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do quadrilátero côncavo ABDC.",
+    "chave": "Área de ABC menos área de DBC, com base comum BC = √10 e alturas AM = (3√6)/2 e DM = √6/2: (√10 · √6)/2 = √15.",
+    "cuidado": "Ache cos β para ter BC; e confira qual é o ângulo entre os lados que você usa na fórmula com seno."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dois triângulos iguais",
+    "ideia": "ABDC = ABD + ACD = 2 · (AD · BM)/2, com AD = √6 e BM = √10/2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "cos β = √(1 − 6/16) = √10/4",
+    "nota": "relação fundamental"
+   },
+   {
+    "linha": "BC = 2 · 2 · √10/4 = √10",
+    "nota": "dobro de BM"
+   },
+   {
+    "linha": "DM = 2 · √6/4 = √6/2",
+    "nota": "altura de DBC"
+   },
+   {
+    "linha": "AM² = 16 − 10/4 → AM = (3√6)/2",
+    "nota": "Pitágoras no AMB"
+   },
+   {
+    "linha": "área = (√10 · ((3√6)/2 − √6/2))/2",
+    "nota": "diferença das áreas"
+   },
+   {
+    "linha": "área = √60/2 = √15",
+    "nota": "simplificar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
  }
 }

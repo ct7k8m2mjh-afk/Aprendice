@@ -293,5 +293,122 @@
    "data": "2026-11-12",
    "lote": "mat-0030"
   }
+ },
+ "Pe97ebba7": {
+  "n": "16",
+  "conceito": "Área de polígono inscrito no quadrado como função quadrática de uma medida, e o seu valor máximo.",
+  "equivocos": {
+   "B": "M08.5:valor-acima-do-maximo",
+   "C": "M08.5:valor-acima-do-maximo",
+   "D": "M08.5:valor-acima-do-maximo",
+   "E": "M08.5:valor-acima-do-maximo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A área de EFGH é o quadrado menos os quatro triângulos retângulos dos cantos. Chamando AE = AF = x, todos os catetos ficam em função de x, e a área vira uma função do 2º grau com a < 0. O valor máximo é a altura do vértice da parábola.",
+    "formulas": [
+     "área de EFGH = 1 − (soma dos 4 triângulos dos cantos)",
+     "triângulo retângulo: (cateto · cateto)/2",
+     "vértice de y = ax² + bx + c: x = −b/(2a)"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "medida de AE = AF"
+     ],
+     [
+      "xv",
+      "x do vértice da parábola, onde a área é máxima"
+     ]
+    ]
+   },
+   "pista": "Dê nome a AE e escreva os catetos dos quatro triângulos dos cantos com essa letra.",
+   "passos": [
+    {
+     "faz": "Escreva os catetos em função de x",
+     "conta": "AE = AF = x | CG = CH = 2x | DE = BF = 1 − x | DH = BG = 1 − 2x",
+     "porque": "Cada lado do quadrado mede 1; o que falta de cada lado é o cateto do triângulo vizinho.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some os triângulos dos cantos",
+     "conta": "x²/2 + (2x)²/2 + 2 · ((1 − x)(1 − 2x))/2 = 2,5x² + 1 − 3x + 2x² = 4,5x² − 3x + 1",
+     "porque": "Os triângulos em A e C são isósceles; os de D e B são iguais entre si, com catetos 1 − x e 1 − 2x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a área de EFGH",
+     "conta": "S(x) = 1 − (4,5x² − 3x + 1) → S(x) = −4,5x² + 3x",
+     "porque": "Quadrado de área 1 menos os cantos. O coeficiente de x² é negativo: a parábola tem máximo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o vértice",
+     "conta": "xv = −3/(2 · (−4,5)) = 1/3 → S(1/3) = −4,5 · 1/9 + 3 · 1/3 = −1/2 + 1 = 1/2",
+     "porque": "O máximo da função do 2º grau fica no vértice. x = 1/3 é permitido, pois 2x = 2/3 cabe no lado de medida 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "área máxima = 1/2 → alternativa A",
+     "porque": "A pergunta é o valor máximo da área, não o x que o produz.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1/2",
+   "checagem": "Teste outros valores: x = 1/4 dá S = 3/4 − 4,5/16 = 15/32 ≈ 0,47 e x = 1/2 dá S = 3/2 − 4,5/4 = 3/8; os dois ficam abaixo de 1/2.",
+   "erradas": {
+    "B": "2/3 não confere: −4,5x² + 3x = 2/3 dá 4,5x² − 3x + 2/3 = 0, com Δ = 9 − 12 = −3 < 0. A área nunca chega a 2/3.",
+    "C": "3/4 não confere: 4,5x² − 3x + 3/4 = 0 tem Δ = 9 − 13,5 = −4,5 < 0. Nenhum x dá essa área.",
+    "D": "3/5 não confere: 4,5x² − 3x + 3/5 = 0 tem Δ = 9 − 10,8 = −1,8 < 0. A área máxima é 1/2.",
+    "E": "5/8 não confere: 4,5x² − 3x + 5/8 = 0 tem Δ = 9 − 11,25 = −2,25 < 0. Fica acima do máximo 1/2."
+   },
+   "armadilha": "Os triângulos em D e B não são isósceles: os catetos são 1 − x e 1 − 2x, e esquecê-los ou trocá-los estraga a função.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A maior área possível de EFGH, com CG = CH = 2AE = 2AF.",
+    "chave": "S(x) = 1 − [x²/2 + 2x² + (1 − x)(1 − 2x)] = −4,5x² + 3x, máxima em x = 1/3, com S = 1/2.",
+    "cuidado": "Desconte os quatro triângulos e responda o valor da área no vértice, não o x."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria das raízes",
+    "ideia": "S(x) = 3x(1 − 1,5x) zera em x = 0 e x = 2/3; o vértice fica no meio, x = 1/3, e S(1/3) = 1/2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "S = 1 − x²/2 − (2x)²/2 − (1 − x)(1 − 2x)",
+    "nota": "quadrado menos os 4 cantos"
+   },
+   {
+    "linha": "S = 1 − 2,5x² − 1 + 3x − 2x²",
+    "nota": "expandir"
+   },
+   {
+    "linha": "S = −4,5x² + 3x",
+    "nota": "parábola com máximo"
+   },
+   {
+    "linha": "xv = −3/(2 · (−4,5)) = 1/3",
+    "nota": "x do vértice"
+   },
+   {
+    "linha": "S(1/3) = −1/2 + 1 = 1/2",
+    "nota": "área máxima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
  }
 }

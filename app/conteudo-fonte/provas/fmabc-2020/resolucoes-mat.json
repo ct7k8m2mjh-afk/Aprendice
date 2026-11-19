@@ -859,5 +859,233 @@
    "data": "2026-11-12",
    "lote": "mat-0036"
   }
+ },
+ "Pb6e6a774": {
+  "n": "77",
+  "conceito": "Modelar áreas de retângulos com uma incógnita, escolher a raiz compatível e medir a diagonal por Pitágoras.",
+  "equivocos": {
+   "B": "M08.2:percurso-menor-que-a-reta",
+   "C": "M08.2:percurso-menor-que-a-reta",
+   "D": "M08.2:usou-so-a-largura",
+   "E": "M08.2:nao-viu-a-diagonal-livre"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Chame de a a medida AH. Todas as outras medidas do pátio e dos jardins saem de a e dos números da figura. A área livre dá uma equação do 2º grau com duas raízes; a condição de os jardins não se cruzarem escolhe uma. Depois, o menor caminho de C a G é o segmento reto, se ele não atravessar os jardins.",
+    "formulas": [
+     "área do retângulo = base · altura",
+     "área livre = pátio − jardim 1 − jardim 2",
+     "Pitágoras: diagonal² = base² + altura²"
+    ],
+    "simbolos": [
+     [
+      "a",
+      "medida de AH, em metros"
+     ],
+     [
+      "AB",
+      "lado do jardim 1 no topo do pátio"
+     ],
+     [
+      "DE, FE",
+      "lados do jardim 2"
+     ]
+    ]
+   },
+   "pista": "Escreva AB, a altura do pátio, DE e FE em função de AH; só depois monte a área livre.",
+   "passos": [
+    {
+     "faz": "Escreva as medidas em função de a",
+     "conta": "AH = a | AB = a + 1 | AG = a + 4 | DE = AG − 3 = a + 1 | FE = a + 2 | AC = a + 6",
+     "porque": "AG = AH + HG; a altura do pátio também é CD + DE; e a largura é AB + BC = (a + 1) + 5.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a área livre",
+     "conta": "(a + 6)(a + 4) − a(a + 1) − (a + 1)(a + 2) = 30 → −a² + 6a + 22 = 30 → a² − 6a + 8 = 0",
+     "porque": "Pátio menos os dois jardins é a área não ocupada. Expandindo, a² + 10a + 24 − a² − a − a² − 3a − 2 = −a² + 6a + 22.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha a raiz que serve",
+     "conta": "a = 2 ou a = 4 ; a = 4 → jardim 1 vai até x = 5 e jardim 2 começa em x = 4 (se cruzam) → a = 2",
+     "porque": "Com a = 4 os jardins se sobrepõem num quadrado de 1 m de lado, e o enunciado diz que não se intersectam.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Meça o segmento de C a G",
+     "conta": "pátio 8 m × 6 m → CG² = 8² + 6² = 100 → CG = 10 m",
+     "porque": "Com a = 2, AC = 8 e AG = 6. O caminho mais curto entre dois pontos é o segmento reto, que é a diagonal do pátio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira que a diagonal não cruza os jardins",
+     "conta": "G = (0, 0), C = (8, 6): y = (3/4)x ; x = 3 → y = 2,25 < 4 ; x = 4 → y = 3 (canto J) → percurso = 10 m → alternativa A",
+     "porque": "Abaixo de I (altura 4) a reta passa por baixo do jardim 1; ela só encosta no canto J do jardim 2, sem passar por cima dele.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 10 m",
+   "checagem": "Substitua a = 2: pátio 8 · 6 = 48, jardins 2 · 3 = 6 e 3 · 4 = 12, livre 48 − 6 − 12 = 30 m². Fecha com o enunciado.",
+   "erradas": {
+    "B": "6√2 ≈ 8,49 m não confere: é menor que a distância em linha reta CG = 10 m, e nenhum percurso entre C e G é mais curto que o segmento.",
+    "C": "5√3 ≈ 8,66 m não confere: também é menor que o segmento CG = 10 m, o mínimo possível entre os dois pontos.",
+    "D": "8 m sai da largura do pátio, AC = GE = 8 m. Ela não liga C a G, e qualquer percurso de C a G mede pelo menos 10 m.",
+    "E": "8√2 ≈ 11,31 m não confere: o segmento CG mede 10 m e não passa por cima dos jardins, então existe percurso mais curto."
+   },
+   "armadilha": "A equação tem duas raízes; a = 4 faz os jardins se cruzarem e deve ser descartada antes de medir a diagonal.",
+   "alerta": "A diagonal CG passa exatamente pelo canto J do jardim 2 (y = (3/4) · 4 = 3); encostar no canto não é passar por cima do jardim, como a banca considerou.",
+   "essencial": {
+    "pede": "O menor percurso de C a G sem passar sobre os jardins.",
+    "chave": "a² − 6a + 8 = 0 com a = 2 (a = 4 cruza os jardins); pátio 8 × 6 e diagonal 10 m livre.",
+    "cuidado": "Descarte a raiz que faz os jardins se sobreporem e confira que a diagonal não corta os jardins."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Nenhum percurso é menor que o segmento CG; com CG = 10 livre, ficam fora B, C, D (menores) e E (maior)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(a + 6)(a + 4) − a(a + 1) − (a + 1)(a + 2) = 30",
+    "nota": "área livre"
+   },
+   {
+    "linha": "−a² + 6a + 22 = 30 → a² − 6a + 8 = 0",
+    "nota": "expandir e arrumar"
+   },
+   {
+    "linha": "a = 2 ou a = 4 → a = 2",
+    "nota": "a = 4 cruza os jardins"
+   },
+   {
+    "linha": "CG² = 8² + 6² = 100",
+    "nota": "Pitágoras no pátio 8 × 6"
+   },
+   {
+    "linha": "CG = 10",
+    "nota": "a diagonal só toca o canto J"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
+ },
+ "Pdad61ff1": {
+  "n": "72",
+  "conceito": "Na homotetia, as medidas lineares multiplicam por k e as áreas por k².",
+  "equivocos": {
+   "A": "M09.3:razao-linear-na-area",
+   "C": "M09.3:trocou-distancia-ao-centro",
+   "D": "M09.3:razao-errada",
+   "E": "M09.3:distancia-errada-e-razao-linear"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na homotetia de centro H, cada ponto se afasta de H na mesma proporção k. A razão sai de HA' dividido por HA, e o enunciado dá HA e AA', não HA'. Comprimentos multiplicam por k; áreas multiplicam por k².",
+    "formulas": [
+     "k = HA'/HA",
+     "HA' = HA + AA'",
+     "área nova = k² · área original"
+    ],
+    "simbolos": [
+     [
+      "homotetia",
+      "ampliação ou redução a partir de um ponto fixo, o centro"
+     ],
+     [
+      "k",
+      "razão da homotetia"
+     ],
+     [
+      "HA, AA'",
+      "distâncias de H até A e de A até A'"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra a distância de H até A'; só ela, comparada com HA, dá a razão.",
+   "passos": [
+    {
+     "faz": "Ache a distância HA'",
+     "conta": "HA' = HA + AA' = 7,5 + 11,25 = 18,75 cm",
+     "porque": "A' fica na mesma semirreta que sai de H e passa por A, depois de A. As duas medidas se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a razão da homotetia",
+     "conta": "k = 18,75/7,5 = 2,5",
+     "porque": "A razão compara a distância ao centro do ponto novo com a do ponto original.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Eleve a razão ao quadrado para a área",
+     "conta": "área = 2,5² · 1 = 6,25 cm²",
+     "porque": "Área tem duas dimensões; cada uma multiplica por 2,5, então a área multiplica por 2,5 · 2,5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "6,25 cm² → alternativa B",
+     "porque": "É a área do triângulo A'B'C'.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 6,25 cm²",
+   "checagem": "Pelo lado: área do equilátero = (√3/4) · lado², então lado² = 4/√3 ≈ 2,31 e lado ≈ 1,52 cm. O lado novo é 2,5 · 1,52 ≈ 3,80 cm, e (√3/4) · 3,80² ≈ 6,25 cm².",
+   "erradas": {
+    "A": "2,5 cm² sai de usar a razão linear na área: 1 · 2,5. A área multiplica por k² = 6,25.",
+    "C": "2,25 cm² sai de tomar AA' como se fosse HA': (11,25/7,5)² = 1,5² = 2,25. A distância de H a A' é 18,75.",
+    "D": "4,25 cm² não confere: exigiria k = √4,25 ≈ 2,06, ou seja, HA' ≈ 15,46 cm, mas HA' = 18,75 cm.",
+    "E": "1,5 cm² sai de dois erros juntos: AA' no lugar de HA' e razão sem elevar ao quadrado, 11,25/7,5 = 1,5."
+   },
+   "armadilha": "AA' não é a distância de H a A': a razão é (7,5 + 11,25)/7,5 = 2,5, e a área usa 2,5².",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do triângulo ampliado por homotetia de centro H.",
+    "chave": "k = 18,75/7,5 = 2,5 e área = k² · 1 = 6,25 cm².",
+    "cuidado": "Some HA + AA' para ter HA' e eleve k ao quadrado na área."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo lado",
+    "ideia": "Ache o lado do equilátero de área 1, multiplique por 2,5 e recalcule a área: dá 6,25 cm²."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "HA' = 7,5 + 11,25 = 18,75",
+    "nota": "A' depois de A na semirreta"
+   },
+   {
+    "linha": "k = 18,75/7,5 = 2,5",
+    "nota": "razão da homotetia"
+   },
+   {
+    "linha": "área = 2,5² · 1 = 6,25",
+    "nota": "área multiplica por k²"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
  }
 }

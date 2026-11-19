@@ -1,0 +1,352 @@
+{
+ "Pac99a64f": {
+  "n": "6",
+  "conceito": "Usar a recorrência de Fibonacci repetidas vezes para escrever um termo distante em função de dois termos seguidos.",
+  "equivocos": {
+   "A": "M07.4:parou-no-primeiro-termo",
+   "B": "M07.4:coeficientes-trocados",
+   "C": "M07.4:coeficientes-trocados",
+   "E": "M07.4:coeficientes-trocados"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A regra diz que cada termo é a soma dos dois anteriores. Para chegar a f(n + 5), vá subindo um termo por vez e, a cada degrau, substitua os termos já escritos em função de f(n + 1) e f(n). Os coeficientes que aparecem são os próprios números de Fibonacci.",
+    "formulas": [
+     "f(n + 2) = f(n + 1) + f(n)",
+     "cada termo novo = soma dos dois anteriores"
+    ],
+    "simbolos": [
+     [
+      "f(n)",
+      "o termo da posição n da sequência 1, 1, 2, 3, 5, 8, ..."
+     ],
+     [
+      "N",
+      "números naturais 1, 2, 3, ..."
+     ]
+    ]
+   },
+   "pista": "Comece escrevendo f(n + 2) e f(n + 3) só com f(n + 1) e f(n); depois continue subindo.",
+   "passos": [
+    {
+     "faz": "Escreva f(n + 2) e f(n + 3)",
+     "conta": "f(n + 2) = f(n + 1) + f(n) → f(n + 3) = f(n + 2) + f(n + 1) = 2f(n + 1) + f(n)",
+     "porque": "f(n + 3) é a soma dos dois anteriores; troque f(n + 2) pelo que já foi escrito e junte os f(n + 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Suba para f(n + 4)",
+     "conta": "f(n + 4) = f(n + 3) + f(n + 2) = [2f(n + 1) + f(n)] + [f(n + 1) + f(n)] = 3f(n + 1) + 2f(n)",
+     "porque": "Mesma regra: soma das duas linhas anteriores, coeficiente com coeficiente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Suba para f(n + 5)",
+     "conta": "f(n + 5) = f(n + 4) + f(n + 3) = [3f(n + 1) + 2f(n)] + [2f(n + 1) + f(n)] = 5f(n + 1) + 3f(n)",
+     "porque": "Somando as duas expressões anteriores, os f(n + 1) dão 3 + 2 = 5 e os f(n) dão 2 + 1 = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "f(n + 5) = 5f(n + 1) + 3f(n) → alternativa D",
+     "porque": "A pergunta é f(n + 5) em função de f(n + 1) e f(n), exatamente a expressão obtida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — f(n + 5) = 5f(n + 1) + 3f(n)",
+   "checagem": "Teste com n = 1: f(6) = 8 e 5f(2) + 3f(1) = 5 + 3 = 8. Com n = 2: f(7) = 13 e 5f(3) + 3f(2) = 10 + 3 = 13. Fecha nos dois.",
+   "erradas": {
+    "A": "f(n + 1) + f(n) é f(n + 2), não f(n + 5): parou no primeiro degrau. Com n = 1 dá 2, e f(6) = 8.",
+    "B": "f(n + 1) + 2f(n) não confere: com n = 1 dá 1 + 2 = 3, mas f(6) = 8.",
+    "C": "2f(n + 1) + 3f(n) não confere: com n = 1 dá 2 + 3 = 5, mas f(6) = 8.",
+    "E": "5f(n + 1) + 8f(n) troca os coeficientes de f(n + 6) = 8f(n + 1) + 5f(n), um degrau acima. Com n = 1 dá 13, mas f(6) = 8."
+   },
+   "armadilha": "Cada degrau tem de somar as DUAS expressões anteriores; somar só uma ou trocar os coeficientes leva às erradas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "f(n + 5) escrito com f(n + 1) e f(n), na sequência de Fibonacci.",
+    "chave": "Subir um termo por vez: 2f(n+1) + f(n), 3f(n+1) + 2f(n), 5f(n+1) + 3f(n).",
+    "cuidado": "Teste a expressão com n = 1: tem de dar f(6) = 8."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "Com n = 1, f(6) = 8 e f(2) = f(1) = 1: a expressão certa tem coeficientes somando 8, só D (5 + 3)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(n + 2) = f(n + 1) + f(n)",
+    "nota": "regra dada"
+   },
+   {
+    "linha": "f(n + 3) = 2f(n + 1) + f(n)",
+    "nota": "soma das duas anteriores"
+   },
+   {
+    "linha": "f(n + 4) = 3f(n + 1) + 2f(n)",
+    "nota": "soma das duas anteriores"
+   },
+   {
+    "linha": "f(n + 5) = 5f(n + 1) + 3f(n)",
+    "nota": "soma das duas anteriores"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
+ },
+ "P465499f1": {
+  "n": "46",
+  "conceito": "Teorema de Pitágoras no triângulo MVU para achar o raio e somar segmentos na semirreta.",
+  "equivocos": {
+   "A": "M09.1:cateto-errado",
+   "B": "M09.1:subtraiu-quadrados",
+   "D": "M09.1:cateto-errado",
+   "E": "M09.1:metade-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O raio MU é a hipotenusa do triângulo retângulo MVU, com catetos MV (metade do lado) e VU (o lado inteiro). Depois, R está na semirreta QV a uma distância MU de M, então QR = QM + MR.",
+    "formulas": [
+     "hipotenusa² = cateto² + cateto²",
+     "QR = QM + MR, com MR = raio"
+    ],
+    "simbolos": [
+     [
+      "PUVQ",
+      "quadrado de lado 2"
+     ],
+     [
+      "M",
+      "ponto médio de QV"
+     ],
+     [
+      "semirreta QV",
+      "começa em Q e segue além de V"
+     ]
+    ]
+   },
+   "pista": "Olhe o triângulo formado por M, V e U: ele tem um ângulo reto em V.",
+   "passos": [
+    {
+     "faz": "Leia os catetos do triângulo MVU",
+     "conta": "MV = 2/2 = 1 | VU = 2",
+     "porque": "M divide QV ao meio e VU é lado do quadrado.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique Pitágoras",
+     "conta": "MU² = 1² + 2² → MU² = 5 → MU = √5",
+     "porque": "O ângulo em V é reto, então MU é a hipotenusa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os pedaços de QR",
+     "conta": "QR = QM + MR → QR = 1 + √5",
+     "porque": "R está na circunferência de centro M, então MR é raio, igual a MU = √5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "√5 e 1 + √5 → alternativa C",
+     "porque": "A questão pede o raio e o segmento QR, nessa ordem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — √5 e 1 + √5",
+   "checagem": "Ordem de grandeza: √5 ≈ 2,24 fica entre o lado (2) e a diagonal do quadrado (√8 ≈ 2,83), como deve ser para MU. E QR ≈ 3,24 passa de QV = 2, coerente com R estar depois de V na figura.",
+   "erradas": {
+    "A": "√2 e 1 + √2 sai de usar 1 nos dois catetos: √(1² + 1²) = √2. O cateto VU é o lado inteiro, 2.",
+    "B": "√3 e 1 + √3 sai de subtrair os quadrados: √(2² − 1²) = √3. MU é hipotenusa, então se soma.",
+    "D": "√2 e 1/2 + √2 sai de dois erros: catetos 1 e 1 no raio e QM = 1/2. QM é metade de 2, ou seja, 1.",
+    "E": "√5 e 1/2 + √5 acerta o raio, mas toma QM = 1/2. M é o meio de QV, que mede 2, então QM = 1."
+   },
+   "armadilha": "O cateto VU é o lado inteiro do quadrado (2), e só MV é a metade (1).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A medida do raio MU e do segmento QR.",
+    "chave": "MU² = 1² + 2² = 5, então MU = √5; QR = QM + MR = 1 + √5.",
+    "cuidado": "QM é metade do lado 2, isto é, 1, e o raio entra somado em QR."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas",
+    "ideia": "Com Q = (0, 0), M = (1, 0) e U = (2, 2): MU = √(1 + 4) = √5 e R = (1 + √5, 0)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "MV = 2/2 = 1",
+    "nota": "M é meio de QV"
+   },
+   {
+    "linha": "MU² = 1² + 2² = 5",
+    "nota": "Pitágoras em MVU"
+   },
+   {
+    "linha": "MU = √5",
+    "nota": "raiz dos dois lados"
+   },
+   {
+    "linha": "QR = 1 + √5",
+    "nota": "QM mais o raio MR"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
+ },
+ "Pb139a0d2": {
+  "n": "44",
+  "conceito": "Comparar cos x com a aproximação P(x) = 1 − x²/2 em [−π, π]: valor em π/2, imagem de cada função e amplitude (variação entre máximo e mínimo) de cada gráfico.",
+  "equivocos": {
+   "A": "M10.5:leu-grafico-errado",
+   "C": "M10.5:imagem-igual-por-semelhanca-local",
+   "D": "M10.5:imagem-igual-por-semelhanca-local",
+   "E": "M10.5:imagem-igual-por-semelhanca-local"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A figura 1 é o cosseno (ondulação entre −1 e 1) e a figura 2 é a parábola P, que desce até perto de −π. Julgue cada afirmativa calculando os valores nos pontos e as imagens no intervalo. Nesta questão a banca trata a amplitude como a distância entre o valor máximo e o mínimo do gráfico.",
+    "formulas": [
+     "P(x) = 1 − x²/2 (2! = 2)",
+     "imagem de P em [−π, π] = [P(π), P(0)]",
+     "amplitude considerada = valor máximo − valor mínimo"
+    ],
+    "simbolos": [
+     [
+      "2!",
+      "fatorial de 2: 2 · 1 = 2"
+     ],
+     [
+      "P",
+      "polinômio que aproxima o cosseno perto de x = 0"
+     ],
+     [
+      "imagem",
+      "conjunto dos valores que a função assume"
+     ],
+     [
+      "[−π, π]",
+      "intervalo de −π até π, com as pontas"
+     ]
+    ]
+   },
+   "pista": "Comece pela I: calcule P(π/2) com π ≈ 3,14 e compare com cos(π/2).",
+   "passos": [
+    {
+     "faz": "Calcule P(π/2) e compare",
+     "conta": "P(π/2) = 1 − (π/2)²/2 = 1 − π²/8 ≈ −0,23 ; cos(π/2) = 0 → −0,23 < 0",
+     "porque": "A parábola já ficou abaixo do eixo em π/2, onde o cosseno vale zero: I é correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a imagem de P",
+     "conta": "P(0) = 1 ; P(π) = 1 − π²/2 ≈ −3,93 → imagem de P = [1 − π²/2, 1]",
+     "porque": "P é máximo em x = 0 e mínimo nas pontas ±π. O cosseno, no mesmo intervalo, vai de −1 a 1: as imagens diferem, e III é incorreta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Meça a amplitude do cosseno (figura 1)",
+     "conta": "máx − mín = 1 − (−1) = 2",
+     "porque": "O cosseno oscila entre −1 e 1, e a figura 1 tem forma de pulso de onda. Medida como a distância entre máximo e mínimo, a amplitude é 2: IV é correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Meça a amplitude da parábola (figura 2)",
+     "conta": "máx − mín = 1 − (1 − π²/2) = π²/2 ≈ 4,93 → ≠ 0",
+     "porque": "O gráfico de P sobe e desce bastante, então essa amplitude não é zero: II é incorreta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os julgamentos",
+     "conta": "I C ; II I ; III I ; IV C → alternativa B",
+     "porque": "Sobram as afirmativas I e IV.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — Somente as afirmativas I e IV são corretas.",
+   "checagem": "Confira a I pela figura: em x = π/2 ≈ 1,57 o cosseno já cruzou o eixo, mas a parábola cruza antes, em x = √2 ≈ 1,41; depois desse ponto P é negativo, logo P(π/2) < 0 = cos(π/2).",
+   "erradas": {
+    "A": "Aceita a II: a parábola da figura 2 vai de cerca de −3,93 até 1, uma variação de π²/2 ≈ 4,93, não 0. Deixa de fora a IV.",
+    "C": "Aceita a III: a imagem de P é [1 − π²/2, 1] ≈ [−3,93; 1], e a do cosseno é [−1, 1]. Deixa de fora a I, que é correta.",
+    "D": "Aceita II e III: a variação da parábola é π²/2 ≈ 4,93, não 0, e P desce até ≈ −3,93, abaixo do −1 do cosseno.",
+    "E": "Aceita II e III e rejeita a I, que é correta: P(π/2) = 1 − π²/8 ≈ −0,23, menor que cos(π/2) = 0."
+   },
+   "armadilha": "Achar que P e cosseno têm a mesma imagem porque se parecem perto de zero: nas pontas, P desce até cerca de −3,93.",
+   "alerta": "Amplitude: num cosseno de valores entre −1 e 1, os livros costumam chamar de amplitude a metade da variação, que dá 1. Mas o gabarito oficial é B, com a IV correta: a banca considerou a amplitude como a distância entre o valor máximo e o mínimo, que dá 2 (como na amplitude da estatística, máximo menos mínimo). A resolução segue esse critério. As outras três afirmativas não dependem dele.",
+   "essencial": {
+    "pede": "Quais afirmativas sobre cos x e P(x) = 1 − x²/2 em [−π, π] são corretas.",
+    "chave": "P(π/2) ≈ −0,23 < 0; imagem de P = [1 − π²/2, 1] ≠ [−1, 1]; o cosseno vai de −1 a 1.",
+    "cuidado": "Calcule P nas pontas ±π: a parábola desce muito mais que o cosseno."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por eliminação",
+    "ideia": "III é falsa (P chega a ≈ −3,93) e cai C, D e E; II é falsa (P varia ≈ 4,93) e cai A; sobra B."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(π/2) = 1 − π²/8 ≈ −0,23",
+    "nota": "valor da parábola em π/2"
+   },
+   {
+    "linha": "−0,23 < cos(π/2) = 0",
+    "nota": "I correta"
+   },
+   {
+    "linha": "P(π) = 1 − π²/2 ≈ −3,93",
+    "nota": "mínimo de P no intervalo"
+   },
+   {
+    "linha": "[−3,93; 1] ≠ [−1, 1]",
+    "nota": "III incorreta"
+   },
+   {
+    "linha": "1 − (−1) = 2",
+    "nota": "variação do cosseno: IV correta"
+   },
+   {
+    "linha": "1 − (1 − π²/2) = π²/2 ≈ 4,93",
+    "nota": "variação de P: II incorreta"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
+ }
+}

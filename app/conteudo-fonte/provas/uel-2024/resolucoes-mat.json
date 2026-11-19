@@ -84,5 +84,504 @@
    "data": "2026-11-12",
    "lote": "mat-0039"
   }
+ },
+ "P3c5f7d68": {
+  "n": "44",
+  "conceito": "Aplicar uma regra de recorrência definida por casos, posição por posição.",
+  "equivocos": {
+   "A": "M07.4:olhou-so-um-vizinho",
+   "C": "M07.4:copiou-o-valor-atual",
+   "D": "M07.4:aplicou-a-regra-errada",
+   "E": "M07.4:aplicou-a-regra-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A regra diz como cada posição da geração seguinte depende dos vizinhos na geração atual. A primeira posição olha só a2; as outras olham a soma dos dois vizinhos, a da esquerda e a da direita, e só ganham vida se essa soma for exatamente 1. O valor da própria posição não entra na conta.",
+    "formulas": [
+     "a'1 = 1 se a2 = 1; senão 0",
+     "para n > 1: a'n = 1 se a(n+1) + a(n−1) = 1; senão 0"
+    ],
+    "simbolos": [
+     [
+      "an",
+      "valor da posição n na geração t (1 = vida, 0 = sem vida)"
+     ],
+     [
+      "a'n",
+      "valor da posição n na geração t + 1"
+     ],
+     [
+      "a(n+1), a(n−1)",
+      "vizinhos da direita e da esquerda da posição n"
+     ]
+    ]
+   },
+   "pista": "Escreva a sequência dada e, para cada posição, olhe os vizinhos dela, não ela mesma.",
+   "passos": [
+    {
+     "faz": "Anote a geração t",
+     "conta": "a1 = 1 | a2 = 0 | a3 = 0 | a4 = 0 | ...",
+     "porque": "Só a primeira posição tem vida; todas as outras valem 0.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique a regra da posição 1",
+     "conta": "a2 = 0 → a'1 = 0",
+     "porque": "A posição 1 só ganha vida se a2 = 1. Como a2 = 0, ela fica sem vida, mesmo tendo a1 = 1 agora.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a regra da posição 2",
+     "conta": "a3 + a1 = 0 + 1 = 1 → a'2 = 1",
+     "porque": "Para n = 2, os vizinhos são a1 e a3. A soma dá exatamente 1, então nasce vida ali.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a regra às posições 3 em diante",
+     "conta": "n = 3: a4 + a2 = 0 + 0 = 0 → a'3 = 0 ; n ≥ 4: 0 + 0 = 0 → a'n = 0",
+     "porque": "Daí em diante os dois vizinhos valem 0, a soma é 0 e não é 1. Todas ficam sem vida.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a geração t + 1",
+     "conta": "0, 1, 0, 0, 0, ... → alternativa B",
+     "porque": "Só a posição 2 tem vida na geração seguinte.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 0, 1, 0, 0, 0, ...",
+   "checagem": "Teste a regra no exemplo da prova: da geração 1 (1, 1, 0, 0, 1, 0, 0, 0) ela dá 1, 1, 1, 1, 0, 1, 0, 0, exatamente a geração 2 da tabela. A leitura da regra está certa.",
+   "erradas": {
+    "A": "0, 0, 0, ... sai de olhar só o vizinho da direita, a(n+1), em todas as posições. Para n = 2 a regra soma também a1 = 1, e a soma 1 dá vida.",
+    "C": "1, 1, 0, ... sai de manter a'1 = 1 porque a1 = 1. A regra da posição 1 olha a2, que vale 0, então a'1 = 0.",
+    "D": "1, 1, 0, 1, 0, ... não confere: a'4 depende de a5 + a3 = 0 + 0 = 0, logo a'4 = 0; e a'1 = 0 porque a2 = 0.",
+    "E": "1, 1, 1, 1, ... não confere: a'3 depende de a4 + a2 = 0 + 0 = 0, logo a'3 = 0. Quase todas as posições têm vizinhos nulos."
+   },
+   "armadilha": "O valor da própria posição não conta: a posição 1 tem vida em t, mas morre em t + 1 porque a2 = 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A geração seguinte a 1, 0, 0, 0, ... pela regra dada.",
+    "chave": "Cada posição olha os vizinhos: só a posição 2 tem soma de vizinhos igual a 1.",
+    "cuidado": "Não copie o valor atual da posição; a regra usa só os vizinhos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "a'1 = 0 porque a2 = 0 elimina C, D e E; a'2 = 1 porque a1 + a3 = 1 elimina A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "t: 1, 0, 0, 0, 0, ...",
+    "nota": "geração dada"
+   },
+   {
+    "linha": "a'1: a2 = 0 → a'1 = 0",
+    "nota": "regra da 1ª posição"
+   },
+   {
+    "linha": "a'2: a3 + a1 = 0 + 1 = 1 → a'2 = 1",
+    "nota": "soma dos vizinhos é 1"
+   },
+   {
+    "linha": "a'3: a4 + a2 = 0 + 0 = 0 → a'3 = 0",
+    "nota": "soma 0, sem vida"
+   },
+   {
+    "linha": "t + 1: 0, 1, 0, 0, 0, ...",
+    "nota": "geração seguinte"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
+ },
+ "P7aec9c1b": {
+  "n": "13",
+  "conceito": "Triângulo retângulo com lados em PG: Pitágoras leva à equação da razão áurea e dá a área.",
+  "equivocos": {
+   "A": "M08.1:hipotenusa-como-cateto-na-area",
+   "B": "M08.1:respondeu-quadrado-da-hipotenusa",
+   "C": "M08.1:raiz-errada-da-razao",
+   "D": "M08.1:nao-usou-pitagoras"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com lados em PG de razão q > 1 e o menor igual a 1, os lados são 1, q e q²; o maior, q², é a hipotenusa. Pitágoras dá uma equação em q que, trocando q² por uma letra, é exatamente x² = 1 + x. Assim q² = φ, e a área usa os dois catetos.",
+    "formulas": [
+     "Pitágoras: cateto² + cateto² = hipotenusa²",
+     "área do triângulo retângulo = (cateto · cateto)/2"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada lado é o anterior vezes q"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ],
+     [
+      "φ",
+      "fi, a solução positiva de x² = 1 + x (razão áurea)"
+     ],
+     [
+      "escaleno",
+      "triângulo com os três lados diferentes"
+     ]
+    ]
+   },
+   "pista": "Escreva os três lados com q, ponha a hipotenusa no lugar certo de Pitágoras e compare a equação com x² = 1 + x.",
+   "passos": [
+    {
+     "faz": "Escreva os lados em PG",
+     "conta": "lados: 1 | q | q² (q > 1) → hipotenusa = q²",
+     "porque": "O menor lado é 1 e cada lado seguinte é o anterior vezes q. Como q > 1, q² é o maior, oposto ao ângulo reto.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique Pitágoras",
+     "conta": "1² + q² = (q²)² → (q²)² = 1 + q²",
+     "porque": "A soma dos quadrados dos catetos é o quadrado da hipotenusa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reconheça a equação de φ",
+     "conta": "x = q² → x² = 1 + x → q² = φ → q = √φ",
+     "porque": "A equação em q² é a mesma de φ, cuja única solução positiva é φ. Como q > 0, q = √φ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área com os catetos",
+     "conta": "área = (1 · q)/2 → área = (1/2)√φ",
+     "porque": "Os catetos são 1 e q; a hipotenusa não entra na fórmula da área.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "área = (1/2)√φ → alternativa E",
+     "porque": "É a área de T escrita em função de φ.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — (1/2)√φ",
+   "checagem": "Em números: φ ≈ 1,618, q ≈ 1,272 e q² ≈ 1,618. Pitágoras: 1 + 1,618 = 2,618 e 1,618² ≈ 2,618. Fecha, e a área vale 1,272/2 ≈ 0,636.",
+   "erradas": {
+    "A": "(1/2)φ sai de usar a hipotenusa como cateto: (1 · q²)/2 = φ/2. A área usa os dois catetos, 1 e q.",
+    "B": "φ² sai do quadrado da hipotenusa: (q²)² = φ² ≈ 2,618. Isso é um lado ao quadrado, não a área (≈ 0,636).",
+    "C": "(1/2)⁴√φ não confere: com q = ⁴√φ ≈ 1,128, 1 + q² ≈ 2,272 e q⁴ = φ ≈ 1,618; Pitágoras falha.",
+    "D": "1 não confere: área 1 exige q = 2, lados 1, 2 e 4, mas 1 + 4 = 5 não é 16."
+   },
+   "armadilha": "A hipotenusa é q², não q: quem a usa como cateto na área chega a φ/2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do triângulo retângulo de lados 1, q, q² em função de φ.",
+    "chave": "Pitágoras dá (q²)² = 1 + q², logo q² = φ e área = q/2 = (1/2)√φ.",
+    "cuidado": "A área usa só os catetos, 1 e q."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "estimativa",
+    "ideia": "Com φ ≈ 1,618, q ≈ 1,272 e área ≈ 0,636; só (1/2)√φ ≈ 0,636 bate entre as alternativas."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "lados: 1, q, q²",
+    "nota": "PG com menor lado 1"
+   },
+   {
+    "linha": "1 + q² = (q²)²",
+    "nota": "Pitágoras, hipotenusa q²"
+   },
+   {
+    "linha": "x² = 1 + x com x = q² → q² = φ",
+    "nota": "mesma equação de φ"
+   },
+   {
+    "linha": "q = √φ",
+    "nota": "q é positivo"
+   },
+   {
+    "linha": "área = (1 · q)/2 = (1/2)√φ",
+    "nota": "catetos 1 e q"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
+ },
+ "P59e186dc": {
+  "n": "18",
+  "conceito": "Testar a resposta de um chatbot sobre a intersecção de sen x com x: sen(2nπ) = 2nπ só para n = 0, mas a intersecção (0, 0) existe e o seno tem período 2π.",
+  "equivocos": {
+   "A": "M10.5:aceitou-para-todo-sem-contraexemplo",
+   "B": "M10.5:aceitou-para-todo-sem-contraexemplo",
+   "D": "M10.5:aceitou-para-todo-sem-contraexemplo",
+   "E": "M10.5:ignorou-imagem-do-seno"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada afirmativa é um teste de igualdade: troque x pelo valor e compare os dois lados. Lembre que o seno só vale entre −1 e 1, enquanto g(x) = x cresce sem limite. E o seno se repete a cada 2π.",
+    "formulas": [
+     "sen(2nπ) = 0 para todo n inteiro",
+     "sen((2n + 1)π/2) = 1 ou −1",
+     "sen(x + 2nπ) = sen x (período 2π)"
+    ],
+    "simbolos": [
+     [
+      "n ∈ Z",
+      "n é um número inteiro (…, −1, 0, 1, …)"
+     ],
+     [
+      "f(x) = sen x",
+      "função seno"
+     ],
+     [
+      "g(x) = x",
+      "função identidade: devolve o próprio x"
+     ],
+     [
+      "intersecção dos gráficos",
+      "pontos em que f(x) = g(x)"
+     ]
+    ]
+   },
+   "pista": "Teste a afirmativa I com n = 1 antes de aceitar o \"para todo n\".",
+   "passos": [
+    {
+     "faz": "Teste a I com n = 1",
+     "conta": "f(2π) = sen(2π) = 0 ; g(2π) = 2π ≈ 6,28 → 0 ≠ 6,28",
+     "porque": "Basta um contraexemplo para derrubar um \"para todo\". A igualdade só vale com n = 0: I é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a II",
+     "conta": "f(π/2) = sen(π/2) = 1 ; g(π/2) = π/2 ≈ 1,57 → 1 ≠ 1,57",
+     "porque": "Nesses pontos o seno vale 1 ou −1, mas (2n + 1)π/2 tem módulo pelo menos π/2 ≈ 1,57. Nunca coincidem: II é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a III com x = 0",
+     "conta": "f(0) = sen 0 = 0 ; g(0) = 0 → 0 = 0",
+     "porque": "O ponto (0, 0) está nos dois gráficos, então a intersecção não é vazia: III é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue a IV pelo período",
+     "conta": "sen(x + 2nπ) = sen x → f(x + 2nπ) = f(x)",
+     "porque": "Somar voltas inteiras de 2π leva ao mesmo ponto do ciclo trigonométrico: IV é verdadeira.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Junte os julgamentos",
+     "conta": "I F ; II F ; III V ; IV V → alternativa C",
+     "porque": "A resposta do chatbot erra os pontos, mas acerta a conclusão de que há intersecção.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — Somente as afirmativas III e IV são corretas.",
+   "checagem": "Pela imagem do seno: como −1 ≤ sen x ≤ 1, só pode haver intersecção com |x| ≤ 1. Os pontos 2nπ com n ≠ 0 e todos os (2n + 1)π/2 ficam fora desse intervalo; dentro dele, x = 0 serve.",
+   "erradas": {
+    "A": "Aceita I e II, as duas falsas: sen(2π) = 0 ≠ 2π e sen(π/2) = 1 ≠ π/2. Ficam de fora as duas corretas.",
+    "B": "Aceita a I, falsa: com n = 1, f(2π) = 0 e g(2π) = 2π. E deixa de fora a III, que vale com x = 0.",
+    "D": "Aceita I e II, falsas (sen(2π) = 0 ≠ 2π; sen(π/2) = 1 ≠ π/2), e deixa de fora a IV, que é o período do seno.",
+    "E": "Aceita a II, falsa: nos pontos (2n + 1)π/2 o seno vale ±1, e |(2n + 1)π/2| ≥ π/2 ≈ 1,57."
+   },
+   "armadilha": "Confiar no \"para todo n\" do chatbot sem testar um n diferente de zero.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmativas sobre a intersecção de sen x e x são corretas.",
+    "chave": "Substituir valores: sen(2π) = 0 ≠ 2π e sen(π/2) = 1 ≠ π/2, mas sen 0 = 0.",
+    "cuidado": "Um contraexemplo derruba um \"para todo\"; um exemplo basta para \"não vazia\"."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela imagem",
+    "ideia": "Como o seno fica entre −1 e 1, só |x| ≤ 1 pode ser intersecção: caem I e II, e x = 0 confirma III."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "sen(2π) = 0 ; 2π ≈ 6,28 → 0 ≠ 6,28",
+    "nota": "I falsa com n = 1"
+   },
+   {
+    "linha": "sen(π/2) = 1 ; π/2 ≈ 1,57 → 1 ≠ 1,57",
+    "nota": "II falsa"
+   },
+   {
+    "linha": "sen 0 = 0 = g(0)",
+    "nota": "III verdadeira: ponto (0, 0)"
+   },
+   {
+    "linha": "sen(x + 2nπ) = sen x",
+    "nota": "IV verdadeira: período 2π"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
+ },
+ "P74d40ae9": {
+  "n": "60",
+  "conceito": "Elipse na forma (x/a)² + (y/b)² = 1: interceptos, triângulo retângulo por coordenadas e distância à origem não constante; dois itens de gravitação.",
+  "equivocos": {
+   "B": "M12.4:elipse-tomada-por-circunferencia",
+   "C": "M12.4:intercepto-da-conica-errado",
+   "D": "M12.4:intercepto-da-conica-errado",
+   "E": "M12.4:elipse-tomada-por-circunferencia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A curva (5x/13)² + (10y/17)² = 1 é meia elipse: corta o eixo x em x = ±13/5 e o eixo y em y = −17/10 (só a parte com y ≤ 0). Como 13/5 ≠ 17/10, não é circunferência. Dois itens são de Física: a gravidade a uma altura h é GM/(R + h)², que não é zero.",
+    "formulas": [
+     "(x/a)² + (y/b)² = 1: corta o eixo x em ±a e o eixo y em ±b",
+     "gravidade à distância d do centro da Terra: g = GM/d²",
+     "peso = massa × gravidade"
+    ],
+    "simbolos": [
+     [
+      "T1, M2",
+      "pontos da curva sobre o eixo x"
+     ],
+     [
+      "M1",
+      "ponto dado no item 3"
+     ],
+     [
+      "G",
+      "constante da gravitação universal"
+     ],
+     [
+      "M, R",
+      "massa e raio da Terra"
+     ],
+     [
+      "h",
+      "altura da sonda acima da superfície"
+     ]
+    ]
+   },
+   "pista": "Faça y = 0 na equação da curva para achar T1 e M2; o resto dos itens sai deles.",
+   "passos": [
+    {
+     "faz": "Ache os pontos da curva no eixo x",
+     "conta": "(5x/13)² = 1 → 5x/13 = ±1 → x = ±13/5 ; T1 = (−13/5, 0) e M2 = (13/5, 0)",
+     "porque": "Com y = 0, sobra só o termo em x; T1 está no lado x ≤ 0 e M2 no lado x ≥ 0. Item 1: V.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue os itens de gravitação",
+     "conta": "g = GM/(R + h)² > 0 → peso = m × g ≠ 0",
+     "porque": "A distância ao centro da Terra é R + h, então o item 2 é V; o peso diminui com a altura, mas não se anula: item 4 é F.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste o triângulo T1M1M2",
+     "conta": "T1 = (−13/5, 0) e M1 = (−13/5, −13/10): mesmo x → T1M1 vertical | T1 e M2: mesmo y → T1M2 horizontal",
+     "porque": "Um lado vertical e um horizontal com o vértice comum T1 formam ângulo reto em T1. Item 3: V.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste a distância à origem",
+     "conta": "(13/5, 0): distância 13/5 = 2,6 | (0, −17/10): distância 17/10 = 1,7",
+     "porque": "Dois pontos da curva estão a distâncias diferentes de O: a curva não é circunferência. Item 5: F.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Monte a sequência",
+     "conta": "V, V, V, F, F → alternativa A",
+     "porque": "De cima para baixo, na ordem dos itens.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — V, V, V, F, F",
+   "checagem": "Confira T1 e M2 na equação: (5/13 × 13/5)² + 0 = 1, e o ponto (0, −17/10) dá 0 + (10/17 × 17/10)² = 1. Os dois estão na curva, a 2,6 e a 1,7 de O.",
+   "erradas": {
+    "B": "V, F, F, F, V não confere: marca F no item 2, mas a gravidade à altura h é GM/(R + h)², e marca V no item 5, mas a curva está a 2,6 de O em M2 e a 1,7 em (0, −17/10).",
+    "C": "F, V, V, V, F não confere: marca F no item 1, mas y = 0 dá x = ±13/5, e marca V no item 4, mas o peso m × GM/(R + h)² não é zero.",
+    "D": "F, F, F, V, V não confere: o item 1 é V (x = ±13/5) e o item 3 é V, porque T1M1 é vertical e T1M2 é horizontal.",
+    "E": "F, F, V, F, V não confere: o item 1 é V (x = ±13/5) e o item 5 é F, porque as distâncias a O variam de 1,7 a 2,6."
+   },
+   "armadilha": "A curva parece um arco de circunferência no desenho, mas é meia elipse: 13/5 no eixo x e 17/10 no eixo y.",
+   "alerta": "A questão mistura Matemática e Física: os itens 2 e 4 são de gravitação (g = GM/(R + h)²), e a curva é uma elipse, não uma circunferência.",
+   "essencial": {
+    "pede": "A sequência de V e F dos cinco itens sobre a trajetória da sonda.",
+    "chave": "y = 0 dá T1 e M2 em ±13/5; T1M1 vertical e T1M2 horizontal dão ângulo reto; semieixos diferentes tiram o raio constante.",
+    "cuidado": "Não confie no desenho: confira com a equação; e peso só se anula longe de qualquer massa, não a uma altura h."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "O item 1 é V (y = 0 dá ±13/5), o que tira C, D e E; o item 2 é V, o que tira B."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(5x/13)² = 1 → x = ±13/5",
+    "nota": "y = 0 na curva"
+   },
+   {
+    "linha": "T1 = (−13/5, 0) ; M2 = (13/5, 0)",
+    "nota": "item 1: V"
+   },
+   {
+    "linha": "g = GM/(R + h)² ≠ 0",
+    "nota": "itens 2 V e 4 F"
+   },
+   {
+    "linha": "T1M1 vertical, T1M2 horizontal → ângulo reto",
+    "nota": "item 3: V"
+   },
+   {
+    "linha": "13/5 = 2,6 ≠ 17/10 = 1,7",
+    "nota": "item 5: F"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
  }
 }
