@@ -372,3 +372,13 @@ RECLASS Pd1fa689a B10.1 -> B06.4
 RECLASS P2fd0e098 B09.4 -> B09.7
 RECLASS P1a1790e7 B09.3 -> B03.4
 RECLASS Pf8278c10 B09.3 -> B09.7
+
+## 2026-11-19 18:27 UTC — FIM — session_01PveEKXZwKo3vJj1Pbjeenm
+Último lote gravado: bio-0077. Nenhum lote aberto.
+Nesta sessão: bio-0075 (48 ok, 2 pendentes), bio-0076 (48 ok, 2 pendentes), bio-0077 (26 ok, 1 pendente) = 122 resoluções; 5 pendentes: ANULAR P1310e5f6, OUTRA/RECLASS P0f22cd78 (é de Química Q02.4), ANULAR P35e8537a, ANULAR Pbc448a30, PRINT Pd1fa689a (linhas nos blocos PENDENCIAS acima). Divergências: 0. Nenhuma questão sem gabarito publicado.
+Testes depois do bio-0077: converte + tsc + vitest verdes (786 passed).
+Conferência no site local (P2e3f655a, P671465bb, Pb9e11a3f, em 390 e 1280 px): 4 blocos na ordem, pegadinha, animação até o último passo, "por que as outras" fechado e abrindo, sem erro de console nem rolagem lateral.
+Status bio (lote.py status): 0 faltam.
+
+## 2026-11-19 18:27 UTC — ACABOU — session_01PveEKXZwKo3vJj1Pbjeenm
+Biologia terminada: nenhuma questão de Biologia sem resolução fora das pendências registradas. A vaga pode ir para outra matéria.
