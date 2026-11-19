@@ -49,3 +49,25 @@ DADO P1b56ab79: alternativas -> vazias; no print: A 1-pentanol, ciclopentanol, 3
 DADO P5fb50f4d: alternativas.E -> termina em "na endorfina."; "Dopamina Serotonina Acetilcolina Endorfina" são legendas da figura
 DADO P4be6c5d2: alternativas -> vazias (A–E são estruturas no print)
 DADO Pb46169e5: número -> o print traz "53", a entrada diz 74
+
+## 2026-11-19 — PENDENCIAS — session_01PveEKaFZ75HhzLpwG4RGm9
+Lote qui-0065 gravado (58 ok, 2 pendentes). Lote aberto: qui-0066.
+ANULAR P1ea356c5 (URCA PSU 2025.1 q37): D também é verdadeira — o canabidiol tem isomeria cis-trans no anel (carbonos com H e grupo); D e E corretas. Conferente confirmou. Banca não anulou (só a q35 de Química).
+ANULAR P9535cdb8 (URCA PSU 2025.2 Iguatu): II (CH3–CH=CH–Cl) e IV (CH3–CH=CH–COOH) também têm cis-trans; todas as alternativas trazem só compostos com isomeria geométrica e a oficial D não é única. Conferente confirmou. Sem recurso de Química publicado.
+GABARITO P2cb94bac: oficial C (trans ferve mais alto) contraria a regra geral; dados de tabela (trans ~300 °C) apoiam a banca; alerta explica.
+GABARITO P2a91c205: oficial A (diol mais solúvel); ácido butanoico também é bem solúvel; alerta explica.
+PRINT P514d9f01 (PUC-Rio 2026 q33): figura da serotonina cortada e dividida; refazer do PDF oficial (resolvida, a resposta depende só da adrenalina).
+RECLASS Pb38c0aea Q11.6 -> Q12.3
+RECLASS P16e9775c Q11.6 -> Q04.2
+RECLASS Pdf93e41e Q11.6 -> Q11.5
+RECLASS Pba3ecd52 Q11.6 -> Q08.3
+RECLASS P9f654dbe Q11.7 -> Q11.2
+RECLASS Pb0464697 Q11.7 -> Q11.1
+RECLASS P69f5400c Q11.7 -> Q12.1
+DADO Paac2dfd5: alternativas.A -> "quatro ligações do tipo π"
+DADO Peef62ae9: alternativas.D -> "um total de seis elétrons pi (π) dispostos em toda a sua estrutura."
+DADO P1befcc04: alternativas.C -> "a substância II tem estrutura de um aldeído β,γ-insaturado, enquanto a substância I constitui-se num álcool β-insaturado."
+DADO Pba8e1627: alternativas.A -> "2ⁿ." e alternativas.E -> "n²."
+DADO P1e024d8f: alternativas.E -> termina em "...carbonos da dupla ligação." (entrada colou "Geografia - Objetivas")
+DADO P21face81: alternativas ausentes -> A 1. B 2. C 3. D 4. E 5.
+DADO Pffe22420: alternativas.B -> no print "ClH2 −COOH" (erro da prova; pretendido ClH2C–COOH); alerta explica
