@@ -574,5 +574,127 @@
    "data": "2026-11-19",
    "lote": "qui-0066"
   }
+ },
+ "P851c660f": {
+  "n": "27",
+  "conceito": "Relação entre forma protonada e desprotonada de um fármaco básico a partir do pKb e do pH (Henderson-Hasselbalch).",
+  "equivocos": {
+   "B": "Q08.5:pkb-e-razao-invertida",
+   "C": "Q08.5:inverteu-a-razao",
+   "D": "Q08.5:usou-pkb-como-pka",
+   "E": "Q08.5:trocou-base-e-expoente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A equação BH⁺ ⇌ B + H⁺ do texto é a ionização do ácido conjugado BH⁺, então a constante que entra é o pKa de BH⁺, não o pKb da quinidina. O dado vem como pKb de propósito: converter pKb em pKa é o trabalho real da questão. Depois, o pH do sangue compara-se com esse pKa.",
+    "formulas": [
+     "pKa (de BH⁺) + pKb (de B) = 14, a 25 °C",
+     "pH = pKa + log([B]/[BH⁺]), logo [BH⁺]/[B] = 10^(pKa − pH)"
+    ],
+    "simbolos": [
+     [
+      "BH⁺",
+      "forma protonada (ionizada) do fármaco básico"
+     ],
+     [
+      "B",
+      "forma desprotonada (não ionizada) do fármaco"
+     ],
+     [
+      "pKb",
+      "−log Kb, força da base; aqui 5,4"
+     ],
+     [
+      "pKa",
+      "−log Ka, força do ácido conjugado BH⁺"
+     ],
+     [
+      "quinidina",
+      "fármaco básico; o nitrogênio do anel bicíclico é o que recebe o H⁺"
+     ]
+    ]
+   },
+   "pista": "A equação dada é de BH⁺ liberando H⁺: descubra que constante corresponde a ela antes de usar o pH.",
+   "passos": [
+    {
+     "faz": "Converta pKb em pKa",
+     "conta": "pKa + pKb = 14 → pKa = 14 − 5,4 = 8,6",
+     "porque": "A equação BH⁺ ⇌ B + H⁺ é a de um ácido; quem a governa é o Ka do par conjugado da quinidina.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva Henderson-Hasselbalch para o par",
+     "conta": "pH = pKa + log([B]/[BH⁺]) → 7,4 = 8,6 + log([B]/[BH⁺])",
+     "porque": "A relação entre a forma ionizada e a não ionizada depende só da distância entre pH e pKa.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Isole o logaritmo",
+     "conta": "log([B]/[BH⁺]) = 7,4 − 8,6 = −1,2 → log([BH⁺]/[B]) = 1,2",
+     "porque": "Inverter a fração troca o sinal do log; a pergunta pede protonada sobre desprotonada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "[BH⁺]/[B] = 10^1,2 → alternativa A",
+     "porque": "O pH (7,4) está abaixo do pKa (8,6): o meio tem H⁺ suficiente para manter a maior parte protonada.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — a relação protonada/desprotonada no plasma é 10^1,2 (cerca de 16 para 1).",
+   "checagem": "Teste qualitativo: abaixo do pKa predomina a forma protonada, então a razão BH⁺/B tem de ser maior que 1. Só 10^1,2, 10² e 1,2^10 passam de 1; como a distância entre pH e pKa é 1,2, o expoente é 1,2 sobre a base 10: 10^1,2.",
+   "erradas": {
+    "B": "10² sai de usar o pKb no lugar do pKa e ainda inverter a fração: 7,4 − 5,4 = 2, razão 10².",
+    "C": "10^−1,2 sai de inverter a fração: é a razão desprotonada/protonada, [B]/[BH⁺]. A pergunta pede protonada sobre desprotonada.",
+    "D": "10^−2 sai de usar o pKb como se fosse pKa: log([BH⁺]/[B]) = 5,4 − 7,4 = −2, razão 10⁻². O pKb é da base; a equação BH⁺ ⇌ B + H⁺ pede o pKa = 8,6.",
+    "E": "1,2^10 não confere: a razão é uma potência de 10 com expoente 1,2 (10^1,2 ≈ 16), e 1,2^10 ≈ 6,2 troca base e expoente."
+   },
+   "armadilha": "Usar o pKb direto na fórmula: a equação do texto é a de BH⁺ como ácido, então é preciso o pKa = 14 − 5,4 = 8,6.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão [BH⁺]/[B] da quinidina no plasma (pH 7,4), dado pKb = 5,4.",
+    "chave": "pKa = 14 − 5,4 = 8,6; log([BH⁺]/[B]) = pKa − pH = 1,2; razão 10^1,2.",
+    "cuidado": "Converter pKb em pKa e não inverter a fração pedida."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "regra do predomínio",
+    "ideia": "pH abaixo do pKa → predomina a forma protonada; a distância 8,6 − 7,4 = 1,2 é o expoente: 10^1,2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "pKa = 14 − 5,4 = 8,6",
+    "nota": "pKb vira pKa do ácido conjugado"
+   },
+   {
+    "linha": "7,4 = 8,6 + log([B]/[BH⁺])",
+    "nota": "Henderson-Hasselbalch no sangue"
+   },
+   {
+    "linha": "log([B]/[BH⁺]) = 7,4 − 8,6 = −1,2",
+    "nota": "o 8,6 passa subtraindo"
+   },
+   {
+    "linha": "log([BH⁺]/[B]) = 1,2 → [BH⁺]/[B] = 10^1,2",
+    "nota": "inverte a fração, troca o sinal"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "reação",
+   "roteiro": "Quadro 1: a quinidina com o nitrogênio do anel bicíclico destacado e a equação BH⁺ ⇌ B + H⁺. Quadro 2: uma régua de pH com o pKa 8,6 marcado e o pH do sangue 7,4 à esquerda dele, a 1,2 unidade. Quadro 3: uma balança com BH⁺ pesando mais que B e a razão 10^1,2 ≈ 16 escrita sobre ela."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0076"
+  }
  }
 }

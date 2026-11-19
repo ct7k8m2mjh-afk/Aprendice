@@ -728,5 +728,144 @@
    "data": "2026-11-19",
    "lote": "qui-0073"
   }
+ },
+ "Pbad22d0d": {
+  "n": "21",
+  "conceito": "Calcular o pH de um tampão ácido carbônico/bicarbonato pela equação de Henderson-Hasselbalch, converter em pOH a 36 °C e diagnosticar acidose ou alcalose.",
+  "equivocos": {
+   "A": "Q08.7:confundiu-ph-com-poh",
+   "B": "Q08.7:tampao-conta-errada",
+   "C": "Q08.7:usou-ph-normal-do-texto",
+   "E": "Q08.7:tampao-conta-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ácido carbônico com bicarbonato é um tampão: o pH sai de pKa mais o log da razão base ÷ ácido. Mas a questão pede o pOH a 36 °C, quando pH + pOH vale 13,6 (dado da questão), não 14. O diagnóstico vem do pH: segundo o texto, o normal fica entre 7,35 e 7,45.",
+    "formulas": [
+     "n = m ÷ massa molar",
+     "pH = pKa + log([HCO3⁻] ÷ [H2CO3])",
+     "pKa = −log Ka",
+     "pOH = 13,6 − pH (36 °C, dado)"
+    ],
+    "simbolos": [
+     [
+      "tampão",
+      "mistura de ácido fraco e sua base conjugada que resiste a variações de pH"
+     ],
+     [
+      "NaHCO3",
+      "bicarbonato de sódio, massa molar 84 g/mol; fornece o HCO3⁻"
+     ],
+     [
+      "H2CO3",
+      "ácido carbônico, massa molar 62 g/mol"
+     ],
+     [
+      "Ka",
+      "constante de ionização do ácido carbônico"
+     ],
+     [
+      "pKa",
+      "−log Ka"
+     ],
+     [
+      "acidose / alcalose",
+      "pH do sangue abaixo / acima da faixa normal"
+     ]
+    ]
+   },
+   "pista": "Passe as duas massas para mol e monte a razão base ÷ ácido; o log 2 dado serve para o pKa.",
+   "passos": [
+    {
+     "faz": "Converta as massas em mol",
+     "conta": "NaHCO3: 16,8 g/84 g/mol = 0,2 mol | H2CO3: 1,24 g/62 g/mol = 0,02 mol",
+     "porque": "Tudo está em 1 L de sangue, então os mols já são as concentrações em mol/L.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o pKa",
+     "conta": "pKa = −log(2 × 10⁻⁷) = 7 − log 2 = 7 − 0,3 = 6,7",
+     "porque": "O log de um produto é a soma dos logs: −(log 2 + log 10⁻⁷).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a equação do tampão",
+     "conta": "pH = 6,7 + log(0,2/0,02) = 6,7 + log 10 = 6,7 + 1 = 7,7",
+     "porque": "No tampão, o pH depende da razão base ÷ ácido; aqui há dez vezes mais bicarbonato.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para pOH a 36 °C",
+     "conta": "pOH = 13,6 − 7,7 = 5,9",
+     "porque": "A questão dá pH + pOH = 13,6 nessa temperatura; usar 14 daria outro número.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Diagnostique e escolha a letra",
+     "conta": "pH 7,7 > 7,45 → alcalose | pOH 5,9 → alternativa D",
+     "porque": "Pelo texto, pH acima do normal (excesso de base) é alcalose.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — o pOH é 5,9 e o paciente está em alcalose.",
+   "checagem": "Pela razão: há 10 vezes mais base que ácido, então o pH tem de ficar 1 unidade acima do pKa (6,7 + 1 = 7,7), acima de 7,45; alcalose é coerente com excesso de bicarbonato.",
+   "erradas": {
+    "A": "A sai de entregar o pH (7,7) como se fosse o pOH e ainda chamar de acidose: pH 7,7 está acima de 7,45, o que é alcalose.",
+    "B": "B não confere: pOH 6,6 corresponderia a pH = 13,6 − 6,6 = 7,0, mas a razão 10 : 1 exige pH = 6,7 + 1 = 7,7.",
+    "C": "C não confere: 7,4 é o pH normal citado no texto, não o pOH; e o pH calculado, 7,7, indica alcalose, não acidose.",
+    "E": "E não confere: pOH 7,8 daria pH = 13,6 − 7,8 = 5,8, sangue ácido, o que contradiz o próprio rótulo de alcalose da alternativa."
+   },
+   "armadilha": "A pergunta é o pOH a 36 °C: depois do pH 7,7, ainda é preciso fazer 13,6 − 7,7 = 5,9.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O pOH do sangue com 0,2 mol/L de bicarbonato e 0,02 mol/L de ácido carbônico, e o diagnóstico.",
+    "chave": "pH = 6,7 + log 10 = 7,7; pOH = 13,6 − 7,7 = 5,9; pH acima de 7,45 é alcalose.",
+    "cuidado": "Usar 13,6 (36 °C) e não 14; e não confundir pH com pOH."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo H⁺",
+    "ideia": "[H⁺] = Ka × [ácido] ÷ [base] = 2 × 10⁻⁷ × 0,1 = 2 × 10⁻⁸, pH = 8 − 0,3 = 7,7 e pOH = 5,9."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "16,8/84 = 0,2 mol | 1,24/62 = 0,02 mol",
+    "nota": "massas em mol, em 1 L"
+   },
+   {
+    "linha": "pKa = 7 − log 2 = 7 − 0,3 = 6,7",
+    "nota": "−log(2 × 10⁻⁷)"
+   },
+   {
+    "linha": "pH = 6,7 + log(0,2/0,02) = 6,7 + 1 = 7,7",
+    "nota": "equação do tampão"
+   },
+   {
+    "linha": "pOH = 13,6 − 7,7 = 5,9",
+    "nota": "pH + pOH = 13,6 a 36 °C"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "reação",
+   "roteiro": "Quadro 1: H2CO3 ⇌ H⁺ + HCO3⁻, com 0,02 mol de ácido e 0,2 mol de bicarbonato. Quadro 2: a balança pende para o bicarbonato (10 : 1) e o pH sobe 1 acima do pKa 6,7. Quadro 3: a régua do sangue com a faixa 7,35–7,45 e o ponteiro em 7,7, na zona de alcalose. Quadro 4: 13,6 − 7,7 = 5,9."
+  },
+  "fontes": [
+   {
+    "nome": "Caderno oficial PUCPR Medicina 2024/1",
+    "url": "https://static.pucpr.br/pucpr/2023/10/prova-branca-medicina.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0076"
+  }
  }
 }

@@ -232,5 +232,123 @@
    "data": "2026-11-19",
    "lote": "qui-0074"
   }
+ },
+ "Pa1e70b40": {
+  "n": "4",
+  "conceito": "Comparar a acidez de amostras pela escala logarítmica de pH e classificar o caráter ácido, neutro ou básico.",
+  "equivocos": {
+   "B": "Q08.6:inverteu-ph-maior-mais-acido",
+   "C": "Q08.6:ph-7-como-acido",
+   "D": "Q08.6:ph-7-como-basico",
+   "E": "Q08.6:diferenca-de-ph-como-fator"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O pH é logarítmico: cada unidade a menos significa 10 vezes mais H⁺. Para comparar duas amostras, subtraia os pHs e eleve 10 a essa diferença. Na classificação, a 25 °C, pH 7 é neutro: não entra nem entre as ácidas nem entre as básicas.",
+    "formulas": [
+     "[H⁺] = 10^(−pH)",
+     "razão de acidez = 10^(diferença de pH)",
+     "pH < 7 ácido; = 7 neutro; > 7 básico (25 °C)"
+    ],
+    "simbolos": [
+     [
+      "H⁺",
+      "íon hidrogênio, que define a acidez"
+     ],
+     [
+      "escala logarítmica",
+      "cada unidade corresponde a um fator 10"
+     ]
+    ]
+   },
+   "pista": "Antes de comparar, transforme cada diferença de pH numa potência de 10.",
+   "passos": [
+    {
+     "faz": "Compare as regiões 1 e 2",
+     "conta": "pH 3 × pH 5 → 10⁵⁻³ = 10² = 100",
+     "porque": "A região 1 tem pH duas unidades menor, logo 100 vezes mais H⁺: a A está certa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a comparação da B",
+     "conta": "região 5 pH 10 × região 4 pH 8 → a 5 tem 100 vezes MENOS H⁺",
+     "porque": "pH maior é menos ácido; a B inverte o sentido e o fator.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Classifique as amostras (C e D)",
+     "conta": "ácidas: 1 (pH 3), 2 (pH 5) | neutra: 3 (pH 7) | básicas: 4 (pH 8), 5 (pH 10)",
+     "porque": "pH 7 é neutro a 25 °C, então a região 3 não é ácida nem básica.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste a comparação da E",
+     "conta": "região 4 pH 8 × região 3 pH 7 → 10⁸⁻⁷ = 10 vezes mais OH⁻",
+     "porque": "Uma unidade de pH é fator 10, não 1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Escolha a alternativa",
+     "conta": "só a A confere",
+     "porque": "Todas as outras erram o fator ou a classificação.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — a amostra da região 1 é 100 vezes mais ácida que a da região 2.",
+   "checagem": "Pelas concentrações: região 1, [H⁺] = 10⁻³ mol/L; região 2, 10⁻⁵ mol/L. 10⁻³ ÷ 10⁻⁵ = 100.",
+   "erradas": {
+    "B": "B inverte o sentido: a região 5 (pH 10) é menos ácida que a 4 (pH 8), e a diferença de 2 unidades dá fator 100, não 10.",
+    "C": "C põe a região 3 entre as ácidas, mas pH 7 é neutro a 25 °C; ácidas são só a 1 e a 2.",
+    "D": "D põe a região 3 entre as básicas, mas pH 7 é neutro; básicas são só a 4 e a 5.",
+    "E": "E sai de tomar a diferença de pH (8 − 7 = 1) como o fator: 10¹ = 10, então a região 4 é 10 vezes mais básica, não 1 vez."
+   },
+   "armadilha": "A diferença de pH é um expoente: 2 unidades valem 100 vezes, não 2 vezes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A comparação correta de acidez entre amostras de chuva com pH 3, 5, 7, 8 e 10.",
+    "chave": "Razão de acidez = 10 elevado à diferença de pH: entre 3 e 5, 100 vezes.",
+    "cuidado": "pH 7 é neutro; pH maior é menos ácido."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem de degraus",
+    "ideia": "De pH 5 para pH 3 são dois degraus de ×10 cada: 10 × 10 = 100 vezes mais ácido."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "região 1: [H⁺] = 10⁻³ | região 2: [H⁺] = 10⁻⁵",
+    "nota": "[H⁺] = 10^(−pH)"
+   },
+   {
+    "linha": "10⁻³/10⁻⁵ = 10² = 100",
+    "nota": "expoentes se subtraem"
+   },
+   {
+    "linha": "região 4 × 3: 10⁸⁻⁷ = 10",
+    "nota": "uma unidade = fator 10"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "Quadro 1: régua de pH de 0 a 14 com as regiões 1 a 5 marcadas em 3, 5, 7, 8 e 10. Quadro 2: zona ácida (1 e 2), o 7 neutro (3) e zona básica (4 e 5). Quadro 3: seta entre 3 e 5 marcando ×100 de H⁺."
+  },
+  "fontes": [
+   {
+    "nome": "Caderno oficial UNEMAT 2022/2",
+    "url": "https://storage.googleapis.com/r-s1/portaldocandidato/eventos/24/publicacoes/2022-2-edital-004-divulgacao-do-caderno-de-prova-1655128451.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0076"
+  }
  }
 }

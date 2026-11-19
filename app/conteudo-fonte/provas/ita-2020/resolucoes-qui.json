@@ -1223,5 +1223,130 @@
    "data": "2026-11-19",
    "lote": "qui-0075"
   }
+ },
+ "P7aae223b": {
+  "n": "57",
+  "conceito": "Bateria H2/Br2: potencial em função do pH pela equação de Nernst e janela de estabilidade da água.",
+  "equivocos": {
+   "B": "Q09.1:limite-da-agua-fixo-em-1229",
+   "C": "Q09.1:ignorou-nernst-no-anodo",
+   "D": "Q09.1:limite-da-agua-fixo-em-1229",
+   "E": "Q09.1:limite-da-agua-fixo-em-1229"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O potencial do eletrodo de hidrogênio depende do pH: pela equação de Nernst (com H2 a 1 atm), E = 0 − 0,06·pH. O eletrodo de O2/H2O também: E = 1,229 − 0,06·pH. A água é oxidada a O2 se esse potencial ficar abaixo do potencial em que o Br⁻ é oxidado (1,087 V). Com essas duas retas se julgam I, II e III.",
+    "formulas": [
+     "E(H⁺/H2) ≈ 0 − 0,06·pH",
+     "E(O2/H2O) ≈ 1,229 − 0,06·pH",
+     "Ecélula = Ecátodo − Eânodo"
+    ],
+    "simbolos": [
+     [
+      "Nernst",
+      "equação que corrige o potencial pela concentração; a 298 K, 0,059/n por década"
+     ],
+     [
+      "pH",
+      "−log[H⁺]"
+     ],
+     [
+      "Br3⁻, Br5⁻",
+      "íons polibrometo, formados por Br2 e Br⁻"
+     ],
+     [
+      "janela de estabilidade",
+      "faixa em que a água não é oxidada nem reduzida"
+     ]
+    ]
+   },
+   "pista": "Escreva o potencial do eletrodo de hidrogênio em função do pH e compare a reta do O2/H2O com o 1,087 V do bromo.",
+   "passos": [
+    {
+     "faz": "Avalie a afirmação I",
+     "conta": "Eânodo = 0 − 0,06·pH → Ecélula = 1,087 − (−0,06·pH) = 1,087 + 0,06·pH",
+     "porque": "Pela equação de Nernst, cada unidade de pH baixa o potencial de redução do H⁺/H2 em cerca de 0,06 V. I está correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Avalie a afirmação II",
+     "conta": "1,229 − 0,06·pH > 1,087 → 0,06·pH < 0,142 → pH < 0,142/0,06 ≈ 2,4",
+     "porque": "Ao recarregar, o Br⁻ é oxidado a 1,087 V; a água só não é oxidada a O2 se o seu potencial ficar acima desse valor. II está correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Avalie a afirmação III",
+     "conta": "E(O2/H2O) = 1,229 − 0,06·pH < 1,229 para pH > 0",
+     "porque": "O limite real depende do pH: em pH 3, por exemplo, a água já é oxidada a 1,229 − 0,18 ≈ 1,05 V. Ficar abaixo de 1,229 V não garante nada; III está errada.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Avalie a afirmação IV",
+     "conta": "H2 + Br2 → 2 HBr | Br2 + Br⁻ ⇌ Br3⁻ | 2 Br2 + Br⁻ ⇌ Br5⁻",
+     "porque": "A descarga forma HBr, então [HBr] sobe; o Br⁻ formado encontra Br2 e forma os polibrometos. IV está correta.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "I, II e IV corretas → alternativa A",
+     "porque": "Só a III é falsa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — estão corretas apenas I, II e IV.",
+   "checagem": "Teste II com um ponto: em pH 2, E(O2/H2O) = 1,229 − 0,12 = 1,109 V, acima de 1,087 V (água estável); em pH 3, 1,049 V, abaixo (água oxidada). O limite fica entre 2 e 3, perto de 2,4.",
+   "erradas": {
+    "B": "Inclui III, que é falsa (o limite de oxidação da água cai com o pH, então 1,229 V não é garantia), e deixa de fora II e IV, que são corretas.",
+    "C": "Deixa de fora a I, que é correta: o potencial do ânodo de hidrogênio é −0,06·pH, e a célula fica 1,087 + 0,06·pH.",
+    "D": "Inclui III, que é falsa, e deixa de fora I e II, corretas pela equação de Nernst.",
+    "E": "Inclui III: recarregar abaixo de 1,229 V não garante a estabilidade da água, porque o potencial do O2/H2O diminui 0,06 V por unidade de pH."
+   },
+   "armadilha": "Tratar 1,229 V como limite fixo: ele vale só em pH 0, e cai 0,06 V por unidade de pH.",
+   "alerta": "Os potenciais em função do pH supõem gases a 1 atm e usam 0,06 V no lugar de 0,059 V (com 0,059 o limite de II dá 2,41). Questão de nível ITA que usa Nernst, conteúdo além do ensino médio comum.",
+   "essencial": {
+    "pede": "Quais afirmações sobre a bateria H2/Br2 estão corretas.",
+    "chave": "Ecélula = 1,087 + 0,06·pH; água estável se 1,229 − 0,06·pH > 1,087, ou seja, pH < 2,4; descarga forma HBr e polibrometos.",
+    "cuidado": "O potencial de O2/H2O depende do pH; 1,229 V só vale em pH 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação pela III",
+    "ideia": "Descubra só que III é falsa (o limite da água cai com o pH): B, D e E caem; entre A e C, decide a I, verdadeira por Nernst."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Eânodo = 0 − 0,06·pH",
+    "nota": "Nernst no eletrodo de hidrogênio"
+   },
+   {
+    "linha": "Ecélula = 1,087 − (−0,06·pH) = 1,087 + 0,06·pH",
+    "nota": "afirmação I"
+   },
+   {
+    "linha": "1,229 − 0,06·pH > 1,087",
+    "nota": "água não pode oxidar antes do Br⁻"
+   },
+   {
+    "linha": "0,06·pH < 0,142 → pH < 0,142/0,06 ≈ 2,4",
+    "nota": "afirmação II"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "Quadro 1: a bateria de fluxo com H2 de um lado e Br2 do outro formando HBr. Quadro 2: gráfico E × pH com a reta horizontal do Br2/Br⁻ em 1,087 V e a reta descendente do O2/H2O saindo de 1,229 V; elas se cruzam em pH ≈ 2,4. Quadro 3: abaixo do cruzamento a água fica estável, acima ela oxida. Quadro 4: Br⁻ e Br2 se juntam em Br3⁻ e Br5⁻."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0076"
+  }
  }
 }

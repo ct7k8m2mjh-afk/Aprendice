@@ -754,5 +754,123 @@
    "data": "2026-11-19",
    "lote": "qui-0068"
   }
+ },
+ "P7edb7ff6": {
+  "n": "40",
+  "conceito": "Calcular o pH de um ácido forte muito diluído, em que a autoionização da água não pode ser desprezada.",
+  "equivocos": {
+   "A": "Q08.6:ignorou-a-diluicao",
+   "B": "Q08.6:ignorou-autoionizacao-da-agua",
+   "C": "Q08.6:diluicao-nao-muda-ph"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Depois da diluição, o HBr fica com 10⁻⁸ mol/L, menos H⁺ do que a própria água pura fornece (10⁻⁷ mol/L). Calcular −log(10⁻⁸) = 8 daria uma solução de ácido BÁSICA, o que é impossível. Nesse caso é preciso somar o H⁺ que vem da água.",
+    "formulas": [
+     "C1 · V1 = C2 · V2",
+     "Kw = [H⁺] · [OH⁻] = 10⁻¹⁴ (25 °C)",
+     "cargas: [H⁺] = [Br⁻] + [OH⁻]"
+    ],
+    "simbolos": [
+     [
+      "HBr",
+      "ácido bromídrico, ácido forte: ioniza totalmente"
+     ],
+     [
+      "autoprotólise da água",
+      "H2O + H2O ⇌ H3O⁺ + OH⁻, a ionização da própria água"
+     ],
+     [
+      "Kw",
+      "produto iônico da água"
+     ]
+    ]
+   },
+   "pista": "Calcule a concentração do ácido depois da diluição e compare com o H⁺ da água pura.",
+   "passos": [
+    {
+     "faz": "Calcule a concentração diluída",
+     "conta": "1,0 × 10⁻⁶ × 0,010 L = 1,0 × 10⁻⁸ mol | volume: 0,010 + 0,99 = 1,0 L → [HBr] = 1,0 × 10⁻⁸ mol/L",
+     "porque": "A quantidade de ácido se conserva e o volume vai para 1 L.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com o H⁺ da água",
+     "conta": "ácido: 10⁻⁸ mol/L × água pura: 10⁻⁷ mol/L",
+     "porque": "O ácido traz 10 vezes menos H⁺ que a água; ignorar a água daria pH 8, básico, absurdo para um ácido.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Some o H⁺ da água",
+     "conta": "[H⁺]² − 10⁻⁸ [H⁺] − 10⁻¹⁴ = 0 → [H⁺] ≈ 1,05 × 10⁻⁷ mol/L → pH ≈ 6,98",
+     "porque": "Pelo balanço de cargas, [H⁺] = [Br⁻] + Kw/[H⁺]; o pH fica um pouco abaixo de 7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha a alternativa",
+     "conta": "a autoprotólise da água decide o pH → D",
+     "porque": "Só a D reconhece que a água não pode ser desprezada.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a autoprotólise da água não pode ser desprezada no cálculo do pH.",
+   "checagem": "Caso extremo: a 25 °C, diluindo um ácido sem fim, o pH se aproxima de 7 por baixo, nunca passa de 7. O pH 6,98 obedece a isso.",
+   "erradas": {
+    "A": "A sai de ignorar a diluição: pH 6,0 é o da solução 10⁻⁶ mol/L ANTES da água; depois o ácido fica com 10⁻⁸ mol/L e o pH é cerca de 6,98.",
+    "B": "B sai de fazer −log(10⁻⁸) = 8 sem a água: daria uma solução de ácido básica, o que é impossível; o pH real é cerca de 6,98.",
+    "C": "C não confere: a diluição muda o pH de 6,0 para cerca de 6,98, porque a concentração de ácido cai 100 vezes."
+   },
+   "armadilha": "Com o ácido a 10⁻⁸ mol/L, −log dá 8, valor básico: a água fornece mais H⁺ que o ácido e tem de entrar na conta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O que se pode afirmar sobre o pH de HBr 10⁻⁶ mol/L diluído 100 vezes.",
+    "chave": "O ácido fica a 10⁻⁸ mol/L, abaixo do H⁺ da água (10⁻⁷); somando a água, pH ≈ 6,98.",
+    "cuidado": "A 25 °C, ácido diluído nunca passa de pH 7."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação pelo absurdo",
+    "ideia": "Ácido diluído não pode ter pH 8 (B), a diluição muda o pH (C) e o 6,0 é o de antes da diluição (A): sobra a D."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10⁻⁶ × 0,010 = 10⁻⁸ mol",
+    "nota": "mols de HBr"
+   },
+   {
+    "linha": "[HBr] = 10⁻⁸/1,0 = 10⁻⁸ mol/L",
+    "nota": "volume final 1,0 L"
+   },
+   {
+    "linha": "[H⁺]² − 10⁻⁸ [H⁺] − 10⁻¹⁴ = 0",
+    "nota": "H⁺ do ácido + H⁺ da água"
+   },
+   {
+    "linha": "[H⁺] ≈ 1,05 × 10⁻⁷ → pH ≈ 6,98",
+    "nota": "pouco abaixo de 7"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Quadro 1: béquer com 10 mL de HBr 10⁻⁶ mol/L (pH 6). Quadro 2: entra 0,99 L de água e o ácido fica a 10⁻⁸ mol/L. Quadro 3: H2O + H2O ⇌ H3O⁺ + OH⁻ mostra a água fornecendo 10⁻⁷ mol/L de H⁺, mais que o ácido. Quadro 4: o ponteiro de pH para em 6,98, logo abaixo do 7."
+  },
+  "fontes": [
+   {
+    "nome": "COTEPS Unimontes, PAES 2020",
+    "url": "https://www.coteps.unimontes.br/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0076"
+  }
  }
 }

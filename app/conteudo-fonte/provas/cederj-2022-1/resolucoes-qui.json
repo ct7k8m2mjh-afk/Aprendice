@@ -492,5 +492,267 @@
    "data": "2026-11-19",
    "lote": "qui-0073"
   }
+ },
+ "P9c1e1196": {
+  "n": "41",
+  "conceito": "pH em dois pontos da titulação de ácido fraco (HAc) com base forte: logo antes da equivalência (tampão) e com excesso de base.",
+  "equivocos": {
+   "B": "Q08.6:ignorou-o-excesso-de-base",
+   "C": "Q08.6:razao-do-tampao-errada",
+   "D": "Q08.6:razao-do-tampao-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro descubra em que ponto da titulação cada volume está: a equivalência é em 50,00 mL de NaOH. Com 49,95 mL falta um pouquinho para neutralizar tudo: sobra um resto de HAc junto de muito Ac⁻, um tampão com razão enorme. Com 75,00 mL já passou da equivalência: quem manda no pH é o OH⁻ em excesso da base forte.",
+    "formulas": [
+     "HAc + OH⁻ → Ac⁻ + H2O",
+     "antes da equivalência: pH = pKa + log((n Ac⁻)/(n HAc))",
+     "depois da equivalência: [OH⁻] = (n OH⁻ em excesso)/(volume total); pH = 14 − pOH"
+    ],
+    "simbolos": [
+     [
+      "HAc",
+      "ácido acético (CH3COOH), ácido fraco"
+     ],
+     [
+      "Ac⁻",
+      "íon acetato, base conjugada"
+     ],
+     [
+      "M",
+      "mol/L"
+     ],
+     [
+      "Ka",
+      "1,8 · 10⁻⁵; pKa = −log Ka ≈ 4,74"
+     ],
+     [
+      "ponto de equivalência",
+      "momento em que os mols de base igualam os de ácido"
+     ],
+     [
+      "titulante",
+      "a solução que é adicionada aos poucos, aqui o NaOH"
+     ]
+    ]
+   },
+   "pista": "Calcule os mols de ácido e veja em qual volume de NaOH eles se igualam; cada volume pedido está de um lado desse ponto.",
+   "passos": [
+    {
+     "faz": "Ache os mols e a equivalência",
+     "conta": "n HAc = 0,10 × 0,05000 = 5,000 · 10⁻³ mol → equivalência com 50,00 mL de NaOH",
+     "porque": "Concentrações iguais e reação 1:1: o volume de base na equivalência é o mesmo do ácido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça o balanço com 49,95 mL",
+     "conta": "n OH⁻ = 0,10 × 0,04995 = 4,995 · 10⁻³ | HAc: 5,000 − 4,995 = 0,005 · 10⁻³ | Ac⁻: 4,995 · 10⁻³",
+     "porque": "Todo OH⁻ reage e vira Ac⁻; sobra só 5 · 10⁻⁶ mol de HAc.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o tampão",
+     "conta": "pH = 4,74 + log(4,995/0,005) = 4,74 + log 999 ≈ 4,74 + 3,00 = 7,74",
+     "porque": "Ácido e base conjugada no mesmo volume: a razão dos mols basta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o excesso com 75,00 mL",
+     "conta": "n OH⁻ = 7,5 · 10⁻³ → excesso = 7,5 − 5,0 = 2,5 · 10⁻³ mol | [OH⁻] = 2,5 · 10⁻³/0,125 = 0,020 mol/L → pOH = 1,70 → pH = 12,30",
+     "porque": "Passada a equivalência, o OH⁻ da base forte domina; o acetato quase não pesa. O volume total é 50 + 75 = 125 mL.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "7,7 e 12,3 → alternativa A",
+     "porque": "Os dois valores aproximados batem com a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — os pH são aproximadamente 7,7 (com 49,95 mL) e 12,3 (com 75,00 mL).",
+   "checagem": "Ordem de grandeza: na equivalência exata o acetato daria pH perto de 8,7; um ponto 0,05 mL antes tem de ficar um pouco abaixo disso, e 7,7 fica. Com 25 mL de NaOH 0,1 em excesso diluídos em 125 mL, [OH⁻] = 0,1 × 25/125 = 0,02 mol/L, o mesmo da conta.",
+   "erradas": {
+    "B": "B não confere: 7,8 para 75 mL exigiria pouquíssimo OH⁻ livre, mas há 2,5 · 10⁻³ mol de base forte em excesso, que levam o pH a 12,3.",
+    "C": "C não confere: pH 10,0 com 49,95 mL pediria razão Ac⁻/HAc ≈ 1,8 · 10⁵ (10,0 − 4,74 ≈ 5,26), e a razão é 999; com 75 mL o pH é 12,3, não 11,0.",
+    "D": "D não confere: 5,7 é o pH de tampão com razão Ac⁻/HAc ≈ 9, bem longe dos 999 de 49,95 mL; e 6,8 ignora o excesso de NaOH em 75 mL."
+   },
+   "armadilha": "Achar que 49,95 mL já é a equivalência: sobra um resto mínimo de HAc, e é a razão 999 de tampão que dá 7,7.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O pH na titulação de 50,00 mL de HAc 0,10 M com NaOH 0,10 M após 49,95 mL e 75,00 mL.",
+    "chave": "49,95 mL: tampão com razão 999, pH = 4,74 + 3,00 = 7,74; 75 mL: OH⁻ em excesso 0,020 mol/L, pH = 12,30.",
+    "cuidado": "Situar cada volume em relação à equivalência (50 mL) e usar o volume total (125 mL) no excesso."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "conta direta do excesso",
+    "ideia": "Para 75 mL: [OH⁻] = 0,1 × (75 − 50)/125 = 0,02 mol/L, pH = 12,3; só a alternativa A tem 12,3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "n HAc = 0,10 × 0,05000 = 5,000 · 10⁻³ mol",
+    "nota": "equivalência em 50,00 mL"
+   },
+   {
+    "linha": "49,95 mL: HAc = 0,005 · 10⁻³ | Ac⁻ = 4,995 · 10⁻³",
+    "nota": "o OH⁻ vira acetato"
+   },
+   {
+    "linha": "pH = 4,74 + log 999 ≈ 7,74",
+    "nota": "Henderson-Hasselbalch"
+   },
+   {
+    "linha": "75 mL: excesso OH⁻ → [OH⁻] = (2,5 · 10⁻³)/0,125 = 0,020 mol/L",
+    "nota": "volume total 125 mL"
+   },
+   {
+    "linha": "pOH = 1,70 → pH = 14 − 1,70 = 12,30",
+    "nota": "pH + pOH = 14"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "Quadro 1: a curva de titulação pH × volume de NaOH, com a equivalência marcada em 50,00 mL. Quadro 2: um ponto em 49,95 mL, logo antes do salto, com o balanço HAc 0,005 · 10⁻³ × Ac⁻ 4,995 · 10⁻³ e o pH 7,7. Quadro 3: um ponto em 75,00 mL, no patamar alto, com o OH⁻ em excesso e o pH 12,3."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0076"
+  }
+ },
+ "P420c130b": {
+  "n": "37",
+  "conceito": "Usar o Kps para achar a [OH⁻] no limite de saturação e, dela, o pH.",
+  "equivocos": {
+   "A": "Q08.7:ph-fora-do-limite-de-saturacao",
+   "B": "Q08.7:ph-fora-do-limite-de-saturacao",
+   "C": "Q08.7:ph-fora-do-limite-de-saturacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A solução fica exatamente no limite de saturação quando [Cr³⁺]·[OH⁻]³ = Kps. Com [Cr³⁺] = 0,1 mol/L fixada, o Kps entrega a [OH⁻] máxima; acima dela o hidróxido volta a precipitar. O trabalho real é a raiz cúbica e a passagem de [OH⁻] para pH.",
+    "formulas": [
+     "Cr(OH)3(s) ⇌ Cr³⁺ + 3 OH⁻",
+     "Kps = [Cr³⁺] · [OH⁻]³",
+     "pOH = −log[OH⁻]; pH = 14 − pOH (Kw = 10⁻¹⁴)"
+    ],
+    "simbolos": [
+     [
+      "Kps",
+      "produto de solubilidade: o produto das concentrações dos íons na solução saturada"
+     ],
+     [
+      "[Cr³⁺]",
+      "concentração de íons cromo(III), em mol/L"
+     ],
+     [
+      "pOH",
+      "−log da concentração de OH⁻"
+     ],
+     [
+      "Kw",
+      "produto iônico da água, 10⁻¹⁴: liga pH e pOH"
+     ]
+    ]
+   },
+   "pista": "Escreva a expressão do Kps com o expoente certo no OH⁻ antes de colocar números.",
+   "passos": [
+    {
+     "faz": "Monte a expressão do Kps",
+     "conta": "Cr(OH)3(s) ⇌ Cr³⁺ + 3 OH⁻ | Kps = [Cr³⁺] · [OH⁻]³",
+     "porque": "Cada Cr(OH)3 libera três OH⁻, e o coeficiente vira expoente na expressão do Kps.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Isole a [OH⁻]³",
+     "conta": "6,0 × 10⁻¹¹ = 0,1 · [OH⁻]³ → [OH⁻]³ = (6,0 × 10⁻¹¹)/0,1 = 6,0 × 10⁻¹⁰",
+     "porque": "A [Cr³⁺] é fixada em 0,1 mol/L; o 0,1 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a raiz cúbica",
+     "conta": "[OH⁻] = ∛(6,0 × 10⁻¹⁰) ≈ 8,4 × 10⁻⁴ mol/L",
+     "porque": "6 × 10⁻¹⁰ = 600 × 10⁻¹²; a raiz cúbica de 600 fica entre 8 e 9, e a de 10⁻¹² é 10⁻⁴.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para pOH e pH",
+     "conta": "pOH = −log(8,4 × 10⁻⁴) ≈ 3,07 → pH = 14 − 3,07 ≈ 10,9",
+     "porque": "Com Kw = 10⁻¹⁴, pH + pOH = 14.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao valor aproximado",
+     "conta": "pH ≈ 10,9 ≈ 11,0 → alternativa D",
+     "porque": "É o pH em que a solução com 0,1 mol/L de Cr³⁺ fica no limite de saturação, sem precipitado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — o pH é aproximadamente 11,0.",
+   "checagem": "Substitua de volta: em pH 11, [OH⁻] = 10⁻³ e 0,1 × (10⁻³)³ = 10⁻¹⁰, da mesma ordem que 6,0 × 10⁻¹¹ (o pH exato 10,9 dá exatamente o Kps). Nenhuma outra alternativa chega perto dessa ordem de grandeza.",
+   "erradas": {
+    "A": "7,50 não confere: [OH⁻] = 10⁻⁶,⁵ e Q = 0,1 × (10⁻⁶,⁵)³ ≈ 3 × 10⁻²¹, cerca de 20 bilhões de vezes menor que o Kps; não é o limite de saturação pedido.",
+    "B": "7,80 não confere: [OH⁻] = 10⁻⁶,² e Q = 0,1 × (10⁻⁶,²)³ ≈ 2,5 × 10⁻²⁰, muito abaixo de 6,0 × 10⁻¹¹.",
+    "C": "9,00 não confere: [OH⁻] = 10⁻⁵ e Q = 0,1 × (10⁻⁵)³ = 10⁻¹⁶, ainda cerca de 600 mil vezes menor que o Kps."
+   },
+   "armadilha": "O expoente 3 do OH⁻: quem usa [OH⁻]² em vez de [OH⁻]³ chega a [OH⁻] = √(6 × 10⁻¹⁰) e pH ≈ 9,4, longe do certo.",
+   "alerta": "Em pH menor que 10,9 o precipitado também se dissolve; a questão pede o pH do limite, em que a solução com 0,1 mol/L de Cr³⁺ fica exatamente saturada. A prova usa ponto como separador decimal.",
+   "essencial": {
+    "pede": "O pH em que a solução fica com [Cr³⁺] = 0,1 mol/L, sem precipitado de Cr(OH)3.",
+    "chave": "[OH⁻]³ = Kps/[Cr³⁺] = 6 × 10⁻¹⁰ → [OH⁻] ≈ 8,4 × 10⁻⁴ → pOH ≈ 3,07 → pH ≈ 10,9.",
+    "cuidado": "O coeficiente 3 do OH⁻ vira expoente e exige raiz cúbica."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Calcule [Cr³⁺]·[OH⁻]³ com o [OH⁻] de cada pH: só pH 11 dá um produto da ordem do Kps (10⁻¹⁰)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Kps = [Cr³⁺] · [OH⁻]³",
+    "nota": "expressão do produto de solubilidade"
+   },
+   {
+    "linha": "6,0 × 10⁻¹¹ = 0,1 · [OH⁻]³",
+    "nota": "substituir os dados"
+   },
+   {
+    "linha": "[OH⁻]³ = (6,0 × 10⁻¹¹)/0,1 = 6,0 × 10⁻¹⁰",
+    "nota": "o 0,1 passa dividindo"
+   },
+   {
+    "linha": "[OH⁻] = ∛(6,0 × 10⁻¹⁰) ≈ 8,4 × 10⁻⁴",
+    "nota": "raiz cúbica"
+   },
+   {
+    "linha": "pOH ≈ 3,07 → pH = 14 − 3,07 ≈ 10,9",
+    "nota": "pH + pOH = 14"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Quadro 1: um béquer com precipitado verde de Cr(OH)3 e a equação Cr(OH)3 ⇌ Cr³⁺ + 3 OH⁻. Quadro 2: o pH vai sendo ajustado e o precipitado some até restar só solução com 0,1 mol/L de Cr³⁺. Quadro 3: a conta do Kps aparece, o 0,1 passa dividindo e a raiz cúbica dá 8,4 × 10⁻⁴. Quadro 4: uma régua de pH marca 10,9 ≈ 11."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "qui-0076"
+  }
  }
 }

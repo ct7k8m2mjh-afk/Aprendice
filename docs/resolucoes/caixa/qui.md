@@ -342,3 +342,23 @@ RECLASS P59c5d08e Q08.3 -> Q10.1 (ITA 2026 q30, ebulioscopia)
 RECLASS Pf22416ab Q08.3 -> Q06.3 (ITA 2026 q36, pressões parciais)
 DADO P224b1402 (ITA 2020 q69): texto_da_prova ilegível -> pelo print "4·10⁻² % (em volume) de CO2", "KH = 2,5·10⁻² mol L⁻¹ atm⁻¹", "Ka = 1·10⁻⁶,⁴"; alternativas ausentes -> A 10⁻² e 6,4 · B 10⁻⁵ e 5,7 · C 10⁻⁵ e 6,4 · D 10⁻⁷ e 5,7 · E 10⁻⁷ e 6,4
 GABARITO P9f3bd7a8 (IME 2025 q38): gabarito do Aprendice B (−11,1 kJ/mol; T ≈ 627 K); sem fonte publicada
+
+## 2026-11-19 18:32 UTC — PENDENCIAS — session_01PveEKavURMVSSh5SgqLorw
+Lote qui-0076 gravado (47 ok, 3 ANULAR; P2d15159f e P6135def7 com gabarito do Aprendice C: resolvedor C, conferente às cegas C, preliminar C).
+DADO Paa8de177 (ITA 2026 q29): texto_da_prova, potencial Na+/Na -> −2,71 V no print (a transcrição traz "— 2,11"; o resto da tabela também está embaralhado pelo OCR)
+ANULAR Pf138dc18 (Cederj 2020.1 q55): oficial D, a conta dá C (7,20 e maior). Na 1ª solução há 0,03 mol de H2PO4⁻ e 0,03 mol de HPO4²⁻, pH 7,20; os 100 mL têm 0,003 mol de cada; com 1,0·10⁻⁴ mol de OH⁻ fica 0,0031/0,0029 e o pH vai a 7,23. A própria justificativa da Cecierj chega a 7,203 e arredonda para "não se altera" (usou 0,03 mol no lugar de 0,003 mol)
+DADO P8cb04fe6 (UEG 2024/2 q39): alternativas.B -> "a constante de acidez para essa reação é dada por: Ka = [HA].[H2O] / ([H3O+].[A-])"
+RECLASS P872733bd Q08.5 -> Q08.7
+RECLASS Pfa8f9cea Q08.6 -> Q08.7
+RECLASS Pdcf50cad Q08.6 -> Q08.5
+RECLASS P49e609c0 Q08.6 -> Q05.6
+ANULAR P53cb39bd (ITA 2020 q61): sobra 1,0·10⁻⁸ mol de OH⁻ em 0,50 L (2,0·10⁻⁸ mol/L); com a água, h·(h + 2·10⁻⁸) = 10⁻¹⁴ dá h ≈ 9,0·10⁻⁸ mol/L, fora das alternativas; a oficial B vem de 10⁻¹⁴/(10⁻⁷ + 2·10⁻⁸) = 8,3·10⁻⁸. Estratégia Vestibulares dá a questão como nula: https://vestibulares.estrategia.com/portal/quimica/prova-ita-2020-quimica/
+RECLASS Pe4496688 Q08.7 -> Q05.6 (PUC-Rio 2027 Grupo 4: estequiometria de precipitação/titulação, não tampão/Kps)
+DADO Pe4496688: n -> 30 no print e no caderno (a entrada diz questão 40)
+DADO P7a6cea1c (UEG Medicina 2026/1 q55): alternativas.E -> "a hipoventilação retém CO2 no corpo, o que eleva o pH sanguíneo." (o texto dos quadros "Rim controla... Pulmão controla..." foi colado nela)
+DADO P7aae223b (ITA 2020 q57): alternativas -> vazias; no print: A apenas I, II e IV · B apenas I e III · C apenas II e IV · D apenas III e IV · E todas
+ANULAR P8c36b34b (FCM-MG 2021/2 q23): a oficial A (5,0 L de Cl2) só sai aplicando o volume molar de 25 L (de 1 atm) a 0,20 mol, mas o enunciado diz "mesmas condições" (1,96 atm): nelas o Cl2 dá 2,5 L, o Cu 12,7 g e passam 0,4 F, nenhuma alternativa fica certa; usando o volume molar dado para achar os mols, B e D ficam certas ao mesmo tempo; sem errata na web
+RECLASS P0e45a3ab Q09.2 -> Q08.6 (PUCRS 2022 Verão q41: sal de KOH + CO2 e hidrólise; não é eletrólise)
+DADO P1ddae9c5 (UFJF 2024 PISM III q30): alternativas -> A "(I) e (II)", B "(II) e (III)", C "(III) e (IV)", D "(I) e (IV)", E "(II) e (IV)" (coladas no fim do texto_da_prova, sem o campo)
+DADO P1ddae9c5: n -> 10 no print (a entrada diz 30)
+GABARITO P2d15159f e P6135def7: gabarito do Aprendice C (bate com o preliminar C); sem fonte publicada
