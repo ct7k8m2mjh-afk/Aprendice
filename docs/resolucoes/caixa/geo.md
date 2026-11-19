@@ -357,3 +357,18 @@ RECLASS P87fd044b G10.5 -> G10.8
 RECLASS P2c5a2a96 G10.6 -> G10.3 (UFJF PISM III 2026 q31: desafios da ONU e organizações internacionais)
 RECLASS P613ac58a G10.5 -> G10.4
 DADO Paf7c1fe6: texto_da_prova -> acentos quebrados ("n˜ao", "expans˜ao"); no print normais
+
+## 2026-11-19 18:18 UTC — PENDENCIAS — sessão geo (19/11, 4ª; parte 1)
+Lote gravado: geo-0058 (50 resoluções; 9 com gabarito do Aprendice, letras iguais às cegas e ao preliminar: P882cde3b B, P13b3c628 B, P970dc4be D, P9b2d07a5 C, Pb7eef3a6 D, Pc1338af1 E, P1f56e42e D, P092504b3 D, P0249c702 C). Pendentes: 0.
+RECLASS P08b805bc G12.3 -> G03.6
+DADO Pf3968467: texto_da_prova -> falta o texto de apoio ("O crédito de carbono é um mecanismo monetário que visa reduzir ou remover as emissões de dióxido de carbono da atmosfera. Eles são obtidos por meio de diversas iniciativas e projetos." <https://tinyurl.com/58akfkww> Acesso em: 16.07.2024. Adaptado.), que no print vem antes do comando
+DADO Pf3968467: alternativas.E -> termina em "...reduzir as emissões de gases de efeito estufa (GEE)." (o texto de apoio está colado nela)
+RECLASS P882cde3b G11.2 -> G11.4
+RECLASS P1e86fcb6 G11.3 -> G10.3
+DADO P8c909c01: texto_da_prova -> no print, o texto de apoio ("De acordo com o Banco Mundial, o valor de manter a Floresta Amazônica em pé é cerca de sete vezes superior [...] US$ 317 bilhões por ano. <https://tinyurl.com/ypanb4cu> Acesso em: 03.08.2024. Adaptado.") vem antes do comando "Com base no texto, é correto afirmar que"
+DADO P8c909c01: alternativas.E -> só "desmatar a Floresta Amazônica, além de uma perda de biodiversidade, é, em termos econômicos, também uma destruição de riqueza." (texto de apoio colado nela)
+DADO P13b3c628: texto_da_prova/alternativas -> acentos quebrados e início "**/2027.1)**"; no print "23. (URCA/2027.1)", acentuação normal
+DADO P970dc4be: texto_da_prova/alternativas -> idem; no print "30. (URCA/2027.1)"
+RECLASS Pc1338af1 G11.6 -> G01.7
+RECLASS Pea932bb1 G11.6 -> G06.5
+OUTRA Pd6f82e02: a prova escreve "Constituição Federal de 1998" (o certo é 1988); registrado no alerta, sem efeito na resposta
