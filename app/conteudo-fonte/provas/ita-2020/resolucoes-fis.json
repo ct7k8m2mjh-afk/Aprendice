@@ -498,5 +498,133 @@
    "data": "2026-11-19",
    "lote": "fis-0063"
   }
+ },
+ "Peaf652dd": {
+  "n": "1",
+  "conceito": "Análise dimensional: obter as dimensões de κ e de μ a partir de três leis de força em N dimensões e multiplicá-las.",
+  "equivocos": {
+   "A": "F01.3:inverter-a-constante-ao-isolar",
+   "C": "F01.3:sinal-do-expoente-do-tempo-trocado",
+   "D": "F01.3:usar-dimensao-de-mi-zero-do-si-sem-o-comprimento",
+   "E": "F01.3:por-o-n-no-expoente-do-tempo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada lei de força dá a dimensão de uma constante. Comece pela força entre polo e corrente, que revela a dimensão do polo p; a carga sai de q = i·t. Depois isole κ e μ nas duas primeiras leis e multiplique. O N parece complicar, mas os expoentes de r se cancelam no produto κμ.",
+    "formulas": [
+     "[q] = I·T (carga = corrente × tempo)",
+     "F = i·p/r^(N−2) → [p] = (F·L^(N−2))/I",
+     "κ = (q1·q2)/(F·r^(N−1)) ; μ = (p1·p2)/(F·r^(N−1))"
+    ],
+    "simbolos": [
+     [
+      "[ ]",
+      "dimensão da grandeza"
+     ],
+     [
+      "M, L, T, I",
+      "massa, comprimento, tempo e corrente"
+     ],
+     [
+      "F",
+      "dimensão de força, M·L·T⁻²"
+     ],
+     [
+      "κ, μ",
+      "constantes do meio, letras gregas capa e mi"
+     ],
+     [
+      "N",
+      "número de dimensões do universo da teoria"
+     ]
+    ]
+   },
+   "pista": "Comece pela terceira lei, a do polo com a corrente: ela diz a dimensão do polo p, que você precisa para achar μ.",
+   "passos": [
+    {
+     "faz": "Ache a dimensão do polo p",
+     "conta": "F = (i·p)/r^(N−2) → [p] = (F·L^(N−2))/I",
+     "porque": "Isolando p na lei polo-corrente, a corrente vai para baixo dividindo e o r^(N−2) sobe multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole κ na lei das cargas",
+     "conta": "κ = (q²)/(F·L^(N−1)) → [κ] = (I²·T²)/(F·L^(N−1))",
+     "porque": "A carga generalizada é corrente vezes tempo, então q² tem dimensão I²·T².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole μ na lei dos polos",
+     "conta": "μ = (p²)/(F·L^(N−1)) → [μ] = (F²·L^(2N−4))/(I²·F·L^(N−1)) → [μ] = (F·L^(N−3))/I²",
+     "porque": "Um F de cima cancela com o de baixo, e os expoentes de L se subtraem: (2N − 4) − (N − 1) = N − 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique κ por μ",
+     "conta": "[κμ] = (I²·T²)/(F·L^(N−1)) × (F·L^(N−3))/I² → [κμ] = T²·L^((N−3)−(N−1)) → [κμ] = L⁻²·T²",
+     "porque": "I² e F se cancelam, e no expoente de L o N some: (N − 3) − (N − 1) = −2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — L⁻²T²: κμ tem dimensão do inverso de uma velocidade ao quadrado.",
+   "checagem": "Teste em N = 3 com unidades do SI: κ = q²/(F·r²) dá C²/(N·m²); p = F·r/i dá N·m/A, logo μ = p²/(F·r²) dá N/A². O produto é C²/(A²·m²) = (A·s)²/(A²·m²) = s²/m², ou seja, L⁻²T², como em B.",
+   "erradas": {
+    "A": "L²T⁻² é o inverso do resultado: é a dimensão de 1/(κμ), uma velocidade ao quadrado. Sai de inverter κ e μ ao isolá-los, pondo F·r^(N−1) em cima.",
+    "C": "L⁻²T⁻² não confere: o tempo só entra pela carga, q² = I²·T², que fica no numerador de κ. O expoente de T tem de ser +2, não −2.",
+    "D": "L^(1−N)T² sai de usar para μ a dimensão F/I² (a do μ0 do SI tridimensional), sem o L^(N−3) da lei dada. Com N = 3 coincide com B, mas para N qualquer não confere.",
+    "E": "L⁻²T^(N−1) não confere: o tempo aparece só em q² = I²·T², então o expoente de T é 2 para qualquer N; o N entra apenas pelas potências de r."
+   },
+   "armadilha": "Esquecer de achar primeiro a dimensão do polo p pela lei polo-corrente, ou carregar o N até o fim sem ver que ele se cancela no produto.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A fórmula dimensional de κμ em função de L e T.",
+    "chave": "[p] = F·L^(N−2)/I e [q] = I·T; [κ] = I²T²/(F·L^(N−1)), [μ] = F·L^(N−3)/I²; o produto dá L⁻²T².",
+    "cuidado": "Tirar a dimensão de p da terceira lei e subtrair os expoentes de L com atenção: o N se cancela."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso N = 3 com unidades SI",
+    "ideia": "Com N = 3, κ sai em C²/(N·m²) e μ em N/A²; o produto C²/(A²·m²) = s²/m² aponta L⁻²T² e elimina A, C e E."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "[q] = I·T ; [p] = (F·L^(N−2))/I",
+    "nota": "carga e polo"
+   },
+   {
+    "linha": "[κ] = (I²·T²)/(F·L^(N−1))",
+    "nota": "κ isolado na lei das cargas"
+   },
+   {
+    "linha": "[μ] = (F²·L^(2N−4))/(I²·F·L^(N−1)) = (F·L^(N−3))/I²",
+    "nota": "μ isolado; um F cancela"
+   },
+   {
+    "linha": "[κμ] = (I²·T²·F·L^(N−3))/(F·L^(N−1)·I²)",
+    "nota": "multiplicar"
+   },
+   {
+    "linha": "[κμ] = T²·L^((N−3)−(N−1)) = L⁻²·T²",
+    "nota": "I² e F cancelam; N some"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Gabarito oficial ITA 2020 (1ª fase)",
+    "url": "https://vestibular.ita.br/provas/2020_fase1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0071"
+  }
  }
 }

@@ -788,5 +788,111 @@
    "data": "2026-11-13",
    "lote": "fis-0041"
   }
+ },
+ "Pe2d352dd": {
+  "n": "49",
+  "conceito": "Resistência equivalente de dois arranjos mistos com os mesmos quatro resistores: série dentro de paralelo e paralelo dentro de série.",
+  "equivocos": {
+   "A": "F11.5:usou-so-um-bloco",
+   "B": "F11.5:errou-o-paralelo-do-original",
+   "D": "F11.5:req-sem-origem-na-figura",
+   "E": "F11.5:achou-que-o-contato-no-cruzamento-aumenta-a-resistencia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na figura 1, cada ramo tem dois resistores da mesma cor em série, e os dois ramos ficam em paralelo. Na figura 2, como os fios que se cruzam se tocam, o cruzamento vira um nó no meio: antes dele há um vermelho em paralelo com um azul, e depois dele também. Os dois blocos ficam em série.",
+    "formulas": [
+     "série: Req = R1 + R2",
+     "paralelo de dois: Req = (R1 · R2)/(R1 + R2)"
+    ],
+    "simbolos": [
+     [
+      "Req",
+      "resistência equivalente entre P e Q"
+     ],
+     [
+      "nó",
+      "ponto onde os fios se ligam eletricamente"
+     ]
+    ]
+   },
+   "pista": "Na figura 2, trate o cruzamento como um ponto único e veja o que fica entre P e esse ponto.",
+   "passos": [
+    {
+     "faz": "Calcule o circuito original",
+     "conta": "vermelho: 400 + 400 = 800 Ω | azul: 600 + 600 = 1200 Ω → (800 · 1200)/(800 + 1200) = 480 Ω",
+     "porque": "Figura 1: dois ramos em série, ligados em paralelo entre P e Q.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o bloco entre P e o cruzamento",
+     "conta": "(400 · 600)/(400 + 600) → 240 Ω",
+     "porque": "Com o contato no cruzamento, o vermelho e o azul da esquerda vão de P ao mesmo nó: ficam em paralelo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois blocos",
+     "conta": "240 + 240 → 480 Ω",
+     "porque": "Do cruzamento até Q há outro par vermelho e azul em paralelo, também 240 Ω, em série com o primeiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare",
+     "conta": "480 Ω (figura 2) = 480 Ω (figura 1)",
+     "porque": "As duas configurações têm a mesma resistência equivalente.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — igual.",
+   "checagem": "Pela corrente: com 480 V entre P e Q, na figura 1 os ramos levam 480/800 = 0,6 A e 480/1200 = 0,4 A, total 1 A. Na figura 2, cada bloco de 240 Ω recebe 240 V e conduz 240/400 + 240/600 = 0,6 + 0,4 = 1 A. A mesma corrente total, a mesma resistência.",
+   "erradas": {
+    "A": "Menor em 240 Ω não confere: daria 480 − 240 = 240 Ω na figura 2, que é só um dos blocos em paralelo; os dois blocos de 240 Ω estão em série.",
+    "B": "Menor em 480 Ω não confere: exigiria 960 Ω no circuito original, mas o paralelo dos ramos de 800 Ω e 1200 Ω dá (800 · 1200)/2000 = 480 Ω.",
+    "D": "Maior em 240 Ω não confere: exigiria 720 Ω na figura 2; os dois blocos somam 240 + 240 = 480 Ω.",
+    "E": "Maior em 480 Ω não confere: exigiria 960 Ω na figura 2; os blocos somam 240 + 240 = 480 Ω."
+   },
+   "armadilha": "Achar que o contato no cruzamento muda a resistência, sem calcular as duas configurações até o fim.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Comparar a resistência entre P e Q nas figuras 2 e 1.",
+    "chave": "Figura 1: 800 ∥ 1200 = 480 Ω; figura 2: (400 ∥ 600) + (400 ∥ 600) = 240 + 240 = 480 Ω.",
+    "cuidado": "Com o contato, o cruzamento é um nó e separa dois blocos em paralelo ligados em série."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "corrente com tensão de teste",
+    "ideia": "Aplique 480 V entre P e Q: nas duas figuras a corrente total é 1 A, então Req = 480 Ω nas duas."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "800 ∥ 1200 = (800 · 1200)/(800 + 1200) = 480 Ω",
+    "nota": "figura 1"
+   },
+   {
+    "linha": "400 ∥ 600 = (400 · 600)/(400 + 600) = 240 Ω",
+    "nota": "bloco de cada lado do nó"
+   },
+   {
+    "linha": "240 + 240 = 480 Ω",
+    "nota": "figura 2"
+   },
+   {
+    "linha": "480 Ω = 480 Ω",
+    "nota": "iguais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0071"
+  }
  }
 }

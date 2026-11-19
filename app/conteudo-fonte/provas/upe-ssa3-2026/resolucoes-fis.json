@@ -580,5 +580,256 @@
    "data": "2026-11-19",
    "lote": "fis-0069"
   }
+ },
+ "P84b80ce1": {
+  "n": "76",
+  "conceito": "Relação entre capacidade da bateria (mAh), carga elétrica em coulombs e quantidade de elétrons em mol.",
+  "equivocos": {
+   "B": "F11.4:carga-acima-da-capacidade",
+   "C": "F11.4:carga-acima-da-capacidade",
+   "D": "F11.4:carga-acima-da-capacidade",
+   "E": "F11.4:tratou-mah-como-corrente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "mAh é unidade de carga: corrente vezes tempo. Os 3000 mAh são a carga da bateria cheia, não uma corrente que dura 7 horas. Segundo o texto, as 7 horas de recarga dão 94,08 % da capacidade total. Transforme essa carga em coulombs e divida pela carga de 1 mol de elétrons.",
+    "formulas": [
+     "Q = i · Δt (1 mAh = 0,001 A · 3600 s = 3,6 C)",
+     "n = Q/e (número de elétrons)",
+     "mols = n/NA, com NA ≈ 6,02 · 10^23"
+    ],
+    "simbolos": [
+     [
+      "mAh",
+      "miliampère-hora: unidade de carga"
+     ],
+     [
+      "Q",
+      "carga elétrica, em coulombs (C)"
+     ],
+     [
+      "e",
+      "carga do elétron, 1,6 · 10^-19 C"
+     ],
+     [
+      "NA",
+      "constante de Avogadro, cerca de 6,02 · 10^23 por mol"
+     ]
+    ]
+   },
+   "pista": "Antes de qualquer conta, decida: 3000 mAh é corrente ou é carga?",
+   "passos": [
+    {
+     "faz": "Passe a capacidade para coulombs",
+     "conta": "Q = 3000 mAh → Q = 3 A · 3600 s = 10 800 C",
+     "porque": "1 mAh = 0,001 A durante 3600 s; a capacidade é a carga da bateria cheia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tome a fração carregada em 7 horas",
+     "conta": "Q7 = 0,9408 · 10 800 → Q7 ≈ 10 161 C",
+     "porque": "Segundo o texto, \"7 horas recarregando em ambientes internos implica 94,08 % da capacidade\".",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os elétrons",
+     "conta": "n = 10161/(1,6 · 10^-19) → n ≈ 6,35 · 10^22 elétrons",
+     "porque": "Cada elétron leva 1,6 · 10^-19 C; o número de elétrons é a carga total dividida por essa carga.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta para mol",
+     "conta": "mols = (6,35 · 10^22)/(6,02 · 10^23) → mols ≈ 0,105",
+     "porque": "Um mol tem 6,02 · 10^23 partículas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "0,105 mol ≈ 0,1 mol",
+     "porque": "A questão pede uma estimativa; o valor mais próximo é 0,1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — cerca de 0,1 mol de elétrons.",
+   "checagem": "Teto físico: mesmo a bateria inteira (10 800 C) dá 10800/96320 ≈ 0,112 mol. Nenhuma carga parcial pode passar disso, então só 0,1 cabe.",
+   "erradas": {
+    "B": "0,2 não confere: exigiria cerca de 19 300 C, quase o dobro dos 10 800 C da bateria cheia.",
+    "C": "0,3 não confere: exigiria cerca de 28 900 C, quase o triplo da carga que a bateria inteira guarda.",
+    "D": "0,5 não confere: exigiria cerca de 48 200 C, mais de quatro vezes a capacidade de 10 800 C.",
+    "E": "0,8 sai de tratar 3000 mA como corrente durante 7 h: 3 A · 25 200 s = 75 600 C, que dá cerca de 0,78 mol."
+   },
+   "armadilha": "Ler 3000 mAh como uma corrente que dura as 7 horas, em vez da carga total da bateria.",
+   "alerta": "A constante de Avogadro não vem no enunciado; usa-se o valor de tabela, 6,02 · 10^23 por mol.",
+   "essencial": {
+    "pede": "Quantos mols de elétrons passam na carga de 7 horas.",
+    "chave": "Q = 0,9408 · 10 800 C ≈ 10 161 C; 10161/(1,6 · 10^-19 · 6,02 · 10^23) ≈ 0,105 mol ≈ 0,1.",
+    "cuidado": "mAh já é carga: não multiplique de novo pelas 7 horas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "constante de Faraday",
+    "ideia": "1 mol de elétrons tem 1,6 · 10^-19 · 6,02 · 10^23 ≈ 96 320 C; 10161/96320 ≈ 0,105 mol ≈ 0,1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Q = 3 A · 3600 s = 10 800 C",
+    "nota": "3000 mAh em coulombs"
+   },
+   {
+    "linha": "Q7 = 0,9408 · 10 800 ≈ 10 161 C",
+    "nota": "94,08 % da capacidade"
+   },
+   {
+    "linha": "n = 10161/(1,6 · 10^-19) ≈ 6,35 · 10^22",
+    "nota": "número de elétrons"
+   },
+   {
+    "linha": "mols = (6,35 · 10^22)/(6,02 · 10^23) ≈ 0,105",
+    "nota": "divide por Avogadro"
+   },
+   {
+    "linha": "0,105 ≈ 0,1 mol",
+    "nota": "estimativa pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0071"
+  }
+ },
+ "Pddcf205f": {
+  "n": "93",
+  "conceito": "Lei de Faraday com campo que cresce linearmente: a fem é N · A vezes a inclinação do gráfico B × t, constante em qualquer instante, e a corrente sai pela lei de Ohm.",
+  "equivocos": {
+   "B": "F12.4:usou-o-fluxo-sem-dividir-pelo-tempo",
+   "C": "F12.4:fem-maior-que-a-da-inclinacao",
+   "D": "F12.4:fem-maior-que-a-da-inclinacao",
+   "E": "F12.4:fem-maior-que-a-da-inclinacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O gráfico B × t é uma reta: o campo cresce sempre no mesmo ritmo, então a variação do fluxo por segundo é a mesma em qualquer instante. Por isso o instante t = 1,5 s não muda a conta: a fem depende da inclinação da reta, não do valor de B naquele momento. Com N voltas, a fem fica multiplicada por N.",
+    "formulas": [
+     "ε = N · A · (ΔB/Δt)",
+     "A = π · r²",
+     "i = ε/R"
+    ],
+    "simbolos": [
+     [
+      "N",
+      "número de voltas da espira"
+     ],
+     [
+      "ΔB/Δt",
+      "taxa de variação do campo, a inclinação do gráfico B × t"
+     ],
+     [
+      "ε",
+      "força eletromotriz induzida"
+     ],
+     [
+      "mA",
+      "miliampère, 10⁻³ A"
+     ]
+    ]
+   },
+   "pista": "Olhe a forma do gráfico: se o campo cresce em linha reta, o que interessa é o valor de B em t = 1,5 s ou o ritmo com que ele cresce?",
+   "passos": [
+    {
+     "faz": "Leia a inclinação do gráfico",
+     "conta": "ΔB/Δt = 4,0/2,0 → ΔB/Δt = 2,0 T/s",
+     "porque": "A reta passa por (0; 0) e (2,0 s; 4,0 T); a taxa é a mesma em t = 1,5 s.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a área da espira",
+     "conta": "r = 1,0 cm = 1,0 · 10⁻² m → A = 3 · (1,0 · 10⁻²)² = 3,0 · 10⁻⁴ m²",
+     "porque": "A área tem de estar em m²; o enunciado manda usar π = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a fem induzida",
+     "conta": "ε = 10 · 3,0 · 10⁻⁴ · 2,0 → ε = 6,0 · 10⁻³ V",
+     "porque": "Cada volta recebe a mesma variação de fluxo, e as N voltas somam suas fems.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a corrente",
+     "conta": "i = (6,0 · 10⁻³)/60 → i = 1,0 · 10⁻⁴ A = 0,1 mA",
+     "porque": "Com a chave fechada, a fem cai no resistor de 60 Ω (amperímetro ideal).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "i = 0,1 mA",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 0,1 mA.",
+   "checagem": "Pelo fluxo total: de 0 a 2,0 s o fluxo vai de zero a N · B · A = 10 · 4,0 · 3,0 · 10⁻⁴ = 1,2 · 10⁻² Wb; dividido por 2,0 s dá 6,0 · 10⁻³ V, a mesma fem, e 6,0 · 10⁻³/60 = 0,1 mA.",
+   "erradas": {
+    "B": "Sai de dividir o fluxo em t = 2,0 s pela resistência sem dividir pelo tempo: 10 · 4,0 · 3,0 · 10⁻⁴ = 1,2 · 10⁻² e 1,2 · 10⁻²/60 = 2 · 10⁻⁴ A = 0,2 mA. A fem é fluxo por segundo.",
+    "C": "Não confere: 0,5 mA exigiria fem de 0,5 · 10⁻³ · 60 = 3,0 · 10⁻² V, cinco vezes a fem de 6,0 · 10⁻³ V dada pela inclinação do gráfico.",
+    "D": "Não confere: 0,7 mA exigiria fem de 4,2 · 10⁻² V, sete vezes a fem de 6,0 · 10⁻³ V que o gráfico produz.",
+    "E": "Não confere: 0,8 mA exigiria fem de 4,8 · 10⁻² V, oito vezes a fem de 6,0 · 10⁻³ V que o gráfico produz."
+   },
+   "armadilha": "O instante t = 1,5 s é uma isca: com o campo crescendo em linha reta, a fem e a corrente são as mesmas em qualquer instante; o que vale é a inclinação 2,0 T/s.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A corrente no amperímetro em t = 1,5 s.",
+    "chave": "ε = N · A · (ΔB/Δt) = 10 · 3,0 · 10⁻⁴ · 2,0 = 6,0 · 10⁻³ V; i = (6,0 · 10⁻³)/60 = 0,1 mA.",
+    "cuidado": "Usar a taxa ΔB/Δt (inclinação), não o valor de B, e o raio em metro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fluxo total",
+    "ideia": "Fluxo em 2,0 s: 10 · 4,0 · 3,0 · 10⁻⁴ = 1,2 · 10⁻² Wb; ÷ 2,0 s = 6,0 · 10⁻³ V; ÷ 60 Ω = 0,1 mA."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ΔB/Δt = 4,0/2,0 = 2,0 T/s",
+    "nota": "inclinação da reta"
+   },
+   {
+    "linha": "A = 3 · (1,0 · 10⁻²)² = 3,0 · 10⁻⁴ m²",
+    "nota": "área com π = 3"
+   },
+   {
+    "linha": "ε = 10 · 3,0 · 10⁻⁴ · 2,0 = 6,0 · 10⁻³ V",
+    "nota": "lei de Faraday com N voltas"
+   },
+   {
+    "linha": "i = (6,0 · 10⁻³)/60 = 1,0 · 10⁻⁴ A = 0,1 mA",
+    "nota": "lei de Ohm"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "UPE, SSA 3 2026, caderno do 2º dia",
+    "url": "https://processodeingresso.upe.pe.gov.br/arquivos/ssa3_2026/202511301455_-_CADERNO_DE_PROVAS_SSA_3_-_2_DIA.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0071"
+  }
  }
 }

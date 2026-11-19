@@ -1266,5 +1266,112 @@
    "data": "2026-11-19",
    "lote": "fis-0070"
   }
+ },
+ "P6797388c": {
+  "n": "62",
+  "conceito": "Voltímetro real em paralelo com R: parte da corrente do amperímetro passa pelo voltímetro e deve ser descontada.",
+  "equivocos": {
+   "A": "F11.8:valor-incompativel-com-as-leituras",
+   "B": "F11.8:voltimetro-tratado-como-ideal",
+   "C": "F11.8:somou-a-corrente-do-voltimetro",
+   "E": "F11.8:valor-incompativel-com-as-leituras"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O voltímetro está em paralelo com R, então os dois têm os mesmos 2,0 V. Como o voltímetro não é ideal (2000 Ω), uma parte dos 21 mA passa por ele. A corrente de R é o total menos a do voltímetro; só então se aplica R = U/i.",
+    "formulas": [
+     "i(V) = U/R(V)",
+     "i(R) = i(total) − i(V)",
+     "R = U/i(R)"
+    ],
+    "simbolos": [
+     [
+      "R(V)",
+      "resistência interna do voltímetro, 2000 Ω"
+     ],
+     [
+      "mA",
+      "miliampère: 1 mA = 0,001 A"
+     ],
+     [
+      "Ω",
+      "ohm, unidade de resistência"
+     ]
+    ]
+   },
+   "pista": "Antes de dividir 2,0 V por 21 mA, pergunte por onde passa essa corrente.",
+   "passos": [
+    {
+     "faz": "Calcule a corrente no voltímetro",
+     "conta": "i(V) = 2,0/2000 → i(V) = 0,001 A = 1 mA",
+     "porque": "O voltímetro real, ligado entre X e Y, também conduz corrente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte da corrente total",
+     "conta": "i(R) = 21 − 1 → i(R) = 20 mA = 0,020 A",
+     "porque": "O amperímetro mede a soma das correntes que chegam a Y, pelo resistor e pelo voltímetro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a lei de Ohm em R",
+     "conta": "R = 2,0/0,020 → R = 100 Ω",
+     "porque": "R está sob os mesmos 2,0 V do voltímetro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "R = 100 Ω",
+     "porque": "É o valor da resistência R.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 100 Ω.",
+   "checagem": "Substituindo de volta: R = 100 Ω em paralelo com 2000 Ω dá 100 × 2000/2100 ≈ 95,2 Ω; 2,0 V/95,2 Ω ≈ 0,021 A = 21 mA, a leitura do amperímetro.",
+   "erradas": {
+    "A": "Não confere: com R = 55 Ω, a corrente total seria 2,0/55 + 0,001 ≈ 37 mA, e não 21 mA.",
+    "B": "Sai de tratar o voltímetro como ideal: 2,0/0,021 ≈ 95 Ω. Esse é o equivalente de R com o voltímetro.",
+    "C": "Sai de somar a corrente do voltímetro em vez de subtrair: 2,0/0,019 ≈ 105 Ω.",
+    "E": "Não confere: com R = 110 Ω, a corrente total seria 2,0/110 + 0,001 ≈ 19,2 mA, e não 21 mA."
+   },
+   "armadilha": "Dividir 2,0 V por 21 mA, como se o voltímetro fosse ideal; 1 mA dos 21 passa por ele.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o valor da resistência R",
+    "chave": "i(V) = 2,0/2000 = 1 mA; i(R) = 21 − 1 = 20 mA; R = 2,0/0,020 = 100 Ω",
+    "cuidado": "o amperímetro mede R e voltímetro juntos"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "resistência equivalente",
+    "ideia": "2,0/0,021 ≈ 95,2 Ω é R em paralelo com 2000 Ω; 1/R = 1/95,2 − 1/2000 dá R = 100 Ω."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i(V) = 2,0/2000 = 1 mA",
+    "nota": "corrente no voltímetro"
+   },
+   {
+    "linha": "i(R) = 21 − 1 = 20 mA",
+    "nota": "o 1 mA passa subtraindo"
+   },
+   {
+    "linha": "R = 2,0/0,020 = 100 Ω",
+    "nota": "lei de Ohm em R"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0071"
+  }
  }
 }

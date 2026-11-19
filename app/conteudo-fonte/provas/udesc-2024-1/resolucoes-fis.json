@@ -1222,5 +1222,126 @@
    "data": "2026-11-19",
    "lote": "fis-0068"
   }
+ },
+ "Pa10c738c": {
+  "n": "59",
+  "conceito": "Efeito de abrir uma chave num circuito misto: a corrente no resistor em série com o gerador muda com a resistência equivalente.",
+  "equivocos": {
+   "A": "F11.5:req-sem-origem-na-figura",
+   "B": "F11.5:inverteu-a-razao",
+   "C": "F11.5:tirou-resistor-que-continua-no-circuito",
+   "E": "F11.5:ignorou-efeito-da-chave"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "R1 está em série com o gerador, então a corrente nele é a corrente total, i = E/Req. Com a chave fechada, R2 e R3 ligam os mesmos dois pontos e ficam em paralelo; com a chave aberta, R2 fica solto e só R3 sobra no lugar. A razão pedida é a das correntes totais.",
+    "formulas": [
+     "i = E/Req",
+     "paralelo de dois iguais: Req = R/2",
+     "série: Req = R1 + R2"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "força eletromotriz do gerador"
+     ],
+     [
+      "Req",
+      "resistência equivalente do circuito"
+     ],
+     [
+      "i_f",
+      "corrente em R1 com a chave fechada"
+     ],
+     [
+      "i_a",
+      "corrente em R1 com a chave aberta"
+     ]
+    ]
+   },
+   "pista": "Veja entre quais pontos R2 e R3 estão ligados quando a chave fecha, e o que sobra de R2 quando ela abre.",
+   "passos": [
+    {
+     "faz": "Monte o circuito com a chave fechada",
+     "conta": "R2 ∥ R3 = R/2 → Req = R + R/2 = 3R/2",
+     "porque": "A chave liga o canto de cima ao topo de R2; R2 e R3 vão do canto de cima ao canto de baixo à direita, em paralelo, e o bloco fica em série com R1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache i_f",
+     "conta": "i_f = E/(3R/2) → i_f = 2E/(3R)",
+     "porque": "R1 está em série com o gerador e leva a corrente total.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o circuito com a chave aberta",
+     "conta": "Req = R1 + R3 → Req = 2R | i_a = E/(2R)",
+     "porque": "Sem a chave, R2 não fecha caminho e não conduz; sobram R3 e R1 em série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a razão",
+     "conta": "i_a/i_f = (E/(2R))/(2E/(3R)) → (1/2) · (3/2) = 3/4",
+     "porque": "E e R se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "i_a/i_f = 3/4",
+     "porque": "É o valor da alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 3/4.",
+   "checagem": "Sentido do efeito: abrir a chave tira um caminho em paralelo, a resistência total sobe de 3R/2 para 2R e a corrente tem de cair. Razão menor que 1 confere, e 3/4 é exatamente (3R/2)/(2R).",
+   "erradas": {
+    "A": "2/3 não confere: exigiria Req aberta = (3/2) · (3R/2) = 9R/4, e nenhuma associação dos três resistores iguais dá esse valor.",
+    "B": "4/3 é a razão invertida, i_f/i_a = (2E/(3R))/(E/(2R)); a pedida é i_a/i_f.",
+    "C": "3/2 sai de achar que, com a chave aberta, só R1 fica no circuito: i_a = E/R e (E/R)/(2E/(3R)) = 3/2. Mas R3 continua em série com R1.",
+    "E": "1 supõe que a chave não muda nada; ao abrir, R2 sai do circuito e a resistência sobe de 3R/2 para 2R."
+   },
+   "armadilha": "Inverter a razão: a pedida é i_a/i_f, a corrente aberta sobre a fechada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão entre a corrente em R1 com a chave aberta e com ela fechada.",
+    "chave": "Fechada: Req = 3R/2; aberta: Req = 2R; i_a/i_f = (3R/2)/(2R) = 3/4.",
+    "cuidado": "Com a chave aberta, R2 não conduz, mas R3 continua em série com R1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razão das resistências",
+    "ideia": "Com E fixo, a corrente é inversa à Req: i_a/i_f = Req fechada/Req aberta = (3R/2)/(2R) = 3/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "fechada: R/2 + R = 3R/2",
+    "nota": "R2 ∥ R3 em série com R1"
+   },
+   {
+    "linha": "i_f = E/(3R/2) = 2E/(3R)",
+    "nota": "corrente total"
+   },
+   {
+    "linha": "aberta: R + R = 2R → i_a = E/(2R)",
+    "nota": "R2 fora do circuito"
+   },
+   {
+    "linha": "i_a/i_f = (1/2)/(2/3) = 3/4",
+    "nota": "E e R cancelam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0071"
+  }
  }
 }

@@ -479,5 +479,133 @@
    "data": "2026-11-19",
    "lote": "fis-0067"
   }
+ },
+ "P1305d90d": {
+  "n": "1",
+  "conceito": "Achar o valor numérico de c num sistema de unidades em que e, m0, K0 e ℏ valem 1, montando com essas constantes uma velocidade e estimando a ordem de grandeza.",
+  "equivocos": {
+   "A": "F01.2:supor-c-igual-a-1-como-em-unidades-naturais",
+   "C": "F01.2:calcular-c-ao-quadrado",
+   "D": "F01.2:tomar-a-unidade-de-velocidade-como-resposta",
+   "E": "F01.2:usar-o-valor-de-c-no-si"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se e, m0, K0 e ℏ valem 1, a unidade de cada grandeza desse sistema é uma combinação dessas quatro constantes. Para saber quanto vale c nesse sistema, monte com elas uma grandeza que tenha unidade de velocidade e divida c por ela. A combinação K0·e²/ℏ tem unidade de velocidade: é a unidade de velocidade de Hartree. O número que sai é cerca de 137, o inverso da constante de estrutura fina.",
+    "formulas": [
+     "unidade de velocidade: v_H = (K0 × e²)/ℏ",
+     "c no sistema = c/v_H (número puro)",
+     "ordem de grandeza: compare o expoente com 10^0,5 ≈ 3,16"
+    ],
+    "simbolos": [
+     [
+      "e",
+      "carga elementar, 1,602 × 10⁻¹⁹ C"
+     ],
+     [
+      "m0",
+      "massa do elétron"
+     ],
+     [
+      "K0",
+      "constante eletrostática do vácuo, 8,99 × 10⁹ N·m²/C²"
+     ],
+     [
+      "ℏ",
+      "constante de Planck reduzida, h/(2π) ≈ 1,055 × 10⁻³⁴ J·s"
+     ],
+     [
+      "v_H",
+      "unidade de velocidade do sistema de Hartree"
+     ]
+    ]
+   },
+   "pista": "Descubra qual combinação de e, K0 e ℏ tem unidade de m/s. O número que a questão pede é quantas dessas unidades cabem em c.",
+   "passos": [
+    {
+     "faz": "Monte uma velocidade com as constantes",
+     "conta": "K0·e²: J·m | ℏ: J·s → (K0·e²)/ℏ → m/s",
+     "porque": "K0·e²/r é energia, então K0·e² tem unidade J·m; dividindo pelo J·s de ℏ sobra m/s. A massa m0 não é necessária para formar velocidade.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule essa unidade de velocidade",
+     "conta": "v_H = (8,99 × 10⁹ × (1,602 × 10⁻¹⁹)²)/(1,055 × 10⁻³⁴) → v_H ≈ 2,19 × 10⁶ m/s",
+     "porque": "Esse é o valor, em m/s, de uma unidade de velocidade do sistema de Hartree.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida c por essa unidade",
+     "conta": "c/v_H = (3,0 × 10⁸)/(2,19 × 10⁶) → c/v_H ≈ 137",
+     "porque": "O valor numérico de c no sistema é quantas unidades v_H cabem na velocidade da luz.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a ordem de grandeza",
+     "conta": "137 = 1,37 × 10² → 1,37 < 3,16 → ordem 10²",
+     "porque": "Pelo critério usual, o fator 1,37 fica abaixo de √10 ≈ 3,16, então a ordem de grandeza é a própria potência, 10².",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 10²: no sistema de Hartree, c vale cerca de 137.",
+   "checagem": "Por outro caminho: 137 é o inverso da constante de estrutura fina, α = K0·e²/(ℏ·c) ≈ 1/137, número sem unidade e igual em qualquer sistema. Com K0 = e = ℏ = 1, sobra α = 1/c, logo c = 1/α ≈ 137, ordem 10².",
+   "erradas": {
+    "A": "10⁰ sai de achar que c também vale 1, como nas unidades naturais da física de partículas. Aqui quem vale 1 são e, m0, K0 e ℏ, e c fica 137 vezes a unidade de velocidade.",
+    "C": "10⁴ sai de calcular c² em vez de c: 137² ≈ 1,88 × 10⁴ (é o valor de m0·c² nesse sistema). A pergunta é sobre a velocidade c.",
+    "D": "10⁶ sai de tomar o valor da unidade de velocidade em m/s, 2,19 × 10⁶ m/s, como se fosse a resposta. Falta dividir c por ela.",
+    "E": "10⁸ é a ordem de c no SI, 3 × 10⁸ m/s. A questão pede o valor no sistema de Hartree, em que a unidade de velocidade é 2,19 × 10⁶ m/s."
+   },
+   "armadilha": "Responder com a ordem de c no SI (10⁸) ou com a da unidade de velocidade (10⁶), em vez de dividir uma pela outra.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A ordem de grandeza do valor numérico de c num sistema em que e, m0, K0 e ℏ valem 1.",
+    "chave": "A unidade de velocidade é K0·e²/ℏ ≈ 2,19 × 10⁶ m/s; c/v_H ≈ 137 = 1,37 × 10², ordem 10².",
+    "cuidado": "Dividir c pela unidade de velocidade do sistema, sem confundir com o valor de c no SI nem com c²."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "constante de estrutura fina",
+    "ideia": "α = K0·e²/(ℏ·c) ≈ 1/137 não tem unidade; com K0 = e = ℏ = 1, c = 1/α ≈ 137, ordem 10²."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "[K0·e²] = J·m ; [ℏ] = J·s",
+    "nota": "unidades das constantes"
+   },
+   {
+    "linha": "v_H = (K0·e²)/ℏ → m/s",
+    "nota": "combinação com unidade de velocidade"
+   },
+   {
+    "linha": "v_H = (8,99 × 10⁹ × (1,602 × 10⁻¹⁹)²)/(1,055 × 10⁻³⁴) ≈ 2,19 × 10⁶ m/s",
+    "nota": "valor da unidade no SI"
+   },
+   {
+    "linha": "c/v_H = (3,0 × 10⁸)/(2,19 × 10⁶) ≈ 137",
+    "nota": "c medido nessa unidade"
+   },
+   {
+    "linha": "137 = 1,37 × 10² → ordem 10²",
+    "nota": "1,37 < 3,16"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Gabarito oficial ITA 2021 (1ª fase)",
+    "url": "https://vestibular.ita.br/provas/2021_fase1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0071"
+  }
  }
 }

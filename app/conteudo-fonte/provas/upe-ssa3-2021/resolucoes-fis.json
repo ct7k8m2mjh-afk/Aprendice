@@ -804,5 +804,121 @@
    "data": "2026-11-19",
    "lote": "fis-0070"
   }
+ },
+ "Pd2d61b1b": {
+  "n": "67",
+  "conceito": "Custo de produção: energia elétrica em kWh das impressoras somada ao custo do filamento.",
+  "equivocos": {
+   "A": "F11.6:esqueceu-o-custo-do-filamento",
+   "B": "F11.6:esqueceu-o-custo-do-filamento",
+   "C": "F11.6:esqueceu-o-custo-do-filamento",
+   "E": "F11.6:energia-total-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O valor pedido tem duas partes: a energia elétrica e o filamento. Cada protetor ocupa uma impressora de 400 W por 1,5 h; ter quatro impressoras em paralelo só divide o tempo total, não muda a energia gasta por protetor. O trabalho real é converter W em kW para pagar o kWh.",
+    "formulas": [
+     "E = P × Δt (em kWh, com P em kW e Δt em h)",
+     "custo = E × preço do kWh + massa × preço do kg"
+    ],
+    "simbolos": [
+     [
+      "kWh",
+      "quilowatt-hora, a unidade de energia da conta de luz"
+     ],
+     [
+      "PLA",
+      "o filamento plástico usado na impressão"
+     ],
+     [
+      "Δt",
+      "tempo de impressão"
+     ]
+    ]
+   },
+   "pista": "Separe o custo em duas partes e calcule cada uma; a figura com as quatro impressoras só mostra a ligação.",
+   "passos": [
+    {
+     "faz": "Calcule a energia de 1000 protetores",
+     "conta": "E = 0,4 kW × 1,5 h × 1000 → E = 600 kWh",
+     "porque": "Cada protetor gasta uma impressora de 400 W = 0,4 kW por 1,5 h; as quatro em paralelo dividem o trabalho, sem mudar a energia total.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o custo da energia",
+     "conta": "600 × 1,10 → R$ 660",
+     "porque": "O preço é por kWh, por isso a energia tinha de estar em kWh.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o custo do filamento",
+     "conta": "1000 × 25 g = 25 kg → 25 × 120 = R$ 3000",
+     "porque": "O preço do PLA é por quilograma: 25 000 g são 25 kg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as duas partes",
+     "conta": "660 + 3000 → R$ 3660",
+     "porque": "O valor total para produzir é energia mais material.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "R$ 3660",
+     "porque": "É o valor estimado para os 1000 protetores.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — R$ 3660.",
+   "checagem": "Por protetor: energia 0,4 × 1,5 = 0,6 kWh, R$ 0,66; filamento 0,025 kg × 120 = R$ 3,00; R$ 3,66 por protetor, vezes 1000 dá R$ 3660.",
+   "erradas": {
+    "A": "Não confere: só o filamento custa R$ 3000; R$ 720 fica abaixo dele e não cobre nem o material.",
+    "B": "Não confere: R$ 1450 é menor que os R$ 3000 do filamento, então não pode ser o total.",
+    "C": "Não confere: R$ 2840 é menor que os R$ 3000 do filamento, então não pode ser o total.",
+    "E": "Não confere: daria R$ 1210 de energia, isto é, 1100 kWh, e os 1000 protetores gastam 600 kWh."
+   },
+   "armadilha": "Esquecer uma das duas parcelas do custo ou multiplicar a energia pelas quatro impressoras.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o custo total de 1000 protetores: energia e filamento",
+    "chave": "600 kWh × R$ 1,10 = R$ 660; 25 kg × R$ 120 = R$ 3000; total R$ 3660",
+    "cuidado": "as quatro impressoras dividem o tempo, não multiplicam a energia por protetor"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "custo por protetor",
+    "ideia": "0,6 kWh × 1,10 = R$ 0,66 mais 0,025 kg × 120 = R$ 3,00; R$ 3,66 × 1000 = R$ 3660."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "E = 0,4 × 1,5 × 1000 = 600 kWh",
+    "nota": "energia dos 1000 protetores"
+   },
+   {
+    "linha": "600 × 1,10 = 660",
+    "nota": "custo da energia, R$"
+   },
+   {
+    "linha": "25 × 120 = 3000",
+    "nota": "custo do filamento, R$"
+   },
+   {
+    "linha": "660 + 3000 = 3660",
+    "nota": "total, R$"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0071"
+  }
  }
 }

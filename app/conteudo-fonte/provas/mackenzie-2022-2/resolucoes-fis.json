@@ -651,5 +651,112 @@
    "data": "2026-11-19",
    "lote": "fis-0069"
   }
+ },
+ "P610d3fb5": {
+  "n": "18",
+  "conceito": "Bateria ligada aos terminais de um lado de um triângulo de resistores: um resistor em paralelo com os outros dois em série.",
+  "equivocos": {
+   "A": "F11.5:esqueceu-o-ramo-em-paralelo",
+   "B": "F11.5:ignorou-resistor-em-serie",
+   "D": "F11.5:req-sem-origem-na-figura",
+   "E": "F11.5:esqueceu-o-ramo-em-paralelo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ligar a bateria nas extremidades de um dos lados cria dois caminhos entre os mesmos dois pontos. Um é o resistor daquele lado, sozinho; o outro passa pelos dois outros lados, em série. Os dois caminhos ficam em paralelo, e a corrente na bateria é a total.",
+    "formulas": [
+     "série: Req = R1 + R2",
+     "paralelo de dois: Req = (R1 · R2)/(R1 + R2)",
+     "i = U/Req"
+    ],
+    "simbolos": [
+     [
+      "Req",
+      "resistência equivalente entre os terminais da bateria"
+     ],
+     [
+      "U",
+      "tensão da bateria, 8 V"
+     ]
+    ]
+   },
+   "pista": "A partir de um terminal da bateria, quantos caminhos diferentes a corrente tem para chegar ao outro?",
+   "passos": [
+    {
+     "faz": "Identifique os dois caminhos",
+     "conta": "caminho 1: 4 Ω | caminho 2: 4 Ω + 4 Ω = 8 Ω",
+     "porque": "O resistor do lado ligado vai direto de um terminal ao outro; os outros dois passam pelo vértice de cima, em série.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Associe em paralelo",
+     "conta": "(4 · 8)/(4 + 8) → 32/12 = 8/3 Ω",
+     "porque": "Os dois caminhos ligam os mesmos dois pontos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a corrente na bateria",
+     "conta": "i = 8/(8/3) → i = 3 A",
+     "porque": "A bateria fornece a corrente total do circuito.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "i = 3,0 A",
+     "porque": "É o valor da alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3,0 A.",
+   "checagem": "Por ramo: o 4 Ω sozinho recebe 8 V e leva 8/4 = 2 A; o ramo de 8 Ω leva 8/8 = 1 A. Somando, 2 + 1 = 3 A na bateria.",
+   "erradas": {
+    "A": "2,0 A sai de considerar só o resistor ligado direto à bateria: 8/4 = 2 A. Falta o ramo dos outros dois, que leva mais 1 A.",
+    "B": "4,0 A sai de pôr dois resistores de 4 Ω em paralelo (2 Ω) e esquecer o terceiro: 8/2 = 4 A.",
+    "D": "5,0 A não confere: exigiria Req = 8/5 = 1,6 Ω; os ramos dão 2 A + 1 A = 3 A.",
+    "E": "1,0 A sai de considerar só o ramo com dois resistores em série: 8/8 = 1 A."
+   },
+   "armadilha": "Achar que só o resistor do lado ligado recebe corrente, esquecendo o caminho pelos outros dois lados.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A corrente que passa pela bateria.",
+    "chave": "4 Ω em paralelo com 8 Ω: Req = 8/3 Ω; i = 8/(8/3) = 3 A.",
+    "cuidado": "Os dois outros lados formam um segundo caminho, em série entre si."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "corrente por ramo",
+    "ideia": "Os dois ramos recebem 8 V: 8/4 = 2 A e 8/8 = 1 A; a bateria fornece 2 + 1 = 3 A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "caminho 2: 4 + 4 = 8 Ω",
+    "nota": "dois lados em série"
+   },
+   {
+    "linha": "Req = (4 · 8)/(4 + 8) = 8/3 Ω",
+    "nota": "paralelo com o lado ligado"
+   },
+   {
+    "linha": "i = 8/(8/3) = 3 A",
+    "nota": "corrente total"
+   },
+   {
+    "linha": "2 A + 1 A = 3 A",
+    "nota": "conferência por ramo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0071"
+  }
  }
 }

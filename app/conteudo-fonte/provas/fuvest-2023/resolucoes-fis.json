@@ -869,5 +869,123 @@
    "data": "2026-11-19",
    "lote": "fis-0070"
   }
+ },
+ "P8751ad89": {
+  "n": "67",
+  "conceito": "Lei de Ohm aplicada a um termistor: a corrente-limite define a resistência mínima, e o gráfico R × T dá a faixa de temperatura segura.",
+  "equivocos": {
+   "B": "F11.4:faixa-passa-da-temperatura-limite",
+   "C": "F11.4:faixa-passa-da-temperatura-limite",
+   "D": "F11.4:inverteu-o-sentido-de-r-com-t",
+   "E": "F11.4:inverteu-o-sentido-de-r-com-t"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com a bateria fixa em 5 V, a corrente só depende da resistência: quanto menor R, maior I. O termistor queima acima de 10 mA, então a resistência não pode cair abaixo de um valor mínimo. No gráfico, R diminui quando T sobe; logo existe uma temperatura máxima, e a faixa certa é a que fica toda abaixo dela.",
+    "formulas": [
+     "V = R · I, logo R = V/I",
+     "10 mA = 0,010 A; 1 kΩ = 1 000 Ω"
+    ],
+    "simbolos": [
+     [
+      "R",
+      "resistência do termistor"
+     ],
+     [
+      "I",
+      "corrente que o percorre"
+     ],
+     [
+      "V",
+      "tensão da bateria: 5 V"
+     ],
+     [
+      "mA",
+      "miliampère, 10⁻³ A"
+     ],
+     [
+      "kΩ",
+      "quiloohm, 1 000 Ω"
+     ]
+    ]
+   },
+   "pista": "Transforme a corrente máxima numa resistência mínima e procure essa resistência no gráfico.",
+   "passos": [
+    {
+     "faz": "Ache a resistência mínima",
+     "conta": "R = 5/0,010 → R = 500 Ω = 0,5 kΩ",
+     "porque": "Com 5 V fixos, I = 5/R; para I não passar de 10 mA, R tem de ficar acima de 500 Ω.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Localize 0,5 kΩ no gráfico",
+     "conta": "R = 0,5 kΩ → T ≈ 40 °C",
+     "porque": "A curva cruza 0,5 kΩ por volta de 40 °C.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Decida o lado seguro",
+     "conta": "T < 40 °C → R > 0,5 kΩ → I < 10 mA",
+     "porque": "A resistência cai com a temperatura: abaixo de 40 °C ela é maior que 0,5 kΩ e a corrente fica abaixo do limite.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Escolha a faixa toda abaixo de 40 °C",
+     "conta": "10 °C < T < 35 °C",
+     "porque": "É a única faixa inteira abaixo de 40 °C: alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 10 °C < T < 35 °C.",
+   "checagem": "Teste as pontas da faixa: a 10 °C, R ≈ 2 kΩ e I = 5/2 000 = 2,5 mA; a 35 °C, R está acima de 0,5 kΩ e I fica abaixo de 10 mA. A 45 °C, R já está abaixo de 0,5 kΩ e I passaria de 10 mA.",
+   "erradas": {
+    "B": "Vai até 45 °C: acima de 40 °C a resistência fica abaixo de 0,5 kΩ e a corrente passa de 5/500 = 10 mA, rompendo o termistor.",
+    "C": "Vai até 55 °C: de 40 °C a 55 °C, R < 0,5 kΩ e I > 10 mA.",
+    "D": "Fica toda acima de 40 °C: R < 0,5 kΩ em toda a faixa, corrente acima de 10 mA. É o lado errado do gráfico.",
+    "E": "Toda acima de 40 °C, onde R < 0,5 kΩ e a corrente passa do limite; quem escolhe a faixa mais quente inverte o sentido em que R varia."
+   },
+   "armadilha": "Achar que temperatura alta é mais segura: no termistor a resistência cai ao esquentar, e com 5 V fixos a corrente sobe.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A faixa de temperatura em que o termistor ligado a 5 V não passa de 10 mA.",
+    "chave": "R mínima = 5/0,010 = 500 Ω = 0,5 kΩ, atingida por volta de 40 °C; a faixa tem de ficar abaixo de 40 °C.",
+    "cuidado": "Converter 10 mA em 0,010 A e kΩ em Ω, e lembrar que R cai quando T sobe."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste da ponta quente",
+    "ideia": "Basta olhar o maior T de cada faixa: só 35 °C fica abaixo dos 40 °C em que R = 0,5 kΩ e I = 5/500 = 10 mA."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R = V/I = 5/0,010",
+    "nota": "corrente máxima de 10 mA"
+   },
+   {
+    "linha": "R = 500 Ω = 0,5 kΩ",
+    "nota": "resistência mínima"
+   },
+   {
+    "linha": "R = 0,5 kΩ → T ≈ 40 °C",
+    "nota": "leitura do gráfico"
+   },
+   {
+    "linha": "T < 40 °C → R > 0,5 kΩ → I < 10 mA",
+    "nota": "R cai quando T sobe"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0071"
+  }
  }
 }

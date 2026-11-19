@@ -704,5 +704,136 @@
    "data": "2026-11-19",
    "lote": "fis-0070"
   }
+ },
+ "P7a745bff": {
+  "n": "34",
+  "conceito": "Em regime estacionário, capacitor carregado não deixa passar corrente e fica com a tensão da fonte; com a chave aberta, os capacitores descarregam pela malha que sobra.",
+  "equivocos": {
+   "A": "F11.9:capacitor-isolado-sem-descarga",
+   "C": "F11.9:capacitor-isolado-sem-descarga",
+   "D": "F11.9:resistor-sem-corrente-com-queda-de-tensao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Depois de muito tempo com a chave fechada, os capacitores estão cheios e não passa corrente nos ramos 1 e 2. Sem corrente, os resistores R1 e R2 não têm queda de tensão, e cada capacitor fica com os 300 V da fonte. A única corrente que sobra passa pelo ramo 3, que só tem resistores. Com a chave aberta, a fonte sai, mas os três ramos continuam ligados entre si formando um circuito fechado.",
+    "formulas": [
+     "i = U/R",
+     "Q = C × U",
+     "E = C × U²/2"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "tensão da fonte, 300 V"
+     ],
+     [
+      "kΩ",
+      "quiloohm, 10³ Ω"
+     ],
+     [
+      "µF",
+      "microfarad, 10⁻⁶ F"
+     ],
+     [
+      "mA",
+      "miliampère, 10⁻³ A"
+     ],
+     [
+      "mC",
+      "milicoulomb, 10⁻³ C"
+     ],
+     [
+      "mJ",
+      "milijoule, 10⁻³ J"
+     ]
+    ]
+   },
+   "pista": "Pergunte primeiro: depois que o capacitor enche, ainda passa corrente no ramo dele? Isso decide a tensão sobre cada capacitor e a corrente na fonte.",
+   "passos": [
+    {
+     "faz": "Teste a afirmativa I",
+     "conta": "ramos 1 e 2 sem corrente | i = 300 V/(4 kΩ + 6 kΩ) = 300/10 000 = 0,03 A = 30 mA",
+     "porque": "Capacitor carregado age como ramo aberto; só o ramo 3 conduz, com R3 e R4 em série. I é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmativa II",
+     "conta": "E1 = C1 × U²/2 = 10 × 10⁻⁶ × 300²/2 = 0,45 J = 450 mJ",
+     "porque": "Sem corrente no ramo 1, R1 não tem queda de tensão e C1 fica com os 300 V. II é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmativa III",
+     "conta": "i em R2 = 0 → U em R2 = 0 → U em C2 = 300 V",
+     "porque": "Resistor sem corrente não consome tensão; C2 fica com 300 V, não menos. III é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste a afirmativa IV",
+     "conta": "Q = (10 + 20) × 10⁻⁶ × 300 = 9 × 10⁻³ C = 9 mC",
+     "porque": "Os dois capacitores estão em paralelo com a fonte, cada um a 300 V: 3 mC em C1 e 6 mC em C2. IV é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste V e conclua",
+     "conta": "chave aberta: C1-R1, C2-R2 e R3-R4 ainda formam malha fechada → há corrente de descarga | corretas: I, II, IV → B",
+     "porque": "Abrir a chave só tira a fonte; os capacitores carregados descarregam pelos resistores dos três ramos. V é falsa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — somente as afirmativas I, II e IV estão corretas.",
+   "checagem": "Confira IV capacitor por capacitor: Q1 = 10 µF × 300 V = 3 mC e Q2 = 20 µF × 300 V = 6 mC; 3 + 6 = 9 mC, a carga total da afirmativa IV.",
+   "erradas": {
+    "A": "Inclui V e exclui I: com a chave aberta há corrente de descarga pela malha dos três ramos, e a corrente na fonte é 300/10 000 = 30 mA.",
+    "C": "Inclui V: abrir a chave tira só a fonte; os capacitores descarregam pelos resistores, então há corrente no circuito RC.",
+    "D": "Inclui III e exclui II: sem corrente, R2 não tem queda de tensão e C2 fica com 300 V; C1 guarda 10 × 10⁻⁶ × 300²/2 = 450 mJ."
+   },
+   "armadilha": "Achar que o resistor em série \"rouba\" tensão do capacitor carregado: sem corrente, a queda no resistor é zero.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmativas sobre o circuito RC com capacitores totalmente carregados estão corretas.",
+    "chave": "Capacitor cheio: corrente zero no ramo e 300 V nele; i = 300/10 000 = 30 mA, E1 = 450 mJ, Q total = 9 mC.",
+    "cuidado": "Com a chave aberta ainda existe malha fechada: os capacitores descarregam."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "V é falsa (há descarga), o que derruba A e C; III é falsa (C2 fica com 300 V), o que derruba D; sobra B."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i = 300/(4 000 + 6 000) = 300/10 000 = 0,03 A = 30 mA",
+    "nota": "só o ramo 3 conduz (I verdadeira)"
+   },
+   {
+    "linha": "E1 = 10 × 10⁻⁶ × 300²/2 = 0,45 J = 450 mJ",
+    "nota": "C1 com os 300 V (II verdadeira)"
+   },
+   {
+    "linha": "i em R2 = 0 → U em C2 = 300 V",
+    "nota": "III falsa"
+   },
+   {
+    "linha": "Q = 30 × 10⁻⁶ × 300 = 9 × 10⁻³ C = 9 mC",
+    "nota": "IV verdadeira"
+   },
+   {
+    "linha": "chave aberta → descarga pela malha",
+    "nota": "V falsa → I, II, IV"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0071"
+  }
  }
 }

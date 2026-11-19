@@ -207,3 +207,32 @@ DADO Pcca211b2: alternativas.C -> √Δ/2A.
 DADO P2e8d89a7: alternativas -> A: 3,6·10²² elétrons | B: 1,8·10¹⁹ elétrons | C: 1,6·10¹⁶ elétrons | D: 4·10¹⁸ elétrons (expoentes sobrescritos perdidos na camada de texto)
 DADO P34628cf3: texto_da_prova -> carga Q = 1,6 µC (no texto está 1,6 C)
 DADO P7b16fe01: texto_da_prova -> falta a função x(t) = 5·cos(4πt + π/3) (só no print)
+
+## 2026-11-19 16:54 UTC — PENDENCIAS — session_01PveEKYFao9mdqzruhVmuPm
+Lote gravado: fis-0071 (49 ok, 1 pendente). Aberto: fis-0072.
+Gabarito do Aprendice: Pbdfc7e79 E (resolvedor e conferente às cegas; igual ao preliminar).
+DADO Pd73e285b: texto_da_prova -> falta "√10 = 3,1" (no print: "ar e √10 = 3,1, a intensidade...")
+DADO P8beaca57: alternativas.E -> "9,1" (o resto é o início do enunciado colado)
+DADO P8751ad89: alternativas.E -> "50℃< 𝑇< 75℃" (o "Note e adote" é caixa à parte)
+DADO P201e692f: texto_da_prova -> "qA=qB=1μC" (está "14C")
+DADO Pdf09ed04: texto_da_prova -> afirmativa 4 "resistência de 50 Ω" (falta o símbolo Ω)
+ANULAR P8beaca57 UPE 2026 SSA3 q75: v0 correto ≈ 5,06 m/s (não está nas alternativas); gabarito C = 5,6 é v² no topo em m²/s²
+DADO P6797388c: texto_da_prova -> "resistência interna R_V = 2000 Ω" (a entrada traz "Ry = 2000 2")
+DADO P6797388c: alternativas -> A 55 Ω; B 95 Ω; C 105 Ω; D 100 Ω; E 110 Ω (a entrada traz "() 550", "() 950", "() 1059", "() 1009", "() 1100")
+RECLASS P3786443c F11.9 -> F11.4
+DADO P42817189: alternativas -> são figuras: (A) F_E para a direita e F_B para baixo; (B) F_E para a direita e F_B para cima; (C) F_E para a esquerda e F_B para a direita, na mesma linha; (D) F_E para a direita e F_B para dentro do papel; (E) F_E para a esquerda e F_B para fora do papel
+DADO Pe615c6fb: texto_da_prova e alternativas -> símbolos embaralhados; no print: Q = 1,6 × 10⁻¹⁹ C, v = 5,0 × 10⁴ m/s, B = 10 mT, cos θ = 0,80, sen θ = 0,60; alternativas a) 1,6 × 10⁻¹⁷ N b) 3,2 × 10⁻¹⁷ N c) 4,8 × 10⁻¹⁷ N d) 6,4 × 10⁻¹⁷ N e) 8,0 × 10⁻¹⁷ N
+DADO Pd4f3e03a: texto_da_prova e alternativas -> símbolos embaralhados; no print: Q = 1,6 × 10⁻¹⁹ C, B = 1,0 T, F = 3,2 × 10⁻¹⁶ N, cos θ = √3/2, sen θ = 1/2; A) v = (4√3/3) × 10³ m/s B) 4,0 × 10³ C) 2,0 × 10³ D) 2√3 × 10³ E) 1,0 × 10³ m/s
+DADO P35c39459: texto_da_prova -> vetores e norma embaralhados; no print: "campo magnético B (vetor) (constante), uma força f (vetor) perpendicular", "força B.i.L.sen(α)" e "||B|| é diretamente proporcional a 2i e inversamente proporcional a r²"
+DADO P03a6e0eb: alternativas -> A termina em "menor do que 10⁻⁶ T." (expoente −6)
+RECLASS Pad542d33 F12.2 -> F11.2
+DADO P136b3d9d: texto_da_prova -> 'q = 2,0 µC' (não 2,0 C)
+DADO P136b3d9d: alternativas -> em µN: a) 1,2 µN b) 2,6 µN c) 4,2 µN d) 7,4 µN e) 9,6 µN
+DADO Pddcf205f: alternativas -> E: '0,8 mA' ('Considere π = 3' é nota do enunciado colada na alternativa)
+DADO P1cb89704: texto_da_prova -> 'resistência elétrica 0,50 Ω' (a camada trocou Ω por 'ȍ')
+RECLASS P2bd60030 F12.2 -> F04.1
+DADO Pa10c738c: alternativas -> A 2/3; B 4/3; C 3/2; D 3/4; E 1 (texto_da_prova embaralhado; vale o print: R1, R2, R3, i_f, i_a)
+DADO P72cd4180: alternativas -> A 85%; B 71%; C 56%; D 44%; E 29% (vieram só dentro do texto)
+DADO P184df43b: texto_da_prova -> embaralhado; no print: lâmpadas de 20 Ω cada, mesma tensão nos três circuitos, pede a opção de corrente mínima
+ANULAR P8beaca57: Fe = 0,036 N; no topo v² = (0,3 + 0,036)·0,5/0,03 = 5,6 m²/s²; na base v0² = 5,6 + 4·10·0,5 = 25,6 → v0 ≈ 5,06 m/s, fora das alternativas (oficial C = 5,6 é o v² no topo, não v0)
+RECLASS P49037847 F11.6 -> F11.4

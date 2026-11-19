@@ -459,5 +459,126 @@
    "data": "2026-11-19",
    "lote": "fis-0070"
   }
+ },
+ "P8982ff16": {
+  "n": "40",
+  "conceito": "Resistência equivalente de um circuito misto desenhado em círculo e corrente total fornecida por um gerador ideal.",
+  "equivocos": {
+   "A": "F11.5:req-sem-origem-na-figura",
+   "C": "F11.5:req-sem-origem-na-figura",
+   "D": "F11.5:ignorou-resistor-em-serie",
+   "E": "F11.5:req-sem-origem-na-figura"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O desenho em círculo esconde uma associação simples. O arco de cima à esquerda é só fio: o ponto da esquerda e o ponto de cima são o mesmo nó. Como o voltímetro marca 9 V com a chave aberta e fechada, o gerador é ideal e entrega 9 V ao circuito. O amperímetro está em série com o gerador e mede a corrente total.",
+    "formulas": [
+     "série: Req = R1 + R2",
+     "paralelo de dois: Req = (R1 · R2)/(R1 + R2)",
+     "i = U/Req"
+    ],
+    "simbolos": [
+     [
+      "Req",
+      "resistência equivalente"
+     ],
+     [
+      "nó",
+      "ponto onde se ligam dois ou mais fios"
+     ],
+     [
+      "gerador ideal",
+      "fonte sem resistência interna: a tensão não cai com a corrente"
+     ]
+    ]
+   },
+   "pista": "Dê nome aos pontos: esquerda, topo, centro e direita. Veja quais deles estão ligados só por fio.",
+   "passos": [
+    {
+     "faz": "Junte os pontos ligados por fio",
+     "conta": "esquerda = topo → nó X | centro: O | direita: Y",
+     "porque": "O arco entre a esquerda e o topo não tem resistor; os dois pontos estão no mesmo potencial.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some os ramos entre X e O",
+     "conta": "6 Ω (vertical) ∥ 3 Ω → (6 · 3)/(6 + 3) = 2 Ω",
+     "porque": "O 6 Ω vertical liga o topo ao centro, e o 3 Ω liga a esquerda ao centro: ambos vão de X a O.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some com o 4 Ω",
+     "conta": "2 Ω + 4 Ω → 6 Ω",
+     "porque": "De O até a direita Y só há o 4 Ω, em série com o bloco de 2 Ω.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte com o 6 Ω de baixo",
+     "conta": "6 Ω ∥ 6 Ω → (6 · 6)/(6 + 6) = 3 Ω",
+     "porque": "O 6 Ω do arco de baixo também vai de X a Y, em paralelo com o caminho pelo centro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a corrente no amperímetro",
+     "conta": "i = 9/3 → i = 3 A",
+     "porque": "O gerador ideal aplica 9 V entre X e Y; o amperímetro, em série com ele, mede a corrente total.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 3 A.",
+   "checagem": "Ramo a ramo: o 6 Ω de baixo recebe 9 V e leva 9/6 = 1,5 A; o caminho pelo centro também tem 6 Ω e leva 1,5 A. Somando, 1,5 + 1,5 = 3 A no amperímetro.",
+   "erradas": {
+    "A": "2 A não confere: exigiria Req = 9/2 = 4,5 Ω; os dois ramos de 6 Ω em paralelo dão 3 Ω.",
+    "C": "4 A não confere: exigiria Req = 9/4 = 2,25 Ω; cada ramo leva 1,5 A e a soma é 3 A.",
+    "D": "6 A sai de deixar o 4 Ω de fora: 6 ∥ 3 = 2 Ω e 2 ∥ 6 = 1,5 Ω; 9/1,5 = 6 A. Mas o 4 Ω está em série no caminho pelo centro.",
+    "E": "9 A não confere: exigiria Req = 1 Ω, menor que a do bloco 6 ∥ 3 sozinho somado ao 4 Ω."
+   },
+   "armadilha": "Não perceber que o arco de cima à esquerda é só fio, o que põe o 6 Ω vertical em paralelo com o 3 Ω.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A corrente no amperímetro com a chave fechada.",
+    "chave": "(6 ∥ 3) + 4 = 6 Ω, em paralelo com o 6 Ω de baixo: 3 Ω; i = 9/3 = 3 A.",
+    "cuidado": "Pontos ligados só por fio são o mesmo nó; redesenhe antes de associar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "corrente por ramo",
+    "ideia": "Cada um dos dois caminhos entre X e Y tem 6 Ω e recebe 9 V: 1,5 A + 1,5 A = 3 A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "esquerda = topo = X",
+    "nota": "fio sem resistor"
+   },
+   {
+    "linha": "6 ∥ 3 = (6 · 3)/(6 + 3) = 2 Ω",
+    "nota": "ramos de X ao centro"
+   },
+   {
+    "linha": "2 + 4 = 6 Ω",
+    "nota": "série com o 4 Ω"
+   },
+   {
+    "linha": "6 ∥ 6 = 3 Ω",
+    "nota": "com o 6 Ω de baixo"
+   },
+   {
+    "linha": "i = 9/3 = 3 A",
+    "nota": "corrente total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0071"
+  }
  }
 }

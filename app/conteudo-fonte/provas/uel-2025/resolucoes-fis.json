@@ -343,5 +343,126 @@
    "data": "2026-11-12",
    "lote": "fis-0021"
   }
+ },
+ "Pad2a33ac": {
+  "n": "30",
+  "conceito": "Instalação residencial: resistência e potência pelos valores nominais (P = U × i, R = U/i, R = U²/P) e soma das correntes contra o disjuntor.",
+  "equivocos": {
+   "A": "F11.8:tensao-nominal-de-cada-aparelho",
+   "B": "F11.8:razao-de-resistencias-errada",
+   "D": "F11.8:potencia-do-ar-atribuida-ao-ferro",
+   "E": "F11.8:potencia-do-ar-atribuida-ao-ferro"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada linha do quadro traz dois dos três valores nominais (potência, corrente, tensão); o terceiro sai de P = U × i. Com eles se calcula a resistência de cada aparelho e a corrente total, que se compara com os 63 A do disjuntor. Cada afirmativa vira uma conta.",
+    "formulas": [
+     "P = U × i",
+     "R = U/i = U²/P",
+     "corrente total = soma das correntes"
+    ],
+    "simbolos": [
+     [
+      "nominal",
+      "valor para o qual o aparelho foi projetado"
+     ],
+     [
+      "disjuntor",
+      "dispositivo que desliga o circuito quando a corrente passa do limite"
+     ],
+     [
+      "Ω",
+      "ohm, unidade de resistência"
+     ]
+    ]
+   },
+   "pista": "Complete o quadro: ache a corrente que falta em cada aparelho antes de julgar as afirmativas.",
+   "passos": [
+    {
+     "faz": "Teste I: compare as resistências",
+     "conta": "boiler: 220²/2200 = 22 Ω | ferro: 127/9 ≈ 14,1 Ω → 22/14,1 ≈ 1,56",
+     "porque": "A razão é cerca de 1,56, não 3. A afirmativa I é falsa.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste II: calcule a potência do ferro",
+     "conta": "P = 127 × 9 → P = 1143 W",
+     "porque": "O ferro trabalha em 127 V com 9 A; 1980 W é a potência do ar-condicionado de 18000 Btus. II é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste III: some as correntes",
+     "conta": "0,5 + 2200/220 + 9 + 3 + 6 + 1980/220 + 32 → 0,5 + 10 + 9 + 3 + 6 + 9 + 32 = 69,5 A",
+     "porque": "O boiler e o ar de 18000 Btus não trazem corrente no quadro: sai de i = P/U.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com o disjuntor",
+     "conta": "69,5 − 63 → 6,5 A acima do limite",
+     "porque": "Passa 6,5 A do limite de 63 A: o disjuntor desarma. III é verdadeira.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste IV e conclua",
+     "conta": "ferro: 127/9 ≈ 14 Ω → III e IV corretas",
+     "porque": "A resistência do ferro já calculada é cerca de 14 Ω: IV é verdadeira. Só III e IV ficam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — Somente as afirmativas III e IV são corretas.",
+   "checagem": "Pelo consumo do ferro: com 14,1 Ω em 127 V, P = 127²/14,1 ≈ 1143 W, o mesmo de 127 × 9; isso confirma IV e derruba II pelo mesmo número.",
+   "erradas": {
+    "A": "I e II são falsas: o boiler tem 22 Ω, cerca de 1,56 vez os 14,1 Ω do ferro, e o ferro tem 127 × 9 = 1143 W.",
+    "B": "I é falsa: 22 Ω/14,1 Ω ≈ 1,56, e não 3. Quem divide as tensões (220 e 127) ou as correntes não chega a 3.",
+    "D": "I e II são falsas: a razão das resistências é cerca de 1,56, e 1980 W é a potência do ar de 18000 Btus, não a do ferro (1143 W).",
+    "E": "II é falsa: 1980 W é a potência do ar-condicionado de 18000 Btus; o ferro tem 127 × 9 = 1143 W."
+   },
+   "armadilha": "Ler 1980 W como potência do ferro e esquecer de calcular a corrente do boiler e do ar de 18000 Btus antes de somar.",
+   "alerta": "",
+   "essencial": {
+    "pede": "quais afirmativas sobre resistências, potência e corrente total estão corretas",
+    "chave": "completar o quadro com P = U × i e somar as correntes: 69,5 A contra 63 A",
+    "cuidado": "cada aparelho na sua tensão nominal: o ferro é de 127 V"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "A afirmativa I cai (22/14,1 ≈ 1,56); tirando as alternativas com I, sobram C e E, e II cai porque o ferro tem 1143 W."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R(boiler) = 220²/2200 = 22 Ω",
+    "nota": "I: resistência do boiler"
+   },
+   {
+    "linha": "R(ferro) = 127/9 ≈ 14,1 Ω",
+    "nota": "I e IV: resistência do ferro"
+   },
+   {
+    "linha": "P(ferro) = 127 × 9 = 1143 W",
+    "nota": "II: potência do ferro"
+   },
+   {
+    "linha": "i = 0,5 + 10 + 9 + 3 + 6 + 9 + 32 = 69,5 A",
+    "nota": "III: corrente total"
+   },
+   {
+    "linha": "69,5 − 63 = 6,5 A",
+    "nota": "III: excesso sobre o disjuntor"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0071"
+  }
  }
 }
