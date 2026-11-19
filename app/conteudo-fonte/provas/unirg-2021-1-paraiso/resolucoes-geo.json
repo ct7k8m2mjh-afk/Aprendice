@@ -1,0 +1,95 @@
+{
+ "P6d351d55": {
+  "n": "45",
+  "conceito": "Calcular a área real a partir de pixels de satélite e a escala a partir do tamanho mínimo representável no mapa.",
+  "equivocos": {
+   "A": "G01.2:errou-um-zero-na-escala",
+   "B": "G01.2:dividiu-por-cem-para-hectare",
+   "D": "G01.2:errou-um-zero-na-escala"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada pixel de uma imagem de 30 m de resolução representa um quadrado de 30 m × 30 m no terreno. A área total é o número de pixels vezes a área de um pixel. A escala sai de outra ideia: um pixel (30 m reais) tem de virar o menor quadrado do mapa, de 0,2 mm de lado. Escala é razão entre medidas lineares na mesma unidade.",
+    "formulas": [
+     "área de 1 pixel = lado × lado",
+     "denominador da escala = medida real ÷ medida no mapa (mesma unidade)",
+     "1 ha = 10.000 m²; 1 km² = 1.000.000 m²; 1 m = 1.000 mm"
+    ],
+    "simbolos": [
+     [
+      "pixel",
+      "menor quadradinho da imagem; cada um registra um único valor"
+     ],
+     [
+      "resolução espacial",
+      "tamanho, no terreno, do lado de um pixel"
+     ],
+     [
+      "ha",
+      "hectare, igual a 10.000 m²"
+     ]
+    ]
+   },
+   "pista": "Faça duas contas separadas: primeiro a área com os pixels; depois a escala comparando 30 m com 0,2 mm, na mesma unidade.",
+   "passos": [
+    {
+     "faz": "Separe os dados",
+     "conta": "pixel: \"30 metros\" | área desmatada: \"257 pixels\" | menor área no mapa: \"0,2 mm x 0,2 mm\"",
+     "porque": "A pergunta pede duas coisas, nesta ordem: a área real e a escala.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a área de um pixel",
+     "conta": "30 m × 30 m = 900 m²",
+     "porque": "A resolução de 30 m é o lado do quadrado no terreno; área é lado vezes lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área desmatada",
+     "conta": "257 × 900 m² = 231.300 m² = 23,13 ha = 0,2313 km²",
+     "porque": "Divida por 10.000 para hectare e por 1.000.000 para km². As alternativas A, C e D trazem essa mesma área, só em unidades diferentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a escala",
+     "conta": "30 m = 30.000 mm → 30.000 mm ÷ 0,2 mm = 150.000 → 1:150.000",
+     "porque": "O lado de um pixel no terreno (30 m) tem de caber no lado do menor quadrado do mapa (0,2 mm). É a escala que decide entre A, C e D.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "23,13 ha e 1:150.000 = alternativa C",
+     "porque": "É a única com a área e a escala certas ao mesmo tempo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 23,13 ha de área desmatada, mapeada na escala 1:150.000.",
+   "checagem": "Faça o caminho de volta: em 1:150.000, 0,2 mm no mapa valem 0,2 × 150.000 = 30.000 mm = 30 m, exatamente o lado de um pixel. A escala fecha com a resolução da imagem.",
+   "erradas": {
+    "A": "A tem a área certa (231.300 m²), mas a escala não confere: em 1:1.500.000, um pixel de 30 m ocuparia 30.000 ÷ 1.500.000 = 0,02 mm, dez vezes menos que os 0,2 mm pedidos.",
+    "B": "B sai de dividir 231.300 m² por 100 em vez de 10.000: 2.313. O certo é 23,13 ha. A escala também não confere: 1:1.150.000 deixaria o pixel com cerca de 0,026 mm.",
+    "D": "D tem a área certa em km² (0,2313 km²), mas a mesma escala errada da A: 1:1.500.000 encolhe o pixel para 0,02 mm, não 0,2 mm."
+   },
+   "armadilha": "Três alternativas trazem a área certa em unidades diferentes; quem para na área não percebe que a escala é que decide.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área real de 257 pixels de 30 m e a escala em que um pixel vira 0,2 mm.",
+    "chave": "257 × 900 m² = 23,13 ha; 30.000 mm ÷ 0,2 mm = 150.000.",
+    "cuidado": "Converta metros para milímetros antes de dividir, e m² para ha dividindo por 10.000."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0045"
+  }
+ }
+}

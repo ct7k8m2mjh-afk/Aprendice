@@ -107,3 +107,24 @@ DADO Pf6a0fc35: alternativas.D -> "14h de sexta-feira e às 21h de segunda-feira
 RECLASS P42954eb9 G01.4 -> G03.2
 GABARITO P13d52e47 (UFRR 2025, q. 42): gabarito do Aprendice E; resumo de busca do Edital 97/24 (oficial pós-recursos) indica q42 = E com recurso indeferido, mas o PDF deu 503 em 19/11/2026: conferir no PDF
 GABARITO P13d52e47 (UFRR 2025 q42): gabarito do Aprendice E (resolvedor e conferente às cegas, igual ao preliminar); confirmar no PDF do Edital 97/24-CPV (deu 503).
+
+## 2026-11-19 16:14 UTC — PENDENCIAS — sessão geo (19/11)
+Lote gravado: geo-0045 (49 resoluções, 1 pendente: anular; 4 com gabarito do Aprendice, letras iguais às cegas e ao preliminar). Aberto: geo-0046 (reconferência).
+ANULAR Pb7bf59f8 (UFRR 2022, Prova Integral, q. 37): pede a INCORRETA e as cinco são verdadeiras; a D (oficial) diz que equivalentes deformam comprimentos e que equidistantes não conservam áreas, o que é certo; a banca parece ter trocado os nomes da definição do IBGE e invertido as negações. Pôr em anuladas-aprendice.json.
+DADO P3b234e43: alternativas.E -> no print termina em "desproporcionais." (o "Questão 36" do fim é do cabeçalho da página).
+DADO P65a0e0b5: alternativas.E -> no print termina em "alcançar o Continente Americano." (o resto é o texto do mapa e a fonte, colados).
+AUTORAL P3b234e43 (Unifor 2027/1, q. 36): o texto de apoio da prova é notícia da Brasil Escola, com o nome do site na referência; é questão real da Unifor, mas o dono decidiu que o nome desses sites não aparece: decidir se o crédito fica.
+DADO Pd85eb625 (UEMA PAES 2021 q17): alternativas -> no print A = Econômico ("representa as atividades produtivas e financeiras..."), B = Histórico, C = Físico, D = Político, E = Demográfico; a entrada deslocou as letras (A vazia virou texto da tabela e C vazia). Gabarito A = Econômico confere com o print.
+DADO P8ec8e857 (PUC-Rio 2020 G4 q37): alternativas.C -> "somente a segunda expressa um fator espacial dinâmico." (sem o "o." final da entrada); texto_da_prova começa por "27", que é o número no caderno.
+DADO Pfdbd7733 (UFSM 2025 q27): alternativas -> a entrada não traz o campo; no print A apenas III · B apenas I e III · C apenas II e IV · D apenas I, II e III · E apenas I, II e IV (estão no fim de texto_da_prova).
+GABARITO Pdc11f069 (UNIRG 2023/1 Medicina q45): gabarito do Aprendice C (PIB) pelo resolvedor; nenhuma fonte web com a letra encontrada; aguarda letra do conferente às cegas.
+RECLASS Pa21e5c3d G01.7 -> G13.2 (URCA 2024.1 q78: corrente do pensamento geográfico, Geografia Pragmática/quantitativa)
+RECLASS P48542c09 G02.1 -> G02.3 (UEMG 2024 q35: tipos de rocha e estruturas geológicas)
+DADO Pa21e5c3d: texto_da_prova e alternativas -> acentos quebrados na camada de texto ('estat´ısticos', 'Cr´ıtica.', 'Human´ıstica.'); no print: 'estatísticos', 'Crítica.', 'Humanística.'
+DADO P2d80a1d6: alternativas D -> 'superf´ıcie' na entrada; no print: 'superfície'
+RECLASS P9ace0dbd G02.2 -> G03.6 (PUC-Rio 2024 Grupo 4 q44: atóis e elevação do nível do mar pelo aquecimento global)
+RECLASS P38e453ec G02.2 -> G03.2 (PUCPR 2024/2 q51: sentido de giro de ciclone e hemisfério)
+RECLASS Pca41f424 G02.2 -> G02.1 (UEG 2021/1 q47: estrutura interna da Terra)
+RECLASS P53f75a9c G02.2 -> G06.3 (UEG 2025/1 q47: migração forçada no Haiti)
+GABARITO P71971982 UEMG 2022 q36: gabarito do Aprendice B (Qconcursos Q2054694 também B); conferir contra o preliminar
+ANULAR Pb7bf59f8 (UFRR 2022 Vestibular 2022 – Prova Integral · questão 37): a questão pede a INCORRETA, mas as cinco alternativas são verdadeiras, inclusive a D oficial (equivalente conserva áreas e deforma comprimentos; equidistante não conserva áreas). Confirmado por dois agentes. Um resumo de busca do Edital 014/2022-CPV (UFRR, recursos) sugere recurso deferido com anulação da q37: conferir no PDF oficial; se anulada, vira 'anulada' pela banca.

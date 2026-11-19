@@ -1,6 +1,6 @@
 # Geografia: resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 1087 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 926; ENEM nível 7-10 21; provas-alvo nível 7-10 91; demais nível 7-10 49.
+Faltam 1037 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 876; ENEM nível 7-10 21; provas-alvo nível 7-10 91; demais nível 7-10 49.
 
 ## Lotes
 
@@ -50,7 +50,8 @@ Faltam 1087 questões sem resolução (fora as que estão em lote, pendentes ou 
 | geo-0042 | provas-alvo nível 1-6 | 60 | gravado | 59 | 1 | 0 |
 | geo-0043 | provas-alvo nível 1-6 | 50 | gravado | 49 | 1 | 0 |
 | geo-0044 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
-| geo-0045 | demais nível 1-6 | 50 | aberto |  |  |  |
+| geo-0045 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
+| geo-0046 | demais nível 1-6 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -64,6 +65,7 @@ Faltam 1087 questões sem resolução (fora as que estão em lote, pendentes ou 
 | Pd4ca228f | Santa Casa 2024 Medicina · questão 40 | G01.4 projeções cartográficas (tema G01 Cartografia) | print: as cinco imagens do Atlas Escolar do IBGE não trazem o nome da projeção, e a quadrícula recortada não permite confirmar com certeza qual delas é a conforme pedida (gabarito C); falta a identificação das projeções no atlas para resolver sem inventar. |
 | P4113bb13 | UDESC 2026 Inverno 2026.2 · questão 93 | G11.4 Nordeste e semiárido (tema G11 Brasil e regiões brasileiras) | classificação: é de Português P12.3 (romance São Bernardo, de Graciliano Ramos; pergunta sobre a obra, não sobre Geografia) |
 | Pfcc1eb63 | UERJ 2026 2º Exame de Qualificação · questão 46 | G02.2 tectônica de placas, sismos e vulcanismo (tema G02 Relevo e estrutura da Terra) | classificação: é de Física (UERJ 2026, 2º Exame de Qualificação, questão 46: ordem de grandeza da razão entre duas energias, 7,9 × 10¹⁵ J e 2,0 × 10¹² J; a razão é 3,95 × 10³ e a resposta oficial é B, 10⁴). O terremoto é só o contexto; não há conteúdo de Geografia a resolver. Está classificada em Geografia, G02.2. |
+| Pb7bf59f8 | UFRR 2022 Vestibular 2022 – Prova Integral · questão 37 | G01.4 projeções cartográficas (tema G01 Cartografia) | anular: não há alternativa incorreta. A D (oficial) é verdadeira: projeção equivalente conserva áreas e por isso deforma comprimentos, e na projeção equidistante as áreas não guardam relação constante com a superfície (nenhuma projeção é equidistante e equivalente ao mesmo tempo). A banca parece ter trocado os nomes da definição do IBGE (equidistante: sem deformação linear; equivalente: áreas em relação constante), mas, ao inverter também as duas negações, a frase ficou verdadeira. A, B, C e E reproduzem conceitos corretos (posições das planas e das cônicas; conforme conserva ângulos e a forma de pequenas áreas; Robinson e Miller afiláticas). Gabarito oficial D (pós-recursos) e a questão não consta entre as anuladas registradas (22, 52, 53, 54). |
 
 ## Divergências de gabarito (o dono decide)
 
