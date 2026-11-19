@@ -618,5 +618,130 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0003"
   }
+ },
+ "P78a314dd": {
+  "n": "37",
+  "conceito": "Probabilidade com espaço amostral restrito: entre os triângulos equiláteros formados pelos 11 vértices de dois hexágonos regulares iguais, a fração dos que têm perímetro diferente do perímetro do hexágono.",
+  "equivocos": {
+   "A": "M13.4:esqueceu-casos-no-espaco-amostral",
+   "C": "M13.4:esqueceu-casos-no-espaco-amostral",
+   "D": "M13.4:contou-favoraveis-errado",
+   "E": "M13.4:esqueceu-casos-no-espaco-amostral"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O sorteio já aconteceu e se sabe que saiu um triângulo equilátero: o espaço amostral é a lista de TODOS os triângulos equiláteros com vértices nesses 11 pontos, não os 165 trios possíveis. Polígonos regulares equivalentes (mesma área) e com o mesmo número de lados são iguais: os dois hexágonos têm o mesmo lado, que vamos chamar de s. O trabalho real é não esquecer nenhum triângulo, principalmente os que usam pontos dos dois hexágonos.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "perímetro do hexágono de lado s = 6s",
+     "perímetro do triângulo equilátero de lado L = 3L"
+    ],
+    "simbolos": [
+     [
+      "s",
+      "medida do lado de cada hexágono"
+     ],
+     [
+      "equivalentes",
+      "polígonos com a mesma área"
+     ],
+     [
+      "colineares",
+      "pontos que estão na mesma reta"
+     ]
+    ]
+   },
+   "pista": "Separe os triângulos equiláteros pelo tamanho do lado: há os de dentro de um hexágono e há os que usam vértices dos dois hexágonos, aproveitando as retas que passam por F.",
+   "passos": [
+    {
+     "faz": "Conte os triângulos dentro de cada hexágono",
+     "conta": "ACE, BDF (1º hexágono) | FHJ, GIK (2º) → 4 triângulos de lado s√3",
+     "porque": "Num hexágono regular, vértices alternados formam um triângulo equilátero; cada hexágono tem dois desses. O lado é a diagonal menor do hexágono, s√3.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os triângulos pequenos em volta de F",
+     "conta": "EFK, AFG → 2 triângulos de lado s",
+     "porque": "EF e FK são lados dos hexágonos (medem s), e EK também mede s, pois E e K estão na mesma horizontal, a uma distância igual ao lado. O mesmo vale embaixo, com A, F e G.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os triângulos que atravessam as figuras",
+     "conta": "EG = AK = 2s → BEG, EGJ, ADK, AHK → 4 triângulos de lado 2s",
+     "porque": "E, F e G estão alinhados, e A, F e K também; por isso EG e AK medem s + s = 2s. Os pontos B e J (para EG) e D e H (para AK) ficam a 2s das duas pontas, fechando quatro triângulos equiláteros grandes.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Compare os perímetros com 6s",
+     "conta": "lado s√3: 3√3 s ≈ 5,2s ≠ 6s | lado s: 3s ≠ 6s | lado 2s: 3 · 2s = 6s",
+     "porque": "Só os triângulos de lado 2s têm o mesmo perímetro do hexágono ABCDEF. Os outros 4 + 2 = 6 têm perímetro diferente.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Divida e ligue à alternativa",
+     "conta": "P = 6/10 = 0,60 → alternativa B",
+     "porque": "São 10 triângulos equiláteros possíveis, e 6 deles têm perímetro diferente de 6s.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 0,60",
+   "checagem": "Conte pelo complementar: os de perímetro igual a 6s são os 4 de lado 2s, ou seja, 4/10 = 0,40; e 1 − 0,40 = 0,60. Fecha.",
+   "erradas": {
+    "A": "0,50 sai de esquecer os dois triângulos pequenos EFK e AFG: sobram 8 triângulos, com 4 de perímetro diferente, e 4/8 = 0,50.",
+    "C": "0,75 sai de enxergar só um dos dois segmentos de medida 2s (EG ou AK): 8 triângulos, 6 de perímetro diferente, e 6/8 = 0,75.",
+    "D": "0,80 não confere: seriam 8 de 10 triângulos com perímetro diferente, mas os 4 de lado 2s têm perímetro 6s, igual ao do hexágono; ficam só 6.",
+    "E": "1,00 sai de contar só os triângulos de dentro dos hexágonos e os pequenos (6 triângulos), esquecendo os 4 de lado 2s, que têm perímetro igual: 6/6 = 1."
+   },
+   "armadilha": "Os triângulos de lado 2s, que usam vértices dos dois hexágonos, são justamente os de perímetro igual ao do hexágono; quem não os vê erra o espaço amostral e a resposta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de o triângulo equilátero sorteado ter perímetro diferente do perímetro do hexágono ABCDEF.",
+    "chave": "Há 10 triângulos equiláteros: 4 de lado s√3, 2 de lado s e 4 de lado 2s; só os de lado 2s têm perímetro 6s, então P = 6/10.",
+    "cuidado": "O espaço amostral são os triângulos equiláteros, e não se pode esquecer os que atravessam os dois hexágonos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "Conte só os triângulos de perímetro 6s (lado 2s: 4 de 10) e faça 1 − 4/10 = 0,60."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "lado s√3: ACE, BDF, FHJ, GIK → 4",
+    "nota": "vértices alternados de cada hexágono"
+   },
+   {
+    "linha": "lado s: EFK, AFG → 2",
+    "nota": "triângulos pequenos em F"
+   },
+   {
+    "linha": "lado 2s: BEG, EGJ, ADK, AHK → 4",
+    "nota": "apoiados em EG e AK, que medem 2s"
+   },
+   {
+    "linha": "total = 4 + 2 + 4 = 10",
+    "nota": "espaço amostral"
+   },
+   {
+    "linha": "perímetro ≠ 6s: 4 + 2 = 6",
+    "nota": "só os de lado 2s têm 3 · 2s = 6s"
+   },
+   {
+    "linha": "P = 6/10 = 0,60",
+    "nota": "favoráveis sobre possíveis"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
  }
 }

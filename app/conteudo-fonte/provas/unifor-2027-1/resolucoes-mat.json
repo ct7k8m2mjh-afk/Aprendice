@@ -1002,5 +1002,139 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0004"
   }
+ },
+ "P3eac4cbc": {
+  "n": "15",
+  "conceito": "Diagrama de Venn com três conjuntos e um dado escondido numa expressão com raízes cúbicas; probabilidade de estar em duas ou três áreas.",
+  "equivocos": {
+   "A": "M13.6:esqueceu-regiao-do-diagrama",
+   "C": "M13.6:conta-sem-origem-conferida",
+   "D": "M13.6:conta-sem-origem-conferida",
+   "E": "M13.6:conta-sem-origem-conferida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O número de interessados nas três áreas vem disfarçado: 5E, com E escrito com raízes cúbicas. Repare que 10 ± √108 = 10 ± 6√3 são cubos perfeitos: (1 ± √3)³. Depois, monte o diagrama de Venn de dentro para fora. \"Pelo menos uma, mas não exclusivamente uma\" são as regiões de duas ou três áreas.",
+    "formulas": [
+     "(1 + √3)³ = 1 + 3√3 + 9 + 3√3 = 10 + 6√3",
+     "√108 = √(36 · 3) = 6√3",
+     "probabilidade = casos favoráveis ÷ casos possíveis"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "número definido pela expressão com raízes cúbicas; 5E é a quantidade de interessados nas três áreas"
+     ],
+     [
+      "S, G, I",
+      "Estruturas, Geotecnia e Instalações Prediais"
+     ],
+     [
+      "x",
+      "interessados em Estruturas e Geotecnia, mas não em Instalações"
+     ],
+     [
+      "y",
+      "interessados em Geotecnia e Instalações, mas não em Estruturas"
+     ]
+    ]
+   },
+   "pista": "Escreva √108 como 6√3 e teste se 10 + 6√3 é o cubo de algo como 1 + √3.",
+   "passos": [
+    {
+     "faz": "Calcule E pelos cubos perfeitos",
+     "conta": "E = ((1 + √3)³)^(1/3) + ((1 − √3)³)^(1/3) → E = (1 + √3) + (1 − √3) → E = 2",
+     "porque": "Como 10 + 6√3 = (1 + √3)³ e 10 − 6√3 = (1 − √3)³, cada raiz cúbica desfaz o cubo; os √3 se cancelam. Logo 5E = 10 estudantes nas três áreas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache x com quem não quer Instalações",
+     "conta": "só S + só G + x = 110 → 40 + 70 + x = 110 → x = 0",
+     "porque": "Entre os interessados, não querer Instalações é estar em só Estruturas, só Geotecnia ou Estruturas e Geotecnia sem Instalações.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache y com quem não quer Estruturas",
+     "conta": "só G + só I + y = 190 → 70 + 100 + y = 190 → y = 20",
+     "porque": "Do mesmo jeito: não querer Estruturas, entre os interessados, é só Geotecnia, só Instalações ou Geotecnia e Instalações sem Estruturas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as regiões de duas ou três áreas",
+     "conta": "10 (S e I) + 0 (S e G) + 20 (G e I) + 10 (três) = 40 | total = 150 + 40 + 70 + 100 + 40 = 400",
+     "porque": "\"Pelo menos uma, mas não exclusivamente uma\" exclui quem não quer nenhuma e quem quer só uma área.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e ligue à alternativa",
+     "conta": "P = 40/400 = 1/10 → alternativa B",
+     "porque": "O estudante é escolhido entre todos os 400 da turma.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1/10",
+   "checagem": "Confira E pela equação: com a = 10 + √108 e b = 10 − √108, a · b = 100 − 108 = −8, então E³ = a + b + 3·∛(ab)·E = 20 − 6E; E = 2 satisfaz (8 = 20 − 12). E pelo complementar: 1 − (150 + 40 + 70 + 100)/400 = 1 − 360/400 = 1/10.",
+   "erradas": {
+    "A": "1/20 sai de somar só as regiões dadas direto (10 em Estruturas e Instalações e 10 nas três) e esquecer os 20 de Geotecnia e Instalações: 20/400 = 1/20.",
+    "C": "1/5 não confere: exigiria 80 estudantes em duas ou três áreas, mas as regiões somam 10 + 0 + 20 + 10 = 40.",
+    "D": "1/4 não confere: exigiria 100 dos 400 em duas ou três áreas; o diagrama dá 40.",
+    "E": "2/5 não confere: exigiria 160 dos 400; mesmo os 250 que têm interesse incluem 210 de uma área só, sobrando 40."
+   },
+   "armadilha": "Os 190 e os 110 são contados entre os que demonstraram interesse; se você somar os 150 sem interesse, a conta de y dá negativa.",
+   "alerta": "Leitura da banca: os 190 sem interesse em Estruturas e os 110 sem interesse em Instalações só fecham se contados entre os que demonstraram interesse (com os 150 sem interesse, 70 + 100 + 150 já passa de 190). Além disso, a expressão (10 − √108)^(1/3) tem base negativa; a banca a usa como raiz cúbica real, 1 − √3. O gabarito é o oficial retificado.",
+   "essencial": {
+    "pede": "A chance de um estudante ter interesse em duas ou três áreas.",
+    "chave": "E = (1 + √3) + (1 − √3) = 2, então 10 nas três; x = 0, y = 20; duas ou mais áreas = 40 de 400 = 1/10.",
+    "cuidado": "Reconheça 10 ± 6√3 como cubos e conte 190 e 110 só entre os interessados."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "Tire de 400 quem não tem interesse (150) e quem tem uma área só (40 + 70 + 100 = 210): 40/400 = 1/10."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "√108 = 6√3 → 10 ± 6√3 = (1 ± √3)³",
+    "nota": "cubos perfeitos"
+   },
+   {
+    "linha": "E = (1 + √3) + (1 − √3) = 2 → 5E = 10",
+    "nota": "os √3 se cancelam"
+   },
+   {
+    "linha": "40 + 70 + x = 110 → x = 0",
+    "nota": "sem interesse em Instalações"
+   },
+   {
+    "linha": "70 + 100 + y = 190 → y = 20",
+    "nota": "sem interesse em Estruturas"
+   },
+   {
+    "linha": "10 + 0 + 20 + 10 = 40 | total = 400",
+    "nota": "duas ou três áreas"
+   },
+   {
+    "linha": "P = 40/400 = 1/10",
+    "nota": "favoráveis sobre o total"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Unifor — caderno e gabarito retificado do vestibular de Medicina 2027.1",
+    "url": "https://unifor.br/documents/d/graduacao/vtb2027_1medicina_23092026_final"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
  }
 }

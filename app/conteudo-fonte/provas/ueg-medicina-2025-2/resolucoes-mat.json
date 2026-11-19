@@ -345,5 +345,235 @@
    "data": "2026-11-13",
    "lote": "mat-0060"
   }
+ },
+ "P37692c52": {
+  "n": "19",
+  "conceito": "Ponto na circunferência e área de triângulo por determinante para achar coordenadas desconhecidas.",
+  "equivocos": {
+   "A": "M12.5:errou-o-determinante-da-area",
+   "B": "M12.5:errou-o-determinante-da-area",
+   "C": "M12.5:errou-o-determinante-da-area",
+   "E": "M12.5:errou-o-determinante-da-area"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Há duas incógnitas e duas informações. B(2, y) está na circunferência de centro (1, 2) e raio √10, o que dá y. Depois a área 2 do triângulo, pelo determinante, dá x. A condição de primeiro quadrante escolhe entre as duas soluções de cada equação.",
+    "formulas": [
+     "(x − 1)² + (y − 2)² = 10",
+     "área = |D|/2, com D = det[[x_A, y_A, 1], [x_B, y_B, 1], [x_C, y_C, 1]]"
+    ],
+    "simbolos": [
+     [
+      "D",
+      "determinante das coordenadas dos três vértices"
+     ],
+     [
+      "A(x, x/2)",
+      "vértice A, cuja ordenada é metade da abscissa"
+     ]
+    ]
+   },
+   "pista": "Comece por B: ele só tem uma incógnita e está na circunferência.",
+   "passos": [
+    {
+     "faz": "Ache y com B na circunferência",
+     "conta": "(2 − 1)² + (y − 2)² = 10 → (y − 2)² = 9 → y = 5 ou y = −1",
+     "porque": "A distância de B ao centro tem de ser √10. No primeiro quadrante y > 0, então y = 5 e B = (2, 5).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o determinante da área",
+     "conta": "D = det[[x, x/2, 1], [2, 5, 1], [1, 2, 1]] → D = 5x/2 − 1",
+     "porque": "Desenvolvendo pela regra de Sarrus, os termos se juntam em 5x/2 − 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale a área a 2",
+     "conta": "|5x/2 − 1|/2 = 2 → 5x/2 − 1 = ±4 → x = 2 ou x = −6/5",
+     "porque": "A área é metade do módulo do determinante. Como A está no primeiro quadrante, x = 2 e A = (2, 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as coordenadas de A",
+     "conta": "2 + 1 = 3 → alternativa D",
+     "porque": "A pergunta é a soma das coordenadas de A, não o valor de x.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 3,0",
+   "checagem": "A(2, 1) e B(2, 5) estão na reta x = 2: base AB = 4, e C(1, 2) está a 1 dessa reta. Área = (4 · 1)/2 = 2. Fecha.",
+   "erradas": {
+    "A": "A não confere: soma 1,5 dá x = 1, A(1; 0,5), e a área com B(2, 5) e C(1, 2) seria 3/4, não 2.",
+    "B": "B não confere: soma 2,0 dá x = 4/3, e a área seria |5·(4/3)/2 − 1|/2 = 7/6, não 2.",
+    "C": "C não confere: soma 2,5 dá x = 5/3, e a área seria 19/12, não 2.",
+    "E": "E não confere: soma 3,5 dá x = 7/3, e a área seria 29/12, não 2."
+   },
+   "armadilha": "A pergunta é a soma das coordenadas de A (x + x/2), não só x; e as soluções negativas saem pelo primeiro quadrante.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma das coordenadas do vértice A.",
+    "chave": "B na circunferência dá B(2, 5); área 2 pelo determinante dá x = 2, A(2, 1), soma 3.",
+    "cuidado": "Use o primeiro quadrante para descartar y = −1 e x = −6/5."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "base vertical",
+    "ideia": "Teste as alternativas: com x = 2, A(2, 1) e B(2, 5) formam base vertical 4 e C está a 1 dela, área 2; só a soma 3 funciona."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 + (y − 2)² = 10",
+    "nota": "B(2, y) na circunferência"
+   },
+   {
+    "linha": "(y − 2)² = 9 → y = 5",
+    "nota": "y = −1 sai: fora do 1º quadrante"
+   },
+   {
+    "linha": "D = 5x/2 − 1",
+    "nota": "determinante com A(x, x/2), B(2, 5), C(1, 2)"
+   },
+   {
+    "linha": "|5x/2 − 1|/2 = 2 → 5x/2 − 1 = 4",
+    "nota": "área 2; o sinal negativo dá x < 0"
+   },
+   {
+    "linha": "x = 2 → A = (2, 1)",
+    "nota": "isolar x"
+   },
+   {
+    "linha": "2 + 1 = 3",
+    "nota": "soma das coordenadas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "P0dd76e8b": {
+  "n": "20",
+  "conceito": "Probabilidade simples a partir da leitura de gráfico: contar os indivíduos que cumprem duas condições ao mesmo tempo, com faixas definidas por outro gráfico.",
+  "equivocos": {
+   "A": "M13.4:uniao-no-lugar-da-intersecao",
+   "B": "M13.4:usou-so-uma-condicao",
+   "C": "M13.4:usou-so-uma-condicao",
+   "E": "M13.4:esqueceu-caso-que-manteve"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São 10 pessoas e cada uma tem dois pontos no gráfico: o quadrado (17 a 23 anos) e o losango (54 a 60 anos). A Imagem 02 dá as faixas: baixo até 0,3; moderado de 0,3 a 0,8; elevado de 0,8 a 1. O indivíduo precisa cumprir as DUAS condições: quadrado moderado ou elevado E losango elevado. Conte quem passa nos dois testes e divida por 10.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "moderado ou elevado: grau ≥ 0,3 | elevado: grau ≥ 0,8"
+    ],
+    "simbolos": [
+     [
+      "f(x)",
+      "grau de dependência do indivíduo x, entre 0 e 1"
+     ],
+     [
+      "■",
+      "medida dos 17 aos 23 anos"
+     ],
+     [
+      "◆",
+      "medida dos 54 aos 60 anos"
+     ]
+    ]
+   },
+   "pista": "Leia as faixas da Imagem 02 nos dois cortes do eixo horizontal; depois faça duas listas, uma para cada período, e veja quem está nas duas.",
+   "passos": [
+    {
+     "faz": "Leia as faixas da Imagem 02",
+     "conta": "baixo: 0 a 0,3 | moderado: 0,3 a 0,8 | elevado: 0,8 a 1",
+     "porque": "As linhas verticais do gráfico de classificação caem nos graus 0,3 e 0,8, que separam as três faixas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Liste quem tinha grau moderado ou elevado jovem",
+     "conta": "■ ≥ 0,3: 1 (0,7), 2 (0,6), 4 (0,9), 9 (0,9), 10 (0,35) → 5 pessoas",
+     "porque": "Os quadrados de 3, 5, 6, 7 e 8 ficam abaixo de 0,3, na faixa baixa.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Liste quem tem grau elevado depois dos 54",
+     "conta": "◆ ≥ 0,8: 1 (0,85), 3 (0,95), 9 (1), 10 (0,9) → 4 pessoas",
+     "porque": "Os losangos de 4 (0,6) e 7 (0,75) ficam na faixa moderada; os demais, na baixa.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Fique com quem está nas duas listas",
+     "conta": "{1, 2, 4, 9, 10} ∩ {1, 3, 9, 10} = {1, 9, 10} → 3 pessoas",
+     "porque": "A pergunta exige as duas condições ao mesmo tempo. O 3 sai porque era baixo jovem (0,2); o 4 sai porque caiu para moderado (0,6).",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Divida pelo total e ligue à alternativa",
+     "conta": "P = 3/10 = 30% → alternativa D",
+     "porque": "O sorteio é entre as 10 pessoas da pesquisa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 30%",
+   "checagem": "Leia pessoa por pessoa a mudança de faixa: 1 foi de moderado a elevado (passou a ter), 10 também (passou a ter) e 9 ficou em elevado (manteve). São exatamente os casos que o enunciado descreve: 3 de 10.",
+   "erradas": {
+    "A": "60% sai de trocar \"e\" por \"ou\": juntou as duas listas, {1, 2, 3, 4, 9, 10}, 6 pessoas, e 6/10 = 60%.",
+    "B": "50% sai de usar só a primeira condição: 5 pessoas com grau moderado ou elevado jovem, 5/10 = 50%.",
+    "C": "40% sai de usar só a segunda condição: 4 pessoas com grau elevado depois dos 54, 4/10 = 40%.",
+    "E": "20% sai de contar só quem \"passou a ter\" grau elevado (1 e 10), esquecendo o 9, que \"manteve\": 2/10 = 20%."
+   },
+   "armadilha": "As duas condições valem juntas: quem só cumpre uma delas (como o 3 e o 4) fica fora da contagem.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de sortear alguém moderado ou elevado jovem e elevado depois dos 54 anos.",
+    "chave": "Jovem ≥ 0,3: {1, 2, 4, 9, 10}; depois ≥ 0,8: {1, 3, 9, 10}; nas duas: {1, 9, 10}, então 3/10.",
+    "cuidado": "Faça a interseção das listas, não a união, e não esqueça quem manteve o grau elevado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela pessoa a pessoa",
+    "ideia": "Escreva para cada indivíduo a faixa nos dois períodos (ex.: 1: moderado → elevado) e marque só quem começa em moderado/elevado e termina em elevado."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "moderado/elevado (■ ≥ 0,3): 1, 2, 4, 9, 10",
+    "nota": "condição dos 17 aos 23 anos"
+   },
+   {
+    "linha": "elevado (◆ ≥ 0,8): 1, 3, 9, 10",
+    "nota": "condição dos 54 aos 60 anos"
+   },
+   {
+    "linha": "nas duas: 1, 9, 10 → 3",
+    "nota": "interseção das listas"
+   },
+   {
+    "linha": "P = 3/10 = 30%",
+    "nota": "favoráveis sobre as 10 pessoas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
  }
 }

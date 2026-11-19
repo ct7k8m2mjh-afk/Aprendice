@@ -89,5 +89,122 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pf562a746": {
+  "n": "49",
+  "conceito": "Posição relativa entre reta e circunferência: a reta é exterior quando a distância do centro até ela é maior que o raio.",
+  "equivocos": {
+   "A": "M12.4:distancia-ponto-reta-errada",
+   "B": "M12.4:centro-errado",
+   "C": "M12.4:distancia-ponto-reta-errada",
+   "D": "M12.4:centro-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro tire o centro e o raio da circunferência, completando o quadrado em y. A reta é exterior quando fica mais longe do centro do que o raio. A distância de ponto a reta tem módulo, e a inequação com módulo se abre em dois casos.",
+    "formulas": [
+     "distância de (x₀, y₀) à reta ax + by + c = 0: |ax₀ + by₀ + c|/√(a² + b²)",
+     "exterior: distância > raio",
+     "|u| > k ⇔ u < −k ou u > k"
+    ],
+    "simbolos": [
+     [
+      "δ",
+      "coeficiente desconhecido da reta, que se quer descobrir"
+     ],
+     [
+      "centro",
+      "(0, 1)"
+     ],
+     [
+      "raio",
+      "1"
+     ]
+    ]
+   },
+   "pista": "Complete o quadrado em y para achar o centro e o raio. Depois compare distância com raio.",
+   "passos": [
+    {
+     "faz": "Ache centro e raio",
+     "conta": "x² + y² − 2y = 0 → x² + (y − 1)² − 1 = 0 → x² + (y − 1)² = 1 → centro (0, 1), raio 1",
+     "porque": "Somando e subtraindo 1, y² − 2y vira (y − 1)² − 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a distância do centro à reta",
+     "conta": "d = |2 · 0 + 2 · 1 + δ|/√(2² + 2²) → d = |2 + δ|/(2√2)",
+     "porque": "√8 = 2√2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha d maior que o raio",
+     "conta": "|2 + δ|/(2√2) > 1 → |δ + 2| > 2√2",
+     "porque": "O denominador positivo 2√2 passa multiplicando para o outro lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Abra o módulo",
+     "conta": "δ + 2 < −2√2 ou δ + 2 > 2√2 → δ < −2 − 2√2 ou δ > −2 + 2√2",
+     "porque": "Módulo maior que k: ou o número está abaixo de −k, ou acima de k. O 2 passa subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "δ < −2 − 2√2 ou δ > −2 + 2√2 → alternativa E",
+     "porque": "É exatamente o intervalo de E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — δ < −2 − 2√2 ou δ > −2 + 2√2.",
+   "checagem": "No limite δ = −2 + 2√2, a reta deveria ser tangente: substituindo y = −x − δ/2 na circunferência, 2x² + (δ + 2)x + δ²/4 + δ = 0 tem discriminante (δ + 2)² − 2δ² − 8δ = −δ² − 4δ + 4, que zera em δ = −2 ± 2√2. Fecha com as duas fronteiras.",
+   "erradas": {
+    "A": "A não confere: δ = −0,5 está em A (> −2 + √2 ≈ −0,59), mas a distância fica |1,5|/(2√2) ≈ 0,53 < 1, e a reta corta a circunferência.",
+    "B": "B não confere: δ = −4 está em B (< −1 − 2√2 ≈ −3,83), mas a distância fica |−2|/(2√2) ≈ 0,71 < 1, e a reta corta a circunferência.",
+    "C": "C não confere: deixa de fora δ = 1 (pois −2 + 2√3 ≈ 1,46), e com δ = 1 a distância é 3/(2√2) ≈ 1,06 > 1, reta exterior.",
+    "D": "D não confere: δ = −4,6 está em D (< −1 − 2√3 ≈ −4,46), mas a distância fica |−2,6|/(2√2) ≈ 0,92 < 1, e a reta corta a circunferência."
+   },
+   "armadilha": "O centro é (0, 1), não a origem: o termo 2 · 1 = 2 entra no módulo junto com δ.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os valores de δ para os quais a reta 2x + 2y + δ = 0 não toca a circunferência x² + y² − 2y = 0.",
+    "chave": "Centro (0, 1), raio 1; |δ + 2|/(2√2) > 1, logo |δ + 2| > 2√2.",
+    "cuidado": "Complete o quadrado para achar o centro e use √(2² + 2²) = 2√2 no denominador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "discriminante",
+    "ideia": "Substitua y = −x − δ/2 na circunferência e exija discriminante negativo: −δ² − 4δ + 4 < 0, que dá o mesmo par de intervalos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² + (y − 1)² = 1",
+    "nota": "centro (0, 1), raio 1"
+   },
+   {
+    "linha": "|2 + δ|/(2√2) > 1",
+    "nota": "distância maior que o raio"
+   },
+   {
+    "linha": "|δ + 2| > 2√2",
+    "nota": "2√2 passa multiplicando"
+   },
+   {
+    "linha": "δ < −2 − 2√2 ou δ > −2 + 2√2",
+    "nota": "abre o módulo; o 2 passa subtraindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
  }
 }

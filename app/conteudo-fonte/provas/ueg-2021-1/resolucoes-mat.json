@@ -980,5 +980,112 @@
    "data": "2026-11-19",
    "lote": "mat-0072"
   }
+ },
+ "Pb64cd84d": {
+  "n": "14",
+  "conceito": "Probabilidade de pelo menos um sucesso em tentativas independentes, pelo evento complementar.",
+  "equivocos": {
+   "A": "M13.4:considerou-uma-tentativa-so",
+   "B": "M13.4:calculou-todos-em-vez-de-pelo-menos-um",
+   "C": "M13.4:conta-sem-origem-conferida",
+   "D": "M13.4:complementar-com-evento-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Pelo menos um aluno\" inclui 1, 2, 3 ou 4 acertos: são muitos casos. O contrário disso é um caso só: nenhum dos quatro acerta. Calcule a chance de nenhum acertar e tire de 1. Cada aluno erra a questão com probabilidade 1 − 3/7 = 4/7, e os quatro resolvem de forma independente, então as chances se multiplicam.",
+    "formulas": [
+     "P(pelo menos um) = 1 − P(nenhum)",
+     "P(errar) = 1 − P(acertar)",
+     "eventos independentes: P(A e B) = P(A) · P(B)"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "probabilidade"
+     ],
+     [
+      "independentes",
+      "o resultado de um aluno não muda a chance dos outros"
+     ]
+    ]
+   },
+   "pista": "Pense no contrário de \"pelo menos um acerta\" e calcule essa chance primeiro.",
+   "passos": [
+    {
+     "faz": "Ache a chance de um aluno errar",
+     "conta": "1 − 3/7 = 4/7",
+     "porque": "Acertar e errar são complementares: as duas chances somam 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chance de os quatro errarem",
+     "conta": "(4/7)⁴ = 256/2401 ≈ 0,107",
+     "porque": "Os quatro alunos são independentes; para nenhum acertar, cada um precisa errar, e as chances se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire do total",
+     "conta": "1 − 256/2401 = 2145/2401 ≈ 0,893",
+     "porque": "Ou ninguém acerta, ou pelo menos um acerta; as duas chances somam 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "≈ 0,89 → alternativa E",
+     "porque": "A pergunta é a chance de pelo menos um aluno acertar, aproximada em duas casas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — aproximadamente 0,89",
+   "checagem": "Ordem de grandeza: com um aluno só a chance já é 3/7 ≈ 0,43; com quatro tentativas ela tem de ser bem maior que 0,43 e menor que 1. Só 0,89 e 0,96 sobram; e 0,96 exigiria que ninguém acertar tivesse chance de só 0,04, mas (4/7)⁴ ≈ 0,107.",
+   "erradas": {
+    "A": "0,42 sai de parar na chance de um único aluno acertar: 3/7 = 0,428…, que truncado dá 0,42, ignorando que são quatro alunos.",
+    "B": "0,03 sai de calcular a chance de os quatro acertarem: (3/7)⁴ ≈ 0,034. A pergunta é pelo menos um, não todos.",
+    "C": "0,59 não confere: daria uma chance de ninguém acertar de 1 − 0,59 = 0,41, mas (4/7)⁴ ≈ 0,107.",
+    "D": "0,96 sai de trocar acerto por erro no complementar: 1 − (3/7)⁴ ≈ 0,966, que é a chance de pelo menos um ERRAR."
+   },
+   "armadilha": "Para \"pelo menos um acerta\", o que se eleva à quarta é a chance de ERRAR (4/7), não a de acertar.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de pelo menos um de quatro alunos resolver a questão, se cada um acerta com 3/7.",
+    "chave": "Pelo complementar: 1 − (4/7)⁴ = 1 − 256/2401 ≈ 0,89.",
+    "cuidado": "No complementar entra a chance de errar, 4/7, multiplicada quatro vezes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma dos casos",
+    "ideia": "Some P(1) + P(2) + P(3) + P(4) acertos com combinações: 4·(3/7)(4/7)³ + 6·(3/7)²(4/7)² + 4·(3/7)³(4/7) + (3/7)⁴ ≈ 0,89, bem mais longo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(errar) = 1 − 3/7 = 4/7",
+    "nota": "complementar de acertar"
+   },
+   {
+    "linha": "P(nenhum) = (4/7)⁴ = 256/2401 ≈ 0,107",
+    "nota": "quatro erros independentes"
+   },
+   {
+    "linha": "P(pelo menos um) = 1 − 256/2401 = 2145/2401",
+    "nota": "tira do total"
+   },
+   {
+    "linha": "2145/2401 ≈ 0,89",
+    "nota": "valor aproximado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
  }
 }

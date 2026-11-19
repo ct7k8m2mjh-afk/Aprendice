@@ -1130,5 +1130,111 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P8ee33cf0": {
+  "n": "25",
+  "conceito": "Somar k(k + 1) usando a identidade dada com coeficientes binomiais e a soma da coluna do triângulo de Pascal (taco de hóquei).",
+  "equivocos": {
+   "A": "M13.3:erro-na-soma-de-binomiais",
+   "C": "M13.3:erro-na-soma-de-binomiais",
+   "D": "M13.3:erro-na-soma-de-binomiais",
+   "E": "M13.3:erro-na-soma-de-binomiais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O enunciado dá o atalho: cada termo k(k + 1) é 2 · C(k + 1, 2). A soma vira o dobro de uma soma de coeficientes da mesma coluna do triângulo de Pascal, e essa soma tem fórmula pronta. A soma vai até 29 · 30, então k vai de 1 a 29.",
+    "formulas": [
+     "k(k + 1) = 2 · C(k + 1, 2)",
+     "C(2, 2) + C(3, 2) + ... + C(n, 2) = C(n + 1, 3)"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "coeficiente binomial: modos de escolher k entre n"
+     ],
+     [
+      "taco de hóquei",
+      "nome da propriedade: somar uma coluna do triângulo de Pascal dá o número abaixo e à direita"
+     ]
+    ]
+   },
+   "pista": "Troque cada parcela pela forma que o enunciado dá e veja que índices de baixo ficam todos iguais.",
+   "passos": [
+    {
+     "faz": "Reescreva cada parcela",
+     "conta": "1 · 2 + 2 · 3 + ... + 29 · 30 = 2 · [C(2, 2) + C(3, 2) + ... + C(30, 2)]",
+     "porque": "Para k = 1, 2, ..., 29, o termo k(k + 1) vira 2 · C(k + 1, 2); o índice de cima vai de 2 a 30.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a coluna de Pascal",
+     "conta": "C(2, 2) + ... + C(30, 2) = C(31, 3) = (31 · 30 · 29)/6 = 4 495",
+     "porque": "Somar a coluna do 2 até a linha 30 dá o número da linha 31 na coluna 3 (taco de hóquei).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique por 2",
+     "conta": "2 · 4 495 = 8 990",
+     "porque": "O fator 2 da identidade estava em todas as parcelas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "8 990 → alternativa B",
+     "porque": "É o valor da soma pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 8.990",
+   "checagem": "Pela fórmula Σ k(k + 1) = n(n + 1)(n + 2)/3 com n = 29: (29 · 30 · 31)/3 = 8 990. Fecha.",
+   "erradas": {
+    "A": "7.990 não confere: a soma é (29 · 30 · 31)/3, múltiplo de 29, e 7 990/29 não é inteiro (dá cerca de 275,5).",
+    "C": "8.890 não confere: a soma é múltipla de 29 e de 31, e 8 890/29 não é inteiro (cerca de 306,6).",
+    "D": "7.890 não confere: 7 890/29 não é inteiro (cerca de 272,1), e a soma (29 · 30 · 31)/3 é múltipla de 29.",
+    "E": "6.890 não confere: 6 890/29 não é inteiro (cerca de 237,6), e a soma é múltipla de 29."
+   },
+   "armadilha": "Errar o fim da soma: a última parcela é 29 · 30, então a coluna vai até C(30, 2) e o resultado é C(31, 3).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de 1 · 2 + 2 · 3 + ... + 29 · 30.",
+    "chave": "k(k + 1) = 2 · C(k + 1, 2) e a soma da coluna dá C(31, 3) = 4 495; o dobro é 8 990.",
+    "cuidado": "Acerte os índices: de C(2, 2) até C(30, 2)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma de quadrados",
+    "ideia": "Σ k(k + 1) = Σ k² + Σ k = 8 555 + 435 = 8 990."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Σ k(k + 1) = 2 · Σ C(k + 1, 2)",
+    "nota": "identidade do enunciado"
+   },
+   {
+    "linha": "C(2, 2) + ... + C(30, 2) = C(31, 3)",
+    "nota": "taco de hóquei"
+   },
+   {
+    "linha": "C(31, 3) = (31 · 30 · 29)/6 = 4 495",
+    "nota": "calcula o binomial"
+   },
+   {
+    "linha": "2 · 4 495 = 8 990",
+    "nota": "o fator 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
  }
 }

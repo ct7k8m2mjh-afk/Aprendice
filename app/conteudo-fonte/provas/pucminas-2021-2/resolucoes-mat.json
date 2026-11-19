@@ -443,5 +443,105 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0004"
   }
+ },
+ "Pc236822a": {
+  "n": "44",
+  "conceito": "Probabilidade em árvore (diagrama de caminhos): multiplicar ao longo de cada caminho e somar os caminhos que chegam a F.",
+  "equivocos": {
+   "A": "M13.5:esqueceu-um-caminho-da-arvore",
+   "B": "M13.5:conta-sem-origem-conferida",
+   "C": "M13.5:conta-sem-origem-conferida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada seta traz a chance de seguir por ela. Ao longo de um caminho, as chances se multiplicam (é \"esta seta E a próxima\"); caminhos diferentes que chegam a F se somam (é \"este caminho OU aquele\"). O trabalho real é achar TODOS os caminhos de A até F, inclusive o que passa por C e depois sobe para B.",
+    "formulas": [
+     "probabilidade de um caminho = produto das setas",
+     "probabilidade de chegar a F = soma dos caminhos até F"
+    ],
+    "simbolos": [
+     [
+      "A → B",
+      "seta de A para B, percorrida só nesse sentido"
+     ]
+    ]
+   },
+   "pista": "Liste os caminhos que terminam em F, seguindo as setas no sentido indicado; há mais de um que passa por C.",
+   "passos": [
+    {
+     "faz": "Liste os caminhos até F",
+     "conta": "A → B → F | A → C → B → F | A → C → D → F",
+     "porque": "De A sai-se para B ou C; de C, para B ou D; só B e D têm seta para F.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Multiplique ao longo de cada caminho",
+     "conta": "0,7 · 0,4 = 0,28 | 0,3 · 0,2 · 0,4 = 0,024 | 0,3 · 0,8 · 0,5 = 0,12",
+     "porque": "Para seguir um caminho, o visitante precisa escolher cada seta dele; escolhas em sequência multiplicam as chances.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os caminhos",
+     "conta": "0,28 + 0,024 + 0,12 = 0,424",
+     "porque": "Os três caminhos são maneiras diferentes, que não acontecem juntas, de chegar a F.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "0,424 → alternativa D",
+     "porque": "É a probabilidade total de um visitante ir de A até F.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 0,424",
+   "checagem": "Pelos pontos de passagem: chega-se a B com 0,7 + 0,3 · 0,2 = 0,76 e a D com 0,3 · 0,8 = 0,24. Então P(F) = 0,76 · 0,4 + 0,24 · 0,5 = 0,304 + 0,12 = 0,424. Fecha.",
+   "erradas": {
+    "A": "0,400 sai de esquecer o caminho A → C → B → F: 0,28 + 0,12 = 0,40, faltando os 0,024 desse caminho.",
+    "B": "0,408 não confere: fica 0,016 abaixo da soma dos três caminhos, 0,28 + 0,024 + 0,12 = 0,424, e nenhum caminho até F vale 0,016.",
+    "C": "0,420 não confere: os três caminhos até F valem 0,28, 0,024 e 0,12, e nenhuma combinação deles dá 0,420."
+   },
+   "armadilha": "O caminho A → C → B → F é fácil de esquecer: a seta de C sobe para B, e é ela que leva o resultado de 0,400 para 0,424.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de um visitante sair de A e chegar à lanchonete F.",
+    "chave": "Três caminhos: 0,7 · 0,4 + 0,3 · 0,2 · 0,4 + 0,3 · 0,8 · 0,5 = 0,424.",
+    "cuidado": "Multiplique dentro do caminho, some entre caminhos e não esqueça o que passa por C e B."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por pontos de passagem",
+    "ideia": "P(chegar a B) = 0,76 e P(chegar a D) = 0,24; P(F) = 0,76 · 0,4 + 0,24 · 0,5 = 0,424."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A → B → F: 0,7 · 0,4 = 0,28",
+    "nota": "1º caminho"
+   },
+   {
+    "linha": "A → C → B → F: 0,3 · 0,2 · 0,4 = 0,024",
+    "nota": "2º caminho, pela seta C → B"
+   },
+   {
+    "linha": "A → C → D → F: 0,3 · 0,8 · 0,5 = 0,12",
+    "nota": "3º caminho"
+   },
+   {
+    "linha": "P(F) = 0,28 + 0,024 + 0,12 = 0,424",
+    "nota": "soma dos caminhos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
  }
 }

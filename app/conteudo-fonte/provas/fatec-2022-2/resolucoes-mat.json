@@ -980,5 +980,116 @@
    "data": "2026-11-19",
    "lote": "mat-0072"
   }
+ },
+ "P7efc11d3": {
+  "n": "13",
+  "conceito": "Probabilidade com diagrama de Venn: identificar quem esteve em exatamente duas cidades entre os 36 selecionados.",
+  "equivocos": {
+   "B": "M13.4:contou-intersecao-duas-vezes",
+   "C": "M13.4:usou-a-uniao-como-favoravel",
+   "D": "M13.4:contagem-de-casos-errada",
+   "E": "M13.4:contagem-de-casos-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para estar em exatamente duas das três cidades, a pessoa esteve em Wuhan e Huanggang, ou em uma delas e em Ezhou. Quem esteve em Wuhan ou Huanggang está entre os 20, e nenhum dos 20 esteve em Ezhou. Os outros 16 não passaram por Wuhan nem por Huanggang, então estiveram no máximo em uma cidade.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis"
+    ],
+    "simbolos": [
+     [
+      "W, H, E",
+      "Wuhan, Huanggang e Ezhou"
+     ],
+     [
+      "W ∩ H",
+      "quem esteve nas duas cidades, Wuhan e Huanggang"
+     ]
+    ]
+   },
+   "pista": "Pergunte quais pares de cidades são possíveis, sabendo que ninguém dos 20 esteve em Ezhou.",
+   "passos": [
+    {
+     "faz": "Separe os dois grupos",
+     "conta": "36 = 20 (W ou H) + 16 (nem W nem H)",
+     "porque": "O texto diz que somente 20 dos 36 estiveram em Wuhan ou em Huanggang.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Elimine os pares com Ezhou",
+     "conta": "W e E: 0 | H e E: 0",
+     "porque": "Quem esteve em W ou H está entre os 20, e nenhum deles esteve em Ezhou.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conte quem esteve em exatamente duas",
+     "conta": "W ∩ H = 6 → exatamente duas cidades: 6 passageiros",
+     "porque": "Sobra só o par Wuhan e Huanggang; os 6 não estiveram em Ezhou, logo estiveram em exatamente duas. Os 16 de fora estiveram no máximo em uma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo total",
+     "conta": "6/36 = 1/6",
+     "porque": "O sorteio é entre todos os 36 selecionados e examinados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1/6 → alternativa A",
+     "porque": "É a probabilidade pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1/6",
+   "checagem": "Refaça as regiões: dos 20, 6 estiveram em W e H e 14 em só uma das duas; os 16 restantes estiveram, no máximo, só em Ezhou. 6 + 14 + 16 = 36 e só a região de 6 tem duas cidades.",
+   "erradas": {
+    "B": "1/3 sai de contar os 6 duas vezes, uma em Wuhan e outra em Huanggang: 12/36 = 1/3.",
+    "C": "5/9 sai de usar os 20 que estiveram em Wuhan ou em Huanggang: 20/36 = 5/9.",
+    "D": "7/9 não confere: daria 28 passageiros em duas cidades, mas quem esteve em duas das três passou por W ou H e está entre os 20; 28 > 20.",
+    "E": "17/36 não confere: 17 em duas cidades exigiria 11 além dos 6 de W ∩ H, todos em Ezhou, mas nenhum dos 20 esteve em Ezhou e os 16 de fora não estiveram em W nem H."
+   },
+   "armadilha": "Usar os 20 de \"Wuhan ou Huanggang\" ou dividir por 20: o sorteio é entre os 36 e só os 6 da interseção estiveram em duas cidades.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de um dos 36 ter estado em exatamente duas das três cidades.",
+    "chave": "Ninguém dos 20 esteve em Ezhou, então só W ∩ H conta: 6/36 = 1/6.",
+    "cuidado": "O denominador é 36 (todos os examinados), e não 20."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diagrama de Venn",
+    "ideia": "Desenhe W, H e E: a região de E não toca os 20, então a única região com duas cidades é W ∩ H = 6; 6/36 = 1/6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "36 = 20 + 16",
+    "nota": "W ou H | fora"
+   },
+   {
+    "linha": "W ∩ E = 0 | H ∩ E = 0",
+    "nota": "nenhum dos 20 em Ezhou"
+   },
+   {
+    "linha": "exatamente duas = W ∩ H = 6",
+    "nota": "só sobra esse par"
+   },
+   {
+    "linha": "6/36 = 1/6",
+    "nota": "sobre os 36 examinados"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
  }
 }

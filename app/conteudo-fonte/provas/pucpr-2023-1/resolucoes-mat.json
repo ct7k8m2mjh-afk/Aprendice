@@ -705,5 +705,101 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0004"
   }
+ },
+ "Pbb7326e2": {
+  "n": "35",
+  "conceito": "Permutação circular de 6 objetos distintos num colar que pode ser virado (girar e espelhar não muda a pulseira).",
+  "equivocos": {
+   "A": "M13.2:permutacao-simples-em-circulo",
+   "B": "M13.2:contagem-circular-errada",
+   "C": "M13.2:esqueceu-espelho-da-pulseira",
+   "D": "M13.2:multiplicou-pelo-espelho"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As 6 pérolas ficam igualmente espaçadas num círculo: girar a pulseira não cria uma pulseira nova. E, como é um objeto que se pode virar, ler as cores no sentido horário ou anti-horário dá a mesma pulseira. Primeiro conte as arrumações em círculo, depois junte cada uma com a sua imagem espelhada.",
+    "formulas": [
+     "permutação circular de n objetos: (n − 1)!",
+     "pulseira (pode virar): (n − 1)!/2"
+    ],
+    "simbolos": [
+     [
+      "(n − 1)!",
+      "arrumações em círculo, fixando um objeto para tirar as rotações"
+     ],
+     [
+      "A, B, C, D, V, R",
+      "as seis cores das pérolas"
+     ]
+    ]
+   },
+   "pista": "Fixe a pérola azul num lugar para não contar giros; depois pense no que acontece ao virar a pulseira do avesso.",
+   "passos": [
+    {
+     "faz": "Fixe uma pérola para tirar os giros",
+     "conta": "6! = 720 → 720/6 = 5! = 120",
+     "porque": "Cada arrumação em fila tem 6 giros que dão a mesma pulseira; fixar a azul e arrumar as outras 5 dá o mesmo resultado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte cada arrumação com o seu espelho",
+     "conta": "120 → 120/2 = 60",
+     "porque": "Virar a pulseira inverte o sentido de leitura. Com 6 cores diferentes, nenhuma arrumação é igual ao próprio espelho, então elas se juntam de duas em duas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "(6 − 1)!/2 = 60 → alternativa E",
+     "porque": "Esse é o número máximo de pulseiras diferentes, sem nenhuma repetida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 60",
+   "checagem": "Contagem por vizinhas da azul: as duas vizinhas são um par escolhido entre 5 cores, C(5, 2) = 10 (sem ordem, porque virar troca os lados); as 3 cores restantes ocupam as 3 posições opostas em 3! = 6 ordens. 10 · 6 = 60.",
+   "erradas": {
+    "A": "720 sai de 6!, contando as pérolas em fila: cada pulseira é contada 12 vezes (6 giros e 2 sentidos).",
+    "B": "24 não confere: só as duas vizinhas da azul já se escolhem de C(5, 2) = 10 jeitos, e para cada escolha há 3! = 6 ordens das outras; são 60.",
+    "C": "120 sai de (6 − 1)! = 5!, que tira os giros mas trata a pulseira e o seu espelho como diferentes.",
+    "D": "240 sai de multiplicar 5! por 2 em vez de dividir: virar a pulseira junta arrumações, não cria novas."
+   },
+   "armadilha": "Esquecer que a pulseira pode ser virada: 120 conta duas vezes cada pulseira.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número máximo de pulseiras diferentes com as 6 cores, uma pérola de cada.",
+    "chave": "Giros não contam e virar não conta: (6 − 1)!/2 = 60.",
+    "cuidado": "Divida por 2 por causa do espelho; 120 é a resposta de uma roda que não se pode virar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "vizinhas da azul",
+    "ideia": "Escolha o par de vizinhas da azul, C(5, 2) = 10, e ordene as outras 3 cores, 3! = 6: 10 · 6 = 60."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6! = 720",
+    "nota": "pérolas em fila"
+   },
+   {
+    "linha": "720/6 = 120",
+    "nota": "tira os 6 giros"
+   },
+   {
+    "linha": "120/2 = 60",
+    "nota": "pulseira e espelho são a mesma"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
  }
 }

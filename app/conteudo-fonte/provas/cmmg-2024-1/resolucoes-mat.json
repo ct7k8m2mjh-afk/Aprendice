@@ -430,5 +430,113 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0004"
   }
+ },
+ "P919e80b5": {
+  "n": "59",
+  "conceito": "Probabilidade condicional: dado que a pessoa sorteada é fumante, o denominador passa a ser o número de fumantes.",
+  "equivocos": {
+   "A": "M13.5:denominador-total-geral",
+   "C": "M13.5:parou-antes-da-ultima-restricao",
+   "D": "M13.5:calculou-a-condicao-em-vez-do-evento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Sabendo-se que essa pessoa é fumante\" troca o espaço amostral: o sorteio passa a ser só entre os fumantes, não entre os 300. Antes disso, é preciso montar os números: quantos fumantes há, quantos são homens e quantos desses homens não fumam aromatizado. Como ninguém consome os dois produtos, cada homem fumante é ou só de aromatizado ou só de comum.",
+    "formulas": [
+     "P(A | B) = (casos de A dentro de B) ÷ (casos de B)",
+     "fumantes = total − não fumantes"
+    ],
+    "simbolos": [
+     [
+      "P(A | B)",
+      "probabilidade de A sabendo que B aconteceu"
+     ],
+     [
+      "h",
+      "número de homens fumantes"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro quantos são os fumantes e quantos deles são homens; o número de homens e mulheres na pesquisa não é o que importa no fim.",
+   "passos": [
+    {
+     "faz": "Conte os fumantes",
+     "conta": "300 − 120 = 180 fumantes",
+     "porque": "Das 300 pessoas, 120 não fumam; as outras fumam. Esse 180 é o novo denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida os fumantes entre homens e mulheres",
+     "conta": "h + 2h = 180 → 3h = 180 → h = 60",
+     "porque": "As mulheres fumantes são o dobro dos homens fumantes. O 3 que multiplica h passa dividindo: 180 ÷ 3 = 60 homens fumantes (e 120 mulheres).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire os homens do aromatizado",
+     "conta": "60 − 15 = 45 homens só de cigarro comum",
+     "porque": "15 homens fumantes consomem só o aromatizado; como não há quem consuma os dois, os outros 45 não consomem aromatizado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelos fumantes e ligue à alternativa",
+     "conta": "P = 45/180 = 1/4 → alternativa B",
+     "porque": "Dado que é fumante, o sorteio é entre os 180 fumantes; 45 deles são homens que não consomem aromatizado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1/4",
+   "checagem": "Pela regra do produto: P(homem | fumante) = 60/180 = 1/3 e, entre os homens fumantes, P(não aromatizado) = 45/60 = 3/4; 1/3 × 3/4 = 1/4. Fecha. (Os 80 homens a menos dão 110 homens e 190 mulheres, dado que não muda a conta.)",
+   "erradas": {
+    "A": "3/20 sai de usar o total geral no denominador: 45/300 = 3/20. A pessoa já é sabidamente fumante, então o denominador é 180.",
+    "C": "1/3 sai de parar em \"homem fumante\": 60/180 = 1/3, sem tirar os 15 que consomem o aromatizado.",
+    "D": "3/5 sai de calcular a chance de a pessoa ser fumante: 180/300 = 3/5, que não é o que se pede."
+   },
+   "armadilha": "O \"sabendo-se que é fumante\" troca o denominador de 300 para 180.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de ser homem que não consome aromatizado, sabendo que a pessoa sorteada é fumante.",
+    "chave": "180 fumantes, 60 homens fumantes, 60 − 15 = 45 sem aromatizado: 45/180 = 1/4.",
+    "cuidado": "Na condicional o denominador é o grupo do \"sabendo que\": os fumantes, não os 300."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "regra do produto",
+    "ideia": "P(homem | fumante) × P(sem aromatizado | homem fumante) = 1/3 × 3/4 = 1/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "fumantes = 300 − 120 = 180",
+    "nota": "novo espaço amostral"
+   },
+   {
+    "linha": "h + 2h = 180 → 3h = 180",
+    "nota": "mulheres fumantes são o dobro"
+   },
+   {
+    "linha": "h = 180/3 = 60",
+    "nota": "o 3 passa dividindo"
+   },
+   {
+    "linha": "60 − 15 = 45",
+    "nota": "homens fumantes sem aromatizado"
+   },
+   {
+    "linha": "P = 45/180 = 1/4",
+    "nota": "favoráveis sobre fumantes"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
  }
 }

@@ -224,5 +224,227 @@
    "data": "2026-11-19",
    "lote": "mat-0073"
   }
+ },
+ "P657a1229": {
+  "n": "18",
+  "conceito": "Posição de ponto em relação à circunferência: interior se a distância ao centro é menor que o raio, exterior se é maior.",
+  "equivocos": {
+   "B": "M12.1:errou-a-distancia-entre-pontos",
+   "C": "M12.1:esqueceu-a-raiz-da-distancia",
+   "D": "M12.4:inverteu-interior-e-exterior",
+   "E": "M12.4:inverteu-interior-e-exterior"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Um ponto é interior quando a distância dele ao centro é menor que o raio, e exterior quando é maior. Então Q interior dá um piso para r (r maior que PQ) e R exterior dá um teto (r menor que PR). Basta calcular as duas distâncias.",
+    "formulas": [
+     "d = √((x₂ − x₁)² + (y₂ − y₁)²)",
+     "interior: d < r ; exterior: d > r"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "centro da circunferência C"
+     ],
+     [
+      "r",
+      "raio"
+     ],
+     [
+      "d",
+      "distância de um ponto ao centro"
+     ]
+    ]
+   },
+   "pista": "Calcule a distância de cada ponto até o centro P e pense: o raio tem de ser maior ou menor que ela?",
+   "passos": [
+    {
+     "faz": "Calcule a distância de Q ao centro",
+     "conta": "PQ = √((1 − 3)² + (2 − 4)²) = √(4 + 4) = √8 → PQ = 2√2",
+     "porque": "Q é interior, então fica mais perto do centro do que a borda: r > 2√2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a distância de R ao centro",
+     "conta": "PR = √((0 − 3)² + (7 − 4)²) = √(9 + 9) = √18 → PR = 3√2",
+     "porque": "R é exterior, então fica mais longe do centro do que a borda: r < 3√2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as duas condições",
+     "conta": "r > 2√2 e r < 3√2 → 2√2 < r < 3√2",
+     "porque": "O raio precisa satisfazer as duas ao mesmo tempo, o que dá o intervalo entre as distâncias.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2√2 < r < 3√2",
+   "checagem": "Pegue r = 3, que está no intervalo (2√2 ≈ 2,83 e 3√2 ≈ 4,24): Q fica a 2,83 < 3 do centro (dentro) e R a 4,24 > 3 (fora). Fecha.",
+   "erradas": {
+    "B": "B não confere: com r < √3 ≈ 1,73, o ponto Q, a 2√2 ≈ 2,83 do centro, ficaria fora da circunferência.",
+    "C": "C sai de esquecer a raiz: 8 e 18 são as distâncias ao quadrado (PQ² = 8, PR² = 18), não as distâncias.",
+    "D": "D não confere: com r ≥ 3√3 ≈ 5,20, o ponto R, a 3√2 ≈ 4,24 do centro, ficaria dentro, e não fora.",
+    "E": "E inverte a condição de Q: com r < 2√2, Q, a 2√2 do centro, ficaria fora da circunferência, e ele é interior."
+   },
+   "armadilha": "Interior pede raio MAIOR que a distância; trocar o sentido leva à alternativa E.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O intervalo do raio para Q ficar dentro e R ficar fora da circunferência.",
+    "chave": "PQ = 2√2 e PR = 3√2, então 2√2 < r < 3√2.",
+    "cuidado": "Tire a raiz das distâncias ao quadrado e acerte o sentido de cada desigualdade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "comparar quadrados",
+    "ideia": "Compare r² com as potências: (1 − 3)² + (2 − 4)² = 8 < r² e (0 − 3)² + (7 − 4)² = 18 > r², logo 8 < r² < 18 e 2√2 < r < 3√2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "PQ² = (1 − 3)² + (2 − 4)² = 8",
+    "nota": "distância de Q ao centro, ao quadrado"
+   },
+   {
+    "linha": "PQ = √8 = 2√2",
+    "nota": "Q interior: r > 2√2"
+   },
+   {
+    "linha": "PR² = (0 − 3)² + (7 − 4)² = 18",
+    "nota": "distância de R ao centro, ao quadrado"
+   },
+   {
+    "linha": "PR = √18 = 3√2",
+    "nota": "R exterior: r < 3√2"
+   },
+   {
+    "linha": "2√2 < r < 3√2",
+    "nota": "juntar as duas condições"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "P568fa424": {
+  "n": "20",
+  "conceito": "Vértices por interseção de retas com os eixos e entre si; área de triângulo por coordenadas.",
+  "equivocos": {
+   "A": "M12.5:errou-o-determinante-da-area",
+   "B": "M12.5:errou-o-determinante-da-area",
+   "C": "M12.5:trocou-os-eixos-das-intersecoes",
+   "D": "M12.5:errou-o-determinante-da-area"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro ache os três vértices: o encontro de r e s, onde r corta o eixo y (x = 0) e onde s corta o eixo x (y = 0). Depois a área sai do determinante (ou da fórmula do 'cadarço') com as coordenadas.",
+    "formulas": [
+     "eixo y: x = 0 ; eixo x: y = 0",
+     "área = |x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)|/2"
+    ],
+    "simbolos": [
+     [
+      "r, s",
+      "as duas retas dadas"
+     ],
+     [
+      "eixo-y",
+      "eixo das ordenadas, onde x = 0"
+     ],
+     [
+      "eixo-x",
+      "eixo das abscissas, onde y = 0"
+     ]
+    ]
+   },
+   "pista": "Cada vértice sai de um sistema simples; cuidado com qual reta corta qual eixo.",
+   "passos": [
+    {
+     "faz": "Ache o encontro de r e s",
+     "conta": "4x − 4 = −2x + 14 → 6x = 18 → x = 3 → y = 8",
+     "porque": "Igualando os dois y, o −2x passa somando e o −4 passa somando: P = (3, 8).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache r no eixo y e s no eixo x",
+     "conta": "r: x = 0 → y = −4 ; s: y = 0 → 2x = 14 → x = 7",
+     "porque": "No eixo y vale x = 0; no eixo x vale y = 0. Os vértices são (0, −4) e (7, 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área pelas coordenadas",
+     "conta": "|3(−4 − 0) + 0(0 − 8) + 7(8 − (−4))|/2 = |−12 + 84|/2 = 72/2 = 36",
+     "porque": "A fórmula do determinante dá o dobro da área; dividindo por 2, sai 36.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "área = 36 → alternativa E",
+     "porque": "O valor pedido é a área, 36.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 36",
+   "checagem": "Retângulo envolvente: de x = 0 a 7 e de y = −4 a 8 tem área 7 · 12 = 84. Tirando os três triângulos de canto (18, 14 e 16), sobra 84 − 48 = 36. Fecha.",
+   "erradas": {
+    "A": "A não confere: com os vértices (3, 8), (0, −4) e (7, 0), o determinante dá 72 e a área é 36, não 8.",
+    "B": "B não confere: a área com os vértices (3, 8), (0, −4) e (7, 0) é 72/2 = 36, não 8,5.",
+    "C": "C sai de trocar os eixos: com r no eixo x, (1, 0), e s no eixo y, (0, 14), o triângulo com (3, 8) tem área 18.",
+    "D": "D não confere: 19,5 não sai dos vértices (3, 8), (0, −4) e (7, 0), cuja área pelo determinante é 36."
+   },
+   "armadilha": "A questão cruza as retas com eixos diferentes: r com o eixo y e s com o eixo x; trocar dá 18.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do triângulo formado por r ∩ s, r ∩ eixo-y e s ∩ eixo-x.",
+    "chave": "Vértices (3, 8), (0, −4) e (7, 0); pelo determinante, área = 72/2 = 36.",
+    "cuidado": "Confira qual reta encontra qual eixo antes de calcular."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "retângulo menos cantos",
+    "ideia": "Retângulo de 7 por 12 (área 84) menos os triângulos de canto 18, 14 e 16 dá 36."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4x − 4 = −2x + 14 → 6x = 18 → x = 3",
+    "nota": "encontro de r e s; y = 8"
+   },
+   {
+    "linha": "r: x = 0 → y = −4",
+    "nota": "r no eixo y"
+   },
+   {
+    "linha": "s: y = 0 → x = 7",
+    "nota": "s no eixo x"
+   },
+   {
+    "linha": "|3(−4) + 0 + 7·12|/2 = 72/2",
+    "nota": "determinante pelos vértices"
+   },
+   {
+    "linha": "área = 36",
+    "nota": "metade do módulo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
  }
 }

@@ -600,5 +600,115 @@
    "data": "2026-11-19",
    "lote": "mat-0070"
   }
+ },
+ "Pacaaed6d": {
+  "n": "15",
+  "conceito": "Princípio multiplicativo para contar placas nos dois formatos e subtrair, pondo em evidência o fator comum.",
+  "equivocos": {
+   "A": "M13.1:perdeu-fator-comum",
+   "B": "M13.1:respondeu-total-antigo",
+   "C": "M13.1:respondeu-total-antigo",
+   "E": "M13.1:respondeu-total-sem-subtrair"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada posição da placa é uma escolha independente: 26 opções para cada letra e 10 para cada algarismo, e as opções se multiplicam. O novo formato troca um algarismo por uma letra. A pergunta é quantas placas a MAIS, então é a diferença entre os dois totais, e não o total novo.",
+    "formulas": [
+     "total = produto das opções de cada posição",
+     "26⁴ · 10³ − 26³ · 10⁴ = 26³ · 10³ · (26 − 10)"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "posição de letra: 26 opções"
+     ],
+     [
+      "N",
+      "posição de algarismo: 10 opções (0 a 9)"
+     ],
+     [
+      "26³",
+      "26 · 26 · 26"
+     ]
+    ]
+   },
+   "pista": "Conte as letras e os algarismos de cada formato antes de multiplicar, e lembre que a pergunta é a diferença.",
+   "passos": [
+    {
+     "faz": "Conte o formato novo",
+     "conta": "LLL NLNN → 4 letras e 3 algarismos → 26⁴ · 10³",
+     "porque": "Quatro posições com 26 opções e três com 10; pelo princípio multiplicativo, multiplicam-se.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte o formato antigo",
+     "conta": "LLL NNNN → 3 letras e 4 algarismos → 26³ · 10⁴",
+     "porque": "Três posições de letra e quatro de algarismo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia pondo o comum em evidência",
+     "conta": "26⁴ · 10³ − 26³ · 10⁴ = 26³ · 10³ · (26 − 10) = 16 · 26³ · 10³",
+     "porque": "Os dois totais têm 26³ · 10³ em comum; o que sobra é 26 no novo e 10 no antigo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "16 · 26³ · 10³ placas a mais → alternativa D",
+     "porque": "O enunciado pede a quantidade a mais, que é exatamente a diferença.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 16 × 26³ × 10³ placas",
+   "checagem": "Em números: 26⁴ · 10³ = 456 976 000 e 26³ · 10⁴ = 175 760 000; a diferença é 281 216 000, e 16 · 17 576 · 1 000 = 281 216 000. Fecha.",
+   "erradas": {
+    "A": "16 · 10³ sai de subtrair e perder o fator comum 26³: sobrou só (26 − 10) · 10³.",
+    "B": "26³ · 10⁴ é o total do formato ANTIGO, não a quantidade a mais.",
+    "C": "10 · 26³ · 10³ é o mesmo número que 26³ · 10⁴, o total do formato antigo, escrito de outro jeito.",
+    "E": "26⁴ · 10³ é o total do formato NOVO; faltou subtrair as placas do formato antigo."
+   },
+   "armadilha": "Responder o total do formato novo em vez da diferença pedida (placas a mais).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas placas a mais o formato LLL NLNN permite em relação ao LLL NNNN.",
+    "chave": "26⁴ · 10³ − 26³ · 10⁴ = 26³ · 10³ · (26 − 10) = 16 · 26³ · 10³.",
+    "cuidado": "A pergunta é a diferença; ponha o fator comum em evidência para não perder o 26³."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por algarismo trocado",
+    "ideia": "Só a 5.ª posição muda (10 opções viram 26): as outras dão 26³ · 10³ e ganham-se 26 − 10 = 16 opções nela."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "novo: 26⁴ · 10³",
+    "nota": "4 letras, 3 algarismos"
+   },
+   {
+    "linha": "antigo: 26³ · 10⁴",
+    "nota": "3 letras, 4 algarismos"
+   },
+   {
+    "linha": "26⁴ · 10³ − 26³ · 10⁴ = 26³ · 10³ · (26 − 10)",
+    "nota": "fator comum em evidência"
+   },
+   {
+    "linha": "= 16 · 26³ · 10³",
+    "nota": "26 − 10 = 16"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
  }
 }

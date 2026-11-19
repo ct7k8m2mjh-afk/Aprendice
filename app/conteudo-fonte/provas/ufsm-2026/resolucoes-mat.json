@@ -1570,5 +1570,118 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0004"
   }
+ },
+ "P616fe611": {
+  "n": "55",
+  "conceito": "Tabela de dupla entrada: probabilidade da união, probabilidade condicional e probabilidade da interseção.",
+  "equivocos": {
+   "A": "M13.5:nao-conferiu-a-intersecao",
+   "B": "M13.5:denominador-errado-na-condicional",
+   "C": "M13.5:dupla-contagem-na-uniao",
+   "E": "M13.5:dupla-contagem-na-uniao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A tabela cruza ano e gênero, e cada aluno está numa única célula; o total é 600. Cada afirmação pede um tipo de probabilidade: \"ou\" é união (some e tire a interseção, que foi contada duas vezes); \"dado que\" troca o denominador pelo grupo dado; \"e\" é a interseção, uma única célula sobre o total.",
+    "formulas": [
+     "P(A ou B) = P(A) + P(B) − P(A e B)",
+     "P(A | B) = n(A e B) ÷ n(B)",
+     "P(A e B) = n(A e B) ÷ total"
+    ],
+    "simbolos": [
+     [
+      "n(A)",
+      "número de alunos do grupo A"
+     ],
+     [
+      "P(A | B)",
+      "probabilidade de A sabendo que B aconteceu"
+     ]
+    ]
+   },
+   "pista": "Antes de tudo, calcule os totais de cada linha e de cada coluna; cada afirmação usa um deles como base.",
+   "passos": [
+    {
+     "faz": "Calcule os totais que serão usados",
+     "conta": "1º ano: 120 + 30 + 100 = 250 | dramático: 100 + 50 + 40 = 190 | épico: 120 + 80 + 120 = 320",
+     "porque": "A primeira afirmação usa a linha do 1º ano e a coluna do dramático; a segunda usa a coluna do épico.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a 1ª afirmação (união)",
+     "conta": "(250 + 190 − 100)/600 = 340/600 = 17/30 (V)",
+     "porque": "Os 100 alunos do 1º ano que escolheram dramático estão nas duas contagens; tira-se uma vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a 2ª afirmação (condicional)",
+     "conta": "80/320 = 1/4 (V)",
+     "porque": "\"Dado que declarou épico\" põe o sorteio entre os 320 do épico; 80 deles são do 2º ano.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a 3ª afirmação (interseção)",
+     "conta": "40/600 = 1/15 ≠ 2/3 (F)",
+     "porque": "Lírico E 3º ano é uma célula só, 40 alunos, sobre os 600 da escola. 2/3 seria 400 alunos, mais do que todo o 3º ano (200).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "V – V – F → alternativa D",
+     "porque": "As duas primeiras são verdadeiras e a terceira é falsa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — V – V – F.",
+   "checagem": "Confira a união contando as células: 1º ano inteiro (250) mais dramático dos outros anos (50 + 40 = 90) dá 340, e 340/600 = 17/30. E a total da tabela fecha: 250 + 150 + 200 = 600.",
+   "erradas": {
+    "A": "Não confere: a 3ª é falsa, pois lírico e 3º ano são 40 de 600, ou seja, 1/15, e não 2/3.",
+    "B": "Não confere: a 2ª é verdadeira (80 do 2º ano entre os 320 do épico, 1/4) e a 3ª é falsa (40/600 = 1/15).",
+    "C": "Não confere: a 1ª é verdadeira (340/600 = 17/30), a 2ª também (80/320 = 1/4) e a 3ª é falsa.",
+    "E": "Não confere: a 1ª é verdadeira; descontada a interseção de 100, a união tem 340 alunos, e 340/600 = 17/30."
+   },
+   "armadilha": "Cada afirmação usa uma base diferente: na união, tira-se a interseção; na condicional, o denominador é o grupo dado (320); na interseção, é o total (600).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Julgar três probabilidades lidas na tabela de ano × gênero literário.",
+    "chave": "União: 340/600 = 17/30 (V); condicional: 80/320 = 1/4 (V); interseção: 40/600 = 1/15 (F).",
+    "cuidado": "Escolha o denominador certo para cada tipo de probabilidade e desconte a interseção na união."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contar as células",
+    "ideia": "Na união, some o 1º ano inteiro com o dramático dos outros anos (250 + 50 + 40 = 340), sem fórmula."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "n(1º) = 250 | n(dram.) = 190 | n(1º e dram.) = 100",
+    "nota": "totais da 1ª afirmação"
+   },
+   {
+    "linha": "(250 + 190 − 100)/600 = 340/600 = 17/30",
+    "nota": "união: V"
+   },
+   {
+    "linha": "n(épico) = 120 + 80 + 120 = 320 → 80/320 = 1/4",
+    "nota": "condicional: V"
+   },
+   {
+    "linha": "40/600 = 1/15 ≠ 2/3",
+    "nota": "interseção: F"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
  }
 }

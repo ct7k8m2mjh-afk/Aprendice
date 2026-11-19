@@ -845,5 +845,158 @@
    "data": "2026-11-19",
    "lote": "mat-0072"
   }
+ },
+ "P4279710d": {
+  "n": "18",
+  "conceito": "Corda de elipse com ponto médio dado: a inclinação sai da equação reduzida (método do ponto médio ou da diferença).",
+  "equivocos": {
+   "A": "M12.2:reta-que-nao-passa-pelo-ponto",
+   "B": "M12.2:reta-que-nao-passa-pelo-ponto",
+   "C": "M12.2:inverteu-a-inclinacao",
+   "D": "M12.2:reta-que-nao-passa-pelo-ponto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se M é o ponto médio da corda, os dois extremos da corda estão na elipse e são simétricos em relação a M. Subtraindo as equações dos dois extremos, os termos ao quadrado viram diferenças de quadrados e aparece a inclinação da corda. Antes, completar quadrados deixa a elipse no centro (1, 2), o que simplifica a conta.",
+    "formulas": [
+     "(x − 1)² + 4(y − 2)² = 16",
+     "inclinação da corda de ponto médio (x₀, y₀): m = −(x₀ − 1)/(4(y₀ − 2))",
+     "reta por M: y − y₀ = m(x − x₀)"
+    ],
+    "simbolos": [
+     [
+      "ℰ",
+      "a elipse dada"
+     ],
+     [
+      "𝒞",
+      "a corda cujo ponto médio é M"
+     ],
+     [
+      "M",
+      "ponto médio da corda, (4, 1)"
+     ],
+     [
+      "m",
+      "inclinação (coeficiente angular) da reta da corda"
+     ]
+    ]
+   },
+   "pista": "Complete quadrados para achar o centro da elipse; depois escreva os dois extremos da corda como M mais e menos um mesmo deslocamento.",
+   "passos": [
+    {
+     "faz": "Complete quadrados na elipse",
+     "conta": "x² − 2x + 4(y² − 4y) = −1 → (x − 1)² + 4(y − 2)² = −1 + 1 + 16 → (x − 1)² + 4(y − 2)² = 16",
+     "porque": "Somando 1 e 16 nos dois lados, aparecem os quadrados perfeitos: a elipse tem centro (1, 2).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira que M está dentro da elipse",
+     "conta": "(4 − 1)² + 4(1 − 2)² = 9 + 4 = 13 < 16",
+     "porque": "Com valor menor que 16, M é interior, então existe corda com esse ponto médio.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Subtraia as equações dos extremos",
+     "conta": "(x₁ − 1)² − (x₂ − 1)² + 4[(y₁ − 2)² − (y₂ − 2)²] = 0 → (x₁ − x₂)·2·3 + 4(y₁ − y₂)·2·(−1) = 0",
+     "porque": "Diferença de quadrados: cada termo vira (diferença)·(soma). As somas valem o dobro do ponto médio deslocado: x₁ + x₂ − 2 = 2·3 e y₁ + y₂ − 4 = 2·(−1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a inclinação da corda",
+     "conta": "6(x₁ − x₂) = 8(y₁ − y₂) → m = (y₁ − y₂)/(x₁ − x₂) = 6/8 = 3/4",
+     "porque": "A razão entre a variação de y e a de x entre os extremos é a inclinação da reta que contém a corda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a reta por M e compare",
+     "conta": "y − 1 = 3/4·(x − 4) → 4y − 4 = 3x − 12 → 4y − 3x + 8 = 0 → alternativa E",
+     "porque": "Multiplicando por 4 e passando tudo para um lado, sai a equação da alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 4y − 3x + 8 = 0",
+   "checagem": "Resolva a reta com a elipse: os dois pontos de encontro têm x = 4 ± 2√39/13 e y = 1 ± 3√39/26, simétricos em torno de (4, 1). O ponto médio é M. Fecha.",
+   "erradas": {
+    "A": "A não confere: em M(4, 1), 3·1 − 4·4 + 8 = −5 ≠ 0, então a reta nem passa pelo ponto médio da corda.",
+    "B": "B tem a inclinação certa (3/4), mas não passa por M: 4·1 − 3·4 − 13 = −21 ≠ 0.",
+    "C": "C sai de inverter a razão: m = 8/6 = 4/3 dá y − 1 = 4/3·(x − 4), ou 3y − 4x + 13 = 0. Passa por M, mas M não é o ponto médio da corda que ela corta.",
+    "D": "D não confere: em M(4, 1), 1 + 16 − 8 = 9 ≠ 0, a reta não passa pelo ponto médio."
+   },
+   "armadilha": "Várias retas passam por M; o que decide é a inclinação 3/4, e invertê-la para 4/3 leva à alternativa C.",
+   "alerta": "Gabarito do Aprendice: o gabarito oficial pós-recursos da UFRR (Edital nº 97/24-CPV) não pôde ser lido na consulta, então a letra vem da resolução da banca do Aprendice.",
+   "essencial": {
+    "pede": "A equação da reta que contém a corda da elipse com ponto médio M(4, 1).",
+    "chave": "Com a elipse (x − 1)² + 4(y − 2)² = 16, a diferença das equações dos extremos dá m = 6/8 = 3/4 e a reta 4y − 3x + 8 = 0.",
+    "cuidado": "A reta precisa passar por M e ter a inclinação certa; confira as duas coisas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "equação da corda pelo ponto médio",
+    "ideia": "Com F = (x − 1)² + 4(y − 2)², a corda de ponto médio M tem normal (x₀ − 1, 4(y₀ − 2)) = (3, −4): 3(x − 4) − 4(y − 1) = 0, a mesma reta 4y − 3x + 8 = 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x − 1)² + 4(y − 2)² = 16",
+    "nota": "completar quadrados: centro (1, 2)"
+   },
+   {
+    "linha": "(x₁ − x₂)·6 + 4(y₁ − y₂)·(−2) = 0",
+    "nota": "subtrair as equações dos extremos da corda"
+   },
+   {
+    "linha": "6(x₁ − x₂) = 8(y₁ − y₂)",
+    "nota": "passar o termo negativo para o outro lado"
+   },
+   {
+    "linha": "m = 6/8 = 3/4",
+    "nota": "inclinação da corda"
+   },
+   {
+    "linha": "y − 1 = 3/4·(x − 4)",
+    "nota": "reta pelo ponto médio M(4, 1)"
+   },
+   {
+    "linha": "4y − 3x + 8 = 0",
+    "nota": "multiplicar por 4 e juntar tudo de um lado"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "UFRR, Edital nº 97/24-CPV, gabarito oficial do Vestibular 2025 (não respondeu: HTTP 503)",
+    "url": "https://editais.ufrr.br/editais/arquivo/568/edital-n-97-24-gabarito-oficial-vestibular-2025.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  },
+  "gabarito_aprendice": {
+   "letra": "E",
+   "letra_conferente": "E",
+   "preliminar": "E",
+   "fontes_web": [
+    {
+     "url": "https://editais.ufrr.br/editais/arquivo/568/edital-n-97-24-gabarito-oficial-vestibular-2025.pdf",
+     "letra": null,
+     "nota": "gabarito oficial: HTTP 503 em 19/11/2026, não lido"
+    },
+    {
+     "url": "https://vestibulares.estrategia.com/portal/noticias/ufrr-2025-gabaritos-cadernos-de-prova-pi-pss/",
+     "letra": null,
+     "nota": "página de notícia sem as letras; só aponta o PDF do gabarito preliminar (não aberto, para manter a resolução às cegas)"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
  }
 }
