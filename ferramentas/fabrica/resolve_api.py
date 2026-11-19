@@ -207,6 +207,7 @@ CAMINHOS_PATCH = (
     r'|passos\[\d+\]\.(faz|conta|porque|tipo)'
     r'|erradas\.[A-E]'
     r'|equivocos\.[A-E]'
+    r'|caminhos\[\d+\]\.(nome|ideia)'
     r'|essencial\.(pede|chave|cuidado))$'
 )
 
@@ -545,6 +546,14 @@ def aplica(questao, campo, valor, log):
                 log.append(f'caminho fora das letras: {campo}')
                 return False
             antes, r['erradas'][L] = r['erradas'][L], valor
+        elif campo.startswith('caminhos['):
+            i = int(re.search(r'\[(\d+)\]', campo).group(1))
+            k = campo.split('.')[1]
+            cam = questao.get('caminhos') or []
+            if i >= len(cam):
+                log.append(f'caminho alternativo inexistente: {campo}')
+                return False
+            antes, cam[i][k] = cam[i][k], valor
         elif campo.startswith('essencial.'):
             k = campo.split('.')[1]
             antes, r['essencial'][k] = r['essencial'][k], valor
@@ -574,6 +583,18 @@ def codigo_conteudo(q, reclass=''):
     return str(q['conteudo']).split()[0]
 
 
+_CODIGOS = {}
+
+
+def codigos_validos(materia='por'):
+    """Todos os códigos de conteúdo da matéria, para não jogar fora um código que a lente escolheu
+    de propósito (o equívoco aponta o conteúdo DO ERRO, que pode não ser o da questão)."""
+    if materia not in _CODIGOS:
+        d = json.load(open(os.path.join(PUB, materia, 'materia.json'), encoding='utf-8'))
+        _CODIGOS[materia] = {s['id'] for mo in d['modulos'] for s in mo['subs']}
+    return _CODIGOS[materia]
+
+
 def conserta(mq, q, gab, reclass, log):
     """Conserta o que é mecânico (formato), nunca conteúdo: letras das erradas/equívocos e o
     formato do código do equívoco. O que o validador do lote.py exige e o modelo pode errar."""
@@ -590,15 +611,20 @@ def conserta(mq, q, gab, reclass, log):
         log.append(f'conserto impossível: erradas sem as letras {faltando}')
         return False
     r['erradas'] = {L: r['erradas'][L] for L in esperadas}
+    validos = codigos_validos()
     eq = {}
     for L in esperadas:
         v = str((mq.get('equivocos') or {}).get(L, '')).strip()
-        slug = v.split(':', 1)[1] if ':' in v else v
+        prefixo, _, slug = v.partition(':') if ':' in v else ('', '', v)
         slug = re.sub(r'-+', '-', re.sub(r'[^a-z0-9]+', '-', sem_acento(slug).lower())).strip('-')
         if not slug:
             log.append(f'conserto impossível: equívoco vazio na letra {L}')
             return False
-        novo_v = f'{cod}:{slug}'
+        # o conserto é só de FORMA: um código de conteúdo que existe na matéria é mantido, mesmo
+        # que não seja o da questão — o equívoco aponta o conteúdo DO ERRO, e é ele que a revisão
+        # espaçada usa (pilar 4 de docs/estrategia-revisao.md). Só prefixo vazio ou inválido é trocado.
+        prefixo = prefixo.strip().upper()
+        novo_v = f'{prefixo if prefixo in validos else cod}:{slug}'
         if novo_v != v:
             log.append(f'conserto: equivocos.{L} "{v}" -> "{novo_v}"')
         eq[L] = novo_v
@@ -658,7 +684,8 @@ def etapa_fatos(cl, lote, qs, montadas, teto, etapa='lente-fatos', so=None, aler
             continue
         extra = {'gabarito_oficial': qs[qid].get('gabarito_oficial') or '(não publicado)',
                  'resolucao_proposta': {'conceito': q['conceito'], 'resolucao': q['resolucao'],
-                                        'equivocos': q.get('equivocos', {})}}
+                                        'equivocos': q.get('equivocos', {}),
+                                        'caminhos': q.get('caminhos') or []}}
         if (alertas or {}).get(qid):
             # a lente didática viu um possível erro de FATO e, por regra, não corrigiu: é seu
             extra['erro_de_fato_apontado_pela_lente_didatica'] = alertas[qid]
