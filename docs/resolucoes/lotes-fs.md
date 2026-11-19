@@ -60,16 +60,16 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | fs-0052 | demais nível 7-10 | 30 | gravado | 30 | 0 | 0 |
 | fs-0053 | demais nível 7-10 | 15 | gravado | 15 | 0 | 0 |
 | fs-0054 | demais nível 1-6 | 2 | gravado | 2 | 0 | 0 |
+| fs-pend-0001 | pendentes reclassificada | 8 | gravado | 8 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
-| Pddaaa08d | Fuvest 2023 1ª fase · questão 50 | S08.2 meios de comunicação, opinião pública e espetáculo (tema S08 Mídia e indústria cultural) | classificação: é de por (leitura verbo-visual de peça publicitária: polissemia de "desligar", pronomes "você" e "eles", omissão do verbo) |
-| P6fcba762 | PUC-SP 2024 Verão · questão 27 | S07.5 tecnologia, big techs e capitalismo de plataforma (tema S07 Globalização) | classificação: é de geo (dinâmica demográfica: taxa de mortalidade e acesso à imunização na pandemia, sem conteúdo de Sociologia) |
-| Pbf28d194 | Santa Casa 2022 Enfermagem e demais cursos · questão 28 | S01.5 arte, patrimônio e expressões culturais (tema S01 Cultura e sociedade) | classificação: é de mat (escala e conversão de unidades; a arte é só contexto) |
-| P56dd3c82 | UEL 2022 Fase única · questão 14 | S06.4 movimento negro, feminista e LGBTQIA+ (tema S06 Movimentos sociais) | classificação: é de mat (porcentagem e probabilidade sobre os números da reportagem; as afirmativas I a IV são contas, sem conteúdo de Sociologia) |
-| P284b35f0 | UEL 2024 1ª fase · questão 5 | S08.5 Benjamin: arte e reprodutibilidade técnica (tema S08 Mídia e indústria cultural) | classificação: é de his (história da fotografia e Teoria da História, como o próprio comando pede; sem conteúdo de Filosofia ou Sociologia) |
+| Pddaaa08d | Fuvest 2023 1ª fase · questão 50 | S08.2 meios de comunicação, opinião pública e espetáculo (tema S08 Mídia e indústria cultural) | reclassificada para outra matéria: por P03.3 |
+| P6fcba762 | PUC-SP 2024 Verão · questão 27 | S07.5 tecnologia, big techs e capitalismo de plataforma (tema S07 Globalização) | reclassificada para outra matéria: geo G06.1 |
+| P56dd3c82 | UEL 2022 Fase única · questão 14 | S06.4 movimento negro, feminista e LGBTQIA+ (tema S06 Movimentos sociais) | reclassificada para outra matéria: mat M03.1 |
+| P284b35f0 | UEL 2024 1ª fase · questão 5 | S08.5 Benjamin: arte e reprodutibilidade técnica (tema S08 Mídia e indústria cultural) | reclassificada para outra matéria: his H01.1 |
 
 ## Divergências de gabarito (o dono decide)
 
