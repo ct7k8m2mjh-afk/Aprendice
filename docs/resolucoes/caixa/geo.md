@@ -128,3 +128,19 @@ RECLASS Pca41f424 G02.2 -> G02.1 (UEG 2021/1 q47: estrutura interna da Terra)
 RECLASS P53f75a9c G02.2 -> G06.3 (UEG 2025/1 q47: migração forçada no Haiti)
 GABARITO P71971982 UEMG 2022 q36: gabarito do Aprendice B (Qconcursos Q2054694 também B); conferir contra o preliminar
 ANULAR Pb7bf59f8 (UFRR 2022 Vestibular 2022 – Prova Integral · questão 37): a questão pede a INCORRETA, mas as cinco alternativas são verdadeiras, inclusive a D oficial (equivalente conserva áreas e deforma comprimentos; equidistante não conserva áreas). Confirmado por dois agentes. Um resumo de busca do Edital 014/2022-CPV (UFRR, recursos) sugere recurso deferido com anulação da q37: conferir no PDF oficial; se anulada, vira 'anulada' pela banca.
+
+## 2026-11-19 16:14 UTC — PENDENCIAS — sessão geo (19/11)
+Lote gravado: geo-0046 (50 resoluções; 4 com gabarito do Aprendice, letras iguais às cegas e ao preliminar).
+RECLASS P6a2ed6b7 G02.2 -> G02.4 (URCA 2023.1 q79: papel das forças exógenas no relevo)
+DADO Pfad8a38a (UNIRG 2021/2 Paraíso q44): alternativas.D -> "A localidade em questão está sobre o contato de placas tectônicas."
+DADO P5f0dd41f (Unitins 2020/1 q9): texto_da_prova -> começa por "Os vulcões" (a entrada perdeu o "O" capitular).
+DADO P5d05a805 (Unitins 2020/1 q10): texto_da_prova -> começa por "Os terremotos" (a entrada perdeu o "O" capitular).
+DADO Pdf903d58 (PUCRS 2022 Verão q70): texto_da_prova -> as quatro lacunas aparecem no print como "_________" ("rochas ___", "chama-se ___", "produto do/da ___", "o/a ___"); a entrada as apagou.
+DADO P54c98a18 (Unitins 2020/1 q6): alternativas -> a entrada não traz o campo; no print A tsunami · B marola · C refração · D ressaca · E ondas de maré.
+DADO P71947ba5 (UERR 2026 q23): alternativas -> a entrada não traz o campo; estão no fim de texto_da_prova, iguais ao print.
+DADO P170bc65b (UFSM 2026 q20): alternativas -> a entrada não traz o campo; estão no fim de texto_da_prova, iguais ao print.
+RECLASS Pdd030b8a G02.3 -> G02.4 (Unitins 2023/2 q30: voçorocas, erosão; não é rochas/minerais)
+RECLASS P49a54d3a G02.4 -> G02.5 (Fema 2022 q7: conservação do solo e agricultura conservacionista)
+RECLASS Pf393e7c5 G02.4 -> G02.3 (UEG Medicina 2024/2 q34: pergunta o tipo de rocha em que se formam cavernas)
+DADO P49a54d3a: alternativas.E -> "Um dos importantes preceitos da Agricultura Conservacionista é a manutenção das mesmas culturas ano após ano." (no print, "brasilescola.uol.com.br" é o crédito da imagem abaixo da questão, não parte da alternativa E)
+DADO P18e88cc4: texto_da_prova -> no print (Fempar 2021 q37) "ocupação desordenada da encosta", "retirada da vegetação florestal" e "processos erosivos" estão em itálico (~~...~~)
