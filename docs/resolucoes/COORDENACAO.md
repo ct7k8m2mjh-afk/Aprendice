@@ -83,7 +83,7 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 ## Sessões (19/11/2026, 14h58 UTC)
 | Matéria | Sessão | Situação |
 |---|---|---|
-| Matemática parte 1 | session_01PveEKX1qHQh5Qz4UFj3KyL | trabalhando (aberta 19/11 18h44 para TERMINAR a parte 1; anterior XYev deu FIM) |
+| Matemática parte 1 | — | ACABOU (19/11 19h20, mat-0081). Matemática inteira terminada. |
 | Física | — | ACABOU (19/11 18h18). Não reabrir. |
 | Química | — | ACABOU (19/11 18h51). Não reabrir. |
 | Geografia parte 1 | — | ACABOU (19/11 18h51). Não reabrir. |
@@ -93,7 +93,8 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 | Português parte 3 | session_01PveEKawjpi7T2DjhNLhHCY | trabalhando (aberta 19/11 19h06 para TERMINAR a parte 3; caixa por-p3.md) |
 | Português parte 4 | session_01PveEKY6HCdr1w9dwUzwk8p | trabalhando (aberta 19/11 19h06 para TERMINAR a parte 4; caixa por-p4.md) |
 | Geografia parte 2 | — | ACABOU (19/11 18h49). Não reabrir. |
-| Português parte 2 | session_01PveEKXDkPFmUNguid7UeTi | trabalhando (aberta 19/11 18h44, --parte 2; anterior YbUN deu FIM) |
+| Português parte 2 | session_01PveEKaafKU4T97asCdKPew | trabalhando (aberta 19/11 19h25 para TERMINAR, ~44) |
+| Inglês + Filosofia e Sociologia | session_01PveEKYE6kLEFiYZofbLrF6 | trabalhando (aberta 19/11 19h25: as últimas 4 + 2) |
 Caídas pelo limite em 13/11 (o dono pode arquivar): Mat session_01PveEKWKTewFDUJvA5Y5s91, Fís session_01PveEKXXFLhp4ro4vnf1rh7,
 Quí session_01PveEKZxREDvirT6VTx5nKy, Geo session_01PveEKaHNFQdko42Ddhy3XZ, Bio session_01PveEKaPh1PAjF3bRbuJ5fG, Por session_01PveEKY3G8XPW7thJLdH3jL.
 Paradas do sistema novo (o dono pode arquivar): Mat session_01PveEKaSPVEijwvkvEUmmWx, Fís session_01PveEKX5T4pY3Xx4fn4PR8G,
@@ -206,8 +207,7 @@ depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resoluco
 `url` = o link acima, de outra conversa; read antes).
 
 ## Publicação
-Disparada 19/11 19h04: dpl_A2nhkZUDgu11ZWxKRZ58fpnvw2dF (commit 67afb1b5, 786 testes verdes, 25.019 local): conferir no site e registrar.
-Última no ar: dpl_6EuVSRQh76CVcYZBe822yrYBf5aM (commit 0639901f, 19/11 18h13, conferido no site 18h25): 23.815 resoluções. Próxima ao passar de 24.315.
+Última no ar: dpl_A2nhkZUDgu11ZWxKRZ58fpnvw2dF (commit 67afb1b5, 19/11 19h04, conferido no site 19h25): 25.019 resoluções. Próxima: quando Português acabar (publicação final).
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
 Coordenadora atual: ver a tabela de sessões e a tarefa agendada (13/11: nova coordenadora enxuta).
