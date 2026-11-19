@@ -170,3 +170,29 @@ DADO P3fa62d7f: texto_da_prova -> faltam as duas reações do print: "acetaldeí
 ## 2026-11-19 16:34 UTC — AVISO — session_01PveEKXC1xdiGM81kadC8Xj
 Checagem no site (P775a9ed8, P212eb426, P5b669d0e; 390 e 1280 px): 4 blocos completos, animação até o fim, sem corte nem rolagem lateral. Problema no formatador de fração (código, não dado): número com espaço de milhar no denominador ou numerador quebra o empilhamento ("800/1 000 000" saía 800 sobre 1, com "000 000" solto). Em P775a9ed8 (urca-2023-2) troquei para "800/1000000" no dado. Outros resolucoes-qui.json antigos têm o mesmo padrão (ex.: "10 000/1 230", "307,5/96 500", "50/17 500", "66/1 006", "930/1 022"): conferir no formatador ou tirar o espaço de milhar nas frações.
 Testes após o qui-0069: tsc ok, 786 passed.
+
+## 2026-11-19 16:49 UTC — PENDENCIAS — session_01PveEKXC1xdiGM81kadC8Xj
+Lote qui-0070 gravado (48 ok, 2 pendentes por classificação: são de Física).
+PRINT Pcec4dea1 (UFU): o print corta a alternativa D; refazer do PDF oficial (p. 34).
+RECLASS P1e229c9e qui -> fis F07.1 (comando: "Com base nos conhecimentos de física termodinâmica"; conta dá 0,25 m³ = B oficial)
+RECLASS P5e8f83b1 qui -> fis F07.2 (energia interna U = 3nRT/2 em mistura de gases; Tm = 2T = C oficial)
+DADO P222fb2e8: alternativas.E -> termina em "permanece constante." (lixo de OCR colado); texto_da_prova -> "HCℓ(aq) + NaOH(aq) → NaCℓ(aq) + H2O(ℓ)" e "−57,1kJ/mol⁻¹" (entrada: "HC4(ag)", "NaCi", "H>0(4)", "HCt")
+DADO P2c23a1b4: texto_da_prova/alternativas -> romanos "I.", "II.", "III." (entrada: "Il.", "HI.", "Ille", "|")
+DADO P7e6b930f: alternativas.E -> "1 × 10⁻⁵" (o "Note e adote..." é do enunciado)
+DADO P19be5b45: alternativas.E -> "É segura, pois a concentração de Pb na água será de 2,07×10⁻⁶ mg/L, maior que o valor permitido." (o "Note e adote: Pb = 207" é do enunciado)
+DADO P46cc7103: alternativas.E -> "4,0 × 10⁻⁴ e 4,0" (os "Dados: Kps... Kw..." são do enunciado)
+RECLASS P90160e5a Q08.6 -> Q05.6
+RECLASS Pa0626d77 Q07.2 -> Q07.3
+RECLASS P88207b06 Q07.2 -> Q07.3
+RECLASS P0b9430ed Q08.3 -> Q07.2
+DADO P75918ef3: alternativas -> A 8,3 mL B 4,2 mL C 2,1 mL D 83 mL E 42 mL (tabela de dados grudada)
+DADO P6fd984bb: alternativas.E -> "0,1" (dados do ácido cítrico grudados)
+DADO Pa945ddc7: alternativas.E -> "( ) 0,35 mol/L" (OCR da tabela periódica grudado)
+DADO Pcec4dea1: alternativas ausentes -> A 0,01 mol/L e pH igual a 12. B 0,1 mol/L e pH igual a 13. C 0,01 mol/L e pH igual a 2. D 0,1 mol/L e pH igual a 1.
+RECLASS P122c67a2 Q05.4 -> Q05.1
+RECLASS Pcec4dea1 Q05.3 -> Q05.2
+
+## 2026-11-19 16:49 UTC — FIM — session_01PveEKXC1xdiGM81kadC8Xj
+Último lote gravado: qui-0070. Nesta sessão: qui-0067 (49 ok, 1 PRINT), qui-0068 (49 ok, 1 é de Matemática), qui-0069 (49 ok, 1 para anular), qui-0070 (48 ok, 2 são de Física) = 195 resoluções. Nenhum lote aberto. Testes após o qui-0069: tsc ok, 786 passed.
+Pendências: PRINT Pba420dcb e Pcec4dea1; OUTRA/RECLASS P7b93c864 (Mat), P1e229c9e e P5e8f83b1 (Fís); ANULAR Pc4e32cc6; 4 gabaritos do Aprendice (P18b939f1, Pecea0117, P5894717e, Pa47a8d1b); aviso do formatador de fração com espaço de milhar; RECLASS e DADO nos blocos acima.
+Faltam 375 questões de Química (níveis 7-10 das provas-alvo e o resto). Próximo: `python3 ferramentas/resolucoes/lote.py proximo qui 50 --novo` (qui-0071).
