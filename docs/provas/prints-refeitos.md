@@ -197,3 +197,19 @@ Pedido: "Tira qualquer referência ao curso no print." Auditoria de 13/11/2026:
 - **Os prints**: OCR (tesseract, por) de todos os 2.875, procurando OBJETIVO/curso-objetivo/objetivo.br, Etapa, Anglo, Poliedro, Bernoulli, qConcursos, Estratégia e "Resolução …" (padrão tolerante a erro de OCR, calibrado com um "OBJETIVO" cinza de 16 px colado num print de teste). Nenhum print tem marca de cursinho (o único achado, unesp-2022 q2, é a alternativa "(A) objetivo."). Nenhuma alternativa marcada: os cadernos não são os comentados.
 - **Conferência visual**: 20 prints de 20 provas diferentes (inclusive as de 2020/2021, cujo PDF tem "Curso Objetivo" no título) abertos um a um: sem logo, cabeçalho, rodapé, marca d'água ou resposta marcada.
 - **Resultado**: nenhum print precisou ser cortado, apagado ou refeito; nada ficou para revisão. O risco de direito de uso dessas cópias (caderno da Vunesp baixado do site do cursinho) continua registrado em `docs/provas/origem-vunesp.md` para decisão do dono.
+| 2026-11-19 | unespar-2025 | 54 | Pbc716955 | 1000x377 | 1000x353 | 32: 22,621,573,815 |
+| 2026-11-19 | ufu-2023 | 68 | P78a66ef3 | 1000x222 | 1000x240 | 31: 24,672,572,803 |
+| 2026-11-19 | pucpr-2025-2 | 31 | P53f16b0b | 1000x322 | 1000x353 | 19: 24,228,580,424 (fundo ciano do caderno-gabarito apagado) |
+| 2026-11-19 | pucpr-2024-2 | 36 | P528013c1 | 917x737 | 1000x716 | 18: 24,344,580,742 (fundo ciano do caderno-gabarito apagado) |
+| 2026-11-19 | ita-2025 | 3 | Pc99e3797 | 922x98 | 1000x130 | 2: 50,498,545,562 |
+| 2026-11-19 | fatec-2025-1 | 26 | P8de70adc | 402x384 | 1000x643 | 8: 32,94,296,264 |
+| 2026-11-19 | fuvest-2021 | 84 | Pa91b52ff | 545x698 | 1000x2266 | 24: 30,40,292,298; 24: 302,38,565,376 |
+| 2026-11-19 | ufpr-2021 | 47 | P5a76aa41 | 1000x183 | 1000x256 | 12: 26,624,560,760 |
+| 2026-11-19 | pucpr-2026-2 | 35 | Pda63d44e | 1000x257 | 1000x273 | 16: 22,600,580,752 |
+| 2026-11-19 | fatec-2025-1 | 31 | P49c155b4 | 502x797 | 1000x1361 | 10: 30,94,299,460 |
+| 2026-11-19 | pucrio-2026 | 31 | Pba420dcb | 1000x340 | 1000x353 | 7: 26,74,572,266 |
+| 2026-11-19 | upe-ssa3-2026 | 54 | Pf56e32e8 | 1000x300 | 1000x354 | 5: 40,56,552,112; 5: 40,116,552,138; 5: 40,468,552,570 |
+| 2026-11-19 | ufpr-2020 | 18 | Pbfde8575 | 1000x230 | 1000x283 | 7: 40,222,572,372 (recorte à mão: fim da q17 à esquerda da figura apagado; marca ► do gabarito apagada e "d)" realinhado; a figura agora tem os rótulos y e B) |
+| 2026-11-19 | ufjf-pism3-2022 | 11 | Pd1fa689a | 1000x1365 | 1000x867 | 11: 24,124,571,598 |
+| 2026-11-19 | unimontes-paes3-2020 | 17 | Pc481e226 | 1000x455 | 1000x490 | 11: 33,418,563,677 (caderno 3 do PAES 2020, arquivo do pacote vestibular.brasilescola.uol.com.br/baixar/47463; recorte à mão com render() do refaz_print, porque o link do prova.json é a página da Coteps) |
+| 2026-11-19 | fatec-2025-1 | 31 | P49c155b4 | 1000x1361 | 1000x1374 | 10: 30,94,296,460 |
