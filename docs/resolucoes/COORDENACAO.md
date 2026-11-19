@@ -87,6 +87,10 @@ correção; dados/contagens/console), 390/768/1280/1440, claro/escuro, cada caix
 espaçamento entre letras, botões, informação no lugar certo, comparando com o sistema (app-atual/design + DESIGN.md).
 3) Corrigir tudo (decisão visual nova → perguntar ao dono). 4) Nova revisão até zero. 5) Publicar (inclui Questão
 indisponível, RECLASS de Português e as resoluções novas).
+Estado 19/11 22h20 UTC: fundo feito (commit e6b9c5533; DESIGN.md "Superfícies"). Build da revisão em /tmp/qa servido em
+http://localhost:4190 (só nesta coordenadora). 4 revisores rodando (casca, matérias, questão/correção, dados); instruções
+comuns em scratchpad/qa-comum.md. Pendente de decisão do dono: contraste da cor da matéria direto no fundo claro (Quí 4,18,
+Bio 4,33, Fís 4,36; título/ícone ≥3 passa) e item ativo do menu/etiqueta de nível 3,94–4,48 (cores da paleta aprovada).
 
 ## Fábrica de CLASSIFICAÇÃO pela API (dono, 19/11 ~21h15)
 Sessão session_01PveEKaueZxMsGjqv3gMYrd (ambiente Fabrica), prompt docs/resolucoes/PROMPT-FABRICA-CLASSIFICACAO.md.
