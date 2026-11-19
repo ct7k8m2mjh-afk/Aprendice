@@ -702,8 +702,55 @@ def etapa_fatos(cl, lote, qs, montadas, teto, etapa='lente-fatos', so=None, aler
             # a lente didática viu um possível erro de FATO e, por regra, não corrigiu: é seu
             extra['erro_de_fato_apontado_pela_lente_didatica'] = alertas[qid]
         pedidos.append(pedido(qid, MODELO_LENTE, sis, bloco_questao(qs[qid], extra, ex),
-                              ESQ_FATOS, 5000))
+                              ESQ_FATOS, 8000))
     return roda_etapa(cl, lote, etapa, pedidos, teto)
+
+
+def garante_lente_de_fatos(cl, lote, qs, montadas, pendentes, diario, fatos, alvo, teto,
+                           etapa='lente-fatos'):
+    """Princípio 3: nada vai ao ar sem a lente de fatos. Se o pedido de uma questão falhou no batch
+    (acontece: cortado em max_tokens), ela é refeita FORA do batch, com mais espaço. Se falhar de
+    novo, vira pendente — nunca segue como `ok` sem ninguém ter assinado os fatos dela.
+
+    Esse buraco deixou uma questão inteira sem conferência de fatos no lote por-0103 (Pa9e70302,
+    cortada nas duas passadas), e ela foi ao ar com um erro que a lente didática havia apontado."""
+    faltaram = [qid for qid in alvo if qid in montadas and qid not in fatos]
+    if not faltaram:
+        return
+    print(f'[{etapa}] {len(faltaram)} questão(ões) sem resposta da lente: refazendo fora do batch '
+          f'({", ".join(faltaram)})', flush=True)
+    sis = monta('por-lente-fatos.md')
+    ex = extras_do_lote(lote)
+    for qid in faltaram:
+        q = montadas[qid]
+        extra = {'gabarito_oficial': qs[qid].get('gabarito_oficial') or '(não publicado)',
+                 'resolucao_proposta': {'conceito': q['conceito'], 'resolucao': q['resolucao'],
+                                        'equivocos': q.get('equivocos', {}),
+                                        'caminhos': q.get('caminhos') or []}}
+        p_ = pedido(qid, MODELO_LENTE, sis, bloco_questao(qs[qid], extra, ex), ESQ_FATOS,
+                    16000)['params']
+        est = preco(MODELO_LENTE, conta_tokens(cl, p_), 8000, batch=False)
+        if cabe_no_orcamento(lote, est, teto):
+            pendentes[qid] = ('a lente de fatos não conferiu esta questão (pedido falhou no batch e '
+                              'o teto de gasto não deixou refazer): princípio 3')
+            montadas.pop(qid, None)
+            continue
+        r = cl.messages.create(**p_)
+        custo = preco(MODELO_LENTE, r.usage.input_tokens, r.usage.output_tokens,
+                      getattr(r.usage, 'cache_read_input_tokens', 0) or 0,
+                      getattr(r.usage, 'cache_creation_input_tokens', 0) or 0, batch=False)
+        anota_gasto(lote, etapa + '-resgate', MODELO_LENTE, r.usage.input_tokens,
+                    r.usage.output_tokens, getattr(r.usage, 'cache_read_input_tokens', 0) or 0,
+                    getattr(r.usage, 'cache_creation_input_tokens', 0) or 0, custo, custo)
+        if r.stop_reason != 'end_turn':
+            pendentes[qid] = (f'a lente de fatos não conferiu esta questão (o pedido falhou no batch '
+                              f'e de novo fora dele: {r.stop_reason}): princípio 3')
+            montadas.pop(qid, None)
+            diario.setdefault(qid, []).append('lente de fatos: nao conferida -> pendente')
+            continue
+        fatos[qid] = json.loads(next(b.text for b in r.content if b.type == 'text'))
+        diario.setdefault(qid, []).append(
+            f'lente de fatos refeita fora do batch (o pedido do batch falhou) · US$ {custo:.2f}')
 
 
 def etapa_didatica(cl, lote, qs, montadas, teto):
@@ -803,6 +850,8 @@ def pipeline(cl, entrada, saida, teto):
 
     # ---- lente de fatos
     fatos = etapa_fatos(cl, lote, qs, montadas, teto)
+    garante_lente_de_fatos(cl, lote, qs, montadas, pendentes, diario, fatos,
+                           list(montadas), teto)
     mudou_por_fatos = set()
     for qid, f in fatos.items():
         if qid not in montadas:
@@ -849,6 +898,8 @@ def pipeline(cl, entrada, saida, teto):
     alvo = {qid for qid in (mudou_por_didatica | set(alertas_didatica)) if qid in montadas}
     fatos2 = etapa_fatos(cl, lote, qs, montadas, teto, etapa='lente-fatos-2', so=alvo,
                          alertas=alertas_didatica)
+    garante_lente_de_fatos(cl, lote, qs, montadas, pendentes, diario, fatos2, alvo, teto,
+                           etapa='lente-fatos-2')
     for qid, f in fatos2.items():
         if qid not in montadas:
             continue
