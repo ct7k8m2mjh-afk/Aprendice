@@ -512,5 +512,109 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "P23293a81": {
+  "n": "40",
+  "conceito": "Lei de formação de matriz: calcular elementos pela regra de i e j em cada caso.",
+  "equivocos": {
+   "B": "M15.1:regra-errada-na-diagonal",
+   "C": "M15.1:trocou-i-e-j",
+   "D": "M15.1:ordem-dos-elementos-trocada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em a_ij, i é a linha e j é a coluna. A regra muda conforme o elemento está na diagonal (i = j) ou fora dela (i ≠ j). A senha pede três elementos numa ordem fixa: a12, a22 e a21.",
+    "formulas": [
+     "a_ij = i + 2j, se i = j",
+     "a_ij = 3i − j, se i ≠ j"
+    ],
+    "simbolos": [
+     [
+      "a_ij",
+      "elemento da linha i e da coluna j"
+     ],
+     [
+      "i = j",
+      "elemento da diagonal principal"
+     ]
+    ]
+   },
+   "pista": "Para cada elemento, decida primeiro se i é igual a j; só depois escolha a fórmula.",
+   "passos": [
+    {
+     "faz": "Calcule a12",
+     "conta": "i = 1, j = 2 (i ≠ j) → 3·1 − 2 = 1",
+     "porque": "Linha 1, coluna 2: fora da diagonal, vale a regra 3i − j.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a22",
+     "conta": "i = 2, j = 2 (i = j) → 2 + 2·2 = 6",
+     "porque": "Linha 2, coluna 2: na diagonal, vale i + 2j.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a21",
+     "conta": "i = 2, j = 1 (i ≠ j) → 3·2 − 1 = 5",
+     "porque": "Linha 2, coluna 1: fora da diagonal de novo, 3i − j.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte na ordem pedida",
+     "conta": "a12 a22 a21 → 1 6 5 → senha 165 → alternativa A",
+     "porque": "A senha segue a ordem a12, a22, a21.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 165",
+   "checagem": "Monte a matriz inteira: a11 = 1 + 2 = 3, a12 = 1, a21 = 5, a22 = 6, ou seja, A = (3  1 / 5  6). Lendo a12, a22, a21 nela: 1, 6, 5.",
+   "erradas": {
+    "B": "B não confere: põe 8 no lugar de a22, mas a22 está na diagonal e vale 2 + 2·2 = 6.",
+    "C": "C não confere: põe 8 como último dígito, mas a21 = 3·2 − 1 = 5.",
+    "D": "D sai de ler os elementos na ordem a22, a21, a12 (6, 5, 1); a senha pedida é a12, a22, a21."
+   },
+   "armadilha": "Trocar i e j ou a ordem dos elementos: a12 é linha 1 e coluna 2, e a senha é a12, a22, a21, nessa ordem.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A senha formada por a12, a22 e a21.",
+    "chave": "a12 = 3·1 − 2 = 1, a22 = 2 + 4 = 6, a21 = 6 − 1 = 5: 165.",
+    "cuidado": "Escolha a fórmula pelo caso i = j ou i ≠ j, e respeite a ordem pedida."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "matriz inteira",
+    "ideia": "Escreva A = (3  1 / 5  6) e leia as posições pedidas: 1, 6, 5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a12 = 3·1 − 2 = 1",
+    "nota": "i ≠ j: 3i − j"
+   },
+   {
+    "linha": "a22 = 2 + 2·2 = 6",
+    "nota": "i = j: i + 2j"
+   },
+   {
+    "linha": "a21 = 3·2 − 1 = 5",
+    "nota": "i ≠ j: 3i − j"
+   },
+   {
+    "linha": "senha: 1 6 5",
+    "nota": "ordem a12, a22, a21"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

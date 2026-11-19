@@ -788,5 +788,106 @@
    "data": "2026-11-19",
    "lote": "mat-0070"
   }
+ },
+ "P915e390c": {
+  "n": "26",
+  "conceito": "Calcular um determinante 3×3 com letras pela regra de Sarrus.",
+  "equivocos": {
+   "A": "M15.2:errou-produto-das-diagonais",
+   "B": "M15.2:errou-produto-das-diagonais",
+   "D": "M15.2:sinal-trocado-na-subtracao",
+   "E": "M15.2:errou-produto-das-diagonais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sarrus funciona igual com letras: some os três produtos da diagonal principal e subtraia os três da diagonal secundária. O cuidado é com os sinais, porque há dois elementos negativos (−1) na matriz.",
+    "formulas": [
+     "det = (soma das diagonais principais) − (soma das diagonais secundárias)"
+    ],
+    "simbolos": [
+     [
+      "Sarrus",
+      "regra prática do determinante 3×3: repete as duas primeiras colunas e multiplica em diagonal"
+     ]
+    ]
+   },
+   "pista": "Escreva as seis diagonais separadamente antes de juntar termos.",
+   "passos": [
+    {
+     "faz": "Multiplique as diagonais principais",
+     "conta": "y·5·3 + 2·x·(−1) + (−1)·4·2 → 15y − 2x − 8",
+     "porque": "São as três diagonais que descem para a direita.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as diagonais secundárias",
+     "conta": "(−1)·5·(−1) + y·x·2 + 2·4·3 → 5 + 2xy + 24 = 2xy + 29",
+     "porque": "São as três que descem para a esquerda; essa soma inteira será subtraída.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia as duas somas",
+     "conta": "(15y − 2x − 8) − (2xy + 29) → −2x − 2xy + 15y − 37",
+     "porque": "O sinal de menos troca o sinal de cada termo da segunda soma: +2xy vira −2xy e +29 vira −29.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "−2x − 2xy + 15y − 37 → alternativa C",
+     "porque": "Só a C tem exatamente esses quatro termos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — −2x − 2xy + 15y − 37.",
+   "checagem": "Teste x = 1 e y = 1: a matriz fica [[1, 2, −1], [4, 5, 1], [−1, 2, 3]], cujo determinante numérico é −26; a C dá −2 − 2 + 15 − 37 = −26.",
+   "erradas": {
+    "A": "−4x²y + 15y − 37 não confere: com x = 1 e y = 0 o determinante é −39, e A dá −37.",
+    "B": "−2x + 17xy² − 37 não confere: com x = 1 e y = 1 o determinante é −26, e B dá −22.",
+    "D": "−2x + 2xy − 15y − 37 sai de trocar o sinal de 2xy e de 15y; com x = 0 e y = 1 o determinante é −22, e D dá −52.",
+    "E": "−2x²y − 17xy² − 37 não confere: com x = 1 e y = 0 o determinante é −39, e E dá −37."
+   },
+   "armadilha": "Esquecer que a soma das diagonais secundárias é subtraída inteira: o +2xy vira −2xy.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O determinante 3×3 com x e y.",
+    "chave": "Sarrus: principais menos secundárias.",
+    "cuidado": "Coloque a soma das secundárias entre parênteses antes de subtrair."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Laplace",
+    "ideia": "abrindo pela 1ª linha: y(15 − 2x) − 2(12 + x) − 1(8 + 5) = −2x − 2xy + 15y − 37."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "15y − 2x − 8",
+    "nota": "diagonais principais"
+   },
+   {
+    "linha": "2xy + 29",
+    "nota": "diagonais secundárias"
+   },
+   {
+    "linha": "(15y − 2x − 8) − (2xy + 29)",
+    "nota": "principais menos secundárias"
+   },
+   {
+    "linha": "−2x − 2xy + 15y − 37",
+    "nota": "sinais trocados ao tirar o parêntese"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

@@ -483,5 +483,127 @@
    "data": "2026-11-19",
    "lote": "mat-0069"
   }
+ },
+ "P741209bd": {
+  "n": "44",
+  "conceito": "Montar equações com determinantes 2×2 de logaritmos e resolver, respeitando a condição de existência do log.",
+  "equivocos": {
+   "A": "M15.2:confundiu-igual-com-menor",
+   "B": "M15.2:inverteu-desigualdade",
+   "C": "M15.2:ignorou-condicao-de-existencia-do-log"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada determinante 2×2 vira uma equação em log x e log y. O de B é o mais simples e dá y direto; depois o de A dá x. No fim, lembre que log x só existe para x > 0: isso elimina uma das soluções de x² = 100.",
+    "formulas": [
+     "det [[a, b], [c, d]] = a·d − b·c",
+     "log y = 0 ⇔ y = 1 | log x = 1 ⇔ x = 10 (base 10)"
+    ],
+    "simbolos": [
+     [
+      "log",
+      "logaritmo na base 10 (sem base escrita)"
+     ],
+     [
+      "condição de existência",
+      "log x só existe para x > 0"
+     ]
+    ]
+   },
+   "pista": "Comece por det B: um dos elementos é 0, e a equação sai quase pronta.",
+   "passos": [
+    {
+     "faz": "Calcule det B",
+     "conta": "log y · 1 − log x · 0 = 0 → log y = 0 → y = 1",
+     "porque": "O produto com o 0 desaparece; log y = 0 só acontece para y = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule det A",
+     "conta": "2·log x − log y · 1 = 2 → 2·log x − 0 = 2 → log x = 1",
+     "porque": "Com y = 1, log y = 0; o 2 que multiplica log x passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache x",
+     "conta": "log x = 1 → x = 10",
+     "porque": "Na base 10, log x = 1 significa x = 10¹. O valor −10 nem aparece aqui, porque log de número negativo não existe.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste as alternativas",
+     "conta": "x/y = 10/1 = 10 | x + y = 10 + 1 = 11",
+     "porque": "A diz 10 < 10 (falso); B diz 10 < 1 (falso); C admite x + y = −9, que exigiria x = −10; D diz x + y = 11.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "x + y = 11 → alternativa D",
+     "porque": "É a única afirmação verdadeira.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — x + y = 11.",
+   "checagem": "Substitua x = 10 e y = 1 nas matrizes: A = [[1, 0], [1, 2]] tem det 1·2 − 0·1 = 2 e B = [[0, 1], [0, 1]] tem det 0·1 − 1·0 = 0. As duas condições fecham.",
+   "erradas": {
+    "A": "A afirma x/y < x, mas x/y = 10/1 = 10, que é igual a x, não menor.",
+    "B": "B afirma x/y < y, mas x/y = 10 e y = 1: 10 < 1 é falso.",
+    "C": "C sai de escrever 2·log x como log x² e resolver x² = 100 com x = ±10; x = −10 dá x + y = −9, mas log(−10) não existe."
+   },
+   "armadilha": "Trocar 2·log x por log x² e aceitar x = −10: a condição de existência do log exige x > 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O que é verdade sobre x e y a partir de det A = 2 e det B = 0.",
+    "chave": "det B dá log y = 0 (y = 1); det A dá log x = 1 (x = 10).",
+    "cuidado": "log x só existe para x > 0: x = −10 não serve."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso a caso",
+    "ideia": "teste x = 10 e y = 1 direto nas quatro alternativas: só a D sobrevive."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "det B = log y · 1 − log x · 0 = 0",
+    "nota": "definição do det 2×2"
+   },
+   {
+    "linha": "log y = 0 → y = 1",
+    "nota": "o termo com 0 some"
+   },
+   {
+    "linha": "det A = 2·log x − log y = 2",
+    "nota": "definição do det 2×2"
+   },
+   {
+    "linha": "2·log x = 2 → log x = 1 → x = 10",
+    "nota": "log y = 0 e o 2 passa dividindo"
+   },
+   {
+    "linha": "x + y = 10 + 1 = 11",
+    "nota": "alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

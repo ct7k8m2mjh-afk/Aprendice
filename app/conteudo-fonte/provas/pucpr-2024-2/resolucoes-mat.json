@@ -459,5 +459,121 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "P1462c228": {
+  "n": "31",
+  "conceito": "Calcular um determinante 3×3 com uma linha quase toda nula e estudar a função obtida (valores e crescimento).",
+  "equivocos": {
+   "A": "M15.2:funcao-crescente-sem-estudar-derivada",
+   "B": "M15.2:decrescente-no-intervalo-todo",
+   "C": "M15.2:esqueceu-de-testar-iv-e-v",
+   "E": "M15.2:errou-substituicao-f4"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A primeira linha de M tem dois zeros, então o determinante sai pela regra de Laplace nessa linha: só sobra o termo de −x + 2 vezes um determinante 2×2. Com f(x) em mãos, III e IV são só substituição. Para crescer ou decrescer, olhe a derivada (ou o gráfico da cúbica).",
+    "formulas": [
+     "det M = (−x + 2) · [(−x)·x − x·(−6)] (Laplace na 1ª linha)",
+     "f crescente onde f'(x) > 0"
+    ],
+    "simbolos": [
+     [
+      "Laplace",
+      "abrir o determinante por uma linha: cada elemento vezes o seu menor, com sinal"
+     ],
+     [
+      "f'(x)",
+      "derivada: diz se a função sobe (positiva) ou desce (negativa)"
+     ]
+    ]
+   },
+   "pista": "Comece pela linha que tem dois zeros: ela reduz o 3×3 a um único 2×2.",
+   "passos": [
+    {
+     "faz": "Abra o determinante pela 1ª linha",
+     "conta": "det M = (−x + 2) · (−x·x − x·(−6)) → f(x) = (−x + 2)(−x² + 6x)",
+     "porque": "Os dois zeros da 1ª linha anulam os outros termos; sobra o elemento −x + 2 vezes o menor 2×2 da direita.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Expanda o produto",
+     "conta": "(−x + 2)(−x² + 6x) → x³ − 6x² − 2x² + 12x → f(x) = x³ − 8x² + 12x",
+     "porque": "Multiplicar termo a termo deixa a cúbica pronta para substituir e derivar; fatorada, f(x) = x(x − 2)(x − 6).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste III e IV",
+     "conta": "f(1) = 1 − 8 + 12 = 5 | f(4) = 64 − 128 + 48 = −16",
+     "porque": "Substituição direta: as duas afirmações são verdadeiras.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Estude o crescimento",
+     "conta": "f'(x) = 3x² − 16x + 12 = 0 → x = (16 ± √112)/6 → x ≈ 0,90 ou x ≈ 4,43",
+     "porque": "f sobe em [0; 0,90], desce em [0,90; 4,43] e sobe a partir de 4,43. Logo I é falsa, II é falsa (no começo de [0, 6] ela sobe) e V é verdadeira (5 > 4,43).",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Junte as verdadeiras",
+     "conta": "III, IV e V verdadeiras → alternativa D",
+     "porque": "É a única alternativa com exatamente essas três.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — Somente as afirmações III, IV e V são verdadeiras.",
+   "checagem": "Pela forma fatorada f(x) = x(x − 2)(x − 6): f(0) = 0, f(2) = 0 e f(6) = 0, mas f(1) = 5 > 0. Se f subisse de 0 até 1 e voltasse a 0 em 2, ela não pode ser decrescente em todo [0, 6] nem crescente sempre.",
+   "erradas": {
+    "A": "A inclui I e II, que se contradizem: I diz crescente sempre, II diz decrescente em [0, 6]; e f(0) = 0 < f(1) = 5 derruba as duas.",
+    "B": "B inclui II, mas f(0) = 0 e f(1) = 5: a função sobe no começo de [0, 6], então não é decrescente nesse intervalo.",
+    "C": "C deixa de fora IV e V, que são verdadeiras (f(4) = −16 e f' > 0 para x ≥ 5), e inclui II, que é falsa.",
+    "E": "E esquece IV: f(4) = 64 − 128 + 48 = −16, verdadeira."
+   },
+   "armadilha": "Achar que, porque f(0) = f(2) = f(6) = 0 e f é negativa entre 2 e 6, ela desce em todo [0, 6]: no começo ela sobe até x ≈ 0,90.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmações sobre f(x) = det M são verdadeiras.",
+    "chave": "Laplace pela linha com dois zeros dá f(x) = x³ − 8x² + 12x; a derivada mostra onde sobe e onde desce.",
+    "cuidado": "Teste o começo do intervalo [0, 6]: f(0) = 0 e f(1) = 5, logo não é decrescente ali."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sinal da derivada sem fórmula",
+    "ideia": "f(0) = 0, f(1) = 5, f(2) = 0, f(4) = −16, f(5) = −15, f(6) = 0, f(7) = 35: a tabela já mostra sobe, desce, sobe."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(x) = (−x + 2) · (−x·x − x·(−6))",
+    "nota": "Laplace na 1ª linha"
+   },
+   {
+    "linha": "f(x) = (−x + 2)(−x² + 6x)",
+    "nota": "menor 2×2 calculado"
+   },
+   {
+    "linha": "f(x) = x³ − 8x² + 12x",
+    "nota": "produto expandido"
+   },
+   {
+    "linha": "f(1) = 5 | f(4) = −16",
+    "nota": "III e IV verdadeiras"
+   },
+   {
+    "linha": "f'(x) = 3x² − 16x + 12 = 0 → x ≈ 0,90 ou x ≈ 4,43",
+    "nota": "sobe, desce e volta a subir: V verdadeira"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

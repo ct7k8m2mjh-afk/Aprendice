@@ -365,5 +365,135 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P02582d92": {
+  "n": "41",
+  "conceito": "Propriedades de matrizes simétricas e antissimétricas: comutação e determinante de antissimétrica de ordem ímpar.",
+  "equivocos": {
+   "A": "M15.2:nao-viu-det-de-antissimetrica-impar",
+   "B": "M15.1:supos-que-matrizes-comutam",
+   "C": "M15.1:supos-que-matrizes-comutam",
+   "E": "M15.1:supos-que-matrizes-comutam"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Matriz não comuta em geral: AB e BA podem ser diferentes. Por isso a I, a II e a III caem com um contraexemplo cada. A IV é a propriedade-chave: uma antissimétrica de ordem ímpar tem determinante zero, porque det(−B) = −det B quando a ordem é ímpar.",
+    "formulas": [
+     "simétrica: A^T = A ; antissimétrica: B^T = −B",
+     "det(B^T) = det B",
+     "det(k B) = k^n × det B (n = ordem)",
+     "det(A B) = det A × det B"
+    ],
+    "simbolos": [
+     [
+      "A^T",
+      "transposta de A"
+     ],
+     [
+      "simétrica",
+      "igual à própria transposta"
+     ],
+     [
+      "antissimétrica",
+      "transposta igual à oposta: B^T = −B"
+     ],
+     [
+      "comutar",
+      "AB = BA"
+     ],
+     [
+      "n",
+      "ordem da matriz (número de linhas)"
+     ]
+    ]
+   },
+   "pista": "Para a IV, compare det(B^T) com det(−B) lembrando que a ordem é ímpar.",
+   "passos": [
+    {
+     "faz": "Teste a afirmação I",
+     "conta": "(A + B)^2 = A^2 + AB + BA + B^2",
+     "porque": "Só vira A^2 + 2AB + B^2 se AB = BA. Com A = diag(1, 2, 3) e B = (0 1 0 ; −1 0 0 ; 0 0 0), AB tem −2 onde BA tem −1: I é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste II e III",
+     "conta": "A S ≠ S A ; B1 B2 ≠ B2 B1",
+     "porque": "Com S = (0 1 0 ; 1 0 0 ; 0 0 0), simétrica, AS tem 1 onde SA tem 2. Com B1 = (0 1 0 ; −1 0 0 ; 0 0 0) e B2 = (0 0 1 ; 0 0 0 ; −1 0 0), B1B2 ≠ B2B1. Ambas falsas.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Prove a IV",
+     "conta": "det B = det(B^T) = det(−B) = (−1)^n det B → det B = −det B → det B = 0",
+     "porque": "n ímpar faz (−1)^n = −1. Um número igual ao próprio oposto é zero.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Feche o determinante do produto",
+     "conta": "det(A B) = det A × det B → det A × 0 → 0",
+     "porque": "O determinante do produto é o produto dos determinantes; basta um fator nulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "só IV verdadeira → alternativa D",
+     "porque": "I, II e III caíram por contraexemplo; IV vale para qualquer A e qualquer B antissimétrica de ordem ímpar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — apenas IV",
+   "checagem": "Caso concreto de ordem 3: B = (0 2 −1 ; −2 0 3 ; 1 −3 0) é antissimétrica e o seu determinante dá 0, como a IV prevê.",
+   "erradas": {
+    "A": "Não confere: a IV é sempre verdadeira, pois det B = det(B^T) = det(−B) = −det B força det B = 0 e, com isso, det(AB) = 0.",
+    "B": "Não confere: a I exige AB = BA; com A = diag(1, 2, 3) e B = (0 1 0 ; −1 0 0 ; 0 0 0), AB ≠ BA. Além disso, deixa de fora a IV.",
+    "C": "Não confere: B1 = (0 1 0 ; −1 0 0 ; 0 0 0) e B2 = (0 0 1 ; 0 0 0 ; −1 0 0) são antissimétricas e B1B2 ≠ B2B1.",
+    "E": "Não confere: a II falha com A = diag(1, 2, 3) e S = (0 1 0 ; 1 0 0 ; 0 0 0), simétricas, pois AS ≠ SA."
+   },
+   "armadilha": "Aplicar o produto notável (A + B)^2 = A^2 + 2AB + B^2 como se matrizes comutassem.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmações valem para A simétrica e B antissimétrica de ordem ímpar.",
+    "chave": "det(−B) = −det B em ordem ímpar e det B^T = det B dão det B = 0, logo det(AB) = 0.",
+    "cuidado": "Matriz não comuta em geral: o produto notável e as afirmações de comutação precisam de contraexemplo, não de intuição."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas alternativas",
+    "ideia": "Basta provar a IV e derrubar a II com um contraexemplo: só a D tem a IV sem a II."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "B^T = −B",
+    "nota": "definição de antissimétrica"
+   },
+   {
+    "linha": "det B = det(B^T) = det(−B)",
+    "nota": "transpor não muda o determinante"
+   },
+   {
+    "linha": "det(−B) = (−1)^n det B = −det B",
+    "nota": "n ímpar"
+   },
+   {
+    "linha": "det B = −det B → det B = 0",
+    "nota": "número igual ao oposto"
+   },
+   {
+    "linha": "det(AB) = det A × 0 = 0",
+    "nota": "IV verdadeira"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

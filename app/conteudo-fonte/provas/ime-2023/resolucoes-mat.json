@@ -1045,5 +1045,244 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "Pa1a1b644": {
+  "n": "1",
+  "conceito": "Equação matricial com transposta e inversa: isolar X e inverter uma matriz 2 × 2.",
+  "equivocos": {
+   "A": "M15.1:usou-o-determinante-errado",
+   "C": "M15.1:esqueceu-a-transposta",
+   "D": "M15.1:errou-a-adjunta",
+   "E": "M15.1:errou-a-adjunta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Isole X antes de fazer qualquer conta: multiplique os dois lados por A à direita para sumir com a inversa. Depois use que a transposta do produto inverte a ordem dos fatores. Por fim, inverta a matriz 2 × 2 pela regra da adjunta.",
+    "formulas": [
+     "X^T A^(−1) = B → X^T = B A",
+     "(B A)^T = A^T B^T",
+     "inversa 2 × 2 = (1/det) × (d  −b ; −c  a)"
+    ],
+    "simbolos": [
+     [
+      "X^T",
+      "transposta de X: linhas viram colunas"
+     ],
+     [
+      "A^(−1)",
+      "inversa de A"
+     ],
+     [
+      "det",
+      "determinante"
+     ],
+     [
+      "adjunta",
+      "matriz com a diagonal principal trocada de lugar e a secundária com sinal trocado"
+     ]
+    ]
+   },
+   "pista": "Multiplique os dois lados de X^T A^(−1) = B por A, do lado direito.",
+   "passos": [
+    {
+     "faz": "Isole X^T",
+     "conta": "X^T A^(−1) A = B A → X^T = B A",
+     "porque": "A^(−1) A é a identidade. A multiplicação foi pelo lado direito nos dois membros, porque matriz não comuta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule B A",
+     "conta": "(3 6 ; 2 1) × (2 3 ; 1 5) → (6 + 6  9 + 30 ; 4 + 1  6 + 5) → (12 39 ; 5 11)",
+     "porque": "Cada termo é linha de B vezes coluna de A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Transponha para achar X",
+     "conta": "X = (12 39 ; 5 11)^T → (12 5 ; 39 11)",
+     "porque": "Linhas viram colunas: a 1ª linha (12, 39) vira a 1ª coluna.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Inverta X",
+     "conta": "det X = 12 × 11 − 5 × 39 → 132 − 195 → −63 ; X^(−1) = −1/63 × (11 −5 ; −39 12)",
+     "porque": "Na adjunta, 12 e 11 trocam de lugar, e 5 e 39 trocam de sinal; tudo dividido por −63.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "−1/63 × (11 −5 ; −39 12) → alternativa B",
+     "porque": "É exatamente a matriz da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — X^(−1) = −1/63 × (11  −5 ; −39  12)",
+   "checagem": "Multiplique X pela resposta: (12 5 ; 39 11) × (11 −5 ; −39 12) = (132 − 195  −60 + 60 ; 429 − 429  −195 + 132) = (−63 0 ; 0 −63); vezes −1/63 dá a identidade.",
+   "erradas": {
+    "A": "Não confere: usa 1/7, que é 1/det A, mas det X = −63; e X × A = (−51/7 −5/7 ; 39/7 −74/7), que não é a identidade.",
+    "C": "Sai de esquecer a transposta e usar B A = (12 39 ; 5 11), só trocando o sinal da secundária sem trocar 12 e 11 de lugar: −1/63 × (12 −39 ; −5 11).",
+    "D": "Sai de trocar o sinal da diagonal principal de X em vez de trocá-la de lugar e mudar o sinal da secundária: −1/63 × (−12 5 ; 39 −11).",
+    "E": "Não confere: X × E dá, na 1ª linha e 1ª coluna, −107/63 em vez de 1."
+   },
+   "armadilha": "Multiplicar por A do lado errado ou esquecer que X^T = B A ainda precisa ser transposta para virar X.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A inversa de X, sabendo que X^T A^(−1) = B.",
+    "chave": "X^T = B A = (12 39 ; 5 11), X = (12 5 ; 39 11), det = −63, X^(−1) = −1/63 × (11 −5 ; −39 12).",
+    "cuidado": "Multiplicação de matrizes não comuta: mantenha o lado; e transponha antes de inverter."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "inversa da transposta",
+    "ideia": "X^(−1) = ((B A)^(−1))^T: inverta B A = (12 39 ; 5 11), dá −1/63 × (11 −39 ; −5 12), e transponha."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "X^T A^(−1) = B",
+    "nota": "dado"
+   },
+   {
+    "linha": "X^T = B A",
+    "nota": "multiplica por A à direita"
+   },
+   {
+    "linha": "B A = (12 39 ; 5 11)",
+    "nota": "linha de B vezes coluna de A"
+   },
+   {
+    "linha": "X = (12 5 ; 39 11)",
+    "nota": "transpõe"
+   },
+   {
+    "linha": "det X = 132 − 195 = −63",
+    "nota": "diagonal principal menos secundária"
+   },
+   {
+    "linha": "X^(−1) = −1/63 × (11 −5 ; −39 12)",
+    "nota": "adjunta dividida pelo determinante"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
+ },
+ "P5acc6467": {
+  "n": "7",
+  "conceito": "Equação com determinante 3 × 3: desenvolver por Sarrus, achar as raízes inteiras e somar os inversos.",
+  "equivocos": {
+   "A": "M15.2:somou-raizes-em-vez-de-inversos",
+   "B": "M15.2:sinal-errado-em-girard",
+   "C": "M15.2:produto-de-duas-raizes",
+   "D": "M15.2:erro-na-soma-de-fracoes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Desenvolva o determinante: sai um polinômio de 3º grau em x. Teste raízes inteiras pequenas (divisores do termo independente), fatore e some 1/x de cada raiz. Também se pode somar os inversos direto pelas relações de Girard.",
+    "formulas": [
+     "det = (soma dos produtos da principal) − (soma dos produtos da secundária)",
+     "1/r1 + 1/r2 + 1/r3 = (r1r2 + r1r3 + r2r3)/(r1r2r3)"
+    ],
+    "simbolos": [
+     [
+      "Sarrus",
+      "regra prática para o determinante 3 × 3"
+     ],
+     [
+      "Girard",
+      "relações entre coeficientes e raízes de um polinômio"
+     ]
+    ]
+   },
+   "pista": "Desenvolva o determinante e procure uma raiz entre os divisores de 30.",
+   "passos": [
+    {
+     "faz": "Desenvolva por Sarrus",
+     "conta": "principal: x³ + 12 + 18 | secundária: 6x + 9x + 4x → x³ + 30 − 19x = 0 → x³ − 19x + 30 = 0",
+     "porque": "Principal: x·x·x, 2·3·2, 3·2·3; secundária: 3·x·2, x·3·3, 2·2·x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache uma raiz e fatore",
+     "conta": "x = 2: 8 − 38 + 30 = 0 → x³ − 19x + 30 = (x − 2)(x² + 2x − 15)",
+     "porque": "Um divisor de 30 que zera o polinômio dá um fator; a divisão por (x − 2) deixa um 2º grau.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva o 2º grau",
+     "conta": "x² + 2x − 15 = 0 → (x − 3)(x + 5) = 0 → x = 3 ou x = −5",
+     "porque": "Soma −2 e produto −15: as raízes são 3 e −5. As três raízes, 2, 3 e −5, são inteiras.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os inversos",
+     "conta": "1/2 + 1/3 − 1/5 = (15 + 10 − 6)/30 = 19/30 → alternativa E",
+     "porque": "Com mínimo múltiplo comum 30, os numeradores ficam 15, 10 e −6.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 19/30",
+   "checagem": "Por Girard em x³ + 0x² − 19x + 30: soma dos produtos dois a dois = −19 e produto = −30; (−19)/(−30) = 19/30. Bate com a conta direta.",
+   "erradas": {
+    "A": "0 sai de somar as raízes em vez dos inversos: 2 + 3 + (−5) = 0.",
+    "B": "−19/30 sai de errar o sinal do produto das raízes em Girard: −19 dividido por +30.",
+    "C": "−15 é o produto das raízes do fator x² + 2x − 15, isto é, 3·(−5); não é soma de inversos.",
+    "D": "15 não confere: a soma dos inversos de 2, 3 e −5 é 19/30, menor que 1."
+   },
+   "armadilha": "Responder a soma das raízes (0) em vez da soma dos inversos pedida no comando.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos inversos das soluções inteiras.",
+    "chave": "x³ − 19x + 30 = (x − 2)(x − 3)(x + 5).",
+    "cuidado": "O pedido é 1/x, não x; cuidado com o sinal do 1/(−5)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Girard",
+    "ideia": "Sem achar as raízes: (r1r2 + r1r3 + r2r3)/(r1r2r3) = (−19)/(−30) = 19/30 (as três raízes já são inteiras)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x³ + 12 + 18 − (6x + 9x + 4x) = 0",
+    "nota": "Sarrus"
+   },
+   {
+    "linha": "x³ − 19x + 30 = 0",
+    "nota": "juntar termos"
+   },
+   {
+    "linha": "(x − 2)(x² + 2x − 15) = 0",
+    "nota": "raiz x = 2"
+   },
+   {
+    "linha": "(x − 2)(x − 3)(x + 5) = 0",
+    "nota": "fatorar"
+   },
+   {
+    "linha": "1/2 + 1/3 − 1/5 = 19/30",
+    "nota": "somar inversos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

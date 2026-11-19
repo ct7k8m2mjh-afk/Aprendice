@@ -566,5 +566,120 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P91d7f0e1": {
+  "n": "6",
+  "conceito": "Determinante 2 × 2 com números complexos na forma trigonométrica (fórmula de De Moivre e conjugado).",
+  "equivocos": {
+   "B": "M15.2:erro-no-angulo-do-complexo",
+   "C": "M15.2:sinal-do-angulo-trocado",
+   "D": "M15.2:somou-z-e-conjugado",
+   "E": "M15.2:erro-no-modulo-do-resultado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O determinante do 2 × 2 é 1·z̄ − z·(−z) = z̄ + z². Escreva tudo na forma cis θ = cos θ + i sen θ: elevar ao quadrado dobra o ângulo e o conjugado troca o sinal do ângulo. Os dois termos caem no mesmo ângulo e somam.",
+    "formulas": [
+     "det [a b; c d] = a·d − b·c",
+     "(cis θ)² = cis 2θ",
+     "conjugado de cis θ = cis (−θ)"
+    ],
+    "simbolos": [
+     [
+      "cis θ",
+      "abreviação de cos θ + i sen θ"
+     ],
+     [
+      "z̄",
+      "conjugado de z: mesma parte real, parte imaginária com sinal trocado"
+     ],
+     [
+      "De Moivre",
+      "regra: potência de cis θ multiplica o ângulo"
+     ]
+    ]
+   },
+   "pista": "Faça a conta do determinante com letras antes de pôr os ângulos.",
+   "passos": [
+    {
+     "faz": "Aplique a regra do 2 × 2",
+     "conta": "det M = 1·z̄ − z·(−z) → det M = z̄ + z²",
+     "porque": "O produto da secundária é −z², e menos com menos vira +z².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule z² por De Moivre",
+     "conta": "z² = cis(2·4π/3) = cis(8π/3) → 8π/3 − 2π = 2π/3 → z² = cis(2π/3)",
+     "porque": "Elevar ao quadrado dobra o ângulo; tirar uma volta (2π) não muda o número.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o conjugado",
+     "conta": "z̄ = cis(−4π/3) → −4π/3 + 2π = 2π/3 → z̄ = cis(2π/3)",
+     "porque": "O conjugado reflete o ângulo; somando uma volta, −4π/3 vira 2π/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e conclua",
+     "conta": "det M = cis(2π/3) + cis(2π/3) = 2·cis(2π/3) → alternativa A",
+     "porque": "Os dois termos são o mesmo complexo, então a soma é o dobro dele.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2(cos(2π/3) + i sen(2π/3))",
+   "checagem": "Na forma algébrica: z = −1/2 − (√3/2)i, z̄ = −1/2 + (√3/2)i e z² = −1/2 + (√3/2)i; a soma dá −1 + √3 i = 2(−1/2 + (√3/2)i), que é 2 cis(2π/3).",
+   "erradas": {
+    "B": "Não confere: 2 cis(4π/3) = 2z = −1 − √3 i, e det M = z̄ + z² = −1 + √3 i; a parte imaginária tem o sinal oposto.",
+    "C": "2(cos(8π/3) − i sen(8π/3)) = 2 cis(−8π/3) = 2 cis(4π/3) = −1 − √3 i, diferente de −1 + √3 i.",
+    "D": "Não confere: cos π + i sen π = −1, que é z + z̄ (a soma de z com o conjugado), e não z̄ + z²; det M = −1 + √3 i tem parte imaginária √3.",
+    "E": "Não confere: cos 2π + i sen 2π = 1, de módulo 1; det M = −1 + √3 i tem módulo √(1 + 3) = 2."
+   },
+   "armadilha": "Errar o sinal: o elemento −z na secundária faz o determinante ser z̄ + z², não z̄ − z².",
+   "alerta": "",
+   "essencial": {
+    "pede": "O determinante de M.",
+    "chave": "det M = z̄ + z², e z̄ e z² valem ambos cis(2π/3).",
+    "cuidado": "Menos com menos na secundária; reduza os ângulos a uma volta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "forma algébrica",
+    "ideia": "z = −1/2 − (√3/2)i; calcule z̄ + z² direto e chegue a −1 + √3 i = 2 cis(2π/3)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "det M = 1·z̄ − z·(−z)",
+    "nota": "regra do 2 × 2"
+   },
+   {
+    "linha": "det M = z̄ + z²",
+    "nota": "sinal"
+   },
+   {
+    "linha": "z² = cis(8π/3) = cis(2π/3)",
+    "nota": "De Moivre"
+   },
+   {
+    "linha": "z̄ = cis(−4π/3) = cis(2π/3)",
+    "nota": "conjugado"
+   },
+   {
+    "linha": "det M = 2 cis(2π/3)",
+    "nota": "somar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

@@ -108,5 +108,110 @@
    "data": "2026-11-19",
    "lote": "mat-0070"
   }
+ },
+ "Pd2b18ef3": {
+  "n": "50",
+  "conceito": "Montar uma matriz coluna com os pontos de cada seleção, calculados pela tabela de pontuação.",
+  "equivocos": {
+   "A": "M15.1:linhas-fora-de-ordem",
+   "B": "M15.1:linhas-fora-de-ordem",
+   "C": "M15.1:linhas-fora-de-ordem",
+   "E": "M15.1:linhas-fora-de-ordem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A notícia é só contexto: o que resolve são as duas tabelas. A Tabela I diz quanto vale cada resultado (vitória 3, empate 1, derrota 0) e a Tabela II dá vitórias, empates e derrotas de cada seleção. A matriz pedida é uma coluna com os pontos de cada time, na ordem das posições da Tabela II.",
+    "formulas": [
+     "pontos = 3 × vitórias + 1 × empates + 0 × derrotas"
+    ],
+    "simbolos": [
+     [
+      "matriz coluna",
+      "matriz com uma coluna só; aqui, uma linha por seleção"
+     ]
+    ]
+   },
+   "pista": "Calcule os pontos de cada seleção pela Tabela I e mantenha a ordem das posições da Tabela II.",
+   "passos": [
+    {
+     "faz": "Leia a pontuação e os resultados",
+     "conta": "vitória: 3 | empate: 1 | derrota: 0",
+     "porque": "A Tabela I dá o valor de cada resultado; a Tabela II, quantos de cada um cada time teve.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule os pontos de cada seleção",
+     "conta": "Holanda: 3·2 + 1·1 = 7 | EUA: 3·1 + 1·2 = 5 | Portugal: 3·1 + 1·1 = 4 | Vietnã: 0",
+     "porque": "Multiplique as vitórias por 3, some os empates e ignore as derrotas, que valem 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a coluna na ordem das posições",
+     "conta": "posições 1, 2, 3, 4 → (7, 5, 4, 0)",
+     "porque": "A Tabela II já lista as seleções da 1.ª à 4.ª posição; cada linha da matriz é uma seleção, nessa ordem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "(7, 5, 4, 0) → alternativa D",
+     "porque": "A coluna 7, 5, 4, 0 é a da letra D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a matriz coluna com 7, 5, 4 e 0",
+   "checagem": "A ordem dos pontos tem de acompanhar a classificação: 7 > 5 > 4 > 0, decrescente da 1.ª à 4.ª posição, como na Tabela II. E o total, 7 + 5 + 4 + 0 = 16, fecha com 6 jogos: 4 com vencedor (4 × 3 = 12) e 2 empates (2 × 2 = 4).",
+   "erradas": {
+    "A": "A não confere: põe 4 na 2.ª linha e 5 na 3.ª, mas os EUA (2.º) têm 5 pontos e Portugal (3.º) tem 4.",
+    "B": "B não confere: põe 5 na 1.ª linha e 7 na 2.ª, mas a Holanda (1.ª) tem 7 pontos e os EUA (2.º) têm 5.",
+    "C": "C não confere: põe 7 na 3.ª linha, mas Portugal tem 3·1 + 1 = 4 pontos; os 7 são da Holanda, 1.ª colocada.",
+    "E": "E não confere: põe 0 na 1.ª linha e 7 na última, mas a Holanda, 1.ª colocada, tem 7 e o Vietnã, 4.º, tem 0."
+   },
+   "armadilha": "Os pontos certos em linhas trocadas: a ordem da coluna é a das posições da Tabela II.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A matriz coluna com os pontos das seleções do grupo E ao fim da primeira fase.",
+    "chave": "Pontos = 3·vitórias + empates: 7, 5, 4 e 0, na ordem das posições.",
+    "cuidado": "Cada linha da matriz é uma seleção; não troque a ordem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "produto de matrizes",
+    "ideia": "Multiplique a matriz (vitórias, empates, derrotas) de cada time pela coluna (3, 1, 0): sai a mesma coluna 7, 5, 4, 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Holanda: 3·2 + 1·1 = 6 + 1 = 7",
+    "nota": "1.ª posição"
+   },
+   {
+    "linha": "EUA: 3·1 + 1·2 = 3 + 2 = 5",
+    "nota": "2.ª posição"
+   },
+   {
+    "linha": "Portugal: 3·1 + 1·1 = 3 + 1 = 4",
+    "nota": "3.ª posição"
+   },
+   {
+    "linha": "Vietnã: 3·0 + 1·0 = 0",
+    "nota": "4.ª posição"
+   },
+   {
+    "linha": "(7, 5, 4, 0)",
+    "nota": "matriz coluna na ordem das posições"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

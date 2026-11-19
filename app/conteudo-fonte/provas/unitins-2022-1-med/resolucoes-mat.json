@@ -433,5 +433,125 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "Pcb1b4e01": {
+  "n": "13",
+  "conceito": "Decriptação com matriz: a mensagem é B = A⁻¹·C, e cada número vira letra pelo código.",
+  "equivocos": {
+   "B": "M15.1:leu-posicao-errada",
+   "C": "M15.1:leu-posicao-errada",
+   "D": "M15.1:leu-posicao-errada",
+   "E": "M15.1:leu-posicao-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se C = A·B, multiplicar os dois lados pela inversa de A, à esquerda, isola a mensagem: B = A⁻¹·C. A inversa de uma 2×2 sai da regra prática: troque os elementos da diagonal principal, mude o sinal dos da secundária e divida pelo determinante. Depois cada número de B vira letra pelo código (A = 1, B = 2, …, Z = 26).",
+    "formulas": [
+     "B = A⁻¹·C",
+     "A = (p  q / r  s) → A⁻¹ = (1/(ps − qr))·(s  −q / −r  p)"
+    ],
+    "simbolos": [
+     [
+      "A⁻¹",
+      "inversa de A, a chave"
+     ],
+     [
+      "b_ij",
+      "elemento da linha i e da coluna j de B"
+     ],
+     [
+      "det A",
+      "determinante de A: ps − qr"
+     ]
+    ]
+   },
+   "pista": "Calcule a inversa de A e multiplique-a por C, nessa ordem.",
+   "passos": [
+    {
+     "faz": "Calcule a inversa de A",
+     "conta": "det A = 1·4 − 2·3 = −2 → A⁻¹ = (1/(−2))·(4  −2 / −3  1) = (−2  1 / 3/2  −1/2)",
+     "porque": "Troque 1 e 4, mude o sinal de 2 e 3 e divida tudo pelo determinante −2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique a 1.ª linha da chave por C",
+     "conta": "(−2, 1)·colunas de C → −76 + 78 = 2 | −90 + 105 = 15 | −90 + 91 = 1 | −36 + 52 = 16",
+     "porque": "Cada elemento da linha 1 de B é −2 vezes o de cima de C mais 1 vez o de baixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique a 2.ª linha da chave por C",
+     "conta": "(3/2, −1/2)·colunas de C → 57 − 39 = 18 | 67,5 − 52,5 = 15 | 67,5 − 45,5 = 22 | 27 − 26 = 1",
+     "porque": "Agora é 3/2 do de cima menos 1/2 do de baixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Traduza pelo código",
+     "conta": "B = (2  15  1  16 / 18  15  22  1) → B O A P / R O V A",
+     "porque": "2 = B, 15 = O, 1 = A, 16 = P, 18 = R, 22 = V: a mensagem é BOA PROVA.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste as alternativas",
+     "conta": "b13 = 1 = A → alternativa A",
+     "porque": "O elemento da linha 1, coluna 3, vale 1, que é a letra A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — o elemento b13 corresponde à letra A",
+   "checagem": "Faça o caminho de ida: A·B deve voltar a C. Na 1.ª coluna, 1·2 + 2·18 = 38 e 3·2 + 4·18 = 78; na 3.ª, 1·1 + 2·22 = 45 e 3·1 + 4·22 = 91. Bate com C. E a mensagem faz sentido: BOA PROVA.",
+   "erradas": {
+    "B": "B não confere: b22 = 15, que é a letra O; o R (18) está em b21.",
+    "C": "C não confere: b21 = 18, que é a letra R; o P (16) está em b14.",
+    "D": "D não confere: b24 = 1, que é a letra A; o V (22) está em b23.",
+    "E": "E não confere: b14 = 16, que é a letra P; o A (1) está em b13 e em b24."
+   },
+   "armadilha": "Errar a posição: b_ij é linha i e coluna j, e as letras certas aparecem em posições vizinhas às das alternativas erradas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre a matriz mensagem B é verdadeira.",
+    "chave": "B = A⁻¹·C = (2 15 1 16 / 18 15 22 1), ou seja, BOAP / ROVA; b13 = 1 = A.",
+    "cuidado": "Multiplique A⁻¹ à esquerda de C e leia b_ij como linha i, coluna j."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sistema por coluna",
+    "ideia": "Cada coluna (x, y) de B resolve x + 2y = c1 e 3x + 4y = c2; na 3.ª coluna, x + 2y = 45 e 3x + 4y = 91 dão x = 1 (A) e y = 22 (V)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "det A = 1·4 − 2·3 = −2",
+    "nota": "determinante da chave"
+   },
+   {
+    "linha": "A⁻¹ = (−2  1 / 3/2  −1/2)",
+    "nota": "troca a diagonal, muda o sinal da secundária, divide por −2"
+   },
+   {
+    "linha": "linha 1: 2, 15, 1, 16",
+    "nota": "(−2, 1) vezes cada coluna de C"
+   },
+   {
+    "linha": "linha 2: 18, 15, 22, 1",
+    "nota": "(3/2, −1/2) vezes cada coluna de C"
+   },
+   {
+    "linha": "B O A P / R O V A",
+    "nota": "código: b13 = 1 = A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

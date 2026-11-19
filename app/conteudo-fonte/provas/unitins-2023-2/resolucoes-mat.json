@@ -327,5 +327,115 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "P860ab6f3": {
+  "n": "6",
+  "conceito": "Soma de matrizes e leitura do significado de cada elemento (derrotas de i para j) para comparar vitórias no confronto direto.",
+  "equivocos": {
+   "A": "M15.1:diferenca-de-vitorias-errada",
+   "C": "M15.1:trocou-linha-por-coluna",
+   "D": "M15.1:leu-derrota-como-vitoria",
+   "E": "M15.1:diferenca-de-vitorias-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada elemento aij conta quantas partidas i perdeu para j; então o mesmo número é uma vitória de j sobre i. Some as três rodadas numa matriz só. As alternativas comparam duas pessoas, e só o confronto direto entre elas deixa uma delas verdadeira: as vitórias de Luís sobre Ana estão em a13 e as de Ana sobre Luís em a31.",
+    "formulas": [
+     "S = R1 + R2 + R3 (soma elemento a elemento)",
+     "vitórias de j sobre i = sij (derrotas de i para j)"
+    ],
+    "simbolos": [
+     [
+      "aij",
+      "elemento da linha i e coluna j: partidas que i perdeu para j"
+     ],
+     [
+      "S",
+      "matriz soma das três rodadas"
+     ],
+     [
+      "1, 2, 3",
+      "Ana, Bernardo e Luís"
+     ]
+    ]
+   },
+   "pista": "Some as três matrizes posição por posição e lembre: o número na linha de alguém é derrota dele.",
+   "passos": [
+    {
+     "faz": "Some as três rodadas",
+     "conta": "S = [0 1+2+5 3+1+3; 2+1+4 0 4+1+1; 3+2+1 1+4+2 0] = [0 8 7; 7 0 6; 6 7 0]",
+     "porque": "Somar elemento a elemento junta as derrotas de cada confronto nas três rodadas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia o confronto Luís × Ana",
+     "conta": "Luís venceu Ana: s13 = 7 | Ana venceu Luís: s31 = 6 → 7 − 6 = 1",
+     "porque": "s13 é Ana perdendo para Luís, isto é, vitória de Luís; s31 é Luís perdendo para Ana.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste os outros confrontos",
+     "conta": "Bernardo × Ana: s12 = 8, s21 = 7 (só 1 a mais) | Luís × Bernardo: s23 = 6, s32 = 7 (Bernardo 1 a mais)",
+     "porque": "A, C e D pedem diferenças de 5 ou 3 que não aparecem em confronto nenhum.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "Luís tem 7 vitórias sobre Ana e Ana tem 6 sobre Luís → alternativa B",
+     "porque": "A única afirmação que se confirma é a do confronto entre Luís e Ana.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — Luís tem uma vitória a mais que Ana (7 a 6 no confronto entre os dois)",
+   "checagem": "Pelo total de cada um (soma das colunas: Ana 13, Bernardo 15, Luís 13), nenhuma alternativa é verdadeira: A diz 5 a mais e Bernardo tem só 2 a mais que Ana; C e D dão diferenças de 3 e 5, e no total Luís e Ana têm 2 a menos que Bernardo; E compara 15 com 13. Só a leitura do confronto direto torna uma alternativa verdadeira, e é a B.",
+   "erradas": {
+    "A": "Não confere: no confronto direto Bernardo venceu Ana 8 vezes e perdeu 7, só 1 a mais; no total, 15 contra 13, só 2 a mais.",
+    "C": "Inverte o confronto: Bernardo venceu Luís 7 vezes (s32) e Luís venceu Bernardo 6 (s23); Bernardo está 1 à frente.",
+    "D": "Inverte o sentido: Ana venceu Bernardo 7 vezes (s21) e perdeu 8 (s12); quem tem mais é Bernardo.",
+    "E": "Não confere: no total Bernardo tem 15 vitórias e Luís 13; no confronto direto Bernardo tem 7 e Luís 6."
+   },
+   "armadilha": "Ler a linha de alguém como vitórias: pelo enunciado, o número na linha i é partida que i perdeu.",
+   "alerta": "A banca não diz se \"vitórias a mais\" é no total ou no confronto entre os dois. Pelo total (Ana 13, Bernardo 15, Luís 13) nenhuma alternativa é verdadeira; só a leitura do confronto direto (Luís 7 × 6 Ana) torna a B verdadeira, e é a do gabarito oficial.",
+   "essencial": {
+    "pede": "Qual comparação de vitórias está certa após as três rodadas.",
+    "chave": "Somar R1 + R2 + R3 e ler sij como vitória de j sobre i.",
+    "cuidado": "A linha de cada pessoa guarda derrotas, não vitórias."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por pares",
+    "ideia": "Some só os dois elementos de cada confronto nas três rodadas: a13 = 3 + 1 + 3 = 7 e a31 = 3 + 2 + 1 = 6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "S = R1 + R2 + R3",
+    "nota": "somar elemento a elemento"
+   },
+   {
+    "linha": "S = [0 8 7; 7 0 6; 6 7 0]",
+    "nota": "matriz das três rodadas"
+   },
+   {
+    "linha": "Luís sobre Ana: s13 = 7 | Ana sobre Luís: s31 = 6",
+    "nota": "ler o confronto"
+   },
+   {
+    "linha": "7 − 6 = 1",
+    "nota": "Luís tem 1 a mais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

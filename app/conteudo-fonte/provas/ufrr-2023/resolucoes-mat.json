@@ -677,5 +677,111 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P44cab914": {
+  "n": "14",
+  "conceito": "Reconhecer a matriz de Vandermonde e achar os x que zeram o determinante.",
+  "equivocos": {
+   "A": "M15.2:usou-coluna-dos-quadrados",
+   "B": "M15.2:usou-coluna-dos-cubos",
+   "C": "M15.2:usou-elementos-de-uma-linha",
+   "E": "M15.2:usou-elementos-de-uma-linha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As colunas são potências 0, 1, 2 e 3 dos números 1, 2, 3 e x: é uma matriz de Vandermonde. O determinante dela é o produto das diferenças entre esses números, então zera exatamente quando x repete um deles. Sem conta pesada nenhuma.",
+    "formulas": [
+     "Vandermonde de a, b, c, d: det = (b − a)(c − a)(d − a)(c − b)(d − b)(d − c)",
+     "duas linhas iguais → det = 0"
+    ],
+    "simbolos": [
+     [
+      "matriz de Vandermonde",
+      "matriz em que cada linha é 1, a, a², a³ para um número a"
+     ],
+     [
+      "elementos característicos",
+      "os números a de cada linha (aqui 1, 2, 3 e x)"
+     ]
+    ]
+   },
+   "pista": "Olhe a 2ª coluna de cada linha: é dela que saem os outros elementos da linha.",
+   "passos": [
+    {
+     "faz": "Identifique os elementos característicos",
+     "conta": "linhas: (1, 1, 1, 1), (1, 2, 4, 8), (1, 3, 9, 27), (1, x, x², x³) → números 1, 2, 3, x",
+     "porque": "Cada linha é 1, a, a², a³: a = 1, 2, 3 e x.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva o determinante pela fórmula",
+     "conta": "det A = (2 − 1)(3 − 1)(x − 1)(3 − 2)(x − 2)(x − 3) → det A = 2(x − 1)(x − 2)(x − 3)",
+     "porque": "Produto de todas as diferenças 'número de baixo menos número de cima'; as que não têm x dão 1·2·1 = 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale a zero",
+     "conta": "2(x − 1)(x − 2)(x − 3) = 0 → x = 1 ou x = 2 ou x = 3",
+     "porque": "Produto zero exige um fator zero; o 2 nunca é zero.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "conjunto {1, 2, 3} → alternativa D",
+     "porque": "Com x = 1, 2 ou 3 a última linha repete uma das outras.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — o conjunto {1, 2, 3}.",
+   "checagem": "Com x = 2, a última linha vira (1, 2, 4, 8), igual à 2ª: duas linhas iguais zeram o determinante. Com x = 4 nenhuma linha se repete e det = 2·3·2·1 = 12 ≠ 0.",
+   "erradas": {
+    "A": "{1, 4, 9} sai de pegar a 3ª coluna (os quadrados 1, 4, 9) em vez dos números 1, 2, 3; com x = 4, det = 2·3·2·1 = 12 ≠ 0.",
+    "B": "{1, 8, 27} sai de pegar a 4ª coluna (os cubos); com x = 8, det = 2·7·6·5 = 420 ≠ 0.",
+    "C": "{2, 4, 8} sai de pegar os elementos da 2ª linha; com x = 4, det = 12 ≠ 0.",
+    "E": "{3, 9, 27} sai de pegar os elementos da 3ª linha; com x = 9, det = 2·8·7·6 = 672 ≠ 0."
+   },
+   "armadilha": "Confundir os números característicos (1, 2, 3) com as potências deles que aparecem nas outras colunas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os x que zeram o det da matriz 4×4.",
+    "chave": "É Vandermonde: det = produto das diferenças, zera quando x repete 1, 2 ou 3.",
+    "cuidado": "Os números são os da 2ª coluna, não os quadrados nem os cubos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "linhas iguais",
+    "ideia": "sem fórmula: x = 1, 2 ou 3 repete uma linha e zera o det; como det é polinômio de grau 3 em x, não há outras raízes."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "det A = (2 − 1)(3 − 1)(3 − 2)·(x − 1)(x − 2)(x − 3)",
+    "nota": "fórmula de Vandermonde"
+   },
+   {
+    "linha": "det A = 2(x − 1)(x − 2)(x − 3)",
+    "nota": "1·2·1 = 2"
+   },
+   {
+    "linha": "2(x − 1)(x − 2)(x − 3) = 0",
+    "nota": "condição do enunciado"
+   },
+   {
+    "linha": "x = 1 ou x = 2 ou x = 3",
+    "nota": "cada fator igualado a zero"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

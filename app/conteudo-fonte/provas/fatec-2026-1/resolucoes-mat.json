@@ -733,5 +733,104 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pbaf16d2b": {
+  "n": "37",
+  "conceito": "Multiplicação de matriz por número real e localização do elemento pela linha e coluna.",
+  "equivocos": {
+   "A": "M15.1:trocou-a-posicao-do-elemento",
+   "B": "M15.1:trocou-a-posicao-do-elemento",
+   "C": "M15.1:trocou-linha-e-coluna",
+   "D": "M15.1:trocou-a-posicao-do-elemento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Multiplicar uma matriz por um número é multiplicar cada elemento por ele; a posição não muda. Então o elemento da linha 2, coluna 3 de S é a metade do elemento da linha 2, coluna 3 de A. O trabalho real é achar a posição certa: linha primeiro, coluna depois.",
+    "formulas": [
+     "S = (1/2) × A → s_ij = a_ij/2"
+    ],
+    "simbolos": [
+     [
+      "a_ij",
+      "elemento da linha i e coluna j da matriz A"
+     ],
+     [
+      "s23",
+      "elemento da linha 2, coluna 3 da matriz S"
+     ]
+    ]
+   },
+   "pista": "Ache em A o número da segunda linha, terceira coluna: linha é a fileira deitada, coluna é a de pé.",
+   "passos": [
+    {
+     "faz": "Localize a23 na matriz A",
+     "conta": "linha 2: 10 | 30 | 168 → coluna 3: 168",
+     "porque": "A linha 2 é a segunda fileira horizontal (10, 30, 168); dela, o terceiro número é 168.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Multiplique por 1/2",
+     "conta": "s23 = (1/2) × 168 → 168/2 → 84",
+     "porque": "O filtro multiplica cada número por 1/2, então cada elemento vira a sua metade, na mesma posição.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "s23 = 84 → alternativa E",
+     "porque": "84 é o valor da alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 84",
+   "checagem": "Volte ao original: 84 × 2 = 168, que é o número da linha 2, coluna 3 de A. E 84 está entre 0 e 255, como deve ser um tom de cinza.",
+   "erradas": {
+    "A": "15 sai de pegar a linha 2, coluna 2 (30) e dividir por 2: 30/2 = 15.",
+    "B": "25 sai de pegar a linha 1, coluna 1 (50): 50/2 = 25.",
+    "C": "42 sai de ler a linha 3, coluna 2 (84) e dividir: 84/2 = 42.",
+    "D": "79 sai de pegar a linha 3, coluna 3 (158): 158/2 = 79."
+   },
+   "armadilha": "84 aparece na própria matriz A (linha 3, coluna 2): quem lê a posição trocada divide o número errado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O elemento da linha 2, coluna 3 de S = (1/2) × A.",
+    "chave": "a23 = 168; s23 = 168/2 = 84.",
+    "cuidado": "Linha primeiro, coluna depois; o produto por número não muda posições."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "matriz inteira",
+    "ideia": "Divida toda a matriz por 2, S = (25 124 63 ; 5 15 84 ; 4 42 79), e leia a linha 2, coluna 3: 84."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A = (50 248 126 ; 10 30 168 ; 8 84 158)",
+    "nota": "matriz dada"
+   },
+   {
+    "linha": "a23 = 168",
+    "nota": "linha 2, coluna 3"
+   },
+   {
+    "linha": "s23 = (1/2) × 168",
+    "nota": "o filtro multiplica por 1/2"
+   },
+   {
+    "linha": "s23 = 84",
+    "nota": "metade de 168"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

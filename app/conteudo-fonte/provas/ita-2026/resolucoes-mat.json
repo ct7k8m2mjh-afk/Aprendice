@@ -234,5 +234,126 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P39befc10": {
+  "n": "3",
+  "conceito": "Matriz dada por lei de formação: simetria, linhas em PA e matriz singular (determinante zero por dependência linear).",
+  "equivocos": {
+   "A": "M15.2:esqueceu-pa-e-singular",
+   "B": "M15.2:esqueceu-a-simetria",
+   "C": "M15.2:nao-viu-dependencia-das-linhas",
+   "D": "M15.2:nao-viu-pa-nas-linhas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Reescreva a lei: (1 − i)(1 − j) = (i − 1)(j − 1), então aij = 1 + (i − 1)(j − 1). Trocar i com j não muda nada (simétrica); fixando a linha i, o elemento cresce de (i − 1) em (i − 1) com j (PA); e cada linha é combinação das duas primeiras, então o determinante é zero (singular).",
+    "formulas": [
+     "aij = 1 + (i − 1)(j − 1)",
+     "simétrica: aij = aji",
+     "singular: det A = 0"
+    ],
+    "simbolos": [
+     [
+      "simétrica",
+      "matriz igual à sua transposta: aij = aji"
+     ],
+     [
+      "singular",
+      "matriz de determinante zero, sem inversa"
+     ],
+     [
+      "PA",
+      "progressão aritmética"
+     ]
+    ]
+   },
+   "pista": "Troque (1 − i)(1 − j) por (i − 1)(j − 1) e escreva as três primeiras linhas.",
+   "passos": [
+    {
+     "faz": "Reescreva a lei",
+     "conta": "aij = 1 + (1 − i)(1 − j) → aij = 1 + (i − 1)(j − 1)",
+     "porque": "Dois sinais trocados ao mesmo tempo não mudam o produto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a simetria",
+     "conta": "aji = 1 + (j − 1)(i − 1) = aij → I verdadeira",
+     "porque": "A multiplicação é comutativa, então trocar i com j dá o mesmo número.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste as linhas",
+     "conta": "linha i: aij − ai(j−1) = (i − 1) → razão constante → II verdadeira",
+     "porque": "Para i fixo, aij é do 1º grau em j: cresce sempre i − 1. Linha 1: 1, 1, 1...; linha 2: 1, 2, 3...",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste se é singular",
+     "conta": "L1 = (1, 1, 1, ...) | L2 = (1, 2, 3, ...) | L3 = (1, 3, 5, ...) → L3 = 2·L2 − L1 → det A = 0",
+     "porque": "Com uma linha combinação de outras, o determinante é zero; III verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "I, II e III verdadeiras → alternativa E",
+     "porque": "As três afirmações se confirmam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — I, II e III",
+   "checagem": "Outro olhar: aij = 1 + (i − 1)(j − 1) é soma da matriz de uns com u·uᵀ, u = (0, 1, ..., 99): cada parcela tem posto 1, então A tem posto no máximo 2, bem menor que 100, e não pode ter determinante diferente de zero.",
+   "erradas": {
+    "A": "Apenas I esquece que a linha i é PA de razão i − 1 e que L3 = 2·L2 − L1 zera o determinante.",
+    "B": "Apenas II esquece a simetria: aij = 1 + (i − 1)(j − 1) não muda ao trocar i com j.",
+    "C": "Apenas I e II esquece que a matriz é singular: L3 = 2·L2 − L1, logo det A = 0.",
+    "D": "Apenas I e III esquece que cada linha cresce sempre i − 1, o que é uma PA."
+   },
+   "armadilha": "Achar que uma matriz 100 × 100 sem zeros óbvios tem determinante diferente de zero; as linhas são dependentes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais propriedades vale a matriz aij = 1 + (1 − i)(1 − j).",
+    "chave": "aij = 1 + (i − 1)(j − 1): simétrica, linhas em PA de razão i − 1, L3 = 2L2 − L1.",
+    "cuidado": "Uma linha combinação das outras já basta para det = 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "posto",
+    "ideia": "A = J + u·uᵀ, soma de duas matrizes de posto 1; posto no máximo 2 < 100, então det A = 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "aij = 1 + (i − 1)(j − 1)",
+    "nota": "reescrever"
+   },
+   {
+    "linha": "aji = aij",
+    "nota": "simétrica"
+   },
+   {
+    "linha": "aij − ai(j−1) = i − 1",
+    "nota": "PA na linha i"
+   },
+   {
+    "linha": "L3 = 2·L2 − L1",
+    "nota": "dependência"
+   },
+   {
+    "linha": "det A = 0",
+    "nota": "singular"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

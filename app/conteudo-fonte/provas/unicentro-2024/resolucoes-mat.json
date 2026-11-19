@@ -619,5 +619,117 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "P006650c2": {
+  "n": "76",
+  "conceito": "Descobrir os pesos de uma média ponderada a partir das notas finais (sistema linear).",
+  "equivocos": {
+   "A": "M14.4:nao-conferiu-a-alternativa-nos-dados",
+   "B": "M14.4:conferiu-so-um-candidato",
+   "C": "M14.4:conferiu-so-um-candidato",
+   "E": "M14.4:nao-conferiu-a-alternativa-nos-dados"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Chame os pesos de e (escrita), d (didática) e c (curricular), com e + d + c = 10. Cada nota final é (e·escrita + d·didática + c·curricular)/10, então cada candidato dá uma equação. O atalho é combinar equações para isolar um peso de cada vez, sem resolver o sistema todo.",
+    "formulas": [
+     "nota final = (e·escrita + d·didática + c·curricular)/10",
+     "e + d + c = 10"
+    ],
+    "simbolos": [
+     [
+      "e, d, c",
+      "pesos das provas escrita, didática e curricular"
+     ]
+    ]
+   },
+   "pista": "Compare os candidatos B e C: eles têm a mesma nota na didática.",
+   "passos": [
+    {
+     "faz": "Monte as equações",
+     "conta": "A: 10e + 9d + 9c = 93 | B: 6e + 10d + 8c = 84 | C: 5e + 10d + 6c = 77",
+     "porque": "Multiplique cada nota final por 10 (a soma dos pesos) para tirar o denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache e pelo candidato A",
+     "conta": "10e + 9d + 9c = 9(e + d + c) + e = 9 · 10 + e = 93 → e = 93 − 90 = 3",
+     "porque": "A tem 9 em duas provas: separando 9e, a soma dos pesos aparece inteira e vale 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia C de B",
+     "conta": "(6e + 10d + 8c) − (5e + 10d + 6c) = 84 − 77 → e + 2c = 7 → 3 + 2c = 7 → c = 2",
+     "porque": "A didática de B e C é 10 nas duas e se cancela na subtração; com e = 3, sobra c.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache d pela soma",
+     "conta": "d = 10 − 3 − 2 = 5",
+     "porque": "Os três pesos somam 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "pesos 3, 5, 2 → alternativa D",
+     "porque": "Escrita 3, didática 5 e curricular 2, na ordem pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — pesos 3, 5 e 2 (escrita, didática e curricular)",
+   "checagem": "Substitua nos três candidatos: A (30 + 45 + 18)/10 = 9,3; B (18 + 50 + 16)/10 = 8,4; C (15 + 50 + 12)/10 = 7,7. As três notas finais da tabela batem.",
+   "erradas": {
+    "A": "2, 5, 3 não confere: A teria (20 + 45 + 27)/10 = 9,2, e a tabela dá 9,3.",
+    "B": "3, 3, 4 não confere: acerta A (9,3), mas B teria (18 + 30 + 32)/10 = 8,0, e não 8,4.",
+    "C": "3, 4, 3 não confere: acerta A (9,3), mas B teria (18 + 40 + 24)/10 = 8,2, e não 8,4.",
+    "E": "4, 3, 3 não confere: A teria (40 + 27 + 27)/10 = 9,4, e não 9,3."
+   },
+   "armadilha": "Testar a alternativa só no primeiro candidato: 3, 3, 4 e 3, 4, 3 também dão 9,3 para A e só caem nos candidatos B e C.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os pesos das provas escrita, didática e curricular.",
+    "chave": "A dá 9·10 + e = 93, e = 3; B − C dá e + 2c = 7, c = 2; d = 5.",
+    "cuidado": "Confira os pesos nos três candidatos, não só no primeiro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Substitua cada trio nas três linhas da tabela: só 3, 5, 2 reproduz 9,3; 8,4 e 7,7 ao mesmo tempo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10e + 9d + 9c = 93",
+    "nota": "candidato A"
+   },
+   {
+    "linha": "9(e + d + c) + e = 93 → 90 + e = 93 → e = 3",
+    "nota": "a soma dos pesos vale 10"
+   },
+   {
+    "linha": "(6e + 10d + 8c) − (5e + 10d + 6c) = 84 − 77",
+    "nota": "B menos C"
+   },
+   {
+    "linha": "e + 2c = 7 → 3 + 2c = 7 → c = 2",
+    "nota": "a didática se cancela"
+   },
+   {
+    "linha": "d = 10 − 3 − 2 = 5",
+    "nota": "soma dos pesos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

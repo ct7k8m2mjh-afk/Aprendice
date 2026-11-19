@@ -210,5 +210,129 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "Pb16be995": {
+  "n": "21",
+  "conceito": "Matriz inversa: se A é a inversa de B, então A·B = I, e cada elemento do produto vira uma equação.",
+  "equivocos": {
+   "A": "M15.1:relacao-sem-testar-valores",
+   "B": "M15.1:relacao-sem-testar-valores",
+   "D": "M15.1:relacao-sem-testar-valores",
+   "E": "M15.1:relacao-sem-testar-valores"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dizer que A é a inversa de B é dizer que A·B dá a matriz identidade I. Você não precisa calcular inversa nenhuma: basta multiplicar linhas de A por colunas de B e igualar a 1 (na diagonal) ou a 0 (fora dela). A primeira linha de A já entrega a, b e c.",
+    "formulas": [
+     "A·B = I (A é a inversa de B)",
+     "elemento (i, j) de A·B = linha i de A × coluna j de B"
+    ],
+    "simbolos": [
+     [
+      "I",
+      "matriz identidade: 1 na diagonal principal e 0 no resto"
+     ],
+     [
+      "inversa",
+      "matriz que, multiplicada pela outra, dá I"
+     ],
+     [
+      "a, b, c ∈ ℝ",
+      "a, b e c são números reais"
+     ]
+    ]
+   },
+   "pista": "Escreva A·B = I e use só a primeira linha de A, multiplicando-a por cada coluna de B.",
+   "passos": [
+    {
+     "faz": "Use a primeira coluna de B",
+     "conta": "(−1)(a − 2) + (−1)·0 + 2·1 = 1 → −a + 4 = 1 → −a = −3 → a = 3",
+     "porque": "O elemento (1, 1) de A·B está na diagonal da identidade, então vale 1. O 4 passa subtraindo (1 − 4 = −3) e, trocando o sinal dos dois lados, a = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a segunda coluna de B",
+     "conta": "(−1)·1 + (−1)·b + 2·0 = 0 → −1 − b = 0 → b = −1",
+     "porque": "O elemento (1, 2) está fora da diagonal, então vale 0. O −1 passa somando e o sinal de b se inverte.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a terceira coluna de B",
+     "conta": "(−1)·0 + (−1)·2 + 2c = 0 → 2c = 2 → c = 1",
+     "porque": "O elemento (1, 3) também é 0. O −2 passa somando e o 2 que multiplica c vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a relação de cada alternativa",
+     "conta": "bc = (−1)·1 = −1 | C: −1/(a − 2) = −1/(3 − 2) = −1",
+     "porque": "Com a = 3, b = −1 e c = 1, só a alternativa C dá o mesmo valor dos dois lados.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "bc = −1 = −1/(a − 2) → alternativa C",
+     "porque": "A relação verdadeira é a da letra C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — bc = −1/(a − 2)",
+   "checagem": "Com a = 3, b = −1 e c = 1, B = (1  1  0 / 0  −1  2 / 1  0  1). Faça as outras linhas do produto: a 2.ª linha de A, (2, 1, −2), dá 2 − 2 = 0, 2 − 1 = 1 e 2 − 2 = 0; a 3.ª, (1, 1, −1), dá 1 − 1 = 0, 1 − 1 = 0 e 2 − 1 = 1. Sai a identidade inteira.",
+   "erradas": {
+    "A": "A não confere: −(2b + a)/2 = −(−2 + 3)/2 = −1/2, mas bc = −1.",
+    "B": "B não confere: 1/(ac) = 1/(3·1) = 1/3, mas bc = −1.",
+    "D": "D não confere: 2bc = −2, mas 1/(a − 1) = 1/2.",
+    "E": "E não confere: (1 − ba)/2 = (1 + 3)/2 = 2, mas bc = −1."
+   },
+   "armadilha": "Tentar calcular a inversa de A pela fórmula; basta usar A·B = I, e a primeira linha de A já dá as três incógnitas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual relação entre a, b e c é verdadeira sabendo que A é a inversa de B.",
+    "chave": "A·B = I: a 1.ª linha de A vezes as colunas de B dá a = 3, b = −1 e c = 1, logo bc = −1 = −1/(a − 2).",
+    "cuidado": "Na diagonal o produto vale 1; fora dela, 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "B·A = I",
+    "ideia": "Também vale B·A = I: a 1.ª coluna de A com a 3.ª linha de B dá −1 + c = 0, c = 1, e o resto sai igual."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "−a + 4 = 1",
+    "nota": "linha 1 × coluna 1 = 1"
+   },
+   {
+    "linha": "−a = −3",
+    "nota": "o 4 passa subtraindo"
+   },
+   {
+    "linha": "a = 3",
+    "nota": "troca o sinal dos dois lados"
+   },
+   {
+    "linha": "−1 − b = 0 → b = −1",
+    "nota": "linha 1 × coluna 2 = 0"
+   },
+   {
+    "linha": "−2 + 2c = 0 → c = 1",
+    "nota": "linha 1 × coluna 3 = 0"
+   },
+   {
+    "linha": "bc = −1 = −1/(3 − 2)",
+    "nota": "confere com a alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

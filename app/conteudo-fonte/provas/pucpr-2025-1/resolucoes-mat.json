@@ -685,5 +685,115 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P0ab5e950": {
+  "n": "30",
+  "conceito": "Nova média após acrescentar n notas máximas, garantida para todo número inicial de viagens do intervalo.",
+  "equivocos": {
+   "A": "M14.4:somou-medias-sem-pesar-pela-quantidade",
+   "B": "M14.4:usou-extremo-fora-do-intervalo",
+   "C": "M14.4:usou-o-menor-n-em-vez-do-pior-caso",
+   "E": "M14.4:incluiu-o-extremo-excluido"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se Paulo tem N viagens com média 4,7, a soma das notas é 4,7N. Cada nova viagem soma 5. A nova média é (4,7N + 5n)/(N + n), e ela precisa chegar a 4,9. Como N não é conhecido (está entre 5900 e 6000), o n tem de servir para o pior caso, o maior N possível.",
+    "formulas": [
+     "soma das notas = média × número de notas",
+     "nova média = (4,7N + 5n)/(N + n)"
+    ],
+    "simbolos": [
+     [
+      "N",
+      "número de viagens que Paulo já fez (mais de 5900 e menos de 6000)"
+     ],
+     [
+      "n",
+      "número de próximas viagens, todas com nota 5"
+     ]
+    ]
+   },
+   "pista": "Escreva a soma atual das notas em função de N e monte a condição da nova média ser pelo menos 4,9.",
+   "passos": [
+    {
+     "faz": "Monte a condição da nova média",
+     "conta": "(4,7N + 5n)/(N + n) ≥ 4,9",
+     "porque": "A soma antiga é 4,7N, cada nova nota excelente acrescenta 5 e o total de notas passa a N + n.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole n",
+     "conta": "4,7N + 5n ≥ 4,9N + 4,9n → 5n − 4,9n ≥ 4,9N − 4,7N → 0,1n ≥ 0,2N → n ≥ 2N",
+     "porque": "O N + n multiplica para o outro lado; os termos com n vão para a esquerda e os com N para a direita. Dividir por 0,1 deixa n ≥ 2N.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o maior N possível",
+     "conta": "N < 6000 → N ≤ 5999 → n ≥ 2 · 5999 = 11998",
+     "porque": "Para garantir, n tem de funcionar para qualquer N do intervalo. Quanto maior N, maior o n exigido, e o maior N com menos de 6000 viagens é 5999.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "n mínimo = 11998 → alternativa D",
+     "porque": "11998 cobre todos os casos e qualquer valor menor falha para N = 5999.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 11.998 viagens",
+   "checagem": "Substitua N = 5999 e n = 11998: (4,7 · 5999 + 5 · 11998)/(5999 + 11998) = 4,9 exatamente. Com n = 11997, a média fica em 4,89999…, abaixo de 4,9. Fecha.",
+   "erradas": {
+    "A": "6.000 não confere: com n ≈ N a nova média fica perto de (4,7 + 5)/2 = 4,85, abaixo de 4,9. É preciso o dobro de N.",
+    "B": "11.798 sai de n = 2N com N = 5899, que está abaixo de 5900; Paulo tem mais de 5900 viagens, e para N = 5999 esse n não basta.",
+    "C": "11.800 sai de n = 2N com N = 5900. Paulo tem MAIS de 5900 viagens; para N = 5999 seriam necessárias 11998.",
+    "E": "12.000 sai de n = 2N com N = 6000, que já é excluído (menos de 6000). Garante 4,9, mas não é o menor valor."
+   },
+   "armadilha": "Usar um extremo do intervalo errado: \"garantir\" exige o pior caso, N = 5999, e não 5900 nem 6000.",
+   "alerta": "A questão trata a média 4,7 como exata para qualquer N do intervalo. Com notas naturais, uma média exatamente 4,7 só ocorre se N for múltiplo de 10; a banca ignora esse detalhe e o gabarito D corresponde ao raciocínio n ≥ 2N com N = 5999, que é o que se espera do candidato.",
+   "essencial": {
+    "pede": "O menor número de notas 5 que garante média 4,9 para qualquer N entre 5900 e 6000.",
+    "chave": "(4,7N + 5n)/(N + n) ≥ 4,9 dá n ≥ 2N; com N máximo 5999, n = 11998.",
+    "cuidado": "\"Menos de 6000\" quer dizer no máximo 5999, e garantir significa usar esse pior caso."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pontos que faltam",
+    "ideia": "Cada nota 5 está 0,1 acima de 4,9 e cada nota antiga está 0,2 abaixo: para compensar 0,2N são precisas 0,2N/0,1 = 2N notas 5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(4,7N + 5n)/(N + n) ≥ 4,9",
+    "nota": "condição da nova média"
+   },
+   {
+    "linha": "4,7N + 5n ≥ 4,9N + 4,9n",
+    "nota": "N + n passa multiplicando"
+   },
+   {
+    "linha": "0,1n ≥ 0,2N",
+    "nota": "n para a esquerda, N para a direita"
+   },
+   {
+    "linha": "n ≥ 2N",
+    "nota": "divide por 0,1"
+   },
+   {
+    "linha": "n ≥ 2 · 5999 = 11998",
+    "nota": "pior caso: N = 5999"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

@@ -819,5 +819,226 @@
    "data": "2026-11-19",
    "lote": "mat-0070"
   }
+ },
+ "Pd5d353bc": {
+  "n": "14",
+  "conceito": "Nota mínima num bimestre para atingir uma média ponderada dada.",
+  "equivocos": {
+   "A": "M14.4:nao-buscou-o-minimo",
+   "C": "M14.4:ignorou-os-pesos",
+   "D": "M14.4:erro-na-soma-ponderada",
+   "E": "M14.4:erro-na-soma-ponderada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Média ponderada: cada nota é multiplicada pelo peso do bimestre e o total é dividido pela soma dos pesos. Os pesos são 2, 3, 3 e 2, somando 10. Para ter média 5,0, a soma de nota × peso precisa chegar a 5,0 × 10 = 50 pontos; o 4º bimestre tem de completar o que faltar.",
+    "formulas": [
+     "média = (2N1 + 3N2 + 3N3 + 2N4)/10"
+    ],
+    "simbolos": [
+     [
+      "N4",
+      "nota do 4º bimestre, a que se procura"
+     ],
+     [
+      "peso",
+      "quantas vezes a nota do bimestre conta na média"
+     ]
+    ]
+   },
+   "pista": "Descubra quantos pontos ponderados o aluno já tem e quantos faltam para a média 5,0.",
+   "passos": [
+    {
+     "faz": "Monte a média com os pesos",
+     "conta": "(2·4 + 3·4 + 3·4 + 2·N4)/10 ≥ 5",
+     "porque": "Os três primeiros bimestres tiveram nota 4,0, e a soma dos pesos 2 + 3 + 3 + 2 é 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os pontos já obtidos",
+     "conta": "8 + 12 + 12 + 2N4 ≥ 50 → 32 + 2N4 ≥ 50",
+     "porque": "O 10 que divide passa multiplicando o 5. Os três primeiros bimestres já garantem 32 pontos ponderados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a nota do 4º bimestre",
+     "conta": "2N4 ≥ 50 − 32 → 2N4 ≥ 18 → N4 ≥ 18/2 = 9",
+     "porque": "O 32 passa subtraindo e o peso 2 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "nota mínima 9,0 → alternativa B",
+     "porque": "9,0 é o menor valor que leva a média a 5,0.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 9,0",
+   "checagem": "Substitua: (8 + 12 + 12 + 2·9)/10 = 50/10 = 5,0. Com 8,0 a média seria 48/10 = 4,8, reprovado. Fecha.",
+   "erradas": {
+    "A": "10,0 aprova, mas não é o mínimo: (32 + 20)/10 = 5,2, acima de 5,0.",
+    "C": "8,0 sai de ignorar os pesos: (4 + 4 + 4 + N4)/4 = 5 dá N4 = 8. Com os pesos, a média fica (32 + 16)/10 = 4,8.",
+    "D": "7,0 não confere: (32 + 14)/10 = 4,6, abaixo de 5,0.",
+    "E": "6,0 não confere: (32 + 12)/10 = 4,4, abaixo de 5,0."
+   },
+   "armadilha": "Fazer média simples das quatro notas: os bimestres do meio pesam 3, e o 4º só pesa 2, por isso a nota exigida sobe para 9.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A menor nota no 4º bimestre que leva a média ponderada a 5,0.",
+    "chave": "Faltam 50 − 32 = 18 pontos ponderados; com peso 2, a nota é 18/2 = 9,0.",
+    "cuidado": "Use os pesos do quadro; a média simples dá 8,0, que reprova."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Teste de baixo para cima: 6 dá 4,4; 7 dá 4,6; 8 dá 4,8; 9 dá 5,0, a primeira que aprova."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(2·4 + 3·4 + 3·4 + 2·N4)/10 = 5",
+    "nota": "média ponderada igual a 5"
+   },
+   {
+    "linha": "32 + 2N4 = 50",
+    "nota": "o 10 passa multiplicando"
+   },
+   {
+    "linha": "2N4 = 18",
+    "nota": "o 32 passa subtraindo"
+   },
+   {
+    "linha": "N4 = 18/2 = 9",
+    "nota": "o 2 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
+ },
+ "P7f997dda": {
+  "n": "25",
+  "conceito": "Média e mediana de quatro valores lidos num gráfico de linhas, e comparação entre elas por produto.",
+  "equivocos": {
+   "A": "M14.1:mediana-sem-ordenar",
+   "C": "M14.1:comparou-media-e-mediana-errado",
+   "D": "M14.1:ignorou-altura-relativa",
+   "E": "M14.1:comparou-media-e-mediana-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Leia no gráfico os quatro preços de cada produto e calcule duas medidas: a média (soma ÷ 4) e a mediana (ordene e tire a média dos dois do meio, porque são 4 valores). As alternativas não têm escala: o que decide é onde média e mediana coincidem e qual fica acima da outra em cada produto.",
+    "formulas": [
+     "média = soma dos 4 preços ÷ 4",
+     "mediana de 4 valores = média dos dois centrais, depois de ordenar"
+    ],
+    "simbolos": [
+     [
+      "média",
+      "soma dos valores dividida pela quantidade"
+     ],
+     [
+      "mediana",
+      "valor do meio da lista ordenada"
+     ]
+    ]
+   },
+   "pista": "Anote os quatro preços de cada produto (A, B, C, D) antes de calcular; o produto II é o mais fácil de comparar.",
+   "passos": [
+    {
+     "faz": "Leia os preços no gráfico",
+     "conta": "I: 10, 8, 10, 4 | II: 8, 6, 4, 10 | III: 12, 10, 8, 8",
+     "porque": "Cada linha do gráfico é um produto; os pontos sobre A, B, C e D dão os preços em reais.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a média de cada produto",
+     "conta": "I: (10 + 8 + 10 + 4)/4 = 32/4 = 8 | II: 28/4 = 7 | III: 38/4 = 9,5",
+     "porque": "A média soma os quatro preços e divide por 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a mediana de cada produto",
+     "conta": "I: 4, 8, 10, 10 → (8 + 10)/2 = 9 | II: 4, 6, 8, 10 → 7 | III: 8, 8, 10, 12 → 9",
+     "porque": "Com 4 valores, ordene e faça a média dos dois do meio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare média e mediana",
+     "conta": "I: mediana 9 > média 8 | II: iguais (7) | III: média 9,5 > mediana 9",
+     "porque": "No gráfico certo, a mediana fica acima em I, as duas se encontram em II, e a média fica acima em III.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "só a B tem esse desenho → alternativa B",
+     "porque": "Na B as linhas se tocam em II, o triângulo (mediana) fica acima em I e o círculo (média) acima em III, e II é o ponto mais baixo das duas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — o gráfico em que média e mediana se encontram no produto II, com a mediana acima no I e a média acima no III",
+   "checagem": "Confira a altura relativa: os dois valores do produto II (7) são os menores de todos, e na B o encontro em II é mesmo o ponto mais baixo; o maior valor é a média do III (9,5), o ponto mais alto da B.",
+   "erradas": {
+    "A": "A não confere: nela a mediana fica acima da média nos três produtos e as linhas nunca se tocam, mas no II as duas valem 7 e no III a média (9,5) supera a mediana (9).",
+    "C": "C não confere: em II a mediana aparece abaixo da média, mas as duas valem 7.",
+    "D": "D não confere: o encontro em II aparece como ponto mais alto, mas 7 é o menor valor de todos.",
+    "E": "E não confere: em III a mediana aparece acima da média, mas a média (9,5) é maior que a mediana (9)."
+   },
+   "armadilha": "Calcular a mediana de 4 valores sem ordenar, ou pegar só um valor do meio: com 4 preços, é a média dos dois centrais.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O gráfico que mostra a média e a mediana dos preços de cada produto.",
+    "chave": "Médias 8, 7 e 9,5; medianas 9, 7 e 9: coincidem em II, mediana maior em I, média maior em III.",
+    "cuidado": "Ordene os 4 preços e faça a média dos dois centrais."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação por II",
+    "ideia": "Em II média e mediana valem 7, o menor valor: só B e E têm encontro no ponto mais baixo, e em III a média 9,5 > 9 elimina a E."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I: 32/4 = 8 | II: 28/4 = 7 | III: 38/4 = 9,5",
+    "nota": "médias"
+   },
+   {
+    "linha": "I: (8 + 10)/2 = 9",
+    "nota": "mediana do I, valores ordenados"
+   },
+   {
+    "linha": "II: (6 + 8)/2 = 7",
+    "nota": "mediana do II"
+   },
+   {
+    "linha": "III: (8 + 10)/2 = 9",
+    "nota": "mediana do III"
+   },
+   {
+    "linha": "I: 9 > 8 | II: 7 = 7 | III: 9,5 > 9",
+    "nota": "comparação que escolhe o gráfico"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

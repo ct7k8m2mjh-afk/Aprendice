@@ -998,5 +998,125 @@
    "data": "2026-11-19",
    "lote": "mat-0069"
   }
+ },
+ "Pa27671d5": {
+  "n": "73",
+  "conceito": "Princípio da casa dos pombos e condição suficiente: quantos pacientes garantem 4 com o mesmo sintoma entre 6 sintomas.",
+  "equivocos": {
+   "A": "M17.1:multiplicou-4-por-6",
+   "B": "M17.1:confundiu-necessario-com-suficiente",
+   "D": "M17.1:ignorou-o-pior-caso",
+   "E": "M17.1:achou-que-4-pacientes-bastam"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A pergunta é sobre GARANTIA: qual N faz a frase ser verdadeira em qualquer distribuição dos pacientes. Pense no pior caso: espalhar os pacientes ao máximo, com no máximo 3 por sintoma. Quando nem esse espalhamento cabe, a frase fica garantida. Isso é o princípio da casa dos pombos.",
+    "formulas": [
+     "pior caso sem 4 iguais: 3 pacientes em cada um dos 6 sintomas = 3 × 6",
+     "garantia: N = 3 × 6 + 1"
+    ],
+    "simbolos": [
+     [
+      "N",
+      "número de pacientes do grupo"
+     ],
+     [
+      "condição suficiente",
+      "se ela acontece, a frase com certeza é verdadeira"
+     ],
+     [
+      "condição necessária",
+      "sem ela a frase não pode ser verdadeira"
+     ],
+     [
+      "casa dos pombos",
+      "se há mais objetos do que cabem sem repetir, alguma caixa recebe a mais"
+     ]
+    ]
+   },
+   "pista": "Monte o maior grupo possível em que nenhum sintoma chega a 4 pacientes.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "frase garantida para todo jeito de distribuir N pacientes",
+     "porque": "\"Suficiente\" quer dizer: com aquele N, não existe distribuição que deixe a frase falsa.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte o pior caso",
+     "conta": "3 pacientes × 6 sintomas → 18 pacientes sem 4 iguais",
+     "porque": "Com 3 por sintoma ninguém chega a 4; então 18 pacientes ainda não garantem a frase.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Acrescente um paciente",
+     "conta": "N = 3 × 6 + 1 → 18 + 1 → 19",
+     "porque": "O 19º paciente cai num sintoma que já tem 3, formando 4. Com 19 ou mais, sempre há 4 iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste as alternativas",
+     "conta": "N = 19: suficiente | N = 9 e N = 4: não garantem",
+     "porque": "9 e 4 são menores que 19, então existe distribuição sem 4 iguais. Exigir N > 24 ou N = 24 é pedir mais do que o necessário.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "19 > 3 × 6 → alternativa C",
+     "porque": "19 pacientes bastam para garantir 4 com o mesmo sintoma.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — é suficiente que N seja igual a 19",
+   "checagem": "Pela divisão: se nenhum sintoma tivesse 4 pacientes, o total seria no máximo 6 × 3 = 18 < 19. Logo, com 19, algum sintoma tem pelo menos 19/6 ≈ 3,2, ou seja, 4 pacientes.",
+   "erradas": {
+    "A": "Sai de 4 × 6 = 24, como se cada sintoma precisasse de 4. N > 24 não é necessário: com N = 19 a frase já é sempre verdadeira.",
+    "B": "Também vem de 4 × 6 = 24. Não é necessário que N seja 24: 19 já garante, e 20, 30 ou 100 também.",
+    "D": "9 não basta: 2, 2, 2, 1, 1 e 1 pacientes nos seis sintomas somam 9 e nenhum sintoma tem 4.",
+    "E": "4 não basta: os 4 pacientes podem ter sintomas diferentes (1, 1, 1, 1, 0, 0), e então ninguém repete sintoma."
+   },
+   "armadilha": "Multiplicar 4 × 6 = 24 em vez de pensar no pior caso, que é 3 por sintoma mais 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Um valor de N que garanta 4 pacientes com o mesmo sintoma entre 6 sintomas.",
+    "chave": "Pior caso: 3 por sintoma = 18; com 18 + 1 = 19 a garantia aparece.",
+    "cuidado": "Distinguir suficiente (garante) de necessário (indispensável) e não usar 4 × 6."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "divisão",
+    "ideia": "Se cada sintoma tivesse no máximo 3 pacientes, caberiam só 18; logo 19 pacientes obrigam algum sintoma a ter 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6 sintomas, queremos 4 iguais",
+    "nota": "dados"
+   },
+   {
+    "linha": "pior caso: 3 + 3 + 3 + 3 + 3 + 3 = 18",
+    "nota": "3 por sintoma, ninguém chega a 4"
+   },
+   {
+    "linha": "18 + 1 = 19",
+    "nota": "mais um paciente força o 4º"
+   },
+   {
+    "linha": "N = 19 → garantido",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

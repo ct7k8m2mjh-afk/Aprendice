@@ -304,5 +304,111 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "Pd7ef2066": {
+  "n": "13",
+  "conceito": "Multiplicar matrizes, montar Cᵗ·C e calcular o determinante 2×2 resultante.",
+  "equivocos": {
+   "B": "M15.2:errou-produto-de-matrizes",
+   "C": "M15.2:errou-produto-de-matrizes",
+   "D": "M15.2:errou-produto-de-matrizes",
+   "E": "M15.2:errou-produto-de-matrizes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A ordem importa: A é 4×3 e B é 3×2, então C = A·B é 4×2. Aí Cᵗ·C é 2×2 (Cᵗ é 2×4), e o determinante final é só um 2×2. Quem faz C·Cᵗ cai numa 4×4.",
+    "formulas": [
+     "(A·B)ij = linha i de A · coluna j de B",
+     "(Cᵗ·C)ij = coluna i de C · coluna j de C"
+    ],
+    "simbolos": [
+     [
+      "Cᵗ",
+      "transposta: as linhas de C viram colunas"
+     ],
+     [
+      "4×3",
+      "4 linhas e 3 colunas"
+     ]
+    ]
+   },
+   "pista": "Confira as ordens das matrizes antes de multiplicar: elas dizem o tamanho de X.",
+   "passos": [
+    {
+     "faz": "Calcule C = A·B",
+     "conta": "linha 1: (1, −2, −1)·(1, −2, 2) = 3 e (1, −2, −1)·(−2, −1, 1) = −1 → C = [[3, −1], [1, −2], [10, 0], [−7, −1]]",
+     "porque": "Cada elemento é linha de A vezes coluna de B; C é 4×2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte X = Cᵗ·C",
+     "conta": "X11 = 9 + 1 + 100 + 49 = 159 | X12 = −3 + (−2) + 0 + 7 = 2 | X22 = 1 + 4 + 0 + 1 = 6 → X = [[159, 2], [2, 6]]",
+     "porque": "Cada elemento de X é o produto de duas colunas de C; X é simétrica, X21 = X12.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule det X",
+     "conta": "159·6 − 2·2 → 954 − 4 = 950",
+     "porque": "Diagonal principal menos secundária.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "det X = 950 → alternativa A",
+     "porque": "Valor entre as alternativas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 950.",
+   "checagem": "Pelo teorema de Binet-Cauchy, det(Cᵗ·C) é a soma dos quadrados dos seis determinantes 2×2 formados por pares de linhas de C: (−5)² + 10² + (−10)² + 20² + (−15)² + (−10)² = 25 + 100 + 100 + 400 + 225 + 100 = 950.",
+   "erradas": {
+    "B": "920 não confere: det X = 159·6 − 2·2 = 950; 920 exigiria subtrair 34 de 954.",
+    "C": "480 não confere: é cerca da metade de 950; a diagonal de X dá 159·6 = 954 e só se subtrai 2·2 = 4.",
+    "D": "460 não confere: det X = 954 − 4 = 950, e nenhum dos produtos da conta dá 460.",
+    "E": "350 não confere: det X = 954 − 4 = 950; o elemento X11 = 159 sozinho já leva o produto da diagonal a 954."
+   },
+   "armadilha": "Fazer C·Cᵗ (uma 4×4, cujo determinante é 0) em vez de Cᵗ·C, ou errar um sinal nos produtos de C.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O det de X = Cᵗ·C, com C = A·B.",
+    "chave": "C é 4×2, logo X é 2×2: produto de colunas de C.",
+    "cuidado": "Confira os sinais nos produtos linha × coluna."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Binet-Cauchy",
+    "ideia": "det(Cᵗ·C) = soma dos quadrados dos menores 2×2 de C = 950, sem montar X."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C = A·B = [[3, −1], [1, −2], [10, 0], [−7, −1]]",
+    "nota": "linha de A × coluna de B"
+   },
+   {
+    "linha": "X = Cᵗ·C = [[159, 2], [2, 6]]",
+    "nota": "coluna de C × coluna de C"
+   },
+   {
+    "linha": "det X = 159·6 − 2·2",
+    "nota": "det 2×2"
+   },
+   {
+    "linha": "det X = 954 − 4 = 950",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

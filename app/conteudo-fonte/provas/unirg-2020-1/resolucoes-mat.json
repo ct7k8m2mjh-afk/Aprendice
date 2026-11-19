@@ -475,5 +475,109 @@
    "data": "2026-11-19",
    "lote": "mat-0070"
   }
+ },
+ "P136236fb": {
+  "n": "14",
+  "conceito": "Matriz de transição: escrever a população de cada região depois de um ano como combinação de quem fica e de quem chega.",
+  "equivocos": {
+   "A": "M15.1:taxa-de-migracao-trocada",
+   "C": "M15.1:somou-em-vez-de-subtrair",
+   "D": "M15.1:somou-em-vez-de-subtrair"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Monte cada população nova com duas parcelas: quem fica e quem chega. Se 18% da região central saem, ficam 82%; se 6% do subúrbio saem, ficam 94%. Na multiplicação da matriz pela coluna (C0, S0), a primeira linha gera C1 e a segunda gera S1.",
+    "formulas": [
+     "C1 = (fica do centro)·C0 + (chega do subúrbio)·S0",
+     "S1 = (chega do centro)·C0 + (fica no subúrbio)·S0"
+    ],
+    "simbolos": [
+     [
+      "C0, S0",
+      "moradores do centro e do subúrbio agora"
+     ],
+     [
+      "C1, S1",
+      "moradores do centro e do subúrbio depois de um ano"
+     ]
+    ]
+   },
+   "pista": "Pergunte, para cada região, quem continua nela e quem vem da outra.",
+   "passos": [
+    {
+     "faz": "Transforme as saídas em quem fica",
+     "conta": "centro: 100% − 18% = 82% → 0,82 | subúrbio: 100% − 6% = 94% → 0,94",
+     "porque": "Quem não migra continua na própria região.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva C1",
+     "conta": "C1 = 0,82·C0 + 0,06·S0",
+     "porque": "O centro fica com 82% dos seus e recebe 6% do subúrbio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva S1",
+     "conta": "S1 = 0,18·C0 + 0,94·S0",
+     "porque": "O subúrbio recebe os 18% que saíram do centro e mantém 94% dos seus.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para a forma matricial",
+     "conta": "(C1, S1) = (0,82  0,06 / 0,18  0,94)·(C0, S0) → alternativa B",
+     "porque": "Os coeficientes de C1 formam a 1.ª linha da matriz, e os de S1 a 2.ª.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a matriz com 0,82 e 0,06 na 1.ª linha e 0,18 e 0,94 na 2.ª",
+   "checagem": "Cada coluna da matriz soma 1: 0,82 + 0,18 = 1 e 0,06 + 0,94 = 1. Ninguém some nem aparece: todo morador do centro e do subúrbio está em algum lugar depois de um ano.",
+   "erradas": {
+    "A": "A não confere: usa 0,08 e 0,92 na coluna do subúrbio, mas saem 6% dele, então ficam 0,94 e chegam ao centro 0,06.",
+    "C": "C não confere: a 1.ª coluna soma 1,80 + 1,06 = 2,86, o que criaria moradores; quem fica no centro é 1 − 0,18 = 0,82.",
+    "D": "D não confere: a 1.ª coluna soma 1,80 + 1,06 = 2,86 e a 2.ª usa 0,08 e 0,92; as taxas certas são 0,82, 0,18, 0,06 e 0,94."
+   },
+   "armadilha": "Pôr na matriz a taxa de quem sai no lugar de quem fica: no centro ficam 0,82, não 0,18.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A equação matricial que dá C1 e S1 depois de um ano.",
+    "chave": "C1 = 0,82C0 + 0,06S0 e S1 = 0,18C0 + 0,94S0.",
+    "cuidado": "Cada coluna da matriz de transição soma 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma das colunas",
+    "ideia": "Numa matriz de transição cada coluna soma 1; só A e B passam, e só a B usa os 6% do subúrbio."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 − 0,18 = 0,82 | 1 − 0,06 = 0,94",
+    "nota": "quem fica em cada região"
+   },
+   {
+    "linha": "C1 = 0,82·C0 + 0,06·S0",
+    "nota": "fica no centro + chega do subúrbio"
+   },
+   {
+    "linha": "S1 = 0,18·C0 + 0,94·S0",
+    "nota": "chega do centro + fica no subúrbio"
+   },
+   {
+    "linha": "(0,82  0,06 / 0,18  0,94)",
+    "nota": "coeficientes em linhas: alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

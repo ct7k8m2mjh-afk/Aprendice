@@ -173,3 +173,32 @@ DADO P3d72f6d2: alternativas -> A V – F – V | B V – V – F | C V – V �
 DADO Pf745b011: alternativas -> A apenas I e II | B apenas I e III | C apenas II e III | D apenas II e IV | E apenas III e IV (UFSM 2026, questão 70: alternativas coladas no texto_da_prova)
 DADO P1c82c206 (UFSM 2026, questão 105): texto_da_prova -> o comando termina em "então em que ano m será igual a 3,634?"; o fragmento solto "34?" depois das alternativas é resto do recorte (no print também aparece "34?" cortado no rodapé; refazer o print sem ele).
 DADO P513ad04f (UNEMAT 2023, questão 12): alternativas.E -> "0." (sem a palavra "Figura" colada)
+
+## 2026-11-19 — PENDENCIAS — session_01PveEKZJXRTXQ8BArELQfeu
+Lote mat-0071 gravado.
+Gabarito do Aprendice (resolvedor e conferente às cegas iguais; sem gabarito na web): P741209bd D, P368668ed C.
+PENDENTE Pd589344f: anular: para 4, 5, 2 a média é 11/3 e a soma dos quadrados dos desvios é 1/9 + 16/9 + 25/9 = 42/9 = 14/3; variância populacional 14/9 (desvio √(14/9), alternativa B) e amostral 7/3 = 21/9 (fora das alternativas). O gabarito oficial D (√(11/9)) não sai de nenhuma das duas; além disso o enunciado cham
+PENDENTE P53f16b0b: print: o print corta a 1ª linha das duas matrizes. No PDF oficial (pág. 19) A e B têm 3 linhas: A = (1 2 3 4 ; −1 −2 −3 −4 ; 0 1 −1 2) e B = (1 0 2 1 −2 ; 2 1 0 −2 1 ; 0 −3 2 4 0). Com o print, c34 = (−3)(−2) + (−1)(4) = 2, sem alternativa; com o PDF, c34 = 3 × 1 + (−3)(−2) + (−1)(4) = 5 (C, gabarit
+PENDENTE Pe0819527: anular: duas alternativas verdadeiras. A 3ª equação (2x + 4y − 2z = 4) é o dobro da 1ª (x + 2y − z = 2), det = 0 e posto 2 com sistema compatível: há infinitas soluções (x = 3 − 2z/3, y = 5z/6 − 1/2), então a B é verdadeira; (1, 2, 3) também satisfaz as três equações (2, 7, 4), então a A (gabarito) 
+PENDENTE P17aea30d: print: o recorte termina na alternativa D; falta a alternativa E ("cos 2x", que está na camada de texto). A conta confere com o gabarito A: tr(AB) = (sen²x − 1) + (−cos²x + 1) = sen²x − cos²x = −cos 2x.
+PENDENTE Pc6951868: anular: A (3×3, jogador × gols/partidas/cartões) vezes B (3×1, com os fatores 1,12; 1,08; 0,75) dá uma coluna com UM número por jogador, 1,12·gols + 1,08·partidas + 0,75·cartões, soma que mistura grandezas diferentes e não é nenhum dos índices projetados. Os índices projetados exigem multiplicar cad
+PENDENTE Pbc716955: print: as frações das alternativas B, C, D e E estão cortadas no print (o valor de x some em B e C, os de y e z em D e E), e o aluno não consegue ler as alternativas. A camada de texto tem os valores. A conta confere com o gabarito C: w − 1 = 8 → w = 9; y − z = 1 e z = 3 − x → y = 4 − x; 2x − y = w 
+ANULAR Pd589344f (URCA 2025.1, questão 30): para 4, 5, 2 a média é 11/3 e a soma dos quadrados dos desvios é 42/9 = 14/3; desvio padrão populacional √(14/9) (alternativa B), amostral √(7/3) (fora das alternativas); o gabarito D (√(11/9)) não sai de nenhum dos dois, e o enunciado chama o desvio de σ². A resposta aos recursos da CEV não trata da questão.
+RECLASS Pf94184e3 M14.4 -> M02.5
+DADO Pd589344f (URCA 2025.1, questão 30): alternativas -> A "√(11/3)" | B "√(14/9)" | C "√(17/3)" | D "√(11/9)" | E "√(15/9)" (raiz e barra perdidas)
+DADO P7c92d32c (Fatec 2023 1º sem, questão 42): alternativas.C -> "As preferências dos entrevistados, em relação às dimensões Ciências Exatas e Ciências Biológicas e da Saúde, têm o mesmo nível de heterogeneidade, visto que possuem a mesma amplitude." (comando colado); alternativas.E -> sem o "eta." final
+DADO Pd7099a70 (UFSM 2026, questão 91): alternativas -> faltam no campo (A a E estão coladas no fim de texto_da_prova)
+DADO P319451ec (Unitins 2024/1, questão 15): texto_da_prova -> fórmula embaralhada; no print: MP = (2·N1 + 3·N2 + 2·N3 + 3·N4)/10
+GABARITO P0ab5e950 (PUCPR 2025/1, questão 30): resolvida com o oficial D e alerta; com notas naturais, média exatamente 4,7 exige N múltiplo de 10 (aí o pior caso seria N = 5990 e n = 11980, fora das alternativas); a banca ignora esse detalhe.
+PRINT P53f16b0b (PUCPR 2025 Medicina 2025/2, questão 31): o print corta a 1ª linha das matrizes A e B; no PDF oficial (pág. 19) A = (1 2 3 4 ; −1 −2 −3 −4 ; 0 1 −1 2) e B = (1 0 2 1 −2 ; 2 1 0 −2 1 ; 0 −3 2 4 0). Refazer o print do PDF oficial (com o print atual c34 = 2, sem alternativa; com o PDF c34 = 5, gabarito C).
+ANULAR Pe0819527 (UEG 2023/1, questão 20): duas alternativas verdadeiras — a 3ª equação é o dobro da 1ª (det = 0, sistema compatível com infinitas soluções: B verdadeira) e (1, 2, 3) satisfaz o sistema (A, gabarito, verdadeira). Pôr em anuladas-aprendice.json.
+DADO Pbaf16d2b (Fatec 2026/1, questão 37): texto_da_prova -> "multiplica cada número da matriz A por 1/2, gerando..." (o 1/2 sumiu da camada de texto).
+RECLASS Pa27671d5 M14.5 -> M17.1 (Fempar 2026, questão 73: princípio da casa dos pombos / condição suficiente, não é dado de saúde).
+RECLASS P68f38fc8 M15.1 -> M04.3 (PUCRS 2023 Verão, questão 15: sistema linear 3 × 3 a partir de tabela).
+PRINT P17aea30d (UFRR 2022 q13): o recorte termina na alternativa D; refazer incluindo a alternativa E ("cos 2x"). Conta confere com o gabarito A.
+PRINT Pbc716955 (Unespar 2025 Grupo I q54): frações das alternativas B a E cortadas no print (x em B e C, y e z em D e E); refazer do PDF oficial. Conta confere com o gabarito C.
+ANULAR Pc6951868 (UVA 2024.1 q32): A·B (3×3 · 3×1) dá uma soma por jogador que mistura gols, partidas e cartões, não os índices projetados (que exigem A·diag(1,12; 1,08; 0,75)); o gabarito B só vale por ser a única operação definida.
+RECLASS P7f997dda M15.1 -> M14.1 (UEG 2025/2 q25: média e mediana de preços lidos em gráfico)
+RECLASS P1d0c81e2 M15.1 -> M15.2 (URCA 2026.1 q29: polinômio característico det(A − xI), soma e produto das raízes)
+DADO P39befc10 (ITA 2026 1ª fase, questão 3): alternativas -> vazias na entrada; no print: A Apenas I. | B Apenas II. | C Apenas I e II. | D Apenas I e III. | E I, II e III. (lei omitida no texto: aij = 1 + (1 − i)(1 − j))
+DADO P2daf5ace (FMJ 2022, questão 14): texto_da_prova -> falta a matriz; no print: Qn = [2n² −n; n + 1 1]

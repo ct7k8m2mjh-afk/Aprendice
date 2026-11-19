@@ -630,5 +630,238 @@
    "data": "2026-11-13",
    "lote": "mat-0060"
   }
+ },
+ "P47c97bc5": {
+  "n": "8",
+  "conceito": "Inversa de matriz 2 × 2 pela regra da adjunta dividida pelo determinante.",
+  "equivocos": {
+   "A": "M15.1:errou-a-adjunta",
+   "C": "M15.1:errou-a-adjunta",
+   "D": "M15.1:errou-a-adjunta",
+   "E": "M15.1:errou-a-adjunta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para inverter uma matriz 2 × 2: troque de lugar os elementos da diagonal principal, troque o sinal dos da secundária e divida tudo pelo determinante. Depois some só os dois termos pedidos, b12 e b22, que formam a 2ª coluna da inversa.",
+    "formulas": [
+     "det = a11 × a22 − a12 × a21",
+     "inversa = (1/det) × (a22  −a12 ; −a21  a11)"
+    ],
+    "simbolos": [
+     [
+      "b12",
+      "elemento da linha 1, coluna 2 da matriz B"
+     ],
+     [
+      "b22",
+      "elemento da linha 2, coluna 2"
+     ],
+     [
+      "det",
+      "determinante da matriz"
+     ],
+     [
+      "inversa",
+      "matriz B tal que A × B = I"
+     ],
+     [
+      "I",
+      "matriz identidade, com 1 na diagonal e 0 fora dela"
+     ]
+    ]
+   },
+   "pista": "Comece pelo determinante: ele divide todos os termos da inversa.",
+   "passos": [
+    {
+     "faz": "Calcule o determinante de A",
+     "conta": "(−1) × (−2) − 4 × 0 → 2 − 0 → 2",
+     "porque": "Diagonal principal menos diagonal secundária. Como deu 2, cada termo da inversa será dividido por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a adjunta",
+     "conta": "(−1  4 ; 0  −2) → (−2  −4 ; 0  −1)",
+     "porque": "Os termos −1 e −2 da diagonal principal trocam de lugar; 4 e 0, da secundária, trocam de sinal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo determinante",
+     "conta": "(1/2) × (−2  −4 ; 0  −1) → (−1  −2 ; 0  −1/2)",
+     "porque": "Cada termo da adjunta é dividido por 2. Assim b12 = −2 e b22 = −1/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os termos pedidos",
+     "conta": "−2 + (−1/2) → −4/2 − 1/2 → −5/2",
+     "porque": "Os dois termos estão na 2ª coluna da inversa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "b12 + b22 = −5/2 → alternativa B",
+     "porque": "É exatamente o valor da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — −5/2",
+   "checagem": "Multiplique A pela 2ª coluna de B: (−1) × (−2) + 4 × (−1/2) = 2 − 2 = 0 e 0 × (−2) + (−2) × (−1/2) = 1. Deu (0, 1), a 2ª coluna da identidade.",
+   "erradas": {
+    "A": "1/4 não confere: a linha 2 de A × B = I obriga −2 × b22 = 1, logo b22 = −1/2; então b12 seria 3/4, e −b12 + 4 × b22 = −3/4 − 2 = −11/4 ≠ 0.",
+    "C": "2/3 não confere: com b22 = −1/2 obrigatório, b12 seria 7/6, e −b12 + 4 × b22 = −7/6 − 2 = −19/6 ≠ 0.",
+    "D": "−4/3 não confere: com b22 = −1/2, b12 seria −5/6, e −b12 + 4 × b22 = 5/6 − 2 = −7/6 ≠ 0.",
+    "E": "5/4 não confere: com b22 = −1/2, b12 seria 7/4, e −b12 + 4 × b22 = −7/4 − 2 = −15/4 ≠ 0."
+   },
+   "armadilha": "Esquecer de dividir a adjunta pelo determinante, ou trocar o sinal dos termos da diagonal principal em vez dos da secundária.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma b12 + b22 da inversa de A.",
+    "chave": "det = 2; inversa = (−1  −2 ; 0  −1/2); −2 − 1/2 = −5/2.",
+    "cuidado": "Na adjunta, a diagonal principal troca de lugar e a secundária troca de sinal; depois divida pelo determinante."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "A × B = I",
+    "ideia": "Escreva A vezes a 2ª coluna (b12, b22) igual a (0, 1): −2 × b22 = 1 dá b22 = −1/2, e −b12 + 4 × b22 = 0 dá b12 = −2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "det A = (−1)(−2) − 4 × 0 = 2",
+    "nota": "diagonal principal menos secundária"
+   },
+   {
+    "linha": "adj A = (−2  −4 ; 0  −1)",
+    "nota": "troca a principal de lugar e o sinal da secundária"
+   },
+   {
+    "linha": "B = (1/2) × adj A = (−1  −2 ; 0  −1/2)",
+    "nota": "divide cada termo por 2"
+   },
+   {
+    "linha": "b12 + b22 = −2 − 1/2 = −5/2",
+    "nota": "soma pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
+ },
+ "P374c12fd": {
+  "n": "10",
+  "conceito": "Determinante de matrizes 3 × 3 pela regra de Sarrus e soma dos resultados.",
+  "equivocos": {
+   "B": "M15.2:erro-de-sinal-no-sarrus",
+   "C": "M15.2:somou-a-diagonal-secundaria",
+   "D": "M15.2:erro-de-sinal-no-sarrus",
+   "E": "M15.2:erro-de-sinal-no-sarrus"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada determinante 3 × 3 sai pela regra de Sarrus: soma dos três produtos da diagonal principal menos a soma dos três produtos da diagonal secundária. O cuidado é com os sinais negativos dentro das matrizes e com o sinal de menos na frente do segundo grupo.",
+    "formulas": [
+     "det = (soma dos produtos da principal) − (soma dos produtos da secundária)"
+    ],
+    "simbolos": [
+     [
+      "Sarrus",
+      "regra prática para o determinante de matriz 3 × 3"
+     ],
+     [
+      "det",
+      "determinante"
+     ]
+    ]
+   },
+   "pista": "Calcule cada determinante à parte, escrevendo os três produtos de cada diagonal antes de somar.",
+   "passos": [
+    {
+     "faz": "Produtos de A",
+     "conta": "principal: (−1)·3·6 + 0·5·1 + 2·4·3 = −18 + 0 + 24 = 6 | secundária: 2·3·1 + (−1)·5·3 + 0·4·6 = 6 − 15 + 0 = −9",
+     "porque": "Sarrus repete as duas primeiras colunas e multiplica em diagonal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Determinante de A",
+     "conta": "det A = 6 − (−9) = 6 + 9 = 15",
+     "porque": "O menos na frente da secundária troca o sinal de −9.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Produtos e determinante de B",
+     "conta": "principal: 0 + (−2) + (−20) = −22 | secundária: 0 + 16 + 25 = 41 → det B = −22 − 41 = −63",
+     "porque": "Principal: 4·0·(−5), (−1)·2·1, (−2)·5·2; secundária: (−2)·0·1, 4·2·2, (−1)·5·(−5).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois",
+     "conta": "det A + det B = 15 + (−63) = −48 → alternativa A",
+     "porque": "A pergunta é a soma dos dois resultados.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — −48",
+   "checagem": "Confira det B por Laplace na 2ª linha, que tem um zero: −5·[(−1)(−5) − (−2)·2] − 2·[4·2 − (−1)·1] = −5·9 − 2·9 = −63. E 15 − 63 = −48.",
+   "erradas": {
+    "B": "22 não confere: para a soma dar 22 com det A = 15 seria preciso det B = 7, e det B é −63.",
+    "C": "34 sai de somar a secundária de B em vez de subtrair: −22 + 41 = 19, e 15 + 19 = 34.",
+    "D": "−19 não confere: exigiria det B = −34; o correto é −22 − 41 = −63.",
+    "E": "25 não confere: exigiria det B = 10; com det A = 15 e det B = −63 a soma é −48."
+   },
+   "armadilha": "Esquecer que a soma da diagonal secundária entra com sinal de menos, que muda o sinal de cada um dos seus produtos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma det A + det B.",
+    "chave": "Sarrus em cada matriz: 15 e −63.",
+    "cuidado": "Cuidado com os negativos dos elementos e com o menos da secundária."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Laplace",
+    "ideia": "Em B, expanda pela 2ª linha (o zero elimina um termo): −5·9 − 2·9 = −63."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "det A = (−18 + 0 + 24) − (6 − 15 + 0)",
+    "nota": "Sarrus em A"
+   },
+   {
+    "linha": "det A = 6 − (−9) = 15",
+    "nota": "sinal da secundária"
+   },
+   {
+    "linha": "det B = (0 − 2 − 20) − (0 + 16 + 25)",
+    "nota": "Sarrus em B"
+   },
+   {
+    "linha": "det B = −22 − 41 = −63",
+    "nota": "subtrair"
+   },
+   {
+    "linha": "15 + (−63) = −48",
+    "nota": "somar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

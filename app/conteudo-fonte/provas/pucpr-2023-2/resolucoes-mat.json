@@ -292,5 +292,112 @@
    "data": "2026-11-19",
    "lote": "mat-0070"
   }
+ },
+ "Pe5048177": {
+  "n": "34",
+  "conceito": "Determinante de 2 × 2 trigonométrica e determinante da inversa: det(A⁻¹) = 1/det A, com imagem do cosseno.",
+  "equivocos": {
+   "A": "M15.2:esqueceu-a-imagem-do-cosseno",
+   "B": "M15.2:nao-testou-x-igual-a-zero",
+   "C": "M15.2:achou-o-inverso-limitado",
+   "D": "M15.2:achou-o-inverso-limitado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O determinante de A dá −sen²x + cos²x = cos 2x. O determinante da inversa é o inverso do de A: 1/cos 2x. Como cos 2x varia em [−1, 1] e não pode ser zero, 1/cos 2x só assume valores com módulo de 1 para cima, e pode ficar tão grande quanto se queira.",
+    "formulas": [
+     "det [a b; c d] = a·d − b·c",
+     "cos²x − sen²x = cos 2x",
+     "det(A⁻¹) = 1/det A"
+    ],
+    "simbolos": [
+     [
+      "A⁻¹",
+      "matriz inversa de A"
+     ],
+     [
+      "cos 2x",
+      "cosseno do arco duplo, sempre entre −1 e 1"
+     ]
+    ]
+   },
+   "pista": "Simplifique o determinante de A com uma identidade trigonométrica.",
+   "passos": [
+    {
+     "faz": "Calcule det A",
+     "conta": "det A = sen²x·(−1) − cos x·(−cos x) → det A = cos²x − sen²x = cos 2x",
+     "porque": "O produto da secundária é −cos²x, e o menos na frente o torna positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para a inversa",
+     "conta": "det(A⁻¹) = 1/det A = 1/cos 2x",
+     "porque": "O determinante do produto A·A⁻¹ = I é 1, então os dois determinantes são inversos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Veja os valores possíveis",
+     "conta": "−1 ≤ cos 2x ≤ 1 e cos 2x ≠ 0 → 1/cos 2x ≤ −1 ou 1/cos 2x ≥ 1",
+     "porque": "Quando cos 2x fica perto de zero, 1/cos 2x cresce sem limite.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Julgue as alternativas",
+     "conta": "cos 2x = 1/200 → det(A⁻¹) = 200 > 100 → alternativa E",
+     "porque": "Existe x com cos 2x = 1/200, pois 1/200 está entre −1 e 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — o determinante da inversa de A pode ser maior do que 100",
+   "checagem": "Teste com x = 0: A = [0 1; −1 −1], det A = 0·(−1) − 1·(−1) = 1 = cos 0. Confere a fórmula cos 2x, e a inversa tem determinante 1.",
+   "erradas": {
+    "A": "1/2 não é possível: 1/cos 2x = 1/2 exigiria cos 2x = 2, fora de [−1, 1].",
+    "B": "Pode ser 1: com x = 0, cos 2x = 1 e det(A⁻¹) = 1/1 = 1.",
+    "C": "Não há máximo: com cos 2x positivo e perto de zero, 1/cos 2x passa de qualquer valor.",
+    "D": "Não há mínimo: com cos 2x negativo e perto de zero, 1/cos 2x desce abaixo de qualquer valor."
+   },
+   "armadilha": "Achar que, como cos 2x é limitado, 1/cos 2x também é: perto de zero o inverso explode.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação vale para det(A⁻¹).",
+    "chave": "det A = cos 2x, então det(A⁻¹) = 1/cos 2x, que não é limitado.",
+    "cuidado": "Inverter um número pequeno dá um número grande."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sem arco duplo",
+    "ideia": "det A = 1 − 2sen²x varia em [−1, 1]; perto de sen²x = 1/2 ele tende a zero e o inverso passa de 100."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "det A = sen²x·(−1) − cos x·(−cos x)",
+    "nota": "regra do 2 × 2"
+   },
+   {
+    "linha": "det A = cos²x − sen²x = cos 2x",
+    "nota": "arco duplo"
+   },
+   {
+    "linha": "det(A⁻¹) = 1/cos 2x",
+    "nota": "inversa"
+   },
+   {
+    "linha": "cos 2x = 1/200 → det(A⁻¹) = 200",
+    "nota": "exemplo maior que 100"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

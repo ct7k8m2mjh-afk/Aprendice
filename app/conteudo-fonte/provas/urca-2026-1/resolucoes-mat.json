@@ -1107,5 +1107,125 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "P1d0c81e2": {
+  "n": "29",
+  "conceito": "Polinômio característico de uma matriz 2×2: soma das raízes é o traço e produto é o determinante.",
+  "equivocos": {
+   "A": "M15.2:parou-na-soma",
+   "B": "M15.2:parou-no-produto",
+   "C": "M15.2:combinou-soma-e-produto-errado",
+   "E": "M15.2:combinou-soma-e-produto-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Calcule det(A − xI) em letras: sai um polinômio de 2.º grau em x. A soma e o produto das raízes vêm direto dos coeficientes (relações de Girard), sem achar as raízes. O enunciado já dá os dois números de que você precisa: a + d e ad − bc.",
+    "formulas": [
+     "det (p  q / r  s) = ps − qr",
+     "em x² + Bx + C: soma das raízes = −B e produto = C"
+    ],
+    "simbolos": [
+     [
+      "I",
+      "matriz identidade de ordem 2"
+     ],
+     [
+      "det",
+      "determinante"
+     ],
+     [
+      "p(x)",
+      "polinômio em x obtido do determinante"
+     ]
+    ]
+   },
+   "pista": "Escreva A − xI tirando x só da diagonal e calcule o determinante.",
+   "passos": [
+    {
+     "faz": "Monte A − xI",
+     "conta": "A − xI = (a − x   b / c   d − x)",
+     "porque": "Subtrair xI tira x apenas dos elementos da diagonal principal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o determinante",
+     "conta": "(a − x)(d − x) − bc → x² − (a + d)x + (ad − bc)",
+     "porque": "Multiplique a diagonal principal e tire o produto da secundária; reorganize por potências de x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua os dados",
+     "conta": "x² − (a + d)x + (ad − bc) → x² − 5x + 6",
+     "porque": "O enunciado dá a + d = 5 e ad − bc = 6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia soma e produto",
+     "conta": "S = −(−5) = 5 | P = 6 → S + P = 11",
+     "porque": "Em x² + Bx + C, a soma das raízes é −B e o produto é C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "S + P = 11 → alternativa D",
+     "porque": "O pedido é a soma S + P.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 11",
+   "checagem": "Resolva x² − 5x + 6 = 0: as raízes são 2 e 3, porque 2 + 3 = 5 e 2·3 = 6. Então S + P = 5 + 6 = 11.",
+   "erradas": {
+    "A": "A sai de parar na soma das raízes, S = 5, sem somar o produto.",
+    "B": "B sai de parar no produto das raízes, P = 6, sem somar a soma.",
+    "C": "C não confere: as raízes são 2 e 3, com S = 5 e P = 6; nenhuma combinação delas dá 10 (S·P = 30, S + P = 11).",
+    "E": "E não confere: S e P são positivos (5 e 6), então S + P não pode ser 0."
+   },
+   "armadilha": "Responder só a soma (5) ou só o produto (6): o pedido é S + P.",
+   "alerta": "",
+   "essencial": {
+    "pede": "S + P, a soma e o produto das raízes de det(A − xI).",
+    "chave": "det(A − xI) = x² − (a + d)x + (ad − bc) = x² − 5x + 6: S = 5, P = 6.",
+    "cuidado": "Some as duas medidas no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "traço e determinante",
+    "ideia": "A soma das raízes de det(A − xI) é o traço a + d = 5 e o produto é det A = 6; logo 11."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "det(A − xI) = (a − x)(d − x) − bc",
+    "nota": "determinante 2×2"
+   },
+   {
+    "linha": "= x² − (a + d)x + (ad − bc)",
+    "nota": "distributiva e organização por x"
+   },
+   {
+    "linha": "= x² − 5x + 6",
+    "nota": "a + d = 5 e ad − bc = 6"
+   },
+   {
+    "linha": "S = 5 | P = 6",
+    "nota": "soma = −B e produto = C"
+   },
+   {
+    "linha": "S + P = 11",
+    "nota": "o que a questão pede"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }

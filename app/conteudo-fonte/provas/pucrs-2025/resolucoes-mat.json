@@ -713,5 +713,129 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "P4c89b8a8": {
+  "n": "12",
+  "conceito": "Produto de matriz por vetor e uso do resultado em distância, posição em relação a círculo e área de triângulo.",
+  "equivocos": {
+   "A": "M15.1:esqueceu-a-afirmacao-iii",
+   "B": "M15.1:arredondou-raiz-de-21-para-4",
+   "D": "M15.1:arredondou-raiz-de-21-para-4"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro faça o produto: cada linha da matriz vezes a coluna (3, 2, 0) dá um dos números x, y e z. Com eles, cada afirmação vira uma conta de geometria analítica: distância entre pontos, comparação da distância ao centro com o raio e área de um triângulo de lados horizontais e verticais.",
+    "formulas": [
+     "linha × coluna: soma dos produtos termo a termo",
+     "d = √((Δx)² + (Δy)² + (Δz)²)",
+     "interior do círculo: distância ao centro < raio",
+     "área do triângulo retângulo = (cateto × cateto)/2"
+    ],
+    "simbolos": [
+     [
+      "Δx",
+      "diferença entre as coordenadas x"
+     ],
+     [
+      "√",
+      "raiz quadrada"
+     ],
+     [
+      "interior",
+      "pontos cuja distância ao centro é menor que o raio"
+     ]
+    ]
+   },
+   "pista": "Calcule x, y e z com o produto antes de olhar as afirmações; todas dependem só deles.",
+   "passos": [
+    {
+     "faz": "Faça o produto da matriz pela coluna",
+     "conta": "x = −3 + 2 + 0 = −1 | y = 3 − 2 + 0 = 1 | z = 0 + 2 + 0 = 2",
+     "porque": "Linha 1 (−1, 1, 0), linha 2 (1, −1, 1) e linha 3 (0, 1, 0), cada uma vezes (3, 2, 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmação I",
+     "conta": "d = √((3 + 1)² + (2 − 1)² + (0 − 2)²) → √(16 + 1 + 4) → √21 ≈ 4,58",
+     "porque": "√21 não é 4 (4 seria √16). A I é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmação II",
+     "conta": "centro (2, 3), ponto (−1, 1): d = √(3² + 2²) → √13 ≈ 3,61 < 4",
+     "porque": "O centro é (z, z + 1) = (2, 3). A distância ao centro é menor que o raio 4, então o ponto está no interior: II verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmação III",
+     "conta": "(−1, 1), (−1, 2), (1, 2): catetos 1 e 2 → área = (1 × 2)/2 → 1",
+     "porque": "De (−1, 1) a (−1, 2) o lado é vertical; de (−1, 2) a (1, 2) é horizontal; o ângulo reto fica em (−1, 2). III verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "I falsa | II e III verdadeiras → alternativa C",
+     "porque": "Só a C reúne exatamente II e III.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — II e III, apenas",
+   "checagem": "Na III, pela fórmula do determinante dos vértices: |(−1)(2 − 2) + (−1)(2 − 1) + 1(1 − 2)|/2 = |0 − 1 − 1|/2 = 1. Área 1, como antes.",
+   "erradas": {
+    "A": "Não confere: deixa de fora a III, que é verdadeira (catetos 1 e 2 em (−1, 2), área (1 × 2)/2 = 1).",
+    "B": "Não confere: inclui a I, mas a distância é √21 ≈ 4,58, não 4; e deixa de fora a II.",
+    "D": "Não confere: a I é falsa, pois √(16 + 1 + 4) = √21 ≠ 4."
+   },
+   "armadilha": "Errar um sinal no produto (por exemplo, x = 3 − 2 = 1) muda os três pontos e todas as afirmações.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das três afirmações sobre x, y e z são corretas.",
+    "chave": "(x, y, z) = (−1, 1, 2); d = √21 (I falsa), √13 < 4 (II certa), catetos 1 e 2 dão área 1 (III certa).",
+    "cuidado": "Faça o produto linha por coluna com atenção aos sinais e compare distância com raio, não com diâmetro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Decidida só a I (√21 ≠ 4), sobram A e C; a III com área 1 decide pela C."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x = (−1)(3) + 1 × 2 + 0 × 0 = −1",
+    "nota": "linha 1 × coluna"
+   },
+   {
+    "linha": "y = 1 × 3 + (−1)(2) + 1 × 0 = 1",
+    "nota": "linha 2 × coluna"
+   },
+   {
+    "linha": "z = 0 × 3 + 1 × 2 + 0 × 0 = 2",
+    "nota": "linha 3 × coluna"
+   },
+   {
+    "linha": "I: √(16 + 1 + 4) = √21 ≠ 4",
+    "nota": "falsa"
+   },
+   {
+    "linha": "II: √(9 + 4) = √13 < 4",
+    "nota": "verdadeira"
+   },
+   {
+    "linha": "III: (1 × 2)/2 = 1",
+    "nota": "verdadeira"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
  }
 }
