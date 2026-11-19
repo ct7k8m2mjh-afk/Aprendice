@@ -218,5 +218,106 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "Pf111f1e3": {
+  "n": "47",
+  "conceito": "Permutação simples: ordenar 6 letras distintas em 6 posições sem repetir.",
+  "equivocos": {
+   "B": "M13.2:contagem-sem-base",
+   "C": "M13.2:passou-do-total-possivel",
+   "D": "M13.2:passou-do-total-possivel",
+   "E": "M13.2:passou-do-total-possivel"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O nome MARCOS tem 6 letras, todas diferentes, e a senha tem 6 caracteres sem repetir letra. Então cada senha é uma ordem das 6 letras: é uma permutação simples. A cada casa preenchida, sobra uma letra a menos para a próxima.",
+    "formulas": [
+     "permutação simples: P(n) = n! = n · (n − 1) · ... · 1"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "fatorial de n: produto de n até 1"
+     ],
+     [
+      "permutação",
+      "maneira de ordenar todos os elementos de um grupo"
+     ]
+    ]
+   },
+   "pista": "Escreva as letras de MARCOS, confira se alguma se repete e preencha as 6 casas da senha uma a uma.",
+   "passos": [
+    {
+     "faz": "Liste as letras do nome",
+     "conta": "MARCOS → M, A, R, C, O, S → 6 letras distintas",
+     "porque": "Só podem ser usadas essas letras, e nenhuma aparece duas vezes no nome.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Preencha as 6 casas sem repetir",
+     "conta": "1ª: 6 | 2ª: 5 | 3ª: 4 | 4ª: 3 | 5ª: 2 | 6ª: 1",
+     "porque": "Cada letra usada sai das opções da casa seguinte, porque a senha não pode repetir letra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as opções",
+     "conta": "6 · 5 · 4 · 3 · 2 · 1 → 6! = 720",
+     "porque": "Pelo princípio multiplicativo, cada escolha de uma casa combina com todas as escolhas das outras.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "720 senhas → alternativa A",
+     "porque": "A senha tem exatamente 6 caracteres, então usa todas as letras: é a permutação das 6.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 720 senhas",
+   "checagem": "Fixe a primeira letra: começando com M, as outras 5 letras se ordenam de 5! = 120 modos. São 6 letras possíveis para começar, então 6 · 120 = 720.",
+   "erradas": {
+    "B": "512 não confere: 512 = 2 · 2 · 2 · 2 · 2 · 2 · 2 · 2 · 2 não tem os fatores 3 e 5, que estão em 6 · 5 · 4 · 3 · 2 · 1.",
+    "C": "1125 não confere: sem repetir letra, as 6 letras só se ordenam de 6! = 720 modos; nenhuma contagem passa disso.",
+    "D": "925 não confere: é maior que 6! = 720, o total de ordens das 6 letras sem repetição.",
+    "E": "816 não confere: é maior que 6! = 720, o total de ordens das 6 letras sem repetição."
+   },
+   "armadilha": "Senha de 6 caracteres sem repetir com 6 letras disponíveis é a permutação das 6 letras, 6!, e não uma contagem com repetição.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas senhas de 6 caracteres, sem repetir letra, saem das letras de MARCOS.",
+    "chave": "6 letras distintas em 6 casas: 6! = 720.",
+    "cuidado": "A cada casa sobra uma letra a menos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fixar a primeira letra",
+    "ideia": "6 escolhas para a 1ª letra e 5! = 120 ordens para as demais: 6 · 120 = 720"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "MARCOS → 6 letras distintas",
+    "nota": "conferir que nenhuma se repete"
+   },
+   {
+    "linha": "6 · 5 · 4 · 3 · 2 · 1",
+    "nota": "uma opção a menos em cada casa"
+   },
+   {
+    "linha": "6! = 720",
+    "nota": "permutação das 6 letras"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

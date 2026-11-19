@@ -260,5 +260,116 @@
    "data": "2026-11-13",
    "lote": "mat-0053"
   }
+ },
+ "P893b9d0d": {
+  "n": "14",
+  "conceito": "Princípio multiplicativo com permutação e arranjo: gestantes permutadas em 7 cadeiras e 3 hipertensos escolhidos e ordenados entre 15.",
+  "equivocos": {
+   "A": "M13.2:esqueceu-escolher-entre-os-candidatos",
+   "B": "M13.2:contagem-sem-base",
+   "C": "M13.2:contagem-sem-base",
+   "E": "M01.3:expoente-errado-na-notacao-cientifica"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As cadeiras são numeradas, então trocar duas pessoas de lugar muda a fila: a ordem importa. As 7 gestantes ocupam exatamente as 7 primeiras cadeiras, então só se permutam. Para as 3 últimas cadeiras é preciso escolher e ordenar 3 dos 15 hipertensos. As duas partes se multiplicam.",
+    "formulas": [
+     "permutação: P(7) = 7!",
+     "arranjo: A(15, 3) = 15 · 14 · 13",
+     "total = P(7) × A(15, 3)"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "fatorial de n: produto de n até 1"
+     ],
+     [
+      "A(n, p)",
+      "arranjo: sequências ordenadas de p elementos distintos escolhidos entre n"
+     ],
+     [
+      "10^7",
+      "dez elevado a sete, 10 000 000"
+     ]
+    ]
+   },
+   "pista": "Trate as cadeiras de 1 a 7 e as de 8 a 10 como dois problemas separados e veja, em cada um, quantas pessoas disputam quantos lugares.",
+   "passos": [
+    {
+     "faz": "Permute as gestantes nas 7 cadeiras",
+     "conta": "7 gestantes em 7 cadeiras → 7! = 5040",
+     "porque": "Todas as 7 gestantes entram; só muda a ordem delas nas cadeiras numeradas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha e ordene 3 hipertensos",
+     "conta": "15 hipertensos em 3 cadeiras → 15 · 14 · 13 = 2730",
+     "porque": "Só 3 dos 15 recebem a vacina, e a cadeira de cada um conta: é arranjo, uma opção a menos por cadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as duas partes",
+     "conta": "5040 · 2730 → 13759200",
+     "porque": "Cada arrumação das gestantes combina com cada arrumação dos hipertensos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva em notação científica",
+     "conta": "13759200 → 1,37592 · 10^7 → alternativa D (1,37 · 10^7, com as casas cortadas)",
+     "porque": "A vírgula anda 7 casas para a esquerda; a alternativa corta o número em 1,37 em vez de arredondar para 1,38; nenhuma outra chega perto.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — aproximadamente 1,37 × 10^7 filas",
+   "checagem": "Por ordem de grandeza: 7! ≈ 5 · 10^3 e 15 · 14 · 13 ≈ 2,7 · 10^3; o produto fica perto de 13,5 · 10^6, ou seja, na casa de 10^7 e começando por 1,3.",
+   "erradas": {
+    "A": "3,02 × 10^4 sai de não escolher quem dos 15 recebe a vacina: 7! · 3! = 5040 · 6 = 30240, só ordenando 3 pessoas já definidas.",
+    "B": "0,46 × 10^7 não confere: dividindo por 7! = 5040 sobrariam cerca de 910 modos para os hipertensos, que não é 15 · 14 · 13 = 2730.",
+    "C": "4,65 × 10^7 não confere: dividindo por 7! = 5040 sobrariam cerca de 9226 modos para os hipertensos, que não é 2730; é mais que o triplo do correto.",
+    "E": "1,37 × 10^3 sai de errar o expoente: 13759200 tem 8 algarismos, então a vírgula anda 7 casas, e não 3."
+   },
+   "armadilha": "Nas 3 últimas cadeiras é preciso escolher 3 dos 15 hipertensos e ordená-los: 15 · 14 · 13, não só 3!.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número aproximado de filas com as 7 gestantes nas 7 primeiras cadeiras e 3 hipertensos nas outras 3.",
+    "chave": "7! · (15 · 14 · 13) = 5040 · 2730 = 13759200 = 1,37592 · 10^7, que a alternativa D corta em 1,37 · 10^7.",
+    "cuidado": "Cadeiras numeradas: a ordem importa nas duas partes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "combinação e depois ordem",
+    "ideia": "escolha os 3 hipertensos, C(15, 3) = 455, ordene-os, 3! = 6, e as gestantes, 7!: 455 · 6 · 5040 = 13759200"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "gestantes: 7! = 5040",
+    "nota": "7 pessoas em 7 cadeiras"
+   },
+   {
+    "linha": "hipertensos: 15 · 14 · 13 = 2730",
+    "nota": "3 escolhidos e ordenados"
+   },
+   {
+    "linha": "5040 · 2730 = 13759200",
+    "nota": "princípio multiplicativo"
+   },
+   {
+    "linha": "13759200 = 1,37592 · 10^7",
+    "nota": "notação científica; a alternativa D corta em 1,37"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

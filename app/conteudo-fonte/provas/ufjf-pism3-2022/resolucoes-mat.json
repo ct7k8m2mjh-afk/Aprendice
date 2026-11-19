@@ -395,5 +395,100 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pa4e8c66b": {
+  "n": "18",
+  "conceito": "Contar anagramas de palavra com letras repetidas (permutação com repetição).",
+  "equivocos": {
+   "A": "M13.2:esqueceu-repeticao",
+   "C": "M13.2:ignorou-repeticao",
+   "D": "M13.2:juntou-repeticoes",
+   "E": "M13.2:juntou-repeticoes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "COMBINATORIA tem 12 letras, mas algumas se repetem. Trocar de lugar duas letras iguais não gera anagrama novo, por isso se divide o 12! pelo fatorial da quantidade de cada letra repetida. O trabalho real é contar as repetições sem errar.",
+    "formulas": [
+     "anagramas = n! dividido pelo produto dos fatoriais das repetições"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "fatorial de n: produto de n por todos os naturais menores até 1"
+     ],
+     [
+      "permutação com repetição",
+      "ordenar letras quando algumas são iguais"
+     ]
+    ]
+   },
+   "pista": "Escreva as 12 letras e conte quantas vezes aparece cada uma.",
+   "passos": [
+    {
+     "faz": "Conte as letras e as repetições",
+     "conta": "C, O, M, B, I, N, A, T, O, R, I, A → 12 letras | O: 2, I: 2, A: 2",
+     "porque": "As outras letras (C, M, B, N, T, R) aparecem uma vez cada.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a permutação com repetição",
+     "conta": "12! → 12!/(2! · 2! · 2!)",
+     "porque": "Cada par de letras iguais pode trocar de lugar sem mudar a palavra: divide-se por 2! para o O, para o I e para o A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "12!/(2! · 2! · 2!) → alternativa B",
+     "porque": "É exatamente a expressão de B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 12!/(2! · 2! · 2!)",
+   "checagem": "Confira a soma: 2 + 2 + 2 + 6 letras únicas = 12, todas contadas. Teste a regra numa palavra curta: ASA tem 3!/2! = 3 anagramas (ASA, AAS, SAA), que se listam à mão.",
+   "erradas": {
+    "A": "12!/2! sai de descontar só uma letra repetida (por exemplo, o O) e esquecer que I e A também aparecem duas vezes.",
+    "C": "12! sai de tratar as 12 letras como distintas, sem descontar as trocas entre letras iguais.",
+    "D": "12!/6! sai de dividir pelas seis letras repetidas como se fossem todas iguais; são três pares diferentes, e cada par vale 2!.",
+    "E": "12!/4! não confere: 4! = 24, mas o desconto certo é 2! · 2! · 2! = 8."
+   },
+   "armadilha": "São três letras repetidas (O, I e A), e cada uma pede o seu 2! no denominador.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de anagramas de COMBINATORIA.",
+    "chave": "12 letras com O, I e A duas vezes cada: 12!/(2! · 2! · 2!).",
+    "cuidado": "Conte todas as repetições; não junte pares diferentes num só fatorial."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "passo a passo",
+    "ideia": "Escolha as posições dos O (C(12,2)), depois dos I (C(10,2)), dos A (C(8,2)) e permute as 6 letras restantes (6!): dá o mesmo valor."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "COMBINATORIA: 12 letras",
+    "nota": "contar as letras"
+   },
+   {
+    "linha": "O ×2, I ×2, A ×2",
+    "nota": "repetições"
+   },
+   {
+    "linha": "12!/(2! · 2! · 2!)",
+    "nota": "permutação com repetição"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

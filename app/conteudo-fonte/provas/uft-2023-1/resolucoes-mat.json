@@ -735,5 +735,115 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pdc16cbf7": {
+  "n": "30",
+  "conceito": "Contar arranjos em etapas: escolher qual viagem vai em cada linha e arranjar as fotos em cada linha.",
+  "equivocos": {
+   "A": "M13.2:esqueceu-etapa",
+   "C": "M13.2:fatorial-trocado",
+   "D": "M13.2:fatorial-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São duas decisões independentes. Primeiro, qual viagem ocupa cada uma das 3 linhas: 3! modos. Depois, em cada linha, escolher e ordenar 3 fotos entre as disponíveis: a ordem importa, porque as posições na grade são diferentes, então é arranjo. Multiplique tudo e reescreva no formato das alternativas.",
+    "formulas": [
+     "A(n, p) = n!/(n − p)!",
+     "total = (modos de distribuir as linhas) × (arranjos de cada linha)"
+    ],
+    "simbolos": [
+     [
+      "A(n, p)",
+      "arranjo: escolher p de n objetos, com ordem"
+     ],
+     [
+      "3!",
+      "fatorial de 3: 3 × 2 × 1 = 6"
+     ]
+    ]
+   },
+   "pista": "Separe a escolha das linhas da arrumação das fotos dentro de cada linha.",
+   "passos": [
+    {
+     "faz": "Distribua as viagens pelas linhas",
+     "conta": "3 viagens em 3 linhas → 3! = 6",
+     "porque": "Qualquer viagem pode ir para qualquer linha, uma por linha.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Arranje as fotos de Salvador",
+     "conta": "A(4, 3) = 4!/1! → 24 = 4!",
+     "porque": "Escolhem-se 3 das 4 fotos e a ordem nas três posições importa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Arranje Jalapão e Rio",
+     "conta": "A(5, 3) = 5!/2! → 60 | Rio: 60",
+     "porque": "Cada uma tem 5 fotos para 3 posições ordenadas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique e reescreva",
+     "conta": "3! × 4! × (5!/2!) × (5!/2!) → 3! × 4! × (5!)²/4 → (5!)² × 3! × 6 → (5!)² × (3!)²",
+     "porque": "4!/4 = 6 = 3!, então o fator 4! junto com o 4 do denominador vira mais um 3!. Valor: 6 × 24 × 60 × 60 = 518 400.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "(5!)² × (3!)² → alternativa B",
+     "porque": "É a forma da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — (5!)² × (3!)²",
+   "checagem": "Compare os números: (5!)² × (3!)² = 14 400 × 36 = 518 400, e 6 × 24 × 60 × 60 = 518 400. Fecha.",
+   "erradas": {
+    "A": "(5!)² × 3! sai de esquecer a escolha das linhas: 4! × 60 × 60 = 86 400 = (5!)² × 3!, como se cada viagem já tivesse linha fixa.",
+    "C": "(5!)² × (4!)² não confere: vale 8 294 400, 16 vezes o total certo de 518 400.",
+    "D": "5! × 4! não confere: vale 2 880, menos que só as fotos do Jalapão e do Rio combinadas (60 × 60 = 3 600)."
+   },
+   "armadilha": "Esquecer que a escolha de qual viagem fica em cada linha também conta: são 3! modos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número total de modos de Carol organizar as 9 fotos na grade.",
+    "chave": "3! para as linhas × A(4,3) × A(5,3) × A(5,3) = (5!)² × (3!)².",
+    "cuidado": "Arranjo (com ordem) dentro da linha e o fator 3! das linhas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por posições",
+    "ideia": "Escolha a linha de Salvador e preencha casa a casa: 3! × (4 × 3 × 2) × (5 × 4 × 3)² = 518 400."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3! = 6",
+    "nota": "viagens nas linhas"
+   },
+   {
+    "linha": "A(4,3) = 24 ; A(5,3) = 60 ; A(5,3) = 60",
+    "nota": "fotos em cada linha"
+   },
+   {
+    "linha": "6 × 24 × 60 × 60 = 518 400",
+    "nota": "princípio multiplicativo"
+   },
+   {
+    "linha": "(5!)² × (3!)² = 14 400 × 36 = 518 400",
+    "nota": "mesma conta na forma da alternativa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

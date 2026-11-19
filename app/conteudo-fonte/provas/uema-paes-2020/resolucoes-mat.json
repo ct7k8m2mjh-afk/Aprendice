@@ -161,5 +161,116 @@
    "data": "2026-11-13",
    "lote": "mat-0048"
   }
+ },
+ "Pa92df7a7": {
+  "n": "46",
+  "conceito": "Contar os anagramas de uma palavra de letras distintas (permutação simples) e reconhecer anagramas válidos.",
+  "equivocos": {
+   "B": "M13.2:dividiu-sem-repeticao",
+   "C": "M13.2:dividiu-sem-repeticao",
+   "D": "M13.2:fatorial-dobrado",
+   "E": "M13.2:anagrama-com-letra-trocada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Anagrama usa exatamente as mesmas letras da palavra, cada uma quantas vezes ela aparece. PEDRA tem 5 letras, todas diferentes (P, E, D, R, A), então o número de anagramas é 5!. A questão exige duas coisas na mesma alternativa: a quantidade certa e os quatro exemplos válidos.",
+    "formulas": [
+     "anagramas de n letras distintas = n! = n × (n − 1) × ... × 1"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "fatorial de n: produto de n por todos os naturais menores até 1"
+     ],
+     [
+      "anagrama",
+      "reordenação das letras da palavra, com ou sem sentido"
+     ]
+    ]
+   },
+   "pista": "Confira as letras de PEDRA uma a uma: há alguma repetida? Depois teste cada exemplo letra por letra.",
+   "passos": [
+    {
+     "faz": "Veja se há letra repetida",
+     "conta": "PEDRA → P, E, D, R, A → 5 letras distintas",
+     "porque": "Sem repetição, não há o que descontar: é permutação simples.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o número de anagramas",
+     "conta": "5! = 5 × 4 × 3 × 2 × 1 → 120",
+     "porque": "Há 5 escolhas para a 1ª posição, 4 para a 2ª, e assim por diante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descarte as alternativas sem 120",
+     "conta": "B: 60 | C: 60 | D: 240 → fora; sobram A e E",
+     "porque": "A quantidade é a mesma para qualquer anagrama de PEDRA, então só A e E podem estar certas.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste os exemplos de A e E",
+     "conta": "A: PERDA, DRAEP, DEPRA, DRAPE → só P, E, D, R, A | E: MADRE → tem M",
+     "porque": "MADRE troca o P por M, então não é anagrama de PEDRA; os quatro de A usam exatamente as cinco letras.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "120 anagramas e quatro exemplos válidos → alternativa A",
+     "porque": "A é a única que acerta a quantidade e os exemplos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 120 anagramas; exemplos PERDA, DRAEP, DEPRA e DRAPE",
+   "checagem": "Conte por posição: fixando a 1ª letra (5 escolhas), sobram 4! = 24 arranjos para as outras; 5 × 24 = 120, o mesmo valor de 5!.",
+   "erradas": {
+    "B": "60 sai de dividir 5! por 2, como se houvesse letra repetida (120 ÷ 2 = 60); além disso, PERDI e DIPRA têm a letra I, que PEDRA não tem.",
+    "C": "60 sai de dividir 5! por 2 sem haver letra repetida; e ORDEP tem a letra O, que não está em PEDRA.",
+    "D": "240 sai de dobrar 5! (2 × 120); e PERDE tem dois E e nenhum A, então não é anagrama de PEDRA.",
+    "E": "A quantidade 120 está certa, mas MADRE tem a letra M no lugar do P: não é anagrama de PEDRA."
+   },
+   "armadilha": "Acertar o 120 não basta: em E há o exemplo MADRE, que troca uma letra e por isso não é anagrama.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de anagramas de PEDRA e quatro exemplos válidos.",
+    "chave": "5 letras distintas: 5! = 120; cada exemplo deve ter exatamente P, E, D, R, A.",
+    "cuidado": "Confira os exemplos letra por letra, não só a quantidade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Só A e E têm 120; MADRE tem M, então fica A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "PEDRA: 5 letras distintas",
+    "nota": "nenhuma repetida"
+   },
+   {
+    "linha": "5! = 5 × 4 × 3 × 2 × 1",
+    "nota": "permutação simples"
+   },
+   {
+    "linha": "5! = 120",
+    "nota": "total de anagramas"
+   },
+   {
+    "linha": "MADRE tem M → E fora",
+    "nota": "exemplo inválido"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

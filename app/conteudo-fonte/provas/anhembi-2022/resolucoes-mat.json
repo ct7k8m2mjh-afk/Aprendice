@@ -806,5 +806,115 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P25e2c24a": {
+  "n": "12",
+  "conceito": "Combinação com princípio multiplicativo: escolher, sem ordem, uma quantidade fixa de livros de cada tipo.",
+  "equivocos": {
+   "A": "M13.3:ignorou-a-divisao-por-tipo",
+   "B": "M13.3:usou-arranjo-onde-a-ordem-nao-importa",
+   "C": "M13.3:usou-arranjo-onde-a-ordem-nao-importa",
+   "E": "M13.3:somou-em-vez-de-multiplicar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escolher livros para ler não depende da ordem: levar A e B é o mesmo que levar B e A. Por isso cada escolha é uma combinação. Como Diogo precisa de 3 policiais E 2 de aventura E 1 de ficção, as três escolhas acontecem juntas e se multiplicam.",
+    "formulas": [
+     "combinação: C(n, p) = n!/(p! · (n − p)!)",
+     "\"e\" multiplica: total = C(12, 3) · C(8, 2) · C(5, 1)"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "combinação: número de grupos de p elementos escolhidos entre n, sem importar a ordem"
+     ],
+     [
+      "A(n, p)",
+      "arranjo: escolha em que a ordem importa"
+     ],
+     [
+      "n!",
+      "fatorial de n: produto de n até 1"
+     ]
+    ]
+   },
+   "pista": "Pergunte se a ordem dos livros escolhidos importa e se as três escolhas acontecem juntas ou uma no lugar da outra.",
+   "passos": [
+    {
+     "faz": "Decida se a ordem importa",
+     "conta": "escolher livros → ordem não importa → combinação",
+     "porque": "O conjunto de livros levados é o mesmo, seja qual for a ordem em que foram pegos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva cada escolha",
+     "conta": "policial: C(12, 3) | aventura: C(8, 2) | ficção: C(5, 1) = 5",
+     "porque": "Cada tipo tem sua própria estante: 3 entre 12, 2 entre 8 e 1 entre 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as escolhas",
+     "conta": "C(12, 3) · C(8, 2) · 5 → 220 · 28 · 5 → 30800",
+     "porque": "As três escolhas acontecem juntas (3 policiais e 2 de aventura e 1 de ficção), então se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "C12,3 · C8,2 · 5 → alternativa D",
+     "porque": "É a expressão com combinações em cada tipo, multiplicadas, e C(5, 1) = 5.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — C12,3 · C8,2 · 5",
+   "checagem": "Compare com a escolha livre: 6 livros quaisquer dos 25 dariam C(25, 6) = 177100 grupos; exigir 3, 2 e 1 de cada tipo restringe, e 30800 é de fato menor. Somar daria só 220 + 28 + 5 = 253, pouco demais para grupos de 6 livros.",
+   "erradas": {
+    "A": "C25,6 sai de escolher 6 livros quaisquer dos 25, ignorando a exigência de 3, 2 e 1 de cada tipo.",
+    "B": "A25,6 sai de ignorar os tipos e ainda contar a ordem dos livros, que não importa numa escolha.",
+    "C": "A12,3 · A8,2 sai de contar a ordem (arranjo) e esquecer o livro de ficção científica.",
+    "E": "C12,3 + C8,2 + C5,5 sai de somar escolhas que acontecem juntas e de tomar 5 livros de ficção em vez de 1."
+   },
+   "armadilha": "As três escolhas acontecem juntas: multiplicam-se, não se somam, e em cada uma a ordem não importa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de modos de escolher 3 policiais, 2 de aventura e 1 de ficção.",
+    "chave": "C(12, 3) · C(8, 2) · C(5, 1) = 220 · 28 · 5.",
+    "cuidado": "Escolha de livros é combinação, e \"e\" multiplica."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "ordem não importa elimina B e C; tipos fixos eliminam A; escolhas simultâneas multiplicam, o que elimina E"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(12, 3) = (12 · 11 · 10)/(3 · 2 · 1) = 220",
+    "nota": "3 policiais entre 12"
+   },
+   {
+    "linha": "C(8, 2) = (8 · 7)/(2 · 1) = 28",
+    "nota": "2 de aventura entre 8"
+   },
+   {
+    "linha": "C(5, 1) = 5",
+    "nota": "1 de ficção entre 5"
+   },
+   {
+    "linha": "220 · 28 · 5 = 30800",
+    "nota": "as escolhas se multiplicam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

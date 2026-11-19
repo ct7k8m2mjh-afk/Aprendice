@@ -279,5 +279,94 @@
    "data": "2026-11-13",
    "lote": "mat-0061"
   }
+ },
+ "P5b51829b": {
+  "n": "15",
+  "conceito": "Contar códigos de seis algarismos com partes fixas e partes livres pelo princípio multiplicativo.",
+  "equivocos": {
+   "A": "M13.1:esqueceu-etapas",
+   "B": "M13.1:contagem-sem-multiplicar",
+   "C": "M13.1:excluiu-o-zero"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O código tem quatro partes com regras diferentes. Para ônibus de 2019 os dois primeiros algarismos já estão fixos (19). O motor tem 3 tipos e os eixos podem ser 2, 3 ou 4. Os dois últimos algarismos são o número do ônibus, de 00 a 99. Multiplique as opções de cada parte.",
+    "formulas": [
+     "códigos = ano × motor × eixos × número do ônibus"
+    ],
+    "simbolos": [
+     [
+      "191201",
+      "exemplo do enunciado: ano 19, motor 1, 2 eixos, ônibus 01"
+     ]
+    ]
+   },
+   "pista": "Escreva o código como quatro blocos (ano, motor, eixos, número) e conte as opções de cada bloco.",
+   "passos": [
+    {
+     "faz": "Separe as opções de cada bloco",
+     "conta": "ano: 19 (1) | motor: 3 | eixos: 2, 3 ou 4 (3) | número: 00 a 99 (100)",
+     "porque": "O ano está fixo em 2019. O enunciado dá 3 tipos de motor e 3 quantidades de eixos. Os dois últimos algarismos vão de 00 a 99, como mostra o \"01\" do exemplo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Multiplique as opções",
+     "conta": "1 × 3 × 3 × 100 → 900",
+     "porque": "Cada bloco é escolhido de forma independente dos outros, então as opções se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "900 códigos → alternativa D",
+     "porque": "É a quantidade de códigos possíveis para os ônibus comprados em 2019.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 900 códigos",
+   "checagem": "Pense em blocos de 100: cada par (motor, eixos) gera os números de ônibus 00 a 99, ou seja, 100 códigos. Há 3 × 3 = 9 pares (motor, eixos), então 9 blocos de 100 = 900.",
+   "erradas": {
+    "A": "100 sai de contar só os dois últimos algarismos (00 a 99), esquecendo os 3 motores e as 3 quantidades de eixos.",
+    "B": "240 não confere: o total é 3 (motor) × 3 (eixos) × números, sempre múltiplo de 9, e 240 ÷ 9 ≈ 26,7 não é inteiro.",
+    "C": "729 sai de usar só os algarismos de 1 a 9 nos dois últimos: 3 × 3 × 9 × 9 = 729. O número do ônibus aceita o zero (o exemplo traz 01), então são 100 opções."
+   },
+   "armadilha": "Os dois últimos algarismos vão de 00 a 99 e aceitam o zero: são 100 opções, não 81.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos códigos existem para os ônibus comprados em 2019.",
+    "chave": "Ano fixo, 3 motores, 3 quantidades de eixos e 100 números: 3 × 3 × 100 = 900.",
+    "cuidado": "Contar o zero nos dois últimos algarismos e não esquecer motor e eixos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "intervalo de códigos",
+    "ideia": "Para cada par (motor, eixos) os códigos vão de 19xy00 a 19xy99: 100 códigos; 9 pares dão 900."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 × 3 × 3 × 100",
+    "nota": "ano fixo, motor, eixos, número 00 a 99"
+   },
+   {
+    "linha": "= 9 × 100",
+    "nota": "3 × 3 = 9 pares de motor e eixos"
+   },
+   {
+    "linha": "= 900",
+    "nota": "códigos para 2019"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

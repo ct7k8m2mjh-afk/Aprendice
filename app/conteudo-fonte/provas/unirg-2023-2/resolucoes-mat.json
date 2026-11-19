@@ -302,5 +302,100 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pa4bf8f35": {
+  "n": "37",
+  "conceito": "Contar ordens de retirada com restrição de ordem dentro de cada dedo (permutação com repetição).",
+  "equivocos": {
+   "A": "M13.2:contou-so-as-repeticoes",
+   "B": "M13.2:conta-sem-origem",
+   "C": "M13.2:conta-sem-origem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Num dedo, só dá para tirar primeiro o anel de cima (o mais perto da ponta); depois o seguinte, e assim por diante. Então a ordem dentro de cada dedo é fixa, e o que varia é como as retiradas dos dedos se intercalam. Pela figura, os 7 anéis estão em três dedos: um dedo com 3 anéis e dois dedos com 2 anéis cada.",
+    "formulas": [
+     "sequências com grupos de ordem fixa: n!/(a! · b! · c!)"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "fatorial de n: produto de n por todos os naturais menores até 1"
+     ]
+    ]
+   },
+   "pista": "Antes de contar, olhe a figura: quantos anéis há em cada dedo, e qual anel de cada dedo pode sair primeiro?",
+   "passos": [
+    {
+     "faz": "Leia a figura",
+     "conta": "dedo 1: 3 anéis | dedo 2: 2 | dedo 3: 2 → 7 anéis",
+     "porque": "Cada anel é distinto, mas num mesmo dedo eles saem em ordem obrigatória, da ponta para a base.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Traduza em palavra com letras repetidas",
+     "conta": "retirada = sequência de 7 dedos → 1 1 1 2 2 3 3",
+     "porque": "Cada retirada se identifica pelo dedo; dentro do dedo, o anel que sai é sempre o de cima.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Permute com repetição",
+     "conta": "7!/(3! · 2! · 2!) → 5040/(6 · 2 · 2) → 5040/24 → 210",
+     "porque": "As trocas entre retiradas do mesmo dedo não geram ordem nova, porque a ordem no dedo é fixa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "210 modos → alternativa D",
+     "porque": "É o total de ordens de retirada possíveis.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 210 modos",
+   "checagem": "Por escolhas de posições: das 7 retiradas, escolha as 3 do dedo com 3 anéis, C(7, 3) = 35; das 4 restantes, as 2 de outro dedo, C(4, 2) = 6; as do último dedo ficam determinadas. 35 × 6 = 210.",
+   "erradas": {
+    "A": "24 sai de contar as ordens dentro dos dedos, 3! · 2! · 2! = 24, que é justamente o que não pode variar.",
+    "B": "96 não confere: o total é 7!/(3! · 2! · 2!) = 210, e 96 × 24 = 2 304 não é 7! = 5 040.",
+    "C": "120 não confere: 120 × 24 = 2 880, diferente de 7! = 5 040; o total certo é 210."
+   },
+   "armadilha": "Tratar os 7 anéis como livres (7!) ou esquecer que, num mesmo dedo, o anel de baixo só sai depois do de cima.",
+   "alerta": "O enunciado não diz com palavras que os anéis de um dedo saem na ordem da ponta para a base; a resposta 210 vem da figura, com 3, 2 e 2 anéis por dedo.",
+   "essencial": {
+    "pede": "De quantos modos ela retira os 7 anéis, um de cada vez.",
+    "chave": "Ordem fixa dentro de cada dedo (3, 2 e 2 anéis): 7!/(3! · 2! · 2!) = 210.",
+    "cuidado": "Leia na figura quantos anéis há em cada dedo antes de contar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "combinações",
+    "ideia": "C(7, 3) × C(4, 2) = 35 × 6 = 210: posições das retiradas do dedo com 3 anéis, depois das de um dedo com 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "dedos com 3, 2 e 2 anéis",
+    "nota": "ler a figura"
+   },
+   {
+    "linha": "7!/(3! · 2! · 2!)",
+    "nota": "ordem fixa em cada dedo"
+   },
+   {
+    "linha": "5040/24 = 210",
+    "nota": "dividir"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

@@ -348,5 +348,106 @@
    "data": "2026-11-13",
    "lote": "mat-0053"
   }
+ },
+ "Paa9a6eb3": {
+  "n": "2",
+  "conceito": "Contar anagramas com letras repetidas e escolher, entre os países da América Latina segundo o texto, o de maior contagem.",
+  "equivocos": {
+   "A": "M13.2:ignorou-o-filtro-do-texto",
+   "B": "M13.2:ignorou-o-filtro-do-texto",
+   "C": "M13.2:ignorou-o-filtro-do-texto",
+   "E": "M13.2:nao-dividiu-pelas-repeticoes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Há dois filtros. Primeiro o texto: só valem países que ele põe na América Latina; Guiana e Jamaica ele exclui, e o Canadá nem aparece na lista. Depois a conta: anagramas de uma palavra com letras repetidas são n! dividido pelo fatorial de cada repetição (o acento não conta como letra diferente).",
+    "formulas": [
+     "anagramas = n! ÷ (k₁! × k₂! × …), em que k é quantas vezes cada letra se repete"
+    ],
+    "simbolos": [
+     [
+      "anagrama",
+      "qualquer reordenação de todas as letras da palavra"
+     ],
+     [
+      "n!",
+      "fatorial: produto de n até 1"
+     ]
+    ]
+   },
+   "pista": "Antes de contar, risque as alternativas que o texto não põe na América Latina.",
+   "passos": [
+    {
+     "faz": "Filtre os países pelo texto",
+     "conta": "Canadá: fora da lista | Guiana: fora | Jamaica: fora | México: dentro | Panamá: dentro",
+     "porque": "O texto diz que 'Guiana, Suriname, Jamaica e Belize não a integram', e o Canadá não está entre os países listados. Sobram México e Panamá.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conte os anagramas de MÉXICO",
+     "conta": "6 letras distintas → 6! = 720",
+     "porque": "M, E, X, I, C, O são todas diferentes, então nada se divide.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os anagramas de PANAMÁ",
+     "conta": "6 letras, A três vezes → 6!/3! = 720/6 = 120",
+     "porque": "Trocar os três A entre si não cria anagrama novo; divide-se por 3!.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare e conclua",
+     "conta": "720 > 120 → México → alternativa D",
+     "porque": "Entre os países latino-americanos das alternativas, México tem mais anagramas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — México",
+   "checagem": "Compare com o maior de todos: JAMAICA dá 7!/3! = 840, mais que México, mas o texto a exclui da América Latina; GUIANA dá 6!/2! = 360, também excluída. Entre os que ficam, México segue o maior.",
+   "erradas": {
+    "A": "Canadá não está na lista de países latino-americanos do texto; e CANADA, com A três vezes, dá só 6!/3! = 120 anagramas.",
+    "B": "Guiana o texto exclui ('Guiana, Suriname, Jamaica e Belize não a integram'); GUIANA, com dois A, dá 6!/2! = 360.",
+    "C": "Jamaica tem de fato o maior número de anagramas, 7!/3! = 840, mas o texto diz que ela não integra a América Latina.",
+    "E": "Panamá é latino-americano, mas PANAMA tem três A: 6!/3! = 120, menos que os 720 de México."
+   },
+   "armadilha": "Jamaica tem mais anagramas (840), mas não é país da América Latina segundo o texto.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual país latino-americano das alternativas tem mais anagramas.",
+    "chave": "Filtrar pelo texto (sobram México e Panamá) e contar: 6! = 720 contra 6!/3! = 120.",
+    "cuidado": "A conta sozinha leva à Jamaica; o texto a tira do jogo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "só a conta, depois o texto",
+    "ideia": "Calcule os cinco (120, 360, 840, 720, 120), ordene e pegue o maior que o texto põe na América Latina: México."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "MEXICO: 6! = 720",
+    "nota": "seis letras distintas"
+   },
+   {
+    "linha": "PANAMA: 6!/3! = 720/6 = 120",
+    "nota": "três A: divide por 3!"
+   },
+   {
+    "linha": "720 > 120 → México",
+    "nota": "compara os dois que o texto aceita"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

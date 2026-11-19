@@ -318,5 +318,103 @@
    "data": "2026-11-13",
    "lote": "mat-0063"
   }
+ },
+ "Pbb916f59": {
+  "n": "54",
+  "conceito": "Contar combinações de roupa pelo princípio multiplicativo e retirar as que ferem a restrição.",
+  "equivocos": {
+   "A": "M13.1:contagem-acima-do-total",
+   "B": "M13.1:contou-errado-as-proibidas",
+   "C": "M13.1:fixou-a-peca-livre",
+   "E": "M13.1:ignorou-a-restricao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sem a regra especial, são três escolhas de 3 opções cada, que se multiplicam. A regra proíbe camisa vermelha com boné, mas a calça continua livre: cada uma das 3 calças forma uma combinação proibida. Tire essas do total.",
+    "formulas": [
+     "total = camisas × calças × acessórios",
+     "permitidas = total − proibidas"
+    ],
+    "simbolos": [
+     [
+      "combinação proibida",
+      "camisa vermelha com boné, com qualquer calça"
+     ]
+    ]
+   },
+   "pista": "Ao contar as combinações proibidas, pergunte: a calça está fixa ou pode variar?",
+   "passos": [
+    {
+     "faz": "Conte sem a restrição",
+     "conta": "3 × 3 × 3 → 27",
+     "porque": "3 camisas, 3 calças e 3 acessórios, escolhidos em sequência: as opções se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as proibidas",
+     "conta": "1 camisa × 3 calças × 1 acessório → 3",
+     "porque": "A regra fixa camisa vermelha e boné, mas a calça é livre. São 3 combinações proibidas, uma para cada calça.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire as proibidas do total",
+     "conta": "27 − 3 = 24",
+     "porque": "As 3 combinações com camisa vermelha e boné não valem; todas as outras valem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "24 maneiras → alternativa D",
+     "porque": "É o número de maneiras de se vestir respeitando a única regra.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 24 maneiras",
+   "checagem": "Conte direto por camisa: com a vermelha, 3 calças × 2 acessórios = 6; com azul ou branca, 2 × 3 × 3 = 18. 6 + 18 = 24. Fecha.",
+   "erradas": {
+    "A": "28 não confere: sem restrição nenhuma o total já é 3 × 3 × 3 = 27; com uma regra a mais, não pode passar disso.",
+    "B": "25 não confere: 27 − 25 = 2 combinações proibidas, mas a regra proíbe camisa vermelha com boné em cada uma das 3 calças, ou seja, 3.",
+    "C": "26 sai de retirar uma combinação só: 27 − 1 = 26, esquecendo que a calça varia e gera 3 combinações proibidas.",
+    "E": "27 sai de ignorar a regra especial: 3 × 3 × 3 = 27."
+   },
+   "armadilha": "Camisa vermelha com boné proíbe três combinações (uma por calça), não uma.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de combinações de camisa, calça e acessório sem camisa vermelha com boné.",
+    "chave": "Total 3 × 3 × 3 = 27 menos as 1 × 3 × 1 = 3 proibidas: 24.",
+    "cuidado": "Na contagem das proibidas, a calça continua livre."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem direta",
+    "ideia": "Vermelha: 3 × 2 = 6; azul ou branca: 2 × 3 × 3 = 18; total 6 + 18 = 24."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3 × 3 × 3 = 27",
+    "nota": "todas as combinações"
+   },
+   {
+    "linha": "1 × 3 × 1 = 3",
+    "nota": "vermelha com boné, qualquer calça"
+   },
+   {
+    "linha": "27 − 3 = 24",
+    "nota": "tira as proibidas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

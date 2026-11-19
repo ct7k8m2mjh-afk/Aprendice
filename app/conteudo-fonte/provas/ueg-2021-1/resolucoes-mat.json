@@ -788,5 +788,101 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pd85895ec": {
+  "n": "15",
+  "conceito": "Arranjo simples: escolher 5 de 7 notas distintas em que a ordem importa.",
+  "equivocos": {
+   "A": "M13.2:usou-todos-os-elementos",
+   "C": "M13.2:parou-antes-de-todas-as-posicoes",
+   "D": "M13.2:esqueceu-de-escolher-os-elementos",
+   "E": "M13.2:errou-o-numero-de-opcoes-da-primeira-posicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Numa melodia, a ordem das notas muda a música: dó-ré-mi não é mi-ré-dó. Então é arranjo, não combinação. As notas são distintas, ou seja, cada nota usada sai das opções seguintes.",
+    "formulas": [
+     "arranjo: A(n, p) = n!/(n − p)!",
+     "casa por casa: 7 × 6 × 5 × 4 × 3"
+    ],
+    "simbolos": [
+     [
+      "A(n, p)",
+      "arranjo: grupos ordenados de p elementos escolhidos entre n"
+     ],
+     [
+      "n!",
+      "fatorial: produto de n até 1"
+     ]
+    ]
+   },
+   "pista": "Pense em 5 posições na melodia e quantas notas sobram para cada uma.",
+   "passos": [
+    {
+     "faz": "Decida se a ordem importa",
+     "conta": "melodia: dó-ré-mi × mi-ré-dó → ordem importa → arranjo",
+     "porque": "Trocar a ordem das notas muda a melodia, então se conta cada ordem.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Preencha as cinco posições",
+     "conta": "7 × 6 × 5 × 4 × 3 = 2520",
+     "porque": "A 1ª nota tem 7 opções; como são distintas, a 2ª tem 6, a 3ª 5, a 4ª 4 e a 5ª 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "2520 melodias → alternativa B",
+     "porque": "É o valor de B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 2520",
+   "checagem": "Faça pela fórmula do arranjo e por escolher-e-ordenar: A(7, 5) = 7!/2! = 5040/2 = 2520; ou escolha as 5 notas, C(7, 5) = 21, e ordene-as, 5! = 120: 21 × 120 = 2520.",
+   "erradas": {
+    "A": "5040 sai de 7! = 5040: ordena as 7 notas, mas a melodia usa só 5.",
+    "C": "42 sai de parar em duas posições: 7 × 6 = 42. A melodia tem 5 notas, então faltam 5 × 4 × 3.",
+    "D": "120 sai de 5! = 120: só reordena 5 notas já escolhidas e esquece as C(7, 5) = 21 maneiras de escolher quais entram.",
+    "E": "360 sai de começar o produto pelo 6: 6 × 5 × 4 × 3 = 360. A 1ª nota tem 7 opções."
+   },
+   "armadilha": "Tratar a melodia como grupo sem ordem, ou contar só as reordenações das 5 notas, esquecendo de escolher quais 5 das 7 entram.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas melodias de 5 notas distintas se formam com as 7 notas musicais.",
+    "chave": "Ordem importa: arranjo A(7, 5) = 7 × 6 × 5 × 4 × 3 = 2520.",
+    "cuidado": "São 5 posições, não 7, e a primeira tem 7 opções."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "escolher e ordenar",
+    "ideia": "C(7, 5) × 5! = 21 × 120 = 2520."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A(7, 5) = 7!/(7 − 5)!",
+    "nota": "arranjo de 7 tomados 5 a 5"
+   },
+   {
+    "linha": "7!/2! = 5040/2 = 2520",
+    "nota": "simplifica o fatorial"
+   },
+   {
+    "linha": "7 × 6 × 5 × 4 × 3 = 2520",
+    "nota": "confere casa por casa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

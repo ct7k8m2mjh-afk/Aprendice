@@ -396,5 +396,105 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "Pedc4b182": {
+  "n": "33",
+  "conceito": "Permutar pessoas em fila com duas delas sempre juntas: tratar o casal como um bloco.",
+  "equivocos": {
+   "A": "M13.2:ignorou-a-restricao",
+   "C": "M13.2:esqueceu-permutar-dentro-do-bloco",
+   "D": "M13.2:dividiu-em-vez-de-multiplicar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Quando duas pessoas têm de ficar lado a lado, amarre as duas num bloco só. Aí a fila passa a ter 7 'peças' (o bloco e as outras 6 pessoas), que se permutam. Dentro do bloco, o casal ainda pode trocar de lugar entre si.",
+    "formulas": [
+     "permutação de n elementos: n! = n × (n − 1) × … × 1",
+     "juntos: (permutação das peças) × (permutação dentro do bloco)"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "fatorial: produto de n até 1, o número de ordens de n elementos distintos"
+     ],
+     [
+      "bloco",
+      "o casal tratado como uma peça só"
+     ]
+    ]
+   },
+   "pista": "Transforme o casal numa peça só e conte quantas peças a fila tem agora.",
+   "passos": [
+    {
+     "faz": "Junte o casal num bloco",
+     "conta": "8 pessoas → 6 pessoas + 1 bloco = 7 peças",
+     "porque": "O casal colado ocupa duas cadeiras vizinhas, mas se move como uma peça só.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Permute as 7 peças",
+     "conta": "7! = 7 × 6 × 5 × 4 × 3 × 2 × 1 = 5040",
+     "porque": "São 7 peças distintas para ordenar na fila.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque o casal dentro do bloco",
+     "conta": "5040 × 2! = 5040 × 2 = 10080",
+     "porque": "Em cada ordem das peças, o casal pode sentar como ele-ela ou ela-ele: duas posições diferentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "10080 maneiras → alternativa B",
+     "porque": "É o valor de B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 10080",
+   "checagem": "Conte pelas cadeiras: o casal ocupa um de 7 pares de cadeiras vizinhas (1-2, 2-3, …, 7-8), em 2 ordens, e as outras 6 pessoas ocupam as 6 cadeiras restantes em 6! = 720 ordens: 7 × 2 × 720 = 10080.",
+   "erradas": {
+    "A": "40320 sai de 8! = 40320, que conta todas as ordens das 8 pessoas, inclusive as que separam o casal.",
+    "C": "5040 sai de parar em 7! = 5040: falta multiplicar por 2, porque o casal pode trocar de lugar dentro do bloco.",
+    "D": "2520 sai de dividir 7! por 2 (5040 ÷ 2) em vez de multiplicar: a troca dentro do bloco cria ordens novas, não repete as que já existem."
+   },
+   "armadilha": "Esquecer que o casal pode trocar de lugar dentro do bloco: 7! sozinho conta só metade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "De quantas maneiras 8 pessoas sentam em fila com o casal sempre junto.",
+    "chave": "Casal vira bloco: 7! ordens das peças × 2 ordens dentro do bloco.",
+    "cuidado": "Multiplique por 2 pela troca do casal; não divida."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas cadeiras",
+    "ideia": "7 pares de cadeiras vizinhas × 2 ordens do casal × 6! para os outros = 10080."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "8 pessoas → 7 peças",
+    "nota": "o casal vira um bloco"
+   },
+   {
+    "linha": "7! = 5040",
+    "nota": "ordens das 7 peças"
+   },
+   {
+    "linha": "5040 × 2 = 10080",
+    "nota": "o casal troca de lugar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

@@ -1,0 +1,114 @@
+{
+ "Pf8d8b9e5": {
+  "n": "17",
+  "conceito": "Contar senhas de algarismos distintos que satisfazem uma condição, decompondo 55 em fatores e somando casos.",
+  "equivocos": {
+   "B": "M13.2:conjunto-a-mais",
+   "C": "M13.2:ignorou-condicao",
+   "D": "M13.2:ignorou-condicao",
+   "E": "M13.2:ignorou-condicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Comece pela condição, não pelas senhas: a × b × (c + d + e) = 55 obriga a fatorar 55 = 5 × 11. Como c + d + e com três algarismos distintos vai de 0 + 1 + 2 = 3 a 9 + 8 + 7 = 24, o fator 11 tem de ser a soma, e a × b = 5. Depois conte as ternas ordenadas de soma 11 que não usam os algarismos já gastos em a e b.",
+    "formulas": [
+     "55 = 5 × 11",
+     "ternas ordenadas de 3 algarismos distintos = conjuntos × 3!"
+    ],
+    "simbolos": [
+     [
+      "a, b, c, d, e",
+      "os cinco algarismos da senha, na ordem, todos distintos"
+     ],
+     [
+      "3!",
+      "fatorial de 3: 3 × 2 × 1 = 6 ordens para três algarismos distintos"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro quais valores a × b e c + d + e podem ter para o produto dar 55.",
+   "passos": [
+    {
+     "faz": "Decida o valor de a × b e da soma",
+     "conta": "55 = 5 × 11 → a × b = 5 e c + d + e = 11",
+     "porque": "A soma de três algarismos distintos fica entre 3 e 24, então não pode ser 1 nem 55; a soma 5 exigiria a × b = 11, e 11 não é produto de dois algarismos; a × b = 55 também não é; a × b = 1 exigiria a = b = 1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conte as escolhas de a e b",
+     "conta": "a × b = 5 → (1, 5) ou (5, 1) → 2 opções",
+     "porque": "5 é primo, então só 1 × 5 serve, nas duas ordens.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Liste os conjuntos de soma 11 sem 1 e 5",
+     "conta": "{0, 2, 9} | {0, 3, 8} | {0, 4, 7} | {2, 3, 6} → 4 conjuntos",
+     "porque": "Os algarismos 1 e 5 já foram usados e a senha tem algarismos distintos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ordene e multiplique",
+     "conta": "4 × 3! → 4 × 6 = 24 ternas | 2 × 24 → 48",
+     "porque": "Cada conjunto pode ser colocado em c, d, e de 3! = 6 modos, e cada terna combina com as 2 escolhas de a e b.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o total à alternativa",
+     "conta": "48 senhas → alternativa A",
+     "porque": "O número máximo de senhas é a contagem completa dos casos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 48 senhas",
+   "checagem": "Ordem de grandeza: mesmo sem a condição da soma, com a × b = 5 haveria no máximo 2 × 8 × 7 × 6 = 672 senhas; C, D e E passam desse teto. Um exemplo confere: 1 5 0 2 9 dá 1 × 5 × (0 + 2 + 9) = 55.",
+   "erradas": {
+    "B": "60 não confere: exigiria 5 conjuntos de três algarismos de soma 11 sem o 1 e o 5 (5 × 6 × 2 = 60), mas há só 4.",
+    "C": "1 512 não confere: com a × b = 5 obrigatório, o total não passa de 2 × 8 × 7 × 6 = 672 senhas.",
+    "D": "1 890 não confere: passa do teto de 2 × 8 × 7 × 6 = 672 senhas possíveis com a × b = 5.",
+    "E": "2 592 não confere: passa do teto de 2 × 8 × 7 × 6 = 672 senhas possíveis com a × b = 5."
+   },
+   "armadilha": "Esquecer que c, d e e não podem repetir os algarismos 1 e 5 usados em a e b, nem um ao outro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas senhas de 5 algarismos distintos satisfazem a × b × (c + d + e) = 55.",
+    "chave": "a × b = 5 e c + d + e = 11: 2 × 4 × 3! = 48.",
+    "cuidado": "Tire 1 e 5 da lista de c, d, e e conte as ordens de cada conjunto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "listagem por a",
+    "ideia": "Fixe a = 1, b = 5: 24 ternas de soma 11; troque para a = 5, b = 1: mais 24, total 48."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a × b × (c + d + e) = 55",
+    "nota": "condição da senha"
+   },
+   {
+    "linha": "a × b = 5 ; c + d + e = 11",
+    "nota": "55 = 5 × 11"
+   },
+   {
+    "linha": "4 conjuntos × 3! = 24",
+    "nota": "ternas sem 1 e 5"
+   },
+   {
+    "linha": "2 × 24 = 48",
+    "nota": "casos de a e b"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
+ }
+}

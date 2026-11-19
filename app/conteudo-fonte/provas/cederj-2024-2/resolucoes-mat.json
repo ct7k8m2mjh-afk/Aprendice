@@ -203,5 +203,109 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "P591b5ff4": {
+  "n": "35",
+  "conceito": "Combinação com princípio multiplicativo: formar comissões com quantidade fixa de cada cargo.",
+  "equivocos": {
+   "A": "M13.3:contagem-sem-base",
+   "C": "M13.3:usou-arranjo-onde-a-ordem-nao-importa",
+   "D": "M13.3:usou-arranjo-onde-a-ordem-nao-importa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Numa comissão ninguém tem cargo dentro dela, então a ordem dos escolhidos não importa: cada escolha é uma combinação. É preciso 1 diretor E 2 gerentes E 4 técnicos ao mesmo tempo, por isso as três combinações se multiplicam.",
+    "formulas": [
+     "combinação: C(n, p) = n!/(p! · (n − p)!)",
+     "total = C(5, 1) · C(8, 2) · C(12, 4)"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "combinação: grupos de p elementos escolhidos entre n, sem importar a ordem"
+     ],
+     [
+      "n!",
+      "fatorial de n: produto de n até 1"
+     ]
+    ]
+   },
+   "pista": "Separe a escolha por cargo e pergunte se trocar a ordem de dois escolhidos muda a comissão.",
+   "passos": [
+    {
+     "faz": "Escolha o diretor",
+     "conta": "C(5, 1) → 5",
+     "porque": "Há 5 diretores e a comissão leva 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha os 2 gerentes",
+     "conta": "C(8, 2) → (8 · 7)/(2 · 1) → 56/2 → 28",
+     "porque": "A dupla de gerentes é a mesma em qualquer ordem, por isso se divide por 2!.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha os 4 técnicos",
+     "conta": "C(12, 4) → (12 · 11 · 10 · 9)/(4 · 3 · 2 · 1) → 11880/24 → 495",
+     "porque": "Mesmo raciocínio: os 4 técnicos formam um grupo sem ordem, então se divide por 4!.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique e marque",
+     "conta": "5 · 28 · 495 → 140 · 495 → 69300 → alternativa B",
+     "porque": "As três escolhas acontecem juntas na mesma comissão, então se multiplicam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 69300 comissões",
+   "checagem": "Pela ordem de grandeza: C(12, 4) ≈ 500 e 5 · 28 = 140, logo o total fica perto de 140 · 500 = 70000; só 69300 está nessa faixa.",
+   "erradas": {
+    "A": "12860 não confere: sem o fator 5 do diretor sairia 28 · 495 = 13860, e com ele 69300; 12860 não é múltiplo de 495.",
+    "C": "665280 sai de contar a ordem e esquecer o diretor: (8 · 7) · (12 · 11 · 10 · 9) = 56 · 11880 = 665280.",
+    "D": "3326400 sai de contar a ordem dentro da comissão: 5 · (8 · 7) · (12 · 11 · 10 · 9) = 5 · 56 · 11880 = 3326400, sem dividir por 2! e 4!."
+   },
+   "armadilha": "Comissão não tem ordem: sem dividir por 2! e por 4!, o resultado fica 48 vezes maior.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas comissões com 1 diretor, 2 gerentes e 4 técnicos podem ser formadas.",
+    "chave": "C(5, 1) · C(8, 2) · C(12, 4) = 5 · 28 · 495 = 69300.",
+    "cuidado": "Use combinação, porque a ordem dos membros não importa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "arranjo e desconto da ordem",
+    "ideia": "conte com ordem, 5 · 56 · 11880 = 3326400, e divida pelas ordens internas 2! · 4! = 48: 3326400/48 = 69300"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(5, 1) = 5",
+    "nota": "1 diretor entre 5"
+   },
+   {
+    "linha": "C(8, 2) = 56/2 = 28",
+    "nota": "2 gerentes entre 8"
+   },
+   {
+    "linha": "C(12, 4) = 11880/24 = 495",
+    "nota": "4 técnicos entre 12"
+   },
+   {
+    "linha": "5 · 28 · 495 = 69300",
+    "nota": "as escolhas se multiplicam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

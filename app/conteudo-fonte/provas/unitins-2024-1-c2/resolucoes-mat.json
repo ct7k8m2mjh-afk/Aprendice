@@ -192,5 +192,117 @@
    "data": "2026-11-13",
    "lote": "mat-0050"
   }
+ },
+ "P0087867a": {
+  "n": "11",
+  "conceito": "Permutação com repetição: anagramas de UNITINS, inclusive com letras fixas nas pontas.",
+  "equivocos": {
+   "A": "M13.2:esqueceu-repeticao-que-sobrou",
+   "C": "M13.2:esqueceu-dividir-pelas-repeticoes",
+   "D": "M13.2:esqueceu-repeticao-que-sobrou",
+   "E": "M13.2:esqueceu-repeticao-que-sobrou"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "UNITINS tem 7 letras com repetições: o N aparece duas vezes e o I também. Trocar dois N de lugar não cria anagrama novo, por isso se divide 7! por 2! para cada letra repetida. Ao fixar letras nas pontas, conte só as letras do meio, olhando quais repetições sobraram nelas.",
+    "formulas": [
+     "permutação com repetição: n!/(a! · b!), com a e b as repetições",
+     "letras fixas nas pontas: permute só as do meio"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "fatorial de n: produto de n até 1"
+     ],
+     [
+      "anagrama",
+      "qualquer reordenação de todas as letras da palavra"
+     ]
+    ]
+   },
+   "pista": "Conte quantas vezes cada letra aparece em UNITINS e, em cada afirmativa, veja quais letras sobram no meio.",
+   "passos": [
+    {
+     "faz": "Conte as letras e as repetições",
+     "conta": "U N I T I N S → 7 letras | N: 2 | I: 2 | U, T, S: 1",
+     "porque": "As repetições decidem por quanto dividir.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste a afirmativa I",
+     "conta": "7!/(2! · 2!) → 5040/4 → 1260",
+     "porque": "Divide-se por 2! pelos dois N e por 2! pelos dois I. Dá 1260: I é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmativa II",
+     "conta": "N _ _ _ _ _ N → meio: U, I, T, I, S → 5!/2! → 120/2 → 60",
+     "porque": "Com os dois N nas pontas, no meio ainda há dois I. São 60, não 120: II é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmativa III",
+     "conta": "I _ _ _ _ _ I → meio: U, N, T, N, S → 5!/2! → 120/2 → 60",
+     "porque": "Com os dois I nas pontas, no meio sobram os dois N. São 60: III é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os resultados",
+     "conta": "I: V | II: F | III: V → I e III → alternativa B",
+     "porque": "Só I e III estão corretas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — I e III",
+   "checagem": "Confira II e III pela fração do total: a chance de um anagrama começar e terminar com N é 2/7 · 1/6 = 1/21, e 1260/21 = 60. O mesmo vale para I nas pontas: também 60.",
+   "erradas": {
+    "A": "I e II não confere: II é falsa. Com N nas pontas, o meio U, I, T, I, S tem dois I: 5!/2! = 60, não 120.",
+    "C": "Só III não confere: I também é verdadeira, 7!/(2! · 2!) = 5040/4 = 1260.",
+    "D": "Só I não confere: III também é verdadeira, com I nas pontas o meio U, N, T, N, S dá 5!/2! = 60.",
+    "E": "Só II não confere: II é falsa (são 60, não 120) e I e III são verdadeiras."
+   },
+   "armadilha": "Em II, os 120 saem de 5! esquecendo que os dois I continuam no meio e repetem: o certo é 5!/2! = 60.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmativas sobre os anagramas de UNITINS estão corretas.",
+    "chave": "Total 7!/(2! · 2!) = 1260; com N ou com I nas pontas, o meio tem uma letra repetida: 5!/2! = 60.",
+    "cuidado": "Depois de fixar as pontas, veja que repetição sobrou no meio."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fração do total",
+    "ideia": "começar e terminar com N tem chance 2/7 · 1/6 = 1/21 dos 1260 anagramas: 1260/21 = 60, o mesmo para I"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "7!/(2! · 2!) = 5040/4 = 1260",
+    "nota": "I: dois N e dois I"
+   },
+   {
+    "linha": "N _ _ _ _ _ N: 5!/2! = 120/2 = 60",
+    "nota": "II: sobram dois I no meio"
+   },
+   {
+    "linha": "I _ _ _ _ _ I: 5!/2! = 120/2 = 60",
+    "nota": "III: sobram dois N no meio"
+   },
+   {
+    "linha": "I V, II F, III V",
+    "nota": "corretas: I e III"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

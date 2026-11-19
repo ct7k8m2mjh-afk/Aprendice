@@ -660,5 +660,117 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pde1d331e": {
+  "n": "29",
+  "conceito": "Contar anagramas de CALCULA sem letras iguais vizinhas, pelo princípio da inclusão-exclusão.",
+  "equivocos": {
+   "A": "M13.2:parou-num-termo-da-inclusao-exclusao",
+   "C": "M13.2:respondeu-o-complementar",
+   "D": "M13.2:erro-na-inclusao-exclusao",
+   "E": "M13.2:parou-num-termo-da-inclusao-exclusao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "CALCULA tem 7 letras: C, A e L duas vezes cada, e U uma vez. Contar direto os anagramas 'sem vizinhos iguais' é difícil; mais fácil é contar todos e tirar os que têm algum par igual junto. Como um anagrama pode ter dois ou três pares juntos ao mesmo tempo, usa-se inclusão-exclusão para não descontar duas vezes.",
+    "formulas": [
+     "total = 7!/(2! · 2! · 2!)",
+     "inclusão-exclusão: bons = total − (1 par junto) + (2 pares juntos) − (3 pares juntos)"
+    ],
+    "simbolos": [
+     [
+      "inclusão-exclusão",
+      "tira os casos ruins, devolve os tirados duas vezes, tira de novo os devolvidos demais"
+     ],
+     [
+      "n!",
+      "fatorial: produto de n até 1"
+     ]
+    ]
+   },
+   "pista": "Conte primeiro todos os anagramas; depois pense em quantos têm os dois C colados.",
+   "passos": [
+    {
+     "faz": "Conte todos os anagramas",
+     "conta": "7!/(2! · 2! · 2!) = 5040/8 = 630",
+     "porque": "Três letras repetidas duas vezes: divide-se por 2! três vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte com um par colado",
+     "conta": "CC como bloco: 6!/(2! · 2!) = 720/4 = 180 → 3 × 180 = 540",
+     "porque": "Colando os dois C, sobram 6 peças com A e L repetidos. O mesmo vale para AA e para LL: três pares possíveis.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte com dois e três pares colados",
+     "conta": "dois blocos: 5!/2! = 60 → 3 × 60 = 180 | três blocos: 4! = 24",
+     "porque": "Com CC e AA colados, sobram 5 peças com L repetido; são 3 escolhas de dois pares. Com os três colados, 4 peças distintas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a inclusão-exclusão",
+     "conta": "n = 630 − 540 + 180 − 24 = 246",
+     "porque": "Tiram-se os de um par; devolvem-se os de dois pares, tirados duas vezes; tiram-se de novo os de três pares.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "n = 246 → alternativa B",
+     "porque": "É o valor de B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 246.",
+   "checagem": "Some as duas partes: os anagramas com algum par colado são 540 − 180 + 24 = 384; com os 246 sem par colado, 384 + 246 = 630, o total.",
+   "erradas": {
+    "A": "24 sai de contar só os anagramas com os três pares colados, 4! = 24, que é o último termo da inclusão-exclusão.",
+    "C": "384 sai de 540 − 180 + 24 = 384: é a quantidade com algum par igual junto, o contrário do que se pede.",
+    "D": "486 não confere: só os anagramas com CC colado já são 180, então no máximo 630 − 180 = 450 ficam sem vizinhos iguais; 486 passa disso.",
+    "E": "606 sai de 630 − 24 = 606: tira só os anagramas com os três pares colados e esquece os que têm um ou dois pares juntos."
+   },
+   "armadilha": "Tirar só os anagramas com um par junto (630 − 540) e esquecer que os de dois pares foram tirados duas vezes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos anagramas de CALCULA não têm letras iguais vizinhas.",
+    "chave": "Total 630 menos os ruins por inclusão-exclusão: 630 − 540 + 180 − 24 = 246.",
+    "cuidado": "Devolva os anagramas de dois pares, descontados duas vezes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar direto",
+    "ideia": "Conte os ruins (540 − 180 + 24 = 384) e faça 630 − 384 = 246."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "7!/(2! · 2! · 2!) = 5040/8 = 630",
+    "nota": "total de anagramas"
+   },
+   {
+    "linha": "3 × 6!/(2! · 2!) = 3 × 180 = 540",
+    "nota": "um par colado"
+   },
+   {
+    "linha": "3 × 5!/2! = 3 × 60 = 180 | 4! = 24",
+    "nota": "dois e três pares colados"
+   },
+   {
+    "linha": "630 − 540 + 180 − 24 = 246",
+    "nota": "inclusão-exclusão"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

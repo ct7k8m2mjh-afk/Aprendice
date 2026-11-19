@@ -629,5 +629,334 @@
    "data": "2026-11-13",
    "lote": "mat-0063"
   }
+ },
+ "Pfa9a35a9": {
+  "n": "17",
+  "conceito": "Contagem de quantas vezes um algarismo aparece, separando por casa decimal.",
+  "equivocos": {
+   "A": "M13.9:contou-paginas-e-nao-algarismos",
+   "B": "M13.9:passou-do-limite",
+   "D": "M13.9:contagem-a-mais",
+   "E": "M13.9:contagem-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A pergunta é quantas vezes o algarismo 7 é escrito, não quantas páginas têm 7. Conte separado em cada casa: unidades, dezenas e centenas. A página 77 tem dois setes e conta duas vezes.",
+    "formulas": [
+     "total de setes = setes nas unidades + setes nas dezenas + setes nas centenas"
+    ],
+    "simbolos": [
+     [
+      "casa das unidades",
+      "último algarismo do número"
+     ],
+     [
+      "casa das dezenas",
+      "penúltimo algarismo do número"
+     ]
+    ]
+   },
+   "pista": "Liste primeiro as páginas com 7 na casa das unidades; depois as com 7 na casa das dezenas.",
+   "passos": [
+    {
+     "faz": "Conte o 7 nas unidades",
+     "conta": "7, 17, 27, ..., 137 → 14 números",
+     "porque": "Há um 7 nas unidades a cada 10 páginas; de 7 até 137 são (137 − 7) ÷ 10 + 1 = 14. A próxima, 147, passa de 145.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte o 7 nas dezenas",
+     "conta": "70, 71, ..., 79 → 10 números",
+     "porque": "De 1 a 145 só a dezena 70 a 79 tem 7 na casa das dezenas; a 170 passa de 145.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira as centenas",
+     "conta": "centenas de 1 a 145: só 0 ou 1 → nenhum 7",
+     "porque": "Nenhuma página chega a 700.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Some as casas",
+     "conta": "14 + 10 + 0 = 24 → alternativa C",
+     "porque": "O 77 entrou nas duas contagens de propósito: ele tem dois setes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 24",
+   "checagem": "Conte pelas páginas: 23 páginas têm algum 7 (14 com 7 nas unidades + 10 com 7 nas dezenas − o 77, que está nas duas), e o 77 tem um 7 a mais: 23 + 1 = 24. Fecha.",
+   "erradas": {
+    "A": "23 sai de contar páginas com 7, não algarismos: 14 + 10 − 1 = 23, contando o 77 uma vez só, quando ele tem dois setes.",
+    "B": "25 não confere: seria preciso mais um 7 nas unidades (a página 147), que passa de 145.",
+    "D": "26 não confere: a contagem exata é 14 nas unidades + 10 nas dezenas = 24; não há outra página com 7 até 145.",
+    "E": "27 não confere: são só 14 setes nas unidades e 10 nas dezenas até 145; nenhuma centena tem 7."
+   },
+   "armadilha": "A pergunta é quantas vezes o algarismo aparece: o 77 vale dois.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas vezes o algarismo 7 aparece na numeração de 1 a 145.",
+    "chave": "14 setes nas unidades + 10 nas dezenas = 24.",
+    "cuidado": "Conte o 77 duas vezes e pare na página 145."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contar por páginas",
+    "ideia": "23 páginas têm algum 7 e o 77 tem dois: 23 + 1 = 24"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "unidades: 7, 17, ..., 137 → 14",
+    "nota": "um 7 a cada dez páginas"
+   },
+   {
+    "linha": "dezenas: 70 a 79 → 10",
+    "nota": "só uma dezena com 7"
+   },
+   {
+    "linha": "14 + 10 = 24",
+    "nota": "soma das casas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
+ },
+ "P2c2d70a5": {
+  "n": "29",
+  "conceito": "Princípio multiplicativo com uma restrição diferente em cada casa do número.",
+  "equivocos": {
+   "A": "M13.1:incluiu-o-zero",
+   "B": "M13.1:erro-de-contagem",
+   "C": "M13.1:incluiu-o-zero",
+   "E": "M13.1:esqueceu-o-2-primo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada casa tem a sua regra, e as regras não dependem umas das outras: conte as opções de cada casa e multiplique. O enunciado não pede algarismos distintos. O detalhe é o zero: ele é par e múltiplo de 3, mas o enunciado o proíbe nas dezenas e nas unidades.",
+    "formulas": [
+     "princípio multiplicativo: centenas × dezenas × unidades"
+    ],
+    "simbolos": [
+     [
+      "número primo",
+      "número com exatamente dois divisores: 2, 3, 5, 7..."
+     ],
+     [
+      "múltiplo de 3",
+      "resultado de 3 × um inteiro: 0, 3, 6, 9..."
+     ]
+    ]
+   },
+   "pista": "Escreva a lista de algarismos permitidos em cada casa, lembrando que o zero foi proibido em duas delas.",
+   "passos": [
+    {
+     "faz": "Liste as unidades",
+     "conta": "pares sem o zero: 2, 4, 6, 8 → 4 opções",
+     "porque": "O zero é par, mas o enunciado diz que o algarismo das unidades é diferente de zero.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Liste as dezenas",
+     "conta": "múltiplos de 3 sem o zero: 3, 6, 9 → 3 opções",
+     "porque": "O zero também é múltiplo de 3 e também foi excluído.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Liste as centenas",
+     "conta": "primos de 0 a 9: 2, 3, 5, 7 → 4 opções",
+     "porque": "O 2 é primo (o único par), e o 1 não é primo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Multiplique as opções",
+     "conta": "4 × 3 × 4 = 48",
+     "porque": "As escolhas de cada casa são independentes e se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "48 → alternativa D",
+     "porque": "São 48 números desse tipo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 48",
+   "checagem": "Fixe a centena e conte: para cada primo há 3 × 4 = 12 finais (dezena e unidade); 4 primos × 12 = 48. Fecha.",
+   "erradas": {
+    "A": "60 sai de aceitar o zero nas unidades: 4 × 3 × 5 = 60, ignorando que unidades e dezenas são diferentes de zero.",
+    "B": "52 não confere: não é múltiplo de 3 (5 + 2 = 7), e a contagem tem o fator 3 das dezenas.",
+    "C": "64 sai de aceitar o zero nas dezenas: 4 × 4 × 4 = 64, com 0, 3, 6 e 9 como múltiplos de 3.",
+    "E": "36 sai de esquecer que 2 é primo: 3 × 3 × 4 = 36, com só 3, 5 e 7 nas centenas."
+   },
+   "armadilha": "Esquecer que o 2 é primo, ou deixar o zero entrar nas unidades e nas dezenas contra a regra do enunciado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos números de três algarismos cumprem as regras de cada casa.",
+    "chave": "Centenas 4 primos × dezenas 3 múltiplos de 3 × unidades 4 pares = 48.",
+    "cuidado": "O 2 é primo e o zero está proibido nas dezenas e nas unidades."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fixar a centena",
+    "ideia": "cada um dos 4 primos tem 3 × 4 = 12 finais possíveis: 4 × 12 = 48"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "centenas: 2, 3, 5, 7 | dezenas: 3, 6, 9 | unidades: 2, 4, 6, 8",
+    "nota": "opções de cada casa"
+   },
+   {
+    "linha": "4 × 3 × 4 = 48",
+    "nota": "princípio multiplicativo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
+ },
+ "P94b2d4c5": {
+  "n": "27",
+  "conceito": "Resolver equação com arranjo, permutação e combinação simplificando as fórmulas.",
+  "equivocos": {
+   "B": "M13.2:propriedade-mal-testada",
+   "C": "M13.2:propriedade-mal-testada",
+   "D": "M13.2:propriedade-mal-testada",
+   "E": "M13.2:propriedade-mal-testada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escreva cada símbolo pela fórmula e simplifique antes de qualquer tentativa. A(n,3) = n(n − 1)(n − 2), P(n) = n! e C(n,2) = n(n − 1)/2. Dividindo por C(n,2), o fator n(n − 1) cancela, e a equação vira uma condição sobre (n − 2)!.",
+    "formulas": [
+     "A(n, 3) = n(n − 1)(n − 2)",
+     "P(n) = n!",
+     "C(n, 2) = n(n − 1)/2"
+    ],
+    "simbolos": [
+     [
+      "A(n, 3)",
+      "arranjo de n elementos tomados 3 a 3"
+     ],
+     [
+      "P(n)",
+      "permutação de n elementos, igual a n!"
+     ],
+     [
+      "C(n, 2)",
+      "combinação de n elementos tomados 2 a 2"
+     ],
+     [
+      "n!",
+      "fatorial de n: produto de n por todos os naturais menores até 1"
+     ]
+    ]
+   },
+   "pista": "Divida cada parcela do numerador por n(n − 1)/2 separadamente; o n(n − 1) some.",
+   "passos": [
+    {
+     "faz": "Divida a primeira parcela",
+     "conta": "(n(n − 1)(n − 2))/(n(n − 1)/2) → 2(n − 2)",
+     "porque": "O n(n − 1) cancela, e dividir por 1/2 é multiplicar por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida a segunda parcela",
+     "conta": "n!/(n(n − 1)/2) → 2(n − 2)!",
+     "porque": "n! = n(n − 1)(n − 2)!, então o n(n − 1) cancela de novo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte e simplifique a equação",
+     "conta": "2(n − 2) + 2(n − 2)! = 2n + 44 → 2n − 4 + 2(n − 2)! = 2n + 44 → 2(n − 2)! = 48 → (n − 2)! = 24",
+     "porque": "O 2n aparece dos dois lados e se cancela; o −4 passa somando, e o 2 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache n",
+     "conta": "(n − 2)! = 24 = 4! → n − 2 = 4 → n = 6",
+     "porque": "4! = 4 × 3 × 2 × 1 = 24, e o 2 passa somando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste as afirmações",
+     "conta": "n = 6 → n + 1 = 7, primo → alternativa A",
+     "porque": "7 só é divisível por 1 e por 7.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — n + 1 é um número primo",
+   "checagem": "Substitua n = 6 no enunciado: A(6,3) = 120, P(6) = 720, C(6,2) = 15; (120 + 720)/15 = 56, e 2 × 6 + 44 = 56. Fecha.",
+   "erradas": {
+    "B": "Com n = 6, B não confere: 6 não é quadrado perfeito (fica entre 4 e 9).",
+    "C": "Com n = 6, C não confere: n + 2 = 8 é par.",
+    "D": "Com n = 6, D não confere: 6 não é divisível por 5.",
+    "E": "Com n = 6, E não confere: n − 3 = 3 é ímpar, não divisível por 2."
+   },
+   "armadilha": "Esquecer o 2 do denominador de C(n,2): sem ele, a equação não se simplifica num fatorial exato.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual propriedade vale para o n que satisfaz a equação.",
+    "chave": "Dividindo por C(n,2) = n(n − 1)/2, sobra 2(n − 2) + 2(n − 2)! = 2n + 44, logo (n − 2)! = 24 e n = 6.",
+    "cuidado": "Simplifique antes de testar valores e substitua n = 6 no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de valores",
+    "ideia": "Teste n = 5, 6, 7 direto na fórmula: só n = 6 dá (120 + 720)/15 = 56 = 2 × 6 + 44."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(A(n,3) + P(n))/C(n,2) = 2n + 44",
+    "nota": "equação dada"
+   },
+   {
+    "linha": "2(n − 2) + 2(n − 2)! = 2n + 44",
+    "nota": "dividir por n(n − 1)/2"
+   },
+   {
+    "linha": "2(n − 2)! = 48",
+    "nota": "2n cancela; −4 passa somando"
+   },
+   {
+    "linha": "(n − 2)! = 24 = 4!",
+    "nota": "o 2 passa dividindo"
+   },
+   {
+    "linha": "n = 6 ; n + 1 = 7",
+    "nota": "primo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

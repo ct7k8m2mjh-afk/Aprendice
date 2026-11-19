@@ -220,5 +220,100 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "Pe626c783": {
+  "n": "12",
+  "conceito": "Permutação com repetição: expressão dos anagramas de TARIFAR, com A e R repetidos duas vezes.",
+  "equivocos": {
+   "B": "M13.2:esqueceu-uma-das-repeticoes",
+   "C": "M13.2:dividiu-pelo-fatorial-errado",
+   "D": "M13.2:multiplicou-pela-repeticao",
+   "E": "M13.2:multiplicou-pela-repeticao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "TARIFAR tem 7 letras, e duas delas aparecem duas vezes: o A e o R. Trocar os dois A entre si não muda a palavra, nem trocar os dois R. Por isso se parte de 7! e se divide por 2! para cada letra repetida.",
+    "formulas": [
+     "permutação com repetição: n!/(a! · b!), com a e b as repetições"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "fatorial de n: produto de n até 1"
+     ],
+     [
+      "anagrama",
+      "qualquer reordenação de todas as letras da palavra"
+     ]
+    ]
+   },
+   "pista": "Escreva TARIFAR letra por letra e veja quais letras aparecem mais de uma vez.",
+   "passos": [
+    {
+     "faz": "Conte as letras repetidas",
+     "conta": "T A R I F A R → 7 letras | A: 2 | R: 2 | T, I, F: 1",
+     "porque": "Duas letras se repetem, cada uma duas vezes.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a expressão",
+     "conta": "7! → 7!/(2! · 2!)",
+     "porque": "Um 2! no denominador desconta as trocas entre os A, e outro 2! desconta as trocas entre os R.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "7!/(2! · 2!) → alternativa A",
+     "porque": "É a única expressão que divide 7! pelas duas repetições.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 7!/(2! · 2!)",
+   "checagem": "Calcule o valor: 5040/4 = 1260. Por escolha de casas: os 2 A em C(7, 2) = 21 modos, os 2 R nas 5 casas restantes em C(5, 2) = 10 modos e T, I, F nas 3 finais em 3! = 6 modos: 21 · 10 · 6 = 1260.",
+   "erradas": {
+    "B": "7!/2! sai de enxergar só uma letra repetida (o A ou o R): falta dividir pelo outro 2!.",
+    "C": "7!/(5! · 2!) não confere: vale 5040/240 = 21, que é o número de modos de escolher 2 casas entre 7, e não de ordenar as 7 letras; nenhuma letra de TARIFAR aparece 5 vezes.",
+    "D": "2! · 7! sai de multiplicar pela repetição em vez de dividir: as trocas entre letras iguais criam palavras repetidas, que se descontam.",
+    "E": "2! · 2! · 7! sai de multiplicar pelas duas repetições em vez de dividir por elas."
+   },
+   "armadilha": "Letra repetida divide, não multiplica: as trocas entre letras iguais produzem a mesma palavra.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A expressão que conta os anagramas de TARIFAR.",
+    "chave": "7 letras com A e R duas vezes cada: 7!/(2! · 2!).",
+    "cuidado": "São duas letras repetidas, cada uma com seu 2! no denominador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "escolher as casas",
+    "ideia": "C(7, 2) para os A, C(5, 2) para os R e 3! para T, I, F: 21 · 10 · 6 = 1260 = 7!/(2! · 2!)"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "TARIFAR: 7 letras, A 2 vezes, R 2 vezes",
+    "nota": "contar repetições"
+   },
+   {
+    "linha": "7! → 7!/(2! · 2!)",
+    "nota": "um 2! para cada letra repetida"
+   },
+   {
+    "linha": "7!/(2! · 2!) = 5040/4 = 1260",
+    "nota": "valor da expressão"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

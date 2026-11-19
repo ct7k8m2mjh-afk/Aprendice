@@ -749,5 +749,106 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "P95dc47c0": {
+  "n": "30",
+  "conceito": "Anagramas com bloco fixo (PUC) e contagem, por listagem, dos que têm R ao lado de um P.",
+  "equivocos": {
+   "A": "M13.2:esqueceu-um-caso-na-listagem",
+   "B": "M13.2:esqueceu-um-caso-na-listagem",
+   "C": "M13.2:esqueceu-um-caso-na-listagem",
+   "E": "M13.2:ignorou-a-restricao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se P, U e C têm de vir juntos e nessa ordem, PUC vira uma peça só. Sobram 3 peças para ordenar: o bloco PUC, o outro P e o R. São poucas ordens, então o caminho mais seguro é listar todas e testar a vizinhança do R. Cuidado: o P do começo do bloco também é um P.",
+    "formulas": [
+     "peças distintas: 3! ordens"
+    ],
+    "simbolos": [
+     [
+      "bloco",
+      "as letras P, U e C coladas, nessa ordem, tratadas como uma peça"
+     ],
+     [
+      "3!",
+      "3 × 2 × 1 = 6 ordens de três peças"
+     ]
+    ]
+   },
+   "pista": "Cole PUC num bloco e liste as ordens das três peças que sobram.",
+   "passos": [
+    {
+     "faz": "Junte PUC num bloco",
+     "conta": "P, U, C, P, R → [PUC], P, R → 3! = 6 anagramas",
+     "porque": "Com o bloco, há três peças distintas para ordenar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Liste os seis anagramas",
+     "conta": "PUCPR | PUCRP | PPUCR | PRPUC | RPUCP | RPPUC",
+     "porque": "Cada ordem das peças dá um anagrama diferente.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste o vizinho do R",
+     "conta": "PPUCR: R só ao lado de C → fora | os outros 5: R ao lado de P",
+     "porque": "Em PPUCR, o R fica na ponta, colado ao C. Nos outros, ele toca o P solto ou o P que abre o bloco.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conte e ligue à alternativa",
+     "conta": "6 − 1 = 5 → alternativa D",
+     "porque": "Cinco dos seis anagramas têm R vizinho de um P.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 5.",
+   "checagem": "Por outro caminho: o R sem P ao lado só pode ter o C como único vizinho, então fica logo depois do bloco e na última casa; PUC ocupa as casas 2 a 4 e o P solto a casa 1 → PPUCR. É 1 caso só, e 6 − 1 = 5.",
+   "erradas": {
+    "A": "2 sai de olhar só o P que abre o bloco PUC: o R fica colado a ele em PRPUC e RPUCP. Esquece o P solto.",
+    "B": "3 não confere: na lista dos 6 anagramas, PUCPR, PUCRP, PRPUC, RPUCP e RPPUC têm o R ao lado de um P, cinco casos.",
+    "C": "4 sai de olhar só o P solto, fora do bloco: PUCPR, PUCRP, PRPUC e RPPUC. Esquece RPUCP, em que o R toca o P de PUC.",
+    "E": "6 é o total de anagramas com PUC junto; em PPUCR o R fica ao lado só do C."
+   },
+   "armadilha": "Esquecer que o P que abre o bloco PUC também conta como 'uma letra P' vizinha do R.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Entre os anagramas de PUCPR com PUC junto, quantos têm R ao lado de um P.",
+    "chave": "Bloco PUC + P + R dá 6 anagramas; só PPUCR deixa o R sem P ao lado.",
+    "cuidado": "Os dois P contam: o solto e o que abre o bloco."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "Dos 3! = 6 anagramas, só PPUCR deixa o R sem P ao lado: 6 − 1 = 5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "[PUC], P, R → 3! = 6",
+    "nota": "bloco e duas peças soltas"
+   },
+   {
+    "linha": "PPUCR → R ao lado de C",
+    "nota": "o único sem P vizinho"
+   },
+   {
+    "linha": "6 − 1 = 5",
+    "nota": "anagramas com R ao lado de P"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

@@ -451,5 +451,226 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P0bbda4b6": {
+  "n": "40",
+  "conceito": "Soma dos termos de uma PA (10, 20, 30, ...) até alcançar a população: achar o menor número de dias.",
+  "equivocos": {
+   "A": "M07.3:testou-valor-pequeno",
+   "C": "M07.3:nao-buscou-o-minimo",
+   "D": "M07.3:nao-buscou-o-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As vacinas por dia formam uma progressão aritmética: 10, 20, 30, ..., que no dia n são 10n. O que importa é o acumulado, não a vacina de um dia: some os termos até chegar a 50 000. A soma da PA é a média do primeiro e do último termo vezes o número de termos.",
+    "formulas": [
+     "termo do dia n: aₙ = 10n",
+     "soma de n dias: Sₙ = ((a₁ + aₙ) × n)/2"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: sequência que cresce sempre do mesmo valor"
+     ],
+     [
+      "aₙ",
+      "vacinas aplicadas no dia n"
+     ],
+     [
+      "Sₙ",
+      "total de vacinas aplicadas do 1º ao n-ésimo dia"
+     ]
+    ]
+   },
+   "pista": "A pergunta é sobre o total acumulado. Escreva a soma das vacinas até o n-ésimo termo antes de igualar a 50 000.",
+   "passos": [
+    {
+     "faz": "Escreva a soma dos n primeiros dias",
+     "conta": "Sₙ = ((10 + 10n) × n)/2 → Sₙ = 5n(n + 1)",
+     "porque": "A soma de uma PA é a média do primeiro e do último termo vezes o número de termos. Tirando o 10 e dividindo por 2, sobra 5n(n + 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale à população",
+     "conta": "5n(n + 1) ≥ 50000 → n(n + 1) ≥ 10000",
+     "porque": "A cidade fica imunizada quando o total aplicado alcança 50 000. O 5 que multiplica passa dividindo: 50 000 ÷ 5 = 10 000.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste o n perto de 100",
+     "conta": "n = 99: 99 × 100 = 9900 < 10000 | n = 100: 100 × 101 = 10100 ≥ 10000",
+     "porque": "n(n + 1) é quase n²; n² = 10 000 dá n = 100. Em 99 dias ainda faltam doses; em 100 dias já passa.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "n = 100 dias → alternativa B",
+     "porque": "O enunciado pede o mínimo de dias: o primeiro n em que o acumulado chega a 50 000.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 100 dias",
+   "checagem": "Some de outra forma: em 100 dias são 10 × (1 + 2 + … + 100) = 10 × 5050 = 50 500 doses, que cobre os 50 000; em 99 dias, 10 × 4950 = 49 500, que não cobre.",
+   "erradas": {
+    "A": "50 dias não confere: em 50 dias são 5 × 50 × 51 = 12 750 doses, só um quarto da população.",
+    "C": "150 dias não confere: em 100 dias já se aplicam 50 500 doses, mais que os 50 000 habitantes; 150 não é o mínimo.",
+    "D": "160 dias não confere: o acumulado passa de 50 000 já no 100º dia (50 500 doses), então 160 não é o mínimo."
+   },
+   "armadilha": "O que conta é a soma acumulada dos dias, não a quantidade aplicada num dia só.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor número de dias para o total de vacinas chegar a 50 000.",
+    "chave": "Soma da PA 10, 20, 30, ...: 5n(n + 1) ≥ 50 000, ou seja, n(n + 1) ≥ 10 000; n = 100.",
+    "cuidado": "Somar os dias (acumulado) e conferir que 99 dias ainda não bastam."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma de 1 a n",
+    "ideia": "Sₙ = 10 × (1 + 2 + … + n); 1 + … + 100 = 5050, então 100 dias dão 50 500 doses."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Sₙ = ((10 + 10n) × n)/2",
+    "nota": "soma da PA"
+   },
+   {
+    "linha": "Sₙ = 5n(n + 1)",
+    "nota": "simplifica"
+   },
+   {
+    "linha": "5n(n + 1) ≥ 50000 → n(n + 1) ≥ 10000",
+    "nota": "o 5 passa dividindo"
+   },
+   {
+    "linha": "100 × 101 = 10100 ≥ 10000",
+    "nota": "99 × 100 = 9900 não basta"
+   },
+   {
+    "linha": "n = 100",
+    "nota": "mínimo de dias"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
+ },
+ "P55f4ad60": {
+  "n": "38",
+  "conceito": "Contar anagramas com letras repetidas e um bloco de letras juntas (permutação com repetição e bloco).",
+  "equivocos": {
+   "A": "M13.2:bloco-mal-contado",
+   "B": "M13.2:ignorou-repeticao",
+   "C": "M13.2:esqueceu-repeticao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Letras que devem ficar juntas viram um bloco só, que se permuta com as outras letras; depois o bloco se embaralha por dentro. ARSENELUPIN tem 11 letras, com E e N repetidos duas vezes cada, e esse desconto não pode ser esquecido.",
+    "formulas": [
+     "anagramas = (número de unidades)! ÷ repetições × (ordens dentro do bloco)"
+    ],
+    "simbolos": [
+     [
+      "bloco",
+      "grupo de letras que fica junto e conta como uma unidade"
+     ],
+     [
+      "n!",
+      "fatorial de n: produto de n por todos os naturais menores até 1"
+     ]
+    ]
+   },
+   "pista": "Escreva as 11 letras, marque as repetidas e transforme L, U e P numa única peça.",
+   "passos": [
+    {
+     "faz": "Conte letras e repetições",
+     "conta": "A, R, S, E, N, E, L, U, P, I, N → 11 letras | E: 2, N: 2",
+     "porque": "As demais (A, R, S, L, U, P, I) aparecem uma vez.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Junte L, U e P num bloco",
+     "conta": "11 letras → [LUP] + 8 letras → 9 unidades",
+     "porque": "As três letras juntas ocupam o lugar de uma unidade só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Permute as 9 unidades com repetição",
+     "conta": "9! → 9!/(2! · 2!) → 9!/4",
+     "porque": "O E e o N aparecem duas vezes; trocar letras iguais não cria anagrama novo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Permute o bloco por dentro",
+     "conta": "9!/4 → 9!/4 × 3! → (9! × 3!)/4",
+     "porque": "L, U e P podem ficar em 3! = 6 ordens dentro do bloco (LUP, LPU, ULP...).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "(9! × 3!)/4 → alternativa D",
+     "porque": "É a expressão de D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — (9! × 3!)/4",
+   "checagem": "Em números: 9! = 362 880; × 6 = 2 177 280; ÷ 4 = 544 320. Isso é menor que o total sem restrição, 11!/(2! · 2!) = 9 979 200, como deve ser.",
+   "erradas": {
+    "A": "10!/2 não confere: com o bloco LUP são 9 unidades, não 10; o valor 1 814 400 também passa do total certo de 544 320.",
+    "B": "9! × 6 sai de esquecer as repetições: 9! × 3!, sem dividir por 2! do E nem por 2! do N.",
+    "C": "(9! × 3!)/2 sai de descontar só uma repetição, a do E ou a do N; são duas, e o divisor é 2! · 2! = 4."
+   },
+   "armadilha": "Esquecer uma das letras repetidas: E e N aparecem duas vezes cada, e o divisor é 4, não 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de anagramas de ARSENELUPIN com L, U e P juntos.",
+    "chave": "Bloco LUP + 8 letras = 9 unidades: 9!/(2! · 2!) × 3!.",
+    "cuidado": "Divida pelas duas repetições (E e N) e multiplique pelas 3! ordens do bloco."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por posições",
+    "ideia": "O bloco ocupa 9 posições iniciais possíveis; as 8 letras restantes se arrumam em 8!/(2! · 2!) modos; × 3!: 9 × 8!/4 × 6 = (9! × 3!)/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ARSENELUPIN: 11 letras ; E ×2, N ×2",
+    "nota": "repetições"
+   },
+   {
+    "linha": "[LUP] + 8 = 9 unidades",
+    "nota": "bloco"
+   },
+   {
+    "linha": "9!/(2! · 2!) = 9!/4",
+    "nota": "permutação com repetição"
+   },
+   {
+    "linha": "9!/4 × 3! = (9! × 3!)/4",
+    "nota": "ordens dentro do bloco"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

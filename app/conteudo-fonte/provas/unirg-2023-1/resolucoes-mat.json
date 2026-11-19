@@ -460,5 +460,129 @@
    "data": "2026-11-13",
    "lote": "mat-0063"
   }
+ },
+ "P91294d43": {
+  "n": "38",
+  "conceito": "Contar anagramas com letra repetida que não pode ficar junta, pelo complementar ou pelo método das lacunas.",
+  "equivocos": {
+   "A": "M13.2:contou-o-complementar",
+   "C": "M13.2:esqueceu-restricao",
+   "D": "M13.2:ignorou-repeticao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "GURUPI tem 6 letras e o U aparece duas vezes. O jeito mais seguro é o complementar: conte todos os anagramas e tire aqueles em que os dois U estão juntos. Para contar os que têm UU junto, trate UU como uma peça só.",
+    "formulas": [
+     "anagramas com repetição: n!/(repetições)!",
+     "não juntos = total − juntos"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "fatorial de n: produto de n por todos os naturais menores até 1"
+     ],
+     [
+      "complementar",
+      "contar o oposto e tirar do total"
+     ]
+    ]
+   },
+   "pista": "Conte primeiro todos os anagramas, sem restrição; depois os que têm os U lado a lado.",
+   "passos": [
+    {
+     "faz": "Conte letras e repetições",
+     "conta": "G, U, R, U, P, I → 6 letras | U: 2",
+     "porque": "As outras quatro letras são distintas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte todos os anagramas",
+     "conta": "6!/2! → 720/2 → 360",
+     "porque": "Trocar os dois U de lugar não cria anagrama novo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os anagramas com UU juntos",
+     "conta": "[UU] + G, R, P, I → 5 peças → 5! = 120",
+     "porque": "Grudados, os dois U viram uma peça; e por dentro dela não há troca, porque são letras iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire os juntos do total",
+     "conta": "360 − 120 → 240",
+     "porque": "O que sobra são os anagramas em que os U estão separados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "240 anagramas → alternativa B",
+     "porque": "A pergunta é o total sem letras U juntas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 240",
+   "checagem": "Pelas lacunas: arrume G, R, P, I em 4! = 24 modos; ficam 5 espaços (antes, entre e depois das letras); escolha 2 deles para os U: C(5, 2) = 10. 24 × 10 = 240.",
+   "erradas": {
+    "A": "120 sai de contar os anagramas com os U juntos (5! = 120), o contrário do que se pede.",
+    "C": "360 sai de contar todos os anagramas (6!/2! = 360) e esquecer de tirar os 120 com os U juntos.",
+    "D": "720 sai de 6!, como se as 6 letras fossem distintas e sem tirar os casos com U juntos."
+   },
+   "armadilha": "Parar no total ou responder o número de anagramas com U juntos: a pergunta pede os que NÃO têm U juntos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de anagramas de GURUPI sem os dois U lado a lado.",
+    "chave": "Total 6!/2! = 360 menos os com UU juntos, 5! = 120: 240.",
+    "cuidado": "Divida o total por 2! do U e não multiplique a peça UU por 2!, pois as letras são iguais."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lacunas",
+    "ideia": "4! = 24 arrumações de G, R, P, I e C(5, 2) = 10 escolhas de lacunas para os U: 240."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6!/2! = 720/2 = 360",
+    "nota": "total de anagramas"
+   },
+   {
+    "linha": "[UU] + 4 letras: 5! = 120",
+    "nota": "U juntos"
+   },
+   {
+    "linha": "360 − 120 = 240",
+    "nota": "complementar"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "UNIRG — gabarito do Processo Seletivo 2023/1, Campus Gurupi (arquivo com título de definitivo, cabeçalho de preliminar), prova tipo 1, questão 38",
+    "url": "https://www.unirg.edu.br/arquivos/documentos/Vestibular/2023-1G/Gurupi%20-%20Vestibular%20-%20Gabarito%20Definitivo.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [
+    {
+     "url": "https://www.unirg.edu.br/arquivos/documentos/Vestibular/2023-1G/Gurupi%20-%20Vestibular%20-%20Gabarito%20Definitivo.pdf",
+     "letra": "B"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

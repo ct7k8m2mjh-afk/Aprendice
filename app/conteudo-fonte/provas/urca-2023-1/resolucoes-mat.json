@@ -837,5 +837,205 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Padcb5319": {
+  "n": "18",
+  "conceito": "Contagem de números pares de algarismos distintos com o zero no conjunto, separando o caso em que o zero é o último algarismo.",
+  "equivocos": {
+   "A": "M13.1:ignorou-restricoes",
+   "C": "M13.1:contou-com-repeticao",
+   "D": "M13.1:dividiu-sem-motivo",
+   "E": "M13.1:esqueceu-um-caso"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Duas restrições disputam o mesmo algarismo: o último tem de ser par e o primeiro não pode ser zero. Como o zero é par, separe em dois casos: o número termina em 0 ou termina em outro par (4, 6 ou 8). Em cada caso preencha primeiro as posições com restrição.",
+    "formulas": [
+     "princípio multiplicativo: opções de cada posição se multiplicam",
+     "casos que não se misturam se somam"
+    ],
+    "simbolos": [
+     [
+      "algarismos distintos",
+      "nenhum algarismo se repete no número"
+     ],
+     [
+      "número par",
+      "termina em 0, 2, 4, 6 ou 8"
+     ]
+    ]
+   },
+   "pista": "Pergunte primeiro: o número termina em 0 ou em outro algarismo par? Cada resposta muda as opções do primeiro algarismo.",
+   "passos": [
+    {
+     "faz": "Separe os pares do conjunto",
+     "conta": "A = {0, 3, 4, 6, 7, 8, 9} → pares: 0, 4, 6, 8",
+     "porque": "O último algarismo só pode ser um desses quatro, e o zero exige um tratamento à parte por causa da primeira posição.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os que terminam em 0",
+     "conta": "último: 1 | 1º: 6 | 2º: 5 | 3º: 4 → 6 × 5 × 4 = 120",
+     "porque": "Com o zero já no fim, os 6 algarismos restantes podem abrir o número; depois sobram 5 e 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os que terminam em 4, 6 ou 8",
+     "conta": "último: 3 | 1º: 5 | 2º: 5 | 3º: 4 → 3 × 5 × 5 × 4 = 300",
+     "porque": "O primeiro não pode ser zero nem o par já usado: 7 − 2 = 5 opções. O zero volta a valer no 2º lugar, que tem 5 opções, e o 3º tem 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois casos",
+     "conta": "120 + 300 = 420 → alternativa B",
+     "porque": "Os casos não se sobrepõem (o último algarismo é diferente), então somam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 420",
+   "checagem": "Conte o total de números de quatro algarismos distintos e tire os ímpares: total 6 × 6 × 5 × 4 = 720; ímpares (terminam em 3, 7 ou 9): 3 × 5 × 5 × 4 = 300; 720 − 300 = 420. Fecha.",
+   "erradas": {
+    "A": "840 sai de ignorar paridade e zero na frente: 7 × 6 × 5 × 4 = 840 sequências de quatro algarismos distintos quaisquer.",
+    "C": "343 não confere: 343 = 7 × 7 × 7, conta de três posições com repetição, e a questão pede quatro algarismos distintos.",
+    "D": "210 não confere: só os que terminam em 4, 6 ou 8 já são 3 × 5 × 5 × 4 = 300, mais que 210.",
+    "E": "120 sai de contar só os números que terminam em 0 (6 × 5 × 4) e esquecer os que terminam em 4, 6 ou 8."
+   },
+   "armadilha": "O zero é par e também não pode abrir o número: sem separar o caso do zero no fim, a contagem da 1ª posição sai errada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos pares de quatro algarismos distintos se formam com {0, 3, 4, 6, 7, 8, 9}.",
+    "chave": "Termina em 0: 120; termina em 4, 6 ou 8: 300; total 420.",
+    "cuidado": "Separe o caso do zero no fim, porque ele muda as opções da primeira posição."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "total de números de 4 algarismos distintos (720) menos os ímpares (300) = 420"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "termina em 0: 6 × 5 × 4 = 120",
+    "nota": "zero fixo no fim"
+   },
+   {
+    "linha": "termina em 4, 6 ou 8: 3 × 5 × 5 × 4 = 300",
+    "nota": "primeiro sem zero e sem o par usado"
+   },
+   {
+    "linha": "120 + 300 = 420",
+    "nota": "soma dos dois casos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
+ },
+ "Pced1f550": {
+  "n": "20",
+  "conceito": "Arranjo: escolher e ordenar os quatro primeiros colocados entre 12 nadadores.",
+  "equivocos": {
+   "A": "M13.2:erro-de-multiplicacao",
+   "B": "M13.2:erro-de-multiplicacao",
+   "D": "M13.2:erro-de-multiplicacao",
+   "E": "M13.2:opcoes-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na classificação a ordem importa: Ana em 1º e Bia em 2º é diferente de Bia em 1º e Ana em 2º. Então preencha os quatro lugares um de cada vez, e cada nadador colocado sai das opções do lugar seguinte.",
+    "formulas": [
+     "princípio multiplicativo: 1º lugar × 2º × 3º × 4º",
+     "arranjo de n tomados p a p: n × (n − 1) × ... (p fatores)"
+    ],
+    "simbolos": [
+     [
+      "arranjo",
+      "escolha de elementos em que a ordem conta"
+     ]
+    ]
+   },
+   "pista": "Quantos nadadores podem ficar em 1º? E, depois disso, quantos sobram para o 2º?",
+   "passos": [
+    {
+     "faz": "Veja se a ordem importa",
+     "conta": "1º, 2º, 3º e 4º são posições diferentes → a ordem conta",
+     "porque": "Trocar dois nadadores de lugar gera outra classificação; por isso não se divide por nada.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Preencha os quatro lugares",
+     "conta": "1º: 12 | 2º: 11 | 3º: 10 | 4º: 9 → 12 × 11 × 10 × 9",
+     "porque": "Cada nadador classificado não pode ocupar outro lugar, então as opções caem de um em um.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a multiplicação",
+     "conta": "12 × 11 = 132 → 132 × 10 = 1320 → 1320 × 9 = 11880",
+     "porque": "Multiplicar aos poucos evita erro de conta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "11880 → alternativa C",
+     "porque": "São 11880 classificações possíveis.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 11880",
+   "checagem": "Escolha primeiro o grupo dos quatro (combinação: 12 × 11 × 10 × 9 ÷ 24 = 495) e depois ordene os quatro (4 × 3 × 2 × 1 = 24): 495 × 24 = 11880. Fecha.",
+   "erradas": {
+    "A": "11080 não confere: não é múltiplo de 9 (1 + 1 + 0 + 8 + 0 = 10), e a contagem tem o fator 9.",
+    "B": "11300 não confere: não é múltiplo de 9 (1 + 1 + 3 = 5), e toda contagem do 1º ao 4º lugar termina em × 9.",
+    "D": "12200 não confere: também não é múltiplo de 9 (1 + 2 + 2 = 5), e a contagem dos quatro lugares tem o fator 9.",
+    "E": "17280 não confere: não é múltiplo de 11 (17280 ÷ 11 ≈ 1570,9), e a contagem tem o fator 11."
+   },
+   "armadilha": "Achar que é combinação e dividir por 24: aqui os lugares são diferentes, então a ordem conta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de classificações possíveis do 1º ao 4º lugar entre 12 nadadores.",
+    "chave": "Arranjo: 12 × 11 × 10 × 9 = 11880.",
+    "cuidado": "Lugares diferentes: a ordem importa e não se divide pelas permutações."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "combinação e depois ordem",
+    "ideia": "escolher os 4 (495 grupos) e ordenar cada grupo (24 jeitos): 495 × 24 = 11880"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "12 × 11 × 10 × 9",
+    "nota": "uma escolha por lugar"
+   },
+   {
+    "linha": "132 × 10 × 9",
+    "nota": "12 × 11 = 132"
+   },
+   {
+    "linha": "1320 × 9 = 11880",
+    "nota": "fecha o produto"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

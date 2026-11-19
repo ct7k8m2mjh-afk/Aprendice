@@ -242,5 +242,222 @@
    "data": "2026-11-13",
    "lote": "mat-0058"
   }
+ },
+ "P78598ee8": {
+  "n": "33",
+  "conceito": "Contar números de quatro algarismos distintos maiores que 2600, separando em casos pelo primeiro algarismo.",
+  "equivocos": {
+   "A": "M13.1:esqueceu-um-caso",
+   "C": "M13.1:ignorou-a-restricao",
+   "D": "M13.1:contagem-acima-do-total",
+   "E": "M13.1:fatorial-de-todos-os-elementos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A condição \"maior que 2600\" não é a mesma para todo número: ela decide tudo pelo primeiro algarismo. Começando por 3, 4, 5, 6 ou 7, qualquer número já passa de 2600. Começando por 2, o segundo algarismo precisa ser 6 ou 7. Conte os dois casos separados e some.",
+    "formulas": [
+     "casos que não se misturam: some as contagens",
+     "em cada caso: multiplique as escolhas de cada casa (princípio multiplicativo)"
+    ],
+    "simbolos": [
+     [
+      "algarismos distintos",
+      "nenhum algarismo se repete no número"
+     ],
+     [
+      "princípio multiplicativo",
+      "escolhas feitas em sequência se multiplicam"
+     ]
+    ]
+   },
+   "pista": "Antes de multiplicar, olhe o primeiro algarismo: com quais ele já garante passar de 2600, e com qual ainda depende do segundo?",
+   "passos": [
+    {
+     "faz": "Separe os casos pelo primeiro algarismo",
+     "conta": "1º algarismo ∈ {3, 4, 5, 6, 7} | 1º algarismo = 2 (2º algarismo ∈ {6, 7})",
+     "porque": "Com 1 na frente o número fica abaixo de 2000, então o 1 não serve. Com 2 na frente, só passa de 2600 se o segundo for 6 ou 7, porque não há 0 entre os algarismos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte o caso que começa por 3 a 7",
+     "conta": "5 × 6 × 5 × 4 → 600",
+     "porque": "5 escolhas para a 1ª casa; sobram 6 algarismos para a 2ª, 5 para a 3ª e 4 para a 4ª, porque nenhum pode repetir.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte o caso que começa por 2",
+     "conta": "1 × 2 × 5 × 4 → 40",
+     "porque": "O 2 está fixo e a 2ª casa só aceita 6 ou 7. Usados dois algarismos, sobram 5 para a 3ª casa e 4 para a 4ª.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois casos",
+     "conta": "600 + 40 = 640 → alternativa B",
+     "porque": "Os casos não têm número em comum (começam por algarismos diferentes), então o total é a soma.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 640 números",
+   "checagem": "Pelo complemento: com os 7 algarismos há 7 × 6 × 5 × 4 = 840 números de algarismos distintos. Ficam de fora os que começam por 1 (1 × 6 × 5 × 4 = 120) e os que começam por 2 com 2º algarismo 1, 3, 4 ou 5 (1 × 4 × 5 × 4 = 80): 840 − 120 − 80 = 640. Fecha.",
+   "erradas": {
+    "A": "40 sai de contar só o caso que começa por 2: 1 × 2 × 5 × 4 = 40. Faltaram os 600 números que começam por 3, 4, 5, 6 ou 7.",
+    "C": "840 sai de ignorar a condição \"maior que 2600\": 7 × 6 × 5 × 4 = 840 é o total de números de quatro algarismos distintos com esses sete algarismos.",
+    "D": "1134 não confere: com os sete algarismos só existem 7 × 6 × 5 × 4 = 840 números de quatro algarismos distintos, então nenhuma parte deles pode passar de 840.",
+    "E": "5040 sai de 7! = 5040, que ordena os sete algarismos todos. O número tem só quatro casas; e 5040 passa até do total possível, 840."
+   },
+   "armadilha": "Começando por 2, nem todo número passa de 2600: o segundo algarismo tem de ser 6 ou 7.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos números de quatro algarismos distintos, feitos com 1 a 7, são maiores que 2600.",
+    "chave": "Separar pelo primeiro algarismo: 5 × 6 × 5 × 4 = 600 (de 3 a 7) mais 1 × 2 × 5 × 4 = 40 (começando por 2).",
+    "cuidado": "Não esquecer o caso do 2 nem tratá-lo como se todo número com 2 na frente servisse."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complemento",
+    "ideia": "Tire do total 840 os 120 que começam por 1 e os 80 que começam por 21, 23, 24 ou 25: 840 − 120 − 80 = 640."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1º de 3 a 7: 5 × 6 × 5 × 4",
+    "nota": "cinco escolhas na frente, depois sem repetir"
+   },
+   {
+    "linha": "= 600",
+    "nota": "números que já passam de 2600"
+   },
+   {
+    "linha": "1º = 2, 2º ∈ {6, 7}: 1 × 2 × 5 × 4",
+    "nota": "o 2 fixo, a 2ª casa só aceita 6 ou 7"
+   },
+   {
+    "linha": "= 40",
+    "nota": "números que começam por 26 ou 27"
+   },
+   {
+    "linha": "600 + 40 = 640",
+    "nota": "casos separados se somam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
+ },
+ "P60e7c1b0": {
+  "n": "30",
+  "conceito": "Probabilidade com anagramas de MATEMATICA: chance de a primeira e a última letra serem vogais.",
+  "equivocos": {
+   "B": "M13.4:contou-errado-os-casos-favoraveis",
+   "C": "M13.4:contou-errado-os-casos-favoraveis",
+   "D": "M13.4:esqueceu-vogais-diferentes-de-a",
+   "E": "M13.4:nao-tirou-a-letra-ja-usada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "MATEMATICA tem 10 letras: A três vezes, E uma, I uma, ou seja, 5 vogais; e 5 consoantes (M duas vezes, T duas, C uma). Num anagrama sorteado, cada letra tem a mesma chance de cair em cada posição. Então basta olhar as duas pontas: a chance de a primeira ser vogal e, dado isso, a de a última também ser.",
+    "formulas": [
+     "P(1ª vogal e última vogal) = P(1ª vogal) × P(última vogal | 1ª vogal)"
+    ],
+    "simbolos": [
+     [
+      "P(A | B)",
+      "probabilidade de A sabendo que B já aconteceu"
+     ],
+     [
+      "anagrama",
+      "reordenação de todas as letras da palavra"
+     ]
+    ]
+   },
+   "pista": "Conte as vogais de MATEMATICA, com repetição, e pense só na primeira e na última posição.",
+   "passos": [
+    {
+     "faz": "Conte vogais e letras",
+     "conta": "M, A, T, E, M, A, T, I, C, A → 10 letras | vogais: A, A, A, E, I = 5",
+     "porque": "Cada A conta como uma vogal: são 5 vogais em 10 letras.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a chance da primeira",
+     "conta": "P(1ª vogal) = 5/10 = 1/2",
+     "porque": "Das 10 letras, 5 são vogais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chance da última",
+     "conta": "P(última vogal | 1ª vogal) = 4/9",
+     "porque": "Uma vogal já foi para a frente: sobram 4 vogais entre as 9 letras restantes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as duas",
+     "conta": "1/2 × 4/9 = 4/18 = 2/9",
+     "porque": "A primeira e a última precisam ser vogais ao mesmo tempo: multiplica-se.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "2/9 → alternativa A",
+     "porque": "É a fração de A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2/9",
+   "checagem": "Conte os anagramas. Total: 10!/(3! · 2! · 2!) = 151200. Favoráveis: os pares de vogais nas pontas (A…A, A…E, E…A, A…I, I…A, E…I, I…E) somam 33600 anagramas. E 33600/151200 = 2/9.",
+   "erradas": {
+    "B": "13/90 não confere: os pares de vogais nas pontas pesam A…A 6/90, A com E ou I nas duas ordens 12/90 e E com I 2/90, total 20/90 = 2/9.",
+    "C": "2/45 não confere: só começar e terminar com A já tem chance 3/10 × 2/9 = 1/15, maior que 2/45; com E e I, a chance só cresce.",
+    "D": "1/15 sai de contar só o A como vogal: 3/10 × 2/9 = 6/90 = 1/15. E e I também são vogais.",
+    "E": "1/5 sai de manter 10 letras no segundo sorteio: 5/10 × 4/10 = 20/100 = 1/5. Com uma letra já na frente, sobram 9."
+   },
+   "armadilha": "Esquecer que a vogal da frente sai do grupo: a última vogal se escolhe entre 9 letras, não 10.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de um anagrama de MATEMATICA começar e terminar com vogal.",
+    "chave": "5 vogais em 10 letras: 5/10 × 4/9 = 2/9.",
+    "cuidado": "Conte os três A como vogais e tire uma letra do total depois de fixar a primeira."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem de anagramas",
+    "ideia": "Favoráveis ÷ total: 33600/151200 = 2/9."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(1ª vogal) = 5/10 = 1/2",
+    "nota": "5 vogais em 10 letras"
+   },
+   {
+    "linha": "P(última vogal) = 4/9",
+    "nota": "sobram 4 vogais em 9 letras"
+   },
+   {
+    "linha": "1/2 × 4/9 = 4/18 = 2/9",
+    "nota": "multiplica e simplifica"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

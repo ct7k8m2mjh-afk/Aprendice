@@ -1153,5 +1153,111 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P0f62dd9c": {
+  "n": "26",
+  "conceito": "Permutação com bloco: letras que devem ficar juntas viram um único elemento, e depois se permuta o que há dentro do bloco.",
+  "equivocos": {
+   "A": "M13.2:subcontou-as-ordens",
+   "B": "M13.2:esqueceu-permutar-dentro-do-bloco",
+   "C": "M13.2:multiplicou-por-n-em-vez-de-n-fatorial",
+   "E": "M13.2:contagem-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Quando algumas letras precisam ficar juntas, amarre-as num bloco e trate o bloco como uma letra só. Conte primeiro as ordens dos elementos de fora com o bloco e, depois, as ordens das letras dentro do bloco. As duas contagens se multiplicam, porque cada ordem de fora combina com cada ordem de dentro.",
+    "formulas": [
+     "permutação de n elementos distintos: n! = n · (n − 1) · ... · 1",
+     "com bloco: (ordens com o bloco) × (ordens dentro do bloco)"
+    ],
+    "simbolos": [
+     [
+      "anagrama",
+      "qualquer reordenação de todas as letras da palavra"
+     ],
+     [
+      "n!",
+      "fatorial de n: produto de n até 1, por exemplo 5! = 5 · 4 · 3 · 2 · 1"
+     ]
+    ]
+   },
+   "pista": "Separe as letras de LEANDRO em vogais e consoantes e verifique se alguma letra se repete.",
+   "passos": [
+    {
+     "faz": "Separe vogais e consoantes",
+     "conta": "LEANDRO → vogais: E, A, O | consoantes: L, N, D, R",
+     "porque": "São 7 letras, todas diferentes. As 3 vogais precisam ficar juntas, então elas formam o bloco.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os elementos com o bloco",
+     "conta": "[EAO] + L + N + D + R → 5 elementos → 5! = 120",
+     "porque": "O bloco ocupa o lugar de uma letra só. Sobram 5 elementos diferentes para ordenar em fila.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Permute as vogais dentro do bloco",
+     "conta": "E, A, O → 3! = 6",
+     "porque": "Dentro do bloco as vogais podem aparecer em qualquer ordem (EAO, AEO, OAE...), e cada ordem gera um anagrama diferente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique e marque",
+     "conta": "120 · 6 → 720 → alternativa D",
+     "porque": "Cada uma das 120 ordens de fora combina com cada uma das 6 ordens de dentro.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 720 anagramas",
+   "checagem": "Pense pela posição do bloco: as 3 vogais juntas podem começar na 1ª, 2ª, 3ª, 4ª ou 5ª casa (5 posições); as vogais se ordenam de 3! = 6 modos e as 4 consoantes, nas 4 casas restantes, de 4! = 24 modos. 5 · 6 · 24 = 720.",
+   "erradas": {
+    "A": "60 não confere: só a ordem dos 5 elementos com o bloco já dá 5! = 120, e qualquer arrumação das vogais só aumenta esse número.",
+    "B": "120 sai de parar no bloco: 5! = 120, esquecendo que as vogais dentro dele trocam de lugar (× 3! = 6).",
+    "C": "360 sai de multiplicar por 3 em vez de 3!: 120 · 3 = 360. As 3 vogais se ordenam de 3 · 2 · 1 = 6 modos.",
+    "E": "840 não confere: toda contagem com o bloco é 120 vezes o número de ordens das vogais, e 840 ÷ 120 = 7, que não é 3! = 6."
+   },
+   "armadilha": "Depois de amarrar as vogais num bloco, é preciso multiplicar pelas 3! ordens das vogais dentro dele.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de anagramas de LEANDRO com as vogais E, A, O juntas.",
+    "chave": "Bloco das vogais + 4 consoantes = 5 elementos: 5! · 3! = 120 · 6 = 720.",
+    "cuidado": "Não esqueça a permutação interna do bloco."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "posição do bloco",
+    "ideia": "o bloco de 3 vogais começa em 5 posições possíveis: 5 · 3! · 4! = 5 · 6 · 24 = 720"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "LEANDRO: vogais E, A, O; consoantes L, N, D, R",
+    "nota": "separar o que fica junto"
+   },
+   {
+    "linha": "[EAO] L N D R → 5! = 120",
+    "nota": "o bloco conta como um elemento"
+   },
+   {
+    "linha": "dentro do bloco → 3! = 6",
+    "nota": "as vogais trocam de lugar"
+   },
+   {
+    "linha": "120 · 6 = 720",
+    "nota": "multiplicar as duas contagens"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

@@ -418,5 +418,99 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "P0e681b34": {
+  "n": "42",
+  "conceito": "Contar sequências com elementos repetidos (permutação com repetição) numa situação de placar.",
+  "equivocos": {
+   "B": "M13.2:conta-sem-origem",
+   "C": "M13.2:placar-trocado",
+   "D": "M13.2:conta-sem-origem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os gols formam uma sequência de 6 marcações: 4 do Goiás (G) e 2 do Iporá (I). Os gols de um mesmo time não se distinguem na ordenação, então o problema é contar os anagramas de GGGGII. Equivale a escolher quais 2 das 6 posições são do Iporá.",
+    "formulas": [
+     "permutação com repetição: n!/(a! · b!)",
+     "C(n, p) = n!/(p! · (n − p)!)"
+    ],
+    "simbolos": [
+     [
+      "G, I",
+      "gol do Goiás e gol do Iporá"
+     ],
+     [
+      "C(n, p)",
+      "combinação: número de modos de escolher p posições entre n, sem ordem"
+     ]
+    ]
+   },
+   "pista": "Escreva a partida como uma palavra de 6 letras com G e I.",
+   "passos": [
+    {
+     "faz": "Traduza o placar em sequência",
+     "conta": "4 a 2 → GGGGII → 6 gols",
+     "porque": "Cada ordenação dos gols é uma arrumação diferente dessas 6 letras.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Permute com repetição",
+     "conta": "6!/(4! · 2!) → 720/(24 · 2) → 720/48 → 15",
+     "porque": "Os 4 G são iguais entre si e os 2 I também: divide-se pelas trocas internas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "15 ordenações → alternativa A",
+     "porque": "A pergunta é o total de ordens possíveis dos gols.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 15 ordenações",
+   "checagem": "Pelas posições do Iporá: escolher 2 das 6 posições dá C(6, 2) = (6 × 5)/2 = 15; dá para listar começando por (1º, 2º), (1º, 3º)... e chegar a 15 pares.",
+   "erradas": {
+    "B": "18 não confere: o número de modos de escolher as posições dos gols do Iporá é C(6, 2) = 15, e nenhum C(6, p) vale 18 (os valores são 1, 6, 15 e 20).",
+    "C": "20 não confere: 20 = C(6, 3) seria a contagem para um placar de 3 a 3; com 4 a 2 é C(6, 2) = 15.",
+    "D": "26 não confere: nenhuma escolha de posições entre 6 vale 26; o total é 6!/(4! · 2!) = 15."
+   },
+   "armadilha": "Tratar os gols de um mesmo time como distintos: as trocas entre gols do mesmo time não mudam a ordenação.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas ordens possíveis têm os 6 gols de um 4 a 2.",
+    "chave": "Anagramas de GGGGII: 6!/(4! · 2!) = 15.",
+    "cuidado": "Divida pelas repetições: os gols do mesmo time são iguais na contagem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "combinação",
+    "ideia": "Escolha as 2 posições dos gols do Iporá entre 6: C(6, 2) = 15."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "GGGGII",
+    "nota": "placar 4 a 2 em sequência"
+   },
+   {
+    "linha": "6!/(4! · 2!) = 720/48",
+    "nota": "permutação com repetição"
+   },
+   {
+    "linha": "720/48 = 15",
+    "nota": "dividir"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

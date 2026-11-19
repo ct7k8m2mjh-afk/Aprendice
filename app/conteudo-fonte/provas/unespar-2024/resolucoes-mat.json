@@ -285,5 +285,107 @@
    "data": "2026-11-13",
    "lote": "mat-0061"
   }
+ },
+ "P3d0dfa4e": {
+  "n": "60",
+  "conceito": "Arranjo simples: escolher e ordenar 4 letras diferentes entre 15.",
+  "equivocos": {
+   "A": "M13.2:contagem-sem-base",
+   "B": "M13.2:permitiu-repeticao",
+   "D": "M13.2:contagem-sem-base",
+   "E": "M13.2:contagem-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Uma palavra é uma sequência: trocar a ordem das letras muda a palavra. Como as 4 letras têm de ser diferentes, cada letra usada sai das opções seguintes. Isso é arranjo simples de 15 elementos tomados 4 a 4.",
+    "formulas": [
+     "arranjo simples: A(n, p) = n · (n − 1) · ... (p fatores)",
+     "A(n, p) = n!/(n − p)!"
+    ],
+    "simbolos": [
+     [
+      "A(n, p)",
+      "arranjo: número de sequências ordenadas de p elementos distintos escolhidos entre n"
+     ],
+     [
+      "n!",
+      "fatorial de n: produto de n até 1"
+     ]
+    ]
+   },
+   "pista": "Pergunte-se: a ordem das letras importa? E pode repetir letra?",
+   "passos": [
+    {
+     "faz": "Identifique o tipo de contagem",
+     "conta": "ordem importa | sem repetição → arranjo A(15, 4)",
+     "porque": "ABCD e DCBA são palavras diferentes, e o enunciado exige 4 letras diferentes.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Preencha as 4 posições",
+     "conta": "1ª: 15 | 2ª: 14 | 3ª: 13 | 4ª: 12",
+     "porque": "Cada letra escolhida não pode voltar, então a próxima posição tem uma opção a menos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as opções",
+     "conta": "15 · 14 · 13 · 12 → 210 · 156 → 32760",
+     "porque": "Princípio multiplicativo: as escolhas de cada posição se combinam com todas as outras.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "32760 palavras → alternativa C",
+     "porque": "É o número de sequências de 4 letras distintas, que é o que se pede.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 32760 palavras",
+   "checagem": "Pela fórmula: A(15, 4) = 15!/11!. Escolha primeiro as 4 letras, C(15, 4) = 1365 grupos, e ordene cada grupo de 4! = 24 modos: 1365 · 24 = 32760.",
+   "erradas": {
+    "A": "45002 não confere: 15 · 14 · 13 · 12 tem o fator 14 = 2 · 7, e 45002 não é múltiplo de 7.",
+    "B": "50625 sai de permitir letra repetida: 15 · 15 · 15 · 15 = 50625. O enunciado exige 4 letras diferentes.",
+    "D": "12350 não confere: não é múltiplo de 7, e o produto 15 · 14 · 13 · 12 é (tem o 14).",
+    "E": "85420 não confere: não é múltiplo de 7, e o produto 15 · 14 · 13 · 12 é (tem o 14)."
+   },
+   "armadilha": "\"Letras diferentes\" proíbe repetir: são 15, 14, 13 e 12 opções, não 15 em cada posição.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas sequências de 4 letras diferentes saem de um alfabeto de 15 letras.",
+    "chave": "Arranjo simples: 15 · 14 · 13 · 12 = 32760.",
+    "cuidado": "Sem repetição, cada posição tem uma opção a menos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "escolher e depois ordenar",
+    "ideia": "C(15, 4) = 1365 grupos de letras, cada um ordenado de 4! = 24 modos: 1365 · 24 = 32760"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A(15, 4) = 15 · 14 · 13 · 12",
+    "nota": "uma opção a menos por posição"
+   },
+   {
+    "linha": "15 · 14 = 210 | 13 · 12 = 156",
+    "nota": "multiplicar em pares"
+   },
+   {
+    "linha": "210 · 156 = 32760",
+    "nota": "total de palavras"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

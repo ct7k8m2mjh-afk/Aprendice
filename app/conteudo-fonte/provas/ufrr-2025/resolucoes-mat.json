@@ -601,5 +601,126 @@
    "data": "2026-11-13",
    "lote": "mat-0062"
   }
+ },
+ "P0d1158ac": {
+  "n": "13",
+  "conceito": "Contar sequências de 12 dígitos pelo princípio multiplicativo e retirar a única sequência proibida (todos zeros).",
+  "equivocos": {
+   "A": "M13.1:trocou-base-e-expoente",
+   "B": "M13.1:proibiu-zero-na-frente",
+   "C": "M13.1:expoente-errado",
+   "D": "M13.1:expoente-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O número de inscrição é uma sequência de 12 dígitos, e cada dígito pode ser qualquer um de 0 a 9, inclusive com zero na frente (é um código, não um número que perde os zeros à esquerda). A única sequência proibida é a que tem todos os dígitos iguais a zero.",
+    "formulas": [
+     "sequências de 12 dígitos = 10 × 10 × … × 10 (12 vezes) = 10¹²",
+     "permitidas = total − proibidas"
+    ],
+    "simbolos": [
+     [
+      "10¹²",
+      "10 multiplicado por ele mesmo 12 vezes"
+     ],
+     [
+      "000000000000",
+      "a sequência com os 12 dígitos iguais a zero"
+     ]
+    ]
+   },
+   "pista": "Conte primeiro todas as sequências possíveis; depois veja quantas a regra elimina.",
+   "passos": [
+    {
+     "faz": "Conte as escolhas de cada dígito",
+     "conta": "12 posições | 10 opções (0 a 9) em cada",
+     "porque": "O enunciado deixa qualquer dígito de 0 a 9 em qualquer posição, e um dígito pode repetir.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Multiplique as escolhas",
+     "conta": "10 × 10 × … × 10 (12 vezes) → 10¹²",
+     "porque": "As 12 escolhas são feitas uma depois da outra, então se multiplicam: 10 doze vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a sequência proibida",
+     "conta": "10¹² → 10¹² − 1 (tira 000000000000)",
+     "porque": "Só uma sequência tem todos os dígitos iguais a zero: 000000000000. Ela sai do total.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "10¹² − 1 → alternativa E",
+     "porque": "É a quantidade máxima de inscrições diferentes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 10¹² − 1 números de inscrição",
+   "checagem": "Caso menor, com 2 dígitos: as sequências vão de 00 a 99, que são 100 = 10²; sem o 00 ficam 99 = 10² − 1. Com 12 dígitos o padrão é o mesmo: 10¹² − 1.",
+   "erradas": {
+    "A": "12¹⁰ sai de trocar base e expoente: o 12 é o número de posições e vai no expoente; a base é o número de opções por posição, 10.",
+    "B": "9 × 10¹¹ sai de proibir o zero só no primeiro dígito: 9 × 10¹¹. A regra proíbe apenas a sequência toda de zeros; uma inscrição pode começar por 0.",
+    "C": "10⁶ não confere: são 12 posições com 10 opções cada, o que dá 10¹²; 10⁶ corresponde a uma sequência de apenas 6 dígitos.",
+    "D": "7 × 10⁶ não confere: o total de sequências de 12 dígitos é 10¹², e tirar uma só sequência deixa 10¹² − 1, muito acima de 7 × 10⁶."
+   },
+   "armadilha": "A regra tira só uma sequência (a de doze zeros), não o zero da primeira posição.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A quantidade máxima de inscrições de 12 dígitos, sem a de todos os dígitos zero.",
+    "chave": "10 opções em cada uma das 12 posições: 10¹²; menos a sequência 000000000000.",
+    "cuidado": "Expoente é o número de posições; e só uma sequência é proibida."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso pequeno",
+    "ideia": "Com 2 dígitos: 00 a 99 são 10² = 100; sem o 00, 10² − 1 = 99; o mesmo raciocínio dá 10¹² − 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10 × 10 × … × 10 (12 vezes)",
+    "nota": "10 opções por posição"
+   },
+   {
+    "linha": "= 10¹²",
+    "nota": "todas as sequências"
+   },
+   {
+    "linha": "10¹² − 1",
+    "nota": "tira a sequência de doze zeros"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "UFRR/CPV — Edital nº 97/24, gabarito oficial do Vestibular 2025 (PDF não aberto daqui)",
+    "url": "https://editais.ufrr.br/editais/arquivo/568/edital-n-97-24-gabarito-oficial-vestibular-2025.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  },
+  "gabarito_aprendice": {
+   "letra": "E",
+   "letra_conferente": "E",
+   "preliminar": "E",
+   "fontes_web": [
+    {
+     "url": "https://editais.ufrr.br/editais/arquivo/568/edital-n-97-24-gabarito-oficial-vestibular-2025.pdf",
+     "letra": null,
+     "nota": "busca achou o edital do gabarito oficial, mas o trecho indexado não mostra a letra da questão 13 da Prova Integral; nenhuma resolução publicada encontrada"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }

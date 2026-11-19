@@ -281,5 +281,106 @@
    "data": "2026-11-13",
    "lote": "mat-0061"
   }
+ },
+ "P1fcb8bcf": {
+  "n": "12",
+  "conceito": "Permutação com repetição: anagramas de ENCHENTE, com E três vezes e N duas vezes.",
+  "equivocos": {
+   "A": "M13.2:dividiu-pelo-fatorial-errado",
+   "B": "M13.2:esqueceu-dividir-pelas-repeticoes",
+   "C": "M13.2:esqueceu-uma-das-repeticoes",
+   "D": "M13.2:esqueceu-uma-das-repeticoes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "ENCHENTE tem 8 letras, mas algumas se repetem. Trocar dois E de lugar não forma anagrama novo, então se divide 8! pelo fatorial de cada repetição. O trabalho real é contar certo quantas vezes cada letra aparece.",
+    "formulas": [
+     "permutação com repetição: n!/(a! · b!), com a e b as repetições"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "fatorial de n: produto de n até 1"
+     ],
+     [
+      "anagrama",
+      "qualquer reordenação de todas as letras da palavra"
+     ]
+    ]
+   },
+   "pista": "Escreva a palavra letra por letra e conte quantas vezes aparece cada uma.",
+   "passos": [
+    {
+     "faz": "Conte as letras repetidas",
+     "conta": "E N C H E N T E → 8 letras | E: 3 | N: 2 | C, H, T: 1",
+     "porque": "São três E e dois N; as demais aparecem uma vez.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a permutação com repetição",
+     "conta": "8!/(3! · 2!) → 40320/(6 · 2) → 40320/12",
+     "porque": "Divide-se por 3! porque as trocas entre os três E não mudam a palavra, e por 2! pelos dois N.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a divisão",
+     "conta": "40320/12 → 3360",
+     "porque": "É o número de sequências realmente diferentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "3360 anagramas → alternativa E",
+     "porque": "A contagem já descontou as duas repetições.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 3360 anagramas",
+   "checagem": "Conte por escolha de casas: escolha as 3 casas dos E entre 8, C(8, 3) = 56; as 2 casas dos N entre as 5 restantes, C(5, 2) = 10; as 3 letras C, H, T nas 3 casas finais, 3! = 6. 56 · 10 · 6 = 3360.",
+   "erradas": {
+    "A": "336 sai de 8!/5! = 8 · 7 · 6: divide por 5! = 120 em vez de 3! · 2! = 12. As repetições de ENCHENTE são três E e dois N.",
+    "B": "40320 sai de usar só 8! = 40320, sem dividir pelas letras repetidas.",
+    "C": "6720 sai de dividir só pelos três E: 40320/6 = 6720, esquecendo os dois N.",
+    "D": "20160 sai de dividir só pelos dois N: 40320/2 = 20160, esquecendo os três E."
+   },
+   "armadilha": "São duas repetições, E (3 vezes) e N (2 vezes): é preciso dividir por 3! e por 2!.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de anagramas de ENCHENTE.",
+    "chave": "8!/(3! · 2!) = 40320/12 = 3360.",
+    "cuidado": "Conte todas as letras repetidas antes de dividir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "escolher as casas",
+    "ideia": "C(8, 3) casas para os E, C(5, 2) para os N e 3! para C, H, T: 56 · 10 · 6 = 3360"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ENCHENTE: 8 letras, E 3 vezes, N 2 vezes",
+    "nota": "contar repetições"
+   },
+   {
+    "linha": "8!/(3! · 2!) = 40320/12",
+    "nota": "dividir pelas trocas que não mudam a palavra"
+   },
+   {
+    "linha": "40320/12 = 3360",
+    "nota": "anagramas distintos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
  }
 }
