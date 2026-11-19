@@ -817,5 +817,126 @@
    "data": "2026-11-19",
    "lote": "mat-0077"
   }
+ },
+ "P7b93c864": {
+  "n": "9",
+  "conceito": "Involução sem ponto fixo: f troca os elementos aos pares; contar os emparelhamentos de 10 elementos.",
+  "equivocos": {
+   "B": "M13.9:esqueceu-o-par-fixado",
+   "C": "M13.9:achou-que-f3-e-identidade",
+   "D": "M13.9:nao-viu-que-involucao-e-bijetora",
+   "E": "M13.9:achou-que-f3-e-identidade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As propriedades I e II dizem que f troca os elementos aos pares: se f(a) = b, então f(b) = a, e ninguém fica parado. Então escolher f é dividir os 10 elementos em 5 pares. Para contar, pegue o primeiro elemento livre e escolha o par dele, repetindo.",
+    "formulas": [
+     "nº de f = 9 · 7 · 5 · 3 · 1",
+     "f(f(x)) = x → f(f(f(x))) = f(x)"
+    ],
+    "simbolos": [
+     [
+      "f(f(x)) = x",
+      "aplicar f duas vezes volta ao início"
+     ],
+     [
+      "injetora",
+      "elementos diferentes vão para imagens diferentes"
+     ],
+     [
+      "sobrejetora",
+      "todo elemento de X é imagem de alguém"
+     ]
+    ]
+   },
+   "pista": "Descubra o que I e II juntas obrigam f a fazer com cada elemento e com o elemento para onde ele vai.",
+   "passos": [
+    {
+     "faz": "Julgue a 1ª afirmativa",
+     "conta": "f(a) = f(b) → f(f(a)) = f(f(b)) → a = b | y = f(f(y))",
+     "porque": "Aplicando f aos dois lados, I mostra que f é injetora; e todo y é imagem de f(y), então é sobrejetora. V.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Julgue a 2ª afirmativa",
+     "conta": "f(x1) = x5 e f(x5) = x2 → f(f(x1)) = x2 ≠ x1",
+     "porque": "Viola a propriedade I, que exigiria f(x5) = x1. F.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Julgue a 3ª afirmativa",
+     "conta": "f(f(f(x))) = f(x) ≠ x",
+     "porque": "Por I, as duas primeiras aplicações voltam a x; sobra f(x), que por II é diferente de x. F.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conte as funções",
+     "conta": "10 elementos: 9 · 7 · 5 · 3 · 1 = 945 | com f(x1) = x2: 7 · 5 · 3 · 1 = 105",
+     "porque": "x1 escolhe o par entre 9; o próximo livre entre 7; e assim por diante. Fixando o par {x1, x2}, sobram 8 elementos. V e V.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a sequência",
+     "conta": "V, F, F, V, V",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — V, F, F, V, V",
+   "checagem": "Pela fórmula de pares: 10! ÷ (2⁵ · 5!) = 3 628 800 ÷ (32 · 120) = 945, e 8! ÷ (2⁴ · 4!) = 40 320 ÷ 384 = 105. Batem com a contagem passo a passo.",
+   "erradas": {
+    "B": "B erra a 4ª: com f(x1) = x2 fixado, sobram 8 elementos para emparelhar, 7 · 5 · 3 · 1 = 105, então ela é V.",
+    "C": "C erra a 2ª e a 3ª (f(f(x1)) = x2 viola I; f(f(f(x))) = f(x) ≠ x) e também as contagens, que são V.",
+    "D": "D erra a 1ª (f é bijetora, logo V), a 2ª (viola I) e a 5ª (945 está certo).",
+    "E": "E erra a 1ª, a 3ª e a 4ª: f é bijetora, f³(x) = f(x) ≠ x e há 105 funções com f(x1) = x2."
+   },
+   "armadilha": "Achar que f(f(f(x))) = x porque f(f(x)) = x: três aplicações dão f(x), que nunca é x.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Julgar cinco afirmações sobre funções com f(f(x)) = x e sem ponto fixo.",
+    "chave": "f troca os elementos em pares: 9 · 7 · 5 · 3 · 1 = 945 funções.",
+    "cuidado": "Número ímpar de aplicações dá f(x), número par dá x."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula de pares",
+    "ideia": "Dividir 10 elementos em 5 pares sem ordem: 10! ÷ (2⁵ · 5!) = 945."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(f(f(x))) = f(x) → f(x) ≠ x",
+    "nota": "f(f(x)) vira x: 3ª afirmativa é F"
+   },
+   {
+    "linha": "10 elementos → 9 · 7 · 5 · 3 · 1",
+    "nota": "x1 escolhe o par, depois o próximo livre"
+   },
+   {
+    "linha": "9 · 7 · 5 · 3 · 1 = 945",
+    "nota": "5ª afirmativa é V"
+   },
+   {
+    "linha": "par {x1, x2} fixo → 7 · 5 · 3 · 1 = 105",
+    "nota": "sobram 8 elementos: 4ª é V"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Caderno oficial UEL 2023, 1ª fase, questão 9 (gabarito definitivo COPS/UEL)",
+    "url": "https://www.cops.uel.br/v2/download.php?Acesso=NTc0NTQyMzZjZTU3Mzg2MDZkNzAwMjMyMmVmZjA2MjJiM2EzNjg5NDhlYTY1NGM5NGU3N2Q0NGNkYTM2NTUzZmRhNDZjOTVjYTczNjk3NzE4NTY2OTEwNTZhNzY0NzVmNWQ0YjkyZTU2ZmNjZDk0MzNlOTdkZTk0MTE4ZTc5ZGM="
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0082"
+  }
  }
 }

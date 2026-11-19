@@ -877,5 +877,130 @@
    "data": "2026-11-19",
    "lote": "mat-0075"
   }
+ },
+ "Pc3a9046b": {
+  "n": "90",
+  "conceito": "Montar uma proporção e resolver um sistema de inequações com as restrições de volume total e de estoque.",
+  "equivocos": {
+   "A": "M04.4:inverteu-a-desigualdade",
+   "B": "M04.4:ignorou-o-volume-minimo",
+   "C": "M04.4:ignorou-o-volume-minimo",
+   "D": "M04.4:fracao-do-total-no-lugar-da-razao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Três partes de NaOH para duas de água: a água é 2/3 do NaOH. Depois junte as restrições: o total entre 3 mL e 5 mL e o estoque de cada líquido (5 000 µL = 5 mL de NaOH, 1 600 µL = 1,6 mL de água). O intervalo final é o que obedece a todas ao mesmo tempo.",
+    "formulas": [
+     "água/NaOH = 2/3 → água = 2x/3",
+     "1 000 µL = 1 mL"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "volume de NaOH usado, em mL"
+     ],
+     [
+      "µL",
+      "microlitro: milésima parte do mililitro"
+     ],
+     [
+      "≤",
+      "menor ou igual"
+     ]
+    ]
+   },
+   "pista": "Converta os estoques para mL antes de tudo; o estoque de água é o que corta o intervalo.",
+   "passos": [
+    {
+     "faz": "Escreva a água em função de x",
+     "conta": "NaOH/água = 3/2 → água = 2x/3",
+     "porque": "Para cada 3 partes de NaOH vão 2 de água, então a água é dois terços do NaOH.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta os estoques",
+     "conta": "5 000 µL → 5 mL | 1 600 µL → 1,6 mL",
+     "porque": "1 µL = 10⁻⁶ L = 10⁻³ mL, então divide por 1 000.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o limite do volume total",
+     "conta": "3 ≤ x + 2x/3 ≤ 5 → 3 ≤ 5x/3 ≤ 5 → 9/5 ≤ x ≤ 3",
+     "porque": "Somam-se os dois líquidos; o 3 que divide passa multiplicando e o 5 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o estoque de água",
+     "conta": "2x/3 ≤ 1,6 → 2x ≤ 4,8 → x ≤ 2,4",
+     "porque": "Não se pode usar mais água do que há; o estoque de NaOH (x ≤ 5) não corta nada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as restrições",
+     "conta": "1,8 ≤ x ≤ 3 e x ≤ 2,4 → 1,8 ≤ x ≤ 2,4",
+     "porque": "Vale a interseção: mínimo do total e máximo da água. Água = 2x/3 e intervalo 1,8 ≤ x ≤ 2,4: alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — água = 2x/3 mL e 1,8 ≤ x ≤ 2,4",
+   "checagem": "Nas pontas: x = 1,8 dá água 1,2 e total 3,0 mL (o mínimo); x = 2,4 dá água 1,6 (todo o estoque) e total 4,0 mL, dentro do máximo de 5.",
+   "erradas": {
+    "A": "A sai de inverter a restrição da água: escrever 2x/3 ≥ 1,6 dá x ≥ 2,4, e junto com x ≤ 3 sai 2,4 ≤ x ≤ 3.",
+    "B": "B não confere: x = 1,7 está no intervalo e dá total 1,7 + 2·1,7/3 ≈ 2,83 mL, abaixo dos 3 mL exigidos.",
+    "C": "C não confere: x = 1,5 está no intervalo e dá total 1,5 · 5/3 = 2,5 mL, abaixo do mínimo; só o topo, x = 1,8, chega aos 3 mL.",
+    "D": "D sai de confundir a fração: 2/5 é a parte da água no TOTAL da mistura, não em relação ao NaOH; em relação a x, a água é 2x/3."
+   },
+   "armadilha": "O estoque de 1,6 mL de água é o que fecha o intervalo em 2,4: sem ele, o limite de 5 mL daria até 3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A água em função de x e o intervalo possível de x.",
+    "chave": "Água = 2x/3; 3 ≤ 5x/3 ≤ 5 e 2x/3 ≤ 1,6.",
+    "cuidado": "Converter µL para mL e aplicar o estoque de água."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo total",
+    "ideia": "Chame o total de T: NaOH = 3T/5 e água = 2T/5; 2T/5 ≤ 1,6 dá T ≤ 4, e 3 ≤ T ≤ 4 leva a 1,8 ≤ x ≤ 2,4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "água = 2x/3",
+    "nota": "3 partes de NaOH para 2 de água"
+   },
+   {
+    "linha": "3 ≤ x + 2x/3 ≤ 5",
+    "nota": "limite do volume total"
+   },
+   {
+    "linha": "3 ≤ 5x/3 ≤ 5 → 9/5 ≤ x ≤ 3",
+    "nota": "multiplica por 3 e divide por 5"
+   },
+   {
+    "linha": "2x/3 ≤ 1,6 → x ≤ 2,4",
+    "nota": "estoque de água: 1 600 µL = 1,6 mL"
+   },
+   {
+    "linha": "1,8 ≤ x ≤ 2,4",
+    "nota": "interseção das restrições"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Caderno e gabarito Unesp 2022 1ª fase (cópia do Curso Objetivo), questão 90",
+    "url": "https://www.curso-objetivo.br/vestibular/resolucao-comentada/unesp/2022/1fase/1dia/UNESP2022_1fase_prova.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0082"
+  }
  }
 }

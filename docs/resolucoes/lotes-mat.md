@@ -87,8 +87,9 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | mat-0079 | demais nível 7-10 | 50 | gravado | 50 | 0 | 0 |
 | mat-0080 | demais nível 7-10 | 50 | gravado | 49 | 1 | 0 |
 | mat-0081 | demais nível 7-10 | 8 | gravado | 8 | 0 | 0 |
-| mat-0082 | provas-alvo nível 1-6 | 3 | aberto |  |  |  |
+| mat-0082 | provas-alvo nível 1-6 | 3 | gravado | 3 | 0 | 0 |
 | mat-pend-0001 | pendentes todos-menos-anular | 15 | gravado | 8 | 7 | 0 |
+| mat-pend-0002 | pendentes reclassificada | 2 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 

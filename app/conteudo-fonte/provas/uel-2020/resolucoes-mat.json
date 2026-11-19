@@ -615,5 +615,122 @@
    "data": "2026-11-19",
    "lote": "mat-0075"
   }
+ },
+ "Pa1b2ee02": {
+  "n": "20",
+  "conceito": "Probabilidade de acertar uma sequência inteira com sorteios independentes: multiplica 1/4 por posição.",
+  "equivocos": {
+   "A": "M13.4:errou-potencia-de-10",
+   "C": "M13.4:contou-as-duas-cadeias",
+   "D": "M13.4:dividiu-em-vez-de-multiplicar",
+   "E": "M13.4:dividiu-em-vez-de-multiplicar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada uma das 150 milhões de posições é sorteada entre 4 letras, e só uma letra serve em cada posição. Os sorteios são independentes, então as chances se multiplicam: (1/4) elevado a 150 milhões. Depois é só escrever 4 como 2².",
+    "formulas": [
+     "P(todas) = (1/4)ⁿ",
+     "(1/4)ⁿ = 4⁻ⁿ = 2⁻²ⁿ"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número de posições sorteadas: 150 milhões = 1,5 × 10⁸"
+     ],
+     [
+      "2⁻ᵏ",
+      "o mesmo que 1/2ᵏ"
+     ]
+    ]
+   },
+   "pista": "Calcule a chance de acertar uma única posição e pense no que acontece com 150 milhões delas.",
+   "passos": [
+    {
+     "faz": "Ache a chance de uma posição",
+     "conta": "1 letra certa entre A, C, G, T → 1/4",
+     "porque": "O sorteio é honesto e só a letra da cadeia fixada serve.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as posições",
+     "conta": "1/4 × 1/4 × … (n vezes) → (1/4)ⁿ, n = 1,5 × 10⁸",
+     "porque": "Os sorteios são independentes; acertar a sequência é acertar todas as posições.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque 4 por 2²",
+     "conta": "(1/4)ⁿ → 4⁻ⁿ → 2⁻²ⁿ",
+     "porque": "1/4 = 4⁻¹ e 4 = 2², então o expoente dobra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ponha o número no expoente",
+     "conta": "2n = 2 × 1,5 × 10⁸ → 3 × 10⁸ → P = 2^(−3 × 10⁸)",
+     "porque": "Dobrar 150 milhões dá 300 milhões.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "P = 2^(−3 × 10⁸)",
+     "porque": "É a alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 2^(−3×10⁸)",
+   "checagem": "Por contagem: o programa pode gerar 4ⁿ sequências diferentes, todas com a mesma chance, e só uma é a cadeia. P = 1/4ⁿ = 4^(−1,5 × 10⁸) = 2^(−3 × 10⁸).",
+   "erradas": {
+    "A": "A sai de errar a potência de 10: 2 × 1,5 × 10⁸ = 3 × 10⁸, não 3 × 10⁷.",
+    "C": "C sai de dobrar duas vezes: 4^(−3 × 10⁸) = 2^(−6 × 10⁸), como se fossem 300 milhões de posições na base 4 (contou as duas cadeias).",
+    "D": "D sai de somar em vez de multiplicar: 1/(4 × 1,5 × 10⁸) = 1/(6 × 10⁸) = 60⁻¹ × 10⁻⁷, tratando as posições como uma escolha só.",
+    "E": "E não confere: 60⁻¹ × 10⁻⁸ = 1/(6 × 10⁹), que nem a conta 1/(4n) alcança; e a resposta precisa ter n no expoente."
+   },
+   "armadilha": "Acertar a sequência é acertar TODAS as posições: as chances se multiplicam (expoente), não se dividem pelo número de posições.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de o sorteio gerar exatamente uma cadeia fixada.",
+    "chave": "(1/4)ⁿ = 2⁻²ⁿ, com n = 1,5 × 10⁸.",
+    "cuidado": "Contar só uma cadeia e conferir a potência de 10 ao dobrar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "casos favoráveis sobre possíveis",
+    "ideia": "São 4ⁿ sequências equiprováveis e 1 favorável: P = 4⁻ⁿ = 2^(−3 × 10⁸)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(1 posição) = 1/4",
+    "nota": "uma letra certa em quatro"
+   },
+   {
+    "linha": "P = (1/4)^(1,5 × 10⁸)",
+    "nota": "posições independentes: multiplica"
+   },
+   {
+    "linha": "(1/4)ⁿ = (2²)⁻ⁿ = 2⁻²ⁿ",
+    "nota": "4 vira 2², o expoente dobra"
+   },
+   {
+    "linha": "2 × 1,5 × 10⁸ = 3 × 10⁸ → P = 2^(−3 × 10⁸)",
+    "nota": "conta do expoente"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Caderno oficial UEL 2020, 1ª fase, questão 20 (gabarito definitivo COPS/UEL)",
+    "url": "https://www.cops.uel.br/v2/download.php?Acesso=NTc0NTQyMzZjZTU3Mzg2MDZkNzAwMjMyMmVmZjA2MjJiM2EzNjg5NDhlYTY1NGM5NGU3N2Q0NGNkYTM2NTUzZjlhOTEzMjM4OGFjNWRkNDM1MDk2ZmNiNzNlZGEwZjQ4OTExYmNkZWI5NDJjYjJjODliNDEwY2ViOTIyNDZhZTI="
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0082"
+  }
  }
 }
