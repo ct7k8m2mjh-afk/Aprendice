@@ -500,5 +500,131 @@
    "data": "2026-11-19",
    "lote": "fis-0063"
   }
+ },
+ "Pa14a08ba": {
+  "n": "25",
+  "conceito": "Leitura de gráficos de tensão e corrente num instante, leis de Kirchhoff (nós e malha) e potência fornecida por uma fonte com sinal.",
+  "equivocos": {
+   "A": "F11.7:trocou-o-sinal-da-potencia",
+   "C": "F11.7:errou-a-leitura-do-grafico",
+   "D": "F11.7:errou-a-leitura-do-grafico",
+   "E": "F11.7:errou-a-leitura-do-grafico"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em t = 3 s, leia nos gráficos a tensão e a corrente da carga. A tensão da carga é a mesma do resistor de 1 Ω (estão em paralelo), então você acha a corrente dele, soma as correntes no nó para obter a corrente da fonte e anda na malha para achar V_F. A potência fornecida pela fonte é V_F vezes a corrente que sai pelo seu polo +; os sinais negativos fazem parte da resposta.",
+    "formulas": [
+     "U = R · i",
+     "nó: i_F = i_1Ω + i_carga",
+     "malha: V_F = 2 · i_F + V_carga",
+     "P_fornecida = V_F · i_F"
+    ],
+    "simbolos": [
+     [
+      "V_carga",
+      "tensão sobre o dispositivo (Figura 1)"
+     ],
+     [
+      "i_carga",
+      "corrente no dispositivo (Figura 2)"
+     ],
+     [
+      "V_F",
+      "tensão da fonte"
+     ],
+     [
+      "i_F",
+      "corrente que sai do polo + da fonte e passa pelo resistor de 2 Ω"
+     ]
+    ]
+   },
+   "pista": "Primeiro leia os dois gráficos exatamente em t = 3 s; depois pense em qual resistor tem a mesma tensão da carga.",
+   "passos": [
+    {
+     "faz": "Leia os gráficos em t = 3 s",
+     "conta": "V_carga(3) = 1 V | i_carga(3) = −6 A",
+     "porque": "Na Figura 1, em t = 3 s termina o patamar de 1 V; na Figura 2, a corrente cai de 4 A em t = 2 s até −6 A em t = 3 s.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache a corrente no resistor de 1 Ω",
+     "conta": "i_1Ω = 1 V/1 Ω = 1 A",
+     "porque": "O resistor de 1 Ω e a carga estão ligados aos mesmos dois nós, então têm a mesma tensão de 1 V.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as correntes no nó",
+     "conta": "i_F = i_1Ω + i_carga → i_F = 1 + (−6) = −5 A",
+     "porque": "Toda a corrente que vem do resistor de 2 Ω se divide entre o de 1 Ω e a carga. O sinal negativo diz que, nesse instante, a corrente real no 2 Ω vai do nó para a fonte.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ande na malha e ache V_F",
+     "conta": "V_F = 2 · i_F + V_carga → V_F = 2 · (−5) + 1 = −9 V",
+     "porque": "A tensão da fonte é a queda no resistor de 2 Ω mais a tensão do nó (1 V).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a potência fornecida pela fonte",
+     "conta": "P = V_F · i_F → P = (−9) · (−5) = 45 W",
+     "porque": "Tensão e corrente da fonte são negativas ao mesmo tempo: a corrente sai pelo terminal que está no potencial mais alto, então a fonte de fato fornece 45 W. Alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a fonte fornece 45 W ao circuito em t = 3 s.",
+   "checagem": "Balanço de potências: o 2 Ω dissipa 2 · 5² = 50 W, o 1 Ω dissipa 1 · 1² = 1 W e a carga absorve 1 · (−6) = −6 W (ela devolve 6 W). Total: 50 + 1 − 6 = 45 W, igual ao que a fonte fornece.",
+   "erradas": {
+    "A": "Sai de trocar o sinal da potência: (−9) · (−5) = +45 W, e não −45 W. Tensão e corrente negativas juntas significam que a fonte fornece energia.",
+    "C": "−57 W não confere: com V = 1 V e i = −6 A em t = 3 s, i_F = −5 A e V_F = −9 V, e o produto é +45 W.",
+    "D": "57 W não confere: o balanço de potências do circuito em t = 3 s (50 W no 2 Ω, 1 W no 1 Ω, −6 W na carga) dá 45 W, não 57 W.",
+    "E": "60 W não confere: exigiria V_F · i_F = 60 com i_F = −5 A, ou seja V_F = −12 V, mas a malha dá V_F = 2 · (−5) + 1 = −9 V."
+   },
+   "armadilha": "Os sinais: corrente da carga negativa e V_F negativa, e quem se perde num deles marca −45 W em vez de 45 W.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A potência fornecida pela fonte V_F em t = 3 s.",
+    "chave": "V = 1 V e i = −6 A na carga; 1 A no 1 Ω; i_F = −5 A; V_F = −9 V; P = (−9) · (−5) = 45 W.",
+    "cuidado": "Manter os sinais do gráfico até o fim e lembrar que a carga e o 1 Ω têm a mesma tensão."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "balanço de potências",
+    "ideia": "A fonte fornece o que os outros elementos absorvem: 2 · 5² + 1 · 1² + 1 · (−6) = 50 + 1 − 6 = 45 W."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V_carga = 1 V | i_carga = −6 A",
+    "nota": "leitura em t = 3 s"
+   },
+   {
+    "linha": "i_1Ω = 1/1 = 1 A",
+    "nota": "mesma tensão da carga"
+   },
+   {
+    "linha": "i_F = 1 + (−6) = −5 A",
+    "nota": "lei dos nós"
+   },
+   {
+    "linha": "V_F = 2 · (−5) + 1 = −9 V",
+    "nota": "lei das malhas"
+   },
+   {
+    "linha": "P = (−9) · (−5) = 45 W",
+    "nota": "potência fornecida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
  }
 }

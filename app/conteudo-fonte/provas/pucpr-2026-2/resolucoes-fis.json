@@ -241,5 +241,254 @@
    "data": "2026-11-19",
    "lote": "fis-0062"
   }
+ },
+ "P8de7ab4a": {
+  "n": "38",
+  "conceito": "Gerador real com resistor externo: corrente i = E/(R + r), potência dissipada no resistor e energia que vira calor sensível na água.",
+  "equivocos": {
+   "A": "F11.7:usou-potencia-da-resistencia-interna",
+   "B": "F11.7:conta-de-potencia-errada",
+   "C": "F11.7:conta-de-potencia-errada",
+   "E": "F11.7:usou-potencia-total-do-gerador"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A energia que aquece a água é só a dissipada no resistor externo, não a da bateria inteira. Ache a corrente com a resistência interna incluída, a potência no resistor de 4 Ω, a energia em 10 s e use Q = m · c · Δθ. As unidades já casam: J, g e J/(g·°C).",
+    "formulas": [
+     "i = E/(R + r)",
+     "P = R · i²",
+     "Q = P · Δt",
+     "Q = m · c · Δθ"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "força eletromotriz da bateria"
+     ],
+     [
+      "r",
+      "resistência interna"
+     ],
+     [
+      "P",
+      "potência dissipada no resistor, em watt (J/s)"
+     ],
+     [
+      "c",
+      "calor específico da água, em J/(g·°C)"
+     ],
+     [
+      "Δθ",
+      "variação de temperatura"
+     ]
+    ]
+   },
+   "pista": "Antes de pensar na água, descubra quanta corrente passa: a resistência interna também está no caminho.",
+   "passos": [
+    {
+     "faz": "Ache a corrente do circuito",
+     "conta": "i = E/(R + r) = 20/(4 + 1) = 20/5 = 4 A",
+     "porque": "A corrente atravessa o resistor de 4 Ω e a resistência interna de 1 Ω, em série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a potência no resistor",
+     "conta": "P = R · i² = 4 · 4² = 4 · 16 = 64 W",
+     "porque": "Só a energia dissipada no resistor externo vai para a água; a parte perdida dentro da bateria fica fora.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a energia em 10 s",
+     "conta": "Q = P · Δt = 64 W · 10 s = 640 J",
+     "porque": "Watt é joule por segundo; em 10 s o resistor entrega 640 J.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a variação de temperatura",
+     "conta": "640 = 20 · 4 · Δθ → Δθ = 640/80 = 8 °C",
+     "porque": "O produto 20 · 4 = 80 passa para o outro lado dividindo: cada 80 J aquecem os 20 g em 1 °C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some à temperatura inicial",
+     "conta": "θ_final = 25 + 8 = 33 °C",
+     "porque": "Δθ é o aumento; a água começou a 25 °C. Alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a água chegaria a 33 °C.",
+   "checagem": "Pela tensão nos terminais: U = E − r · i = 20 − 1 · 4 = 16 V, e P = U · i = 16 · 4 = 64 W, a mesma potência no resistor; 64 · 10/80 = 8 °C de aumento.",
+   "erradas": {
+    "A": "Sai de usar a potência da resistência interna: r · i² = 1 · 16 = 16 W, 160 J em 10 s, Δθ = 160/80 = 2 °C e 27 °C.",
+    "B": "28 °C não confere: pediria Δθ = 3 °C, ou seja 240 J em 10 s (24 W), mas o resistor de 4 Ω dissipa 64 W.",
+    "C": "30 °C não confere: pediria Δθ = 5 °C, ou seja 400 J em 10 s (40 W), mas o resistor de 4 Ω dissipa 64 W.",
+    "E": "Sai de usar a potência total da bateria: E · i = 20 · 4 = 80 W, 800 J, Δθ = 800/80 = 10 °C e 35 °C; essa potência inclui a perdida dentro da bateria."
+   },
+   "armadilha": "Usar a potência total da bateria, E · i = 80 W, em vez da dissipada só no resistor, 64 W.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A temperatura final de 20 g de água aquecidos pela energia do resistor de 4 Ω em 10 s.",
+    "chave": "i = 20/5 = 4 A; P = 4 · 16 = 64 W; 640 J; Δθ = 640/80 = 8 °C; 25 + 8 = 33 °C.",
+    "cuidado": "Incluir r na corrente, mas contar como calor só a potência do resistor externo, e somar Δθ à temperatura inicial."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tensão nos terminais",
+    "ideia": "U = 20 − 1 · 4 = 16 V no resistor, P = 16 · 4 = 64 W, e daí 640 J e 8 °C."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i = 20/(4 + 1) = 4 A",
+    "nota": "corrente com a resistência interna"
+   },
+   {
+    "linha": "P = 4 · 4² = 64 W",
+    "nota": "potência só no resistor"
+   },
+   {
+    "linha": "Q = 64 · 10 = 640 J",
+    "nota": "energia em 10 s"
+   },
+   {
+    "linha": "640 = 20 · 4 · Δθ → Δθ = 640/80 = 8 °C",
+    "nota": "calor sensível"
+   },
+   {
+    "linha": "25 + 8 = 33 °C",
+    "nota": "temperatura final"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
+ },
+ "P69314019": {
+  "n": "39",
+  "conceito": "Trabalho da força elétrica em campo uniforme entre placas: ΔEc = q · E · d, com E = U/d_placas.",
+  "equivocos": {
+   "A": "F11.3:usou-a-distancia-entre-as-placas",
+   "B": "F11.3:usou-a-soma-das-margens",
+   "C": "F11.3:distancia-ate-a-placa-em-vez-de-ate-b",
+   "D": "F11.3:energia-acima-do-maximo-possivel"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Entre as placas o campo é uniforme, então sai direto da tensão e da distância entre elas. Como a força elétrica é a única relevante, toda a variação de energia cinética é o trabalho dessa força. O cuidado está na distância de A até B: não são os 5 cm inteiros.",
+    "formulas": [
+     "E = U/d (campo uniforme entre placas)",
+     "W = q × E × d (trabalho da força elétrica)",
+     "ΔEc = W (teorema da energia cinética)"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "campo elétrico, em V/m"
+     ],
+     [
+      "U",
+      "d.d.p. entre as placas, em volt"
+     ],
+     [
+      "q",
+      "carga da partícula; µC = 10⁻⁶ C"
+     ],
+     [
+      "ΔEc",
+      "variação da energia cinética"
+     ],
+     [
+      "µJ",
+      "microjoule, 10⁻⁶ J"
+     ]
+    ]
+   },
+   "pista": "Descubra quanto vale a distância entre A e B a partir das distâncias de cada ponto à sua placa.",
+   "passos": [
+    {
+     "faz": "Calcule o campo entre as placas",
+     "conta": "E = 10 V/0,05 m → E = 200 V/m",
+     "porque": "O campo é uniforme, então é a tensão dividida pela distância entre as placas, com 5 cm passados para 0,05 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a distância de A até B",
+     "conta": "d_AB = 5 cm − 1 cm − 1 cm → d_AB = 3 cm = 0,03 m",
+     "porque": "A fica a 1 cm da placa positiva e B a 1 cm da negativa; o trecho entre eles é o que sobra dos 5 cm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o trabalho da força elétrica",
+     "conta": "W = 2 × 10⁻⁶ × 200 × 0,03 → W = 12 × 10⁻⁶ J",
+     "porque": "A força q × E é constante e paralela ao deslocamento de A para B, então o trabalho é força vezes distância.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à energia cinética",
+     "conta": "ΔEc = W → ΔEc = 12 µJ",
+     "porque": "Só a força elétrica atua, então todo o trabalho vira energia cinética; é a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 12 µJ.",
+   "checagem": "Pela d.d.p.: o potencial cai 10 V em 5 cm, ou 2 V por cm; entre A e B (3 cm) a diferença é 6 V, e q × U_AB = 2 µC × 6 V = 12 µJ.",
+   "erradas": {
+    "A": "Sai de usar a d.d.p. inteira das placas: 2 µC × 10 V = 20 µJ, como se a partícula fosse de uma placa à outra (5 cm).",
+    "B": "Sai de usar a soma das distâncias às placas, 1 + 1 = 2 cm: 2 × 10⁻⁶ × 200 × 0,02 = 8 µJ. Os 2 cm são o que fica fora do trajeto.",
+    "C": "Sai de usar a distância de A até a placa negativa, 5 − 1 = 4 cm: 2 × 10⁻⁶ × 200 × 0,04 = 16 µJ. B fica 1 cm antes dessa placa.",
+    "D": "Não confere: 25 µJ passaria do trabalho máximo possível entre as placas, que é 2 µC × 10 V = 20 µJ."
+   },
+   "armadilha": "Usar os 5 cm entre as placas (ou a tensão inteira de 10 V) no lugar dos 3 cm que separam A de B.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A variação da energia cinética da partícula entre A e B.",
+    "chave": "E = 10/0,05 = 200 V/m; d_AB = 3 cm; ΔEc = 2 × 10⁻⁶ × 200 × 0,03 = 12 µJ.",
+    "cuidado": "Descontar 1 cm de cada lado: a distância de A até B é 3 cm."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela diferença de potencial",
+    "ideia": "O potencial cai 2 V por cm; em 3 cm, U_AB = 6 V, e ΔEc = q × U_AB = 2 µC × 6 V = 12 µJ."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "E = 10/0,05 = 200 V/m",
+    "nota": "campo uniforme entre as placas"
+   },
+   {
+    "linha": "d_AB = 5 − 1 − 1 = 3 cm = 0,03 m",
+    "nota": "distância de A até B"
+   },
+   {
+    "linha": "W = 2 × 10⁻⁶ × 200 × 0,03",
+    "nota": "trabalho da força elétrica"
+   },
+   {
+    "linha": "ΔEc = 12 × 10⁻⁶ J = 12 µJ",
+    "nota": "teorema da energia cinética"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
  }
 }

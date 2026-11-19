@@ -554,5 +554,103 @@
    "data": "2026-11-13",
    "lote": "fis-0060"
   }
+ },
+ "Pc9d02a2d": {
+  "n": "18",
+  "conceito": "Ligação do amperímetro: em série com o trecho e com resistência interna muito menor que a do trecho, para não alterar a corrente medida.",
+  "equivocos": {
+   "A": "F11.8:resistencia-do-amperimetro-invertida",
+   "B": "F11.8:amperimetro-em-paralelo",
+   "D": "F11.8:confundiu-amperimetro-com-voltimetro"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para medir a corrente de um trecho, a mesma corrente tem de passar pelo amperímetro, então ele entra em série. Ao entrar em série, a resistência dele se soma à do trecho; para quase não mudar a corrente, ela tem de ser desprezível perto de Re. O amperímetro ideal tem resistência zero.",
+    "formulas": [
+     "série: R_total = Re + RA",
+     "i = U/(Re + RA) ≈ U/Re se RA ≪ Re"
+    ],
+    "simbolos": [
+     [
+      "RA",
+      "resistência interna do amperímetro"
+     ],
+     [
+      "Re",
+      "resistência efetiva do trecho medido"
+     ],
+     [
+      "≪",
+      "muito menor que"
+     ]
+    ]
+   },
+   "pista": "Pense primeiro em qual ligação faz a corrente do trecho passar inteira pelo aparelho.",
+   "passos": [
+    {
+     "faz": "Escolha a ligação",
+     "conta": "amperímetro: mesma corrente do trecho → série",
+     "porque": "Só em série toda a corrente do trecho atravessa o aparelho; isso elimina B e D.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Veja o efeito de RA na corrente",
+     "conta": "i = U/Re → i' = U/(Re + RA)",
+     "porque": "Em série, a resistência do amperímetro se soma à do trecho e reduz a corrente que se quer medir.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Compare RA com Re",
+     "conta": "RA ≪ Re → i' ≈ U/Re = i",
+     "porque": "Se RA for desprezível perto de Re, a corrente quase não muda e a leitura é fiel. Alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — em série, com RA muito menor que Re.",
+   "checagem": "Exemplo: trecho de 100 Ω em 10 V. Sem aparelho, 0,1 A. Com RA = 0,1 Ω, i = 10/100,1 ≈ 0,0999 A (quase igual); com RA = 1 000 Ω, i = 10/1 100 ≈ 0,009 A, a corrente cai a menos de um décimo.",
+   "erradas": {
+    "A": "Acerta a série mas erra a resistência: RA muito maior que Re somaria muito ao trecho e derrubaria a corrente que se quer medir.",
+    "B": "Em paralelo, o amperímetro de resistência pequena desviaria quase toda a corrente do trecho, como um curto, e não mediria a corrente dele.",
+    "D": "É a ligação do voltímetro: em paralelo e com resistência muito grande mede tensão, não corrente do trecho."
+   },
+   "armadilha": "Trocar as regras do amperímetro (série, resistência quase zero) com as do voltímetro (paralelo, resistência enorme).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Como ligar o amperímetro e como deve ser RA para ele se comportar como ideal.",
+    "chave": "Em série, a resistência dele soma à do trecho; por isso RA ≪ Re.",
+    "cuidado": "Não confundir com o voltímetro, que vai em paralelo e tem resistência muito grande."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso extremo",
+    "ideia": "Se RA fosse zero, a corrente não mudaria em nada: o ideal é RA → 0, logo muito menor que Re, em série."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "amperímetro → série",
+    "nota": "mesma corrente do trecho"
+   },
+   {
+    "linha": "i' = U/(Re + RA)",
+    "nota": "RA soma ao trecho"
+   },
+   {
+    "linha": "RA ≪ Re → i' ≈ U/Re",
+    "nota": "a corrente quase não muda"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
  }
 }

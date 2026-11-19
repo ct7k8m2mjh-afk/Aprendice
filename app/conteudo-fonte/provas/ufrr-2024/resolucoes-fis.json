@@ -814,5 +814,221 @@
    "data": "2026-11-19",
    "lote": "fis-0064"
   }
+ },
+ "Pd990d722": {
+  "n": "36",
+  "conceito": "Potência máxima suportada por um fusível (P = U · i) e a folga que sobra depois dos aparelhos já ligados.",
+  "equivocos": {
+   "B": "F11.8:repetiu-a-potencia-da-primeira-maquina",
+   "C": "F11.8:ignorou-o-limite-do-fusivel",
+   "D": "F11.8:respondeu-a-potencia-ja-instalada",
+   "E": "F11.8:nao-descontou-aparelhos-ligados"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O fusível limita a corrente total do circuito, e com tensão fixa isso limita a potência total. Os aparelhos da lavanderia estão ligados na mesma rede, então as potências se somam. A segunda máquina só pode usar o que sobra entre o limite e o que já está ligado.",
+    "formulas": [
+     "P = U × i",
+     "P_total = soma das potências dos aparelhos"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "potência elétrica, em watt (W)"
+     ],
+     [
+      "U",
+      "tensão da rede, em volt (V)"
+     ],
+     [
+      "i",
+      "corrente elétrica, em ampère (A)"
+     ],
+     [
+      "fusível",
+      "dispositivo que interrompe o circuito quando a corrente passa do valor dele"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro qual a potência total que o fusível de 20 A deixa passar numa rede de 110 V.",
+   "passos": [
+    {
+     "faz": "Calcule a potência máxima do circuito",
+     "conta": "P_máx = U × i → P_máx = 110 V × 20 A → P_máx = 2 200 W",
+     "porque": "Com tensão fixa, a corrente de 20 A do fusível corresponde a essa potência total; acima dela, o fusível desarma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some o que já está ligado",
+     "conta": "600 W + 1 200 W = 1 800 W",
+     "porque": "Máquina e ferro estão no mesmo circuito, então a potência deles já ocupa parte do limite.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a folga para a segunda máquina",
+     "conta": "2 200 W − 1 800 W = 400 W",
+     "porque": "A nova máquina pode usar só a potência que ainda falta para chegar ao limite do fusível.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "P_máquina2 = 400 W",
+     "porque": "É o valor da alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 400W (potência máxima da segunda máquina).",
+   "checagem": "Pela corrente: 600 + 1 200 + 400 = 2 200 W, e 2 200 W ÷ 110 V = 20 A, exatamente o limite do fusível. Qualquer máquina mais potente faria a corrente passar de 20 A.",
+   "erradas": {
+    "B": "Sai de comprar uma máquina igual à primeira: 600 + 600 + 1 200 = 2 400 W, e 2 400 ÷ 110 ≈ 21,8 A, acima dos 20 A do fusível.",
+    "C": "Com 1 200 W, o total vai a 3 000 W, e 3 000 ÷ 110 ≈ 27,3 A: o fusível desarma.",
+    "D": "Sai de responder a potência já instalada (600 + 1 200 = 1 800 W) em vez da folga que sobra até o limite.",
+    "E": "Sai de parar em P = 110 × 20 = 2 200 W, a potência máxima do circuito inteiro, sem descontar os 1 800 W já ligados."
+   },
+   "armadilha": "Os 2 200 W são o limite do circuito todo, não da máquina nova: é preciso descontar o que já está ligado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A potência máxima da segunda máquina sem desarmar o fusível de 20 A em 110 V.",
+    "chave": "P_máx = 110 × 20 = 2 200 W; já ligados 1 800 W; sobram 400 W.",
+    "cuidado": "Descontar os aparelhos que já estão no circuito."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela corrente",
+    "ideia": "Os aparelhos ligados puxam 1 800 ÷ 110 ≈ 16,4 A; sobram cerca de 3,6 A, e 110 V × (20 − 1 800/110) A = 400 W."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P_máx = 110 × 20",
+    "nota": "potência que o fusível permite"
+   },
+   {
+    "linha": "P_máx = 2 200 W",
+    "nota": "limite do circuito"
+   },
+   {
+    "linha": "P_ligada = 600 + 1 200 = 1 800 W",
+    "nota": "aparelhos já ligados"
+   },
+   {
+    "linha": "P_nova = 2 200 − 1 800 = 400 W",
+    "nota": "folga para a segunda máquina"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
+ },
+ "Pa083d775": {
+  "n": "35",
+  "conceito": "O campo de um ímã isolado não é uniforme: muda de intensidade e de direção de ponto a ponto ao redor dele.",
+  "equivocos": {
+   "A": "F12.1:campo-uniforme-junto-aos-polos",
+   "B": "F12.1:campo-uniforme-junto-ao-polo-norte",
+   "C": "F12.1:campo-uniforme-ao-lado-do-ima",
+   "D": "F12.1:todo-campo-de-ima-e-uniforme"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Campo uniforme é o que tem a mesma intensidade, a mesma direção e o mesmo sentido em todos os pontos da região, com linhas paralelas e igualmente espaçadas. Em volta de um ímã de barra, as linhas são curvas: saem do polo norte, contornam o ímã e entram no sul, e ficam mais juntas perto dos polos. Nenhuma das quatro regiões tem campo uniforme.",
+    "formulas": [
+     "campo uniforme: mesmo módulo, direção e sentido em todos os pontos",
+     "ímã de barra: linhas curvas, mais densas perto dos polos"
+    ],
+    "simbolos": [
+     [
+      "campo uniforme",
+      "campo igual em todos os pontos da região: linhas paralelas e com o mesmo espaçamento"
+     ],
+     [
+      "N",
+      "polo norte do ímã"
+     ]
+    ]
+   },
+   "pista": "Desenhe mentalmente as linhas de campo do ímã de barra e veja se, dentro de algum círculo, elas ficam paralelas e com o mesmo espaçamento.",
+   "passos": [
+    {
+     "faz": "Defina campo uniforme",
+     "conta": "uniforme: linhas paralelas, mesmo espaçamento, mesmo sentido",
+     "porque": "É o critério que cada região precisa cumprir para entrar na resposta.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste as regiões junto aos polos",
+     "conta": "regiões 1 e 2: linhas se abrem a partir do polo → espaçamento cresce com a distância",
+     "porque": "Perto do polo as linhas estão juntas e se afastam umas das outras: a intensidade cai com a distância.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste as regiões ao lado do ímã",
+     "conta": "regiões 3 e 4: linhas curvas, do N para o S → direção muda de ponto a ponto",
+     "porque": "Ao lado do ímã as linhas fazem arco; a direção do campo muda dentro do círculo.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "nenhuma região tem linhas paralelas e igualmente espaçadas",
+     "porque": "O campo de um ímã isolado não é uniforme em nenhuma região finita ao redor dele.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — em nenhuma das quatro regiões o campo é uniforme.",
+   "checagem": "Campo uniforme aparece entre dois polos opostos de ímãs em U, ou dentro de um solenoide longo; um ímã de barra sozinho não forma essa região do lado de fora.",
+   "erradas": {
+    "A": "Não confere: nas regiões 1 e 2, junto aos polos, as linhas se abrem; a intensidade diminui com a distância ao polo.",
+    "B": "Não confere: a região 2, junto ao polo norte, tem linhas saindo e se espalhando; o campo é mais forte perto do polo.",
+    "C": "Não confere: nas regiões 3 e 4, ao lado do ímã, as linhas são arcos, e a direção do campo muda de ponto a ponto.",
+    "D": "Não confere: nenhuma das regiões tem linhas paralelas e com o mesmo espaçamento ao redor de um ímã isolado."
+   },
+   "armadilha": "Achar que, ao lado do ímã, as linhas parecem paralelas ao ímã e por isso o campo seria uniforme: elas se curvam e se espaçam.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Em quais regiões em volta de um ímã isolado o campo é uniforme.",
+    "chave": "As linhas do ímã de barra são curvas e de densidade variável: em nenhuma região o campo é uniforme.",
+    "cuidado": "Uniforme exige o mesmo módulo e a mesma direção em todos os pontos da região."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "limalha de ferro",
+    "ideia": "a limalha em volta de um ímã de barra desenha arcos que se abrem a partir dos polos, nunca faixas paralelas."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "uniforme: linhas paralelas e igualmente espaçadas",
+    "nota": "critério"
+   },
+   {
+    "linha": "1 e 2: linhas se abrem a partir do polo",
+    "nota": "intensidade varia"
+   },
+   {
+    "linha": "3 e 4: linhas em arco",
+    "nota": "direção varia"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
  }
 }

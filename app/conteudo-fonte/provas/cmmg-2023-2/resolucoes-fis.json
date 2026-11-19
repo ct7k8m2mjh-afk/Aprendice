@@ -328,5 +328,136 @@
    "data": "2026-11-13",
    "lote": "fis-0058"
   }
+ },
+ "P184dd415": {
+  "n": "43",
+  "conceito": "Tensão nos terminais de um gerador real, U = ε − r_int · i, com resistência interna que cresce e circuito externo fixo.",
+  "equivocos": {
+   "A": "F11.7:leu-o-grafico-no-ponto-errado",
+   "C": "F11.7:leu-o-grafico-no-ponto-errado",
+   "D": "F11.7:conta-da-resistencia-interna-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A bateria é um gerador real: a fem ε fica fixa, e parte dela se perde na resistência interna (r mais r_inc). Do dado inicial tiramos a resistência do circuito externo, R = U/i, que não muda. Com ε e R fixos, a tensão de 60% (9 V) fixa uma nova corrente, e dela sai o r_inc necessário. O gráfico mostra r = 0,4 Ω constante e r_inc começando em zero.",
+    "formulas": [
+     "U = ε − (r + r_inc) · i",
+     "circuito externo: U = R · i",
+     "i = ε/(R + r + r_inc)"
+    ],
+    "simbolos": [
+     [
+      "ε",
+      "força eletromotriz da bateria, em volt (fixa)"
+     ],
+     [
+      "r",
+      "resistência interna original, 0,4 Ω pelo gráfico"
+     ],
+     [
+      "r_inc",
+      "resistência a mais criada pelas incrustações"
+     ],
+     [
+      "R",
+      "resistência do circuito externo"
+     ],
+     [
+      "U",
+      "tensão entre os polos da bateria"
+     ],
+     [
+      "i",
+      "corrente no circuito"
+     ]
+    ]
+   },
+   "pista": "Use o momento inicial (r_inc = 0) para descobrir o que não muda: a fem e o circuito externo.",
+   "passos": [
+    {
+     "faz": "Leia o gráfico no início",
+     "conta": "mês 0: r = 0,4 Ω | r_inc = 0",
+     "porque": "A reta r fica uma divisão (0,4 Ω) acima do zero e a curva r_inc parte do zero.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache R e ε no início",
+     "conta": "R = 15/5 = 3 Ω | ε = 15 + 0,4 × 5 = 17 V",
+     "porque": "R sai da tensão e da corrente que chegam ao circuito; a fem é a tensão nos polos mais a queda na resistência interna.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a corrente com 60% da tensão",
+     "conta": "U = 0,6 × 15 = 9 V → i = 9/3 = 3 A",
+     "porque": "O circuito externo é o mesmo, então U = R · i continua valendo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole r_inc",
+     "conta": "17 = 9 + (0,4 + r_inc) × 3 → 0,4 + r_inc = 8/3 → r_inc ≈ 2,27 Ω",
+     "porque": "A diferença entre a fem e a tensão nos polos é a queda na resistência interna total.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia o mês no gráfico",
+     "conta": "r_inc ≈ 2,3 Ω → curva perto da marca de 12 meses → alternativa B",
+     "porque": "No gráfico, a curva passa por cerca de 2,3 Ω na marca de 12 meses.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — cerca de 12 meses.",
+   "checagem": "Substitua de volta: em 12 meses r_inc ≈ 2,3 Ω, então i = 17/(3 + 0,4 + 2,3) ≈ 2,98 A e U = 3 × 2,98 ≈ 8,9 V, cerca de 60% de 15 V.",
+   "erradas": {
+    "A": "11 não confere: na marca de 11 meses a curva dá cerca de 1,9 Ω, e então U = 3 × 17/(3 + 0,4 + 1,9) ≈ 9,6 V, cerca de 64% da tensão inicial.",
+    "C": "13 não confere: na marca de 13 meses a curva dá cerca de 2,8 Ω, e U = 3 × 17/(3 + 0,4 + 2,8) ≈ 8,2 V, cerca de 55%.",
+    "D": "16 não confere: na marca de 16 meses a curva dá cerca de 4,5 Ω, e U = 3 × 17/(3 + 0,4 + 4,5) ≈ 6,5 V, cerca de 43%."
+   },
+   "armadilha": "Achar que a bateria continua dando 5 A: o circuito externo é o mesmo, então a corrente cai junto com a tensão.",
+   "alerta": "O eixo dos meses vem rotulado 2, 4, 8, 10, 12, 14, 16, 18, com marcas igualmente espaçadas (falta o 6 entre 4 e 8). A leitura de 12 meses usa a marca rotulada 12, onde a curva passa por cerca de 2,3 Ω. A solução supõe o circuito externo fixo (R = 3 Ω), como diz o enunciado: \"não haverá alterações no sistema\" além da resistência das incrustações.",
+   "essencial": {
+    "pede": "Em quantos meses a tensão da bateria cai para 60% da inicial, pelo gráfico da resistência das incrustações.",
+    "chave": "ε = 17 V e R = 3 Ω fixos; com U = 9 V, i = 3 A e r_inc ≈ 2,27 Ω, lido perto de 12 meses.",
+    "cuidado": "Não manter a corrente em 5 A: com R fixo, a corrente cai para 3 A."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Para cada mês, leia r_inc no gráfico e calcule U = 3 × 17/(3,4 + r_inc): só 12 meses dá cerca de 9 V."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R = 15/5 = 3 Ω",
+    "nota": "circuito externo"
+   },
+   {
+    "linha": "ε = 15 + 0,4 × 5 = 17 V",
+    "nota": "fem do gerador"
+   },
+   {
+    "linha": "i = 9/3 = 3 A",
+    "nota": "60% de 15 V = 9 V"
+   },
+   {
+    "linha": "0,4 + r_inc = (17 − 9)/3 = 8/3",
+    "nota": "queda interna ÷ corrente"
+   },
+   {
+    "linha": "r_inc ≈ 2,27 Ω → 12 meses",
+    "nota": "leitura do gráfico"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
  }
 }

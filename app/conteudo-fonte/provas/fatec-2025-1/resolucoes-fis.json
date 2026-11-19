@@ -324,5 +324,126 @@
    "data": "2026-11-19",
    "lote": "fis-0062"
   }
+ },
+ "P20451c75": {
+  "n": "28",
+  "conceito": "Gerador com resistência interna ligado a dois resistores em paralelo: corrente total e lei de Pouillet.",
+  "equivocos": {
+   "A": "F11.7:errou-a-equacao-do-gerador",
+   "C": "F11.7:errou-a-equacao-do-gerador",
+   "D": "F11.7:tomou-r-igual-ao-resistor-equivalente",
+   "E": "F11.7:errou-a-equacao-do-gerador"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O amperímetro ideal está só no ramo de R1, então ele mede a corrente desse ramo, não a total. Como R1 = R2, a corrente se divide igualmente, e a total é o dobro. Com a corrente total, a lei do circuito (fem = corrente × resistência total) dá a resistência interna.",
+    "formulas": [
+     "paralelo de dois iguais: R_eq = R/2",
+     "U = R · i",
+     "E = i · (r + R_eq)"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "força eletromotriz do gerador, 100 V"
+     ],
+     [
+      "r",
+      "resistência interna do gerador"
+     ],
+     [
+      "R_eq",
+      "resistência equivalente do paralelo"
+     ],
+     [
+      "amperímetro ideal",
+      "medidor de corrente com resistência desprezível, ligado em série no ramo"
+     ]
+    ]
+   },
+   "pista": "Veja em que ramo está o amperímetro: ele mede a corrente de um ramo ou a do circuito inteiro?",
+   "passos": [
+    {
+     "faz": "Ache a tensão do paralelo",
+     "conta": "U = R1 · i1 = 60 Ω × 1 A = 60 V",
+     "porque": "O amperímetro mede só a corrente de R1, e R2 está ligado aos mesmos dois pontos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a corrente total",
+     "conta": "i2 = 60 V/60 Ω = 1 A → i = 1 + 1 = 2 A",
+     "porque": "A corrente que sai do gerador se divide entre os dois ramos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a equação do circuito",
+     "conta": "E = i · (r + R_eq) → 100 = 2 · (r + 30)",
+     "porque": "Os dois de 60 Ω em paralelo valem 30 Ω, em série com r.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole r",
+     "conta": "100/2 = r + 30 → 50 = r + 30 → r = 20 Ω",
+     "porque": "O 2 que multiplica passa dividindo; depois o 30 passa subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "r = 20 Ω → alternativa B",
+     "porque": "É o valor da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 20 Ω.",
+   "checagem": "Pela tensão: a queda em r é 100 − 60 = 40 V com 2 A passando, e 40/2 = 20 Ω.",
+   "erradas": {
+    "A": "15 Ω não confere: com r = 15 Ω a corrente total seria 100/45 ≈ 2,22 A e o amperímetro marcaria cerca de 1,11 A, não 1 A.",
+    "C": "25 Ω não confere: a corrente total seria 100/55 ≈ 1,82 A e o amperímetro marcaria cerca de 0,91 A.",
+    "D": "Sai de parar no resistor equivalente: 60 Ω em paralelo com 60 Ω dá 30 Ω, que é o R_eq, não o r; com r = 30 Ω o amperímetro marcaria cerca de 0,83 A.",
+    "E": "35 Ω não confere: a corrente total seria 100/65 ≈ 1,54 A e o amperímetro marcaria cerca de 0,77 A."
+   },
+   "armadilha": "Tomar 1 A como a corrente total: o amperímetro está só no ramo de R1, e a corrente do gerador é 2 A.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A resistência interna de um gerador de 100 V quando o amperímetro no ramo de R1 marca 1 A.",
+    "chave": "Tensão do paralelo 60 V, corrente total 2 A; 100 = 2 · (r + 30) dá r = 20 Ω.",
+    "cuidado": "Ver que o amperímetro mede um ramo só."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "queda interna",
+    "ideia": "r recebe 100 − 60 = 40 V com 2 A: r = 40/2 = 20 Ω."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "U = 60 × 1 = 60 V",
+    "nota": "tensão do paralelo"
+   },
+   {
+    "linha": "i = 1 + 1 = 2 A",
+    "nota": "soma dos ramos"
+   },
+   {
+    "linha": "100 = 2 · (r + 30)",
+    "nota": "fem = i × resistência total"
+   },
+   {
+    "linha": "50 = r + 30 → r = 20 Ω",
+    "nota": "isolar r"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
  }
 }

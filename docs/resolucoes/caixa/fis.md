@@ -87,3 +87,20 @@ GABARITO P008531fb (IME 2024-2025 q19): o gabarito final oficial publicado dá B
 GABARITO P58d32c58 (UFRR 2025 Prova Integral q36): preliminar B, mas a conta dá D (7/0,02 = 350 Ω = 300 + 50 Ω); conferir no Edital 97/24-CPV (https://editais.ufrr.br/editais/arquivo/568/edital-n-97-24-gabarito-oficial-vestibular-2025.pdf, deu 503 daqui) se mudou para D ou foi anulada
 ANULAR P8cad75ee (UEMG 2024 q18): na III, i = 127/480 = 0,2646 A = 264,6 mA, não 264,5 µA, então a III é falsa; sobram só I e V verdadeiras e nenhuma alternativa traz essa dupla (definitivo B, preliminar C)
 DIVERGENCIA P58d32c58 (UFRR 2025 q36): sem gabarito definitivo; resolvedor e conferente às cegas dão D, o preliminar dá B; ver o Edital 97/24-CPV (link acima).
+
+## 2026-11-19 16:11 UTC — PENDENCIAS — session_01PveEKaozjku3Rmd3ikcUSN
+Lote gravado: fis-0066 (50 ok). Abertos: fis-0067, fis-0068.
+RECLASS P69314019 F11.9 -> F11.3
+RECLASS Pc324d43f F12.1 -> F12.4
+DADO P6f4628f4: alternativas -> o campo veio vazio; as cinco alternativas estão coladas, sem letras, no fim do texto_da_prova (print: A translação; B raios cósmicos na atmosfera; C cargas na superfície; D ímã permanente no centro; E cargas em movimento no interior)
+DADO Pa083d775: alternativas.E -> "Em nenhuma das quatro regiões." (o "N 3 2 1 4" colado no fim é da figura)
+DADO P23e9cfdf: texto_da_prova/alternativas -> acentos embaralhados ("´ım˜as"); no print: "A respeito do estudo dos ímãs qual das afirmações não está correto no contexto da física:"
+RECLASS P5f8b21a4 F12.1 -> F12.3
+RECLASS Pb018358c F12.1 -> F12.4
+RECLASS P5bd49f7b F12.1 -> F12.4
+RECLASS Pbf755804 F12.2 -> F02.2
+DADO P4b0f38e3: alternativas -> o campo está ausente na entrada; A–E estão no print e no fim do texto_da_prova
+DADO Pb7f528cf: texto_da_prova -> no print a unidade é "Ω" (o texto traz "W" em "90 W" e "em W")
+RECLASS P5f7ff111 F11.6 -> F11.4
+RECLASS Pc717aba3 F11.6 -> F11.8
+RECLASS P68b55b6f F11.7 -> F11.4

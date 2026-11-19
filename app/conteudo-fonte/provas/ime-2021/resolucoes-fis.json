@@ -734,5 +734,138 @@
    "data": "2026-11-19",
    "lote": "fis-0062"
   }
+ },
+ "P81a4824e": {
+  "n": "19",
+  "conceito": "Circuito com resistência dos fios: calcular a resistência de cada trecho de fio por R = ρL/A, resolver o circuito e achar a queda de tensão no fio entre A e B.",
+  "equivocos": {
+   "A": "F11.7:deu-a-resistencia-no-lugar-da-ddp",
+   "C": "F11.7:corrente-do-ramo-errada",
+   "D": "F11.7:corrente-do-ramo-errada",
+   "E": "F11.7:corrente-do-ramo-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Aqui os fios não são ideais: cada metro de fio tem resistência, e é isso que cria uma ddp entre A e B, que estão ligados só por fio. Transforme cada trecho de fio num resistor, resolva o circuito como série e paralelo e, no fim, a ddp entre A e B é a queda de tensão no fio de 10 m de cima.",
+    "formulas": [
+     "R = ρ · L/A (resistência de um fio)",
+     "U = R · i (lei de Ohm)",
+     "Paralelo de dois: R_eq = (R1 · R2)/(R1 + R2)"
+    ],
+    "simbolos": [
+     [
+      "ρ",
+      "resistividade do material do fio, aqui em Ω·mm²/m"
+     ],
+     [
+      "L",
+      "comprimento do fio, em metro"
+     ],
+     [
+      "A",
+      "área da seção transversal do fio, em mm²"
+     ],
+     [
+      "ddp",
+      "diferença de potencial (tensão) entre dois pontos, em volt"
+     ],
+     [
+      "R_eq",
+      "resistência equivalente de um conjunto de resistores"
+     ]
+    ]
+   },
+   "pista": "Antes de qualquer coisa, descubra quantos ohms tem cada metro de fio: com a unidade de ρ em Ω·mm²/m, a área em mm² cancela direto.",
+   "passos": [
+    {
+     "faz": "Ache a resistência de cada trecho de fio",
+     "conta": "R = ρ · L/A = 0,4 · L/2 → R = 0,2 · L | 25 m: 0,2 · 25 = 5 Ω | 10 m: 0,2 · 10 = 2 Ω",
+     "porque": "A unidade Ω·mm²/m dividida por mm² dá Ω/m: o fio tem 0,2 Ω por metro. Há dois trechos de 25 m (ida e volta) e dois de 10 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o ramo da direita e o paralelo",
+     "conta": "ramo de B: 2 + 116 + 2 = 120 Ω | paralelo com 40 Ω: (40 · 120)/(40 + 120) = 4800/160 = 30 Ω",
+     "porque": "Os dois fios de 10 m estão em série com o resistor de 116 Ω, e esse ramo inteiro fica em paralelo com o de 40 Ω, entre os pontos A e o de baixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os fios de 25 m e ache a corrente total",
+     "conta": "R_total = 5 + 30 + 5 = 40 Ω → i = 200/40 = 5 A",
+     "porque": "Os dois fios de 25 m estão em série com o paralelo; a bateria de 200 V empurra a corrente por esse conjunto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a corrente no ramo de 116 Ω",
+     "conta": "U_paralelo = 30 · 5 = 150 V → i_ramo = 150/120 = 1,25 A",
+     "porque": "O paralelo recebe 150 V; o ramo da direita, com 120 Ω, leva só uma parte da corrente total.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a queda no fio de A até B",
+     "conta": "U_AB = 2 Ω · 1,25 A = 2,5 V",
+     "porque": "Entre A e B há só o fio de 10 m de cima, com 2 Ω, percorrido pela corrente do ramo de 116 Ω. Essa queda é a ddp pedida: alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a ddp entre A e B é 2,5 V.",
+   "checagem": "Some as quedas na malha da direita: 2,5 V no fio de 10 m de cima + 116 · 1,25 = 145 V no resistor + 2,5 V no fio de baixo = 150 V, exatamente a tensão do resistor de 40 Ω (40 · 3,75 A = 150 V). E 3,75 A + 1,25 A = 5 A, a corrente total.",
+   "erradas": {
+    "A": "Sai de parar na resistência do fio: 0,4 · 10/2 = 2,0 Ω é a resistência do trecho de A até B, não a ddp; falta multiplicar pela corrente do ramo: 2 Ω × 1,25 A = 2,5 V.",
+    "C": "3,0 V não confere: exigiria 1,5 A no ramo, 180 V no paralelo e 6 A no total; com 6 A nos 10 Ω dos fios de 25 m sobrariam só 140 V para o paralelo.",
+    "D": "3,5 V não confere: exigiria 1,75 A no ramo, 210 V no paralelo (mais que os 200 V da bateria), o que é impossível.",
+    "E": "4,5 V não confere: exigiria 2,25 A no ramo e 270 V no paralelo, mais que os 200 V da bateria."
+   },
+   "armadilha": "A e B estão ligados só por fio, e quem trata o fio como ideal acha ddp zero e não sabe por onde começar; o fio de 10 m tem 2 Ω.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A ddp entre A e B, ligados por 10 m de fio com resistência.",
+    "chave": "Fio de 0,2 Ω/m: o circuito vira 5 + (40 ∥ 120) + 5 = 40 Ω, i = 5 A, ramo de B com 1,25 A, e U_AB = 2 · 1,25 = 2,5 V.",
+    "cuidado": "Contar os dois fios de cada trecho (ida e volta) e usar no fio AB só a corrente do ramo de 116 Ω, não a total."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "equação da malha",
+    "ideia": "Chame de i a corrente do ramo de B: U_A = 120i, corrente total 120i/40 + i = 4i, e 200 − 10 · 4i = 120i dá i = 1,25 A; U_AB = 2i = 2,5 V."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R = 0,4 · L/2 = 0,2 · L",
+    "nota": "ohms por metro de fio"
+   },
+   {
+    "linha": "2 + 116 + 2 = 120 Ω",
+    "nota": "ramo de B com os fios de 10 m"
+   },
+   {
+    "linha": "(40 · 120)/(40 + 120) = 30 Ω",
+    "nota": "paralelo"
+   },
+   {
+    "linha": "5 + 30 + 5 = 40 Ω → i = 200/40 = 5 A",
+    "nota": "corrente total"
+   },
+   {
+    "linha": "150/120 = 1,25 A",
+    "nota": "corrente no ramo de B"
+   },
+   {
+    "linha": "U_AB = 2 · 1,25 = 2,5 V",
+    "nota": "queda no fio de A até B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
  }
 }

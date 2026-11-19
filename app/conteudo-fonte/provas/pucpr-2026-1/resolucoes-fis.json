@@ -366,5 +366,124 @@
    "data": "2026-11-19",
    "lote": "fis-0065"
   }
+ },
+ "Pcd46f33b": {
+  "n": "38",
+  "conceito": "Capacitor carregado em circuito de corrente contínua: não passa corrente por ele, e sua tensão é a do trecho em paralelo (Q = C · U).",
+  "equivocos": {
+   "A": "F11.9:usou-a-tensao-do-resistor-errado",
+   "B": "F11.9:tensao-do-capacitor-mal-identificada",
+   "C": "F11.9:trocou-micro-por-mili",
+   "E": "F11.9:usou-a-tensao-total-da-bateria"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com o capacitor completamente carregado, não passa corrente pelo ramo dele: o circuito funciona como se o capacitor não existisse. Pela figura, o capacitor liga o canto de baixo à esquerda ao nó de cima, à direita de R1; logo ele fica em paralelo com o conjunto R2 e R3. A carga sai da tensão desse conjunto.",
+    "formulas": [
+     "Paralelo de dois: R = (R2 × R3)/(R2 + R3)",
+     "U = R × i",
+     "Q = C × U"
+    ],
+    "simbolos": [
+     [
+      "d.d.p.",
+      "diferença de potencial, a tensão"
+     ],
+     [
+      "μF",
+      "microfarad, 10⁻⁶ F"
+     ],
+     [
+      "μC",
+      "microcoulomb, 10⁻⁶ C"
+     ],
+     [
+      "Ω",
+      "ohm, unidade de resistência"
+     ]
+    ]
+   },
+   "pista": "Tire o capacitor carregado do caminho da corrente e veja entre quais pontos do circuito ele está ligado.",
+   "passos": [
+    {
+     "faz": "Reduza R2 e R3 em paralelo",
+     "conta": "R23 = (6 × 12)/(6 + 12) → R23 = 72/18 → R23 = 4 Ω",
+     "porque": "R2 e R3 ligam os mesmos dois fios (o nó de cima e o fio de baixo), então estão em paralelo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a corrente da bateria",
+     "conta": "R_eq = 2 + 4 = 6 Ω → i = 12/6 → i = 2 A",
+     "porque": "Sem corrente no ramo do capacitor, a corrente passa por R1 e depois pelo paralelo, que ficam em série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a tensão no capacitor",
+     "conta": "U_C = R23 × i → U_C = 4 × 2 → U_C = 8 V",
+     "porque": "O capacitor está ligado entre os mesmos pontos que o paralelo R2 e R3, então tem a mesma tensão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a carga",
+     "conta": "Q = 4 μF × 8 V → Q = 32 μC",
+     "porque": "Com C em microfarad e U em volt, a carga sai em microcoulomb; é a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 32 μC.",
+   "checagem": "Some as tensões em volta: R1 recebe 2 × 2 = 4 V e o paralelo recebe 8 V, que dão os 12 V da bateria. A corrente se divide em 8/6 ≈ 1,33 A em R2 e 8/12 ≈ 0,67 A em R3, somando os 2 A.",
+   "erradas": {
+    "A": "Sai de usar a tensão em R1: 2 Ω × 2 A = 4 V, e 4 μF × 4 V = 16 μC. O capacitor está em paralelo com R2 e R3, não com R1.",
+    "B": "Não confere: 18 μC exigiria 4,5 V no capacitor, e nenhum trecho do circuito tem essa tensão (R1 tem 4 V e o paralelo, 8 V).",
+    "C": "Não confere: com C em μF e U em volt, a carga sai em μC; um valor em mC seria mil vezes maior do que o circuito permite (o máximo, com 12 V, é 48 μC).",
+    "E": "Sai de usar a tensão inteira da bateria, 4 μF × 12 V = 48 μC, e ainda trocar micro por mili. O capacitor só recebe os 8 V do paralelo."
+   },
+   "armadilha": "Achar que o capacitor recebe os 12 V da bateria ou a tensão de R1; pela figura, ele está em paralelo com R2 e R3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A carga do capacitor de 4 μF completamente carregado no circuito.",
+    "chave": "Sem corrente no capacitor: R_eq = 2 + 4 = 6 Ω, i = 2 A, U_C = 8 V, Q = 4 × 8 = 32 μC.",
+    "cuidado": "Identificar na figura entre quais pontos o capacitor está ligado e manter o prefixo micro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "divisor de tensão",
+    "ideia": "Os 12 V se dividem na proporção 2 : 4 entre R1 e o paralelo, então o paralelo fica com 4/6 de 12 V = 8 V e Q = 4 × 8 = 32 μC."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R23 = (6 × 12)/(6 + 12) = 4 Ω",
+    "nota": "R2 e R3 em paralelo"
+   },
+   {
+    "linha": "R_eq = 2 + 4 = 6 Ω",
+    "nota": "R1 em série com o paralelo"
+   },
+   {
+    "linha": "i = 12/6 = 2 A",
+    "nota": "corrente da bateria"
+   },
+   {
+    "linha": "U_C = 4 × 2 = 8 V",
+    "nota": "tensão do paralelo = tensão do capacitor"
+   },
+   {
+    "linha": "Q = 4 μF × 8 V = 32 μC",
+    "nota": "carga armazenada"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
  }
 }

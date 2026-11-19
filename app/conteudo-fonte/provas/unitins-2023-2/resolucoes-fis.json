@@ -460,5 +460,126 @@
    "data": "2026-11-19",
    "lote": "fis-0062"
   }
+ },
+ "P5d771fa1": {
+  "n": "4",
+  "conceito": "Custo mensal de energia: potência em kW vezes horas de uso, vezes a tarifa por kWh.",
+  "equivocos": {
+   "A": "F11.6:errou-o-consumo-mensal",
+   "B": "F11.6:usou-metade-do-tempo",
+   "C": "F11.6:esqueceu-a-tarifa",
+   "E": "F11.6:errou-o-consumo-mensal"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A conta de luz cobra energia em kWh, e energia é potência vezes tempo. A potência do ar-condicionado já vem em watt (1450 W); os 12000 btus e os 220 V não entram na conta. Basta passar para kW, juntar as horas do mês e multiplicar pela tarifa.",
+    "formulas": [
+     "E = P × Δt",
+     "custo = E (kWh) × tarifa (R$/kWh)",
+     "1 kW = 1000 W"
+    ],
+    "simbolos": [
+     [
+      "kW",
+      "quilowatt, mil watts"
+     ],
+     [
+      "kWh",
+      "quilowatt-hora, unidade de energia da conta de luz"
+     ],
+     [
+      "tarifa",
+      "preço de cada kWh consumido"
+     ],
+     [
+      "btu",
+      "unidade de calor usada para indicar a capacidade de refrigeração do aparelho"
+     ]
+    ]
+   },
+   "pista": "Veja em que unidade está a tarifa: ela diz em que unidades a potência e o tempo têm de estar.",
+   "passos": [
+    {
+     "faz": "Converta a potência para kW",
+     "conta": "1450 W ÷ 1000 = 1,45 kW",
+     "porque": "A tarifa é por kWh, então a potência vai em kW.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as horas do mês",
+     "conta": "8 h × 30 dias = 240 h",
+     "porque": "O aparelho fica ligado 8 h em cada um dos 30 dias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a energia do mês",
+     "conta": "E = 1,45 kW × 240 h → E = 348 kWh",
+     "porque": "Potência vezes tempo; kW vezes h dá kWh.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pela tarifa",
+     "conta": "348 kWh × R$ 0,98 → R$ 341,04",
+     "porque": "Cada kWh custa R$ 0,98; o kWh cancela e sobra real.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o valor aproximado",
+     "conta": "R$ 341,04 ≈ R$ 340,00 → alternativa D",
+     "porque": "A questão pede o valor aproximado, e R$ 340,00 é o mais próximo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — cerca de R$ 340,00 por mês.",
+   "checagem": "Pelo custo de um dia: 1,45 kW × 8 h = 11,6 kWh; 11,6 × 0,98 ≈ R$ 11,37 por dia; × 30 ≈ R$ 341. Fecha com a conta do mês.",
+   "erradas": {
+    "A": "R$ 280,00 não confere: corresponderia a 280 ÷ 0,98 ≈ 286 kWh, e o consumo do mês é 1,45 × 240 = 348 kWh.",
+    "B": "R$ 170,00 não confere: é cerca da metade de R$ 341; corresponderia a 4 h de uso por dia, e o enunciado diz 8 h.",
+    "C": "Sai de esquecer a tarifa: 348 kWh lidos como reais dão cerca de R$ 350. Falta multiplicar por R$ 0,98.",
+    "E": "R$ 235,00 não confere: corresponderia a 235 ÷ 0,98 ≈ 240 kWh, e o consumo é 348 kWh."
+   },
+   "armadilha": "Parar em 348 kWh e marcar R$ 350: kWh não é real, ainda falta a tarifa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O custo mensal de um ar-condicionado de 1450 W ligado 8 h por dia, a R$ 0,98 por kWh.",
+    "chave": "1,45 kW × 240 h = 348 kWh; 348 × 0,98 = R$ 341,04.",
+    "cuidado": "Ignorar btus e 220 V, que não entram, e não esquecer a tarifa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por dia",
+    "ideia": "11,6 kWh por dia × R$ 0,98 ≈ R$ 11,37; vezes 30 dias ≈ R$ 341."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P = 1450 W = 1,45 kW",
+    "nota": "W ÷ 1000"
+   },
+   {
+    "linha": "Δt = 8 × 30 = 240 h",
+    "nota": "horas do mês"
+   },
+   {
+    "linha": "E = 1,45 × 240 = 348 kWh",
+    "nota": "kW × h"
+   },
+   {
+    "linha": "348 × 0,98 = R$ 341,04 ≈ R$ 340",
+    "nota": "× tarifa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
  }
 }

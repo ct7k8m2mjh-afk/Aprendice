@@ -364,5 +364,238 @@
    "data": "2026-11-19",
    "lote": "fis-0065"
   }
+ },
+ "Pe15d02f0": {
+  "n": "47",
+  "conceito": "Associação de geradores iguais em série: fem e resistências internas se somam, e a tensão útil é U = n · ε − n · r · i.",
+  "equivocos": {
+   "A": "F11.7:achou-que-paralelo-soma-fem",
+   "B": "F11.7:ignorou-a-resistencia-interna",
+   "D": "F11.7:achou-que-paralelo-soma-fem",
+   "E": "F11.7:passou-da-tensao-pedida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O motor precisa de 6,0 V nos terminais com 1,0 A passando. Cada pilha real perde um pouco de tensão na própria resistência interna, então quatro pilhas de 1,5 V não bastam. Em série, as fem e as resistências internas se somam; em paralelo, a fem do conjunto fica em 1,5 V, longe dos 6 V.",
+    "formulas": [
+     "série de n pilhas: ε_eq = n · ε; r_eq = n · r",
+     "U = ε_eq − r_eq · i (tensão nos terminais)"
+    ],
+    "simbolos": [
+     [
+      "ε",
+      "força eletromotriz de uma pilha (1,5 V)"
+     ],
+     [
+      "r",
+      "resistência interna de uma pilha (0,3 Ω)"
+     ],
+     [
+      "U",
+      "tensão que chega ao motor"
+     ],
+     [
+      "ddp",
+      "diferença de potencial (tensão)"
+     ]
+    ]
+   },
+   "pista": "Calcule quanto uma pilha entrega de fato nos terminais quando passa 1,0 A por ela.",
+   "passos": [
+    {
+     "faz": "Descarte o paralelo",
+     "conta": "paralelo: ε_eq = 1,5 V < 6,0 V",
+     "porque": "Pilhas iguais em paralelo mantêm a fem de uma só pilha; nunca chegam a 6 V. Isso elimina A e D.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ache a tensão útil de uma pilha",
+     "conta": "U_1 = ε − r · i = 1,5 − 0,3 · 1,0 = 1,2 V",
+     "porque": "Na série a mesma corrente de 1,0 A passa por todas as pilhas, e cada uma perde 0,3 V por dentro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a equação da série",
+     "conta": "n · 1,2 = 6,0 → n = 6,0/1,2 = 5",
+     "porque": "Em série as tensões úteis se somam; o 1,2 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "cinco pilhas em série",
+     "porque": "É a única combinação que entrega 6,0 V com 1,0 A. Alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — cinco pilhas associadas em série.",
+   "checagem": "Cinco em série: ε_eq = 5 · 1,5 = 7,5 V e r_eq = 5 · 0,3 = 1,5 Ω; com 1,0 A, U = 7,5 − 1,5 · 1,0 = 6,0 V, exatamente o que o motor pede.",
+   "erradas": {
+    "A": "Em paralelo, quatro pilhas mantêm a fem de 1,5 V; com 1,0 A, U = 1,5 − (0,3/4) · 1,0 ≈ 1,43 V, longe dos 6,0 V.",
+    "B": "Sai de ignorar a resistência interna: 4 · 1,5 = 6,0 V parece suficiente, mas com 1,0 A a série entrega 4 · 1,2 = 4,8 V.",
+    "D": "Em paralelo, cinco pilhas continuam com fem de 1,5 V; U = 1,5 − (0,3/5) · 1,0 = 1,44 V, longe dos 6,0 V.",
+    "E": "Seis pilhas em série entregariam 6 · 1,2 = 7,2 V com 1,0 A, acima dos 6,0 V da especificação do motor."
+   },
+   "armadilha": "4 · 1,5 V = 6 V parece a conta certa, mas as pilhas são reais e perdem 0,3 V cada uma com 1 A passando.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas pilhas de 1,5 V e 0,3 Ω, e em que associação, dão 6,0 V com 1,0 A.",
+    "chave": "Cada pilha entrega 1,5 − 0,3 · 1 = 1,2 V; em série, 5 · 1,2 = 6,0 V.",
+    "cuidado": "Descontar a queda na resistência interna e lembrar que o paralelo não aumenta a fem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "equação do gerador equivalente",
+    "ideia": "Com n pilhas em série, 6,0 = 1,5n − 0,3n · 1,0 = 1,2n, logo n = 5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "paralelo: ε_eq = 1,5 V",
+    "nota": "não chega a 6 V"
+   },
+   {
+    "linha": "U_1 = 1,5 − 0,3 · 1,0 = 1,2 V",
+    "nota": "tensão útil de uma pilha"
+   },
+   {
+    "linha": "n · 1,2 = 6,0 → n = 6,0/1,2 = 5",
+    "nota": "série: as tensões somam"
+   },
+   {
+    "linha": "7,5 − 1,5 · 1,0 = 6,0 V",
+    "nota": "conferência com 5 pilhas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
+ },
+ "P812abe5d": {
+  "n": "48",
+  "conceito": "Quando há força magnética sobre carga, por que ela não realiza trabalho e qual a trajetória com velocidade oblíqua ao campo (hélice).",
+  "equivocos": {
+   "A": "F12.2:nao-reconhece-trajetoria-helicoidal",
+   "B": "F12.2:forca-magnetica-realiza-trabalho",
+   "C": "F12.2:forca-magnetica-sempre-presente",
+   "D": "F12.2:forca-magnetica-sempre-presente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A força magnética é F = |q|·v·B·sen θ e é sempre perpendicular à velocidade. Por isso pode ser nula (carga parada ou v paralela a B) e, quando existe, nunca realiza trabalho: muda só a direção da velocidade. Com v oblíqua a B, a componente perpendicular gira e a paralela segue reta: a soma é uma hélice.",
+    "formulas": [
+     "F = |q| · v · B · sen θ",
+     "F ⊥ v → trabalho = 0 → |v| constante",
+     "v oblíqua: v∥ (reta) + v⊥ (círculo) = hélice"
+    ],
+    "simbolos": [
+     [
+      "θ",
+      "ângulo entre a velocidade e as linhas de indução"
+     ],
+     [
+      "v∥",
+      "componente da velocidade paralela a B"
+     ],
+     [
+      "v⊥",
+      "componente da velocidade perpendicular a B"
+     ],
+     [
+      "hélice cilíndrica",
+      "trajetória em forma de mola, enrolada num cilindro"
+     ]
+    ]
+   },
+   "pista": "Procure um caso em que a força magnética da I não exista: o que acontece se a carga estiver parada?",
+   "passos": [
+    {
+     "faz": "Julgue a afirmação I",
+     "conta": "v = 0 ou θ = 0° → F = |q| · v · B · sen θ = 0",
+     "porque": "Uma carga parada, ou movendo-se ao longo das linhas de campo, não sofre força magnética. 'Sempre' torna a I falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Julgue a afirmação II",
+     "conta": "F ⊥ v → trabalho = 0 → Ec constante → |v| constante",
+     "porque": "Força perpendicular ao deslocamento não realiza trabalho; pelo teorema da energia cinética, o módulo da velocidade não muda. II é verdadeira.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Julgue a afirmação III",
+     "conta": "v∥ = v · cos θ → MU ao longo de B | v⊥ = v · sen θ → MCU → hélice",
+     "porque": "Com 0° < θ < 90°, as duas componentes existem: a perpendicular gira e a paralela avança. III é verdadeira.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Junte os julgamentos",
+     "conta": "I: F | II: V | III: V → II e III",
+     "porque": "Só a alternativa com II e III, sem I, combina.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — somente as afirmativas II e III são verdadeiras.",
+   "checagem": "Confira os extremos da III: com θ = 90° sobra só o círculo (v∥ = 0) e com θ = 0° só a reta (v⊥ = 0); entre os dois, as duas partes juntas formam a hélice.",
+   "erradas": {
+    "A": "Acerta a II, mas descarta a III: com 0° < θ < 90°, a componente perpendicular gira e a paralela avança, formando uma hélice.",
+    "B": "Acerta a III, mas descarta a II: a força magnética é perpendicular à velocidade, não realiza trabalho e não muda o módulo de v.",
+    "C": "Aceita a I, que é falsa: carga parada ou com v paralela a B não sofre força magnética; e deixa de fora a III, que é verdadeira.",
+    "D": "Aceita a I, que é falsa (sem força se v = 0 ou v paralela a B), e deixa de fora a II, que é verdadeira."
+   },
+   "armadilha": "A palavra 'sempre' da I: a força magnética depende de a carga se mover e de cortar as linhas de campo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Julgar três afirmações sobre força magnética em carga.",
+    "chave": "F = |q|·v·B·sen θ, perpendicular a v: pode ser nula, não realiza trabalho e, com v oblíqua, gera hélice.",
+    "cuidado": "Desconfie do 'sempre': carga parada ou paralela a B não sofre força."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação pelo 'sempre'",
+    "ideia": "A I cai com a carga parada: saem C e D; a II é a propriedade clássica da força magnética e a III é a hélice dos livros, então fica E."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "F = |q| · v · B · sen θ",
+    "nota": "força magnética sobre carga"
+   },
+   {
+    "linha": "I: v = 0 ou θ = 0° → F = 0",
+    "nota": "'sempre' é falso"
+   },
+   {
+    "linha": "II: F ⊥ v → trabalho = 0 → |v| constante",
+    "nota": "verdadeira"
+   },
+   {
+    "linha": "III: v∥ reta + v⊥ círculo → hélice",
+    "nota": "verdadeira"
+   },
+   {
+    "linha": "II e III",
+    "nota": "alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
  }
 }

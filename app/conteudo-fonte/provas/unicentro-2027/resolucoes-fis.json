@@ -776,5 +776,119 @@
    "data": "2026-11-19",
    "lote": "fis-0064"
   }
+ },
+ "P5f7ff111": {
+  "n": "49",
+  "conceito": "Capacidade de bateria em mAh como carga elétrica e tempo de recarga t = Q/i.",
+  "equivocos": {
+   "B": "F11.4:conta-de-tempo-errada",
+   "C": "F11.4:conta-de-tempo-errada",
+   "D": "F11.4:conta-de-tempo-errada",
+   "E": "F11.4:conta-de-tempo-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "mAh (miliampère-hora) é unidade de carga: corrente vezes tempo. A bateria guarda 6000 mAh = 6 Ah, e o carregador entrega uma corrente constante de 30 A. Se a carga é corrente vezes tempo, o tempo de recarga é a carga dividida pela corrente. As tensões de 3,7 V e 110 V não entram nessa conta.",
+    "formulas": [
+     "Q = i · Δt → Δt = Q/i",
+     "1 Ah = 1000 mAh; 1 h = 60 min"
+    ],
+    "simbolos": [
+     [
+      "mAh",
+      "miliampère-hora, unidade de carga elétrica: 1 mA durante 1 hora"
+     ],
+     [
+      "Ah",
+      "ampère-hora, 1000 mAh"
+     ],
+     [
+      "Q",
+      "carga elétrica armazenada"
+     ],
+     [
+      "i",
+      "corrente elétrica, em ampère"
+     ]
+    ]
+   },
+   "pista": "Olhe a unidade mAh: ela já é uma corrente multiplicada por um tempo.",
+   "passos": [
+    {
+     "faz": "Converta a capacidade para Ah",
+     "conta": "6000 mAh ÷ 1000 = 6 Ah",
+     "porque": "A corrente do carregador está em ampère, então a carga precisa estar em ampère-hora.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole o tempo",
+     "conta": "Q = i · Δt → Δt = Q/i",
+     "porque": "A corrente que multiplica o tempo passa para o outro lado dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o tempo em hora",
+     "conta": "Δt = 6 Ah/30 A → Δt = 0,2 h",
+     "porque": "Ah dividido por A sobra hora.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para minuto e conclua",
+     "conta": "0,2 h × 60 = 12 min → alternativa A",
+     "porque": "Uma hora tem 60 minutos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 12 minutos.",
+   "checagem": "Ao contrário: 30 A durante 12 min = 0,2 h repõem 30 × 0,2 = 6 Ah, exatamente a capacidade da bateria.",
+   "erradas": {
+    "B": "36 min não confere: 30 A × 0,6 h = 18 Ah, três vezes a capacidade de 6 Ah.",
+    "C": "48 min não confere: 30 A × 0,8 h = 24 Ah, quatro vezes os 6 Ah da bateria.",
+    "D": "50 min não confere: 30 A × (50/60) h = 25 Ah, muito acima dos 6 Ah.",
+    "E": "60 min não confere: em 1 h, 30 A repõem 30 Ah, cinco vezes a capacidade da bateria."
+   },
+   "armadilha": "Querer usar os 110 V e os 3,7 V: a capacidade em mAh já é carga, e basta dividi-la pela corrente.",
+   "alerta": "Leitura da banca: os 30 A são a corrente entregue à bateria, e o tempo sai da carga, t = Q/i. Se alguém tratasse 110 V × 30 A = 3300 W como potência entregue à bateria (que guarda 6 Ah × 3,7 V = 22,2 Wh), o tempo seria de cerca de 24 s, que não está entre as alternativas. Os 110 V só dizem onde o carregador é ligado.",
+   "essencial": {
+    "pede": "O tempo para carregar uma bateria de 6000 mAh com corrente constante de 30 A.",
+    "chave": "mAh é carga: Δt = Q/i = 6 Ah/30 A = 0,2 h = 12 min.",
+    "cuidado": "Converter mAh em Ah e hora em minuto multiplicando por 60."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por energia na saída",
+    "ideia": "A bateria guarda 6 Ah × 3,7 V = 22,2 Wh; a 3,7 V e 30 A o carregador entrega 111 W; 22,2/111 = 0,2 h = 12 min."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Q = 6000 mAh = 6 Ah",
+    "nota": "÷ 1000"
+   },
+   {
+    "linha": "Q = i · Δt → Δt = Q/i",
+    "nota": "i passa dividindo"
+   },
+   {
+    "linha": "Δt = 6/30 = 0,2 h",
+    "nota": "Ah ÷ A = h"
+   },
+   {
+    "linha": "0,2 × 60 = 12 min",
+    "nota": "hora para minuto"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
  }
 }

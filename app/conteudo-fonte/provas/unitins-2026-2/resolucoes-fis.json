@@ -337,5 +337,126 @@
    "data": "2026-11-19",
    "lote": "fis-0064"
   }
+ },
+ "Pc717aba3": {
+  "n": "4",
+  "conceito": "Corrente total de aparelhos ligados juntos em um filtro de linha e comparação com o limite do fusível (i = P/U).",
+  "equivocos": {
+   "B": "F11.8:nao-somou-as-correntes",
+   "C": "F11.8:errou-a-corrente-do-aparelho",
+   "D": "F11.8:nao-somou-as-correntes",
+   "E": "F11.8:nao-somou-as-correntes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No filtro de linha os aparelhos ficam em paralelo, todos com a mesma tensão de 220 V, e as correntes se somam. Cada aparelho puxa i = P/U. O fusível rompe só se a soma passar de 20 A. Um atalho: 20 A a 220 V correspondem a 4400 W, então basta somar as potências e comparar com 4400 W.",
+    "formulas": [
+     "i = P/U",
+     "paralelo: i_total = i1 + i2 + i3",
+     "limite: P_máx = U · i_máx"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "potência do aparelho, em watt"
+     ],
+     [
+      "U",
+      "tensão da rede, 220 V"
+     ],
+     [
+      "i",
+      "corrente elétrica, em ampère"
+     ],
+     [
+      "fusível",
+      "peça que se rompe quando a corrente passa do limite e desliga o circuito"
+     ]
+    ]
+   },
+   "pista": "Descubra quantos watts cabem em 20 A a 220 V antes de testar cada combinação.",
+   "passos": [
+    {
+     "faz": "Calcule a potência máxima do filtro",
+     "conta": "P_máx = 220 V × 20 A = 4400 W",
+     "porque": "Somar potências equivale a somar correntes, porque a tensão é a mesma para todos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue I: notebook + cafeteira",
+     "conta": "88 + 1500 = 1588 W → i = 1588/220 ≈ 7,2 A < 20 A → I correta",
+     "porque": "Abaixo do limite, o fusível não queima.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Julgue II: notebook + forno",
+     "conta": "88 + 2400 = 2488 W → i = 2488/220 ≈ 11,3 A < 20 A → II correta",
+     "porque": "Ainda abaixo de 20 A.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Julgue III: os três juntos",
+     "conta": "88 + 2400 + 1500 = 3988 W → i = 3988/220 ≈ 18,1 A < 20 A → III errada",
+     "porque": "Mesmo com tudo ligado, a corrente não passa de 20 A, então o fusível não queima.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Feche a alternativa",
+     "conta": "I e II corretas, III errada → alternativa A",
+     "porque": "Só a A traz exatamente I e II.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — I e II apenas.",
+   "checagem": "Por aparelho: notebook 0,4 A, forno ≈ 10,9 A, cafeteira ≈ 6,8 A; os três somam ≈ 18,1 A, abaixo dos 20 A do fusível.",
+   "erradas": {
+    "B": "Inclui a III, mas os três juntos puxam 3988/220 ≈ 18,1 A, abaixo de 20 A: o fusível não queima. E deixa de fora a II, que é correta.",
+    "C": "Deixa de fora a I, que é correta: notebook e cafeteira puxam só 1588/220 ≈ 7,2 A.",
+    "D": "Inclui a III, que é errada (18,1 A < 20 A), e exclui a I, que é correta (7,2 A).",
+    "E": "Inclui a III: os três juntos dão 3988 W, menos que os 4400 W que o filtro aguenta, então o fusível não queima."
+   },
+   "armadilha": "Achar que três aparelhos ligados juntos queimam o fusível sem fazer a conta: 3988 W ainda cabem em 4400 W.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais combinações de aparelhos queimam o fusível de 20 A de um filtro de linha em 220 V.",
+    "chave": "Correntes somam: i_total = soma das potências/220; o limite é 20 A, ou 4400 W.",
+    "cuidado": "Comparar a soma com o limite, sem achar que três aparelhos sempre estouram."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela potência",
+    "ideia": "Some as potências e compare com 220 × 20 = 4400 W: 1588, 2488 e 3988 W ficam todas abaixo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P_máx = 220 × 20 = 4400 W",
+    "nota": "limite do fusível"
+   },
+   {
+    "linha": "I: 1588/220 ≈ 7,2 A < 20 A",
+    "nota": "não queima"
+   },
+   {
+    "linha": "II: 2488/220 ≈ 11,3 A < 20 A",
+    "nota": "não queima"
+   },
+   {
+    "linha": "III: 3988/220 ≈ 18,1 A < 20 A",
+    "nota": "também não queima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
  }
 }
