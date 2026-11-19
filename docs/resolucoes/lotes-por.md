@@ -1,6 +1,6 @@
 # Português (parte 1): resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 122 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 8; provas-alvo nível 7-10 50; demais nível 7-10 64.
+Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 0.
 
 ## Lotes
 
@@ -108,9 +108,10 @@ Faltam 122 questões sem resolução (fora as que estão em lote, pendentes ou c
 | por-0100 | demais nível 1-6 | 50 | gravado | 47 | 3 | 0 |
 | por-0101 | demais nível 1-6 | 50 | gravado | 45 | 5 | 0 |
 | por-0102 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
-| por-0103 | demais nível 1-6 | 50 | aberto |  |  |  |
+| por-0103 | demais nível 1-6 | 50 | gravado | 48 | 2 | 0 |
 | por-0104 | demais nível 1-6 | 50 | aberto |  |  |  |
 | por-0105 | demais nível 1-6 | 50 | aberto |  |  |  |
+| por-0106 | ENEM nível 7-10 | 50 | aberto |  |  |  |
 | por-pend-0001 | pendentes obra | 25 | aberto |  |  |  |
 | por-pend-0002 | pendentes obra | 25 | aberto |  |  |  |
 | por-pend-0003 | pendentes obra | 25 | aberto |  |  |  |
@@ -126,6 +127,7 @@ Faltam 122 questões sem resolução (fora as que estão em lote, pendentes ou c
 | Pd7165e02 | ENEM 2021 · questão 42 | P01.2 informação explícita × inferência (tema P01 Leitura e compreensão) | outra matéria: Educação Física — confirmado: a tela de Lichtenstein é só pretexto; o comando pede como a sociedade constrói o corpo como objeto de intervenções sociais (educação do gesto, da vontade e do comportamento × exercícios, medicamentos, espaços de práticas corporais, lazer), conteúdo de cultura corporal da Educação Física do ENEM, não leitura de texto |
 | P9c0bfb8d | ENEM 2024 · questão 36 | P01.2 informação explícita × inferência (tema P01 Leitura e compreensão) | outra matéria: Artes — confirmado: não há texto verbal a interpretar (só as fichas técnicas e o título da fonte); a questão pede a leitura comparativa de duas esculturas (cicládica × Modigliani) e um conceito de história da arte (persistência de padrões estéticos) |
 | Pb28d85a4 | Fuvest 2026 1ª fase · questão 13 | P12.3 Modernismo de 30: romance do Nordeste, Drummond e Bandeira (tema P12 Literatura: Pré-Modernismo em diante) | classificação: é de mat M14.2 — Rachel de Queiroz é só contexto; a questão pede leitura do gráfico da PNAD (mulheres 47,3 → 52,3 de 2020 para 2021, +5,0, a maior alta anual; C correta, conferido no print) |
+| P63da1bf6 | ITA 2021 1ª fase · questão 25 | P12.4 Geração de 45 e prosa de ruptura: Guimarães Rosa, Clarice Lispector, João Cabral (tema P12 Literatura: Pré-Modernismo em diante) | print: a questão pede a leitura do conto "A Sauna" (os epítetos de Rosa e a relação do narrador com Marina), e o print traz só o comando e as alternativas. Não tenho certeza dos fatos do conto para decidir entre as letras sem o texto. Confirmar o conto inteiro antes de resolver. |
 | Pd2b4fc8b | UEG 2023 2023/2 · questão 10 | P12.2 Modernismo de 1922, vanguardas europeias e manifestos (tema P12 Literatura: Pré-Modernismo em diante) | outra matéria: Artes — confirmado: o texto descreve características gerais (reação à abstração, retomada de Duchamp e do dadaísmo, temas do cotidiano) e o comando pede o NOME das correntes (Pop Art, Neodadaísmo, Novo Realismo × Op-Art, Minimalismo, Land Art); nada no texto aponta os nomes, a resposta depende de história da arte contemporânea |
 | Pac376d90 | UEG 2023 2023/2 · questão 11 | P01.2 informação explícita × inferência (tema P01 Leitura e compreensão) | outra matéria: Artes — confirmado: o texto descreve as duas correntes e o comando pede o NOME de cada uma (Pop Art; Arte Povera); identificar o movimento pela descrição é conhecimento de história da arte, o texto não traz os nomes |
 | Pb7962540 | UEG 2025 2025/2 · questão 13 | P01.2 informação explícita × inferência (tema P01 Leitura e compreensão) | outra matéria: Artes — confirmado: três alternativas falam do 'momento decisivo'; separar D de A e C depende de conhecer a fotografia de Cartier-Bresson (registro do instante na rua, sem estúdio nem série), o que o excerto de Bourriaud não diz |
@@ -140,6 +142,7 @@ Faltam 122 questões sem resolução (fora as que estão em lote, pendentes ou c
 | P9714da52 | UVA 2025 2025.1 · questão 5 | P03.1 tipos textuais: narração, descrição, dissertação e injunção (tema P03 Gêneros e tipos textuais) | obra: Torto arado — o comando pede o foco narrativo do romance inteiro (narradores das três partes, fora do trecho); o trecho só mostra narração em 1ª pessoa |
 | P41d362f2 | Unesp 2024 1ª fase – meio de ano · questão 56 | P05.4 variação linguística, registro e adequação (tema P05 Semântica e vocabulário) | classificação: é de Filosofia e Sociologia. Na prova, a questão 56 está no bloco de Filosofia e Sociologia (questões 55, 57, 58, 59 e 60 são dessa área) e o comando pede a motivação da linguagem neutra "À luz dos Direitos Humanos". O texto permite eliminar A, B, D e E, mas ligar a invisibilização de pessoas trans e não binárias à "violência de gênero" é conteúdo de Sociologia e Direitos Humanos; o texto não fala em violência. |
 | Pbdaf3ef9 | Unesp 2026 1ª fase – meio de ano · questão 47 | P05.4 variação linguística, registro e adequação (tema P05 Semântica e vocabulário) | classificação: é de Geografia. Na prova, a questão 47 está entre as de Geografia (46, 48, 49, 50 e 51 são de Geografia). A imagem só mostra o som do r, do s e do t (tchi ou te, ti) em capitais; o gabarito, "heranças das matrizes étnicas brasileiras", depende de conteúdo de formação territorial e étnica do Brasil, que a imagem não traz, e não de leitura de marca linguística. |
+| P56bd4868 | Unitins 2025 Vestibular 2025/2 · questão 42 | P12.3 Modernismo de 30: romance do Nordeste, Drummond e Bandeira (tema P12 Literatura: Pré-Modernismo em diante) | print: falta o poema que serve de texto de apoio. O print traz só o cabeçalho "Texto para as questões 41 e 42", o enunciado e as alternativas, sem os versos. Sem o poema, não dá para mostrar no texto qual trecho apresenta a luta do poeta com a escrita. |
 
 ## Divergências de gabarito (o dono decide)
 
