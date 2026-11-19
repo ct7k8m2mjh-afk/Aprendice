@@ -67,12 +67,12 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 ## Sessões (19/11/2026, 14h58 UTC)
 | Matéria | Sessão | Situação |
 |---|---|---|
-| Matemática | session_01PveEKa7o3DaEHDo7jW4ttw | trabalhando (aberta 19/11 15h25, regra 50×4; anterior b7D6 deu FIM) |
+| Matemática | session_01PveEKZJXRTXQ8BArELQfeu | trabalhando (aberta 19/11 16h49; anterior Ka7o3 deu FIM) |
 | Física | session_01PveEKYFao9mdqzruhVmuPm | trabalhando (aberta 19/11 16h26, regra 50×4; anterior aozj deu FIM) |
 | Química | session_01PveEKXC1xdiGM81kadC8Xj | trabalhando (aberta 19/11 15h45, regra 50×4) |
 | Geografia | session_01PveEKb6B5Ur2zRmWD8t5rK | trabalhando (aberta 19/11 16h26, regra 50×4; anterior af2j deu FIM) |
-| Biologia | session_01PveEKY2istqnzKBoRGFXC5 | trabalhando (aberta 19/11 15h45, regra 50×4) |
-| Português | — | reservado para a FÁBRICA pela API (sessão Zx97 deu FIM 15h13; não reabrir) |
+| Biologia | session_01PveEKYq8uSzJkiuk9txCUa | trabalhando (aberta 19/11 16h49; anterior Y2ist deu FIM) |
+| Português | session_01PveEKX1JnJpMCfgHmpRupU (FÁBRICA pela API) | trabalhando: piloto por-0094 ok (US$ 6,11); o dono autorizou continuar, lotes por-0095/0096 em esteira. Não abrir outra sessão de Português |
 Caídas pelo limite em 13/11 (o dono pode arquivar): Mat session_01PveEKWKTewFDUJvA5Y5s91, Fís session_01PveEKXXFLhp4ro4vnf1rh7,
 Quí session_01PveEKZxREDvirT6VTx5nKy, Geo session_01PveEKaHNFQdko42Ddhy3XZ, Bio session_01PveEKaPh1PAjF3bRbuJ5fG, Por session_01PveEKY3G8XPW7thJLdH3jL.
 Paradas do sistema novo (o dono pode arquivar): Mat session_01PveEKaSPVEijwvkvEUmmWx, Fís session_01PveEKX5T4pY3Xx4fn4PR8G,
@@ -185,9 +185,7 @@ depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resoluco
 `url` = o link acima, de outra conversa; read antes).
 
 ## Publicação
-Última no ar: dpl_F8v9o7JrqP5ZjCPwCTtv3cYTYbGu (commit 59890c48, 19/11 15h35, conferido no site): 20.423 resoluções. Próxima ao passar de 20.923.
-Disparada 19/11 16h35: dpl_CApcpGGUuAm2ph9hYDXjcsLjwJFN (commit 0352c889, 786 testes verdes). Conferir no site e atualizar publicacao.json; depois atualizar o painel (passou de 20.483).
-Próxima ao passar de 19.983.
+Última no ar: dpl_CApcpGGUuAm2ph9hYDXjcsLjwJFN (commit 0352c889, 19/11 16h35, conferido no site 16h50): 21.658 resoluções. Próxima ao passar de 22.158.
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
 Coordenadora atual: ver a tabela de sessões e a tarefa agendada (13/11: nova coordenadora enxuta).
