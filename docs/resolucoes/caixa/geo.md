@@ -372,3 +372,13 @@ DADO P970dc4be: texto_da_prova/alternativas -> idem; no print "30. (URCA/2027.1)
 RECLASS Pc1338af1 G11.6 -> G01.7
 RECLASS Pea932bb1 G11.6 -> G06.5
 OUTRA Pd6f82e02: a prova escreve "Constituição Federal de 1998" (o certo é 1988); registrado no alerta, sem efeito na resposta
+
+## 2026-11-19 18:22 UTC — FIM — sessão geo (19/11, 4ª; parte 1)
+Lotes gravados nesta sessão: geo-0055, geo-0056, geo-0057, geo-0058 (último gravado: geo-0058). Nenhum lote aberto.
+Resoluções que entraram: 199 (50 + 49 + 50 + 50), todas conferidas por 2 conferentes com reconferência. 15 com gabarito do Aprendice (resolvedor e conferente às cegas com a mesma letra, igual ao preliminar).
+Pendentes: 1 — P7adb8870 (geo-0056) é de Português (interpretação de texto). Divergências: 0. Detalhes, RECLASS, DADO e AUTORAL nos blocos PENDENCIAS acima.
+AVISO site: o app/public/conteudo do repositório estava desatualizado (resoluções novas não apareciam; P0b74c1bd e Pa050ec5b com "gabarito do Aprendice em preparação"): falta rodar `npm run conteudo` antes de publicar.
+AVISO site: enunciado de Pa050ec5b (UNIRG 2027 q46) em 1280 px mostra "(UNIRG 2027) 23" depois da fonte (parece número de página da prova) e a referência quebra em "…Rio de" / "Janeiro: Record, 2000." alinhada à direita.
+Checagem no site (Pfd9141f8, P0b74c1bd, Pa050ec5b; 390 e 1280 px, com conteúdo gerado numa cópia): 4 blocos completos e na ordem, "Por que as outras estão erradas" fechado e abrindo, aviso do Gabarito do Aprendice presente, sem rolagem lateral nem erro no console.
+Testes: converte + tsc + vitest verdes (786 passed).
+A seguir: `python3 ferramentas/resolucoes/lote.py status` — Geografia faltam 237 (parte 1: 117 · parte 2: 120).
