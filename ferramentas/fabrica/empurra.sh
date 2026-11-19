@@ -43,6 +43,13 @@ resolve() {
     junta_csv "$f" || return 1
     git add "$f"
   done
+  # a caixa de recados so cresce: cada lado escreveu o bloco dele e a
+  # juncao e ficar com os dois, na ordem em que estao
+  caixas=$(echo "$pendentes" | grep -E 'caixa/.*\.md$')
+  if [ -n "$caixas" ]; then
+    python3 -I ferramentas/fabrica/junta_caixa.py $caixas || return 1
+    git add $caixas
+  fi
   if echo "$pendentes" | grep -q 'lotes-.*\.md$'; then
     # o .md e feito do registro, que acabou de ser juntado: refazer e o certo
     python3 -u ferramentas/resolucoes/lote.py relatorio "$MAT" >/dev/null 2>&1
