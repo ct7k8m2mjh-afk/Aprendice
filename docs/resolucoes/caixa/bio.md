@@ -183,3 +183,19 @@ RECLASS Ped03a57d B11.3 -> B11.2
 RECLASS Pfca210ce B11.5 -> B09.7
 RECLASS P3c8e2e61 B11.5 -> B12.6
 RECLASS P07b314af B11.5 -> B11.2
+
+## 2026-11-19 UTC — PENDENCIAS — session_01PveEKY2istqnzKBoRGFXC5
+Lote bio-0069 gravado (49 ok, 1 pendente). 1 sem gabarito publicado com Gabarito do Aprendice (resolvedor = conferente às cegas = preliminar): P81997588 C.
+ANULAR Pd56b185c (Unitins 2022/2 q6): a alternativa oficial B diz que a vida surgiu há "3,5 milhões de anos" (o certo é cerca de 3,5 bilhões) e atribui "organelas rudimentares" às primeiras células, que eram procariontes; a A traz o mesmo erro com "13,8 milhões" no Big Bang. Gabarito definitivo: https://vestibulares.estrategia.com/portal/wp-content/uploads/2022/06/637914398577390962GabaritodEFINITIVO2022_2-1.pdf
+DADO P55c1507b: alternativas.D -> "diversificadas" (a entrada traz "diversifi cadas")
+DADO Pc62fd448: alternativas.D -> sem o " 21" do fim (número da página)
+DADO P352b188a: alternativas.D -> "competição." (sem o título de seção "LITERATURA, HISTÓRIA E" colado)
+DADO P2a31e4ba: alternativas.C -> "desprovidas de quitina e α-glucano" (falta o "α")
+RECLASS P91edc2da B12.1 -> B02.4
+RECLASS Pb80c67bc B12.1 -> B11.5
+RECLASS P35a68e4a B11.5 -> B01.5
+RECLASS P6a0081fa B12.1 -> B12.2
+RECLASS Pc48b5330 B12.2 -> B12.5
+RECLASS P352b188a B12.2 -> B09.4
+RECLASS Pd593b10e B12.2 -> B09.1
+AVISO testes depois do bio-0068: converte + tsc + vitest verdes (786 passed).
