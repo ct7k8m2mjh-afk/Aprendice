@@ -15,7 +15,9 @@ Para cada questão, confira e melhore editando o JSON:
 - **Caminho mais simples:** se em `caminhos` houver jeito mais fácil e seguro que o principal, troque o principal.
 - **`quadro` (conta no caderno):** em Matemática e questões com conta, cada linha deve ser copiável no caderno, um
   passo por linha, sem pular passagens, nota curta e clara. Falta de `quadro` em questão com conta = reprovar.
-- **`visual`:** a decisão faz sentido? Se um visual ajudaria muito e não foi pedido, proponha o roteiro.
+- **`visual`:** a decisão faz sentido? Em Biologia, Química, Matemática e Física, se um visual ajudaria
+  muito e não foi pedido, proponha o roteiro. Nas matérias de texto (Português, Geografia, História,
+  Inglês, Filosofia e Sociologia) não há resolução animada (dono, 09/11/2026): não proponha visual.
 - **Biologia e Química sem `visual` com `cabe: true` = reprovar.** Matemática: falta de `mov` onde um termo muda de lado, ou fração escrita na linha ("3/5", "3 ÷ 5") em vez de `\frac{}{}` = reprovar.
 - **`erradas`:** cada uma precisa dizer o que FALTOU no raciocínio de quem marcou aquela letra — é o bloco "Por que eu errei" da correção.
 - Linguagem de aluno de 17 anos: frases curtas (≤ 30 palavras), voz ativa, sem jargão não explicado; termo técnico em

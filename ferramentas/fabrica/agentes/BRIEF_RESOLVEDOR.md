@@ -23,8 +23,11 @@ de questões REAIS de provas (o aluno vê o print fiel da prova). Público: alun
    direto, estimativa, eliminação de alternativas, desenho, regra de três, propriedade, analogia). Use como resolução
    principal a mais SIMPLES e segura para um aluno de 17 anos; registre as outras em `caminhos`.
 6. **Visual** (`visual`): em **Biologia e Química é OBRIGATÓRIO** (`cabe: true`): o roteiro anima o que acontece
-   (processo, estrutura, reação, molécula, fluxo), quadro a quadro. Nas outras matérias, decida se uma animação ajuda
-   (ciclo, fluxo, gráfico que muda, transformação de figura); se não ajudar, `cabe: false` e diga por quê.
+   (processo, estrutura, reação, molécula, fluxo), quadro a quadro. Em **Matemática e Física**, decida se uma
+   ilustração ajuda além da conta do `quadro` (ciclo, fluxo, gráfico que muda, transformação de figura); se não
+   ajudar, `cabe: false` e diga por quê. Nas **matérias de texto** (Português, Geografia, História, Inglês,
+   Filosofia e Sociologia) **não há resolução animada** (decisão do dono, 09/11/2026): a resolução é texto passo a
+   passo, e `visual` fica `cabe: false`; imagem da web só quando for necessária, com crédito (princípio 10).
 7. **Matemática: a conta é animada, linha por linha** (`quadro`, OBRIGATÓRIO em Matemática e em toda questão com conta
    — Física, Química): escreva a conta como o aluno escreveria no caderno, uma linha por vez, cada linha com uma nota
    curta do que foi feito. O site escreve as linhas à mão, em sequência, e **move os termos na tela** (CLAUDE.md,

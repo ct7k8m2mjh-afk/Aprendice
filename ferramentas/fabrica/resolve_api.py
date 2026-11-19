@@ -330,11 +330,29 @@ def preco(modelo, tin, tout, tcache_read=0, tcache_write=0, batch=True):
                 + tcache_write * p['in'] * 1.25) / 1_000_000
 
 
-def gasto_total():
+# teto total declarado pelo dono para a fábrica (CLAUDE.md: declare o teto e registre o gasto)
+TETO_DONO = 200.0
+
+
+def gasto_total(lote=None):
+    """Gasto já registrado: de um lote (se lote for dado) ou de toda a fábrica."""
     if not os.path.exists(GASTOS):
         return 0.0
     with open(GASTOS, encoding='utf-8') as h:
-        return sum(float(r['custo_real'] or r['custo_estimado'] or 0) for r in csv.DictReader(h))
+        return sum(float(r['custo_real'] or r['custo_estimado'] or 0)
+                   for r in csv.DictReader(h) if lote is None or r['lote'] == lote)
+
+
+def cabe_no_orcamento(lote, est, teto):
+    """Devolve o motivo da parada, ou None se cabe. Dois tetos: o do lote e o total do dono."""
+    no_lote, na_fabrica = gasto_total(lote), gasto_total()
+    if no_lote + est > teto:
+        return (f'teto do lote {lote}: já gastos US$ {no_lote:.2f} + estimativa US$ {est:.2f} '
+                f'passa do teto de US$ {teto:.2f}')
+    if na_fabrica + est > TETO_DONO:
+        return (f'teto do dono: a fábrica já gastou US$ {na_fabrica:.2f} e a estimativa de '
+                f'US$ {est:.2f} passa do teto total de US$ {TETO_DONO:.2f}')
+    return None
 
 
 def anota_gasto(lote, etapa, modelo, tin, tout, tcr, tcw, est, real):
@@ -399,11 +417,13 @@ def roda_etapa(cl, lote, etapa, pedidos, teto, espera=True):
         modelo = pedidos[0]['params']['model']
         tout1 = pedidos[0]['params']['max_tokens'] * 0.45
         est = preco(modelo, tin1 * n, tout1 * n)
-        ja = gasto_total()
         print(f'[{etapa}] {n} pedidos · {modelo} · ~{tin1} tokens de entrada cada · '
-              f'estimativa US$ {est:.2f} · já gasto US$ {ja:.2f} · teto US$ {teto:.2f}', flush=True)
-        if ja + est > teto:
-            sys.exit(f'PARADO no teto: {ja:.2f} + {est:.2f} > {teto:.2f}. Nada enviado.')
+              f'estimativa US$ {est:.2f} · já gasto no lote US$ {gasto_total(lote):.2f} '
+              f'(teto US$ {teto:.2f}) · na fábrica US$ {gasto_total():.2f} '
+              f'(teto do dono US$ {TETO_DONO:.2f})', flush=True)
+        parar = cabe_no_orcamento(lote, est, teto)
+        if parar:
+            sys.exit(f'PARADO no {parar}. Nada enviado.')
         b = cl.messages.batches.create(requests=pedidos)
         st = le_estado(lote)
         st['etapas'][etapa] = {'batch_id': b.id, 'n': n, 'modelo': modelo, 'estimativa': est,
@@ -846,7 +866,7 @@ def pipeline(cl, entrada, saida, teto):
     print(f'\nSaída: {saida}')
     print(f'Relatório: {rel}')
     print(f'{lote}: {len(montadas)} ok · {len(questoes) - len(montadas)} pendente(s) · '
-          f'gasto total registrado US$ {gasto_total():.2f}')
+          f'gasto do lote US$ {gasto_total(lote):.2f} · da fábrica US$ {gasto_total():.2f}')
 
 
 # ---------------------------------------------------------------- comandos
@@ -871,7 +891,8 @@ def cmd_estima(entrada, teto):
         total += c
     print('\n'.join(linhas))
     print(f'{"TOTAL":16} {"":20} {"":3}         {"":6}            US$ {total:5.2f}  (teto US$ {teto:.2f})')
-    print(f'já gasto até agora: US$ {gasto_total():.2f}')
+    print(f'já gasto neste lote: US$ {gasto_total(lote):.2f} · '
+          f'na fábrica: US$ {gasto_total():.2f} (teto do dono US$ {TETO_DONO:.2f})')
 
 
 def cmd_teste(entrada, n, teto):
@@ -923,10 +944,10 @@ def cmd_lente(entrada, saida, ids, teto, max_tokens=12000):
                                         'equivocos': mq.get('equivocos', {})}}
         p = pedido(qid, MODELO_LENTE, sis, bloco_questao(qs[qid], extra, extras_do_lote(lote)),
                    ESQ_FATOS, max_tokens)['params']
-        ja = gasto_total()
         est = preco(MODELO_LENTE, conta_tokens(cl, p), max_tokens * 0.5, batch=False)
-        if ja + est > teto:
-            sys.exit(f'PARADO no teto: {ja:.2f} + {est:.2f} > {teto:.2f}. Nada enviado.')
+        parar = cabe_no_orcamento(lote, est, teto)
+        if parar:
+            sys.exit(f'PARADO no {parar}. Nada enviado.')
         r = cl.messages.create(**p)
         custo = preco(MODELO_LENTE, r.usage.input_tokens, r.usage.output_tokens,
                       getattr(r.usage, 'cache_read_input_tokens', 0) or 0,
