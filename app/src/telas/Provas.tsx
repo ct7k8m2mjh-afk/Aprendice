@@ -9,6 +9,7 @@ import { plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { useRegiao } from '../ui/FiltroRegiao';
 import { descreveFiltro, regiaoDaProva, regioesDoFiltro, type FiltroRegiao } from '../logica/regiao';
+import { leFonte } from '../logica/fonteTexto';
 
 const INGRESSO: Record<string, string> = { vestibular_proprio: 'Vestibular próprio', enem_sisu: 'ENEM/Sisu', enem_nota: 'Nota do ENEM', seriado: 'Seriado' };
 
@@ -98,7 +99,7 @@ export function ProvaDetalhe() {
         {!p.verificado || p.a_verificar.length ? (
           <p className="aviso-linha"><Icone nome="info" tam={16} /> <span>{p.verificado ? 'Conferido no edital, exceto: ' : 'Ainda a conferir no edital: '}{p.a_verificar.map(campoLegivel).join('; ') || 'formato da prova'}.</span></p>
         ) : null}
-        <p className="fontes">Fontes: {p.fontes.map((u, i) => <a key={i} href={u} target="_blank" rel="noreferrer noopener">{new URL(u).hostname.replace(/^www\./, '')}</a>)}</p>
+        <p className="fontes">Fontes: {p.fontes.map((u, i) => { const f = leFonte(u); return f.links[0] ? <a key={i} href={f.links[0].url} target="_blank" rel="noreferrer noopener">{f.links[0].site}</a> : <span key={i}>{f.texto}</span>; })}</p>
       </section>
       <section className="secao">
         <h2 className="sec-tit">Simulados desta prova</h2>

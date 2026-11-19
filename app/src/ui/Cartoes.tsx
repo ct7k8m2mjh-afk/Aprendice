@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { Fragment, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import type { Completar, Flashcard, MateriaId } from '../dados/tipos';
 import { confereCompletar, criaCorretor, type Correcao, type Veredito } from '../logica/correcao';
 import { corrigeComIA } from '../logica/ia';
@@ -7,6 +7,9 @@ import { pegaEstado } from '../estado/loja';
 import { atualizaMateria, useMateriaEstado } from '../estado/loja';
 import { urlFlashImg, EH_PREVIA } from '../dados/conteudo';
 import { Icone } from './Icone';
+import { comFracoes } from './Fracao';
+import { Protecao } from './Protecao';
+import { leFonte } from '../logica/fonteTexto';
 
 export type Nota = 'a' | 'q' | 'e';
 
@@ -56,8 +59,28 @@ export function BotoesNota({ aoNotar, sugestao, rec }: { aoNotar: (n: Nota) => v
   );
 }
 
+/** Fonte do verso: texto e link (o campo pode ser link puro, texto com link no meio ou só texto; nunca quebra o cartão). */
+function FonteCartao({ fonte, credito }: { fonte?: string; credito?: string }) {
+  const f = leFonte(fonte);
+  const partes: ReactNode[] = [];
+  if (f.texto) partes.push(f.texto);
+  f.links.forEach((l, i) => partes.push(<a key={i} href={l.url} target="_blank" rel="noreferrer noopener">{l.site}</a>));
+  if (credito) partes.push(credito);
+  if (!partes.length) return null;
+  return <p className="fc-fonte fraco">Fonte: {partes.map((x, i) => <Fragment key={i}>{i > 0 && ' · '}{x}</Fragment>)}</p>;
+}
+
+type PropsFlash = Parameters<typeof FlashcardCartao>[0];
+/** Flashcard com proteção: uma falha de desenho num cartão não derruba a sessão inteira (dados.md, item 1). */
+export function FlashcardView(p: PropsFlash) {
+  return <Protecao chave={p.c.id} texto="Este cartão não abriu."><FlashcardCartao {...p} /></Protecao>;
+}
+export function CompletarView(p: Parameters<typeof CompletarCartao>[0]) {
+  return <Protecao chave={p.c.id} texto="Esta frase não abriu."><CompletarCartao {...p} /></Protecao>;
+}
+
 /** Flashcard: pergunta curta no estilo das discursivas; o aluno escreve, o app corrige (local ou IA simulada) e ele confirma. */
-export function FlashcardView({ m, c, todos, aoNotar, usarIA = true, tema, conteudo }: { m: MateriaId; c: Flashcard; todos: Flashcard[]; aoNotar: (n: Nota, origem: string) => void; usarIA?: boolean;
+function FlashcardCartao({ m, c, todos, aoNotar, usarIA = true, tema, conteudo }: { m: MateriaId; c: Flashcard; todos: Flashcard[]; aoNotar: (n: Nota, origem: string) => void; usarIA?: boolean;
   /** nome do tema e do conteúdo do cartão: faixa no topo do cartão (sistema do protótipo) */ tema?: string; conteudo?: string }) {
   const s = useMateriaEstado(m);
   const corrige = useMemo(() => corretorDe(m, todos), [m, todos]);
@@ -94,7 +117,7 @@ export function FlashcardView({ m, c, todos, aoNotar, usarIA = true, tema, conte
         </div>
       ) : <div className="fc-topo"><span className="etq cor">{TIPO[c.tipo || (c.img ? 'imagem' : '')] || 'Flashcard'}</span></div>}
       {img && <img className="fc-img" src={img} alt="" />}
-      <h2 className="fc-frente">{c.frente}</h2>
+      <h2 className="fc-frente">{comFracoes(c.frente)}</h2>
       <label className="fc-lab" htmlFor={'fc-' + c.id}><Icone nome="caneta" tam={17} /> Sua resposta, com as suas palavras</label>
       <textarea id={'fc-' + c.id} ref={inp} className="fc-resp" rows={3} value={resp} readOnly={fase !== 'pergunta'} placeholder="Escreva aqui o que você lembra"
         onChange={(e) => setResp(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); if (fase === 'pergunta') corrigir(); } }} />
@@ -116,9 +139,9 @@ export function FlashcardView({ m, c, todos, aoNotar, usarIA = true, tema, conte
               <small className="fraco">{origem === 'ia-simulada' ? 'Correção por IA (simulada nesta versão, feita no aparelho)' : 'Correção local'}: é uma sugestão, quem decide é você.</small>
             </div>
           )}
-          <div className="fc-modelo"><span className="fraco">Resposta-modelo</span><p>{c.verso}</p></div>
-          {c.erro_comum && <p className="fc-erro"><b>Erro comum: </b>{c.erro_comum}</p>}
-          {(c.fonte || c.credito) && <p className="fc-fonte fraco">Fonte: {c.fonte ? <a href={c.fonte} target="_blank" rel="noreferrer noopener">{new URL(c.fonte).hostname.replace(/^www\./, '')}</a> : null}{c.credito ? ` · ${c.credito}` : ''}</p>}
+          <div className="fc-modelo"><span className="fraco">Resposta-modelo</span><p>{comFracoes(c.verso)}</p></div>
+          {c.erro_comum && <p className="fc-erro"><b>Erro comum: </b>{comFracoes(c.erro_comum)}</p>}
+          <FonteCartao fonte={c.fonte} credito={c.credito} />
           <Gosto m={m} id={c.id} tipo={c.tipo || (c.img ? 'imagem' : 'conceito')} mod={c.mod} />
           <BotoesNota aoNotar={(n) => aoNotar(n, origem)} sugestao={sug} rec={s.flash[c.id]} />
         </div>
@@ -128,7 +151,7 @@ export function FlashcardView({ m, c, todos, aoNotar, usarIA = true, tema, conte
 }
 
 /** Frase para completar: uma lacuna, conferida localmente. */
-export function CompletarView({ m, c, aoNotar }: { m: MateriaId; c: Completar; aoNotar: (n: Nota, origem: string) => void }) {
+function CompletarCartao({ m, c, aoNotar }: { m: MateriaId; c: Completar; aoNotar: (n: Nota, origem: string) => void }) {
   const s = useMateriaEstado(m);
   const [resp, setResp] = useState('');
   const [ver, setVer] = useState<Veredito | null>(null);
@@ -145,11 +168,11 @@ export function CompletarView({ m, c, aoNotar }: { m: MateriaId; c: Completar; a
     <article className="flashcard folha completar">
       <div className="fc-topo"><span className="etq cor">Complete a frase</span></div>
       <p className="cz-frase">
-        {a}
+        {comFracoes(a)}
         <input ref={inp} className={'cz-in' + (ver ? (ver === 'certo' ? ' ok' : ver === 'quase' ? ' qs' : ' er') : '')} style={{ width: `${larg}ch` }}
           value={resp} readOnly={!!ver} onChange={(e) => setResp(e.target.value)} aria-label="Palavra que falta"
           onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); if (!ver) corrigir(); } }} />
-        {b}
+        {b !== undefined && comFracoes(b)}
       </p>
       {!ver && (
         <div className="fc-acoes">
@@ -163,7 +186,7 @@ export function CompletarView({ m, c, aoNotar }: { m: MateriaId; c: Completar; a
             <b>{naoSei ? 'Resposta' : rotuloVer(ver)}</b>
             <p>A palavra é <b>{c.resp}</b>{c.aceita && c.aceita.length ? ` (também vale: ${c.aceita.join(', ')})` : ''}.</p>
           </div>
-          {c.fonte && <p className="fc-fonte fraco">Fonte: <a href={c.fonte} target="_blank" rel="noreferrer noopener">{new URL(c.fonte).hostname.replace(/^www\./, '')}</a></p>}
+          <FonteCartao fonte={c.fonte} />
           <Gosto m={m} id={c.id} tipo="completar" mod={c.mod} />
           <BotoesNota aoNotar={(n) => aoNotar(n, naoSei ? 'nao-sei' : 'local')} sugestao={ver === 'certo' ? 'a' : ver === 'quase' ? 'q' : 'e'} rec={s.flash[c.id]} />
         </div>

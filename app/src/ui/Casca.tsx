@@ -5,6 +5,7 @@ import { Anel, Logo } from './comum';
 import { MATERIAS_PRINCIPAIS, OUTRAS_MATERIAS, materia, type MateriaInfo } from '../dados/materias';
 import { atualiza, useEstado } from '../estado/loja';
 import { semana } from '../logica/estatisticas';
+import { Protecao } from './Protecao';
 import { Busca } from '../telas/Busca';
 
 function usaTema() {
@@ -143,7 +144,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
             </Link>
           </div>
         </header>
-        <main id="principal" className="conteudo-wrap">{children}</main>
+        <main id="principal" className="conteudo-wrap"><Protecao chave={loc.pathname} texto="Esta tela não abriu.">{children}</Protecao></main>
       </div>
 
       <nav className="tabs" aria-label="Navegação">
