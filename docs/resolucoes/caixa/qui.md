@@ -99,3 +99,35 @@ Checagem no site (P82a1b72a, P3cfb6cad, Pe0cdd866; 390 e 1280 px): 4 blocos comp
 Último lote gravado: qui-0066. Nesta sessão: qui-0064 (59 ok, 1 divergência), qui-0065 (58 ok, 2 pendentes para anular), qui-0066 (60 ok) = 177 resoluções. Nenhum lote aberto. Testes: tsc ok, 786 passed.
 Pendências: P0ffb2963 (divergência, EMESCAM 2022 q21: Aprendice B × preliminar C), ANULAR P1ea356c5 e P9535cdb8, PRINT P514d9f01, reclassificações e DADOs nos blocos acima.
 Próximo: `python3 ferramentas/resolucoes/lote.py proximo qui 60 --novo` (qui-0067).
+
+## 2026-11-19 16:03 UTC — PENDENCIAS — session_01PveEKXC1xdiGM81kadC8Xj
+Lote qui-0067 gravado (49 ok, 1 pendente PRINT; 4 sem gabarito publicado com gabarito do Aprendice: P18b939f1 A, Pecea0117 E, P5894717e D, Pa47a8d1b C — resolvedor e conferente às cegas iguais; Pa47a8d1b também igual ao preliminar UFRR Edital 89/25). Lote qui-0068 com os conferentes (linhas dele abaixo também, resolvidas).
+GABARITO P18b939f1, Pecea0117, P5894717e, Pa47a8d1b: gabarito do Aprendice; trocar pelo definitivo quando a banca publicar.
+DADO P039c94e2: alternativas -> campo ausente na entrada; alternativas A–E coladas no texto_da_prova (no print estão separadas)
+DADO P2d76d26d: alternativas -> campo ausente na entrada; alternativas A–E coladas no texto_da_prova (no print estão separadas)
+DADO P852e5d6e: texto_da_prova/alternativas -> acentos quebrados ("´e", "rea¸c˜ao") e letras soltas no começo; no print estão normais
+RECLASS Pb22b4c69 Q12.5 -> Q09.2
+RECLASS Pd3a0ef68 Q12.5 -> Q02.2
+RECLASS P2f50e1bf Q12.5 -> Q12.4
+RECLASS P039c94e2 Q12.5 -> Q08.4
+DADO P5894717e: texto_da_prova (afirmativa II) "C−−O" -> "C=O"
+RECLASS P602bc634 Q12.4 -> Q10.1
+RECLASS Pb0b5050e Q12.4 -> Q08.7
+PRINT Pba420dcb (PUC-Rio 2026 Grupo 4 q31): figura cortada — falta a parte polar da fosfatidilcolina (glicerol-éster, fosfato O⁻, colina N⁺), na pág. 7 do PDF oficial; refazer o print
+DADO Pc4b27a9b: alternativas -> A 2,52 x 10^27 / B 3,60 x 10^27 / C 3,78 x 10^27 / D 5,40 x 10^28 (a entrada perdeu o expoente: "1027", "1028")
+DADO Pdfe48b82: texto_da_prova embaralhado ("COz" = "CO2", "Semo" = "Sem o"); alternativas ausentes -> A Apenas I, II e III. B Apenas I e III. C Apenas I e IV. D Apenas II, III e IV. E Apenas II e IV.
+RECLASS Paba7fcc2 Q12.4 -> Q08.4
+RECLASS P07301ea7 Q12.5 -> Q03.5
+RECLASS P0a14cc89 Q12.4 -> Q08.1
+RECLASS P40a0bc0c Q12.4 -> Q09.3
+DADO P0a14cc89, P014600da, Pb81a713e, P89e5a052: alternativas -> A–E coladas no texto_da_prova, sem o campo alternativas (no print estão separadas)
+DADO P709d4870: texto_da_prova -> "ligada ao mesmo carbono α" (o α sumiu)
+RECLASS P9a5ca403 Q04.3 -> Q05.1
+RECLASS P7b93c864 Q?? -> mat M13.9 (UEL 2023 q9: funções f: X → X e contagem de involuções, sem química; saiu pendente "classificação")
+DADO P32d72a01: alternativas.E -> termina em "aumentando o espalhamento." (o "#####" não está na prova)
+DADO P7b93c864: alternativas.E -> "F, F, V, F, V" ("R A S C U N H O" é rodapé)
+RECLASS P7ab73f24 Q02.4 -> Q12.2
+RECLASS P9fb53fdf Q02.4 -> Q12.2
+RECLASS P2e251254 Q12.5 -> Q03.4
+RECLASS P88bb8cdb Q11.6 -> Q11.5
+RECLASS Pa23114cf Q05.2 -> Q05.6
