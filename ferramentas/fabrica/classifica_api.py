@@ -799,6 +799,56 @@ def relatorio():
     print(f'relatório: {len(mud)} mudanças, {len(sug)} sugestões, gasto {sum(gastos.values()):.2f}')
 
 
+def agrupa_sugestoes():
+    """Junta as sugestões de conteúdo novo que dizem a mesma coisa com nomes diferentes (uma chamada por matéria,
+    claude-sonnet-5-5). Grava fabrica_saida/classificacao/sugestoes-grupos.json: id -> {nome, cobre}."""
+    cl = cliente()
+    tax = taxonomia()
+    todas = {}
+    for l in lotes_oficiais():
+        for qid, d in ler(os.path.join(SAIDA, l, 'decisao.json')).items():
+            if d.get('sugestao_novo'):
+                todas[qid] = d
+    por_m = {}
+    for d in todas.values():
+        por_m.setdefault(tax[d['para']][0], []).append(d)
+    saida = {}
+    modelo = 'claude-sonnet-5-5'
+    for m, ds in sorted(por_m.items()):
+        itens = [{'id': d['id'], 'nome': d['sugestao_novo']['nome'], 'cobre': d['sugestao_novo']['cobre'],
+                  'ficou_em': f"{d['para']} {tax[d['para']][1]}"} for d in ds]
+        esq = {'type': 'object', 'additionalProperties': False, 'required': ['grupos'],
+               'properties': {'grupos': {'type': 'array', 'items': {
+                   'type': 'object', 'additionalProperties': False, 'required': ['nome', 'cobre', 'ids'],
+                   'properties': {'nome': {'type': 'string'}, 'cobre': {'type': 'string'},
+                                  'ids': {'type': 'array', 'items': {'type': 'string'}}}}}}}
+        texto = (f'Matéria: {NOME_MATERIA[m]}. Abaixo, sugestões de conteúdos (subtemas) novos feitas questão a '
+                 'questão para um site de estudos de vestibular. Muitas dizem a mesma coisa com nomes diferentes. '
+                 'Junte as que cobririam o MESMO conteúdo num grupo só, com um nome curto no estilo de um subtema '
+                 '(minúsculas, sem ponto final) e uma frase do que ele cobriria. Não junte assuntos diferentes só '
+                 'para ter menos grupos. Toda id tem de estar em exatamente um grupo.\n\n'
+                 + json.dumps(itens, ensure_ascii=False, indent=1))
+        with cl.messages.stream(model=modelo, max_tokens=32000, messages=[{'role': 'user', 'content': texto}],
+                                output_config={'effort': 'medium',
+                                               'format': {'type': 'json_schema', 'schema': esq}}) as st:
+            msg = st.get_final_message()
+        u = msg.usage
+        real = preco(modelo, u.input_tokens, u.output_tokens, batch=False)
+        anota_gasto('classif-sug-01', 'agrupa', modelo, u.input_tokens, u.output_tokens, 0, 0, real, real)
+        gs = json.loads(next(c.text for c in msg.content if c.type == 'text'))['grupos']
+        vistos = set()
+        for g in gs:
+            for i in g['ids']:
+                if i in todas and i not in vistos:
+                    vistos.add(i)
+                    saida[i] = {'nome': g['nome'], 'cobre': g['cobre']}
+        for d in ds:   # o que o modelo esqueceu fica com o nome original
+            if d['id'] not in vistos:
+                saida[d['id']] = dict(d['sugestao_novo'])
+        print(f'{m}: {len(ds)} sugestões em {len(gs)} grupos · US$ {real:.3f}')
+    gravar(os.path.join(SAIDA, 'sugestoes-grupos.json'), saida)
+
+
 # ---------------------------------------------------------------- linha de comando
 
 def main():
@@ -845,6 +895,8 @@ def main():
         decide(a.lote)
     elif a.cmd == 'aplica':
         aplica(a.lote)
+    elif a.cmd == 'agrupa':
+        agrupa_sugestoes()
     elif a.cmd == 'relatorio':
         relatorio()
     elif a.cmd == 'gasto':
