@@ -46,6 +46,9 @@ aprovação ou resposta: pendências e avisos vão para docs/resolucoes/caixa/<m
 (Matemática: acrescentar a regra da animação — campo `conta` no formato que o motor anima; teste motorConta exige 70%.)
 
 ## RODADA (a cada despertar)
+MATÉRIAS DIVIDIDAS (19/11 17h29, docs/resolucoes/partes.json = por, geo, mat em 2 partes): ler também caixa/<m>-p2.md;
+`vez.py <m> --parte 2`; ao reabrir a parte 2, o prompt leva "PARTE 2" e `--parte 2` (ver a seção "Matéria dividida em
+partes" do PROMPT-SESSAO-RESOLUCOES.md). A sessão sem --parte é a parte 1.
 1. `git pull -q --rebase --autostash origin app-prototipo-completo`.
 2. Caixa: `git log --since=<última rodada> --format=%h -- docs/resolucoes/caixa/` e ler só os blocos novos.
    FIM → abrir a sessão nova da matéria (prompt-padrão). ACABOU → abrir Geografia no lugar. PENDENCIAS → anotar em
@@ -86,6 +89,9 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 | Geografia | session_01PveEKaxbgLPCyvGooHZvKw | trabalhando (aberta 19/11 17h04, largada rápida; anterior b6B5 deu FIM) |
 | Biologia | session_01PveEKYq8uSzJkiuk9txCUa | trabalhando (aberta 19/11 16h49; anterior Y2ist deu FIM) |
 | Português | session_01PveEKX1JnJpMCfgHmpRupU (FÁBRICA pela API) | trabalhando: piloto por-0094 ok (US$ 6,11); o dono autorizou continuar, lotes por-0095/0096 em esteira. Não abrir outra sessão de Português |
+| Matemática parte 2 | session_01PveEKa42KpJLXPbhM1bBJc | trabalhando (aberta 19/11 17h29; --parte 2, caixa mat-p2.md) |
+| Geografia parte 2 | session_01PveEKYMtZPCNo9ZMeKjY5w | trabalhando (aberta 19/11 17h29; --parte 2, caixa geo-p2.md) |
+| Português parte 2 | session_01PveEKYkycZkrPrW3hd17Vg | trabalhando (aberta 19/11 17h29; --parte 2, caixa por-p2.md; a fábrica é a parte 1) |
 Caídas pelo limite em 13/11 (o dono pode arquivar): Mat session_01PveEKWKTewFDUJvA5Y5s91, Fís session_01PveEKXXFLhp4ro4vnf1rh7,
 Quí session_01PveEKZxREDvirT6VTx5nKy, Geo session_01PveEKaHNFQdko42Ddhy3XZ, Bio session_01PveEKaPh1PAjF3bRbuJ5fG, Por session_01PveEKY3G8XPW7thJLdH3jL.
 Paradas do sistema novo (o dono pode arquivar): Mat session_01PveEKaSPVEijwvkvEUmmWx, Fís session_01PveEKX5T4pY3Xx4fn4PR8G,
