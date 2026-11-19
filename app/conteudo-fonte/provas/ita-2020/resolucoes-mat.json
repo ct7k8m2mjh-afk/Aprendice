@@ -929,5 +929,512 @@
    "data": "2026-11-19",
    "lote": "mat-0078"
   }
+ },
+ "Pfa63a114": {
+  "n": "53",
+  "conceito": "Julgar afirmações sobre poliedros usando 2A = soma dos lados das faces, a soma dos ângulos das faces e o limite de Euler, que só vale com certeza nos convexos.",
+  "equivocos": {
+   "A": "M11.5:aplicou-euler-a-poliedro-nao-convexo",
+   "C": "M11.5:euler-fechar-nao-garante-existencia",
+   "D": "M11.5:aplicou-euler-a-poliedro-nao-convexo",
+   "E": "M11.5:euler-fechar-nao-garante-existencia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Três ferramentas resolvem tudo: contar arestas pelos lados das faces (cada aresta é lado de duas faces), somar os ângulos face por face e lembrar que V − A + F = 2 é garantido só no poliedro convexo. A palavra \"todo\" na afirmação I pede que valha para qualquer poliedro, inclusive os não convexos. Na III, a relação de Euler fecha, mas isso não basta: falta testar se as faces cabem nas arestas.",
+    "formulas": [
+     "2A = soma dos números de lados de todas as faces",
+     "soma dos ângulos das faces = 360 · (A − F)",
+     "V − A + F = 2 (poliedro convexo)",
+     "toda face tem 3 lados ou mais, logo 2A ≥ 3F"
+    ],
+    "simbolos": [
+     [
+      "V, A, F",
+      "número de vértices, arestas e faces"
+     ],
+     [
+      "face quadrangular",
+      "face com 4 lados"
+     ],
+     [
+      "poliedro convexo",
+      "sem reentrâncias: o segmento entre dois pontos dele fica dentro dele"
+     ]
+    ]
+   },
+   "pista": "Na I, procure um poliedro de 16 faces quadrangulares com um furo no meio; na III, conte quantos lados as 15 faces precisam no mínimo.",
+   "passos": [
+    {
+     "faz": "Conte as arestas da afirmação I",
+     "conta": "2A = 16 · 4 → 2A = 64 → A = 32",
+     "porque": "Cada face tem 4 lados e cada aresta é lado de exatamente duas faces. Até aqui a afirmação acerta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste o \"todo\" com uma moldura",
+     "conta": "moldura quadrada: F = 16 | A = 32 | V = 16 → V − A + F = 0",
+     "porque": "A moldura (quadrado com furo quadrado, de espessura) tem 4 trapézios em cima, 4 embaixo, 4 faces externas e 4 internas: 16 faces quadrangulares, mas 16 vértices, não 18. Euler só daria 18 num convexo. I é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Some os ângulos das faces na II",
+     "conta": "soma = 180 · (2A − 2F) → soma = 360 · (A − F) = 360 · (16 − 10) = 2160°",
+     "porque": "Uma face de n lados soma 180 · (n − 2); somando todas, os n juntam 2A e os 2 juntam 2F. II é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste se as faces da III cabem",
+     "conta": "2A ≥ 3F → 2 · 22 = 44 e 3 · 15 = 45 → 44 < 45",
+     "porque": "Cada face precisa de 3 lados no mínimo, ou seja, 45 lados; mas 22 arestas fornecem só 44. Não existe esse poliedro, mesmo com V − A + F = 9 − 22 + 15 = 2. III é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o resultado à letra",
+     "conta": "I falsa | II verdadeira | III falsa → apenas II",
+     "porque": "Só a II vale para todo poliedro convexo com 10 faces e 16 arestas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — apenas a afirmação II é verdadeira.",
+   "checagem": "Na II, use Euler (o poliedro é convexo): V = 2 + 16 − 10 = 8, e a soma dos ângulos das faces de um convexo é 360 · (V − 2) = 360 · 6 = 2160°. Mesmo valor por outro caminho.",
+   "erradas": {
+    "A": "A aceita a I, que usa Euler para \"todo\" poliedro: a moldura quadrada tem 16 faces quadrangulares, 32 arestas e só 16 vértices.",
+    "C": "C aceita a III porque V − A + F = 9 − 22 + 15 = 2 fecha; mas 15 faces exigem pelo menos 45 lados e 22 arestas dão só 44.",
+    "D": "D junta a II, verdadeira, com a I, que falha na moldura quadrada (16 vértices em vez de 18).",
+    "E": "E junta a II com a III; a III falha no teste 2A ≥ 3F: 44 < 45."
+   },
+   "armadilha": "Euler fechar não prova que o poliedro existe, e Euler não vale para todo poliedro: a I e a III caem exatamente aí.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmações sobre poliedros são verdadeiras.",
+    "chave": "2A = soma dos lados das faces, soma dos ângulos = 360 · (A − F) e 2A ≥ 3F; Euler só é garantido no convexo.",
+    "cuidado": "\"Todo poliedro\" inclui os não convexos, como a moldura com furo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Euler na II",
+    "ideia": "Convexo: V = 2 + 16 − 10 = 8 e soma = 360 · (8 − 2) = 2160°."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I: 2A = 16 · 4 = 64 → A = 32",
+    "nota": "arestas pelas faces"
+   },
+   {
+    "linha": "moldura: V − A + F = 16 − 32 + 16 = 0",
+    "nota": "não convexo: V = 16, não 18"
+   },
+   {
+    "linha": "II: soma = 360 · (16 − 10) = 2160°",
+    "nota": "soma dos ângulos das faces"
+   },
+   {
+    "linha": "III: 2 · 22 = 44 < 45 = 3 · 15",
+    "nota": "faltam lados: não existe"
+   },
+   {
+    "linha": "apenas II",
+    "nota": "alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ },
+ "Pa853deaa": {
+  "n": "54",
+  "conceito": "Geometria de posição: interseção de três planos, projeção ortogonal de retas paralelas e existência de reta paralela a uma e concorrente com duas retas reversas.",
+  "equivocos": {
+   "B": "M11.5:esqueceu-reta-perpendicular-ao-plano-na-projecao",
+   "C": "M11.5:esqueceu-reta-perpendicular-ao-plano-na-projecao",
+   "D": "M11.5:generalizou-sem-testar-contraexemplo",
+   "E": "M11.5:nao-viu-ponto-comum-aos-tres-planos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em geometria de posição, afirmação verdadeira pede prova; falsa pede um contraexemplo. Pense nos casos extremos: reta perpendicular ao plano de projeção, retas em planos que não se cruzam. Um ponto comum a duas das retas de interseção já está nos três planos.",
+    "formulas": [
+     "r ∩ s ≠ ∅ → o ponto comum está em π1, π2 e π3",
+     "projeção ortogonal de reta perpendicular ao plano = um ponto"
+    ],
+    "simbolos": [
+     [
+      "π1, π2, π3, π",
+      "planos"
+     ],
+     [
+      "∩",
+      "interseção"
+     ],
+     [
+      "∅",
+      "conjunto vazio"
+     ],
+     [
+      "≠ ∅",
+      "não vazio: há ponto comum"
+     ],
+     [
+      "retas reversas",
+      "não paralelas e sem ponto comum (não cabem num mesmo plano)"
+     ],
+     [
+      "concorrente",
+      "que corta a outra reta num ponto"
+     ]
+    ]
+   },
+   "pista": "Na II, imagine as duas retas em pé sobre o chão; na III, ponha s e t em alturas diferentes.",
+   "passos": [
+    {
+     "faz": "Prove a afirmação I",
+     "conta": "P ∈ r e P ∈ s → P está nos três planos → P ∈ t",
+     "porque": "r é a interseção de dois dos planos e s a de outro par; juntas, as duas cobrem os três planos. O ponto P comum a r e s está nos três, logo também na interseção do par que forma t. I é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Derrube a II com retas em pé",
+     "conta": "r ∥ s, ambas ⊥ π → projeções: dois pontos",
+     "porque": "Retas perpendiculares ao plano se projetam em pontos, não em retas. E, se r e s estiverem num mesmo plano perpendicular a π, as projeções coincidem numa reta só. II é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Monte um contraexemplo para a III",
+     "conta": "r: z = 0, direção (1, 0, 0) | s: z = 1, direção (0, 1, 0) | t: z = 2, direção (1, 1, 0)",
+     "porque": "As três estão em alturas diferentes e têm direções diferentes duas a duas: são reversas duas a duas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Mostre que u não existe",
+     "conta": "u ∥ r e u corta s → u fica no plano z = 1 → u não alcança t (z = 2)",
+     "porque": "Uma reta paralela a r (horizontal) que passa por um ponto de s fica toda na altura z = 1, e t está toda na altura z = 2. III é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o resultado à letra",
+     "conta": "I verdadeira | II falsa | III falsa → apenas I",
+     "porque": "Só a I resiste a todos os casos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — apenas a afirmação I é verdadeira.",
+   "checagem": "Teste a I num exemplo: os planos x = 0, y = 0 e z = 0 se cortam dois a dois nos três eixos; dois eixos se encontram na origem, e a origem está também no terceiro eixo. Confere.",
+   "erradas": {
+    "B": "B aceita a II, que esquece o caso de retas perpendiculares a π: elas se projetam em dois pontos, não em retas.",
+    "C": "C junta a I, verdadeira, com a II, que falha para retas perpendiculares ao plano de projeção.",
+    "D": "D junta a I com a III; a III falha com s em z = 1 e t em z = 2: a paralela a r por s fica presa em z = 1.",
+    "E": "E descarta a I, mas o ponto comum a r e s está nos três planos e, portanto, também em t."
+   },
+   "armadilha": "A II parece óbvia, mas \"duas retas paralelas\" não cobre o caso em que as projeções viram pontos ou uma única reta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmações de geometria de posição são verdadeiras.",
+    "chave": "Prove a I pelo ponto comum aos três planos e derrube a II e a III com contraexemplos.",
+    "cuidado": "Sempre teste o caso extremo: reta perpendicular ao plano, retas em alturas diferentes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "exemplo com eixos",
+    "ideia": "Planos coordenados: dois eixos se cortam na origem, que está no terceiro eixo (I); retas verticais se projetam no chão como pontos (II)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I: P ∈ r ∩ s → P ∈ π1, π2, π3 → P ∈ t",
+    "nota": "ponto comum nos três planos"
+   },
+   {
+    "linha": "II: r ∥ s ⊥ π → projeções são pontos",
+    "nota": "contraexemplo"
+   },
+   {
+    "linha": "III: s em z = 1, t em z = 2 → u ∥ r por s fica em z = 1",
+    "nota": "não alcança t"
+   },
+   {
+    "linha": "apenas I",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ },
+ "P22eb9553": {
+  "n": "44",
+  "conceito": "Interseções de uma elipse com o eixo x e de uma circunferência com o eixo y, e a área do quadrilátero por diferença de triângulos.",
+  "equivocos": {
+   "A": "M12.4:errou-raiz-do-discriminante",
+   "B": "M12.4:valor-que-nao-fecha",
+   "D": "M12.4:area-negativa",
+   "E": "M12.4:nao-descontou-o-triangulo-menor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para cortar uma curva com o eixo x, faça y = 0; com o eixo y, faça x = 0. Cada corte vira uma equação de 2º grau com duas raízes. Os quatro pontos ficam nos dois eixos, então o quadrilátero é um triângulo grande com vértice na origem menos um triângulo pequeno, também com vértice na origem.",
+    "formulas": [
+     "y = 0 em c1 ; x = 0 em c2",
+     "área de triângulo com vértice na origem e catetos nos eixos = (base · altura)/2"
+    ],
+    "simbolos": [
+     [
+      "c1",
+      "curva 16x² + 9y² − 224x − 72y + 640 = 0 (uma elipse)"
+     ],
+     [
+      "c2",
+      "curva x² + y² + 4x − 10y + 13 = 0 (uma circunferência)"
+     ],
+     [
+      "P, Q",
+      "cortes de c1 no eixo x"
+     ],
+     [
+      "R, S",
+      "cortes de c2 no eixo y"
+     ],
+     [
+      "Δ",
+      "discriminante b² − 4ac da equação de 2º grau"
+     ]
+    ]
+   },
+   "pista": "Não precisa reconhecer as curvas: faça y = 0 numa e x = 0 na outra e desenhe os quatro pontos nos eixos.",
+   "passos": [
+    {
+     "faz": "Corte c1 com o eixo x",
+     "conta": "y = 0 → 16x² − 224x + 640 = 0 → x² − 14x + 40 = 0 → x = 4 ou x = 10",
+     "porque": "Dividindo por 16 a equação fica simples; soma 14 e produto 40 dão 4 e 10. Então P = (4, 0) e Q = (10, 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Corte c2 com o eixo y",
+     "conta": "x = 0 → y² − 10y + 13 = 0 → Δ = 100 − 52 = 48 → y = (10 ± 4√3)/2 = 5 ± 2√3",
+     "porque": "√48 = 4√3, e o 2 do denominador divide o 10 e o 4. R = (0, 5 − 2√3) e S = (0, 5 + 2√3).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a área por diferença",
+     "conta": "área = área(O, Q, S) − área(O, P, R)",
+     "porque": "Ligando R, P, Q, S, a figura é o triângulo OQS sem o canto OPR perto da origem; os dois têm catetos nos eixos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule as duas áreas",
+     "conta": "(10 · (5 + 2√3))/2 − (4 · (5 − 2√3))/2 = (25 + 10√3) − (10 − 4√3) → 15 + 14√3",
+     "porque": "O sinal de menos na frente do parêntese troca o sinal do −4√3, que vira +4√3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "15 + 14√3 → alternativa C",
+     "porque": "É a área do quadrilátero PQSR, já descontado o triângulo pequeno.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a área do quadrilátero PQRS é 15 + 14√3",
+   "checagem": "Pela fórmula do cadarço, na ordem R(0; 5 − 2√3), P(4, 0), Q(10, 0), S(0; 5 + 2√3): a soma dá 2 · área = 30 + 28√3, ou seja, área = 15 + 14√3 ≈ 39,2. E ela é maior que o triângulo PQS, de área (6 · (5 + 2√3))/2 ≈ 25,4, como deve ser.",
+   "erradas": {
+    "A": "A sai de errar a raiz do discriminante, √48 tomado como 2√3: y = 5 ± √3, e então 5 · (5 + √3) − 2 · (5 − √3) = 15 + 7√3.",
+    "B": "B não confere: 15 − 7√3 ≈ 2,9, menor que o triângulo PQS (≈ 25,4) que está dentro do quadrilátero.",
+    "D": "D não confere: 15 − 14√3 ≈ −9,2 é negativo, e área não pode ser negativa.",
+    "E": "E sai de calcular só o triângulo grande OQS, (10 · (5 + 2√3))/2 = 25 + 10√3, sem descontar o triângulo OPR."
+   },
+   "armadilha": "O quadrilátero não inclui o canto perto da origem: é o triângulo OQS menos o triângulo OPR.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do quadrilátero com vértices nos cortes de c1 com o eixo x e de c2 com o eixo y.",
+    "chave": "P(4, 0), Q(10, 0), R e S em y = 5 ± 2√3; área = (25 + 10√3) − (10 − 4√3) = 15 + 14√3.",
+    "cuidado": "Desconte o triângulo OPR e simplifique √48 = 4√3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "cadarço",
+    "ideia": "Coordenadas na ordem R, P, Q, S na fórmula do cadarço (determinante) dão direto 15 + 14√3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² − 14x + 40 = 0 → x = 4, 10",
+    "nota": "P e Q"
+   },
+   {
+    "linha": "y² − 10y + 13 = 0 → y = 5 ± 2√3",
+    "nota": "R e S"
+   },
+   {
+    "linha": "(10 · (5 + 2√3))/2 = 25 + 10√3",
+    "nota": "triângulo OQS"
+   },
+   {
+    "linha": "(4 · (5 − 2√3))/2 = 10 − 4√3",
+    "nota": "triângulo OPR"
+   },
+   {
+    "linha": "25 + 10√3 − (10 − 4√3) = 15 + 14√3",
+    "nota": "diferença"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ },
+ "P82e16b5f": {
+  "n": "51",
+  "conceito": "Achar o vértice de um triângulo isósceles pela simetria e pela relação entre área, semiperímetro e raio inscrito.",
+  "equivocos": {
+   "A": "M12.5:esqueceu-o-1-do-ponto-medio",
+   "B": "M12.5:altura-errada",
+   "D": "M12.5:altura-errada",
+   "E": "M12.5:supos-triangulo-retangulo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "B e C trocam x e y entre si, então são simétricos em relação à reta y = x. Num triângulo isósceles de base BC, o vértice A fica na mediatriz de BC, que é essa reta: A = (t, t). A altura h vai do ponto médio M de BC até A. O raio inscrito liga área e semiperímetro: r = área/p.",
+    "formulas": [
+     "r = área/p, com p = semiperímetro",
+     "área = (base · h)/2",
+     "lado = √(h² + (base/2)²)"
+    ],
+    "simbolos": [
+     [
+      "M",
+      "ponto médio de BC"
+     ],
+     [
+      "h",
+      "altura relativa à base, de A até M"
+     ],
+     [
+      "p",
+      "semiperímetro, metade do perímetro"
+     ],
+     [
+      "r",
+      "raio da circunferência inscrita"
+     ],
+     [
+      "t",
+      "coordenada comum de A = (t, t)"
+     ]
+    ]
+   },
+   "pista": "Note que B e C são simétricos em relação a y = x e calcule a base BC antes de qualquer coisa.",
+   "passos": [
+    {
+     "faz": "Ache a base e o ponto médio",
+     "conta": "BC = √((6√2)² + (6√2)²) = √144 = 12 | M = (1 + 3√2, 1 + 3√2)",
+     "porque": "As diferenças em x e em y valem 6√2; M é a média das coordenadas de B e C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva área e lados em função de h",
+     "conta": "área = (12 · h)/2 = 6h | lado = √(h² + 36) | p = 6 + √(h² + 36)",
+     "porque": "A altura cai no meio da base; cada lado igual é a hipotenusa de catetos h e 6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o raio inscrito igual a 3",
+     "conta": "6h/(6 + √(h² + 36)) = 3 → 2h − 6 = √(h² + 36) → 4h² − 24h + 36 = h² + 36 → 3h² = 24h → h = 8",
+     "porque": "O denominador passa multiplicando; elevando ao quadrado, os 36 se cancelam e sobra h = 8 (h = 0 não forma triângulo).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ande 8 a partir de M sobre y = x",
+     "conta": "√2 · |t − (1 + 3√2)| = 8 → t − (1 + 3√2) = ±4√2 → t = 1 + 7√2 ou t = 1 − √2",
+     "porque": "Na reta y = x, mudar t de um valor desloca √2 vezes esse valor; 8/√2 = 4√2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fique no primeiro quadrante",
+     "conta": "1 − √2 ≈ −0,41 < 0 → A = (1 + 7√2, 1 + 7√2) → alternativa C",
+     "porque": "O triângulo está no primeiro quadrante, então a coordenada negativa sai.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — A = (1 + 7√2, 1 + 7√2).",
+   "checagem": "Com A = (1 + 7√2, 1 + 7√2): cada lado igual mede √(8² + 6²) = 10, perímetro 10 + 10 + 12 = 32, p = 16, área = (12 · 8)/2 = 48 e r = 48/16 = 3. Fecha.",
+   "erradas": {
+    "A": "(7√2, 7√2) sai de esquecer o 1 do ponto médio: M = (3√2, 3√2) + 4√2. Com esse A, a altura vira ≈ 6,59 e o raio inscrito ≈ 2,65, não 3.",
+    "B": "(√2, √2) não confere: a altura até M fica ≈ 5,41 e o raio inscrito ≈ 2,31, não 3.",
+    "D": "(1 + √2, 1 + √2) não confere: a altura fica √2 · 2√2 = 4, lados √52, p = 6 + √52 e r = 24/(6 + √52) ≈ 1,82, não 3.",
+    "E": "(1 + 6√2, 1 + 6√2) não confere: dá triângulo retângulo com altura 6, lados 6√2, área 36 e r = 36/(6 + 6√2) ≈ 2,49, não 3."
+   },
+   "armadilha": "A distância 8 é medida sobre a reta y = x, então cada coordenada anda 8/√2 = 4√2, e não 8.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As coordenadas do vértice A do triângulo isósceles de base BC com raio inscrito 3.",
+    "chave": "A está em y = x; r = área/p com base 12 dá altura 8.",
+    "cuidado": "Converta a altura 8 em deslocamento 4√2 em cada coordenada e descarte a solução fora do 1º quadrante."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tangente do meio ângulo",
+    "ideia": "O incentro está na altura a 3 da base; tg(B/2) = 3/6 = 1/2 dá tg B = 1/(1 − 1/4) = 4/3, e h = 6 · 4/3 = 8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "BC = 6√2 · √2 = 12",
+    "nota": "base"
+   },
+   {
+    "linha": "r = 6h/(6 + √(h² + 36)) = 3",
+    "nota": "raio inscrito = área/p"
+   },
+   {
+    "linha": "2h − 6 = √(h² + 36)",
+    "nota": "denominador passa multiplicando"
+   },
+   {
+    "linha": "3h² = 24h → h = 8",
+    "nota": "eleva ao quadrado; 36 se cancela"
+   },
+   {
+    "linha": "t = 1 + 3√2 + 8/√2 = 1 + 7√2",
+    "nota": "anda 4√2 em cada coordenada"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
  }
 }

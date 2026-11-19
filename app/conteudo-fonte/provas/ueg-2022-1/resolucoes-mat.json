@@ -1014,5 +1014,115 @@
    "data": "2026-11-19",
    "lote": "mat-0078"
   }
+ },
+ "P7bf0c14d": {
+  "n": "25",
+  "conceito": "Calcular a área de um triângulo a partir das coordenadas dos vértices.",
+  "equivocos": {
+   "A": "M12.5:area-maior-que-o-retangulo",
+   "B": "M12.5:area-maior-que-o-retangulo",
+   "C": "M12.5:erro-no-determinante",
+   "D": "M12.5:erro-no-determinante"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com os três vértices em coordenadas, a área sai do determinante: metade do valor absoluto. As coordenadas estão em km, então a área sai em km². O sinal do determinante só indica a ordem dos vértices; a área é sempre positiva.",
+    "formulas": [
+     "D = xA(yB − yC) + xB(yC − yA) + xC(yA − yB)",
+     "área = |D|/2"
+    ],
+    "simbolos": [
+     [
+      "D",
+      "determinante formado pelas coordenadas dos três vértices"
+     ],
+     [
+      "| |",
+      "valor absoluto: tira o sinal"
+     ],
+     [
+      "km²",
+      "quilômetro quadrado, unidade de área"
+     ]
+    ]
+   },
+   "pista": "Escreva as três diferenças de y antes de multiplicar pelos x.",
+   "passos": [
+    {
+     "faz": "Anote os vértices",
+     "conta": "A(−3, 1) | B(1, 2) | C(0, −1)",
+     "porque": "São os três pontos do print, com coordenadas em quilômetros.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule as diferenças de y",
+     "conta": "yB − yC = 2 − (−1) = 3 | yC − yA = −1 − 1 = −2 | yA − yB = 1 − 2 = −1",
+     "porque": "Cada x é multiplicado pela diferença dos y dos outros dois vértices, em ordem circular.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o determinante",
+     "conta": "D = (−3) · 3 + 1 · (−2) + 0 · (−1) → D = −9 − 2 + 0 = −11",
+     "porque": "O termo de C some porque xC = 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire o módulo e divida por 2",
+     "conta": "área = |−11|/2 = 11/2 = 5,5 km² → alternativa E",
+     "porque": "O sinal negativo só diz que os vértices foram percorridos no sentido horário; a área é 5,5 km².",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — a área do triângulo ABC é 5,5 km².",
+   "checagem": "Pelo retângulo que envolve o triângulo: x vai de −3 a 1 (4 km) e y de −1 a 2 (3 km), área 12. Tire os três triângulos retângulos dos cantos: (4 · 1)/2 = 2, (1 · 3)/2 = 1,5 e (3 · 2)/2 = 3. Sobra 12 − 2 − 1,5 − 3 = 5,5 km².",
+   "erradas": {
+    "A": "15,2 km² não confere: o triângulo cabe num retângulo de 4 km × 3 km = 12 km², então a área tem de ser menor que 12.",
+    "B": "12,5 km² não confere: também passa dos 12 km² do retângulo que contém o triângulo.",
+    "C": "10,3 km² não confere: o determinante vale −11, e |−11|/2 = 5,5; nem esquecendo a divisão por 2 (dá 11) chega a 10,3.",
+    "D": "8,6 km² não confere: o retângulo de 12 km² menos os três cantos (2 + 1,5 + 3 = 6,5) dá 5,5, não 8,6."
+   },
+   "armadilha": "O determinante dá −11: é preciso tirar o sinal e dividir por 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do triângulo de vértices A(−3, 1), B(1, 2) e C(0, −1), em km².",
+    "chave": "Área = |D|/2, com D = −11.",
+    "cuidado": "Tire o módulo e não esqueça a metade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "retângulo menos cantos",
+    "ideia": "Retângulo 4 × 3 = 12 menos os triângulos 2, 1,5 e 3 dá 5,5 km²."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "D = (−3)(2 + 1) + 1(−1 − 1) + 0(1 − 2)",
+    "nota": "monta o determinante"
+   },
+   {
+    "linha": "D = −9 − 2 + 0 = −11",
+    "nota": "efetua"
+   },
+   {
+    "linha": "área = |−11|/2 = 11/2",
+    "nota": "módulo e metade"
+   },
+   {
+    "linha": "área = 5,5 km²",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
  }
 }

@@ -506,5 +506,124 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "P12f2c58e": {
+  "n": "42",
+  "conceito": "Área de quadrilátero por coordenadas e reta vertical que divide a área ao meio.",
+  "equivocos": {
+   "A": "M12.5:area-errada-para-a-metade",
+   "B": "M12.5:area-errada-para-a-metade",
+   "C": "M12.5:area-errada-para-a-metade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "AB está no eixo x, então a cerca perpendicular a AB é uma reta vertical x = k. Primeiro ache a área total do terreno; a cerca tem de deixar metade de cada lado. Do lado de B, o pedaço cortado é um triângulo retângulo apoiado no lado BC, cuja área depende só de 5 − k.",
+    "formulas": [
+     "área do polígono pelas coordenadas: metade do módulo de Σ (x_i · y_{i+1} − x_{i+1} · y_i)",
+     "reta por B(5, 0) e C(2, 3): y = 5 − x",
+     "área do triângulo retângulo = (cateto · cateto)/2"
+    ],
+    "simbolos": [
+     [
+      "k",
+      "abscissa do ponto do eixo x por onde passa a cerca"
+     ],
+     [
+      "Σ",
+      "soma de todas as parcelas"
+     ],
+     [
+      "perpendicular a AB",
+      "como AB é horizontal, a cerca é vertical"
+     ]
+    ]
+   },
+   "pista": "Calcule a área total do quadrilátero ABCD. Depois veja que figura a cerca vertical recorta perto de B.",
+   "passos": [
+    {
+     "faz": "Calcule a área total do terreno",
+     "conta": "A(1,0), B(5,0), C(2,3), D(0,1): (0 + 15 + 2 − 1)/2 → 16/2 = 8",
+     "porque": "Percorrendo os vértices em ordem, as parcelas x_i · y_{i+1} − x_{i+1} · y_i são 0, 15, 2 e −1; a área é a metade da soma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Diga quanto fica de cada lado",
+     "conta": "8/2 = 4",
+     "porque": "As duas pessoas ficam com áreas iguais, então a cerca deixa área 4 de cada lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descreva o pedaço do lado de B",
+     "conta": "x de k a 5 | teto: y = 5 − x | catetos: 5 − k e 5 − k",
+     "porque": "Se a cerca fica entre x = 2 e x = 5, o pedaço à direita é limitado pelo eixo x, pela cerca e pelo lado BC. É um triângulo retângulo com os dois catetos iguais a 5 − k, porque BC desce 1 para cada 1 que anda.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Iguale a área do triângulo a 4",
+     "conta": "(5 − k)²/2 = 4 → (5 − k)² = 8 → 5 − k = 2√2",
+     "porque": "O 2 que divide passa multiplicando; depois tira-se a raiz, ficando com a positiva, porque 5 − k é um comprimento. √8 = 2√2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole k e confira a posição",
+     "conta": "k = 5 − 2√2 ≈ 2,17 → ponto (5 − 2√2, 0) → alternativa D",
+     "porque": "k fica entre 2 e 5, como o triângulo supunha. O ponto é o pé da cerca no eixo x.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — (5 − 2√2, 0)",
+   "checagem": "Some o lado esquerdo da cerca: o triângulo de x = 2 a 5 sob BC tem área 3²/2 = 4,5, então à esquerda de x = 2 fica 8 − 4,5 = 3,5. A faixa entre x = 2 e a cerca vale 4,5 − 4 = 0,5. À esquerda dá 3,5 + 0,5 = 4, a outra metade. Fecha.",
+   "erradas": {
+    "A": "(5 − 2√3, 0) não confere: com k ≈ 1,54, a área à direita da cerca é cerca de 5,78, mais que a metade, 4.",
+    "B": "(5 − √3, 0) não confere: o triângulo à direita teria área (√3)²/2 = 1,5, não 4.",
+    "C": "(5 − √2, 0) não confere: o triângulo à direita teria área (√2)²/2 = 1, não 4."
+   },
+   "armadilha": "A cerca é perpendicular a AB, que está no eixo x: ela é vertical, e o pedaço perto de B é um triângulo retângulo com catetos iguais.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O ponto de AB por onde passa a cerca vertical que divide o terreno em duas áreas iguais.",
+    "chave": "A área total é 8; o triângulo perto de B tem área (5 − k)²/2 = 4, logo k = 5 − 2√2.",
+    "cuidado": "Calcule a área com os vértices em ordem e confira se k caiu no trecho em que o pedaço é mesmo um triângulo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas alternativas",
+    "ideia": "Todas têm a forma (5 − t, 0): o triângulo à direita tem área t²/2, e só t = 2√2 dá t²/2 = 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "área = (0 + 15 + 2 − 1)/2 = 8",
+    "nota": "coordenadas em ordem"
+   },
+   {
+    "linha": "metade = 8/2 = 4",
+    "nota": "cada lado da cerca"
+   },
+   {
+    "linha": "(5 − k)²/2 = 4",
+    "nota": "triângulo perto de B"
+   },
+   {
+    "linha": "(5 − k)² = 8",
+    "nota": "o 2 passa multiplicando"
+   },
+   {
+    "linha": "5 − k = 2√2 → k = 5 − 2√2",
+    "nota": "raiz positiva"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
  }
 }

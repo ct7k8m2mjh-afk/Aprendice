@@ -414,5 +414,240 @@
    "data": "2026-11-19",
    "lote": "mat-0077"
   }
+ },
+ "Pf08ba26f": {
+  "n": "68",
+  "conceito": "Completar quadrados para achar centro e raio e calcular a área entre um triângulo retângulo e um setor circular.",
+  "equivocos": {
+   "B": "M12.4:esqueceu-a-metade-do-triangulo",
+   "C": "M12.4:calculou-so-o-setor",
+   "D": "M12.4:setor-com-r-em-vez-de-r2",
+   "E": "M12.4:dois-erros-triangulo-e-setor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro complete os quadrados para achar o centro C e o raio. Na figura, a reta t é vertical e tangente em T, e CT é horizontal: o triângulo CTA tem ângulo reto em T. A região hachurada é o triângulo CTA menos o setor circular de centro C entre CT e CA.",
+    "formulas": [
+     "x² − 6x = (x − 3)² − 9",
+     "área do triângulo = (base · altura)/2",
+     "área do setor = (θ/360°) · π · r²"
+    ],
+    "simbolos": [
+     [
+      "λ",
+      "nome da circunferência"
+     ],
+     [
+      "C",
+      "centro da circunferência"
+     ],
+     [
+      "T",
+      "ponto de tangência"
+     ],
+     [
+      "θ",
+      "ângulo do setor, no centro"
+     ],
+     [
+      "π",
+      "pi, cerca de 3,14"
+     ]
+    ]
+   },
+   "pista": "Complete os quadrados e marque na figura os comprimentos CT e TA.",
+   "passos": [
+    {
+     "faz": "Complete os quadrados",
+     "conta": "x² − 6x + y² − 2y + 6 = 0 → (x − 3)² − 9 + (y − 1)² − 1 + 6 = 0 → (x − 3)² + (y − 1)² = 4",
+     "porque": "Os números que sobram passam para o outro lado: 9 + 1 − 6 = 4. Centro C = (3, 1) e raio 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache T e os catetos",
+     "conta": "T = (5, 1) | CT = 2 | TA = 3 − 1 = 2",
+     "porque": "A reta t é vertical e tangente pela direita, então passa por x = 3 + 2 = 5; A = (5, 3) está nela, 2 acima de T.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o triângulo CTA",
+     "conta": "área = (2 · 2)/2 = 2",
+     "porque": "Ângulo reto em T: o raio é perpendicular à tangente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o setor de 45°",
+     "conta": "θ = 45° | setor = (45/360) · π · 2² = (1/8) · 4π = π/2",
+     "porque": "Catetos iguais (2 e 2) fazem um triângulo isósceles: o ângulo em C é 45°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia o setor do triângulo",
+     "conta": "hachurada = 2 − π/2 → alternativa A",
+     "porque": "A parte hachurada é o que sobra do triângulo fora da circunferência.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — a área hachurada é 2 − π/2.",
+   "checagem": "Ordem de grandeza: 2 − π/2 ≈ 2 − 1,571 = 0,429, uma lasca pequena, como na figura. E CA = √(2² + 2²) = 2√2 ≈ 2,83 é maior que o raio 2: A fica fora da circunferência, como desenhado.",
+   "erradas": {
+    "B": "4 − π/2 sai de esquecer a metade na área do triângulo: 2 · 2 = 4 em vez de (2 · 2)/2 = 2.",
+    "C": "π/2 é só o setor circular; falta tirá-lo do triângulo.",
+    "D": "2 − π/4 sai de calcular o setor com r em vez de r²: (1/8) · π · 2 = π/4.",
+    "E": "4 − π/4 junta dois erros: triângulo sem a metade (4) e setor com r em vez de r² (π/4)."
+   },
+   "armadilha": "A região é triângulo menos setor, e o triângulo retângulo leva a divisão por 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área da parte do triângulo CTA que fica fora da circunferência.",
+    "chave": "Triângulo retângulo isósceles de catetos 2 (área 2) menos setor de 45° de raio 2 (π/2).",
+    "cuidado": "Complete os quadrados certo: raio 2, não 4."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "quadrado",
+    "ideia": "CTA é metade do quadrado 2 × 2 (área 4/2 = 2) e o setor é 1/8 do círculo de área 4π (π/2): 2 − π/2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x − 3)² + (y − 1)² = 9 + 1 − 6 = 4",
+    "nota": "completa quadrados"
+   },
+   {
+    "linha": "C = (3, 1), r = 2, T = (5, 1)",
+    "nota": "lê centro, raio e tangência"
+   },
+   {
+    "linha": "triângulo = (2 · 2)/2 = 2",
+    "nota": "catetos CT e TA"
+   },
+   {
+    "linha": "setor = (1/8) · π · 4 = π/2",
+    "nota": "ângulo de 45°"
+   },
+   {
+    "linha": "hachurada = 2 − π/2",
+    "nota": "triângulo menos setor"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ },
+ "P8c1541d6": {
+  "n": "69",
+  "conceito": "Área de triângulo com base no eixo x e terceiro vértice sobre o gráfico de uma função.",
+  "equivocos": {
+   "A": "M12.5:esqueceu-o-mais-um-da-funcao",
+   "B": "M12.5:respondeu-a-altura",
+   "C": "M12.5:area-sem-conferir",
+   "D": "M12.5:area-sem-conferir"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os vértices (1, 0) e (6, 0) estão no eixo x, então a base mede 5 e a altura é o y do terceiro vértice, f(a) = a² + 1. A área vira uma equação simples em a. O domínio (0, ∞) decide o sinal da raiz.",
+    "formulas": [
+     "área = (base · altura)/2",
+     "altura = f(a) = a² + 1"
+    ],
+    "simbolos": [
+     [
+      "f(a)",
+      "valor da função no ponto a, que é a altura do vértice"
+     ],
+     [
+      "(0, ∞)",
+      "domínio de f: só números positivos"
+     ]
+    ]
+   },
+   "pista": "Veja quais vértices estão no eixo x: eles dão a base, e o terceiro dá a altura.",
+   "passos": [
+    {
+     "faz": "Ache a base e a altura",
+     "conta": "base: 6 − 1 = 5 | altura: f(a) = a² + 1",
+     "porque": "A base está no eixo x, e a altura é a distância do terceiro vértice ao eixo, que é o y dele.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Iguale a área a 100",
+     "conta": "(5 · (a² + 1))/2 = 100 → 5(a² + 1) = 200 → a² + 1 = 40",
+     "porque": "O 2 que divide passa multiplicando, e o 5 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a e use o domínio",
+     "conta": "a² = 40 − 1 → a² = 39 → a = √39",
+     "porque": "O 1 passa subtraindo. A raiz −√39 sai porque o domínio de f é (0, ∞).",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "a = √39 → alternativa E",
+     "porque": "A questão pede o número a, não a altura f(a).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — √39",
+   "checagem": "Substitua: f(√39) = 39 + 1 = 40, e a área fica 5 · 40/2 = 100. Fecha.",
+   "erradas": {
+    "A": "2√10 sai de esquecer o +1 de f: a² = 40 dá a = √40 = 2√10. Com ela, a área é 5 · 41/2 = 102,5.",
+    "B": "200/5 sai de parar na altura: 2 · 100/5 = 40 é f(a), não a.",
+    "C": "2√5 não confere: f(2√5) = 21 e a área seria 5 · 21/2 = 52,5, não 100.",
+    "D": "7√2 não confere: f(7√2) = 99 e a área seria 5 · 99/2 = 247,5, não 100."
+   },
+   "armadilha": "A conta da área dá a altura f(a) = 40; ainda falta descontar o 1 e tirar a raiz para achar a.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de a para que o triângulo de vértices (1, 0), (6, 0) e (a, f(a)) tenha área 100.",
+    "chave": "Base 5 e altura a² + 1: 5(a² + 1)/2 = 100 dá a² = 39 e a = √39.",
+    "cuidado": "Não pare em f(a) = 40 e não esqueça o +1 da função."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas alternativas",
+    "ideia": "Teste cada valor em 5(a² + 1)/2: só a² = 39 dá exatamente 100."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(5 · (a² + 1))/2 = 100",
+    "nota": "base 5, altura f(a)"
+   },
+   {
+    "linha": "5(a² + 1) = 200",
+    "nota": "o 2 passa multiplicando"
+   },
+   {
+    "linha": "a² + 1 = 40",
+    "nota": "o 5 passa dividindo"
+   },
+   {
+    "linha": "a² = 39 → a = √39",
+    "nota": "raiz positiva pelo domínio"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
  }
 }

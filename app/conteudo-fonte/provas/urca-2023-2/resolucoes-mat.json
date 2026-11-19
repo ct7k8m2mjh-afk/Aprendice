@@ -1283,5 +1283,117 @@
    "data": "2026-11-19",
    "lote": "mat-0077"
   }
+ },
+ "Pa5d0c2c5": {
+  "n": "26",
+  "conceito": "Cálculo de números binomiais e sua soma, com conferência pelo triângulo de Pascal.",
+  "equivocos": {
+   "A": "M13.3:parou-numa-parte-da-soma",
+   "B": "M13.3:binomial-calculado-errado",
+   "C": "M13.3:binomial-calculado-errado",
+   "D": "M13.3:binomial-calculado-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada parcela é um número binomial: C(n, p) conta os modos de escolher p elementos entre n. Calcule cada um pelo atalho do numerador com p fatores descendo a partir de n, dividido por p!. Depois é só somar e subtrair na ordem da expressão.",
+    "formulas": [
+     "C(n, p) = (n·(n − 1)···(n − p + 1))/p!",
+     "C(n, p) = C(n, n − p)"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "número binomial, escrito também como n sobre p entre parênteses"
+     ],
+     [
+      "p!",
+      "fatorial: p · (p − 1) · ... · 1"
+     ]
+    ]
+   },
+   "pista": "Calcule as quatro parcelas uma por uma; em C(6, 5), use a simetria para fazer menos conta.",
+   "passos": [
+    {
+     "faz": "Calcule C(8, 4)",
+     "conta": "C(8, 4) = (8·7·6·5)/(4·3·2·1) → 1680/24 = 70",
+     "porque": "Quatro fatores descendo a partir de 8, divididos por 4!.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule C(7, 3)",
+     "conta": "C(7, 3) = (7·6·5)/(3·2·1) → 210/6 = 35",
+     "porque": "Três fatores descendo a partir de 7, divididos por 3!.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule C(6, 4) e C(6, 5)",
+     "conta": "C(6, 4) = C(6, 2) = (6·5)/2 → 15 | C(6, 5) = C(6, 1) → 6",
+     "porque": "Escolher 4 de 6 é o mesmo que escolher os 2 que ficam de fora; o mesmo vale para 5 de 6, que equivale a 1 de fora.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a soma",
+     "conta": "70 − 35 + 15 + 6 → 35 + 21 = 56",
+     "porque": "Faça as operações na ordem: 70 − 35 = 35; depois 15 + 6 = 21 se soma a ele.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "56 → alternativa E",
+     "porque": "O valor da expressão é o da alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 56",
+   "checagem": "Leia os valores no triângulo de Pascal: linha 6 é 1, 6, 15, 20, 15, 6, 1 (C(6, 4) = 15, C(6, 5) = 6); linha 7 é 1, 7, 21, 35, 35, 21, 7, 1 (C(7, 3) = 35); linha 8 tem 70 no meio. A soma 70 − 35 + 15 + 6 = 56. Fecha.",
+   "erradas": {
+    "A": "21 sai de parar na soma das duas últimas parcelas: C(6, 4) + C(6, 5) = 15 + 6 = 21, sem somar 70 − 35 = 35.",
+    "B": "7 não confere: 70 − 35 = 35 e as outras duas parcelas são positivas (15 e 6), então a soma passa de 35.",
+    "C": "8 não confere: só 70 − 35 já dá 35, e somar 15 e 6 aumenta o valor; a expressão não pode ser 8.",
+    "D": "756 não confere: mesmo somando as quatro parcelas sem subtrair nada, 70 + 35 + 15 + 6 = 126, bem menos que 756."
+   },
+   "armadilha": "Errar um número binomial: C(6, 5) é 6, e não 6 · 5; use a simetria C(n, p) = C(n, n − p) para não se perder.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de C(8, 4) − C(7, 3) + C(6, 4) + C(6, 5).",
+    "chave": "70 − 35 + 15 + 6 = 56.",
+    "cuidado": "Calcule cada binomial com p fatores sobre p! e respeite o sinal de menos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Stifel",
+    "ideia": "C(8, 4) − C(7, 3) = C(7, 4); C(6, 4) + C(6, 5) = C(7, 5); e C(7, 4) + C(7, 5) = C(8, 5) = 56."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(8, 4) = (8·7·6·5)/24 = 70",
+    "nota": "primeira parcela"
+   },
+   {
+    "linha": "C(7, 3) = (7·6·5)/6 = 35",
+    "nota": "segunda parcela"
+   },
+   {
+    "linha": "C(6, 4) = 15 e C(6, 5) = 6",
+    "nota": "pela simetria"
+   },
+   {
+    "linha": "70 − 35 + 15 + 6 = 56",
+    "nota": "alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
  }
 }

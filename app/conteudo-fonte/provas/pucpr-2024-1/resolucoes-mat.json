@@ -657,5 +657,115 @@
    "data": "2026-11-19",
    "lote": "mat-0078"
   }
+ },
+ "P6184f6e8": {
+  "n": "33",
+  "conceito": "Combinação com restrição de não adjacência, separando os casos de peças na mesma linha e na mesma coluna.",
+  "equivocos": {
+   "A": "M13.3:converteu-letra-em-numero",
+   "B": "M13.3:contagem-incompleta",
+   "C": "M13.3:esqueceu-caso-coluna",
+   "E": "M13.3:contagem-de-coluna-impossivel"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As posições do tabuleiro são pares como (c, 5): uma letra para a coluna e um número para a linha. O único número do par é o da linha, então a condição de primo vale para a linha: só as linhas 2, 3, 5 e 7 servem. As peças são idênticas, logo a ordem não importa: é combinação. Separe dois casos que não se misturam: as três na mesma linha ou as três na mesma coluna.",
+    "formulas": [
+     "3 casas não vizinhas entre n em fila: C(n − 2, 3)",
+     "casos que não se sobrepõem: soma"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "número de modos de escolher k entre n, sem ordem"
+     ],
+     [
+      "fila",
+      "uma linha (horizontal) ou uma coluna (vertical) do tabuleiro"
+     ],
+     [
+      "adjacentes",
+      "casas vizinhas, lado a lado na mesma fila"
+     ]
+    ]
+   },
+   "pista": "Veja primeiro quais casas podem receber peça: no par ordenado, qual coordenada é um número? Depois separe linha e coluna.",
+   "passos": [
+    {
+     "faz": "Ache as casas permitidas",
+     "conta": "linhas primas: 2, 3, 5, 7 | colunas: a até h, todas",
+     "porque": "No par (letra, número) só a linha é número, e entre 1 e 8 os primos são 2, 3, 5 e 7.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte o caso da mesma linha",
+     "conta": "C(8 − 2, 3) = C(6, 3) = 20 por linha → 4 × 20 = 80",
+     "porque": "Numa linha prima as 8 colunas servem. Para não haver vizinhas, reserve uma casa vazia entre cada par de peças: sobram 6 lugares para escolher 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte o caso da mesma coluna",
+     "conta": "trios de {2, 3, 5, 7} sem vizinhas: {2, 5, 7} e {3, 5, 7} → 2 por coluna → 8 × 2 = 16",
+     "porque": "Numa coluna só as linhas 2, 3, 5 e 7 servem. Os trios com 2 e 3 juntos têm casas vizinhas; 5 e 7 têm a linha 6 entre elas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois casos",
+     "conta": "80 + 16 = 96 → alternativa D",
+     "porque": "Três peças não podem estar ao mesmo tempo na mesma linha e na mesma coluna, então os casos não se repetem e se somam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 96 configurações",
+   "checagem": "Confira os 20 da linha pelo complementar: das C(8, 3) = 56 escolhas, as que têm alguma dupla vizinha são 7 pares vizinhos × 6 terceiras casas = 42, menos os 6 trios seguidos contados duas vezes = 36; 56 − 36 = 20. Fecha.",
+   "erradas": {
+    "A": "16 sai de exigir que a letra também vire número primo (b = 2, c = 3, e = 5, g = 7): na linha, 4 linhas × 2 trios = 8; na coluna, 4 colunas × 2 trios = 8; total 16.",
+    "B": "40 não confere: só o caso das três peças na mesma linha já dá 4 × 20 = 80 configurações.",
+    "C": "80 sai de contar só o caso da mesma linha (4 × 20) e esquecer as 16 configurações em coluna.",
+    "E": "120 não confere: exigiria 120 − 80 = 40 configurações em coluna, 5 por coluna, mas com 4 linhas primas só existem C(4, 3) = 4 trios, e só 2 sem vizinhas."
+   },
+   "armadilha": "A coluna é indicada por letra: só o número da linha precisa ser primo. Quem converte a letra em número restringe as colunas e chega a 16.",
+   "alerta": "O par ordenado mistura letra (coluna) e número (linha), e a banca fala em números primos nos pares: a leitura que dá a resposta oficial, 96, é a de que só a coordenada numérica, a linha, precisa ser prima. Converter as letras em números 1 a 8 daria 16, a alternativa A.",
+   "essencial": {
+    "pede": "Quantas configurações de 3 peças idênticas numa mesma fila, sem vizinhas e em linhas de número primo.",
+    "chave": "Linha prima: 4 × C(6, 3) = 80; coluna: 8 × 2 = 16; total 96.",
+    "cuidado": "Some os dois casos e, na coluna, descarte os trios com as linhas 2 e 3 juntas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lista direta",
+    "ideia": "Na linha, liste os trios de colunas sem vizinhas por posição da primeira peça (10 + 6 + 3 + 1 = 20) e repita para as 4 linhas primas; some as 16 configurações em coluna."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "linhas primas: 2, 3, 5, 7",
+    "nota": "só a linha é número"
+   },
+   {
+    "linha": "mesma linha: 4 × C(6, 3) = 4 × 20 = 80",
+    "nota": "3 casas não vizinhas entre 8"
+   },
+   {
+    "linha": "mesma coluna: 8 × 2 = 16",
+    "nota": "trios {2, 5, 7} e {3, 5, 7}"
+   },
+   {
+    "linha": "80 + 16 = 96",
+    "nota": "alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
  }
 }

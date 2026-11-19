@@ -818,5 +818,258 @@
    "data": "2026-11-19",
    "lote": "mat-0078"
   }
+ },
+ "P90014aad": {
+  "n": "49",
+  "conceito": "Raio da esfera circunscrita a uma pirâmide hexagonal regular inscrita num cubo.",
+  "equivocos": {
+   "A": "M11.3:raio-menor-que-o-da-base",
+   "B": "M11.3:raio-menor-que-o-da-base",
+   "C": "M11.3:raio-menor-que-o-da-base",
+   "E": "M11.3:raio-menor-que-o-da-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os seis pontos médios formam um hexágono regular num plano perpendicular à diagonal do cubo que sai de V, passando pelo centro do cubo. O centro da esfera circunscrita fica sobre o eixo da pirâmide, a uma distância R do vértice V e também R de cada vértice do hexágono. Isso dá uma equação com Pitágoras.",
+    "formulas": [
+     "distância de V ao plano x + y + z = d: d/√3",
+     "(altura − R)² + (raio do hexágono)² = R²"
+    ],
+    "simbolos": [
+     [
+      "l",
+      "aresta do cubo"
+     ],
+     [
+      "V",
+      "vértice da pirâmide, posto na origem"
+     ],
+     [
+      "h",
+      "altura da pirâmide: distância de V ao plano do hexágono"
+     ],
+     [
+      "ρ",
+      "raio do hexágono: distância do centro do hexágono a cada vértice dele"
+     ],
+     [
+      "R",
+      "raio da esfera circunscrita"
+     ]
+    ]
+   },
+   "pista": "Ponha V na origem e o vértice oposto em (l, l, l); descubra em que plano estão os seis pontos médios.",
+   "passos": [
+    {
+     "faz": "Localize o hexágono",
+     "conta": "V = (0, 0, 0) | pontos médios: (l, l/2, 0), (l, 0, l/2), (l/2, l, 0), (0, l, l/2), (l/2, 0, l), (0, l/2, l) | todos com x + y + z = 3l/2",
+     "porque": "As seis arestas que não tocam V nem (l, l, l) têm uma coordenada 0 e outra l; o ponto médio soma 3l/2. O centro do hexágono é o centro do cubo, (l/2, l/2, l/2).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a altura e o raio do hexágono",
+     "conta": "h = (3l/2)/√3 → l√3/2 | ρ² = (l/2)² + 0² + (l/2)² → l²/2",
+     "porque": "A altura é a distância da origem ao plano x + y + z = 3l/2. O raio é a distância do centro (l/2, l/2, l/2) ao ponto (l, l/2, 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a equação do centro da esfera",
+     "conta": "(h − R)² + ρ² = R² → h² − 2hR + ρ² = 0 → R = (h² + ρ²)/(2h)",
+     "porque": "O centro está no eixo, a R de V; até um vértice do hexágono a distância também é R, com cateto h − R no eixo e cateto ρ no plano.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua os valores",
+     "conta": "R = (3l²/4 + l²/2)/(2 · l√3/2) → (5l²/4)/(l√3) → 5l/(4√3) → 5l√3/12",
+     "porque": "3l²/4 + 2l²/4 = 5l²/4; racionalizando 5/(4√3) = 5√3/12.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "R = 5l√3/12 → alternativa D",
+     "porque": "O valor coincide com o da alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 5l√3/12.",
+   "checagem": "Teste de tamanho: a esfera passa pelos vértices do hexágono, então R ≥ ρ = l√2/2 ≈ 0,707l; 5l√3/12 ≈ 0,722l passa. E o centro fica a R ≈ 0,722l de V, antes do plano do hexágono (h ≈ 0,866l), dentro da pirâmide, como deve ser numa pirâmide alta.",
+   "erradas": {
+    "A": "l√2/12 ≈ 0,118l não confere: a esfera passa pelos vértices do hexágono, então R ≥ ρ ≈ 0,707l.",
+    "B": "l√3/12 ≈ 0,144l não confere: é menor que ρ ≈ 0,707l, raio do próprio hexágono da base.",
+    "C": "5l√2/12 ≈ 0,589l não confere: também é menor que ρ ≈ 0,707l, então a esfera não alcançaria os vértices da base.",
+    "E": "l√3/6 ≈ 0,289l não confere: é menor que ρ ≈ 0,707l."
+   },
+   "armadilha": "Supor que o centro da esfera coincide com o centro do hexágono ou do cubo; ele fica no eixo, mais perto de V.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O raio da esfera que passa por V e pelos seis vértices do hexágono.",
+    "chave": "h = l√3/2, ρ² = l²/2 e R = (h² + ρ²)/(2h) = 5l√3/12.",
+    "cuidado": "O centro da esfera está sobre o eixo da pirâmide, a R de V e a R de cada vértice da base."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas do centro",
+    "ideia": "O centro é (t, t, t); igualando a distância a V e a (l, l/2, 0): 3t² = (t − l)² + (t − l/2)² + t², que dá t = 5l/12 e R = t√3 = 5l√3/12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "h = (3l/2)/√3 = l√3/2",
+    "nota": "altura da pirâmide"
+   },
+   {
+    "linha": "ρ² = (l/2)² + (l/2)² = l²/2",
+    "nota": "raio do hexágono"
+   },
+   {
+    "linha": "(h − R)² + ρ² = R² → R = (h² + ρ²)/(2h)",
+    "nota": "Pitágoras no eixo"
+   },
+   {
+    "linha": "R = (5l²/4)/(l√3)",
+    "nota": "substitui"
+   },
+   {
+    "linha": "R = 5l√3/12",
+    "nota": "racionaliza"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "O cubo aparece com V num canto; os seis pontos médios se acendem e formam o hexágono; a pirâmide com vértice V se desenha; o eixo VO aparece e o centro da esfera desliza até ficar a R de V e de um vértice do hexágono; a esfera se fecha."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ },
+ "P18a8dc68": {
+  "n": "48",
+  "conceito": "Completar quadrados numa equação com parâmetro, achar a condição de hipérbole e o lugar do centro (3b, b).",
+  "equivocos": {
+   "A": "M12.4:testou-so-alguns-valores-do-parametro",
+   "B": "M12.4:testou-so-alguns-valores-do-parametro",
+   "D": "M12.4:testou-so-alguns-valores-do-parametro",
+   "E": "M12.4:nao-achou-o-centro"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Completando quadrados em x e em y, a equação vira uma diferença de dois quadrados igual a 1, com o fator (1 − b²) na frente do termo em y. Ela só é hipérbole se esse fator for positivo, ou seja, b² < 1. O centro é (3b, b), e a alternativa certa é a desigualdade que vale para todo b com b² < 1.",
+    "formulas": [
+     "x² − 6bx = (x − 3b)² − 9b²",
+     "y² − 2by = (y − b)² − b²",
+     "(x − h)² − k(y − m)² = 1 com k > 0: hipérbole de centro (h, m)"
+    ],
+    "simbolos": [
+     [
+      "b",
+      "parâmetro real da equação"
+     ],
+     [
+      "C",
+      "centro da hipérbole"
+     ],
+     [
+      "ℝ²",
+      "o plano, conjunto dos pares (x, y)"
+     ],
+     [
+      "b²",
+      "b ao quadrado; b² < 1 quer dizer −1 < b < 1"
+     ]
+    ]
+   },
+   "pista": "Complete quadrados em x e em y e veja que número sobra do lado direito.",
+   "passos": [
+    {
+     "faz": "Complete os quadrados",
+     "conta": "(x − 3b)² − 9b² − (1 − b²)[(y − b)² − b²] + b⁴ + 8b² − 1 = 0",
+     "porque": "x² − 6bx vira (x − 3b)² − 9b²; y² − 2by vira (y − b)² − b².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as constantes",
+     "conta": "−9b² + b² − b⁴ + b⁴ + 8b² − 1 = −1 → (x − 3b)² − (1 − b²)(y − b)² = 1",
+     "porque": "−(1 − b²) · (−b²) dá + b² − b⁴; o b⁴ e os b² se cancelam, e sobra só −1, que passa para a direita como 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha a condição de hipérbole",
+     "conta": "1 − b² > 0 → b² < 1 ; centro C = (3b, b)",
+     "porque": "Com 1 − b² negativo a curva é elipse; com 1 − b² = 0 vira as duas retas x = 3b ± 1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste C nas alternativas",
+     "conta": "C: (3b)²/9 − b²/2 = b² − b²/2 = b²/2 < 1/2 < 1",
+     "porque": "Com b² < 1, b²/2 fica abaixo de 1/2, sempre menor que 1.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "b²/2 < 1 para todo b com b² < 1 → alternativa C",
+     "porque": "É a única desigualdade garantida para qualquer valor de b que faz hipérbole.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — o centro C está no conjunto x²/9 − y²/2 < 1",
+   "checagem": "Teste dois valores de b: com b = 0, a equação vira x² − y² = 1, hipérbole de centro (0, 0), e 0 − 0 < 1; com b = 0,9, centro (2,7; 0,9) e 2,7²/9 − 0,9²/2 = 0,81 − 0,405 = 0,405 < 1. Fecha.",
+   "erradas": {
+    "A": "A não confere para b perto de 1: com b = 0,99, (3b)²/9 + b²/12 = 13b²/12 ≈ 1,06, que não é menor que 1.",
+    "B": "B não confere: com b = 0 (x² − y² = 1, hipérbole), o centro é (0, 0) e 0 + 0 > 1 é falso.",
+    "D": "D não confere: com b = 0, o centro é (0, 0) e 3 · 0 − 2 · 0 > 1 é falso.",
+    "E": "E não confere: a alternativa C vale para todo b com b² < 1, pois b²/2 < 1."
+   },
+   "armadilha": "A alternativa tem de valer para todo b que faz hipérbole (b² < 1), e não só para alguns; teste b = 0 e b perto de 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual conjunto contém o centro C da hipérbole, para todo b permitido.",
+    "chave": "Completando quadrados: (x − 3b)² − (1 − b²)(y − b)² = 1, hipérbole se b² < 1, centro (3b, b).",
+    "cuidado": "Teste cada desigualdade nos extremos: b = 0 e b perto de ±1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "translação",
+    "ideia": "Trocando X = x − 3b e Y = y − b, a equação vira X² − (1 − b²)Y² = 1, hipérbole centrada na origem nova, que é (3b, b)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x − 3b)² − 9b² − (1 − b²)[(y − b)² − b²] + b⁴ + 8b² − 1 = 0",
+    "nota": "completar quadrados"
+   },
+   {
+    "linha": "(x − 3b)² − (1 − b²)(y − b)² = 1",
+    "nota": "constantes somam −1"
+   },
+   {
+    "linha": "1 − b² > 0 → b² < 1 ; C = (3b, b)",
+    "nota": "condição e centro"
+   },
+   {
+    "linha": "(3b)²/9 − b²/2 = b²/2 < 1",
+    "nota": "teste da alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
  }
 }

@@ -108,5 +108,121 @@
    "data": "2026-11-19",
    "lote": "mat-0077"
   }
+ },
+ "P5b7a018a": {
+  "n": "19",
+  "conceito": "Dividir um segmento em três partes iguais: os pontos ficam a 1/3 e 2/3 do caminho de A até B.",
+  "equivocos": {
+   "A": "M12.1:ponto-fora-do-segmento",
+   "B": "M12.1:ponto-fora-do-segmento",
+   "C": "M12.1:ponto-fora-do-segmento",
+   "D": "M12.1:ponto-fora-do-segmento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Distâncias iguais AC = CD = DB querem dizer que C e D dividem AB em três partes iguais. Ande de A até B em três saltos iguais: cada salto é um terço do deslocamento em x e um terço do deslocamento em y.",
+    "formulas": [
+     "salto = (B − A)/3",
+     "C = A + salto | D = A + 2 · salto"
+    ],
+    "simbolos": [
+     [
+      "A, B",
+      "extremos do segmento"
+     ],
+     [
+      "C, D",
+      "pontos que dividem AB em três partes iguais"
+     ],
+     [
+      "salto",
+      "deslocamento de um terço do segmento, em x e em y"
+     ]
+    ]
+   },
+   "pista": "Calcule quanto x e y andam de A até B e divida cada um por 3.",
+   "passos": [
+    {
+     "faz": "Calcule o deslocamento de A até B",
+     "conta": "B − A = (7 − 1, 12 − 3) → B − A = (6, 9)",
+     "porque": "São 6 unidades em x e 9 em y.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida em três saltos iguais",
+     "conta": "salto = (6/3, 9/3) → salto = (2, 3)",
+     "porque": "Três partes iguais: cada salto é um terço do deslocamento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Dê o primeiro salto a partir de A",
+     "conta": "C = (1 + 2, 3 + 3) → C = (3, 6)",
+     "porque": "C é o ponto a um terço do caminho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Dê o segundo salto",
+     "conta": "D = (3 + 2, 6 + 3) → D = (5, 9)",
+     "porque": "Um terceiro salto leva a (7, 12), que é B: confere.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à letra",
+     "conta": "C = (3, 6) e D = (5, 9) → alternativa E",
+     "porque": "Na ordem pedida, C primeiro.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — (3, 6) e (5, 9).",
+   "checagem": "C é o ponto médio de A e D: ((1 + 5)/2, (3 + 9)/2) = (3, 6); e D é o ponto médio de C e B: ((3 + 7)/2, (6 + 12)/2) = (5, 9). As três partes são iguais.",
+   "erradas": {
+    "A": "(2, 3) não confere: de A(1, 3) até (2, 3) y não muda, mas no segmento y sobe 3/2 para cada 1 de x.",
+    "B": "(4, 6) não confere: de A até (4, 6) x anda 3 e y anda 3, inclinação 1, e o segmento tem inclinação 9/6 = 3/2.",
+    "C": "(2, 3) não confere: está fora do segmento, pois de A até ele y não varia, e (5, 6) também fica fora (de A, x anda 4 e y anda 3).",
+    "D": "(3, 0) não confere: tem y = 0, abaixo de 3, mas todo ponto entre A e B tem y entre 3 e 12."
+   },
+   "armadilha": "Os pontos precisam estar sobre o segmento: confira a inclinação 3/2 antes de aceitar coordenadas que parecem \"redondas\".",
+   "alerta": "",
+   "essencial": {
+    "pede": "As coordenadas dos pontos que dividem AB em três partes iguais.",
+    "chave": "Salto de um terço: (6, 9)/3 = (2, 3), somado a A uma e duas vezes.",
+    "cuidado": "Confira se o ponto está sobre o segmento e na ordem C, D."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pontos médios",
+    "ideia": "C é o médio de A e D e D é o médio de C e B; ou use razão 1 : 2 e 2 : 1 na fórmula de divisão de segmento."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "B − A = (6, 9)",
+    "nota": "deslocamento total"
+   },
+   {
+    "linha": "salto = (6/3, 9/3) = (2, 3)",
+    "nota": "um terço do caminho"
+   },
+   {
+    "linha": "C = (1 + 2, 3 + 3) = (3, 6)",
+    "nota": "primeiro salto"
+   },
+   {
+    "linha": "D = (3 + 2, 6 + 3) = (5, 9)",
+    "nota": "segundo salto: alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
  }
 }

@@ -1250,5 +1250,375 @@
    "data": "2026-11-19",
    "lote": "mat-0077"
   }
+ },
+ "P1cd8f9be": {
+  "n": "15",
+  "conceito": "Ângulo entre segmentos sobre duas faces de um octaedro regular, por triângulos equiláteros e lei dos cossenos ou vetores.",
+  "equivocos": {
+   "A": "M11.3:valor-sem-conta-que-feche",
+   "B": "M11.3:angulo-entre-retas-no-lugar-de-segmentos",
+   "C": "M11.3:supos-perpendicularidade",
+   "E": "M11.3:valor-sem-conta-que-feche"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No octaedro regular, cada face é um triângulo equilátero de lado a, e as diagonais ligam vértices opostos. Como AE, BF e CD são diagonais, A é vizinho de F, D e B, e D é vizinho de B e F. Os pontos dados cortam as arestas em terços, o que cria triângulos equiláteros menores e segmentos paralelos às arestas. O ângulo sai da lei dos cossenos no triângulo MNP.",
+    "formulas": [
+     "lei dos cossenos: MP² = MN² + NP² − 2 · MN · NP · cos N",
+     "octaedro com centro na origem: vértices em ±a/√2 sobre os eixos"
+    ],
+    "simbolos": [
+     [
+      "a",
+      "aresta do octaedro"
+     ],
+     [
+      "s",
+      "distância do centro a cada vértice, s = a/√2"
+     ],
+     [
+      "MN̂P",
+      "ângulo com vértice em N, entre NM e NP"
+     ]
+    ]
+   },
+   "pista": "Ponha o octaedro num sistema de eixos, com cada diagonal sobre um eixo, e escreva as coordenadas de M, N e P.",
+   "passos": [
+    {
+     "faz": "Ponha o octaedro nos eixos",
+     "conta": "s = a/√2 | A = (0, 0, s), E = (0, 0, −s) | B = (s, 0, 0), F = (−s, 0, 0) | C = (0, s, 0), D = (0, −s, 0)",
+     "porque": "No octaedro regular as três diagonais são perpendiculares e se cortam no meio; a aresta entre dois eixos vizinhos é s√2 = a.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache M, N e P",
+     "conta": "M = F + (A − F)/3 = (−2s/3, 0, s/3) | N = D + (A − D)/3 = (0, −2s/3, s/3) | P = D + (B − D)/3 = (s/3, −2s/3, 0)",
+     "porque": "FM = a/3, DN = a/3 e DP = a/3: cada ponto anda um terço da aresta a partir de F, D e D.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os três lados do triângulo",
+     "conta": "MN² = (4s²/9)·2 = 4a²/9 | NP² = (s²/9)·2 = a²/9 | MP² = s² + 4s²/9 + s²/9 = 14s²/9 = 7a²/9",
+     "porque": "Cada quadrado é a soma dos quadrados das diferenças de coordenadas; troque s² por a²/2 no fim.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a lei dos cossenos em N",
+     "conta": "cos N = (4a²/9 + a²/9 − 7a²/9)/(2 · 2a/3 · a/3) → (−2a²/9)/(4a²/9) → −1/2",
+     "porque": "MN = 2a/3 e NP = a/3; o lado oposto a N é MP. O cosseno negativo indica ângulo obtuso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao ângulo",
+     "conta": "cos N = −1/2 → N = 2π/3 → alternativa D",
+     "porque": "O ângulo entre 0 e π com cosseno −1/2 é 120°, isto é, 2π/3.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — o ângulo MN̂P mede 2π/3.",
+   "checagem": "Pelas faces: na face AFD, AM = AN = 2a/3, então AMN é equilátero e MN = 2a/3, paralelo a FD. Na face ADB, DN = DP = a/3, então DNP é equilátero e NP = a/3, paralelo a AB. Em vetores, NM = (2/3)(F − D) e NP = (1/3)(B − A); (F − D)·(B − A) = −s² = −a²/2, e cos N = ((2/9)(−a²/2))/((2a/3)(a/3)) = −1/2. Fecha.",
+   "erradas": {
+    "A": "π/4 não confere: cos(π/4) = √2/2, positivo, mas o cosseno em N dá −1/2.",
+    "B": "π/3 sai de pegar o ângulo entre as retas FD e AB (agudo, cosseno +1/2) e não o ângulo entre os segmentos NM e NP, que é o suplementar.",
+    "C": "π/2 não confere: exigiria MP² = MN² + NP² = 5a²/9, mas MP² = 7a²/9.",
+    "E": "3π/4 não confere: cos(3π/4) = −√2/2 ≈ −0,71, e o cosseno em N é exatamente −1/2."
+   },
+   "armadilha": "Perder o sinal do cosseno e marcar π/3: o ângulo em N é obtuso, porque MP é maior que o lado que daria 90°.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O ângulo MN̂P formado por pontos que dividem arestas do octaedro em terços.",
+    "chave": "MN = 2a/3, NP = a/3, MP² = 7a²/9; lei dos cossenos dá cos N = −1/2, logo 2π/3.",
+    "cuidado": "Identifique quais vértices são vizinhos pelas diagonais e mantenha o sinal do cosseno."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "vetores",
+    "ideia": "NM = (2/3)(F − D) e NP = (1/3)(B − A); o produto escalar dá cos N = −1/2, logo 2π/3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "M = (−2s/3, 0, s/3) | N = (0, −2s/3, s/3) | P = (s/3, −2s/3, 0)",
+    "nota": "coordenadas, s = a/√2"
+   },
+   {
+    "linha": "MN² = 4a²/9 | NP² = a²/9 | MP² = 7a²/9",
+    "nota": "lados do triângulo MNP"
+   },
+   {
+    "linha": "cos N = (4a²/9 + a²/9 − 7a²/9)/(2 · 2a/3 · a/3)",
+    "nota": "lei dos cossenos"
+   },
+   {
+    "linha": "cos N = (−2a²/9)/(4a²/9) = −1/2",
+    "nota": "simplifica"
+   },
+   {
+    "linha": "N = 2π/3",
+    "nota": "ângulo obtuso de cosseno −1/2"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "O octaedro aparece com as diagonais AE, BF e CD nos eixos; os pontos M, N e P surgem a um terço das arestas; os triângulos equiláteros AMN e DNP se destacam; o triângulo MNP se acende e o ângulo de 120° em N é marcado."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ },
+ "Pd1cefcaf": {
+  "n": "13",
+  "conceito": "Refletir o foco de uma hipérbole na assíntota e achar o raio do círculo inscrito no triângulo formado com os dois focos.",
+  "equivocos": {
+   "B": "M12.2:raio-que-nao-fecha-a-area",
+   "C": "M12.2:raio-que-nao-fecha-a-area",
+   "D": "M12.2:raio-que-nao-fecha-a-area",
+   "E": "M12.2:raio-que-nao-fecha-a-area"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Da equação da hipérbole saem a = 4 e b = 3, e os focos ficam em (±c, 0) com c² = a² + b². O ponto T é a reflexão de F na assíntota y = (3/4)x: a assíntota é a mediatriz do segmento FT. Como a assíntota passa pela origem, T fica à mesma distância da origem que F, ou seja, no círculo de diâmetro F′F. Por isso o ângulo em T é reto, e o raio do círculo inscrito num triângulo retângulo é fácil de calcular.",
+    "formulas": [
+     "c² = a² + b²",
+     "distância de (x0, y0) à reta Ax + By + C = 0: |Ax0 + By0 + C|/√(A² + B²)",
+     "raio inscrito = área ÷ semiperímetro"
+    ],
+    "simbolos": [
+     [
+      "a, b",
+      "os números sob x² e y², já em raiz: a² = 16 e b² = 9"
+     ],
+     [
+      "c",
+      "distância do centro a cada foco"
+     ],
+     [
+      "F, F′",
+      "os focos (5, 0) e (−5, 0)"
+     ],
+     [
+      "assíntota",
+      "reta da qual a hipérbole se aproxima sem tocar; aqui y = (3/4)x"
+     ],
+     [
+      "T",
+      "reflexo de F na assíntota"
+     ],
+     [
+      "r",
+      "raio do círculo inscrito no triângulo"
+     ]
+    ]
+   },
+   "pista": "Primeiro ache os focos; depois meça quanto F está longe da assíntota, porque T fica do outro lado, à mesma distância.",
+   "passos": [
+    {
+     "faz": "Ache a, b, c e os focos",
+     "conta": "a² = 16, b² = 9 → c² = 16 + 9 = 25 → c = 5 → F = (5, 0), F′ = (−5, 0)",
+     "porque": "Na hipérbole, c² é a soma de a² e b², ao contrário da elipse. O foco F é o do lado positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Meça a distância de F à assíntota",
+     "conta": "3x − 4y = 0 → d = |3 · 5 − 4 · 0|/√(3² + 4²) = 15/5 = 3",
+     "porque": "A assíntota de inclinação positiva é y = (3/4)x, ou 3x − 4y = 0. A reflexão leva F para o outro lado, à mesma distância, então FT = 2 · 3 = 6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Localize T e meça F′T",
+     "conta": "T = (7/5, 24/5) → F′T = √((32/5)² + (24/5)²) = √(1600/25) = 8",
+     "porque": "O pé da perpendicular de F na assíntota é (16/5, 12/5), e T é o dobro dele menos F. Os lados ficam 6, 8 e 10: triângulo retângulo em T.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o raio inscrito",
+     "conta": "área = (6 · 8)/2 = 24 ; semiperímetro = (6 + 8 + 10)/2 = 12 → r = 24/12 = 2",
+     "porque": "Área de um triângulo é o raio inscrito vezes o semiperímetro. No retângulo, a área é metade do produto dos catetos 6 e 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o raio à alternativa",
+     "conta": "r = 2 → alternativa A",
+     "porque": "O pedido é o raio, e não o diâmetro nem a área.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — o raio do círculo inscrito no triângulo F′TF é 2",
+   "checagem": "No triângulo retângulo, o raio inscrito também é (cateto + cateto − hipotenusa) ÷ 2 = (6 + 8 − 10) ÷ 2 = 2. E confira que T está no círculo de raio 5: (7/5)² + (24/5)² = 625/25 = 25. Fecha.",
+   "erradas": {
+    "B": "√3 não confere: com semiperímetro 12, a área seria 12√3 ≈ 20,8, mas o triângulo 6, 8, 10 tem área 24.",
+    "C": "√7 não confere: daria área 12√7 ≈ 31,7, maior que os 24 do triângulo 6, 8, 10.",
+    "D": "3/2 não confere: daria área 12 · 3/2 = 18, e o triângulo de catetos 6 e 8 tem área 24.",
+    "E": "√6 não confere: daria área 12√6 ≈ 29,4, e a área real é 24."
+   },
+   "armadilha": "FT não é a distância do foco à assíntota (3), e sim o dobro dela (6), porque T é o reflexo de F.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O raio do círculo inscrito no triângulo F′TF.",
+    "chave": "T é o reflexo de F na assíntota: FT = 2 · 3 = 6, F′T = 8, F′F = 10, triângulo retângulo; r = 24 ÷ 12 = 2.",
+    "cuidado": "Dobre a distância do foco à assíntota para obter FT."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ângulo reto sem contas",
+    "ideia": "A assíntota passa pelo centro, então OT = OF = 5 e T está no círculo de diâmetro F′F: ângulo reto em T; com FT = 6 e F′F = 10, F′T = 8 e r = (6 + 8 − 10)/2 = 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "c² = 16 + 9 = 25 → c = 5",
+    "nota": "focos (±5, 0)"
+   },
+   {
+    "linha": "d = 15/5 = 3 → FT = 6",
+    "nota": "distância de F à assíntota, dobrada"
+   },
+   {
+    "linha": "T = (7/5, 24/5) → F′T = 8",
+    "nota": "lados 6, 8, 10"
+   },
+   {
+    "linha": "r = 24/12 = 2",
+    "nota": "área ÷ semiperímetro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ },
+ "Pf3acface": {
+  "n": "2",
+  "conceito": "Contagem de relações binárias antissimétricas pelo princípio multiplicativo, separando pares da diagonal e pares de elementos distintos.",
+  "equivocos": {
+   "A": "M13.1:esqueceu-pares-distintos",
+   "B": "M13.1:contou-relacoes-simetricas",
+   "C": "M13.1:expoente-sem-sentido",
+   "E": "M13.1:incluiu-diagonal-nos-grupos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Uma relação é um subconjunto dos n² pares ordenados (x, y). Decida par por par, mas em dois grupos: os pares da diagonal, (x, x), e os pares de elementos distintos, juntados de dois em dois como {(x, y), (y, x)}. A antissimetria só proíbe ter os dois pares de um mesmo grupo de distintos; a diagonal fica livre.",
+    "formulas": [
+     "pares da diagonal: n, cada um com 2 escolhas (entra ou não)",
+     "grupos {(x, y), (y, x)} com x ≠ y: (n² − n)/2, cada um com 3 escolhas",
+     "total = 2^n · 3^((n² − n)/2)"
+    ],
+    "simbolos": [
+     [
+      "relação binária",
+      "qualquer conjunto de pares ordenados (x, y) com x e y em S"
+     ],
+     [
+      "antissimétrica",
+      "se (x, y) e (y, x) estão em R, então x = y"
+     ],
+     [
+      "n²",
+      "número de pares ordenados possíveis com n elementos"
+     ]
+    ]
+   },
+   "pista": "Separe os pares (x, x) dos pares com x ≠ y. Para cada dupla {(x, y), (y, x)}, quantas escolhas a antissimetria permite?",
+   "passos": [
+    {
+     "faz": "Conte as escolhas na diagonal",
+     "conta": "n pares (x, x), 2 escolhas cada → 2^n",
+     "porque": "Se x = y, a condição já é satisfeita: cada (x, x) pode entrar ou não, sem restrição.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os grupos de elementos distintos",
+     "conta": "n² − n pares fora da diagonal → (n² − n)/2 grupos {(x, y), (y, x)}",
+     "porque": "Dos n² pares, n estão na diagonal; os outros se juntam de dois em dois, (x, y) com (y, x).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as escolhas de cada grupo",
+     "conta": "nenhum | só (x, y) | só (y, x) → 3 escolhas (os dois juntos não pode)",
+     "porque": "Ter os dois pares com x ≠ y fere a antissimetria; as outras três situações são permitidas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Multiplique as escolhas",
+     "conta": "2^n · 3^((n² − n)/2)",
+     "porque": "As decisões são independentes, então pelo princípio multiplicativo multiplicam-se.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue a fórmula à alternativa",
+     "conta": "2^n · 3^((n² − n)/2) → alternativa D",
+     "porque": "É exatamente a expressão da alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 2^n · 3^((n² − n)/2)",
+   "checagem": "Teste n = 2, S = {1, 2}: a fórmula dá 2² · 3¹ = 12. Contando todas as 16 relações, só as 4 que têm (1, 2) e (2, 1) juntos falham: 16 − 4 = 12. Fecha.",
+   "erradas": {
+    "A": "2^n sai de contar só a diagonal, esquecendo os pares de elementos distintos. Para n = 2 daria 4, mas são 12.",
+    "B": "2^((n² + n)/2) sai de dar 2 escolhas a cada grupo e à diagonal, que é a contagem das relações simétricas. Para n = 2 daria 8, não 12.",
+    "C": "2^(n²) · 3^(n/2) não confere: para n = 1 daria 2 · √3, que nem é inteiro, mas um conjunto de 1 elemento tem 2 relações.",
+    "E": "2^n · 3^((n² + n)/2) não confere: para n = 1 daria 2 · 3 = 6, mas um conjunto de 1 elemento só tem 2 relações ao todo."
+   },
+   "armadilha": "A antissimetria não obriga escolher um dos dois pares: ficar sem nenhum também vale, por isso são 3 escolhas por grupo, não 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas relações binárias antissimétricas existem num conjunto de n elementos.",
+    "chave": "Diagonal livre (2^n) e cada um dos (n² − n)/2 grupos {(x, y), (y, x)} com 3 escolhas: 2^n · 3^((n² − n)/2).",
+    "cuidado": "Separe a diagonal dos pares distintos e conte a opção de não pôr nenhum par."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso pequeno",
+    "ideia": "Para n = 2 há 12 relações antissimétricas; das cinco alternativas, só D dá 12 com n = 2 e 2 com n = 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "diagonal: 2^n",
+    "nota": "cada (x, x) entra ou não"
+   },
+   {
+    "linha": "grupos: (n² − n)/2",
+    "nota": "pares com x ≠ y, de dois em dois"
+   },
+   {
+    "linha": "cada grupo: 3 escolhas",
+    "nota": "nenhum, só (x, y), só (y, x)"
+   },
+   {
+    "linha": "total = 2^n · 3^((n² − n)/2)",
+    "nota": "princípio multiplicativo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
  }
 }

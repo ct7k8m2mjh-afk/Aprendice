@@ -404,3 +404,22 @@ DADO P8a37c896 (UEG 2022/1 q21): alternativas -> a) π/6 rad, b) π/3 rad, c) π
 DADO P8e9d8143 (Cederj 2023.2 q34): alternativas -> A √((2 − √3)/2), B −√((2 − √3)/2), C (√(2 − √3))/2, D −(√(2 − √3))/2
 DADO P68e93fb6 (Cederj 2025.1 q36): alternativas -> A −7/5, B −1/5, C 1/5, D 7/5
 DADO P947f7dc9 (ITA 2020 q47): texto_da_prova -> "Seja a um número real satisfazendo 0 < a < π/2. Então, a soma de todos os valores de x ∈ [0, 2π] que satisfazem a equação cos x sen(a + x) = sen a é igual a"; alternativas: A 5π + 2a, B 5π + a, C 5π, D 5π − a, E 5π − 2a
+
+## 2026-11-19 19:06 UTC — PENDÊNCIAS mat-0079 — session_01PveEKX1qHQh5Qz4UFj3KyL
+Gabarito do Aprendice (resolvedor = conferente às cegas = preliminar): P9eb01b32 B.
+RECLASS P7bf0c14d M12.4 -> M12.5 (UEG 2022 q25: área do triângulo pelas coordenadas, sem circunferência)
+DADO P4c148ea7 (UFJF 2025 PISM III q20): alternativas.E -> "(0, 8)" (cabeçalho "LÍNGUA PORTUGUESA -" da página seguinte colado)
+DADO P12f2c58e (UNIRG 2021 q42): alternativas -> "(5 – 2√3, 0)", "(5 – √3, 0)", "(5 – √2, 0)", "(5 – 2√2, 0)" (perdeu o √)
+DADO Pe12aee9b (URCA 2025 q28): alternativas -> A (1 + √17)/4; B (1 + √17)/2; C (−1 + √17)/4; D (−1 + √17)/2; E √17/4; texto: "a área do triângulo ODP é 1/2"
+DADO P8c1541d6 (Unioeste 2021 q69): texto_da_prova -> "Seja f: (0, ∞) → R a função definida por f(x) = x² + 1. Considere o triângulo, cujos vértices são os pontos do plano cartesiano dados por (1,0), (6,0) e (a, f(a)). Assim, se este triângulo tem área igual a 100, é CORRETO afirmar que o número a é:"; alternativas -> A 2√10; B 200/5; C 2√5; D 7√2; E √39 (vazias)
+DADO Pf3acface (IME 2026 q2): alternativas -> A 2^n; B 2^((n²+n)/2); C 2^(n²)·3^(n/2); D 2^n·3^((n²−n)/2); E 2^n·3^((n²+n)/2)
+DADO Pe2690eb6 (FCM-MG 2025 q55): texto_da_prova "50 mil" -> "50 ml"
+DADO Pdb33a15f (Unioeste 2022 q66): print traz "45." como número; alternativas vazias -> a) (h/12)(8π + 3); b) (h/12)(4π + √3); c) (h/4)(3π + 1); d) (h/12)(8π + 3√3); e) (h/12)(4π + 3√3)
+DADO Pa5fd59cb (FCM-MG 2025 q52): texto_da_prova -> "(CH4)", "4 · 10⁻⁸ mm", "7 · 10⁻⁸ mm e 5 · 10⁻⁸ mm"; alternativas -> A) 1,14 · 10⁻²⁴√2 mm³; B) 2,29 · 10⁻²²√2 mm³; C) 4,58 · 10⁻¹¹√2 mm³; D) 8,14 · 10⁻¹¹√2 mm³
+DADO P3707095f (UEG 2024 q16): texto_da_prova -> "de (32/3)π cm³ de volume"
+RECLASS Pa5fd59cb M11.4 -> M11.3 (FCM-MG 2025 q52: volume de tetraedro regular, sem esfera)
+RECLASS P3b25f508 M11.3 -> M11.5 (URCA 2025.1 q21: tronco de pirâmide)
+DADO P980876b8 (Unifor 2026-2 q2): alternativas.E -> "603775" (trecho "E + 16 4" colado); texto_da_prova -> "Sabendo-se que há (E + 16)/4 engenheiros disponíveis no setor, em que E é dado por E = (√5 + √6 + √7)(√5 + √6 − √7)(√5 − √6 + √7)(−√5 + √6 + √7), determine quantas equipes distintas podem ser formadas contendo exatamente n engenheiros, em que n é o valor da leitura do sensor intermediário (do meio)."
+DADO Pf66a7188 (UFJF 2025 PISM III q17): alternativas -> A "2^20 · 18! · 4!"; B "2^8 · (12!)/(4!8!) · 8!"; C "2^4 · (20!)/(12!) · (8!)/(2!6!)"; D "2^20 · (16!)/(2!2!) · 8!"; E "1/2 · (16!)/(2!2!) · 4!"
+DADO Pa5d0c2c5 (URCA 2023.2 q26): texto_da_prova -> "A soma C(8,4) − C(7,3) + C(6,4) + C(6,5) é igual a:"
+DADO Paa2c58f8 (URCA 2025.2/2026.1 q21): texto_da_prova -> "a_n = C(2026, n)/2^n"; alternativas -> A "−2^(−2026)", B "−2^(−2022)", C "2^(−2022)", D "2^(−2026)", E "2^(−2024)"
