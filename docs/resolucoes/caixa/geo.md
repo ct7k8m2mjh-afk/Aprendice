@@ -281,3 +281,34 @@ RECLASS P4200703c G07.3 -> G07.2 (UFRR 2024, q42: megarregião Rio–SP, rede ur
 RECLASS P2757650d G07.3 -> G06.4 (URCA 2026.1, q79: fluxo migratório inter-regional Nordeste → Sudeste)
 OUTRA P5320383c: UEG 2025/1, q48 — alternativa D (crescimento relativo maior em cidades pequenas e médias nos anos 1980) é defensável pela literatura; resolvida com a oficial A e explicada no alerta.
 RECLASS P4b71dcc1 G07.3 -> G07.4 (Unicentro 2023 q55: afirmativas I-III tratam de segregação, moradia precária e áreas de risco; resolvida com G07.4 nos equivocos)
+
+## 2026-11-19 17:37 UTC — PENDENCIAS — sessão geo (19/11, 3ª)
+Lote gravado: geo-0054 (49 resoluções; 2 com gabarito do Aprendice, letras iguais às cegas e ao preliminar: P72b113d0 C, P88d177c7 A). Pendente: P9bfc87ab (classificação: História H04.6).
+DADO Pe3451697: texto_da_prova -> no print, o texto de apoio do IBGE ("De acordo com o Instituto Brasileiro de Geografia e Estatística (IBGE), favelas e comunidades urbanas são territórios populares [...] Adaptado.") vem antes do comando; na entrada ele está colado no fim da alternativa E, que no print termina em "garantia do direito à cidade."
+OUTRA P9bfc87ab (PUC-Rio 2025 Grupo 4, q. 51): é de História H04.6 (Hospedaria da Ilha das Flores, imigração e política de branqueamento; gabarito D). O print e o texto mostram o número 41, mas a entrada diz questão 51: conferir o número no caderno.
+RECLASS P1069cdf2 G07.4 -> G07.5
+RECLASS P5b1c06c4 G07.4 -> G12.2
+RECLASS P6323a0f7 G07.4 -> G10.5
+OUTRA P6323a0f7 (UEG 2022/1, q. 48): o mapa do print traz como fonte "brasilescola.uol.com.br" (escrito pela própria banca da UEG); registrar para o dono decidir, por causa da regra dos sites didáticos.
+RECLASS Pce1d4b11 G07.4 -> G07.5 (UNIRG 2022/1 Paraíso, questão 47: medidas contra desequilíbrios ambientais urbanos — tratamento de resíduos, desassoreamento, arborização; é ambiente urbano, não segregação)
+RECLASS P5ddb9ce8 G07.4 -> G10.1 (Unitins 2025/2 q22: muros de fronteira e paradoxo fluidez × fechamento da globalização; só II e IV citam condomínios)
+DADO P56307ed5: texto_da_prova -> "um efeito positivo da criação do tipo de cidade em questão consiste em:" (falta "questão" na entrada) — UNIRG 2021/2 Paraíso q. 47
+RECLASS Pff77ec47 G08.3 -> G11.4 (Cederj 2020.1 q27: identificar o RN no mapa e ligá-lo à produção de sal marinho; é economia regional do Nordeste, não Revolução Verde/agronegócio)
+DADO Pe5f9b1c3: texto_da_prova -> embaralhado; no print: enunciado "Acerca da estrutura fundiária e dos conflitos de terra no Brasil, assinale a opção correta." e alternativas A–E completas (A Amazonas lidera conflitos; B Amazônia/Yanomami; C mortes por garimpo diminuíram; D Portugal avesso à concentração; E média propriedade desde a Lei de Terras) (UERR 2023 q68)
+DADO Pe5f9b1c3: alternativas -> ausentes na entrada; o print tem A–E (UERR 2023 q68)
+RECLASS P6323a0f7 G07.4 -> G10.5 (Jerusalém Oriental, conflito Israel-Palestina)
+RECLASS P5ddb9ce8 G07.4 -> G10.1 (muros de fronteira e globalização)
+RECLASS P1069cdf2 G07.4 -> G07.5 (planejamento de Curitiba e transporte coletivo)
+RECLASS P5b1c06c4 G07.4 -> G12.2 (Programa Cidades Verdes Resilientes)
+OUTRA P9bfc87ab: classificação: é de História H04.6 (Hospedaria da Ilha das Flores, imigração e política de branqueamento); no print a questão é a 41, a entrada diz 51
+DADO Pe3451697: alternativas.E -> só "insuficiência de políticas públicas e de investimentos privados dirigidos à garantia do direito à cidade." (o texto de apoio do IBGE e a fonte entraram colados na E)
+AVISO site: número da questão no site difere da entrada em Pa7839edd (site "questão 11 (tarde)", entrada 43) e P57b2db70 (site "questão 2 (2ª etapa)", entrada 23); conferir a numeração
+
+## 2026-11-19 17:37 UTC — FIM — sessão geo (19/11, 3ª; parte 1)
+Lotes gravados nesta sessão: geo-0051, geo-0052, geo-0053, geo-0054 (último gravado: geo-0054). Nenhum lote aberto.
+Resoluções que entraram: 199 (50 + 50 + 50 + 49), todas conferidas por 2 conferentes com reconferência. 8 com gabarito do Aprendice (resolvedor e conferente às cegas com a mesma letra, igual ao preliminar).
+Pendentes: 1 — P9bfc87ab (geo-0054) é de História H04.6. Divergências: 0. Detalhes nos blocos PENDENCIAS acima.
+Avisos: numeração da questão no site difere da entrada em Pa7839edd e P57b2db70 (ver bloco do geo-0054). Geografia agora dividida em 2 partes (partes.json): esta sessão foi a parte 1; os lotes geo-0051 a geo-0054 foram abertos antes da divisão e podem ter provas da parte 2.
+Checagem no site (Pa7839edd, Pc3c1dbef, P57b2db70; 390 e 1280 px): 4 blocos completos e na ordem, "Por que as outras estão erradas" fechado e abrindo, aviso do Gabarito do Aprendice presente, fração empilhada, sem rolagem lateral nem erro no console.
+Testes: converte + tsc + vitest verdes (786 passed).
+A seguir: `python3 ferramentas/resolucoes/lote.py status` — Geografia faltam 637 (parte 1: 317 · parte 2: 320).
