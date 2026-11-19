@@ -85,7 +85,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | fis-0077 | demais nível 7-10 | 44 | gravado | 44 | 0 | 0 |
 | fis-0078 | provas-alvo nível 1-6 | 8 | gravado | 8 | 0 | 0 |
 | fis-pend-0001 | pendentes todos-menos-anular | 12 | gravado | 5 | 7 | 0 |
-| fis-pend-0002 | pendentes reclassificada | 3 | aberto |  |  |  |
+| fis-pend-0002 | pendentes reclassificada | 3 | gravado | 3 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 

@@ -620,5 +620,238 @@
    "data": "2026-11-13",
    "lote": "bio-0059"
   }
+ },
+ "P1c45fada": {
+  "n": "32",
+  "conceito": "Ligar cada doença à medida que a previne: saneamento contra as de transmissão fecal-oral e vacina contra as imunopreveníveis.",
+  "equivocos": {
+   "A": "B10.5:doenca-de-saneamento-em-cidade-saneada",
+   "B": "B10.5:imunoprevenivel-em-cidade-vacinada",
+   "C": "B10.5:doenca-de-saneamento-em-cidade-saneada",
+   "D": "B10.5:imunoprevenivel-em-cidade-vacinada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A tabela dá duas proteções por cidade: saneamento (esgoto e água tratada) e vacinação completa. Cada doença da resposta tem de bater com a proteção que falta. Doença transmitida por água ou alimento contaminado com fezes sobe onde falta saneamento; doença que tem vacina sobe onde a cobertura vacinal é baixa. Monte a ficha de cada cidade antes de olhar as alternativas.",
+    "formulas": [
+     "saneamento baixo → sobem as doenças de água e alimento contaminados (fecal-oral)",
+     "vacinação baixa → sobem as doenças que têm vacina",
+     "doença com as duas vias → sobe onde faltam as duas"
+    ],
+    "simbolos": [
+     [
+      "saneamento",
+      "coleta de esgoto e tratamento de água"
+     ],
+     [
+      "fecal-oral",
+      "transmissão pela ingestão de água ou alimento contaminados com fezes"
+     ],
+     [
+      "imunoprevenível",
+      "doença que pode ser evitada por vacina"
+     ],
+     [
+      "BCG",
+      "vacina contra a tuberculose"
+     ],
+     [
+      "amebíase",
+      "doença intestinal causada pela ameba Entamoeba histolytica"
+     ]
+    ]
+   },
+   "pista": "Escreva ao lado de cada cidade o que falta nela: saneamento, vacina, os dois ou nenhum. Só depois procure a linha da tabela que combina.",
+   "passos": [
+    {
+     "faz": "Monte a ficha de cada cidade",
+     "conta": "I: saneamento 89% | vacina 19% → falta vacina; II: 12% | 13% → faltam os dois; III: 98% | 15% → falta vacina; IV: 10% | 90% → falta saneamento",
+     "porque": "O risco aumentado aparece onde falta a proteção que corta a via de transmissão da doença.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Classifique as doenças da alternativa E",
+     "conta": "tuberculose → vacina BCG | poliomielite → vacina + via fecal-oral | hepatite B → vacina | amebíase → água e alimento, sem vacina",
+     "porque": "Tuberculose e hepatite B são evitadas por vacina e não dependem de esgoto; a poliomielite tem vacina e também passa por água e alimento com fezes; a amebíase não tem vacina e depende só do saneamento.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Case cada doença com a cidade",
+     "conta": "I ↔ tuberculose | II ↔ poliomielite | III ↔ hepatite B | IV ↔ amebíase",
+     "porque": "I e III têm bom saneamento e vacina baixa: doenças imunopreveníveis. II não tem nenhuma das proteções: a pólio, que depende das duas. IV tem vacina alta e esgoto ruim: a doença de água contaminada sem vacina.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Descarte as outras linhas pela cidade que falha",
+     "conta": "A: III amebíase com 98% de saneamento | B: IV tuberculose com 90% vacinados | C: III cólera com 98% de saneamento | D: IV COVID com 90% vacinados",
+     "porque": "Basta uma cidade errada para derrubar a linha inteira.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "tuberculose, poliomielite, hepatite B, amebíase → E",
+     "porque": "É a única linha em que as quatro doenças casam com a proteção que falta em cada cidade.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — cidade I, tuberculose; cidade II, poliomielite; cidade III, hepatite B; cidade IV, amebíase.",
+   "checagem": "Leia ao contrário, pela medida que resolveria cada caso: na cidade IV a vacinação já está em 90%, então o que segue em alta é uma doença de água contaminada sem vacina, a amebíase; na cidade II, sem esgoto e sem vacina, a poliomielite seria cortada pelas duas medidas ao mesmo tempo, e as duas faltam.",
+   "erradas": {
+    "A": "Põe leptospirose na cidade I e amebíase na III, cidades com 89% e 98% de saneamento. As duas dependem de saneamento ruim (urina de rato em enchentes, água com cistos), não de vacina.",
+    "B": "Põe tuberculose na cidade IV, onde 90% estão vacinados. A tuberculose tem vacina (BCG), então o risco aumentado estaria nas cidades de vacina baixa.",
+    "C": "Põe cólera na cidade III, que tem 98% de saneamento. A cólera se transmite por água e alimento contaminados e sobe onde falta saneamento.",
+    "D": "Põe COVID na cidade IV, onde 90% estão vacinados. A COVID tem vacina, então o risco maior estaria nas cidades de vacina baixa."
+   },
+   "armadilha": "Olhar só uma coluna da tabela: a cidade II pede uma doença que dependa das duas proteções, e a IV pede uma que não tenha vacina.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a doença de risco aumentado em cada cidade, conforme o saneamento e a cobertura vacinal",
+    "chave": "vacina baixa → tuberculose e hepatite B; os dois baixos → poliomielite; só saneamento baixo → amebíase",
+    "cuidado": "uma cidade errada derruba a linha inteira; confira as quatro"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "começar pela cidade IV",
+    "ideia": "Na IV a vacina está em 90%: tuberculose (B) e COVID (D) caem; na III há 98% de saneamento: cólera (C) e amebíase (A) caem; sobra E."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "Quadro 1: as quatro cidades lado a lado, cada uma com um medidor de saneamento e um de vacinação. Quadro 2: em I e III o medidor de vacina fica vermelho; em II os dois; em IV só o de saneamento. Quadro 3: cada doença da alternativa E aparece com seu ícone de via (seringa ou torneira) e encaixa na cidade cujo medidor vermelho combina. Quadro 4: a linha E acende."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-pend-0002"
+  }
+ },
+ "Pab319aea": {
+  "n": "40",
+  "conceito": "Reconhecer o jardim de chuva como ecossistema e descartar erros sobre níveis tróficos, raízes, evapotranspiração e decomposição.",
+  "equivocos": {
+   "B": "B09.1:herbivoro-como-consumidor-secundario",
+   "C": "B09.1:monocotiledonea-com-raiz-pivotante",
+   "D": "B09.1:folha-grande-reduz-transpiracao",
+   "E": "B09.1:parasita-como-decompositor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ecossistema é o conjunto dos seres vivos (componentes bióticos) com o ambiente físico (abióticos: solo, água, luz) interagindo. O jardim de chuva tem plantas, animais, decompositores, solo e água da chuva trocando matéria e energia. As outras alternativas trazem, cada uma, um erro de conceito: nível trófico, tipo de raiz, papel da folha ou quem decompõe.",
+    "formulas": [
+     "ecossistema = bióticos + abióticos interagindo",
+     "planta → herbívoro (consumidor primário) → predador (consumidor secundário)",
+     "monocotiledônea: raiz fasciculada | dicotiledônea: raiz pivotante",
+     "decompositor: matéria orgânica → nutrientes minerais (moléculas simples)"
+    ],
+    "simbolos": [
+     [
+      "biótico",
+      "relativo aos seres vivos"
+     ],
+     [
+      "abiótico",
+      "fator físico ou químico do ambiente: solo, água, luz, temperatura"
+     ],
+     [
+      "nível trófico",
+      "posição do ser vivo na cadeia alimentar"
+     ],
+     [
+      "raiz pivotante",
+      "raiz com um eixo principal grosso de onde saem as laterais"
+     ],
+     [
+      "raiz fasciculada",
+      "feixe de raízes finas de tamanho parecido, sem eixo principal"
+     ],
+     [
+      "evapotranspiração",
+      "perda de água pela evaporação do solo somada à transpiração das plantas"
+     ],
+     [
+      "saprófago",
+      "ser que se alimenta de matéria orgânica morta"
+     ]
+    ]
+   },
+   "pista": "Cada alternativa errada tem uma palavra que trai um conceito. Procure-a em B, C, D e E antes de decidir sobre A.",
+   "passos": [
+    {
+     "faz": "Confira se o jardim é um ecossistema",
+     "conta": "plantas + animais + decompositores ⇄ solo + água + luz → ecossistema",
+     "porque": "Há seres vivos interagindo entre si e com o solo poroso, a chuva e a luz, com ciclagem de matéria; é isso que define ecossistema, em qualquer escala.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a cadeia da figura e teste B",
+     "conta": "plantas → gafanhoto, borboleta (consumidores primários) → sapo; ave, se comer insetos (consumidores secundários)",
+     "porque": "Gafanhoto e borboleta se alimentam de plantas, então são consumidores primários. O sapo come insetos e é secundário; a ave da figura é secundária se comer insetos e primária se comer sementes. Não existe consumidor secundário sem consumidor primário, e a teia tem pelo menos três níveis.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste C e D pela planta",
+     "conta": "C: monocotiledônea → raiz fasciculada, não pivotante | D: folha grande → mais transpiração",
+     "porque": "Raiz pivotante é das dicotiledôneas; as monocotiledôneas têm raiz fasciculada. Folha com grande superfície transpira mais, o que aumenta a evapotranspiração e ajuda o jardim a se livrar da água.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste E pela decomposição",
+     "conta": "detritos → decompositores (fungos e bactérias saprófagos) → nutrientes minerais simples",
+     "porque": "Quem decompõe são os decompositores, que se alimentam de matéria morta, não parasitas, que vivem às custas de um hospedeiro vivo. E o fim da decomposição são moléculas simples, inorgânicas, não orgânicas complexas.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "ecossistema → A",
+     "porque": "Só a A descreve o jardim sem erro de conceito.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — O jardim de chuva pode ser considerado um ecossistema, em que componentes bióticos e abióticos interagem numa dinâmica de autorregulação e autossustentação.",
+   "checagem": "Siga um átomo de nitrogênio: uma folha cai, os decompositores a transformam em sais minerais, a raiz absorve esses sais e a planta volta a crescer. Matéria circulando entre bióticos e abióticos dentro do jardim é o que se espera de um ecossistema.",
+   "erradas": {
+    "B": "Não existe consumidor secundário sem primário: se todos os animais fossem secundários, ninguém comeria as plantas. Gafanhoto e borboleta comem plantas e são primários; o sapo, e a ave se comer insetos, são secundários.",
+    "C": "Atribui raiz pivotante também às monocotiledôneas. Elas têm raiz fasciculada; a pivotante é das dicotiledôneas.",
+    "D": "Diz que folhas grandes diminuem a evapotranspiração. Maior superfície foliar transpira mais e aumenta a evapotranspiração, o que ajuda o jardim a eliminar a água retida.",
+    "E": "Põe parasitas como decompositores e diz que o resultado são moléculas orgânicas complexas. Decompõem fungos e bactérias saprófagos, e o fim são nutrientes minerais simples."
+   },
+   "armadilha": "Achar que só floresta ou lago grande são ecossistemas: o que define é a interação entre seres vivos e ambiente, não o tamanho.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a afirmação correta sobre o jardim de chuva",
+    "chave": "seres vivos e fatores físicos interagindo, com ciclagem de matéria, formam um ecossistema",
+    "cuidado": "herbívoro é consumidor primário; monocotiledônea tem raiz fasciculada; decompositor não é parasita e produz nutrientes simples"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação por palavra",
+    "ideia": "\"todos os animais\" (B), \"raízes pivotantes\" nas monocotiledôneas (C), \"diminuindo a evapotranspiração\" (D) e \"parasitas\" (E) derrubam as erradas; sobra A."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "ciclo",
+   "roteiro": "Quadro 1: o jardim rebaixado com chuva caindo e a água infiltrando no substrato poroso. Quadro 2: setas de alimento: plantas → gafanhoto, borboleta (consumidores primários) → sapo (consumidor secundário); a ave aparece ligada aos insetos (secundária) e às sementes (primária). Quadro 3: folhas mortas chegam aos fungos e bactérias do solo e viram sais minerais. Quadro 4: as raízes absorvem os sais e a água; as folhas devolvem vapor ao ar; o ciclo se fecha e aparece o rótulo ecossistema."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-pend-0002"
+  }
  }
 }
