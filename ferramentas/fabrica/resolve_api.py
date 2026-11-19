@@ -1026,9 +1026,72 @@ def cmd_lente(entrada, saida, ids, teto, max_tokens=12000):
     print(f'gasto total registrado: US$ {gasto_total():.2f}')
 
 
+def cmd_resolve(entrada, saida, ids, teto, max_tokens=14000):
+    """Resolve poucas questões por Messages (sem batch) e grava na saída, no lugar do que estava.
+    Serve para a questão que o batch não devolveu (aconteceu uma vez em 11 lotes) e para refazer
+    uma questão do zero. Depois é obrigatório passar o comando `lente` nessas questões: nada vai ao
+    ar sem a lente de fatos (princípio 3)."""
+    cl = cliente()
+    lote, materia, qs = carrega_entrada(entrada)
+    d = json.load(open(saida, encoding='utf-8'))
+    por = {q['id']: q for q in d['questoes']}
+    sis = monta('por-resolvedor.md')
+    ex = extras_do_lote(lote)
+    for qid in ids:
+        if qid not in qs:
+            print(f'{qid}: não é deste lote — pulado')
+            continue
+        p_ = pedido(qid, MODELO_RESOLVEDOR, sis, bloco_questao(qs[qid], extras=ex),
+                    ESQ_RESOLVEDOR, max_tokens)['params']
+        est = preco(MODELO_RESOLVEDOR, conta_tokens(cl, p_), max_tokens * 0.5, batch=False)
+        parar = cabe_no_orcamento(lote, est, teto)
+        if parar:
+            sys.exit(f'PARADO no {parar}. Nada enviado.')
+        r = cl.messages.create(**p_)
+        custo = preco(MODELO_RESOLVEDOR, r.usage.input_tokens, r.usage.output_tokens,
+                      getattr(r.usage, 'cache_read_input_tokens', 0) or 0,
+                      getattr(r.usage, 'cache_creation_input_tokens', 0) or 0, batch=False)
+        anota_gasto(lote, 'resolvedor-avulso', MODELO_RESOLVEDOR, r.usage.input_tokens,
+                    r.usage.output_tokens, getattr(r.usage, 'cache_read_input_tokens', 0) or 0,
+                    getattr(r.usage, 'cache_creation_input_tokens', 0) or 0, custo, custo)
+        if r.stop_reason == 'max_tokens':
+            print(f'{qid}: cortado em max_tokens · US$ {custo:.2f}')
+            continue
+        res = json.loads(next(b.text for b in r.content if b.type == 'text'))
+        gab = qs[qid].get('gabarito_oficial')
+        if res.get('problema'):
+            por[qid].clear()
+            por[qid].update({'id': qid, 'status': 'pendente', 'motivo': res['problema']})
+            print(f'{qid}: pendente — {res["problema"][:120]} · US$ {custo:.2f}')
+            continue
+        if gab and res.get('letra') != gab:
+            por[qid].clear()
+            por[qid].update({'id': qid, 'status': 'pendente',
+                             'motivo': f'divergência no resolvedor avulso: {res.get("letra")} × '
+                                       f'oficial {gab} (precisa de reconciliação)'})
+            print(f'{qid}: divergência {res.get("letra")} × {gab} · US$ {custo:.2f}')
+            continue
+        mq = monta_questao(qid, res, gab or res.get('letra'))
+        mq.pop('_letra', None)
+        log = []
+        if not conserta(mq, qs[qid], gab or res.get('letra'), res.get('reclass', ''), log):
+            print(f'{qid}: formato — {log} · US$ {custo:.2f}')
+            continue
+        if not mq.get('caminhos'):
+            mq.pop('caminhos', None)
+        por[qid].clear()
+        por[qid].update(mq)
+        print(f'{qid}: resolvida com {gab or res.get("letra")} · {len(mq["resolucao"]["passos"])} '
+              f'passos · US$ {custo:.2f} · AGORA RODE O COMANDO `lente` NESTA QUESTÃO')
+        if log:
+            print('   conserto:', log)
+    json.dump(d, open(saida, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    print(f'gasto do lote US$ {gasto_total(lote):.2f} · da fábrica US$ {gasto_total():.2f}')
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('comando', choices=['estima', 'teste', 'roda', 'lente'])
+    ap.add_argument('comando', choices=['estima', 'teste', 'roda', 'lente', 'resolve'])
     ap.add_argument('entrada')
     ap.add_argument('--saida', default=None)
     ap.add_argument('--n', type=int, default=3)
@@ -1040,6 +1103,11 @@ def main():
         cmd_estima(a.entrada, a.teto)
     elif a.comando == 'teste':
         cmd_teste(a.entrada, a.n, a.teto)
+    elif a.comando == 'resolve':
+        if not a.saida or not a.ids:
+            sys.exit('resolve precisa de --saida e --ids')
+        cmd_resolve(a.entrada, a.saida, [x.strip() for x in a.ids.split(',') if x.strip()],
+                    a.teto, a.max_tokens)
     elif a.comando == 'lente':
         if not a.saida or not a.ids:
             sys.exit('lente precisa de --saida e --ids')
