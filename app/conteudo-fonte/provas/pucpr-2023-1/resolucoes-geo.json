@@ -367,5 +367,93 @@
    "data": "2026-11-19",
    "lote": "geo-0052"
   }
+ },
+ "Pd86e18e2": {
+  "n": "49",
+  "conceito": "Relacionar a matriz de transporte de cargas ao custo do frete: maior peso rodoviário, frete mais caro.",
+  "equivocos": {
+   "A": "G09.6:ferrovia-alta-com-frete-caro",
+   "B": "G09.6:menor-ferrovia-em-vez-de-maior-rodovia",
+   "D": "G09.6:matriz-equilibrada-como-cara",
+   "E": "G09.6:ferrovia-dominante-como-cara"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em grandes distâncias, o transporte por rodovia é o mais caro por tonelada transportada; ferrovia e hidrovia levam muita carga com menos combustível e custo menor. Por isso, numa tabela de modais, o país com frete mais caro é o que mais depende de caminhão. A questão manda deixar o Brasil de fora: procure o maior percentual rodoviário entre os outros.",
+    "formulas": [
+     "custo por tonelada em longa distância: rodoviário > ferroviário > aquaviário",
+     "maior participação rodoviária → maior custo de frete"
+    ],
+    "simbolos": [
+     [
+      "modal",
+      "tipo de transporte: rodoviário, ferroviário, aquaviário, aéreo, dutoviário"
+     ],
+     [
+      "frete",
+      "preço pago para transportar a carga"
+     ],
+     [
+      "aquaviário",
+      "transporte por água: rios, lagos ou mar"
+     ]
+    ]
+   },
+   "pista": "Antes de olhar a tabela inteira, decida qual modal deixa o frete mais caro; depois procure só essa coluna.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"Excetuando-se o Brasil, pode-se concluir que o país com maior custo relacionado ao frete de cargas é:\"",
+     "porque": "Pede-se o país com frete mais caro, sem contar o Brasil, que de propósito tem o maior rodoviário (58%).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Defina o modal mais caro",
+     "conta": "rodoviário: maior custo por tonelada em longa distância",
+     "porque": "Caminhão leva pouca carga por viagem e gasta mais combustível por tonelada; em países enormes, isso pesa no frete.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Leia a coluna rodoviária sem o Brasil",
+     "conta": "Rússia 08 | Canadá 43 | Austrália 53 | EUA 32 | China 50",
+     "porque": "A Austrália tem a maior parte da carga em rodovia entre os cinco países que restam.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "maior rodoviário sem o Brasil = Austrália, 53% = alternativa C",
+     "porque": "Mais carga em caminhão significa frete mais caro.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — Austrália.",
+   "checagem": "Confira pelos modais baratos: somando ferroviário e aquaviário, a Austrália tem 43 + 04 = 47%, a menor parcela de modais baratos entre os países sem o Brasil (China: 37 + 13 = 50%).",
+   "erradas": {
+    "A": "Não confere: o Canadá tem 43% em rodovia, abaixo da Austrália (53%), e 46% em ferrovia, modal barato.",
+    "B": "Sai de olhar a menor ferrovia (37%); mas o que encarece o frete é a rodovia, e a China tem 50% nela, abaixo dos 53% da Austrália.",
+    "D": "Não confere: os EUA têm 32% em rodovia e 25% em hidrovia e outros, uma das matrizes mais equilibradas da tabela.",
+    "E": "Inverte: a Rússia tem só 08% em rodovia e 81% em ferrovia; é o país com frete mais barato pela lógica da tabela."
+   },
+   "armadilha": "Marcar o Brasil de cabeça, ou olhar a menor ferrovia (China), em vez de procurar o maior rodoviário entre os demais.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O país, sem contar o Brasil, com maior custo de frete de cargas.",
+    "chave": "O rodoviário é o modal mais caro em longa distância; a Austrália tem a maior parte rodoviária (53%).",
+    "cuidado": "Exclua o Brasil e compare a coluna rodoviária, não a ferroviária."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-p2-0001"
+  }
  }
 }
