@@ -26,6 +26,7 @@ import argparse
 import base64
 import csv
 import datetime
+import io
 import json
 import os
 import re
@@ -269,14 +270,36 @@ ESQ_CEGO = {
 
 # ---------------------------------------------------------------- montar pedidos
 
+# A API recusa imagem com lado acima deste tamanho. Print de prova com muitos textos de apoio
+# passa disso: o de Pedde3b3b (UFJF 2025 PISM III) tem 8340 px de altura. Sem reduzir, o pedido
+# volta 400 e a questão sai do lote como pendente, com o motivo errado ("a API não devolveu
+# resposta") — foi assim que uma questão boa quase foi descartada no por-0107.
+LADO_MAXIMO = 8000
+
+
 def imagem(caminho):
     p = os.path.join(RAIZ, caminho)
     ext = os.path.splitext(p)[1].lower()
     media = {'.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg',
              '.jpeg': 'image/jpeg', '.gif': 'image/gif'}[ext]
-    with open(p, 'rb') as h:
-        return {'type': 'image', 'source': {'type': 'base64', 'media_type': media,
-                                            'data': base64.standard_b64encode(h.read()).decode()}}
+    dados = open(p, 'rb').read()
+    try:
+        from PIL import Image
+        with Image.open(io.BytesIO(dados)) as im:
+            maior = max(im.size)
+            if maior > LADO_MAXIMO:
+                # reduz proporcionalmente, com uma folga de 1%, e manda em PNG (sem perda:
+                # o print é texto, e recomprimir em webp com perda apagaria letra pequena)
+                fator = (LADO_MAXIMO * 0.99) / maior
+                novo_tam = (max(1, round(im.width * fator)), max(1, round(im.height * fator)))
+                buf = io.BytesIO()
+                im.convert('RGB').resize(novo_tam, Image.LANCZOS).save(buf, format='PNG')
+                print(f'   print reduzido de {im.size} para {novo_tam}: {caminho}', flush=True)
+                dados, media = buf.getvalue(), 'image/png'
+    except ImportError:
+        pass
+    return {'type': 'image', 'source': {'type': 'base64', 'media_type': media,
+                                        'data': base64.standard_b64encode(dados).decode()}}
 
 
 def questao_cega(q):
