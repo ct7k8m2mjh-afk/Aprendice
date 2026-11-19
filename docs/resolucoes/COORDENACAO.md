@@ -80,6 +80,14 @@ em 11–13/11 (por-0024/27/32/44 × por-0046; por-0075/78 × por-0082; por-0084/
 REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, commit e push do registro ANTES de resolver
 (e `git pull` antes do proximo). Hoje só a fábrica trabalha em Português, sem risco.
 
+## Revisão completa do site (dono, 19/11 ~21h30) — ANTES de publicar de novo
+1) Fundo "tom da matéria" (dono escolheu; nunca branco/preto; creme fora das matérias; Bio claro #EEF4EA/#FAFCF7, escuro
+#0F1A12/#17241A) — agente implementando. 2) Depois: 4 revisores independentes sobre UM build (casca; 9 matérias; questão e
+correção; dados/contagens/console), 390/768/1280/1440, claro/escuro, cada caixa de texto, fonte, tamanho, entrelinha,
+espaçamento entre letras, botões, informação no lugar certo, comparando com o sistema (app-atual/design + DESIGN.md).
+3) Corrigir tudo (decisão visual nova → perguntar ao dono). 4) Nova revisão até zero. 5) Publicar (inclui Questão
+indisponível, RECLASS de Português e as resoluções novas).
+
 ## Fábrica de CLASSIFICAÇÃO pela API (dono, 19/11 ~21h15)
 Sessão session_01PveEKaueZxMsGjqv3gMYrd (ambiente Fabrica), prompt docs/resolucoes/PROMPT-FABRICA-CLASSIFICACAO.md.
 Confere o subtema de TODAS as questões; muda só com duas respostas iguais às cegas; sem subtema bom: encaixa no mais próximo e
