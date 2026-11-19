@@ -451,5 +451,116 @@
    "data": "2026-11-13",
    "lote": "fis-0061"
   }
+ },
+ "Pacaa21da": {
+  "n": "59",
+  "conceito": "Fechar uma chave que põe mais um resistor em paralelo diminui a resistência equivalente e aumenta a corrente na lâmpada em série.",
+  "equivocos": {
+   "A": "F11.5:achou-que-ramo-novo-nao-muda-o-circuito",
+   "B": "F11.5:paralelo-aumenta-resistencia",
+   "D": "F11.5:achou-que-ramo-novo-nao-muda-o-circuito",
+   "E": "F11.5:desvio-de-corrente-reduz-total"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No desenho, R1 (com a chave S), R2 e R3 formam um paralelo; esse bloco fica em série com o resistor R, com a lâmpada L e com a bateria. Tudo o que está em série é atravessado pela mesma corrente, inclusive a lâmpada. Pôr um ramo a mais em paralelo diminui a resistência do bloco.",
+    "formulas": [
+     "n iguais em paralelo: R/n",
+     "i = ε/(R_total)",
+     "brilho: P = i² · R_L"
+    ],
+    "simbolos": [
+     [
+      "ε",
+      "força eletromotriz da bateria ideal"
+     ],
+     [
+      "R_L",
+      "resistência da lâmpada"
+     ],
+     [
+      "S",
+      "chave: aberta, não passa corrente por R1; fechada, R1 entra no paralelo"
+     ]
+    ]
+   },
+   "pista": "A lâmpada está em série com o resto. Descubra o que acontece com a resistência total quando R1 entra no paralelo.",
+   "passos": [
+    {
+     "faz": "Resistência com a chave aberta",
+     "conta": "R2 ∥ R3 = R/2 → R_total = R/2 + R + R_L = 3R/2 + R_L",
+     "porque": "Com S aberta, R1 não conduz; o paralelo tem só R2 e R3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resistência com a chave fechada",
+     "conta": "R1 ∥ R2 ∥ R3 = R/3 → R_total = R/3 + R + R_L = 4R/3 + R_L",
+     "porque": "Fechar S põe R1 como terceiro ramo do paralelo, e três iguais valem R/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare a corrente",
+     "conta": "4R/3 + R_L < 3R/2 + R_L → i = ε/R_total aumenta",
+     "porque": "Com a bateria ideal, a mesma ε dividida por uma resistência menor dá corrente maior.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue ao brilho da lâmpada",
+     "conta": "i maior → P = i² · R_L maior → luminosidade aumenta → alternativa C",
+     "porque": "A lâmpada está em série: a corrente total inteira passa por ela.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — aumenta, porque fechar a chave diminui a resistência equivalente e aumenta a corrente total.",
+   "checagem": "Caso extremo: se R1 fosse um fio sem resistência, o paralelo viraria curto (0 Ω) e a corrente seria a máxima possível. Ramo em paralelo sempre puxa a resistência para baixo, nunca para cima.",
+   "erradas": {
+    "A": "R1 entra no paralelo com R2 e R3 e muda a resistência do bloco de R/2 para R/3; a corrente e a tensão na lâmpada mudam.",
+    "B": "Inverte o efeito: resistor novo em paralelo diminui a resistência equivalente (R/2 → R/3); só em série ela aumentaria.",
+    "D": "Acerta que R1 fica em paralelo, mas a tensão no bloco e na lâmpada muda, porque a corrente total aumenta com R_total menor.",
+    "E": "A corrente se divide entre R1, R2 e R3, mas a total aumenta; a lâmpada está em série e recebe a corrente total, que cresceu."
+   },
+   "armadilha": "Achar que \"mais um resistor\" sempre aumenta a resistência; em paralelo, ele a diminui.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O que acontece com o brilho da lâmpada ao fechar a chave que põe R1 em paralelo com R2 e R3.",
+    "chave": "Paralelo passa de R/2 para R/3, R_total cai, a corrente sobe e a lâmpada em série brilha mais.",
+    "cuidado": "Resistor em paralelo diminui a resistência equivalente."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "regra qualitativa",
+    "ideia": "Ramo novo em paralelo sempre reduz a resistência total; com fonte ideal a corrente sobe, e o que está em série com tudo brilha mais."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "aberta: R/2 + R + R_L = 3R/2 + R_L",
+    "nota": "só R2 ∥ R3"
+   },
+   {
+    "linha": "fechada: R/3 + R + R_L = 4R/3 + R_L",
+    "nota": "R1 entra no paralelo"
+   },
+   {
+    "linha": "R_total menor → i = ε/R_total maior",
+    "nota": "bateria ideal"
+   },
+   {
+    "linha": "P = i² · R_L maior",
+    "nota": "lâmpada em série brilha mais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

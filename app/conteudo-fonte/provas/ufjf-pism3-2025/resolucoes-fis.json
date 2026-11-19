@@ -351,5 +351,107 @@
    "data": "2026-11-19",
    "lote": "fis-0063"
   }
+ },
+ "Pda0df58c": {
+  "n": "25",
+  "conceito": "Calcular a resistência equivalente de associações mistas de 1 kΩ, 2 kΩ e 3 kΩ e achar a que dá 1,5 kΩ.",
+  "equivocos": {
+   "A": "F11.5:somou-tudo-em-serie",
+   "B": "F11.5:tudo-em-paralelo",
+   "D": "F11.5:trocou-a-montagem-mista",
+   "E": "F11.5:trocou-a-montagem-mista"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Basta calcular a resistência equivalente de cada montagem e ver qual dá 1,5 kΩ. Em série, as resistências se somam; em paralelo, o equivalente é menor que a menor delas. Para dois resistores em paralelo, use produto pela soma.",
+    "formulas": [
+     "Série: R_eq = R1 + R2 + ...",
+     "Dois em paralelo: R_eq = (Ra · Rb)/(Ra + Rb)"
+    ],
+    "simbolos": [
+     [
+      "kΩ",
+      "quiloohm, mil ohms"
+     ],
+     [
+      "R_eq",
+      "resistência equivalente do conjunto"
+     ]
+    ]
+   },
+   "pista": "Note que 1 kΩ + 2 kΩ dá exatamente 3 kΩ, igual ao R3. O que acontece com dois resistores iguais em paralelo?",
+   "passos": [
+    {
+     "faz": "Some R1 e R2 em série",
+     "conta": "R1 + R2 = 1 kΩ + 2 kΩ = 3 kΩ",
+     "porque": "Em série a corrente atravessa um depois do outro, e as resistências se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ponha esse conjunto em paralelo com R3",
+     "conta": "R_eq = (3 · 3)/(3 + 3) → R_eq = 9/6 → R_eq = 1,5 kΩ",
+     "porque": "Dois resistores iguais em paralelo valem a metade de um deles: 3 kΩ ÷ 2 = 1,5 kΩ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira as outras montagens",
+     "conta": "série: 6 kΩ | paralelo: 6/11 ≈ 0,55 kΩ | (R2 ∥ R3) + R1: 1,2 + 1 = 2,2 kΩ | (R1 + R3) ∥ R2: (4 · 2)/6 ≈ 1,33 kΩ",
+     "porque": "Nenhuma outra montagem chega a 1,5 kΩ, então a escolha é única.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "(R1 + R2) ∥ R3 = 1,5 kΩ → alternativa C",
+     "porque": "É exatamente a montagem descrita na alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — por R1 e R2 associados em série, ligados em paralelo com R3.",
+   "checagem": "Ligue 3 V no conjunto: o ramo de R3 (3 kΩ) leva 1 mA e o ramo R1 + R2 (3 kΩ) leva mais 1 mA. São 2 mA no total, e 3 V ÷ 2 mA = 1,5 kΩ.",
+   "erradas": {
+    "A": "Sai de somar tudo em série: 1 + 2 + 3 = 6 kΩ, o quádruplo do necessário.",
+    "B": "Sai de pôr os três em paralelo: 1/R_eq = 1 + 1/2 + 1/3 = 11/6, logo R_eq = 6/11 ≈ 0,55 kΩ, menor que o menor resistor.",
+    "D": "Sai de R2 ∥ R3 = (2 · 3)/5 = 1,2 kΩ somado a R1: 1,2 + 1 = 2,2 kΩ.",
+    "E": "Sai de R1 + R3 = 4 kΩ em paralelo com R2: (4 · 2)/(4 + 2) ≈ 1,33 kΩ, perto de 1,5 kΩ mas diferente."
+   },
+   "armadilha": "A alternativa E dá 1,33 kΩ, valor próximo; só a conta mostra que a única montagem com 1,5 kΩ exato é a C.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual associação de 1, 2 e 3 kΩ dá 1,5 kΩ.",
+    "chave": "1 + 2 = 3 kΩ em série, e 3 kΩ em paralelo com 3 kΩ dá a metade: 1,5 kΩ.",
+    "cuidado": "Calcular cada montagem; valores próximos (1,33 kΩ) não servem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "atalho dos iguais",
+    "ideia": "Como 1 kΩ + 2 kΩ = 3 kΩ = R3, a montagem (R1 + R2) ∥ R3 junta dois iguais, e dois iguais em paralelo dão a metade: 1,5 kΩ."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R1 + R2 = 1 + 2 = 3 kΩ",
+    "nota": "série: soma"
+   },
+   {
+    "linha": "R_eq = (3 · 3)/(3 + 3)",
+    "nota": "paralelo com R3: produto pela soma"
+   },
+   {
+    "linha": "R_eq = 9/6 = 1,5 kΩ",
+    "nota": "dois iguais em paralelo: metade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

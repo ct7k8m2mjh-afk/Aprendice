@@ -892,5 +892,118 @@
    "data": "2026-11-19",
    "lote": "fis-0064"
   }
+ },
+ "Pa121251e": {
+  "n": "93",
+  "conceito": "Montar um chuveiro de três posições (desligado, morno, quente) com dois resistores iguais e uma chave seletora, usando P = V²/R.",
+  "equivocos": {
+   "A": "F11.5:nao-viu-o-curto-circuito",
+   "B": "F11.5:nao-viu-o-curto-circuito",
+   "D": "F11.5:nao-percebeu-posicoes-iguais",
+   "E": "F11.5:nao-percebeu-posicoes-iguais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com a tensão V fixa, a potência do chuveiro é P = V²/R: quanto menor a resistência ligada, mais calor. As três posições precisam dar três situações diferentes: nenhuma corrente (água à temperatura ambiente), resistência maior (morna) e resistência menor (quente). Em cada desenho, siga o fio de cada posição da chave até a fonte.",
+    "formulas": [
+     "P = V²/R (V fixa: R menor, P maior)",
+     "Série de dois iguais: 2R",
+     "Paralelo de dois iguais: R/2"
+    ],
+    "simbolos": [
+     [
+      "S",
+      "chave seletora: liga a fonte a um dos três contatos"
+     ],
+     [
+      "V",
+      "tensão da fonte"
+     ],
+     [
+      "curto-circuito",
+      "ligação da fonte por um fio sem resistência: corrente enorme, não aquece a água e queima a instalação"
+     ]
+    ]
+   },
+   "pista": "Para cada desenho, pergunte: em cada posição da chave, por quais resistores a corrente passa? Procure três situações diferentes e nenhum fio direto.",
+   "passos": [
+    {
+     "faz": "Traduza o que as três posições exigem",
+     "conta": "ambiente: i = 0 (aberto) | morna: R maior | quente: R menor",
+     "porque": "Como P = V²/R, para ter dois níveis de aquecimento é preciso ligar duas resistências diferentes, e a terceira posição não pode passar corrente.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Percorra as posições do circuito C",
+     "conta": "contato de cima: fio solto → i = 0 | do meio: R1 + R2 = 2R | de baixo: só R2 = R",
+     "porque": "O contato do meio entra no topo de R1 e atravessa os dois; o de baixo entra no ponto entre R1 e R2 e só atravessa R2.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Compare as potências de C",
+     "conta": "P = V²/(2R) (morna) → P = V²/R (quente): o dobro",
+     "porque": "Tirar R1 do caminho reduz a resistência à metade e dobra a potência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descarte os outros desenhos",
+     "conta": "A e B: um contato liga direto à fonte (curto) | D: duas posições com R1 ∥ R2 | E: R1 sozinho = R2 sozinho",
+     "porque": "Curto não aquece e queima a instalação; posições com a mesma resistência dão a mesma temperatura e faltaria a terceira opção.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "desligado, 2R e R → circuito C",
+     "porque": "Só C dá as três temperaturas pedidas sem curto-circuito.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — o circuito em que uma posição fica aberta, outra liga R1 e R2 em série e a terceira liga só R2.",
+   "checagem": "Ordem de grandeza: com V = 220 V e R = 22 Ω, a posição quente de C dissipa 220²/22 = 2 200 W e a morna 220²/44 = 1 100 W, metade; a aberta, 0 W. Três níveis distintos, como pede o chuveiro.",
+   "erradas": {
+    "A": "Tem morna (R1 + R2) e quente (só R2), mas o terceiro contato desce direto ao outro polo da fonte: curto-circuito no lugar da posição desligada.",
+    "B": "O contato de cima liga a fonte por um fio direto (curto), e as outras posições ligam R1 sozinho ou R2 sozinho, que são iguais: mesma temperatura.",
+    "D": "Um contato fica aberto, mas os outros dois chegam ao mesmo ponto e ligam R1 e R2 em paralelo (R/2): duas posições iguais e nenhuma morna.",
+    "E": "Um contato aberto e os outros dois ligam R1 sozinho ou R2 sozinho; como R1 = R2, as duas posições aquecem igual e não há morna."
+   },
+   "armadilha": "Com R1 = R2, ligar um ou outro sozinho dá a mesma potência; a diferença entre morna e quente só aparece trocando série por um resistor só (ou por paralelo).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O esquema de chuveiro com posições desligado, morno e quente usando dois resistores iguais.",
+    "chave": "P = V²/R: aberto dá 0, série (2R) dá morna, um resistor só (R) dá quente.",
+    "cuidado": "Seguir cada fio da chave: contato que vai direto ao outro polo é curto-circuito."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação por defeito",
+    "ideia": "Descarte quem tem fio direto à fonte (A, B) e quem tem duas posições com a mesma resistência (D, E): sobra C."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "posição 1: aberto → i = 0 → P = 0",
+    "nota": "água à temperatura ambiente"
+   },
+   {
+    "linha": "posição 2: R1 + R2 = 2R → P = V²/(2R)",
+    "nota": "série: morna"
+   },
+   {
+    "linha": "posição 3: só R2 = R → P = V²/R",
+    "nota": "um resistor: quente, o dobro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

@@ -869,5 +869,137 @@
    "data": "2026-11-19",
    "lote": "fis-0064"
   }
+ },
+ "Pb24b4c99": {
+  "n": "57",
+  "conceito": "Divisor de tensão: escolher o ponto do cursor na resistência r que entrega ao ramo LED + resistor R a tensão de 3 V.",
+  "equivocos": {
+   "A": "F11.5:divisor-com-trecho-errado",
+   "C": "F11.5:divisor-com-trecho-errado",
+   "D": "F11.5:ignorou-o-divisor-de-tensao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A resistência de chuveiro r está ligada direto nos 6 V da fonte, e a tensão cai de forma uniforme ao longo dela. O ramo do LED com o resistor R fica entre o cursor e a ponta direita de r; como r é muito menor que R, esse ramo quase não altera a divisão. Então a tensão entregue ao ramo é proporcional ao trecho de r entre o cursor e a ponta direita. Descubra quantos volts o ramo precisa e qual marca dá esse valor.",
+    "formulas": [
+     "U_R = R · i",
+     "U_ramo = U_LED + U_R",
+     "divisor: U_trecho = 6 V × (trecho)/(total)"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "resistência do divisor (a resistência de chuveiro), muito menor que R"
+     ],
+     [
+      "R",
+      "resistor de 50 Ω em série com o LED"
+     ],
+     [
+      "cursor",
+      "contato móvel (a seta) que escolhe um ponto ao longo de r"
+     ],
+     [
+      "r << R",
+      "r é muito menor que R"
+     ]
+    ]
+   },
+   "pista": "O LED precisa de 2 V, mas ele está em série com o resistor R. Quanto de tensão o ramo inteiro precisa?",
+   "passos": [
+    {
+     "faz": "Calcule a tensão no resistor R",
+     "conta": "U_R = R · i → U_R = 50 · 0,02 → U_R = 1 V",
+     "porque": "O LED e R estão em série, então os 20 mA do LED passam também por R.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a tensão do ramo",
+     "conta": "U_ramo = 2 V + 1 V = 3 V",
+     "porque": "Em série, as tensões do LED e do resistor se somam; o cursor precisa entregar 3 V ao ramo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a fração de r que dá 3 V",
+     "conta": "3/6 = 1/2 → o cursor fica na metade de r",
+     "porque": "As marcas dividem r em quatro partes iguais; como r << R, a tensão de cada trecho é proporcional ao comprimento, e metade de 6 V é 3 V.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia a posição do cursor em cada desenho",
+     "conta": "A: 1/4 → 1,5 V | B: 1/2 → 3 V | C: 3/4 → 4,5 V | D: r inteira → 6 V",
+     "porque": "Conte, a partir da ponta direita (onde está R), quantos quartos de r ficam entre essa ponta e a seta.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "cursor na marca do meio → 3 V → alternativa B",
+     "porque": "Só em B o ramo recebe os 3 V que fazem passar 20 mA com 2 V no LED.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — o cursor na marca do meio da resistência r, entregando 3 V ao ramo do LED com o resistor.",
+   "checagem": "Volte com a tensão de B: 3 V no ramo, 2 V ficam no LED, sobra 1 V em R, e i = 1/50 = 0,02 A = 20 mA, exatamente a corrente de brilho ideal. A polaridade também confere: o polo positivo (placa maior) está à direita, e a corrente desce por R e atravessa o LED no sentido do triângulo.",
+   "erradas": {
+    "A": "Cursor a um quarto de r: 6 × 1/4 = 1,5 V no ramo, menos que os 2 V que o LED sozinho precisa; o LED fica abaixo do brilho ideal.",
+    "C": "Cursor a três quartos de r: 6 × 3/4 = 4,5 V; sobram 2,5 V em R e a corrente seria 2,5/50 = 50 mA, acima dos 20 mA.",
+    "D": "Cursor na ponta: o ramo recebe os 6 V inteiros; com 2 V no LED, sobram 4 V em R e i = 4/50 = 80 mA, quatro vezes o ideal."
+   },
+   "armadilha": "Quem põe só os 2 V do LED esquece a queda de 1 V no resistor R em série e procura o cursor no lugar errado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A posição do cursor do divisor que acende o LED com 2 V e 20 mA.",
+    "chave": "Ramo precisa de 2 + 50 × 0,02 = 3 V, metade dos 6 V: cursor no meio de r.",
+    "cuidado": "Contar a queda no resistor R e medir o trecho a partir da ponta onde o ramo está ligado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar cada posição",
+    "ideia": "Para cada cursor, calcule a tensão (1,5; 3; 4,5; 6 V), tire 2 V do LED e veja a corrente em R: só 3 V dá 1/50 = 20 mA."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "U_R = 50 · 0,02 = 1 V",
+    "nota": "tensão no resistor em série"
+   },
+   {
+    "linha": "U_ramo = 2 + 1 = 3 V",
+    "nota": "LED + resistor"
+   },
+   {
+    "linha": "3/6 = 1/2",
+    "nota": "fração dos 6 V que o ramo pede"
+   },
+   {
+    "linha": "cursor na metade de r → B",
+    "nota": "r << R: divisão proporcional"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [
+    {
+     "url": "https://vestibulares.estrategia.com/portal/wp-content/uploads/2023/05/Vestibular-2023_2-prova-tarde.pdf",
+     "letra": "caderno da prova (sem gabarito); gabarito provisório da Copese: B (gab_preliminar da prova.json)"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

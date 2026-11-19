@@ -899,5 +899,130 @@
    "data": "2026-11-19",
    "lote": "fis-0063"
   }
+ },
+ "Pebba239c": {
+  "n": "68",
+  "conceito": "Associação mista: achar a tensão total pelo ramo de cima e usá-la no ramo de baixo para obter a ddp em parte dele.",
+  "equivocos": {
+   "A": "F11.5:resistencia-tomada-como-tensao",
+   "C": "F11.5:usou-um-resistor-so-do-paralelo",
+   "D": "F11.5:tensao-de-outro-trecho",
+   "E": "F11.5:tensao-sem-fechar-a-malha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois ramos ligam X a Z, então têm a mesma tensão. O ramo de cima dá a pista: a corrente no 5 Ω fixa a tensão do paralelo 5 Ω e 20 Ω, e daí sai a tensão total entre X e Z. Com ela, o ramo de baixo (6 Ω ∥ 3 Ω, depois 8 Ω) dá a corrente e a tensão entre X e Y.",
+    "formulas": [
+     "U = R × i",
+     "Paralelo de dois: R = (R1 × R2)/(R1 + R2)",
+     "Série: R = R1 + R2"
+    ],
+    "simbolos": [
+     [
+      "ddp",
+      "diferença de potencial, a tensão entre dois pontos"
+     ],
+     [
+      "Ω",
+      "ohm, unidade de resistência"
+     ],
+     [
+      "U(XZ)",
+      "tensão entre os pontos X e Z"
+     ]
+    ]
+   },
+   "pista": "Comece pelo resistor cuja corrente é dada: ela diz qual é a tensão sobre o paralelo de cima.",
+   "passos": [
+    {
+     "faz": "Ache a tensão no paralelo de cima",
+     "conta": "U = 5 × 4 → U = 20 V; i(20 Ω) = 20/20 → 1 A",
+     "porque": "No paralelo, o 20 Ω recebe a mesma tensão do 5 Ω.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a tensão total entre X e Z",
+     "conta": "i = 4 + 1 → 5 A; U(2 Ω) = 2 × 5 → 10 V; U(XZ) = 20 + 10 → 30 V",
+     "porque": "Toda a corrente do ramo de cima passa pelo 2 Ω, que está em série com o paralelo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reduza o ramo de baixo",
+     "conta": "6 ∥ 3 → (6 × 3)/(6 + 3) → 2 Ω; 2 + 8 → 10 Ω",
+     "porque": "O 6 Ω e o 3 Ω ficam entre X e Y; o 8 Ω fica em série, entre Y e Z.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a corrente do ramo de baixo",
+     "conta": "i = 30/10 → i = 3 A",
+     "porque": "O ramo de baixo recebe os mesmos 30 V, porque também liga X a Z.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a ddp entre X e Y",
+     "conta": "U(XY) = 2 × 3 → U(XY) = 6 V",
+     "porque": "Entre X e Y está o paralelo equivalente a 2 Ω, percorrido pelos 3 A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 6 V.",
+   "checagem": "Confira pelo outro trecho do ramo de baixo: o 8 Ω leva 3 A e fica com 8 × 3 = 24 V; somando, 6 + 24 = 30 V, a tensão entre X e Z. E no paralelo, 6/6 + 6/3 = 1 + 2 = 3 A, a corrente do ramo.",
+   "erradas": {
+    "A": "Sai de parar na resistência equivalente do paralelo, 6 ∥ 3 = 2 Ω, e tomá-la como tensão; faltou multiplicar pela corrente de 3 A.",
+    "C": "Sai de usar só o 3 Ω no lugar do paralelo: 3 Ω × 3 A = 9 V. Entre X e Y estão o 6 Ω e o 3 Ω juntos, que equivalem a 2 Ω.",
+    "D": "Sai de pegar a tensão do 2 Ω do ramo de cima: 2 × 5 = 10 V. Esse resistor não fica entre X e Y.",
+    "E": "Não confere: com 3 A no ramo de baixo, o 8 Ω fica com 24 V; 12 + 24 = 36 V passaria dos 30 V entre X e Z."
+   },
+   "armadilha": "O ramo de cima serve só para achar a tensão de 30 V entre X e Z; a resposta sai do ramo de baixo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A ddp entre X e Y no ramo de baixo.",
+    "chave": "U(XZ) = 20 + 10 = 30 V; ramo de baixo 2 + 8 = 10 Ω; i = 3 A; U(XY) = 2 × 3 = 6 V.",
+    "cuidado": "Somar a corrente do 20 Ω à do 5 Ω antes de calcular a tensão no 2 Ω."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "divisor de tensão",
+    "ideia": "No ramo de baixo, 30 V se dividem na proporção 2 : 8, então X–Y fica com 2/10 de 30 V = 6 V."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "U = 5 × 4 = 20 V",
+    "nota": "tensão no paralelo de cima"
+   },
+   {
+    "linha": "i = 4 + 20/20 = 5 A",
+    "nota": "corrente que passa no 2 Ω"
+   },
+   {
+    "linha": "U(XZ) = 20 + 2 × 5 = 30 V",
+    "nota": "tensão total"
+   },
+   {
+    "linha": "R = (6 × 3)/(6 + 3) + 8 = 10 Ω",
+    "nota": "ramo de baixo"
+   },
+   {
+    "linha": "i = 30/10 = 3 A",
+    "nota": "corrente de baixo"
+   },
+   {
+    "linha": "U(XY) = 2 × 3 = 6 V",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

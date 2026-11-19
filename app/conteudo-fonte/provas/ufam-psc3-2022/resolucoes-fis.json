@@ -242,5 +242,127 @@
    "data": "2026-11-19",
    "lote": "fis-0063"
   }
+ },
+ "P65eb9da9": {
+  "n": "46",
+  "conceito": "Propriedades da associação em paralelo: mesma tensão, corrente total que cresce com mais ramos, potência maior no menor resistor e a regra produto/soma que só vale para dois.",
+  "equivocos": {
+   "B": "F11.5:produto-pela-soma-para-mais-de-dois",
+   "C": "F11.5:achou-que-mais-ramos-diminui-corrente",
+   "D": "F11.5:produto-pela-soma-para-mais-de-dois",
+   "E": "F11.5:produto-pela-soma-para-mais-de-dois"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em paralelo, todos os resistores ficam ligados aos mesmos dois pontos, então todos recebem a mesma tensão U. Cada ramo puxa a sua corrente U/R, e a corrente total é a soma delas. Julgue cada afirmativa com essas duas ideias e desconfie da palavra \"sempre\".",
+    "formulas": [
+     "Paralelo: U igual em todos; i_total = i1 + i2 + ...",
+     "1/R_eq = 1/R1 + 1/R2 + ...",
+     "P = U²/R",
+     "Só para dois: R_eq = (R1 · R2)/(R1 + R2)"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "tensão (diferença de potencial), em volt"
+     ],
+     [
+      "i",
+      "corrente elétrica, em ampère"
+     ],
+     [
+      "R_eq",
+      "resistência equivalente: um único resistor que faria o mesmo efeito do conjunto"
+     ],
+     [
+      "P",
+      "potência dissipada, em watt"
+     ]
+    ]
+   },
+   "pista": "Comece pelo que é igual em todos os resistores de um paralelo; as outras afirmativas saem disso.",
+   "passos": [
+    {
+     "faz": "Julgue I: tensão no paralelo",
+     "conta": "paralelo: U1 = U2 = U3 = U → I verdadeira",
+     "porque": "Os resistores estão ligados aos mesmos dois nós; a diferença de potencial entre dois pontos é uma só.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Julgue II: mais ramos, mais corrente",
+     "conta": "i_total = U/R1 + U/R2 → i_total = U/R1 + U/R2 + U/R3 (ramo novo soma corrente) → II verdadeira",
+     "porque": "Com a mesma tensão, cada resistor novo abre mais um caminho e acrescenta a sua parcela U/R à corrente total.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue III: potência no menor resistor",
+     "conta": "P = U²/R, U igual → R menor → P maior → III verdadeira",
+     "porque": "Como a tensão é a mesma para todos, a potência fica inversamente proporcional à resistência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste IV com três resistores iguais",
+     "conta": "R_eq certo: 1/R_eq = 3/R → R_eq = R/3 | regra da afirmativa: (R · R · R)/(R + R + R) = R²/3 → IV falsa",
+     "porque": "Produto pela soma só funciona para dois resistores; com três, o resultado nem sai em ohm (sai em ohm ao quadrado).",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Junte as verdadeiras",
+     "conta": "I, II e III verdadeiras; IV falsa → alternativa A",
+     "porque": "Só a alternativa A traz exatamente I, II e III.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — Somente as afirmativas I, II e III são verdadeiras.",
+   "checagem": "Exemplo numérico: U = 12 V com 6 Ω e 3 Ω em paralelo. Cada um recebe 12 V (I); as correntes são 2 A e 4 A, total 6 A, e um terceiro ramo de 12 Ω somaria mais 1 A (II); as potências são 24 W no de 6 Ω e 48 W no de 3 Ω (III).",
+   "erradas": {
+    "B": "Inclui IV e exclui III. IV falha com três resistores iguais: (R·R·R)/(3R) = R²/3, mas o certo é R/3; e III é verdadeira, pois P = U²/R com U igual.",
+    "C": "Deixa de fora a II, que é verdadeira: com a mesma tensão, cada ramo novo soma U/R à corrente total.",
+    "D": "Inclui IV, que é falsa: produto pela soma só vale para dois resistores; com três iguais dá R²/3 em vez de R/3. E deixa de fora a I, que é verdadeira.",
+    "E": "Inclui IV, que é falsa: a regra do produto pela soma só vale para dois resistores."
+   },
+   "armadilha": "A regra \"produto pela soma\" é tão usada com dois resistores que a palavra \"sempre\" passa despercebida na IV.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais propriedades da associação em paralelo são verdadeiras.",
+    "chave": "No paralelo a tensão é a mesma: a corrente de cada ramo é U/R e a potência é U²/R.",
+    "cuidado": "Produto pela soma vale só para dois resistores; com mais, use 1/R_eq = soma dos inversos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "exemplo numérico",
+    "ideia": "Teste todas as afirmativas com 12 V, 6 Ω e 3 Ω: I, II e III confirmam e IV já falha ao pôr um terceiro resistor."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "U1 = U2 = U3 = U",
+    "nota": "paralelo: mesma tensão (I)"
+   },
+   {
+    "linha": "i_total = U/R1 + U/R2 + U/R3",
+    "nota": "cada ramo soma corrente (II)"
+   },
+   {
+    "linha": "P = U²/R → R menor, P maior",
+    "nota": "U fixa (III)"
+   },
+   {
+    "linha": "(R·R·R)/(3R) = R²/3 ≠ R/3",
+    "nota": "produto/soma falha com três (IV)"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

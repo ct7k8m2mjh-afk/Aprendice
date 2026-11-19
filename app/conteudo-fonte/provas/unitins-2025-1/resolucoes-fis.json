@@ -444,5 +444,130 @@
    "data": "2026-11-19",
    "lote": "fis-0063"
   }
+ },
+ "P9e93d589": {
+  "n": "4",
+  "conceito": "Resistor e lâmpada em paralelo num gerador ideal: corrente de cada ramo e potência da lâmpada.",
+  "equivocos": {
+   "A": "F11.5:corrente-total-como-corrente-do-ramo",
+   "C": "F11.5:corrente-total-como-corrente-do-ramo",
+   "D": "F11.6:nao-calculou-potencia-da-lampada",
+   "E": "F11.5:tensao-do-ramo-diferente-do-gerador"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O primeiro trabalho é ler o circuito: do nó depois da chave saem dois caminhos, um pela lâmpada e outro pelo resistor, e os dois voltam ao mesmo fio da direita. Então lâmpada e resistor estão em paralelo, e cada um recebe os 60 V do gerador ideal inteiros. Com a tensão de cada ramo conhecida, cada corrente sai direto da lei de Ohm.",
+    "formulas": [
+     "i = U/R (lei de Ohm em cada ramo)",
+     "P = U²/R (potência com a tensão do ramo)",
+     "em paralelo: a tensão é a mesma em todos os ramos"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "tensão (ddp), em volt (V)"
+     ],
+     [
+      "R",
+      "resistência, em ohm (Ω)"
+     ],
+     [
+      "i",
+      "corrente elétrica, em ampère (A)"
+     ],
+     [
+      "P",
+      "potência dissipada, em watt (W)"
+     ],
+     [
+      "gerador ideal",
+      "fonte sem resistência interna: entrega sempre os mesmos 60 V"
+     ]
+    ]
+   },
+   "pista": "Siga com o dedo o fio que sai da chave: ele chega a um nó. Quantos caminhos saem dali até o fio da direita?",
+   "passos": [
+    {
+     "faz": "Identifique a ligação no circuito",
+     "conta": "nó após a chave → ramo da lâmpada (10 Ω) | ramo do resistor (20 Ω) → mesmo fio da direita: paralelo, U = 60 V em cada",
+     "porque": "Os dois componentes têm os terminais ligados aos mesmos dois pontos, por isso a tensão nos dois é a do gerador.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a corrente na lâmpada (I)",
+     "conta": "i_L = 60/10 → i_L = 6 A",
+     "porque": "A lâmpada recebe 60 V sozinha no seu ramo. 6 A é diferente de 9 A: a afirmativa I é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a corrente no resistor (II)",
+     "conta": "i_R = 60/20 → i_R = 3 A",
+     "porque": "O resistor também está sob 60 V. A afirmativa II é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a potência da lâmpada (III)",
+     "conta": "P_L = 60²/10 → P_L = 3600/10 → P_L = 360 W",
+     "porque": "Com a tensão do ramo conhecida, P = U²/R dá a potência direto. A afirmativa III é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as afirmativas verdadeiras",
+     "conta": "I falsa | II verdadeira | III verdadeira → II e III",
+     "porque": "Só II e III resistem às contas, e essa combinação é a alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — estão corretas apenas II e III.",
+   "checagem": "Pela outra fórmula de potência: P = U × i = 60 V × 6 A = 360 W, o mesmo valor. E a corrente total do gerador é 6 + 3 = 9 A: os 9 A da afirmativa I são a corrente total, não a da lâmpada.",
+   "erradas": {
+    "A": "Inclui I: 9 A sai de somar 6 A + 3 A, que é a corrente total do gerador. Pela lâmpada passam só 60/10 = 6 A.",
+    "C": "Só I, que é falsa (a lâmpada recebe 6 A, não 9 A), e ainda deixa de fora II e III, que as contas confirmam.",
+    "D": "Só II deixa de fora III: com 60 V na lâmpada, P = 60²/10 = 360 W, então III também é verdadeira.",
+    "E": "Só III deixa de fora II: o resistor está sob os 60 V do gerador, e 60/20 = 3 A, então II também é verdadeira."
+   },
+   "armadilha": "Os 9 A da afirmativa I são a corrente total do gerador (6 A + 3 A), não a corrente que passa pela lâmpada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Julgar corrente na lâmpada, corrente no resistor e potência da lâmpada com a chave fechada.",
+    "chave": "Lâmpada e resistor estão em paralelo: cada um recebe 60 V, então i_L = 6 A, i_R = 3 A e P_L = 360 W.",
+    "cuidado": "Não confundir a corrente total (9 A) com a corrente de um ramo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "potência por U × i",
+    "ideia": "Depois de achar i_L = 6 A, faça P = 60 × 6 = 360 W, sem precisar elevar ao quadrado."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "U_L = U_R = 60 V",
+    "nota": "paralelo: a mesma tensão nos dois ramos"
+   },
+   {
+    "linha": "i_L = 60/10 = 6 A",
+    "nota": "lei de Ohm na lâmpada: I é falsa"
+   },
+   {
+    "linha": "i_R = 60/20 = 3 A",
+    "nota": "lei de Ohm no resistor: II é verdadeira"
+   },
+   {
+    "linha": "P_L = 60²/10 = 360 W",
+    "nota": "potência da lâmpada: III é verdadeira"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

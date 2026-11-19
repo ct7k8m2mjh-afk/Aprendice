@@ -1,6 +1,6 @@
 # Física: resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 644 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 128; ENEM nível 7-10 31; provas-alvo nível 7-10 186; demais nível 7-10 299.
+Faltam 544 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 28; ENEM nível 7-10 31; provas-alvo nível 7-10 186; demais nível 7-10 299.
 
 ## Lotes
 
@@ -70,6 +70,8 @@ Faltam 644 questões sem resolução (fora as que estão em lote, pendentes ou c
 | fis-0062 | demais nível 1-6 | 60 | gravado | 59 | 1 | 0 |
 | fis-0063 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
 | fis-0064 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
+| fis-0065 | demais nível 1-6 | 50 | gravado | 48 | 1 | 1 |
+| fis-0066 | demais nível 1-6 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -82,6 +84,7 @@ Faltam 644 questões sem resolução (fora as que estão em lote, pendentes ou c
 | Pa6cf7d38 | UDESC 2024 Inverno 2024.2 · questão 64 | F01.4 relatividade restrita (tema F01 Fundamentos e grandezas) | UDESC 2024.2 q64 (dispositivo que usa mecânica quântica e relatividade): a resposta da banca coincide com a oficial, E (sistema de posicionamento global). Mas, para escrever por que a alternativa D (microscópio eletrônico) está errada, seria preciso afirmar que ele não depende de relatividade; nos microscópios de alta tensão os elétrons têm velocidade próxima à da luz e o cálculo do comprimento de onda leva correção relativística. O conferente concorda que não há frase segura para negar a relatividade no microscópio eletrônico e considera a alternativa D defensável. Se o dono autorizar, a questão pode ser publicada com alerta de gabarito discutível. |
 | Ped0dc1fd | UDESC 2024 Verão 2024.1 · questão 52 | F02.4 queda livre e lançamento vertical (tema F02 Cinemática) | Com g = 10 m/s², percorrer os últimos 2 m em 0,1 s dá velocidade de 20,5 m/s no solo e altura de queda de 21,0 m, que são exatamente 7 vãos de 3 m (sétimo andar se a janela do térreo estiver no nível do solo). A letra oficial é D (sexto andar), que sai da aproximação v ≈ 20 m/s (20 m de queda) ou de uma altura da janela do térreo que o enunciado não informa. Sem como justificar a letra oficial sem suposição, fica pendente. Busca na web não achou resolução publicada. |
 | Pedc8d618 | UEMA 2022 PAES · questão 54 | F09.6 óptica da visão e defeitos visuais (tema F09 Óptica) | classificação: é de Biologia (genética: probabilidade de filho míope e albino, marido duplo heterozigoto × esposa aarr; 1/2 × 1/2 = 1/4, confere com o gabarito C). Não há física na questão. |
+| P8cad75ee | UEMG 2024 Vestibular 2024 · questão 18 | F11.5 associação de resistores (tema F11 Eletricidade e circuitos) | anular: a afirmativa III diz 264,5 µA, mas no circuito B (três lâmpadas de 160 Ω em série a 127 V) i = 127/480 = 0,2646 A = 264,6 mA, mil vezes maior que 264,5 µA; III é falsa. As verdadeiras ficam só I e V (R_eq de A = 160/3 ≈ 53,3 Ω), combinação que nenhuma alternativa traz (II e IV são falsas). Gabarito definitivo B (o preliminar era C), conferido em https://vestibulares.estrategia.com/portal/wp-content/uploads/2024/01/uemg-2024-gabarito-definitivo.pdf e https://vestibulares.estrategia.com/portal/wp-content/uploads/2023/12/vest-2024-gabarito-prelim.pdf; nenhuma anulação publicada encontrada. |
 | Pb1b726b3 | UERJ 2025 2º Exame de Qualificação · questão 7 | F02.1 velocidade média e movimento uniforme (tema F02 Cinemática) | classificação: é de Geografia (UERJ 2025, 2º Exame de Qualificação, questão 7: redes de transporte na França; a resposta oficial, A, “posição relativa na rede técnica”, compara cidades ligadas ou não por linha de trem de alta velocidade). Está classificada em Física, F02.1 velocidade média. |
 | P9615ec2a | UERR 2023 · questão 44 | F08.2 dilatação térmica (tema F08 Termologia) | gabarito oficial C (Δθ entre 125 e 150 °C) contradiz a física: o disco passa quando 10(1 + 1,7×10⁻⁵Δθ) = 9,98(1 + 2,5×10⁻⁵Δθ) → Δθ = 0,02/(7,95×10⁻⁵) ≈ 252 °C (alternativa E; o mesmo com diâmetros ou áreas). C só sai usando 2α (superficial) na conta dos raios: 0,02/(1,59×10⁻⁴) ≈ 126 °C, um erro de método. Gabarito definitivo da UERR confirma C para a 44 e não há anulação nem resolução publicada que o justifique (https://vestibulares.estrategia.com/portal/wp-content/uploads/2022/11/Gab_DEFINITIVO_Matriz_741_VEST_UERR_001.pdf). Ensinar a conta da banca seria ensinar erro; conferir se a 44 do gabarito é mesmo esta questão no caderno. |
 | Pf32f80b2 | UPE 2021 SSA3 · questão 72 | F01.5 fóton, efeito fotoelétrico e modelo de Bohr (tema F01 Fundamentos e grandezas) | O print não traz as constantes necessárias (h, c, massa do elétron). Além disso, na aniquilação de um par lento saem dois fótons de 0,511 MeV, de comprimento de onda cerca de 0,024 angstrom, valor que não está nas alternativas; a letra oficial (E, 1,2 × 10⁻²) só sai tratando a energia total do par como um único fóton. Sem certeza de como ensinar isso sem erro, fica pendente. Busca na web não achou resolução publicada. |
@@ -89,4 +92,6 @@ Faltam 644 questões sem resolução (fora as que estão em lote, pendentes ou c
 
 ## Divergências de gabarito (o dono decide)
 
-Nenhuma.
+| Questão | Prova | Conteúdo | Motivo |
+|---|---|---|---|
+| P58d32c58 | UFRR 2025 Vestibular 2025 – Prova Integral · questão 36 | F11.5 associação de resistores (tema F11 Eletricidade e circuitos) | Minha letra é D: R = U/i = 7/0,02 = 350 Ω, e só D dá 350 Ω (2 × 150 = 300 Ω em série com 150/3 = 50 Ω). O gabarito preliminar (Edital 96/24-CPV, gab_preliminar da prova.json) traz B, que dá 3 × 150 + 150/2 = 525 Ω e i = 7/525 ≈ 13,3 mA, não 20 mA. O gabarito oficial pós-recursos (Edital 97/24-CPV, https://editais.ufrr.br/editais/arquivo/568/edital-n-97-24-gabarito-oficial-vestibular-2025.pdf) não abriu daqui (503/conexão recusada em 19/11/2026); conferir se houve alteração para D ou anulação. |

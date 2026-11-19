@@ -415,5 +415,119 @@
    "data": "2026-11-13",
    "lote": "fis-0058"
   }
+ },
+ "P8e063ad1": {
+  "n": "60",
+  "conceito": "Resistor ôhmico ligado a uma tensão menor que a nominal: R fixa e P = U²/R cai com o quadrado da tensão.",
+  "equivocos": {
+   "A": "F11.6:subtensao-confundida-com-sobrecarga",
+   "B": "F11.6:potencia-independente-da-tensao",
+   "C": "F11.6:potencia-proporcional-a-tensao",
+   "E": "F11.6:subtensao-sem-corrente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dados nominais 4840 W/220 V servem para achar a resistência do chuveiro, que não muda. Ligado em 110 V, metade da tensão, a potência cai com o quadrado da tensão: fica um quarto da nominal. Com tensão menor, não há sobrecarga.",
+    "formulas": [
+     "P = U² ÷ R, logo R = U² ÷ P",
+     "com R fixa: P ∝ U²"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "potência, em watts (W)"
+     ],
+     [
+      "U",
+      "tensão, em volts (V)"
+     ],
+     [
+      "R",
+      "resistência do chuveiro, em ohms (Ω)"
+     ],
+     [
+      "nominal",
+      "valor de fábrica, para a tensão indicada no aparelho"
+     ]
+    ]
+   },
+   "pista": "Use os dados de fábrica para achar o que não muda quando o chuveiro troca de rede.",
+   "passos": [
+    {
+     "faz": "Calcule a resistência do chuveiro",
+     "conta": "R = 220²/4840 → R = 48400/4840 = 10 Ω",
+     "porque": "A resistência é a mesma em qualquer rede; os dados nominais servem para achá-la.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a potência em 110 V",
+     "conta": "P = 110²/10 → P = 12100/10 = 1210 W",
+     "porque": "Na casa, a tensão aplicada é 110 V e a resistência continua 10 Ω.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira pela proporção",
+     "conta": "U ÷ 2 → P ÷ 4: 4840/4 = 1210 W",
+     "porque": "Com R fixa, a potência depende do quadrado da tensão: metade da tensão dá um quarto da potência.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Marque o que acontece",
+     "conta": "funciona com P = 1210 W → alternativa D",
+     "porque": "O chuveiro liga, mas aquece bem menos que o esperado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — funcionou com potência de 1210 W.",
+   "checagem": "Pela corrente: em 110 V, i = 110 ÷ 10 = 11 A, e P = 110 × 11 = 1210 W. Na rede certa seria i = 220 ÷ 10 = 22 A; com corrente menor, não há sobrecarga.",
+   "erradas": {
+    "A": "Não queima: com metade da tensão, a corrente cai para 11 A, metade dos 22 A de projeto. Sobrecarga aconteceria no caso inverso, chuveiro de 110 V em 220 V.",
+    "B": "5000 W não confere: com R = 10 Ω, 5000 W exigiriam U = √(5000 × 10) ≈ 224 V, mais que os 110 V da casa.",
+    "C": "Sai de achar que a potência cai na mesma proporção da tensão: 4840 ÷ 2 = 2420 W. Com R fixa, P cai com o quadrado: ÷ 4.",
+    "E": "Há tensão de 110 V sobre a resistência, então passa corrente de 11 A e o chuveiro dissipa 1210 W: aquece, só que menos."
+   },
+   "armadilha": "Achar que a potência cai pela metade junto com a tensão: com resistência fixa, P = U²/R cai para um quarto.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O que acontece com um chuveiro 4840 W/220 V ligado em 110 V.",
+    "chave": "R = 220² ÷ 4840 = 10 Ω; em 110 V, P = 110² ÷ 10 = 1210 W.",
+    "cuidado": "A resistência fica fixa e a potência cai com o quadrado da tensão."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "proporção",
+    "ideia": "Com R fixa, P ∝ U²: tensão ÷ 2 dá potência ÷ 4, e 4840 ÷ 4 = 1210 W."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R = U²/P = 220²/4840",
+    "nota": "resistência pelos dados nominais"
+   },
+   {
+    "linha": "R = 48400/4840 = 10 Ω",
+    "nota": "a resistência não muda"
+   },
+   {
+    "linha": "P = 110²/10 = 12100/10",
+    "nota": "nova tensão na mesma resistência"
+   },
+   {
+    "linha": "P = 1210 W",
+    "nota": "um quarto da nominal"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

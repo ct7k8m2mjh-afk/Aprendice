@@ -70,3 +70,20 @@ Pendente: ANULAR Pf61a81be (já listado acima).
 Gabarito do Aprendice (sem gabarito publicado, resolvedor e conferente às cegas bateram, e o preliminar também quando existe): fis-0062 P862afdf8 A, P9ead8d05 B, Pfbfd31a7 B; fis-0063 Pdae9f5c6 D, Pe11ba1f8 E, P3aff7b0d E, P1653076e A, Pa9b2af01 B; fis-0064 P1960883e D, P855d55ed C, Pbcc564f3 A, P922cc49f B.
 Testes depois do fis-0063 (converte + tsc + vitest): tsc ok; vitest 786 de 786 passaram.
 Observação: o PROMPT mudou hoje para lotes de 50 e 200 questões por sessão; esta sessão fez 3 lotes de 60 (já abertos/no formato antigo), 179 resoluções.
+
+## 2026-11-19 16:02 UTC — PENDENCIAS — session_01PveEKaozjku3Rmd3ikcUSN
+Lote gravado: fis-0065 (48 ok, 1 pendente, 1 divergência). Aberto: fis-0066.
+RECLASS P7a81b2b1 F11.6 -> F12.5
+RECLASS Pd484994e F11.6 -> F11.4
+RECLASS P91d2fea4 F11.6 -> F08.4
+RECLASS Pb6f57afa F11.6 -> F11.4
+RECLASS Pfe4b4ed3 F11.6 -> F11.8
+PRINT Pfa76f2c3 (PUC-Rio 2027 G4 q30): esquema do Experimento 2 partido em dois no recorte (bateria no alto, os dois R embaixo à esquerda); refazer o recorte do PDF oficial
+DADO P4c72d325: alternativas.D -> "500 mA" (o "28" é o número da página no print)
+DADO Pd7fe06ab: texto_da_prova -> o print traz o texto de apoio do UOL ("O chuveiro é um dispositivo...") antes do enunciado; alternativas.D -> "menor - menor." (o texto de apoio foi colado nela)
+DADO P5987347a: alternativas.C -> I110 = 1/2 I220
+DADO P2a334585: alternativas -> A "P1 = 3 P2"; B "P1 = 3/2 P2"; C "P1 = P2"; D "P1 = 1/3 P2"; E "P1 = 2/3 P2"
+GABARITO P008531fb (IME 2024-2025 q19): o gabarito final oficial publicado dá B, não anulada (https://militares.estrategia.com/portal/wp-content/uploads/2024/10/Gabarito_Final.pdf); pôr como gabarito oficial
+GABARITO P58d32c58 (UFRR 2025 Prova Integral q36): preliminar B, mas a conta dá D (7/0,02 = 350 Ω = 300 + 50 Ω); conferir no Edital 97/24-CPV (https://editais.ufrr.br/editais/arquivo/568/edital-n-97-24-gabarito-oficial-vestibular-2025.pdf, deu 503 daqui) se mudou para D ou foi anulada
+ANULAR P8cad75ee (UEMG 2024 q18): na III, i = 127/480 = 0,2646 A = 264,6 mA, não 264,5 µA, então a III é falsa; sobram só I e V verdadeiras e nenhuma alternativa traz essa dupla (definitivo B, preliminar C)
+DIVERGENCIA P58d32c58 (UFRR 2025 q36): sem gabarito definitivo; resolvedor e conferente às cegas dão D, o preliminar dá B; ver o Edital 97/24-CPV (link acima).

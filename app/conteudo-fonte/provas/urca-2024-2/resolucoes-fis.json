@@ -1068,5 +1068,111 @@
    "data": "2026-11-19",
    "lote": "fis-0064"
   }
+ },
+ "Pab483879": {
+  "n": "12",
+  "conceito": "Resistência equivalente de 40, 60 e 120 Ω em série e em paralelo.",
+  "equivocos": {
+   "B": "F11.5:trocou-serie-e-paralelo",
+   "C": "F11.5:errou-a-soma-da-serie",
+   "D": "F11.5:trocou-serie-e-paralelo",
+   "E": "F11.5:nao-inverteu-no-paralelo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em série, as resistências se somam. Em paralelo, somam-se os inversos e inverte-se o resultado no fim. A ordem da resposta importa: primeiro série, depois paralelo.",
+    "formulas": [
+     "Série: R_eq = R1 + R2 + R3",
+     "Paralelo: 1/R_eq = 1/R1 + 1/R2 + 1/R3"
+    ],
+    "simbolos": [
+     [
+      "R_eq",
+      "resistência equivalente"
+     ],
+     [
+      "Ω",
+      "ohm"
+     ]
+    ]
+   },
+   "pista": "No paralelo, use 120 como denominador comum: 40, 60 e 120 cabem todos nele.",
+   "passos": [
+    {
+     "faz": "Some as resistências em série",
+     "conta": "R_s = 40 + 60 + 120 → R_s = 220 Ω",
+     "porque": "Em série a corrente passa por um depois do outro, e as oposições se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os inversos no paralelo",
+     "conta": "1/R_p = 1/40 + 1/60 + 1/120 → 1/R_p = 3/120 + 2/120 + 1/120 → 1/R_p = 6/120",
+     "porque": "Com o denominador comum 120, os inversos viram frações fáceis de somar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Inverta para achar R_p",
+     "conta": "1/R_p = 6/120 → R_p = 120/6 → R_p = 20 Ω",
+     "porque": "A soma dá o inverso da resistência; falta virar a fração.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira a ordem pedida",
+     "conta": "série: 220 Ω | paralelo: 20 Ω → alternativa A",
+     "porque": "O enunciado pede série e paralelo, nessa ordem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 220 ohms em série e 20 ohms em paralelo.",
+   "checagem": "O paralelo tem de dar menos que o menor resistor (40 Ω): 20 Ω passa no teste. E com 120 V no paralelo: 3 A + 2 A + 1 A = 6 A, e 120/6 = 20 Ω.",
+   "erradas": {
+    "B": "Traz os mesmos números na ordem trocada: 20 Ω em série é impossível, pois a série nunca é menor que o maior resistor (120 Ω).",
+    "C": "Não confere: a soma em série é 40 + 60 + 120 = 220 Ω, não 330 Ω; e 30 Ω não é o paralelo, que dá 120/6 = 20 Ω.",
+    "D": "Não confere: 30 Ω não é a série (que dá 220 Ω) nem 330 Ω é o paralelo, que tem de ser menor que 40 Ω.",
+    "E": "Não confere: a série tem de ser maior que o maior resistor (120 Ω), e 1 Ω não é; o paralelo, 20 Ω, também não é 2 Ω."
+   },
+   "armadilha": "Trocar a ordem (paralelo antes de série) e cair na alternativa B, que tem os mesmos números.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As resistências equivalentes em série e em paralelo de 40, 60 e 120 Ω.",
+    "chave": "Série: 220 Ω; paralelo: 1/R = 6/120, logo R = 20 Ω.",
+    "cuidado": "Inverter a fração no paralelo e respeitar a ordem série, depois paralelo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste por corrente",
+    "ideia": "Aplique 120 V ao paralelo: 3 A + 2 A + 1 A = 6 A, e 120/6 = 20 Ω, sem mexer com frações."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R_s = 40 + 60 + 120 = 220 Ω",
+    "nota": "série: soma"
+   },
+   {
+    "linha": "1/R_p = 3/120 + 2/120 + 1/120",
+    "nota": "paralelo: denominador 120"
+   },
+   {
+    "linha": "1/R_p = 6/120",
+    "nota": "soma dos inversos"
+   },
+   {
+    "linha": "R_p = 120/6 = 20 Ω",
+    "nota": "inverte a fração"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

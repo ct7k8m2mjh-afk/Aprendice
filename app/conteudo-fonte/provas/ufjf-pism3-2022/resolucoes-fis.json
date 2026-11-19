@@ -232,5 +232,110 @@
    "data": "2026-11-19",
    "lote": "fis-0062"
   }
+ },
+ "P73c2df09": {
+  "n": "23",
+  "conceito": "Resistor em série para baixar a tensão: mesma corrente da lâmpada, tensão que sobra dividida por essa corrente.",
+  "equivocos": {
+   "A": "F11.5:resistencia-total-no-lugar-da-parcial",
+   "B": "F11.6:resistencia-da-lampada-com-tensao-da-fonte",
+   "C": "F11.5:resistor-que-nao-da-6-v-na-lampada",
+   "E": "F11.5:resistor-que-nao-da-6-v-na-lampada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A lâmpada só funciona como especificado se receber 6 V e, com isso, dissipar 24 W. A fonte tem 12 V: os 6 V que sobram têm de ficar no resistor em série. Em série, a corrente é a mesma nos dois, e é a corrente de funcionamento da lâmpada.",
+    "formulas": [
+     "P = U × i, logo i = P/U",
+     "série: U_fonte = U_lâmpada + U_resistor; mesma corrente",
+     "R = U/i"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "tensão, em volt (V)"
+     ],
+     [
+      "i",
+      "corrente, em ampère (A)"
+     ],
+     [
+      "R",
+      "resistência, em ohm (Ω)"
+     ]
+    ]
+   },
+   "pista": "Descubra a corrente que a lâmpada precisa para funcionar com 24 W e 6 V.",
+   "passos": [
+    {
+     "faz": "Ache a corrente da lâmpada",
+     "conta": "i = P/U → i = 24/6 = 4 A",
+     "porque": "Funcionando nas especificações, a lâmpada dissipa 24 W sob 6 V; essa corrente passa também pelo resistor em série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a tensão que sobra para o resistor",
+     "conta": "U_R = 12 − 6 = 6 V",
+     "porque": "Em série, as tensões se somam: a fonte de 12 V se divide entre a lâmpada (6 V) e o resistor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a resistência",
+     "conta": "R = U_R/i → R = 6/4 = 1,5 Ω",
+     "porque": "O resistor tem 6 V sobre ele e é atravessado pelos mesmos 4 A da lâmpada.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1,5 Ω.",
+   "checagem": "A lâmpada tem R = 6²/24 = 1,5 Ω. Com o resistor de 1,5 Ω, o total é 3 Ω e i = 12/3 = 4 A; a lâmpada recebe 4 × 1,5 = 6 V e dissipa 6 × 4 = 24 W, como especificado.",
+   "erradas": {
+    "A": "Sai de calcular a resistência total do circuito, 12 V ÷ 4 A = 3,0 Ω, e esquecer de descontar a da lâmpada (1,5 Ω).",
+    "B": "Sai de calcular a resistência da lâmpada com a tensão da fonte: 12²/24 = 6,0 Ω. A lâmpada é de 6 V, não de 12 V.",
+    "C": "2,5 Ω não confere: o total seria 1,5 + 2,5 = 4 Ω, a corrente 12 ÷ 4 = 3 A e a lâmpada receberia só 4,5 V, abaixo dos 6 V.",
+    "E": "9,0 Ω não confere: o total seria 10,5 Ω, a corrente cerca de 1,1 A e a lâmpada receberia só cerca de 1,7 V."
+   },
+   "armadilha": "Dividir os 12 V da fonte pela corrente: isso dá a resistência TOTAL (3 Ω), e o resistor pedido é só a parte que sobra depois da lâmpada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O resistor em série que faz uma lâmpada de 24 W e 6 V funcionar numa fonte de 12 V.",
+    "chave": "i = 24/6 = 4 A; o resistor fica com 12 − 6 = 6 V; R = 6/4 = 1,5 Ω.",
+    "cuidado": "Usar só a tensão que sobra para o resistor, não a da fonte inteira."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "divisor de tensão",
+    "ideia": "A lâmpada tem 6²/24 = 1,5 Ω; para dividir 12 V ao meio, o resistor tem de ser igual a ela: 1,5 Ω."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i = 24 W/6 V = 4 A",
+    "nota": "corrente da lâmpada"
+   },
+   {
+    "linha": "U_R = 12 − 6 = 6 V",
+    "nota": "tensão que sobra"
+   },
+   {
+    "linha": "R = 6 V/4 A",
+    "nota": "mesma corrente em série"
+   },
+   {
+    "linha": "R = 1,5 Ω",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

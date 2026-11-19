@@ -359,5 +359,120 @@
    "data": "2026-11-13",
    "lote": "fis-0050"
   }
+ },
+ "Pb6cd1252": {
+  "n": "2",
+  "conceito": "Gerador real com resistência interna: corrente total pela queda na resistência interna, R1 pela potência e R2 pela corrente que sobra.",
+  "equivocos": {
+   "A": "F11.5:resistencia-pela-potencia-errada",
+   "B": "F11.5:resistencia-pela-potencia-errada",
+   "C": "F11.5:trocou-r1-e-r2",
+   "E": "F11.5:resistencia-pela-potencia-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O voltímetro mede a tensão na associação: 1,0 V. Os outros 1,0 V da fem ficam na resistência interna de 0,20 Ω, e isso dá a corrente total. Em paralelo, R1 e R2 recebem a mesma tensão de 1,0 V; com a potência de R1 sai R1, e a corrente que sobra passa por R2.",
+    "formulas": [
+     "U = E − r · i",
+     "P = U²/R, logo R = U²/P",
+     "paralelo: i = i1 + i2"
+    ],
+    "simbolos": [
+     [
+      "fem (E)",
+      "força eletromotriz do gerador: 2,0 V"
+     ],
+     [
+      "r",
+      "resistência interna do gerador, que o enunciado chama de R = 0,20 Ω"
+     ],
+     [
+      "U",
+      "tensão nos terminais da associação, lida no voltímetro"
+     ]
+    ]
+   },
+   "pista": "Quanto da fem de 2,0 V não chega à associação? Essa sobra cai na resistência interna.",
+   "passos": [
+    {
+     "faz": "Ache a corrente total no gerador",
+     "conta": "U = E − r · i → 1,0 = 2,0 − 0,20 · i → 0,20 · i = 1,0 → i = 1,0/0,20 = 5,0 A",
+     "porque": "A tensão perdida dentro do gerador (2,0 − 1,0 = 1,0 V) é a queda na resistência interna.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule R1 pela potência",
+     "conta": "P1 = U²/R1 → R1 = U²/P1 → R1 = 1,0²/2,0 = 0,5 Ω",
+     "porque": "R1 está em paralelo, então recebe a mesma tensão de 1,0 V lida no voltímetro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a corrente em R2",
+     "conta": "i1 = 1,0/0,5 = 2,0 A → i2 = 5,0 − 2,0 = 3,0 A",
+     "porque": "A corrente total se divide entre os dois ramos do paralelo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule R2 e ligue à alternativa",
+     "conta": "R2 = U/i2 → R2 = 1,0/3,0 ≈ 0,33 Ω → alternativa D",
+     "porque": "Com a tensão do ramo e a sua corrente, a lei de Ohm dá R2; R1 = 0,5 Ω e R2 ≈ 0,33 Ω é a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — R1 = 0,5 Ω e R2 ≈ 0,33 Ω.",
+   "checagem": "Equivalente do paralelo: (0,5 · 1/3)/(0,5 + 1/3) = 0,2 Ω. Somado à resistência interna, 0,2 + 0,2 = 0,4 Ω, e i = 2,0/0,4 = 5,0 A; a associação fica com 5,0 × 0,2 = 1,0 V, exatamente o que o voltímetro mostra.",
+   "erradas": {
+    "A": "Não confere: com R1 = 0,14 Ω e 1,0 V, a potência seria 1,0²/0,14 ≈ 7,1 W, não 2,0 W.",
+    "B": "Não confere: R1 = 5 Ω com 1,0 V dissiparia 1,0²/5 = 0,2 W, dez vezes menos que 2,0 W.",
+    "C": "Inverte os valores: R1 = 0,33 Ω dissiparia 1,0²/(1/3) = 3,0 W, não 2,0 W; 0,33 Ω é o R2.",
+    "E": "Não confere: R1 = 0,14 Ω daria cerca de 7,1 W com 1,0 V, e a potência dada é 2,0 W."
+   },
+   "armadilha": "Usar a fem de 2,0 V na associação: a tensão nos resistores é a do voltímetro (1,0 V), porque metade da fem se perde dentro do gerador.",
+   "alerta": "O enunciado chama a resistência interna do gerador de R (0,20 Ω), a mesma letra dos resistores; na resolução ela é tratada como r para não confundir.",
+   "essencial": {
+    "pede": "Os valores de R1 e R2 em paralelo ligados a um gerador de 2,0 V e 0,20 Ω, com 1,0 V na associação e 2,0 W em R1.",
+    "chave": "i = (2,0 − 1,0)/0,20 = 5 A; R1 = 1²/2 = 0,5 Ω; i2 = 5 − 2 = 3 A; R2 = 1/3 ≈ 0,33 Ω.",
+    "cuidado": "A tensão nos resistores é 1,0 V, não a fem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar alternativas",
+    "ideia": "Só R1 = 0,5 Ω dá 1,0²/R1 = 2,0 W; entre as que têm 0,5 Ω, a que fecha 5 A no total com R2 é 0,33 Ω (D)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1,0 = 2,0 − 0,20 · i",
+    "nota": "equação do gerador"
+   },
+   {
+    "linha": "0,20 · i = 1,0 → i = 5,0 A",
+    "nota": "isola i: o 0,20 vai dividindo"
+   },
+   {
+    "linha": "R1 = 1,0²/2,0 = 0,5 Ω",
+    "nota": "R = U²/P"
+   },
+   {
+    "linha": "i2 = 5,0 − 1,0/0,5 = 3,0 A",
+    "nota": "corrente que sobra para R2"
+   },
+   {
+    "linha": "R2 = 1,0/3,0 ≈ 0,33 Ω",
+    "nota": "lei de Ohm no ramo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

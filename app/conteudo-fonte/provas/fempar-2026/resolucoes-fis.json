@@ -1040,5 +1040,126 @@
    "data": "2026-11-19",
    "lote": "fis-0063"
   }
+ },
+ "Pcd24efd6": {
+  "n": "68",
+  "conceito": "Associação mista: reduzir o ramo com o amperímetro (paralelo em série com um resistor) e usar a tensão do paralelo para achar a corrente no amperímetro.",
+  "equivocos": {
+   "A": "F11.5:corrente-sem-fechar-a-malha",
+   "B": "F11.5:corrente-do-outro-ramo-do-paralelo",
+   "C": "F11.5:corrente-sem-fechar-a-malha",
+   "E": "F11.5:corrente-total-no-lugar-da-do-ramo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Entre E e F há dois caminhos ligados aos mesmos pontos: o resistor de 15 Ω sozinho e o caminho que passa pelo nó M (o nó entre o 4 Ω e o 8 Ω). De E até M, o 3 Ω (com o amperímetro) fica em paralelo com o caminho 2 Ω + 4 Ω; de M até F vem o 8 Ω. O ramo de 15 Ω não interfere no outro, porque os dois recebem os mesmos 12 V.",
+    "formulas": [
+     "Série: R = R1 + R2",
+     "Paralelo de dois: R = (R1 × R2)/(R1 + R2)",
+     "U = R × i"
+    ],
+    "simbolos": [
+     [
+      "amperímetro ideal",
+      "medidor de corrente sem resistência, ligado em série no ramo"
+     ],
+     [
+      "nó",
+      "ponto onde três ou mais fios se encontram"
+     ],
+     [
+      "Ω",
+      "ohm, unidade de resistência"
+     ]
+    ]
+   },
+   "pista": "Repare que o 15 Ω liga E direto a F: ele recebe 12 V sozinho. Trabalhe só o outro caminho.",
+   "passos": [
+    {
+     "faz": "Reduza o paralelo entre E e M",
+     "conta": "(2 + 4) ∥ 3 → (6 × 3)/(6 + 3) → 2 Ω",
+     "porque": "O caminho 2 Ω + 4 Ω vai de E até M, e o 3 Ω também vai de E até M: são dois ramos entre os mesmos nós.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some o 8 Ω em série",
+     "conta": "2 Ω + 8 Ω → 10 Ω",
+     "porque": "Toda a corrente que sai do paralelo passa pelo 8 Ω para chegar a F.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a corrente desse caminho",
+     "conta": "i = 12/10 → i = 1,2 A",
+     "porque": "Esse caminho recebe os 12 V entre E e F, como o 15 Ω.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a tensão no paralelo",
+     "conta": "U = 2 × 1,2 → U = 2,4 V",
+     "porque": "O 3 Ω e o caminho 2 Ω + 4 Ω estão em paralelo: os dois recebem essa mesma tensão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a corrente no amperímetro",
+     "conta": "i(3 Ω) = 2,4/3 → i = 0,8 A",
+     "porque": "O amperímetro está em série com o 3 Ω, então marca a corrente desse resistor.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 0,8 A.",
+   "checagem": "Confira pelos nós: no caminho 2 Ω + 4 Ω passam 2,4/6 = 0,4 A; somando com os 0,8 A do amperímetro dá 1,2 A, exatamente a corrente que atravessa o 8 Ω (8 × 1,2 = 9,6 V; 9,6 + 2,4 = 12 V).",
+   "erradas": {
+    "A": "Não confere: com 0,2 A no 3 Ω, a tensão do paralelo seria 0,6 V e a do 8 Ω teria de ser 11,4 V, o que exigiria 1,425 A nele, e não 0,2 + 0,1 = 0,3 A.",
+    "B": "Sai de calcular a corrente do outro ramo do paralelo: 2,4 V/(2 Ω + 4 Ω) = 0,4 A. Essa corrente não passa pelo amperímetro.",
+    "C": "Não confere: com 0,6 A no 3 Ω, o paralelo teria 1,8 V e o 8 Ω levaria 0,9 A (7,2 V); 1,8 + 7,2 = 9 V, e não 12 V.",
+    "E": "Sai de parar na corrente total do caminho: 12/10 = 1,2 A. Ela se divide no paralelo antes de chegar ao amperímetro."
+   },
+   "armadilha": "A corrente de 1,2 A do caminho se divide entre o 3 Ω e o 2 Ω + 4 Ω; o amperímetro mede só a parte do 3 Ω.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A leitura do amperímetro em série com o resistor de 3 Ω.",
+    "chave": "(2 + 4) ∥ 3 = 2 Ω, mais 8 Ω = 10 Ω; i = 1,2 A; U do paralelo = 2,4 V; 2,4/3 = 0,8 A.",
+    "cuidado": "Não confundir a corrente total do caminho com a do ramo do amperímetro, e notar que o 15 Ω não interfere."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "divisor de corrente",
+    "ideia": "No paralelo de 6 Ω e 3 Ω, a corrente se divide na razão inversa: o 3 Ω leva 6/(6 + 3) de 1,2 A = 0,8 A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(2 + 4) ∥ 3 = (6 × 3)/(6 + 3) = 2 Ω",
+    "nota": "paralelo entre E e M"
+   },
+   {
+    "linha": "2 + 8 = 10 Ω",
+    "nota": "série com o 8 Ω"
+   },
+   {
+    "linha": "i = 12/10 = 1,2 A",
+    "nota": "corrente do caminho"
+   },
+   {
+    "linha": "U = 2 × 1,2 = 2,4 V",
+    "nota": "tensão no paralelo"
+   },
+   {
+    "linha": "i(A) = 2,4/3 = 0,8 A",
+    "nota": "corrente no amperímetro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

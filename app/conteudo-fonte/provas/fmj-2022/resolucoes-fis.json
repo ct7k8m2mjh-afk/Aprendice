@@ -872,5 +872,115 @@
    "data": "2026-11-19",
    "lote": "fis-0062"
   }
+ },
+ "P83083dec": {
+  "n": "59",
+  "conceito": "Tempo médio diário de funcionamento a partir do consumo mensal em kWh e da potência: Δt = E/P.",
+  "equivocos": {
+   "A": "F11.6:conta-de-tempo-errada",
+   "B": "F11.6:conta-de-tempo-errada",
+   "D": "F11.6:conta-de-tempo-errada",
+   "E": "F11.6:conta-de-tempo-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Consumo em kWh é energia, e energia é potência vezes tempo. Dividindo o consumo pela potência, sai o tempo ligado. O trabalho real está nas unidades: a potência vem em W e o consumo em kWh, então passe 160 W para 0,16 kW; e o consumo é do mês, então divida pelos 30 dias.",
+    "formulas": [
+     "E = P × Δt, logo Δt = E/P",
+     "1 kW = 1 000 W"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "energia consumida, em kWh"
+     ],
+     [
+      "P",
+      "potência, em kW"
+     ],
+     [
+      "Δt",
+      "tempo ligado, em hora"
+     ],
+     [
+      "kWh",
+      "quilowatt-hora: 1 kW funcionando durante 1 hora"
+     ]
+    ]
+   },
+   "pista": "Coloque a potência na mesma unidade do consumo (kW) e descubra antes quanto a geladeira gasta em um dia.",
+   "passos": [
+    {
+     "faz": "Passe a potência para kW",
+     "conta": "160 W ÷ 1 000 = 0,16 kW",
+     "porque": "O consumo está em kWh; com a potência em kW, a divisão sai direto em hora.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o consumo de um dia",
+     "conta": "E_dia = 67,2/30 → E_dia = 2,24 kWh",
+     "porque": "O fabricante distribui o consumo do mês igualmente pelos 30 dias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule as horas ligadas por dia",
+     "conta": "Δt = 2,24/0,16 → Δt = 14 h",
+     "porque": "Δt = E/P: o kW de baixo cancela com o kW do kWh, e sobra hora.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "14 h por dia",
+     "porque": "É o tempo médio diário que o fabricante considerou: alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 14 h por dia, em média.",
+   "checagem": "Substitua de volta: 0,16 kW × 14 h × 30 dias = 67,2 kWh, exatamente o consumo da ficha técnica.",
+   "erradas": {
+    "A": "Não confere: 0,16 kW × 11 h × 30 = 52,8 kWh, abaixo dos 67,2 kWh da ficha.",
+    "B": "Não confere: 0,16 kW × 13 h × 30 = 62,4 kWh, abaixo dos 67,2 kWh da ficha.",
+    "D": "Não confere: 0,16 kW × 10 h × 30 = 48 kWh, abaixo dos 67,2 kWh da ficha.",
+    "E": "Não confere: 0,16 kW × 12 h × 30 = 57,6 kWh, abaixo dos 67,2 kWh da ficha."
+   },
+   "armadilha": "Dividir 67,2 kWh por 0,16 kW dá 420 h, que é o tempo do mês inteiro; a pergunta é por dia, então falta dividir pelos 30 dias.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas horas por dia a geladeira de 160 W fica ligada para consumir 67,2 kWh em 30 dias.",
+    "chave": "2,24 kWh por dia ÷ 0,16 kW = 14 h.",
+    "cuidado": "Passar W para kW e dividir o consumo mensal pelos 30 dias."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "mês inteiro primeiro",
+    "ideia": "67,2 kWh ÷ 0,16 kW = 420 h no mês; 420 h ÷ 30 dias = 14 h por dia."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P = 160 W = 0,16 kW",
+    "nota": "potência na unidade do consumo"
+   },
+   {
+    "linha": "E_dia = 67,2/30 = 2,24 kWh",
+    "nota": "consumo de um dia"
+   },
+   {
+    "linha": "Δt = 2,24/0,16 = 14 h",
+    "nota": "o kW cancela e sobra hora"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

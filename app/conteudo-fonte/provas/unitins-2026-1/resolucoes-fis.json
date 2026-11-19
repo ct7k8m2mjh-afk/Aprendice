@@ -446,5 +446,136 @@
    "data": "2026-11-19",
    "lote": "fis-0063"
   }
+ },
+ "P9521b864": {
+  "n": "1",
+  "conceito": "Três lâmpadas iguais em paralelo num gerador ideal: corrente total no amperímetro, corrente em cada ramo, amperímetro ideal e potência.",
+  "equivocos": {
+   "A": "F11.5:tratou-paralelo-como-serie",
+   "B": "F11.5:amperimetro-ideal-com-resistencia",
+   "C": "F11.5:tratou-paralelo-como-serie",
+   "D": "F11.5:corrente-total-nao-soma-os-ramos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No desenho, cada lâmpada tem um terminal no fio vertical da esquerda e o outro no fio vertical da direita (pelos pontos C, B e A). Então as três estão em paralelo, cada uma sob os 120 V do gerador ideal. O amperímetro fica em série com o gerador e mede a corrente total.",
+    "formulas": [
+     "i = U/R em cada lâmpada",
+     "i_total = soma das correntes dos ramos",
+     "P = U²/R"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "tensão, em volt (V)"
+     ],
+     [
+      "R",
+      "resistência, em ohm (Ω)"
+     ],
+     [
+      "i",
+      "corrente, em ampère (A)"
+     ],
+     [
+      "P",
+      "potência, em watt (W)"
+     ],
+     [
+      "amperímetro ideal",
+      "medidor de corrente com resistência interna nula, que não altera o circuito"
+     ]
+    ]
+   },
+   "pista": "Antes de calcular, veja onde cada lâmpada se liga: os dois terminais de cada uma tocam os mesmos dois fios?",
+   "passos": [
+    {
+     "faz": "Identifique a ligação das lâmpadas",
+     "conta": "L1, L2 e L3: terminal esquerdo no fio da esquerda | terminal direito no fio da direita → paralelo, U = 120 V em cada",
+     "porque": "Todas estão ligadas entre os mesmos dois fios, e o gerador ideal mantém 120 V entre eles.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a corrente de cada lâmpada (II)",
+     "conta": "i = 120/60 → i = 2 A em cada ramo (A, B e C)",
+     "porque": "Os pontos A, B e C ficam nos fios de cada ramo, por onde passam 2 A, não 0,67 A. A afirmativa II é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as correntes no amperímetro (I)",
+     "conta": "i_total = 2 + 2 + 2 → i_total = 6 A",
+     "porque": "O amperímetro está em série com o gerador e mede a soma das correntes dos ramos. A afirmativa I é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue o amperímetro ideal (III)",
+     "conta": "amperímetro ideal → resistência interna = 0",
+     "porque": "É a definição de amperímetro ideal, e o enunciado diz que o amperímetro é ideal. A afirmativa III é verdadeira.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Calcule a potência de L1 e L2 (IV)",
+     "conta": "P = 120²/60 → P = 240 W por lâmpada → 2 × 240 = 480 W",
+     "porque": "Cada lâmpada dissipa 240 W sob 120 V; duas somam 480 W. A afirmativa IV é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as afirmativas verdadeiras",
+     "conta": "I verdadeira | II falsa | III verdadeira | IV verdadeira → I, III e IV",
+     "porque": "Só a II cai, e a combinação I, III e IV é a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — estão corretas apenas I, III e IV.",
+   "checagem": "Pela resistência equivalente: três de 60 Ω em paralelo dão 60/3 = 20 Ω, e 120/20 = 6 A, a mesma leitura do amperímetro. Potência total: 120 V × 6 A = 720 W, e 720 W ÷ 3 = 240 W por lâmpada, o que confirma 480 W para duas.",
+   "erradas": {
+    "A": "Inclui II: 0,67 A sai de pôr as três lâmpadas em série, 120/180 ≈ 0,67 A. Em paralelo, cada ramo recebe 120/60 = 2 A.",
+    "B": "Deixa de fora III, que é verdadeira: amperímetro ideal tem resistência interna nula, e o enunciado diz que ele é ideal.",
+    "C": "Inclui II, que é falsa (cada ramo tem 2 A, e 0,67 A seria o valor em série, 120/180), e exclui I e IV, que as contas confirmam.",
+    "D": "Só III deixa de fora I e IV: o amperímetro mede 2 + 2 + 2 = 6 A, e L1 com L2 dissipam 2 × 120²/60 = 480 W."
+   },
+   "armadilha": "Os 0,67 A da afirmativa II são a corrente que haveria com as lâmpadas em série (120/180); ligadas em paralelo, cada uma recebe 2 A.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Julgar a leitura do amperímetro, as correntes nos pontos A, B e C, o amperímetro ideal e a potência de L1 e L2.",
+    "chave": "Paralelo: 120 V em cada lâmpada, 2 A em cada ramo, 6 A no amperímetro e 240 W por lâmpada.",
+    "cuidado": "Ler os fios antes de calcular: tratar o circuito como série leva aos 0,67 A."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "resistência equivalente",
+    "ideia": "R_eq = 60/3 = 20 Ω, i_total = 120/20 = 6 A, e cada ramo leva um terço: 2 A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "U = 120 V em cada lâmpada",
+    "nota": "as três estão em paralelo"
+   },
+   {
+    "linha": "i = 120/60 = 2 A por ramo",
+    "nota": "II é falsa"
+   },
+   {
+    "linha": "i_total = 2 + 2 + 2 = 6 A",
+    "nota": "leitura do amperímetro: I é verdadeira"
+   },
+   {
+    "linha": "P = 120²/60 = 240 W; 2 × 240 = 480 W",
+    "nota": "L1 + L2: IV é verdadeira"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

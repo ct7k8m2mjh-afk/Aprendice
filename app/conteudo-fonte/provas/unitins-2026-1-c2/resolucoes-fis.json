@@ -359,5 +359,120 @@
    "data": "2026-11-13",
    "lote": "fis-0061"
   }
+ },
+ "P4adc3920": {
+  "n": "1",
+  "conceito": "Corrente total de quatro alto-falantes em paralelo e escolha do menor fusível que suporta essa corrente.",
+  "equivocos": {
+   "A": "F11.5:tratou-paralelo-como-serie",
+   "B": "F11.5:fusivel-maior-que-o-necessario",
+   "C": "F11.5:fusivel-abaixo-da-corrente",
+   "E": "F11.5:fusivel-maior-que-o-necessario"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em paralelo, cada alto-falante recebe os 14,4 V inteiros, e a corrente que passa pelo fusível é a soma das quatro correntes. O fusível adequado é o de menor capacidade que ainda fica acima dessa corrente: ele aguenta o funcionamento normal e funde só numa sobrecarga.",
+    "formulas": [
+     "i = U/R em cada alto-falante",
+     "i_total = i1 + i2 + i3 + i4",
+     "fusível adequado: menor capacidade maior que i_total"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "tensão, em volt (V)"
+     ],
+     [
+      "R",
+      "resistência, em ohm (Ω)"
+     ],
+     [
+      "i",
+      "corrente, em ampère (A)"
+     ],
+     [
+      "fusível",
+      "peça que funde e abre o circuito quando a corrente atinge o valor que ela suporta"
+     ]
+    ]
+   },
+   "pista": "Calcule a corrente de cada alto-falante com os 14,4 V inteiros e some; só depois olhe a tabela de fusíveis.",
+   "passos": [
+    {
+     "faz": "Calcule a corrente de cada alto-falante",
+     "conta": "14,4/4 = 3,6 A | 14,4/4 = 3,6 A | 14,4/3 = 4,8 A | 14,4/2 = 7,2 A",
+     "porque": "Em paralelo, a tensão é a mesma em todos os ramos, então cada corrente sai da lei de Ohm com 14,4 V.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as correntes",
+     "conta": "i_total = 3,6 + 3,6 + 4,8 + 7,2 → i_total = 19,2 A",
+     "porque": "O fusível fica no fio principal, por onde passa a corrente de todos os ramos juntos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com a tabela de fusíveis",
+     "conta": "10 A < 19,2 A | 15 A < 19,2 A | 20 A > 19,2 A | 25 A e 120 A > 19,2 A",
+     "porque": "Fusível de 10 A ou 15 A fundiria no uso normal; dos que aguentam 19,2 A, o de menor valor é o de 20 A.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue o valor à cor",
+     "conta": "20 A → amarelo",
+     "porque": "Pela tabela, o fusível de 20 A é o amarelo: a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — o fusível amarelo (20 A).",
+   "checagem": "Pela resistência equivalente: 1/R = 1/4 + 1/4 + 1/3 + 1/2 = 4/3, então R = 3/4 = 0,75 Ω, e i = 14,4/0,75 = 19,2 A. A mesma corrente por outro caminho.",
+   "erradas": {
+    "A": "Sai de ligar os alto-falantes em série: R = 4 + 4 + 3 + 2 = 13 Ω, i = 14,4/13 ≈ 1,1 A, e o menor fusível seria o de 10 A. Em paralelo, a corrente é 19,2 A e esse fusível funde.",
+    "B": "O rosa suporta 120 A e não funde com 19,2 A, mas não é o menor adequado: o de 20 A já basta, e um fusível tão folgado quase não protege o circuito.",
+    "C": "Não confere: o azul suporta 15 A, menos que os 19,2 A do circuito, e fundiria assim que o som fosse ligado.",
+    "E": "O transparente (25 A) aguenta 19,2 A, mas não é o menor: o amarelo, de 20 A, também aguenta e é menor."
+   },
+   "armadilha": "A pergunta pede o MENOR fusível adequado: tem de ficar acima de 19,2 A, mas o mais perto possível desse valor.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor fusível que protege quatro alto-falantes de 4 Ω, 4 Ω, 3 Ω e 2 Ω ligados em paralelo a 14,4 V.",
+    "chave": "Correntes de 3,6 + 3,6 + 4,8 + 7,2 = 19,2 A; o menor fusível acima disso é o de 20 A, o amarelo.",
+    "cuidado": "Somar as correntes do paralelo (não as resistências) e escolher o menor fusível que ainda fica acima da corrente."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "resistência equivalente",
+    "ideia": "1/R = 1/4 + 1/4 + 1/3 + 1/2 = 4/3, R = 0,75 Ω e i = 14,4/0,75 = 19,2 A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i = 14,4/4 + 14,4/4 + 14,4/3 + 14,4/2",
+    "nota": "cada alto-falante recebe 14,4 V"
+   },
+   {
+    "linha": "i = 3,6 + 3,6 + 4,8 + 7,2",
+    "nota": "lei de Ohm em cada ramo"
+   },
+   {
+    "linha": "i = 19,2 A",
+    "nota": "corrente no fusível"
+   },
+   {
+    "linha": "15 A < 19,2 A < 20 A → amarelo",
+    "nota": "menor fusível que não funde"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

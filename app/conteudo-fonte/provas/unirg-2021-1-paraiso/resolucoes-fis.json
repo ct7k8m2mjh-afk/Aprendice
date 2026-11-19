@@ -344,5 +344,120 @@
    "data": "2026-11-13",
    "lote": "fis-0057"
   }
+ },
+ "P088b95d2": {
+  "n": "28",
+  "conceito": "Energia gerada por placas solares em kWh, valor economizado em reais e tempo para cobrir um gasto anual.",
+  "equivocos": {
+   "A": "F11.6:tempo-de-retorno-mal-calculado",
+   "B": "F11.6:tempo-de-retorno-mal-calculado",
+   "D": "F11.6:tempo-de-retorno-mal-calculado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro descubra quanta energia todas as placas geram por mês e quanto isso vale em reais. Depois divida o gasto anual por essa economia mensal. A questão encadeia três multiplicações (placas, escolas, preço) antes da divisão final.",
+    "formulas": [
+     "energia do mês = placas por escola × kWh por placa × escolas",
+     "economia do mês = energia × preço do kWh",
+     "tempo = gasto anual ÷ economia do mês"
+    ],
+    "simbolos": [
+     [
+      "kWh",
+      "quilowatt-hora, unidade de energia da conta de luz"
+     ],
+     [
+      "R$/kWh",
+      "preço de cada kWh"
+     ],
+     [
+      "placa fotovoltaica",
+      "painel que transforma luz do Sol em energia elétrica"
+     ]
+    ]
+   },
+   "pista": "Calcule a economia de um mês para toda a rede de escolas, em reais, antes de pensar no ano.",
+   "passos": [
+    {
+     "faz": "Calcule a energia de uma escola por mês",
+     "conta": "60 placas × 40 kWh → 2400 kWh por escola",
+     "porque": "Cada uma das 60 placas gera 40 kWh por mês.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pelas 500 escolas",
+     "conta": "2400 kWh × 500 → 1 200 000 kWh por mês",
+     "porque": "Todas as escolas recebem as mesmas placas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Transforme a energia em reais",
+     "conta": "1 200 000 kWh × R$ 0,80 → R$ 960 000 por mês",
+     "porque": "Cada kWh gerado deixa de ser comprado da companhia a R$ 0,80.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida o gasto anual pela economia mensal",
+     "conta": "11000000/960000 → ≈ 11,46 meses",
+     "porque": "O tempo é quantos meses de economia somam os R$ 11 milhões.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o valor mais próximo",
+     "conta": "11,46 meses ≈ 11,4 meses → alternativa C",
+     "porque": "É a alternativa mais próxima do resultado; as outras ficam a mais de 0,8 mês dele.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — cerca de 11,4 meses.",
+   "checagem": "Volte do resultado: 11,4 meses × R$ 960 000 ≈ R$ 10,9 milhões e 11,5 meses ≈ R$ 11,0 milhões. O gasto de R$ 11 milhões fica entre os dois, perto de 11,4.",
+   "erradas": {
+    "A": "7,8 meses não confere: 7,8 × R$ 960 000 ≈ R$ 7,5 milhões, longe dos R$ 11 milhões.",
+    "B": "10,6 meses não confere: 10,6 × R$ 960 000 ≈ R$ 10,2 milhões, ainda abaixo dos R$ 11 milhões.",
+    "D": "12,8 meses não confere: 12,8 × R$ 960 000 ≈ R$ 12,3 milhões, mais do que o gasto anual."
+   },
+   "armadilha": "Esquecer um dos fatores da cadeia (as 60 placas, as 500 escolas ou o preço do kWh) antes de dividir.",
+   "alerta": "A conta dá 11,46 meses, que arredondado seria 11,5; a banca escreve 11,4 (valor truncado), e é a única alternativa próxima.",
+   "essencial": {
+    "pede": "Em quantos meses a economia das placas paga o gasto anual de R$ 11 milhões.",
+    "chave": "60 × 40 × 500 × 0,80 = R$ 960 000 por mês; 11 000 000 ÷ 960 000 ≈ 11,4 meses.",
+    "cuidado": "Multiplicar por placas, escolas e preço antes de dividir o gasto anual."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela energia",
+    "ideia": "O gasto de R$ 11 milhões equivale a 11 000 000 ÷ 0,80 = 13 750 000 kWh; dividido por 1 200 000 kWh por mês dá ≈ 11,46 meses."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "60 × 40 = 2400 kWh",
+    "nota": "uma escola por mês"
+   },
+   {
+    "linha": "2400 × 500 = 1 200 000 kWh",
+    "nota": "todas as escolas"
+   },
+   {
+    "linha": "1 200 000 × 0,80 = R$ 960 000",
+    "nota": "economia do mês em reais"
+   },
+   {
+    "linha": "11000000/960000 ≈ 11,46 meses",
+    "nota": "meses para cobrir o gasto anual"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

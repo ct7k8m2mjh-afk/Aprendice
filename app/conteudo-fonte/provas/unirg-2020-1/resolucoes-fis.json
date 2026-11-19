@@ -535,5 +535,121 @@
    "data": "2026-11-13",
    "lote": "fis-0060"
   }
+ },
+ "P650852a8": {
+  "n": "29",
+  "conceito": "Potência dissipada nos cabos de uma linha de transmissão por efeito Joule: P = R · i².",
+  "equivocos": {
+   "B": "F11.6:tensao-da-linha-usada-na-perda",
+   "C": "F11.6:potencia-transmitida-no-lugar-da-perdida",
+   "D": "F11.6:esqueceu-o-quadrado-da-corrente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A potência que se perde nos cabos depende só da resistência deles e da corrente que passa: P = R × i². Os 11 200 MW da usina, os 800 kV da linha e os 2087 km são contexto e não entram na conta. Cuidado: os 800 kV não são a tensão sobre os cabos, por isso U²/R com 800 kV não serve aqui.",
+    "formulas": [
+     "P = R × i² (potência dissipada num resistor)",
+     "1 MW = 10⁶ W"
+    ],
+    "simbolos": [
+     [
+      "R",
+      "resistência elétrica dos cabos, em ohms (Ω)"
+     ],
+     [
+      "i",
+      "corrente na linha, em ampères (A)"
+     ],
+     [
+      "P",
+      "potência dissipada (perdida em calor), em watts (W)"
+     ],
+     [
+      "MW",
+      "megawatt, um milhão de watts"
+     ],
+     [
+      "efeito Joule",
+      "aquecimento de um condutor pela passagem de corrente"
+     ]
+    ]
+   },
+   "pista": "Separe os dados que descrevem os cabos (resistência e corrente) dos que descrevem a usina e a linha toda.",
+   "passos": [
+    {
+     "faz": "Escolha a fórmula pelos dados dos cabos",
+     "conta": "R: 16,0 Ω | i: 2500 A → P = R × i²",
+     "porque": "A perda nos cabos é efeito Joule, e a resistência e a corrente deles estão no enunciado.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Eleve a corrente ao quadrado",
+     "conta": "i² = 2500² → i² = 6 250 000 = 6,25 × 10⁶ A²",
+     "porque": "A potência dissipada cresce com o quadrado da corrente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pela resistência",
+     "conta": "P = 16 × 6,25 × 10⁶ → P = 100 × 10⁶ W = 10⁸ W",
+     "porque": "16 × 6,25 = 100, então a perda é de cem milhões de watts.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para MW",
+     "conta": "10⁸ W ÷ 10⁶ = 100 MW → alternativa A",
+     "porque": "Um megawatt vale um milhão de watts.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 100 MW.",
+   "checagem": "Pela tensão nos cabos: U = R × i = 16 × 2500 = 40 000 V; P = U × i = 40 000 × 2500 = 10⁸ W = 100 MW. Dá o mesmo valor.",
+   "erradas": {
+    "B": "40 é o número de U²/R com a tensão da linha: (800 000)² ÷ 16 = 4 × 10¹⁰ W, que são 40 000 MW (40 GW). Os 800 kV não estão aplicados só sobre os cabos.",
+    "C": "2 é o número de U × i com a tensão da linha: 800 000 × 2500 = 2 × 10⁹ W, que são 2000 MW (2 GW). Essa é a potência transmitida, não a perdida.",
+    "D": "Sai de esquecer o quadrado da corrente: 16 × 2500 = 40 000, lido como watts, dá 0,04 MW. Faltou multiplicar por 2500 de novo."
+   },
+   "armadilha": "Usar os 800 kV da linha na conta: a perda nos cabos depende só da resistência deles e da corrente, P = R × i².",
+   "alerta": "",
+   "essencial": {
+    "pede": "A potência dissipada nos cabos de 16 Ω com corrente de 2500 A, em MW.",
+    "chave": "P = R × i² = 16 × 2500² = 10⁸ W = 100 MW.",
+    "cuidado": "Elevar a corrente ao quadrado e não usar a tensão da linha."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela queda de tensão",
+    "ideia": "U nos cabos = R × i = 40 kV; P = U × i = 40 000 × 2500 = 100 MW."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P = R × i²",
+    "nota": "perda por efeito Joule nos cabos"
+   },
+   {
+    "linha": "P = 16 × 2500² = 16 × 6,25 × 10⁶",
+    "nota": "corrente ao quadrado"
+   },
+   {
+    "linha": "P = 100 × 10⁶ W = 10⁸ W",
+    "nota": "16 × 6,25 = 100"
+   },
+   {
+    "linha": "10⁸ W/10⁶ = 100 MW",
+    "nota": "watt para megawatt"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

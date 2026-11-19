@@ -984,5 +984,120 @@
    "data": "2026-11-19",
    "lote": "fis-0063"
   }
+ },
+ "P2a334585": {
+  "n": "63",
+  "conceito": "Lâmpadas de mesma tensão nominal ligadas em série: a de menor potência nominal tem resistência maior e dissipa mais.",
+  "equivocos": {
+   "A": "F11.6:razao-de-potencias-errada",
+   "C": "F11.6:mesma-corrente-mesma-potencia",
+   "D": "F11.6:razao-de-potencias-invertida",
+   "E": "F11.6:usou-potencia-nominal-na-serie"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os valores 40 W e 60 W valem só ligados em 127 V cada uma; em série elas não recebem 127 V cada. O que não muda é a resistência de cada lâmpada, que sai dos valores nominais: R = U²/P. Em série, a corrente é a mesma nas duas, então quem tem resistência maior dissipa mais (P = R × i²).",
+    "formulas": [
+     "R = U²/P (com os valores nominais)",
+     "em série: mesma corrente i",
+     "P = R × i², logo P1/P2 = R1/R2"
+    ],
+    "simbolos": [
+     [
+      "R1, R2",
+      "resistências das lâmpadas L1 e L2, em ohm (Ω)"
+     ],
+     [
+      "P1, P2",
+      "potências consumidas por L1 e L2 na ligação em série, em watt (W)"
+     ],
+     [
+      "i",
+      "corrente, a mesma nas duas lâmpadas em série"
+     ],
+     [
+      "valor nominal",
+      "o que o fabricante indica para a lâmpada ligada sozinha na tensão marcada"
+     ]
+    ]
+   },
+   "pista": "Esqueça por um momento os 40 W e os 60 W: calcule primeiro a resistência de cada lâmpada, que é o que continua valendo na ligação em série.",
+   "passos": [
+    {
+     "faz": "Escreva as resistências pelos valores nominais",
+     "conta": "R1 = 127²/40 | R2 = 127²/60",
+     "porque": "A resistência de cada lâmpada não depende da ligação; ela sai da tensão e da potência nominais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare as resistências",
+     "conta": "R1/R2 = (127²/40)/(127²/60) → R1/R2 = 60/40 → R1/R2 = 3/2",
+     "porque": "O 127² se cancela, e dividir por 40 e por 60 inverte a razão: a lâmpada de 40 W tem resistência maior.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a mesma corrente da série",
+     "conta": "P1/P2 = (R1 × i²)/(R2 × i²) → P1/P2 = R1/R2 = 3/2",
+     "porque": "Em série a corrente é a mesma; o i² se cancela e as potências ficam na razão das resistências.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "P1 = (3/2) P2",
+     "porque": "A lâmpada L1, de 40 W nominais, é a que dissipa mais na série: alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — P1 = (3/2) P2: na série, L1 consome uma vez e meia a potência de L2.",
+   "checagem": "Com números: R1 ≈ 403,2 Ω e R2 ≈ 268,8 Ω; i = 127/(403,2 + 268,8) ≈ 0,189 A. P1 = R1 × i² = 14,4 W e P2 = R2 × i² = 9,6 W, e 14,4/9,6 = 3/2. Ambas brilham bem menos que o nominal.",
+   "erradas": {
+    "A": "Não confere: P1/P2 = R1/R2 = 60/40 = 3/2, e não 3. Com os números, 14,4 W não é o triplo de 9,6 W.",
+    "C": "Sai de achar que, com a mesma corrente, as potências ficam iguais. Mas P = R × i² depende da resistência, e R1 é maior que R2.",
+    "D": "Não confere: P1/P2 = 3/2, maior que 1, e esta alternativa faz L1 dissipar menos que L2. Com os números, 14,4 W não é um terço de 9,6 W.",
+    "E": "Sai de achar que a lâmpada de 40 W continua consumindo menos, na razão 40/60 = 2/3 dos valores nominais. Em série a ordem se inverte: P1/P2 = R1/R2 = 3/2."
+   },
+   "armadilha": "Na série, a lâmpada de MENOR potência nominal (40 W) tem resistência maior e por isso dissipa MAIS; usar a razão nominal 40/60 inverte a resposta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A relação entre as potências de L1 (127 V – 40 W) e L2 (127 V – 60 W) ligadas em série a 127 V.",
+    "chave": "R = U²/P dá R1/R2 = 60/40 = 3/2; em série, mesma corrente, então P1/P2 = R1/R2 = 3/2.",
+    "cuidado": "Os 40 W e 60 W valem só na tensão nominal; na série, use a resistência e a corrente comum."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "com números",
+    "ideia": "R1 ≈ 403,2 Ω, R2 ≈ 268,8 Ω, i ≈ 0,189 A: P1 = 14,4 W e P2 = 9,6 W, e 14,4/9,6 = 3/2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R1 = 127²/40 | R2 = 127²/60",
+    "nota": "resistência pelos valores nominais"
+   },
+   {
+    "linha": "R1/R2 = 60/40 = 3/2",
+    "nota": "o 127² se cancela"
+   },
+   {
+    "linha": "P1/P2 = (R1 × i²)/(R2 × i²) = R1/R2",
+    "nota": "série: mesma corrente, o i² se cancela"
+   },
+   {
+    "linha": "P1 = (3/2) P2",
+    "nota": "L1 dissipa mais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

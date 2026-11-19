@@ -118,5 +118,130 @@
    "data": "2026-11-19",
    "lote": "fis-0063"
   }
+ },
+ "Pd4401898": {
+  "n": "47",
+  "conceito": "Associação mista de resistores e potência dissipada num trecho: P = U²/R com a tensão daquele trecho.",
+  "equivocos": {
+   "A": "F11.5:trecho-em-curto-sem-corrente",
+   "B": "F11.6:potencia-no-ramo-errado",
+   "D": "F11.6:potencia-no-ramo-errado",
+   "E": "F11.6:potencia-total-no-lugar-da-parcial"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cortar o fio de 36 Ω em quatro partes iguais dá quatro resistores de 9 Ω, porque a resistência é proporcional ao comprimento. Na figura, A–C é um pedaço; entre C e B há dois caminhos em paralelo: o fio direto C–B (9 Ω) e o caminho C–D–B (dois pedaços em série, 18 Ω). Depois de achar a corrente total, a potência em C–B sai da tensão entre C e B.",
+    "formulas": [
+     "R ∝ comprimento",
+     "série: soma; paralelo de dois: (R1 · R2)/(R1 + R2)",
+     "i = U/R_eq; P = U²/R"
+    ],
+    "simbolos": [
+     [
+      "Ω",
+      "ohm, unidade de resistência"
+     ],
+     [
+      "R_eq",
+      "resistência equivalente do circuito"
+     ],
+     [
+      "U_CB",
+      "tensão entre os pontos C e B"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra a resistência de cada pedaço; depois veja quais pedaços estão em paralelo entre C e B.",
+   "passos": [
+    {
+     "faz": "Ache a resistência de cada pedaço",
+     "conta": "36 Ω ÷ 4 = 9 Ω",
+     "porque": "Fio homogêneo cortado em quatro partes iguais: cada parte tem um quarto do comprimento, logo um quarto da resistência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reduza o trecho entre C e B",
+     "conta": "C–D–B: 9 + 9 = 18 Ω | em paralelo com C–B: (9 · 18)/(9 + 18) → 162/27 = 6 Ω",
+     "porque": "Entre C e B há o fio direto e o caminho por D, que soma dois pedaços em série; os dois caminhos ligam os mesmos pontos, então estão em paralelo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a corrente total",
+     "conta": "R_eq = 9 + 6 = 15 Ω → i = 45/15 = 3 A",
+     "porque": "O pedaço A–C fica em série com o bloco de 6 Ω, e a fonte ideal de 45 V alimenta tudo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a tensão entre C e B",
+     "conta": "U_CB = 6 Ω × 3 A = 18 V",
+     "porque": "Toda a corrente passa pelo bloco equivalente de 6 Ω, e a tensão nele é a mesma no fio direto C–B.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a potência no fio C–B",
+     "conta": "P = U²/R → P = 18²/9 = 324/9 = 36 W",
+     "porque": "O fio C–B tem 9 Ω e está submetido a 18 V; com a tensão conhecida, P = U²/R é a forma direta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 36 W.",
+   "checagem": "Pela corrente: no fio C–B passa i = 18 ÷ 9 = 2 A e no caminho C–D–B passa 18 ÷ 18 = 1 A; 2 + 1 = 3 A, a corrente total. P = 9 × 2² = 36 W.",
+   "erradas": {
+    "A": "0 W não confere: só haveria zero se C e B estivessem no mesmo potencial, mas entre eles há 18 V e passa 2 A no fio C–B.",
+    "B": "Sai de calcular a potência no caminho C–D–B em vez do fio direto: 18²/18 = 18 W.",
+    "D": "Sai de calcular a potência no pedaço A–C: 9 × 3² = 81 W. Por A–C passa a corrente toda, mas a pergunta é sobre C–B.",
+    "E": "Sai de calcular a potência total fornecida pela fonte: 45 V × 3 A = 135 W."
+   },
+   "armadilha": "Achar que o fio direto C–B está em série com o resto: ele está em paralelo com o caminho por D, e só recebe 2 dos 3 A.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A potência dissipada no pedaço C–B de um fio de 36 Ω cortado em quatro e montado em triângulo, sob 45 V entre A e B.",
+    "chave": "Pedaços de 9 Ω; 9 ∥ 18 = 6 Ω; R_eq = 15 Ω; i = 3 A; U_CB = 18 V; P = 18²/9 = 36 W.",
+    "cuidado": "Ver que C–B e C–D–B estão em paralelo e usar a tensão do trecho, não a da fonte."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "divisor de corrente",
+    "ideia": "Os 3 A se dividem na razão inversa das resistências: 2 A em 9 Ω e 1 A em 18 Ω; P = 9 × 2² = 36 W."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R = 36 ÷ 4 = 9 Ω",
+    "nota": "cada pedaço"
+   },
+   {
+    "linha": "C–D–B = 9 + 9 = 18 Ω",
+    "nota": "série"
+   },
+   {
+    "linha": "(9 · 18)/(9 + 18) = 6 Ω",
+    "nota": "paralelo com C–B"
+   },
+   {
+    "linha": "R_eq = 9 + 6 = 15 Ω → i = 45/15 = 3 A",
+    "nota": "corrente total"
+   },
+   {
+    "linha": "U_CB = 6 × 3 = 18 V",
+    "nota": "tensão no paralelo"
+   },
+   {
+    "linha": "P = 18²/9 = 36 W",
+    "nota": "potência em C–B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

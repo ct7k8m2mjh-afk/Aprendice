@@ -340,5 +340,121 @@
    "data": "2026-11-13",
    "lote": "fis-0061"
   }
+ },
+ "P97dedacd": {
+  "n": "40",
+  "conceito": "Resistor variável em paralelo com R2 e em série com R1: aumentar RV aumenta a resistência do paralelo, diminui a corrente total e redistribui as tensões.",
+  "equivocos": {
+   "A": "F11.5:corrente-total-no-lugar-da-do-ramo",
+   "B": "F11.5:corrente-total-no-lugar-da-do-ramo",
+   "C": "F11.5:esqueceu-que-a-tensao-vai-para-o-paralelo",
+   "D": "F11.5:esqueceu-a-queda-no-resistor-em-serie"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "RV e R2 estão em paralelo, e esse conjunto está em série com R1. Aumentar RV aumenta a resistência do paralelo e a resistência total; com a fem fixa, a corrente total cai. Menos corrente em R1 significa menos tensão nele, e sobra mais tensão para o paralelo. O campo magnético em P, perto do fio de R2, é proporcional à corrente nesse fio.",
+    "formulas": [
+     "U = R × i",
+     "E = U(R1) + U(paralelo)",
+     "P(R2) = U²/R2",
+     "Campo de fio: B proporcional a i"
+    ],
+    "simbolos": [
+     [
+      "RV",
+      "resistor de resistência variável"
+     ],
+     [
+      "fem",
+      "força eletromotriz, a tensão da bateria ideal"
+     ],
+     [
+      "B",
+      "módulo do vetor indução magnética"
+     ],
+     [
+      "paralelo",
+      "ligação em que os dois resistores recebem a mesma tensão"
+     ]
+    ]
+   },
+   "pista": "Veja primeiro o que acontece com a corrente total quando RV muda; o resto segue dela.",
+   "passos": [
+    {
+     "faz": "Analise a afirmativa I",
+     "conta": "RV ↑ → R(paralelo) ↑ → R(total) ↑ → i ↓ → U(R1) = R1 × i ↓",
+     "porque": "Com a fem fixa, mais resistência total significa menos corrente, e R1 leva toda essa corrente. I é correta.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Analise a afirmativa II",
+     "conta": "U(paralelo) = E − U(R1) → U(paralelo) ↑ → P(R2) = U²/R2 ↑",
+     "porque": "A tensão que deixa de cair em R1 vai para o paralelo; R2 é fixo, então dissipa mais. II é correta.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Analise a afirmativa III",
+     "conta": "RV ↓ → i ↑ → U(R1) ↑ → U(paralelo) ↓ → i(R2) ↓ → B em P ↓",
+     "porque": "Diminuir RV faz o contrário: a tensão no paralelo cai, a corrente em R2 cai, e o campo em P diminui. III é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Junte as afirmativas",
+     "conta": "I correta | II correta | III falsa",
+     "porque": "Só I e II estão certas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — apenas as afirmativas I e II.",
+   "checagem": "Teste com números: E = 12 V, R1 = R2 = 2 Ω. Com RV = 2 Ω, o paralelo vale 1 Ω, i = 4 A, U(R1) = 8 V e U(R2) = 4 V. Com RV = 6 Ω, o paralelo vale 1,5 Ω, i ≈ 3,43 A, U(R1) ≈ 6,86 V e U(R2) ≈ 5,14 V. U(R1) caiu (I) e U(R2) subiu (II); de volta a RV = 2 Ω, a corrente em R2 cai de 2,57 A para 2 A, então B em P diminui (III falsa).",
+   "erradas": {
+    "A": "Inclui III, que é falsa: diminuir RV aumenta a corrente total, mas a tensão no paralelo cai, e a corrente em R2 (que gera o campo em P) diminui. E deixa de fora II, que é correta.",
+    "B": "Inclui III, que é falsa: com RV menor, a corrente em R2 diminui e o campo em P também. E deixa de fora I, que é correta.",
+    "C": "Deixa de fora II, que é correta: a tensão que deixa de cair em R1 vai para o paralelo, e R2 dissipa mais.",
+    "D": "Deixa de fora I, que é correta: com RV maior, a corrente total cai e a tensão em R1 diminui."
+   },
+   "armadilha": "Em III, a corrente total aumenta, mas a corrente em R2 diminui: o campo em P depende só da corrente de R2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais efeitos da variação de RV sobre R1, R2 e o campo em P são corretos.",
+    "chave": "RV maior → corrente total menor → menos tensão em R1 e mais no paralelo; RV menor → menos tensão e corrente em R2.",
+    "cuidado": "Não confundir a corrente total com a corrente do ramo de R2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso extremo",
+    "ideia": "Faça RV → 0: o paralelo vira curto, R2 fica sem tensão e sem corrente, e o campo em P some; logo, diminuir RV diminui B (III falsa)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "RV ↑ → R(total) ↑ → i ↓",
+    "nota": "fem fixa"
+   },
+   {
+    "linha": "U(R1) = R1 × i ↓",
+    "nota": "I correta"
+   },
+   {
+    "linha": "U(paralelo) = E − U(R1) ↑ → P(R2) ↑",
+    "nota": "II correta"
+   },
+   {
+    "linha": "RV ↓ → U(paralelo) ↓ → i(R2) ↓ → B ↓",
+    "nota": "III falsa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

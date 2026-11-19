@@ -753,5 +753,131 @@
    "data": "2026-11-19",
    "lote": "fis-0063"
   }
+ },
+ "P87d03eea": {
+  "n": "17",
+  "conceito": "Da potência da fonte se tira a resistência equivalente; dela, a resistência do termistor em paralelo; e o gráfico linear dá a temperatura.",
+  "equivocos": {
+   "A": "F11.5:resistencia-equivalente-errada",
+   "B": "F11.5:resistencia-equivalente-errada",
+   "D": "F11.5:leu-o-grafico-invertido",
+   "E": "F11.5:resistencia-equivalente-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A potência fornecida e a tensão da fonte dão a corrente e a resistência equivalente do circuito. O termistor está em paralelo com o 10 Ω, e esse conjunto está em série com o 4 Ω. Com a resistência do termistor, o gráfico (uma reta que cai de 30 Ω em 0 °C para 5 Ω em 100 °C) dá a temperatura.",
+    "formulas": [
+     "P = U × i, logo i = P/U",
+     "R(eq) = U/i",
+     "Paralelo de dois: R = (R1 × R2)/(R1 + R2)",
+     "Reta do gráfico: R = 30 − 0,25 × T"
+    ],
+    "simbolos": [
+     [
+      "termistor",
+      "resistor cuja resistência muda com a temperatura"
+     ],
+     [
+      "R(eq)",
+      "resistência equivalente do circuito"
+     ],
+     [
+      "T",
+      "temperatura, em °C"
+     ],
+     [
+      "Ω",
+      "ohm, unidade de resistência"
+     ]
+    ]
+   },
+   "pista": "Comece pela fonte: com a potência e a tensão dela, ache a resistência que o circuito inteiro oferece.",
+   "passos": [
+    {
+     "faz": "Ache a corrente e a resistência equivalente",
+     "conta": "i = 22,5/15 → i = 1,5 A; R(eq) = 15/1,5 → R(eq) = 10 Ω",
+     "porque": "A potência da fonte é tensão vezes corrente; a resistência equivalente é tensão sobre corrente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire o 4 Ω em série",
+     "conta": "R(paralelo) + 4 = 10 → R(paralelo) = 10 − 4 → 6 Ω",
+     "porque": "O 4 Ω está em série com o conjunto 10 Ω ∥ termistor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole o termistor no paralelo",
+     "conta": "(10 × R)/(10 + R) = 6 → 10R = 60 + 6R → 4R = 60 → R = 15 Ω",
+     "porque": "O denominador passa multiplicando para o outro lado, e os termos com R se juntam de um lado só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a reta do gráfico",
+     "conta": "inclinação = (5 − 30)/(100 − 0) → −0,25 Ω/°C → R = 30 − 0,25 × T",
+     "porque": "A resistência cai 25 Ω em 100 °C, de forma linear.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a temperatura",
+     "conta": "15 = 30 − 0,25 × T → 0,25 × T = 15 → T = 15/0,25 → T = 60 °C",
+     "porque": "O 30 passa subtraindo para o lado do 15, e o 0,25 que multiplica T passa dividindo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 60 °C.",
+   "checagem": "Substitua de volta: com 60 °C, R = 30 − 0,25 × 60 = 15 Ω; 10 ∥ 15 = 150/25 = 6 Ω; 6 + 4 = 10 Ω; P = 15²/10 = 225/10 = 22,5 W, o valor do enunciado.",
+   "erradas": {
+    "A": "Não confere: a 100 °C o termistor vale 5 Ω; 10 ∥ 5 ≈ 3,33 Ω, R(eq) ≈ 7,33 Ω e P = 225/7,33 ≈ 30,7 W, não 22,5 W.",
+    "B": "Não confere: a 80 °C o termistor vale 10 Ω; 10 ∥ 10 = 5 Ω, R(eq) = 9 Ω e P = 225/9 = 25 W, não 22,5 W.",
+    "D": "Sai de ler o gráfico ao contrário, com a resistência subindo a partir de 5 Ω: 15 = 5 + 0,25 × T dá T = 40 °C. No gráfico, R começa em 30 Ω e cai.",
+    "E": "Não confere: a 20 °C o termistor vale 25 Ω; 10 ∥ 25 ≈ 7,14 Ω, R(eq) ≈ 11,14 Ω e P ≈ 20,2 W, não 22,5 W."
+   },
+   "armadilha": "A reta do gráfico não vai a zero: ela cai de 30 Ω para 5 Ω, então a inclinação é 25/100 = 0,25 Ω por grau.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A temperatura do cômodo a partir da potência da fonte e do gráfico do termistor.",
+    "chave": "R(eq) = 10 Ω, paralelo = 6 Ω, termistor = 15 Ω; na reta R = 30 − 0,25T, T = 60 °C.",
+    "cuidado": "Descontar o 4 Ω em série antes de resolver o paralelo, e ler a reta de 30 Ω caindo até 5 Ω."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar alternativas",
+    "ideia": "Para cada temperatura, ache R no gráfico e calcule P = 225/(4 + 10 ∥ R): só 60 °C (R = 15 Ω) dá 22,5 W."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i = 22,5/15 = 1,5 A",
+    "nota": "corrente da fonte"
+   },
+   {
+    "linha": "R(eq) = 15/1,5 = 10 Ω",
+    "nota": "resistência equivalente"
+   },
+   {
+    "linha": "R(paralelo) = 10 − 4 = 6 Ω",
+    "nota": "tira o 4 Ω em série"
+   },
+   {
+    "linha": "(10 × R)/(10 + R) = 6 → R = 15 Ω",
+    "nota": "isola o termistor"
+   },
+   {
+    "linha": "15 = 30 − 0,25 × T → T = 60 °C",
+    "nota": "lê no gráfico"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }

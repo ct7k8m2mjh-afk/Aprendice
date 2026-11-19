@@ -926,5 +926,120 @@
    "data": "2026-11-19",
    "lote": "fis-0063"
   }
+ },
+ "P82d98eb9": {
+  "n": "25",
+  "conceito": "Associação mista: a corrente de um ramo do paralelo dá a tensão do paralelo, a corrente total e a queda no resistor em série.",
+  "equivocos": {
+   "A": "F11.5:esqueceu-o-resistor-em-serie",
+   "B": "F11.5:corrente-de-um-ramo-so-no-resistor-em-serie",
+   "D": "F11.5:corrente-total-errada",
+   "E": "F11.5:corrente-total-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "R2 e R3 estão em paralelo, então têm a mesma tensão; R1 fica em série com esse conjunto e leva a corrente total. A corrente de R3 dá a tensão do paralelo, que dá a corrente de R2. A soma das duas é a corrente de R1, e a fonte é a soma das tensões.",
+    "formulas": [
+     "U = R × i",
+     "Paralelo: mesma tensão; a corrente total é a soma",
+     "Série: a tensão da fonte é a soma das tensões"
+    ],
+    "simbolos": [
+     [
+      "kΩ",
+      "quilo-ohm, mil ohms"
+     ],
+     [
+      "mA",
+      "miliampère, a milésima parte do ampère"
+     ],
+     [
+      "ε",
+      "força eletromotriz, a tensão da fonte"
+     ]
+    ]
+   },
+   "pista": "Comece pelo resistor cuja corrente é dada e descubra a tensão no paralelo.",
+   "passos": [
+    {
+     "faz": "Ache a tensão no paralelo",
+     "conta": "U(R3) = 4,0 kΩ × 2,0 mA → U = 8 V",
+     "porque": "kΩ vezes mA dá volt direto (10³ × 10⁻³ = 1). R2 recebe a mesma tensão, porque está em paralelo com R3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a corrente em R2",
+     "conta": "i(R2) = 8 V/2,0 kΩ → i(R2) = 4 mA",
+     "porque": "Com a mesma tensão e metade da resistência, R2 leva o dobro da corrente de R3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as correntes",
+     "conta": "i(R1) = 2 + 4 → i(R1) = 6 mA",
+     "porque": "A corrente que passa por R1 se divide entre R2 e R3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a tensão em R1 e a da fonte",
+     "conta": "U(R1) = 1,0 kΩ × 6 mA → 6 V; ε = 6 + 8 → ε = 14 V",
+     "porque": "A fonte alimenta R1 em série com o paralelo, então a tensão dela é a soma das duas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 14 V.",
+   "checagem": "Pela resistência equivalente: R2 ∥ R3 = (2 × 4)/(2 + 4) = 4/3 kΩ; R(eq) = 1 + 4/3 = 7/3 kΩ; ε = 7/3 kΩ × 6 mA = 14 V.",
+   "erradas": {
+    "A": "Sai de parar na tensão do paralelo: 4,0 kΩ × 2,0 mA = 8 V. Faltou somar a tensão em R1.",
+    "B": "Sai de usar em R1 só a corrente de R2: 1,0 kΩ × 4 mA = 4 V, e 8 + 4 = 12 V. Por R1 passam as duas correntes, 6 mA.",
+    "D": "Não confere: 16 V exigiria 8 V em R1, isto é, 8 mA nele; mas a corrente de R1 é a soma 2 + 4 = 6 mA.",
+    "E": "Não confere: 18 V exigiria 10 V em R1, isto é, 10 mA nele; a corrente de R1 é 6 mA."
+   },
+   "armadilha": "A corrente dada é só a de R3; por R1 passa a soma das correntes de R2 e R3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A tensão da fonte sabendo a corrente em R3.",
+    "chave": "U do paralelo = 8 V; i(R2) = 4 mA; i(R1) = 6 mA; U(R1) = 6 V; ε = 14 V.",
+    "cuidado": "Somar as correntes dos dois ramos antes de calcular a tensão em R1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "resistência equivalente",
+    "ideia": "R(eq) = 1 + (2 × 4)/(2 + 4) = 7/3 kΩ; com i = 6 mA, ε = 14 V."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "U = 4 × 2 = 8 V",
+    "nota": "kΩ × mA = V"
+   },
+   {
+    "linha": "i(R2) = 8/2 = 4 mA",
+    "nota": "mesma tensão no paralelo"
+   },
+   {
+    "linha": "i(R1) = 2 + 4 = 6 mA",
+    "nota": "soma das correntes"
+   },
+   {
+    "linha": "U(R1) = 1 × 6 = 6 V",
+    "nota": "queda em R1"
+   },
+   {
+    "linha": "ε = 6 + 8 = 14 V",
+    "nota": "tensão da fonte"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
  }
 }
