@@ -217,3 +217,27 @@ RECLASS Pb4920d26 P09.2 -> P05.1 (lote 0011)
 RECLASS P3ee04127 P09.5 -> P05.1 (lote 0011)
 RECLASS P0dd63f3c P10.5 -> P06.3 (Acafe 2024 Inverno q8: pleonasmo)
 RECLASS Pe1eedff9 P10.4 -> P12.5 (UDESC 2025.1 q50: Dois irmãos, Hatoum)
+Lote por-p2-0012 gravado (46 ok, 4 pendentes). Nenhum lote aberto.
+OUTRA Pb7962540 (UEG 2025/2 q13): outra matéria, Artes (fotografia de Cartier-Bresson, "momento decisivo"); não resolvida, pôr em app/conteudo-fonte/outra-materia.json
+OUTRA Pb28d85a4 (Fuvest 2026 1ª fase q13): classificação: é de Matemática M14.2 (leitura do gráfico da PNAD; Rachel de Queiroz só abre o enunciado); reclassificar
+PRINT P61659fe2 (URCA 2026.1 q96): o print e o texto trazem só o enunciado e as alternativas; falta o fragmento de Fanon, que está no print da q95 (anulada); juntar ao print desta questão e reabrir
+PRINT P59e81ce0 (UPE 2024 SSA3 q7): a questão depende dos Textos 2 e 3, que estão nas questões 4 a 6; juntar ao print e reabrir
+GABARITO Pca55c5af (UDESC 2023.2 q40): resolvida com a oficial C; afirmativa V (o "a" demonstrativo como adjunto adnominal) discutível, explicado no alerta
+RECLASS P61659fe2 P01.2 -> P08.2 (URCA 2026.1 q96)
+RECLASS Pe7441390 P02.1 -> P04.2 (lote 0012)
+RECLASS P39652a6d P01.2 -> P12.2 (UEMA PAES 2021 q46: Macunaíma)
+RECLASS Pfe824bfe P09.3 -> P09.4 (Unifor 2025.1 q47: "que" consecutiva)
+RECLASS P66b77d21 P04.2 -> P09.5 (PUCRS 2023 Verão q22: reduzida para desenvolvida)
+RECLASS P2be8807d P04.4 -> P06.2 (UFAM PSC3 2023 q5: figuras de linguagem)
+RECLASS P90728de4 P12.3 -> P12.4 (FMABC 2022 q14: Guimarães Rosa)
+RECLASS P2eda07df P12.4 -> P12.5 (Fuvest 2026 q87: Djaimilia Pereira de Almeida)
+DADO P90635394 (URCA 2026.1 q103): alternativas.C -> "possível" e sem hifens quebrados ("sem- pre", "ha- ver"), como no print
+AVISO P6c072e7f (URCA 2024 2º dia q38): no passo 1, o trecho citado tem aspas duplas dentro de aspas duplas (“No romance “Terra Sonâmbula”...”); trocar as internas por simples e incluir o "?" final na próxima revisão
+
+## 2026-11-19 — FIM — sessão por-p2 (session_01PveEKXDkPFmUNguid7UeTi)
+Lotes gravados nesta sessão: por-p2-0009 (50 ok), por-p2-0010 (45 ok, 5 pendentes), por-p2-0011 (50 ok), por-p2-0012 (46 ok, 4 pendentes). Total: 191 resoluções. Nenhum lote aberto.
+Pendentes (9): P9c0bfb8d e Pb7962540 (OUTRA: Artes), Pb28d85a4 (classificação: Matemática M14.2), Pfeeca942, P61659fe2 e P59e81ce0 (PRINT: falta texto de apoio), Pd7b11d0e, P17067f79 e P3761593f (OBRA, UNIRG).
+Gabarito do Aprendice (resolvedor = conferente às cegas = preliminar): Pa0271438 D (UFRR 2025), P43b9c63e E (UFRR 2026). Divergências: nenhuma.
+Conferência no site (1280 e 390 px): P669e7c8b, Pa0271438 (com o aviso de gabarito do Aprendice) e P6c072e7f OK, 4 blocos completos, sem rolagem lateral.
+tsc: OK; vitest: 786 passed (rodados após o lote 0010).
+A seguir: próxima sessão continua com lote.py proximo por 50 --novo --parte 2 (faltam 44 questões na parte 2, segundo lote.py status).
