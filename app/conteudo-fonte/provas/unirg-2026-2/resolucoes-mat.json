@@ -309,5 +309,109 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P3f703bbd": {
+  "n": "42",
+  "conceito": "Contar comissões com 'pelo menos um' pelo complementar: total de combinações menos as proibidas.",
+  "equivocos": {
+   "A": "M13.3:contou-so-um-caso",
+   "C": "M13.3:ignorou-a-restricao",
+   "D": "M13.3:valor-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A ordem de escolha dos membros não importa: um comitê é um grupo, então a contagem é por combinação. \"Pelo menos um enfermeiro\" tem vários casos (1, 2, 3 ou 4 enfermeiros); é mais curto contar todos os comitês e tirar o único tipo proibido, o formado só por médicos.",
+    "formulas": [
+     "C(n, p) = n!/(p! · (n − p)!)",
+     "permitidos = total − proibidos"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "número de grupos de p pessoas escolhidas entre n, sem importar a ordem"
+     ],
+     [
+      "n!",
+      "fatorial: n · (n − 1) · ... · 2 · 1"
+     ],
+     [
+      "complementar",
+      "contar o que não serve e tirar do total"
+     ]
+    ]
+   },
+   "pista": "Em vez de abrir os casos com 1, 2, 3 ou 4 enfermeiros, pense no que é proibido.",
+   "passos": [
+    {
+     "faz": "Conte todos os comitês possíveis",
+     "conta": "C(10, 5) = (10 · 9 · 8 · 7 · 6)/(5 · 4 · 3 · 2 · 1) = 30240/120 = 252",
+     "porque": "São 6 + 4 = 10 candidatos e o comitê tem 5 lugares sem ordem: combinação de 10 tomados 5 a 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os comitês só de médicos",
+     "conta": "C(6, 5) = 6",
+     "porque": "Escolher 5 entre os 6 médicos é o mesmo que escolher o único médico que fica de fora: 6 maneiras. Esses comitês ferem a regra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire os proibidos do total",
+     "conta": "252 − 6 = 246",
+     "porque": "Todo comitê que não é só de médicos tem pelo menos um enfermeiro. Então o que sobra é exatamente o que a regra permite.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "246 comitês → alternativa B",
+     "porque": "A pergunta é o total de comitês que respeitam a regra, e foi isso que a conta deu.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 246 maneiras.",
+   "checagem": "Some os casos direto: 1 enfermeiro: 4 · C(6, 4) = 4 · 15 = 60; 2: C(4, 2) · C(6, 3) = 6 · 20 = 120; 3: C(4, 3) · C(6, 2) = 4 · 15 = 60; 4: C(4, 4) · C(6, 1) = 6. Total 60 + 120 + 60 + 6 = 246.",
+   "erradas": {
+    "A": "120 sai de contar só os comitês com exatamente 2 enfermeiros: C(4, 2) · C(6, 3) = 6 · 20 = 120. Faltam os casos com 1, 3 e 4 enfermeiros.",
+    "C": "252 sai de esquecer a regra: é C(10, 5), o total de comitês, incluindo os 6 formados só por médicos.",
+    "D": "720 não confere: o total de comitês sem nenhuma restrição já é 252; com a regra, o número só pode ser menor que isso."
+   },
+   "armadilha": "Esquecer de tirar os 6 comitês só de médicos e marcar o total 252.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de comitês de 5 entre 6 médicos e 4 enfermeiros com pelo menos um enfermeiro.",
+    "chave": "Total C(10, 5) = 252 menos os só de médicos C(6, 5) = 6: 246.",
+    "cuidado": "\"Pelo menos um\" chama o complementar: conte o que é proibido e tire do total."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma dos casos",
+    "ideia": "1, 2, 3 ou 4 enfermeiros: 60 + 120 + 60 + 6 = 246"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(10, 5) = 30240/120 = 252",
+    "nota": "todos os comitês de 5 entre 10"
+   },
+   {
+    "linha": "C(6, 5) = 6",
+    "nota": "comitês só de médicos (proibidos)"
+   },
+   {
+    "linha": "252 − 6 = 246",
+    "nota": "tira os proibidos do total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

@@ -449,5 +449,103 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "P9e89b181": {
+  "n": "44",
+  "conceito": "Probabilidade de um par sorteado entre 32 países ser formado por 2 dos 6 latino-americanos, comparada com faixas percentuais.",
+  "equivocos": {
+   "A": "M13.4:ordem-de-grandeza-errada",
+   "B": "M13.4:ordem-de-grandeza-errada",
+   "D": "M13.4:sorteio-com-reposicao",
+   "E": "M13.4:so-a-primeira-retirada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sorteiam-se dois países diferentes, sem ordem. Favoráveis são os pares formados só por latino-americanos; possíveis, todos os pares de países. As alternativas são faixas de porcentagem, então basta calcular a fração e convertê-la.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "pares sem ordem: C(n, 2) = n × (n − 1) ÷ 2"
+    ],
+    "simbolos": [
+     [
+      "C(n, 2)",
+      "número de pares sem ordem que se formam com n elementos"
+     ]
+    ]
+   },
+   "pista": "Conte quantos pares dá para formar só com os 6 latino-americanos e quantos com os 32 países.",
+   "passos": [
+    {
+     "faz": "Conte os pares possíveis",
+     "conta": "C(32, 2) = (32 × 31)/2 = 496",
+     "porque": "O amistoso é entre dois países diferentes, e a ordem do sorteio não importa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os pares favoráveis",
+     "conta": "C(6, 2) = (6 × 5)/2 = 15",
+     "porque": "Os dois sorteados precisam estar entre os 6 latino-americanos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a probabilidade",
+     "conta": "15/496 ≈ 0,0302 → 3,02 %",
+     "porque": "Favoráveis sobre possíveis, convertido em porcentagem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Encaixe na faixa",
+     "conta": "2,2 % < 3,02 % < 3,3 % → alternativa C",
+     "porque": "Só a faixa da alternativa C contém 3,02 %.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — maior que 2,2 % e menor que 3,3 % (cerca de 3,02 %)",
+   "checagem": "Por retiradas sucessivas: 6/32 × 5/31 = 30/992 = 15/496 ≈ 3,02 %. Mesmo valor.",
+   "erradas": {
+    "A": "Menor que 1 % não confere: 1 % de 496 pares é 4,96 pares, e os pares só de latino-americanos são 15, mais que isso.",
+    "B": "Entre 1,0 % e 2,2 % não confere: essa faixa vai de 4,96 a cerca de 10,9 pares favoráveis em 496, e são 15.",
+    "D": "Entre 3,3 % e 4,9 % sai de sortear com reposição: 6/32 × 6/32 ≈ 3,52 %. Mas o segundo país não pode ser o mesmo; restam 5 de 31.",
+    "E": "Maior que 4,9 % sai de calcular só a chance do primeiro sorteado: 6/32 = 18,75 %, esquecendo que o segundo também tem de ser latino-americano."
+   },
+   "armadilha": "Sortear com reposição: o segundo país sai dos 31 restantes, entre os quais só 5 são latino-americanos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de os dois países sorteados entre os 32 serem latino-americanos.",
+    "chave": "C(6, 2)/C(32, 2) = 15/496 ≈ 3,02 %.",
+    "cuidado": "Sem reposição: o segundo país sai de 31, e só 5 deles são latino-americanos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sucessivas",
+    "ideia": "6/32 × 5/31 = 15/496 ≈ 3,02 %."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "possíveis: C(32, 2) = (32 × 31)/2 = 496",
+    "nota": "pares de países"
+   },
+   {
+    "linha": "favoráveis: C(6, 2) = (6 × 5)/2 = 15",
+    "nota": "pares latino-americanos"
+   },
+   {
+    "linha": "P = 15/496 ≈ 3,02 %",
+    "nota": "favoráveis sobre possíveis"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

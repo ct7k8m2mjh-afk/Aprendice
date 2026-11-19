@@ -916,5 +916,110 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "Pff4442dc": {
+  "n": "17",
+  "conceito": "Probabilidade simples com duas condições: listar os múltiplos de 3 e testar produto menor que soma dos algarismos.",
+  "equivocos": {
+   "A": "M13.4:contagem-de-favoraveis-errada",
+   "B": "M13.4:contagem-de-favoraveis-errada",
+   "C": "M13.4:denominador-errado",
+   "E": "M13.4:denominador-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O espaço amostral tem 30 cartões (de 11 a 40). O favorável tem de cumprir as duas condições ao mesmo tempo. O caminho mais curto é listar os múltiplos de 3, que são poucos, e testar em cada um se o produto dos algarismos é menor que a soma.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis"
+    ],
+    "simbolos": [
+     [
+      "divisível por 3",
+      "o resto da divisão por 3 é zero"
+     ],
+     [
+      "produto dos algarismos",
+      "em 24: 2 · 4 = 8"
+     ],
+     [
+      "soma dos algarismos",
+      "em 24: 2 + 4 = 6"
+     ]
+    ]
+   },
+   "pista": "Comece pela condição que deixa menos números: os múltiplos de 3 entre 11 e 40.",
+   "passos": [
+    {
+     "faz": "Conte os cartões",
+     "conta": "40 − 11 + 1 = 30 cartões",
+     "porque": "De 11 a 40, contando as duas pontas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Liste os múltiplos de 3",
+     "conta": "12, 15, 18, 21, 24, 27, 30, 33, 36, 39",
+     "porque": "São 10 números; os demais já estão fora.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste produto contra soma",
+     "conta": "12: 2 < 3 | 15: 5 < 6 | 18: 8 < 9 | 21: 2 < 3 | 30: 0 < 3 | 24: 8 > 6 | 27: 14 > 9 | 33: 9 > 6 | 36: 18 > 9 | 39: 27 > 12",
+     "porque": "Passam 12, 15, 18, 21 e 30: 5 favoráveis.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Divida e conclua",
+     "conta": "5/30 = 1/6 → alternativa D",
+     "porque": "Os 5 favoráveis entre os 30 cartões dão a probabilidade pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1/6.",
+   "checagem": "Veja a regra por trás: com algarismos a e b, o produto só fica menor que a soma se um deles for 0 ou 1. Entre os múltiplos de 3, isso acontece em 12, 15, 18 (algarismo 1), 21 (algarismo 1) e 30 (algarismo 0): os mesmos 5.",
+   "erradas": {
+    "A": "1/5 não confere: com 30 cartões, 1/5 exigiria 6 favoráveis, e a lista tem 5 (12, 15, 18, 21, 30).",
+    "B": "1/10 não confere: exigiria 3 favoráveis entre 30, mas 12, 15, 18, 21 e 30 passam nas duas condições.",
+    "C": "1/8 não confere: 30 ÷ 8 não é inteiro, então nenhuma contagem de cartões dá 1/8 com 30 cartões.",
+    "E": "1/4 não confere: 30 ÷ 4 = 7,5 não é inteiro, então nenhuma contagem de cartões dá 1/4 com 30 cartões."
+   },
+   "armadilha": "Esquecer o 30 (produto 0 é menor que a soma 3) ou testar só uma das condições.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de o cartão ser múltiplo de 3 e ter produto dos algarismos menor que a soma.",
+    "chave": "Dos 10 múltiplos de 3, passam 12, 15, 18, 21 e 30: 5/30 = 1/6.",
+    "cuidado": "O 0 também é algarismo: em 30, o produto é 0, menor que a soma 3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "regra dos algarismos",
+    "ideia": "produto < soma só com algarismo 0 ou 1: entre os múltiplos de 3, 12, 15, 18, 21 e 30"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "40 − 11 + 1 = 30",
+    "nota": "cartões na urna"
+   },
+   {
+    "linha": "12, 15, 18, 21, 30 → 5",
+    "nota": "múltiplos de 3 com produto < soma"
+   },
+   {
+    "linha": "5/30 = 1/6",
+    "nota": "favoráveis ÷ possíveis"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

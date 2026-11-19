@@ -700,5 +700,112 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "P637f29e9": {
+  "n": "8",
+  "conceito": "Ler dois gráficos de radar e calcular a fração das 12 habilidades com valor menor ou igual a 3.",
+  "equivocos": {
+   "A": "M14.2:leitura-de-grafico-errada",
+   "C": "M13.4:excluiu-o-igual",
+   "D": "M14.2:leitura-de-grafico-errada",
+   "E": "M14.2:leitura-de-grafico-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O sorteio é de uma habilidade entre todas as dos dois personagens: são 6 eixos em cada gráfico, 12 valores ao todo. Leia o valor de cada eixo pelo anel em que o ponto cai (o centro é 0 e o anel de fora é 5). \"Menor ou igual a 3\" inclui os valores iguais a 3.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis"
+    ],
+    "simbolos": [
+     [
+      "gráfico de radar",
+      "gráfico em que cada eixo sai do centro e o valor cresce para fora"
+     ]
+    ]
+   },
+   "pista": "Faça a lista dos 12 valores antes de contar; cuidado com os que valem exatamente 3.",
+   "passos": [
+    {
+     "faz": "Leia o Personagem 1",
+     "conta": "Agilidade 4 | Força 5 | Equilíbrio 4 | Precisão 3 | Resistência 2 | Técnica 4",
+     "porque": "Cada ponto do contorno cai num anel; o número do anel é o valor.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia o Personagem 2",
+     "conta": "Agilidade 4 | Força 3 | Equilíbrio 5 | Precisão 4 | Resistência 4 | Técnica 1",
+     "porque": "Mesmo procedimento no segundo gráfico.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os valores até 3",
+     "conta": "P1: Precisão 3, Resistência 2 | P2: Força 3, Técnica 1 → 4 de 12",
+     "porque": "O \"igual a 3\" entra na conta: Precisão do 1 e Força do 2 valem exatamente 3.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a probabilidade",
+     "conta": "4/12 → 1/3",
+     "porque": "Favoráveis sobre as 12 habilidades possíveis; simplifique por 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "1/3 → alternativa B",
+     "porque": "É a chance de a habilidade sorteada valer no máximo 3.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1/3",
+   "checagem": "Pelo complementar: os valores maiores que 3 são 4, 5, 4, 4 no Personagem 1 e 4, 5, 4, 4 no Personagem 2, 8 de 12; 1 − 8/12 = 4/12 = 1/3.",
+   "erradas": {
+    "A": "1/2 não confere: exigiria 6 das 12 habilidades valendo no máximo 3, e a leitura dos gráficos dá só 4.",
+    "C": "1/6 sai de usar \"menor que 3\" e deixar de fora os valores iguais a 3: só Resistência 2 e Técnica 1, 2/12 = 1/6.",
+    "D": "5/6 não confere: exigiria 10 habilidades valendo no máximo 3, mas 8 das 12 valem 4 ou 5.",
+    "E": "5/12 não confere: exigiria 5 habilidades valendo no máximo 3, e são só 4 (Precisão e Resistência do 1, Força e Técnica do 2)."
+   },
+   "armadilha": "\"Menor ou igual a 3\" inclui os dois valores que são exatamente 3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de uma das 12 habilidades dos dois personagens, sorteada, valer no máximo 3.",
+    "chave": "Quatro valores até 3 (3, 2, 3 e 1) em 12: 4/12 = 1/3.",
+    "cuidado": "Conte os valores iguais a 3 e use as 12 habilidades no denominador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "8 das 12 habilidades valem 4 ou 5: P = 1 − 8/12 = 1/3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P1 até 3: Precisão 3, Resistência 2",
+    "nota": "2 valores"
+   },
+   {
+    "linha": "P2 até 3: Força 3, Técnica 1",
+    "nota": "2 valores"
+   },
+   {
+    "linha": "favoráveis: 2 + 2 = 4",
+    "nota": "somar os dois personagens"
+   },
+   {
+    "linha": "P = 4/12 = 1/3",
+    "nota": "simplificar por 4"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

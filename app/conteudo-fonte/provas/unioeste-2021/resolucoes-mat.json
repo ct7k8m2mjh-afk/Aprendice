@@ -198,5 +198,107 @@
    "data": "2026-11-13",
    "lote": "mat-0060"
   }
+ },
+ "Pc8f68a7f": {
+  "n": "67",
+  "conceito": "Contar soluções inteiras não negativas de x + y + z + w = 7 por combinação com repetição (pontos e barras).",
+  "equivocos": {
+   "A": "M13.3:esqueceu-as-barras",
+   "C": "M13.3:numero-de-barras-errado",
+   "D": "M13.3:contagem-sem-criterio",
+   "E": "M13.3:tratou-iguais-como-distintos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Pense no 7 como 7 bolinhas iguais repartidas entre 4 caixas (x, y, z, w), podendo sobrar caixa vazia. Três barras separam as quatro caixas. Cada solução é uma fila de 7 bolinhas e 3 barras, e basta escolher onde ficam as 3 barras entre as 10 posições.",
+    "formulas": [
+     "soluções = C(7 + 3, 3) = C(10, 3)",
+     "C(n, p) = n!/(p! · (n − p)!)"
+    ],
+    "simbolos": [
+     [
+      "inteiro não negativo",
+      "0, 1, 2, 3, ...; o zero é permitido"
+     ],
+     [
+      "C(n, p)",
+      "número de maneiras de escolher p posições entre n, sem importar a ordem"
+     ],
+     [
+      "pontos e barras",
+      "representar a soma como bolinhas separadas por barras"
+     ]
+    ]
+   },
+   "pista": "Represente uma solução como uma fila de bolinhas e separadores. Quantos separadores são precisos para 4 variáveis?",
+   "passos": [
+    {
+     "faz": "Traduza a equação em bolinhas e barras",
+     "conta": "x = 2, y = 0, z = 4, w = 1 → ●● | | ●●●● | ●",
+     "porque": "As bolinhas antes da 1ª barra são o x, entre a 1ª e a 2ª o y, e assim por diante; duas barras juntas significam uma variável igual a 0.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte as posições da fila",
+     "conta": "7 bolinhas + 3 barras = 10 posições",
+     "porque": "Para separar 4 variáveis bastam 3 barras.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha as posições das barras",
+     "conta": "C(10, 3) = (10 · 9 · 8)/(3 · 2 · 1) = 720/6 = 120",
+     "porque": "Cada escolha das 3 posições das barras dá exatamente uma solução, e cada solução dá uma fila.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "120 soluções → alternativa B",
+     "porque": "A pergunta é o número de soluções distintas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 120.",
+   "checagem": "Confira a regra num caso pequeno: x + y = 2 tem as soluções (0, 2), (1, 1), (2, 0), três ao todo, e a fórmula dá C(2 + 1, 1) = 3. Fecha.",
+   "erradas": {
+    "A": "35 sai de esquecer as barras na contagem de posições: C(7, 3) = 35 escolhe 3 entre as 7 bolinhas, mas a fila tem 7 + 3 = 10 posições.",
+    "C": "210 sai de usar 4 barras: C(10, 4) = 210. Para 4 variáveis bastam 3 barras.",
+    "D": "840 não confere: x, y e z valem cada um de 0 a 7 e o w fica determinado, então há no máximo 8 · 8 · 8 = 512 soluções, menos que 840.",
+    "E": "7! = 5040 não confere: contaria as 7 unidades como se fossem diferentes entre si, mas elas são iguais, e o total de filas é 120."
+   },
+   "armadilha": "Contar só as bolinhas (C(7, 3)) e esquecer que as barras também ocupam posições na fila.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de soluções inteiras não negativas de x + y + z + w = 7.",
+    "chave": "Pontos e barras: 7 bolinhas e 3 barras, C(10, 3) = 120.",
+    "cuidado": "4 variáveis pedem 3 barras, e a fila tem 7 + 3 posições."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "permutação com repetição",
+    "ideia": "10!/(7! · 3!) = 120 filas de 7 bolinhas e 3 barras"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "7 bolinhas + 3 barras = 10 posições",
+    "nota": "fila que representa a solução"
+   },
+   {
+    "linha": "C(10, 3) = 720/6 = 120",
+    "nota": "escolhe onde ficam as barras"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

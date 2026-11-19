@@ -413,5 +413,100 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "P25279bc3": {
+  "n": "41",
+  "conceito": "Número de equipes de 3 médicos entre 6, sem função: C(6, 3).",
+  "equivocos": {
+   "B": "M13.3:tamanho-do-grupo-trocado",
+   "C": "M13.3:divisao-pela-ordem-errada",
+   "D": "M13.3:arranjo-no-lugar-de-combinacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A equipe é só um grupo de 3 médicos, sem cargo para cada um: trocar a ordem dos mesmos três não cria equipe nova. Por isso a conta é combinação de 6 tomados 3 a 3: o produto 6 × 5 × 4 conta cada equipe em todas as suas ordens, e é preciso dividir por 3!.",
+    "formulas": [
+     "C(n, k) = (n × (n − 1) × ... (k fatores))/k!"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "combinação: número de grupos de k elementos escolhidos entre n, sem importar a ordem"
+     ],
+     [
+      "3!",
+      "fatorial: 3 × 2 × 1 = 6, as ordens de 3 pessoas"
+     ]
+    ]
+   },
+   "pista": "Pergunte se a equipe Ana, Bia e Caio é diferente da equipe Caio, Ana e Bia.",
+   "passos": [
+    {
+     "faz": "Decida se a ordem importa",
+     "conta": "equipe sem função → combinação",
+     "porque": "As três vagas da equipe são iguais; só importa quem está nela.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte as escolhas em ordem",
+     "conta": "6 × 5 × 4 = 120",
+     "porque": "Seis opções para o primeiro escolhido, cinco para o segundo, quatro para o terceiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire as ordens repetidas",
+     "conta": "C(6, 3) = 120/(3 × 2 × 1) → 120/6 → 20",
+     "porque": "Cada equipe apareceu 3! = 6 vezes na contagem ordenada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "20 → alternativa A",
+     "porque": "Podem ser formadas 20 equipes diferentes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 20",
+   "checagem": "Pela regra de Pascal, fixando um médico: as equipes com ele são C(5, 2) = 10 (escolhem-se os outros 2 entre 5) e as sem ele são C(5, 3) = 10; 10 + 10 = 20. Fecha.",
+   "erradas": {
+    "B": "30 sai de 6 × 5 = 30, escolhendo só dois médicos em ordem; a equipe tem três.",
+    "C": "60 sai de dividir 120 por 2 em vez de 3! = 6: a contagem ordenada de 3 pessoas repete cada equipe 6 vezes, não 2.",
+    "D": "120 sai de não dividir por 3!: 6 × 5 × 4 = 120 conta a mesma equipe em suas 6 ordens."
+   },
+   "armadilha": "A equipe não tem cargos: sem dividir por 3!, a conta conta cada equipe seis vezes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas equipes de 3 podem sair de 6 médicos.",
+    "chave": "C(6, 3) = (6 × 5 × 4)/3! = 20.",
+    "cuidado": "Divida pelas ordens dos três escolhidos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "regra de Pascal",
+    "ideia": "C(6, 3) = C(5, 2) + C(5, 3) = 10 + 10: equipes com ou sem um médico fixo"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6 × 5 × 4 = 120",
+    "nota": "escolhas em ordem"
+   },
+   {
+    "linha": "120/6 = 20",
+    "nota": "divide pelas 3! ordens de cada equipe"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

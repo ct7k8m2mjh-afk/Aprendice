@@ -565,5 +565,117 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pcb403b49": {
+  "n": "15",
+  "conceito": "Combinação com \"pelo menos\": somar os casos de 3, 4 e 5 vereadores numa comissão de 5.",
+  "equivocos": {
+   "A": "M13.3:valor-menor-que-um-dos-casos",
+   "C": "M13.3:valor-menor-que-um-dos-casos",
+   "D": "M13.3:pelo-menos-lido-como-exatamente",
+   "E": "M13.3:valor-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Pelo menos 3 vereadores\" quer dizer 3, 4 ou 5 vereadores. Cada caso é uma conta separada (vereadores escolhidos entre 5 e o resto da comissão entre os 4 deputados), e no fim os casos se somam, porque uma comissão está em um caso só. Comissão não tem ordem: é combinação.",
+    "formulas": [
+     "C(n, k) = (n × (n − 1) × ... (k fatores))/k!",
+     "casos que se excluem: some"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "combinação: número de grupos de k elementos escolhidos entre n, sem importar a ordem"
+     ],
+     [
+      "pelo menos 3",
+      "3 ou mais"
+     ]
+    ]
+   },
+   "pista": "Liste quantos vereadores e quantos deputados a comissão pode ter, caso a caso.",
+   "passos": [
+    {
+     "faz": "Liste os casos possíveis",
+     "conta": "3 vereadores + 2 deputados | 4 + 1 | 5 + 0",
+     "porque": "A comissão tem 5 membros e no mínimo 3 vereadores; há só 5 vereadores, então o máximo é 5.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte o caso de 3 vereadores",
+     "conta": "C(5, 3) × C(4, 2) = 10 × 6 → 60",
+     "porque": "Três vereadores entre 5 (10 jeitos) e dois deputados entre 4 (6 jeitos).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os casos de 4 e de 5",
+     "conta": "C(5, 4) × C(4, 1) = 5 × 4 → 20 | C(5, 5) = 1",
+     "porque": "Quatro vereadores e um deputado; ou os cinco vereadores, um jeito só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os casos",
+     "conta": "60 + 20 + 1 = 81",
+     "porque": "Cada comissão cai em exatamente um caso, então os totais se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "81 → alternativa B",
+     "porque": "O número de comissões é 81.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 81",
+   "checagem": "Pelo complemento: C(9, 5) = 126 comissões ao todo; as que têm menos de 3 vereadores são C(5, 2) × C(4, 3) + C(5, 1) × C(4, 4) = 40 + 5 = 45. 126 − 45 = 81. Fecha.",
+   "erradas": {
+    "A": "12 não confere: só o caso de exatamente 3 vereadores já dá 10 × 6 = 60 comissões, mais que 12.",
+    "C": "5 não confere: só o caso de 4 vereadores já dá C(5, 4) × C(4, 1) = 20 comissões, e o de 3 vereadores dá 60.",
+    "D": "60 sai de contar só o caso de exatamente 3 vereadores e esquecer os casos de 4 e de 5 vereadores, que também satisfazem \"pelo menos 3\".",
+    "E": "84 não confere: das C(9, 5) = 126 comissões possíveis, as que têm menos de 3 vereadores são C(5, 2) × C(4, 3) + C(5, 1) × C(4, 4) = 40 + 5 = 45; para sobrarem 84, as proibidas teriam de ser só 42."
+   },
+   "armadilha": "\"Pelo menos 3\" inclui 4 e 5 vereadores: quem conta só o caso de exatamente 3 para em 60.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas comissões de 5 têm 3 ou mais vereadores.",
+    "chave": "Soma dos casos: 60 + 20 + 1 = 81 (ou 126 − 45).",
+    "cuidado": "Não pare no caso de 3 vereadores."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complemento",
+    "ideia": "total C(9, 5) = 126 menos as comissões com 0, 1 ou 2 vereadores (0 + 5 + 40 = 45) dá 81"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(5, 3) × C(4, 2) = 10 × 6 = 60",
+    "nota": "3 vereadores e 2 deputados"
+   },
+   {
+    "linha": "C(5, 4) × C(4, 1) = 5 × 4 = 20",
+    "nota": "4 vereadores e 1 deputado"
+   },
+   {
+    "linha": "C(5, 5) = 1",
+    "nota": "só vereadores"
+   },
+   {
+    "linha": "60 + 20 + 1 = 81",
+    "nota": "soma dos casos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

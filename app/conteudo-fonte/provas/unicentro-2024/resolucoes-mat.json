@@ -419,5 +419,103 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "Pe2b1f9ba": {
+  "n": "72",
+  "conceito": "Escolher uma comissão sem funções: combinação simples.",
+  "equivocos": {
+   "B": "M13.3:dividiu-pelo-fatorial-errado",
+   "C": "M13.3:contagem-sem-criterio",
+   "D": "M13.3:tamanho-do-grupo-errado",
+   "E": "M13.3:usou-arranjo-no-lugar-de-combinacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A frase \"independentemente da função de cada membro\" diz que a ordem não importa: a comissão {A, B, C} é a mesma que {C, A, B}. Então a contagem é por combinação de 23 vereadores tomados 3 a 3.",
+    "formulas": [
+     "C(n, p) = n!/(p! · (n − p)!)",
+     "C(23, 3) = (23 · 22 · 21)/(3 · 2 · 1)"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "número de grupos de p pessoas escolhidas entre n, sem importar a ordem"
+     ],
+     [
+      "n!",
+      "fatorial: n · (n − 1) · ... · 2 · 1"
+     ]
+    ]
+   },
+   "pista": "Pergunte se trocar dois membros de lugar muda a comissão.",
+   "passos": [
+    {
+     "faz": "Decida se a ordem importa",
+     "conta": "sem funções → ordem não importa → combinação",
+     "porque": "Os membros não têm cargos distintos na contagem, então só interessa quem está no grupo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte as sequências de 3 vereadores",
+     "conta": "23 · 22 · 21 = 10626",
+     "porque": "Primeiro escolhido: 23 opções; segundo: 22; terceiro: 21. Essa conta ainda distingue a ordem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelas ordens de um mesmo grupo",
+     "conta": "10626/(3 · 2 · 1) = 10626/6 = 1771",
+     "porque": "Cada comissão apareceu 3! = 6 vezes, uma para cada ordem dos mesmos três vereadores.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "1771 → alternativa A",
+     "porque": "A pergunta é o número de comissões diferentes, sem considerar funções.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1771 maneiras.",
+   "checagem": "Simplifique antes de multiplicar: (23 · 22 · 21)/6 = 23 · (22/2) · (21/3) = 23 · 11 · 7 = 1771, o mesmo valor.",
+   "erradas": {
+    "B": "5313 sai de dividir o arranjo por 2 em vez de 3! = 6: 10626/2 = 5313. Três pessoas podem ser ordenadas de 6 jeitos, não de 2.",
+    "C": "7026 não confere: se fosse o número de comissões, 7026 · 6 = 42156 seriam as sequências ordenadas, mas elas são 23 · 22 · 21 = 10626.",
+    "D": "8855 sai de C(23, 4) = 8855: é o número de comissões de 4 membros, mas a comissão tem 3.",
+    "E": "10626 sai de usar arranjo: 23 · 22 · 21 = 10626 conta cada comissão 6 vezes, como se a função de cada membro importasse."
+   },
+   "armadilha": "Usar arranjo (10626) quando o enunciado diz que a função de cada membro não importa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de comissões de 3 vereadores entre 23, sem funções.",
+    "chave": "C(23, 3) = 10626/6 = 1771.",
+    "cuidado": "Sem funções, divida pelas 3! = 6 ordens de cada grupo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula direta",
+    "ideia": "C(23, 3) = 23!/(3! · 20!) = 1771"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "23 · 22 · 21 = 10626",
+    "nota": "sequências ordenadas de 3 vereadores"
+   },
+   {
+    "linha": "10626/6 = 1771",
+    "nota": "divide pelas 3! = 6 ordens do mesmo grupo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

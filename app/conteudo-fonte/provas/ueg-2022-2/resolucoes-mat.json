@@ -825,5 +825,103 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pa5731620": {
+  "n": "16",
+  "conceito": "Contar lanches com dois formatos possíveis: combinação em cada formato e soma dos casos.",
+  "equivocos": {
+   "B": "M13.3:esqueceu-um-caso",
+   "C": "M13.3:esqueceu-uma-escolha",
+   "D": "M13.3:contou-ordem",
+   "E": "M13.3:multiplicou-casos-que-somam"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O lanche tem dois formatos que se excluem: 2 frutas e 1 bebida, ou 1 fruta e 2 bebidas. Em cada formato, a ordem dos itens não importa (é um lanche, não uma fila), então é combinação. O \"ou\" entre os formatos manda somar.",
+    "formulas": [
+     "C(n, p) = número de grupos de p itens entre n, sem ordem",
+     "\"e\" multiplica; \"ou\" soma"
+    ],
+    "simbolos": [
+     [
+      "C(4, 2)",
+      "pares de frutas escolhidos entre 4: 6"
+     ]
+    ]
+   },
+   "pista": "Conte cada formato separado; só depois junte.",
+   "passos": [
+    {
+     "faz": "Conte 2 frutas e 1 bebida",
+     "conta": "C(4, 2) × C(2, 1) = 6 × 2 = 12",
+     "porque": "Escolhe-se o par de frutas E a bebida: multiplica.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte 1 fruta e 2 bebidas",
+     "conta": "C(4, 1) × C(2, 2) = 4 × 1 = 4",
+     "porque": "Só há duas bebidas, então as duas entram juntas; a fruta sai entre 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois formatos",
+     "conta": "12 + 4 = 16",
+     "porque": "O lanche é de um formato OU do outro: os casos se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "16 lanches → alternativa A",
+     "porque": "É o número de lanches diferentes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 16 maneiras",
+   "checagem": "Pelo total: escolher 3 itens entre os 6 dá C(6, 3) = 20; tire os que fogem da regra, 3 frutas sem bebida: C(4, 3) = 4. 20 − 4 = 16 (3 bebidas é impossível, só há 2).",
+   "erradas": {
+    "B": "12 sai de contar só o formato 2 frutas + 1 bebida: 6 × 2 = 12, esquecendo 1 fruta + 2 bebidas.",
+    "C": "6 sai de contar só os pares de frutas, C(4, 2) = 6, sem multiplicar pela bebida e sem o segundo formato.",
+    "D": "32 sai de contar a ordem dos itens: 4 × 3 × 2 = 24 e 4 × 2 × 1 = 8, total 32. No lanche a ordem não importa.",
+    "E": "48 sai de multiplicar os formatos em vez de somar: 12 × 4 = 48. O lanche é de um formato ou do outro."
+   },
+   "armadilha": "Os dois formatos são alternativos (\"ou\"): somam, não multiplicam.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos lanches de 3 itens, com 2 frutas e 1 bebida ou 1 fruta e 2 bebidas.",
+    "chave": "6 × 2 + 4 × 1 = 12 + 4 = 16.",
+    "cuidado": "Some os formatos e não conte ordem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complemento",
+    "ideia": "C(6, 3) − C(4, 3) = 20 − 4 = 16: tira os lanches só de frutas."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(4, 2) × C(2, 1) = 6 × 2 = 12",
+    "nota": "2 frutas e 1 bebida"
+   },
+   {
+    "linha": "C(4, 1) × C(2, 2) = 4 × 1 = 4",
+    "nota": "1 fruta e 2 bebidas"
+   },
+   {
+    "linha": "12 + 4 = 16",
+    "nota": "\"ou\" soma"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

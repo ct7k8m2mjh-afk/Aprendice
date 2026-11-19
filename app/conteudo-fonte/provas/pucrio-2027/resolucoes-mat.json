@@ -777,5 +777,189 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P7f88186b": {
+  "n": "16",
+  "conceito": "Probabilidade com princípio multiplicativo: senhas favoráveis sobre senhas válidas, com letras distintas.",
+  "equivocos": {
+   "B": "M13.4:esqueceu-uma-condicao",
+   "C": "M13.4:contagem-sem-base",
+   "D": "M13.4:multiplicou-casos-em-vez-de-probabilidade",
+   "E": "M13.4:esqueceu-uma-condicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Conte as senhas válidas pelo princípio multiplicativo: 26 letras para a primeira, 25 para a segunda (tem de ser distinta) e 10 algarismos. Nas favoráveis a primeira letra é fixa (A), a segunda é qualquer outra e o algarismo é par.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "princípio multiplicativo: etapas independentes se multiplicam"
+    ],
+    "simbolos": [
+     [
+      "letras distintas",
+      "a segunda letra não pode repetir a primeira"
+     ]
+    ]
+   },
+   "pista": "Conte as senhas válidas e as favoráveis casa por casa, respeitando a regra das letras distintas.",
+   "passos": [
+    {
+     "faz": "Conte as senhas válidas",
+     "conta": "26 · 25 · 10 → 6500 senhas",
+     "porque": "A segunda letra tem 25 opções porque não pode repetir a primeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as senhas favoráveis",
+     "conta": "1 (A) · 25 · 5 (0, 2, 4, 6, 8) → 125 senhas",
+     "porque": "A primeira casa é A; a segunda pode ser qualquer uma das outras 25; o algarismo par tem 5 opções.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "125/6500 → (125 ÷ 125)/(6500 ÷ 125) → 1/52",
+     "porque": "6500 ÷ 125 = 52, então a fração fica 1/52.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1/52",
+   "checagem": "Por casas independentes: a primeira letra é A com chance 1/26 e o algarismo é par com chance 5/10 = 1/2, sem relação entre as duas casas. (1/26) · (1/2) = 1/52.",
+   "erradas": {
+    "B": "1/26 sai de olhar só a primeira letra: P(começar com A) = 1/26, esquecendo o algarismo par.",
+    "C": "5/52 não confere: 5/52 de 6500 são 625 senhas, e com A na frente e algarismo par só existem 1 · 25 · 5 = 125.",
+    "D": "5/26 sai de multiplicar 1/26 pelas 5 opções pares, em vez de pela chance 5/10 de o algarismo ser par.",
+    "E": "1/2 sai de olhar só o algarismo: 5 pares em 10. Faltou exigir a letra A na frente."
+   },
+   "armadilha": "As duas condições têm de valer juntas: a chance da letra A (1/26) multiplica a chance do par (1/2).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de a senha começar com A e terminar com algarismo par.",
+    "chave": "Favoráveis 1 · 25 · 5 = 125 sobre 26 · 25 · 10 = 6500: 1/52.",
+    "cuidado": "Use 5/10 para o par, não 5, e não esqueça nenhuma das duas condições."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "probabilidades por casa",
+    "ideia": "P(A na 1ª) · P(par) = (1/26) · (1/2) = 1/52"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "26 · 25 · 10 = 6500",
+    "nota": "senhas válidas"
+   },
+   {
+    "linha": "1 · 25 · 5 = 125",
+    "nota": "A na frente e algarismo par"
+   },
+   {
+    "linha": "125/6500 = 1/52",
+    "nota": "simplificar por 125"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
+ },
+ "P1e824fac": {
+  "n": "18",
+  "conceito": "Probabilidade com retirada simultânea: grupos de três bolas, uma de cada cor, contados por combinação.",
+  "equivocos": {
+   "A": "M13.4:contagem-sem-base",
+   "C": "M13.4:contagem-sem-base",
+   "D": "M13.4:contagem-sem-base",
+   "E": "M13.4:contagem-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Retirar três bolas ao mesmo tempo é escolher um grupo sem ordem: o total é C(12, 3). Três cores diferentes, com três cores disponíveis, quer dizer uma bola de cada cor: escolha uma vermelha, uma azul e uma branca.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "C(n, p) = n! ÷ (p! · (n − p)!)"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "número de grupos de p elementos escolhidos entre n, sem ordem"
+     ]
+    ]
+   },
+   "pista": "Traduza \"três cores diferentes\" no que cada bola tem de ser.",
+   "passos": [
+    {
+     "faz": "Conte os grupos possíveis",
+     "conta": "C(12, 3) = (12 · 11 · 10)/(3 · 2 · 1) → 1320/6 → 220",
+     "porque": "São 5 + 4 + 3 = 12 bolas, e retirar simultaneamente não tem ordem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os grupos com uma de cada cor",
+     "conta": "5 vermelhas · 4 azuis · 3 brancas → 60 grupos",
+     "porque": "Cada grupo favorável tem exatamente uma bola de cada cor; as três escolhas se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "60/220 → (60 ÷ 20)/(220 ÷ 20) → 3/11",
+     "porque": "Favoráveis sobre possíveis, simplificando por 20.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 3/11",
+   "checagem": "Em sequência: a 1ª bola é qualquer uma; a 2ª tem de ser de outra cor e a 3ª da cor que falta. Somando as 3! = 6 ordens de cores: 6 · (5/12) · (4/11) · (3/10) = 360/1320 = 3/11.",
+   "erradas": {
+    "A": "1/5 não confere: 1/5 de 220 são 44 grupos, e com uma bola de cada cor há 5 · 4 · 3 = 60.",
+    "C": "2/13 não confere: o total de grupos é 220, que não tem fator 13; nenhuma contagem sobre 220 dá denominador 13.",
+    "D": "5/17 não confere: o total de grupos é 220, que não tem fator 17; nenhuma contagem sobre 220 dá denominador 17.",
+    "E": "6/37 não confere: o total de grupos é 220, que não tem fator 37; nenhuma contagem sobre 220 dá denominador 37."
+   },
+   "armadilha": "Misturar contagem ordenada com não ordenada: 60 grupos sobre 1320 sequências daria 1/22. Use os dois sem ordem (60 e 220) ou os dois com ordem (360 e 1320).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de três bolas retiradas juntas terem três cores diferentes.",
+    "chave": "Uma de cada cor: 5 · 4 · 3 = 60 sobre C(12, 3) = 220: 3/11.",
+    "cuidado": "Conte favoráveis e possíveis do mesmo jeito: os dois sem ordem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sorteio em sequência",
+    "ideia": "6 ordens de cores · (5/12)(4/11)(3/10) = 360/1320 = 3/11"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(12, 3) = 220",
+    "nota": "grupos possíveis"
+   },
+   {
+    "linha": "5 · 4 · 3 = 60",
+    "nota": "uma bola de cada cor"
+   },
+   {
+    "linha": "60/220 = 3/11",
+    "nota": "simplificar por 20"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

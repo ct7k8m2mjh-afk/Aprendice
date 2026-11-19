@@ -419,5 +419,116 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "Pc9fcc516": {
+  "n": "38",
+  "conceito": "Contagem por etapas: médicos com funções distintas (arranjo) e enfermeiros e atendentes sem função (combinação).",
+  "equivocos": {
+   "B": "M13.3:combinacao-no-lugar-de-arranjo",
+   "C": "M13.3:produto-de-etapas-errado",
+   "D": "M13.3:esqueceu-uma-etapa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois médicos não são iguais na equipe: um vai para a UTI e outro para o pronto-socorro, então trocar os dois dá outra equipe e a ordem importa. Enfermeiros e atendentes não têm função própria: aí a ordem não importa. As três escolhas são independentes e se multiplicam.",
+    "formulas": [
+     "função diferente para cada escolhido: arranjo, n × (n − 1) × ...",
+     "sem função: combinação, C(n, k)",
+     "\"e\" entre etapas: multiplique"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "combinação: número de grupos de k elementos escolhidos entre n, sem importar a ordem"
+     ],
+     [
+      "arranjo",
+      "escolha em que a ordem (ou a função) dos escolhidos importa"
+     ]
+    ]
+   },
+   "pista": "Pergunte, para cada grupo, se trocar duas pessoas de lugar muda a equipe.",
+   "passos": [
+    {
+     "faz": "Escolha os médicos com função",
+     "conta": "UTI: 5 | pronto-socorro: 4 → 5 × 4 = 20",
+     "porque": "Escolhido o da UTI, sobram 4 para o pronto-socorro; trocar os dois muda a equipe.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha os 3 enfermeiros",
+     "conta": "C(4, 3) = 4",
+     "porque": "Três de quatro, sem função: é o mesmo que escolher o que fica de fora.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha os 2 atendentes",
+     "conta": "C(4, 2) = (4 × 3)/2 → 6",
+     "porque": "Dois de quatro, sem ordem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as etapas",
+     "conta": "20 × 4 × 6 = 480",
+     "porque": "Cada dupla de médicos combina com cada trio de enfermeiros e cada par de atendentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "480 → alternativa A",
+     "porque": "O diretor pode formar 480 equipes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 480",
+   "checagem": "Pelo caminho sem função: C(5, 2) = 10 pares de médicos, e cada par pode ser distribuído de 2 maneiras entre UTI e pronto-socorro, 10 × 2 = 20; 20 × 4 × 6 = 480. Fecha.",
+   "erradas": {
+    "B": "240 sai de escolher os médicos como par sem função: C(5, 2) × C(4, 3) × C(4, 2) = 10 × 4 × 6 = 240, ignorando que UTI e pronto-socorro são postos diferentes.",
+    "C": "140 não confere: as etapas valem 20, 4 e 6, com produto 480; nem tirando nem trocando uma etapa se chega a 140, já que 480/140 ≈ 3,43 não é inteiro.",
+    "D": "120 sai de esquecer os enfermeiros: 20 × 6 = 120, sem multiplicar pelas 4 escolhas de 3 enfermeiros."
+   },
+   "armadilha": "A frase \"um médico para a UTI e outro para o pronto-socorro\" torna a ordem dos médicos importante: tratar como par simples divide o total por 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas equipes de 2 médicos (com postos distintos), 3 enfermeiros e 2 atendentes.",
+    "chave": "5 × 4 × C(4, 3) × C(4, 2) = 20 × 4 × 6 = 480.",
+    "cuidado": "Médicos com postos diferentes: a ordem conta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "par e distribuição",
+    "ideia": "C(5, 2) = 10 pares × 2 jeitos de pôr na UTI e no pronto-socorro = 20, depois × 4 × 6"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "5 × 4 = 20",
+    "nota": "médico da UTI e do pronto-socorro"
+   },
+   {
+    "linha": "C(4, 3) = 4",
+    "nota": "trios de enfermeiros"
+   },
+   {
+    "linha": "C(4, 2) = (4 × 3)/2 = 6",
+    "nota": "pares de atendentes"
+   },
+   {
+    "linha": "20 × 4 × 6 = 480",
+    "nota": "as etapas se multiplicam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

@@ -1032,5 +1032,110 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "P38550123": {
+  "n": "45",
+  "conceito": "Ler no quadro de resultados quantos jogadores venceram ao menos uma partida e dividir pelo total de jogadores.",
+  "equivocos": {
+   "A": "M14.2:empate-lido-como-vitoria",
+   "C": "M14.2:leitura-de-tabela-errada",
+   "D": "M13.6:pelo-menos-lido-como-mais-de-um",
+   "E": "M13.6:parou-no-complementar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O quadro se lê pela linha: a letra mostra o resultado do jogador daquela linha contra o jogador da coluna. Um jogador venceu pelo menos uma partida se aparece ao menos um V na linha dele. Depois, a probabilidade é o número desses jogadores sobre os 5 competidores.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis"
+    ],
+    "simbolos": [
+     [
+      "V",
+      "vitória do jogador da linha"
+     ],
+     [
+      "E",
+      "empate"
+     ],
+     [
+      "D",
+      "derrota do jogador da linha"
+     ]
+    ]
+   },
+   "pista": "Percorra cada linha do quadro procurando a letra V.",
+   "passos": [
+    {
+     "faz": "Leia a linha de cada jogador",
+     "conta": "Alice: D, E, V, E | Bruno: V, D, V, V | Carla: E, V, D, V | Diego: D, D, V, E | Elias: E, D, D, E",
+     "porque": "Cada linha mostra os quatro jogos daquele jogador.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte as vitórias de cada um",
+     "conta": "Alice: 1 | Bruno: 3 | Carla: 2 | Diego: 1 | Elias: 0",
+     "porque": "Elias só tem empates e derrotas: é o único sem V.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a probabilidade",
+     "conta": "favoráveis: 4 | possíveis: 5 → 4/5 = 0,8",
+     "porque": "Quatro dos cinco jogadores venceram pelo menos uma partida.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "0,8 → alternativa B",
+     "porque": "É a chance pedida, escrita em decimal como nas alternativas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 0,8",
+   "checagem": "Pelo complementar: só Elias não venceu nenhuma partida, chance 1/5 = 0,2; logo, 1 − 0,2 = 0,8.",
+   "erradas": {
+    "A": "1,0 sai de contar empate como vitória: Elias tem dois empates e passaria a contar, dando 5/5. Mas E é empate, não vitória.",
+    "C": "0,6 não confere: seriam 3 jogadores com vitória, mas só Elias não tem V na linha; Alice e Diego venceram uma vez cada.",
+    "D": "0,4 sai de contar só quem venceu mais de uma partida, Bruno e Carla: 2/5 = 0,4. \"Pelo menos uma\" inclui quem venceu exatamente uma.",
+    "E": "0,2 sai de calcular o complementar e parar nele: só Elias não venceu, 1/5 = 0,2. Faltou fazer 1 − 0,2."
+   },
+   "armadilha": "\"Pelo menos uma vitória\" inclui quem venceu só uma vez (Alice e Diego) e exclui os empates.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de um dos 5 jogadores, escolhido ao acaso, ter vencido pelo menos uma partida.",
+    "chave": "Só Elias não tem V na linha: 4/5 = 0,8.",
+    "cuidado": "Leia pela linha e não conte empate como vitória."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "Só Elias não venceu: P = 1 − 1/5 = 0,8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "sem vitória: Elias",
+    "nota": "nenhum V na linha"
+   },
+   {
+    "linha": "com vitória: 5 − 1 = 4",
+    "nota": "complementar dos que não venceram"
+   },
+   {
+    "linha": "P = 4/5 = 0,8",
+    "nota": "favoráveis sobre possíveis"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

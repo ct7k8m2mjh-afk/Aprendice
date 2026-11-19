@@ -872,5 +872,112 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P0cece36f": {
+  "n": "24",
+  "conceito": "Contar pontos de interseção de retas determinadas por pontos, descontando os que caem nos próprios pontos.",
+  "equivocos": {
+   "A": "M13.3:nao-descontou-casos-repetidos",
+   "B": "M13.3:contagem-sem-criterio",
+   "D": "M13.3:contagem-sem-criterio",
+   "E": "M13.3:parou-numa-etapa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada par de pontos de A determina uma reta, e como nenhuma reta é paralela a outra, cada par de retas se cruza. O máximo acontece quando os cruzamentos não se repetem. Mas as retas que passam pelo mesmo ponto de A se cruzam nesse ponto, e esses cruzamentos não contam: é preciso descontá-los.",
+    "formulas": [
+     "número de retas = C(9, 2)",
+     "pares de retas = C(36, 2)",
+     "em cada ponto de A passam 8 retas: C(8, 2) pares se cruzam ali"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "número de grupos de p elementos escolhidos entre n, sem importar a ordem"
+     ],
+     [
+      "A",
+      "o conjunto dos 9 pontos dados"
+     ]
+    ]
+   },
+   "pista": "Conte primeiro todos os cruzamentos possíveis; depois veja quais deles caem em cima de um ponto de A.",
+   "passos": [
+    {
+     "faz": "Conte as retas",
+     "conta": "C(9, 2) = (9 · 8)/2 = 36",
+     "porque": "Cada reta é determinada por um par de pontos; no caso máximo, nenhum três pontos estão alinhados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte todos os pares de retas",
+     "conta": "C(36, 2) = (36 · 35)/2 = 630",
+     "porque": "Sem paralelas, cada par de retas se cruza em um ponto; no caso máximo, cruzamentos diferentes não coincidem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os cruzamentos em pontos de A",
+     "conta": "9 · C(8, 2) = 9 · 28 = 252",
+     "porque": "Por cada ponto de A passam 8 retas (uma para cada um dos outros 8 pontos), e os 28 pares dessas retas se cruzam exatamente nesse ponto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte e conclua",
+     "conta": "630 − 252 = 378 → alternativa C",
+     "porque": "Sobram os cruzamentos que não coincidem com nenhum ponto de A, que é o que a questão pede.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 378 pontos.",
+   "checagem": "Conte por quartetos: 4 pontos de A formam 3 maneiras de separar em dois pares, e cada separação dá um cruzamento fora de A (a reta de um par com a reta do outro). Então 3 · C(9, 4) = 3 · 126 = 378.",
+   "erradas": {
+    "A": "630 sai de contar todos os pares de retas, C(36, 2) = 630, sem descontar os 252 cruzamentos que caem nos próprios pontos de A.",
+    "B": "452 não confere: o desconto é o mesmo nos 9 pontos, então tem de ser múltiplo de 9; 630 − 452 = 178 não é.",
+    "D": "352 não confere: 630 − 352 = 278, que não é múltiplo de 9, e o desconto (28 por ponto, em 9 pontos) tem de ser.",
+    "E": "28 sai de C(8, 2) = 28: é o número de cruzamentos que caem em um único ponto de A, não o número pedido."
+   },
+   "armadilha": "Esquecer que as retas que saem do mesmo ponto de A se cruzam nele, e marcar os 630 pares de retas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número máximo de cruzamentos das retas fora dos 9 pontos de A.",
+    "chave": "630 pares de retas menos 9 · 28 = 252 cruzamentos sobre A: 378.",
+    "cuidado": "Todo par de retas que compartilha um ponto de A se cruza nesse ponto: desconte."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "quartetos",
+    "ideia": "cada 4 pontos geram 3 cruzamentos fora de A: 3 · C(9, 4) = 378"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(9, 2) = (9 · 8)/2 = 36",
+    "nota": "retas determinadas pelos 9 pontos"
+   },
+   {
+    "linha": "C(36, 2) = (36 · 35)/2 = 630",
+    "nota": "pares de retas, todos se cruzam"
+   },
+   {
+    "linha": "9 · C(8, 2) = 9 · 28 = 252",
+    "nota": "cruzamentos que caem em pontos de A"
+   },
+   {
+    "linha": "630 − 252 = 378",
+    "nota": "sobra o que está fora de A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

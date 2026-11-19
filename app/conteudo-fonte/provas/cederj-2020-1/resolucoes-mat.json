@@ -407,5 +407,113 @@
    "data": "2026-11-13",
    "lote": "mat-0062"
   }
+ },
+ "P32780980": {
+  "n": "43",
+  "conceito": "Contar os múltiplos de 7 entre 1 e 2019 e dividir pelo total de elementos do conjunto.",
+  "equivocos": {
+   "A": "M13.4:esqueceu-o-mais-um-da-pa",
+   "C": "M13.4:incluiu-o-zero",
+   "D": "M13.4:contagem-de-multiplos-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Probabilidade aqui é contagem: casos favoráveis (múltiplos de 7) sobre casos possíveis (os 2019 números). O trabalho real é contar os múltiplos de 7 sem errar por um. Eles são 7 × 1, 7 × 2, ..., até o maior 7 × k que não passa de 2019; então a quantidade é a parte inteira de 2019 ÷ 7.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "múltiplos de 7 de 1 a N = parte inteira de N ÷ 7"
+    ],
+    "simbolos": [
+     [
+      "ℕ",
+      "conjunto dos números naturais"
+     ],
+     [
+      "X",
+      "o conjunto dos naturais de 1 a 2019, com 2019 elementos"
+     ],
+     [
+      "múltiplo de 7",
+      "número da forma 7 × k, com k natural"
+     ]
+    ]
+   },
+   "pista": "Antes de dividir, descubra qual é o maior múltiplo de 7 que ainda cabe até 2019.",
+   "passos": [
+    {
+     "faz": "Conte os casos possíveis",
+     "conta": "X = {1, 2, ..., 2019} → 2019 elementos",
+     "porque": "De 1 a 2019 há exatamente 2019 números, e todos têm a mesma chance de sair.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o maior múltiplo de 7 até 2019",
+     "conta": "2019 ÷ 7 = 288, resto 3 → 7 × 288 = 2016",
+     "porque": "Como sobra resto 3, o múltiplo seguinte, 2023, já passa de 2019.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os múltiplos de 7",
+     "conta": "7 × 1, 7 × 2, ..., 7 × 288 → 288 múltiplos",
+     "porque": "Cada múltiplo corresponde a um k de 1 a 288; contar os múltiplos é contar esses k.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a probabilidade",
+     "conta": "favoráveis/possíveis → 288/2019 → alternativa B",
+     "porque": "Os 288 múltiplos são os favoráveis e os 2019 números são os possíveis.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 288/2019",
+   "checagem": "Pela fórmula do número de termos da PA 7, 14, ..., 2016: n = (2016 − 7) ÷ 7 + 1 = 287 + 1 = 288. Mesmo resultado.",
+   "erradas": {
+    "A": "287/2019 sai de usar a fórmula da PA e esquecer o + 1: (2016 − 7) ÷ 7 = 287. O termo geral conta os intervalos; os termos são um a mais.",
+    "C": "289/2019 sai de incluir o 0 como múltiplo: de 0 a 2016 há 289 múltiplos de 7, mas X começa em 1.",
+    "D": "300/2019 não confere: o 300º múltiplo de 7 é 7 × 300 = 2100, que passa de 2019."
+   },
+   "armadilha": "Errar por um na contagem: o + 1 da PA esquecido ou o 0 contado como elemento de X.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de um número sorteado de 1 a 2019 ser múltiplo de 7.",
+    "chave": "2019 ÷ 7 dá 288 com resto 3: há 288 múltiplos, e a probabilidade é 288/2019.",
+    "cuidado": "O 0 não está em X; e na fórmula da PA não esqueça o + 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "PA",
+    "ideia": "Os múltiplos 7, 14, ..., 2016 formam uma PA de razão 7: n = (2016 − 7) ÷ 7 + 1 = 288."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2019 ÷ 7 = 288, resto 3",
+    "nota": "dividir o limite por 7"
+   },
+   {
+    "linha": "7 × 288 = 2016 ≤ 2019",
+    "nota": "maior múltiplo que cabe"
+   },
+   {
+    "linha": "favoráveis = 288",
+    "nota": "um múltiplo para cada k de 1 a 288"
+   },
+   {
+    "linha": "P = 288/2019",
+    "nota": "favoráveis sobre possíveis"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

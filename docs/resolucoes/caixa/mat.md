@@ -54,3 +54,35 @@ GABARITO P91294d43 (UNIRG 2023/1 Gurupi, q38): o PDF da web chamado 'Gabarito De
 DADO P893b9d0d: alternativas -> no print os expoentes são sobrescritos: A) 3,02 x 10^4, B) 0,46 x 10^7, C) 4,65 x 10^7, D) 1,37 x 10^7, E) 1,37 x 10^3
 DADO Pe626c783: alternativas -> no print são frações: A) 7!/(2! · 2!), B) 7!/2!, C) 7!/(5! · 2!), D) 2! · 7!, E) 2! · 2! · 7!
 DADO P25e2c24a: alternativas -> no print os índices são subscritos: C com índices 25,6; A com índices 25,6; A12,3 · A8,2; C12,3 · C8,2 · 5; C12,3 + C8,2 + C5,5
+
+## 2026-11-19 — PENDENCIAS — session_01PveEKa7o3DaEHDo7jW4ttw
+Lote mat-0067 gravado (50 resoluções, 0 pendentes). Lotes abertos: mat-0068, mat-0069.
+Gabarito do Aprendice (resolvedor, conferente às cegas e preliminar iguais): P45312a17 C, Pae5b5dc2 D.
+DADO Pb0745b55: alternativas.E -> tirar o resto de página "LINGUAGENS, CÓDIGOS E SUAS"; fica "exatamente a mesma quantidade de formas de se fazerem duplas e de se fazerem trios."
+DADO Pb0745b55: alternativas.E -> "exatamente a mesma quantidade de formas de se fazerem duplas e de se fazerem trios." (o título "LINGUAGENS, CÓDIGOS E SUAS" é cabeçalho da página seguinte, colado na alternativa)
+DADO P20d28663: texto_da_prova -> "Determine a soma dos coeficientes de x³ na expansão de (1 + x)⁴ (2 − x²)⁵." (expoentes achatados na camada de texto)
+DADO P1088e958: texto_da_prova -> "O coeficiente de x² no desenvolvimento de (x + a)⁶ é o dobro da quantidade de anagramas da palavra TERMO. Os valores de a ∈ ℝ, nesse caso, são"; alternativas -> ±5, ±4, ±3, ±2, ±1 (o sinal ± sumiu na entrada)
+DADO Pe2db4f84: alternativas -> A 190, B 361, C 722, D 1083, E 1444 (vieram dentro do texto_da_prova, sem o campo alternativas)
+RECLASS Pd0e11906 M13.3 -> M13.1
+RECLASS Pab2325ac M13.3 -> M04.5
+RECLASS Pb7b092ab M13.3 -> M13.9
+RECLASS P8238a39e M13.3 -> M13.4
+GABARITO Pd0e11906 (FMJ 2021, q13): oficial A = 57 600 conta pelas regras escritas, sem bloqueio entre peças na mesma coluna; com bloqueio de xadrez seriam 57 128 (nenhuma alternativa). Resolvido com a oficial e alerta.
+DADO P72b508fc: texto_da_prova -> a camada de texto mistura linhas de outra questão (cachoeiras do Funil e do Barata) e quebra a tabela; no print: tabela número de candidatos | etnia = 12 pardos, 6 indígenas, 5 negros, 7 brancos; enunciado: "dentre os quatro candidatos escolhidos, exatamente dois devem ser de etnia indígena"
+DADO P72b508fc: alternativas -> A) 30 × 21 × 2 × 7 | B) 30 × 2 × 23 | C) 30 × 23 × 21 | D) 23 × 15 × 12 | E) 23 × 21 × 7 (a entrada não traz o campo alternativas e a D está ilegível no texto)
+DADO Pc8f68a7f: texto_da_prova -> "O número de soluções distintas para a equação x + y + z + w = 7, em que as variáveis são números inteiros e não negativos é:" (a equação falta na entrada)
+DADO Pff4442dc: alternativas -> A 1/5; B 1/10; C 1/8; D 1/6; E 1/4 (na entrada vieram vazias e coladas em E)
+RECLASS P4065b49b M13.3 -> M13.1
+RECLASS P9ab0166c M13.3 -> M13.2
+AVISO P45312a17: sem gabarito publicado; busca na web não achou gabarito nem resolução da URCA 2027.1 q26; letra do resolvedor C (30)
+DADO P32780980: alternativas -> A) 287/2019  B) 288/2019  C) 289/2019  D) 300/2019 (a entrada traz A, B e C vazias e tudo colado em D)
+DADO P6d913eb1: alternativas.D -> 1/30 (a entrada traz '1 30 3', com o número da página colado)
+DADO Pf26add04: alternativas -> A) 3/10  B) 3/5  C) 4/19  D) 1/12  E) 2/15 (a entrada traz todas vazias)
+DADO P637f29e9: alternativas -> A) 1/2  B) 1/3  C) 1/6  D) 5/6  E) 5/12 (a entrada traz A a D vazias e tudo colado em E)
+RECLASS Pc99125c8 M13.4 -> M13.5 (probabilidade condicional em tabela de dupla entrada: "dado que tal jovem não tomou a vacina")
+DADO Pea2e077e: alternativas -> no print são frações com binomiais: A) C(n,2)/C(2n,4); B) (n − 1)/C(2n,4); C) C(n+2,4)/C(2n,4); D) C(2n,2)/(6·C(2n,4)); E) (n² + 2n + 4)/(12·C(2n,4))
+DADO P6f0e5f3e: texto_da_prova -> no print: pontos A, B, C, D, E, F (não 4); A, C, E (não 4, €C); área do hexagrama 25√3 cm² (não 253 cm?); alternativas A) 10 cm² B) 25 cm² C) 40 cm² D) 50 cm² E) 75 cm²
+DADO Pd27194f7: alternativas -> no print são frações: A) 5/36 B) 5/18 C) 7/36 D) 7/18 E) 1/6
+DADO P7f88186b: alternativas -> no print são frações: A) 1/52 B) 1/26 C) 5/52 D) 5/26 E) 1/2
+DADO P1e824fac: alternativas -> no print são frações: A) 1/5 B) 3/11 C) 2/13 D) 5/17 E) 6/37
+RECLASS P6f0e5f3e M13.4 -> M08.4

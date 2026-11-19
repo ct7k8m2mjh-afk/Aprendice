@@ -528,5 +528,107 @@
    "data": "2026-11-13",
    "lote": "mat-0063"
   }
+ },
+ "P0387e6fa": {
+  "n": "15",
+  "conceito": "Princípio multiplicativo com combinação: escolher 3 das 4 arestas e um ponto em cada uma.",
+  "equivocos": {
+   "A": "M13.3:contou-os-pontos",
+   "B": "M13.3:esqueceu-uma-etapa",
+   "D": "M13.3:usou-as-quatro-arestas",
+   "E": "M13.3:usou-as-quatro-arestas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada vértice do triângulo fica numa aresta diferente, então primeiro escolhem-se as 3 arestas (das 4) e depois um ponto em cada uma (3 opções por aresta). Três pontos em lados diferentes do quadrado nunca ficam alinhados, porque uma reta só corta o contorno de um quadrado em dois pontos, a menos que corra por um lado: todo trio forma triângulo.",
+    "formulas": [
+     "C(4, 3) = 4",
+     "\"e\" entre etapas independentes: multiplique"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "combinação: número de grupos de k elementos escolhidos entre n, sem importar a ordem"
+     ],
+     [
+      "aresta",
+      "cada lado do quadrado"
+     ]
+    ]
+   },
+   "pista": "Antes de escolher pontos, escolha em quais arestas os três vértices vão ficar.",
+   "passos": [
+    {
+     "faz": "Escolha as três arestas",
+     "conta": "C(4, 3) = 4",
+     "porque": "Escolher 3 arestas de 4 é o mesmo que escolher a que fica sem vértice: 4 jeitos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha um ponto em cada aresta",
+     "conta": "3 × 3 × 3 → 27",
+     "porque": "Cada aresta escolhida tem 3 pontos, e a escolha numa não limita a outra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as etapas",
+     "conta": "4 × 27 = 108",
+     "porque": "Para cada trio de arestas há 27 triângulos, e trios de arestas diferentes dão triângulos diferentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "108 → alternativa C",
+     "porque": "O máximo de triângulos com vértices em arestas diferentes é 108.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 108",
+   "checagem": "Pela aresta que fica de fora: cada uma das 4 arestas pode ser a excluída, e as outras três oferecem 3 pontos cada; 27 + 27 + 27 + 27 = 108. Fecha.",
+   "erradas": {
+    "A": "12 sai de contar os pontos marcados (4 arestas × 3 pontos = 12), e não os triângulos.",
+    "B": "27 sai de fixar um só trio de arestas: 3 × 3 × 3 = 27, esquecendo que há 4 maneiras de escolher as três arestas.",
+    "D": "324 sai de 4 · 3⁴: escolhe a aresta sem vértice e ainda põe um ponto nas 4 arestas. Só as 3 escolhidas recebem ponto: 4 · 3³ = 108.",
+    "E": "81 sai de 3⁴ = 81, um ponto em cada uma das 4 arestas: isso dá quadriláteros, não triângulos."
+   },
+   "armadilha": "Um triângulo tem 3 vértices e o quadrado tem 4 arestas: falta escolher qual aresta fica sem vértice.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos triângulos têm cada vértice numa aresta diferente do quadrado.",
+    "chave": "C(4, 3) × 3³ = 4 × 27 = 108.",
+    "cuidado": "Escolha primeiro as 3 arestas, depois os pontos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "aresta excluída",
+    "ideia": "4 escolhas para a aresta sem vértice e 27 triângulos em cada caso: 27 + 27 + 27 + 27 = 108"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(4, 3) = 4",
+    "nota": "trios de arestas"
+   },
+   {
+    "linha": "3 × 3 × 3 = 27",
+    "nota": "um ponto em cada aresta escolhida"
+   },
+   {
+    "linha": "4 × 27 = 108",
+    "nota": "triângulos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

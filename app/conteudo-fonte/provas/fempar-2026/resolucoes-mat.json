@@ -781,5 +781,106 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pc99125c8": {
+  "n": "75",
+  "conceito": "Probabilidade condicional lida numa tabela de dupla entrada: feminino dado que não tomou a vacina.",
+  "equivocos": {
+   "A": "M13.5:denominador-errado",
+   "B": "M13.5:denominador-errado",
+   "C": "M13.5:denominador-errado",
+   "D": "M13.5:linha-trocada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Dado que não tomou a vacina\" troca o grupo de onde se sorteia: o espaço amostral passa a ser só a coluna dos que não tomaram, 450 jovens. Dentro dela, conte as moças. Não use os 1.000 jovens nem a linha das moças como denominador.",
+    "formulas": [
+     "P(A | B) = casos de A dentro de B ÷ total de B"
+    ],
+    "simbolos": [
+     [
+      "P(A | B)",
+      "probabilidade de A sabendo que B aconteceu"
+     ],
+     [
+      "dado que",
+      "a informação que restringe o grupo sorteado"
+     ]
+    ]
+   },
+   "pista": "Antes de qualquer conta, decida qual coluna ou linha o \"dado que\" fixa.",
+   "passos": [
+    {
+     "faz": "Fixe o grupo do \"dado que\"",
+     "conta": "não tomaram a vacina: 450 jovens",
+     "porque": "O jovem sorteado sabidamente não se vacinou: o sorteio é só entre esses 450.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize as moças nesse grupo",
+     "conta": "feminino e não tomou: 150",
+     "porque": "É a célula que cruza a linha Feminino com a coluna Não tomaram.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a probabilidade",
+     "conta": "150/450 → 1/3",
+     "porque": "Favoráveis dentro do grupo restrito; simplifique por 150.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "1/3 → alternativa E",
+     "porque": "É a chance de o jovem ser do gênero feminino, sabendo que não se vacinou.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 1/3",
+   "checagem": "Pelo complementar dentro da coluna: os rapazes não vacinados são 300 de 450, ou 2/3; as moças ficam com 1 − 2/3 = 1/3.",
+   "erradas": {
+    "A": "4/5 não confere: 4/5 de 450 seriam 360 moças entre os não vacinados, mas a tabela mostra 150.",
+    "B": "3/5 não confere: 3/5 de 450 seriam 270 moças entre os não vacinados, e a tabela mostra 150.",
+    "C": "2/5 não confere: 2/5 de 450 seriam 180 moças entre os não vacinados, e não 150.",
+    "D": "2/3 sai de contar os rapazes em vez das moças dentro da coluna: 300/450 = 2/3. A pergunta é sobre o gênero feminino."
+   },
+   "armadilha": "O \"dado que\" fixa a coluna dos que não tomaram a vacina (450), e é dentro dela que se contam as moças.",
+   "alerta": "A tabela impressa traz 100 como total geral, mas o enunciado fala em 1.000 jovens e 550 + 450 = 1.000: é erro de digitação da prova, que não afeta a conta.",
+   "essencial": {
+    "pede": "A chance de um jovem ser do gênero feminino, sabendo que ele não tomou a vacina.",
+    "chave": "Na coluna dos não vacinados há 150 moças em 450: 150/450 = 1/3.",
+    "cuidado": "O denominador é o total do grupo do \"dado que\", não o total geral nem o das moças."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "Rapazes não vacinados: 300/450 = 2/3; moças: 1 − 2/3 = 1/3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "grupo: não tomaram = 450",
+    "nota": "o \"dado que\" fixa a coluna"
+   },
+   {
+    "linha": "favoráveis: feminino e não tomou = 150",
+    "nota": "célula da tabela"
+   },
+   {
+    "linha": "P = 150/450 = 1/3",
+    "nota": "simplificar por 150"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

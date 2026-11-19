@@ -323,5 +323,103 @@
    "data": "2026-11-13",
    "lote": "mat-0049"
   }
+ },
+ "Pd9c53ed6": {
+  "n": "13",
+  "conceito": "Ler o número de itens no gráfico e contar escolhas de 70% deles por combinação.",
+  "equivocos": {
+   "A": "M13.3:arredondou-errado",
+   "B": "M13.3:tamanho-do-grupo-errado",
+   "C": "M13.3:leu-porcentagem-como-quantidade",
+   "E": "M13.3:tamanho-do-grupo-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O número de itens da cesta não está no texto: está no gráfico, que lista os itens um por um. Escolher itens para o carrinho não depende da ordem, então é combinação. Antes, transforme 70% em um número inteiro de itens.",
+    "formulas": [
+     "itens escolhidos ≈ 70% · total de itens",
+     "formas = C(total, escolhidos)"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "número de grupos de p itens escolhidos entre n, sem importar a ordem"
+     ]
+    ]
+   },
+   "pista": "Conte as linhas do gráfico antes de qualquer conta.",
+   "passos": [
+    {
+     "faz": "Conte os itens no gráfico",
+     "conta": "tomate, café, batata, açúcar, óleo, farinha, leite, frutas, pão, manteiga, carnes, feijão, arroz → 13",
+     "porque": "Segundo o gráfico, a cesta básica tem 13 itens.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule 70% dos itens",
+     "conta": "0,7 · 13 = 9,1 ≈ 9 itens",
+     "porque": "O enunciado diz \"aproximadamente 70%\", e o número de itens tem de ser inteiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os carrinhos possíveis",
+     "conta": "C(13, 9) = C(13, 4) = (13 · 12 · 11 · 10)/(4 · 3 · 2 · 1) = 17160/24 = 715",
+     "porque": "Escolher os 9 que entram é o mesmo que escolher os 4 que ficam de fora.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "715 → alternativa D",
+     "porque": "A pergunta é o número de formas de compor o carrinho.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 715 formas.",
+   "checagem": "Confira pela relação de Stifel: C(13, 9) = C(12, 8) + C(12, 9) = 495 + 220 = 715.",
+   "erradas": {
+    "A": "286 sai de arredondar 9,1 para 10 itens: C(13, 10) = 286. O arredondamento de 9,1 é 9.",
+    "B": "1.287 sai de usar 8 itens: C(13, 8) = 1287. 70% de 13 é 9,1, não 8.",
+    "C": "1.716 sai de ler 70% como 7 itens: C(13, 7) = 1716. Os 70% são de 13 itens, o que dá cerca de 9.",
+    "E": "78 sai de C(13, 2) = 78, que equivale a escolher 11 itens; 70% de 13 não chega a 11."
+   },
+   "armadilha": "Errar o número de itens (13, lido no gráfico) ou o arredondamento de 70% de 13 (9,1 ≈ 9).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de formas de escolher cerca de 70% dos 13 itens da cesta.",
+    "chave": "0,7 · 13 ≈ 9 e C(13, 9) = C(13, 4) = 715.",
+    "cuidado": "O total de itens está no gráfico, não no texto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "relação de recorrência",
+    "ideia": "C(n, k) = n/k · C(n − 1, k − 1): C(13, 4) = 13/4 · C(12, 3) = 13/4 · 220 = 715"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,7 · 13 = 9,1 ≈ 9",
+    "nota": "70% dos 13 itens"
+   },
+   {
+    "linha": "C(13, 9) = C(13, 4)",
+    "nota": "escolher os que entram = escolher os 4 que saem"
+   },
+   {
+    "linha": "17160/24 = 715",
+    "nota": "conta da combinação"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

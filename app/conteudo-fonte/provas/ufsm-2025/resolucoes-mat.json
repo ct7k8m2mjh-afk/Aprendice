@@ -870,5 +870,107 @@
    "data": "2026-11-13",
    "lote": "mat-0063"
   }
+ },
+ "P0d4781b9": {
+  "n": "60",
+  "conceito": "Escolher 6 culturas distintas entre 10, sem importar a ordem: C(10, 6).",
+  "equivocos": {
+   "A": "M13.3:produto-dos-dados",
+   "C": "M13.3:permutou-os-escolhidos",
+   "D": "M13.3:arranjo-no-lugar-de-combinacao",
+   "E": "M13.3:com-repeticao-e-ordem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Uma oferta é um conjunto de 6 produtos: oferecer milho e feijão é o mesmo que feijão e milho. Então a ordem não importa e a conta é combinação de 10 tomados 6 a 6. Use que escolher 6 para levar é o mesmo que escolher 4 para deixar.",
+    "formulas": [
+     "C(n, k) = n!/(k! × (n − k)!)",
+     "C(n, k) = C(n, n − k)"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "combinação: número de grupos de k elementos escolhidos entre n, sem importar a ordem"
+     ],
+     [
+      "n!",
+      "fatorial: produto de n até 1, como 4! = 4 × 3 × 2 × 1 = 24"
+     ]
+    ]
+   },
+   "pista": "Pergunte se trocar a ordem dos produtos muda a oferta.",
+   "passos": [
+    {
+     "faz": "Decida se a ordem importa",
+     "conta": "oferta = conjunto de 6 produtos → combinação",
+     "porque": "A mesma lista em outra ordem é a mesma oferta ao mercado.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Troque por escolher os 4 que ficam de fora",
+     "conta": "C(10, 6) = C(10, 4)",
+     "porque": "Cada escolha de 6 culturas deixa exatamente 4 de fora, e vice-versa; a conta com 4 é mais curta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a combinação",
+     "conta": "C(10, 4) = (10 × 9 × 8 × 7)/(4 × 3 × 2 × 1) → 5040/24 → 210",
+     "porque": "O produto de cima conta as escolhas em ordem; dividir por 4! = 24 tira as ordens repetidas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "210 → alternativa B",
+     "porque": "São 210 ofertas diferentes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 210",
+   "checagem": "Confira pelo triângulo de Pascal: a linha 10 é 1, 10, 45, 120, 210, 252, 210, ...; o termo de posição 6 (contando do 0) é 210. Fecha.",
+   "erradas": {
+    "A": "60 sai de multiplicar os dois números do enunciado, 10 × 6, o que não conta grupo nenhum.",
+    "C": "720 sai de 6! = 720, que é o número de ordens de 6 produtos já escolhidos, e não o número de escolhas.",
+    "D": "5 040 sai de esquecer o 4! do denominador: 10 × 9 × 8 × 7 = 5040, contando as escolhas com ordem.",
+    "E": "1 000 000 sai de 10⁶: dez opções para cada uma das 6 posições, com ordem e permitindo repetir a mesma cultura."
+   },
+   "armadilha": "A oferta não tem ordem: esquecer a divisão pelo fatorial transforma 210 em 5 040.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos conjuntos de 6 culturas podem ser escolhidos entre 10.",
+    "chave": "C(10, 6) = C(10, 4) = 5040/24 = 210.",
+    "cuidado": "Divida pelo fatorial: a ordem dos produtos não muda a oferta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela fórmula direta",
+    "ideia": "10!/(6! × 4!) = 3628800/(720 × 24) = 210"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(10, 6) = C(10, 4)",
+    "nota": "escolher 6 = deixar 4 de fora"
+   },
+   {
+    "linha": "(10 × 9 × 8 × 7)/(4 × 3 × 2 × 1) = 5040/24",
+    "nota": "produto de cima dividido por 4!"
+   },
+   {
+    "linha": "5040/24 = 210",
+    "nota": "ofertas diferentes"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

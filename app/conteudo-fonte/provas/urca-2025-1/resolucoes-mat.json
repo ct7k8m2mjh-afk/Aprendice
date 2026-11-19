@@ -874,5 +874,103 @@
    "data": "2026-11-13",
    "lote": "mat-0060"
   }
+ },
+ "P4065b49b": {
+  "n": "22",
+  "conceito": "Distribuir pessoas em carros com lotação máxima: princípio multiplicativo e descarte do caso proibido.",
+  "equivocos": {
+   "A": "M13.1:contou-so-um-caso",
+   "B": "M13.1:exigiu-carros-diferentes",
+   "C": "M13.1:aplicou-a-restricao-em-todo-caso",
+   "E": "M13.1:contagem-sem-criterio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada pessoa escolhe um carro, e as escolhas se multiplicam. O único caso que fere a regra é as três pessoas no mesmo carro, porque cada carro leva no máximo duas. Conte tudo e tire esse caso.",
+    "formulas": [
+     "total = 4 · 4 · 4 (cada pessoa escolhe um dos 4 carros)",
+     "permitidos = total − proibidos"
+    ],
+    "simbolos": [
+     [
+      "princípio multiplicativo",
+      "escolhas feitas em sequência se multiplicam"
+     ],
+     [
+      "complementar",
+      "contar o que não serve e tirar do total"
+     ]
+    ]
+   },
+   "pista": "Esqueça por um instante o limite de duas pessoas: de quantos jeitos cada uma escolhe um carro?",
+   "passos": [
+    {
+     "faz": "Conte as escolhas sem a restrição",
+     "conta": "4 · 4 · 4 = 4³ = 64",
+     "porque": "Cada uma das 3 pessoas pode ir em qualquer um dos 4 carros, independentemente das outras.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os casos proibidos",
+     "conta": "três no mesmo carro: 4",
+     "porque": "A lotação só é estourada quando as três escolhem o mesmo carro, e há 4 carros para isso acontecer.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire os proibidos do total",
+     "conta": "64 − 4 = 60",
+     "porque": "Em todos os outros casos há no máximo duas pessoas por carro, então eles valem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "60 maneiras → alternativa D",
+     "porque": "A pergunta é de quantas maneiras as três podem viajar respeitando a lotação.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 60 maneiras.",
+   "checagem": "Conte direto pelos casos: todas em carros diferentes, 4 · 3 · 2 = 24; duas juntas e uma sozinha, C(3, 2) · 4 · 3 = 3 · 12 = 36. Total 24 + 36 = 60.",
+   "erradas": {
+    "A": "36 sai de contar só os casos com duas pessoas juntas: C(3, 2) · 4 · 3 = 36. Faltam os 24 casos com cada pessoa num carro diferente.",
+    "B": "24 sai de contar só os casos com cada pessoa num carro diferente: 4 · 3 · 2 = 24. Faltam os 36 com duas no mesmo carro.",
+    "C": "48 sai de 4 · 4 · 3: tira sempre um carro da 3ª pessoa. Ela só perde opção quando as duas primeiras dividem carro (4 casos): 64 − 4 = 60.",
+    "E": "16 não confere: só os casos com as três em carros diferentes já são 4 · 3 · 2 = 24, mais que 16."
+   },
+   "armadilha": "Achar que as pessoas têm de ir em carros diferentes: o limite é duas por carro, então duas juntas também vale.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos jeitos 3 pessoas têm de se distribuir em 4 carros com no máximo 2 por carro.",
+    "chave": "4³ = 64 escolhas, menos os 4 casos com as três no mesmo carro: 60.",
+    "cuidado": "Duas pessoas no mesmo carro é permitido; só três juntas é proibido."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "casos",
+    "ideia": "todos separados 24 + duas juntas 36 = 60"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4 · 4 · 4 = 64",
+    "nota": "cada pessoa escolhe um carro"
+   },
+   {
+    "linha": "64 − 4 = 60",
+    "nota": "tira os 4 casos com as três no mesmo carro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

@@ -490,5 +490,97 @@
    "data": "2026-11-13",
    "lote": "mat-0062"
   }
+ },
+ "Pc5f37fb2": {
+  "n": "32",
+  "conceito": "Contar todos os subconjuntos não vazios de 4 essências: combinações de 1, 2, 3 e 4 elementos.",
+  "equivocos": {
+   "A": "M13.3:soma-de-casos-errada",
+   "B": "M13.3:soma-de-casos-errada",
+   "D": "M13.3:novos-casos-contados-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O próprio enunciado mostra o modelo com 3 essências: 3 puras + 3 de duas + 1 de três = 7. Com 4 essências, repita a contagem por tamanho de mistura e some. A ordem não muda o aroma, então cada tamanho é uma combinação.",
+    "formulas": [
+     "C(n, k) = (n × (n − 1) × ... (k fatores))/k!",
+     "tamanhos diferentes se excluem: some"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "combinação: número de grupos de k elementos escolhidos entre n, sem importar a ordem"
+     ]
+    ]
+   },
+   "pista": "Faça como o enunciado: conte as misturas de 1, de 2, de 3 e de 4 essências separadamente.",
+   "passos": [
+    {
+     "faz": "Conte puras e misturas de duas",
+     "conta": "C(4, 1) = 4 | C(4, 2) = (4 × 3)/2 → 6",
+     "porque": "Puras são as 4 essências; pares sem ordem são (4 × 3)/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte misturas de três e de quatro",
+     "conta": "C(4, 3) = 4 | C(4, 4) = 1",
+     "porque": "Escolher 3 de 4 é deixar 1 de fora (4 jeitos); com todas há um jeito só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os tamanhos",
+     "conta": "4 + 6 + 4 + 1 = 15",
+     "porque": "Cada aroma tem um número definido de essências, então os grupos se somam sem repetição.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "15 aromas → alternativa C",
+     "porque": "O máximo de aromas distintos é 15.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 15 aromas distintos",
+   "checagem": "Por sim ou não: cada uma das 4 essências entra ou não na mistura, 2 × 2 × 2 × 2 = 16 possibilidades; tirando a mistura vazia, sobram 15. Com 3 essências a mesma regra dá 2³ − 1 = 7, o número do enunciado.",
+   "erradas": {
+    "A": "20 não confere: por tamanho de mistura há só 4 + 6 + 4 + 1 = 15 aromas, e nem contando a mistura vazia (16) se chega a 20.",
+    "B": "18 não confere: 15 aromas pela soma dos tamanhos; mesmo somando a mistura vazia são 16, não 18.",
+    "D": "12 não confere: os 7 aromas antigos continuam e a rosa cria 2³ = 8 novos (ela pura ou com cada subconjunto das outras 3), 7 + 8 = 15."
+   },
+   "armadilha": "Esquecer um tamanho de mistura (a de quatro essências ou as puras) deixa a contagem incompleta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos aromas diferentes saem de 4 essências misturadas sem ordem.",
+    "chave": "Soma de C(4, k) para k de 1 a 4, ou 2⁴ − 1 = 15.",
+    "cuidado": "Inclua as essências puras e a mistura com as quatro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "entra ou não entra",
+    "ideia": "2⁴ = 16 escolhas de sim/não para cada essência, menos a mistura vazia: 15"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(4, 1) + C(4, 2) + C(4, 3) + C(4, 4)",
+    "nota": "misturas de 1, 2, 3 e 4 essências"
+   },
+   {
+    "linha": "4 + 6 + 4 + 1 = 15",
+    "nota": "aromas distintos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

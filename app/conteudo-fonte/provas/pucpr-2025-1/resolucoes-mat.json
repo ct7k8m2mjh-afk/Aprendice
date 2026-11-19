@@ -467,5 +467,223 @@
    "data": "2026-11-13",
    "lote": "mat-0063"
   }
+ },
+ "Pb7b092ab": {
+  "n": "33",
+  "conceito": "Contar as trocas de presentes em que ninguém se presenteia (permutação caótica de 5), separando pelo formato das trocas.",
+  "equivocos": {
+   "A": "M13.9:esqueceu-um-caso",
+   "B": "M13.9:esqueceu-um-caso",
+   "D": "M13.9:valor-sem-base",
+   "E": "M13.9:ignorou-a-restricao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada pessoa dá um presente e recebe um, e ninguém dá a si mesmo: é uma permutação dos 5 em que ninguém fica no próprio lugar. Seguindo quem dá a quem, as trocas formam ciclos fechados, e nenhum ciclo pode ter 1 pessoa só. Com 5 pessoas sobram dois formatos: uma roda com as 5, ou uma troca entre 2 mais uma roda com 3. Conte cada formato e some.",
+    "formulas": [
+     "roda com n pessoas: (n − 1)! rodas (ciclos) diferentes",
+     "casos que se excluem: somam"
+    ],
+    "simbolos": [
+     [
+      "ciclo (roda)",
+      "grupo em que A dá a B, B dá a C, ..., e o último dá ao primeiro"
+     ],
+     [
+      "(n − 1)!",
+      "fatorial de n − 1: número de rodas diferentes com n pessoas"
+     ]
+    ]
+   },
+   "pista": "Desenhe setas de quem dá para quem recebe: que formatos de grupos fechados são possíveis com 5 pessoas, sem ninguém sozinho?",
+   "passos": [
+    {
+     "faz": "Liste os formatos possíveis",
+     "conta": "5 = 5 (roda única) | 5 = 2 + 3 (dupla + roda de 3)",
+     "porque": "Ninguém pode ficar num ciclo de 1, porque daria presente a si mesmo; 4 + 1 e 3 + 1 + 1 ficam de fora.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte a roda com as 5 pessoas",
+     "conta": "(5 − 1)! = 4! = 24",
+     "porque": "Fixe uma pessoa na roda; as outras 4 se ordenam em 4! maneiras de seguir a cadeia de presentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte dupla mais roda de 3",
+     "conta": "C(5, 2) × (3 − 1)! = 10 × 2 = 20",
+     "porque": "Escolha a dupla que troca entre si (10 formas); as 3 restantes formam uma roda, que pode girar em 2 sentidos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois formatos",
+     "conta": "24 + 20 = 44",
+     "porque": "Os formatos não se misturam, então os casos se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "44 maneiras → alternativa C",
+     "porque": "É o número de distribuições em que todos dão e recebem um presente de outra pessoa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 44 maneiras",
+   "checagem": "Pelo princípio da inclusão e exclusão: 5! − C(5, 1)·4! + C(5, 2)·3! − C(5, 3)·2! + C(5, 4)·1! − 1 = 120 − 120 + 60 − 20 + 5 − 1 = 44. Um programa que testa as 120 permutações também acha 44.",
+   "erradas": {
+    "A": "20 sai de contar só o formato dupla + roda de 3: 10 × 2 = 20, esquecendo a roda com as 5 pessoas.",
+    "B": "24 sai de contar só a roda com as 5 pessoas: 4! = 24, esquecendo as trocas em que uma dupla presenteia entre si.",
+    "D": "116 não confere: das 120 distribuições, as que deixam alguém com o próprio presente são 120 − 44 = 76, e não só 4.",
+    "E": "120 sai de contar todas as permutações dos 5: 5! = 120, incluindo aquelas em que alguém dá presente a si mesmo, o que a regra proíbe."
+   },
+   "armadilha": "A troca não precisa ser uma roda única: uma dupla pode trocar entre si enquanto os outros três formam uma roda.",
+   "alerta": "",
+   "essencial": {
+    "pede": "De quantos modos 5 pessoas trocam presentes sem ninguém se presentear.",
+    "chave": "Roda de 5: 4! = 24; dupla + roda de 3: 10 × 2 = 20; total 44.",
+    "cuidado": "Não esqueça nenhum formato de troca."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "inclusão e exclusão",
+    "ideia": "D₅ = 120 − 120 + 60 − 20 + 5 − 1 = 44."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "roda de 5: 4! = 24",
+    "nota": "uma cadeia com todos"
+   },
+   {
+    "linha": "dupla + trio: 10 × 2 = 20",
+    "nota": "a dupla troca entre si"
+   },
+   {
+    "linha": "24 + 20 = 44",
+    "nota": "casos somados"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
+ },
+ "P4dab5d78": {
+  "n": "37",
+  "conceito": "Probabilidade geométrica: chance proporcional à área, com raios tirados das equações das circunferências e áreas de coroas.",
+  "equivocos": {
+   "A": "M13.4:circulo-inteiro-no-lugar-da-coroa",
+   "B": "M13.4:circulo-inteiro-no-lugar-da-coroa",
+   "C": "M13.4:circulo-inteiro-no-lugar-da-coroa",
+   "E": "M13.4:circulo-inteiro-no-lugar-da-coroa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A chance de cada região é proporcional à área, então n é só a razão entre a área de D e a de B. Cada equação dá o centro e o raio ao quadrado completando quadrados; antes divida pelo coeficiente de x² (4 em γ, 9 em δ). As quatro circunferências são concêntricas; ordenando os raios, cada coroa é a diferença entre dois círculos.",
+    "formulas": [
+     "x² + y² + Dx + Ey + F = 0 → centro (−D/2, −E/2) e r² = (D/2)² + (E/2)² − F",
+     "área da coroa = π(R² − r²)"
+    ],
+    "simbolos": [
+     [
+      "coroa circular",
+      "região entre duas circunferências de mesmo centro"
+     ],
+     [
+      "r²",
+      "raio ao quadrado; a área do círculo é π r²"
+     ]
+    ]
+   },
+   "pista": "Divida γ e δ pelo coeficiente de x² antes de achar os raios, e ordene os quatro raios.",
+   "passos": [
+    {
+     "faz": "Ache os raios de α e β",
+     "conta": "α: r² = 9 + 4 − 4 → 9 | β: r² = 9 + 4 − 12 → 1",
+     "porque": "Centro (3, −2) nas duas: (x − 3)² + (y + 2)² = 13 − F.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache os raios de γ e δ",
+     "conta": "γ: 13 − 51/4 → 1/4 | δ: 13 − 113/9 → 4/9",
+     "porque": "Dividindo por 4 e por 9, as equações ficam com o mesmo centro (3, −2) e o termo constante vira 51/4 e 113/9.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ordene e calcule as áreas de B e D",
+     "conta": "r²: 1/4 (A) < 4/9 < 1 < 9 | B = π(4/9 − 1/4) → 7π/36 | D = π(9 − 1) → 8π",
+     "porque": "B fica entre os dois menores círculos e D entre os dois maiores.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida D por B e aproxime",
+     "conta": "n = 8π/(7π/36) → 288/7 ≈ 41,1 → alternativa D",
+     "porque": "O π cancela; 288 ÷ 7 ≈ 41,1, mais perto de 41.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 41",
+   "checagem": "Confira a ordem de grandeza: D tem 8π ≈ 25,1 de área e B tem 7π/36 ≈ 0,61; 25,1 ÷ 0,61 ≈ 41. E a soma das quatro regiões, π/4 + 7π/36 + 5π/9 + 8π, dá 9π, a área do círculo α: fecha.",
+   "erradas": {
+    "A": "8 sai de dividir a coroa D (8π) pelo círculo β inteiro (π), e não pela coroa B (7π/36).",
+    "B": "9 sai de comparar os círculos inteiros α e β: 9π ÷ π = 9, em vez das coroas D e B.",
+    "C": "36 sai de comparar o maior e o menor círculo: 9 ÷ (1/4) = 36, em vez das coroas D e B.",
+    "E": "50 sai de usar o círculo α inteiro no lugar da coroa D: 9π ÷ (7π/36) = 324/7 ≈ 46,3, mais perto de 50 que de 41."
+   },
+   "armadilha": "γ e δ precisam ser divididas por 4 e 9 antes de ler o raio, e B e D são coroas, não círculos inteiros.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas vezes a área da coroa D é maior que a da coroa B.",
+    "chave": "r² = 1/4, 4/9, 1 e 9; D = 8π e B = 7π/36, n = 288/7 ≈ 41.",
+    "cuidado": "Divida pelo coeficiente de x² e use as diferenças de r²."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "só com r²",
+    "ideia": "como o π cancela, n = (9 − 1)/(4/9 − 1/4) = 8 · 36/7 ≈ 41,1"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "α: r² = 9 | β: r² = 1",
+    "nota": "completar quadrados, centro (3, −2)"
+   },
+   {
+    "linha": "γ: r² = 1/4 | δ: r² = 4/9",
+    "nota": "dividir por 4 e por 9"
+   },
+   {
+    "linha": "B = π(4/9 − 1/4) = 7π/36",
+    "nota": "coroa entre γ e δ"
+   },
+   {
+    "linha": "D = π(9 − 1) = 8π",
+    "nota": "coroa entre β e α"
+   },
+   {
+    "linha": "n = 8π/(7π/36) = 288/7 ≈ 41,1",
+    "nota": "π cancela"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

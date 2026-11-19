@@ -760,5 +760,219 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pb0745b55": {
+  "n": "80",
+  "conceito": "Contar divisões de um grupo em equipes de mesmo tamanho, sem ordem entre as equipes.",
+  "equivocos": {
+   "A": "M13.3:inverteu-a-comparacao",
+   "C": "M13.3:contou-ordem-das-equipes",
+   "D": "M13.3:contou-ordem-das-equipes",
+   "E": "M13.3:valor-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dividir em duplas ou trios é escolher quem fica junto: a ordem dentro de cada equipe não importa, e a ordem entre as equipes também não, porque elas não têm nome. Escolher as equipes uma depois da outra conta cada divisão várias vezes, uma para cada ordem das equipes. Por isso, divida pelo número de ordens das equipes (3! para três duplas, 2! para dois trios).",
+    "formulas": [
+     "combinação: C(n, p) = n! / (p! (n − p)!)",
+     "divisão em k equipes iguais = (escolhas em sequência) / k!"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "número de grupos de p pessoas escolhidos entre n, sem ordem"
+     ],
+     [
+      "n!",
+      "fatorial: n × (n − 1) × ... × 1"
+     ]
+    ]
+   },
+   "pista": "Escolha as equipes uma por vez e depois pergunte: trocar a ordem das equipes muda a divisão?",
+   "passos": [
+    {
+     "faz": "Escolha as duplas em sequência",
+     "conta": "C(6, 2) × C(4, 2) × C(2, 2) = 15 × 6 × 1 = 90",
+     "porque": "A 1ª dupla sai entre 6 pessoas, a 2ª entre as 4 que sobram e a última fica com as 2 restantes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte a ordem das três duplas",
+     "conta": "90/6 = 15",
+     "porque": "As mesmas três duplas aparecem em 3! = 6 ordens diferentes na conta anterior, mas formam uma divisão só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça o mesmo com os trios",
+     "conta": "C(6, 3) × C(3, 3) = 20 → 20/2 = 10",
+     "porque": "O 1º trio sai entre 6 pessoas e o 2º é o resto; os dois trios aparecem em 2! = 2 ordens.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare as quantidades",
+     "conta": "15 − 10 = 5 → 5 formas a mais de duplas",
+     "porque": "Há 15 divisões em duplas e 10 em trios.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "5 a mais de duplas → alternativa B",
+     "porque": "A alternativa que diz exatamente isso é a B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — há 5 formas a mais de fazer duplas do que de fazer trios",
+   "checagem": "Conte os trios de outro jeito: fixe uma pessoa, a Ana; o trio dela é ela mais 2 das outras 5, C(5, 2) = 10, e o outro trio fica determinado. Nas duplas, a Ana tem 5 parceiros e as 4 que sobram formam 3 pares de duplas: 5 × 3 = 15.",
+   "erradas": {
+    "A": "A inverte a comparação: são 15 formas de duplas e 10 de trios, então as duplas é que têm 5 a mais.",
+    "C": "C inverte o sentido da diferença de 70, que já vem da conta errada da D: são as duplas, e não os trios, que dão mais formas.",
+    "D": "70 sai de não dividir pela ordem das equipes: 90 sequências de duplas − 20 sequências de trios = 70. Cada divisão em duplas foi contada 6 vezes e cada divisão em trios 2 vezes.",
+    "E": "E não confere: 15 divisões em duplas e 10 em trios não são a mesma quantidade."
+   },
+   "armadilha": "As equipes não têm nome: escolher a 1ª, a 2ª e a 3ª dupla conta a mesma divisão 3! = 6 vezes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Comparar o número de maneiras de dividir 6 pessoas em 3 duplas e em 2 trios.",
+    "chave": "Duplas: 15 × 6 × 1 / 3! = 15; trios: 20 / 2! = 10; diferença de 5 a favor das duplas.",
+    "cuidado": "Divida pela ordem das equipes, que não importa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pessoa fixa",
+    "ideia": "Fixe uma pessoa: trios = C(5, 2) = 10; duplas = 5 × 3 × 1 = 15."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "duplas: 15 × 6 × 1 = 90",
+    "nota": "escolhas em sequência"
+   },
+   {
+    "linha": "90/6 = 15",
+    "nota": "tira as 3! ordens das duplas"
+   },
+   {
+    "linha": "trios: 20 × 1 = 20",
+    "nota": "escolhas em sequência"
+   },
+   {
+    "linha": "20/2 = 10",
+    "nota": "tira as 2! ordens dos trios"
+   },
+   {
+    "linha": "15 − 10 = 5",
+    "nota": "duplas têm 5 a mais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
+ },
+ "P77ae133f": {
+  "n": "78",
+  "conceito": "Acompanhar a fração imunizada de uma população em duas doses, cada uma imunizando metade dos não imunizados.",
+  "equivocos": {
+   "A": "M03.2:somou-as-porcentagens",
+   "B": "M03.2:contou-doses-a-mais",
+   "D": "M03.2:aplicou-uma-so-vez",
+   "E": "M13.6:parou-no-complementar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada dose age só sobre quem ainda não está imunizado e imuniza metade desse grupo. Por isso a segunda dose imuniza metade do que sobrou, e não metade da população. A probabilidade pedida é a fração da população imunizada depois das duas doses.",
+    "formulas": [
+     "não imunizados depois de cada dose = metade dos não imunizados antes",
+     "imunizados = 1 − não imunizados"
+    ],
+    "simbolos": [
+     [
+      "imunizado",
+      "protegido contra a doença"
+     ]
+    ]
+   },
+   "pista": "Acompanhe quanto da população ainda está sem imunização depois de cada dose.",
+   "passos": [
+    {
+     "faz": "Aplique a 1ª dose",
+     "conta": "não imunizados: 1 → 1/2",
+     "porque": "No início ninguém está imunizado; a dose imuniza metade de todos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a 2ª dose",
+     "conta": "não imunizados: 1/2 → 1/2 × 1/2 = 1/4",
+     "porque": "A segunda dose imuniza metade dos que restavam sem proteção.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a fração imunizada",
+     "conta": "1 − 1/4 = 3/4 → 75 %",
+     "porque": "Quem não está entre os não imunizados está imunizado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "75 % → alternativa C",
+     "porque": "É a chance de um indivíduo sorteado estar imunizado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 75 %",
+   "checagem": "Somando o que cada dose imunizou: a 1ª imunizou 50 % da população e a 2ª, metade dos 50 % restantes, 25 %; 50 % + 25 % = 75 %.",
+   "erradas": {
+    "A": "100 % sai de achar que cada dose imuniza metade da população inteira: 50 % + 50 %. A segunda dose atua só sobre os 50 % que restavam.",
+    "B": "87,5 % sai de aplicar três doses: 1 − 1/2 × 1/2 × 1/2 = 7/8. A população recebeu duas doses.",
+    "D": "50 % sai de considerar só uma dose: metade da população. Faltou a segunda dose, que imuniza mais 25 %.",
+    "E": "25 % sai de parar na fração que continua NÃO imunizada, 1/2 × 1/2 = 1/4. A pergunta é sobre os imunizados: 1 − 1/4."
+   },
+   "armadilha": "A segunda dose imuniza metade dos que restavam, não metade da população: 50 % + 25 %, e não 50 % + 50 %.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A fração da população imunizada depois de duas doses que imunizam, cada uma, metade dos não imunizados.",
+    "chave": "Não imunizados caem de 1 para 1/2 e para 1/4; imunizados = 3/4 = 75 %.",
+    "cuidado": "Cada dose age sobre o que sobrou, e a pergunta é sobre os imunizados."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "somar doses",
+    "ideia": "1ª dose imuniza 50 %, 2ª imuniza metade dos 50 % restantes, 25 %: total 75 %."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1ª dose: 1 × 1/2 = 1/2",
+    "nota": "não imunizados"
+   },
+   {
+    "linha": "2ª dose: 1/2 × 1/2 = 1/4",
+    "nota": "não imunizados"
+   },
+   {
+    "linha": "imunizados: 1 − 1/4 = 3/4 = 75 %",
+    "nota": "complementar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

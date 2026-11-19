@@ -398,5 +398,102 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pe014aac9": {
+  "n": "22",
+  "conceito": "Número de jogos de turno único: combinação de 8 times tomados 2 a 2.",
+  "equivocos": {
+   "A": "M13.3:contou-so-um-elemento",
+   "C": "M13.3:valor-sem-base",
+   "D": "M13.3:arranjo-no-lugar-de-combinacao",
+   "E": "M13.3:incluiu-repeticao-e-ordem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada jogo é um par de times, e o par Time A × Time B é o mesmo jogo que Time B × Time A. Então contar jogos é contar pares sem ordem: combinação de 8 tomados 2 a 2.",
+    "formulas": [
+     "C(n, 2) = (n × (n − 1))/2"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "combinação: número de grupos de k elementos escolhidos entre n, sem importar a ordem"
+     ],
+     [
+      "turno único",
+      "cada time enfrenta cada adversário uma só vez"
+     ]
+    ]
+   },
+   "pista": "Pense em quantos adversários cada time tem e em quantas vezes cada jogo aparece nessa contagem.",
+   "passos": [
+    {
+     "faz": "Conte os confrontos de cada time",
+     "conta": "cada time: 8 − 1 = 7 adversários",
+     "porque": "Um time não joga contra si mesmo, então enfrenta os outros 7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some pelos 8 times",
+     "conta": "8 × 7 = 56 (cada jogo contado duas vezes)",
+     "porque": "O jogo entre A e B aparece na lista de A e de novo na lista de B.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pela contagem dupla",
+     "conta": "C(8, 2) = (8 × 7)/2 → 56/2 → 28",
+     "porque": "Cada jogo foi contado duas vezes; dividir por 2 deixa cada um uma vez só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "28 jogos → alternativa B",
+     "porque": "O número de jogos da primeira fase é 28.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 28 jogos",
+   "checagem": "Contando rodada a rodada: o 1º time faz 7 jogos novos, o 2º mais 6, o 3º mais 5, e assim por diante: 7 + 6 + 5 + 4 + 3 + 2 + 1 = 28. Fecha.",
+   "erradas": {
+    "A": "7 sai de contar só os jogos de um time (8 − 1 = 7), não os do torneio inteiro.",
+    "C": "49 não confere: cada jogo tem 2 times, então o número de jogos é metade das participações dos times; as participações são 8 × 7 = 56 (cada time joga 7 vezes), e 49 jogos exigiriam 98 participações.",
+    "D": "56 sai de não dividir por 2: 8 × 7 = 56 conta cada jogo duas vezes, como se houvesse ida e volta.",
+    "E": "64 sai de 8 × 8, que inclui cada time jogando contra si mesmo e ainda conta cada jogo duas vezes."
+   },
+   "armadilha": "Time A × Time B é o mesmo jogo que Time B × Time A: sem dividir por 2, a conta dobra.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de jogos quando 8 times se enfrentam uma vez cada.",
+    "chave": "Jogos = pares de times = C(8, 2) = (8 × 7)/2 = 28.",
+    "cuidado": "Divida por 2: a ordem dos times não muda o jogo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma de rodadas",
+    "ideia": "7 + 6 + 5 + 4 + 3 + 2 + 1 = 28: cada time só conta os jogos com os que vêm depois dele"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "8 × 7 = 56",
+    "nota": "cada time contra os 7 outros"
+   },
+   {
+    "linha": "56/2 = 28",
+    "nota": "cada jogo foi contado duas vezes"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

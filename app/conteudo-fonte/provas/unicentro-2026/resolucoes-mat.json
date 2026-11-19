@@ -687,5 +687,203 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "Pfc1a798c": {
+  "n": "74",
+  "conceito": "Formar equipe com duas categorias: combinação em cada grupo e princípio multiplicativo entre eles.",
+  "equivocos": {
+   "A": "M13.3:usou-arranjo-no-lugar-de-combinacao",
+   "C": "M13.3:contagem-sem-criterio",
+   "D": "M13.3:parou-numa-etapa",
+   "E": "M13.3:contagem-sem-criterio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A equipe tem duas escolhas independentes: os 2 árbitros e os 3 assistentes. Dentro de cada grupo a ordem não importa (combinação), e como as duas escolhas acontecem juntas (\"e\"), os resultados se multiplicam.",
+    "formulas": [
+     "equipes = C(5, 2) · C(8, 3)",
+     "C(n, p) = n! ÷ (p! · (n − p)!)"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "número de grupos de p pessoas escolhidas entre n, sem importar a ordem"
+     ],
+     [
+      "princípio multiplicativo",
+      "escolhas feitas em sequência se multiplicam"
+     ]
+    ]
+   },
+   "pista": "Separe a escolha dos árbitros da escolha dos assistentes e conte cada uma.",
+   "passos": [
+    {
+     "faz": "Escolha os árbitros",
+     "conta": "C(5, 2) = (5 · 4)/2 = 10",
+     "porque": "Dois árbitros entre 5, sem ordem: não há função diferente entre eles.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha os assistentes",
+     "conta": "C(8, 3) = (8 · 7 · 6)/(3 · 2 · 1) = 336/6 = 56",
+     "porque": "Três assistentes entre 8, também sem ordem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as escolhas",
+     "conta": "10 · 56 = 560",
+     "porque": "Cada dupla de árbitros pode ir com qualquer um dos 56 trios de assistentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "560 equipes → alternativa B",
+     "porque": "A pergunta é o número de equipes completas, com os dois grupos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 560 maneiras.",
+   "checagem": "Confira a escolha dos árbitros listando: com árbitros 1 a 5, as duplas são 12, 13, 14, 15, 23, 24, 25, 34, 35, 45, exatamente 10. E 560 é múltiplo de 56 (trios de assistentes), como deve ser.",
+   "erradas": {
+    "A": "1120 sai de contar os árbitros com ordem: 5 · 4 = 20 duplas ordenadas, e 20 · 56 = 1120. A dupla de árbitros não tem ordem, então são 10.",
+    "C": "156 não confere: o total é 10 × (trios de assistentes), logo tem de ser múltiplo de 10, e 156 não é.",
+    "D": "56 sai de parar no meio: C(8, 3) = 56 conta só os trios de assistentes, sem multiplicar pelas 10 duplas de árbitros.",
+    "E": "18 não confere: só os trios de assistentes já são 56; a equipe inteira não pode ter menos opções que isso."
+   },
+   "armadilha": "Contar só um dos grupos (56) ou tratar a dupla de árbitros como ordenada (1120).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de equipes com 2 dos 5 árbitros e 3 dos 8 assistentes.",
+    "chave": "C(5, 2) · C(8, 3) = 10 · 56 = 560.",
+    "cuidado": "Combinação dentro de cada grupo; entre os grupos, multiplique."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo complemento",
+    "ideia": "escolher os 3 árbitros que ficam de fora também dá C(5, 3) = 10; 10 · 56 = 560"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(5, 2) = (5 · 4)/2 = 10",
+    "nota": "duplas de árbitros"
+   },
+   {
+    "linha": "C(8, 3) = 336/6 = 56",
+    "nota": "trios de assistentes"
+   },
+   {
+    "linha": "10 · 56 = 560",
+    "nota": "cada dupla com cada trio"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
+ },
+ "P9ab0166c": {
+  "n": "76",
+  "conceito": "Contar jogos de turno e returno: cada par ordenado (mandante, visitante) é uma partida.",
+  "equivocos": {
+   "A": "M13.2:usou-combinacao-no-lugar-de-arranjo",
+   "B": "M13.2:contagem-sem-criterio",
+   "D": "M13.2:contagem-sem-criterio",
+   "E": "M13.2:contagem-sem-criterio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com jogo em casa e fora, a partida A × B (A em casa) é diferente de B × A (B em casa). Então a ordem importa: cada jogo é um par ordenado mandante–visitante, um arranjo de 18 equipes tomadas 2 a 2.",
+    "formulas": [
+     "partidas = 18 · 17 (mandante · visitante)",
+     "ou: 2 · C(18, 2), dois jogos por par de times"
+    ],
+    "simbolos": [
+     [
+      "arranjo",
+      "escolha em que a ordem importa"
+     ],
+     [
+      "C(n, p)",
+      "número de grupos de p elementos escolhidos entre n, sem importar a ordem"
+     ],
+     [
+      "mandante",
+      "time que joga em casa"
+     ]
+    ]
+   },
+   "pista": "Pense na partida como um par: quem joga em casa e quem visita.",
+   "passos": [
+    {
+     "faz": "Conte mandante e visitante",
+     "conta": "mandante 18 · visitante 17 → 306",
+     "porque": "Qualquer uma das 18 equipes pode jogar em casa, e o visitante é qualquer um dos outros 17 times; cada time recebe todos os outros em casa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confirme que não há repetição",
+     "conta": "A × B ≠ B × A → 306 partidas distintas",
+     "porque": "O jogo com A em casa e o com B em casa são as duas partidas do mesmo confronto, ambas previstas no regulamento.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "306 partidas → alternativa C",
+     "porque": "A pergunta é o total de partidas, contando turno e returno.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 306 partidas.",
+   "checagem": "Conte por confrontos: C(18, 2) = (18 · 17)/2 = 153 pares de times, e cada par se enfrenta duas vezes: 2 · 153 = 306.",
+   "erradas": {
+    "A": "153 sai de contar só um turno: C(18, 2) = 153 é o número de confrontos, mas cada par de times joga duas vezes.",
+    "B": "182 não confere: cada time faz 17 jogos em casa, então o total é múltiplo de 17, e 182/17 não é inteiro.",
+    "D": "406 não confere: o total tem de ser 17 jogos em casa para cada time, um múltiplo de 17, e 406/17 não é inteiro.",
+    "E": "432 não confere: o total tem de ser múltiplo de 17 (17 jogos em casa por time), e 432/17 não é inteiro."
+   },
+   "armadilha": "Usar combinação (153) e esquecer que cada par de times se enfrenta duas vezes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de partidas de um torneio de 18 times em turno e returno.",
+    "chave": "Mandante e visitante: 18 · 17 = 306.",
+    "cuidado": "Em casa e fora são jogos diferentes: a ordem importa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por confrontos",
+    "ideia": "C(18, 2) = 153 pares, dois jogos cada: 306"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "mandante: 18 | visitante: 17",
+    "nota": "escolha ordenada de dois times"
+   },
+   {
+    "linha": "18 · 17 = 306",
+    "nota": "total de partidas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

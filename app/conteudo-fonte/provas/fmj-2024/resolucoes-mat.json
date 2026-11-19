@@ -343,5 +343,116 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "Pf26add04": {
+  "n": "13",
+  "conceito": "Probabilidade de duas retiradas sucessivas sem reposição: a 1ª comum e a 2ª especial.",
+  "equivocos": {
+   "A": "M13.5:ignorou-a-primeira-retirada",
+   "B": "M13.5:probabilidade-maior-que-a-parte",
+   "D": "M13.5:sem-reposicao-errada",
+   "E": "M13.5:sem-reposicao-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"O primeiro ingresso especial ser retirado pela segunda pessoa\" quer dizer duas coisas ao mesmo tempo: a primeira pessoa pegou um ingresso comum e a segunda pegou um especial. As retiradas são sem reposição: depois da primeira, a urna tem 399 ingressos. Multiplique as duas chances.",
+    "formulas": [
+     "P(A e depois B) = P(A) × P(B, dado que A ocorreu)"
+    ],
+    "simbolos": [
+     [
+      "sem reposição",
+      "o ingresso retirado não volta para a urna"
+     ],
+     [
+      "ingresso comum",
+      "400 − 120 = 280 ingressos"
+     ]
+    ]
+   },
+   "pista": "Traduza a frase em duas retiradas: o que precisa acontecer com a primeira pessoa?",
+   "passos": [
+    {
+     "faz": "Traduza o evento pedido",
+     "conta": "1ª pessoa: comum | 2ª pessoa: especial",
+     "porque": "Se a primeira pegasse um especial, o primeiro especial teria saído com ela, não com a segunda.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a chance da 1ª pegar comum",
+     "conta": "comuns: 400 − 120 = 280 → 280/400 = 7/10",
+     "porque": "Há 280 ingressos comuns entre os 400 da urna.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chance da 2ª pegar especial",
+     "conta": "120/399 = 40/133",
+     "porque": "Saiu um comum: os 120 especiais continuam, mas agora em 399 ingressos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique e simplifique",
+     "conta": "7/10 × 40/133 → 280/1330 → 4/19",
+     "porque": "As duas coisas têm de acontecer em sequência; 280 e 1330 se dividem por 70.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "4/19 → alternativa C",
+     "porque": "É a chance de o primeiro especial sair justamente na segunda retirada.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 4/19",
+   "checagem": "Ordem de grandeza: com reposição seria 0,7 × 0,3 = 0,21; sem reposição a urna perde um comum, e o resultado sobe um pouco: 4/19 ≈ 0,2105. Fecha.",
+   "erradas": {
+    "A": "3/10 sai de calcular só a chance de a segunda pessoa pegar especial, 120/400 = 3/10, sem exigir que a primeira tenha pegado comum.",
+    "B": "3/5 não confere: a segunda pessoa pegar especial, sem condição nenhuma, já tem chance 3/10; exigir também que a primeira pegue comum só pode diminuir esse valor, e 3/5 é maior.",
+    "D": "1/12 não confere: dividido pela chance 7/10 da primeira retirada, daria 1/12 ÷ 7/10 = 5/42 ≈ 0,12 para a segunda, mas restam 120 especiais em 399, cerca de 0,30.",
+    "E": "2/15 não confere: dividido por 7/10, daria 2/15 ÷ 7/10 = 4/21 ≈ 0,19 para a segunda retirada, e não 120/399 ≈ 0,30."
+   },
+   "armadilha": "\"O primeiro especial sair com a segunda pessoa\" exige que a primeira tenha pegado um comum; calcular só a segunda retirada dá 3/10.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de a primeira pessoa pegar comum e a segunda pegar especial, sem reposição.",
+    "chave": "280/400 × 120/399 = 4/19.",
+    "cuidado": "Inclua a condição da primeira retirada e use 399 na segunda."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "estimativa",
+    "ideia": "Com reposição daria 0,7 × 0,3 = 0,21; só 4/19 ≈ 0,21 fica perto disso."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P = 280/400 × 120/399",
+    "nota": "1ª comum e 2ª especial"
+   },
+   {
+    "linha": "280/400 = 7/10 | 120/399 = 40/133",
+    "nota": "simplificar cada fração"
+   },
+   {
+    "linha": "7/10 × 40/133 = 280/1330",
+    "nota": "multiplicar"
+   },
+   {
+    "linha": "280/1330 = 4/19",
+    "nota": "dividir por 70"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

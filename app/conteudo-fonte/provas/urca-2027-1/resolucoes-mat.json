@@ -1282,5 +1282,123 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "P45312a17": {
+  "n": "26",
+  "conceito": "Contar pares (conjunto, elemento) de uma relação, fixando o elemento e contando os subconjuntos que o contêm.",
+  "equivocos": {
+   "A": "M13.3:contou-conjuntos-em-vez-de-pares",
+   "B": "M13.3:contagem-sem-criterio",
+   "D": "M13.3:contagem-sem-criterio",
+   "E": "M13.3:ignorou-a-restricao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Um par (X, y) serve quando y é par e está dentro de X. Em vez de olhar os 20 conjuntos um por um, fixe o y: para cada número par, conte quantos subconjuntos de três elementos o contêm. Para isso, o y já ocupa uma vaga e faltam 2 elementos, escolhidos entre os outros 5.",
+    "formulas": [
+     "nº de X com y dentro = C(5, 2)",
+     "pares = (nº de valores de y) · C(5, 2)"
+    ],
+    "simbolos": [
+     [
+      "S",
+      "o conjunto {1, 2, 3, 4, 5, 6}"
+     ],
+     [
+      "A",
+      "o conjunto de todos os subconjuntos de S com três elementos"
+     ],
+     [
+      "XRy",
+      "X está relacionado com y: y pertence a X e y é par"
+     ],
+     [
+      "C(n, p)",
+      "número de grupos de p elementos escolhidos entre n, sem importar a ordem"
+     ]
+    ]
+   },
+   "pista": "Comece pelo y: quais valores ele pode assumir?",
+   "passos": [
+    {
+     "faz": "Liste os valores possíveis de y",
+     "conta": "y par em S: 2, 4, 6 → 3 valores",
+     "porque": "A relação exige y par; os ímpares nunca formam par válido.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os X que contêm um y fixo",
+     "conta": "C(5, 2) = (5 · 4)/2 = 10",
+     "porque": "Com y dentro de X, faltam 2 dos 3 elementos, escolhidos entre os outros 5 números de S.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pelos valores de y",
+     "conta": "3 · 10 = 30",
+     "porque": "Cada um dos 3 valores pares tem 10 conjuntos que o contêm, e pares com y diferentes são pares diferentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "30 pares → alternativa C",
+     "porque": "A pergunta é o número de pares ordenados (X, y) que satisfazem a relação.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 30.",
+   "checagem": "Conte pelo X: dos C(6, 3) = 20 conjuntos, 1 não tem par ({1, 3, 5}), 9 têm um par (3 · C(3, 2)), 9 têm dois pares (C(3, 2) · 3) e 1 tem três ({2, 4, 6}). Pares: 0 + 9 + 18 + 3 = 30.",
+   "erradas": {
+    "A": "20 sai de C(6, 3) = 20: é o número de conjuntos X, e não o número de pares (X, y); um mesmo X pode formar par com até três valores de y.",
+    "B": "24 não confere: trocando 1 ↔ 2, 3 ↔ 4 e 5 ↔ 6, pares viram ímpares; então metade das 20 · 3 = 60 posições nos conjuntos é de número par: 30.",
+    "D": "36 não confere: trocando 1 ↔ 2, 3 ↔ 4 e 5 ↔ 6, pares viram ímpares; então metade das 20 · 3 = 60 posições nos conjuntos é de número par: 30.",
+    "E": "60 sai de esquecer que y tem de ser par: cada um dos 20 conjuntos tem 3 elementos, e 20 · 3 = 60 conta também os y ímpares."
+   },
+   "armadilha": "Contar conjuntos em vez de pares (20), ou esquecer a condição de y ser par (60).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de pares (X, y) com X de três elementos de S e y par dentro de X.",
+    "chave": "Fixe y: 3 valores pares, cada um em C(5, 2) = 10 conjuntos; 3 · 10 = 30.",
+    "cuidado": "O y tem de cumprir as duas condições ao mesmo tempo: estar em X e ser par."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem por X",
+    "ideia": "1 · 9 + 2 · 9 + 3 · 1 = 30, somando quantos pares cada conjunto tem"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "y ∈ {2, 4, 6} → 3 valores",
+    "nota": "só os pares servem"
+   },
+   {
+    "linha": "C(5, 2) = (5 · 4)/2 = 10",
+    "nota": "conjuntos que contêm cada y"
+   },
+   {
+    "linha": "3 · 10 = 30",
+    "nota": "total de pares (X, y)"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

@@ -439,5 +439,113 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P6293f42f": {
+  "n": "67",
+  "conceito": "Combinação com restrição de composição: exatamente 3 unidades federais entre 5 visitadas, sem importar a ordem.",
+  "equivocos": {
+   "B": "M13.3:restricao-ignorada",
+   "C": "M13.3:arranjo-no-lugar-de-combinacao",
+   "D": "M13.3:ordem-contada-quando-nao-importa",
+   "E": "M13.3:arranjo-sem-restricao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O enunciado diz que a ordem das visitas não importa: conta-se só quais 5 unidades são visitadas. Das 5, três têm de ser federais; as outras duas saem das unidades que não são federais (4 estaduais + 1 municipal = 5). São duas escolhas independentes que se multiplicam.",
+    "formulas": [
+     "C(n, k) = (n × (n − 1) × ... (k fatores))/k!",
+     "\"e\" entre etapas independentes: multiplique"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "combinação: número de grupos de k elementos escolhidos entre n, sem importar a ordem"
+     ],
+     [
+      "k!",
+      "fatorial: 3! = 3 × 2 × 1 = 6"
+     ]
+    ]
+   },
+   "pista": "Quantas unidades não federais existem para completar as cinco visitas?",
+   "passos": [
+    {
+     "faz": "Separe federais e não federais",
+     "conta": "federais: 12 | não federais: 4 + 1 = 5",
+     "porque": "Com três federais obrigatórias, as outras duas visitas vêm do grupo de não federais.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escolha as 3 federais",
+     "conta": "C(12, 3) = (12 × 11 × 10)/6 → 1320/6 → 220",
+     "porque": "Três entre doze, sem ordem: o produto 12 × 11 × 10 conta cada trio 3! = 6 vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha as 2 não federais",
+     "conta": "C(5, 2) = (5 × 4)/2 → 20/2 → 10",
+     "porque": "Duas entre as cinco restantes, também sem ordem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as escolhas",
+     "conta": "220 × 10 = 2200",
+     "porque": "Cada trio de federais combina com cada par de não federais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "2200 → alternativa A",
+     "porque": "O número de maneiras de escolher as unidades visitadas é 2.200.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2.200",
+   "checagem": "Some os grupos de 5 por número de federais (0 a 5): Σ C(12, k) · C(5, 5 − k) = 1 + 60 + 660 + 2200 + 2475 + 792 = 6188, que é exatamente C(17, 5), o total de grupos de 5 entre as 17 unidades. A parcela k = 3 é 220 · 10 = 2200.",
+   "erradas": {
+    "B": "6.188 sai de ignorar a restrição: C(17, 5) = 6188 conta qualquer grupo de 5 unidades, com qualquer número de federais.",
+    "C": "26.400 sai de contar a ordem dentro de cada grupo: 12 × 11 × 10 × 5 × 4 = 1320 × 20 = 26400, sem dividir por 3! e por 2!.",
+    "D": "264.000 sai de multiplicar 2200 por 5! = 120, ordenando as cinco visitas, o que o enunciado manda não fazer.",
+    "E": "742.560 sai de 17 × 16 × 15 × 14 × 13 = 742560: arranjo de 17 tomados 5, sem a restrição e com ordem."
+   },
+   "armadilha": "A frase final avisa que a ordem não importa: qualquer conta que ordene as visitas (multiplicar por 5! ou não dividir pelos fatoriais) passa do valor certo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "De quantas maneiras escolher 5 unidades com exatamente 3 federais, sem ordem.",
+    "chave": "C(12, 3) × C(5, 2) = 220 × 10 = 2200.",
+    "cuidado": "Complete as visitas só com não federais e não multiplique pela ordem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fatoração das alternativas",
+    "ideia": "2200 = 220 × 10; as maiores (26.400, 264.000, 742.560) carregam fatores de ordem que o enunciado exclui"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(12, 3) = (12 × 11 × 10)/6 = 220",
+    "nota": "trios de federais"
+   },
+   {
+    "linha": "C(5, 2) = (5 × 4)/2 = 10",
+    "nota": "pares de não federais"
+   },
+   {
+    "linha": "220 × 10 = 2200",
+    "nota": "as escolhas se multiplicam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

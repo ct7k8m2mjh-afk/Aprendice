@@ -645,5 +645,125 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pae5b5dc2": {
+  "n": "10",
+  "conceito": "Probabilidade com duas variáveis independentes: comparar o dodecaedro com a soma de dois dados, condicionando em cada valor da soma.",
+  "equivocos": {
+   "A": "M13.4:contagem-sem-base",
+   "B": "M13.4:contagem-sem-base",
+   "C": "M13.4:contagem-sem-base",
+   "E": "M13.4:contagem-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os três dados são independentes, então há 36 × 12 = 432 resultados igualmente prováveis. Fixe a soma S dos dois cúbicos: o dodecaedro vence quando mostra um número de S + 1 até 12, que são 12 − S faces. Basta somar essas faces, pesadas pelo número de jeitos de cada soma. \"Maior\" exclui o empate.",
+    "formulas": [
+     "P = favoráveis/possíveis",
+     "para soma S: faces do dodecaedro que vencem = 12 − S"
+    ],
+    "simbolos": [
+     [
+      "S",
+      "soma dos dois dados cúbicos, de 2 a 12"
+     ],
+     [
+      "dodecaedro",
+      "dado de 12 faces, numeradas de 1 a 12"
+     ]
+    ]
+   },
+   "pista": "Fixe primeiro a soma dos dois cúbicos e pergunte quantas faces do dodecaedro ganham dela.",
+   "passos": [
+    {
+     "faz": "Conte os resultados possíveis",
+     "conta": "6 · 6 · 12 → 432 resultados",
+     "porque": "Cada dado é independente e todas as faces são equiprováveis, então os resultados se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Liste os jeitos de cada soma",
+     "conta": "S: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 | jeitos: 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1",
+     "porque": "Dos 36 pares de faces, a soma 7 sai de 6 jeitos e cada passo para longe do 7 tira um jeito.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some as faces vencedoras",
+     "conta": "1·10 + 2·9 + 3·8 + 4·7 + 5·6 + 6·5 + 5·4 + 4·3 + 3·2 + 2·1 + 1·0 → 180",
+     "porque": "Para cada soma S, o dodecaedro ganha com 12 − S faces; multiplicando pelos jeitos da soma e somando, saem todos os casos favoráveis.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "180/432 → 5/12",
+     "porque": "Favoráveis sobre possíveis; dividindo por 36 a fração fica irredutível.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 5/12",
+   "checagem": "Atalho pela média: a fração de faces vencedoras é (12 − S)/12, e a média de S é 7. A média de (12 − S)/12 é (12 − 7)/12 = 5/12, o mesmo valor.",
+   "erradas": {
+    "A": "2/3 ≈ 0,667 não confere: com soma 7 ou mais (21/36), o dodecaedro precisa de 8 ou mais (5/12 no máximo); mesmo vencendo sempre na soma até 6: 15/36 + 21/36 · 5/12 = 95/144 ≈ 0,660.",
+    "B": "1/6 ≈ 0,167 não confere: a probabilidade é pelo menos a chance de a soma dar até 6 (15/36) e o dodecaedro dar 7 ou mais (1/2), caso em que ele sempre vence: 15/36 · 1/2 = 15/72 ≈ 0,208, maior que 1/6.",
+    "C": "7/36 ≈ 0,194 não confere: a probabilidade é pelo menos a chance de a soma dar até 6 (15/36) e o dodecaedro dar 7 ou mais (1/2), caso em que ele sempre vence: 15/36 · 1/2 = 15/72 ≈ 0,208, maior que 7/36.",
+    "E": "3/16 ≈ 0,1875 não confere: a probabilidade é pelo menos a chance de a soma dar até 6 (15/36) e o dodecaedro dar 7 ou mais (1/2), caso em que ele sempre vence: 15/36 · 1/2 = 15/72 ≈ 0,208, maior que 3/16."
+   },
+   "armadilha": "\"Maior\" exclui o empate: contando as faces de S até 12 (12 − S + 1 por soma) sai 216/432 = 1/2, que não é a resposta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de o dodecaedro superar a soma de dois dados comuns.",
+    "chave": "Para cada soma S, 12 − S faces vencem; somando com os pesos 1, 2, ..., 6, ..., 1 sai 180 de 432 = 5/12.",
+    "cuidado": "Não conte o empate como vitória."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média da soma",
+    "ideia": "a média de S é 7, então a fração média de faces vencedoras é (12 − 7)/12 = 5/12"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6 · 6 · 12 = 432",
+    "nota": "resultados possíveis"
+   },
+   {
+    "linha": "Σ jeitos(S) · (12 − S) = 180",
+    "nota": "faces vencedoras para cada soma"
+   },
+   {
+    "linha": "180/432 = 5/12",
+    "nota": "simplificar por 36"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Estratégia Vestibulares (questão do IME 2024 com gabarito D)",
+    "url": "https://vestibulares.estrategia.com/portal/atualidades-e-dicas/5-questoes-sobre-probabilidade-que-ja-cairam-no-enem-e-vestibulares/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [
+    {
+     "url": "https://vestibulares.estrategia.com/portal/atualidades-e-dicas/5-questoes-sobre-probabilidade-que-ja-cairam-no-enem-e-vestibulares/",
+     "letra": "D"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

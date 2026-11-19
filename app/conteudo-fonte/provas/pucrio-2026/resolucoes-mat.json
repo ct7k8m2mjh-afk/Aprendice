@@ -911,5 +911,102 @@
    "data": "2026-11-13",
    "lote": "mat-0063"
   }
+ },
+ "Pd27194f7": {
+  "n": "13",
+  "conceito": "Probabilidade com dois dados: contar os pares ordenados com soma maior ou igual a 9.",
+  "equivocos": {
+   "A": "M13.4:contagem-sem-base",
+   "C": "M13.4:esqueceu-um-caso",
+   "D": "M13.4:contagem-sem-base",
+   "E": "M13.4:excluiu-o-igual"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dois dados dão 36 pares ordenados igualmente prováveis: (3, 6) e (6, 3) são resultados diferentes. \"Maior ou igual a 9\" inclui o 9: conte as somas 9, 10, 11 e 12.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis"
+    ],
+    "simbolos": [
+     [
+      "par ordenado",
+      "resultado (1º dado, 2º dado); a ordem diferencia os dados"
+     ]
+    ]
+   },
+   "pista": "Liste os pares de cada soma, de 9 até 12, contando (a, b) e (b, a) separados.",
+   "passos": [
+    {
+     "faz": "Conte os resultados possíveis",
+     "conta": "6 · 6 → 36 pares",
+     "porque": "Cada dado tem 6 faces equiprováveis e os dados são independentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Liste os pares favoráveis",
+     "conta": "9: (3,6) (6,3) (4,5) (5,4) | 10: (4,6) (6,4) (5,5) | 11: (5,6) (6,5) | 12: (6,6)",
+     "porque": "Cada soma é escrita com a ordem dos dados; o par de números iguais só aparece uma vez.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some os favoráveis",
+     "conta": "4 + 3 + 2 + 1 → 10 pares",
+     "porque": "Os casos de cada soma não se repetem, então se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "10/36 → (10 ÷ 2)/(36 ÷ 2) → 5/18",
+     "porque": "Favoráveis sobre possíveis, simplificando por 2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 5/18",
+   "checagem": "Pelo complementar: as somas de 2 a 8 têm 1 + 2 + 3 + 4 + 5 + 6 + 5 = 26 pares, e 36 − 26 = 10. Fecha com os 10 favoráveis.",
+   "erradas": {
+    "A": "5/36 não confere: as somas 9 e 10 sozinhas já dão 4 + 3 = 7 pares, mais que os 5 que essa fração exige.",
+    "C": "7/36 sai de parar na soma 10: 4 + 3 = 7 pares, esquecendo as somas 11 e 12.",
+    "D": "7/18 não confere: 7/18 = 14/36 exigiria 14 pares, e a lista completa das somas 9 a 12 tem 10.",
+    "E": "1/6 sai de ler \"maior que 9\": 3 + 2 + 1 = 6 pares, e 6/36 = 1/6. O \"ou igual\" inclui os 4 pares de soma 9."
+   },
+   "armadilha": "\"Maior ou igual a 9\" inclui a soma 9; tirá-la leva à alternativa E.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de a soma de dois dados ser pelo menos 9.",
+    "chave": "Somas 9, 10, 11 e 12 têm 4 + 3 + 2 + 1 = 10 pares de 36: 5/18.",
+    "cuidado": "Inclua a soma 9 e conte os pares nas duas ordens."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "somas de 2 a 8 têm 26 pares; 36 − 26 = 10 favoráveis, 10/36 = 5/18"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6 · 6 = 36",
+    "nota": "pares possíveis"
+   },
+   {
+    "linha": "4 + 3 + 2 + 1 = 10",
+    "nota": "somas 9, 10, 11 e 12"
+   },
+   {
+    "linha": "10/36 = 5/18",
+    "nota": "simplificar por 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

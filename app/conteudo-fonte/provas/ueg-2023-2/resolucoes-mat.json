@@ -961,5 +961,103 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P8238a39e": {
+  "n": "23",
+  "conceito": "Calcular probabilidade com espaço amostral contado por combinação: apostas favoráveis sobre o total de pares.",
+  "equivocos": {
+   "A": "M13.4:valor-sem-base",
+   "B": "M13.4:valor-sem-base",
+   "D": "M13.4:contou-ordem-e-repeticao",
+   "E": "M13.4:esqueceu-as-apostas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O sorteio escolhe dois números entre trinta, e a ordem não importa: o resultado é um par. O espaço amostral é o número de pares possíveis, C(30, 2). Três apostas diferentes cobrem três desses pares, e só um par é sorteado.",
+    "formulas": [
+     "probabilidade = casos favoráveis/casos possíveis",
+     "C(30, 2) = (30 × 29)/2"
+    ],
+    "simbolos": [
+     [
+      "C(30, 2)",
+      "número de pares de números escolhidos entre 30, sem ordem"
+     ]
+    ]
+   },
+   "pista": "Conte primeiro quantos pares de números diferentes existem.",
+   "passos": [
+    {
+     "faz": "Conte os pares possíveis",
+     "conta": "C(30, 2) = (30 × 29)/2 = 870/2 = 435",
+     "porque": "O par {3, 17} é o mesmo que {17, 3}: divide-se por 2 as escolhas em sequência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os casos favoráveis",
+     "conta": "3 apostas diferentes → 3 pares favoráveis",
+     "porque": "Cada aposta é um par distinto; o apostador ganha se o sorteado for um deles.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte e simplifique a probabilidade",
+     "conta": "3/435 → 1/145",
+     "porque": "Favoráveis sobre possíveis; o 3 cancela com o 435 = 3 × 145.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1/145 → alternativa C",
+     "porque": "É a chance de o par sorteado ser uma das três apostas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1/145",
+   "checagem": "Pense em uma aposta só: a chance é 1/435. Três apostas diferentes não se sobrepõem, então a chance triplica: 3 × 1/435 = 1/145.",
+   "erradas": {
+    "A": "1/15 não confere: corresponderia a 29 apostas entre 435 pares (435/15 = 29), não a 3.",
+    "B": "1/75 não confere: 435/75 = 5,8 não é inteiro, então 1/75 não é 3 pares sobre 435.",
+    "D": "1/300 sai de contar pares com ordem e com repetição: 30 × 30 = 900 e 3/900 = 1/300. Os dois números são diferentes e a ordem não importa.",
+    "E": "1/900 sai de contar uma aposta só sobre 30 × 30 = 900 resultados, esquecendo as três apostas e contando ordem e repetição."
+   },
+   "armadilha": "O resultado é um par sem ordem: o espaço é C(30, 2) = 435, não 30 × 30.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de ganhar com 3 apostas de 2 números entre 30.",
+    "chave": "Pares possíveis: 435; favoráveis: 3; 3/435 = 1/145.",
+    "cuidado": "Conte pares sem ordem e sem repetir número."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "uma aposta",
+    "ideia": "Uma aposta tem chance 1/435; três apostas diferentes somam 3/435 = 1/145."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(30, 2) = 870/2 = 435",
+    "nota": "pares possíveis"
+   },
+   {
+    "linha": "P = 3/435",
+    "nota": "3 apostas favoráveis"
+   },
+   {
+    "linha": "3/435 = 1/145",
+    "nota": "simplifica por 3"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

@@ -935,5 +935,115 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pea2e077e": {
+  "n": "9",
+  "conceito": "Probabilidade geométrica com contagem: num polígono regular de 2n lados, um quadrilátero inscrito é retângulo exatamente quando suas diagonais são dois diâmetros.",
+  "equivocos": {
+   "B": "M13.4:contou-com-um-elemento-fixo",
+   "C": "M13.4:contagem-sem-base",
+   "D": "M13.4:contagem-sem-base",
+   "E": "M13.4:contagem-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os vértices de um polígono regular estão numa circunferência. Um quadrilátero inscrito é retângulo se, e só se, as duas diagonais são diâmetros (diagonais iguais que se cortam ao meio, no centro). Com 2n vértices, os vértices formam n pares opostos, ou seja, n diâmetros. Então contar retângulos é escolher 2 desses n diâmetros.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "C(n, p) = n! ÷ (p! · (n − p)!)"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "número de grupos de p elementos escolhidos entre n, sem ordem"
+     ],
+     [
+      "diâmetro",
+      "corda que passa pelo centro; liga dois vértices opostos do polígono"
+     ],
+     [
+      "n ∈ N",
+      "n é número natural"
+     ]
+    ]
+   },
+   "pista": "Pense no que as diagonais de um retângulo inscrito numa circunferência têm de especial.",
+   "passos": [
+    {
+     "faz": "Conte os quadriláteros possíveis",
+     "conta": "4 vértices entre 2n → C(2n, 4)",
+     "porque": "Escolher 4 vértices ao acaso é escolher um grupo sem ordem; cada grupo forma um único quadrilátero convexo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reconheça o retângulo pelas diagonais",
+     "conta": "retângulo inscrito ⇔ as 2 diagonais são diâmetros",
+     "porque": "Num retângulo as diagonais são iguais e se cortam ao meio; inscrito, esse ponto é o centro, então cada diagonal é um diâmetro. Dois diâmetros quaisquer também formam um retângulo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os diâmetros e escolha 2",
+     "conta": "2n vértices → n pares opostos → C(n, 2) retângulos",
+     "porque": "Como 2n é par, cada vértice tem um oposto; são n diâmetros, e cada par deles dá um retângulo diferente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a probabilidade",
+     "conta": "P = C(n, 2)/C(2n, 4) → alternativa A",
+     "porque": "Favoráveis sobre possíveis, exatamente como aparece na alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — C(n, 2)/C(2n, 4)",
+   "checagem": "Teste no hexágono (n = 3): os retângulos são 3 (pares de diâmetros entre 3), e os quadriláteros são C(6, 4) = 15, P = 3/15 = 1/5. A fórmula dá C(3, 2)/C(6, 4) = 3/15 = 1/5. Fecha.",
+   "erradas": {
+    "B": "(n − 1)/C(2n, 4) sai de fixar um diâmetro e contar só as n − 1 escolhas do segundo; no hexágono daria 2/15, mas são 3 retângulos.",
+    "C": "C(n + 2, 4)/C(2n, 4) não confere: no hexágono daria C(5, 4)/15 = 5/15, e o hexágono tem só 3 retângulos.",
+    "D": "C(2n, 2)/(6 · C(2n, 4)) não confere: no hexágono o numerador C(6, 2)/6 = 15/6 = 2,5 não é número inteiro de retângulos.",
+    "E": "(n² + 2n + 4)/(12 · C(2n, 4)) não confere: no hexágono o numerador (9 + 6 + 4)/12 = 19/12 não é número inteiro de retângulos."
+   },
+   "armadilha": "Com n = 2 (quadrado) todas as alternativas dão 1; só um caso maior, como o hexágono, separa a fórmula certa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de 4 vértices sorteados de um 2n-ágono regular formarem um retângulo.",
+    "chave": "Retângulo inscrito = 2 diâmetros; há n diâmetros, então C(n, 2) sobre C(2n, 4).",
+    "cuidado": "Teste as alternativas com n = 3, não com n = 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "no hexágono (n = 3) conte à mão 3 retângulos em 15 quadriláteros e veja que só a A dá 3/15"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "possíveis: C(2n, 4)",
+    "nota": "4 vértices quaisquer"
+   },
+   {
+    "linha": "diâmetros: 2n/2 = n",
+    "nota": "pares de vértices opostos"
+   },
+   {
+    "linha": "favoráveis: C(n, 2)",
+    "nota": "2 diâmetros formam 1 retângulo"
+   },
+   {
+    "linha": "P = C(n, 2)/C(2n, 4)",
+    "nota": "favoráveis sobre possíveis"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }

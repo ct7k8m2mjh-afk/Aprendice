@@ -453,5 +453,118 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P20d28663": {
+  "n": "1",
+  "conceito": "Achar o coeficiente de x³ num produto de dois binômios, somando as combinações de termos que dão grau 3.",
+  "equivocos": {
+   "A": "M13.3:esqueceu-um-caso",
+   "B": "M13.3:esqueceu-o-binomial",
+   "D": "M13.3:esqueceu-um-caso",
+   "E": "M13.3:sinal-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O termo em x³ do produto aparece de várias maneiras: um termo de (1 + x)⁴ vezes um termo de (2 − x²)⁵, com os graus somando 3. Como o segundo fator só tem potências pares de x, o primeiro precisa dar a potência ímpar: x¹ ou x³. Calcule cada combinação pelo binômio de Newton e some.",
+    "formulas": [
+     "termo de (1 + x)⁴ com xⁱ: C(4, i) xⁱ",
+     "termo de (2 − x²)⁵ com x²ʲ: C(5, j) 2⁵⁻ʲ (−1)ʲ x²ʲ",
+     "grau total: i + 2j = 3"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "número binomial: n! / (p! (n − p)!)"
+     ],
+     [
+      "coeficiente",
+      "o número que multiplica a potência de x"
+     ]
+    ]
+   },
+   "pista": "Liste os pares de graus, um de cada fator, que somam 3; lembre que o segundo fator só tem graus pares.",
+   "passos": [
+    {
+     "faz": "Ache os pares de graus que dão 3",
+     "conta": "i + 2j = 3 → (i, j) = (1, 1) ou (3, 0)",
+     "porque": "j = 0 pede i = 3; j = 1 pede i = 1; com j ≥ 2 o grau já passa de 3.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o caso i = 1 e j = 1",
+     "conta": "C(4, 1) × C(5, 1) × 2⁴ × (−1) = 4 × 5 × 16 × (−1) = −320",
+     "porque": "Do 1º fator sai 4x; do 2º, o termo com um −x² e quatro fatores 2: 5 × 16 × (−x²) = −80x².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o caso i = 3 e j = 0",
+     "conta": "C(4, 3) × C(5, 0) × 2⁵ = 4 × 1 × 32 = 128",
+     "porque": "Do 1º fator sai 4x³; do 2º, o termo sem x, 2⁵ = 32.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as contribuições",
+     "conta": "−320 + 128 = −192",
+     "porque": "As duas maneiras de chegar em x³ se somam no coeficiente final.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "coeficiente de x³ = −192 → alternativa C",
+     "porque": "A soma das contribuições é o coeficiente pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — −192",
+   "checagem": "Expanda os dois fatores à mão: (1 + x)⁴ = 1 + 4x + 6x² + 4x³ + x⁴ e (2 − x²)⁵ = 32 − 80x² + 80x⁴ − ... . No produto, x³ só sai de 4x · (−80x²) e de 4x³ · 32: 4 · (−80) + 4 · 32 = −320 + 128 = −192.",
+   "erradas": {
+    "A": "−320 sai de pegar só o caso x × x²: 4 × 5 × 16 × (−1) = −320, esquecendo o termo 4x³ vezes 32.",
+    "B": "−288 sai de esquecer o C(4, 3) = 4 no segundo caso: −320 + 1 × 32 = −288.",
+    "D": "128 sai de pegar só o caso x³ × 2⁵ = 4 × 32 = 128, esquecendo a contribuição negativa de −320.",
+    "E": "320 sai do primeiro caso com o sinal trocado: o termo do 2º fator é −x², então a contribuição é −320, não +320; e falta ainda o +128."
+   },
+   "armadilha": "x³ aparece de duas formas (x · x² e x³ · 1): quem pega só uma delas, ou erra o sinal de −x², cai em outra alternativa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O coeficiente de x³ no produto (1 + x)⁴ (2 − x²)⁵.",
+    "chave": "Graus 1 + 2 e 3 + 0: −320 + 128 = −192.",
+    "cuidado": "Some todas as combinações de graus e leve o sinal de −x²."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "expandir o segundo fator",
+    "ideia": "(2 − x²)⁵ = 32 − 80x² + ...; multiplicando por 1 + 4x + 6x² + 4x³ + x⁴, o x³ vem de 4x × (−80x²) + 4x³ × 32 = −320 + 128 = −192."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i + 2j = 3 → (1, 1) ou (3, 0)",
+    "nota": "pares de graus possíveis"
+   },
+   {
+    "linha": "4 × 5 × 16 × (−1) = −320",
+    "nota": "caso x · (−x²)"
+   },
+   {
+    "linha": "4 × 1 × 32 = 128",
+    "nota": "caso x³ · 2⁵"
+   },
+   {
+    "linha": "−320 + 128 = −192",
+    "nota": "soma das contribuições"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
  }
 }
