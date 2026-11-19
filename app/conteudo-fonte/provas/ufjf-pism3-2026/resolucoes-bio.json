@@ -408,5 +408,107 @@
    "data": "2026-11-19",
    "lote": "bio-0068"
   }
+ },
+ "Pe7a08279": {
+  "n": "14",
+  "conceito": "Na epistasia dominante, o alelo I inibe a pigmentação; só plantas ii com pelo menos um P têm sementes pigmentadas, e o cruzamento iiPp × iiPp dá 3/4 delas.",
+  "equivocos": {
+   "A": "B06.6:ignorou-fracao-do-inibidor",
+   "B": "B06.6:esqueceu-que-o-inibidor-bloqueia-pigmento",
+   "D": "B06.6:esqueceu-que-o-inibidor-bloqueia-pigmento",
+   "E": "B06.6:so-garantiu-o-alelo-do-pigmento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dois genes independentes decidem a cor da semente. O P manda fazer pigmento escuro, mas o I bloqueia a pigmentação; o alelo i deixa o pigmento aparecer. Então semente pigmentada exige duas condições ao mesmo tempo: ii e pelo menos um P (genótipo iiP_). Basta calcular essa chance em cada cruzamento, gene por gene.",
+    "formulas": [
+     "pigmentada: ii e P_ (PP ou Pp)",
+     "P(pigmentada) = P(ii) × P(P_)",
+     "Pp × Pp: 3/4 de P_ | Ii × Ii: 1/4 de ii"
+    ],
+    "simbolos": [
+     [
+      "epistasia",
+      "interação em que um gene impede a expressão de outro"
+     ],
+     [
+      "I",
+      "alelo inibidor da pigmentação"
+     ],
+     [
+      "i",
+      "alelo que permite a pigmentação aparecer"
+     ],
+     [
+      "P_",
+      "PP ou Pp: tem pelo menos um alelo para pigmento"
+     ]
+    ]
+   },
+   "pista": "Escreva primeiro qual genótipo dá semente pigmentada. Depois veja em quais cruzamentos o inibidor some de todos os filhos.",
+   "passos": [
+    {
+     "faz": "Defina o genótipo da semente pigmentada",
+     "conta": "pigmentada: ii + P_ | I presente: sem pigmento | pp: clara",
+     "porque": "O I inibe a pigmentação mesmo com P presente; sem P não há pigmento para aparecer. As duas condições valem juntas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Descarte os cruzamentos sem ii",
+     "conta": "B: IIPP × iipp → todos Ii | D: Iipp × IIPP → todos I_ ⇒ 0",
+     "porque": "Em B e D um dos pais é II, então todo filho recebe um I e nenhum fica pigmentado.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Calcule os cruzamentos que restam",
+     "conta": "A: 1/4 × 3/4 = 3/16 | C: 1 × 3/4 = 3/4 | E: 1/4 × 1 = 1/4",
+     "porque": "Multiplique a chance de ii pela de P_. Em C os dois pais já são ii, então o inibidor nunca aparece.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare e ligue à alternativa",
+     "conta": "3/4 > 1/4 > 3/16 > 0 → alternativa C",
+     "porque": "iiPp × iiPp dá 3/4 de sementes pigmentadas, a maior chance entre os cinco cruzamentos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — iiPp × iiPp, com 3/4 (75%) de chance de sementes pigmentadas.",
+   "checagem": "Em C, de cada 4 filhos de iiPp × iiPp, esperam-se 1 iiPP, 2 iiPp e 1 iipp: três pigmentados e um claro, 3/4. Nenhum outro cruzamento elimina o I e ainda garante P em três de cada quatro filhos.",
+   "erradas": {
+    "A": "A sai de 1/4 de ii × 3/4 de P_ = 3/16. O Ii × Ii deixa 3/4 dos filhos com o inibidor.",
+    "B": "B dá 0: IIPP × iipp gera só IiPp, e o I inibe a pigmentação em todos.",
+    "D": "D dá 0: o genitor IIPP passa I a todos os filhos, que ficam sem pigmento.",
+    "E": "E sai de 1/4 de ii × 1 de P_ = 1/4. Todos têm P, mas Ii × Ii deixa só 1/4 sem o inibidor."
+   },
+   "armadilha": "Escolher o cruzamento com mais P (como B ou D) e esquecer que o I bloqueia o pigmento mesmo com P presente.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual cruzamento dá a maior chance de sementes pigmentadas, com o gene I inibindo o P.",
+    "chave": "Pigmentada é iiP_; com os dois pais ii, a chance fica 1 × 3/4 = 3/4.",
+    "cuidado": "Quem tem um I não pigmenta, mesmo com PP."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação rápida",
+    "ideia": "Só cruzamento com os dois pais ii elimina o inibidor de todos os filhos; o único é C, e ainda dá 3/4 de P_."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Quadro 1: o gene P acende um pigmento escuro numa semente. Quadro 2: o alelo I aparece como uma barreira que apaga o pigmento; com ii a barreira some. Quadro 3: os cinco cruzamentos em fila, cada um com a fração de sementes pigmentadas: 3/16, 0, 3/4, 0, 1/4. Quadro 4: o cruzamento C destacado, com quatro sementes, três escuras e uma clara."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0076"
+  }
  }
 }
