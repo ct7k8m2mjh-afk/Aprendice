@@ -437,3 +437,10 @@ Lotes gravados nesta sessão: geo-0059 (50), geo-0060 (50), geo-0061 (17) = 117 
 Pendentes: 0. Divergências: 0. RECLASS e DADO nos blocos PENDENCIAS acima.
 Testes: converte + tsc + vitest verdes (786 passed), rodados depois do geo-0059.
 A vaga da parte 1 fica livre; a parte 2 (geo-p2) segue com a outra sessão.
+
+## 2026-11-19 20:15 UTC — ACABOU (pendentes) — 022cc1d2
+Sessão de pendentes de Geografia: lotes geo-pend-0001, geo-pend-0002 e geo-pend-0003 gravados. 11 resolvidas (4 vindas de História, 7 de Biologia/Física); 9 questões de Geografia reclassificadas para outras matérias (prova.json corrigido) e resolvidas lá. Ficam 2 pendentes, além das 8 "anular" (decisão do dono):
+PRINT Pd4ca228f: tentado de novo (print ampliado, caderno do Objetivo, Atlas Escolar do IBGE com 403/404 e Web Archive fora); falta a legenda com o nome de cada projeção.
+GABARITO P9688242b: a IV ("somente a cana" ganha com o calor) é contrariada pelo estudo Embrapa/Unicamp 2008 (cana e mandioca ganham área); números da I não achados no SEEG/MCTI. Possível "anular": dono decide.
+DADO P4172ca46: alternativas.D -> "heterogeneidade do sistema de localização" ("Fonte: Survey Monkey" é crédito do mapa, colado)
+DADO Pb1b726b3: alternativas.D -> "importância industrial na hierarquia urbana" (texto dos mapas colado)

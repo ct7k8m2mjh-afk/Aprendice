@@ -1,0 +1,7 @@
+
+## 2026-11-19 20:15 UTC — ACABOU (pendentes) — 022cc1d2
+Sessão de pendentes de História: lotes his-pend-0001, his-pend-0002 e his-pend-0004 gravados. 5 resolvidas (3 de fato, 1 vinda de Geografia, 1 de Biologia); 18 questões de História reclassificadas para outras matérias (prova.json corrigido) e resolvidas lá. his-pend-0003 é da outra sessão de pendentes. Ficam 2 pendentes:
+GABARITO P881983dc: reino Bamun; o texto de Macedo (pp. 132-135) não está na web, e as fontes contradizem a 2ª afirmativa (Njoya negociou com os alemães e aceitou a ocupação britânica em 1915); nenhum cursinho publicou resolução.
+OUTRA P3a2fa1cd (Fuvest 2026 q42): Artes (história do circo), já em outra-materia.json.
+RECLASS Pc5b18c12 H04.9 -> H05.11
+DADO P9bfc87ab (PUC-Rio 2025): número da questão -> 41 no print e no texto (a entrada diz 51); conferir no caderno do grupo 4.
