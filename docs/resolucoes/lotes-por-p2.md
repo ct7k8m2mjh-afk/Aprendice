@@ -13,7 +13,7 @@ Faltam 333 questões sem resolução (fora as que estão em lote, pendentes ou c
 | por-p2-0005 | demais nível 1-6 | 50 | gravado | 49 | 0 | 1 |
 | por-p2-0006 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | por-p2-0007 | demais nível 1-6 | 50 | gravado | 47 | 3 | 0 |
-| por-p2-0008 | demais nível 1-6 | 50 | aberto |  |  |  |
+| por-p2-0008 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -23,6 +23,7 @@ Faltam 333 questões sem resolução (fora as que estão em lote, pendentes ou c
 | Pd2b4fc8b | UEG 2023 2023/2 · questão 10 | P12.2 Modernismo de 1922, vanguardas europeias e manifestos (tema P12 Literatura: Pré-Modernismo em diante) | outra matéria: Artes (história da arte contemporânea: Pop Art, Neodadaísmo, Novo Realismo, Op-Art, Minimalismo, Land Art; não é Português nem Literatura) |
 | Pca7bff31 | UFAM 2023 PSC 3ª etapa · questão 12 | P12.3 Modernismo de 30: romance do Nordeste, Drummond e Bandeira (tema P12 Literatura: Pré-Modernismo em diante) | obra: O quinze — não consegui confirmar em fonte didática confiável os pontos do enredo das afirmativas I (benefício a apadrinhados de coronéis em detrimento de Chico Bento) e III (Vicente, pecuarista, lucra em certa medida com a seca); as fontes encontradas divergem sobre as passagens de Chico Bento. |
 | P6c2f77f0 | UFT 2024 Vestibular 2024/1 · questão 7 | P08.1 sujeito e predicado, inclusive sujeito oculto e oração sem sujeito (tema P08 Período simples) | anular: o gabarito definitivo D exige que a afirmativa III esteja correta, mas “maltratando uma velhinha” não é predicado nominal. “Estão maltratando” é locução verbal (auxiliar estar + gerúndio do verbo transitivo direto maltratar), e “uma velhinha” é objeto direto: o predicado é verbal, e não há verbo de ligação nem predicativo. Corretas pelos fatos: só a IV (I é falsa: sujeito indeterminado; II é falsa: “uma velhinha” é objeto direto). Nenhuma alternativa reúne só a IV. Busca na web sem errata nem resolução publicada. |
+| Pe98ee5d0 | URCA 2026 2026.1 · questão 100 | P12.3 Modernismo de 30: romance do Nordeste, Drummond e Bandeira (tema P12 Literatura: Pré-Modernismo em diante) | print: a questão 40 (URCA 2026.1) pede "o sentido mais geral do trecho do poema", mas o print e o texto trazem só o enunciado e as alternativas; o poema "Carta a Stalingrado" está no print da questão 38 (id P74ed0f28). Juntar o texto de apoio ao print desta questão e reabrir. |
 | P4211f481 | Unitins 2024 Vestibular 2024/1 – Caderno 1 · questão 45 | P12.2 Modernismo de 1922, vanguardas europeias e manifestos (tema P12 Literatura: Pré-Modernismo em diante) | anular: o gabarito oficial (A: I, II e III) exige a afirmativa III verdadeira, mas ela atribui ao 'Manifesto Antropófago' (1928) a defesa de 'uma poesia brasileira de exportação' e dos 'erros gramaticais' — ideias do Manifesto da Poesia Pau-Brasil (1924: 'poesia de exportação', 'a contribuição milionária de todos os erros'; https://www.ufrgs.br/cdrom/oandrade/index.htm). Com III falsa (e IV falsa: Bandeira não se distancia da 1ª fase por visão idealizada), a resposta seria C (I e II). |
 
 ## Divergências de gabarito (o dono decide)

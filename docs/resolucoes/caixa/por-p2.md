@@ -138,3 +138,22 @@ RECLASS P05a057a3 P12.3 -> P05.1 (UEMA 2021 PAES q50: semântica da preposição
 DADO P36f9b45d (UERR 2023 q4): texto_da_prova -> embaralhado pelas duas colunas e sem alternativas; refazer pelo print (texto de Luís Bueno + alternativas A–E)
 DADO P6e771f4c (UFSM 2025 q108): alternativas -> coladas no texto_da_prova; separar A–E como no print (em itálico)
 OBRA Pca7bff31 (UFAM 2023 PSC 3ª etapa q12): O quinze — não confirmado em fonte confiável o enredo das afirmativas I (apadrinhados de coronéis) e III (Vicente lucrar com a seca); gabarito oficial E
+
+## 2026-11-19 18:40 UTC — PENDENCIAS — sessão por-p2 (session_01PveEKYbUNBrLzmbEMaYKtg)
+Último lote gravado: por-p2-0008 (49 ok, 1 pendente). Nenhum lote aberto.
+PRINT Pe98ee5d0 (URCA 2026.1 q40): o print e o texto trazem só o enunciado e as alternativas; falta o texto de apoio, o poema "Carta a Stalingrado", que está no print da q38 (P74ed0f28); juntar o poema ao print desta questão e reabrir
+RECLASS Pe55985cf P12.3 -> P04.4 (UNIRG 2024/1 q18: ambiguidade em "o medo dos ditadores"; semântica, não escola literária)
+DADO P74ed0f28 (URCA 2026.1 q38): alternativas -> sem os acentos quebrados e hifens da camada de texto, como no print ("heroísmo", "típico", "política", "lírico", "impossível", "espírito", "defenderão", "internos", "resistência")
+DADO Pe98ee5d0 (URCA 2026.1 q40): alternativas -> sem os acentos quebrados e hifens, como no print ("início", "política", "derrota", "consolidada", "metaforicamente", "resistentes", "defenderão")
+DADO Pf21d449c (Unicentro 2024 q7): texto_da_prova -> poema em 3 estrofes separadas (3, 4 e 4 versos), como no print
+RECLASS P58648a88 P12.4 -> P02.3 (PUC Minas 2025/1 q7: humor de crônica de Veríssimo, não Geração de 45)
+RECLASS P90d93b62 P12.4 -> P01.2 (PUC Minas 2025/1 q8: inferir a fala da esposa no texto)
+RECLASS P83584bdd P12.4 -> P10.4 (PUC Minas 2025/1 q9: pontuação, reticências e exclamação)
+DADO Pd3af7a26 (Unimontes 2024 PS1 q15): alternativas.D -> só "Trata-se de um emblemático romance com treze capítulos, os quais retratam as dificuldades encontradas por uma família de retirantes que precisa conviver constantemente com a miséria e a seca que assola o sertão nordestino."; o fragmento de Vidas secas ("Sinha Vitória acomodou os filhos [...] A cachorra Baleia foi enroscar-se junto dele." e a fonte) vai para texto_da_prova, depois de "INSTRUÇÃO: Leia o fragmento a seguir para responder a esta questão."
+DADO Pf0c3cf8b (Unicentro 2026 q10): texto_da_prova -> tirar as duas linhas "xxxxxx xxxx xxxx xxxx xxxx." antes da fonte (não estão no print)
+DADO P37973dc4 (Unitins 2020/1 q41): texto_da_prova "eia e analise o fragmento" -> "Leia e analise o fragmento"
+DADO Pb0621cbd (Unimontes 2024 PS1 q13): texto_da_prova -> falta o fragmento citado ("Macabéa, Ave Maria, cheia de graça, terra serena da promissão, terra do perdão, tem que chegar o tempo, ora pro nóbis, e eu me uso como forma de conhecimento." + fonte LISPECTOR, Clarice. A hora da estrela. São Paulo: Ed. Rocco, 2020.) depois da instrução; alternativas.D -> termina em "...figura como uma mulher consciente e competente." (o fragmento e a fonte estão colados no fim da D)
+RECLASS P0d93c353 P12.4 -> P01.2 (Unifor 2025.1 q45: inferência sobre um trecho, não cobra conhecimento de Literatura)
+DADO P6fd7e08c (UEMA 2021 PAES q51): texto_da_prova -> "mas as mais belas palavras estão pousadas nas frondes mais altas, como pássaros..." e "O poema está parado em meio da clareira." são versos separados no print
+DADO P4063770f (UFAM 2020 PSC3 q9): alternativas.E -> aspas no print são “Traduzir-se” (a entrada traz ―Traduzir-se‖)
+DADO Pb0621cbd (Unimontes 2024 PS1 q13): confirmado pelo conferente — fragmento e fonte colados no fim da D vão para texto_da_prova, antes do comando
