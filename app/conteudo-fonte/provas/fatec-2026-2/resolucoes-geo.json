@@ -185,5 +185,89 @@
    "data": "2026-11-19",
    "lote": "geo-0043"
   }
+ },
+ "Pdf49bf73": {
+  "n": "21",
+  "conceito": "Converter a hora de um evento entre UTC−5 (Acre) e UTC−3 (São Paulo).",
+  "equivocos": {
+   "A": "G01.3:somou-fusos-do-mesmo-lado",
+   "B": "G01.3:fuso-com-sinal-trocado",
+   "C": "G01.3:ignorou-a-diferenca-de-fuso",
+   "E": "G01.3:diferenca-de-fuso-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois fusos estão a oeste de Greenwich. UTC−5 está 5 h atrás de Greenwich e UTC−3, só 3 h: São Paulo está 2 h à frente do Acre. Quem está mais a leste tem o relógio adiantado.",
+    "formulas": [
+     "mesmo lado de Greenwich: diferença = 5 − 3 = 2 h",
+     "destino a leste (relógio adiantado): some a diferença"
+    ],
+    "simbolos": [
+     [
+      "fuso horário",
+      "faixa da Terra em que vale a mesma hora oficial"
+     ],
+     [
+      "UTC/GMT",
+      "hora de Greenwich (0°), a referência dos fusos; UTC−3 = 3 h atrás dela"
+     ]
+    ]
+   },
+   "pista": "Antes de somar ou subtrair, descubra qual dos dois lugares tem o relógio mais perto da hora de Greenwich.",
+   "passos": [
+    {
+     "faz": "Localize os dados",
+     "conta": "\"Essa partida ocorreu às 19 horas, no horário local\" | Acre: UTC–5 | São Paulo: UTC–3",
+     "porque": "Pede-se a hora em São Paulo no início do jogo em Rio Branco.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a diferença",
+     "conta": "5 − 3 = 2 h; São Paulo está 2 h à frente",
+     "porque": "Os dois estão atrás de Greenwich, do mesmo lado: as diferenças se subtraem. O −3 está mais perto de Greenwich, logo adiantado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a diferença",
+     "conta": "19h + 2h = 21h",
+     "porque": "Em São Paulo o relógio já marca 2 h a mais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "21 horas = alternativa D",
+     "porque": "É a hora em que os torcedores em São Paulo viram o jogo começar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — às 21 horas.",
+   "checagem": "Refaça por Greenwich: 19h no Acre (UTC−5) = 24h, isto é, 0h UTC; em UTC−3, 0h − 3h = 21h.",
+   "erradas": {
+    "A": "A sai de somar os dois números de fuso e subtrair: 5 + 3 = 8; 19h − 8h = 11h. Fusos do mesmo lado de Greenwich se subtraem, e o sentido é somar.",
+    "B": "B sai de trocar o sentido: 19h − 2h = 17h. São Paulo fica a leste do Acre, onde o relógio está adiantado.",
+    "C": "C esquece a diferença de fuso: 19h é a hora local do Acre, não a de São Paulo.",
+    "E": "E não confere: 1h exigiria 6 h de diferença (19h + 6h = 25h → 1h), mas entre UTC−5 e UTC−3 são só 2 h."
+   },
+   "armadilha": "Errar o sentido: o fuso −3 está à frente do −5, então a hora em São Paulo é maior.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A hora em São Paulo quando são 19h no Acre.",
+    "chave": "UTC−3 está 2 h à frente de UTC−5: 19h + 2h.",
+    "cuidado": "Número de fuso menor em módulo, a oeste de Greenwich, é relógio adiantado."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0044"
+  }
  }
 }

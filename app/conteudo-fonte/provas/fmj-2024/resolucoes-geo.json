@@ -1,0 +1,98 @@
+{
+ "Pc577f8c0": {
+  "n": "30",
+  "conceito": "Calcular hora e dia de chegada somando duração da viagem e diferença de fuso entre Brasília (UTC−3) e Adelaide (UTC+10).",
+  "equivocos": {
+   "A": "G01.3:usou-so-o-fuso-do-destino",
+   "C": "G01.3:subtraiu-fusos-de-lados-opostos",
+   "D": "G01.3:diferenca-de-fuso-errada",
+   "E": "G01.3:so-somou-a-duracao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Questão de fuso tem duas contas independentes: a duração da viagem, que sempre soma, e a diferença entre os fusos, que soma quando o destino fica a leste. Brasília a 45° W está em UTC−3 (45° ÷ 15° = 3). Adelaide está em UTC+10, do outro lado de Greenwich, então as duas distâncias até Greenwich se somam.",
+    "formulas": [
+     "fusos = longitude ÷ 15°",
+     "lados opostos de Greenwich: diferença = 3 + 10",
+     "chegada = partida + viagem + diferença (destino a leste)",
+     "passou de 24 h: subtraia 24 e avance um dia"
+    ],
+    "simbolos": [
+     [
+      "fuso horário",
+      "faixa da Terra em que vale a mesma hora oficial"
+     ],
+     [
+      "UTC/GMT",
+      "hora de Greenwich (0°), a referência dos fusos; UTC−3 = 3 h atrás dela"
+     ],
+     [
+      "45° W",
+      "45 graus de longitude a oeste de Greenwich"
+     ]
+    ]
+   },
+   "pista": "Antes de somar as 30 horas, descubra quantas horas Adelaide está à frente de Brasília: uma cidade fica a oeste de Greenwich e a outra a leste.",
+   "passos": [
+    {
+     "faz": "Anote os dados",
+     "conta": "partida: 3 de julho, 15h, Brasília (45° W) | viagem: 30 h | destino: UTC+10",
+     "porque": "A resposta tem de sair na hora local de Adelaide, com o dia certo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a diferença de fuso",
+     "conta": "45° ÷ 15° = 3 → UTC−3 | 3 + 10 = 13 h",
+     "porque": "Brasília está 3 h atrás de Greenwich e Adelaide, 10 h à frente. Lados opostos: as diferenças se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a duração da viagem",
+     "conta": "15h + 30h = 45h → 3 de julho + 1 dia → 21h de 4 de julho (hora de Brasília)",
+     "porque": "O tempo de viagem passa igual para qualquer relógio. 45 h é um dia e 21 h.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o fuso",
+     "conta": "21h + 13h = 34h → 34 − 24 = 10h → 5 de julho",
+     "porque": "Adelaide fica a leste, onde o relógio está adiantado; por isso as 13 h entram somando e o dia vira de novo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "10h do dia 5 de julho = alternativa B",
+     "porque": "Hora e dia batem ao mesmo tempo só na B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 10h do dia 5 de julho, hora de Adelaide.",
+   "checagem": "Refaça por Greenwich: 15h em Brasília = 18h UTC de 3 de julho; mais 30 h = 48h → 0h UTC de 5 de julho; Adelaide é UTC+10, logo 10h de 5 de julho.",
+   "erradas": {
+    "A": "A sai de usar só o +10 de Adelaide, esquecendo que Brasília já está 3 h atrás de Greenwich: 21h + 10h = 31h → 7h de 5 de julho.",
+    "C": "C sai de subtrair os fusos em vez de somar: 10 − 3 = 7 h; 21h + 7h = 28h → 4h de 5 de julho. Subtrair só vale para cidades do mesmo lado de Greenwich.",
+    "D": "D não confere: 23h de 4 de julho fica a só 2 h da hora de Brasília na chegada (21h de 4 de julho), mas a diferença entre UTC−3 e UTC+10 é de 13 h.",
+    "E": "E sai de somar só a viagem: 15h + 30h = 21h de 4 de julho. É a hora no relógio de Brasília, não no de Adelaide."
+   },
+   "armadilha": "Fazer só uma das contas (só a viagem, na E) ou subtrair os fusos quando as cidades estão em lados opostos de Greenwich (C).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A hora e o dia locais de chegada a Adelaide.",
+    "chave": "Chegada = 15h + 30 h + 13 h, pois −3 e +10 estão em lados opostos de Greenwich.",
+    "cuidado": "Some as duas contas e vire o dia a cada 24 h."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0044"
+  }
+ }
+}

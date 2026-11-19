@@ -92,3 +92,18 @@ RECLASS P9cded410 G01.1 -> G04.5
 DADO P1d3a7792: texto_da_prova -> no print as temperaturas têm o símbolo de grau: "49 °C", "2 °C", "38 °C" (a entrada traz "49 C", "2 C", "38 C")
 ANULAR P1c3226af (PUCPR 2024/1 Medicina, q. 48): oficial E (Sol à esquerda e atrás em todo o voo Foz → Curitiba, 14h–15h10, dezembro) contraria a posição real do Sol; azimute calculado vai de ~272–275º a ~263–265º, ou seja, atrás e passa da esquerda para a direita; detalhes no motivo
 ANULAR P1c3226af (PUCPR 2024 Medicina 2024/1 · questão 48): gabarito oficial E diz que o Sol fica "do lado esquerdo e atrás" durante todo o voo Foz do Iguaçu → Curitiba em dezembro; o cálculo da posição do Sol (algoritmo NOAA, UTC−3, rumo leste) dá azimute ~272–275º às 14h (atrás, levemente à esquerda) e ~263–265º às 15h10 (atrás, levemente à direita): o Sol passa de esquerda para direita, então "lado esquerdo ao longo de todo o percurso" é falso. A banca não anulou (gabarito definitivo marca E). Confirmado por dois agentes.
+
+## 2026-11-19 16:05 UTC — PENDENCIAS — sessão geo (19/11)
+Lote gravado: geo-0044 (50 resoluções; 4 com gabarito do Aprendice, letras iguais às cegas e ao preliminar). Abertos: geo-0045 (resolvendo).
+RECLASS P4c5e2ca8 G01.1 -> G13.1 (URCA 2023.2 q90: conceito de paisagem)
+RECLASS P2397e2d5 G01.1 -> G13.1 (URCA 2024.1 q84: conceito de paisagem, Milton Santos)
+RECLASS Pe1743aef G01.1 -> G11.4 (URCA 2024.2 q88: Polígono das Secas)
+GABARITO Pfbfbdb13 (UNIRG 2023/1 q47): o arquivo 'Gurupi - Vestibular - Gabarito Definitivo.pdf' (unirg.edu.br/arquivos/documentos/Vestibular/2023-1G/) traz no cabeçalho 'Gabaritos preliminares'; tipo 1 q47 = D, igual à letra do resolvedor
+RECLASS Pda9d5f67 G01.2 -> G01.7 (FMJ 2021 q30: SIG/camadas, não é escala)
+GABARITO P6b070033 (UFRR 2026 PI q39): gabarito do Aprendice B pelo resolvedor; Edital 93/25-CPV deu 503, conferir letra oficial
+RECLASS P7a76ea11 G01.3 -> G01.1
+DADO P0d6aca2b: alternativas.E -> "22 h 45 min." (o quadro de fusos e o texto de apoio sobre La Paz e o PNP estão colados na alternativa; no print ficam antes do enunciado)
+DADO Pf6a0fc35: alternativas.D -> "14h de sexta-feira e às 21h de segunda-feira." ("Berlim Rio de Janeiro São Paulo Nova" são rótulos do mapa)
+RECLASS P42954eb9 G01.4 -> G03.2
+GABARITO P13d52e47 (UFRR 2025, q. 42): gabarito do Aprendice E; resumo de busca do Edital 97/24 (oficial pós-recursos) indica q42 = E com recurso indeferido, mas o PDF deu 503 em 19/11/2026: conferir no PDF
+GABARITO P13d52e47 (UFRR 2025 q42): gabarito do Aprendice E (resolvedor e conferente às cegas, igual ao preliminar); confirmar no PDF do Edital 97/24-CPV (deu 503).

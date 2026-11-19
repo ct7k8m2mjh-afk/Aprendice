@@ -1,0 +1,92 @@
+{
+ "Pf6a0fc35": {
+  "n": "31",
+  "conceito": "Encadear três viagens com duração e diferença de fuso (Rio −3, Berlim +1, Nova Iorque −5), contando os dias de permanência.",
+  "equivocos": {
+   "A": "G01.3:esqueceu-o-fuso-positivo-de-berlim",
+   "B": "G01.3:diferenca-de-fuso-errada",
+   "C": "G01.3:so-somou-a-duracao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São três viagens, e cada uma tem as duas contas de sempre: a duração soma; o fuso soma indo para leste e subtrai indo para oeste. Pela faixa do mapa, Rio de Janeiro e São Paulo estão no fuso −3, Berlim no +1 e Nova Iorque no −5. Os dias contam a partir do dia de chegada, como o enunciado manda.",
+    "formulas": [
+     "chegada = partida + viagem ± diferença de fuso",
+     "Rio → Berlim: 3 + 1 = 4 h (leste, soma)",
+     "Berlim → Nova Iorque: 1 + 5 = 6 h (oeste, subtrai)",
+     "Nova Iorque → São Paulo: 5 − 3 = 2 h (leste, soma)"
+    ],
+    "simbolos": [
+     [
+      "UTC",
+      "hora de Greenwich; à esquerda dela no mapa os fusos estão atrasados, à direita adiantados"
+     ],
+     [
+      "fuso horário",
+      "faixa em que vale a mesma hora oficial"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra em que dia ele chega a Berlim; só então conte os três dias e siga para a próxima viagem.",
+   "passos": [
+    {
+     "faz": "Localize os fusos no mapa",
+     "conta": "Rio/São Paulo: 3 a oeste (−3) | Berlim: 1 a leste (+1) | Nova Iorque: 5 a oeste (−5)",
+     "porque": "As setas do mapa marcam a faixa de cada cidade; à esquerda do UTC os fusos são atrasados.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a chegada a Berlim",
+     "conta": "terça 10h + 12h = 22h (Rio) → 22h + 4h = 26h → quarta, 2h (Berlim)",
+     "porque": "Berlim está 4 h à frente do Rio. A chegada é na quarta, e esse é o 1º dia de permanência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chegada a Nova Iorque",
+     "conta": "quarta, quinta, sexta → sai sexta 10h | 10h + 10h = 20h (Berlim) → 20h − 6h = 14h de sexta",
+     "porque": "No 3º dia (sexta) ele parte. Nova Iorque está 6 h atrás de Berlim (+1 até −5).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chegada a São Paulo",
+     "conta": "sexta, sábado, domingo, segunda → sai segunda 10h | 10h + 9h = 19h (NY) → 19h + 2h = 21h de segunda",
+     "porque": "No 4º dia (segunda) ele parte. São Paulo está 2 h à frente de Nova Iorque.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "14h de sexta e 21h de segunda = alternativa D",
+     "porque": "Os dois horários batem só na D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — às 14h de sexta-feira em Nova Iorque e às 21h de segunda-feira em São Paulo.",
+   "checagem": "Refaça a última chegada por UTC: segunda 10h em Nova Iorque (−5) = 15h UTC; mais 9 h = 24h UTC, ou seja, 0h de terça; São Paulo (−3): 0h − 3h = 21h de segunda.",
+   "erradas": {
+    "A": "A erra as duas: 15h sai de descontar só 5 h (o número do fuso de Nova Iorque), 20h − 5h, esquecendo o +1 de Berlim; e 18h de segunda não confere, pois a hora em São Paulo é 19h + 2h = 21h.",
+    "B": "B acerta Nova Iorque (14h), mas 20h de segunda supõe só 1 h entre Nova Iorque (−5) e São Paulo (−3), que estão separadas por 2 h.",
+    "C": "C erra as duas: 15h sai de 20h − 5h, esquecendo o +1 de Berlim; e 19h é só a soma do voo (10h + 9h), a hora de Nova Iorque, sem o fuso."
+   },
+   "armadilha": "Calcular a diferença Berlim–Nova Iorque só com o número 5, esquecendo que Berlim está 1 h à frente de Greenwich: são 6 h.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As horas locais de desembarque em Nova Iorque e em São Paulo.",
+    "chave": "Cada trecho: partida + viagem ± fuso; Berlim–NY = 6 h, NY–SP = 2 h.",
+    "cuidado": "Fusos em lados opostos de Greenwich se somam (+1 e −5 dão 6 h)."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0044"
+  }
+ }
+}

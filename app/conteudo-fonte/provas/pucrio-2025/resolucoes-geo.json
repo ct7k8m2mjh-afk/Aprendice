@@ -1,0 +1,96 @@
+{
+ "Pfefc3f6a": {
+  "n": "45",
+  "conceito": "Ler no mapa os fusos horários brasileiros (UTC−3, −4 e −5) de cinco pontos e converter a hora oficial.",
+  "equivocos": {
+   "A": "G01.3:fuso-com-sinal-trocado",
+   "C": "G01.3:fuso-de-meia-hora-inexistente",
+   "D": "G01.3:fuso-de-meia-hora-inexistente",
+   "E": "G01.3:fuso-de-meia-hora-inexistente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O Brasil continental tem três fusos legais: UTC−3 (a hora de Brasília, maior parte do país), UTC−4 (Amazonas em quase todo o estado, Rondônia, Roraima, Mato Grosso e Mato Grosso do Sul) e UTC−5 (Acre e oeste do Amazonas). No mapa, a mancha escura cobre os estados do fuso −4 do Centro-Oeste e da Amazônia ocidental e os países vizinhos no mesmo fuso, como a Bolívia. Cada fuso para oeste atrasa o relógio em 1 h inteira.",
+    "formulas": [
+     "fuso a oeste: relógio 1 h atrasado",
+     "fusos legais do Brasil continental: −3, −4, −5 (horas inteiras)"
+    ],
+    "simbolos": [
+     [
+      "fuso horário",
+      "faixa da Terra em que vale a mesma hora oficial"
+     ],
+     [
+      "UTC/GMT",
+      "hora de Greenwich (0°), a referência dos fusos; UTC−3 = 3 h atrás dela"
+     ],
+     [
+      "fuso legal",
+      "fuso adaptado às fronteiras dos estados, definido por lei"
+     ]
+    ]
+   },
+   "pista": "Localize o estado de cada ponto e veja em qual mancha do mapa ele está antes de mexer na hora.",
+   "passos": [
+    {
+     "faz": "Localize cada ponto",
+     "conta": "1: Bahia | 2: Goiás | 3: Mato Grosso (área escura) | 4: Bolívia (área escura, a oeste de Rondônia) | 5: Acre",
+     "porque": "O fuso depende da área em que o ponto cai: no mapa, a mancha escura cobre os estados do fuso −4 do Centro-Oeste e da Amazônia ocidental, e os países vizinhos no mesmo fuso; a Bolívia também está em UTC−4.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Classifique os fusos",
+     "conta": "1 e 2: UTC−3 | 3 e 4: UTC−4 | 5: UTC−5",
+     "porque": "Bahia e Goiás seguem a hora de Brasília; Mato Grosso e a área escura, 1 h a menos; o Acre, 2 h a menos.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Converta a hora",
+     "conta": "ponto 1 = 13h → 2: 13h | 3: 12h | 4: 12h | 5: 11h",
+     "porque": "Cada fuso para oeste tira 1 h do relógio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine as meias horas",
+     "conta": "C, D e E têm 30 min",
+     "porque": "Os fusos legais do Brasil diferem em horas inteiras, e o ponto 2 está no mesmo fuso do ponto 1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "13h / 12h / 12h / 11h = alternativa B",
+     "porque": "Só a B atrasa o relógio indo para oeste, de hora em hora.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 13h, 12h, 12h e 11h.",
+   "checagem": "Confira pelo sentido: o ponto 1 é o mais a leste e os pontos 4 e 5 são os mais a oeste. Indo para oeste a hora só pode cair, e é o que acontece em B (13h, 12h, 12h, 11h).",
+   "erradas": {
+    "A": "A sai de trocar o sentido: soma 1 h a cada fuso para oeste (13h, 14h, 14h, 15h). Indo para oeste o relógio atrasa.",
+    "C": "C não confere: põe 13h30 no ponto 3, mas os fusos legais do Brasil diferem em horas inteiras, e indo para oeste a hora diminui.",
+    "D": "D não confere: dá 13h30 ao ponto 2, que fica em Goiás, no mesmo fuso da Bahia (ponto 1); lá também são 13h.",
+    "E": "E não confere: dá 12h30 ao ponto 2, que está no mesmo fuso do ponto 1, e usa meia hora, que nenhum fuso brasileiro tem."
+   },
+   "armadilha": "Somar horas indo para oeste (A) ou inventar meias horas entre fusos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As horas oficiais dos pontos 2 a 5 quando são 13h no ponto 1.",
+    "chave": "−3 (BA, GO), −4 (MT e Bolívia, na mancha escura), −5 (AC): 13h, 12h, 12h, 11h.",
+    "cuidado": "Para oeste, o relógio atrasa de hora em hora."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0044"
+  }
+ }
+}
