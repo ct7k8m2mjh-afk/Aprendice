@@ -29,3 +29,15 @@ baixa, marca a obra), mas um palpite não atendido vai ao ar **com cara de fato*
   lá e conclui que entendeu errado.
 - Aspas na resolução valem como cópia literal do print. Fala de personagem que não está no print
   **não** vai entre aspas.
+- **A nota "OBRA (confirmar na web)" da lente é uma pista, não uma ordem.** Ela sai de um modelo que
+  não pode abrir página nenhuma, e por isso às vezes aponta para o lado errado. Duas vezes já pediu
+  para confirmar **o contrário** do que a resolução, correta, dizia: em `Pe9950ce3` (por-0104) e em
+  `P7a831387` (por-0107), onde a nota mandava confirmar que o romance é narrado em primeira pessoa
+  pelo protagonista, quando *O último conhaque* tem narrador em terceira pessoa (REVELL/UEMS, n. 11,
+  2015) — obedecer teria derrubado a resolução certa, que é a do gabarito oficial. Julgue cada nota;
+  confirme a **afirmação da resolução**, não a pergunta da lente.
+- **Não confie em paráfrase de terceiro sobre o que a resolução diz — nem na minha.** No por-0107 eu
+  passei a um agente de obras a descrição que um conferente havia feito de `P7a831387` ("narrador em
+  terceira pessoa com focalização em Fernando"). O agente buscou essas palavras no lote todo e
+  mostrou que a resolução **não dizia isso**: ela afirmava algo mais fraco, e sem fonte. Abra o campo
+  e leia o que está escrito nele antes de confirmar ou derrubar qualquer coisa.
