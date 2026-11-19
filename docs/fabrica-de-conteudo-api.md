@@ -58,5 +58,15 @@ O que o piloto provou que **não** se pode dispensar:
   memória, vários inexistentes. Quem confere acrescenta a fonte que abriu de verdade.
 - **Pendência precisa ser conferida**, não aceita: as 2 pendências do lote não se sustentavam e viraram resolução.
 
+### Confirmação das obras (etapa obrigatória, fora da API)
+
+A etapa de API não abre a web. Em literatura isso cria um buraco previsível: a fábrica marca
+"OBRA (confirmar na web)", declara confiança baixa quando é o caso, e **não pode confirmar nada** —
+`fontes` sai vazio. Se ninguém atender ao sinal, o palpite vai ao ar com cara de fato.
+
+Por isso cada lote tem uma etapa própria de confirmação das obras, em agente com acesso à web, que
+roda junto com a conferência: `docs/resolucoes/CONFIRMA-OBRAS.md`. O que se confirma entra em
+`fontes`; o que não se confirma **sai da resolução**.
+
 ## Depois, no app público
 As funções de IA do app (correção de flashcard, "explique de outro jeito", dúvida sobre a questão) também usam a API, mas com **orçamento próprio pago** e limites por usuário — os créditos mensais do plano são para desenvolvimento e produção de conteúdo, e param no teto do mês.
