@@ -75,7 +75,7 @@ Faltam 327 questões sem resolução (fora as que estão em lote, pendentes ou c
 | bio-0067 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | bio-0068 | demais nível 1-6 | 50 | gravado | 48 | 2 | 0 |
 | bio-0069 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
-| bio-0070 | demais nível 1-6 | 50 | aberto |  |  |  |
+| bio-0070 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 

@@ -199,3 +199,44 @@ RECLASS Pc48b5330 B12.2 -> B12.5
 RECLASS P352b188a B12.2 -> B09.4
 RECLASS Pd593b10e B12.2 -> B09.1
 AVISO testes depois do bio-0068: converte + tsc + vitest verdes (786 passed).
+
+## 2026-11-19 UTC — PENDENCIAS — session_01PveEKY2istqnzKBoRGFXC5
+Lote bio-0070 gravado (50 ok, 0 pendentes). 4 sem gabarito publicado com Gabarito do Aprendice (resolvedor = conferente às cegas = preliminar): Pfdac3784 C, P5a0a8b8e A, Pe1cb13e1 C, Pb5a68217 D.
+DADO Pe343cea6: alternativas.E -> "o esporófito é haploide e corresponde à geração predominante." (o texto de apoio "O esquema representa o ciclo reprodutivo de uma pteridófita (samambaia)." e o esquema vão para o enunciado)
+DADO P7407fc17: alternativas.D -> "oosfera." (sem o "17" da página)
+DADO P792b3d04: alternativas.D -> "a presença de vasos condutores e sementes protegidas por estruturas reprodutivas." (sem o "LITERATURA, HISTÓRIA E" colado)
+DADO P86463007: alternativas -> vazias na entrada; no print: A V – V – V. | B F – F – V. | C V – V – F. | D V – F – V. | E F – V – F.
+DADO P4ce35657: alternativas.E -> "Aparecimento das flores; surgimento dos frutos carnosos." (sem os rótulos da figura colados)
+RECLASS Pfdac3784 B12.2 -> B12.7
+RECLASS P37fb167f B12.3 -> B12.7
+RECLASS P3bd2f4dc B12.3 -> B12.7
+RECLASS P1d8f4b0c B12.3 -> B12.7
+RECLASS P76349a82 B12.3 -> B12.4
+RECLASS Pe343cea6 B12.3 -> B12.7
+RECLASS P4e5293d8 B12.3 -> B12.7
+RECLASS P7407fc17 B12.3 -> B12.7
+RECLASS P3ad50c91 B12.3 -> B12.7
+RECLASS P87ce8b8a B12.3 -> B12.7
+RECLASS P020cc138 B12.3 -> B12.7
+RECLASS P792b3d04 B12.3 -> B12.7
+RECLASS P86d9293d B12.3 -> B12.7
+RECLASS P5a0a8b8e B12.3 -> B12.7
+RECLASS P6c65005a B12.3 -> B12.7
+RECLASS P93eea932 B12.3 -> B12.7
+RECLASS Pc0fbf8e1 B12.3 -> B12.7
+RECLASS Pa58fcf85 B12.3 -> B12.7
+RECLASS P0e2b0ab5 B12.3 -> B12.7
+RECLASS Pb2e03638 B12.3 -> B12.7
+RECLASS Pa3f060cc B12.3 -> B12.7
+RECLASS P0d28b9cd B12.3 -> B09.6
+RECLASS P4ce35657 B12.3 -> B12.7
+RECLASS P9eb78bda B12.3 -> B01.5
+
+## 2026-11-19 UTC — FIM — session_01PveEKY2istqnzKBoRGFXC5
+Encerrando a vez (4 lotes de 50). Último lote gravado: bio-0070. Nenhum lote aberto. A próxima sessão começa no bio-0071.
+Nesta sessão: bio-0067 (50 ok), bio-0068 (48 ok, 2 pendentes), bio-0069 (49 ok, 1 pendente), bio-0070 (50 ok) = 197 resoluções; 3 pendentes: P03179d3d (História H01.2), ANULAR P3c8e2e61 e ANULAR Pd56b185c. Divergências: 0.
+10 questões sem gabarito publicado gravadas com Gabarito do Aprendice (letra do resolvedor = conferente às cegas = preliminar).
+Testes depois do bio-0068: converte + tsc + vitest verdes (786 passed).
+Conferência no site local NÃO feita nesta sessão: o agente ficou parado esperando aprovação de comando (servidor local) e foi interrompido; a próxima sessão deve fazê-la.
+Status bio (lote.py status): 327 faltam.
+Observação: a faixa B12.3 está quase toda classificada no conteúdo errado (a maioria é B12.7, plantas); vale revisar a classificação dessa faixa de uma vez.
