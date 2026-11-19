@@ -1578,5 +1578,139 @@
    "data": "2026-11-19",
    "lote": "fis-0076"
   }
+ },
+ "P5216fb1f": {
+  "n": "10",
+  "conceito": "Equilíbrio de rotação de um cilindro com bobina num plano inclinado: torque magnético na bobina (μ·B·sen θ) igual ao torque do peso em relação ao ponto de contato.",
+  "equivocos": {
+   "A": "F12.2:esqueceu-numero-de-espiras",
+   "B": "F12.2:numero-de-espiras-invertido",
+   "C": "F12.2:numero-de-espiras-invertido",
+   "D": "F04.2:braco-do-peso-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O cilindro tende a rolar ladeira abaixo; o atrito impede o escorregamento, mas não impede o giro. Quem segura o giro é o torque magnético da bobina. Tome os torques em relação ao ponto de contato com o plano: lá, normal e atrito não fazem torque, e sobram só o peso e o torque magnético. Cada espira é um retângulo de lados b (comprimento) e 2a (diâmetro), no plano paralelo à rampa; a normal à espira faz o ângulo θ com a vertical, que é a direção de B.",
+    "formulas": [
+     "μ = N·i·A_espira, com A_espira = 2a·b",
+     "torque magnético: τ = μ·B·sen θ",
+     "torque do peso no contato: τ = m·g·a·sen θ"
+    ],
+    "simbolos": [
+     [
+      "μ",
+      "momento magnético da bobina"
+     ],
+     [
+      "N",
+      "número de espiras"
+     ],
+     [
+      "τ",
+      "torque (momento de uma força)"
+     ],
+     [
+      "θ",
+      "inclinação do plano; também o ângulo entre a normal das espiras e B"
+     ],
+     [
+      "A_espira",
+      "área de uma espira: 2a·b"
+     ]
+    ]
+   },
+   "pista": "Escolha o ponto de contato do cilindro com o plano como polo dos torques: quais forças deixam de importar?",
+   "passos": [
+    {
+     "faz": "Calcule o momento magnético",
+     "conta": "A_espira = 2a·b → μ = N·i·2a·b",
+     "porque": "Cada espira é um retângulo de comprimento b e largura igual ao diâmetro 2a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o torque magnético",
+     "conta": "τ_mag = μ·B·sen θ → τ_mag = 2N·i·a·b·B·sen θ",
+     "porque": "As espiras são paralelas à rampa, então a normal delas faz θ com a vertical, que é a direção de B.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o torque do peso no contato",
+     "conta": "braço = a·sen θ → τ_peso = m·g·a·sen θ",
+     "porque": "O peso age no centro, a uma distância a do contato; o braço horizontal é a·sen θ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale e isole i",
+     "conta": "2N·i·a·b·B·sen θ = m·g·a·sen θ → i = (m·g)/(2N·b·B)",
+     "porque": "Em repouso, os torques se anulam; a e sen θ aparecem dos dois lados e se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "i = (m·g)/(2b·B·N)",
+     "porque": "É a expressão da alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — i = (m·g)/(2b·B·N).",
+   "checagem": "Pelo centro do cilindro: para não acelerar ao longo da rampa, o atrito vale m·g·sen θ; o torque dele no centro é m·g·sen θ·a, que tem de igualar 2N·i·a·b·B·sen θ. Dá o mesmo i. Unidade: N/(m·T) = A, pois T = N/(A·m).",
+   "erradas": {
+    "A": "Sai de esquecer as N espiras: com μ = i·2a·b, fica i = (m·g)/(2b·B).",
+    "B": "Não confere: tem N no numerador, como se mais espiras exigissem mais corrente; o torque cresce com N, então i tem de cair com N.",
+    "C": "Não confere: também põe N no numerador, e mais espiras dariam mais torque com a mesma corrente, não menos.",
+    "D": "Sai de usar o comprimento b como braço do peso: m·g·b·sen θ = 2N·i·a·b·B·sen θ dá (m·g)/(2a·B·N); o braço certo é a·sen θ."
+   },
+   "armadilha": "Usar a área errada da espira: ela é o retângulo 2a·b (diâmetro × comprimento), não a área do círculo do cilindro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A corrente que mantém o cilindro com a bobina em repouso no plano inclinado.",
+    "chave": "Torques no ponto de contato: 2N·i·a·b·B·sen θ = m·g·a·sen θ.",
+    "cuidado": "A espira é um retângulo 2a × b, e o ângulo entre a normal dela e B é o próprio θ."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "torque pelo centro",
+    "ideia": "No centro, o atrito m·g·sen θ faz torque m·g·a·sen θ, que o torque magnético 2N·i·a·b·B·sen θ equilibra: mesmo resultado."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "μ = N·i·2a·b",
+    "nota": "momento magnético"
+   },
+   {
+    "linha": "τ_mag = 2N·i·a·b·B·sen θ",
+    "nota": "normal da espira a θ de B"
+   },
+   {
+    "linha": "τ_peso = m·g·a·sen θ",
+    "nota": "torque no contato"
+   },
+   {
+    "linha": "2N·i·a·b·B·sen θ = m·g·a·sen θ",
+    "nota": "equilíbrio"
+   },
+   {
+    "linha": "i = (m·g)/(2N·b·B)",
+    "nota": "cancela a e sen θ"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Prova oficial ITA 2020, 1ª fase",
+    "url": "https://vestibular.ita.br/provas/2020_fase1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
  }
 }

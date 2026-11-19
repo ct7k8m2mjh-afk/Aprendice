@@ -1469,5 +1469,139 @@
    "data": "2026-11-19",
    "lote": "fis-0076"
   }
+ },
+ "P1bc6dcd7": {
+  "n": "12",
+  "conceito": "Associação mista de capacitores: capacitância equivalente, carga total e divisão da carga entre capacitores em paralelo.",
+  "equivocos": {
+   "A": "F11.9:carga-total-no-lugar-da-parcial",
+   "B": "F11.9:carga-do-capacitor-vizinho",
+   "D": "F11.9:tensao-no-lugar-da-carga",
+   "E": "F11.9:tensao-no-lugar-da-carga"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Pela figura, C2 e C3 estão em paralelo entre si, e esse par está em série com C1 e a bateria. Em série, todos ficam com a mesma carga; em paralelo, todos ficam com a mesma tensão. O caminho é achar a carga total, depois a tensão no par em paralelo e, por fim, a carga de C3.",
+    "formulas": [
+     "paralelo: C = C2 + C3",
+     "série: C = (C1 · C_p)/(C1 + C_p)",
+     "Q = C · U"
+    ],
+    "simbolos": [
+     [
+      "µF",
+      "microfarad: 10⁻⁶ F"
+     ],
+     [
+      "µC",
+      "microcoulomb: 10⁻⁶ C"
+     ],
+     [
+      "C_p",
+      "capacitância do par C2 e C3 em paralelo"
+     ],
+     [
+      "C_eq",
+      "capacitância equivalente de todo o circuito"
+     ],
+     [
+      "ε",
+      "força eletromotriz da bateria"
+     ]
+    ]
+   },
+   "pista": "Olhe na figura quais capacitores estão lado a lado com os mesmos dois fios: eles ficam com a mesma tensão.",
+   "passos": [
+    {
+     "faz": "Junte C2 e C3 em paralelo",
+     "conta": "C_p = 9 + 3 → C_p = 12 µF",
+     "porque": "C2 e C3 ligam-se aos mesmos dois fios, então estão em paralelo e as capacitâncias se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ponha o par em série com C1",
+     "conta": "C_eq = (6 · 12)/(6 + 12) → C_eq = 72/18 → C_eq = 4 µF",
+     "porque": "C1 e o par estão no mesmo caminho da bateria, em série; para dois em série vale C = (C₁·C₂)/(C₁ + C₂).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a carga total",
+     "conta": "Q = 4 µF · 24 V → Q = 96 µC",
+     "porque": "É a carga que a bateria põe no circuito; em série, C1 e o par ficam com essa mesma carga.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a tensão no par em paralelo",
+     "conta": "U_p = Q/C_p → U_p = 96/12 → U_p = 8 V",
+     "porque": "O par de 12 µF guarda os 96 µC; C2 e C3 ficam com essa mesma tensão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a carga de C3",
+     "conta": "Q3 = 3 µF · 8 V → Q3 = 24 µC",
+     "porque": "C3 está sob os 8 V do paralelo. É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 24 µC.",
+   "checagem": "Some as tensões: em C1 ficam 96/6 = 16 V e no par, 8 V; 16 + 8 = 24 V, a fem da bateria. E as cargas do paralelo fecham: Q2 = 9 · 8 = 72 µC, e 72 + 24 = 96 µC.",
+   "erradas": {
+    "A": "96 µC é a carga total, a de C1; no paralelo ela se divide entre C2 e C3, e C3 fica com só 24 µC.",
+    "B": "72 µC é a carga de C2 (9 µF × 8 V), não a de C3.",
+    "D": "16 é a tensão em C1, em volts (96/6 = 16 V), não a carga de C3.",
+    "E": "8 é a tensão no par em paralelo, em volts (96/12 = 8 V); falta multiplicar pelos 3 µF de C3."
+   },
+   "armadilha": "Tomar a carga total de 96 µC como a carga de C3: no paralelo a carga se divide, e o capacitor menor fica com a menor parte.",
+   "alerta": "O enunciado fala na carga que \"passa no capacitor C3\"; no capacitor não passa carga de uma placa para a outra: trata-se da carga armazenada em C3.",
+   "essencial": {
+    "pede": "A carga armazenada em C3.",
+    "chave": "C_eq = 4 µF, Q = 96 µC; tensão no paralelo 96/12 = 8 V; Q3 = 3 · 8 = 24 µC.",
+    "cuidado": "Série: mesma carga; paralelo: mesma tensão. A carga total não é a de C3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "divisão proporcional",
+    "ideia": "No paralelo a carga se divide na razão das capacitâncias: C3 fica com 3/12 de 96 µC, isto é, 24 µC."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C_p = 9 + 3 = 12 µF",
+    "nota": "paralelo soma"
+   },
+   {
+    "linha": "C_eq = (6 · 12)/(6 + 12) = 72/18 = 4 µF",
+    "nota": "série com C1"
+   },
+   {
+    "linha": "Q = 4 · 24 = 96 µC",
+    "nota": "carga total"
+   },
+   {
+    "linha": "U_p = 96/12 = 8 V",
+    "nota": "tensão no paralelo"
+   },
+   {
+    "linha": "Q3 = 3 · 8 = 24 µC",
+    "nota": "carga de C3"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "URCA PSU 2025.2/2026.1, Prova I (CEV), com gabarito oficial",
+    "url": "https://www.urca.br/cev/wp-content/uploads/sites/39/2025/10/PROVA-I-FIS-MAT-QUI-BIO.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
  }
 }

@@ -450,5 +450,250 @@
    "data": "2026-11-19",
    "lote": "fis-0076"
   }
+ },
+ "P39aa66cc": {
+  "n": "45",
+  "conceito": "Redistribuição de carga entre um capacitor carregado e uma associação em série descarregada: conservação da carga e tensão final igual.",
+  "equivocos": {
+   "A": "F11.9:tensoes-finais-diferentes",
+   "B": "F11.9:carga-da-associacao-no-lugar-da-do-capacitor-a",
+   "C": "F11.9:divisao-da-carga-meio-a-meio",
+   "E": "F11.9:carga-inicial-sem-redistribuicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na primeira posição da chave, o capacitor A carrega com a bateria de 12 V. Na segunda, a bateria sai do circuito e A fica ligado à dupla B e C em série. A carga que A tinha se divide entre ele e a dupla até as tensões ficarem iguais. Nenhuma carga entra nem sai: a carga total se conserva.",
+    "formulas": [
+     "Q = C·U",
+     "série de dois: C_s = C₁·C₂/(C₁ + C₂)",
+     "conservação: Q_A + Q_s = Q₀ com a mesma tensão U"
+    ],
+    "simbolos": [
+     [
+      "µF",
+      "microfarad, 10⁻⁶ F"
+     ],
+     [
+      "µC",
+      "microcoulomb, 10⁻⁶ C"
+     ],
+     [
+      "Q₀",
+      "carga de A ao fim da primeira etapa"
+     ],
+     [
+      "C_s",
+      "capacitância equivalente de B e C em série"
+     ]
+    ]
+   },
+   "pista": "Calcule a carga de A ao fim da primeira etapa e pense no que acontece com ela quando a bateria sai.",
+   "passos": [
+    {
+     "faz": "Carregue o capacitor A",
+     "conta": "Q₀ = C_A·U → Q₀ = 4,0 · 12 → Q₀ = 48 µC",
+     "porque": "Na primeira posição, A fica ligado direto à bateria e atinge os 12 V dela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reduza B e C em série",
+     "conta": "C_s = (3,0 · 6,0)/(3,0 + 6,0) → C_s = 18/9 → C_s = 2,0 µF",
+     "porque": "B e C ficam um depois do outro no ramo da direita, então se reduzem como série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida a carga com tensão igual",
+     "conta": "4,0·U + 2,0·U = 48 → 6,0·U = 48 → U = 48/6 → U = 8,0 V",
+     "porque": "A e a dupla B–C ficam ligados aos mesmos dois pontos, por isso terminam com a mesma tensão; a soma das cargas continua 48 µC.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a carga final de A",
+     "conta": "Q_A = 4,0 · 8,0 → Q_A = 32 µC → alternativa D",
+     "porque": "A perde 16 µC para a dupla e fica com o resto.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 32 µC.",
+   "checagem": "Feche a conta da carga: a dupla B–C fica com 2,0 · 8,0 = 16 µC, e 32 + 16 = 48 µC, a carga inicial de A. Em série, B e C têm os mesmos 16 µC, com 16/3,0 ≈ 5,33 V e 16/6,0 ≈ 2,67 V, que somam 8,0 V.",
+   "erradas": {
+    "A": "Não confere: com 12 µC, A ficaria com 12/4,0 = 3,0 V e a dupla com 48 − 12 = 36 µC, ou seja 36/2,0 = 18 V; as tensões teriam de ser iguais.",
+    "B": "Sai de dar a carga da dupla B–C em vez da de A: 2,0 µF · 8,0 V = 16 µC.",
+    "C": "Sai de dividir a carga em partes iguais, 48/2 = 24 µC; a divisão é proporcional às capacitâncias (4,0 µF contra 2,0 µF), não meio a meio.",
+    "E": "Sai de achar que A conserva toda a carga: 48 µC é a carga antes de a chave mudar; ao ligar a dupla descarregada, parte da carga passa para ela."
+   },
+   "armadilha": "Achar que A fica com toda a carga, ou que ela se divide meio a meio: a divisão segue as capacitâncias, com a mesma tensão nos dois lados.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A carga final de A depois de ligado à dupla B–C em série, inicialmente descarregada.",
+    "chave": "Q₀ = 48 µC; C_s = 2,0 µF; tensão final 48/6,0 = 8,0 V; Q_A = 4,0 · 8,0 = 32 µC.",
+    "cuidado": "Conservar a carga total e igualar as tensões; não usar a bateria na segunda etapa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fração da carga",
+    "ideia": "A fica com a fração C_A/(C_A + C_s) = 4/6 da carga inicial: (4/6) · 48 = 32 µC."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Q₀ = 4,0 · 12 → 48 µC",
+    "nota": "A carregado"
+   },
+   {
+    "linha": "C_s = (3,0 · 6,0)/(3,0 + 6,0) → 2,0 µF",
+    "nota": "B e C em série"
+   },
+   {
+    "linha": "4,0·U + 2,0·U = 48",
+    "nota": "a carga se conserva"
+   },
+   {
+    "linha": "U = 48/6 → 8,0 V",
+    "nota": "tensão comum"
+   },
+   {
+    "linha": "Q_A = 4,0 · 8,0 → 32 µC",
+    "nota": "carga final de A"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "UFAM, PSC 2021, 3ª etapa, questão 45",
+    "url": "https://edoc.ufam.edu.br/bitstream/123456789/4620/68/PSC2021%203%20Etapa%20-%20Prova.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
+ },
+ "Pfe9d6ad3": {
+  "n": "48",
+  "conceito": "Ponto de campo magnético nulo entre dois fios paralelos com correntes de mesmo sentido: B = μ₀·i/(2π·d) e proporção das distâncias.",
+  "equivocos": {
+   "A": "F12.3:razao-das-correntes-ignorada",
+   "B": "F12.3:ponto-nulo-perto-da-corrente-maior",
+   "C": "F12.3:ponto-nulo-no-meio",
+   "E": "F12.3:ponto-nulo-perto-da-corrente-maior"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois fios têm corrente saindo da folha (símbolo de ponto). Entre eles, os campos de cada fio têm sentidos opostos, então podem se anular; fora do trecho entre os fios, somam-se. O campo de um fio cai com 1/d, por isso o ponto nulo fica mais perto do fio com a corrente menor.",
+    "formulas": [
+     "B = μ₀·i/(2π·d)",
+     "campo nulo: i₁/x = i₂/(d − x)"
+    ],
+    "simbolos": [
+     [
+      "μ₀",
+      "permeabilidade magnética do vácuo"
+     ],
+     [
+      "x",
+      "distância do ponto ao fio 1"
+     ],
+     [
+      "d",
+      "distância entre os fios, 20 cm"
+     ]
+    ]
+   },
+   "pista": "Os dois fios têm a corrente no mesmo sentido: em que região os campos podem ter sentidos opostos?",
+   "passos": [
+    {
+     "faz": "Localize a região do campo nulo",
+     "conta": "correntes no mesmo sentido → campos opostos só entre os fios",
+     "porque": "Pela regra da mão direita, entre os fios os campos apontam um para cima e outro para baixo; fora, apontam igual.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Iguale os módulos dos campos",
+     "conta": "μ₀·i₁/(2π·x) = μ₀·3i₁/(2π·(20 − x)) → 20 − x = 3x → x = 5 cm",
+     "porque": "μ₀, 2π e i₁ se cancelam; o ponto fica a 5 cm do fio 1, que tem a corrente menor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue I, II e III",
+     "conta": "5 cm à direita do fio 1: I verdadeira | 5 cm à esquerda do fio 2 = 15 cm do fio 1: II falsa | ponto médio (10 cm): III falsa",
+     "porque": "Só existe um ponto nulo no eixo x, a 5 cm do fio 1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Julgue IV dobrando as correntes",
+     "conta": "2i₁/x = 6i₁/(20 − x) → 20 − x = 3x → x = 5 cm",
+     "porque": "A posição depende só da razão i₂/i₁ = 3, que não muda quando as duas dobram. IV verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Feche com as verdadeiras",
+     "conta": "I e IV verdadeiras",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — somente as afirmativas I e IV são verdadeiras.",
+   "checagem": "Substitua x = 5 cm: o fio 1 dá μ₀·i₁/(2π·0,05) e o fio 2 dá μ₀·3i₁/(2π·0,15) = μ₀·i₁/(2π·0,05). Os módulos batem, e os sentidos são opostos entre os fios: campo nulo confirmado.",
+   "erradas": {
+    "A": "Deixa de fora IV, que é verdadeira: dobrar as duas correntes mantém a razão 3 e o ponto nulo continua a 5 cm do fio 1.",
+    "B": "II é falsa: 5 cm à esquerda do fio 2 fica a 15 cm do fio 1, perto do fio de corrente maior, onde o campo dele domina.",
+    "C": "III é falsa: no ponto médio as distâncias são iguais e o campo do fio 2, com corrente 3 vezes maior, vence.",
+    "E": "Inclui II, que é falsa: o ponto nulo fica perto do fio de corrente menor (fio 1), não do fio 2."
+   },
+   "armadilha": "Pôr o ponto nulo perto do fio de corrente maior: como B cai com 1/d, ele fica perto da corrente menor.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmativas sobre o ponto de campo nulo são verdadeiras.",
+    "chave": "Entre os fios, i₁/x = 3i₁/(20 − x) → x = 5 cm do fio 1; só a razão das correntes importa.",
+    "cuidado": "O ponto nulo fica mais perto da corrente menor."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "proporção direta",
+    "ideia": "Campo ∝ i/d: para anular com i₂ = 3i₁, a distância ao fio 2 tem de ser 3 vezes a distância ao fio 1, e 5 + 15 = 20 cm."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "μ₀·i₁/(2π·x) = μ₀·3i₁/(2π·(20 − x))",
+    "nota": "módulos iguais"
+   },
+   {
+    "linha": "20 − x = 3x",
+    "nota": "cancela μ₀, 2π e i₁"
+   },
+   {
+    "linha": "x = 5 cm",
+    "nota": "a 5 cm do fio 1"
+   },
+   {
+    "linha": "2i₁/x = 6i₁/(20 − x) → x = 5 cm",
+    "nota": "IV: razão mantida"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Prova oficial UFAM PSC 2021, 3ª etapa",
+    "url": "https://edoc.ufam.edu.br/bitstream/123456789/4620/68/PSC2021%203%20Etapa%20-%20Prova.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
  }
 }

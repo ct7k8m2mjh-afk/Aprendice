@@ -82,7 +82,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | fis-0074 | demais nível 7-10 | 50 | gravado | 49 | 1 | 0 |
 | fis-0075 | demais nível 7-10 | 50 | gravado | 49 | 1 | 0 |
 | fis-0076 | demais nível 7-10 | 50 | gravado | 50 | 0 | 0 |
-| fis-0077 | demais nível 7-10 | 44 | aberto |  |  |  |
+| fis-0077 | demais nível 7-10 | 44 | gravado | 44 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 

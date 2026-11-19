@@ -1890,5 +1890,137 @@
    "data": "2026-11-19",
    "lote": "fis-0076"
   }
+ },
+ "P68243a65": {
+  "n": "22",
+  "conceito": "Movimento helicoidal de elétron em campo magnético: só a componente da velocidade perpendicular a B curva a trajetória, e o maior afastamento é o diâmetro 2r, com r = m·v⊥/(e·B).",
+  "equivocos": {
+   "A": "F12.2:expressao-sem-unidade-de-comprimento",
+   "B": "F12.2:velocidade-paralela-no-raio",
+   "C": "F12.2:raio-no-lugar-do-diametro",
+   "D": "F12.2:uma-mola-so-e-raio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O campo aponta no eixo x. A velocidade de disparo (−v, 0, 0) é paralela ao campo e não sofre força: ela só faz o elétron avançar ao longo de x. Quem curva o elétron é a componente em y, herdada da oscilação do canhão, e ela gera um círculo no plano yz. Como o elétron parte com velocidade em y e a força aponta em z, o centro do círculo fica a uma distância r em z, e o ponto mais afastado está a 2r. A maior componente em y é a velocidade máxima do canhão no MHS.",
+    "formulas": [
+     "r = m·v⊥/(e·B)",
+     "v_máx do MHS = A·ω, com ω = √(k_eq/M)",
+     "molas em paralelo: k_eq = k + k = 2k"
+    ],
+    "simbolos": [
+     [
+      "v⊥",
+      "componente da velocidade perpendicular ao campo"
+     ],
+     [
+      "ω",
+      "frequência angular da oscilação do canhão"
+     ],
+     [
+      "k_eq",
+      "constante elástica equivalente das duas molas"
+     ],
+     [
+      "MHS",
+      "movimento harmônico simples, a oscilação do canhão nas molas"
+     ]
+    ]
+   },
+   "pista": "Separe a velocidade do elétron em duas partes: a paralela ao campo e a perpendicular. Só uma delas entra no raio.",
+   "passos": [
+    {
+     "faz": "Separe as componentes da velocidade",
+     "conta": "paralela a B: (−v, 0, 0) → sem força | perpendicular a B: v_y do canhão → círculo no plano yz",
+     "porque": "A força magnética é q·v×B; a parte da velocidade paralela ao campo dá produto vetorial nulo e não curva nada.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache a maior velocidade do canhão",
+     "conta": "k_eq = 2k → ω = √(2k/M) → v_y,máx = A·√(2k/M)",
+     "porque": "As duas molas estão lado a lado, em paralelo, então somam as constantes; no MHS a velocidade máxima é A·ω, no centro da oscilação.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o maior raio",
+     "conta": "r = m·v_y,máx/(e·B) = m·A·√(2k/M)/(e·B)",
+     "porque": "A força magnética e·v⊥·B faz o papel de centrípeta, m·v⊥²/r; como m << M, o recuo do canhão no disparo é desprezível.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe do raio ao maior z",
+     "conta": "z_máx = 2r = 2m·A·√(2k/M)/(e·B)",
+     "porque": "O elétron parte do círculo com velocidade em y, então o centro fica a r de distância em z e o ponto mais afastado está a um diâmetro do início. Os elétrons disparados com v_y de um dos sinais curvam para +z.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 2mA·√(2k/M)/(eB).",
+   "checagem": "Pelas unidades: A·√(k/M) é velocidade (m·s⁻¹), e m·v/(e·B) dá metro, porque e·B tem unidade kg/s; logo 2mA√(2k/M)/(eB) é um comprimento, como deve ser. Caso extremo: se o canhão não oscilasse (A = 0), o elétron andaria em linha reta ao longo de x e z ficaria 0, o que a expressão também dá.",
+   "erradas": {
+    "A": "Não confere pelas unidades: mA·√(2kA²/M + v²)/(eB) tem um A a mais fora da raiz e dá metro ao quadrado, não metro.",
+    "B": "Sai de usar a velocidade total do elétron, incluindo o v paralelo ao campo, com uma mola só e o raio: m·√((A·√(k/M))² + v²)/(eB). O v paralelo não curva, as molas somam 2k e o maior z é 2r.",
+    "C": "Sai de parar no raio: mA·√(2k/M)/(eB) é r. O elétron parte de um ponto do círculo, então o maior afastamento em z é o diâmetro, 2r.",
+    "D": "Sai de usar uma mola só (ω = √(k/M)) e ainda parar no raio: mA·√(k/M)/(eB). As molas em paralelo dão 2k, e o maior z é 2r."
+   },
+   "armadilha": "Pôr a velocidade de disparo v no raio: ela é paralela ao campo e não curva o elétron; o raio depende só da velocidade em y que vem da oscilação.",
+   "alerta": "No texto da prova, o sinal de menos aparece como um acento (˘): o campo é (−B, 0, 0), a velocidade de disparo é (−v, 0, 0) e a carga do elétron é −e. Os sinais não mudam o módulo do maior z.",
+   "essencial": {
+    "pede": "A maior coordenada z alcançada por um elétron disparado pelo canhão que oscila.",
+    "chave": "Só v_y curva: v_y,máx = A·√(2k/M), r = m·v_y,máx/(eB) e z_máx = 2r.",
+    "cuidado": "Somar as molas em paralelo (2k), ignorar o v paralelo a B e usar o diâmetro, não o raio."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "energia do oscilador",
+    "ideia": "A energia do par de molas, (1/2)·(2k)·A², vira toda cinética no centro, (1/2)·M·v_y², o que dá de novo v_y,máx = A·√(2k/M); daí z_máx = 2m·v_y,máx/(eB)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "v paralela a B → F = 0",
+    "nota": "só v_y curva"
+   },
+   {
+    "linha": "k_eq = k + k = 2k → ω = √(2k/M)",
+    "nota": "molas em paralelo"
+   },
+   {
+    "linha": "v_y,máx = A·ω = A·√(2k/M)",
+    "nota": "velocidade máxima do MHS"
+   },
+   {
+    "linha": "r = m·v_y,máx/(e·B) = m·A·√(2k/M)/(e·B)",
+    "nota": "força magnética como centrípeta"
+   },
+   {
+    "linha": "z_máx = 2r = 2m·A·√(2k/M)/(e·B)",
+    "nota": "diâmetro do círculo"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "IME, Concurso de Admissão 2024/2025, prova objetiva, 22ª questão",
+    "url": "https://www.ime.eb.mil.br/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  },
+  "gabarito_aprendice": {
+   "letra": "E",
+   "letra_conferente": "E",
+   "preliminar": "E",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
  }
 }

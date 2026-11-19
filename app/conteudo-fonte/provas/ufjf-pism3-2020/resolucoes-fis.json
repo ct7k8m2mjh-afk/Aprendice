@@ -307,5 +307,239 @@
    "data": "2026-11-19",
    "lote": "fis-0063"
   }
+ },
+ "P459af21d": {
+  "n": "22",
+  "conceito": "Associação de capacitores: paralelo soma as capacitâncias e série combina pelos inversos; achar o capacitor em série que leva o conjunto a 20 µF.",
+  "equivocos": {
+   "A": "F11.9:valor-em-serie-nao-leva-a-20",
+   "B": "F11.9:usou-o-valor-desejado-como-capacitor",
+   "D": "F11.9:valor-em-serie-nao-leva-a-20",
+   "E": "F11.9:valor-em-serie-nao-leva-a-20"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Capacitores em paralelo se somam; em série, somam-se os inversos. O erro do técnico deixou o trecho com mais capacitância, e a correção é ligar outro capacitor em série, o que sempre reduz a capacitância equivalente. A pergunta é qual valor em série leva o conjunto exatamente a 20 µF.",
+    "formulas": [
+     "paralelo: C = C1 + C2",
+     "série: 1/C = 1/C1 + 1/C2"
+    ],
+    "simbolos": [
+     [
+      "µF",
+      "microfarad: 10⁻⁶ F"
+     ],
+     [
+      "Cx",
+      "capacitor que vai em série para corrigir o trecho"
+     ],
+     [
+      "C_p",
+      "capacitância do trecho depois do erro do técnico"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra quanto ficou o trecho depois que o técnico pôs o capacitor de 20 µF em paralelo.",
+   "passos": [
+    {
+     "faz": "Some o capacitor posto em paralelo",
+     "conta": "C_p = 100 + 20 → C_p = 120 µF",
+     "porque": "Em paralelo as capacitâncias se somam: o erro levou o trecho de 100 µF para 120 µF.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a série com o capacitor novo",
+     "conta": "1/20 = 1/120 + 1/Cx",
+     "porque": "O conjunto final, de 20 µF, é o trecho de 120 µF em série com Cx; em série somam-se os inversos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole 1/Cx",
+     "conta": "1/Cx = 1/20 − 1/120 → 1/Cx = 6/120 − 1/120 → 1/Cx = 5/120",
+     "porque": "O 1/120 passa para o outro lado subtraindo; o denominador comum de 20 e 120 é 120.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Inverta e conclua",
+     "conta": "Cx = 120/5 → Cx = 24 µF",
+     "porque": "Basta inverter a fração. É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 24 µF.",
+   "checagem": "Use a regra (C₁·C₂)/(C₁ + C₂), que vale para dois capacitores em série: (120 · 24)/(120 + 24) = 2880/144 = 20 µF. Fecha com o valor desejado.",
+   "erradas": {
+    "A": "Não confere: 120 µF em série com 26 µF dá (120 · 26)/146 ≈ 21,4 µF, acima dos 20 µF desejados.",
+    "B": "Repete o valor desejado, 20 µF, mas em série com 120 µF ele dá (120 · 20)/140 ≈ 17,1 µF, abaixo do que se quer.",
+    "D": "Não confere: 120 µF em série com 14 µF dá (120 · 14)/134 ≈ 12,5 µF.",
+    "E": "Não confere: 120 µF em série com 12 µF dá (120 · 12)/132 ≈ 10,9 µF."
+   },
+   "armadilha": "Esquecer que o trecho já não é 100 µF: com o capacitor do técnico em paralelo ele virou 120 µF, e é esse valor que entra na série.",
+   "alerta": "No caderno da prova, a questão aparece como Questão 02 do 2º dia.",
+   "essencial": {
+    "pede": "O capacitor a ligar em série para que o trecho, que ficou com 120 µF, volte a 20 µF.",
+    "chave": "Paralelo: 100 + 20 = 120 µF; série: 1/Cx = 1/20 − 1/120 = 5/120, Cx = 24 µF.",
+    "cuidado": "Em série, use os inversos; a capacitância equivalente fica menor que a menor das duas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "(C₁·C₂)/(C₁ + C₂)",
+    "ideia": "(120 · Cx)/(120 + Cx) = 20 → 120Cx = 2400 + 20Cx → 100Cx = 2400 → Cx = 24 µF."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C_p = 100 + 20 = 120 µF",
+    "nota": "paralelo soma"
+   },
+   {
+    "linha": "1/20 = 1/120 + 1/Cx",
+    "nota": "série: inversos"
+   },
+   {
+    "linha": "1/Cx = 6/120 − 1/120 = 5/120",
+    "nota": "1/120 passa subtraindo"
+   },
+   {
+    "linha": "Cx = 120/5 = 24 µF",
+    "nota": "inverte a fração"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "UFJF PISM 2020, Módulo III, 2º dia, caderno Saúde (Copese), com gabarito oficial",
+    "url": "https://www2.ufjf.br/copese/wp-content/uploads/sites/42/2019/12/PROVA-PISM-2020-DIA_2-M%C3%93DULO_III-SA%C3%9ADE.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
+ },
+ "P1e319823": {
+  "n": "24",
+  "conceito": "Raio da trajetória de um elétron num campo magnético uniforme, r = m·v/(e·B): para curvar mais, é preciso diminuir a velocidade ou aumentar o campo, com o campo perpendicular à velocidade.",
+  "equivocos": {
+   "B": "F12.2:campo-menor-curva-mais",
+   "C": "F12.2:campo-paralelo-gera-forca",
+   "D": "F12.2:velocidade-maior-sobe-mais",
+   "E": "F12.2:forca-fora-do-plano"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os elétrons entram ao longo de x e o campo os curva para cima, num arco de circunferência. A trajetória 2 sobe mais que a 1 na mesma distância horizontal: é mais curva, ou seja, tem raio menor. O raio é r = m·v/(e·B), então ele diminui se a velocidade diminui ou se o campo aumenta.",
+    "formulas": [
+     "r = m·v₀/(e·B) (campo perpendicular à velocidade)",
+     "r menor → trajetória mais curva"
+    ],
+    "simbolos": [
+     [
+      "v₀",
+      "velocidade inicial dos elétrons, ao longo do eixo x"
+     ],
+     [
+      "r",
+      "raio da trajetória circular"
+     ],
+     [
+      "e",
+      "módulo da carga do elétron"
+     ]
+    ]
+   },
+   "pista": "Compare as duas curvas: qual delas tem o raio menor? Depois veja de que grandezas o raio depende.",
+   "passos": [
+    {
+     "faz": "Compare as trajetórias",
+     "conta": "trajetória 1: sobe d/2 | trajetória 2: sobe d → curva 2 mais fechada → r₂ < r₁",
+     "porque": "Na mesma distância horizontal até o detector, a curva que sobe mais é a que gira mais rápido, de raio menor.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Veja do que o raio depende",
+     "conta": "r = m·v₀/(e·B) → r ∝ v₀ e r ∝ 1/B",
+     "porque": "A força magnética e·v₀·B é a centrípeta m·v₀²/r; isolando r, ele cresce com a velocidade e cai com o campo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste cada mudança",
+     "conta": "v₀ menor → r menor (serve) | B menor → r maior | v₀ maior → r maior | B ∥ v₀ → sem força | B em y → força para fora do plano",
+     "porque": "Só diminuir v₀ (ou aumentar B, que não está nas alternativas) fecha a curva no mesmo plano.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Escolha a alternativa",
+     "conta": "diminuir v₀ → r menor → trajetória 2",
+     "porque": "É a mudança descrita na alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — pode-se diminuir a velocidade inicial v₀ dos elétrons.",
+   "checagem": "Pela geometria do arco: quem parte da origem na horizontal, num círculo de raio r, sobe y = r − √(r² − D²) ao chegar à distância horizontal D. Com D = 1, raio 2 dá y = 2 − √3 ≈ 0,27, e raio 1,25 dá y = 1,25 − 0,75 = 0,5: raio menor, subida maior. Diminuir v₀ diminui r e leva a curva mais alto, como a trajetória 2.",
+   "erradas": {
+    "B": "Diminuir o campo aumenta o raio (r = m·v₀/(e·B)): a trajetória fica menos curva e o elétron chega ainda mais abaixo de d/2.",
+    "C": "Com o campo na direção de v₀, a força magnética é nula (v×B = 0): o elétron segue reto pelo eixo x e não sobe.",
+    "D": "Aumentar v₀ aumenta o raio: a curva fica mais aberta e o elétron chega abaixo de d/2, mais longe do detector.",
+    "E": "Com v₀ em x e o campo em y, a força fica na direção z, perpendicular ao plano da figura: o elétron curva para fora do plano xy e não sobe em y até o detector."
+   },
+   "armadilha": "Achar que mais velocidade leva o elétron mais longe: no campo magnético, velocidade maior dá raio maior e curva mais aberta, que sobe menos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O que mudar para os elétrons seguirem a trajetória 2 e chegarem ao detector.",
+    "chave": "Trajetória 2 tem raio menor; como r = m·v₀/(e·B), basta diminuir v₀.",
+    "cuidado": "Velocidade maior ou campo menor abrem a curva; campo paralelo à velocidade não curva nada."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela geometria do arco",
+    "ideia": "Chegar mais alto na mesma distância horizontal exige um círculo de raio menor; r = m·v₀/(e·B) diminui com v₀ menor."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "trajetória 2 sobe mais → r₂ < r₁",
+    "nota": "curva mais fechada"
+   },
+   {
+    "linha": "e·v₀·B = m·v₀²/r → r = m·v₀/(e·B)",
+    "nota": "magnética = centrípeta"
+   },
+   {
+    "linha": "v₀ ↓ → r ↓",
+    "nota": "raio proporcional à velocidade"
+   },
+   {
+    "linha": "B ↓ → r ↑ ; v₀ ↑ → r ↑",
+    "nota": "mudanças que abrem a curva"
+   },
+   {
+    "linha": "diminuir v₀ → trajetória 2",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "UFJF, PISM 2020, Módulo III, 2º dia, área de Saúde (prova oficial)",
+    "url": "https://www2.ufjf.br/copese/wp-content/uploads/sites/42/2019/12/PROVA-PISM-2020-DIA_2-M%C3%93DULO_III-SA%C3%9ADE.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
  }
 }

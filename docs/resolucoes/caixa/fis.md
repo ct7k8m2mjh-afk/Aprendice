@@ -412,3 +412,34 @@ DADO Paae3ea80: alternativas -> frações: A) i = (ϵ + ϵ′)/(R1 + R2 + r + r�
 RECLASS Pbf50c69a F11.6 -> F11.4 (URCA 2025.1 q9: afirmativas sobre definição de corrente, campo no fio e carga elementar; só a V é de potência)
 RECLASS Pa902c913 F11.7 -> F11.5 (Unifor 2025.1 q19: associação de resistores iguais, simetria/ponte equilibrada, sem gerador)
 AVISO (site, conferência de 3 questões): Pe70050bf — o bloco "Resposta correta" mostra a fração em linha ("t = 5mLf/(2Ri²)"); na lousa ela aparece empilhada. Falta empilhar a fração no texto da resposta (é código/design, não mexi). Testes depois do fis-0075: tsc ok; vitest 786 de 786.
+
+## 2026-11-19 18:18 UTC — PENDENCIAS — session_01PveEKWeU9BGX5xnf2nstPb
+Lote fis-0077 gravado (44 resoluções conferidas).
+Gabarito do Aprendice: P798a0821 D, P68243a65 E, Pe183d00e E (resolvedor e conferente às cegas; iguais ao preliminar).
+DADO P7a8f3131: alternativas -> D é só "Chuveiro e lâmpada"; o resto ("220 V Fusível 1 2 3 4") são rótulos da figura (PUCRS 2026 Verão q31)
+DADO Pbb89a422: alternativas -> as alternativas são cinco circuitos desenhados no print, sem texto: (A) 0,1 F e 1 H em série de X a Y, 2 Ω em derivação; (B) 0,1 F e 2 Ω em série, 1 H em derivação; (C) 2,4 H e 4 Ω em série, 0,05 F em derivação; (D) 2 Ω e 1 H em série, 0,1 F em derivação; (E) 1 H e 2 Ω em série, 0,1 F em derivação (IME 2021 q30; entrada sem o campo alternativas)
+DADO P5c68b498: texto_da_prova -> sobra a linha "E ( ) mg + √8kmV 2." de outra questão; no print as alternativas são só A C, B 2 C, C 3 C, D 8 C/3, E 8 C (ITA 2022 q13)
+DADO P5d8fc528: texto_da_prova -> alternativas com fração empilhada no print: A (ε0L²/a)(6,4κo + 2,6κa); B (ε0L²/a)(6,4κo + 1,6κa); C (ε0L²/a)(3,2κo + 0,8κa); D (ε0L²/a)(3,2κo + 1,8κa); E (ε0L²/a)(1,6κo + 6,4κa) (ITA 2025 q21; entrada sem o campo alternativas)
+DADO P459af21d: alternativas -> faltam na entrada (vieram coladas no fim do texto_da_prova); no print: A 26; B 20; C 24; D 14; E 12
+DADO P9233e304: texto_da_prova -> OCR embaralhado com pedaços da figura; no print: I. Se os raios a, b e c tendem a zero, a aceleração do ímã será a menor possível. II. Se os raios a = c < b, a aceleração do ímã em c será maior que em b. III. Se os raios a = b > c, e considerando o efeito Joule no material condutor, a temperatura local em c é maior que em a e b. IV. Se os raios a = b = c, com a região b agora composta por um material dielétrico ideal, a velocidade final do ímã, após passar por c, será maior do que seria caso todo o tubo fosse condutor. V. Se todo o tubo fosse composto de um material dielétrico ideal com raios a > b > c, a aceleração em b seria maior que em c.
+DADO P9233e304: alternativas -> faltam na entrada; no print: A I, II e V; B II, III e IV; C III, IV e V; D I, II, III e IV; E I, III e IV
+DADO P2382f20b: alternativas -> frações perdidas; no print: A 2πm/(q(2v0 sen(α)/g − t1)); B πm/(q(2v0 sen(α)/g − t1)); C 2πm/(q(v0 sen(α)/g − t1)); D 4πm/(q(2v0 sen(α)/g − t1)); E πm/(q(v0 sen(α)/(2g) − t1))
+RECLASS P9233e304 F12.1 -> F12.4 (ITA 2026 q22: ímã caindo em tubo condutor com furos, correntes induzidas e Lenz)
+RECLASS P0b24ca44 F12.2 -> F11.2 (Cederj 2024.2 q16: dipolo elétrico em campo elétrico uniforme, não é força magnética)
+RECLASS P0fe3e09a F11.9 -> F11.2 (UTFPR 2024 Verão q58: força elétrica qE sobre carga presa a mola; o capacitor é só o cenário)
+DADO P43bd5e45: alternativas -> no print são frações empilhadas vezes (Iπ)/(QB): (A) (1/2)(Iπ/(QB)) (B) (1/4)(Iπ/(QB)) (C) (7/8)(Iπ/(QB)) (D) (3/4)(Iπ/(QB)) (E) (7/12)(Iπ/(QB)) (IME 2023 q29)
+DADO P68243a65: texto_da_prova -> o "˘" é sinal de menos no print: B = (−B,0,0), v = (−v,0,0), carga −e; alternativas -> a) mA√(2kA²/M + v²)/(eB) b) m√(kA²/M + v²)/(eB) c) mA√(2k/M)/(eB) d) mA√(k/M)/(eB) e) 2mA√(2k/M)/(eB) (IME 2025 q22)
+DADO Pdb41fab8: texto_da_prova -> sem o resto "E ( ) mg + √8kmV2." (não está no print); alternativas -> A 0,33 s, B 0,66 s, C 1,00 s, D 1,33 s, E 1,66 s (ITA 2022 q12)
+DADO P4d88d6f7: alternativas -> A m³g²/(q²B²), B (2/3)m³g²/(q²B²), C 2m³g²/(q²B²), D (1/4)m³g²/(q²B²), E (1/2)m³g²/(q²B²) (ITA 2023 q10; na entrada estavam só dentro do texto, desmontadas)
+DADO P2c788e44: texto_da_prova -> faltam as constantes do início da parte de Física do caderno, usadas na questão: e/m = 1,8 × 10¹¹ C/kg e π = 3 (UFAM PSC3 2024 q48)
+DADO P1e319823: texto_da_prova -> embaralhado (duas colunas misturadas) e sem alternativas; no print: A diminuir v0; B diminuir o módulo do campo; C campo na direção de v0; D aumentar v0; E campo na direção do eixo y (UFJF PISM III 2020, 2º dia, questão 04 do caderno)
+RECLASS P5216fb1f F12.3 -> F12.2
+RECLASS P6c1badec F12.3 -> F12.4
+RECLASS P26be9efd F12.3 -> F12.4
+GABARITO Pe183d00e (IME 2024 1ª fase, questão 19): sem gabarito publicado; letra do Aprendice E (10π µΩ); nenhuma resolução publicada achada na web; conferir com o preliminar e com a letra do conferente às cegas
+
+## 2026-11-19 18:18 UTC — ACABOU — session_01PveEKWeU9BGX5xnf2nstPb
+Física terminada: lote.py status mostra 0 questões faltando. Último lote gravado: fis-0077. Nenhum lote de Física aberto.
+Nesta sessão: fis-0073 (50), fis-0074 (49 + 1 pendente), fis-0075 (49 + 1 pendente), fis-0076 (50), fis-0077 (44) = 242 resoluções conferidas.
+Pendentes desta sessão: P1e7255e2 (RECLASS para mat M01.5), P82169a8f (RECLASS para qui Q09.1). A conferir: GABARITO P0e87de45 (resolvida com a oficial B, mas os dados se contradizem; decidir se anula). Pendentes de Física no registro: 17.
+Site: AVISO de Pe70050bf (fração em linha no bloco Resposta correta), acima. A vaga desta sessão fica livre para outra matéria.

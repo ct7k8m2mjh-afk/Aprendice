@@ -1168,5 +1168,139 @@
    "data": "2026-11-19",
    "lote": "fis-0076"
   }
+ },
+ "P5d8fc528": {
+  "n": "21",
+  "conceito": "Flutuação entre dois líquidos para achar a altura do cubo em cada um, e capacitores planos em paralelo com dielétricos diferentes.",
+  "equivocos": {
+   "B": "F11.9:esqueceu-a-face-do-fundo",
+   "C": "F11.9:folga-lateral-a-em-vez-de-a-sobre-2",
+   "D": "F11.9:folga-lateral-a-em-vez-de-a-sobre-2",
+   "E": "F04.6:inverteu-as-fracoes-submersas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O cubo de 0,92 g/cm³ flutua entre o óleo (0,90 g/cm³) e a água (1,0 g/cm³): o empuxo dos dois líquidos juntos iguala o peso. Isso diz quanto da altura L fica no óleo e quanto na água. Cada face do cubo forma com a parede do tanque um capacitor plano; como todos ligam o cubo ao tanque, ficam em paralelo e somam. Cuidado com a distância: nos lados a folga é a/2 de cada lado; no fundo, segundo a figura, é a.",
+    "formulas": [
+     "flutuação: d_o·h + d_a·(L − h) = d_c·L",
+     "capacitor plano: C = κ·ε₀·A/d",
+     "em paralelo: C_eq = C₁ + C₂ + ..."
+    ],
+    "simbolos": [
+     [
+      "κo, κa",
+      "constantes dielétricas do óleo e da água"
+     ],
+     [
+      "ε₀",
+      "permissividade do vácuo"
+     ],
+     [
+      "h",
+      "altura do cubo que fica no óleo"
+     ],
+     [
+      "d",
+      "distância entre as placas (folga entre cubo e tanque)"
+     ]
+    ]
+   },
+   "pista": "Antes de qualquer capacitor, descubra quanto do cubo está no óleo: é a flutuação que dá as áreas.",
+   "passos": [
+    {
+     "faz": "Ache a altura do cubo no óleo",
+     "conta": "0,90·h + 1,0·(L − h) = 0,92·L → L − 0,1·h = 0,92·L → 0,1·h = 0,08·L → h = 0,8·L",
+     "porque": "O peso do cubo é equilibrado pelo empuxo do óleo na parte de cima e da água na parte de baixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache as folgas",
+     "conta": "lados: ((L + a) − L)/2 → a/2 | fundo: (L + a) − L → a",
+     "porque": "O cubo está centralizado: a folga lateral a se divide entre os dois lados. Em cima ele está na altura da borda, então toda a folga vertical fica no fundo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule as faces laterais",
+     "conta": "óleo: 4 · κo·ε₀·(L · 0,8L)/(a/2) → 6,4·κo·ε₀L²/a | água: 4 · κa·ε₀·(L · 0,2L)/(a/2) → 1,6·κa·ε₀L²/a",
+     "porque": "Cada face lateral é dividida em uma faixa no óleo e outra na água, e as 4 faces são iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some o fundo",
+     "conta": "fundo: κa·ε₀·L²/a → 1,6·κa + 1·κa → 2,6·κa",
+     "porque": "O fundo do cubo está inteiro na água, a uma distância a do fundo do tanque.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte tudo e marque",
+     "conta": "C = (ε₀L²/a)·(6,4·κo + 2,6·κa) → alternativa A",
+     "porque": "Todos os pedaços ligam o cubo ao tanque, por isso estão em paralelo e somam. A face de cima está fora, porque o tanque é aberto.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — C = (ε₀L²/a)·(6,4κo + 2,6κa).",
+   "checagem": "Confira a flutuação pelo empuxo: 0,90 · 0,8 + 1,0 · 0,2 = 0,72 + 0,20 = 0,92, igual à densidade do cubo. E as áreas: 0,8L + 0,2L = L em cada face lateral.",
+   "erradas": {
+    "B": "Sai de esquecer o fundo do cubo: só as faces laterais dão 6,4κo + 1,6κa. O fundo, imerso na água a uma distância a, soma mais 1·κa.",
+    "C": "Sai de usar a folga a nos lados (em vez de a/2) e esquecer o fundo: 4 · 0,8 = 3,2 no óleo e 4 · 0,2 = 0,8 na água.",
+    "D": "Sai de usar a folga a nos lados, em vez de a/2: 4 · 0,8 = 3,2 no óleo e 4 · 0,2 + 1 = 1,8 na água, já com o fundo.",
+    "E": "Sai de inverter as alturas, pondo 0,8L na água e 0,2L no óleo, e esquecer o fundo: 4 · 0,2 · 2 = 1,6 no óleo e 4 · 0,8 · 2 = 6,4 na água."
+   },
+   "armadilha": "A folga lateral é a/2, não a: o cubo de lado L está centralizado num tanque de lado L + a, e isso dobra a capacitância das faces laterais.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A capacitância entre o cubo flutuante e o tanque, com óleo e água como dielétricos.",
+    "chave": "Flutuação dá 0,8L no óleo; faces laterais com folga a/2 e fundo com folga a, todos em paralelo: (ε₀L²/a)(6,4κo + 2,6κa).",
+    "cuidado": "Usar a/2 nos lados, a no fundo, e não esquecer o fundo nem a face aberta de cima."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por partes do total",
+    "ideia": "Sem óleo e com folga a/2 nos lados, seriam 4 · 2 + 1 = 9 unidades de ε₀L²/a; o óleo leva 0,8 das 8 laterais (6,4) e sobram 1,6 + 1 = 2,6 para a água."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,90·h + 1,0·(L − h) = 0,92·L",
+    "nota": "flutuação"
+   },
+   {
+    "linha": "h = 0,8·L",
+    "nota": "altura no óleo"
+   },
+   {
+    "linha": "lados: 4 · κo·0,8L²/(a/2) → 6,4κo",
+    "nota": "folga a/2"
+   },
+   {
+    "linha": "lados: 4 · κa·0,2L²/(a/2) → 1,6κa",
+    "nota": "parte na água"
+   },
+   {
+    "linha": "fundo: κa·L²/a → 1,6κa + 1κa = 2,6κa",
+    "nota": "fundo inteiro na água"
+   },
+   {
+    "linha": "C = (ε₀L²/a)(6,4κo + 2,6κa)",
+    "nota": "tudo em paralelo"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "ITA, Vestibular 2025, 1ª fase, questão 21",
+    "url": "https://vestibular.ita.br/provas/2025_fase1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
  }
 }

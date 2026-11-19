@@ -524,5 +524,126 @@
    "data": "2026-11-19",
    "lote": "fis-0073"
   }
+ },
+ "P7a8f3131": {
+  "n": "31",
+  "conceito": "Corrente de cada aparelho em paralelo (i = P/U) e soma das correntes no fusível comum.",
+  "equivocos": {
+   "A": "F11.8:contou-aparelhos-e-nao-correntes",
+   "B": "F11.8:ignorou-o-chuveiro-de-maior-potencia",
+   "D": "F11.8:somou-e-nao-comparou-com-a-ruptura"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os quatro aparelhos estão ligados em paralelo na mesma rede de 220 V, e o fusível fica no fio comum, antes de todos. Então a corrente que passa pelo fusível é a soma das correntes dos aparelhos ligados ao mesmo tempo. Cada corrente sai da potência: i = P/U. O fusível queima quando essa soma passa de 28 A.",
+    "formulas": [
+     "i = P/U",
+     "em paralelo: i_total = i₁ + i₂ + ..."
+    ],
+    "simbolos": [
+     [
+      "P",
+      "potência do aparelho, em watt (W)"
+     ],
+     [
+      "U",
+      "tensão da rede, 220 V"
+     ],
+     [
+      "i",
+      "corrente elétrica, em ampère (A)"
+     ],
+     [
+      "fusível",
+      "fio que derrete e abre o circuito quando a corrente passa do valor de ruptura"
+     ]
+    ]
+   },
+   "pista": "Passe cada potência para corrente antes de combinar os aparelhos: são as correntes que se somam no fusível.",
+   "passos": [
+    {
+     "faz": "Calcule a corrente de cada aparelho",
+     "conta": "secador: i = 1980/220 → i = 9 A | lâmpada: i = 11/220 → i = 0,05 A | aquecedor: i = 880/220 → i = 4 A | chuveiro: i = 5500/220 → i = 25 A",
+     "porque": "Todos recebem os mesmos 220 V, porque estão em paralelo; dividir a potência pela tensão dá a corrente de cada um.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as correntes de cada combinação",
+     "conta": "A: 4 + 0,05 + 9 → 13,05 A | B: 4 + 9 → 13 A | C: 25 + 4 → 29 A | D: 25 + 0,05 → 25,05 A",
+     "porque": "O fusível está no fio comum: por ele passa a soma das correntes dos aparelhos ligados juntos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com a corrente de ruptura",
+     "conta": "29 A > 28 A → queima | 25,05 A < 28 A → não queima",
+     "porque": "Só a combinação que passa de 28 A derrete o fusível; as outras ficam abaixo do limite.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Marque a combinação que queima",
+     "conta": "chuveiro + aquecedor = 29 A → alternativa C",
+     "porque": "É a única soma acima de 28 A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — chuveiro e aquecedor (29 A, acima dos 28 A do fusível).",
+   "checagem": "Pela potência total: o fusível aguenta 28 × 220 = 6160 W. Chuveiro e aquecedor somam 5500 + 880 = 6380 W, acima do limite; chuveiro e lâmpada somam 5511 W, abaixo.",
+   "erradas": {
+    "A": "Não confere: 880 + 11 + 1980 = 2871 W dão 2871/220 = 13,05 A, bem abaixo de 28 A. Três aparelhos não significam mais corrente que o chuveiro sozinho.",
+    "B": "Não confere: aquecedor e secador dão 4 + 9 = 13 A, bem abaixo dos 28 A do fusível.",
+    "D": "Não confere: chuveiro e lâmpada dão 25 + 0,05 = 25,05 A, ainda abaixo de 28 A. A lâmpada de 11 W quase não pesa na soma."
+   },
+   "armadilha": "Contar aparelhos em vez de somar correntes: a combinação com mais aparelhos (A) puxa só 13,05 A, e quem decide é o chuveiro de 25 A.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual combinação, ligada ao mesmo tempo, passa a corrente de 28 A do fusível.",
+    "chave": "Em paralelo, a corrente no fusível é a soma de i = P/U de cada aparelho; chuveiro e aquecedor dão 25 + 4 = 29 A.",
+    "cuidado": "Somar as correntes (ou as potências) dos aparelhos ligados juntos, não olhar quantos aparelhos são."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "potência máxima",
+    "ideia": "O fusível de 28 A em 220 V suporta 28 × 220 = 6160 W; só chuveiro + aquecedor (6380 W) passa disso."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i = P/U",
+    "nota": "corrente de cada aparelho"
+   },
+   {
+    "linha": "i_chuveiro = 5500/220 → 25 A",
+    "nota": "chuveiro"
+   },
+   {
+    "linha": "i_aquecedor = 880/220 → 4 A",
+    "nota": "aquecedor"
+   },
+   {
+    "linha": "i_total = 25 + 4 → 29 A",
+    "nota": "correntes em paralelo se somam"
+   },
+   {
+    "linha": "29 A > 28 A",
+    "nota": "o fusível queima"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "PUCRS, Vestibular de Verão 2026, prova de Medicina, questão 31",
+    "url": "https://portal.pucrs.br/wp-content/uploads/2025/11/2025_11_22-vestibular_verao_2026-00-oc_01-medicina-contabeis_dual_study-prova_22_nov-prova.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
  }
 }

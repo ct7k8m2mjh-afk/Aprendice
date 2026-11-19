@@ -1236,5 +1236,133 @@
    "data": "2026-11-19",
    "lote": "fis-0076"
   }
+ },
+ "P26be9efd": {
+  "n": "11",
+  "conceito": "Fem induzida numa sonda de m espiras dentro de um solenoide cuja corrente cresce linearmente: B = μ₀·(n/L)·I e lei de Faraday.",
+  "equivocos": {
+   "A": "F12.4:campo-da-extremidade-do-solenoide",
+   "B": "F12.4:fator-numerico-sem-origem",
+   "D": "F12.4:campo-dobrado",
+   "E": "F12.4:esqueceu-espiras-da-sonda"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O resistor R manda no circuito: como R é muito maior que a resistência do solenoide, a corrente é I = U/R. Essa corrente cresce com o tempo, o campo dentro do solenoide também, e o fluxo na sonda varia. O voltímetro mede a fem induzida nas m espiras. Atenção: n é o número TOTAL de espiras do solenoide, então as voltas por metro são n/L.",
+    "formulas": [
+     "I = U/R",
+     "B = μ₀·(n/L)·I (dentro do solenoide)",
+     "ε = m·(ΔΦ/Δt), com Φ = B·π·r²"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número total de espiras do solenoide"
+     ],
+     [
+      "L",
+      "comprimento do solenoide"
+     ],
+     [
+      "m",
+      "número de espiras da sonda"
+     ],
+     [
+      "μ₀",
+      "permeabilidade magnética do vácuo"
+     ],
+     [
+      "ε",
+      "fem induzida, a tensão que o voltímetro lê"
+     ],
+     [
+      "U₀/t₀",
+      "taxa de crescimento da tensão da fonte"
+     ]
+    ]
+   },
+   "pista": "Comece pela corrente no solenoide: quem limita essa corrente no circuito C?",
+   "passos": [
+    {
+     "faz": "Ache a corrente no solenoide",
+     "conta": "I = U/R → I = (U₀/t₀)·t/R",
+     "porque": "O solenoide quase não tem resistência perto de R, então a corrente é I = U/R.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o campo dentro do solenoide",
+     "conta": "B = μ₀·(n/L)·I → B = (μ₀·n/L)·(U₀/(t₀·R))·t",
+     "porque": "Solenoide longo: campo uniforme dentro, proporcional às voltas por metro, n/L.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique Faraday às m espiras",
+     "conta": "ΔΦ/Δt = (μ₀·n/L)·(U₀/(t₀·R))·π·r² → ε = m·(μ₀·n/L)·(π·r²/R)·(U₀/t₀)",
+     "porque": "O eixo da sonda é paralelo a B, então o fluxo em cada espira é B·π·r²; B cresce em reta, com taxa constante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "ε = (m·n·μ₀/L)·(π·r²/R)·(U₀/t₀)",
+     "porque": "É a expressão da alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a tensão medida é (m·n·μ₀/L)·(π·r²/R)·(U₀/t₀).",
+   "checagem": "Unidade: μ₀·n/L dá T/A; vezes U₀/(t₀·R) dá T/s; vezes π·r² dá Wb/s, que é volt. E a dependência faz sentido: mais espiras na sonda (m) ou no solenoide (n) aumentam a leitura, e R maior a diminui.",
+   "erradas": {
+    "A": "Sai de usar o campo na extremidade do solenoide, que é 1/2 do interior: μ₀·n·I/(2L); a sonda está dentro, onde o campo é μ₀·n·I/L.",
+    "B": "Não confere: o fator 3/2 não vem de nenhuma relação do problema; com B = μ₀·(n/L)·I uniforme e fluxo B·π·r², não há fator numérico.",
+    "D": "Não confere: o fator 2 dobraria o campo, e não há nada no circuito que o dobre; o campo do solenoide longo é μ₀·(n/L)·I.",
+    "E": "Não confere: não tem m, como se a leitura não dependesse do número de espiras da sonda; cada espira soma a sua fem."
+   },
+   "armadilha": "Ler n como voltas por metro: aqui n é o total de espiras, e o campo usa n/L.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A tensão lida pelo voltímetro ligado à sonda.",
+    "chave": "I = U/R cresce em reta; B = μ₀·(n/L)·I; ε = m·π·r²·(taxa de B).",
+    "cuidado": "Usar n/L (n é o total de espiras) e multiplicar pelas m espiras da sonda."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por unidades e dependências",
+    "ideia": "A leitura tem de ser proporcional a m, n, π·r² e U₀/t₀ e inversamente a L e R, sem fator extra: só C tem coeficiente 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I = (U₀/t₀)·t/R",
+    "nota": "corrente limitada por R"
+   },
+   {
+    "linha": "B = (μ₀·n/L)·I",
+    "nota": "campo no interior"
+   },
+   {
+    "linha": "ΔB/Δt = (μ₀·n/L)·(U₀/(t₀·R))",
+    "nota": "taxa do campo"
+   },
+   {
+    "linha": "ε = m·π·r²·(μ₀·n/L)·(U₀/(t₀·R))",
+    "nota": "Faraday nas m espiras"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Prova oficial ITA 2024, 1ª fase",
+    "url": "https://vestibular.ita.br/provas/2024_fase1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
  }
 }

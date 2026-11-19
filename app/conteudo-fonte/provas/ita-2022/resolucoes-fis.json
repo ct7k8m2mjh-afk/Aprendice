@@ -1200,5 +1200,386 @@
    "data": "2026-11-19",
    "lote": "fis-0076"
   }
+ },
+ "P5c68b498": {
+  "n": "13",
+  "conceito": "Capacitância equivalente de seis vértices todos ligados entre si por capacitores iguais, por simetria.",
+  "equivocos": {
+   "A": "F11.9:so-o-capacitor-direto",
+   "B": "F11.9:esqueceu-o-capacitor-direto",
+   "D": "F11.9:somou-caminhos-errado-na-simetria",
+   "E": "F11.9:somou-capacitores-que-nao-estao-em-paralelo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O octaedro tem 6 vértices, e cada par está ligado por um capacitor: são 15 capacitores, como um grafo completo. Entre os dois vértices escolhidos, A e B, há o capacitor direto. Os outros 4 vértices são simétricos em relação a A e B, então ficam todos no mesmo potencial, no meio do caminho. Capacitor entre pontos de mesmo potencial não carrega e pode ser retirado.",
+    "formulas": [
+     "em paralelo: C_eq = C₁ + C₂ + ...",
+     "em série (dois iguais): C_eq = C/2"
+    ],
+    "simbolos": [
+     [
+      "C",
+      "capacitância de cada capacitor"
+     ],
+     [
+      "C_eq",
+      "capacitância equivalente entre os dois vértices"
+     ],
+     [
+      "potencial",
+      "nível elétrico de um ponto; entre pontos de mesmo potencial não há tensão"
+     ]
+    ]
+   },
+   "pista": "Os quatro vértices que não são A nem B têm algo em comum: veja o que a simetria diz sobre o potencial deles.",
+   "passos": [
+    {
+     "faz": "Use a simetria nos outros 4 vértices",
+     "conta": "V_A = V | V_B = 0 → V₁ = V₂ = V₃ = V₄ = V/2",
+     "porque": "Cada um dos 4 está ligado a A por um C e a B por um C, do mesmo jeito; nada distingue um do outro, então têm o mesmo potencial.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Retire os capacitores entre os 4",
+     "conta": "6 capacitores com tensão 0 → carga 0 → saem do circuito",
+     "porque": "Sem diferença de potencial, esses capacitores não guardam carga e não mudam a equivalente.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Some os caminhos que sobram",
+     "conta": "direto: C | cada caminho A → k → B: C·C/(C + C) → C/2 | 4 caminhos: 4 · C/2 → 2C",
+     "porque": "Cada vértice intermediário forma dois capacitores iguais em série, e os 4 caminhos ficam em paralelo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte o direto e marque",
+     "conta": "C_eq = C + 2C → C_eq = 3C",
+     "porque": "O capacitor direto está em paralelo com os 4 caminhos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3C.",
+   "checagem": "Confira pela carga: com tensão V entre A e B, o capacitor direto guarda C·V e cada um dos 4 capacitores que saem de A guarda C·(V/2). A carga total em A é C·V + 4·C·V/2 = 3C·V, logo C_eq = 3C. Bate também com a regra de n pontos todos ligados entre si: C_eq = n·C/2 = 6C/2.",
+   "erradas": {
+    "A": "Sai de contar só o capacitor direto entre A e B e esquecer os 4 caminhos pelos outros vértices.",
+    "B": "Sai de contar só os 4 caminhos indiretos, 4 · C/2 = 2C, e esquecer o capacitor direto entre os dois vértices.",
+    "D": "Não confere: 8C/3 exigiria que os 4 caminhos por fora somassem 5C/3, mas 4 caminhos de C/2 em paralelo dão 2C, e C + 2C = 3C.",
+    "E": "Não confere: a carga de A sai pelos 5 capacitores ligados a ele, cada um com tensão no máximo V, então C_eq não passa de 5C; 8C é impossível."
+   },
+   "armadilha": "Esquecer que vizinhos também se ligam pelos outros vértices, ou o contrário: contar os caminhos indiretos e deixar de fora o capacitor direto.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A capacitância equivalente entre dois vértices vizinhos de um octaedro com todos os pares ligados por C.",
+    "chave": "Por simetria, os 4 outros vértices ficam em V/2; sobram o direto (C) e 4 caminhos de C/2, total 3C.",
+    "cuidado": "Somar o capacitor direto e os 4 caminhos; os capacitores entre vértices de mesmo potencial não contam."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "grafo completo",
+    "ideia": "Em n pontos todos ligados por C, a equivalente entre dois deles é n·C/2; com n = 6, dá 3C."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V₁ = V₂ = V₃ = V₄ = V/2",
+    "nota": "simetria"
+   },
+   {
+    "linha": "C·C/(C + C) → C/2",
+    "nota": "cada caminho A → k → B"
+   },
+   {
+    "linha": "4 · C/2 → 2C",
+    "nota": "quatro caminhos em paralelo"
+   },
+   {
+    "linha": "C_eq = C + 2C → 3C",
+    "nota": "mais o capacitor direto"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "ITA, Vestibular 2022, 1ª fase, questão 13",
+    "url": "https://vestibular.ita.br/provas/2022_fase1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
+ },
+ "Pdb41fab8": {
+  "n": "12",
+  "conceito": "Partícula em campos elétrico, magnético e gravitacional: com B vertical, a força magnética fica no plano horizontal, e o movimento em z é um MUV com a resultante qE_z − mg.",
+  "equivocos": {
+   "B": "F12.2:tempo-que-nao-satisfaz-a-equacao",
+   "C": "F12.2:raiz-negativa-em-modulo",
+   "D": "F12.2:tempo-que-nao-satisfaz-a-equacao",
+   "E": "F12.2:tempo-que-nao-satisfaz-a-equacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O campo magnético aponta em z, então a força magnética q·v×B é sempre horizontal e não mexe na coordenada z. Também não mexe a componente E_y do campo elétrico, que é horizontal. Em z só atuam qE_z para cima e o peso para baixo: um MUV que parte com a componente da velocidade paralela a B, v∥ = 2,0 m/s. A questão não dá g; com g = 10 m/s² (ou 9,8) o tempo sai o mesmo, 0,33 s.",
+    "formulas": [
+     "a_z = (q·E_z − m·g)/m",
+     "z = v∥·t + a_z·t²/2"
+    ],
+    "simbolos": [
+     [
+      "v∥",
+      "componente da velocidade paralela a B, isto é, na vertical z"
+     ],
+     [
+      "v⊥",
+      "componente perpendicular a B, no plano horizontal"
+     ],
+     [
+      "E_z",
+      "componente vertical do campo elétrico"
+     ],
+     [
+      "MUV",
+      "movimento uniformemente variado: aceleração constante"
+     ]
+    ]
+   },
+   "pista": "Pergunte quais forças têm componente em z; o resto da questão (B, E_y, v⊥) mexe só no plano horizontal.",
+   "passos": [
+    {
+     "faz": "Separe o que age na vertical",
+     "conta": "B em z → q·v×B horizontal | E_y horizontal | em z: q·E_z (para cima) e m·g (para baixo)",
+     "porque": "O produto vetorial v×B é perpendicular a B; com B vertical, a força magnética nunca tem componente vertical.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a aceleração vertical",
+     "conta": "a_z = (20·10⁻⁶ × 800 − 1,0·10⁻³ × 10)/(1,0·10⁻³) = (0,016 − 0,010)/(1,0·10⁻³) = 6 m/s²",
+     "porque": "Massa em kg (1,0 g = 10⁻³ kg) e carga em C (20 µC = 20·10⁻⁶ C) para a força sair em newton.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a equação horária em z",
+     "conta": "1,0 = 2,0·t + (6/2)·t² → 3t² + 2t − 1 = 0",
+     "porque": "A velocidade inicial em z é v∥ = 2,0 m/s, a componente paralela a B, e a aceleração é constante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva e fique com a raiz positiva",
+     "conta": "t = (−2 ± √(4 + 12))/6 = (−2 ± 4)/6 → t = 1/3 s ≈ 0,33 s (a outra raiz, −1 s, é negativa)",
+     "porque": "Tempo negativo não tem sentido físico aqui: a partícula parte da origem em t = 0.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 0,33 s.",
+   "checagem": "Substitua t = 1/3 s: z = 2,0 × 1/3 + 3 × (1/3)² = 2/3 + 1/3 = 1,0 m. Com g = 9,8 m/s², a_z = 6,2 m/s² e a raiz positiva dá t ≈ 0,331 s: continua 0,33 s.",
+   "erradas": {
+    "B": "0,66 s não confere: com t = 2/3 s, z = 2,0 × 2/3 + 3 × (2/3)² = 4/3 + 4/3 ≈ 2,67 m, bem além de 1,0 m.",
+    "C": "Sai de tomar a outra raiz, t = −1 s, sem o sinal: |−1| = 1,00 s. Essa raiz é negativa e não é um instante depois da partida.",
+    "D": "1,33 s não confere: com t = 4/3 s, z = 2,0 × 4/3 + 3 × (4/3)² ≈ 8,0 m, muito além de 1,0 m.",
+    "E": "1,66 s não confere: com t = 5/3 s, z = 2,0 × 5/3 + 3 × (5/3)² ≈ 11,7 m, muito além de 1,0 m."
+   },
+   "armadilha": "Gastar tempo com o movimento helicoidal: B vertical não tem força em z, e a questão vira um MUV vertical com a = (qE_z − mg)/m.",
+   "alerta": "O enunciado escreve E = E_y j + E_z k, mas dá o valor como \"Ex = 100 N/C\"; é a componente horizontal E_y, que não entra no cálculo do tempo em z.",
+   "essencial": {
+    "pede": "O tempo até a partícula atingir z = 1,0 m.",
+    "chave": "Em z só atuam qE_z e mg: a_z = 6 m/s²; 1,0 = 2,0t + 3t² dá t = 1/3 s.",
+    "cuidado": "Converter g em kg e µC em C e usar só a componente v∥ como velocidade inicial em z."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Substitua cada tempo em z = 2t + 3t²: só t = 1/3 s dá 1,0 m; as demais passam de 2 m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "B ∥ z → F_mag ⊥ z",
+    "nota": "força magnética só no plano horizontal"
+   },
+   {
+    "linha": "a_z = (20·10⁻⁶ · 800 − 10⁻³ · 10)/10⁻³ = 6 m/s²",
+    "nota": "resultante vertical sobre a massa"
+   },
+   {
+    "linha": "1,0 = 2,0·t + 3·t² → 3t² + 2t − 1 = 0",
+    "nota": "equação horária em z"
+   },
+   {
+    "linha": "t = (−2 ± 4)/6",
+    "nota": "Bhaskara: Δ = 4 + 12 = 16"
+   },
+   {
+    "linha": "t = 1/3 s ≈ 0,33 s",
+    "nota": "raiz positiva"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "ITA 2022, 1ª fase, questão 12 (prova oficial)",
+    "url": "https://vestibular.ita.br/provas/2022_fase1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
+ },
+ "P6c1badec": {
+  "n": "14",
+  "conceito": "Indução entre solenoides coaxiais: fem pela lei de Faraday com o fluxo só na área do solenoide interno e resistência do fio com duas resistividades em série.",
+  "equivocos": {
+   "B": "F12.4:area-do-solenoide-externo-no-fluxo",
+   "C": "F12.4:resultado-sem-unidade-de-corrente",
+   "D": "F12.4:resistencias-em-paralelo",
+   "E": "F12.4:esqueceu-numero-de-espiras-na-fem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A corrente no solenoide interno cresce, então o campo dentro dele cresce e o fluxo no solenoide externo varia: aparece fem induzida. O ponto fino é a área: o campo de um solenoide longo só existe dentro dele, então o fluxo em cada espira externa passa só pela área π·a², não π·b². A corrente induzida é i = ε/R, com R a resistência do fio externo, cujas duas metades estão em série.",
+    "formulas": [
+     "B = μ₀·n₁·I (dentro do solenoide longo)",
+     "ε = N₂·(ΔΦ/Δt), com N₂ = n₂·L",
+     "R = ρ·ℓ/A (resistência do fio)",
+     "i = ε/R"
+    ],
+    "simbolos": [
+     [
+      "n₁, n₂",
+      "voltas por unidade de comprimento de cada solenoide"
+     ],
+     [
+      "N₂",
+      "número total de espiras do externo: n₂·L"
+     ],
+     [
+      "ε",
+      "força eletromotriz induzida"
+     ],
+     [
+      "Φ",
+      "fluxo magnético"
+     ],
+     [
+      "ρ₁, ρ₂",
+      "resistividades das duas metades do fio externo"
+     ],
+     [
+      "ℓ",
+      "comprimento total do fio externo"
+     ],
+     [
+      "A",
+      "área da seção do fio"
+     ]
+    ]
+   },
+   "pista": "Antes de calcular o fluxo, pergunte: em que parte de cada espira externa o campo existe?",
+   "passos": [
+    {
+     "faz": "Calcule a fem induzida",
+     "conta": "Φ = μ₀·n₁·I₀·t·π·a² → ε = n₂·L·μ₀·n₁·I₀·π·a²",
+     "porque": "Fora do solenoide interno o campo é desprezível, então o fluxo usa π·a². A taxa de I é I₀, e são n₂·L espiras.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o comprimento do fio externo",
+     "conta": "ℓ = n₂·L·2π·b → cada metade: n₂·L·π·b",
+     "porque": "Cada espira externa tem perímetro 2π·b; metade do fio tem cada resistividade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as duas resistências em série",
+     "conta": "R = ρ₁·(n₂·L·π·b)/A + ρ₂·(n₂·L·π·b)/A → R = n₂·L·π·b·(ρ₁ + ρ₂)/A",
+     "porque": "As duas metades formam um só fio, uma depois da outra: resistências em série se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida a fem pela resistência",
+     "conta": "i = (n₂·L·μ₀·n₁·I₀·π·a²)/(n₂·L·π·b·(ρ₁ + ρ₂)/A) → i = (n₁·μ₀·I₀·a²·A)/(b·(ρ₁ + ρ₂))",
+     "porque": "n₂, L e π aparecem em cima e embaixo e se cancelam: mais espiras dão mais fem, mas também mais fio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "i = (n₁·μ₀·I₀·a²·A)/(b·(ρ₁ + ρ₂))",
+     "porque": "É a expressão da alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — i = (n₁·μ₀·I₀·a²·A)/(b·(ρ₁ + ρ₂)).",
+   "checagem": "Unidade: n₁·μ₀·I₀ dá T/s; vezes a² dá Wb/s = V; vezes A/(b·ρ) dá V/Ω = A. E o resultado não depende de n₂ nem de L, como deve ser, porque fem e resistência crescem juntas com o número de espiras.",
+   "erradas": {
+    "B": "Sai de usar a área π·b² do solenoide externo no fluxo: ε = n₂·L·μ₀·n₁·I₀·π·b² leva a (n₁·μ₀·I₀·b·A)/(ρ₁ + ρ₂); fora do interno o campo é desprezível.",
+    "C": "Não confere: tem n₂·π a mais; pela unidade, sai em ampère por metro, não em ampère.",
+    "D": "Não confere: põe n₂·L no denominador, mas n₂·L cancela entre fem e resistência; e as resistividades aparecem como em paralelo, mas as metades estão em série.",
+    "E": "Sai de esquecer de multiplicar a fem pelas n₂·L espiras e manter a resistência do fio todo: dá (n₁·μ₀·I₀·a²·A)/(n₂·L·b·(ρ₁ + ρ₂))."
+   },
+   "armadilha": "Usar a área do solenoide externo no fluxo: o campo do solenoide interno só existe dentro dele, então a área é π·a².",
+   "alerta": "",
+   "essencial": {
+    "pede": "A corrente induzida no solenoide externo em curto.",
+    "chave": "ε = n₂·L·μ₀·n₁·I₀·π·a² e R = n₂·L·π·b·(ρ₁ + ρ₂)/A; o número de espiras cancela.",
+    "cuidado": "Fluxo com π·a² (não π·b²) e as duas metades do fio em série."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "análise de unidade e de dependência",
+    "ideia": "A corrente não pode depender de n₂ nem de L (cancelam) e tem de sair em ampère: isso elimina C, D e E; entre A e B, o fluxo usa a área π·a² do interno."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ε = n₂·L·μ₀·n₁·I₀·π·a²",
+    "nota": "Faraday, área do interno"
+   },
+   {
+    "linha": "ℓ = n₂·L·2π·b",
+    "nota": "comprimento do fio externo"
+   },
+   {
+    "linha": "R = n₂·L·π·b·(ρ₁ + ρ₂)/A",
+    "nota": "metades em série"
+   },
+   {
+    "linha": "i = ε/R",
+    "nota": "lei de Ohm"
+   },
+   {
+    "linha": "i = (n₁·μ₀·I₀·a²·A)/(b·(ρ₁ + ρ₂))",
+    "nota": "cancela n₂, L e π"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Prova oficial ITA 2022, 1ª fase",
+    "url": "https://vestibular.ita.br/provas/2022_fase1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
  }
 }

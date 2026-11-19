@@ -1593,5 +1593,263 @@
    "data": "2026-11-19",
    "lote": "fis-0075"
   }
+ },
+ "Pbb89a422": {
+  "n": "30",
+  "conceito": "Circuito RLC em regime permanente de corrente contínua: capacitor como circuito aberto, indutor como fio, e energias LI²/2 e CV²/2.",
+  "equivocos": {
+   "A": "F11.9:capacitor-em-serie-deixa-passar-corrente-continua",
+   "B": "F11.9:capacitor-em-serie-deixa-passar-corrente-continua",
+   "C": "F11.9:nao-conferiu-a-corrente-com-o-resistor-em-serie",
+   "E": "F11.9:tensao-errada-no-capacitor-em-derivacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em t → ∞ a corrente é contínua e parou de variar. Nesse regime, o capacitor não deixa passar corrente (funciona como chave aberta) e o indutor não tem queda de tensão (funciona como fio). Com IA = 10 A e V1 = 80 V no resistor de 8 Ω, toda a corrente da fonte chega à carga, e sobram 20 V para o resistor da caixa. A energia total de 370 J decide onde ficam o indutor e o capacitor.",
+    "formulas": [
+     "regime permanente: capacitor = circuito aberto; indutor = fio",
+     "U = R·i",
+     "E_L = L·i²/2 ; E_C = C·V²/2"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "indutância do indutor, em henry (H)"
+     ],
+     [
+      "C",
+      "capacitância, em farad (F)"
+     ],
+     [
+      "IA",
+      "corrente que sai da fonte"
+     ],
+     [
+      "V1",
+      "tensão no resistor de 8 Ω"
+     ],
+     [
+      "regime permanente",
+      "situação depois de muito tempo, quando nada mais varia"
+     ]
+    ]
+   },
+   "pista": "Comece pelo que o regime permanente proíbe: em corrente contínua estável, um capacitor no caminho da corrente zera essa corrente.",
+   "passos": [
+    {
+     "faz": "Elimine o capacitor em série",
+     "conta": "(A) e (B): capacitor entre X e Y → i = 0 ≠ 10 A",
+     "porque": "Em regime permanente o capacitor é chave aberta; se ele está no caminho da fonte até a carga, nenhuma corrente chega ao resistor de 8 Ω.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ache o resistor em série da caixa",
+     "conta": "8 Ω · 10 A = 80 V → 100 V − 80 V = 20 V → R = 20/10 → R = 2 Ω",
+     "porque": "Toda a corrente passa pelo 8 Ω; a tensão que falta até 100 V fica no resistor da caixa. Isso já derruba (C), que tem 4 Ω e daria i = 100/12 ≈ 8,33 A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a energia em (D)",
+     "conta": "V_C = 100 − 2·10 → V_C = 80 V | E = 1·10²/2 + 0,1·80²/2 → E = 50 + 320 → E = 370 J",
+     "porque": "Em (D) o capacitor fica depois do resistor de 2 Ω, então sente os 80 V; o indutor de 1 H leva os 10 A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com (E)",
+     "conta": "V_C = 100 V | E = 1·10²/2 + 0,1·100²/2 → E = 50 + 500 → E = 550 J",
+     "porque": "Em (E) o capacitor fica logo depois do indutor, que não tem queda, e sente os 100 V da fonte: energia demais.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Marque a topologia que fecha 370 J",
+     "conta": "(D): 2 Ω em série, capacitor 0,1 F em derivação, indutor 1 H em série",
+     "porque": "É a única que dá IA = 10 A, V1 = 80 V e 370 J ao mesmo tempo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — resistor de 2 Ω em série na entrada, capacitor de 0,1 F entre o meio do circuito e a linha de baixo, e indutor de 1 H em série na saída.",
+   "checagem": "Confira (D) pela malha completa: 100 V = 2 Ω · 10 A + 0 (indutor) + 8 Ω · 10 A = 20 + 80. O capacitor fica em paralelo com o trecho indutor + 8 Ω, que tem 0 + 80 = 80 V: é a tensão usada na energia.",
+   "erradas": {
+    "A": "Não confere: o capacitor de 0,1 F está em série entre X e Y; em regime permanente ele bloqueia a corrente e IA seria 0, não 10 A.",
+    "B": "Não confere: o capacitor de 0,1 F está em série no ramo de X para Y, então em regime permanente nenhuma corrente chega ao 8 Ω e IA seria 0, não 10 A.",
+    "C": "Não confere: com 4 Ω em série, i = 100/12 ≈ 8,33 A e V1 ≈ 66,7 V; a energia daria 83,3 + 250 = 333,3 J, e não 370 J.",
+    "E": "Sai de pôr o capacitor antes do resistor: ele sente 100 V, e 1·10²/2 + 0,1·100²/2 = 550 J, não 370 J."
+   },
+   "armadilha": "Achar que o capacitor sempre fica com a tensão da carga: a posição dele em relação ao resistor de 2 Ω muda a tensão de 80 V para 100 V e a energia de 370 J para 550 J.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual montagem de R, L e C na caixa dá IA = 10 A, V1 = 80 V e 370 J em t → ∞.",
+    "chave": "Em regime permanente o capacitor é aberto e o indutor é fio; 2 Ω em série e o capacitor nos 80 V dão 50 + 320 = 370 J.",
+    "cuidado": "Ver onde o capacitor está: em série ele zera a corrente; em derivação ele pega a tensão do ponto onde está ligado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação por corrente",
+    "ideia": "Só (C), (D) e (E) deixam a corrente contínua passar; só (D) e (E) têm 2 Ω em série; a energia separa as duas: 370 J contra 550 J."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "capacitor: aberto | indutor: fio",
+    "nota": "regime permanente"
+   },
+   {
+    "linha": "100 − 8·10 = 20 V",
+    "nota": "tensão que sobra para a caixa"
+   },
+   {
+    "linha": "R = 20/10 → 2 Ω",
+    "nota": "resistor em série"
+   },
+   {
+    "linha": "E = 1·10²/2 + 0,1·80²/2",
+    "nota": "energias em (D)"
+   },
+   {
+    "linha": "E = 50 + 320 → 370 J",
+    "nota": "fecha com o enunciado"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "IME, Concurso de Admissão 2020/2021, prova objetiva, questão 30",
+    "url": "https://www.ime.eb.mil.br/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
+ },
+ "P2382f20b": {
+  "n": "23",
+  "conceito": "Campo magnético vertical numa partícula em voo: o movimento vertical segue só a gravidade e o horizontal vira circular; voltar ao mesmo ponto exige um número inteiro de voltas.",
+  "equivocos": {
+   "B": "F12.2:meia-volta-em-vez-de-volta-inteira",
+   "C": "F12.2:tempo-ate-o-topo-no-lugar-do-tempo-de-voo",
+   "D": "F12.2:duas-voltas-nao-e-o-menor-campo",
+   "E": "F12.2:tempo-restante-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com B vertical, a força magnética q·v×B é sempre horizontal: ela não mexe no movimento vertical, que continua o de um lançamento com gravidade. No plano horizontal, a componente horizontal da velocidade passa a girar em movimento circular uniforme, de período 2πm/(qB). Para cair exatamente em (x1, 0), a partícula precisa completar voltas inteiras no tempo que falta para chegar ao solo.",
+    "formulas": [
+     "T = 2πm/(qB)",
+     "tempo de voo = 2v0 sen α/g",
+     "Δt = n · T (n inteiro)"
+    ],
+    "simbolos": [
+     [
+      "B",
+      "intensidade do campo magnético, vertical"
+     ],
+     [
+      "T",
+      "período do movimento circular no plano horizontal"
+     ],
+     [
+      "Δt",
+      "tempo entre t1 e a chegada ao solo"
+     ],
+     [
+      "α",
+      "ângulo de lançamento com a horizontal"
+     ],
+     [
+      "n",
+      "número de voltas completas"
+     ]
+    ]
+   },
+   "pista": "Veja em que direção aponta a força magnética quando B é vertical: ela mexe na altura ou só no movimento horizontal?",
+   "passos": [
+    {
+     "faz": "Separe o vertical do horizontal",
+     "conta": "B vertical → F = q·v×B horizontal → vertical: só a gravidade | horizontal: MCU",
+     "porque": "A força magnética é perpendicular a B; com B vertical ela fica no plano horizontal e não altera a queda.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o tempo que resta até o solo",
+     "conta": "tempo de voo = 2v0 sen α/g → Δt = 2v0 sen α/g − t1",
+     "porque": "Como o movimento vertical não muda, a partícula chega ao solo no mesmo instante de um lançamento comum.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha voltas inteiras",
+     "conta": "T = 2πm/(qB) | voltar a x1 → Δt = n · T → B = (2πm · n)/(q · Δt)",
+     "porque": "O círculo horizontal começa em x1; a partícula só volta a esse ponto ao fim de cada volta completa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o menor B",
+     "conta": "n = 1 → B = 2πm/(q(2v0 sen α/g − t1))",
+     "porque": "B cresce com n, então o menor campo é o de uma volta só no tempo restante. É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — B = 2πm/(q(2v0 sen α/g − t1)).",
+   "checagem": "Confira a unidade: m/(q·t) dá kg/(C·s), que é o tesla, pois de F = qvB sai B = N/(C·m/s) = kg/(C·s). E o limite: se t1 se aproximar do tempo de voo, Δt vai a zero e B cresce sem limite, já que não sobra tempo para dar a volta.",
+   "erradas": {
+    "B": "Sai de usar meia volta: Δt = T/2 dá πm/(q·Δt), mas depois de meia volta a partícula está no lado oposto do círculo, longe de x1.",
+    "C": "Sai de usar v0 sen α/g, o tempo até a altura máxima, como se a partícula chegasse ao solo no topo; o tempo de voo é 2v0 sen α/g.",
+    "D": "Sai de usar duas voltas (n = 2): 4πm/(q·Δt) também faz a partícula cair em x1, mas não é o menor campo.",
+    "E": "Não confere: junta meia volta (πm) com v0 sen α/(2g), que nem é o tempo até o topo (v0 sen α/g) nem o tempo de voo (2v0 sen α/g)."
+   },
+   "armadilha": "Esquecer que o tempo disponível é o tempo de voo que sobra depois de t1, ou usar meia volta: só volta inteira devolve a partícula ao ponto x1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor campo magnético vertical para a partícula cair exatamente sob o ponto em que o campo foi ligado.",
+    "chave": "Força magnética horizontal: queda inalterada (Δt = 2v0 sen α/g − t1) e MCU horizontal; uma volta completa: B = 2πm/(q·Δt).",
+    "cuidado": "Usar o tempo de voo total menos t1 e uma volta inteira (n = 1) para o menor B."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Só A e D têm a forma 2πm · n com o tempo de voo correto; o menor B corresponde a n = 1, logo A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "B vertical → F horizontal → queda não muda",
+    "nota": "separar os movimentos"
+   },
+   {
+    "linha": "Δt = 2v0 sen α/g − t1",
+    "nota": "tempo restante de voo"
+   },
+   {
+    "linha": "Δt = n · 2πm/(qB) → B = (2πm · n)/(q · Δt)",
+    "nota": "voltas inteiras"
+   },
+   {
+    "linha": "n = 1 → B = 2πm/(q(2v0 sen α/g − t1))",
+    "nota": "menor B"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "IME Concurso de Admissão 2020/2021, 1ª fase, prova objetiva e gabarito definitivo",
+    "url": "https://www.ime.eb.mil.br/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
  }
 }

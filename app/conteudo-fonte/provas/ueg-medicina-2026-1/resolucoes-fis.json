@@ -315,5 +315,249 @@
    "data": "2026-11-13",
    "lote": "fis-0053"
   }
+ },
+ "P1e659c96": {
+  "n": "27",
+  "conceito": "Ponte de capacitores equilibrada: carga zero no capacitor do meio e equivalente pelos dois ramos em série, depois em paralelo.",
+  "equivocos": {
+   "A": "F11.9:esqueceu-um-ramo-em-paralelo",
+   "B": "F11.9:serie-de-iguais-calculada-errado",
+   "D": "F11.9:balanco-de-carga-no-no-errado",
+   "E": "F11.9:balanco-de-carga-no-no-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O circuito é uma ponte: dois ramos (C1 com C4 em cima, C2 com C5 embaixo) ligam os mesmos dois pontos da fonte, e C3 liga o meio de um ramo ao meio do outro. A informação q1 = q4 diz que toda a carga que chega ao nó do meio por C1 sai por C4, então nada sobra para C3. Com C3 descarregado, ele sai do cálculo, e os dois ramos ficam em paralelo.",
+    "formulas": [
+     "conservação da carga no nó: q1 = q4 + q3",
+     "série: C_eq = C₁·C₂/(C₁ + C₂)",
+     "paralelo: C_eq = C₁ + C₂"
+    ],
+    "simbolos": [
+     [
+      "q1, q2...",
+      "carga em cada capacitor"
+     ],
+     [
+      "C_eq",
+      "capacitância equivalente vista pela fonte"
+     ],
+     [
+      "ponte",
+      "dois ramos em paralelo ligados no meio por um terceiro elemento"
+     ]
+    ]
+   },
+   "pista": "Olhe o nó onde C1, C4 e C3 se encontram e faça o balanço da carga que chega e que sai.",
+   "passos": [
+    {
+     "faz": "Faça o balanço no nó de cima",
+     "conta": "q1 = q4 + q3 e q1 = q4 → q3 = 0",
+     "porque": "As placas ligadas ao nó isolado têm carga total nula; se C1 e C4 já se equilibram, não sobra carga para C3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o ramo de cima",
+     "conta": "C1 e C4 em série: (2C · 2C)/(2C + 2C) → 4C²/4C → C",
+     "porque": "Sem carga em C3, o ramo de cima é só C1 e C4 em série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o ramo de baixo",
+     "conta": "C2 e C5 em série: (C · C)/(C + C) → C/2",
+     "porque": "Do mesmo jeito, o ramo de baixo é C2 e C5 em série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os ramos e marque",
+     "conta": "C_eq = C + C/2 → C_eq = 3C/2 | q3 = 0 → alternativa C",
+     "porque": "Os dois ramos ligam os mesmos pontos da fonte, então estão em paralelo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — q3 = 0 e C_eq = 3C/2.",
+   "checagem": "Confira pelas tensões: no ramo de cima, C1 = C4, então cada um fica com V/2; no ramo de baixo, C2 = C5, e também cada um fica com V/2. Os dois lados de C3 estão no mesmo potencial, logo q3 = C3·0 = 0, qualquer que seja o ajuste de C3.",
+   "erradas": {
+    "A": "Sai de contar só o ramo de cima, C1 e C4 em série = C, e esquecer o ramo de baixo em paralelo.",
+    "B": "Não confere: o ramo de cima dá C e o de baixo C/2; 2C exigiria que o ramo de baixo valesse C, mas dois capacitores C em série dão C/2.",
+    "D": "Erra a carga: q3 = q1 + q2 não sai do balanço do nó, que é q1 = q4 + q3; com q1 = q4, q3 só pode ser 0.",
+    "E": "Não confere: com V/2 em cada capacitor, q1 = 2C · V/2 = CV e q2 = C · V/2, então q1 − q2 = CV/2, e não 0; e C_eq vale 3C/2, não 2C."
+   },
+   "armadilha": "Tentar calcular C3 ou montar a ponte inteira: a condição q1 = q4 já mostra que C3 não carrega, e ele simplesmente sai do circuito.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A carga em C3 e a capacitância equivalente quando q1 = q4 e q2 = q5.",
+    "chave": "No nó, q1 = q4 + q3, logo q3 = 0; os ramos dão C e C/2 em paralelo, C_eq = 3C/2.",
+    "cuidado": "Tirar C3 só depois de mostrar que ele não tem carga; depois, série dentro de cada ramo e paralelo entre os ramos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ponte equilibrada",
+    "ideia": "C1/C4 = C2/C5 = 1: as tensões dos dois ramos se dividem igual, os extremos de C3 têm o mesmo potencial, e q3 = 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "q1 = q4 + q3 e q1 = q4",
+    "nota": "balanço no nó"
+   },
+   {
+    "linha": "q3 = 0",
+    "nota": "C3 sai do circuito"
+   },
+   {
+    "linha": "(2C · 2C)/(2C + 2C) → C",
+    "nota": "ramo de cima em série"
+   },
+   {
+    "linha": "(C · C)/(C + C) → C/2",
+    "nota": "ramo de baixo em série"
+   },
+   {
+    "linha": "C_eq = C + C/2 → 3C/2",
+    "nota": "ramos em paralelo"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "UEG, Vestibular de Medicina 2026/1, prova tipo 1, questão 27",
+    "url": "https://www.nucleodeselecao.ueg.br/pdfs/processos/378/provas/Caderno%20prova_PS-Medicina_2026-1_tipo%201.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
+ },
+ "P732427ed": {
+  "n": "25",
+  "conceito": "Espectrômetro de massa: a energia ganha na aceleração, q·V = m·v²/2, combinada com o raio no campo magnético, r = m·v/(q·B), dá m/q = r²·B²/(2V).",
+  "equivocos": {
+   "B": "F12.2:kg-e-g-trocados",
+   "C": "F12.2:diametro-como-raio",
+   "D": "F12.2:diametro-como-raio-e-unidade",
+   "E": "F12.2:sinal-negativo-na-razao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O íon ganha energia cinética ao ser acelerado pela diferença de potencial e depois faz meia volta no campo magnético. Juntando as duas equações e eliminando a velocidade, sobra m/q em função de r, B e V. O trabalho real está na figura: os 80 cm marcados são o diâmetro do semicírculo, não o raio.",
+    "formulas": [
+     "q·V = m·v²/2",
+     "r = m·v/(q·B)",
+     "m/q = r²·B²/(2V)"
+    ],
+    "simbolos": [
+     [
+      "V",
+      "diferença de potencial que acelera o íon"
+     ],
+     [
+      "r",
+      "raio do semicírculo"
+     ],
+     [
+      "d",
+      "distância entre a entrada e o detector, o diâmetro do semicírculo"
+     ],
+     [
+      "m/q",
+      "razão massa/carga, o que o espectrômetro mede"
+     ]
+    ]
+   },
+   "pista": "Olhe na figura o que são os 80 cm: a distância entre a entrada e o detector é o raio ou o diâmetro do semicírculo?",
+   "passos": [
+    {
+     "faz": "Ache o raio na figura",
+     "conta": "d = 80 cm = 0,80 m → r = 0,80/2 = 0,40 m",
+     "porque": "A cota de 80 cm vai da entrada do íon até o detector, as duas pontas do semicírculo: é o diâmetro.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Elimine a velocidade",
+     "conta": "v = q·B·r/m → q·V = (m/2)·(q·B·r/m)² → m/q = r²·B²/(2V)",
+     "porque": "A velocidade não é dada; isolando v no raio e substituindo na energia, ela some e fica só m/q.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua os valores",
+     "conta": "m/q = (0,40² × 10²)/(2 × 1 000) = 16/2 000 = 0,008 kg/C",
+     "porque": "Com r em metro, B em tesla e V em volt, o resultado sai em kg/C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta e escolha a alternativa",
+     "conta": "0,008 kg/C = 8,0 g/C",
+     "porque": "1 kg = 1 000 g, então 0,008 kg/C são 8,0 g/C, a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 8,0 g/C.",
+   "checagem": "Volte com o valor: se m/q = 0,008 kg/C, a velocidade é v = √(2V·q/m) = √(2 000/0,008) = 500 m/s, e o raio sai r = (m/q)·v/B = 0,008 × 500/10 = 0,40 m, que é 0,80/2. Fecha.",
+   "erradas": {
+    "B": "Sai de errar a unidade: o valor 0,008 está em kg/C, e 8,0 kg/C seria 1 000 vezes maior.",
+    "C": "Sai de usar os 80 cm como raio: (0,80² × 10²)/(2 × 1 000) = 0,032 kg/C = 32,0 g/C. Os 80 cm são o diâmetro.",
+    "D": "Sai de usar 0,80 m como raio e ainda ler o resultado 0,032 kg/C como 32,0 kg/C: dois erros, o do diâmetro e o da unidade.",
+    "E": "-32,0 kg/C não confere: m/q de um íon que curva como na figura é positivo (com B saindo do plano, a força sobre carga positiva aponta para o centro), e o módulo também está errado."
+   },
+   "armadilha": "Usar os 80 cm como raio: eles ligam a entrada ao detector, as pontas do semicírculo, ou seja, são o diâmetro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão m/q do íon no espectrômetro.",
+    "chave": "m/q = r²B²/(2V) com r = 0,40 m: (0,16 × 100)/2 000 = 0,008 kg/C = 8,0 g/C.",
+    "cuidado": "Dividir os 80 cm por 2 para ter o raio e conferir se o resultado está em kg/C ou g/C."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela velocidade",
+    "ideia": "De r = (m/q)·v/B e v² = 2V/(m/q): (m/q)·v = r·B = 4 e v²·(m/q) = 2 000; dividindo, v = 500 m/s e m/q = 4/500 = 0,008 kg/C."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "r = 0,80/2 = 0,40 m",
+    "nota": "80 cm é o diâmetro"
+   },
+   {
+    "linha": "q·V = m·v²/2 e r = m·v/(q·B)",
+    "nota": "aceleração e curva"
+   },
+   {
+    "linha": "m/q = r²·B²/(2V)",
+    "nota": "v eliminada"
+   },
+   {
+    "linha": "m/q = (0,40² · 10²)/(2 · 1 000) = 16/2 000",
+    "nota": "substituir"
+   },
+   {
+    "linha": "m/q = 0,008 kg/C = 8,0 g/C",
+    "nota": "kg em g"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "UEG, Vestibular de Medicina 2026/1, prova tipo 1, questão 25",
+    "url": "https://www.nucleodeselecao.ueg.br/pdfs/processos/378/provas/Caderno%20prova_PS-Medicina_2026-1_tipo%201.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
  }
 }
