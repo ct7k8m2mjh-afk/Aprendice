@@ -144,3 +144,12 @@ RECLASS P49a54d3a G02.4 -> G02.5 (Fema 2022 q7: conservação do solo e agricult
 RECLASS Pf393e7c5 G02.4 -> G02.3 (UEG Medicina 2024/2 q34: pergunta o tipo de rocha em que se formam cavernas)
 DADO P49a54d3a: alternativas.E -> "Um dos importantes preceitos da Agricultura Conservacionista é a manutenção das mesmas culturas ano após ano." (no print, "brasilescola.uol.com.br" é o crédito da imagem abaixo da questão, não parte da alternativa E)
 DADO P18e88cc4: texto_da_prova -> no print (Fempar 2021 q37) "ocupação desordenada da encosta", "retirada da vegetação florestal" e "processos erosivos" estão em itálico (~~...~~)
+
+## 2026-11-19 16:16 UTC — FIM — sessão geo (19/11)
+Lotes gravados nesta sessão: geo-0043, geo-0044, geo-0045, geo-0046 (último gravado: geo-0046). Nenhum lote aberto.
+Resoluções que entraram: 198 (49 + 50 + 49 + 50), todas conferidas por 2 conferentes com reconferência. 12 com gabarito do Aprendice (resolvedor e conferente às cegas com a mesma letra, igual ao preliminar).
+Pendentes: 2, ambas ANULAR (P1c3226af, geo-0043; Pb7bf59f8, geo-0045), detalhadas nos blocos PENDENCIAS acima. Divergências: 0.
+Também: corrigida Pfefc3f6a (geo-0044, já gravada) — "13h / 12h ..." virava fração empilhada no site; agora com vírgulas.
+Checagem no site (3 questões, 390 e 1280 px): 4 blocos completos, "Por que as outras estão erradas" fechado e abrindo; aviso do Gabarito do Aprendice aparece.
+Testes: converte + tsc + vitest verdes (786 passed).
+A seguir: `python3 ferramentas/resolucoes/lote.py status` — Geografia                   1037     0     0   876    21    91    49.
