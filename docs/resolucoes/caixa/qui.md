@@ -389,3 +389,27 @@ DADO Paf9b43dc (UFJF 2022 PISM III q28): texto_da_prova embaralhado -> Ka: 1 ác
 DADO Pc2f38acf (ITA 2026 q34): texto_da_prova com erros de OCR -> I "(CH3)H2C–I é mais suscetível ... do que o (C3H7)3C–I"; II "(CH3)3C–F > (CH3)3C–Cl > (CH3)3C–Br > (CH3)3C–I"; III "(C3H7)3C⁺"; "carbono sp³"; alternativas -> A nenhuma B apenas I e II C apenas I e III D apenas II e III E todas
 RECLASS Pf03f6b33 Q12.1 -> Q12.2 (ITA 2024 q57: esterificação, oxidação e redução)
 GABARITO Pd1b2c6cf (IME 2025 q33) A, P77184a68 (UEMG 2022 q24) B, P5fb068c7 (IME 2025 q39) B: gabarito do Aprendice, bate com o preliminar
+
+## 2026-11-19 18:51 UTC — PENDENCIAS — session_01PveEKavURMVSSh5SgqLorw
+Lote qui-0078 gravado (25 ok).
+DADO Pc9cd4212 (ITA 2020 q63): alternativas -> no print A 8, B 10, C 12, D 13, E 15 (a entrada só trazia B e D)
+DADO P23233651 (PUCRS 2023 Verão q41): alternativas.D -> "II e IV." (sem o texto da figura colado)
+DADO Pe1220a27 (ITA 2022 q59): texto_da_prova, afirmação II, "(7,4)" -> "(~7,4)"
+RECLASS P23233651 Q12.3 -> Q11.3 (PUCRS 2023 Verão q41: ligações sigma/pi e funções dos monômeros)
+RECLASS P50ab80c7 Q12.4 -> Q11.4 (UEG 2023/1 q38: estrutura do PSI-697)
+DADO Pfba9851d (UEMA 2022 PAES q56): alternativas -> A "maltose e frutose — Polissacarídeo formado pelas pentoses solúveis em água"; B "glicose e maltose — Dissacarídeo formado por uma hexose e uma pentose, respectivamente"; C "frutose e lactose — Polissacarídeo formado por monossacarídeos solúveis em água"; D "glicose e frutose — Dissacarídeo formado pela ligação glicosídica entre os dois monossacarídeos"; E "lactose e maltose — Dissacarídeo formado pelos dois monossacarídeos insolúveis em água" (linhas deslocadas e E vazia)
+DADO P4a5ee481 (UEG 2026/2 q36): alternativas.E -> "1,62 x 10-5" (as massas atômicas coladas são do enunciado)
+DADO P3725efe1 (UFSM 2026 q101): alternativas -> A apenas I e II; B apenas I e III; C apenas II e IV; D apenas III e IV; E apenas I, II e IV (campo ausente)
+DADO P05c9e9b0 (ITA 2022 q61): alternativas -> A Apenas I, II e III; B Apenas I, II e IV; C Apenas I, III e IV; D Apenas II, III e IV; E Todas (campo ausente)
+DADO P5445e428 (ITA 2024 q50): alternativas -> A apenas I, II e IV; B apenas I, III e V; C apenas I, II, IV e V; D apenas II, III e IV; E todas (campo ausente)
+RECLASS P299e3920 Q12.5 -> Q02.3 (UEG 2023/1 q39: geometria molecular dos óxidos)
+RECLASS P4a5ee481 Q12.5 -> Q04.1 (UEG 2026/2 q36: massa para mol)
+RECLASS Pea6dd80b Q12.5 -> Q07.1 (UEMA 2021 PAES q86: diagrama de entalpia)
+AVISO checagem no site (Pd9203cf5, P851c660f, Pb3b0845f; 390 e 1280 px): 4 blocos completos, animação até o fim, "outras erradas" fecha/abre, sem rolagem lateral nem corte. Problemas de fração: (1) frações com colchetes ou índices ("[B]/[BH⁺]", "k₂/k₁", "ln(k₂/k₁)") saem com a barra na linha, na animação e nas erradas (P851c660f, Pd9203cf5) — o motor só empilha número/número?; (2) espaço de milhar dentro da fração quebra o empilhamento: em Pd9203cf5 erradas.D "(10 000/8,31)" aparece "10" solto e "000" em cima da barra (trocar por 10000 no conteúdo gravado do qui-0075); (3) a 390 px "17 640 C" (Pb3b0845f erradas.C) quebra no meio do número.
+
+## 2026-11-19 18:51 UTC — ACABOU — session_01PveEKavURMVSSh5SgqLorw
+Química TERMINADA: `lote.py status` mostra 0 questões na fila. Nenhum lote aberto. Último lote gravado: qui-0078.
+Nesta sessão: qui-0075 (50 ok), qui-0076 (47 ok, 3 ANULAR), qui-0077 (50 ok), qui-0078 (25 ok) = 172 resoluções.
+Testes após o qui-0076: tsc ok, 786 passed. Checagem no site: ver AVISO acima (frações com colchetes/índices não empilham; espaço de milhar quebra a fração).
+Pendências desta sessão: ANULAR Pf138dc18, P53cb39bd, P8c36b34b; gabarito do Aprendice P9f3bd7a8 (B), P2d15159f (C), P6135def7 (C), Pd1b2c6cf (A), P77184a68 (B), P5fb068c7 (B); RECLASS e DADO nos blocos acima. Pendências antigas da matéria continuam nos blocos anteriores (ANULAR P4bbfc2bf, P7bdaef74, P5f4aa130, Pa49ba080, Pecd73277; PRINT P2d222dbc).
+A vaga da Química fica livre.

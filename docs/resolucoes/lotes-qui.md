@@ -83,7 +83,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | qui-0075 | demais nível 7-10 | 50 | gravado | 50 | 0 | 0 |
 | qui-0076 | demais nível 7-10 | 50 | gravado | 47 | 3 | 0 |
 | qui-0077 | demais nível 7-10 | 50 | gravado | 50 | 0 | 0 |
-| qui-0078 | demais nível 7-10 | 25 | aberto |  |  |  |
+| qui-0078 | demais nível 7-10 | 25 | gravado | 25 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
