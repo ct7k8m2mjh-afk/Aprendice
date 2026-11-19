@@ -1,6 +1,6 @@
-# Biologia: resoluções (gerado por lote.py em 2026-11-13)
+# Biologia: resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 707 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 505; ENEM nível 7-10 16; provas-alvo nível 7-10 115; demais nível 7-10 71.
+Faltam 587 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 385; ENEM nível 7-10 16; provas-alvo nível 7-10 115; demais nível 7-10 71.
 
 ## Lotes
 
@@ -69,21 +69,30 @@ Faltam 707 questões sem resolução (fora as que estão em lote, pendentes ou c
 | bio-0061 | demais nível 1-6 | 60 | gravado | 59 | 1 | 0 |
 | bio-0062 | demais nível 1-6 | 60 | gravado | 59 | 1 | 0 |
 | bio-0063 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
+| bio-0064 | demais nível 1-6 | 60 | gravado | 53 | 7 | 0 |
+| bio-0065 | demais nível 1-6 | 60 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
 | Pbf20fbdc | Fatec 2023 2º semestre · questão 6 | B03.4 fermentação láctica e alcoólica (tema B03 Metabolismo energético) | classificação: é de Português (interpretação de texto: "Segundo o texto", sobre a história e a produção do queijo da Canastra; não cobra Biologia) |
+| P5f1bed47 | PUC Minas 2024 Medicina 2024/1 · questão 20 | B09.6 biomas brasileiros e impactos (tema B09 Ecologia) | anular: pelo gráfico do print, o tipo A (≈25% de capturas) é o que emite ultrassons e o B (≈97%) o silencioso; o texto diz que o ultrassom atrapalha o sonar e gera ataques "atrapalhados e confusos", então o experimento só mostra benefício à presa. A oficial A afirma que a emissão "beneficia tanto o predador como a presa", conclusão que os dados não sustentam (só se sustentaria com aposematismo acústico, que o texto não menciona); nenhuma alternativa fica correta pelos dados. Busca na web sem resolução publicada. Além disso, o enunciado chama os tipos de mariposa de "1" e "2" e o gráfico os chama de "A" e "B", sem dizer qual é qual. |
 | Pc68c4acb | PUCRS 2023 Verão · questão 37 | B01.2 transporte ativo e vesicular (tema B01 Citologia) | classificação: é de Química (configuração eletrônica dos íons Na+ e K+; o contexto da célula nervosa é só ilustração) |
 | Pd59592fa | UECE 2023 2023.1 – 1ª fase · questão 65 | B07.4 coração e as duas circulações (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2023.1, questão 65: nível de atividade física e gasto calórico), não de Biologia. |
 | P98fb7dec | UECE 2024 2024.2 – 1ª fase · questão 65 | B07.4 coração e as duas circulações (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2024.2, questão 65: conceito de literacia física), não de Biologia. |
 | P50441003 | UECE 2025 2025.2 – 1ª fase · questão 59 | B08.3 sistema nervoso autônomo e arco reflexo (tema B08 Neuro, hormônios, imune e reprodução) | gabarito preliminar A, mantido pela banca no parecer dos recursos (Comunicado 81/2025 CEV/UECE, https://www.cev.uece.br/wp-content/uploads/2025/05/comunicado81.2025cev.pdf), mas sem gabarito definitivo publicado e com erro conceitual na própria alternativa (chama a rodopsina de neurotransmissor e a liga aos cones); resolvedor e conferente chegam a A só por eliminação; decisão do dono |
 | P56bf6cb4 | UECE 2026 2026.1 – 1ª fase · questão 66 | B07.1 os quatro tecidos fundamentais (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2026.1, questão 66: princípios do treinamento desportivo), não de Biologia. |
+| P14847885 | UEG 2021 2021/2 · questão 34 | B09.6 biomas brasileiros e impactos (tema B09 Ecologia) | classificação: é de Geografia G05.4 (queimadas, El Niño, dipolo do Índico) |
 | Pb536f4cb | UEG 2023 2023/2 · questão 38 | B08.7 ciclo menstrual, fecundação, clivagem e folhetos embrionários (tema B08 Neuro, hormônios, imune e reprodução) | classificação: é de Química (o comando pede classificar reação como endotérmica ou exotérmica pela variação de entalpia ΔH = Hp − Hr; o ciclo menstrual é só contexto) |
 | Pc6c1048f | UEG 2026 Medicina 2026/1 · questão 26 | B08.3 sistema nervoso autônomo e arco reflexo (tema B08 Neuro, hormônios, imune e reprodução) | classificação: é de física (cinemática: distância = velocidade × tempo de reação; está entre as questões de Física 24 a 28 da prova) |
 | Pa1b2ee02 | UEL 2020 1ª fase · questão 20 | B05.3 código genético e tradução (tema B05 Genética molecular) | classificação: é de Matemática (probabilidade e potências: (1/4) elevado a 150 milhões = 2 elevado a −3 × 10^8); o DNA é só o contexto. |
 | Pfd1ea733 | UEMA 2024 PAES · questão 60 | B09.3 ciclos biogeoquímicos (tema B09 Ecologia) | classificação: é de Química (cinética: lei de velocidade v = k[CCl3CHO][C6H5Cl]2 na síntese do DDT) |
+| Pe6441b8a | UEMA 2026 PAES · questão 51 | B09.6 biomas brasileiros e impactos (tema B09 Ecologia) | classificação: é de Geografia G03.5 (temas da COP 30 e acordos climáticos; não cobra mecanismo biológico) |
+| P46397713 | UFAM 2020 PSC 3ª etapa · questão 32 | B09.6 biomas brasileiros e impactos (tema B09 Ecologia) | classificação: é de Geografia G03.4 (El Niño e efeito nas chuvas do Brasil) |
+| P9688242b | UFAM 2021 PSC 3ª etapa · questão 33 | B09.6 biomas brasileiros e impactos (tema B09 Ecologia) | classificação: é de Geografia G03.5 (emissões de gases de efeito estufa por setor no Brasil e Acordo de Paris) |
+| P7d45e236 | UFAM 2023 PSC 3ª etapa · questão 35 | B09.6 biomas brasileiros e impactos (tema B09 Ecologia) | classificação: é de Geografia G05.3 (dados de desmatamento na Amazônia Legal e política ambiental) |
+| P113e5a1b | UFAM 2025 PSC 3ª etapa · questão 36 | B09.6 biomas brasileiros e impactos (tema B09 Ecologia) | classificação: é de Geografia G05.4 (Código Florestal, APP e unidades de conservação) |
 | P3c08d8ee | Unesp 2024 1ª fase – meio de ano · questão 78 | B12.6 vertebrados, classificação, nomenclatura e filogenia (tema B12 Diversidade dos seres vivos) | classificação: é de Física (propagação de calor: convecção em correntes de ar quente; não cobra Biologia) |
 
 ## Divergências de gabarito (o dono decide)

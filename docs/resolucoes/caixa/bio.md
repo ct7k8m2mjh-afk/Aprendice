@@ -41,3 +41,36 @@ Pendências novas do bio-0063:
 - P233b33fd: entrada com erro — o texto de apoio (Relatório Planeta Vivo, WWF, 1970–2018) está colado no fim da alternativa E e falta no texto_da_prova (conferido no print). Resolução gravada está certa.
 - P0e5ecbdc: gravada com "Gabarito do Aprendice" (E, igual ao preliminar e ao conferente às cegas). Existe o Edital 93/25 da UFRR com o gabarito oficial (editais.ufrr.br/editais/arquivo/1209/...), mas o site deu erro 503; conferir a letra oficial e possível anulação quando abrir.
 Lembrete para a próxima sessão: o lote.py lê "visual" no nível da questão, não dentro de "resolucao"; a conferência às cegas recebe a entrada sem gabarito_preliminar/gabarito_oficial.
+
+## 2026-11-19 UTC — PENDENCIAS — session_01PveEKYyQUcXXXACEDrbiVW
+Lote bio-0064 gravado (53 ok, 7 pendentes). Aberto: bio-0065 (resolvendo).
+RECLASS Pe6441b8a bio -> geo G03.5 (UEMA 2026 PAES · questão 51) — pendente, não resolvida
+RECLASS P46397713 bio -> geo G03.4 (UFAM 2020 PSC 3ª etapa · questão 32) — pendente, não resolvida
+RECLASS P9688242b bio -> geo G03.5 (UFAM 2021 PSC 3ª etapa · questão 33) — pendente, não resolvida
+RECLASS P7d45e236 bio -> geo G05.3 (UFAM 2023 PSC 3ª etapa · questão 35) — pendente, não resolvida
+RECLASS P113e5a1b bio -> geo G05.4 (UFAM 2025 PSC 3ª etapa · questão 36) — pendente, não resolvida
+RECLASS P14847885 bio -> geo G05.4 (UEG 2021 2021/2 · questão 34) — pendente, não resolvida
+ANULAR P5f1bed47 (PUC Minas 2024 Medicina 2024/1 · questão 20): pelo gráfico, o tipo A (emite ultrassom) é capturado ≈25% contra ≈97% do B; os dados só mostram benefício para a presa; o gabarito oficial A diz que beneficia predador e presa; nenhuma alternativa fica correta; sem resolução publicada encontrada
+RECLASS Pbd85b0de B09.6 -> B09.7
+RECLASS Pfb12d1cc B09.6 -> B09.7
+RECLASS P8b8ff908 B09.6 -> B09.7
+RECLASS P1a7b883e B09.6 -> B09.7
+RECLASS Pbf0c323d B09.6 -> B09.4
+RECLASS P00a66753 B09.6 -> B10.4
+RECLASS P5f1bed47 B09.6 -> B09.4
+RECLASS Pc10f824f B09.6 -> B12.4
+RECLASS Pe2ed88e8 B09.6 -> B09.7
+RECLASS Pd4292d2d B09.6 -> B10.5
+RECLASS P3dc5e462 B09.6 -> B09.2
+RECLASS P93ff181d B09.6 -> B09.7
+RECLASS P3bd49088 B09.6 -> B09.3
+RECLASS Pe2e80b62 B09.6 -> B09.7
+RECLASS P3b2a3d56 B09.6 -> B09.7
+RECLASS P52bc2c31 B09.6 -> B12.7
+RECLASS P6ad3509a B09.6 -> B07.1
+RECLASS Pe437270b B09.6 -> B09.4
+RECLASS Pba08c0d2 B09.6 -> B09.7
+DADO Pa4444dc1: alternativas.E -> sem "Matemática - Objetivas" (rodapé) e acentos corrompidos em todas as alternativas
+DADO P3bd49088: alternativas -> não vêm separadas, estão dentro de texto_da_prova (A–E no print)
+DADO P5f1bed47: alternativas.D -> "A mariposa tipo B é aquela que emite ultrassons e uma conclusão do experimento é que a emissão de ultrassons não beneficia o predador nem a presa." (texto do gráfico e nº de página colados)
+GABARITO P52bc2c31, P6ad3509a, Pe437270b, Pba08c0d2 (UFRR 2025 q22, q23, q26; UFRR 2026 q23): gravadas com Gabarito do Aprendice (letras B, A, E, D = preliminar = conferente às cegas); conferir o gabarito oficial da UFRR (site deu 503).
