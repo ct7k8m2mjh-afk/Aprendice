@@ -1266,5 +1266,596 @@
    "data": "2026-11-11",
    "lote": "fis-0002"
   }
+ },
+ "Pbe40b67a": {
+  "n": "99",
+  "conceito": "Movimento em duas etapas: MUV até 20 m/s e depois MU; o semáforo abre quando o carro está 100 m antes dele.",
+  "equivocos": {
+   "A": "F02.2:ignorou-a-aceleracao",
+   "B": "F02.2:ignorou-aceleracao-e-os-100-m",
+   "C": "F02.2:acelera-o-tempo-todo",
+   "E": "F02.2:contou-ate-o-semaforo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O carro faz duas etapas: acelera de 0 a 72 km/h e depois segue com velocidade constante. Cada semáforo deve abrir quando o carro estiver 100 m antes dele, então as posições que importam são 400 m, 900 m e 1 400 m a partir de O. O trabalho é achar onde termina a aceleração e somar os tempos das duas etapas.",
+    "formulas": [
+     "v = v₀ + a · t",
+     "v² = v₀² + 2 · a · Δs (Torricelli)",
+     "MU: Δt = Δs/v"
+    ],
+    "simbolos": [
+     [
+      "a",
+      "aceleração, 1 m/s²"
+     ],
+     [
+      "v",
+      "velocidade final da aceleração, 72 km/h = 20 m/s"
+     ],
+     [
+      "MUV",
+      "movimento uniformemente variado (velocidade muda igualmente a cada segundo)"
+     ],
+     [
+      "MU",
+      "movimento uniforme (velocidade constante)"
+     ]
+    ]
+   },
+   "pista": "Converta 72 km/h para m/s e descubra quantos metros o carro anda acelerando: o semáforo A está antes ou depois desse ponto?",
+   "passos": [
+    {
+     "faz": "Converta a velocidade e ache o tempo de aceleração",
+     "conta": "72 km/h ÷ 3,6 = 20 m/s → t = 20/1 = 20 s",
+     "porque": "A aceleração está em m/s², então a velocidade tem de estar em m/s; a 1 m/s² o carro leva 20 s para chegar a 20 m/s.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a distância da aceleração",
+     "conta": "20² = 0 + 2 × 1 × Δs → Δs = 400/2 = 200 m",
+     "porque": "Torricelli dá a distância sem precisar do tempo; depois de 200 m o carro já está em velocidade constante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque onde cada semáforo deve abrir",
+     "conta": "A: 500 − 100 = 400 m | B: 1 000 − 100 = 900 m | C: 1 500 − 100 = 1 400 m",
+     "porque": "O verde deve acender quando o carro estiver 100 m antes de cada semáforo, separados de 500 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os tempos das duas etapas",
+     "conta": "A: 20 + (400 − 200)/20 = 30 s | B: 20 + 700/20 = 55 s | C: 20 + 1200/20 = 80 s",
+     "porque": "Até 200 m o carro gasta 20 s acelerando; o resto do caminho é percorrido a 20 m/s.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "30 s, 55 s e 80 s",
+     "porque": "São os tempos da alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 30 s, 55 s e 80 s.",
+   "checagem": "Entre dois semáforos seguidos o carro já está a 20 m/s e anda 500 m, o que leva 500/20 = 25 s: de fato 55 − 30 = 25 s e 80 − 55 = 25 s.",
+   "erradas": {
+    "A": "Sai de supor 20 m/s desde a largada: 400/20 = 20 s, 900/20 = 45 s e 1400/20 = 70 s. Faltaram os 10 s perdidos na aceleração.",
+    "B": "Sai de supor 20 m/s desde a largada e contar até o próprio semáforo: 500/20 = 25 s, 1000/20 = 50 s e 1500/20 = 75 s.",
+    "C": "Sai de supor que o carro acelera o tempo todo: t = √(2 × 400/1) ≈ 28 s, √1 800 ≈ 42 s e √2 800 ≈ 53 s. Ele para de acelerar a 20 m/s.",
+    "E": "Sai de calcular o tempo até o carro cruzar o semáforo: 20 + 300/20 = 35 s, 60 s e 85 s. O verde deve abrir 100 m antes."
+   },
+   "armadilha": "Esquecer a etapa de aceleração (ou estendê-la além dos 200 m) e contar o tempo até o semáforo em vez de até 100 m antes dele.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os tempos de abertura dos semáforos A, B e C para o carro chegar a 100 m de cada um sem frear.",
+    "chave": "Acelera 20 s em 200 m, depois 20 m/s: t = 20 + (x − 200)/20 para x = 400, 900 e 1 400 m.",
+    "cuidado": "Converter 72 km/h em 20 m/s e descontar os 100 m antes de cada semáforo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "atraso da largada",
+    "ideia": "Acelerando de 0 a 20 m/s, o carro perde 10 s em relação a quem já andasse a 20 m/s; some 10 s a 400/20, 900/20 e 1400/20: 30, 55 e 80 s."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "72 km/h ÷ 3,6 = 20 m/s",
+    "nota": "velocidade em m/s"
+   },
+   {
+    "linha": "t = 20/1 = 20 s",
+    "nota": "tempo acelerando"
+   },
+   {
+    "linha": "20² = 2 × 1 × Δs → Δs = 400/2 = 200 m",
+    "nota": "Torricelli"
+   },
+   {
+    "linha": "tA = 20 + (400 − 200)/20 = 20 + 10 = 30 s",
+    "nota": "semáforo A"
+   },
+   {
+    "linha": "tB = 20 + 700/20 = 55 s ; tC = 20 + 1200/20 = 80 s",
+    "nota": "semáforos B e C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0067"
+  }
+ },
+ "Pf99b5259": {
+  "n": "105",
+  "conceito": "Refrigerador como máquina térmica: ambiente mais quente dificulta a perda de calor no condensador e exige mais trabalho do compressor.",
+  "equivocos": {
+   "A": "F08.8:atribuiu-a-troca-no-condensador-a-conducao",
+   "B": "F08.8:inverteu-o-efeito-do-ambiente-quente",
+   "C": "F08.8:achou-que-o-interior-esquenta",
+   "E": "F08.8:nao-ligou-ao-trabalho-do-compressor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A geladeira tira calor de dentro (no congelador) e joga esse calor, somado ao trabalho do compressor, para o ar de fora, na grade de trás (o condensador). No condensador, o gás refrigerante comprimido perde calor para o ar e se liquefaz. Calor só sai espontaneamente do mais quente para o mais frio: se o ar em volta estiver quente, essa troca fica difícil, e o compressor tem de trabalhar mais.",
+    "formulas": [
+     "Q_quente = Q_frio + W (calor jogado fora = calor retirado + trabalho do compressor)",
+     "fluxo de calor no condensador cresce com a diferença de temperatura condensador − ar"
+    ],
+    "simbolos": [
+     [
+      "condensador",
+      "serpentina atrás da geladeira onde o refrigerante perde calor para o ar e vira líquido"
+     ],
+     [
+      "compressor",
+      "motor que comprime o gás refrigerante; é quem consome a energia elétrica"
+     ],
+     [
+      "liquefação",
+      "passagem de gás para líquido, que exige que o gás perca calor"
+     ],
+     [
+      "Q_quente",
+      "calor que a geladeira entrega ao ambiente"
+     ],
+     [
+      "Q_frio",
+      "calor que a geladeira retira do interior"
+     ],
+     [
+      "W",
+      "trabalho feito pelo compressor"
+     ]
+    ]
+   },
+   "pista": "Pergunte onde a geladeira joga calor fora e o que acontece com essa troca se o ar em volta estiver mais quente.",
+   "passos": [
+    {
+     "faz": "Localize onde a geladeira libera calor",
+     "conta": "interior → Q_frio → refrigerante → compressor (W) → condensador → Q_quente → ar externo",
+     "porque": "O calor retirado de dentro tem de ser entregue ao ar de fora pelo condensador. É ali que a instalação perto do fogão ou do sol atrapalha.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Compare o ar frio com o ar quente",
+     "conta": "ar externo mais quente → diferença condensador − ar menor → menos calor sai por segundo",
+     "porque": "O calor flui do mais quente para o mais frio, e o fluxo cai quando a diferença de temperatura diminui.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Veja a consequência no refrigerante",
+     "conta": "refrigerante perde calor com dificuldade → liquefaz com dificuldade → compressor eleva mais a pressão e a temperatura (mais W)",
+     "porque": "Para o gás voltar a ser líquido, ele precisa perder calor. Com o ar quente, o compressor tem de comprimir mais (ou funcionar por mais tempo), e esse trabalho é a energia elétrica gasta.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue ao consumo e à alternativa",
+     "conta": "mais W do compressor → mais energia elétrica → alternativa D",
+     "porque": "O único componente que consome energia é o compressor; a alternativa que liga a liquefação no condensador ao trabalho dele explica o aumento do consumo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a liquefação do refrigerante no condensador exige mais trabalho do compressor.",
+   "checagem": "Pense no caso extremo: se o ar em volta estivesse na mesma temperatura do condensador, nenhum calor sairia e o gás não se liquefaria. Quanto mais perto desse extremo, mais o compressor precisa trabalhar, coerente com a recomendação dos manuais.",
+   "erradas": {
+    "A": "A alternativa culpa a condução e não explica o gasto. O condensador cede calor ao ar sobretudo por convecção e irradiação, e o consumo vem do trabalho extra do compressor, que A não cita.",
+    "B": "Inverte o efeito: com o ar mais quente, o refrigerante no condensador esfria mais devagar, não mais rapidamente.",
+    "C": "O interior é isolado e o termostato mantém a temperatura programada; o que muda é o esforço do compressor para mantê-la. O consumo não aumenta por o interior esquentar significativamente.",
+    "E": "Não responde ao porquê do consumo: o que gasta energia é o compressor, e E fala só das correntes de ar, sem ligar ao trabalho exigido para liquefazer o refrigerante."
+   },
+   "armadilha": "Achar que a geladeira gasta mais porque o calor de fora entra nela, quando o problema é ela não conseguir jogar fora o calor no condensador.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Por que a geladeira instalada perto de fontes de calor consome mais energia.",
+    "chave": "Com o ar externo quente, o refrigerante perde calor com dificuldade no condensador, e o compressor trabalha mais para liquefazê-lo.",
+    "cuidado": "Lembrar que quem consome energia é o compressor; o efeito do ambiente quente aparece no condensador, não no interior."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "balanço de energia",
+    "ideia": "Pela 2ª lei, levar calor do frio para o quente custa trabalho, e quanto mais quente o destino, maior o trabalho: só D fala do trabalho do compressor."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Q_quente = Q_frio + W",
+    "nota": "o calor jogado fora inclui o trabalho do compressor"
+   },
+   {
+    "linha": "ar mais quente → (T_condensador − T_ar) menor",
+    "nota": "a diferença de temperatura cai"
+   },
+   {
+    "linha": "menos calor sai → liquefação difícil",
+    "nota": "o refrigerante não esfria o bastante"
+   },
+   {
+    "linha": "compressor: W maior → consumo maior",
+    "nota": "resposta D"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Descomplica, gabarito ENEM 2020, 2º dia, questão 105",
+    "url": "https://descomplica.com.br/gabarito-enem/questoes/2020/segundo-dia/o-nao-atendimento-dessa-recomendacao-resulta-em-aumento-consumo/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0067"
+  }
+ },
+ "P0c1828f0": {
+  "n": "130",
+  "conceito": "Reconhecer que o maior aquecimento ocorre na faixa do infravermelho, além do vermelho do espectro visível.",
+  "equivocos": {
+   "B": "F10.2:ignorou-radiacao-alem-do-visivel",
+   "C": "F10.2:escolheu-o-meio-do-espectro",
+   "D": "F10.2:associou-violeta-a-mais-calor",
+   "E": "F10.2:achou-que-maior-frequencia-aquece-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O prisma separa a luz do Sol por frequência: o vermelho se desvia menos e o violeta mais. Além do vermelho, fora do que o olho vê, chega radiação infravermelha, que é a que mais aquece a água. Foi isso que Herschel descobriu. Na figura, o recipiente A fica ao lado do vermelho, mas fora da faixa visível.",
+    "formulas": [
+     "ordem do espectro: infravermelho | vermelho … violeta | ultravioleta (frequência crescente)",
+     "infravermelho: invisível, forte efeito térmico"
+    ],
+    "simbolos": [
+     [
+      "infravermelho",
+      "radiação de frequência um pouco menor que a do vermelho; invisível, sentida como calor"
+     ],
+     [
+      "espectro visível",
+      "faixa de cores que o olho vê, do vermelho ao violeta"
+     ],
+     [
+      "prisma",
+      "peça de vidro que desvia cada frequência de luz num ângulo diferente"
+     ]
+    ]
+   },
+   "pista": "Veja onde fica cada recipiente em relação à faixa visível da figura. Algum deles fica fora dela?",
+   "passos": [
+    {
+     "faz": "Leia a posição das cores na figura",
+     "conta": "vermelho → lado de A e B | violeta → lado de E | faixa visível começa em B",
+     "porque": "A figura marca o vermelho num extremo e o violeta no outro; o recipiente A está além da ponta vermelha, fora da faixa visível.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Identifique a radiação que chega em A",
+     "conta": "além do vermelho → frequência menor → infravermelho",
+     "porque": "O prisma continua desviando a radiação invisível: logo depois do vermelho vem o infravermelho, que não se vê mas atinge A.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Compare o aquecimento das faixas",
+     "conta": "infravermelho > vermelho > … > violeta (aquecimento da água)",
+     "porque": "O infravermelho tem forte efeito térmico e é muito absorvido pela água.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue ao recipiente",
+     "conta": "recipiente A (infravermelho) → maior temperatura",
+     "porque": "O recipiente fora da faixa visível, do lado do vermelho, é o que recebe infravermelho.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — o recipiente A, que recebe o infravermelho.",
+   "checagem": "Confira pelo próprio texto: Herschel mediu a maior elevação de temperatura numa determinada faixa de frequências, e o termômetro fora do visível, depois do vermelho, é o resultado clássico que deu nome ao infravermelho.",
+   "erradas": {
+    "B": "B recebe o vermelho, a primeira cor visível. Esquenta bem, mas menos que A, que está além dele, no infravermelho.",
+    "C": "C fica no meio do espectro visível; recebe cores intermediárias e esquenta menos que A.",
+    "D": "D está do lado do violeta, faixa com menor efeito térmico na água que o infravermelho.",
+    "E": "Sai de achar que mais frequência aquece mais. E recebe o violeta, a cor de maior frequência do visível, mas o que mais aquece a água é o infravermelho, em A."
+   },
+   "armadilha": "Achar que nenhum recipiente fora da faixa colorida recebe radiação, ou que a cor de maior frequência (violeta) é a que mais aquece.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Em qual recipiente a água atinge a maior temperatura após a luz passar pelo prisma.",
+    "chave": "Além do vermelho chega o infravermelho, invisível e com o maior efeito térmico: recipiente A.",
+    "cuidado": "Olhar na figura que A está fora da faixa visível, do lado do vermelho."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "nome da radiação",
+    "ideia": "Infra significa abaixo: abaixo da frequência do vermelho, ou seja, do lado do vermelho e fora do visível, que é a posição de A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "prisma: vermelho desvia menos | violeta desvia mais",
+    "nota": "a luz se abre em frequências"
+   },
+   {
+    "linha": "além do vermelho → infravermelho (invisível)",
+    "nota": "a faixa que cai em A"
+   },
+   {
+    "linha": "infravermelho → maior aquecimento da água",
+    "nota": "descoberta de Herschel"
+   },
+   {
+    "linha": "recipiente A → maior temperatura",
+    "nota": "resposta A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0067"
+  }
+ },
+ "Pff2b261f": {
+  "n": "114",
+  "conceito": "Tubo fechado: só harmônicos ímpares, e duas ressonâncias consecutivas diferem de v/(2L).",
+  "equivocos": {
+   "A": "F10.6:nao-usou-delta-f-igual-v-sobre-2l",
+   "B": "F10.6:somou-a-fundamental-no-tubo-fechado",
+   "D": "F10.6:nao-usou-delta-f-igual-v-sobre-2l",
+   "E": "F10.6:nao-usou-delta-f-igual-v-sobre-2l"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A cavidade funciona como tubo sonoro fechado numa ponta: só ressoam os harmônicos ímpares, f = n · v/(4L) com n = 1, 3, 5... Duas ressonâncias consecutivas pulam de n para n + 2, então diferem de 2 · v/(4L) = v/(2L). Os 135 Hz são a menor frequência que o aparelho mediu, não a fundamental da cavidade.",
+    "formulas": [
+     "tubo fechado: f = n · v/(4L), n ímpar",
+     "consecutivas: Δf = v/(2L)"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "profundidade da cavidade, o comprimento do tubo"
+     ],
+     [
+      "v",
+      "velocidade do som na cavidade"
+     ],
+     [
+      "n",
+      "número do harmônico (1, 3, 5...)"
+     ],
+     [
+      "Δf",
+      "diferença entre duas frequências de ressonância consecutivas"
+     ]
+    ]
+   },
+   "pista": "Não use 135 Hz como fundamental. Descubra quanto separa duas ressonâncias vizinhas num tubo fechado de 30 m.",
+   "passos": [
+    {
+     "faz": "Calcule a fundamental do tubo de 30 m",
+     "conta": "f₁ = v/(4L) → f₁ = 360/(4 · 30) → f₁ = 3 Hz",
+     "porque": "Num tubo fechado, a fundamental tem um quarto de comprimento de onda no tubo; serve de unidade para todos os harmônicos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira que 135 Hz é um harmônico ímpar",
+     "conta": "n = 135/3 → n = 45 (ímpar)",
+     "porque": "Se a profundidade é 30 m, a ressonância medida tem de ser um múltiplo ímpar de 3 Hz; 45 é ímpar, então os dados são coerentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o passo entre ressonâncias consecutivas",
+     "conta": "Δf = 2 · f₁ → Δf = 2 · 3 → Δf = 6 Hz",
+     "porque": "No tubo fechado os pares não existem: do harmônico 45 o próximo é o 47, dois degraus de 3 Hz.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some à frequência medida",
+     "conta": "f = 135 + 6 → f = 141 Hz → alternativa C",
+     "porque": "A próxima ressonância é a do harmônico 47: 47 × 3 = 141 Hz.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 141 Hz.",
+   "checagem": "Volte da diferença para a profundidade: Δf = 6 Hz dá L = v/(2 · Δf) = 360/12 = 30 m, a profundidade do projeto.",
+   "erradas": {
+    "A": "137 Hz não confere: diferença de 2 Hz daria L = 360/(2 · 2) = 90 m, e não 30 m.",
+    "B": "Sai de somar a fundamental como se houvesse todos os harmônicos: 135 + 3 = 138 Hz. No tubo fechado só há ímpares, então o passo é 6 Hz.",
+    "D": "144 Hz não confere: diferença de 9 Hz daria L = 360/(2 · 9) = 20 m.",
+    "E": "159 Hz não confere: diferença de 24 Hz daria L = 360/(2 · 24) = 7,5 m."
+   },
+   "armadilha": "Somar só v/(4L) = 3 Hz, esquecendo que no tubo fechado os harmônicos pares não existem e o salto é de dois em dois.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A próxima frequência de ressonância depois de 135 Hz numa cavidade fechada de 30 m.",
+    "chave": "Δf = v/(2L) = 360/60 = 6 Hz, logo 135 + 6 = 141 Hz.",
+    "cuidado": "Tubo fechado só tem harmônicos ímpares: o salto entre consecutivos é 2 · f₁."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "harmônico seguinte",
+    "ideia": "135 Hz é 45 × 3 Hz; o próximo ímpar é 47, e 47 × 3 = 141 Hz."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f₁ = 360/(4 · 30) = 3 Hz",
+    "nota": "fundamental do tubo fechado"
+   },
+   {
+    "linha": "n = 135/3 = 45",
+    "nota": "a medida é um harmônico ímpar"
+   },
+   {
+    "linha": "Δf = 2 · 3 = 6 Hz",
+    "nota": "do 45º ao 47º harmônico"
+   },
+   {
+    "linha": "f = 135 + 6 = 141 Hz",
+    "nota": "resposta C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0067"
+  }
+ },
+ "Pedd03bcf": {
+  "n": "116",
+  "conceito": "Divisor de tensão com resistores iguais em série: cada um fica com 3 V; o aparelho de 9 V vai sobre três resistores, com corrente U/R.",
+  "equivocos": {
+   "A": "F11.5:usou-a-corrente-do-divisor",
+   "B": "F11.5:usou-a-corrente-do-divisor",
+   "C": "F11.5:aplicou-a-tensao-total-no-aparelho",
+   "E": "F11.5:ligou-na-tensao-total"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os quatro resistores de 100 Ω estão em série com a fonte de 12 V, então a tensão se divide igualmente: 3 V em cada um. Para ter 9 V, o aparelho vai entre pontos que abrangem três resistores. A corrente no aparelho sai da lei de Ohm com a resistência dele, 10 kΩ, e não com a do divisor.",
+    "formulas": [
+     "série de iguais: U de cada = U total ÷ número de resistores",
+     "i = U/R (lei de Ohm)",
+     "1 kΩ = 1 000 Ω; 1 mA = 10⁻³ A"
+    ],
+    "simbolos": [
+     [
+      "Ω",
+      "ohm, unidade de resistência elétrica"
+     ],
+     [
+      "kΩ",
+      "quiloohm, mil ohms"
+     ],
+     [
+      "mA",
+      "miliampère, um milésimo de ampère"
+     ],
+     [
+      "divisor de tensão",
+      "resistores em série que repartem a tensão da fonte"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra quanta tensão fica em cada resistor; depois conte quantos resistores o aparelho precisa abraçar.",
+   "passos": [
+    {
+     "faz": "Divida a tensão entre os quatro resistores",
+     "conta": "U de cada = 12/4 → U de cada = 3 V",
+     "porque": "Em série, a corrente é a mesma em todos; com resistências iguais, cada um fica com a mesma parte da tensão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os resistores que somam 9 V",
+     "conta": "9/3 = 3 resistores → entre B e E (B-C, C-D, D-E)",
+     "porque": "Os pontos B e E abrangem os três últimos resistores, que somam 9 V.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a corrente no aparelho",
+     "conta": "i = U/R → i = 9/10 000 → i = 0,0009 A = 0,9 mA",
+     "porque": "A corrente no aparelho é a tensão sobre ele dividida pela resistência dele, 10 kΩ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os pontos e a corrente",
+     "conta": "entre B e E; 0,9 mA → alternativa D",
+     "porque": "É a única alternativa com a ligação de 9 V e a corrente certa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — entre B e E; 0,9 mA.",
+   "checagem": "Leve em conta que o aparelho fica em paralelo com os 300 Ω: 300 Ω em paralelo com 10 000 Ω dá cerca de 291 Ω, a tensão sobre ele cai para cerca de 8,93 V e a corrente fica em cerca de 0,89 mA, que continua arredondando para 0,9 mA. Como 10 kΩ é muito maior que 300 Ω, o aparelho quase não altera o divisor.",
+   "erradas": {
+    "A": "Entre A e C há só dois resistores, 6 V; e 30 mA é a corrente do divisor, 12 ÷ 400 = 0,03 A, não a do aparelho.",
+    "B": "Os pontos estão certos, mas 30 mA sai de 12 ÷ 400 = 0,03 A, a corrente dos resistores do divisor. A do aparelho é 9 ÷ 10 000 = 0,9 mA.",
+    "C": "Sai de aplicar os 12 V da fonte no aparelho: 12 ÷ 10 000 = 1,2 mA. Entre A e D há 9 V, e a corrente seria 0,9 mA.",
+    "E": "Entre A e E o aparelho recebe os 12 V inteiros, acima dos 9 V especificados; os 0,9 mA não correspondem a essa ligação (seriam 1,2 mA)."
+   },
+   "armadilha": "Calcular a corrente com a resistência do divisor (12 ÷ 400 = 30 mA) em vez de usar a resistência do próprio aparelho.",
+   "alerta": "Entre A e D também há 9 V, mas a alternativa que traz esses pontos (C) dá 1,2 mA; por isso só D reúne ligação e corrente corretas.",
+   "essencial": {
+    "pede": "Onde ligar um aparelho de 9 V e 10 kΩ num divisor de 12 V com quatro resistores de 100 Ω, e a corrente nele.",
+    "chave": "Cada resistor fica com 3 V; 9 V é entre B e E; i = 9 ÷ 10 000 = 0,9 mA.",
+    "cuidado": "Usar a resistência do aparelho, e não a do divisor, para a corrente nele."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fração da tensão",
+    "ideia": "9 V são 3/4 de 12 V, então o aparelho vai sobre 3/4 da resistência do divisor, três dos quatro resistores."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "12/4 = 3 V por resistor",
+    "nota": "série de resistores iguais"
+   },
+   {
+    "linha": "9 V = 3 × 3 V → B a E",
+    "nota": "três resistores"
+   },
+   {
+    "linha": "i = 9/10 000 = 0,0009 A",
+    "nota": "lei de Ohm no aparelho"
+   },
+   {
+    "linha": "i = 0,9 mA",
+    "nota": "resposta D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0067"
+  }
  }
 }

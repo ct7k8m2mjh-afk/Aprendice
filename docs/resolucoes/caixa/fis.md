@@ -104,3 +104,14 @@ DADO Pb7f528cf: texto_da_prova -> no print a unidade é "Ω" (o texto traz "W" e
 RECLASS P5f7ff111 F11.6 -> F11.4
 RECLASS Pc717aba3 F11.6 -> F11.8
 RECLASS P68b55b6f F11.7 -> F11.4
+
+## 2026-11-19 16:17 UTC — PENDENCIAS — session_01PveEKaozjku3Rmd3ikcUSN
+Lote gravado: fis-0067 (50 ok). Aberto: fis-0068.
+DADO Pecec6fdc: texto_da_prova (permeabilidade) -> "Dado: permeabilidade magnética é 4π·10⁻⁷ T.m/A."
+DADO Pce9b27ed: alternativas -> A) ε = |Δϕ|/Δt; B) t = |Δε|/Δϕ; C) Δϕ = |Δt|/Δε; D) ε = |Δt|/Δϕ; E) ϕ = |Δε|/Δt (A–D vazias; texto de apoio colado na E)
+DADO Pecbdc26a: texto_da_prova -> alternativas misturadas no enunciado; no print A) 5,0 V; B) 15 V; C) 30 V; D) 60 V; E) 130 V
+DADO P3ba3b243: alternativas.D -> "Uma corrente elétrica contínua atravessa do carregador para a bateria." (o "25" é o número da página)
+DADO P7ffda600: alternativas -> no print as frações vêm empilhadas: A "mₑ·v·B = e·v²/r", B "e·v/B = mₑ·r/v²", C "e·r·B = mₑ·v²/r", D "e·v·B = mₑ·v²/r", E "e·v·B = mₑ·v²·r"
+RECLASS Pc4869b3f F11.5 -> F11.8
+RECLASS P6561f79a F12.4 -> F12.3
+RECLASS Pdfdaa205 F12.4 -> F12.5

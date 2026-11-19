@@ -356,5 +356,128 @@
    "data": "2026-11-19",
    "lote": "fis-0063"
   }
+ },
+ "Pecbdc26a": {
+  "n": "15",
+  "conceito": "Força eletromotriz média induzida (Faraday) numa bobina girada de 90°, com o fluxo passando de zero ao máximo N·B·A.",
+  "equivocos": {
+   "A": "F12.4:nao-usou-fem-igual-n-delta-fluxo-sobre-delta-t",
+   "B": "F12.4:nao-usou-fem-igual-n-delta-fluxo-sobre-delta-t",
+   "C": "F12.4:usou-o-tempo-de-uma-volta-inteira",
+   "D": "F12.4:usou-o-tempo-de-meia-volta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Espira paralela ao campo não é atravessada por linhas: o fluxo começa em zero. Depois de um quarto de volta, o plano da espira fica perpendicular ao campo, e o fluxo é o máximo, N·B·A. A fem média é essa variação dividida pelos 15 ms.",
+    "formulas": [
+     "ϕ = N · B · A · cos θ (θ entre B e a normal da espira)",
+     "A = π · r²",
+     "ε_média = |Δϕ|/Δt"
+    ],
+    "simbolos": [
+     [
+      "ϕ",
+      "fluxo magnético total na bobina, em weber (Wb)"
+     ],
+     [
+      "N",
+      "número de voltas da bobina"
+     ],
+     [
+      "B",
+      "campo magnético, em tesla"
+     ],
+     [
+      "A",
+      "área de uma espira, em m²"
+     ],
+     [
+      "θ",
+      "ângulo entre o campo e a reta perpendicular à espira"
+     ],
+     [
+      "ε",
+      "força eletromotriz, em volt"
+     ]
+    ]
+   },
+   "pista": "Antes da conta, descubra quanto vale o fluxo na posição inicial, com a espira paralela às linhas de campo.",
+   "passos": [
+    {
+     "faz": "Ache o fluxo inicial e o final",
+     "conta": "início: plano ∥ B → θ = 90° → ϕ₀ = 0 | fim: plano ⊥ B → θ = 0° → ϕ = N · B · A",
+     "porque": "Com a espira paralela, nenhuma linha a atravessa; girada de 90°, ela fica de frente para o campo e recebe o fluxo máximo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a área da espira",
+     "conta": "A = π · (0,05)² → A = π · 0,0025 ≈ 7,85 · 10⁻³ m²",
+     "porque": "O raio de 5,0 cm vira 0,05 m para o fluxo sair em weber.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a variação do fluxo",
+     "conta": "Δϕ = 200 · 1,25 · 7,85 · 10⁻³ → Δϕ ≈ 1,96 Wb",
+     "porque": "As 200 voltas somam o fluxo de cada espira; 200 · 1,25 = 250, vezes a área.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo tempo do giro",
+     "conta": "ε = (1,96)/(15 · 10⁻³) → ε ≈ 131 V",
+     "porque": "A fem média é a variação do fluxo pelo intervalo; 15 ms = 0,015 s. O valor mais próximo é 130 V, alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — a força eletromotriz média induzida é de cerca de 130 V.",
+   "checagem": "Ordem de grandeza: 200 · 1,25 = 250 e a área é perto de 8 · 10⁻³ m², o que dá cerca de 2 Wb; 2 Wb em 0,015 s dá perto de 133 V. Só a letra E está nessa faixa.",
+   "erradas": {
+    "A": "Não confere: 5,0 V exigiria Δt ≈ 1,96/5 ≈ 0,39 s, cerca de 26 vezes os 15 ms do giro.",
+    "B": "Não confere: 15 V exigiria Δt ≈ 1,96/15 ≈ 0,13 s, quase nove vezes os 15 ms do enunciado.",
+    "C": "Sai de dividir pelo tempo de uma volta inteira (4 · 15 = 60 ms) em vez do quarto de volta: 1,96/0,060 ≈ 33 V, perto de 30 V.",
+    "D": "Sai de usar o tempo de meia volta (2 · 15 = 30 ms) em vez do quarto de volta: 1,96/0,030 ≈ 65 V, perto de 60 V."
+   },
+   "armadilha": "O giro é de um quarto de volta em 15 ms; usar o tempo de outra fração da volta muda a fem.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A fem média ao girar de 90° uma bobina de 200 voltas, raio 5,0 cm, em campo de 1,25 T, em 15 ms.",
+    "chave": "Δϕ = N · B · π · r² = 200 · 1,25 · π · 0,05² ≈ 1,96 Wb; ε = 1,96/0,015 ≈ 131 V.",
+    "cuidado": "O fluxo inicial é zero (espira paralela ao campo) e o raio vai em metro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "estimativa com π = 3",
+    "ideia": "Δϕ ≈ 200 · 1,25 · 3 · 0,0025 = 1,875 Wb; 1,875/0,015 = 125 V, ainda mais perto de 130 V que de qualquer outra."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ϕ₀ = 0 (paralela) → ϕ = N · B · A (perpendicular)",
+    "nota": "fluxo antes e depois do giro"
+   },
+   {
+    "linha": "A = π · 0,05² ≈ 7,85 · 10⁻³ m²",
+    "nota": "área com r em metro"
+   },
+   {
+    "linha": "Δϕ = 200 · 1,25 · 7,85 · 10⁻³ ≈ 1,96 Wb",
+    "nota": "variação do fluxo"
+   },
+   {
+    "linha": "ε = (1,96)/(0,015) ≈ 131 V",
+    "nota": "fem média, mais perto de 130 V"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0067"
+  }
  }
 }

@@ -72,7 +72,7 @@ Faltam 444 questões sem resolução (fora as que estão em lote, pendentes ou c
 | fis-0064 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
 | fis-0065 | demais nível 1-6 | 50 | gravado | 48 | 1 | 1 |
 | fis-0066 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
-| fis-0067 | demais nível 1-6 | 50 | aberto |  |  |  |
+| fis-0067 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | fis-0068 | ENEM nível 7-10 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
