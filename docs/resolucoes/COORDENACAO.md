@@ -91,10 +91,10 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 | Português | session_01PveEKX1JnJpMCfgHmpRupU (FÁBRICA pela API) | trabalhando: piloto por-0094 ok (US$ 6,11); o dono autorizou continuar, lotes por-0095/0096 em esteira. Não abrir outra sessão de Português |
 | Matemática parte 2 | — | ACABOU (19/11 18h57). Não reabrir. |
 | Português parte 3 | session_01PveEKawjpi7T2DjhNLhHCY | trabalhando (aberta 19/11 19h06 para TERMINAR a parte 3; caixa por-p3.md) |
-| Português parte 4 | session_01PveEKY6HCdr1w9dwUzwk8p | trabalhando (aberta 19/11 19h06 para TERMINAR a parte 4; caixa por-p4.md) |
+| Português parte 4 | — | ACABOU (19/11 19h26). Não reabrir. |
 | Geografia parte 2 | — | ACABOU (19/11 18h49). Não reabrir. |
 | Português parte 2 | session_01PveEKaafKU4T97asCdKPew | trabalhando (aberta 19/11 19h25 para TERMINAR, ~44) |
-| Inglês + Filosofia e Sociologia | session_01PveEKYE6kLEFiYZofbLrF6 | trabalhando (aberta 19/11 19h25: as últimas 4 + 2) |
+| Inglês + Filosofia e Sociologia | — | ACABARAM (19/11 19h35). Não reabrir. |
 | Pendentes Português (obras) | session_01PveEKarwcAv6DnMKjRm9gq | trabalhando (19/11 19h36; lotes por-pend-) |
 | Pendentes Português (demais) | session_01PveEKZS5bzVVPhT2waFk6m | trabalhando (19/11 19h36) |
 | Pendentes Inglês (prints) | session_01PveEKYYDuvaWJCLx4ExYYN | trabalhando (19/11 19h36) |
