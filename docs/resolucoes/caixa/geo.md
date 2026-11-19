@@ -236,3 +236,26 @@ DADO Pa9ebd6fa: texto_da_prova -> começa por "A participação da mulher na pop
 RECLASS Pba8bdf46 G06.3 -> G07.4 (Cederj 2024.2 q21: arquitetura hostil e população em situação de rua, não é migração)
 RECLASS P826ed232 G06.3 -> G01.1 (PUCPR 2024/2 q48: localizar país por latitude/longitude; equivocos já com G01.1)
 DADO Pb5d103f2: alternativas -> campo ausente na entrada; as alternativas A-E (desemprego estrutural / expulsão de imigrantes ilegais / xenofobia europeia / aumento de refugiados / mobilidade social) estão coladas no fim de texto_da_prova (UERR 2025 q71)
+
+## 2026-11-19 17:25 UTC — PENDENCIAS — sessão geo (19/11, 3ª)
+Lote gravado: geo-0052 (50 resoluções; 2 com gabarito do Aprendice, letras iguais às cegas e ao preliminar: Pa7839edd A, P9ef26cb3 B). Pendentes: nenhuma.
+RECLASS Pd4f10c68 G06.3 -> G10.3 (UFJF 2025 PISM III q35: reforma do Conselho de Segurança da ONU e veto de China/Rússia; não é migração)
+RECLASS Pe373a2a6 G06.3 -> G10.5 (UFT 2024/2 q42: origem da guerra civil síria; o campo de refugiados é só contexto)
+RECLASS Peb94e0d6 G06.3 -> G06.5 (URCA 2024.2 q78: conceito de genocídio indígena, composição da população brasileira)
+DADO P58346b64: alternativas.E -> no print a alternativa E termina em "Oriente Médio."; "História - Objetivas" é o rodapé da página, colado na alternativa
+OUTRA P58346b64: no print o rodapé da página é "História - Objetivas" (UFJF 2026 PISM III q35); a questão é da prova de História, mas o conteúdo (AfD, xenofobia, imigrantes) é G06.3; resolvida em Geografia
+OUTRA Pd4f10c68: UFJF 2025 PISM III q35 provavelmente também está na parte de História da prova (mesma posição da q35 de 2026); conteúdo de Geografia (G10.3), resolvida
+DADO P731a1347: texto_da_prova -> começa com "Com o agravamento" (a entrada perdeu o "C" inicial: "om o agravamento").
+OUTRA Pa4a34db7 (Cederj 2024.1, q21): o crédito da charge no print cita o site Mundo Educação (mundoeducacao.uol.com.br); questão é de prova real, mas o nome do site didático aparece no print — o dono decide se mantém.
+OUTRA Pe4cbf9f8 (Unitins 2024/2, q25): texto de apoio diz "novembro de 2023" para a COP 27, que foi em novembro de 2022; registrado no alerta, sem efeito na resposta.
+DADO P23d27f51: texto_da_prova -> falta a letra da canção (Fatec 2024-1 q31); no print ela vem entre o enunciado e o comando: "Eu me lembro muito bem do dia que eu cheguei / ... / Que no sul viveu na rua. […]" com a fonte <https://tinyurl.com/54b3bvc8> Acesso em: 13.08.2023. Adaptado.
+DADO P23d27f51: alternativas.E -> só "transumância realizada por refugiados brasileiros desempregados no Japão." (a letra da canção e a fonte estão coladas no fim da alternativa)
+DADO Paf6f9658: texto_da_prova -> "municípios" (a entrada tem "munic´ıpios"); no print a questão é numerada "17. (URCA/2024.2)", como na entrada
+PRINT Pff26d671 (PUC-Rio 2023 Grupo 4, questão 38): o título do gráfico aparece cortado no print ("Em" / "m %"); valores das barras legíveis, questão resolvida. Refazer o print do PDF oficial se possível.
+OUTRA Pca674919 (Unitins 2024/1 Caderno 2, questão 23): o comando fala em "população urbana", mas as alternativas tratam de dados gerais do Censo 2022; resolvida com a oficial A e registrado no alerta.
+RECLASS P95e9a709 G06.6 -> G09.4 (UEG 2021/1 q45: classificação de fontes de energia renováveis e não renováveis; equivocos já com G09.4)
+RECLASS Pe1a92a56 G06.6 -> G10.1 (UEMG 2024 q33: consequências da globalização para a produção e o trabalho; equivocos já com G10.1)
+RECLASS P9ef26cb3 G06.6 -> G07.4 (UNIRG 2027/1 q43: segregação socioespacial; equivocos já com G07.4)
+DADO P57b2db70: alternativas -> B e D trazem hifenização partida da camada de texto ("equi­ dade", "próxi­ mos", "ou­ tros"); no print: "equidade", "próximos", "outros" (Unioeste 2021 q23)
+OUTRA P9ef26cb3: sem gabarito publicado; busca na web não achou gabarito nem resolução da UNIRG 2027/1 q43 (fontes_web vazio); letra do resolvedor B
+DADO Peb94e0d6: texto_da_prova e alternativas -> "Genoc´ıdio" e acentos quebrados da extração; no print "Genocídio"
