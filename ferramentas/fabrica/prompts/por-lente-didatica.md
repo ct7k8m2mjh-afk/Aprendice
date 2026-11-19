@@ -105,5 +105,8 @@ palavras ("eliminação pela afirmativa IV", quando os passos já eliminaram pel
 serve: ou se escreve um caminho de verdade diferente (teste de substituição, contraprova pelo
 contexto, montar a figura concorrente e ver que não encaixa, partir da alternativa certa e inverter),
 ou se deixa `caminhos` como lista vazia. Em Português o campo é opcional: vazio é melhor que repetido.
+**O teste é objetivo:** o critério usado no `caminhos` não pode aparecer em NENHUM passo, nem na `pista`,
+nem na `checagem`. Se o critério já está em qualquer um desses campos, o `caminhos` não é outro caminho —
+é repetição, e repetição se apaga. Vazio não é falha: é o estado certo quando a questão tem um caminho só.
 E a ideia escrita ali é conferida como qualquer outra: eliminação com a conta errada no `caminhos` é
 erro de fato, não detalhe.
