@@ -1167,5 +1167,337 @@
    "data": "2026-11-19",
    "lote": "fis-0067"
   }
+ },
+ "P5705176e": {
+  "n": "130",
+  "conceito": "Divisor de tensão: o resistor de proteção em série com o aparelho absorve a tensão excedente, na proporção das resistências.",
+  "equivocos": {
+   "A": "F11.5:ligou-em-paralelo",
+   "B": "F11.5:ligou-em-paralelo",
+   "C": "F11.5:usou-tensao-total-no-resistor",
+   "D": "F11.5:somou-rc-a-resistencia-total"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A fonte dá 20% a mais que a tensão do aparelho. Para o aparelho ficar só com a tensão certa, o excesso tem de cair em outro resistor, e isso só acontece em série: em paralelo, os dois ficam com a tensão inteira da fonte. Em série a corrente é a mesma, então a tensão em cada resistor é proporcional à sua resistência.",
+    "formulas": [
+     "série: mesma corrente, U = R · i",
+     "U(P)/U(C) = R(P)/R(C)"
+    ],
+    "simbolos": [
+     [
+      "R(C)",
+      "resistência do equipamento"
+     ],
+     [
+      "R(P)",
+      "resistência do resistor de proteção"
+     ],
+     [
+      "U",
+      "tensão recomendada para o equipamento"
+     ]
+    ]
+   },
+   "pista": "Primeiro decida se o resistor de proteção fica em série ou em paralelo: em qual ligação o aparelho deixa de receber a tensão inteira da fonte?",
+   "passos": [
+    {
+     "faz": "Descarte a ligação em paralelo",
+     "conta": "paralelo: U(C) = U(fonte) = 1,2 U",
+     "porque": "Em paralelo o aparelho continua ligado direto na fonte e recebe os 20% a mais; isso derruba A e B.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ache a tensão que sobra para R(P)",
+     "conta": "U(P) = 1,2 U − U → U(P) = 0,2 U",
+     "porque": "Em série, a tensão da fonte se reparte: o aparelho fica com U e o resistor com o excesso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a mesma corrente para achar R(P)",
+     "conta": "R(P)/R(C) = U(P)/U(C) = 0,2U/U → R(P) = 0,2 R(C)",
+     "porque": "A corrente é a mesma nos dois; o U de cima cancela com o de baixo e sobra 0,2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o circuito",
+     "conta": "série com R(P) = 0,2 R(C)",
+     "porque": "É o circuito E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — resistor de proteção em série com o equipamento, com R(P) = 0,2 R(C).",
+   "checagem": "Substitua: em série, R(total) = 1,2 R(C) e i = 1,2U/1,2R(C) = U/R(C); a tensão no aparelho fica R(C) × U/R(C) = U, exatamente a recomendada.",
+   "erradas": {
+    "A": "O valor 0,2 R(C) está certo, mas em paralelo o aparelho continua com a tensão inteira da fonte, 1,2 U.",
+    "B": "Em paralelo o aparelho recebe 1,2 U qualquer que seja R(P); e 1,2 R(C) seria errado até em série.",
+    "C": "Sai de usar o 1,2 da tensão da fonte como se fosse a razão das resistências: em série, o aparelho ficaria com 1,2U/2,2 ≈ 0,55 U, quase metade do necessário.",
+    "D": "Sai de somar R(C) à razão 1,2: 1,2 R(C) + R(C) = 2,2 R(C). Em série, o aparelho ficaria com 1,2U/3,2 = 0,375 U, muito abaixo do recomendado."
+   },
+   "armadilha": "O resistor tem de absorver só o excesso, 0,2 U, e não 1,2 U: a resistência de proteção é 0,2 R(C).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Como ligar o resistor de proteção e qual o seu valor para o aparelho receber a tensão certa de uma fonte 20% maior.",
+    "chave": "Em série, U(P) = 0,2 U com a mesma corrente, então R(P) = 0,2 R(C).",
+    "cuidado": "Em paralelo o aparelho continua com a tensão inteira da fonte."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela corrente",
+    "ideia": "A corrente certa é U/R(C); a fonte de 1,2 U precisa de R(total) = 1,2U ÷ (U/R(C)) = 1,2 R(C), então R(P) = 1,2 R(C) − R(C) = 0,2 R(C)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "U(fonte) = 1,2 U",
+    "nota": "20% acima da recomendada"
+   },
+   {
+    "linha": "U(P) = 1,2 U − U = 0,2 U",
+    "nota": "o excesso cai no resistor em série"
+   },
+   {
+    "linha": "R(P)/R(C) = 0,2U/U",
+    "nota": "mesma corrente: tensões proporcionais às resistências"
+   },
+   {
+    "linha": "R(P) = 0,2 R(C)",
+    "nota": "o U cancela"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0068"
+  }
+ },
+ "Pec09032f": {
+  "n": "119",
+  "conceito": "Gerador não ideal: U = ε − r · i; resistência interna de cada placa e associação em série para alcançar a tensão de trabalho.",
+  "equivocos": {
+   "A": "F11.7:tensao-de-operacao-como-fem",
+   "C": "F11.7:resistencia-interna-como-fem-sobre-corrente",
+   "D": "F11.7:tensao-de-operacao-como-fem",
+   "E": "F11.7:resistencia-interna-como-fem-sobre-corrente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada placa é um gerador não ideal: 40 V em circuito aberto é a f.e.m., e os 34 V com 7,5 A são a tensão nos terminais quando ela fornece corrente. A diferença é a queda na resistência interna. Em série, as f.e.m. e as resistências internas se somam, e a corrente é a mesma de uma placa.",
+    "formulas": [
+     "U = ε − r · i, logo r = (ε − U)/i",
+     "série de n placas: ε = n · 40 V; r = n · r(placa)"
+    ],
+    "simbolos": [
+     [
+      "ε",
+      "força eletromotriz: tensão da placa em circuito aberto, 40 V"
+     ],
+     [
+      "U",
+      "tensão nos terminais em operação, 34 V"
+     ],
+     [
+      "r",
+      "resistência interna da placa"
+     ],
+     [
+      "i",
+      "corrente de operação, 7,5 A"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro a resistência interna de uma placa: compare a tensão em aberto com a de operação.",
+   "passos": [
+    {
+     "faz": "Calcule a resistência interna de uma placa",
+     "conta": "r = (40 − 34)/7,5 → r = 6/7,5 → r = 0,8 Ω",
+     "porque": "Os 6 V que somem quando a placa fornece 7,5 A caem dentro dela, na resistência interna.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o menor número de placas",
+     "conta": "2 placas: 2 × 34 = 68 V | 3 placas: 3 × 34 = 102 V",
+     "porque": "Em série, as tensões de operação se somam; 68 V não chega a 95 V, e 102 V está entre 95 V e 105 V.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Monte o gerador equivalente",
+     "conta": "ε = 3 × 40 = 120 V | r = 3 × 0,8 = 2,4 Ω",
+     "porque": "Em série, as f.e.m. e as resistências internas se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira e escolha o diagrama",
+     "conta": "U = 120 − 2,4 × 7,5 → U = 120 − 18 → U = 102 V",
+     "porque": "O gerador de 120 V e 2,4 Ω entrega 102 V, dentro da faixa da bomba: é o diagrama B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — gerador equivalente de 120 V com resistência interna de 2,4 Ω ligado à bomba.",
+   "checagem": "Com 102 V e 7,5 A, cada uma das 3 placas fica com 102/3 = 34 V, exatamente a tensão de operação dada para uma placa.",
+   "erradas": {
+    "A": "Sai de tomar 34 V como f.e.m.: com 3 placas sobrariam 102 − 2,4 × 7,5 = 84 V, então usou 4 placas, 4 × 34 = 136 V e 4 × 0,8 = 3,2 Ω. A f.e.m. de cada placa é 40 V.",
+    "C": "A f.e.m. de 120 V está certa, mas 5,3 Ω sai de 40/7,5 ≈ 5,3 Ω, a f.e.m. de uma placa dividida pela corrente; a resistência interna é (40 − 34)/7,5 = 0,8 Ω por placa.",
+    "D": "Sai de pôr como f.e.m. a soma das tensões de operação, 3 × 34 = 102 V; com 2,4 Ω, a bomba ficaria com 102 − 18 = 84 V, abaixo de 95 V.",
+    "E": "Junta os dois erros: 102 V (tensão de operação no lugar da f.e.m.) e 5,3 Ω (40/7,5, f.e.m. de uma placa dividida pela corrente)."
+   },
+   "armadilha": "Os 40 V em circuito aberto são a f.e.m.; os 34 V são a tensão que sobra depois da queda na resistência interna.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O gerador equivalente ao menor número de placas em série que alimenta a bomba entre 95 V e 105 V.",
+    "chave": "r = (40 − 34)/7,5 = 0,8 Ω por placa; 3 placas: 120 V e 2,4 Ω, entregando 102 V.",
+    "cuidado": "Não confundir f.e.m. (40 V) com tensão de operação (34 V)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas alternativas",
+    "ideia": "A f.e.m. tem de ser múltiplo de 40 V e a resistência o mesmo múltiplo de 0,8 Ω: só 120 V com 2,4 Ω (3 placas) cumpre as duas."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "r = (40 − 34)/7,5",
+    "nota": "queda interna dividida pela corrente"
+   },
+   {
+    "linha": "r = 6/7,5 = 0,8 Ω",
+    "nota": "resistência interna de uma placa"
+   },
+   {
+    "linha": "3 × 34 = 102 V",
+    "nota": "3 placas: entre 95 V e 105 V"
+   },
+   {
+    "linha": "ε = 3 × 40 = 120 V; r = 3 × 0,8 = 2,4 Ω",
+    "nota": "série: tudo soma"
+   },
+   {
+    "linha": "U = 120 − 2,4 × 7,5 = 102 V",
+    "nota": "conferência no gerador equivalente"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0068"
+  }
+ },
+ "P90afe8de": {
+  "n": "113",
+  "conceito": "Força elétrica sobre carga negativa, F = q · E: o elétron é desviado no sentido oposto ao do campo elétrico.",
+  "equivocos": {
+   "A": "F11.2:forca-no-sentido-do-campo-para-carga-negativa",
+   "C": "F11.2:desvio-perpendicular-ao-campo",
+   "D": "F11.2:desvio-perpendicular-ao-campo",
+   "E": "F11.2:ignorou-o-campo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na região B o feixe passa entre duas placas horizontais com campo elétrico vertical para cima (Figura 2). A força elétrica sobre uma carga é F = q · E; como o elétron é negativo, a força tem o sentido oposto ao do campo. O feixe é desviado para onde a força aponta.",
+    "formulas": [
+     "F = q · E",
+     "q < 0: F no sentido oposto a E"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "campo elétrico na região B, vertical para cima"
+     ],
+     [
+      "q",
+      "carga do elétron, negativa"
+     ],
+     [
+      "v",
+      "velocidade do feixe, horizontal, em direção à tela"
+     ]
+    ]
+   },
+   "pista": "Olhe o sentido das setas do campo e lembre o sinal da carga do elétron.",
+   "passos": [
+    {
+     "faz": "Leia o campo na região B",
+     "conta": "E: vertical, para cima | v: horizontal, para a tela",
+     "porque": "As placas da região B são horizontais (uma em cima, outra embaixo), como na Figura 1, e o campo aponta de baixo para cima.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o sentido da força no elétron",
+     "conta": "F = q · E, q < 0 → F para baixo",
+     "porque": "A carga negativa inverte o sentido: o elétron é empurrado contra o campo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leve o desvio até a tela",
+     "conta": "desvio para baixo → ponto 2",
+     "porque": "Na tela, 2 é o ponto abaixo do centro (5); 1 fica acima e 3 e 4 ficam nos lados.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — o ponto 2.",
+   "checagem": "Pense nas placas: o campo aponta da placa positiva para a negativa, então a placa de baixo é a positiva. O elétron é atraído pela placa positiva, de baixo: desvio para baixo, ponto 2.",
+   "erradas": {
+    "A": "Sai de pôr a força no sentido do campo, como se a carga fosse positiva; o elétron é negativo e vai para baixo.",
+    "C": "Desvio para o lado não confere: o campo é vertical, então a força no elétron também é vertical.",
+    "D": "Desvio para o lado não confere: o campo é vertical, então a força no elétron também é vertical.",
+    "E": "Sai de ignorar o campo da região B: o ponto central só seria atingido sem força sobre o feixe."
+   },
+   "armadilha": "O elétron é negativo: a força elétrica nele tem o sentido oposto ao das setas do campo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O ponto da tela atingido pelo feixe de elétrons após o campo elétrico da região B.",
+    "chave": "Campo para cima, carga negativa: força para baixo, ponto 2.",
+    "cuidado": "Inverter o sentido da força para carga negativa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas placas",
+    "ideia": "O campo vai da placa positiva para a negativa, então a positiva é a de baixo; o elétron é atraído por ela e cai no ponto 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "E: para cima",
+    "nota": "Figura 2"
+   },
+   {
+    "linha": "F = q · E, q < 0",
+    "nota": "força elétrica no elétron"
+   },
+   {
+    "linha": "F: para baixo",
+    "nota": "sentido oposto ao campo"
+   },
+   {
+    "linha": "desvio para baixo → ponto 2",
+    "nota": "abaixo do centro da tela"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0068"
+  }
  }
 }

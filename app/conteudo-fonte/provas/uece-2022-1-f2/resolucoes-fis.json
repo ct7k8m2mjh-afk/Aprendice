@@ -1877,5 +1877,107 @@
    "data": "2026-11-13",
    "lote": "fis-0041"
   }
+ },
+ "P2edc455f": {
+  "n": "88",
+  "conceito": "Análise dimensional: montar a expressão da força a partir de pressão, área e um coeficiente adimensional.",
+  "equivocos": {
+   "A": "F01.3:dividiu-em-vez-de-multiplicar",
+   "B": "F01.3:raiz-sem-justificativa-dimensional",
+   "C": "F01.3:elevou-ao-quadrado-sem-justificativa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "K não tem unidade; então P e A sozinhos precisam dar newton. A definição de pressão resolve: pressão é força por área.",
+    "formulas": [
+     "P = F/A, logo F = P · A",
+     "[P] = N/m²; [A] = m²"
+    ],
+    "simbolos": [
+     [
+      "K",
+      "coeficiente aerodinâmico, adimensional"
+     ],
+     [
+      "P",
+      "pressão do vento, em N/m²"
+     ],
+     [
+      "A",
+      "área da zona em estudo, em m²"
+     ],
+     [
+      "N",
+      "newton, unidade de força"
+     ]
+    ]
+   },
+   "pista": "Lembre a definição de pressão e veja qual combinação de P e A devolve a força.",
+   "passos": [
+    {
+     "faz": "Use a definição de pressão",
+     "conta": "P = F/A → F = P · A",
+     "porque": "A área que divide a força passa para o outro lado multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira as unidades",
+     "conta": "P · A = N/m² · m² → P · A = N",
+     "porque": "O m² da pressão cancela com o m² da área, e sobra newton.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Inclua o coeficiente",
+     "conta": "F = K · P · A",
+     "porque": "K é adimensional: multiplica o valor sem mudar a unidade.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — F = KPA.",
+   "checagem": "Caso numérico: um vento com pressão de 100 N/m² sobre 2 m², com K = 1, dá 100 · 2 = 200 N. Dobrar a área dobra a força, como se espera.",
+   "erradas": {
+    "A": "A não confere: P/A = (N/m²)/m² = N/m⁴, que não é força.",
+    "B": "B não confere: √(PA) = √N, raiz de newton, que não é unidade de força.",
+    "C": "C não confere: P² · A = (N/m²)² · m² = N²/m², que não é força."
+   },
+   "armadilha": "Achar que a força cresce com o quadrado da pressão: a definição P = F/A dá F proporcional a P, não a P².",
+   "alerta": "",
+   "essencial": {
+    "pede": "A expressão da força do vento em função de K, P e A.",
+    "chave": "P = F/A, logo F = K · P · A, e N/m² · m² = N.",
+    "cuidado": "Testar a unidade de cada alternativa: só P · A dá newton."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação por unidade",
+    "ideia": "Calcule a unidade de cada alternativa: N/m⁴, √N, N²/m² e N; só a última é força."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P = F/A → F = P · A",
+    "nota": "a área passa multiplicando"
+   },
+   {
+    "linha": "N/m² · m² = N",
+    "nota": "o m² cancela"
+   },
+   {
+    "linha": "F = K · P · A",
+    "nota": "K não tem unidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0068"
+  }
  }
 }

@@ -416,5 +416,131 @@
    "data": "2026-11-12",
    "lote": "fis-0038"
   }
+ },
+ "Pb93561f1": {
+  "n": "78",
+  "conceito": "Atrito estático numa esteira inclinada que acelera: o atrito máximo tem de vencer a componente do peso e ainda acelerar a caixa.",
+  "equivocos": {
+   "B": "F03.3:escolheu-aceleracao-possivel-mas-nao-a-maxima",
+   "C": "F03.3:usou-mu-menos-tg-theta",
+   "D": "F03.3:escolheu-aceleracao-possivel-mas-nao-a-maxima",
+   "E": "F03.3:escolheu-aceleracao-possivel-mas-nao-a-maxima"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A caixa sobe junto com a esteira, sem escorregar: quem a puxa rampa acima é o atrito estático. Esse atrito tem dois trabalhos ao mesmo tempo: segurar a componente do peso ao longo da rampa e ainda dar a aceleração. A aceleração é máxima quando o atrito chega ao seu valor máximo, μ · N. A massa da caixa se cancela.",
+    "formulas": [
+     "N = P · cos θ = m · g · cos θ",
+     "Px = m · g · sen θ",
+     "fat_máx = μ · N",
+     "fat − Px = m · a"
+    ],
+    "simbolos": [
+     [
+      "μ",
+      "coeficiente de atrito estático, 0,8"
+     ],
+     [
+      "N",
+      "força normal da esteira sobre a caixa"
+     ],
+     [
+      "Px",
+      "componente do peso ao longo da rampa"
+     ],
+     [
+      "fat",
+      "força de atrito estático, rampa acima"
+     ],
+     [
+      "θ",
+      "ângulo da esteira com a horizontal"
+     ]
+    ]
+   },
+   "pista": "Desenhe as forças na caixa ao longo da rampa: para onde aponta o atrito, se é ele que a faz subir?",
+   "passos": [
+    {
+     "faz": "Desenhe as forças ao longo da rampa",
+     "conta": "Rampa acima: fat | rampa abaixo: Px = m · g · sen θ | perpendicular: N = m · g · cos θ",
+     "porque": "A caixa acelera rampa acima junto com a esteira, então a resultante aponta para cima, e só o atrito pode empurrá-la nesse sentido.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o atrito máximo por unidade de massa",
+     "conta": "fat_máx = μ · m · g · cos θ → 0,8 · 10 · 0,8 = 6,4 · m",
+     "porque": "O atrito estático tem um teto, μ vezes a normal; e no plano inclinado a normal é P · cos θ, não o peso inteiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a componente do peso",
+     "conta": "Px = m · g · sen θ → 10 · 0,6 = 6 · m",
+     "porque": "É a parte do peso que puxa a caixa rampa abaixo e que o atrito precisa vencer antes de acelerar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a 2ª lei e corte a massa",
+     "conta": "6,4 · m − 6 · m = m · a → a = 6,4 − 6 = 0,4 m/s²",
+     "porque": "A sobra do atrito máximo depois de vencer Px é o que acelera; m aparece em todos os termos e cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "a_máx = 0,4 m/s² → alternativa A",
+     "porque": "Acima disso o atrito precisaria passar de 6,4 · m, e a caixa escorregaria.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 0,4 m/s².",
+   "checagem": "Pela fórmula fechada, a_máx = g · (μ · cos θ − sen θ) = 10 · (0,64 − 0,6) = 0,4 m/s². E o sinal faz sentido: como μ = 0,8 > tg θ = 0,75, a caixa fica parada na rampa mesmo sem aceleração, sobrando pouco atrito para acelerar.",
+   "erradas": {
+    "B": "0,2 m/s² não confere como máximo: com ela, o atrito necessário é m · (6 + 0,2) = 6,2 · m, abaixo do teto de 6,4 · m; a esteira ainda pode acelerar mais.",
+    "C": "Sai de usar μ − tg θ: 10 · (0,8 − 0,75) = 0,5 m/s². O atrito máximo é μ · m · g · cos θ, e com 0,5 m/s² a caixa escorregaria.",
+    "D": "0,1 m/s² não confere como máximo: o atrito necessário seria 6,1 · m, ainda abaixo do teto de 6,4 · m.",
+    "E": "0,3 m/s² não confere como máximo: o atrito necessário seria 6,3 · m, ainda abaixo do teto de 6,4 · m."
+   },
+   "armadilha": "Esquecer que o atrito também precisa segurar a componente do peso: ele não serve só para acelerar.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A maior aceleração da esteira inclinada sem que as caixas escorreguem, com μ = 0,8, sen θ = 0,6 e cos θ = 0,8.",
+    "chave": "μ · g · cos θ − g · sen θ = a → 6,4 − 6 = 0,4 m/s².",
+    "cuidado": "Usar a normal N = P · cos θ e descontar a componente do peso antes de sobrar aceleração."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "O atrito necessário é m · (6 + a); o maior a que não passa do teto 6,4 · m é 0,4 m/s²."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "fat − Px = m · a",
+    "nota": "2ª lei ao longo da rampa"
+   },
+   {
+    "linha": "μ · m · g · cos θ − m · g · sen θ = m · a",
+    "nota": "atrito no máximo"
+   },
+   {
+    "linha": "a = g · (μ · cos θ − sen θ)",
+    "nota": "a massa cancela"
+   },
+   {
+    "linha": "a = 10 · (0,64 − 0,6) = 0,4 m/s²",
+    "nota": "substituir os dados"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0068"
+  }
  }
 }

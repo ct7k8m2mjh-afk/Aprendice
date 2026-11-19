@@ -115,3 +115,30 @@ DADO P7ffda600: alternativas -> no print as frações vêm empilhadas: A "mₑ·
 RECLASS Pc4869b3f F11.5 -> F11.8
 RECLASS P6561f79a F12.4 -> F12.3
 RECLASS Pdfdaa205 F12.4 -> F12.5
+
+## 2026-11-19 16:23 UTC — PENDENCIAS — session_01PveEKaozjku3Rmd3ikcUSN
+Lote gravado: fis-0068 (50 ok).
+RECLASS Pb3321d1f F01.4 -> F01.5
+DADO Pb3321d1f: alternativas.E -> "Somente as afirmativas II, III e IV são corretas." (o "27" do fim é o número da página)
+DADO Pb3321d1f: texto_da_prova (afirmativa II) -> Eₙ = −(1/n²) · 2,18 × 10⁻¹⁸ J
+DADO P7499a2d8: alternativas.D -> o texto termina em "...no seu deslocamento." (o resto são legendas da figura coladas)
+DADO Pf7a6973c: alternativas.A -> v = k√(g/λ); alternativas.D -> v = k·g/λ
+DADO P7c6fa3d8: texto_da_prova -> "Dado: c = 3·10⁸ m/s" (não é "3.108")
+RECLASS P4c8c8536 F03.3 -> F04.3
+DADO P331f4636: texto_da_prova -> embaralhado e alternativas vazias; no print: A tan θe · B cot θe · C sec θe · D csc θe · E cos θe
+DADO P0e95211a: alternativas -> símbolos corrompidos; no print: A μe = tg θ · B μe = cos θ · C μe = sen θ · D μe = sec θ · E μe = cotg θ
+DADO P4c8c8536: texto_da_prova -> falta o θ em "ângulo de inclinação ,"; no print: "ângulo de inclinação θ"
+DADO P9ead74d0: alternativas -> expoentes achatados; no print A 5 × 10¹ km, B 5 × 10⁴ km, C 5 × 10⁷ km, D 5 × 10¹⁰ km, E 5 × 10¹³ km
+RECLASS P90afe8de F12.2 -> F11.2
+DADO P12a01571: alternativas.E -> "1 estrela." (lixo colado; o print traz também o quadro de estrelas por velocidade de impacto)
+DADO Pe0c53f61: alternativas -> A "tan θ₀ = 5 e V₀ = √2600 m/s"; B "cotan θ₀ = 5 e V₀ = 2600 m/s"; C "tan θ₀ = 10 e V₀ = √60 m/s"; D "cotan θ₀ = 10 e V₀ = 60 m/s"; E "tan θ₀ = 5 e V₀ = √60 m/s"
+DADO P67c96a5b: texto_da_prova -> embaralhado e sem o campo alternativas; no print A) 18 B) 13 C) 9 D) 6 E) 4
+DADO Pbdbe0e92: alternativas.E -> "120000 m/s²." (o "Note e adote" é um quadro separado no print)
+RECLASS Pa1b7e926 F02.1 -> F07.5
+
+## 2026-11-19 16:23 UTC — FIM — session_01PveEKaozjku3Rmd3ikcUSN
+Último lote gravado: fis-0068. Nenhum lote de Física aberto. Nesta sessão: fis-0065 (48 ok, 1 pendente, 1 divergência), fis-0066 (50 ok), fis-0067 (50 ok), fis-0068 (50 ok) = 198 resoluções. Física: faltam 444 (145 + 299 nas duas últimas faixas do status).
+Pendente: ANULAR P8cad75ee (UEMG 2024 q18). Divergência: P58d32c58 (UFRR 2025 q36, D × preliminar B; ver Edital 97/24-CPV). GABARITO P008531fb (IME, oficial B publicado).
+Gabarito do Aprendice (resolvedor e conferente às cegas bateram; preliminar também quando existe): fis-0065 Pf2d7c301 B, Pb24b4c99 B, P008531fb B, P8e870c83 D; fis-0066 P342ad709 A, P23e9cfdf D, Pe0f4cec2 C; fis-0067 P6220eb09 C, P73cbd02f A.
+Testes depois do fis-0067 (converte + tsc + vitest): tsc ok; vitest 786 de 786. Conferência no site (Pa8c2a5ea, P717964b4, P57beb5b1, 390 e 1280 px): 4 blocos completos, fração empilhada, lousa até o fim, sem erro de console.
+Observação para as próximas sessões: os conferentes recusam rótulos de teste em equivocos (nao-confere-..., valor-sem-origem-...); usar a origem real ou o equívoco de conceito.

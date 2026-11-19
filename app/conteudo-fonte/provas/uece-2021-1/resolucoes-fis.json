@@ -731,5 +731,128 @@
    "data": "2026-11-12",
    "lote": "fis-0040"
   }
+ },
+ "P63c4ba61": {
+  "n": "45",
+  "conceito": "Análise dimensional: unidade SI de k na relação φ = k·P·v entre fluxo, pressão e velocidade.",
+  "equivocos": {
+   "B": "F01.3:trocou-expoentes-de-m-e-s",
+   "C": "F01.3:errou-expoente-do-kg",
+   "D": "F01.3:errou-expoente-do-kg"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Isole k: k = φ/(P · v). O trabalho está em escrever a pressão nas unidades fundamentais: pascal é newton por metro quadrado, e newton é kg·m/s².",
+    "formulas": [
+     "k = φ/(P · v)",
+     "[φ] = m³/s; [v] = m/s",
+     "[P] = N/m² = kg/(m·s²)"
+    ],
+    "simbolos": [
+     [
+      "φ",
+      "fluxo de oxigênio, volume por tempo"
+     ],
+     [
+      "P",
+      "pressão"
+     ],
+     [
+      "v",
+      "velocidade da corrente de ar"
+     ],
+     [
+      "k",
+      "constante de proporcionalidade"
+     ],
+     [
+      "N",
+      "newton, 1 N = 1 kg·m/s²"
+     ]
+    ]
+   },
+   "pista": "Antes de dividir, escreva a pressão só com kg, m e s.",
+   "passos": [
+    {
+     "faz": "Isole a constante",
+     "conta": "φ = k · P · v → k = φ/(P · v)",
+     "porque": "A unidade de k é a do fluxo dividida pela do produto pressão vezes velocidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a pressão em kg, m e s",
+     "conta": "P = N/m² = (kg·m/s²)/m² → P = kg/(m·s²)",
+     "porque": "Pressão é força por área; o m do newton cancela com um dos m da área.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pressão por velocidade",
+     "conta": "P · v = kg/(m·s²) · m/s → P · v = kg/s³",
+     "porque": "O m da velocidade cancela com o m de baixo da pressão, e os segundos somam: s² · s = s³.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida o fluxo pelo produto",
+     "conta": "k = (m³/s)/(kg/s³) → k = (m³/s) · (s³/kg) → k = m³·s²/kg",
+     "porque": "Dividir por kg/s³ é multiplicar por s³/kg; s³ ÷ s deixa s².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "m³s²/kg → alternativa A",
+     "porque": "Só a alternativa A tem m³, s² e kg no denominador.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — m3s2/kg, isto é, m³·s²/kg.",
+   "checagem": "Substitua de volta: k · P · v = (m³s²/kg) · (kg/s³) = m³/s, que é volume por tempo, a unidade do fluxo.",
+   "erradas": {
+    "B": "Sai de trocar os expoentes do metro e do segundo: m³s²/kg vira m²s³/kg. O metro sai com expoente 3 (o m³ do fluxo) e o segundo com expoente 2 (s³ do produto P · v dividido pelo s do fluxo).",
+    "C": "ms³/kg² não confere: só a pressão traz kg, uma vez, então k tem kg¹ no denominador; kg² não aparece por nenhum caminho.",
+    "D": "m²s/kg² não confere: kg² é impossível pelo mesmo motivo (só P tem kg), e o segundo teria de ter expoente 2."
+   },
+   "armadilha": "Deixar a pressão como N/m² e não abrir o newton em kg·m/s²: assim não se vê que o metro cancela e os segundos se acumulam.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A unidade SI de k em φ = k·P·v.",
+    "chave": "P · v = kg/s³, logo k = (m³/s)/(kg/s³) = m³s²/kg.",
+    "cuidado": "Abrir N em kg·m/s² e conferir que só a pressão traz kg."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem do kg",
+    "ideia": "Só P traz kg, uma vez, no numerador; então k tem kg¹ embaixo, o que elimina C e D, e o expoente do s separa A de B."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "k = φ/(P · v)",
+    "nota": "isolar a constante"
+   },
+   {
+    "linha": "P = (kg·m/s²)/m² = kg/(m·s²)",
+    "nota": "pressão em unidades fundamentais"
+   },
+   {
+    "linha": "P · v = kg/(m·s²) · m/s = kg/s³",
+    "nota": "o metro cancela"
+   },
+   {
+    "linha": "k = (m³/s) · (s³/kg) = m³s²/kg",
+    "nota": "multiplicar pelo inverso"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0068"
+  }
  }
 }

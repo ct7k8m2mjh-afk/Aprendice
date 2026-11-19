@@ -186,5 +186,130 @@
    "data": "2026-11-12",
    "lote": "fis-0038"
   }
+ },
+ "P12a01571": {
+  "n": "15",
+  "conceito": "Distância de parada com tempo de reação: trecho em movimento uniforme seguido de frenagem uniforme, e a velocidade que sobra no impacto.",
+  "equivocos": {
+   "A": "F02.2:esqueceu-o-tempo-de-reacao",
+   "B": "F02.2:nao-converteu-m-s-para-km-h",
+   "C": "F02.2:leu-a-faixa-errada-do-quadro",
+   "E": "F02.2:usou-km-h-na-distancia-de-reacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O carro anda 0,50 s sem frear (o sistema ainda está reagindo) e só depois começa a desacelerar. Por isso o trajeto de 85 m tem duas partes: uma com velocidade constante e outra em MUV. Se o carro não parar antes dos 85 m, a pergunta vira: com que velocidade ele chega ao boneco? Sem tempo na frenagem, a equação é a de Torricelli. O quadro está em km/h, então a velocidade final tem de voltar para km/h antes de ler a tabela.",
+    "formulas": [
+     "d = v · t (trecho de reação, velocidade constante)",
+     "v² = v₀² − 2 · a · Δs (Torricelli, frenagem)",
+     "km/h ÷ 3,6 = m/s; m/s × 3,6 = km/h"
+    ],
+    "simbolos": [
+     [
+      "v₀",
+      "velocidade do carro antes de frear: 108 km/h"
+     ],
+     [
+      "a",
+      "módulo da desaceleração: 6,0 m/s²"
+     ],
+     [
+      "Δs",
+      "distância percorrida durante a frenagem"
+     ],
+     [
+      "Torricelli",
+      "equação do MUV que liga velocidades e distância sem usar o tempo"
+     ]
+    ]
+   },
+   "pista": "Antes de usar os 85 m inteiros na frenagem, descubra quanto o carro anda enquanto o sistema ainda está reagindo.",
+   "passos": [
+    {
+     "faz": "Converta a velocidade para m/s",
+     "conta": "108 km/h ÷ 3,6 → v₀ = 30 m/s",
+     "porque": "A desaceleração está em m/s² e a distância em metro: a velocidade tem de estar em m/s para as unidades casarem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a distância no tempo de reação",
+     "conta": "d₁ = 30 m/s × 0,50 s → d₁ = 15 m",
+     "porque": "Durante os 0,50 s de reação o carro ainda não freia: anda em velocidade constante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a distância que sobra para frear",
+     "conta": "Δs = 85 m − 15 m → Δs = 70 m",
+     "porque": "Só o que resta até o boneco serve para frear; parar exigiria 30²/12 = 75 m, mais que os 70 m disponíveis.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique Torricelli até o boneco",
+     "conta": "v² = 30² − 2 × 6,0 × 70 → v² = 900 − 840 → v² = 60 → v ≈ 7,75 m/s",
+     "porque": "O tempo de frenagem não foi dado; Torricelli liga a velocidade final à distância sem precisar dele.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte para km/h e leia o quadro",
+     "conta": "7,75 m/s × 3,6 → v ≈ 27,9 km/h → faixa 20 a 40 km/h → 2 estrelas",
+     "porque": "O quadro classifica pela velocidade no impacto em km/h; 27,9 km/h cai na faixa de 2 estrelas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 2 estrelas.",
+   "checagem": "Pela energia: a cada metro de frenagem o carro perde 2 × 6,0 = 12 m²/s² em v². Em 70 m, perde 840 dos 900 iniciais e sobram 60, ou seja, v ≈ 7,7 m/s. É bem menos que os 30 m/s iniciais e maior que zero, coerente com um impacto lento, mas não nulo.",
+   "erradas": {
+    "A": "Sai de esquecer o tempo de reação: freando desde o início, a parada leva 30²/12 = 75 m, menos que 85 m, e o carro pararia antes do boneco. Mas os primeiros 15 m são sem frear.",
+    "B": "Sai de não converter a velocidade final: 7,75 m/s lido como 7,75 km/h cai na faixa de 0 a 10 km/h. Em km/h, a velocidade é 7,75 × 3,6 ≈ 27,9 km/h.",
+    "C": "Não confere: 3 estrelas exige impacto entre 10 e 20 km/h, mas a conta dá 27,9 km/h (v² = 60 m²/s²), acima da faixa.",
+    "E": "Sai de usar 108 km/h sem converter na reação: 108 × 0,50 = 54 m; nos 31 m restantes, v² = 900 − 12 × 31 = 528, v ≈ 82,7 km/h. A reação percorre só 15 m."
+   },
+   "armadilha": "O carro não freia durante os 0,50 s de reação: quem usa os 85 m inteiros na frenagem conclui que ele para a tempo e marca 5 estrelas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A classificação em estrelas pela velocidade do carro ao atingir o boneco a 85 m.",
+    "chave": "Reação: 30 × 0,50 = 15 m; frenagem em 70 m: v² = 900 − 840 = 60, v ≈ 27,9 km/h, faixa de 2 estrelas.",
+    "cuidado": "Descontar a distância da reação e voltar de m/s para km/h antes de ler o quadro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "distância de parada",
+    "ideia": "Parar exige 15 + 30²/12 = 90 m > 85 m: há colisão; depois Torricelli nos 70 m dá a velocidade de impacto."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "v₀ = 108/3,6 = 30 m/s",
+    "nota": "km/h para m/s"
+   },
+   {
+    "linha": "d₁ = 30 × 0,50 = 15 m",
+    "nota": "trecho de reação, sem frear"
+   },
+   {
+    "linha": "Δs = 85 − 15 = 70 m",
+    "nota": "o que sobra para frear"
+   },
+   {
+    "linha": "v² = 30² − 2 × 6,0 × 70 = 900 − 840 = 60",
+    "nota": "Torricelli"
+   },
+   {
+    "linha": "v ≈ 7,75 m/s × 3,6 ≈ 27,9 km/h → 2 estrelas",
+    "nota": "de volta a km/h e leitura do quadro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0068"
+  }
  }
 }
