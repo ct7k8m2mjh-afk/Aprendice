@@ -250,14 +250,15 @@ function QuestaoIndisponivel({ m, q, mc, mod, sub, ctx, aoVoltar }: { m: Materia
   const nomeMat = infoMateria(m)?.nome || '';
   const cartoesTeoria = (() => { const l = mod?.cartoes.filter((c) => c.sub === q.sub) || []; return l.length ? l : mod?.cartoes || []; })();
   const relacionados = (mod?.subs || []).filter((x) => x.id !== q.sub && mc.porSub.get(x.id)?.length).slice(0, 4);
-  // o lugar dela na lista do conteúdo (a mesma ordem da tela do conteúdo: do mais fácil ao mais difícil, região do aluno)
+  // "N de M" pela regra da questão normal: M = as questões respondíveis da mesma lista (região do aluno, com reserva; a
+  // lista inteira quando a questão é de outra região), sem a indisponível; N = a respondível logo antes dela na ordem
+  // do mais fácil ao mais difícil (a primeira, se ela vem antes de todas). Nada muda na contagem das outras.
   const lista = ctx === 'revisao' ? [] : (() => {
-    const conj = regiaoDoEstado(pegaEstado()).conj;
-    const fr = filtraRegiao(mc.porSub.get(q.sub) || [], conj);
-    const ind = (mc.indispPorSub?.get(q.sub) || []).filter((x) => fr.reserva || passa(x, conj) || x.id === q.id);
-    return [...fr.l, ...ind].sort(ordemEvolucao);
+    const l0 = mc.porSub.get(q.sub) || [];
+    const fr = filtraRegiao(l0, regiaoDoEstado(pegaEstado()).conj);
+    return fr.reserva || passa(q, regiaoDoEstado(pegaEstado()).conj) ? fr.l : l0;
   })();
-  const pos = lista.findIndex((x) => x.id === q.id);
+  const pos = lista.length ? Math.max(0, lista.filter((x) => ordemEvolucao(x, q) < 0).length - 1) : -1;
   return (
     <div className={`questao-tela m-${m}`}>
       <div className="q-barra">
@@ -276,8 +277,9 @@ function QuestaoIndisponivel({ m, q, mc, mod, sub, ctx, aoVoltar }: { m: Materia
             antes={<span className={`etq cor nivel n-${nivelDe(q.dif)}`}>{nomeNivel(nivelDe(q.dif))}</span>}
             depois={sub && <span className="etq q-sub" title={cap(sub.nome)}>{cap(sub.nome)}</span>}
             acao={<button className={'q-marca' + (eq?.rev ? ' marcado' : '')} onClick={() => alternaMarcada(m, q.id)} aria-pressed={!!eq?.rev} aria-label="Revisar depois" title="Revisar depois"><Icone nome="marcador" /></button>} />
-          <div className={'q-resp' + (q.transcricao || !urlPrint(m, q.id) ? ' com-texto' : '')}>
-            <div className="q-trava" role="status"><Icone nome="info" /><div><b>Questão indisponível</b><p>A banca do Aprendice encontrou um erro no gabarito oficial desta questão, e a banca da prova não publicou correção. Ela fica aqui só para consulta: não tem resposta nem correção e não conta nos treinos, simulados e revisões.</p></div></div>
+          {/* o pé da questão normal ("Sua resposta" + letras), com o rótulo "Questão indisponível" e uma linha no lugar das letras */}
+          <div className={'q-resp q-indisp' + (q.transcricao || !urlPrint(m, q.id) ? ' com-texto' : '')}>
+            <div className="q-bolhas" role="status" aria-label="Questão indisponível"><p className="q-indisp-txt">Gabarito oficial com erro e sem correção da banca. Só para consulta.</p></div>
           </div>
         </article>
         <aside className="folha q-lado" id="q-lado" aria-label="Teoria e fonte">

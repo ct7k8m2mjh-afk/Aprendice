@@ -232,7 +232,7 @@ export function FonteQuestao({ q }: { q: Questao }) {
     ...(q.banca && q.banca !== q.escola ? [['Banca', q.banca] as [string, ReactNode]] : []),
     ['Origem', q.origem === 'prova' ? 'Caderno da prova oficial' : 'Lista pública de exercícios'],
     // questão indisponível (dono, 19/11/2026)
-    ['Gabarito', q.indisponivel ? 'Indisponível: a banca do Aprendice encontrou erro no gabarito oficial (sem errata da banca)' : 'Publicado (oficial ou resolução reconhecida)'],
+    ['Gabarito', q.indisponivel ? 'Indisponível: a banca do Aprendice encontrou erro no gabarito oficial, e a banca da prova não publicou errata. A questão fica só para consulta: sem resposta nem correção, fora dos treinos, simulados e revisões' : 'Publicado (oficial ou resolução reconhecida)'],
   ];
   return (
     <div className="q-fonte-aba">

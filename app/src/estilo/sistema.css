@@ -115,6 +115,10 @@
 /* resposta: letras numa linha e ações embaixo, presas ao pé da tela dentro do cartão */
 .q-resp { position: sticky; bottom: var(--tabs-h, 0px); z-index: 5; margin: 14px calc(-1 * var(--qc)) 0; padding: 10px calc(var(--qc) + max(0px, (100% - var(--q-pw, 100%)) / 2)) 14px; background: var(--folha); border-radius: 0 0 17px 17px; }
 .q-resp.com-texto { position: static; }
+/* questão indisponível (dono, 19/11/2026): o mesmo pé, rótulo "Questão indisponível" e uma linha no lugar das letras */
+.q-resp.q-indisp { --q-pw: 100%; } /* começa no mesmo x da caixa normal, não no do print estreito */
+.q-resp.q-indisp .q-bolhas::before { content: 'Questão indisponível'; }
+.q-indisp-txt { flex: 1; min-width: 0; margin: 0; font-size: 15px; line-height: 1.4; color: var(--tinta); }
 .q-bolhas { display: flex; align-items: center; gap: 10px; }
 .q-bolhas::before { content: 'Sua resposta'; flex: none; margin-right: 4px; font-weight: 600; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--lapis); }
 .q-resp.com-texto .q-bolhas { display: block; }
@@ -159,6 +163,8 @@
   .q-resp.com-texto { margin: 14px calc(-1 * var(--qc)) 0; padding: 8px var(--qc) 14px; box-shadow: none; border-radius: 0 0 15px 15px; }
   .q-bolhas::before { display: none; }
   .q-resp.com-texto .q-bolhas::before { display: block; }
+  .q-resp.q-indisp .q-bolhas { display: block; } /* indisponível: o rótulo fica, em cima da linha */
+  .q-resp.q-indisp .q-bolhas::before { display: block; margin: 0 0 4px; }
   .q-resp .certeza { order: -1; flex: 1 1 100%; justify-content: space-between; overflow: hidden; }
   .q-resp .certeza .chip { flex: 1; padding: 0 6px; }
   .q-resp .q-acoes .btn-conf { flex: 1 1 auto; min-width: 0; }
