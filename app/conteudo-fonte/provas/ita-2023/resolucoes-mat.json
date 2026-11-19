@@ -951,5 +951,359 @@
    "data": "2026-11-19",
    "lote": "mat-0079"
   }
+ },
+ "P270c4b1f": {
+  "n": "45",
+  "conceito": "Evento complementar com independência: o jogo dura mais de 3 rodadas quando alguma moeda sobrevive a 3 lançamentos.",
+  "equivocos": {
+   "A": "M13.6:uniao-mal-calculada",
+   "C": "M13.6:uniao-mal-calculada",
+   "D": "M13.6:respondeu-o-complementar",
+   "E": "M13.6:uniao-mal-calculada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada moeda é lançada até dar coroa e então sai; as moedas não interferem umas nas outras. O jogo dura mais do que três rodadas quando, depois da 3ª rodada, ainda sobra pelo menos uma moeda. Pelo menos uma é difícil de contar direto; o complementar, todas saíram até a 3ª rodada, é um produto simples.",
+    "formulas": [
+     "P(pelo menos uma) = 1 − P(nenhuma)",
+     "eventos independentes: P(A e B) = P(A) · P(B)"
+    ],
+    "simbolos": [
+     [
+      "coroa",
+      "resultado que retira a moeda do jogo, com chance 1/2"
+     ],
+     [
+      "rodada",
+      "um lançamento de todas as moedas que ainda estão no jogo"
+     ]
+    ]
+   },
+   "pista": "Olhe para uma moeda só: qual a chance de ela já ter saído do jogo depois de três rodadas?",
+   "passos": [
+    {
+     "faz": "Traduza o que o comando pede",
+     "conta": "mais de 3 rodadas ⇔ depois da 3ª rodada sobra pelo menos 1 moeda",
+     "porque": "Se ainda há moeda depois da 3ª rodada, haverá uma 4ª. Se não há, o jogo terminou em até 3 rodadas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a chance de uma moeda sobreviver",
+     "conta": "cara nas 3 rodadas: (1/2)³ → 1/8 | saiu até a 3ª: 1 − 1/8 → 7/8",
+     "porque": "Uma moeda continua no jogo só se der cara em cada uma das três rodadas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chance de todas saírem",
+     "conta": "(7/8)⁴ → 2401/4096",
+     "porque": "As quatro moedas são independentes, então a chance de todas terem saído até a 3ª rodada é o produto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe ao complementar",
+     "conta": "1 − 2401/4096 → (4096 − 2401)/4096 → 1695/4096",
+     "porque": "Durar mais de três rodadas é o contrário de todas terem saído até a terceira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1695/4096 → alternativa B",
+     "porque": "É a chance pedida, e não a do evento contrário, que aparece na alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1695/4096",
+   "checagem": "Por inclusão e exclusão: a chance de uma moeda sobreviver é 1/8; somando para 4 moedas e corrigindo as sobreposições, 4/8 − 6/64 + 4/512 − 1/4096 = (2048 − 384 + 32 − 1)/4096 = 1695/4096. Fecha.",
+   "erradas": {
+    "A": "1341/4096 não confere: só os dois primeiros termos da inclusão e exclusão já dão 4/8 − 6/64 = 1664/4096, e a chance certa não pode ficar abaixo disso.",
+    "C": "2049/4096 não confere: a chance de alguma das 4 moedas sobreviver não passa de 4 · 1/8 = 2048/4096, e 2049 já passa.",
+    "D": "2401/4096 sai do evento contrário: (7/8)⁴ é a chance de todas as moedas saírem em até 3 rodadas. O pedido é o complemento.",
+    "E": "2755/4096 não confere: passa do teto de 4 · 1/8 = 2048/4096 para a chance de pelo menos uma moeda sobreviver às 3 rodadas."
+   },
+   "armadilha": "(7/8)⁴ é a chance de o jogo acabar em até três rodadas; o pedido é durar mais, que é 1 menos esse valor.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de o jogo com 4 moedas durar mais de 3 rodadas.",
+    "chave": "Cada moeda sai até a 3ª rodada com chance 7/8; todas saem com (7/8)⁴; o pedido é 1 − (7/8)⁴ = 1695/4096.",
+    "cuidado": "Não pare em (7/8)⁴: esse é o evento contrário."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "inclusão e exclusão",
+    "ideia": "4 · (1/8) − 6 · (1/64) + 4 · (1/512) − 1/4096 = 1695/4096."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(moeda sai até a 3ª) = 1 − (1/2)³ = 7/8",
+    "nota": "uma moeda"
+   },
+   {
+    "linha": "P(todas saem) = (7/8)⁴ = 2401/4096",
+    "nota": "moedas independentes"
+   },
+   {
+    "linha": "P(mais de 3) = 1 − 2401/4096",
+    "nota": "evento complementar"
+   },
+   {
+    "linha": "= 1695/4096",
+    "nota": "alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P3882c4e7": {
+  "n": "40",
+  "conceito": "Média harmônica das raízes de um polinômio de 3.º grau pelas relações de Girard, sem achar as raízes.",
+  "equivocos": {
+   "A": "M16.1:relacao-de-girard-errada",
+   "B": "M16.1:esqueceu-o-n-da-media-harmonica",
+   "D": "M16.1:calculou-a-media-geometrica",
+   "E": "M16.1:relacao-de-girard-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A soma dos inversos das raízes se escreve como (soma dos produtos dois a dois)/(produto das três). As duas coisas saem direto dos coeficientes pelas relações de Girard, então não é preciso achar raiz nenhuma. No fim, a média harmônica é n/(soma dos inversos), com n = 3.",
+    "formulas": [
+     "H = n/(1/a1 + 1/a2 + ... + 1/an)",
+     "ax³ + bx² + cx + d: r1r2 + r1r3 + r2r3 = c/a e r1r2r3 = −d/a",
+     "1/r1 + 1/r2 + 1/r3 = (r1r2 + r1r3 + r2r3)/(r1r2r3)"
+    ],
+    "simbolos": [
+     [
+      "H",
+      "média harmônica"
+     ],
+     [
+      "r1, r2, r3",
+      "as três raízes de p(x)"
+     ],
+     [
+      "relações de Girard",
+      "fórmulas que ligam soma e produtos das raízes aos coeficientes"
+     ]
+    ]
+   },
+   "pista": "Escreva a soma dos inversos com denominador comum e veja quais relações de Girard aparecem.",
+   "passos": [
+    {
+     "faz": "Junte os inversos num só denominador",
+     "conta": "1/r1 + 1/r2 + 1/r3 → (r1r2 + r1r3 + r2r3)/(r1r2r3)",
+     "porque": "Com o denominador comum r1r2r3, o numerador vira a soma dos produtos dois a dois, que Girard dá pronta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use Girard com os coeficientes",
+     "conta": "r1r2 + r1r3 + r2r3 = 108/30 | r1r2r3 = −(−30)/30 = 1",
+     "porque": "Em 30x³ − 113x² + 108x − 30, temos a = 30, c = 108 e d = −30.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a soma dos inversos",
+     "conta": "(108/30)/1 → 18/5",
+     "porque": "Como o produto das raízes é 1, a soma dos inversos é a própria soma dos produtos: 108/30 = 18/5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida n pela soma",
+     "conta": "H = 3/(18/5) → H = (3 · 5)/18 → 5/6",
+     "porque": "São três raízes, então n = 3; dividir por 18/5 é multiplicar por 5/18.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "H = 5/6 → alternativa C",
+     "porque": "O valor pedido é a média harmônica, já com o n = 3 no numerador.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 5/6",
+   "checagem": "As raízes numéricas são cerca de 2,476, 0,758 e 0,533; a soma dos inversos dá 0,404 + 1,319 + 1,877 ≈ 3,6, e 3/3,6 ≈ 0,833 = 5/6.",
+   "erradas": {
+    "A": "2/3 não confere: exigiria soma dos inversos igual a 3/(2/3) = 4,5, mas Girard dá 108/30 = 3,6.",
+    "B": "5/18 sai de esquecer o n = 3: é 1/(18/5) = 5/18, o inverso da soma, não a média harmônica.",
+    "D": "1 sai de calcular a média geométrica: a raiz cúbica do produto r1r2r3 = 1 é 1; a pedida é a harmônica.",
+    "E": "3 não confere: exigiria soma dos inversos igual a 1, mas ela vale 3,6; além disso, H não passa da média geométrica, que é 1."
+   },
+   "armadilha": "Depois de achar a soma dos inversos, falta dividir n = 3 por ela; o inverso da soma sozinho dá 5/18.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A média harmônica das três raízes de 30x³ − 113x² + 108x − 30.",
+    "chave": "Soma dos inversos = (soma dos produtos dois a dois)/(produto) = (108/30)/1 = 18/5; H = 3/(18/5) = 5/6.",
+    "cuidado": "O produto das raízes é −d/a = 1 (atenção ao sinal), e n = 3 vai no numerador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "raízes numéricas",
+    "ideia": "Aproximando as raízes (2,476; 0,758; 0,533), 3/(soma dos inversos ≈ 3,6) ≈ 0,833."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1/r1 + 1/r2 + 1/r3 = (r1r2 + r1r3 + r2r3)/(r1r2r3)",
+    "nota": "denominador comum"
+   },
+   {
+    "linha": "= (108/30)/1 = 18/5",
+    "nota": "Girard: c/a e −d/a"
+   },
+   {
+    "linha": "H = 3/(18/5) = (3 · 5)/18",
+    "nota": "dividir é multiplicar pelo inverso"
+   },
+   {
+    "linha": "H = 5/6",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P6c8a360c": {
+  "n": "37",
+  "conceito": "Propriedades do determinante (det(kA) = kⁿ det A, det(Aᵖ) = (det A)ᵖ) e condição de raiz única de uma equação de 2º grau.",
+  "equivocos": {
+   "A": "M15.2:errou-o-valor-do-determinante",
+   "B": "M15.2:errou-o-valor-de-x",
+   "D": "M15.2:respondeu-so-o-determinante",
+   "E": "M15.2:respondeu-so-o-x"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Chame d = det A e transforme cada termo: um número que multiplica uma matriz 3 × 3 sai do determinante elevado ao cubo, e a potência da matriz vira potência do determinante. Sobra uma equação em x que, com t = x³, é de 2º grau. Como x ↦ x³ é uma correspondência um a um, \"um único x\" quer dizer \"um único t\": discriminante zero.",
+    "formulas": [
+     "det(kA) = k³ · det A (matriz 3 × 3)",
+     "det(Aᵖ) = (det A)ᵖ",
+     "at² + bt + c = 0 tem raiz única ⇔ Δ = b² − 4ac = 0, e então t = −b/(2a)"
+    ],
+    "simbolos": [
+     [
+      "M₃(ℝ)",
+      "matrizes 3 × 3 de números reais"
+     ],
+     [
+      "d",
+      "o determinante de A"
+     ],
+     [
+      "Δ",
+      "discriminante da equação de 2º grau"
+     ],
+     [
+      "∛2",
+      "raiz cúbica de 2"
+     ]
+    ]
+   },
+   "pista": "Escreva cada determinante em função de d = det A antes de pensar em x.",
+   "passos": [
+    {
+     "faz": "Transforme cada determinante",
+     "conta": "det(∛2 x² A) = (∛2 x²)³ d = 2x⁶d | det(xA³) = x³d³ | det(A²) = d²",
+     "porque": "O escalar sai elevado à ordem da matriz, 3; a potência da matriz passa para o determinante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descarte d = 0",
+     "conta": "2x⁶d + x³d³ = d² → com d = 0: 0 = 0 para todo x",
+     "porque": "Se d = 0, qualquer x serve, e o enunciado diz que há um único x. Logo d ≠ 0 e dá para dividir por d.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Troque x³ por t",
+     "conta": "2x⁶ + d²x³ − d = 0 → 2t² + d²t − d = 0",
+     "porque": "Dividindo tudo por d, sobra uma equação de 2º grau em t = x³. Cada t real dá exatamente um x real, então x único ⇔ t único.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Zere o discriminante",
+     "conta": "Δ = d⁴ + 8d = d(d³ + 8) = 0 → d = −2 → t = −d²/4 = −1 → x = −1",
+     "porque": "Raiz única exige Δ = 0; d = 0 já caiu, sobra d³ = −8. A raiz dupla é t = −b/(2a) = −4/4 = −1, e ∛(−1) = −1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e marque",
+     "conta": "x + det A = −1 + (−2) = −3 → alternativa C",
+     "porque": "O comando pede a soma de x com d, não um deles sozinho.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — x + det A = −3.",
+   "checagem": "Substitua d = −2 e x = −1 na equação original: 2x⁶d = 2 · 1 · (−2) = −4; x³d³ = (−1)(−8) = 8; soma 4 = d² = 4. Fecha. E com d = −2 a equação 2t² + 4t + 2 = 2(t + 1)² = 0 só tem t = −1.",
+   "erradas": {
+    "A": "−5 não confere: a única combinação possível é d = −2 e x = −1. Para qualquer d ≠ −2 (e d ≠ 0), Δ = d⁴ + 8d ≠ 0 e há zero ou dois valores de x, nunca um só.",
+    "B": "−4 não confere: com d = −2 a raiz dupla é t = −1, e x = −1; a soma é −3, não −4.",
+    "D": "−2 sai de responder só det A = −2 e esquecer de somar o x = −1.",
+    "E": "−1 sai de responder só x = −1 e esquecer de somar det A = −2."
+   },
+   "armadilha": "O escalar sai do determinante elevado ao cubo: det(∛2 x² A) = 2x⁶ det A, e não ∛2 x² det A.",
+   "alerta": "",
+   "essencial": {
+    "pede": "x + det A, sabendo que a equação em x tem uma única solução real.",
+    "chave": "Com d = det A, fica 2t² + d²t − d = 0 em t = x³; solução única ⇔ Δ = d⁴ + 8d = 0 ⇔ d = −2, e então x = −1.",
+    "cuidado": "Descarte d = 0 (todo x serviria) e some os dois valores no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fatorar com d = −2",
+    "ideia": "Testando d = −2, a equação vira 2(t + 1)² = 0, um quadrado perfeito: raiz única t = −1, x = −1, soma −3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2x⁶d + x³d³ = d²",
+    "nota": "propriedades do determinante"
+   },
+   {
+    "linha": "2t² + d²t − d = 0",
+    "nota": "divide por d ≠ 0 e põe t = x³"
+   },
+   {
+    "linha": "Δ = d⁴ + 8d = 0 → d = −2",
+    "nota": "raiz única: Δ = 0"
+   },
+   {
+    "linha": "t = −4/4 = −1 → x = −1",
+    "nota": "raiz dupla −b/(2a)"
+   },
+   {
+    "linha": "x + d = −1 − 2 = −3",
+    "nota": "soma pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

@@ -767,5 +767,241 @@
    "data": "2026-11-19",
    "lote": "mat-0079"
   }
+ },
+ "P4e2bfba0": {
+  "n": "30",
+  "conceito": "Probabilidade condicional com determinante 2 × 2: entre as matrizes invertíveis, a fração com determinante positivo.",
+  "equivocos": {
+   "B": "M15.2:contagem-errada-dos-favoraveis",
+   "C": "M15.2:incluiu-determinante-zero",
+   "D": "M15.2:ignorou-a-condicao-e-incluiu-zero",
+   "E": "M15.2:ignorou-a-condicao-dada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O determinante de M é a · 1 − b · 1 = a − b. Admitir inversa é ter determinante diferente de zero, ou seja, a ≠ b. A frase \"verificou-se que a matriz M admite inversa\" é uma informação já conhecida: ela troca o espaço amostral dos 36 resultados pelos que têm a ≠ b.",
+    "formulas": [
+     "det (a b; 1 1) = a · 1 − b · 1 = a − b",
+     "M tem inversa ⇔ det M ≠ 0",
+     "P(A dado B) = (casos de A e B)/(casos de B)"
+    ],
+    "simbolos": [
+     [
+      "a₁₁, a₁₂",
+      "elemento da linha 1, colunas 1 e 2"
+     ],
+     [
+      "det M",
+      "determinante da matriz M"
+     ],
+     [
+      "admite inversa",
+      "existe M⁻¹; para isso det M ≠ 0"
+     ]
+    ]
+   },
+   "pista": "Calcule o determinante em função de a e b e traduza \"admite inversa\" numa condição sobre os dois dados.",
+   "passos": [
+    {
+     "faz": "Calcule o determinante",
+     "conta": "det M = a · 1 − b · 1 = a − b",
+     "porque": "Diagonal principal menos diagonal secundária.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Restrinja aos casos invertíveis",
+     "conta": "a ≠ b → 36 − 6 = 30 casos",
+     "porque": "Dos 36 pares de lançamentos, os 6 com a = b dão determinante zero e foram descartados pela informação do enunciado.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conte os de determinante positivo",
+     "conta": "a − b > 0 → a > b → 30/2 = 15 casos",
+     "porque": "Entre os pares com a ≠ b, metade tem a > b e metade a < b, pela simetria de trocar os dois lançamentos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e marque",
+     "conta": "15/30 = 1/2 → alternativa A",
+     "porque": "A probabilidade é condicional: favoráveis dentro dos 30 casos invertíveis.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — a probabilidade é 1/2.",
+   "checagem": "Conte a > b direto: a = 2 tem 1 valor de b, a = 3 tem 2, …, a = 6 tem 5; total 1 + 2 + 3 + 4 + 5 = 15, de 30 casos com a ≠ b.",
+   "erradas": {
+    "B": "1/5 não confere: daria 6 casos favoráveis em 30, mas a > b tem 15 casos.",
+    "C": "7/10 sai de contar a ≥ b (21 casos, incluindo os 6 com a = b) sobre os 30 invertíveis; com a = b o determinante é zero, não positivo.",
+    "D": "7/12 sai de contar a ≥ b sobre os 36 lançamentos: 21/36. Inclui determinante zero e ignora que M é invertível.",
+    "E": "5/12 sai de dividir os 15 casos com a > b pelos 36 lançamentos: 15/36. A informação \"admite inversa\" reduz o total a 30."
+   },
+   "armadilha": "\"Verificou-se que M admite inversa\" é uma condição dada: o denominador é 30, não 36.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de det M > 0 sabendo que M é invertível.",
+    "chave": "det M = a − b; invertível é a ≠ b (30 casos), positivo é a > b (15 casos).",
+    "cuidado": "Use o espaço amostral reduzido de 30 casos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria",
+    "ideia": "Trocar os dois lançamentos troca o sinal de a − b; entre os casos com det ≠ 0, positivo e negativo são igualmente prováveis: 1/2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "det M = a − b",
+    "nota": "diagonal principal − secundária"
+   },
+   {
+    "linha": "a ≠ b → 36 − 6 = 30",
+    "nota": "só os invertíveis"
+   },
+   {
+    "linha": "a > b → 1 + 2 + 3 + 4 + 5 = 15",
+    "nota": "determinante positivo"
+   },
+   {
+    "linha": "15/30 = 1/2",
+    "nota": "P = favoráveis/possíveis"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P165021ae": {
+  "n": "35",
+  "conceito": "Achar a soma das raízes de um polinômio cujo termo de maior grau aparente se cancela, fatorando por um fator comum.",
+  "equivocos": {
+   "A": "M16.1:soma-das-raizes-sem-girard",
+   "B": "M16.1:soma-das-raizes-sem-girard",
+   "C": "M16.1:grau-sem-ver-cancelamento",
+   "D": "M16.1:grau-sem-ver-cancelamento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Não expanda tudo: troque (2 − x) por −(x − 2) e (1 − x)¹³ por −(x − 1)¹³, porque 13 é ímpar. Aparece o fator (x − 2) nas duas partes. Fatorando, uma raiz é 2 e as outras são as de x¹³ − (x − 1)¹³, em que o x¹³ se cancela. A soma sai por Girard.",
+    "formulas": [
+     "(1 − x)¹³ = −(x − 1)¹³ (expoente ímpar)",
+     "(x − 1)¹³ = x¹³ − 13x¹² + 78x¹¹ − …",
+     "soma das raízes = −(coef. do 2º termo)/(coef. líder)"
+    ],
+    "simbolos": [
+     [
+      "p(x)",
+      "o polinômio dado"
+     ],
+     [
+      "q(x)",
+      "o fator x¹³ − (x − 1)¹³"
+     ],
+     [
+      "coef. líder",
+      "coeficiente do termo de maior grau"
+     ],
+     [
+      "Girard",
+      "relações entre os coeficientes e as raízes de um polinômio"
+     ]
+    ]
+   },
+   "pista": "Antes de expandir, procure um fator comum: escreva x¹⁴ − 2x¹³ como produto e compare com (2 − x)(1 − x)¹³.",
+   "passos": [
+    {
+     "faz": "Troque os sinais dentro dos parênteses",
+     "conta": "(2 − x)(1 − x)¹³ = (−(x − 2)) · (−(x − 1)¹³) → (x − 2)(x − 1)¹³",
+     "porque": "Dois sinais de menos se cancelam. O (1 − x)¹³ vira −(x − 1)¹³ porque a potência é ímpar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore o (x − 2) comum",
+     "conta": "x¹³(x − 2) − (x − 2)(x − 1)¹³ → (x − 2)[x¹³ − (x − 1)¹³]",
+     "porque": "x¹⁴ − 2x¹³ = x¹³(x − 2). As duas parcelas têm (x − 2), que sai em evidência. Uma raiz é 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Expanda o colchete",
+     "conta": "x¹³ − (x¹³ − 13x¹² + 78x¹¹ − …) → 13x¹² − 78x¹¹ + …",
+     "porque": "O x¹³ se cancela: o colchete tem grau 12, coeficiente líder 13 e coeficiente seguinte −78.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as raízes do colchete",
+     "conta": "−(−78)/13 → 6",
+     "porque": "Pela relação de Girard, a soma das 12 raízes do colchete é 78/13.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte a raiz 2 e classifique",
+     "conta": "2 + 6 = 8 = 2³ → alternativa E",
+     "porque": "As 13 raízes somam 8, que é o cubo de 2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — é um cubo perfeito (a soma vale 8 = 2³)",
+   "checagem": "Expanda p(x) direto: o x¹⁴ se cancela e sobra 13x¹³ − 104x¹² + …; a soma das raízes é 104/13 = 8, o mesmo valor.",
+   "erradas": {
+    "A": "A não confere: os coeficientes de p(x) são inteiros, e a soma das raízes, 104/13 = 8, é racional.",
+    "B": "B não confere: com coeficientes reais, as raízes não reais vêm em pares conjugados, cujas partes imaginárias se anulam na soma. A soma é 8, real.",
+    "C": "C não confere: a soma é 2 (raiz do fator x − 2) mais 78/13 = 6 do colchete, total 8, não 0.",
+    "D": "D não confere: o coeficiente líder de p(x) é 13, não 1, e a soma das raízes dá 104/13 = 8, não 1."
+   },
+   "armadilha": "O x¹⁴ desaparece: o polinômio tem grau 13 e coeficiente líder 13, e quem usa o x¹⁴ − 2x¹³ como se fosse o começo de p(x) erra a soma.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Classificar a soma de todas as raízes de p(x).",
+    "chave": "p(x) = (x − 2)[x¹³ − (x − 1)¹³]; soma = 2 + 78/13 = 8 = 2³.",
+    "cuidado": "Os termos de maior grau se cancelam: ache o grau e o coeficiente líder verdadeiros."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "expansão direta",
+    "ideia": "p(x) = 13x¹³ − 104x¹² + …, e a soma das raízes é 104/13 = 8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(2 − x)(1 − x)¹³ = (x − 2)(x − 1)¹³",
+    "nota": "dois sinais trocados"
+   },
+   {
+    "linha": "p(x) = (x − 2)[x¹³ − (x − 1)¹³]",
+    "nota": "fator comum"
+   },
+   {
+    "linha": "x¹³ − (x − 1)¹³ = 13x¹² − 78x¹¹ + …",
+    "nota": "o x¹³ some"
+   },
+   {
+    "linha": "soma no colchete = 78/13 = 6",
+    "nota": "Girard"
+   },
+   {
+    "linha": "2 + 6 = 8 = 2³",
+    "nota": "com a raiz 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

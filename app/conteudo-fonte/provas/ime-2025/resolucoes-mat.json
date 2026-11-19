@@ -1540,5 +1540,397 @@
    "data": "2026-11-19",
    "lote": "mat-0079"
   }
+ },
+ "P7b6cf661": {
+  "n": "8",
+  "conceito": "Probabilidade geométrica num arco: a área do triângulo depende só da distância de C à corda AB, e a condição vira um trecho do arco maior.",
+  "equivocos": {
+   "A": "M13.4:arco-favoravel-errado",
+   "B": "M13.4:calculou-o-complementar",
+   "C": "M13.4:espaco-amostral-errado",
+   "E": "M13.4:descontou-so-um-lado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A corda AB é fixa, então a área de ABC só muda com a altura: a distância de C até a reta AB. Corda igual ao raio forma com o centro um triângulo equilátero, logo o arco menor AB mede 60° e o arco maior, onde C é sorteado, mede 300°. A reta AB fica a r√3/2 do centro; a área passa de r²√3/4 exatamente quando a altura passa de r√3/2, ou seja, quando C está do outro lado do diâmetro paralelo a AB. A probabilidade é a fração do arco maior onde isso acontece.",
+    "formulas": [
+     "área do triângulo = (base · altura)/2",
+     "distância do centro à corda de 60°: r · cos 30° = (r√3)/2",
+     "probabilidade no arco = (arco favorável)/(arco possível)"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "raio da circunferência"
+     ],
+     [
+      "h",
+      "altura do triângulo ABC relativa à base AB: distância de C à reta AB"
+     ],
+     [
+      "arco maior AB",
+      "o arco de 300° que não contém o arco de 60° entre A e B"
+     ],
+     [
+      "diâmetro paralelo a AB",
+      "o diâmetro que passa pelo centro na mesma direção da corda AB"
+     ]
+    ]
+   },
+   "pista": "Com a base AB fixa, transforme a condição sobre a área numa condição sobre a altura de C.",
+   "passos": [
+    {
+     "faz": "Ache o arco onde C pode estar",
+     "conta": "AB = r → triângulo OAB equilátero → arco menor 60° → arco maior 360° − 60° = 300°",
+     "porque": "Com OA = OB = AB = r, o ângulo central é 60°. C é sorteado no arco maior, então o espaço de possibilidades mede 300°.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Troque a área pela altura",
+     "conta": "(r · h)/2 > (r²√3)/4 → h > (r√3)/2",
+     "porque": "A base é AB = r. Multiplicando os dois lados por 2 e dividindo por r, a condição fica só sobre a altura h.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Localize os pontos com essa altura",
+     "conta": "distância de O a AB = (r√3)/2 → h > (r√3)/2 ⇔ C além do diâmetro paralelo a AB",
+     "porque": "Os pontos a exatamente (r√3)/2 da reta AB, do lado do centro, estão na reta paralela que passa por O. Para ter altura maior, C precisa estar na semicircunferência do lado oposto a AB.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Divida o arco favorável pelo possível",
+     "conta": "semicircunferência oposta: 180° (toda dentro do arco maior) → 180/300 = 3/5",
+     "porque": "Essa semicircunferência não encosta no arco menor AB, então cabe inteira nos 300°. Os outros 120° são os dois trechos de 60° perto de A e de B.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "P = 3/5 → alternativa D",
+     "porque": "A questão pede a probabilidade de a área passar de (r²√3)/4, e é isso que a fração do arco mede.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 3/5",
+   "checagem": "Confira nos pontos de fronteira: com C na ponta do diâmetro paralelo a AB, a altura é exatamente (r√3)/2 e a área é (r · (r√3)/2)/2 = (r²√3)/4, o limite. Do lado de A e de B sobram 60° + 60° = 120° com área menor, e 120 + 180 = 300 fecha o arco maior.",
+   "erradas": {
+    "A": "1/5 não confere: é 60/300, mas a área já passa do limite em toda a semicircunferência oposta a AB, que mede 180°, bem mais que 60°.",
+    "B": "2/5 sai do evento contrário: 120/300 = 2/5 é a chance de C cair nos dois trechos de 60° junto de A e B, onde a área fica menor.",
+    "C": "1/2 sai de dividir pela circunferência inteira: 180/360. C só pode estar no arco maior, de 300°, então o denominador é 300.",
+    "E": "4/5 sai de descontar só um dos dois trechos de 60° onde a área é menor: (300 − 60)/300 = 240/300 = 4/5."
+   },
+   "armadilha": "O espaço de sorteio é o arco maior de 300°, não a circunferência inteira, e a área fica menor nos dois lados, junto de A e junto de B.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de a área de ABC passar de (r²√3)/4 com C sorteado no arco maior.",
+    "chave": "Com base fixa, a condição vira h > (r√3)/2, que vale na semicircunferência oposta a AB: 180 de 300 graus.",
+    "cuidado": "Use 300° no denominador e desconte os dois trechos de 60° perto de A e B."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas",
+    "ideia": "Ponha O na origem, A e B nos ângulos 60° e 120°; a altura de C(θ) é r(√3/2 − sen θ), maior que (r√3)/2 só quando sen θ < 0, isto é, θ entre 180° e 360°."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "AB = r → arco menor 60° → arco maior 300°",
+    "nota": "espaço de sorteio"
+   },
+   {
+    "linha": "(r · h)/2 > (r²√3)/4",
+    "nota": "condição sobre a área"
+   },
+   {
+    "linha": "h > (r√3)/2",
+    "nota": "multiplica por 2 e divide por r"
+   },
+   {
+    "linha": "arco favorável = 180°",
+    "nota": "semicircunferência oposta a AB"
+   },
+   {
+    "linha": "180/300 = 3/5",
+    "nota": "alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P910903cf": {
+  "n": "6",
+  "conceito": "Calcular um determinante grande escalonando: subtrair a 1ª linha das demais deixa a matriz triangular, e o polinômio sai fatorado.",
+  "equivocos": {
+   "A": "M15.2:dobrou-a-soma-ate-2023",
+   "B": "M15.2:soma-maior-que-o-maximo-possivel",
+   "C": "M15.2:dobrou-a-soma-ate-2024",
+   "D": "M15.2:contou-uma-raiz-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Repare que todas as linhas de baixo são cópias da 1ª linha, com uma única diferença: o x na diagonal. Subtrair a 1ª linha de cada uma das outras não muda o determinante e zera quase tudo. A matriz fica triangular, e o determinante de matriz triangular é o produto da diagonal. Com p(x) já fatorado, as raízes aparecem na hora.",
+    "formulas": [
+     "trocar Lᵢ por Lᵢ − L₁ não muda o determinante",
+     "matriz triangular: det = produto da diagonal principal",
+     "0 + 1 + 2 + … + n = (n(n + 1))/2"
+    ],
+    "simbolos": [
+     [
+      "det(A)",
+      "determinante da matriz A"
+     ],
+     [
+      "Lᵢ",
+      "linha i da matriz"
+     ],
+     [
+      "matriz triangular",
+      "matriz com zeros de um dos lados da diagonal principal"
+     ],
+     [
+      "p(x)",
+      "polinômio em x obtido ao calcular det(A)"
+     ]
+    ]
+   },
+   "pista": "Compare a linha 2 com a linha 1, entrada por entrada: o que muda entre elas?",
+   "passos": [
+    {
+     "faz": "Leia a 1ª linha e a diagonal",
+     "conta": "L₁ = (2, 0, 1, 2, …, 2022) | na coluna j ≥ 2 vale j − 2 | diagonal: 2, x, x, …, x",
+     "porque": "A linha i (i ≥ 2) é igual à 1ª, só que com x na posição i. Na coluna j ≥ 2, a 1ª linha tem o número j − 2.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Subtraia a 1ª linha de cada linha",
+     "conta": "Lᵢ − L₁ = (0, …, 0, x − (i − 2), 0, …, 0)",
+     "porque": "As entradas iguais se cancelam; sobra só a da diagonal, x menos o número que a 1ª linha tinha naquela coluna. Substituir Lᵢ por Lᵢ − L₁ não altera o determinante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique a diagonal da triangular",
+     "conta": "det(A) = 2 · (x − 0)(x − 1)(x − 2) ⋯ (x − 2022)",
+     "porque": "Abaixo da diagonal tudo virou zero (a 1ª coluna também: 2 − 2 = 0), então o determinante é o produto da diagonal: o 2 da 1ª linha e os 2023 fatores x − (i − 2), de i = 2 a i = 2024.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as raízes",
+     "conta": "raízes: 0, 1, 2, …, 2022 → soma = (2022 · 2023)/2 = 1011 × 2023",
+     "porque": "Cada fator x − k zera em x = k. O 2 da frente não cria raiz. A soma 0 + 1 + … + 2022 é a de Gauss, com n = 2022.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1011 × 2023 = 2 045 253 → alternativa E",
+     "porque": "A soma pedida é exatamente o produto da alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — a soma das raízes é 1011 × 2023.",
+   "checagem": "Teste em tamanho pequeno: com ordem 4, A tem linhas (2, 0, 1, 2), (2, x, 1, 2), (2, 0, x, 2), (2, 0, 1, x), e o determinante dá 2x(x − 1)(x − 2): raízes 0, 1, 2, soma 3 = (2 · 3)/2. O padrão é o mesmo para ordem 2024. Por Girard: p(x) = 2x²⁰²³ − 2(0 + 1 + … + 2022)x²⁰²² + …, e a soma é −(coef. de x²⁰²²)/2.",
+   "erradas": {
+    "A": "2024 × 2023 = 4 094 552 não confere: é o dobro de 0 + 1 + … + 2023. As raízes vão só até 2022, e a soma correta, 2 045 253, é cerca de metade disso.",
+    "B": "2025² = 4 100 625 não confere: a soma de 2023 números de 0 a 2022 não passa de 2023 × 2022 = 4 090 506, menor que 2025².",
+    "C": "2024 × 2025 = 4 098 600 não confere: é o dobro de 1 + 2 + … + 2024; a soma das raízes 0, 1, …, 2022 é 2 045 253.",
+    "D": "1012 × 2025 = 2 049 300 não confere: é 1 + 2 + … + 2024, a soma de 2024 números. O polinômio tem grau 2023 (a 1ª linha não tem x), e as raízes vão de 0 a 2022."
+   },
+   "armadilha": "A 1ª linha não tem x: o polinômio tem grau 2023, e não 2024, e as raízes são os números da 1ª linha, de 0 a 2022.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma das raízes de p(x) = det(A), com A de ordem 2024.",
+    "chave": "Lᵢ − L₁ deixa a matriz triangular: p(x) = 2x(x − 1)⋯(x − 2022), raízes de 0 a 2022.",
+    "cuidado": "Conte as raízes certas: uma por linha de baixo (2023), com o valor que a 1ª linha tem naquela coluna."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Girard",
+    "ideia": "Sem fatorar: p(x) tem coeficiente líder 2 e o de x²⁰²² é −2(0 + 1 + … + 2022); a soma das raízes é −(coef. de x²⁰²²)/2 = 1011 × 2023."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Lᵢ − L₁ = (0, …, x − (i − 2), …, 0)",
+    "nota": "subtrai a 1ª linha de cada linha"
+   },
+   {
+    "linha": "det(A) = 2 · x(x − 1)(x − 2) ⋯ (x − 2022) → raízes: 0, 1, …, 2022",
+    "nota": "triangular: produto da diagonal; cada fator x − k zera em k"
+   },
+   {
+    "linha": "(2022 · 2023)/2 = 1011 × 2023",
+    "nota": "soma de Gauss"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  },
+  "gabarito_aprendice": {
+   "letra": "E",
+   "letra_conferente": "E",
+   "preliminar": "E",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P1ddbe8c2": {
+  "n": "3",
+  "conceito": "Multiplicar por um complexo w gira e amplia o plano: a área do triângulo zₙ, zₙ₊₁, zₙ₊₂ é |zₙ|² vezes a área do triângulo 1, w, w².",
+  "equivocos": {
+   "A": "M16.2:trio-anterior-ao-maximo",
+   "C": "M16.2:esqueceu-metade-da-area",
+   "D": "M16.2:modulo-do-ponto-errado",
+   "E": "M16.2:modulo-do-ponto-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os três pontos são zₙ · 1, zₙ · (1 + i) e zₙ · (1 + i)². Multiplicar por zₙ gira e amplia o triângulo 1, 1 + i, 2i: as distâncias ficam vezes |zₙ| e a área fica vezes |zₙ|². Calcule a área do triângulo pequeno uma vez e escolha o maior n.",
+    "formulas": [
+     "|1 + i| = √2 ⇒ |zₙ|² = 2ⁿ",
+     "área(zₙ, zₙ₊₁, zₙ₊₂) = |zₙ|² · área(1, 1 + i, 2i)",
+     "área com vértices (x₁, y₁), (x₂, y₂), (x₃, y₃) = |determinante|/2"
+    ],
+    "simbolos": [
+     [
+      "afixo",
+      "ponto do plano que representa o complexo: a + bi ↦ (a, b)"
+     ],
+     [
+      "|z|",
+      "módulo: distância do afixo à origem"
+     ],
+     [
+      "zₙ",
+      "(1 + i)ⁿ, o n-ésimo termo da sequência"
+     ]
+    ]
+   },
+   "pista": "Coloque zₙ em evidência nos três pontos e veja qual triângulo sobra.",
+   "passos": [
+    {
+     "faz": "Ponha zₙ em evidência",
+     "conta": "zₙ, zₙ₊₁, zₙ₊₂ → zₙ · 1, zₙ · (1 + i), zₙ · (1 + i)²",
+     "porque": "Cada termo é o anterior vezes 1 + i.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a área do triângulo base",
+     "conta": "1 → (1, 0) | 1 + i → (1, 1) | (1 + i)² = 2i → (0, 2) | área = |0 · 2 − 1 · (−1)|/2 → 1/2",
+     "porque": "Com vetores (0, 1) e (−1, 2) a partir de (1, 0), a área é metade do módulo do determinante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o fator de ampliação",
+     "conta": "área = |zₙ|² · 1/2 → 2ⁿ · 1/2 → 2^(n − 1)",
+     "porque": "Multiplicar por zₙ gira (não muda área) e amplia as medidas por |zₙ| = (√2)ⁿ; a área cresce com o quadrado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o maior n possível",
+     "conta": "último trio: z₁₈, z₁₉, z₂₀ → n = 18 → 2^17",
+     "porque": "A área cresce com n, e o trio só pode começar até n = 18, porque a sequência para em z₂₀.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "área máxima = 2^17 → alternativa B",
+     "porque": "É o valor da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a maior área é 2^17.",
+   "checagem": "Teste o primeiro trio: z₁ = 1 + i, z₂ = 2i, z₃ = −2 + 2i, pontos (1, 1), (0, 2) e (−2, 2). Base horizontal de y = 2 entre x = −2 e x = 0 (comprimento 2), altura 1 até y = 1: área = 2 · 1/2 = 1 = 2^0, como a fórmula 2^(n − 1) prevê para n = 1.",
+   "erradas": {
+    "A": "2^16 sai de tomar o trio z₁₇, z₁₈, z₁₉: área 2^(17 − 1) = 2^16. Mas o trio z₁₈, z₁₉, z₂₀ também existe e é maior.",
+    "C": "2^18 sai de esquecer a metade na área: |z₁₈|² = 2^18. A área do triângulo base é 1/2, então fica 2^17.",
+    "D": "2^19 sai de usar |z₂₀|² com a metade: 2^20 · 1/2 = 2^19. O fator de ampliação é o módulo do primeiro ponto do trio, z₁₈.",
+    "E": "2^20 sai de tomar |z₂₀|² = 2^20 como área, sem a metade e com o ponto errado do trio."
+   },
+   "armadilha": "O fator de ampliação é |z₁₈|², do primeiro ponto do trio, e a área do triângulo base é 1/2, não 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A maior área do triângulo formado por três termos consecutivos de (1 + i)ⁿ, n até 20.",
+    "chave": "Área = |zₙ|² · 1/2 = 2^(n − 1); o maior n é 18, então 2^17.",
+    "cuidado": "O último trio começa em z₁₈, e a área do triângulo 1, 1 + i, 2i é 1/2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lados",
+    "ideia": "Os lados |zₙ₊₁ − zₙ| = |zₙ| e |zₙ₊₂ − zₙ₊₁| = √2 · |zₙ| formam 135° em zₙ₊₁: área = 1/2 · |zₙ| · √2|zₙ| · sen 135° = |zₙ|²/2 = 2^(n − 1)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "zₙ, zₙ₊₁, zₙ₊₂ → zₙ · {1, 1 + i, 2i}",
+    "nota": "zₙ em evidência"
+   },
+   {
+    "linha": "área(1, 1 + i, 2i) = 1/2",
+    "nota": "triângulo base"
+   },
+   {
+    "linha": "área = |zₙ|² · 1/2 = 2ⁿ · 1/2",
+    "nota": "|zₙ|² = 2ⁿ"
+   },
+   {
+    "linha": "área = 2^(n − 1)",
+    "nota": "cresce com n"
+   },
+   {
+    "linha": "n = 18 → 2^17",
+    "nota": "alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [
+    {
+     "url": "https://militares.estrategia.com/portal/eventos/gabarito-ime-2024-2025-correcao-primeira-fase/",
+     "letra": "B"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

@@ -1436,5 +1436,386 @@
    "data": "2026-11-19",
    "lote": "mat-0079"
   }
+ },
+ "Pbd975ad7": {
+  "n": "55",
+  "conceito": "Probabilidade com matrizes de 0 e 1: contar as matrizes com um ou dois 1 cujo quadrado é a matriz nula.",
+  "equivocos": {
+   "A": "M15.2:contagem-errada-de-r",
+   "C": "M15.2:contagem-errada-de-r",
+   "D": "M15.2:nao-descontou-pares-encadeados",
+   "E": "M15.2:somou-probabilidades-independentes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Pense em cada 1 na posição (i, j) como uma seta de i para j. O quadrado da matriz só ganha um número diferente de zero quando duas setas se encadeiam: uma chega em j e outra sai de j (inclusive a mesma seta, quando i = j). Então M² = 0 exige que nenhuma seta se encadeie. Conte L e R separados e multiplique, porque as escolhas são independentes.",
+    "formulas": [
+     "P = favoráveis/possíveis",
+     "Eᵢⱼ · Eₖₗ = Eᵢₗ se j = k, e 0 se j ≠ k",
+     "eventos independentes: P(A e B) = P(A) · P(B)"
+    ],
+    "simbolos": [
+     [
+      "M(n, k)",
+      "matrizes n × n com exatamente k entradas iguais a 1 e o resto 0"
+     ],
+     [
+      "Eᵢⱼ",
+      "matriz com um único 1, na linha i e coluna j"
+     ],
+     [
+      "L² = 0",
+      "L · L é a matriz nula"
+     ],
+     [
+      "C(16, 2)",
+      "número de modos de escolher 2 posições entre 16"
+     ]
+    ]
+   },
+   "pista": "Comece por L, que tem um só 1: calcule Eᵢⱼ · Eᵢⱼ e veja quando dá zero.",
+   "passos": [
+    {
+     "faz": "Conte os casos de L",
+     "conta": "L = Eᵢⱼ → L² = Eᵢⱼ se i = j | L² = 0 se i ≠ j → 6/9 = 2/3",
+     "porque": "O produto só sobrevive quando a coluna do 1º fator é a linha do 2º, isto é, j = i. Das 9 posições, as 3 da diagonal falham e as 6 de fora servem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os casos possíveis de R",
+     "conta": "C(16, 2) = (16 · 15)/2 = 120",
+     "porque": "R é qualquer escolha de 2 posições entre as 16 da matriz 4 × 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Exija duas setas fora da diagonal",
+     "conta": "posições fora da diagonal: 16 − 4 = 12 → C(12, 2) = 66",
+     "porque": "Um 1 na diagonal (seta i → i) se encadeia consigo mesmo e já faz R² ≠ 0.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Tire os pares que se encadeiam",
+     "conta": "encadeados i → j → l: 4 · 3 · 3 = 36 | pares de ida e volta contados duas vezes: C(4, 2) = 6 → 36 − 6 = 30 → 66 − 30 = 36",
+     "porque": "Para cada meio j há 3 escolhas de i ≠ j e 3 de l ≠ j. O par (i, j) com (j, i) se encadeia nos dois sentidos e foi contado duas vezes. Sobram 36 pares sem encadeamento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as duas probabilidades",
+     "conta": "P(R² = 0) = 36/120 = 3/10 → (2/3) · (3/10) = 6/30 = 1/5 → alternativa B",
+     "porque": "L e R são sorteados de forma independente, e o enunciado pede os dois eventos ao mesmo tempo (\"e\").",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a probabilidade é 1/5.",
+   "checagem": "Conte o complementar de R direto: pares com um 1 na diagonal são 120 − 66 = 54, e pares fora da diagonal encadeados são 30; 54 + 30 = 84 pares com R² ≠ 0, e 120 − 84 = 36. Uma varredura por computador das 120 matrizes também dá 36.",
+   "erradas": {
+    "A": "1/3 não confere: só a parte de L já vale 2/3 e a de R vale 3/10; o produto é 1/5. Para dar 1/3, P(R² = 0) teria de ser 1/2, isto é, 60 das 120 matrizes, e são 36.",
+    "C": "4/15 não confere: exigiria P(R² = 0) = (4/15)/(2/3) = 2/5, ou 48 matrizes R; a contagem dá 36.",
+    "D": "13/30 não confere: exigiria P(R² = 0) = 13/20, ou 78 matrizes R, mais do que as 66 que têm os dois 1 fora da diagonal.",
+    "E": "29/30 sai de somar as probabilidades em vez de multiplicar: 2/3 + 3/10 = 20/30 + 9/30 = 29/30. O \"e\" de eventos independentes multiplica."
+   },
+   "armadilha": "Não basta pôr os dois 1 fora da diagonal: pares como (1, 2) e (2, 3) se encadeiam e fazem R² ≠ 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de L² = 0 e R² = 0, com L em M(3, 1) e R em M(4, 2).",
+    "chave": "Cada 1 é uma seta i → j; o quadrado é nulo quando nenhuma seta se encadeia: 6/9 para L, 36/120 para R.",
+    "cuidado": "Desconte os pares encadeados e multiplique as duas probabilidades, sem somar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "Conte os R com R² ≠ 0: 54 pares com um 1 na diagonal + 30 pares encadeados = 84; sobram 120 − 84 = 36."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(L² = 0) = 6/9 = 2/3",
+    "nota": "L: o 1 fora da diagonal"
+   },
+   {
+    "linha": "C(16, 2) = 120",
+    "nota": "todas as matrizes R"
+   },
+   {
+    "linha": "C(12, 2) = 66",
+    "nota": "os dois 1 fora da diagonal"
+   },
+   {
+    "linha": "66 − (36 − 6) = 36",
+    "nota": "tira os pares encadeados"
+   },
+   {
+    "linha": "(2/3) · (36/120) = (2/3) · (3/10) = 1/5",
+    "nota": "independentes: multiplica"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P844b0b43": {
+  "n": "50",
+  "conceito": "Montar um polinômio de grau 4 a partir de duas raízes conhecidas e das relações de Girard, e achar o coeficiente líder pelo valor p(−1).",
+  "equivocos": {
+   "A": "M16.1:coeficiente-lider-ignorado",
+   "B": "M16.1:coeficiente-lider-ignorado",
+   "C": "M16.1:coeficiente-lider-ignorado",
+   "E": "M16.1:coeficiente-lider-ignorado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Divisível por x² − 4 quer dizer que 2 e −2 são raízes. Faltam duas raízes, r e s: a soma das quatro dá r + s, e o produto das quatro dá rs. Com isso p(x) = a(x² − 4)(x² − (r + s)x + rs), e o p(−1) dado serve só para achar o a.",
+    "formulas": [
+     "soma das raízes = −b/a",
+     "produto das 4 raízes = e/a",
+     "x² − Sx + P tem raízes de soma S e produto P"
+    ],
+    "simbolos": [
+     [
+      "a, b, c, d, e",
+      "coeficientes reais de p(x), com a ≠ 0"
+     ],
+     [
+      "r, s",
+      "as duas raízes que faltam além de 2 e −2"
+     ],
+     [
+      "S, P",
+      "soma e produto de r e s"
+     ]
+    ]
+   },
+   "pista": "Escreva as quatro raízes como 2, −2, r e s, e use as informações II e III só para r + s e rs.",
+   "passos": [
+    {
+     "faz": "Use a divisibilidade para duas raízes",
+     "conta": "x² − 4 = (x − 2)(x + 2) → raízes 2 e −2",
+     "porque": "Se x² − 4 divide p(x), cada raiz de x² − 4 também zera p(x).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache r + s e rs pelas informações II e III",
+     "conta": "2 + (−2) + r + s = 1 → r + s = 1 | 2 · (−2) · r · s = 3 → rs = −3/4",
+     "porque": "Na soma, 2 e −2 se anulam. No produto, 2 · (−2) = −4, e o −4 passa dividindo: rs = 3/(−4).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte p(x) com o coeficiente a",
+     "conta": "p(x) = a(x² − 4)(x² − x − 3/4)",
+     "porque": "O fator x² − Sx + P tem exatamente as raízes r e s. Só falta o a, que não muda as raízes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use p(−1) para achar a",
+     "conta": "a(1 − 4)(1 + 1 − 3/4) = −15/4 → a(−3)(5/4) = −15/4 → a = 1",
+     "porque": "−3 vezes 5/4 dá −15/4; dividindo os dois lados por −15/4, sobra a = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule p(1)",
+     "conta": "p(1) = (1 − 4)(1 − 1 − 3/4) → (−3)(−3/4) = 9/4",
+     "porque": "Com a = 1, basta substituir x = 1. Menos com menos dá mais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "p(1) = 9/4 → alternativa D",
+     "porque": "A questão pede p(1), e o valor é 9/4.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 9/4",
+   "checagem": "Expanda p(x) = x⁴ − x³ − (19/4)x² + 4x + 3: soma das raízes −(−1)/1 = 1 e produto 3/1 = 3, como em II e III. Somando os coeficientes, 1 − 1 − 19/4 + 4 + 3 = 9/4 = p(1). Fecha.",
+   "erradas": {
+    "A": "−17/2 não confere: com I a III, p(1) = 9a/4 e p(−1) = −15a/4. p(1) = −17/2 pediria a = −34/9, e então p(−1) = 85/6, não −15/4.",
+    "B": "−19/4 não confere: p(1) = 9a/4 = −19/4 pediria a = −19/9, e então p(−1) = −15a/4 = 95/12, não −15/4.",
+    "C": "−3/2 não confere: p(1) = 9a/4 = −3/2 pediria a = −2/3, e então p(−1) = −15a/4 = 5/2, não −15/4.",
+    "E": "9/2 não confere: p(1) = 9a/4 = 9/2 pediria a = 2, e então p(−1) = −15a/4 = −15/2, o dobro de −15/4."
+   },
+   "armadilha": "O produto das quatro raízes inclui 2 · (−2) = −4: esquecer esse sinal dá rs = +3/4 e estraga todo o resto.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de p(1) para o polinômio descrito por I a IV.",
+    "chave": "Raízes 2, −2, r, s com r + s = 1 e rs = −3/4; p(x) = a(x² − 4)(x² − x − 3/4) e p(−1) = −15/4 dá a = 1.",
+    "cuidado": "O produto das raízes leva o sinal de 2 · (−2) = −4."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razão p(1)/p(−1)",
+    "ideia": "Sem achar a: p(1)/p(−1) = ((−3)(−3/4))/((−3)(5/4)) = −3/5, logo p(1) = −3/5 · (−15/4) = 9/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² − 4 = (x − 2)(x + 2) → raízes: 2, −2, r, s",
+    "nota": "x² − 4 divide p"
+   },
+   {
+    "linha": "r + s = 1",
+    "nota": "soma: 2 e −2 se anulam"
+   },
+   {
+    "linha": "−4rs = 3 → rs = −3/4",
+    "nota": "produto das quatro"
+   },
+   {
+    "linha": "p(x) = a(x² − 4)(x² − x − 3/4)",
+    "nota": "montar com S e P"
+   },
+   {
+    "linha": "−15a/4 = −15/4 → a = 1",
+    "nota": "p(−1) dado"
+   },
+   {
+    "linha": "p(1) = (−3)(−3/4) = 9/4",
+    "nota": "substituir x = 1"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P97835893": {
+  "n": "43",
+  "conceito": "PG complexa: aₙ = (e^(i)/2)ⁿ, razão de módulo 1/2; a soma infinita é a₁/(1 − q), e a parte real sai multiplicando pelo conjugado do denominador.",
+  "equivocos": {
+   "B": "M16.2:primeiro-termo-sem-dividir",
+   "C": "M16.2:soma-desde-n-zero",
+   "D": "M16.2:sinal-trocado-no-numerador",
+   "E": "M16.2:sinal-trocado-no-numerador"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "cos n + i · sen n é (cos 1 + i · sen 1)ⁿ pela fórmula de De Moivre. Então aₙ = qⁿ com q = (cos 1 + i · sen 1)/2, de módulo 1/2 < 1, e a soma infinita converge. Some como PG e, para separar a parte real, multiplique numerador e denominador pelo conjugado do denominador.",
+    "formulas": [
+     "cos n + i · sen n = (cos 1 + i · sen 1)ⁿ",
+     "soma infinita da PG = a₁/(1 − q), se |q| < 1",
+     "|cos 1 + i · sen 1| = 1 e sen² 1 + cos² 1 = 1"
+    ],
+    "simbolos": [
+     [
+      "q",
+      "razão da PG"
+     ],
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes q"
+     ],
+     [
+      "De Moivre",
+      "regra: (cos θ + i · sen θ)ⁿ = cos nθ + i · sen nθ"
+     ],
+     [
+      "Re",
+      "parte real de um complexo"
+     ]
+    ]
+   },
+   "pista": "Escreva aₙ como uma potência de um único complexo e descubra a razão da PG.",
+   "passos": [
+    {
+     "faz": "Identifique a razão e o primeiro termo",
+     "conta": "aₙ = ((cos 1 + i · sen 1)/2)ⁿ → q = a₁ = (cos 1 + i · sen 1)/2",
+     "porque": "De Moivre junta cos n + i · sen n numa potência n-ésima; com 2ⁿ embaixo, a base é a mesma em todo termo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some a PG infinita",
+     "conta": "S = q/(1 − q) → ((cos 1 + i · sen 1)/2)/(1 − (cos 1 + i · sen 1)/2) → (cos 1 + i · sen 1)/(2 − cos 1 − i · sen 1)",
+     "porque": "|q| = 1/2 < 1, então vale a fórmula; multiplicar em cima e embaixo por 2 limpa as frações.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pelo conjugado do denominador",
+     "conta": "denominador: (2 − cos 1)² + sen² 1 → 4 − 4cos 1 + 1 → 5 − 4cos 1",
+     "porque": "Multiplicar por (2 − cos 1 + i · sen 1) deixa o denominador real; sen² 1 + cos² 1 = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a parte real do numerador",
+     "conta": "(cos 1 + i · sen 1)(2 − cos 1 + i · sen 1) → parte real: 2cos 1 − cos² 1 − sen² 1 → 2cos 1 − 1",
+     "porque": "A parte real do produto é (cos 1)(2 − cos 1) − (sen 1)(sen 1); de novo sen² 1 + cos² 1 = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a parte real da soma",
+     "conta": "Re(S) = (−1 + 2cos 1)/(5 − 4cos 1) → alternativa A",
+     "porque": "Parte real do numerador sobre o denominador real.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — a parte real da soma é (−1 + 2cos 1)/(5 − 4cos 1).",
+   "checagem": "Pela soma numérica: cos 1/2 + cos 2/4 + cos 3/8 + … somada no computador dá cerca de 0,0284, e (−1 + 2cos 1)/(5 − 4cos 1) com cos 1 ≈ 0,5403 também dá 0,0284. Fecha.",
+   "erradas": {
+    "B": "(−2 + 4cos 1)/(5 − 4cos 1) sai de usar cos 1 + i · sen 1 como primeiro termo, sem dividir por 2: (cos 1 + i · sen 1)/(1 − q) tem parte real o dobro da certa.",
+    "C": "(4 − 2cos 1)/(5 − 4cos 1) sai de começar a soma em n = 0: 1/(1 − q) inclui o termo a₀ = 1, e sua parte real é (4 − 2cos 1)/(5 − 4cos 1).",
+    "D": "(1 + 2cos 1)/(5 − 4cos 1) não confere: vale cerca de 0,733, e a soma numérica cos 1/2 + cos 2/4 + … dá cerca de 0,0284.",
+    "E": "(2 + 4cos 1)/(5 − 4cos 1) não confere: vale cerca de 1,47, mas o módulo da soma não passa de 1/2 + 1/4 + 1/8 + … = 1."
+   },
+   "armadilha": "A soma começa em n = 1: o primeiro termo é q, não 1; usar 1/(1 − q) leva à alternativa C.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A parte real da soma infinita de (cos n + i · sen n)/2ⁿ, n ≥ 1.",
+    "chave": "PG de razão q = (cos 1 + i · sen 1)/2; S = q/(1 − q), e o conjugado dá denominador 5 − 4cos 1.",
+    "cuidado": "Primeiro termo é q (n começa em 1), e o denominador real vem de (2 − cos 1)² + sen² 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "O módulo da soma é no máximo 1, o que derruba E; a soma numérica ≈ 0,028 só bate com A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "aₙ = qⁿ, q = (cos 1 + i · sen 1)/2",
+    "nota": "De Moivre"
+   },
+   {
+    "linha": "S = q/(1 − q) = (cos 1 + i · sen 1)/(2 − cos 1 − i · sen 1)",
+    "nota": "soma da PG, vezes 2/2"
+   },
+   {
+    "linha": "(2 − cos 1)² + sen² 1 = 5 − 4cos 1",
+    "nota": "denominador real"
+   },
+   {
+    "linha": "Re do numerador = 2cos 1 − 1",
+    "nota": "multiplicar pelo conjugado"
+   },
+   {
+    "linha": "Re(S) = (−1 + 2cos 1)/(5 − 4cos 1)",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

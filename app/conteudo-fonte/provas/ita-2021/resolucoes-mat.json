@@ -1240,5 +1240,454 @@
    "data": "2026-11-19",
    "lote": "mat-0079"
   }
+ },
+ "P5cdfcc31": {
+  "n": "52",
+  "conceito": "Probabilidade por contagem: arestas do dodecaedro (casos favoráveis) sobre pares de vértices (casos possíveis).",
+  "equivocos": {
+   "A": "M13.4:pares-com-repeticao",
+   "C": "M13.4:ordem-so-no-denominador",
+   "D": "M13.4:contagem-de-arestas-errada",
+   "E": "M13.4:contagem-de-arestas-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dois vértices pertencem a uma mesma aresta exatamente quando são as duas pontas de uma aresta. Então os casos favoráveis são as arestas e os casos possíveis são os pares de vértices sem ordem. O trabalho real é contar arestas e vértices a partir das 12 faces pentagonais, lembrando que cada aresta é compartilhada por 2 faces e cada vértice por 3.",
+    "formulas": [
+     "arestas = (faces · lados por face)/2",
+     "vértices = (faces · vértices por face)/3 (3 faces em cada vértice)",
+     "probabilidade = (casos favoráveis)/(casos possíveis)",
+     "pares sem ordem: C(n, 2) = (n · (n − 1))/2"
+    ],
+    "simbolos": [
+     [
+      "dodecaedro regular",
+      "poliedro de 12 faces pentagonais iguais, com 3 faces em cada vértice"
+     ],
+     [
+      "C(n, 2)",
+      "número de modos de escolher 2 entre n, sem ordem"
+     ],
+     [
+      "V, A, F",
+      "número de vértices, arestas e faces"
+     ]
+    ]
+   },
+   "pista": "Conte as arestas e os vértices pelas faces, tomando cuidado com o que cada face divide com as vizinhas.",
+   "passos": [
+    {
+     "faz": "Conte as arestas pelas faces",
+     "conta": "A = (12 · 5)/2 → A = 30",
+     "porque": "Cada pentágono tem 5 lados, mas cada aresta é lado de duas faces vizinhas, então a soma 60 conta cada aresta duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os vértices pelas faces",
+     "conta": "V = (12 · 5)/3 → V = 20",
+     "porque": "No dodecaedro regular, 3 pentágonos se encontram em cada vértice. Euler confirma: V − A + F = 20 − 30 + 12 = 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os pares de vértices",
+     "conta": "C(20, 2) = (20 · 19)/2 → 190",
+     "porque": "A escolha é de 2 vértices distintos e a ordem não importa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "30/190 → 3/19 → alternativa B",
+     "porque": "Cada aresta corresponde a um único par de vértices vizinhos. Dividindo numerador e denominador por 10, sai 3/19.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 3/19",
+   "checagem": "Olhe de um vértice só: escolhido o primeiro, sobram 19 para o segundo, e só 3 deles são vizinhos (3 arestas saem de cada vértice). A chance é 3/19, a mesma.",
+   "erradas": {
+    "A": "15/100 sai de contar os pares como 20²/2 = 200, sem tirar o vértice repetido: 30/200 = 15/100. O certo é (20 · 19)/2 = 190.",
+    "C": "15/190 sai de dividir as 30 arestas pelos pares com ordem, 20 · 19 = 380: 30/380 = 15/190. Ou se conta ordem em cima e embaixo, ou em nenhum.",
+    "D": "5/12 não confere: 5/12 de 190 pares dá 79,17, que não é número inteiro de pares favoráveis.",
+    "E": "2/5 não confere: 2/5 de 190 pares são 76 pares, mas o dodecaedro tem só 30 arestas."
+   },
+   "armadilha": "Na contagem pelas faces, cada aresta aparece duas vezes e cada vértice três: sem dividir, os números de arestas e vértices saem errados.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de dois vértices sorteados do dodecaedro serem as pontas de uma aresta.",
+    "chave": "30 arestas sobre C(20, 2) = 190 pares: 30/190 = 3/19.",
+    "cuidado": "Divida 12 · 5 por 2 para arestas e por 3 para vértices, e conte os pares sem ordem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "um vértice fixo",
+    "ideia": "Fixe o primeiro vértice: dos 19 restantes, 3 são vizinhos dele, logo P = 3/19."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A = (12 · 5)/2 = 30",
+    "nota": "cada aresta em 2 faces"
+   },
+   {
+    "linha": "V = (12 · 5)/3 = 20",
+    "nota": "cada vértice em 3 faces"
+   },
+   {
+    "linha": "C(20, 2) = (20 · 19)/2 = 190",
+    "nota": "pares de vértices"
+   },
+   {
+    "linha": "30/190 = 3/19",
+    "nota": "simplifica por 10: alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P363f15d5": {
+  "n": "49",
+  "conceito": "Contar triângulos de lados inteiros em PA com perímetro dado, usando a desigualdade triangular.",
+  "equivocos": {
+   "A": "M13.9:excluiu-casos-validos",
+   "C": "M13.9:ignorou-desigualdade-triangular",
+   "D": "M13.9:ignorou-desigualdade-triangular",
+   "E": "M13.9:ignorou-desigualdade-triangular"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Lados em PA se escrevem a − r, a e a + r: assim a soma fica 3a e o termo do meio sai do perímetro na hora. Depois, cada razão inteira r dá um triângulo diferente, desde que o maior lado seja menor que a soma dos outros dois. Contar triângulos é contar os valores de r que passam nesse teste.",
+    "formulas": [
+     "lados: a − r, a, a + r (r > 0)",
+     "desigualdade triangular: maior lado < soma dos outros dois"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais a razão r"
+     ],
+     [
+      "r",
+      "razão da PA, aqui um inteiro positivo"
+     ],
+     [
+      "não congruentes",
+      "triângulos com lados diferentes, que não se sobrepõem"
+     ]
+    ]
+   },
+   "pista": "Escreva os três lados com o termo do meio como centro e use o perímetro.",
+   "passos": [
+    {
+     "faz": "Escreva os lados pelo termo do meio",
+     "conta": "(a − r) + a + (a + r) = 87 → 3a = 87 → a = 29",
+     "porque": "O − r e o + r se cancelam na soma, então o lado do meio é fixo: 29.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a desigualdade triangular",
+     "conta": "29 + r < (29 − r) + 29 → 2r < 29 → r < 14,5",
+     "porque": "Só o maior lado, 29 + r, pode falhar o teste; os outros dois casos valem sempre com r > 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Liste as razões possíveis",
+     "conta": "r inteiro, 0 < r < 14,5 → r = 1, 2, ..., 14",
+     "porque": "A razão não pode ser nula e precisa ser inteira; com r < 14,5, o menor lado 29 − r também fica positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte e marque",
+     "conta": "14 valores de r → 14 triângulos → alternativa B",
+     "porque": "Cada r gera lados diferentes, então são 14 triângulos não congruentes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 14 triângulos",
+   "checagem": "Teste as pontas: r = 14 dá 15, 29 e 43, com 15 + 29 = 44 > 43, triângulo válido; r = 15 dá 14, 29 e 44, com 14 + 29 = 43 < 44, não fecha.",
+   "erradas": {
+    "A": "12 não confere: deixaria de fora razões válidas, como r = 14 (lados 15, 29, 43, com 15 + 29 = 44 > 43).",
+    "C": "16 não confere: exigiria r = 15 ou 16, mas r = 15 dá 14 + 29 = 43 < 44 e não forma triângulo.",
+    "D": "18 não confere: precisaria de r até 18, e já r = 15 falha a desigualdade triangular.",
+    "E": "20 não confere: precisaria de r até 20; com r = 20, os lados 9, 29, 49 têm 9 + 29 = 38 < 49."
+   },
+   "armadilha": "O limite de r vem da desigualdade triangular (r < 14,5), não só de o menor lado ser positivo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos triângulos de perímetro 87 têm lados inteiros em PA de razão não nula.",
+    "chave": "Lado do meio 29; desigualdade 29 + r < 58 − r dá r < 14,5, logo r de 1 a 14.",
+    "cuidado": "Teste o maior lado contra a soma dos outros dois; r = 0 não vale."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lista direta",
+    "ideia": "Os lados (29 − r, 29, 29 + r) valem de (28, 29, 30) até (15, 29, 43): 14 ternos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3a = 87 → a = 29",
+    "nota": "lado do meio"
+   },
+   {
+    "linha": "29 + r < 58 − r → 2r < 29",
+    "nota": "desigualdade triangular"
+   },
+   {
+    "linha": "r < 14,5 → r = 1, ..., 14",
+    "nota": "razões inteiras positivas"
+   },
+   {
+    "linha": "14 triângulos",
+    "nota": "alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P5303d68f": {
+  "n": "48",
+  "conceito": "Descobrir uma matriz 2 × 2 a partir de dois produtos conhecidos e calcular o seu traço.",
+  "equivocos": {
+   "B": "M15.1:traco-do-produto",
+   "C": "M15.1:parou-em-x",
+   "D": "M15.1:traco-do-produto",
+   "E": "M15.1:traco-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Multiplicar A por uma matriz é aplicar A em cada coluna dela. Subtraindo as duas igualdades, aparece uma matriz com as duas colunas iguais, e isso entrega x na hora. Depois, cada coluna vira um sistema pequeno para os elementos de A. O traço é a soma da diagonal principal.",
+    "formulas": [
+     "A(R − P) = AR − AP",
+     "A · (u, v) = (a·u + b·v, c·u + d·v)",
+     "tr(A) = a + d"
+    ],
+    "simbolos": [
+     [
+      "A = (a b; c d)",
+      "os quatro elementos desconhecidos de A, linha por linha"
+     ],
+     [
+      "tr(A)",
+      "traço: soma da diagonal principal, a + d"
+     ],
+     [
+      "(u, v)",
+      "coluna com os números u em cima e v embaixo"
+     ]
+    ]
+   },
+   "pista": "Subtraia a primeira igualdade da segunda e olhe as colunas da matriz que aparece à esquerda.",
+   "passos": [
+    {
+     "faz": "Subtraia as duas igualdades",
+     "conta": "A(2 3; 4 5) − A(1 2; 3 4) = A(1 1; 1 1) → (x − 1   3 − x; 1   1)",
+     "porque": "A matriz (1 1; 1 1) tem colunas iguais, então A vezes ela também tem colunas iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale as colunas e ache x",
+     "conta": "x − 1 = 3 − x → 2x = 4 → x = 2 ; e A · (1, 1) = (1, 1)",
+     "porque": "As duas colunas do resultado são A · (1, 1); a segunda linha já mostra que essa coluna é (1, 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a primeira linha de A",
+     "conta": "a + b = 1 e a + 3b = 1 → 2b = 0 → b = 0, a = 1",
+     "porque": "A 1ª coluna de A(1 2; 3 4) é A · (1, 3), cujo número de cima é 1. Junte com a + b = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a segunda linha de A",
+     "conta": "c + d = 1 e 2c + 4d = 0 → c = −2d → −d = 1 → d = −1, c = 2",
+     "porque": "A 2ª coluna de A(1 2; 3 4) é A · (2, 4) = (x, 0); o 0 de baixo dá 2c + 4d = 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a diagonal",
+     "conta": "tr(A) = a + d = 1 + (−1) = 0 → alternativa A",
+     "porque": "O traço é só a + d; os elementos fora da diagonal não entram.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — o traço de A é 0",
+   "checagem": "Com A = (1 0; 2 −1): A(1 2; 3 4) = (1 2; −1 0), que é (1 x; y 0) com x = 2 e y = −1; e A(2 3; 4 5) = (2 3; 0 1), que é (x 3; y + 1 1) com x = 2 e y + 1 = 0. Fecha.",
+   "erradas": {
+    "B": "B sai de somar a diagonal do produto A(1 2; 3 4) = (1 2; −1 0), que dá 1 + 0 = 1, e não a diagonal de A.",
+    "C": "C sai de parar em x = 2 e dar x como resposta; o pedido é o traço de A, a + d = 1 − 1 = 0.",
+    "D": "D sai de somar a diagonal do produto A(2 3; 4 5) = (2 3; 0 1), que dá 2 + 1 = 3, e não a diagonal de A.",
+    "E": "E não confere: com A = (1 0; 2 −1), a diagonal é 1 e −1; nenhuma conta com esses dois números dá 4."
+   },
+   "armadilha": "Somar a diagonal de um dos produtos dados (1 ou 3) em vez da diagonal da própria matriz A.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O traço da matriz A.",
+    "chave": "A(R − P) = A(1 1; 1 1) tem colunas iguais: x = 2 e A · (1, 1) = (1, 1); daí A = (1 0; 2 −1).",
+    "cuidado": "O traço é de A, não das matrizes que aparecem nos produtos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela inversa",
+    "ideia": "A = (1 x; y 0) · (1 2; 3 4)⁻¹ e A = (x 3; y + 1 1) · (2 3; 4 5)⁻¹; igualando as duas saem x = 2, y = −1 e A = (1 0; 2 −1)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A(1 1; 1 1) = (x − 1   3 − x; 1   1)",
+    "nota": "subtrair as igualdades"
+   },
+   {
+    "linha": "x − 1 = 3 − x → x = 2",
+    "nota": "colunas iguais"
+   },
+   {
+    "linha": "a + b = 1, a + 3b = 1 → a = 1, b = 0",
+    "nota": "1ª linha de A"
+   },
+   {
+    "linha": "c + d = 1, 2c + 4d = 0 → c = 2, d = −1",
+    "nota": "2ª linha de A"
+   },
+   {
+    "linha": "tr(A) = 1 + (−1) = 0",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P4e1e9f6e": {
+  "n": "55",
+  "conceito": "Usar que, com coeficientes inteiros, a − b divide p(a) − p(b).",
+  "equivocos": {
+   "A": "M16.1:propriedade-a-menos-b-ignorada",
+   "B": "M16.1:propriedade-a-menos-b-ignorada",
+   "D": "M16.1:propriedade-a-menos-b-ignorada",
+   "E": "M16.1:propriedade-a-menos-b-ignorada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com coeficientes inteiros, p(a) − p(b) é sempre múltiplo de a − b, porque cada termo aⁿ − bⁿ tem o fator a − b. Aqui 51 − 3 = 48, então 391 − p(3) é múltiplo de 48. Isso fixa o resto de p(3) na divisão por 48, e a faixa 0 ≤ p(3) < 12 deixa um só valor.",
+    "formulas": [
+     "coeficientes inteiros: (a − b) divide p(a) − p(b)",
+     "aⁿ − bⁿ = (a − b)(aⁿ⁻¹ + … + bⁿ⁻¹)"
+    ],
+    "simbolos": [
+     [
+      "p(51), p(3)",
+      "valores do polinômio em x = 51 e em x = 3"
+     ],
+     [
+      "múltiplo de 48",
+      "número da forma 48 · m, com m inteiro"
+     ]
+    ]
+   },
+   "pista": "Compare p(51) com p(3): a diferença 51 − 3 tem um papel especial quando os coeficientes são inteiros.",
+   "passos": [
+    {
+     "faz": "Aplique a propriedade da diferença",
+     "conta": "(51 − 3) divide p(51) − p(3) → 48 divide 391 − p(3)",
+     "porque": "Cada termo c·(51ⁿ − 3ⁿ) é múltiplo de 51 − 3 e c é inteiro, então a soma também é.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Divida 391 por 48",
+     "conta": "391 = 48 · 8 + 7",
+     "porque": "48 · 8 = 384 e 391 − 384 = 7. O resto de 391 na divisão por 48 é 7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o resto que p(3) precisa ter",
+     "conta": "391 − p(3) = 48m → p(3) = 391 − 48m → p(3) = 7 + 48(8 − m)",
+     "porque": "Tirar um múltiplo de 48 não muda o resto: p(3) também deixa resto 7 na divisão por 48.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a faixa dada",
+     "conta": "0 ≤ p(3) < 12 → p(3) = 7",
+     "porque": "Os números com resto 7 na divisão por 48 são …, −41, 7, 55, …; só o 7 está entre 0 e 12.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 7",
+   "checagem": "Um exemplo confirma que 7 é possível: p(x) = 8x − 17 tem coeficientes inteiros, p(51) = 408 − 17 = 391 e p(3) = 24 − 17 = 7.",
+   "erradas": {
+    "A": "5 não confere: 391 − 5 = 386, e 386 = 48 · 8 + 2, resto 2: não é múltiplo de 48.",
+    "B": "6 não confere: 391 − 6 = 385, e 385 não é múltiplo de 48 (48 · 8 = 384).",
+    "D": "8 não confere: 391 − 8 = 383, que deixa resto 47 na divisão por 48.",
+    "E": "9 não confere: 391 − 9 = 382, que deixa resto 46 na divisão por 48."
+   },
+   "armadilha": "Não dá para achar o polinômio: a questão se resolve só pela divisibilidade de p(51) − p(3) por 51 − 3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de p(3), sabendo p(51) = 391 e 0 ≤ p(3) < 12.",
+    "chave": "48 divide 391 − p(3); 391 deixa resto 7 por 48, logo p(3) = 7.",
+    "cuidado": "A propriedade só vale porque os coeficientes são inteiros."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Só 391 − 7 = 384 = 48 · 8 é múltiplo de 48; 386, 385, 383 e 382 não são."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "51 − 3 = 48 → 48 divide 391 − p(3)",
+    "nota": "coeficientes inteiros"
+   },
+   {
+    "linha": "391 = 48 · 8 + 7",
+    "nota": "resto 7"
+   },
+   {
+    "linha": "p(3) = 7 + 48k",
+    "nota": "mesmo resto"
+   },
+   {
+    "linha": "0 ≤ p(3) < 12 → p(3) = 7",
+    "nota": "único na faixa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

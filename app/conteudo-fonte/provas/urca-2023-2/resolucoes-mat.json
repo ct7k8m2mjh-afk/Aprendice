@@ -1395,5 +1395,118 @@
    "data": "2026-11-19",
    "lote": "mat-0079"
   }
+ },
+ "P96e8b62d": {
+  "n": "20",
+  "conceito": "Calcular o traço de uma matriz e resolver uma inequação exponencial de base menor que 1.",
+  "equivocos": {
+   "A": "M15.1:intervalo-errado-da-parabola",
+   "B": "M15.1:intervalo-errado-da-parabola",
+   "C": "M15.1:intervalo-errado-da-parabola",
+   "D": "M15.1:nao-inverteu-base-menor-que-1"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O traço é a soma da diagonal principal. Como 1 = (1/2)⁰, a inequação compara duas potências de base 1/2. Base entre 0 e 1 inverte o sentido da desigualdade ao comparar os expoentes. Sobra uma inequação do 2º grau.",
+    "formulas": [
+     "tr(A) = a₁₁ + a₂₂ + a₃₃",
+     "(1/2)ᵐ ≥ (1/2)ⁿ ⇔ m ≤ n",
+     "x² − 3x + 2 = (x − 1)(x − 2)"
+    ],
+    "simbolos": [
+     [
+      "tr(A)",
+      "traço de A: soma da diagonal principal"
+     ],
+     [
+      "ℝ",
+      "números reais"
+     ]
+    ]
+   },
+   "pista": "Escreva o 1 do lado direito como uma potência de base 1/2.",
+   "passos": [
+    {
+     "faz": "Some a diagonal principal",
+     "conta": "tr(A) = −3x + x² + 2 → x² − 3x + 2",
+     "porque": "Diagonal principal: −3x, x² e 2; o resto da matriz não entra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva 1 como potência de 1/2",
+     "conta": "(1/2)^(x² − 3x + 2) ≥ 1 → (1/2)^(x² − 3x + 2) ≥ (1/2)⁰",
+     "porque": "Qualquer base não nula elevada a 0 dá 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os expoentes, invertendo o sinal",
+     "conta": "(1/2)^(x² − 3x + 2) ≥ (1/2)⁰ → x² − 3x + 2 ≤ 0",
+     "porque": "Com base 1/2, potência maior vem de expoente menor, então ≥ vira ≤.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a inequação do 2º grau",
+     "conta": "(x − 1)(x − 2) ≤ 0 → 1 ≤ x ≤ 2",
+     "porque": "As raízes são 1 e 2; a parábola abre para cima, então fica negativa ou nula entre as raízes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "{x ∈ ℝ; 1 ≤ x ≤ 2} → alternativa E",
+     "porque": "É o intervalo fechado entre as raízes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — {x ∈ ℝ; 1 ≤ x ≤ 2}",
+   "checagem": "Teste x = 1,5: tr = 2,25 − 4,5 + 2 = −0,25 e (1/2)^(−0,25) ≈ 1,19 ≥ 1, serve. Teste x = 0: tr = 2 e (1/2)² = 1/4 < 1, não serve. Teste x = 3: tr = 2 e de novo 1/4 < 1, não serve.",
+   "erradas": {
+    "A": "A não confere: x = 3 está em x ≥ 2, mas dá tr = 2 e (1/2)² = 1/4 < 1.",
+    "B": "B não confere: x = 0 está em x ≤ 1, mas dá tr = 2 e (1/2)² = 1/4 < 1.",
+    "C": "C não confere: x = 3 está em x ≥ 1, mas dá (1/2)² = 1/4 < 1.",
+    "D": "D sai de não inverter o sinal: x² − 3x + 2 ≥ 0 dá x ≤ 1 ou x ≥ 2, o lado de fora das raízes."
+   },
+   "armadilha": "Manter o ≥ ao passar para os expoentes: com base 1/2 o sentido se inverte.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os x reais com (1/2)^tr(A) ≥ 1.",
+    "chave": "tr(A) = x² − 3x + 2 e, com base 1/2, a desigualdade vira x² − 3x + 2 ≤ 0: 1 ≤ x ≤ 2.",
+    "cuidado": "Base entre 0 e 1 inverte a desigualdade dos expoentes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de pontos",
+    "ideia": "x = 0 e x = 3 falham (dão 1/4) e x = 1,5 serve; só a E contém 1,5 e exclui 0 e 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "tr(A) = −3x + x² + 2",
+    "nota": "diagonal principal"
+   },
+   {
+    "linha": "(1/2)^(x² − 3x + 2) ≥ (1/2)⁰",
+    "nota": "1 como potência de 1/2"
+   },
+   {
+    "linha": "x² − 3x + 2 ≤ 0",
+    "nota": "base menor que 1: inverte"
+   },
+   {
+    "linha": "(x − 1)(x − 2) ≤ 0 → 1 ≤ x ≤ 2",
+    "nota": "entre as raízes"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

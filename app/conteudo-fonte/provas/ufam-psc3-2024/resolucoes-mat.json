@@ -316,5 +316,234 @@
    "data": "2026-11-19",
    "lote": "mat-0079"
   }
+ },
+ "Pb619616a": {
+  "n": "53",
+  "conceito": "Mediana e média de uma distribuição de frequências: posição central pela frequência acumulada e média ponderada.",
+  "equivocos": {
+   "A": "M14.1:mediana-sem-frequencia-acumulada",
+   "C": "M14.1:mediana-sem-frequencia-acumulada",
+   "D": "M14.1:media-sem-ponderar-pelas-frequencias",
+   "E": "M14.1:mediana-sem-frequencia-acumulada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na tabela de frequências, cada valor aparece fi vezes: são 44 dados ao todo. A mediana é o valor que fica no meio da lista ordenada; com 44 dados, é a média do 22.º com o 23.º, achados pela frequência acumulada. A média é ponderada pelas frequências.",
+    "formulas": [
+     "n = soma das frequências",
+     "média = (soma de Xi × fi)/n",
+     "mediana com n par: média do termo n/2 com o termo n/2 + 1"
+    ],
+    "simbolos": [
+     [
+      "Xi",
+      "cada valor da tabela"
+     ],
+     [
+      "fi",
+      "quantas vezes o valor aparece"
+     ],
+     [
+      "frequência acumulada",
+      "quantos dados há até aquele valor, somando as frequências"
+     ]
+    ]
+   },
+   "pista": "Some as frequências antes de tudo: o total diz qual posição é a do meio.",
+   "passos": [
+    {
+     "faz": "Conte os dados",
+     "conta": "n = 6 + 15 + 19 + 4 → n = 44",
+     "porque": "Com 44 dados, os termos centrais são o 22.º e o 23.º.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a mediana pela acumulada",
+     "conta": "acumulada: 6 | 21 | 40 | 44 → 22.º e 23.º = 15 → mediana 15",
+     "porque": "Até o 11 há 21 dados; do 22.º ao 40.º todos valem 15, então os dois centrais são 15.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some valor × frequência",
+     "conta": "7·6 + 11·15 + 15·19 + 19·4 = 42 + 165 + 285 + 76 → 568",
+     "porque": "Cada valor conta tantas vezes quanto a sua frequência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo número de dados",
+     "conta": "568/44 ≈ 12,91",
+     "porque": "A média é (soma)/44 = 568/44: o denominador são os 44 dados, não os 4 valores da tabela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "mediana 15 | média ≈ 12,91 → alternativa B",
+     "porque": "A ordem pedida é mediana e depois média.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — mediana 15 e média aproximada 12,91",
+   "checagem": "Reconstrua o total: 44 × 12,91 ≈ 568,0, que bate com 42 + 165 + 285 + 76. E a média abaixo da mediana é coerente: 21 dados (7 e 11) puxam para baixo, contra só 4 dados de 19.",
+   "erradas": {
+    "A": "A não confere: a mediana é 15, não 14; e 44 × 13,76 = 605,44, longe do total 568.",
+    "C": "C não confere: a mediana é 15, e 44 × 14,80 = 651,2, não 568.",
+    "D": "D acerta a mediana 15, mas 44 × 14,85 = 653,4 não é o total 568; a média é 12,91.",
+    "E": "E não confere: o 22.º e o 23.º dados valem 15, então a mediana é 15, não 16; e 44 × 14,90 = 655,6, não 568."
+   },
+   "armadilha": "A mediana se acha pela posição na lista de 44 dados, e a média divide por 44, não por 4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A mediana e a média da distribuição de frequências.",
+    "chave": "44 dados: o 22.º e o 23.º valem 15; média = 568/44 ≈ 12,91.",
+    "cuidado": "Use a frequência acumulada para a mediana e pondere a média pelas frequências."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem pelo meio",
+    "ideia": "Os 21 primeiros dados valem 7 ou 11; os 19 seguintes, 15: o meio (22.º e 23.º) cai no 15."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "n = 6 + 15 + 19 + 4 = 44",
+    "nota": "total de dados"
+   },
+   {
+    "linha": "acumulada 6, 21, 40, 44 → mediana 15",
+    "nota": "22.º e 23.º termos"
+   },
+   {
+    "linha": "42 + 165 + 285 + 76 = 568",
+    "nota": "soma ponderada"
+   },
+   {
+    "linha": "568/44 ≈ 12,91",
+    "nota": "média: alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P6d8409ed": {
+  "n": "49",
+  "conceito": "Achar coeficientes de um polinômio divisível por (x − 2)(x − 3) usando que 2 e 3 são raízes.",
+  "equivocos": {
+   "B": "M16.1:par-sem-testar-nas-raizes",
+   "C": "M16.1:par-sem-testar-nas-raizes",
+   "D": "M16.1:par-sem-testar-nas-raizes",
+   "E": "M16.1:par-sem-testar-nas-raizes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Divisível por (x − 2)(x − 3) quer dizer que 2 e 3 são raízes: P(2) = 0 e P(3) = 0. Isso dá duas equações com α e β. Subtraindo uma da outra, o β some e o α sai direto.",
+    "formulas": [
+     "P divisível por (x − a) ⟺ P(a) = 0",
+     "subtrair equações elimina a incógnita de mesmo coeficiente"
+    ],
+    "simbolos": [
+     [
+      "α, β",
+      "coeficientes desconhecidos de P(x)"
+     ],
+     [
+      "P(2), P(3)",
+      "valores de P em x = 2 e x = 3"
+     ]
+    ]
+   },
+   "pista": "Substitua x = 2 e x = 3 em P(x) e iguale cada resultado a zero.",
+   "passos": [
+    {
+     "faz": "Use x = 2 como raiz",
+     "conta": "−3 · 8 + α · 4 + β = 0 → 4α + β = 24",
+     "porque": "P(2) = 0 porque (x − 2) divide P. O −24 passa para o outro lado somando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use x = 3 como raiz",
+     "conta": "−3 · 27 + α · 9 + β = 0 → 9α + β = 81",
+     "porque": "P(3) = 0 porque (x − 3) divide P. O −81 passa somando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia para eliminar β",
+     "conta": "(9α + β) − (4α + β) = 81 − 24 → 5α = 57 → α = 57/5",
+     "porque": "O β das duas se cancela. O 5 que multiplica α passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache β",
+     "conta": "β = 24 − 4 · 57/5 → β = (120 − 228)/5 → β = −108/5",
+     "porque": "Da 1ª equação, β = 24 − 4α. 24 vira 120/5 para subtrair frações de mesmo denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o par à alternativa",
+     "conta": "α = 57/5 e β = −108/5 → alternativa A",
+     "porque": "A ordem pedida é α e depois β.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — α = 57/5 e β = −108/5",
+   "checagem": "Confira em x = 3: −81 + 9 · 57/5 − 108/5 = (−405 + 513 − 108)/5 = 0/5 = 0. Fecha, e em x = 2 também: (−120 + 228 − 108)/5 = 0.",
+   "erradas": {
+    "B": "B não confere: com α = 66/5 e β = −110/5, P(2) = −24 + 264/5 − 22 = 34/5, e não 0.",
+    "C": "C não confere: com α = 78/7 e β = −112/7, P(2) = −24 + 312/7 − 16 = 32/7, e não 0.",
+    "D": "D não confere: com α = 85/8 e β = −116/7, P(2) = −24 + 85/2 − 116/7 = 27/14, e não 0.",
+    "E": "E não confere: com α = 92/9 e β = −118/9, P(2) = −24 + 368/9 − 118/9 = 34/9, e não 0."
+   },
+   "armadilha": "Divisível pelo produto quer dizer que 2 e 3 zeram P ao mesmo tempo: uma equação só não basta para duas incógnitas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os valores de α e β para P(x) ser divisível por (x − 2)(x − 3).",
+    "chave": "P(2) = 0 e P(3) = 0 dão 4α + β = 24 e 9α + β = 81, logo α = 57/5 e β = −108/5.",
+    "cuidado": "Calcule 2³ = 8 e 3³ = 27 com o −3 na frente: −24 e −81."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "divisão pelo produto",
+    "ideia": "P(x) = (x² − 5x + 6)(−3x + c); o termo em x, −5c − 18, tem de ser 0, logo c = −18/5, α = c + 15 = 57/5 e β = 6c = −108/5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4α + β = 24",
+    "nota": "P(2) = 0"
+   },
+   {
+    "linha": "9α + β = 81",
+    "nota": "P(3) = 0"
+   },
+   {
+    "linha": "5α = 57 → α = 57/5",
+    "nota": "subtrair: β some"
+   },
+   {
+    "linha": "β = 24 − 228/5 = −108/5",
+    "nota": "voltar na 1ª"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

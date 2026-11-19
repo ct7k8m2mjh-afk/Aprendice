@@ -423,3 +423,23 @@ DADO P980876b8 (Unifor 2026-2 q2): alternativas.E -> "603775" (trecho "E + 16 4"
 DADO Pf66a7188 (UFJF 2025 PISM III q17): alternativas -> A "2^20 · 18! · 4!"; B "2^8 · (12!)/(4!8!) · 8!"; C "2^4 · (20!)/(12!) · (8!)/(2!6!)"; D "2^20 · (16!)/(2!2!) · 8!"; E "1/2 · (16!)/(2!2!) · 4!"
 DADO Pa5d0c2c5 (URCA 2023.2 q26): texto_da_prova -> "A soma C(8,4) − C(7,3) + C(6,4) + C(6,5) é igual a:"
 DADO Paa2c58f8 (URCA 2025.2/2026.1 q21): texto_da_prova -> "a_n = C(2026, n)/2^n"; alternativas -> A "−2^(−2026)", B "−2^(−2022)", C "2^(−2022)", D "2^(−2026)", E "2^(−2024)"
+
+## 2026-11-19 19:20 UTC — PENDÊNCIAS mat-0080 — session_01PveEKX1qHQh5Qz4UFj3KyL
+Gabarito do Aprendice (resolvedor = conferente às cegas = preliminar): P7b6cf661 D, Pa184265b E, Pda9df7a9 E, Pc4bcdc47 E, P910903cf E, Pe658dba9 C, P1ddbe8c2 B.
+RECLASS Pc0c87ffa M13.5 -> M04.5 (Unioeste 2022 q68: trabalho conjunto de três equipes, 376 vacinas por dia, sem probabilidade)
+RECLASS Pc2bd8b58 M14.2 -> M06.5 (UEG 2024/2 q23: modelo logarítmico de crescimento populacional, sem tabela nem gráfico)
+RECLASS P8457ab12 M14.3 -> M05.4 (UEMA 2026 q48: função sinal definida por partes e contagem de dias, sem dispersão)
+RECLASS Pb619616a M14.3 -> M14.1 (UFAM PSC3 2024 q53: mediana e média de tabela de frequências)
+RECLASS P3882c4e7 M14.1 -> M16.1 (ITA 2023 q40: média harmônica das raízes por Girard)
+RECLASS P6b6b9540 M15.3 -> M04.3 (UFJF 2024 PISM III q17: sistema 2 × 2 por eliminação, sem matriz nem determinante)
+ANULAR Pcdca0c12 (URCA PSU 2025.1): o determinante dá cos 2x = 0 ou sen 2x = −1/2; a oficial B deixa de fora x = 3π/4 e x = 11π/12 + kπ, e nenhuma alternativa traz o conjunto completo; recurso negado: https://www.urca.br/cev/wp-content/uploads/sites/39/2025/01/Resposta-aos-recursosPSU-2025.1.pdf
+DADO P729558e1 (PUC Minas 2022/2 q44): alternativas.D -> "18,2%" (o "31" é o número da página)
+DADO P8b904ae2 (UFJF PISM III 2024 q20): alternativas -> A 6 | B 10 | C 12 | D 24 | E 30 (soltas no fim do texto_da_prova)
+RECLASS P8b904ae2 M13.4 -> M13.3 (UFJF PISM III 2024 q20: contagem por combinação, sem probabilidade)
+RECLASS P270c4b1f M13.5 -> M13.6 (ITA 2023 q45: evento complementar 1 − (7/8)⁴, não condicional)
+DADO P1ddbe8c2 (IME 2025 q3): alternativas -> A) 2^16, B) 2^17, C) 2^18, D) 2^19, E) 2^20 (entrada traz 216…220)
+DADO P940140fd (UFRR 2023 q17): texto_da_prova -> P(x) = x^6 + 2x^5 − x^4 + x^3 + 2x^2 − 3x − 2
+DADO P3fb7bda1 (Unioeste 2021 q65): texto_da_prova -> "44. Seja a ∈ ℤ um número inteiro, com a ≠ 0, e considere o polinômio P(x) = ax^3 + (a − 1 − a^2)(x^2 + x) + a. É CORRETO afirmar que:" (nas alternativas também somem a e P(x); no print o número é 44)
+DADO P539d0583 (UFJF 2024 q16): texto_da_prova -> p(x) = x^2 + x − 6 e q(x) = x^2 + x/2 − 1/2; r(x) = p(x) · q(x)
+DADO P97835893 (ITA 2020 q43): alternativas -> A) (−1 + 2cos 1)/(5 − 4cos 1); B) (−2 + 4cos 1)/(5 − 4cos 1); C) (4 − 2cos 1)/(5 − 4cos 1); D) (1 + 2cos 1)/(5 − 4cos 1); E) (2 + 4cos 1)/(5 − 4cos 1); termo geral a_n = (cos n + i · sen n)/2^n
+GABARITO P1ddbe8c2 (IME 2025 q3): segundo o Estratégia Militares, o definitivo oficial do IME (1ª fase 29/09/2024) é B — pode trocar o gabarito do Aprendice pelo oficial

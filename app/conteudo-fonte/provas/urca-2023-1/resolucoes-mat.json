@@ -1257,5 +1257,234 @@
    "data": "2026-11-19",
    "lote": "mat-0078"
   }
+ },
+ "Pfa469ab0": {
+  "n": "24",
+  "conceito": "Espaço amostral de pares ordenados com reposição e simetria entre os eventos maior e menor.",
+  "equivocos": {
+   "B": "M13.4:probabilidades-somam-mais-de-1",
+   "C": "M13.4:empate-contado-como-maior",
+   "D": "M13.4:ignorou-simetria",
+   "E": "M13.4:probabilidades-somam-mais-de-1"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com reposição, cada sorteio tem 101 resultados e a dupla ordenada tem 101 · 101 = 101² resultados igualmente prováveis. Primeiro conte os empates, que são o caso mais fácil. Os pares restantes se dividem meio a meio entre segunda maior e segunda menor, porque trocar a ordem das bolas transforma um caso no outro.",
+    "formulas": [
+     "probabilidade = (casos favoráveis)/(casos possíveis)",
+     "P1 + P2 + P3 = 1",
+     "por simetria, P1 = P2"
+    ],
+    "simbolos": [
+     [
+      "101²",
+      "101 · 101 = 10 201 pares ordenados (primeira, segunda)"
+     ],
+     [
+      "P1, P2, P3",
+      "chances de a segunda ser maior, menor ou igual à primeira"
+     ],
+     [
+      "com reposição",
+      "a primeira bola volta à urna antes do segundo sorteio"
+     ]
+    ]
+   },
+   "pista": "Conte primeiro os pares em que as duas bolas têm o mesmo número; o resto se divide por simetria.",
+   "passos": [
+    {
+     "faz": "Conte os resultados possíveis",
+     "conta": "101 · 101 → 101² = 10 201 pares ordenados",
+     "porque": "A bola volta para a urna, então o segundo sorteio também tem 101 opções.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chance de empate",
+     "conta": "P3 = 101/101² → P3 = 1/101",
+     "porque": "Há um par igual para cada número de 0 a 100: (0, 0), (1, 1), ..., (100, 100). Simplificando por 101, sai 1/101.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida o resto ao meio",
+     "conta": "(101² − 101)/2 = (10 201 − 101)/2 → 5050 pares",
+     "porque": "Para cada par com a segunda maior, trocar a ordem dá um par com a segunda menor, e vice-versa. Por isso os dois grupos têm o mesmo tamanho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue os três valores à alternativa",
+     "conta": "P1 = P2 = 5050/101² | P3 = 1/101 → alternativa A",
+     "porque": "É exatamente o trio que aparece na alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — P1 = P2 = 5050/101² e P3 = 1/101",
+   "checagem": "Some: 5050 + 5050 + 101 = 10 201 = 101², então P1 + P2 + P3 = 1. Pela soma 0 + 1 + ... + 100 = 5050 também se chega aos pares com a segunda maior: se a primeira é k, a segunda pode ser um dos 100 − k números acima.",
+   "erradas": {
+    "B": "B não confere: 5050 + 5149 + 2 · 101 = 10 401, mais que 101² = 10 201, então as três chances somariam mais de 1. Além disso, P1 e P2 têm de ser iguais.",
+    "C": "C sai de contar os empates junto: 5151 = 5050 + 101 são os pares com a segunda maior ou igual. Com P3 = 2/101 a soma dá 10 504, mais que 10 201.",
+    "D": "D não confere: há só 101 empates em 10 201 pares, então P3 = 1/101, e P1 e P2 têm de ser iguais por simetria.",
+    "E": "E não confere: 50/101 = 5050/101², então as três chances seriam iguais e somariam 15 150/10 201, mais que 1."
+   },
+   "armadilha": "Os empates não entram em maior nem em menor: tire os 101 pares iguais antes de dividir ao meio.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As chances de a segunda bola ser maior, menor ou igual à primeira, com reposição.",
+    "chave": "101 empates em 101² pares; os 10 100 restantes se dividem igualmente: 5050 para cada lado.",
+    "cuidado": "Confira que as três chances somam 1 e que maior e menor saem iguais."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma direta",
+    "ideia": "Se a primeira é k, há 100 − k segundas maiores; somando de k = 0 a 100: 100 + 99 + ... + 0 = 5050."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "total = 101 · 101 = 10 201",
+    "nota": "pares ordenados com reposição"
+   },
+   {
+    "linha": "P3 = 101/10 201 = 1/101",
+    "nota": "101 empates; simplifica por 101"
+   },
+   {
+    "linha": "10 201 − 101 = 10 100",
+    "nota": "pares sem empate"
+   },
+   {
+    "linha": "10 100/2 = 5050",
+    "nota": "metade para cada lado"
+   },
+   {
+    "linha": "P1 = P2 = 5050/101²",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P3e1c51b1": {
+  "n": "19",
+  "conceito": "Montar A − x·Id, calcular o determinante 2 × 2 e avaliar o polinômio característico em dois pontos.",
+  "equivocos": {
+   "B": "M15.2:somou-os-valores-de-x",
+   "C": "M15.2:errou-o-determinante-2x2",
+   "D": "M15.2:errou-o-determinante-2x2",
+   "E": "M15.2:errou-o-determinante-2x2"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Subtrair x · Id de A só tira x da diagonal principal; os outros elementos ficam iguais. O determinante 2 × 2 vira um polinômio de 2º grau em x. Depois é só substituir −1 e 6.",
+    "formulas": [
+     "A − x · Id = (4 − x  5; 2  1 − x)",
+     "det (p q; r s) = ps − qr"
+    ],
+    "simbolos": [
+     [
+      "Id",
+      "matriz identidade: 1 na diagonal e 0 fora"
+     ],
+     [
+      "det",
+      "determinante"
+     ],
+     [
+      "f(−1)",
+      "valor de f quando x = −1"
+     ]
+    ]
+   },
+   "pista": "Escreva a matriz A − x · Id com cuidado: o x entra só em duas posições.",
+   "passos": [
+    {
+     "faz": "Monte A − x · Id",
+     "conta": "(4 5; 2 1) − (x 0; 0 x) = (4 − x  5; 2  1 − x)",
+     "porque": "x · Id tem x só na diagonal, então só a diagonal de A muda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o determinante",
+     "conta": "f(x) = (4 − x)(1 − x) − 5 · 2 = x² − 5x + 4 − 10 = x² − 5x − 6",
+     "porque": "Diagonal principal menos diagonal secundária; depois expanda e junte os termos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule f(−1) e f(6)",
+     "conta": "f(−1) = 1 + 5 − 6 = 0 | f(6) = 36 − 30 − 6 = 0",
+     "porque": "Substitua cada valor no polinômio. Os dois dão zero: −1 e 6 são as raízes de f.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e marque",
+     "conta": "f(−1) + f(6) = 0 + 0 = 0 → alternativa A",
+     "porque": "A pergunta é a soma dos valores de f, não a soma dos números −1 e 6.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — f(−1) + f(6) = 0.",
+   "checagem": "Pela forma fatorada: x² − 5x − 6 = (x + 1)(x − 6), que zera em −1 e em 6. Direto na matriz: com x = 6, A − 6 · Id = (−2 5; 2 −5), cujas linhas são opostas, logo o determinante é 0.",
+   "erradas": {
+    "B": "5 sai de somar os próprios números −1 + 6 = 5 (que é a soma das raízes de f), em vez de somar os valores f(−1) e f(6), que são 0.",
+    "C": "8 não confere: f(−1) = 5 · 2 − 10 = 0 e f(6) = (−2)(−5) − 10 = 0; a soma é 0.",
+    "D": "10 não confere: os dois valores de f são zero, porque −1 e 6 são raízes de x² − 5x − 6.",
+    "E": "12 não confere: f(−1) = 0 e f(6) = 0, então nenhuma soma positiva é possível."
+   },
+   "armadilha": "Os valores pedidos são as raízes do polinômio: quem soma os números −1 e 6 encontra 5 em vez de 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "f(−1) + f(6), com f(x) = det(A − x · Id).",
+    "chave": "f(x) = (4 − x)(1 − x) − 10 = x² − 5x − 6 = (x + 1)(x − 6).",
+    "cuidado": "Subtraia x só da diagonal e some os valores de f, não os de x."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fatorar",
+    "ideia": "x² − 5x − 6 tem soma das raízes 5 e produto −6: raízes −1 e 6, então f(−1) = f(6) = 0 sem substituir."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A − x · Id = (4 − x  5; 2  1 − x)",
+    "nota": "x sai só da diagonal"
+   },
+   {
+    "linha": "f(x) = (4 − x)(1 − x) − 10 = x² − 5x − 6",
+    "nota": "principal − secundária"
+   },
+   {
+    "linha": "f(−1) = 1 + 5 − 6 = 0",
+    "nota": "substitui x = −1"
+   },
+   {
+    "linha": "f(6) = 36 − 30 − 6 = 0",
+    "nota": "substitui x = 6"
+   },
+   {
+    "linha": "0 + 0 = 0",
+    "nota": "soma pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

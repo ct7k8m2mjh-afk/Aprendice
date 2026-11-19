@@ -1657,5 +1657,111 @@
    "data": "2026-11-19",
    "lote": "mat-0073"
   }
+ },
+ "P65c800ad": {
+  "n": "35",
+  "conceito": "Probabilidade da interseção em etapas: aderir (60%) e, entre as que aderiram, não atingir a meta (20%).",
+  "equivocos": {
+   "B": "M13.5:parou-na-condicional",
+   "C": "M13.5:complementar-do-evento-errado",
+   "D": "M13.5:evento-trocado",
+   "E": "M13.5:ignorou-a-segunda-condicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os 80% que atingiram a meta são das empresas que aderiram, não do município todo. A empresa sorteada tem de cumprir duas coisas ao mesmo tempo: ter aderido e não ter atingido a meta. A chance de não atingir, dentro do grupo que aderiu, é 100% − 80% = 20%, e a porcentagem de uma porcentagem se calcula multiplicando.",
+    "formulas": [
+     "P(A e B) = P(A) · P(B dado A)",
+     "P(não atingir | aderiu) = 1 − P(atingir | aderiu)"
+    ],
+    "simbolos": [
+     [
+      "P(B dado A)",
+      "chance de B contando só dentro do grupo A"
+     ],
+     [
+      "|",
+      "lê-se dado que: restringe ao grupo indicado depois da barra"
+     ]
+    ]
+   },
+   "pista": "Veja sobre qual grupo incidem os 80%: o município inteiro ou só as empresas que aderiram?",
+   "passos": [
+    {
+     "faz": "Identifique sobre quem incide cada porcentagem",
+     "conta": "aderiram: 60% do município | atingiram: 80% das que aderiram",
+     "porque": "O texto diz que 80% dessas empresas alcançaram as metas, ou seja, das que aderiram.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache quem aderiu e não atingiu",
+     "conta": "100% − 80% → 20% das que aderiram",
+     "porque": "Dentro do grupo que aderiu, quem não atingiu é o complemento dos 80%.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as duas porcentagens",
+     "conta": "0,60 · 0,20 → 0,12 → 12%",
+     "porque": "São 20% de um grupo que é 60% do total; porcentagem de porcentagem é produto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "12% → alternativa A",
+     "porque": "A pergunta é sobre uma empresa qualquer do município, então a chance se mede sobre o total, e não só sobre as que aderiram.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 12%",
+   "checagem": "Imagine 100 empresas: 60 aderiram, 80% de 60 = 48 atingiram, e 60 − 48 = 12 aderiram sem atingir. São 12 de 100, ou 12%.",
+   "erradas": {
+    "B": "20% sai de parar no grupo das que aderiram: é a chance de não atingir entre elas, 100% − 80%. Falta multiplicar pelos 60% que aderiram.",
+    "C": "40% sai de calcular as que não aderiram: 100% − 60% = 40%. Essas nem participaram do programa.",
+    "D": "48% sai de calcular as que aderiram e atingiram: 0,60 · 0,80 = 0,48. A pergunta é sobre as que não atingiram.",
+    "E": "60% sai de considerar só a adesão, sem a condição de não ter atingido as metas."
+   },
+   "armadilha": "Os 80% são das empresas que aderiram, não do município: a resposta é 20% de 60%, não 20%.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de uma empresa do município ter aderido e não ter atingido a meta.",
+    "chave": "20% (não atingiu) das 60% que aderiram: 0,6 · 0,2 = 12%.",
+    "cuidado": "Veja sobre qual grupo incide cada porcentagem antes de multiplicar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "100 empresas",
+    "ideia": "De 100 empresas, 60 aderem, 48 atingem a meta e 12 aderem sem atingir: 12%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(aderiu) = 0,60",
+    "nota": "60% do município"
+   },
+   {
+    "linha": "P(não atingiu | aderiu) = 1 − 0,80 = 0,20",
+    "nota": "complemento dentro do grupo"
+   },
+   {
+    "linha": "0,60 · 0,20 = 0,12",
+    "nota": "porcentagem de porcentagem"
+   },
+   {
+    "linha": "0,12 = 12%",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

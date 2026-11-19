@@ -1399,5 +1399,535 @@
    "data": "2026-11-19",
    "lote": "mat-0078"
   }
+ },
+ "Pa184265b": {
+  "n": "15",
+  "conceito": "Probabilidade total: condicionar no degrau da bola preta e somar as chances de a branca parar abaixo dele.",
+  "equivocos": {
+   "A": "M13.5:formula-sem-teste-de-caso",
+   "B": "M13.5:formula-sem-teste-de-caso",
+   "C": "M13.5:incluiu-o-proprio-degrau",
+   "D": "M13.5:incluiu-o-proprio-degrau"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Lançada do degrau i, a bola para em um dos i degraus mais baixos (de 0 a i − 1), todos com a mesma chance 1/i. A preta, lançada do degrau m, para em 0, 1, ..., m − 1, cada um com chance 1/m. A ideia que resolve é fixar onde a preta parou: se ela parou no degrau k, a branca precisa parar em 0, 1, ..., k − 1, que são k dos n degraus possíveis dela. Depois some sobre todos os k.",
+    "formulas": [
+     "P(evento) = soma de P(preta em k) · P(branca abaixo de k)",
+     "0 + 1 + 2 + ... + (m − 1) = (m · (m − 1))/2"
+    ],
+    "simbolos": [
+     [
+      "m",
+      "degrau de onde se lança a bola preta"
+     ],
+     [
+      "n",
+      "degrau de onde se lança a bola branca, com n > m"
+     ],
+     [
+      "k",
+      "degrau em que a bola preta parou, de 0 a m − 1"
+     ],
+     [
+      "1/i",
+      "chance de a bola lançada do degrau i parar em cada degrau mais baixo"
+     ]
+    ]
+   },
+   "pista": "Fixe primeiro o degrau em que a bola preta parou e pergunte quantos degraus abaixo dele a branca pode alcançar.",
+   "passos": [
+    {
+     "faz": "Descreva onde cada bola pode parar",
+     "conta": "preta: 0 a m − 1, cada um 1/m | branca: 0 a n − 1, cada um 1/n",
+     "porque": "Pelo exemplo do enunciado, do degrau 3 a bola para em 2, 1 ou 0: são os i degraus abaixo, cada um com 1/i.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Fixe o degrau da preta",
+     "conta": "preta em k → branca em 0 a k − 1 → k/n",
+     "porque": "Como n > m > k, todos os degraus abaixo de k estão ao alcance da branca, e cada um vale 1/n.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some sobre todos os degraus da preta",
+     "conta": "(1/m) · (0 + 1 + ... + (m − 1))/n → (1/m) · (m(m − 1))/(2n)",
+     "porque": "Cada degrau k da preta tem chance 1/m, e as bolas são independentes; os casos não se sobrepõem, então se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique",
+     "conta": "(m(m − 1))/(2mn) → (m − 1)/(2n)",
+     "porque": "O m do numerador cancela com o m do denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "(m − 1)/(2n) → alternativa E",
+     "porque": "É a chance pedida de a branca parar mais baixo que a preta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — (m − 1)/(2n)",
+   "checagem": "Teste m = 3 e n = 4: a preta para em 0, 1 ou 2 (1/3 cada) e a branca abaixo dela tem chance 0, 1/4 e 2/4. Média: (0 + 1/4 + 2/4)/3 = 1/4, e (3 − 1)/(2 · 4) = 1/4. Fecha. Com m = 1 a preta sempre para no 0 e a fórmula dá 0, como deve.",
+   "erradas": {
+    "A": "A não confere: com m = 3 e n = 4, (m − 1)²/(2n) = 4/8 = 1/2, mas a chance correta, contando os casos, é 1/4.",
+    "B": "B não confere: com m = 2 e n = 3, (m² − 1)/(2n) = 3/6 = 1/2, mas a preta para em 0 ou 1 e a chance correta é (1/2) · (1/3) = 1/6.",
+    "C": "C não confere: com m = 1 a preta sempre para no degrau 0 e a branca não tem como ficar abaixo, então a chance é 0; m/(2n) daria 1/(2n).",
+    "D": "D não confere: com m = 1 a chance tem de ser 0, pois a preta para no degrau 0; m²/(2n) daria 1/(2n)."
+   },
+   "armadilha": "A bola lançada do degrau m não pode parar no próprio degrau m: os resultados vão de 0 a m − 1, e é isso que leva ao fator m − 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de a bola branca, lançada de n, parar abaixo da preta, lançada de m.",
+    "chave": "Fixe a preta em k (chance 1/m); a branca fica abaixo com chance k/n; somando, (m − 1)/(2n).",
+    "cuidado": "Os degraus possíveis vão de 0 a i − 1; teste a fórmula com m = 1, que deve dar 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "casos pequenos",
+    "ideia": "Testando m = 1 (chance 0) e m = 3, n = 4 (chance 1/4), só a alternativa E acerta os dois."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P = soma de (1/m) · (k/n), k = 0 a m − 1",
+    "nota": "fixa o degrau da preta"
+   },
+   {
+    "linha": "= (1/(mn)) · (0 + 1 + ... + (m − 1))",
+    "nota": "põe 1/(mn) em evidência"
+   },
+   {
+    "linha": "= (1/(mn)) · (m(m − 1))/2",
+    "nota": "soma dos m primeiros naturais"
+   },
+   {
+    "linha": "= (m − 1)/(2n)",
+    "nota": "o m se cancela: alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  },
+  "gabarito_aprendice": {
+   "letra": "E",
+   "letra_conferente": "E",
+   "preliminar": "E",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "Pda9df7a9": {
+  "n": "6",
+  "conceito": "Usar que, numa matriz ortogonal, as linhas têm comprimento 1 e são perpendiculares duas a duas, para testar se existem a, b e c.",
+  "equivocos": {
+   "A": "M15.1:so-normas-sem-ortogonalidade",
+   "B": "M15.1:so-normas-sem-ortogonalidade",
+   "C": "M15.1:so-normas-sem-ortogonalidade",
+   "D": "M15.1:so-normas-sem-ortogonalidade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "M × Mᵀ = I quer dizer que o produto de cada linha por ela mesma dá 1 e o produto de duas linhas diferentes dá 0. Não precisa multiplicar a matriz inteira: basta escolher as linhas que dão as equações mais simples. Se duas exigências se contradizem, não existe solução.",
+    "formulas": [
+     "linha i · linha i = 1",
+     "linha i · linha j = 0 (i ≠ j)"
+    ],
+    "simbolos": [
+     [
+      "Mᵀ",
+      "matriz transposta: as linhas de M viram colunas"
+     ],
+     [
+      "I",
+      "matriz identidade: 1 na diagonal, 0 fora dela"
+     ],
+     [
+      "linha i · linha j",
+      "produto escalar: multiplique termo a termo e some"
+     ],
+     [
+      "∅",
+      "conjunto vazio: nenhum valor serve"
+     ]
+    ]
+   },
+   "pista": "Antes de procurar a, b e c, multiplique a 1ª linha pela 3ª: é a conta mais curta da matriz.",
+   "passos": [
+    {
+     "faz": "Traduza a condição de ortogonalidade",
+     "conta": "M × Mᵀ = I → cada linha · ela mesma = 1 ; linhas diferentes · entre si = 0",
+     "porque": "O termo (i, j) de M × Mᵀ é o produto da linha i pela linha j. Diagonal 1, resto 0.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Multiplique a 1ª linha pela 3ª",
+     "conta": "(0, 0, 1, 0) · (b, 1/4, 2b, 0) = 0 → 2b = 0 → b = 0",
+     "porque": "A 1ª linha só tem o 1 na 3ª coluna, então o produto é só o 2b. Para dar 0, b tem de ser 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o comprimento da 3ª linha",
+     "conta": "b² + (1/4)² + (2b)² = 1 → 5b² + 1/16 = 1 → b² = 15/80 = 3/16",
+     "porque": "A 3ª linha precisa ter comprimento 1. Isso obriga b² = 3/16, ou seja, b ≠ 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare as duas exigências",
+     "conta": "b = 0 e b² = 3/16 → 0 = 3/16 → impossível",
+     "porque": "Nenhum valor de b cumpre as duas ao mesmo tempo, quaisquer que sejam a e c.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "nenhum (a, b, c) serve → S = ∅ → alternativa E",
+     "porque": "A matriz nunca é ortogonal, então o conjunto solução é vazio.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — não existem a, b e c que tornem a matriz ortogonal: S = ∅",
+   "checagem": "Outro par de linhas leva ao mesmo beco: a 4ª linha com comprimento 1 dá c²/4 + 3/4 = 1, c = ±1; mas a 2ª linha · 4ª linha = (√3/2)(c/2) = √3c/4 tem de ser 0, o que pede c = 0. Contradição de novo.",
+   "erradas": {
+    "A": "A não confere: com b = −√3/2, a 1ª linha · 3ª linha = 2b = −√3 ≠ 0. Além disso, c = 1 dá 2ª linha · 4ª linha = √3/4 ≠ 0.",
+    "B": "B não confere: com b = √3/2, a 1ª linha · 3ª linha = 2b = √3 ≠ 0; e c = 1 deixa 2ª linha · 4ª linha = √3/4 ≠ 0.",
+    "C": "C não confere: b = √3/2 dá 1ª linha · 3ª linha = √3 ≠ 0; c = −1 dá 2ª linha · 4ª linha = −√3/4 ≠ 0.",
+    "D": "D não confere: b = √3/2 dá 1ª linha · 3ª linha = √3 ≠ 0, e c = −1 dá 2ª linha · 4ª linha = −√3/4 ≠ 0."
+   },
+   "armadilha": "Achar a e c só pelos comprimentos das linhas (a = ±1/2, c = ±1) e esquecer que linhas diferentes também precisam dar produto 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os valores de a, b e c que tornam a matriz ortogonal.",
+    "chave": "1ª linha · 3ª linha = 2b = 0 obriga b = 0, mas o comprimento da 3ª linha pede b² = 3/16: impossível.",
+    "cuidado": "Confira também os produtos entre linhas diferentes, não só os comprimentos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela 4ª coluna",
+    "ideia": "2ª linha · 4ª linha = √3c/4 = 0 pede c = 0, mas o comprimento da 4ª linha pede c² = 1: também impossível, S = ∅."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(0, 0, 1, 0) · (b, 1/4, 2b, 0) = 2b = 0 → b = 0",
+    "nota": "1ª linha · 3ª linha"
+   },
+   {
+    "linha": "b² + 1/16 + 4b² = 1 → b² = 3/16",
+    "nota": "comprimento da 3ª linha"
+   },
+   {
+    "linha": "b = 0 e b² = 3/16 → impossível",
+    "nota": "contradição"
+   },
+   {
+    "linha": "S = ∅",
+    "nota": "alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  },
+  "gabarito_aprendice": {
+   "letra": "E",
+   "letra_conferente": "E",
+   "preliminar": "E",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "Pc4bcdc47": {
+  "n": "3",
+  "conceito": "Calcular um determinante 3 × 3 com números complexos e igualar a um complexo na forma trigonométrica.",
+  "equivocos": {
+   "A": "M15.2:parte-real-nao-fecha",
+   "B": "M15.2:confundiu-alfa-com-parte-real",
+   "C": "M15.2:parte-real-nao-fecha",
+   "D": "M15.2:potencia-de-i-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Passe o lado esquerdo para a forma a + bi usando cis θ = cos θ + i sen θ. Calcule o determinante desenvolvendo pela 1ª linha, que tem um zero. Dois complexos são iguais quando as partes reais são iguais e as imaginárias também; α, que é real, sai da parte real.",
+    "formulas": [
+     "cis θ = cos θ + i · sen θ",
+     "i² = −1 ; i⁵ = i⁴ · i = i",
+     "det pela 1ª linha: a₁₁ · C₁₁ + a₁₂ · C₁₂ + a₁₃ · C₁₃"
+    ],
+    "simbolos": [
+     [
+      "i",
+      "unidade imaginária, i² = −1"
+     ],
+     [
+      "cis θ",
+      "cos θ + i · sen θ"
+     ],
+     [
+      "Cᵢⱼ",
+      "cofator: (−1)^(i + j) vezes o determinante 2 × 2 que sobra ao tirar linha i e coluna j"
+     ],
+     [
+      "α",
+      "número real procurado"
+     ]
+    ]
+   },
+   "pista": "Antes do determinante, simplifique i⁵ e escreva os dois cis na forma a + bi.",
+   "passos": [
+    {
+     "faz": "Escreva o lado esquerdo na forma a + bi",
+     "conta": "cis(7π/6) − 2cis(−7π/6) = (−√3/2 − i/2) − 2(−√3/2 + i/2) → √3/2 − 3i/2",
+     "porque": "7π/6 está no 3º quadrante: cosseno −√3/2, seno −1/2. Em −7π/6 o cosseno é o mesmo e o seno troca de sinal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique a 3ª linha",
+     "conta": "i⁵ = i⁴ · i = 1 · i → i",
+     "porque": "Como i⁴ = 1, a 3ª linha fica (i, √3, −i/2).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o 1º termo do determinante",
+     "conta": "−√3 · [(−√3)(−i/2) − α√3] = −√3 · [√3i/2 − √3α] → 3α − 3i/2",
+     "porque": "Desenvolva pela 1ª linha; o terceiro termo some porque a₁₃ = 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o 2º termo do determinante",
+     "conta": "−(−i) · [(√3/2)(−i/2) − α · i] = i · [−√3i/4 − αi] → √3/4 + α",
+     "porque": "O cofator de a₁₂ leva o sinal de menos; i · i = −1 troca os sinais dentro do colchete.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale as partes reais",
+     "conta": "3α + α + √3/4 = √3/2 → 4α = √3/4 → α = √3/16",
+     "porque": "Determinante: 4α + √3/4 − 3i/2. A parte imaginária −3/2 já bate dos dois lados; a real dá α.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "α = √3/16 → alternativa E",
+     "porque": "As duas partes conferem com o mesmo α.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — α = √3/16",
+   "checagem": "Com α = √3/16, o determinante vale 4 · √3/16 + √3/4 − 3i/2 = √3/4 + √3/4 − 3i/2 = √3/2 − 3i/2, exatamente o lado esquerdo. As partes imaginárias batem sem depender de α, o que confirma as contas.",
+   "erradas": {
+    "A": "A não confere: α = 3 dá parte real 4 · 3 + √3/4 = 12 + √3/4, longe de √3/2 ≈ 0,87.",
+    "B": "B sai de confundir α com a parte real do lado esquerdo, √3/2; substituindo, a parte real do determinante seria 2√3 + √3/4 = 9√3/4.",
+    "C": "C não confere: α = √3/4 dá parte real 4 · √3/4 + √3/4 = 5√3/4, e não √3/2.",
+    "D": "D sai de usar i⁵ = −i: o determinante vira 2α + √3/4 − 3i/2, e 2α = √3/4 dá α = √3/8."
+   },
+   "armadilha": "Errar a potência i⁵, que vale i (e não −i), porque i⁴ = 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número real α que faz a igualdade valer.",
+    "chave": "Lado esquerdo √3/2 − 3i/2; determinante 4α + √3/4 − 3i/2; partes reais: 4α = √3/4.",
+    "cuidado": "i⁵ = i e o cofator de a₁₂ leva sinal de menos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Sarrus",
+    "ideia": "Pela regra de Sarrus os seis produtos somam 4α + √3/4 − 3i/2; igualando a √3/2 − 3i/2, α = √3/16."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "cis(7π/6) − 2cis(−7π/6) = √3/2 − 3i/2",
+    "nota": "forma a + bi"
+   },
+   {
+    "linha": "i⁵ = i",
+    "nota": "i⁴ = 1"
+   },
+   {
+    "linha": "det = (3α − 3i/2) + (√3/4 + α) = 4α + √3/4 − 3i/2",
+    "nota": "1ª linha"
+   },
+   {
+    "linha": "4α + √3/4 = √3/2 → α = √3/16",
+    "nota": "partes reais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  },
+  "gabarito_aprendice": {
+   "letra": "E",
+   "letra_conferente": "E",
+   "preliminar": "E",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "Pe658dba9": {
+  "n": "9",
+  "conceito": "Potências de i e propriedades do logaritmo: o fator i^(2n − 2) cancela o expoente alternado, e a soma de logaritmos telescópica vira um só logaritmo.",
+  "equivocos": {
+   "A": "M16.2:telescopica-mal-fechada",
+   "B": "M16.2:ultimo-termo-errado",
+   "D": "M16.2:confundiu-numero-de-termos",
+   "E": "M16.2:telescopica-mal-fechada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O i é só um disfarce: i^(2n − 2) = (i²)^(n − 1) = (−1)^(n − 1). O expoente dentro do ln também é (−1)^(n − 1), e ele desce multiplicando. Os dois sinais se multiplicam e dão sempre 1. Sobra uma soma de logaritmos que se cancela em cadeia.",
+    "formulas": [
+     "i² = −1 ⇒ i^(2n − 2) = (−1)^(n − 1)",
+     "ln(xᵏ) = k · ln x",
+     "ln a + ln b = ln(a · b)",
+     "e^(−ln x) = 1/x"
+    ],
+    "simbolos": [
+     [
+      "i",
+      "unidade imaginária, i² = −1"
+     ],
+     [
+      "Σ",
+      "soma dos termos de n = 1 até n = 1000"
+     ],
+     [
+      "ln",
+      "logaritmo na base e"
+     ],
+     [
+      "e",
+      "número de Euler, cerca de 2,718"
+     ]
+    ]
+   },
+   "pista": "Escreva i^(2n − 2) como uma potência de i² e compare com o expoente dentro do ln.",
+   "passos": [
+    {
+     "faz": "Simplifique o fator com i",
+     "conta": "i^(2n − 2) = (i²)^(n − 1) → (−1)^(n − 1)",
+     "porque": "Expoente par permite agrupar i²; e i² = −1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desça o expoente do ln",
+     "conta": "(−1)^(n − 1) · (−1)^(n − 1) · ln((n + 1)/(n + 2)) → ((−1)²)^(n − 1) · ln((n + 1)/(n + 2)) → ln((n + 1)/(n + 2))",
+     "porque": "ln(xᵏ) = k · ln x; o mesmo sinal aparece duas vezes e o produto é sempre 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte a soma num só ln",
+     "conta": "A = ln(2/3) + ln(3/4) + … + ln(1001/1002) → ln(2/1002) → ln(1/501)",
+     "porque": "Soma de ln é ln do produto, e no produto cada numerador cancela com o denominador anterior: sobram 2 em cima e 1002 embaixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule e elevado a −A",
+     "conta": "e^(−A) = e^(−ln(1/501)) → e^(ln 501) → 501",
+     "porque": "−ln(1/501) = ln 501, e e elevado a ln x devolve x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "e^(−A) = 501 → alternativa C",
+     "porque": "É o valor da alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — e^(−A) = 501.",
+   "checagem": "Faça o mesmo com poucos termos: até n = 2, A = ln(2/3) + ln(3/4) = ln(1/2), e e^(−A) = 2 = (2 + 2)/2. A regra é (N + 2)/2; para N = 1000 dá 1002/2 = 501. Somando os 1000 termos no computador também sai 501.",
+   "erradas": {
+    "A": "250 não confere: o produto que sobra é 2/1002, então e^(−A) = 1002/2 = 501 ≠ 250.",
+    "B": "500 não confere: o último termo é n = 1000, com denominador n + 2 = 1002; o produto telescópico deixa 1002/2 = 501.",
+    "D": "1000 não confere: e^(−A) = 1002/2 = 501; 1000 é só o número de parcelas da soma.",
+    "E": "1001 não confere: o produto telescópico deixa 2 em cima e 1002 embaixo, logo e^(−A) = 1002/2 = 501; 1001 é só o último numerador, n + 1 com n = 1000."
+   },
+   "armadilha": "Achar que o i torna A complexo ou que os sinais se alternam: os dois fatores (−1)^(n − 1) se multiplicam e dão sempre 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de e^(−A) para a soma A dada.",
+    "chave": "i^(2n − 2) = (−1)^(n − 1) cancela o expoente do ln; a soma telescópica dá A = ln(2/1002).",
+    "cuidado": "Confira o primeiro e o último fator que sobram no produto telescópico: 2 e 1002."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "produto direto",
+    "ideia": "e^(−A) é o produto de (n + 2)/(n + 1) de n = 1 a 1000, que telescopa para 1002/2 = 501."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i^(2n − 2) = (−1)^(n − 1)",
+    "nota": "potência de i²"
+   },
+   {
+    "linha": "(−1)^(n − 1) · (−1)^(n − 1) = 1",
+    "nota": "o expoente desce do ln"
+   },
+   {
+    "linha": "A = ln(2/3) + ln(3/4) + … + ln(1001/1002)",
+    "nota": "cada termo é ln((n + 1)/(n + 2))"
+   },
+   {
+    "linha": "A = ln(2/1002) = ln(1/501)",
+    "nota": "produto telescópico"
+   },
+   {
+    "linha": "e^(−A) = 501",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [
+    {
+     "url": "https://militares.estrategia.com/portal/eventos/gabaritos/gabarito-ime-correcao-ao-vivo-2/",
+     "letra": "C"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

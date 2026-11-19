@@ -1295,5 +1295,115 @@
    "data": "2026-11-19",
    "lote": "mat-0078"
   }
+ },
+ "P909ebd15": {
+  "n": "16",
+  "conceito": "Decodificar uma mensagem resolvendo o produto de matriz linha pela matriz chave.",
+  "equivocos": {
+   "A": "M15.1:nao-desfez-o-produto",
+   "B": "M15.1:nao-desfez-o-produto",
+   "D": "M15.1:nao-desfez-o-produto",
+   "E": "M15.1:nao-desfez-o-produto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na codificação, cada par de números (p q) é multiplicado pela chave e vira um par codificado. Para decodificar, faça o caminho de volta: escreva o produto com letras e resolva o sisteminha, ou multiplique pela inversa da chave. Depois troque números por letras pela tabela.",
+    "formulas": [
+     "(p q) · (0 1; 1 2) = (q   p + 2q)",
+     "(p q) = (codificado) · chave⁻¹"
+    ],
+    "simbolos": [
+     [
+      "(p q)",
+      "matriz 1 × 2 com dois números da palavra original"
+     ],
+     [
+      "chave",
+      "matriz 2 × 2 usada para codificar"
+     ],
+     [
+      "chave⁻¹",
+      "inversa da chave: desfaz a multiplicação"
+     ]
+    ]
+   },
+   "pista": "Escreva (p q) vezes a nova chave com letras e compare com o primeiro par codificado.",
+   "passos": [
+    {
+     "faz": "Multiplique um par genérico pela chave",
+     "conta": "(p q) · (0 1; 1 2) = (p · 0 + q · 1   p · 1 + q · 2) = (q   p + 2q)",
+     "porque": "Linha vezes coluna: o primeiro número codificado é q e o segundo é p + 2q.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Decodifique o primeiro par",
+     "conta": "(q   p + 2q) = (15   34) → q = 15 ; p + 30 = 34 → p = 4",
+     "porque": "O 30 passa subtraindo: p = 34 − 30 = 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Decodifique o segundo par",
+     "conta": "(q   p + 2q) = (5   13) → q = 5 ; p + 10 = 13 → p = 3",
+     "porque": "O 10 passa subtraindo: p = 13 − 10 = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque os números por letras",
+     "conta": "4 15 3 5 → D O C E → alternativa C",
+     "porque": "Pela tabela: 4 = D, 15 = O, 3 = C, 5 = E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a palavra original é DOCE",
+   "checagem": "Codifique DOCE: (4 15) · (0 1; 1 2) = (15   4 + 30) = (15 34) e (3 5) · (0 1; 1 2) = (5   3 + 10) = (5 13). Sai 15 34 5 13, a sequência dada.",
+   "erradas": {
+    "A": "A não confere: VIDA = 22 9 4 1 codifica em (9 40) e (1 6), não em 15 34 5 13.",
+    "B": "B não confere: HORA = 8 15 18 1 codifica em (15 38) e (1 20); só o 15 coincide.",
+    "D": "D não confere: ERMO = 5 18 13 15 codifica em (18 41) e (15 43), longe de 15 34 5 13.",
+    "E": "E não confere: OBRA = 15 2 18 1 codifica em (2 19) e (1 20), não em 15 34 5 13."
+   },
+   "armadilha": "Multiplicar a sequência codificada pela chave de novo, em vez de desfazer a multiplicação.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A palavra original que gera 15 34 5 13 com a chave (0 1; 1 2).",
+    "chave": "(p q) · chave = (q   p + 2q): q é o 1º número codificado e p = 2º − 2 · 1º.",
+    "cuidado": "Decodificar é desfazer o produto, não repeti-lo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela inversa",
+    "ideia": "chave⁻¹ = (−2 1; 1 0); (15 34) · chave⁻¹ = (4 15) e (5 13) · chave⁻¹ = (3 5): DOCE."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(p q)(0 1; 1 2) = (q   p + 2q)",
+    "nota": "produto genérico"
+   },
+   {
+    "linha": "q = 15 ; p = 34 − 30 = 4",
+    "nota": "1º par: D O"
+   },
+   {
+    "linha": "q = 5 ; p = 13 − 10 = 3",
+    "nota": "2º par: C E"
+   },
+   {
+    "linha": "4 15 3 5 = DOCE",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

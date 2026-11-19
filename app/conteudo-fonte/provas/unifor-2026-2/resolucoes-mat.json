@@ -1194,5 +1194,115 @@
    "data": "2026-11-19",
    "lote": "mat-0079"
   }
+ },
+ "P183bec3d": {
+  "n": "5",
+  "conceito": "Probabilidade condicional: entre as questões acertadas, qual fração é de Bioestatística (fórmula de Bayes com três áreas).",
+  "equivocos": {
+   "A": "M13.5:fracao-nao-simplificada-ou-soma-errada",
+   "B": "M13.5:respondeu-so-o-denominador",
+   "D": "M13.5:esqueceu-a-taxa-de-acerto-no-numerador",
+   "E": "M13.5:fracao-nao-simplificada-ou-soma-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A questão sorteada já é uma das acertadas: o grupo de onde se sorteia é o das questões certas, não a prova inteira. Por isso o denominador é a fração da prova que a candidata acertou, e o numerador é a parte dessa fração que vem de Bioestatística. As porcentagens de acerto de cada área já são o desempenho final dela em cada área.",
+    "formulas": [
+     "P(acerto) = soma de P(área) × P(acerto na área)",
+     "P(Bio | acerto) = P(Bio e acerto)/P(acerto)"
+    ],
+    "simbolos": [
+     [
+      "P(Bio | acerto)",
+      "probabilidade de ser de Bioestatística, sabendo que foi acertada"
+     ],
+     [
+      "fração irredutível",
+      "fração que não dá mais para simplificar"
+     ],
+     [
+      "p/q",
+      "a fração da resposta: p em cima, q embaixo"
+     ]
+    ]
+   },
+   "pista": "Comece descobrindo que fração da prova inteira a candidata acertou, área por área.",
+   "passos": [
+    {
+     "faz": "Calcule o acerto em cada área",
+     "conta": "0,5 × 0,9 = 0,45 | 0,3 × 0,7 = 0,21 | 0,2 × 0,4 = 0,08",
+     "porque": "Cada produto é a fração da prova que é daquela área e foi acertada. Em Bioestatística, 20% das questões com 40% de acerto dão 8% da prova.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some para ter o total acertado",
+     "conta": "0,45 + 0,21 + 0,08 → 0,74",
+     "porque": "Esse é o novo espaço amostral: a questão sorteada está entre esses 74% da prova.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida a parte de Bio pelo total",
+     "conta": "0,08/0,74 → 8/74 → 4/37",
+     "porque": "O dado que já se sabe (a questão foi acertada) troca o denominador para 0,74. Simplificando por 2, sai a fração irredutível 4/37.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some p e q e marque",
+     "conta": "p = 4 | q = 37 → p + q = 41 → alternativa C",
+     "porque": "A pergunta não é a probabilidade, é a soma do numerador com o denominador da fração irredutível.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — p + q = 41 (a probabilidade é 4/37)",
+   "checagem": "Pense em 1 000 questões: 500 de Clínica (450 certas), 300 de Saúde Coletiva (210 certas) e 200 de Bioestatística (80 certas). São 740 certas, e 80 delas são de Bio: 80/740 = 4/37.",
+   "erradas": {
+    "A": "31 não confere: como 4/37 é irredutível, p + q = 31 exigiria p = 31 × 4/41, que não é inteiro.",
+    "B": "37 sai de responder só o denominador q da fração 4/37, sem somar o numerador p = 4.",
+    "D": "47 sai de esquecer o acerto de 40% no numerador: 0,2/0,74 = 10/37, e 10 + 37 = 47.",
+    "E": "53 não confere: p + q = 53 com p/q = 4/37 exigiria p = 53 × 4/41, que não é inteiro."
+   },
+   "armadilha": "O sorteio é entre as questões acertadas: o denominador é 0,74, e o numerador tem de levar o acerto de 40% de Bioestatística.",
+   "alerta": "A frase sobre marcar ao acaso nas questões que não sabe não muda a conta do gabarito oficial (retificado): a banca trata 90%, 70% e 40% como o acerto final em cada área, chutes incluídos. Se esses números fossem só o que ela sabe, somando o chute de 1/4 no resto, a fração seria 22/161 e p + q = 183, que não está entre as alternativas.",
+   "essencial": {
+    "pede": "A soma p + q da probabilidade de a questão acertada ser de Bioestatística.",
+    "chave": "P(Bio | acerto) = 0,08/0,74 = 4/37.",
+    "cuidado": "O dado que se sabe (acertou) vira o denominador; no numerador vai área × acerto, não só a área."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela com 1 000 questões",
+    "ideia": "500, 300 e 200 questões com 450, 210 e 80 certas: 80/740 = 4/37."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,45 + 0,21 + 0,08 = 0,74",
+    "nota": "acertos de cada área somados"
+   },
+   {
+    "linha": "P(Bio | acerto) = 0,08/0,74",
+    "nota": "parte de Bio entre as certas"
+   },
+   {
+    "linha": "8/74 = 4/37",
+    "nota": "simplifica por 2"
+   },
+   {
+    "linha": "p + q = 4 + 37 = 41",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

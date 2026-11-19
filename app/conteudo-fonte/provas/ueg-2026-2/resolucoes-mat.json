@@ -1232,5 +1232,107 @@
    "data": "2026-11-19",
    "lote": "mat-0079"
   }
+ },
+ "P9f699c08": {
+  "n": "21",
+  "conceito": "Retiradas sucessivas sem reposição: a segunda chance muda porque o grupo diminuiu.",
+  "equivocos": {
+   "A": "M13.5:denominador-incompativel",
+   "B": "M13.5:contagem-de-favoraveis-errada",
+   "C": "M13.5:denominador-incompativel",
+   "E": "M13.5:denominador-incompativel"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As duas pessoas saem da pesquisa uma depois da outra, sem voltar: a primeira que sai reduz o grupo. Para as duas serem do medicamento A, a primeira tem de ser do grupo A e, com 14 pessoas restantes, a segunda também. Multiplique as duas chances.",
+    "formulas": [
+     "P(A e A) = P(1ª é A) · P(2ª é A dado que a 1ª foi A)",
+     "probabilidade = (casos favoráveis)/(casos possíveis)"
+    ],
+    "simbolos": [
+     [
+      "A, B",
+      "medicamentos recebidos pelos grupos de 5 e de 10 pessoas"
+     ],
+     [
+      "sem reposição",
+      "quem saiu não volta para a próxima retirada"
+     ]
+    ]
+   },
+   "pista": "Depois que a primeira pessoa do grupo A sai, quantas pessoas sobram e quantas delas tomaram A?",
+   "passos": [
+    {
+     "faz": "Calcule a chance da primeira",
+     "conta": "P(1ª é A) = 5/15 → 1/3",
+     "porque": "Há 5 pessoas do grupo A entre as 15.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chance da segunda",
+     "conta": "sobram 14, com 4 do grupo A → 4/14 → 2/7",
+     "porque": "A pessoa retirada não volta, então o total e o grupo A diminuem uma pessoa cada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as duas chances",
+     "conta": "(1/3) · (2/7) → 2/21",
+     "porque": "As duas coisas precisam acontecer em sequência, então as chances se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "2/21 → alternativa D",
+     "porque": "É a chance de as duas pessoas retiradas terem recebido o medicamento A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 2/21",
+   "checagem": "Conte sem ordem: há C(15, 2) = 105 duplas possíveis e C(5, 2) = 10 duplas só do grupo A; 10/105 = 2/21. Fecha.",
+   "erradas": {
+    "A": "2/11 não confere: os pares possíveis são 105 = 3 · 5 · 7, então a fração simplificada tem denominador que divide 105, e 11 não divide.",
+    "B": "2/15 não confere: corresponde a 14 duplas favoráveis entre 105, mas só existem C(5, 2) = 10 duplas formadas por pessoas do grupo A.",
+    "C": "2/17 não confere: o denominador simplificado tem de dividir 105 = 3 · 5 · 7, e 17 não divide.",
+    "E": "2/29 não confere: o denominador simplificado tem de dividir 105 = 3 · 5 · 7, e 29 não divide."
+   },
+   "armadilha": "A segunda retirada é sem reposição: o denominador cai para 14 e o grupo A para 4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de as duas pessoas retiradas terem recebido o medicamento A.",
+    "chave": "Sem reposição: (5/15) · (4/14) = 2/21.",
+    "cuidado": "Atualize os números depois da primeira retirada."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "combinação",
+    "ideia": "Duplas só de A sobre todas as duplas: C(5, 2)/C(15, 2) = 10/105 = 2/21."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "5/15 = 1/3",
+    "nota": "primeira pessoa do grupo A"
+   },
+   {
+    "linha": "4/14 = 2/7",
+    "nota": "sobraram 4 de A entre 14"
+   },
+   {
+    "linha": "(1/3) · (2/7) = 2/21",
+    "nota": "multiplica: alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

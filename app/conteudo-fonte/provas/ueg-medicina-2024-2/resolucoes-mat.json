@@ -454,5 +454,126 @@
    "data": "2026-11-19",
    "lote": "mat-0078"
   }
+ },
+ "Pc2bd8b58": {
+  "n": "23",
+  "conceito": "Usar o modelo logarítmico de estimativa populacional com P1 = 16 · P0 para achar quando a população dobra.",
+  "equivocos": {
+   "B": "M06.5:tratou-o-crescimento-como-linear",
+   "C": "M06.5:tratou-o-crescimento-como-linear",
+   "D": "M06.5:tratou-o-crescimento-como-linear",
+   "E": "M06.5:tratou-o-crescimento-como-linear"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O modelo é uma igualdade de logaritmos: substitua Pn = 2 · P0 e P1/P0 = 16 e o log(P0) dos dois lados se cancela. Escrevendo 16 como 2⁴, tudo vira múltiplo de log 2, que também se cancela. N é o tempo entre as pesquisas, de 2004 a 2024.",
+    "formulas": [
+     "log(Pn) = log(P0) + (n/N) · log(P1/P0)",
+     "log(2 · P0) = log 2 + log(P0)",
+     "log 16 = log 2⁴ = 4 · log 2"
+    ],
+    "simbolos": [
+     [
+      "P0",
+      "população no ano base, 2004"
+     ],
+     [
+      "P1",
+      "população na outra pesquisa, 2024"
+     ],
+     [
+      "Pn",
+      "população estimada n anos depois do ano base"
+     ],
+     [
+      "N",
+      "tempo entre as duas pesquisas, em anos"
+     ]
+    ]
+   },
+   "pista": "Troque Pn por 2 · P0 e separe o logaritmo do produto.",
+   "passos": [
+    {
+     "faz": "Leia os dados do modelo",
+     "conta": "N = 2024 − 2004 = 20 | P1/P0 = 16 | Pn = 2 · P0",
+     "porque": "A população de 2024 é 16 vezes a de 2004, e se quer a estimativa igual ao dobro da de 2004.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Substitua e cancele log(P0)",
+     "conta": "log 2 + log(P0) = log(P0) + (n/20) · log 16 → log 2 = (n/20) · log 16",
+     "porque": "O log(P0) aparece dos dois lados e sai: o resultado não depende do tamanho da população.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva 16 como potência de 2",
+     "conta": "log 2 = (n/20) · 4 · log 2 → 1 = (4n)/20",
+     "porque": "Com log 16 = 4 · log 2, divide-se tudo por log 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole n",
+     "conta": "1 = n/5 → n = 5",
+     "porque": "O 5 que divide passa multiplicando: a população dobra 5 anos após o ano base.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some ao ano base e marque",
+     "conta": "2004 + 5 → 2009 → alternativa A",
+     "porque": "n conta anos a partir de 2004, então o ano pedido é 2009.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2009",
+   "checagem": "Pelo crescimento: o modelo equivale a Pn = P0 · 16^(n/20). Em 20 anos multiplica por 16 = 2⁴, ou seja, dobra 4 vezes; cada dobra leva 20/4 = 5 anos, e 2004 + 5 = 2009.",
+   "erradas": {
+    "B": "2012 não confere: com n = 8, Pn = 16^(8/20) · P0 ≈ 3,03 · P0, mais que o dobro.",
+    "C": "2014 é a metade do intervalo, mas com n = 10, Pn = 16^(1/2) · P0 = 4 · P0, o quádruplo, não o dobro.",
+    "D": "2016 não confere: com n = 12, Pn = 16^(12/20) · P0 ≈ 5,28 · P0.",
+    "E": "2020 não confere: com n = 16, Pn = 16^(16/20) · P0 ≈ 9,19 · P0."
+   },
+   "armadilha": "O crescimento é exponencial: o dobro não chega na metade do tempo, e sim depois de um quarto dele, porque 16 = 2⁴.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Em que ano a estimativa da população é o dobro da de 2004.",
+    "chave": "log 2 = (n/20) · 4 · log 2 dá n = 5; 2004 + 5 = 2009.",
+    "cuidado": "Some n ao ano base e não trate o crescimento como linear."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dobras",
+    "ideia": "16 = 2⁴: a população dobra 4 vezes em 20 anos, uma a cada 5 anos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "log(2P0) = log(P0) + (n/20) · log 16",
+    "nota": "substitui os dados"
+   },
+   {
+    "linha": "log 2 = (n/20) · 4 · log 2",
+    "nota": "cancela log(P0); 16 = 2⁴"
+   },
+   {
+    "linha": "1 = n/5 → n = 5",
+    "nota": "divide por log 2"
+   },
+   {
+    "linha": "2004 + 5 = 2009",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

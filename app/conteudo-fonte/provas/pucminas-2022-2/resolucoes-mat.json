@@ -429,5 +429,119 @@
    "data": "2026-11-19",
    "lote": "mat-0077"
   }
+ },
+ "P729558e1": {
+  "n": "44",
+  "conceito": "Probabilidade binomial: exatamente 3 sucessos em 5 tentativas independentes com chance 1/3 cada.",
+  "equivocos": {
+   "A": "M13.4:binomial-mal-montada",
+   "C": "M13.4:binomial-mal-montada",
+   "D": "M13.4:binomial-mal-montada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada um dos 5 membros contrai ou não o vírus, com chance 1/3 de contrair, independentemente dos outros. Exatamente três contaminados quer dizer três sim e dois não. A chance de uma ordem específica é o produto das chances, e é preciso multiplicar pelo número de modos de escolher quais três são os contaminados.",
+    "formulas": [
+     "P(exatamente k em n) = C(n, k) · p^k · (1 − p)^(n − k)",
+     "C(n, k) = n!/(k! · (n − k)!)"
+    ],
+    "simbolos": [
+     [
+      "p",
+      "chance de um membro contrair o vírus: 1/3"
+     ],
+     [
+      "1 − p",
+      "chance de não contrair: 2/3"
+     ],
+     [
+      "C(5, 3)",
+      "modos de escolher quais 3 dos 5 membros são contaminados"
+     ]
+    ]
+   },
+   "pista": "Calcule a chance de uma escolha específica de três contaminados e depois conte quantas escolhas existem.",
+   "passos": [
+    {
+     "faz": "Separe os dados",
+     "conta": "n: 5 membros | k: 3 contaminados | p: 1/3 | 1 − p: 2/3",
+     "porque": "Exatamente três significa que os outros dois não podem ser contaminados, e cada um deles entra com 2/3.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule uma escolha específica",
+     "conta": "(1/3)³ · (2/3)² → (1/27) · (4/9) → 4/243",
+     "porque": "Para três pessoas determinadas pegarem o vírus e as outras duas não, multiplicam-se as cinco chances, porque os casos são independentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte quem pode ser contaminado",
+     "conta": "C(5, 3) = (5 · 4 · 3)/(3 · 2 · 1) → 10",
+     "porque": "Qualquer trio da família serve, e cada trio tem a mesma chance 4/243.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique e passe para porcentagem",
+     "conta": "10 · 4/243 → 40/243 ≈ 0,1646 ≈ 16,46%",
+     "porque": "São 10 casos que não se sobrepõem, cada um com 4/243; somar dez vezes é multiplicar por 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "40/243 ≈ 16,46% → alternativa B",
+     "porque": "40/243 ≈ 16,46%; a alternativa mais próxima é 16,4% (B)",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — aproximadamente 16,4%",
+   "checagem": "Some a distribuição inteira: com 0, 1, 2, 3, 4 e 5 contaminados, as chances são 32, 80, 80, 40, 10 e 1 sobre 243, e 32 + 80 + 80 + 40 + 10 + 1 = 243. O 40 do caso de três contaminados se encaixa e o total fecha em 1.",
+   "erradas": {
+    "A": "12,5% não confere: toda chance aqui é um inteiro sobre 243, e 12,5% de 243 dá 30,4. O valor certo é 40/243 ≈ 16,46%.",
+    "C": "17,8% não confere: 17,8% de 243 dá 43,3, e nenhum caso com 3 contaminados soma isso; o certo é 40 sobre 243.",
+    "D": "18,2% não confere: 18,2% de 243 dá 44,2, acima dos 40/243 que a conta binomial dá para três contaminados."
+   },
+   "armadilha": "Exatamente três exige que os outros dois não peguem o vírus: o fator (2/3)² e o C(5, 3) não podem ser esquecidos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de exatamente 3 dos 5 membros pegarem o vírus, cada um com chance 1/3.",
+    "chave": "Binomial: C(5, 3) · (1/3)³ · (2/3)² = 40/243 ≈ 16,46%.",
+    "cuidado": "Inclua a chance de os outros dois não pegarem e o número de trios possíveis."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lista de casos",
+    "ideia": "Cada trio de contaminados tem chance 4/243 e há 10 trios; somando, 40/243."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P = C(5, 3) · (1/3)³ · (2/3)²",
+    "nota": "binomial com n = 5, k = 3"
+   },
+   {
+    "linha": "(1/3)³ · (2/3)² = 4/243",
+    "nota": "uma escolha de trio"
+   },
+   {
+    "linha": "C(5, 3) = 10",
+    "nota": "trios possíveis"
+   },
+   {
+    "linha": "10 · 4/243 = 40/243 ≈ 0,1646",
+    "nota": "≈ 16,46%: alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

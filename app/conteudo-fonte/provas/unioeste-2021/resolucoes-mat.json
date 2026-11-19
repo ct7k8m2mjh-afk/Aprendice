@@ -649,5 +649,117 @@
    "data": "2026-11-19",
    "lote": "mat-0079"
   }
+ },
+ "P3fb7bda1": {
+  "n": "65",
+  "conceito": "Fatoração de polinômio com parâmetro: x = −1 é raiz para todo a, e as outras raízes são a e 1/a.",
+  "equivocos": {
+   "A": "M16.1:contou-raizes-errado",
+   "B": "M16.1:ignorou-raiz-constante",
+   "C": "M16.1:chutou-padrao-de-raizes",
+   "E": "M16.1:ignorou-raiz-multipla"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O polinômio tem um parâmetro a, então procure uma raiz que não dependa dele. O termo x² + x vale zero em x = −1, e aí os termos ax³ e a se cancelam. Depois de tirar o fator x + 1, sobra uma equação do 2º grau que se fatora.",
+    "formulas": [
+     "r é raiz ⇔ P(r) = 0",
+     "P(x) = (x + 1) · (quociente)"
+    ],
+    "simbolos": [
+     [
+      "a ∈ ℤ",
+      "a é um número inteiro"
+     ],
+     [
+      "raiz",
+      "valor de x que zera P(x)"
+     ],
+     [
+      "1/a",
+      "inverso de a"
+     ]
+    ]
+   },
+   "pista": "Teste um valor de x que zere o fator x² + x.",
+   "passos": [
+    {
+     "faz": "Teste x = −1",
+     "conta": "P(−1) = a(−1)³ + (a − 1 − a²)(1 − 1) + a → −a + 0 + a → 0",
+     "porque": "Em x = −1, o fator x² + x vale zero e ax³ = −a cancela com o +a. Isso vale para qualquer a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire o fator x + 1",
+     "conta": "P(x) = (x + 1)(ax² − (1 + a²)x + a)",
+     "porque": "Expandindo o produto, voltam os termos ax³ + (a − 1 − a²)x² + (a − 1 − a²)x + a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore o trinômio",
+     "conta": "ax² − (1 + a²)x + a → (ax − 1)(x − a) → x = 1/a ou x = a",
+     "porque": "Produto das raízes a/a = 1 e soma (1 + a²)/a = a + 1/a: as raízes são a e 1/a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste cada alternativa",
+     "conta": "raízes: −1, a, 1/a | a = 1 → 1, 1, −1 (repetida) | a = 2 → −1, 2, 1/2",
+     "porque": "As três raízes são reais, mas −1 não depende de a, e com a = 1 aparecem raízes iguais.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Marque a afirmação correta",
+     "conta": "x = −1 vale para todo a → alternativa D",
+     "porque": "Só a D descreve a raiz −1, que não depende de a.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — P(x) possui uma raiz que não depende de a.",
+   "checagem": "Com a = 2: P(x) = 2x³ − 3(x² + x) + 2 = 2x³ − 3x² − 3x + 2. Em x = −1: −2 − 3 + 3 + 2 = 0; em x = 2: 16 − 12 − 6 + 2 = 0; em x = 1/2: 1/4 − 3/4 − 3/2 + 2 = 0. As três raízes −1, 2 e 1/2 conferem.",
+   "erradas": {
+    "A": "Não confere: as raízes −1, a e 1/a são todas reais, porque a é inteiro e diferente de zero. São três reais, não apenas duas.",
+    "B": "Não confere: as três são reais, mas −1 não é dada em função de a; ela é a mesma para todo a.",
+    "C": "Não confere: com a = 2, as raízes são −1, 2 e 1/2, e não 2, 4 e 8; em x = 4, P = 128 − 60 + 2 = 70, diferente de zero.",
+    "E": "Não confere: com a = 1, as raízes são 1, 1 e −1, e 1 aparece duas vezes; com a = −1, as três valem −1."
+   },
+   "armadilha": "O parâmetro distrai: a raiz −1 aparece testando o valor que anula x² + x, sem nenhuma conta com a.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre as raízes de P(x) é correta.",
+    "chave": "P(−1) = 0 para todo a e P(x) = (x + 1)(ax − 1)(x − a): raízes −1, a e 1/a.",
+    "cuidado": "Teste valores particulares de a (1, −1, 2) para derrubar as afirmações gerais."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "Teste a = 1 e a = 2: nos dois, −1 é raiz, o que já aponta a D e derruba A, C e E."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(−1) = −a + 0 + a = 0",
+    "nota": "−1 é raiz para todo a"
+   },
+   {
+    "linha": "P(x) = (x + 1)(ax² − (1 + a²)x + a)",
+    "nota": "tirar o fator x + 1"
+   },
+   {
+    "linha": "ax² − (1 + a²)x + a = (ax − 1)(x − a) → raízes: −1, a, 1/a",
+    "nota": "fatorar o trinômio; alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }

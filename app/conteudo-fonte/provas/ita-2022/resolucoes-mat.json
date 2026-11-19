@@ -1071,5 +1071,484 @@
    "data": "2026-11-19",
    "lote": "mat-0079"
   }
+ },
+ "Pccdeb7eb": {
+  "n": "52",
+  "conceito": "Probabilidade por contagem: pares de retas por vértices de um cubo que se cruzam num vértice.",
+  "equivocos": {
+   "B": "M13.9:contagem-dos-favoraveis-errada",
+   "C": "M13.9:contagem-dos-favoraveis-errada",
+   "D": "M13.9:contagem-dos-favoraveis-errada",
+   "E": "M13.9:incluiu-a-propria-reta-no-total"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Num cubo não há três vértices alinhados, então cada par de vértices define uma reta diferente. O espaço amostral são os pares dessas retas. Duas retas distintas se cruzam num vértice quando passam pelo mesmo vértice, e duas retas distintas têm no máximo um ponto em comum: conte vértice por vértice sem medo de contar duas vezes.",
+    "formulas": [
+     "número de retas = C(8, 2)",
+     "probabilidade = pares favoráveis/pares possíveis",
+     "C(n, 2) = (n · (n − 1))/2"
+    ],
+    "simbolos": [
+     [
+      "C(n, 2)",
+      "número de modos de escolher 2 elementos entre n, sem importar a ordem"
+     ],
+     [
+      "A",
+      "conjunto das retas que passam por dois vértices do cubo"
+     ]
+    ]
+   },
+   "pista": "Primeiro conte quantas retas existem; depois, quantas passam por um mesmo vértice.",
+   "passos": [
+    {
+     "faz": "Conte as retas",
+     "conta": "C(8, 2) = (8 · 7)/2 → 28 retas",
+     "porque": "Cada par de vértices dá uma reta, e nenhuma reta do cubo passa por três vértices.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os pares de retas",
+     "conta": "C(28, 2) = (28 · 27)/2 → 378 pares",
+     "porque": "Escolhem-se duas retas distintas sem ordem: esse é o espaço amostral.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os pares que se cruzam num vértice",
+     "conta": "por vértice: C(7, 2) = 21 → 8 × 21 = 168 pares",
+     "porque": "Por cada vértice passam 7 retas (uma para cada outro vértice). Duas retas distintas só se cruzam num ponto, então nenhum par é contado em dois vértices.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "168/378 → 4/9 → alternativa A",
+     "porque": "Dividindo os dois por 42, a probabilidade fica 4/9.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 4/9",
+   "checagem": "Fixe a primeira reta: sobram 27 retas, e as que a encontram num vértice passam por uma das suas duas pontas, 6 por ponta. São 12 de 27, ou seja, 4/9, o mesmo valor.",
+   "erradas": {
+    "B": "1/2 não confere: fixada uma reta, seriam 13,5 das 27 restantes a encontrá-la num vértice, mas são exatamente 6 + 6 = 12.",
+    "C": "2/3 não confere: seriam 18 das 27 retas restantes; pelas duas pontas passam só 12 outras retas.",
+    "D": "1/14 não confere: daria 378/14 = 27 pares favoráveis, mas só um vértice já tem 21 pares e são 8 vértices.",
+    "E": "3/7 sai de 12/28: contou as 12 retas pelas pontas sobre as 28 retas, incluindo a própria reta fixada; as outras são 27."
+   },
+   "armadilha": "A segunda reta é escolhida entre as 27 restantes, e duas retas distintas nunca se cruzam em dois vértices.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de duas retas por vértices do cubo se cruzarem num vértice.",
+    "chave": "168 pares favoráveis (8 vértices × C(7, 2)) em 378 pares possíveis: 4/9.",
+    "cuidado": "Não divida por 28 depois de fixar uma reta: a outra sai das 27 que sobram."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fixar uma reta",
+    "ideia": "Das 27 outras retas, 6 + 6 = 12 passam por suas pontas: 12/27 = 4/9."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(8, 2) = 28",
+    "nota": "retas"
+   },
+   {
+    "linha": "C(28, 2) = 378",
+    "nota": "pares de retas"
+   },
+   {
+    "linha": "8 · C(7, 2) = 8 · 21 = 168",
+    "nota": "pares que se cruzam num vértice"
+   },
+   {
+    "linha": "168/378 = 4/9",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "Pd6b419ef": {
+  "n": "46",
+  "conceito": "Testar afirmações sobre produto, comutatividade e determinante de matrizes, derrubando as falsas com contraexemplo.",
+  "equivocos": {
+   "A": "M15.1:inversivel-implica-comutar",
+   "B": "M15.1:produto-nulo-comuta",
+   "C": "M15.2:sinal-sem-expoente-n",
+   "D": "M15.2:sinal-sem-expoente-n"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Afirmação geral sobre matrizes cai com um único contraexemplo, e matrizes 2 × 2 bastam. Na III, aplique determinante dos dois lados: det(Aᵀ) = det(A) e det(kA) = kⁿ det(A) numa matriz n × n. O sinal depende de n ser par ou ímpar.",
+    "formulas": [
+     "det(Aᵀ) = det(A)",
+     "det(−M) = (−1)ⁿ det(M)",
+     "det(A²) = (det A)²"
+    ],
+    "simbolos": [
+     [
+      "Mₙ(ℝ)",
+      "matrizes n × n de números reais"
+     ],
+     [
+      "Aᵀ",
+      "transposta de A"
+     ],
+     [
+      "inversível",
+      "matriz com determinante diferente de 0"
+     ],
+     [
+      "0",
+      "matriz nula, só zeros"
+     ]
+    ]
+   },
+   "pista": "Para cada afirmação, tente montar um contraexemplo 2 × 2 simples, com muitos zeros e uns.",
+   "passos": [
+    {
+     "faz": "Teste I com duas inversíveis",
+     "conta": "(1 1; 0 1)(1 0; 1 1) = (2 1; 1 1) ; (1 0; 1 1)(1 1; 0 1) = (1 1; 1 2)",
+     "porque": "As duas matrizes têm determinante 1, logo são inversíveis, e mesmo assim AB ≠ BA. I é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste II com matrizes de zeros e uns",
+     "conta": "A = (1 0; 0 0), B = (0 0; 1 0) → AB = (0 0; 0 0) ; BA = (0 0; 1 0)",
+     "porque": "AB = 0 não obriga BA = 0, porque a ordem do produto muda tudo. II é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Aplique determinante na III",
+     "conta": "det(Aᵀ) = det(−A²) → det A = (−1)ⁿ (det A)² → det A = (−1)ⁿ",
+     "porque": "Como A é inversível, det A ≠ 0 e dá para dividir por det A. O resultado depende de n.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache um contraexemplo para III com n = 2",
+     "conta": "A = (1/2   √3/2; −√3/2   1/2) → Aᵀ = −A² e det A = 1/4 + 3/4 = 1",
+     "porque": "É uma rotação de 120° com o sinal trocado; a conta confirma Aᵀ = −A², e o determinante é 1, não −1. III é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "I, II e III falsas → nenhuma afirmação → alternativa E",
+     "porque": "As três caem com contraexemplos 2 × 2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — nenhuma das afirmações é verdadeira",
+   "checagem": "Em III, com n ímpar a regra dá det A = −1 (A = −I de ordem 3 cumpre Aᵀ = −A²), mas com n par dá +1. Como a afirmação vale para todo n ≥ 2, basta o caso n = 2 para derrubá-la.",
+   "erradas": {
+    "A": "A não confere: I cai com (1 1; 0 1) e (1 0; 1 1), ambas de determinante 1 e com AB ≠ BA.",
+    "B": "B não confere: II cai com A = (1 0; 0 0) e B = (0 0; 1 0), em que AB = 0 mas BA = (0 0; 1 0).",
+    "C": "C sai de fazer III só com n ímpar: det A = (−1)ⁿ dá −1 quando n é ímpar, mas dá +1 quando n é par.",
+    "D": "D junta dois erros: I cai com duas inversíveis que não comutam, e III só vale para n ímpar (com n = 2, det A = 1)."
+   },
+   "armadilha": "Tratar det(−A²) como −det(A²), esquecendo que o sinal sai elevado a n: (−1)ⁿ.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das três afirmações sobre matrizes n × n são verdadeiras.",
+    "chave": "Contraexemplos 2 × 2 derrubam I e II; em III, det A = (−1)ⁿ, que é +1 para n par.",
+    "cuidado": "det(kA) = kⁿ det(A): o fator sai elevado à ordem da matriz."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "só o sinal em III",
+    "ideia": "Tomando determinante, det A = (−1)ⁿ (det A)², logo det A = (−1)ⁿ: para n par dá 1, então III não vale para todo n."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(1 1; 0 1)(1 0; 1 1) = (2 1; 1 1) ≠ (1 1; 1 2)",
+    "nota": "I falsa"
+   },
+   {
+    "linha": "(1 0; 0 0)(0 0; 1 0) = 0, mas (0 0; 1 0)(1 0; 0 0) ≠ 0",
+    "nota": "II falsa"
+   },
+   {
+    "linha": "det A = (−1)ⁿ (det A)² → det A = (−1)ⁿ",
+    "nota": "determinante dos dois lados"
+   },
+   {
+    "linha": "n = 2 → det A = 1 ≠ −1",
+    "nota": "III falsa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P1e9413bb": {
+  "n": "43",
+  "conceito": "Sistemas equivalentes: resolver os dois sistemas em função de m e igualar as soluções, verificando quando cada sistema tem solução.",
+  "equivocos": {
+   "A": "M15.3:nao-resolveu-os-sistemas",
+   "B": "M15.3:nao-testou-se-s1-tem-solucao",
+   "D": "M15.3:nao-descartou-m-que-anula-o-det",
+   "E": "M15.3:confundiu-equivalencia-com-indeterminacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dois sistemas são equivalentes quando têm o mesmo conjunto de soluções. S₂ tem determinante −700, que nunca zera, então sempre tem uma única solução. Resolva os dois em função de m, iguale as soluções e confira se, no valor encontrado, S₁ também tem solução (o determinante de S₁ zera em m = ±2).",
+    "formulas": [
+     "equivalentes ⇔ mesmo conjunto de soluções",
+     "det dos coeficientes ≠ 0 ⇔ solução única"
+    ],
+    "simbolos": [
+     [
+      "S₁, S₂",
+      "os dois sistemas lineares"
+     ],
+     [
+      "m",
+      "parâmetro real"
+     ],
+     [
+      "(x, y, z)",
+      "solução do sistema"
+     ]
+    ]
+   },
+   "pista": "Em S₂, isole y na 2ª equação e leve para a 3ª: os termos com mz se cancelam.",
+   "passos": [
+    {
+     "faz": "Resolva S₂",
+     "conta": "−5y + 5z = 14 → y = z − 14/5 | 5m(z − 14/5) + (14 − 5m)z = 14m² − 56 → 14z − 14m = 14m² − 56 → z = m² + m − 4 | 10x + z = m² + m − 1 → x = 3/10",
+     "porque": "Substituindo y na 3ª equação, os termos 5mz se cancelam e sobra 14z. Por isso S₂ tem sempre uma única solução, para todo m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva S₁",
+     "conta": "L3 − 3·L1: (12x − 3y + z) − 3(4x − y) = 8 − 6 → z = 2 | y = 4x − 2 → −16x + m²(4x − 2) + 2 = −10 → x = (m² − 6)/(2(m² − 4))",
+     "porque": "Subtrair o triplo da 1ª equação da 3ª elimina x e y e entrega z = 2. Para m = ±2 a última equação vira 0 · x = número diferente de zero: S₁ sem solução.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale os valores de z",
+     "conta": "m² + m − 4 = 2 → m² + m − 6 = 0 → (m + 3)(m − 2) = 0 → m = −3 ou m = 2",
+     "porque": "Para os sistemas terem a mesma solução, o z de S₂ precisa valer 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine m = 2 e confira m = −3",
+     "conta": "m = 2: S₁ impossível | m = −3: x = (9 − 6)/(2 · 5) = 3/10, y = 4 · (3/10) − 2 = −4/5 e em S₂ y = 2 − 14/5 = −4/5",
+     "porque": "Com m = 2, S₁ não tem solução e S₂ tem uma, então não são equivalentes. Com m = −3, os dois têm a mesma solução (3/10, −4/5, 2).",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "único valor: m = −3 < 0 → alternativa C",
+     "porque": "Existe exatamente um m, e ele é negativo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — existe exatamente um m < 0 (m = −3) tal que S₁ é equivalente a S₂.",
+   "checagem": "Substitua (3/10, −4/5, 2) com m = −3 em S₁: 4 · 0,3 + 0,8 = 2; −4,8 + 9 · (−0,8) + 2 = −10; 3,6 + 2,4 + 2 = 8. Em S₂: 3 + 2 = 5 = 9 − 3 − 1; 4 + 10 = 14; −15 · (−0,8) + 29 · 2 = 70 = 14 · 9 − 56. Todas fecham.",
+   "erradas": {
+    "A": "A não confere: com m = −3, os dois sistemas têm a mesma solução única (3/10, −4/5, 2).",
+    "B": "B sai de aceitar a raiz m = 2 da equação m² + m − 6 = 0 sem testar S₁: com m = 2, o determinante de S₁ é 4(m − 2)(m + 2) = 0 e S₁ fica impossível.",
+    "D": "D sai de contar as duas raízes, m = 2 e m = −3, sem descartar m = 2, em que S₁ não tem solução.",
+    "E": "E não confere: S₂ tem sempre solução única, e igualar as soluções dá uma equação de 2º grau em m, com no máximo duas raízes, não infinitas."
+   },
+   "armadilha": "A equação m² + m − 6 = 0 dá dois valores, mas em m = 2 o sistema S₁ é impossível e não pode ser equivalente a S₂.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos valores de m (e de que sinal) tornam S₁ e S₂ equivalentes.",
+    "chave": "S₂ dá sempre x = 3/10 e z = m² + m − 4; S₁ dá z = 2; igualando, m = −3 ou m = 2.",
+    "cuidado": "Teste cada m: em m = 2 o sistema S₁ é impossível."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela solução de S₂",
+    "ideia": "Substitua a solução de S₂ (x = 3/10, z = m² + m − 4) em S₁: a 3ª equação de S₁ força z = 2, o que dá m = −3 ou 2, e a 2ª só fecha em m = −3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "14z − 14m = 14m² − 56 → z = m² + m − 4",
+    "nota": "S₂: y = z − 14/5 na 3ª equação"
+   },
+   {
+    "linha": "10x + z = m² + m − 1 → x = 3/10",
+    "nota": "S₂: 1ª equação"
+   },
+   {
+    "linha": "L3 − 3·L1 → z = 2",
+    "nota": "S₁: elimina x e y"
+   },
+   {
+    "linha": "m² + m − 4 = 2 → (m + 3)(m − 2) = 0",
+    "nota": "iguala os z"
+   },
+   {
+    "linha": "m = 2: det S₁ = 4(m − 2)(m + 2) = 0 → só m = −3",
+    "nota": "descarta m = 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P8037c760": {
+  "n": "45",
+  "conceito": "Usar a raiz conjugada para fatorar um polinômio real de grau 4 e calcular a área do quadrilátero formado pelas raízes no plano complexo.",
+  "equivocos": {
+   "A": "M16.1:area-sem-montar-a-figura",
+   "B": "M16.1:area-so-do-retangulo-interno",
+   "C": "M16.1:area-sem-montar-a-figura",
+   "E": "M16.1:area-sem-montar-a-figura"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O polinômio tem coeficientes reais, então, se i é raiz, o conjugado −i também é. Isso dá o fator z² + 1; dividindo, sobra um fator de grau 2 com as outras duas raízes. Marcadas no plano, as quatro raízes formam um trapézio com dois lados verticais.",
+    "formulas": [
+     "coeficientes reais: se z é raiz, o conjugado também é",
+     "z = (−b ± √Δ)/(2a), com √(−16) = 4i",
+     "área do trapézio = ((B + b)/2) · h"
+    ],
+    "simbolos": [
+     [
+      "i",
+      "unidade imaginária, i² = −1"
+     ],
+     [
+      "conjugado",
+      "o número com a parte imaginária de sinal trocado: o de 3 + 2i é 3 − 2i"
+     ],
+     [
+      "Δ",
+      "discriminante b² − 4ac"
+     ],
+     [
+      "B, b, h",
+      "base maior, base menor e altura do trapézio"
+     ]
+    ]
+   },
+   "pista": "Se i é raiz e os coeficientes são reais, que outra raiz vem junto? Use as duas para tirar um fator de grau 2.",
+   "passos": [
+    {
+     "faz": "Use a raiz conjugada",
+     "conta": "raízes i e −i → fator (z − i)(z + i) = z² + 1",
+     "porque": "Coeficientes reais obrigam as raízes não reais a virem em pares conjugados.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Divida p(z) por z² + 1",
+     "conta": "z⁴ − 6z³ + 14z² − 6z + 13 → (z² + 1)(z² − 6z + 13)",
+     "porque": "Conferindo: z⁴ − 6z³ + 13z² + z² − 6z + 13 devolve o polinômio original.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva o fator de grau 2",
+     "conta": "Δ = 36 − 52 = −16 → z = (6 ± 4i)/2 → z = 3 ± 2i",
+     "porque": "A raiz de −16 é 4i; dividindo 6 ± 4i por 2, as outras raízes são 3 + 2i e 3 − 2i.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque os vértices no plano",
+     "conta": "i, −i, 3 + 2i, 3 − 2i → (0, 1), (0, −1), (3, 2), (3, −2)",
+     "porque": "Parte real no eixo horizontal, parte imaginária no vertical. Os pares ficam nas retas verticais x = 0 e x = 3: é um trapézio de bases verticais.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a área do trapézio",
+     "conta": "b = 2 | B = 4 | h = 3 → ((4 + 2)/2) · 3 = 9",
+     "porque": "A base menor vai de −1 a 1, a maior de −2 a 2, e a distância entre as retas x = 0 e x = 3 é a altura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue a área à alternativa",
+     "conta": "área = 9 → alternativa D",
+     "porque": "A questão pede a área do quadrilátero, e ela vale 9.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 9",
+   "checagem": "Pela fórmula do polígono (shoelace) com os vértices em ordem, (0, −1), (3, −2), (3, 2), (0, 1): a soma dos produtos cruzados é 3 + 12 + 3 + 0 = 18, e metade dá 9. Fecha.",
+   "erradas": {
+    "A": "4 não confere: o trapézio contém o retângulo de vértices (0, ±1) e (3, ±1), de área 2 · 3 = 6. A área tem de passar de 6.",
+    "B": "6 não confere: 6 é só o retângulo 2 × 3 dentro do trapézio; faltam os dois triângulos acima e abaixo dele, de área 1,5 cada.",
+    "C": "8 não confere: com bases 2 e 4, área 8 pediria altura 8/3 ≈ 2,67, mas a distância entre x = 0 e x = 3 é 3.",
+    "E": "10 não confere: com bases 2 e 4, área 10 pediria altura 10/3 ≈ 3,33, mas a distância entre x = 0 e x = 3 é 3."
+   },
+   "armadilha": "Sem usar que −i também é raiz, não há como fatorar p(z): a dica p(i) = 0 vale por duas raízes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do quadrilátero cujos vértices são as quatro raízes de p(z).",
+    "chave": "p(z) = (z² + 1)(z² − 6z + 13), raízes ±i e 3 ± 2i: trapézio de bases 2 e 4 e altura 3, área 9.",
+    "cuidado": "Leia cada raiz como ponto (parte real, parte imaginária) antes de medir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dois triângulos",
+    "ideia": "Divida pela diagonal de (0, 1) a (3, −2): triângulos de área 3 e 6, total 9."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i e −i → z² + 1",
+    "nota": "raiz conjugada"
+   },
+   {
+    "linha": "p(z) = (z² + 1)(z² − 6z + 13)",
+    "nota": "dividir p por z² + 1"
+   },
+   {
+    "linha": "Δ = 36 − 52 = −16",
+    "nota": "fator de grau 2"
+   },
+   {
+    "linha": "z = (6 ± 4i)/2 = 3 ± 2i",
+    "nota": "as outras raízes"
+   },
+   {
+    "linha": "((4 + 2)/2) · 3 = 9",
+    "nota": "trapézio de bases 2 e 4"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
  }
 }
