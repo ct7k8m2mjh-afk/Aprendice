@@ -70,3 +70,15 @@ Pendências do lote geo-p2-0004:
 GABARITO P86d922dd, P78828e19, Pa6317a2d (UFRR): entraram com gabarito do Aprendice (resolvedor e conferente às cegas: B, D, B; iguais ao preliminar); o site da UFRR não respondeu; conferir o definitivo.
 DADO Pe1fbc0b2: alternativas.B -> termina em "...se massificava no Brasil." (sem o " 35" final)
 RECLASS Pa6317a2d G11.3 -> G11.6 (o conferente acha que é G11.3, Amazônia; a coordenadora decide)
+
+## 2026-11-19 — PENDENCIAS — sessão geo parte 2 (lote geo-p2-0005 gravado, 48 resoluções; geo-p2-0006 em resolução)
+OUTRA Pe5380577: classificação: é de Filosofia e Sociologia S01.6 (o comando pede a análise "Sob a perspectiva sociológica"); reclassificar.
+ANULAR Pc75f2669: o gabarito oficial C exige I verdadeira, mas a discussão global sobre emissões é do século XX, não "apenas no século XIX"; a IV ("Japão 1967 primeiro país") também falha (Reino Unido, Clean Air Act, 1956); com II falsa nenhuma alternativa fecha; definitivo C conferido, banca não anulou. É a questão 10 do caderno 2, no bloco de Biologia.
+DADO Pe8213f8a: número da questão -> no print é a questão 37 (o texto de apoio diz "questões 37 e 38"), não a 47
+DADO Pc1a4c450: alternativas -> campo vazio; A racismo ambiental | B racismo estrutural | C determinismo geográfico | D determinismo ambiental | E possibilismo geográfico (coladas no fim de texto_da_prova)
+RECLASS Pc72aa29a G12.3 -> G03.6
+RECLASS P57a966f0 G12.3 -> G03.5
+RECLASS P85b5ae27 G12.3 -> G03.6
+RECLASS P11ae93d8 G12.4 -> G12.2
+RECLASS P3d13e8bf G12.4 -> G03.4
+RECLASS P89cd9902 G12.5 -> G02.3
