@@ -68,9 +68,9 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 | Matéria | Sessão | Situação |
 |---|---|---|
 | Matemática | session_01PveEKa7o3DaEHDo7jW4ttw | trabalhando (aberta 19/11 15h25, regra 50×4; anterior b7D6 deu FIM) |
-| Física | session_01PveEKaozjku3Rmd3ikcUSN | trabalhando (aberta 19/11 15h45, regra 50×4) |
+| Física | session_01PveEKYFao9mdqzruhVmuPm | trabalhando (aberta 19/11 16h26, regra 50×4; anterior aozj deu FIM) |
 | Química | session_01PveEKXC1xdiGM81kadC8Xj | trabalhando (aberta 19/11 15h45, regra 50×4) |
-| Geografia | session_01PveEKaf2jxoZVAwb8i9vXY | trabalhando (aberta 19/11 15h45, regra 50×4) |
+| Geografia | session_01PveEKb6B5Ur2zRmWD8t5rK | trabalhando (aberta 19/11 16h26, regra 50×4; anterior af2j deu FIM) |
 | Biologia | session_01PveEKY2istqnzKBoRGFXC5 | trabalhando (aberta 19/11 15h45, regra 50×4) |
 | Português | — | reservado para a FÁBRICA pela API (sessão Zx97 deu FIM 15h13; não reabrir) |
 Caídas pelo limite em 13/11 (o dono pode arquivar): Mat session_01PveEKWKTewFDUJvA5Y5s91, Fís session_01PveEKXXFLhp4ro4vnf1rh7,
