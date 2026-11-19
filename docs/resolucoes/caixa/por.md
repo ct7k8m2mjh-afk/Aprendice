@@ -38,3 +38,4 @@ RECLASS P6433066d P04.2 -> P10.4
 RECLASS P525b7014 P04.2 -> P07.3
 RECLASS P868a0d8d P04.2 -> P07.2 (porquês; não há conteúdo de ortografia, P07.2 é o mais próximo)
 DADO Pe9d9a6a5: texto da entrada com acentos quebrados ("A verdade ´e que vocˆe") -> "A verdade é que você" (como no print)
+Testes depois do por-0093: 786 passaram (tsc e converte ok).
