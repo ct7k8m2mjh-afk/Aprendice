@@ -221,3 +221,18 @@ Avisos: GABARITO P02be2531 (UFRR 2026 q37) entrou com gabarito do Aprendice B; a
 Checagem no site (P60f6cb69, P86d67d4f, P58ae45de; 390 e 1280 px): 4 blocos completos e na ordem, "Por que as outras estão erradas" fechado e abrindo, aviso do Gabarito do Aprendice presente, sem rolagem lateral nem erro no console.
 Testes: converte + tsc + vitest verdes (786 passed).
 A seguir: `python3 ferramentas/resolucoes/lote.py status` — Geografia faltam 837 (f2 676 · f3 21 · f4 91 · f5 49).
+
+## 2026-11-19 17:21 UTC — PENDENCIAS — sessão geo (19/11, 3ª)
+Lote gravado: geo-0051 (50 resoluções; 2 com gabarito do Aprendice, letras iguais às cegas e ao preliminar: Pa9e5fd68 C, P73685754 E). Pendentes: nenhuma.
+RECLASS Pdc74c406 G06.1 -> G06.2 (PUCPR 2025/2 q51: gráfico de natalidade × mortalidade e crescimento vegetativo = transição demográfica)
+RECLASS Pa9e5fd68 G06.1 -> G06.4 (UNIRG 2023/1 q43: migrações intermunicipais no Tocantins = migrações internas no Brasil)
+GABARITO Pa9e5fd68: UNIRG 2023/1 q43 sem gabarito definitivo localizado na web; letra do resolvedor C (conferir com a do preliminar e a do conferente às cegas)
+DADO P9bc011c5 (PUC-Rio 2023 grupo 4 q41): alternativas A e C -> no print: "A) 2010 – construção de novas escolas do ensino fundamental / 2060 – abertura de novas estradas de rodagem." e "C) 2010 – expansão de casas de repouso e asilos / 2060 – financiamentos ampliados para a educação básica." (pedaços "ental /", "ade.", "ca." soltos na entrada); o número impresso no print é 31, não 41
+RECLASS P80a12dff G06.2 -> G06.6 (PUCPR 2026/2 q48, jovens nem-nem por sexo e cor: desigualdade e indicadores sociais)
+RECLASS P14bb9b7e G06.2 -> G06.5 (Fempar 2027 q40, estrutura etária do Censo 2022 e política para idosos: população brasileira e envelhecimento)
+RECLASS P8e9a2126 G06.2 -> G06.1 (PUCPR 2023/2 q48, crescimento vegetativo negativo da China: indicador demográfico)
+OUTRA P2358874d (PUCPR 2024/1 q50): o texto da prova diz média nacional 3,31 -> 2,28 e chama o RS (2,54) de menor indicador; números incoerentes no próprio print, sem efeito na resposta (anotado no alerta)
+DADO Pa9ebd6fa: texto_da_prova -> começa por "A participação da mulher na população economicamente ativa..." (falta o "A" inicial na entrada)
+RECLASS Pba8bdf46 G06.3 -> G07.4 (Cederj 2024.2 q21: arquitetura hostil e população em situação de rua, não é migração)
+RECLASS P826ed232 G06.3 -> G01.1 (PUCPR 2024/2 q48: localizar país por latitude/longitude; equivocos já com G01.1)
+DADO Pb5d103f2: alternativas -> campo ausente na entrada; as alternativas A-E (desemprego estrutural / expulsão de imigrantes ilegais / xenofobia europeia / aumento de refugiados / mobilidade social) estão coladas no fim de texto_da_prova (UERR 2025 q71)
