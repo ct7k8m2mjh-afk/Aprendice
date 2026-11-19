@@ -78,7 +78,7 @@ Faltam 695 questões sem resolução (fora as que estão em lote, pendentes ou c
 | mat-0070 | demais nível 1-6 | 50 | gravado | 48 | 2 | 0 |
 | mat-0071 | demais nível 1-6 | 50 | gravado | 44 | 6 | 0 |
 | mat-0072 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
-| mat-0073 | demais nível 1-6 | 50 | aberto |  |  |  |
+| mat-0073 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -90,6 +90,7 @@ Faltam 695 questões sem resolução (fora as que estão em lote, pendentes ou c
 | P53f16b0b | PUCPR 2025 Medicina 2025/2 · questão 31 | M15.1 operações com matrizes (tema M15 Matrizes e determinantes) | print: o print corta a 1ª linha das duas matrizes. No PDF oficial (pág. 19) A e B têm 3 linhas: A = (1 2 3 4 ; −1 −2 −3 −4 ; 0 1 −1 2) e B = (1 0 2 1 −2 ; 2 1 0 −2 1 ; 0 −3 2 4 0). Com o print, c34 = (−3)(−2) + (−1)(4) = 2, sem alternativa; com o PDF, c34 = 3 × 1 + (−3)(−2) + (−1)(4) = 5 (C, gabarito). Refazer o print do PDF oficial. |
 | Pda63d44e | PUCPR 2026 Medicina 2026/2 · questão 35 | M11.3 pirâmides e cones (tema M11 Geometria espacial) | print: o topo da questão está cortado e os numeradores de H = 3R/2 e x = √(6πR³/V) ficam ilegíveis; conferido no PDF oficial (p. 16 do caderno-gabarito), a questão fecha com C (r² = 3R²/4, V = 3πR³/8, x = √16 = 4) — refazer o print e reenviar. |
 | Pe0819527 | UEG 2023 2023/1 · questão 20 | M15.1 operações com matrizes (tema M15 Matrizes e determinantes) | anular: duas alternativas verdadeiras. A 3ª equação (2x + 4y − 2z = 4) é o dobro da 1ª (x + 2y − z = 2), det = 0 e posto 2 com sistema compatível: há infinitas soluções (x = 3 − 2z/3, y = 5z/6 − 1/2), então a B é verdadeira; (1, 2, 3) também satisfaz as três equações (2, 7, 4), então a A (gabarito) é verdadeira. Gabarito definitivo A, sem anulação publicada; não dá para ensinar a B como errada. |
+| Peb68d097 | UEG 2024 2024/1 · questão 27 | M17.1 raciocínio lógico e dedução (tema M17 Lógica e algoritmos) | classificação: é de Física F09.2 reflexão e espelhos planos (quem se vê pelas janelas do prédio em frente usadas como espelho; leis da reflexão), está em M17.1. |
 | P151d953b | UEMA 2021 PAES · questão 29 | M14.2 leitura de tabelas e gráficos (tema M14 Estatística) | classificação: é de Física F03.5 colisões (conservação da quantidade de movimento em colisão perfeitamente inelástica), está em M14.2. A conta: Qx = 1600 · 20 = 32 000 kg·m/s; Qy = 2400 · 10 = 24 000 kg·m/s; Q = √(32 000² + 24 000²) = 40 000 kg·m/s; v = 40 000/4000 = 10 m/s (alternativa E, igual ao gabarito). |
 | P6272d008 | UEMA 2021 PAES · questão 30 | M11.3 pirâmides e cones (tema M11 Geometria espacial) | classificação: é de física (F06.2, dilatação térmica), está em M11.3 pirâmides e cones. A conta: V₀ = (4/3) · π · 10³ = 4000 m³ (π = 3); γ = 5,04 ÷ (4000 · 30) = 4,2 · 10⁻⁵ °C⁻¹; ΔV = 250 · 4,2 · 10⁻⁵ · 40 = 0,42 m³ = 42 · 10⁻² m³ (alternativa E). |
 | P5a76aa41 | UFPR 2021 Fase única · questão 47 | M10.4 ciclo trigonométrico e arcos (tema M10 Trigonometria) | print: a imagem da questão está cortada e corrompida; a figura da circunferência aparece só em parte e as alternativas b) a e) estão ilegíveis. A sessão principal precisa refazer o print a partir do caderno da UFPR 2021. |

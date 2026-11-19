@@ -104,5 +104,125 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "P9bbd45d7": {
+  "n": "16",
+  "conceito": "Completar um quadrado mágico 3x3 montando equações com as somas iguais de linha, coluna e diagonal.",
+  "equivocos": {
+   "A": "M17.1:esqueceu-a-incognita-da-coluna",
+   "B": "M17.1:numero-magico-chutado",
+   "D": "M17.1:numero-magico-chutado",
+   "E": "M17.1:numero-magico-chutado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Repare que x, y e z estão na mesma diagonal: x + y + z é o próprio número mágico S. Então a questão pede só o valor de S. Cada linha, coluna ou diagonal com uma casa só desconhecida vira uma equação simples em S.",
+    "formulas": [
+     "x + y + z = S (diagonal principal)",
+     "linha, coluna ou diagonal: soma = S"
+    ],
+    "simbolos": [
+     [
+      "S",
+      "número mágico: a soma de cada linha, coluna e diagonal"
+     ],
+     [
+      "x, y, z",
+      "as casas desconhecidas da diagonal principal do quadrado (II)"
+     ]
+    ]
+   },
+   "pista": "Procure em que linha ou coluna do quadrado (II) cada letra aparece sozinha, com os outros números conhecidos.",
+   "passos": [
+    {
+     "faz": "Perceba o que a questão pede",
+     "conta": "x, y, z na diagonal → x + y + z = S",
+     "porque": "x está no canto de cima à esquerda, y no centro e z no canto de baixo à direita: é a diagonal principal, cuja soma é o número mágico.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva x e z em função de S",
+     "conta": "x + 66 + 25 = S → x = S − 91 | 25 + 24 + z = S → z = S − 49",
+     "porque": "Na 1ª linha só x é desconhecido, e na 3ª coluna só z. O que é conhecido passa para o outro lado subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a coluna do meio e a diagonal",
+     "conta": "66 + y + 4 = S → y = S − 70 | (S − 91) + (S − 70) + (S − 49) = S → 3S − 210 = S",
+     "porque": "Com as três letras escritas em função de S, a diagonal vira uma equação com uma incógnita só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a equação",
+     "conta": "3S − 210 = S → 2S = 210 → S = 210/2 = 105",
+     "porque": "O S da direita passa subtraindo e o 210 passa somando; depois o 2 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "x + y + z = S = 105 → alternativa C",
+     "porque": "A soma pedida é a da diagonal, que é o número mágico.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 105",
+   "checagem": "Monte o quadrado inteiro: x = 14, y = 35, z = 56; a 1ª coluna fica 14, 46, 45. Linhas: 14 + 66 + 25 = 105, 46 + 35 + 24 = 105, 45 + 4 + 56 = 105; a outra diagonal 25 + 35 + 45 = 105. Fecha.",
+   "erradas": {
+    "A": "A sai de somar só os números conhecidos da coluna do meio, 66 + 4 = 70, esquecendo o y do centro. Com y = 35 a coluna dá 105.",
+    "B": "B não confere: com S = 94, as linhas e colunas dão x = 3, y = 24 e z = 45, e a diagonal soma 72, não 94.",
+    "D": "D não confere: com S = 135, x = 44, y = 65 e z = 86, e a diagonal soma 195, não 135. Só S = 105 fecha a diagonal.",
+    "E": "E não confere: com S = 198, x = 107, y = 128 e z = 149, e a diagonal soma 384, não 198."
+   },
+   "armadilha": "Não é preciso achar x, y e z um por um: os três formam a diagonal, e a soma deles é o próprio número mágico.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma x + y + z no quadrado mágico (II).",
+    "chave": "x, y, z estão na diagonal, então a soma é S; escrevendo x, y e z em função de S, a diagonal dá 3S − 210 = S, logo S = 105.",
+    "cuidado": "Escreva cada letra pela linha ou coluna em que ela aparece sozinha antes de juntar na diagonal."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "centro do quadrado",
+    "ideia": "Num quadrado mágico 3x3 o número mágico é o triplo do centro: 66 + y + 4 = 3y dá y = 35 e S = 105."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x = S − 91",
+    "nota": "1ª linha: x + 66 + 25 = S"
+   },
+   {
+    "linha": "y = S − 70",
+    "nota": "coluna do meio: 66 + y + 4 = S"
+   },
+   {
+    "linha": "z = S − 49",
+    "nota": "3ª coluna: 25 + 24 + z = S"
+   },
+   {
+    "linha": "(S − 91) + (S − 70) + (S − 49) = S",
+    "nota": "diagonal principal"
+   },
+   {
+    "linha": "3S − 210 = S → 2S = 210",
+    "nota": "S passa subtraindo; 210 passa somando"
+   },
+   {
+    "linha": "S = 210/2 = 105",
+    "nota": "o 2 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0073"
+  }
  }
 }

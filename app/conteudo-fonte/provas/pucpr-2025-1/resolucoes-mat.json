@@ -795,5 +795,125 @@
    "data": "2026-11-19",
    "lote": "mat-0071"
   }
+ },
+ "P47113b71": {
+  "n": "31",
+  "conceito": "Distribuir 1 + 2 + 3 + ... cartas em três colunas até 1000 e comparar os totais das colunas.",
+  "equivocos": {
+   "A": "M17.1:sobra-no-lugar-da-diferenca",
+   "B": "M17.1:comparou-colunas-erradas",
+   "D": "M17.1:esqueceu-a-sobra",
+   "E": "M17.1:soma-das-colunas-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As cartas saem em levas 1, 2, 3, 4, ... e as colunas se revezam: 1.ª, 2.ª, 3.ª, 1.ª, ... Então a coluna da leva k depende do resto de k por 3. Primeiro descubra até que leva completa as 1000 cartas chegam (soma 1 + 2 + ... + n) e para onde vai a sobra; depois some cada coluna.",
+    "formulas": [
+     "1 + 2 + ... + n = n(n + 1)/2",
+     "soma de PA = (número de termos) × (primeiro + último)/2"
+    ],
+    "simbolos": [
+     [
+      "leva",
+      "cada vez que Natália coloca cartas numa coluna"
+     ],
+     [
+      "n",
+      "número de levas completas"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro quantas levas completas cabem em 1000 cartas.",
+   "passos": [
+    {
+     "faz": "Ache a última leva completa",
+     "conta": "n(n + 1)/2 ≤ 1000 → 44 · 45/2 = 990 | 45 · 46/2 = 1035",
+     "porque": "Até a leva 44 usam-se 990 cartas; a leva 45 pediria 1035, mais do que há.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Coloque a sobra na coluna da vez",
+     "conta": "1000 − 990 = 10 cartas → leva 45 → 3.ª coluna",
+     "porque": "A leva 45 é múltipla de 3, então cabe à 3.ª coluna; ela recebe só as 10 que restam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some cada coluna como uma PA",
+     "conta": "1.ª: 1 + 4 + ... + 43 = 15 · 44/2 = 330 | 2.ª: 2 + 5 + ... + 44 = 15 · 46/2 = 345 | 3.ª: 3 + 6 + ... + 42 + 10 = 14 · 45/2 + 10 = 325",
+     "porque": "Cada coluna recebe levas de 3 em 3. A 1.ª e a 2.ª têm 15 levas; a 3.ª tem 14 levas completas mais a sobra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a diferença entre a maior e a menor",
+     "conta": "345 − 325 = 20",
+     "porque": "A 2.ª coluna é a que mais recebeu e a 3.ª, a que menos recebeu.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "|345 − 325| = 20 → alternativa C",
+     "porque": "A pergunta é a diferença em módulo, não um total.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 20",
+   "checagem": "Some as três colunas: 330 + 345 + 325 = 1000, exatamente as cartas do baralho.",
+   "erradas": {
+    "A": "A não confere: 10 é a sobra da última leva, não a diferença entre colunas; a diferença é 345 − 325 = 20.",
+    "B": "B sai de comparar a 2.ª com a 1.ª coluna: 345 − 330 = 15. A que menos recebeu é a 3.ª, com 325.",
+    "D": "D sai de esquecer a sobra de 10 cartas: a 3.ª coluna ficaria com 315 e 345 − 315 = 30.",
+    "E": "E não confere: as colunas têm 330, 345 e 325 cartas; a maior diferença entre duas delas é 20."
+   },
+   "armadilha": "Esquecer as 10 cartas que sobram na leva incompleta: sem elas a 3.ª coluna fica com 315 e a diferença sai 30.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A diferença entre a coluna que mais e a que menos recebeu cartas.",
+    "chave": "Levas completas até 44 (990 cartas); a sobra de 10 vai para a 3.ª coluna.",
+    "cuidado": "Some a sobra antes de comparar as colunas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por rodadas",
+    "ideia": "cada rodada de 3 levas dá à 2.ª coluna uma carta a mais que à 1.ª; após 14 rodadas e as levas 43 e 44, a 2.ª tem 345; a 3.ª fica com 315 + 10"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "44 · 45/2 = 990",
+    "nota": "levas completas"
+   },
+   {
+    "linha": "1000 − 990 = 10",
+    "nota": "sobra na leva 45, 3.ª coluna"
+   },
+   {
+    "linha": "1.ª: 15 · 44/2 = 330",
+    "nota": "levas 1, 4, ..., 43"
+   },
+   {
+    "linha": "2.ª: 15 · 46/2 = 345",
+    "nota": "levas 2, 5, ..., 44"
+   },
+   {
+    "linha": "3.ª: 14 · 45/2 + 10 = 325",
+    "nota": "levas 3, ..., 42 e a sobra"
+   },
+   {
+    "linha": "345 − 325 = 20",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0073"
+  }
  }
 }

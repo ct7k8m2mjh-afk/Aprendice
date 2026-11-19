@@ -863,5 +863,101 @@
    "data": "2026-11-19",
    "lote": "mat-0071"
   }
+ },
+ "Pb21ffdb0": {
+  "n": "11",
+  "conceito": "Negação de proposição com \"todo\" e conjunção (De Morgan).",
+  "equivocos": {
+   "A": "M17.1:manteve-e-na-negacao",
+   "C": "M17.1:nao-negou-o-quantificador",
+   "D": "M17.1:ignorou-a-negacao",
+   "E": "M17.1:negou-todo-como-nenhum"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"É falso que toda criança faz X\" quer dizer que pelo menos uma criança não faz X. Aqui X é \"gosta de sorvete e brinca no parque\". Negar um \"e\" dá um \"ou\": basta uma das duas coisas faltar.",
+    "formulas": [
+     "não (todo x faz X) → algum x não faz X",
+     "não (A e B) → não A ou não B (De Morgan)"
+    ],
+    "simbolos": [
+     [
+      "De Morgan",
+      "regra: negar \"A e B\" dá \"não A ou não B\""
+     ],
+     [
+      "equivalente",
+      "verdadeira exatamente nos mesmos casos"
+     ]
+    ]
+   },
+   "pista": "Negue primeiro o \"toda\" e só depois a parte \"gosta e brinca\".",
+   "passos": [
+    {
+     "faz": "Negue o quantificador",
+     "conta": "é falso que toda criança (gosta e brinca) → alguma criança não (gosta e brinca)",
+     "porque": "Para \"todas\" ser falso, basta uma criança fora da regra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Negue a conjunção",
+     "conta": "não (gosta e brinca) → não gosta ou não brinca",
+     "porque": "Pela regra de De Morgan, o \"e\" negado vira \"ou\" com as duas partes negadas: falha se faltar qualquer uma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "alguma criança não gosta de sorvete ou não brinca no parque → alternativa B",
+     "porque": "É a frase da alternativa B, palavra por palavra.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — Alguma criança não gosta de sorvete ou não brinca no parque",
+   "checagem": "Teste um caso: todas as crianças brincam, mas uma não gosta de sorvete. A afirmação original é verdadeira (nem toda criança faz as duas coisas) e B também; A é falsa, pois ninguém deixa de brincar.",
+   "erradas": {
+    "A": "Troca o \"ou\" por \"e\": se todas brincam e só uma não gosta de sorvete, a afirmação dada é verdadeira e A é falsa.",
+    "C": "Com todas as crianças gostando e brincando, C é verdadeira e a afirmação dada é falsa; não são equivalentes.",
+    "D": "É a própria afirmação que a frase declara falsa; diz o contrário dela.",
+    "E": "\"Toda criança não gosta e não brinca\" é bem mais forte: com uma só criança fora da regra, a afirmação dada é verdadeira e E é falsa."
+   },
+   "armadilha": "Negar o \"e\" mantendo o \"e\": a negação de \"gosta e brinca\" é \"não gosta OU não brinca\".",
+   "alerta": "",
+   "essencial": {
+    "pede": "A afirmação equivalente a \"é falso que toda criança gosta de sorvete e brinca no parque\".",
+    "chave": "Toda vira alguma, e o \"e\" negado vira \"ou\" com as duas partes negadas.",
+    "cuidado": "Negue as duas coisas: o quantificador e o conectivo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contraexemplo",
+    "ideia": "Para cada alternativa, procure um caso em que ela e a frase dada tenham valores diferentes; só B não tem contraexemplo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "não (toda criança: G e B)",
+    "nota": "afirmação dada"
+   },
+   {
+    "linha": "alguma criança: não (G e B)",
+    "nota": "nega o \"toda\""
+   },
+   {
+    "linha": "alguma criança: não G ou não B",
+    "nota": "De Morgan no \"e\""
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0073"
+  }
  }
 }

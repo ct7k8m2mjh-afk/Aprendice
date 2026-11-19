@@ -486,5 +486,133 @@
    "data": "2026-11-19",
    "lote": "mat-0072"
   }
+ },
+ "P3b7c7e71": {
+  "n": "1",
+  "conceito": "Converter da base 8 para a base 2 e contar palíndromos binários por número de algarismos.",
+  "equivocos": {
+   "A": "M17.2:contagem-incompleta",
+   "B": "M17.2:contagem-incompleta",
+   "D": "M17.2:incluiu-o-zero",
+   "E": "M17.2:contagem-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro descubra quem é (377) na base 8 escrito na base 2: cada algarismo octal vira três algarismos binários. Depois conte os palíndromos binários por quantidade de algarismos. Num palíndromo, a primeira metade decide a segunda; o primeiro algarismo é sempre 1, então só as casas livres da primeira metade contam.",
+    "formulas": [
+     "algarismo octal = 3 algarismos binários (7 = 111)",
+     "palíndromos binários com L algarismos = 2 elevado a (metade de L, arredondada para cima, menos 1)"
+    ],
+    "simbolos": [
+     [
+      "(377)8",
+      "o número 377 escrito na base 8"
+     ],
+     [
+      "base 2",
+      "sistema binário, só com os algarismos 0 e 1"
+     ],
+     [
+      "palíndromo",
+      "número que se lê igual de trás para a frente"
+     ],
+     [
+      "L",
+      "quantidade de algarismos do número na base 2"
+     ]
+    ]
+   },
+   "pista": "Escreva (377)8 na base 2 e veja quantos algarismos ele tem. Quantos números binários ficam até ele?",
+   "passos": [
+    {
+     "faz": "Converta o limite para a base 2",
+     "conta": "(377)8 → 3 | 7 | 7 → 011 | 111 | 111 → (11111111)2 = 255",
+     "porque": "Cada algarismo da base 8 corresponde a exatamente três da base 2. O resultado tem 8 algarismos iguais a 1: é o maior número binário de 8 algarismos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Traduza o que se conta",
+     "conta": "todos os palíndromos binários com 1 a 8 algarismos",
+     "porque": "Como o limite é 11111111, todo número binário com até 8 algarismos é menor ou igual a ele; nenhum de 9 algarismos entra.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte por quantidade de algarismos",
+     "conta": "L = 1, 2 → 2^0 = 1 cada | L = 3, 4 → 2^1 = 2 cada | L = 5, 6 → 2^2 = 4 cada | L = 7, 8 → 2^3 = 8 cada",
+     "porque": "O 1º algarismo é 1; os outros da primeira metade são livres (0 ou 1) e a segunda metade é o espelho. Com 8 algarismos há 4 na metade, 3 livres: 2^3 = 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os casos",
+     "conta": "2 × (1 + 2 + 4 + 8) → 2 × 15 = 30",
+     "porque": "Cada potência aparece duas vezes, uma para o comprimento ímpar e outra para o par seguinte.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "30 palíndromos → alternativa C",
+     "porque": "A contagem já exclui o zero, porque a questão pede naturais positivos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 30",
+   "checagem": "Liste os menores: 1, 11, 101, 111, 1001, 1111 — são 1 + 1 + 2 + 2 = 6 com até 4 algarismos, como na contagem. E o próprio limite 11111111 é palíndromo e já está entre os 8 de oito algarismos.",
+   "erradas": {
+    "A": "A não confere: 16 não é nenhum dos totais acumulados por comprimento (1, 2, 4, 6, 10, 14, 22, 30); falta quase metade dos palíndromos.",
+    "B": "B não confere: nenhuma contagem por comprimento dá 26; os totais acumulados são 1, 2, 4, 6, 10, 14, 22 e 30.",
+    "D": "D sai de incluir o zero: 30 + 1 = 31. A questão pede naturais positivos, e o zero fica de fora.",
+    "E": "E não confere: mesmo incluindo o zero, o total é 31; as contagens 1, 1, 2, 2, 4, 4, 8, 8 por comprimento já estão completas e não sobra palíndromo para chegar a 32."
+   },
+   "armadilha": "O 1º algarismo de um número binário é sempre 1 e não é escolha livre: contar 2 opções para ele dobra o resultado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos naturais positivos até (377)8 são palíndromos na base 2.",
+    "chave": "(377)8 = (11111111)2, então valem todos os palíndromos com 1 a 8 algarismos: 2 × (1 + 2 + 4 + 8) = 30.",
+    "cuidado": "Fixe o 1º algarismo em 1 e não inclua o zero."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem pela metade",
+    "ideia": "Um palíndromo de 8 algarismos é decidido pelos 4 primeiros; os números de 1 a 15 em binário (15 deles) geram cada um um palíndromo de comprimento ímpar e um de comprimento par: 2 × 15 = 30."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(377)8 = (011 111 111)2",
+    "nota": "cada algarismo octal vira 3 binários"
+   },
+   {
+    "linha": "(11111111)2 = 255",
+    "nota": "limite: todos os números de até 8 algarismos"
+   },
+   {
+    "linha": "1 + 1 + 2 + 2 + 4 + 4 + 8 + 8",
+    "nota": "palíndromos com 1, 2, ..., 8 algarismos"
+   },
+   {
+    "linha": "2 × (1 + 2 + 4 + 8) = 2 × 15 = 30",
+    "nota": "agrupa as potências repetidas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0073"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0073"
+  }
  }
 }

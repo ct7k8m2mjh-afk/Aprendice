@@ -217,3 +217,34 @@ DADO P05b828ca (UFRR 2021, q. 18): alternativas -> caracteres trocados; no print
 DADO Pa2bed03b (UFRR 2022, q. 16): texto_da_prova -> falta a expressão; no print: "O valor de (1/2 + (√3/2)i)^15 é:"; alternativa E -> "-1" (a expressão do enunciado foi colada nela)
 DADO Pd61bcac8 (UFRR 2025, q. 17): texto_da_prova -> falta a expressão; no print: z = (i^2020 + i^2024)/(i + i² + i³ + i⁴ + … + i^2025); alternativas C -> 2024^(−1), D -> 2025^(−1) (vazias na entrada)
 RECLASS Pdc7fbbaa M16.2 -> M04.2 (URCA 2023.1, questão 28: discriminante de equação do 2.º grau com coeficiente cos 1°; não usa operações com complexos)
+
+## 2026-11-19 — PENDENCIAS — session_01PveEKZJXRTXQ8BArELQfeu
+Lote mat-0073 gravado (49 resoluções + 1 pendente).
+Gabarito do Aprendice (resolvedor e conferente às cegas iguais; sem gabarito na web): P3b7c7e71 C.
+PENDENTE Peb68d097: classificação: é de Física F09.2 reflexão e espelhos planos (quem se vê pelas janelas do prédio em frente usadas como espelho; leis da reflexão), está em M17.1.
+DADO P03d12517 (Fatec 2024-1, questão 34): alternativas.E -> "15" (o "34" colado é o número da questão)
+DADO P90d737c6 (Fatec 2024-1, questão 44): alternativas.E -> "Sônia é atacante." (o resto é o quadro de escalação colado)
+DADO P462fe028 (Fatec 2024-2, questão 38): texto_da_prova -> no print o parágrafo "Três conhecidos, Ceci, Peri e Iracema [...] sabe-se que:" vem ANTES das premissas I e II
+DADO P56adcce7 (Fatec 2025-2, questão 21): alternativas -> são linhas de tabela com colunas Rose | Carlos | Caio; ex.: C = Rose: tecnólogo em meio ambiente e recursos hídricos | Carlos: tecnólogo em produção agropecuária | Caio: tecnólogo em gestão ambiental
+DADO P96eba685 (Fatec 2025-2, questão 29): alternativas.E -> "12" (as sequências "18 – 04 – ... – 18" e "00 – 03 – 20 – 11 – 19 – 14" coladas são do enunciado)
+RECLASS Peb68d097 M17.1 -> F09.2 (UEG 2024/1, questão 27: é de Física, reflexão em espelhos planos — janelas do prédio em frente usadas como espelho; não resolvida, gabarito oficial E)
+DADO P02dac9eb (Fatec 2026 1º semestre, questão 47): alternativas.E -> "Tema → Frase → Música → Unidade." (o "Questão 47" colou na alternativa)
+DADO Pef041ca0 (Fatec 2026 1º semestre, questão 48): alternativas -> A "círculo (●)" | B "hexágono (⬢)" | C "losango (◆)" | D "estrela (★)" | E "quadrado (■)" (alternativas são símbolos, vieram vazias)
+DADO P04511c00 (PUCPR 2024/2 Medicina, questão 29): texto_da_prova -> "N = XYZW; X, Y, Z e W em PA. I. X + W = 12  II. Z − X = 4  III. WZY − YZW = 396. Quanto vale Z + 2W − Y?" (camada de texto quebrou as expressões)
+DADO P9bbd45d7 (UFJF 2023 PISM III, q16): texto_da_prova -> no print, o quadrado (II) traz x (linha 1, coluna 1), y (centro) e z (linha 3, coluna 3), e o comando é "o valor de x + y + z é:" (as letras sumiram da camada de texto)
+DADO Pee798f47 (Fatec 2024-2, q52): alternativas.E -> "iscun quinsa chunca." (o quadro Português/Quéchua está colado na alternativa E; "quinsa" está assim no print)
+DADO Pb142cf0a (ENEM 2025, q172): alternativas -> A 10^0,5 | B 10^8 | C (10^2,5)/84 | D (10^2,5)/99 | E 25 × 10^−2 (a entrada não separou as alternativas)
+RECLASS Pd8e0ebd3 M03.2 -> M07.2 (ENEM 2024 questão 162: parcelas com acréscimo percentual fixo = progressão geométrica; a questão é escolher o mês pelo crescimento das parcelas, não aplicar aumentos sucessivos)
+DADO P3c028671 (ENEM 2022, questão 140): alternativas.E -> "64." (sobra "i" colada no fim)
+RECLASS P3c028671 M04.5 -> M17.1 (ENEM 2022, questão 140: calendário mínimo do torneio por rodadas e descanso; raciocínio lógico, sem equação)
+RECLASS Pbfda5037 M04.5 -> M05.2 (ENEM 2023, questão 170: mínimo de função quadrática pelo vértice)
+RECLASS Pfd8e410c M02.2 -> M11.2 (ENEM 2023, questão 142: volume do cilindro do reservatório, π × r² × h, convertido em litros; equivocos já em M11.2)
+OBS P68f38fc8 (PUCRS 2023, mat-0071): no site, o passo "0,9 s ≤ 1,1 → s = 1" não diz por que s não pode ser 0 (melhoria pequena).
+PRINT P7c92d32c (Fatec 2023): a palavra "correta" sai partida entre os dois pedaços de coluna do print ("corret" … "eta.").
+
+## 2026-11-19 — FIM — session_01PveEKZJXRTXQ8BArELQfeu
+Último lote gravado: mat-0073. Lotes gravados nesta vez: mat-0070 (48 + 2 pendentes), mat-0071 (44 + 6 pendentes), mat-0072 (49 + 1 pendente), mat-0073 (49 + 1 pendente) = 190 resoluções, 10 pendentes, 0 divergências.
+Lotes abertos: nenhum. Testes (após mat-0072): 786 passed, tsc OK. Site conferido (P7c92d32c, P68f38fc8, P5acc6467): 4 blocos, fração empilhada, animação até o fim.
+Gabarito do Aprendice nesta vez (11): Pc5b5f0f8 A, Pbfc6659b E, P741209bd D, P368668ed C, P1bf589e2 C, P76c1f1a5 B, P84c242f6 C, Pd7f0ad5f D, Pe15a6d90 D, Pd61bcac8 E, P3b7c7e71 C.
+Pendências: ANULAR Pbe8f57aa, Pd589344f, Pc6951868, Pe0819527; PRINT P17aea30d, Pbc716955, P53f16b0b, P528013c1; classificação Física P151d953b (F03.5), Peb68d097 (F09.2); RECLASS e DADO nos blocos acima.
+Próximo: `lote.py proximo mat 50 --novo`. Faltam 695 questões de Matemática.

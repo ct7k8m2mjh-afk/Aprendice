@@ -1,0 +1,345 @@
+{
+ "Pb142cf0a": {
+  "n": "172",
+  "conceito": "Transformar a condição P ≤ 10 numa desigualdade sem logaritmo e usar o máximo da parábola no intervalo de uso.",
+  "equivocos": {
+   "B": "M06.3:propriedade-do-log-errada",
+   "C": "M05.2:nao-usou-o-vertice",
+   "D": "M05.2:usou-a-ponta-do-intervalo",
+   "E": "M06.3:valor-valido-mas-nao-maximo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A pressão não pode passar de 10 atm em nenhum instante das 10 horas. Como o log cresce junto com o que está dentro dele, basta olhar o instante em que −K·(t + 1)·(t − 19) é maior. Esse produto é uma parábola com raízes −1 e 19: o vértice fica no meio delas, em t = 9, que está dentro do intervalo de 0 a 10 horas.",
+    "formulas": [
+     "4·log A ≤ 10 → log A ≤ 10/4 → A ≤ 10^2,5",
+     "vértice entre as raízes: t = (−1 + 19)/2"
+    ],
+    "simbolos": [
+     [
+      "log",
+      "logaritmo na base 10"
+     ],
+     [
+      "K",
+      "parâmetro positivo que define o modelo da máquina"
+     ],
+     [
+      "t",
+      "tempo contínuo de uso, em hora (de 0 a 10)"
+     ]
+    ]
+   },
+   "pista": "Pergunte-se em que instante entre 0 e 10 horas a pressão é a maior. É nesse instante que a regra dos 10 atm aperta.",
+   "passos": [
+    {
+     "faz": "Tire o logaritmo da condição",
+     "conta": "4·log[−K·(t + 1)·(t − 19)] ≤ 10 → log[...] ≤ 10/4 = 2,5 → −K·(t + 1)·(t − 19) ≤ 10^2,5",
+     "porque": "O 4 que multiplica passa dividindo; depois, log A ≤ 2,5 significa A ≤ 10^2,5, porque o log de base 10 é crescente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o pior instante do uso",
+     "conta": "f(t) = (t + 1)·(19 − t) | raízes −1 e 19 → vértice t = (−1 + 19)/2 = 9",
+     "porque": "f é uma parábola voltada para baixo; o máximo fica no meio das raízes, e t = 9 está dentro das 10 horas de uso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o valor máximo",
+     "conta": "f(9) = (9 + 1)·(19 − 9) → 10 · 10 = 100",
+     "porque": "Se a condição vale no instante de maior pressão, vale em todos os outros.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole K",
+     "conta": "K · 100 ≤ 10^2,5 → K ≤ (10^2,5)/(10^2) → K ≤ 10^0,5",
+     "porque": "O 100 que multiplica passa dividindo; na divisão de potências de mesma base, subtraem-se os expoentes: 2,5 − 2 = 0,5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "maior K = 10^0,5 → alternativa A",
+     "porque": "O maior valor permitido é o próprio limite da desigualdade.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — K = 10^0,5",
+   "checagem": "Com K = 10^0,5, no instante t = 9: P = 4·log(10^0,5 · 100) = 4·log(10^2,5) = 4 · 2,5 = 10 atm, exatamente o limite; em qualquer outro instante a pressão é menor.",
+   "erradas": {
+    "B": "B não confere: com K = 10^8, em t = 9 a pressão seria 4·log(10^8 · 100) = 4 · 10 = 40 atm, quatro vezes o limite.",
+    "C": "C sai de testar só o meio do período, t = 5: (5 + 1)·(19 − 5) = 84, logo K = (10^2,5)/84. Mas em t = 9 o produto vale 100 e a pressão passa de 10 atm.",
+    "D": "D sai de testar só o fim do período, t = 10: (10 + 1)·(19 − 10) = 99, logo K = (10^2,5)/99. O máximo não é no fim: em t = 9 o produto vale 100 e a pressão passa de 10 atm.",
+    "E": "E não confere como maior valor: K = 25 × 10^−2 = 0,25 dá, em t = 9, P = 4·log 25 ≈ 5,6 atm. Respeita o limite, mas K ainda pode crescer até 10^0,5 ≈ 3,16."
+   },
+   "armadilha": "O pior instante não é o fim das 10 horas nem o meio delas, e sim o vértice da parábola, t = 9.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O maior K que mantém a pressão até 10 atm durante 10 horas seguidas de uso.",
+    "chave": "4·log A ≤ 10 dá A ≤ 10^2,5; o produto (t + 1)·(19 − t) é máximo em t = 9, onde vale 100, então K ≤ 10^0,5.",
+    "cuidado": "Procure o máximo da parábola dentro do intervalo, não use as pontas do período."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Substitua cada K em t = 9: só com 10^0,5 a pressão chega a 10 atm sem passar."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4·log[K·(t + 1)·(19 − t)] ≤ 10",
+    "nota": "recomendação do fabricante"
+   },
+   {
+    "linha": "K·(t + 1)·(19 − t) ≤ 10^2,5",
+    "nota": "o 4 passa dividindo e o log sai"
+   },
+   {
+    "linha": "t = (−1 + 19)/2 = 9",
+    "nota": "vértice: meio das raízes"
+   },
+   {
+    "linha": "(9 + 1)·(19 − 9) = 100",
+    "nota": "maior valor do produto em 0 a 10 h"
+   },
+   {
+    "linha": "K ≤ (10^2,5)/(10^2) = 10^0,5",
+    "nota": "o 100 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0073"
+  }
+ },
+ "Pbc4e0fd0": {
+  "n": "162",
+  "conceito": "Custo de produção misto e inequação para cortar o custo pela metade.",
+  "equivocos": {
+   "A": "M03.1:nao-cumpre-a-meta",
+   "C": "M03.1:nao-buscou-o-minimo",
+   "D": "M03.1:nao-buscou-o-minimo",
+   "E": "M03.1:nao-buscou-o-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro descubra o custo de produzir pelo petróleo: R$ 500,00 são 5% dele, então ele é R$ 10 000,00 por tonelada. Calcule o custo deste mês, tome a metade como teto e monte a inequação com x toneladas recicladas e 190 − x pelo petróleo, mantendo as 190 toneladas.",
+    "formulas": [
+     "custo do petróleo: 500 = 5% de C → C = 500 ÷ 0,05",
+     "custo total = 500 × recicladas + 10 000 × petróleo",
+     "meta: custo novo ≤ metade do custo atual"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "toneladas produzidas por reciclagem no mês seguinte"
+     ],
+     [
+      "t",
+      "tonelada"
+     ]
+    ]
+   },
+   "pista": "Antes de tudo, descubra quanto custa uma tonelada vinda do petróleo a partir dos 5%.",
+   "passos": [
+    {
+     "faz": "Ache o custo do petróleo",
+     "conta": "500 = 0,05 × C → C = 500/0,05 → C = 10000",
+     "porque": "R$ 500,00 equivale a 5% do custo do petróleo; o 0,05 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o custo deste mês e a meta",
+     "conta": "110 × 10000 + 80 × 500 = 1140000 → meta: 1140000/2 = 570000",
+     "porque": "Com redução de pelo menos 50%, o custo novo pode ser no máximo metade do atual.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a inequação",
+     "conta": "500x + 10000(190 − x) ≤ 570000 → 1900000 − 9500x ≤ 570000",
+     "porque": "A produção total continua 110 + 80 = 190 toneladas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para x",
+     "conta": "9500x ≥ 1900000 − 570000 → 9500x ≥ 1330000 → x ≥ 1330000/9500 → x ≥ 140",
+     "porque": "O 9 500x passa para o outro lado e o 9 500 vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "mínimo de 140 t recicladas → alternativa B",
+     "porque": "A menor quantidade que cumpre a meta é 140 toneladas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 140 toneladas",
+   "checagem": "Substitua: 140 t recicladas custam 140 × 500 = 70 000 e 50 t do petróleo custam 500 000; total 570 000, exatamente a metade de 1 140 000.",
+   "erradas": {
+    "A": "135 não cumpre a meta: 135 × 500 + 55 × 10 000 = 617 500, acima do teto de 570 000.",
+    "C": "155 cumpre a meta (custo 427 500), mas não é o mínimo: 140 toneladas já bastam.",
+    "D": "160 cumpre a meta (custo 380 000), mas não é o mínimo: 140 toneladas já bastam.",
+    "E": "175 cumpre a meta (custo 237 500), mas não é o mínimo: 140 toneladas já bastam."
+   },
+   "armadilha": "R$ 500,00 é 5% do custo do petróleo, então este é R$ 10 000,00 por tonelada, e a produção total continua sendo 190 t.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A menor quantidade de plástico reciclado que reduz o custo à metade.",
+    "chave": "Petróleo a 10 000 por tonelada; 500x + 10 000(190 − x) ≤ 570 000 dá x ≥ 140.",
+    "cuidado": "Mantenha as 190 toneladas e busque o mínimo, não qualquer valor que cumpra a meta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "economia por tonelada",
+    "ideia": "cada tonelada que passa do petróleo para a reciclagem economiza 9 500; é preciso cortar 570 000 e já há 80 recicladas: 570 000 ÷ 9 500 = 60, e 80 + 60 = 140"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C = 500/0,05 = 10000",
+    "nota": "custo por tonelada do petróleo"
+   },
+   {
+    "linha": "110 × 10000 + 80 × 500 = 1140000",
+    "nota": "custo deste mês"
+   },
+   {
+    "linha": "500x + 10000(190 − x) ≤ 570000",
+    "nota": "meta de 50%"
+   },
+   {
+    "linha": "9500x ≥ 1330000",
+    "nota": "termos passam de lado"
+   },
+   {
+    "linha": "x ≥ 140",
+    "nota": "o 9 500 vai dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0073"
+  }
+ },
+ "P49729ace": {
+  "n": "140",
+  "conceito": "Usar a quantidade que não muda (S2) para achar o novo total da solução e, dele, o que foi retirado.",
+  "equivocos": {
+   "A": "M03.5:diferenca-de-porcentagens-sobre-total-antigo",
+   "B": "M03.5:nova-porcentagem-sobre-total-antigo",
+   "C": "M03.5:porcentagem-lida-errada",
+   "D": "M03.5:conta-aproximada-sem-conferir"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Só S1 é retirado: a quantidade de S2 fica a mesma. Então calcule S2 primeiro e veja que, depois, esse mesmo S2 tem de valer 0,10% da nova solução. Passar de 0,05% para 0,10% é dobrar a porcentagem com a mesma quantidade, e isso só acontece se o total cair pela metade.",
+    "formulas": [
+     "parte = porcentagem × total",
+     "novo total = S2 ÷ 0,10%"
+    ],
+    "simbolos": [
+     [
+      "S1, S2",
+      "as duas substâncias da solução"
+     ],
+     [
+      "%",
+      "por cento: 0,05% = 0,0005"
+     ]
+    ]
+   },
+   "pista": "Comece pela substância que não sai do recipiente.",
+   "passos": [
+    {
+     "faz": "Calcule a porcentagem e a quantidade de S2",
+     "conta": "100% − 99,95% = 0,05% → 0,0005 × 10 L = 0,005 L",
+     "porque": "Se S1 é 99,95% da solução, o resto, 0,05%, é S2. Essa quantidade não muda depois da retirada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o novo total da solução",
+     "conta": "0,001 × T = 0,005 → T = 0,005/0,001 → T = 5 L",
+     "porque": "Na nova solução S1 é 99,90%, então S2 passa a ser 0,10% do total. O 0,001 que multiplica T passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o que foi retirado",
+     "conta": "10 L − 5 L = 5 L de S1",
+     "porque": "Como só S1 saiu, a diferença entre o total antigo e o novo é toda de S1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao comando",
+     "conta": "5 L retirados → alternativa E",
+     "porque": "A pergunta é a quantidade de S1 retirada, em litro: 5,0000.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 5,0000 litros",
+   "checagem": "Monte a nova solução: S1 = 9,995 − 5 = 4,995 L e S2 = 0,005 L, total 5 L. Então S1 é 4,995/5 = 0,999 = 99,90% da nova solução, como pede o enunciado.",
+   "erradas": {
+    "A": "0,0050 sai de aplicar a diferença das porcentagens aos 10 L: 10 × (99,95% − 99,90%) = 0,005. Mas a porcentagem nova vale sobre um total menor, não sobre os 10 L.",
+    "B": "0,0100 não confere: sobrariam 9,99 L com 0,005 L de S2, e S2 seria 0,005/9,99 ≈ 0,050% (S1 ainda perto de 99,95%).",
+    "C": "0,5000 não confere: sobrariam 9,5 L, e S2 seria 0,005/9,5 ≈ 0,053%, longe dos 0,10% pedidos.",
+    "D": "4,9775 não confere: sobrariam 5,0225 L, e S2 seria 0,005/5,0225 ≈ 0,0996%, abaixo dos 0,10% exatos; só 5 L de retirada fecha a conta."
+   },
+   "armadilha": "A queda de 99,95% para 99,90% parece pequena, mas dobra a fatia de S2 (de 0,05% para 0,10%), e para isso o total tem de cair à metade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos litros de S1 retirar para que S1 passe de 99,95% a 99,90% da solução.",
+    "chave": "S2 = 0,05% de 10 L = 0,005 L fica fixo e passa a ser 0,10% do total, então o total vira 5 L.",
+    "cuidado": "Trabalhe com a substância que não muda; a porcentagem nova vale sobre o total novo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razão",
+    "ideia": "S2 fica fixo e sua fatia dobra de 0,05% para 0,10%: o total cai à metade, de 10 L para 5 L, e saem 5 L."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "S2 = 0,0005 × 10 = 0,005 L",
+    "nota": "S2 é 0,05% e não muda"
+   },
+   {
+    "linha": "0,001 × T = 0,005",
+    "nota": "S2 vira 0,10% do novo total"
+   },
+   {
+    "linha": "T = 0,005/0,001 = 5 L",
+    "nota": "o 0,001 passa dividindo"
+   },
+   {
+    "linha": "10 − 5 = 5 L",
+    "nota": "o que saiu é todo de S1"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0073"
+  }
+ }
+}
