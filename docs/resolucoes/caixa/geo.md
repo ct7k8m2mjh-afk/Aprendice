@@ -418,3 +418,22 @@ RECLASS P906212e5 G01.1 -> G01.3 (PUCRS 2025 q68: hora local pela longitude)
 DADO P731eef64: alternativas.E -> "território." (sem o "j p p" final; PUC-SP 2025 q27)
 DADO Pdb3e9db3: texto_da_prova e alternativas -> acentos da camada de texto saíram soltos ('distribu´ıdas', 'obl´ıqua'); no print: 'distribuídas', 'oblíqua'
 DADO P0d7feb29: texto_da_prova e alternativas -> acentos soltos ('poss´ıveis', 'pac´ıfico', 'caracter´ıstica', 'Dispon´ıvel'); no print: 'possíveis', 'pacífico', 'característica', 'Disponível'
+
+## 2026-11-19 18:51 UTC — PENDENCIAS — sessão geo (19/11, 5ª; parte 1)
+Lote gravado: geo-0061 (17 resoluções). Pendentes: 0.
+RECLASS P86726448 G07.2 -> G07.1
+RECLASS Pc7c28be7 G07.4 -> G07.5
+RECLASS P10921f4c G08.3 -> G11.4
+RECLASS Pfc2a7fb6 G10.3 -> G10.5
+RECLASS Pd8a74a2d G10.7 -> G10.5
+RECLASS P520a6178 G11.3 -> G11.1
+AUTORAL P393ff2ec (URCA 2023.2 q85/25): o texto de apoio da prova é citado de Brasil Escola, com nome e link no enunciado; a questão é de prova real, mas o dono decidiu que nome de site didático não aparece no site — decidir se o crédito fica no print
+RECLASS P361801c7 G08.3 -> G11.1
+
+
+## 2026-11-19 18:51 UTC — ACABOU — sessão geo (19/11, 5ª; parte 1)
+Geografia parte 1 terminada: lote.py status mostra 0 questões faltando na parte 1. Nenhum lote aberto da parte 1.
+Lotes gravados nesta sessão: geo-0059 (50), geo-0060 (50), geo-0061 (17) = 117 resoluções, todas conferidas por 2 conferentes, com reconferência dos itens corrigidos. 4 com gabarito do Aprendice (letras iguais às cegas: P858b6a6c A, Pfd66a5bf C, Pca6f4a15 A, Pdc059cbe E).
+Pendentes: 0. Divergências: 0. RECLASS e DADO nos blocos PENDENCIAS acima.
+Testes: converte + tsc + vitest verdes (786 passed), rodados depois do geo-0059.
+A vaga da parte 1 fica livre; a parte 2 (geo-p2) segue com a outra sessão.

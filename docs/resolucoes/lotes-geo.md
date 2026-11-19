@@ -66,7 +66,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | geo-0058 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | geo-0059 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | geo-0060 | provas-alvo nível 7-10 | 50 | gravado | 50 | 0 | 0 |
-| geo-0061 | demais nível 7-10 | 17 | aberto |  |  |  |
+| geo-0061 | demais nível 7-10 | 17 | gravado | 17 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
