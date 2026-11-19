@@ -688,5 +688,362 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0006"
   }
+ },
+ "P4612f0e5": {
+  "n": "5",
+  "conceito": "Tirar o termo geral a partir da soma Sn = bn+1 − b1 e testar cada afirmação com fórmula ou contraexemplo.",
+  "equivocos": {
+   "A": "M07.3:generalizou-a-partir-de-um-exemplo",
+   "B": "M07.3:generalizou-a-partir-de-um-exemplo",
+   "C": "M07.3:soma-de-pa-tratada-como-pa",
+   "E": "M07.3:nao-relacionou-termo-e-soma"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Subtraindo duas somas seguidas, a soma some e fica an = bn+1 − bn: cada termo de (an) é a diferença entre termos vizinhos de (bn). Com isso, cada afirmação se testa: a verdadeira se prova com o termo geral; as falsas caem com um contraexemplo simples.",
+    "formulas": [
+     "an = Sn − Sn−1 (n ≥ 2) e a1 = S1",
+     "PG: bn = b1·q^(n−1)",
+     "soma de PA cresce como n², não em PA"
+    ],
+    "simbolos": [
+     [
+      "Sn",
+      "soma dos n primeiros termos de (an)"
+     ],
+     [
+      "PA",
+      "progressão aritmética"
+     ],
+     [
+      "PG",
+      "progressão geométrica"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ]
+    ]
+   },
+   "pista": "Escreva Sn e Sn−1 e subtraia: que relação sobra entre an e a sequência (bn)?",
+   "passos": [
+    {
+     "faz": "Ache a relação entre an e bn",
+     "conta": "an = Sn − Sn−1 = (bn+1 − b1) − (bn − b1) → an = bn+1 − bn",
+     "porque": "O b1 cancela; para n = 1, a1 = S1 = b2 − b1, a mesma fórmula.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste I",
+     "conta": "bn = b1·q^(n−1) → an = b1·q^(n−1)·(q − 1) → razão q",
+     "porque": "Cada an é o anterior vezes q: (an) é PG. I correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste II com contraexemplo",
+     "conta": "an = 1, 1, 1, ... e b1 = 1 → bn = 1, 2, 3, ...",
+     "porque": "(an) é PG de razão 1, mas 2/1 ≠ 3/2: (bn) não é PG. II falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste III com contraexemplo",
+     "conta": "an = 1, 2, 3, ... → Sn = 1, 3, 6, 10 → diferenças 2, 3, 4",
+     "porque": "As diferenças mudam: (Sn) não é PA. III falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Junte os resultados",
+     "conta": "I V | II F | III F → alternativa D",
+     "porque": "Só a afirmação I vale sempre.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — apenas I",
+   "checagem": "Exemplo numérico de I: bn = 3, 6, 12, 24, 48 dá an = 3, 6, 12, 24, uma PG de razão 2, a mesma de (bn).",
+   "erradas": {
+    "A": "I e II não confere: II cai com an = 1 para todo n e b1 = 1, que dá bn = 1, 2, 3, ..., que não é PG.",
+    "B": "II e III não confere: as duas caem por contraexemplo (bn = 1, 2, 3, ... e Sn = 1, 3, 6, 10), e ainda deixa de fora I, que é verdadeira.",
+    "C": "I e III não confere: com an = 1, 2, 3, ... as somas 1, 3, 6, 10 têm diferenças 2, 3, 4, então (Sn) não é PA.",
+    "E": "nenhuma não confere: I é verdadeira, porque an = b1·q^(n−1)·(q − 1) é PG de razão q."
+   },
+   "armadilha": "Afirmação do tipo \"se..., então...\" precisa valer sempre: um único contraexemplo derruba II e III.",
+   "alerta": "Se (bn) for constante (razão 1), (an) é a sequência nula. O gabarito oficial considera I correta; a sequência nula satisfaz an+1 = q·an.",
+   "essencial": {
+    "pede": "Quais das três afirmações sobre (an), (bn) e (Sn) são sempre verdadeiras, sabendo que Sn = bn+1 − b1.",
+    "chave": "Subtrair somas vizinhas dá an = bn+1 − bn; a diferença de uma PG é PG, e contraexemplos derrubam II e III.",
+    "cuidado": "Não teste só um exemplo que funciona: uma afirmação geral cai com um só contraexemplo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "termo geral da soma",
+    "ideia": "Para III: se an = a1 + (n − 1)r, então Sn = n·a1 + n(n − 1)r/2, que tem n²; só é PA quando r = 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "an = (bn+1 − b1) − (bn − b1) = bn+1 − bn",
+    "nota": "subtrair somas vizinhas"
+   },
+   {
+    "linha": "an = b1·q^(n−1)·(q − 1)",
+    "nota": "I: (an) é PG de razão q"
+   },
+   {
+    "linha": "an = 1 e b1 = 1 → bn = 1, 2, 3",
+    "nota": "II: contraexemplo"
+   },
+   {
+    "linha": "Sn = 1, 3, 6, 10",
+    "nota": "III: diferenças 2, 3, 4, não é PA"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ },
+ "Pf2f01bff": {
+  "n": "8",
+  "conceito": "Domínio de raiz quadrada com expressão trigonométrica: fatorar e estudar o sinal no ciclo.",
+  "equivocos": {
+   "A": "M10.4:intervalo-errado",
+   "B": "M10.4:intervalo-errado",
+   "C": "M10.4:nao-comparou-os-comprimentos",
+   "D": "M10.4:esqueceu-o-zero-do-denominador"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A raiz só existe se o que está dentro for maior ou igual a zero, e a fração só existe se o denominador não for zero. O denominador 8(cos 2x + 1) é 16cos²x: nunca negativo, só zera quando cos x = 0. O numerador fatora em (2sen x − 1)(2cos x + 1), e o problema vira estudar o sinal desse produto em [−π, 2π].",
+    "formulas": [
+     "cos 2x + 1 = 2cos²x",
+     "sen 2x = 2·sen x·cos x",
+     "produto ≥ 0: os dois fatores com o mesmo sinal"
+    ],
+    "simbolos": [
+     [
+      "I = (a, b)",
+      "intervalo aberto de a até b"
+     ],
+     [
+      "[−π, 2π]",
+      "intervalo fechado onde se procura I"
+     ]
+    ]
+   },
+   "pista": "Escreva o denominador só com cos x e tente fatorar o numerador agrupando termos.",
+   "passos": [
+    {
+     "faz": "Simplifique o denominador",
+     "conta": "8(cos 2x + 1) = 8 · 2cos²x = 16cos²x",
+     "porque": "cos 2x = 2cos²x − 1. O denominador é positivo sempre que cos x ≠ 0 e não interfere no sinal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore o numerador",
+     "conta": "4sen x cos x + 2sen x − 2cos x − 1 → 2sen x(2cos x + 1) − (2cos x + 1) → (2sen x − 1)(2cos x + 1)",
+     "porque": "Com sen 2x = 2sen x cos x, os dois primeiros termos têm 2sen x em comum e os dois últimos têm −1; sobra o fator (2cos x + 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache onde os dois fatores têm o mesmo sinal",
+     "conta": "ambos ≥ 0: sen x ≥ 1/2 e cos x ≥ −1/2 → [π/6, 2π/3] | ambos ≤ 0: sen x ≤ 1/2 e cos x ≤ −1/2 → [−π, −2π/3] e [5π/6, 4π/3]",
+     "porque": "Produto maior ou igual a zero exige fatores de mesmo sinal. Os cortes vêm de sen x = 1/2 (π/6 e 5π/6) e cos x = −1/2 (±2π/3 e 4π/3).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Tire os pontos com cos x = 0 e compare os comprimentos",
+     "conta": "[−π, −2π/3]: π/3 | (π/6, π/2): π/3 | (π/2, 2π/3): π/6 | [5π/6, 4π/3]: π/2",
+     "porque": "x = π/2 zera o denominador e parte o primeiro trecho em dois; 3π/2 não cai em nenhum trecho. O maior comprimento é π/2.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Some os extremos do maior intervalo",
+     "conta": "a + b = 5π/6 + 4π/3 = 5π/6 + 8π/6 = 13π/6 → alternativa E",
+     "porque": "O maior intervalo é (5π/6, 4π/3).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — a + b = 13π/6",
+   "checagem": "Teste x = π (dentro de (5π/6, 4π/3)): numerador (2·0 − 1)(2·(−1) + 1) = 1 > 0 e denominador 16 > 0, então f existe. Teste x = 3π/2 (fora): (−3)(1) = −3 < 0, f não existe. Confirma o trecho.",
+   "erradas": {
+    "A": "A não confere: nenhum dos trechos válidos tem extremos que somam 0; o simétrico mais próximo, [−π, −2π/3], soma −5π/3.",
+    "B": "B não confere: π/3 não é a soma dos extremos de nenhum dos quatro trechos válidos (−5π/3, 2π/3, 7π/6 e 13π/6).",
+    "C": "C sai do trecho (π/6, π/2): π/6 + π/2 = 2π/3. Ele mede só π/3, menor que π/2.",
+    "D": "D sai de esquecer que cos x = 0 zera o denominador: tomou [π/6, 2π/3] inteiro, com soma π/6 + 2π/3 = 5π/6; mas π/2 está fora do domínio."
+   },
+   "armadilha": "O ponto x = π/2 anula o denominador e corta o trecho [π/6, 2π/3]; sem ver isso, parece haver dois candidatos de mesmo comprimento.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a + b para o maior intervalo (a, b) em [−π, 2π] onde f está definida.",
+    "chave": "Radicando = (2sen x − 1)(2cos x + 1)/(16cos²x); o maior trecho com produto ≥ 0 e cos x ≠ 0 é (5π/6, 4π/3).",
+    "cuidado": "Exclua os pontos com cos x = 0, que zeram o denominador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela de sinais",
+    "ideia": "Marque no eixo de −π a 2π os zeros de 2sen x − 1, 2cos x + 1 e cos x, faça a tabela de sinais do quociente e meça cada trecho positivo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "8(cos 2x + 1) = 16cos²x",
+    "nota": "denominador ≥ 0, zera em cos x = 0"
+   },
+   {
+    "linha": "numerador = (2sen x − 1)(2cos x + 1)",
+    "nota": "agrupar e fatorar"
+   },
+   {
+    "linha": "mesmo sinal: [−π, −2π/3], [π/6, 2π/3], [5π/6, 4π/3]",
+    "nota": "estudo do sinal no ciclo"
+   },
+   {
+    "linha": "tira π/2: (π/6, π/2) e (π/2, 2π/3)",
+    "nota": "cos x = 0 fora do domínio"
+   },
+   {
+    "linha": "maior: (5π/6, 4π/3) → a + b = 13π/6",
+    "nota": "comprimento π/2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ },
+ "P115d0dcc": {
+  "n": "2",
+  "conceito": "Existência de poliedros: paridade da soma dos lados das faces, relação de Euler e a desigualdade 2A ≥ 3F.",
+  "equivocos": {
+   "A": "M11.5:ignorou-paridade-da-soma-dos-lados",
+   "B": "M11.5:ignorou-paridade-da-soma-dos-lados",
+   "C": "M11.5:euler-tomado-como-suficiente",
+   "D": "M11.5:euler-tomado-como-suficiente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para decidir se um poliedro existe, use três ferramentas. A soma dos lados de todas as faces é 2A, então tem de ser par. Toda face tem pelo menos 3 lados, então 2A ≥ 3F. A relação de Euler, V − A + F = 2, vale nos convexos; satisfazê-la não garante a existência.",
+    "formulas": [
+     "soma dos lados das faces = 2A",
+     "2A ≥ 3F (cada face tem pelo menos 3 lados)",
+     "V − A + F = 2"
+    ],
+    "simbolos": [
+     [
+      "V",
+      "número de vértices"
+     ],
+     [
+      "A",
+      "número de arestas"
+     ],
+     [
+      "F",
+      "número de faces"
+     ],
+     [
+      "q",
+      "quantidade de faces quadrangulares"
+     ],
+     [
+      "não convexo",
+      "poliedro com alguma reentrância"
+     ]
+    ]
+   },
+   "pista": "Em cada afirmação, some os lados de todas as faces e compare com 2A.",
+   "passos": [
+    {
+     "faz": "Teste a afirmação I pela paridade",
+     "conta": "2A = 3 · 3 + 4 · q → 2A = 9 + 4q, que é ímpar → impossível",
+     "porque": "Cada aresta é lado de duas faces, então a soma dos lados é sempre par; 9 + 4q é sempre ímpar.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste a afirmação III pela desigualdade",
+     "conta": "Euler: 7 − 16 + 11 = 2 (passa) | 2A ≥ 3F → 32 ≥ 33 (falso) → impossível",
+     "porque": "Onze faces com pelo menos 3 lados somam no mínimo 33 lados, mas 16 arestas só dão 32.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Construa um exemplo para II",
+     "conta": "tetraedro ABCD + ponto E dentro, perto da face ABC → troca ABC por EAB, EBC, ECA → V = 5, A = 9, F = 6",
+     "porque": "Afundar uma face do tetraedro cria uma reentrância: o poliedro fica não convexo, com 5 vértices, 9 arestas (6 + 3) e 6 faces (4 − 1 + 3).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os resultados",
+     "conta": "I falsa | II verdadeira | III falsa → apenas II → alternativa E",
+     "porque": "Só a afirmação II tem um poliedro que a realiza.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — apenas II",
+   "checagem": "Confira o exemplo de II por Euler: 5 − 9 + 6 = 2, e pela soma dos lados: 6 triângulos dão 18 lados = 2 × 9. Na III, mesmo com todas as 11 faces triangulares, seriam 33 lados para 32 disponíveis.",
+   "erradas": {
+    "A": "I e II não confere: a I é falsa, porque 3 triângulos e q quadriláteros somam 9 + 4q lados, número ímpar, e a soma dos lados tem de ser 2A, par.",
+    "B": "I e III não confere: as duas são falsas; a I pela paridade (9 + 4q ímpar) e a III porque 2A = 32 é menor que 3F = 33.",
+    "C": "II e III não confere: a III satisfaz Euler (7 − 16 + 11 = 2), mas 11 faces exigem pelo menos 33 lados e 16 arestas só dão 32.",
+    "D": "apenas III sai de aceitar a III só porque 7 − 16 + 11 = 2; Euler é condição necessária, não suficiente, e 2A ≥ 3F a derruba."
+   },
+   "armadilha": "A afirmação III passa na relação de Euler, mas Euler não garante existência: 2A ≥ 3F (32 ≥ 33) falha.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das três afirmações sobre existência de poliedros são verdadeiras.",
+    "chave": "I cai pela paridade (9 + 4q ímpar), III cai por 2A ≥ 3F (32 < 33), II tem exemplo: tetraedro com uma face afundada.",
+    "cuidado": "Satisfazer V − A + F = 2 não basta para o poliedro existir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "bipirâmide afundada",
+    "ideia": "A bipirâmide triangular tem V = 5, A = 9, F = 6; levando um dos ápices para dentro, do mesmo lado do outro, ela fica não convexa com as mesmas contagens."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I: 2A = 9 + 4q (ímpar) → falsa",
+    "nota": "a soma dos lados tem de ser par"
+   },
+   {
+    "linha": "III: 7 − 16 + 11 = 2, mas 32 ≥ 33 é falso → falsa",
+    "nota": "cada face tem pelo menos 3 lados"
+   },
+   {
+    "linha": "II: 5 − 9 + 6 = 2 e 18 = 2 · 9",
+    "nota": "tetraedro com uma face afundada"
+   },
+   {
+    "linha": "apenas II → E",
+    "nota": "juntar as três"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
  }
 }

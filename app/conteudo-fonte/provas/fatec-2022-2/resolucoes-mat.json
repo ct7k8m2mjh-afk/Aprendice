@@ -1091,5 +1091,121 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0006"
   }
+ },
+ "Pb4a215cc": {
+  "n": "47",
+  "conceito": "Somar os infinitos termos de uma PG de razão 1/2 para achar a perda total de massa e o valor-limite.",
+  "equivocos": {
+   "A": "M07.2:limite-da-soma-ignorado",
+   "B": "M07.2:limite-da-soma-ignorado",
+   "C": "M07.2:limite-da-soma-ignorado",
+   "E": "M07.2:parou-numa-soma-parcial"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As perdas por trimestre formam uma PG: 14, 7, 3,5, ... com razão 1/2. Somadas para sempre, elas não crescem sem limite: chegam perto de um valor fixo, que a fórmula do quadro dá. A pergunta é a massa, então a perda total ainda sai de 95 kg.",
+    "formulas": [
+     "S = a1/(1 − q), com −1 < q < 1",
+     "massa-limite = massa inicial − perda total"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes a mesma razão"
+     ],
+     [
+      "a1",
+      "primeiro termo, a perda do 1º trimestre: 14 kg"
+     ],
+     [
+      "q",
+      "razão da PG, aqui 1/2"
+     ],
+     [
+      "S",
+      "soma dos infinitos termos"
+     ]
+    ]
+   },
+   "pista": "Escreva as perdas dos primeiros trimestres e veja que número multiplica cada uma para dar a seguinte.",
+   "passos": [
+    {
+     "faz": "Monte a PG das perdas",
+     "conta": "14 kg, 7 kg, 3,5 kg, ... → a1 = 14 | q = 1/2",
+     "porque": "Cada trimestre perde metade do anterior: multiplicar por 1/2 sempre.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique a soma infinita",
+     "conta": "S = 14/(1 − 1/2) → S = 14/(1/2)",
+     "porque": "A razão está entre −1 e 1, então a soma dos infinitos termos existe.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pela fração",
+     "conta": "S = 14/(1/2) → S = 14 · 2 = 28 kg",
+     "porque": "Dividir por 1/2 é multiplicar por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a perda total da massa inicial",
+     "conta": "95 kg − 28 kg = 67 kg",
+     "porque": "A pergunta é a massa de que ela se aproxima, não quanto perde.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao comando",
+     "conta": "massa-limite = 67 kg → alternativa D",
+     "porque": "Ela nunca chega a perder os 28 kg inteiros, mas fica cada vez mais perto de 67 kg.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 67 kg",
+   "checagem": "Some as primeiras perdas: 14 + 7 + 3,5 + 1,75 = 26,25 kg, massa de 68,75 kg depois de 4 trimestres. Falta perder cada vez menos, sempre menos que os 28 − 26,25 = 1,75 kg restantes: a massa desce rumo a 67 kg, sem passar dele.",
+   "erradas": {
+    "A": "55 kg não confere: exigiria perder 95 − 55 = 40 kg, mais que os 28 kg que a soma infinita permite.",
+    "B": "60 kg não confere: exigiria perder 35 kg; a soma 14 + 7 + 3,5 + ... nunca passa de 28 kg.",
+    "C": "62 kg não confere: exigiria perder 33 kg, acima do limite de 28 kg da soma infinita.",
+    "E": "70 kg não confere: corresponde a perder só 25 kg, valor que ela já ultrapassa no 4º trimestre (26,25 kg perdidos)."
+   },
+   "armadilha": "A soma infinita é a perda total, 28 kg; a resposta é a massa que sobra, 95 − 28 = 67 kg.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de que a massa da pessoa se aproxima, perdendo 14 kg no 1º trimestre e metade da perda anterior a cada trimestre.",
+    "chave": "Perdas em PG de razão 1/2: S = 14/(1 − 1/2) = 28 kg; massa-limite 95 − 28 = 67 kg.",
+    "cuidado": "Não responda a soma: subtraia a perda total da massa inicial."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "perda pela metade",
+    "ideia": "Cada trimestre perde metade do que falta para 28 kg: 14 dos 28, depois 7 dos 14 restantes; o total tende a 28 kg e a massa a 67 kg."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "S = 14/(1 − 1/2)",
+    "nota": "soma infinita com a1 = 14 e q = 1/2"
+   },
+   {
+    "linha": "S = 14/(1/2) = 28",
+    "nota": "dividir por 1/2 é multiplicar por 2"
+   },
+   {
+    "linha": "95 − 28 = 67",
+    "nota": "tirar a perda total da massa inicial"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
  }
 }

@@ -454,5 +454,118 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "Pa366237f": {
+  "n": "18",
+  "conceito": "Achar catetos com seno e cosseno de 30° em dois triângulos retângulos e montar os lados do retângulo.",
+  "equivocos": {
+   "A": "M10.1:valor-nao-confere",
+   "B": "M10.1:hipotenusa-trocada",
+   "D": "M10.1:valor-nao-confere",
+   "E": "M10.1:lado-do-retangulo-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois triângulos retângulos têm 30° em P. No PAQ, a hipotenusa é PQ = 6√3 e PA é o cateto adjacente. No PBC, a hipotenusa é PC = 6, PB é adjacente e BC é oposto. O retângulo tem lados AB = PA − PB e BC.",
+    "formulas": [
+     "cateto adjacente = hipotenusa · cos 30°",
+     "cateto oposto = hipotenusa · sen 30°",
+     "área do retângulo = AB · BC"
+    ],
+    "simbolos": [
+     [
+      "cos 30°",
+      "vale (√3)/2"
+     ],
+     [
+      "sen 30°",
+      "vale 1/2"
+     ]
+    ]
+   },
+   "pista": "O lado AB do retângulo é um pedaço de PA: descubra PA e PB.",
+   "passos": [
+    {
+     "faz": "Ache PA no triângulo PAQ",
+     "conta": "PA = 6√3 · cos 30° → 6√3 · (√3)/2 → 18/2 = 9",
+     "porque": "O ângulo reto do PAQ está em A, então PA é adjacente ao 30° em P.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache PB e BC no triângulo PBC",
+     "conta": "PB = 6 · (√3)/2 = 3√3 | BC = 6 · 1/2 = 3",
+     "porque": "O ângulo reto do PBC está em B; BC é oposto ao 30° em P.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o lado AB",
+     "conta": "AB = PA − PB = 9 − 3√3",
+     "porque": "B está sobre PA, então AB é o que sobra de PA depois de PB.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique os lados",
+     "conta": "área = (9 − 3√3) · 3 → 27 − 9√3 → 9(3 − √3)",
+     "porque": "Pondo 9 em evidência, a forma fica igual à das alternativas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "9(3 − √3) cm² ≈ 11,41 cm² → alternativa C",
+     "porque": "É a área de ABCD.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 9(3 − √3) cm²",
+   "checagem": "Confira os catetos por Pitágoras: no PAQ, AQ = 6√3 · 1/2 = 3√3 e 9² + (3√3)² = 81 + 27 = 108 = (6√3)²; no PBC, (3√3)² + 3² = 27 + 9 = 36 = 6². Os lados estão certos.",
+   "erradas": {
+    "A": "6(9 − √3) ≈ 43,6 não confere: passa da área do retângulo PA · BC = 9 · 3 = 27, e ABCD é só uma parte dele, porque AB < PA.",
+    "B": "9(6 − √3) ≈ 38,4 não confere: também passa de PA · BC = 27.",
+    "D": "6(6 − √3) ≈ 25,6 não confere: com BC = 3 exigiria AB ≈ 8,54, quase todo o PA = 9, mas PB = 3√3 ≈ 5,2 ocupa mais da metade de PA.",
+    "E": "6(3 − √3) ≈ 7,61 não confere: com BC = 3 exigiria AB ≈ 2,54, mas AB = 9 − 3√3 ≈ 3,80."
+   },
+   "armadilha": "AB não é PA: o retângulo começa em B, então tire PB de PA antes de multiplicar.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do retângulo ABCD.",
+    "chave": "PA = 9, PB = 3√3 e BC = 3; área = (9 − 3√3) · 3 = 9(3 − √3).",
+    "cuidado": "Use cada hipotenusa no seu triângulo e subtraia PB de PA."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "área por diferença",
+    "ideia": "O retângulo PA · BC = 27 menos o retângulo PB · BC = 3√3 · 3 = 9√3 dá 27 − 9√3 = 9(3 − √3)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "PA = 6√3 · (√3)/2 = 9",
+    "nota": "cosseno de 30° no PAQ"
+   },
+   {
+    "linha": "PB = 6 · (√3)/2 = 3√3 | BC = 6 · 1/2 = 3",
+    "nota": "cosseno e seno no PBC"
+   },
+   {
+    "linha": "AB = 9 − 3√3",
+    "nota": "PA menos PB"
+   },
+   {
+    "linha": "(9 − 3√3) · 3 = 27 − 9√3 = 9(3 − √3)",
+    "nota": "área do retângulo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
  }
 }

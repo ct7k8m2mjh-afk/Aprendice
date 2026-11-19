@@ -971,5 +971,125 @@
    "data": "2026-11-19",
    "lote": "mat-0073"
   }
+ },
+ "P983d0cab": {
+  "n": "28",
+  "conceito": "Volume de um cilindro com diâmetro dado, multiplicado pela quantidade de peças e convertido de mm³ para m³.",
+  "equivocos": {
+   "A": "M11.2:volume-de-um-granulo-errado",
+   "B": "M11.2:usou-formula-do-cone",
+   "C": "M11.2:usou-formula-da-esfera",
+   "E": "M11.2:trocou-pi-r2-por-diametro-ao-quadrado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada grânulo é um cilindro circular reto com diâmetro e altura de 1,0 mm, então o raio é a metade: 0,5 mm. Calcule o volume de um grânulo, multiplique pelos 6 mil e só no fim converta. O trabalho real da questão está na conversão: 1 m = 1 000 mm, então 1 m³ = 1 000 × 1 000 × 1 000 mm³ = 10⁹ mm³.",
+    "formulas": [
+     "volume do cilindro = π × r² × h",
+     "1 m³ = 10⁹ mm³"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "raio da base, metade do diâmetro"
+     ],
+     [
+      "h",
+      "altura do cilindro"
+     ],
+     [
+      "mm³",
+      "milímetro cúbico, volume de um cubinho de 1 mm de aresta"
+     ],
+     [
+      "10⁻⁶",
+      "um milionésimo: 0,000001"
+     ]
+    ]
+   },
+   "pista": "O 1,0 mm do texto é o diâmetro. Comece pelo raio e pelo volume de um único grânulo.",
+   "passos": [
+    {
+     "faz": "Separe raio e altura",
+     "conta": "d = 1,0 mm → r = 1,0/2 = 0,5 mm | h = 1,0 mm",
+     "porque": "A fórmula do volume usa o raio, e o texto dá o diâmetro. O raio é a metade dele.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o volume de um grânulo",
+     "conta": "V = π · r² · h → V = 3 · 0,5² · 1 → V = 3 · 0,25 · 1 = 0,75 mm³",
+     "porque": "Volume do cilindro é área da base (π·r²) vezes altura, com π = 3 como manda a prova.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pelos 6 mil grânulos",
+     "conta": "6 000 · 0,75 mm³ = 4 500 mm³",
+     "porque": "Todos os grânulos são iguais, então o volume total é o de um vezes a quantidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta mm³ para m³",
+     "conta": "4 500 mm³ → 4500/10⁹ m³ → 4,5 × 10³ × 10⁻⁹ = 4,5 × 10⁻⁶ m³",
+     "porque": "Cada metro tem 1 000 mm, e o volume tem três dimensões: o fator é 1 000³ = 10⁹. Dividir por 10⁹ é subtrair 9 do expoente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "4,5 × 10⁻⁶ m³ → alternativa D",
+     "porque": "A pergunta é o volume total em metros cúbicos, exatamente o que a conta deu.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 4,5 × 10⁻⁶ m³",
+   "checagem": "Converta antes de calcular: r = 0,5 × 10⁻³ m e h = 10⁻³ m. Um grânulo tem 3 × 0,25 × 10⁻⁶ × 10⁻³ = 0,75 × 10⁻⁹ m³; vezes 6 × 10³ dá 4,5 × 10⁻⁶ m³. Fecha.",
+   "erradas": {
+    "A": "1,0 × 10⁻⁶ m³ não confere: seriam 1 000 mm³ no total, ou 1/6 mm³ por grânulo, e um cilindro de raio 0,5 mm e altura 1 mm tem 0,75 mm³.",
+    "B": "1,5 × 10⁻⁶ m³ sai de usar a fórmula do cone, com o 1/3: 6 000 × 0,75 ÷ 3 = 1 500 mm³. O grânulo é cilindro, sem o 1/3.",
+    "C": "3,0 × 10⁻⁶ m³ sai de tratar o grânulo como esfera de diâmetro 1 mm: 4/3 × 3 × 0,5³ = 0,5 mm³, e 6 000 × 0,5 = 3 000 mm³. O texto diz cilindro.",
+    "E": "6,0 × 10⁻⁶ m³ sai de trocar π·r² por d²: 1 × 1 × 1 = 1 mm³ por grânulo, 6 000 mm³ no total. Esse é o volume de um cubo de aresta 1 mm, maior que o cilindro."
+   },
+   "armadilha": "O 1,0 mm é o diâmetro, não o raio, e de mm³ para m³ o fator é 10⁹, não 10³.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume total dos 6 mil grânulos cilíndricos, em m³.",
+    "chave": "Um grânulo: 3 × 0,5² × 1 = 0,75 mm³; total 4 500 mm³ = 4,5 × 10⁻⁶ m³.",
+    "cuidado": "Use o raio (metade do diâmetro) e converta volume com o cubo do fator: 1 m³ = 10⁹ mm³."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "converter antes",
+    "ideia": "Passe raio e altura para metro (0,5 × 10⁻³ m e 10⁻³ m) e calcule direto em m³: 6 × 10³ × 0,75 × 10⁻⁹ = 4,5 × 10⁻⁶."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "r = 1,0/2 = 0,5 mm ; h = 1,0 mm",
+    "nota": "raio é a metade do diâmetro"
+   },
+   {
+    "linha": "V = 3 · 0,5² · 1 = 0,75 mm³",
+    "nota": "volume de um grânulo"
+   },
+   {
+    "linha": "6 000 · 0,75 = 4 500 mm³",
+    "nota": "vezes os 6 mil grânulos"
+   },
+   {
+    "linha": "4500/10⁹ = 4,5 × 10⁻⁶ m³",
+    "nota": "1 m³ = 10⁹ mm³"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
  }
 }

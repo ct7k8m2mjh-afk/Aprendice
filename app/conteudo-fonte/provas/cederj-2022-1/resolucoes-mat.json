@@ -495,5 +495,114 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0006"
   }
+ },
+ "P99a448d4": {
+  "n": "35",
+  "conceito": "Composição de funções com a tangente e simplificação pela identidade 1 + tg² = sec².",
+  "equivocos": {
+   "A": "M10.5:trocou-cos2-por-sen2",
+   "C": "M10.5:identidade-inventada",
+   "D": "M10.5:multiplicou-em-vez-de-dividir"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "f ∘ g(x) é f(g(x)): troque o x de f por tg x. Aparece 1 + tg²x no denominador, que é sec²x; dividir por sec²x é multiplicar por cos²x. Depois é só distribuir e reconhecer o seno do arco dobro.",
+    "formulas": [
+     "f ∘ g(x) = f(g(x))",
+     "1 + tg²x = sec²x = 1/cos²x",
+     "2·sen x·cos x = sen 2x"
+    ],
+    "simbolos": [
+     [
+      "f ∘ g",
+      "composição: aplica g primeiro e depois f"
+     ],
+     [
+      "sec x",
+      "secante: 1 dividido por cos x"
+     ],
+     [
+      "tg x",
+      "tangente: sen x dividido por cos x"
+     ]
+    ]
+   },
+   "pista": "Escreva f(tg x) e veja que identidade conhecida aparece no denominador.",
+   "passos": [
+    {
+     "faz": "Substitua x por tg x em f",
+     "conta": "f(g(x)) = (1 − 2tg x)/(1 + tg²x)",
+     "porque": "Na composição, a saída de g vira a entrada de f.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque o denominador por sec²x",
+     "conta": "(1 − 2tg x)/(1 + tg²x) → (1 − 2tg x)/(sec²x) → cos²x · (1 − 2tg x)",
+     "porque": "1 + tg²x = sec²x, e dividir por 1/cos²x é multiplicar por cos²x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Distribua e simplifique",
+     "conta": "cos²x − 2cos²x · (sen x)/(cos x) → cos²x − 2sen x cos x → cos²x − sen 2x",
+     "porque": "Um cos x cancela com o denominador da tangente, e 2sen x cos x é sen 2x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "f ∘ g(x) = cos²x − sen(2x) → alternativa B",
+     "porque": "É exatamente a expressão da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — f ∘ g(x) = cos²(x) − sen(2x)",
+   "checagem": "Teste x = π/6: tg(π/6) = √3/3 e f(√3/3) = (1 − 2√3/3) ÷ (4/3) ≈ −0,116; cos²(π/6) − sen(π/3) = 0,75 − 0,866 ≈ −0,116. Confere.",
+   "erradas": {
+    "A": "A sai de trocar 1/(1 + tg²x) por sen²x em vez de cos²x; em x = π/6 dá 0,25 − 0,866 ≈ −0,616, diferente de −0,116.",
+    "C": "C não confere: em x = π/6, sen²(π/6) − sen³(π/3) = 0,25 − 0,650 ≈ −0,400, mas f(g(π/6)) ≈ −0,116.",
+    "D": "D não confere: em x = π/6, sec²x − tg x = 1,333 − 0,577 ≈ 0,756, longe de −0,116."
+   },
+   "armadilha": "Dividir por 1 + tg²x = sec²x é MULTIPLICAR por cos²x, não por sen²x nem por sec²x.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A expressão de f(g(x)) com g(x) = tg x.",
+    "chave": "(1 − 2tg x) ÷ sec²x = cos²x − 2sen x cos x = cos²x − sen 2x.",
+    "cuidado": "1 + tg² é sec²; o inverso dele é cos²."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de valor",
+    "ideia": "Calcule f(tg x) em x = π/6 (≈ −0,116) e em x = π/4 (−1/2) e veja qual alternativa bate nos dois: só a B."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(tg x) = (1 − 2tg x)/(1 + tg²x)",
+    "nota": "substituir"
+   },
+   {
+    "linha": "= (1 − 2tg x)/(sec²x) = cos²x(1 − 2tg x)",
+    "nota": "1 + tg² = sec²"
+   },
+   {
+    "linha": "= cos²x − 2sen x cos x",
+    "nota": "distribuir, cancelar cos x"
+   },
+   {
+    "linha": "= cos²x − sen 2x",
+    "nota": "seno do arco dobro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
  }
 }

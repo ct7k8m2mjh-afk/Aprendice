@@ -1043,5 +1043,260 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0006"
   }
+ },
+ "P3368e49e": {
+  "n": "2",
+  "conceito": "Somar uma PG infinita com razão que depende de x, respeitar a condição de convergência e resolver a equação resultante.",
+  "equivocos": {
+   "A": "M07.2:raizes-calculadas-errado",
+   "C": "M07.2:ignorou-condicao-de-convergencia",
+   "D": "M07.2:ignorou-condicao-de-convergencia",
+   "E": "M07.2:sinal-trocado-na-soma-das-raizes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os termos formam uma PG: cada um é o anterior vezes −4/(3x). A soma infinita só existe quando o módulo da razão é menor que 1, e isso define o conjunto B. Com a soma em mãos, a equação vira de 2º grau; o trabalho real é descartar a raiz que está fora de B.",
+    "formulas": [
+     "S = a1/(1 − q), só se |q| < 1",
+     "soma das raízes de ax² + bx + c = 0: −b/a"
+    ],
+    "simbolos": [
+     [
+      "B",
+      "conjunto dos x em que a soma infinita é finita"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ],
+     [
+      "|q|",
+      "módulo (valor absoluto) da razão"
+     ],
+     [
+      "f(x)",
+      "a soma infinita, em função de x"
+     ]
+    ]
+   },
+   "pista": "Divida o segundo termo pelo primeiro para achar a razão, e veja para quais x ela tem módulo menor que 1.",
+   "passos": [
+    {
+     "faz": "Ache a razão e o domínio",
+     "conta": "q = (16/(9x²))/(−4/(3x)) = −4/(3x) → |4/(3x)| < 1 → |x| > 4/3",
+     "porque": "Soma infinita só converge com |q| < 1; esse é o conjunto B.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a PG infinita",
+     "conta": "f(x) = (−4/(3x))/(1 + 4/(3x)) → f(x) = −4/(3x + 4)",
+     "porque": "Multiplique em cima e embaixo por 3x para tirar as frações internas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a equação f(x) = −x",
+     "conta": "−4/(3x + 4) = −x → 4 = 3x² + 4x → 3x² + 4x − 4 = 0",
+     "porque": "O 3x + 4 passa multiplicando; os sinais de menos se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva",
+     "conta": "x = (−4 ± √64)/6 → x = 2/3 ou x = −2",
+     "porque": "Discriminante 16 + 48 = 64, raiz 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descarte a raiz fora de B",
+     "conta": "|2/3| < 4/3 → sai | |−2| > 4/3 → fica",
+     "porque": "Em x = 2/3 a razão vale −2: a soma não existe ali, então 2/3 não é raiz de f(x) = −x.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Some as raízes válidas",
+     "conta": "soma = −2 → alternativa B",
+     "porque": "Só sobrou uma raiz em B, e a soma é ela mesma.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — −2",
+   "checagem": "Substitua x = −2: a razão é −4/(−6) = 2/3, que tem módulo menor que 1; a soma é (2/3)/(1 − 2/3) = 2, e −x = 2. Fecha.",
+   "erradas": {
+    "A": "0 não confere: daria raízes simétricas, mas as raízes de 3x² + 4x − 4 = 0 são 2/3 e −2.",
+    "C": "−4/3 sai de somar as duas raízes da equação de 2º grau (−b/a = −4/3) sem tirar a que está fora de B.",
+    "D": "2/3 sai de ficar com a raiz errada: em x = 2/3 a razão é −2 e a soma infinita nem existe.",
+    "E": "4/3 sai de trocar o sinal na soma das raízes: b/a = 4/3 em vez de −b/a = −4/3, e ainda sem descartar 2/3."
+   },
+   "armadilha": "A raiz 2/3 da equação de 2º grau não pertence a B: lá a razão vale −2 e a soma infinita não existe.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma das raízes de f(x) = −x, sendo f a soma infinita da PG, apenas para x em que essa soma é finita.",
+    "chave": "q = −4/(3x), B: |x| > 4/3; f(x) = −4/(3x + 4); 3x² + 4x − 4 = 0 dá 2/3 e −2, e só −2 está em B.",
+    "cuidado": "Confira cada raiz na condição |q| < 1 antes de somar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Teste x = −2 na equação: razão 2/3, soma 2 = −(−2); e x = 2/3 cai fora de B porque a razão vale −2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "q = −4/(3x)",
+    "nota": "razão: segundo termo ÷ primeiro"
+   },
+   {
+    "linha": "|x| > 4/3",
+    "nota": "condição |q| < 1"
+   },
+   {
+    "linha": "f(x) = −4/(3x + 4)",
+    "nota": "soma a1/(1 − q)"
+   },
+   {
+    "linha": "3x² + 4x − 4 = 0",
+    "nota": "igualar a −x"
+   },
+   {
+    "linha": "x = 2/3 (sai) ou x = −2",
+    "nota": "Bhaskara e domínio B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ },
+ "Pdc929384": {
+  "n": "15",
+  "conceito": "Região da superfície lateral de um cone iluminada por um ponto de luz, pela sombra do vértice e pela área lateral πRg.",
+  "equivocos": {
+   "A": "M11.3:area-maior-que-a-lateral",
+   "B": "M11.3:area-maior-que-a-lateral",
+   "C": "M11.3:considerou-toda-a-lateral-iluminada",
+   "E": "M11.3:area-maior-que-a-lateral"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A base está no chão, então só a superfície lateral pode receber luz. Cada geratriz (segmento do vértice até a borda da base) fica toda iluminada ou toda escura, e a área lateral se reparte igualmente pelo ângulo em volta do eixo. Basta achar que ângulo da base fica do lado iluminado. Para isso, projete do ponto luminoso a sombra do vértice no chão: as geratrizes de sombra são as que ficam entre as duas tangentes traçadas dessa sombra até o círculo da base.",
+    "formulas": [
+     "geratriz g = √(R² + altura²)",
+     "área lateral do cone = π · R · g",
+     "área iluminada = (ângulo iluminado/360°) × área lateral"
+    ],
+    "simbolos": [
+     [
+      "R",
+      "raio da base do cone"
+     ],
+     [
+      "g",
+      "geratriz, distância do vértice até a borda da base"
+     ],
+     [
+      "S",
+      "área da região iluminada"
+     ],
+     [
+      "V'",
+      "sombra do vértice no chão"
+     ]
+    ]
+   },
+   "pista": "Comece achando onde cai, no chão, a sombra do vértice do cone.",
+   "passos": [
+    {
+     "faz": "Ache a sombra do vértice no chão",
+     "conta": "luz: altura 3R | vértice: altura 3R/2 → o raio desce 3R/2 e anda 2R → desce mais 3R/2 e anda mais 2R → V' a 2R do centro, do lado oposto à luz",
+     "porque": "O vértice está na metade da altura da luz. O raio de luz que passa pelo vértice percorre na horizontal, até o chão, a mesma distância que percorreu até o vértice.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Trace as tangentes de V' ao círculo",
+     "conta": "cos α = R/(2R) = 1/2 → α = 60° → arco de sombra = 2 · 60° = 120° → arco iluminado = 360° − 120° = 240°",
+     "porque": "No triângulo centro, ponto de tangência e V', o raio é perpendicular à tangente. As geratrizes com o pé no arco voltado para V' ficam na sombra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área lateral inteira",
+     "conta": "g = √(R² + (3R/2)²) = √(13R²/4) = (R√13)/2 → A lateral = π · R · (R√13)/2 = (πR²√13)/2",
+     "porque": "A geratriz é a hipotenusa do triângulo com o raio e a altura do cone.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tome a fração iluminada",
+     "conta": "S = (240/360) · (πR²√13)/2 → S = (2/3) · (πR²√13)/2 → S = (πR²√13)/3",
+     "porque": "Na planificação, a lateral é um setor circular; cada fatia de ângulo da base corresponde à mesma fração da área.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "S = (πR²√13)/3 → alternativa D",
+     "porque": "A base está apoiada no solo e não recebe luz; a área iluminada é só essa parte da lateral.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — S = πR²·√13/3",
+   "checagem": "Pelo plano tangente: a geratriz que sai do ponto de ângulo θ da base fica no plano x·cos θ + y·sen θ + (2/3)·z = R. A luz (2R, 0, 3R) fica do lado de fora quando 2R·cos θ + 2R > R, ou seja, cos θ > −1/2: θ entre −120° e 120°, os mesmos 240°.",
+   "erradas": {
+    "A": "πR²√13 não confere: é o dobro da área lateral inteira, (πR²√13)/2, e a região iluminada não pode passar da lateral.",
+    "B": "2πR²√13/3 não confere: vale 4/3 da área lateral inteira, mais do que toda a lateral do cone.",
+    "C": "πR²√13/2 sai de supor que, com a luz acima do vértice, toda a lateral fica iluminada: é a área lateral inteira, π·R·(R√13)/2. O lado oposto à luz, num arco de 120°, fica na sombra.",
+    "E": "13πR²/4 não confere: 13/4 = 3,25, maior que √13/2 ≈ 1,80, então a área passaria da lateral inteira."
+   },
+   "armadilha": "A luz estar acima do vértice não ilumina a lateral toda: um arco de 120° da base, do lado oposto à luz, fica na sombra.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área da parte do cone iluminada por um ponto de luz a 3R de altura e 2R do eixo.",
+    "chave": "A sombra do vértice cai a 2R do centro; as tangentes dela ao círculo deixam 120° na sombra, logo 2/3 de πR·(R√13)/2 ficam iluminados.",
+    "cuidado": "Só a lateral recebe luz (a base está no chão), e a área lateral se divide pelo ângulo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "plano tangente",
+    "ideia": "Escreva o plano tangente ao longo de cada geratriz, x·cos θ + y·sen θ + (2/3)z = R, e exija a luz do lado de fora: cos θ > −1/2, ou 240° iluminados."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V' a 2R do centro, oposto à luz",
+    "nota": "sombra do vértice: o vértice está na metade da altura da luz"
+   },
+   {
+    "linha": "cos α = R/(2R) = 1/2 → α = 60°",
+    "nota": "tangentes de V' ao círculo da base"
+   },
+   {
+    "linha": "sombra: 120° ; luz: 240°",
+    "nota": "arco voltado para V' fica escuro"
+   },
+   {
+    "linha": "g = (R√13)/2 ; A lateral = (πR²√13)/2",
+    "nota": "Pitágoras e π·R·g"
+   },
+   {
+    "linha": "S = (2/3) · (πR²√13)/2 = (πR²√13)/3",
+    "nota": "240° de 360° são 2/3"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
  }
 }

@@ -590,5 +590,253 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0006"
   }
+ },
+ "P229ec8fe": {
+  "n": "12",
+  "conceito": "Usar tangência externa de circunferências com centros numa reta para achar a razão de uma PG.",
+  "equivocos": {
+   "A": "M07.2:esqueceu-o-quadrado",
+   "C": "M07.2:inverteu-a-razao",
+   "D": "M07.2:inverteu-a-razao",
+   "E": "M07.2:distancia-entre-centros-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada circunferência Ck tem centro (rk, m·rk) e raio rk: todos os centros estão na reta y = mx. Tangentes externamente quer dizer distância entre centros igual à soma dos raios. Como rk+1 = q·rk, o rk some da equação e sobra uma equação só em q.",
+    "formulas": [
+     "(x − a)² + (y − b)² = R²: centro (a, b) e raio R",
+     "tangência externa: distância entre centros = R1 + R2",
+     "rk+1 = q·rk"
+    ],
+    "simbolos": [
+     [
+      "rk",
+      "k-ésimo termo da PG, raio de Ck"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ],
+     [
+      "m",
+      "número positivo dado; os centros estão em y = mx"
+     ],
+     [
+      "Ck",
+      "a k-ésima circunferência"
+     ]
+    ]
+   },
+   "pista": "Escreva os centros de duas circunferências seguidas e a distância entre eles; depois troque rk+1 por q·rk.",
+   "passos": [
+    {
+     "faz": "Leia centro e raio de Ck",
+     "conta": "Ck: centro (rk, m·rk) | raio rk",
+     "porque": "É a equação reduzida da circunferência.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a distância entre centros vizinhos",
+     "conta": "d = √((rk+1 − rk)² + m²(rk+1 − rk)²) → d = (rk+1 − rk)·√(m² + 1)",
+     "porque": "As duas coordenadas variam na mesma proporção; a PG é crescente, então rk+1 − rk > 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha a tangência externa e troque rk+1 = q·rk",
+     "conta": "(q − 1)·rk·√(m² + 1) = (q + 1)·rk → (q − 1)·√(m² + 1) = q + 1",
+     "porque": "Distância = soma dos raios; o rk aparece dos dois lados e cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole q",
+     "conta": "q·(√(m² + 1) − 1) = √(m² + 1) + 1 → q = (√(m² + 1) + 1)/(√(m² + 1) − 1)",
+     "porque": "Junte os termos com q de um lado e o resto do outro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Racionalize o denominador",
+     "conta": "q = (√(m² + 1) + 1)²/((m² + 1) − 1) → q = ((√(m² + 1) + 1)/m)²",
+     "porque": "Multiplique em cima e embaixo por √(m² + 1) + 1; embaixo fica m².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "q = ((√(m² + 1) + 1)/m)² → alternativa B",
+     "porque": "É exatamente a forma da B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — q = ((√(m² + 1) + 1)/m)²",
+   "checagem": "Teste m = 1: q = (√2 + 1)² = 3 + 2√2 ≈ 5,83. Com r1 = q ≈ 5,83 e r2 = q² ≈ 33,97, os centros (5,83; 5,83) e (33,97; 33,97) distam 28,14·√2 ≈ 39,80, e a soma dos raios é 5,83 + 33,97 = 39,80. Fecha.",
+   "erradas": {
+    "A": "(√(m² + 1) + 1)/m é a raiz quadrada do q certo, como se tivesse esquecido o quadrado: com m = 1 dá 2,41, e a distância (2,41 − 1)·√2 = 2,0 não iguala a soma 3,41.",
+    "C": "(√(m² + 1) − 1)/m é menor que 1 (com m = 1 dá 0,41): a PG seria decrescente, contra o enunciado.",
+    "D": "((√(m² + 1) − 1)/m)² é o inverso do q certo, menor que 1 (com m = 1 dá 0,17): PG decrescente, contra o enunciado.",
+    "E": "(m² + 1)/m não confere: com m = 1 dá q = 2, e a distância (2 − 1)·√2 ≈ 1,41 não iguala a soma dos raios 1 + 2 = 3."
+   },
+   "armadilha": "Na distância entre centros entram as duas coordenadas, o que gera o fator √(m² + 1); e o resultado só bate com a alternativa depois de racionalizar.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão q da PG dos raios, em função de m, para as circunferências serem tangentes externamente duas a duas.",
+    "chave": "Distância entre centros (q − 1)rk√(m² + 1) igual à soma dos raios (q + 1)rk; isolar q e racionalizar.",
+    "cuidado": "Racionalize: (s + 1)/(s − 1) com s = √(m² + 1) vira ((s + 1)/m)²; a PG crescente exige q > 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "Faça m = 1: a tangência dá (q − 1)√2 = q + 1, q = 3 + 2√2 ≈ 5,83, e só a B vale isso."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(q − 1)·rk·√(m² + 1) = (q + 1)·rk",
+    "nota": "distância entre centros = soma dos raios"
+   },
+   {
+    "linha": "(q − 1)·√(m² + 1) = q + 1",
+    "nota": "cancelar rk"
+   },
+   {
+    "linha": "q = (√(m² + 1) + 1)/(√(m² + 1) − 1)",
+    "nota": "isolar q"
+   },
+   {
+    "linha": "q = ((√(m² + 1) + 1)/m)²",
+    "nota": "racionalizar: embaixo fica m²"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ },
+ "Pa1066bff": {
+  "n": "10",
+  "conceito": "Sistema trigonométrico: a soma u + 1/u = 2 força u = 1 e liga x e y por arcos complementares.",
+  "equivocos": {
+   "A": "M10.4:par-que-nao-satisfaz-o-sistema",
+   "B": "M10.4:elevou-o-produto-ao-quadrado",
+   "C": "M10.4:par-que-nao-satisfaz-o-sistema",
+   "D": "M10.4:usou-so-uma-equacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na segunda equação aparecem uma fração e o inverso dela. Para u positivo, u + 1/u = 2 só acontece com u = 1. Isso dá sen y = cos x, ou seja, x e y complementares. Levando isso à primeira equação, tudo vira uma equação em cos y.",
+    "formulas": [
+     "u + 1/u = 2 ⇔ (u − 1)² = 0 ⇔ u = 1",
+     "tg(y/2) = (1 − cos y)/(sen y)",
+     "cos(π − 2y) = −cos 2y e cos 2y = 2cos²y − 1"
+    ],
+    "simbolos": [
+     [
+      "sec y",
+      "secante: 1 dividido por cos y"
+     ],
+     [
+      "tg",
+      "tangente: seno dividido por cosseno"
+     ],
+     [
+      "]0, π/2[",
+      "intervalo aberto de 0 a π/2: primeiro quadrante, sem os extremos"
+     ]
+    ]
+   },
+   "pista": "Chame sen y ÷ cos x de u e olhe a segunda equação de novo.",
+   "passos": [
+    {
+     "faz": "Resolva a segunda equação com u",
+     "conta": "u + 1/u = 2 → u² − 2u + 1 = 0 → (u − 1)² = 0 → u = 1",
+     "porque": "Multiplicar por u (que é positivo no 1º quadrante) gera um quadrado perfeito, que só zera em u = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Traduza u = 1 em relação entre x e y",
+     "conta": "sen y = cos x → y = π/2 − x",
+     "porque": "No 1º quadrante, seno de um arco igual ao cosseno de outro significa arcos complementares.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique o lado esquerdo da primeira",
+     "conta": "tg y · tg(y/2) = (sen y)/(cos y) · (1 − cos y)/(sen y) → (1 − cos y)/(cos y)",
+     "porque": "O sen y cancela. Como o lado direito também é dividido por cos y, os denominadores se cancelam: 1 − cos y = cos 2x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque x por π/2 − y e resolva",
+     "conta": "1 − cos y = cos(π − 2y) → 1 − cos y = 1 − 2cos²y → cos y(2cos y − 1) = 0 → cos y = 1/2",
+     "porque": "cos(π − 2y) = −cos 2y = 1 − 2cos²y. cos y = 0 não serve, porque y < π/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache x, y e o produto",
+     "conta": "y = π/3 | x = π/2 − π/3 = π/6 → x · y = π/6 · π/3 = π²/18 → alternativa E",
+     "porque": "Só há uma solução no intervalo, então o produto é o de x por y.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — o produto é π²/18",
+   "checagem": "Substitua x = π/6 e y = π/3: tg(π/3)·tg(π/6) = √3 · (√3/3) = 1 e cos(π/3)·sec(π/3) = 1/2 · 2 = 1; sen(π/3)/cos(π/6) + cos(π/6)/sen(π/3) = 1 + 1 = 2. As duas equações fecham.",
+   "erradas": {
+    "A": "π²/24 não confere: o sistema só tem x = π/6 e y = π/3, cujo produto é π²/18.",
+    "B": "B, π⁴/324, é (π²/18)²: elevou o produto ao quadrado, como se cada valor entrasse duas vezes.",
+    "C": "C não confere: x · y = π²/50 não sai de nenhum par que satisfaça sen y = cos x e cos y = 1/2.",
+    "D": "D sai de x = y = π/4, que satisfaz só a segunda equação: na primeira, tg(π/4)·tg(π/8) ≈ 0,41, mas cos(π/2)·sec(π/4) = 0."
+   },
+   "armadilha": "A segunda equação parece difícil, mas u + 1/u = 2 só tem u = 1; quem não vê isso tenta expandir tudo e se perde.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O produto dos valores de x e y que resolvem o sistema no 1º quadrante.",
+    "chave": "u + 1/u = 2 dá sen y = cos x, y = π/2 − x; a primeira vira cos y = 1/2, logo y = π/3, x = π/6 e x·y = π²/18.",
+    "cuidado": "Descarte cos y = 0, que não está no intervalo aberto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Com y = π/2 − x, teste pares notáveis: só x = π/6, y = π/3 satisfaz a primeira equação, e π/6 · π/3 = π²/18."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "u + 1/u = 2 → (u − 1)² = 0 → u = 1",
+    "nota": "u = sen y ÷ cos x"
+   },
+   {
+    "linha": "sen y = cos x → y = π/2 − x",
+    "nota": "arcos complementares"
+   },
+   {
+    "linha": "(1 − cos y)/(cos y) = (cos 2x)/(cos y) → 1 − cos y = cos 2x",
+    "nota": "tg(y/2) e cancelar cos y"
+   },
+   {
+    "linha": "1 − cos y = 1 − 2cos²y → cos y = 1/2",
+    "nota": "cos 2x = −cos 2y"
+   },
+   {
+    "linha": "y = π/3, x = π/6 → x·y = π²/18",
+    "nota": "produto"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
  }
 }

@@ -801,5 +801,253 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0006"
   }
+ },
+ "Pd105fa28": {
+  "n": "37",
+  "conceito": "Simplificar equação trigonométrica com soma em produto e arco dobro, e contar soluções em [0, 2π].",
+  "equivocos": {
+   "B": "M10.4:esqueceu-uma-solucao",
+   "C": "M10.4:nao-dividiu-por-2",
+   "D": "M10.4:so-uma-volta-do-arco-dobro",
+   "E": "M10.4:concluiu-que-nao-ha-solucao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Como sen(−3x) = −sen 3x, o numerador é sen 5x + sen 3x, que vira produto: 2sen 4x cos x. Com sen 4x = 2sen 2x cos 2x e sen x cos x = sen 2x ÷ 2, a fração toda vira 8cos 2x. A equação fica cos 2x = −7/8; o cuidado é que x em [0, 2π] faz 2x andar até 4π, duas voltas.",
+    "formulas": [
+     "sen p + sen q = 2·sen((p + q)/2)·cos((p − q)/2)",
+     "sen 4x = 2·sen 2x·cos 2x",
+     "sen x·cos x = (sen 2x)/2"
+    ],
+    "simbolos": [
+     [
+      "[0, 2π]",
+      "intervalo fechado de 0 a 2π"
+     ],
+     [
+      "arccos(−7/8)",
+      "o arco entre 0 e π cujo cosseno é −7/8"
+     ]
+    ]
+   },
+   "pista": "Comece pelo sen(−3x): o seno é ímpar. Depois transforme a soma do numerador em produto.",
+   "passos": [
+    {
+     "faz": "Transforme o numerador em produto",
+     "conta": "sen 5x − sen(−3x) → sen 5x + sen 3x → 2sen 4x cos x",
+     "porque": "Seno é ímpar, então −sen(−3x) = +sen 3x. Soma em produto: (5x + 3x)/2 = 4x e (5x − 3x)/2 = x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique a fração",
+     "conta": "(2sen 4x cos x)/(sen x cos²x) → (2sen 4x)/(sen x cos x) → (2 · 2sen 2x cos 2x)/((sen 2x)/2) → 8cos 2x",
+     "porque": "Um cos x cancela; sen x cos x é metade de sen 2x, e o sen 2x cancela com o de sen 4x. Vale para sen x ≠ 0 e cos x ≠ 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva e conte as soluções",
+     "conta": "8cos 2x = −7 → cos 2x = −7/8 → 2x ∈ [0, 4π]: α, 2π − α, 2π + α, 4π − α",
+     "porque": "Com α = arccos(−7/8), cada volta tem duas soluções, e 2x dá duas voltas. Como cos 2x ≠ ±1, nenhuma delas tem sen x = 0 ou cos x = 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e divida por 2",
+     "conta": "α + (2π − α) + (2π + α) + (4π − α) = 8π → soma dos x = 8π/2 = 4π → alternativa A",
+     "porque": "Os α se cancelam aos pares. A soma acima é de 2x; a dos x é a metade.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 4π",
+   "checagem": "Simetria: as quatro soluções em x são α/2, π − α/2, π + α/2 e 2π − α/2; as duas primeiras somam π e as duas últimas somam 3π, total 4π. Em número: α/2 ≈ 0,42π, e 0,42π + 0,58π + 1,42π + 1,58π = 4π.",
+   "erradas": {
+    "B": "B não confere: as quatro soluções somam 4π; nenhuma combinação de três delas dá 3π (as somas de três seriam 2,42π, 2,58π, 3,42π ou 3,58π).",
+    "C": "C sai de olhar só uma volta de 2x e esquecer de dividir por 2: α + (2π − α) = 2π.",
+    "D": "D sai de olhar só uma volta de 2x (x entre 0 e π): α/2 + (π − α/2) = π. Esqueceu que 2x vai até 4π.",
+    "E": "E não confere: há quatro soluções, todas positivas, em [0, 2π]; a soma não pode ser 0."
+   },
+   "armadilha": "x em [0, 2π] quer dizer 2x em [0, 4π]: são duas voltas e quatro soluções, não duas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma das soluções em [0, 2π].",
+    "chave": "A fração simplifica para 8cos 2x; cos 2x = −7/8 tem quatro soluções e elas somam 4π.",
+    "cuidado": "Contar as duas voltas de 2x e dividir a soma por 2 no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria das soluções",
+    "ideia": "As soluções vêm em pares simétricos em torno de π/2 e de 3π/2 (somam π e 3π), total 4π, sem calcular α."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "sen 5x + sen 3x = 2sen 4x cos x",
+    "nota": "seno ímpar e soma em produto"
+   },
+   {
+    "linha": "(2sen 4x cos x)/(sen x cos²x) = 8cos 2x",
+    "nota": "arco dobro e cancelamentos"
+   },
+   {
+    "linha": "8cos 2x = −7 → cos 2x = −7/8",
+    "nota": "o 8 passa dividindo"
+   },
+   {
+    "linha": "2x: α, 2π − α, 2π + α, 4π − α → soma 8π",
+    "nota": "duas voltas"
+   },
+   {
+    "linha": "soma dos x = 8π/2 = 4π",
+    "nota": "dividir por 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ },
+ "P63532cd4": {
+  "n": "34",
+  "conceito": "Cone com raio, altura e geratriz em PA, e raio da esfera inscrita pelo triângulo da secção meridiana.",
+  "equivocos": {
+   "A": "M11.4:semiperimetro-errado-no-raio-inscrito",
+   "B": "M11.4:respondeu-o-raio-do-cone",
+   "C": "M11.4:raio-inscrito-como-terco-da-altura",
+   "E": "M11.4:respondeu-a-razao-da-pa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Raio, altura e geratriz de um cone formam um triângulo retângulo, com a geratriz como hipotenusa. Se os três estão em PA, Pitágoras obriga a proporção 3 : 4 : 5. A área lateral fixa o tamanho. A esfera inscrita, cortada pelo eixo, vira o círculo inscrito no triângulo isósceles da secção meridiana, e o raio desse círculo é a área dividida pelo semiperímetro.",
+    "formulas": [
+     "g² = r² + h²",
+     "área lateral = π · r · g",
+     "raio inscrito = área do triângulo ÷ semiperímetro"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "raio da base do cone"
+     ],
+     [
+      "h",
+      "altura do cone"
+     ],
+     [
+      "g",
+      "geratriz do cone"
+     ],
+     [
+      "k",
+      "razão da PA"
+     ],
+     [
+      "ρ",
+      "raio da esfera inscrita"
+     ],
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais uma constante"
+     ],
+     [
+      "secção meridiana",
+      "corte do cone por um plano que contém o eixo: um triângulo isósceles"
+     ]
+    ]
+   },
+   "pista": "Escreva os três termos da PA com uma letra só e aplique Pitágoras antes de usar a área lateral.",
+   "passos": [
+    {
+     "faz": "Escreva a PA e aplique Pitágoras",
+     "conta": "r = x − k | h = x | g = x + k → (x + k)² = (x − k)² + x² → 4xk = x² → x = 4k",
+     "porque": "A geratriz é a hipotenusa. Ao expandir, os quadrados x² e k² de um lado cancelam com os do outro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a área lateral para achar k",
+     "conta": "r = 3k, g = 5k → π · 3k · 5k = 240π → 15k² = 240 → k² = 16 → k = 4",
+     "porque": "Com tudo em função de k, a área lateral dada vira uma equação de uma incógnita só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o triângulo da secção meridiana",
+     "conta": "r = 12, h = 16, g = 20 → base 24, lados 20 e 20, altura 16 → área = (24 · 16)/2 = 192 cm²",
+     "porque": "Cortando pelo eixo, o cone vira um triângulo isósceles e a esfera vira o círculo inscrito nele.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o raio inscrito",
+     "conta": "semiperímetro = (24 + 20 + 20)/2 = 32 → ρ = 192/32 = 6 cm",
+     "porque": "A área do triângulo é a soma de três triângulos com vértice no centro do círculo e altura ρ: área = ρ × semiperímetro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "ρ = 6 cm → alternativa D",
+     "porque": "A pergunta é o raio da esfera inscrita, exatamente o raio do círculo inscrito no triângulo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 6 cm",
+   "checagem": "Por semelhança no meio do triângulo: do vértice ao centro da esfera são 16 − ρ, e a distância do centro à geratriz é ρ, então ρ/(16 − ρ) = 12/20 (cateto oposto sobre hipotenusa no triângulo de altura 16). Isso dá 20ρ = 192 − 12ρ, ρ = 192/32 = 6 cm. Fecha.",
+   "erradas": {
+    "A": "48/7 cm sai de dividir r·h por r + h em vez de r + g: 12 × 16/(12 + 16) = 192/28 = 48/7. O semiperímetro da secção é r + g = 32.",
+    "B": "12 cm é o raio da base do cone, não o da esfera inscrita.",
+    "C": "16/3 cm sai de tomar o raio inscrito como 1/3 da altura (16/3), o que só vale no triângulo equilátero; o triângulo 24, 20, 20 não é equilátero.",
+    "E": "4 cm é a razão da PA (k = 4), não o raio da esfera."
+   },
+   "armadilha": "A PA com Pitágoras já fixa a forma 3 : 4 : 5; quem para em k = 4 ou em r = 12 responde uma medida do cone, não da esfera.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O raio da esfera inscrita num cone de área lateral 240π cm² cujos raio, altura e geratriz estão em PA.",
+    "chave": "PA + Pitágoras dá 3k, 4k, 5k; 15k² = 240 dá k = 4; triângulo 24-20-20 de área 192 e semiperímetro 32, raio 6.",
+    "cuidado": "O raio inscrito é área ÷ semiperímetro da secção meridiana, não uma fração fixa da altura."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "semelhança",
+    "ideia": "No triângulo da secção, ρ/(16 − ρ) = 12/20, que dá ρ = 6 cm sem calcular área."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x + k)² = (x − k)² + x² → x = 4k",
+    "nota": "PA com Pitágoras"
+   },
+   {
+    "linha": "π · 3k · 5k = 240π → k = 4",
+    "nota": "área lateral π·r·g"
+   },
+   {
+    "linha": "r = 12 ; h = 16 ; g = 20",
+    "nota": "medidas do cone"
+   },
+   {
+    "linha": "área = (24 · 16)/2 = 192",
+    "nota": "triângulo da secção meridiana"
+   },
+   {
+    "linha": "ρ = 192/32 = 6 cm",
+    "nota": "área ÷ semiperímetro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
  }
 }

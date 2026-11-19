@@ -743,5 +743,116 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0006"
   }
+ },
+ "P736fcbfd": {
+  "n": "33",
+  "conceito": "Tirar o raio da área de um quarto de círculo, a base maior da área do trapézio e o lado oblíquo por Pitágoras.",
+  "equivocos": {
+   "A": "M09.1:lado-obliquo-errado",
+   "B": "M09.1:base-maior-errada",
+   "C": "M09.1:valor-nao-confere",
+   "E": "M09.1:respondeu-o-raio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O setor em destaque é um quarto de círculo: o ângulo em C é reto (trapézio retângulo) e CB e CD são raios. A área do setor dá o raio, e com ele você tem a base menor BC e a altura CD. A área do trapézio dá a base maior AD, e Pitágoras dá o lado oblíquo AB.",
+    "formulas": [
+     "área do quarto de círculo = (π · r²)/4",
+     "área do trapézio = ((base maior + base menor) · altura)/2",
+     "AB² = (AD − BC)² + CD²"
+    ],
+    "simbolos": [
+     [
+      "setor circular",
+      "parte do círculo entre dois raios"
+     ],
+     [
+      "trapézio retângulo",
+      "trapézio com dois ângulos retos; aqui, em C e em D"
+     ],
+     [
+      "r",
+      "raio da circunferência de centro C"
+     ]
+    ]
+   },
+   "pista": "Os dois lados que saem de C são raios da circunferência: comece pela área do setor.",
+   "passos": [
+    {
+     "faz": "Ache o raio pelo setor",
+     "conta": "(π · r²)/4 = 6,25π → r² = 4 · 6,25 = 25 → r = 5 → BC = CD = 5",
+     "porque": "O ângulo reto em C faz do setor um quarto de círculo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache AD pela área do trapézio",
+     "conta": "((AD + 5) · 5)/2 = 55 → AD + 5 = 110/5 = 22 → AD = 17",
+     "porque": "As bases são AD e BC; a altura é CD.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache AB por Pitágoras",
+     "conta": "AB² = (17 − 5)² + 5² → AB² = 144 + 25 = 169 → AB = 13",
+     "porque": "Baixando a altura de B até AD, sobra na base um pedaço de 17 − 5 = 12, cateto de um triângulo retângulo de hipotenusa AB.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os dois maiores lados",
+     "conta": "lados: 17, 13, 5, 5 → 17 − 13 = 4 → alternativa D",
+     "porque": "Os dois maiores são AD e AB.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 4",
+   "checagem": "Decomponha o trapézio em um quadrado 5 × 5 e um triângulo retângulo de catetos 12 e 5: 25 + (12 · 5)/2 = 25 + 30 = 55 cm², a área dada. E 5, 12, 13 é terna pitagórica.",
+   "erradas": {
+    "A": "1 não confere: os lados são 17, 13, 5 e 5, e as diferenças possíveis entre eles são 12, 8, 4 e 0; nenhuma vale 1.",
+    "B": "2 não confere: com lados 17, 13, 5 e 5, as diferenças possíveis são 12, 8, 4 e 0.",
+    "C": "3 não confere: com lados 17, 13, 5 e 5, as diferenças possíveis são 12, 8, 4 e 0.",
+    "E": "5 não confere: 5 é a medida dos dois lados menores (o raio), não a diferença entre os dois maiores, 17 − 13 = 4."
+   },
+   "armadilha": "O setor é um QUARTO de círculo: sem multiplicar 6,25 por 4, o raio sai 2,5, e não 5.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A diferença entre as medidas dos dois maiores lados do trapézio.",
+    "chave": "Raio 5 pelo setor, AD = 17 pela área do trapézio e AB = 13 por Pitágoras: 17 − 13 = 4.",
+    "cuidado": "Reconheça os raios CB e CD e o quarto de círculo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "decomposição",
+    "ideia": "Trapézio = quadrado 5 × 5 + triângulo de altura 5: 25 + 5b/2 = 55 dá b = 12, AD = 17, e o triângulo 5-12-13 dá AB = 13."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(π · r²)/4 = 6,25π → r² = 25 → r = 5",
+    "nota": "área do quarto de círculo"
+   },
+   {
+    "linha": "((AD + 5) · 5)/2 = 55 → AD + 5 = 22 → AD = 17",
+    "nota": "área do trapézio"
+   },
+   {
+    "linha": "AB² = 12² + 5² = 169 → AB = 13",
+    "nota": "Pitágoras"
+   },
+   {
+    "linha": "17 − 13 = 4",
+    "nota": "diferença dos dois maiores lados"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
  }
 }

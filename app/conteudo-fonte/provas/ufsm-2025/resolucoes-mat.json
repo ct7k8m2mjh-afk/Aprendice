@@ -1393,5 +1393,126 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0006"
   }
+ },
+ "P59b8d129": {
+  "n": "56",
+  "conceito": "Área composta por dois triângulos retângulos isósceles e um equilátero, todos com o lado L, achado a partir da área de T.",
+  "equivocos": {
+   "A": "M08.5:equilatero-com-area-do-isosceles",
+   "B": "M08.5:soma-de-areas-errada",
+   "C": "M08.5:soma-de-areas-errada",
+   "E": "M08.5:usou-l-ao-quadrado-como-area"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A área cinza é formada por três triângulos: T, à direita, outro triângulo retângulo com 45° à esquerda e, encostado nele, um triângulo de três lados L, que é equilátero. Os dois retângulos têm 45° e hipotenusa L, então são iguais e cada um tem a área de T. A produção de T dá a área de T, e dela sai L².",
+    "formulas": [
+     "área = produção ÷ produtividade",
+     "triângulo retângulo isósceles de hipotenusa L: área = L²/4",
+     "triângulo equilátero de lado L: área = (L²√3)/4"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "medida, em m, indicada na figura"
+     ],
+     [
+      "T",
+      "área cultivada, em m²"
+     ],
+     [
+      "kg/m²",
+      "quilogramas produzidos por metro quadrado"
+     ]
+    ]
+   },
+   "pista": "Comece pelo que a questão dá de T: 30 kg a 3 kg/m². Isso diz quanto vale L².",
+   "passos": [
+    {
+     "faz": "Calcule a área de T",
+     "conta": "T = 30 kg ÷ 3 kg/m² = 10 m²",
+     "porque": "Cada metro quadrado produz 3 kg; para dar 30 kg, T tem 10 m².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache L² a partir de T",
+     "conta": "T = L²/4 → 10 = L²/4 → L² = 40 m²",
+     "porque": "Com 45°, o triângulo retângulo é isósceles de hipotenusa L: os catetos medem L/√2 e a área é (L/√2)²/2 = L²/4. O 4 que divide passa multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule as outras duas partes",
+     "conta": "retângulo da esquerda: 40/4 = 10 m² | equilátero: (40 · √3)/4 = 10√3 ≈ 10 · 1,7 = 17 m²",
+     "porque": "O da esquerda também tem 45° e hipotenusa L, então é igual a T. O de lados L, L, L é equilátero; a prova manda usar √3 ≈ 1,7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as áreas e converta em produção",
+     "conta": "10 + 10 + 17 = 37 m² → 37 · 3 = 111 kg",
+     "porque": "A área cinza é a soma das três partes, e cada m² produz 3 kg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "111 kg → alternativa D",
+     "porque": "É a produção do mês com toda a área cinza cultivada, já sem casas decimais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 111 kg",
+   "checagem": "Em kg direto, sem passar por m²: T produz 30 kg, o outro retângulo isósceles é igual e produz 30 kg, e o equilátero tem √3 vezes a área de T (10√3 ÷ 10), logo produz 30 · 1,7 = 51 kg; 30 + 30 + 51 = 111 kg. Fecha.",
+   "erradas": {
+    "A": "90 sai de dar ao triângulo equilátero a mesma área dos retângulos: 3 · 10 = 30 m², 30 · 3 = 90 kg. O equilátero tem 10√3 ≈ 17 m².",
+    "B": "99 não confere: corresponde a 99 ÷ 3 = 33 m², e as três partes somam 10 + 10 + 17 = 37 m².",
+    "C": "102 não confere: corresponde a 102 ÷ 3 = 34 m², e as três partes somam 10 + 10 + 17 = 37 m².",
+    "E": "120 não confere: corresponde a 120 ÷ 3 = 40 m², que é L² (o quadrado de lado L), não a área cinza de 37 m²."
+   },
+   "armadilha": "Achar que o triângulo de lados L tem a mesma área dos triângulos de 45°: ele é equilátero e tem √3 vezes a área de T.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A produção do mês, em kg, se toda a área cinza fosse cultivada a 3 kg/m².",
+    "chave": "T = 10 m² dá L² = 40; cinza = 10 + 10 + 10√3 ≈ 37 m²; 37 · 3 = 111 kg.",
+    "cuidado": "O triângulo de lados L, L, L é equilátero, (L²√3)/4, e T entra na soma."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "direto em kg",
+    "ideia": "Cada triângulo de 45° produz 30 kg e o equilátero √3 · 30 ≈ 51 kg: 30 + 30 + 51 = 111 kg."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "T = 30/3 = 10 m²",
+    "nota": "produção dividida pela produtividade"
+   },
+   {
+    "linha": "L²/4 = 10 → L² = 40",
+    "nota": "o 4 passa multiplicando"
+   },
+   {
+    "linha": "equilátero = (40 · √3)/4 = 10√3 ≈ 17",
+    "nota": "√3 ≈ 1,7"
+   },
+   {
+    "linha": "10 + 10 + 17 = 37 m²",
+    "nota": "as três partes cinza"
+   },
+   {
+    "linha": "37 · 3 = 111 kg",
+    "nota": "área vezes produtividade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
  }
 }

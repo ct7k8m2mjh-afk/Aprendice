@@ -230,5 +230,250 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0006"
   }
+ },
+ "P7bf8a983": {
+  "n": "12",
+  "conceito": "Passar de uma PA de logaritmos para a sequência original, que é uma PG de razão 2 elevado à razão da PA.",
+  "equivocos": {
+   "A": "M07.2:contou-razoes-a-menos",
+   "B": "M07.2:expoente-errado-na-potencia",
+   "C": "M07.2:contou-n-razoes-em-vez-de-n-menos-1",
+   "D": "M07.2:esqueceu-o-primeiro-termo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se an = log2 bn, então bn = 2 elevado a an: cada termo de B é uma potência de 2 cujo expoente é o termo de A. Ache o oitavo termo da PA e use-o como expoente. O trabalho real é contar quantas razões separam a1 de a8: são 7, não 8.",
+    "formulas": [
+     "termo geral da PA: an = a1 + (n − 1)·r",
+     "an = log2 bn quer dizer bn = 2^an",
+     "2^(1/2) = √2"
+    ],
+    "simbolos": [
+     [
+      "log2 bn",
+      "o expoente a que se eleva 2 para obter bn"
+     ],
+     [
+      "PA",
+      "progressão aritmética: soma-se sempre a mesma razão"
+     ],
+     [
+      "r",
+      "razão da PA, aqui 1/2"
+     ],
+     [
+      "a8, b8",
+      "oitavo termo de A e de B"
+     ]
+    ]
+   },
+   "pista": "Antes de pensar em B, descubra o oitavo termo da progressão aritmética A.",
+   "passos": [
+    {
+     "faz": "Escreva o termo geral da PA",
+     "conta": "an = a1 + (n − 1)·r → a8 = 1 + 7·(1/2)",
+     "porque": "De a1 até a8 há 7 saltos de razão; o primeiro termo já está dado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a8",
+     "conta": "a8 = 1 + 7/2 → a8 = 9/2",
+     "porque": "1 = 2/2, e 2/2 + 7/2 = 9/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desfaça o logaritmo",
+     "conta": "log2 b8 = 9/2 → b8 = 2^(9/2)",
+     "porque": "Logaritmo na base 2 é o expoente de 2; voltar para b é elevar 2 a esse expoente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe a potência em parte inteira e raiz",
+     "conta": "2^(9/2) = 2^4 · 2^(1/2) → b8 = 16√2",
+     "porque": "9/2 = 4 + 1/2; 2^4 = 16 e expoente 1/2 é raiz quadrada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "b8 = 16√2 → alternativa E",
+     "porque": "O pedido é o oitavo termo de B, não o de A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 16√2",
+   "checagem": "Por outro caminho: B é uma PG de primeiro termo b1 = 2^1 = 2 e razão 2^(1/2) = √2. Então b8 = 2·(√2)^7 = 2·8√2 = 16√2. Fecha.",
+   "erradas": {
+    "A": "16 sai de contar só 6 razões: a = 1 + 6·(1/2) = 4 e 2^4 = 16. Esse é b7, não b8.",
+    "B": "8 não confere: 8 = 2^3 exigiria a8 = 3, mas a8 = 9/2. Nenhuma contagem de razões de 1/2 a partir de 1 dá 3 no oitavo termo.",
+    "C": "32 sai de contar 8 razões em vez de 7: a = 1 + 8·(1/2) = 5 e 2^5 = 32.",
+    "D": "8√2 sai de esquecer o primeiro termo: a8 = 7·(1/2) = 7/2 e 2^(7/2) = 8√2."
+   },
+   "armadilha": "De a1 até a8 são 7 razões, e o resultado de A ainda precisa virar expoente de 2 para dar o termo de B.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O oitavo termo de B, sabendo que os logaritmos na base 2 dos termos de B formam uma PA com a1 = 1 e razão 1/2.",
+    "chave": "a8 = 1 + 7·(1/2) = 9/2 e b8 = 2^(9/2) = 16√2.",
+    "cuidado": "Conte 7 razões até o oitavo termo e não pare em A: o termo de B é 2 elevado a a8."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "PG direta",
+    "ideia": "B é PG com b1 = 2 e razão √2, logo b8 = 2·(√2)^7 = 16√2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a8 = 1 + 7·(1/2)",
+    "nota": "termo geral da PA"
+   },
+   {
+    "linha": "a8 = 9/2",
+    "nota": "somar as frações"
+   },
+   {
+    "linha": "b8 = 2^(9/2)",
+    "nota": "desfazer o log2"
+   },
+   {
+    "linha": "b8 = 2^4 · 2^(1/2) = 16√2",
+    "nota": "separar o expoente 4 + 1/2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ },
+ "P234dadcd": {
+  "n": "18",
+  "conceito": "Localizar um ponto depois de uma translação e de uma reflexão e medir a distância até o ponto original por Pitágoras.",
+  "equivocos": {
+   "A": "M09.1:altura-do-vertice-errada",
+   "C": "M09.1:reflexao-mal-aplicada",
+   "D": "M09.1:translacao-mal-aplicada",
+   "E": "M09.1:pitagoras-com-cateto-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Como AB = BC, o triângulo ABC tem os ângulos da base iguais: BÂC = BĈA = 30°. AB está em pé sobre a reta r, então AC faz 30° com a vertical em A. Com isso você sabe a que altura C fica de r. A translação empurra C 5 cm para a direita, e a reflexão em r joga o ponto para baixo de r, à mesma distância: CC'' vira a hipotenusa de um triângulo retângulo.",
+    "formulas": [
+     "cateto adjacente = hipotenusa · cos",
+     "d² = (Δx)² + (Δy)²"
+    ],
+    "simbolos": [
+     [
+      "BĈA",
+      "ângulo com vértice em C, entre os lados CB e CA"
+     ],
+     [
+      "translação",
+      "deslocamento de todos os pontos na mesma direção e na mesma distância"
+     ],
+     [
+      "reflexão em r",
+      "cada ponto vai para o outro lado da reta r, à mesma distância dela"
+     ],
+     [
+      "Δx, Δy",
+      "diferença horizontal e diferença vertical entre dois pontos"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro a que altura C fica da reta r; depois pense no que a reflexão faz com essa altura.",
+   "passos": [
+    {
+     "faz": "Ache o ângulo de AC com a vertical",
+     "conta": "AB = BC → BÂC = BĈA = 30°",
+     "porque": "Triângulo isósceles tem os ângulos da base iguais. Como AB é perpendicular a r, o ângulo de 30° em A fica entre AC e a vertical.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a altura de C sobre r",
+     "conta": "altura de C = 4 · cos 30° → 4 · (√3)/2 → 2√3",
+     "porque": "AC = 4 é a hipotenusa e a altura é o cateto adjacente ao ângulo de 30° em A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Meça o deslocamento de C até C''",
+     "conta": "Δx = 5 | Δy = 2√3 + 2√3 = 4√3",
+     "porque": "A translação anda só na horizontal, 5 cm. A reflexão põe C'' tão abaixo de r quanto C' está acima, então a diferença de altura entre C e C'' é o dobro de 2√3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique Pitágoras",
+     "conta": "CC''² = 5² + (4√3)² → CC''² = 25 + 48 = 73 → CC'' = √73",
+     "porque": "O deslocamento horizontal e o vertical são os catetos; CC'' é a hipotenusa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "CC'' = √73 cm → alternativa B",
+     "porque": "A pergunta é a distância entre C e C'', e foi ela que a conta deu.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — √73 cm",
+   "checagem": "Confira a altura de C passando por B: AB = BC = 4/√3 (metade de AC dividida por cos 30°), e o trecho BC, que faz 60° com a vertical, sobe mais BC · cos 60° = 2/√3. A altura de C é 4/√3 + 2/√3 = 6/√3 = 2√3, a mesma do passo 2; com Δx = 5 e Δy = 4√3 sai de novo √73.",
+   "erradas": {
+    "A": "√69 não confere: exigiria (Δy)² = 69 − 25 = 44, mas a diferença de altura entre C e C'' é 4√3, cujo quadrado é 48.",
+    "C": "√71 não confere: exigiria (Δy)² = 71 − 25 = 46, e (4√3)² = 48.",
+    "D": "√65 não confere: exigiria (Δy)² = 65 − 25 = 40, e a diferença de altura 4√3 tem quadrado 48.",
+    "E": "√67 não confere: exigiria (Δy)² = 67 − 25 = 42, e (4√3)² = 48."
+   },
+   "armadilha": "A reflexão dobra a altura: a distância vertical entre C e C'' é 2 · 2√3 = 4√3, não 2√3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A distância entre C e C'' depois de uma translação de 5 cm e de uma reflexão na reta r.",
+    "chave": "C está 2√3 acima de r; C'' fica 5 cm à direita e 4√3 abaixo de C, então CC''² = 25 + 48 = 73.",
+    "cuidado": "A reflexão dobra a distância vertical; a translação só mexe na horizontal."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas",
+    "ideia": "Com A na origem, C = (2; 2√3) e C'' = (7; −2√3); a fórmula da distância dá √(25 + 48) = √73."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "BÂC = BĈA = 30°",
+    "nota": "isósceles: ângulos da base iguais"
+   },
+   {
+    "linha": "altura de C = 4 · cos 30° = 2√3",
+    "nota": "cateto adjacente ao 30°"
+   },
+   {
+    "linha": "Δx = 5 | Δy = 2√3 + 2√3 = 4√3",
+    "nota": "translação e reflexão"
+   },
+   {
+    "linha": "CC''² = 5² + (4√3)² = 25 + 48 = 73",
+    "nota": "Pitágoras"
+   },
+   {
+    "linha": "CC'' = √73",
+    "nota": "tira a raiz"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
  }
 }

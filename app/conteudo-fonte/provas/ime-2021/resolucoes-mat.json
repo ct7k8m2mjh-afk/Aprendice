@@ -1362,5 +1362,249 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0004"
   }
+ },
+ "P09628b2e": {
+  "n": "5",
+  "conceito": "Reconhecer que o produto de duas PAs é uma sequência de 2º grau e usar a segunda diferença constante.",
+  "equivocos": {
+   "A": "M07.4:recorrencia-mal-estendida",
+   "C": "M07.4:recorrencia-mal-estendida",
+   "D": "M07.4:contou-um-termo-a-menos",
+   "E": "M07.4:recorrencia-mal-estendida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada PA é do 1º grau em n; o produto de duas delas é do 2º grau em n. Numa sequência de 2º grau, as diferenças entre termos vizinhos formam uma PA: a segunda diferença é constante. Com três termos você já tem essa segunda diferença e pode avançar até o sétimo.",
+    "formulas": [
+     "(a + d·n)(b + e·n) = polinômio de 2º grau em n",
+     "2º grau: diferenças sucessivas formam PA"
+    ],
+    "simbolos": [
+     [
+      "cn",
+      "n-ésimo termo da sequência produto"
+     ],
+     [
+      "1ª diferença",
+      "cn+1 − cn"
+     ],
+     [
+      "2ª diferença",
+      "diferença entre duas 1ªs diferenças seguidas"
+     ],
+     [
+      "PA",
+      "progressão aritmética"
+     ]
+    ]
+   },
+   "pista": "Calcule as diferenças entre termos vizinhos e depois a diferença entre essas diferenças.",
+   "passos": [
+    {
+     "faz": "Calcule as primeiras diferenças",
+     "conta": "3840 − 3053 = 787 | 4389 − 3840 = 549",
+     "porque": "Diferença entre termos vizinhos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a segunda diferença",
+     "conta": "549 − 787 = −238",
+     "porque": "Em sequência de 2º grau ela é constante, e as diferenças viram uma PA de razão −238.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Estenda as diferenças",
+     "conta": "549 → 311 → 73 → −165 → −403",
+     "porque": "Cada diferença é a anterior menos 238.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some até o sétimo termo",
+     "conta": "4389 + 311 = 4700 → + 73 = 4773 → − 165 = 4608 → − 403 = 4205",
+     "porque": "São c4, c5, c6 e c7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "c7 = 4205 → alternativa B",
+     "porque": "O pedido é o sétimo termo, não o sexto.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 4205",
+   "checagem": "As PAs inteiras 43, 60, 77, ... (razão 17) e 71, 64, 57, ... (razão −7) dão 43·71 = 3053, 60·64 = 3840 e 77·57 = 4389. O sétimo par é 145 e 29, e 145·29 = 4205. Fecha.",
+   "erradas": {
+    "A": "3035 não confere: os termos de c4 a c8 são 4700, 4773, 4608, 4205 e 3564; 3035 não aparece nessa vizinhança.",
+    "C": "4398 não confere: c6 = 4608 e c7 = 4205; 4398 não é termo da sequência.",
+    "D": "4608 sai de parar um termo antes: é c6, o sexto termo.",
+    "E": "5063 não confere: a sequência atinge o máximo em c5 = 4773 e depois cai, então nenhum termo a partir do quarto passa de 4773."
+   },
+   "armadilha": "As diferenças não são constantes, como numa PA: o que é constante é a segunda diferença, −238.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O sétimo termo da sequência formada pelo produto de duas PAs de inteiros, dados os três primeiros: 3053, 3840 e 4389.",
+    "chave": "Produto de duas PAs é de 2º grau: segunda diferença constante −238; estender as diferenças até c7 = 4205.",
+    "cuidado": "Conte os termos com cuidado: 4608 é o sexto, o sétimo é 4205."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "achar as PAs",
+    "ideia": "Fatorando 3053 = 43·71 e testando, as PAs são 43 + 17(n − 1) e 71 − 7(n − 1); c7 = 145·29 = 4205."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "787 | 549",
+    "nota": "primeiras diferenças"
+   },
+   {
+    "linha": "549 − 787 = −238",
+    "nota": "segunda diferença constante"
+   },
+   {
+    "linha": "311, 73, −165, −403",
+    "nota": "próximas diferenças"
+   },
+   {
+    "linha": "4700, 4773, 4608, 4205",
+    "nota": "c4 a c7"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ },
+ "Pb3b06ee8": {
+  "n": "15",
+  "conceito": "Razão entre volumes de pirâmides semelhantes (cubo da razão das alturas) ao virar um recipiente piramidal.",
+  "equivocos": {
+   "B": "M11.3:volume-proporcional-a-altura",
+   "C": "M11.3:volume-proporcional-a-altura",
+   "D": "M11.3:respondeu-a-altura-do-ar",
+   "E": "M11.3:fracao-de-volume-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com o vértice para baixo, a bebida forma uma pirâmide menor, semelhante ao copo, de altura 8 cm. Em sólidos semelhantes, o volume segue o cubo da razão das alturas. Virado de cabeça para baixo, o vértice fica em cima, e quem forma a pirâmide pequena é o AR: calcule o volume do ar, ache a altura dessa pirâmide de ar e subtraia de 9.",
+    "formulas": [
+     "V pequena/V grande = (h pequena/h grande)³",
+     "altura da bebida = 9 − altura do ar"
+    ],
+    "simbolos": [
+     [
+      "V",
+      "volume do copo inteiro"
+     ],
+     [
+      "a",
+      "altura da pirâmide de ar, medida a partir do vértice"
+     ],
+     [
+      "h",
+      "altura da bebida medida a partir da base pentagonal"
+     ],
+     [
+      "∛",
+      "raiz cúbica"
+     ]
+    ]
+   },
+   "pista": "Depois de virar o copo, olhe para a parte vazia: ela tem a forma de qual sólido?",
+   "passos": [
+    {
+     "faz": "Ache a fração do copo com bebida",
+     "conta": "V bebida/V = (8/9)³ = 512/729",
+     "porque": "A bebida, com o vértice para baixo, é uma pirâmide semelhante ao copo com razão de alturas 8/9; o volume vai ao cubo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a fração ocupada pelo ar",
+     "conta": "V ar/V = 1 − 512/729 = 217/729",
+     "porque": "A quantidade de bebida não muda ao virar; o resto do copo é ar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a altura da pirâmide de ar",
+     "conta": "(a/9)³ = 217/729 → a³ = 217 → a = ∛217",
+     "porque": "Com o vértice para cima, o ar ocupa uma pirâmide semelhante ao copo, junto ao vértice.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Estime a raiz cúbica e subtraia",
+     "conta": "6³ = 216 < 217 < 226,981 = 6,1³ → 6 < a < 6,1 → 2,9 < h = 9 − a < 3",
+     "porque": "Não precisa da raiz exata: 217 está logo acima de 216, então a passa um pouco de 6 (a ≈ 6,009) e h ≈ 2,991.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue o intervalo à alternativa",
+     "conta": "2,9 ≤ h ≤ 3,0 → alternativa A",
+     "porque": "A pergunta é a altura da bebida em relação à base, não a altura do ar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2,9 ≤ h ≤ 3,0",
+   "checagem": "Substitua h ≈ 2,99: o ar tem altura 6,01 e ocupa (6,01/9)³ ≈ 0,2978 do copo; a bebida fica com 1 − 0,2978 ≈ 0,702, igual a 512/729 ≈ 0,702. Fecha.",
+   "erradas": {
+    "B": "3,8 ≤ h ≤ 4,0 não confere: com h = 4 o ar teria altura 5 e ocuparia (5/9)³ ≈ 17% do copo, mas o ar é 217/729 ≈ 29,8%.",
+    "C": "4,8 ≤ h ≤ 4,9 não confere: com h = 4,8 o ar teria altura 4,2 e ocuparia (4,2/9)³ ≈ 10% do copo, longe dos 29,8%.",
+    "D": "5,8 ≤ h ≤ 6,0 não confere: com h = 6 o ar teria altura 3 e ocuparia (3/9)³ ≈ 3,7% do copo. Quem chega perto de 6 trocou as alturas: ∛217 ≈ 6,01 é a altura do ar, medida a partir do vértice.",
+    "E": "6,1 ≤ h ≤ 6,2 não confere: com h = 6,1 o ar teria altura 2,9 e ocuparia (2,9/9)³ ≈ 3,3% do copo, e não 29,8%."
+   },
+   "armadilha": "Depois de virar, a pirâmide semelhante é a do ar, junto ao vértice; ∛217 ≈ 6 é a altura do ar, e a bebida tem 9 − 6 ≈ 3 cm.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A altura da bebida, medida da base, depois de virar o copo piramidal.",
+    "chave": "Bebida = (8/9)³ = 512/729 do copo; ar = 217/729 = (a/9)³, então a = ∛217 ≈ 6,01 e h ≈ 2,99.",
+    "cuidado": "Volume escala com o cubo da altura, e a resposta é 9 menos a altura do ar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "volume do tronco",
+    "ideia": "Com o vértice para cima, a bebida é um tronco: (9³ − a³)/9³ = 512/729 dá a³ = 729 − 512 = 217, a mesma equação."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V bebida/V = (8/9)³ = 512/729",
+    "nota": "pirâmides semelhantes: razão ao cubo"
+   },
+   {
+    "linha": "V ar/V = 1 − 512/729 = 217/729",
+    "nota": "o resto do copo é ar"
+   },
+   {
+    "linha": "(a/9)³ = 217/729 → a³ = 217",
+    "nota": "o ar forma a pirâmide junto ao vértice"
+   },
+   {
+    "linha": "6³ = 216 → a ≈ 6,009",
+    "nota": "217 fica logo acima de 216"
+   },
+   {
+    "linha": "h = 9 − 6,009 ≈ 2,991",
+    "nota": "altura da bebida a partir da base"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
  }
 }
