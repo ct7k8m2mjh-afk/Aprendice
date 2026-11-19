@@ -181,3 +181,19 @@ ANULAR Pe625626c (UFAM 2026 PSC3 q26): a alternativa oficial E diz que o Guaíba
 ANULAR/GABARITO Pb5cb0b0f (Unitins 2020/1 q21): gabarito oficial B chama o buriti (palmeira de solo encharcado) de "vegetação xerófila"; a questão é cópia da ENEM 2015 (1º dia, azul, q32), cujo gabarito "sistema represador da água na chapada" é aqui a E. Provável troca de gabarito: conferir o definitivo da Unitins
 DADO P7c7c6c78 (UERR 2025 q66): alternativas -> campo vazio; as cinco estão no fim de texto_da_prova, iguais ao print
 DADO Pfa155239 (PUC-Rio 2023): número -> o print mostra a questão 34; a entrada diz 44
+
+## 2026-11-19 16:55 UTC — PENDENCIAS — sessão geo (19/11, 2ª)
+Lote gravado: geo-0049 (49 resoluções; 2 com gabarito do Aprendice, letras iguais às cegas e ao preliminar: P86e3636a A, P1555f957 C). Pendente: Pf675553a (ANULAR).
+DADO P1fb67ace: alternativas A e B -> "vegetais" e "caatinga" (vieram "ve- getais" e "ca- atinga"); texto_da_prova "s´ıntese/dom´ınio/flor´ıstica" -> "síntese/domínio/florística"
+DADO P190a17da: alternativas.D -> "crescimento" (veio "cres- cimento")
+DADO P545d4bd2: texto_da_prova -> afirmativa I "Campos\n\nNaturais" -> "Campos Naturais"; "Assinale a alternativa CORRETA." é linha separada no print, não continuação da IV
+DADO P27b2f3c5: texto_da_prova -> "Os textos 1 e 2 descrevem, respectivamente, a _________ e o(a) _________." (a entrada perdeu as lacunas)
+RECLASS P5b2e9e05 G04.4 -> G04.2 (Unespar 2024 q48: bacias e geração hidrelétrica)
+DADO P86f071bc (PUCRS 2025 q69): alternativas.D -> "1 – 2 – 3 – 4 – 5" (a coluna "Problema Ambiental" entrou colada na D)
+RECLASS P1dd9a21a G04.2 -> G04.1 (conceito de bacia hidrográfica)
+RECLASS P86e3636a G04.2 -> G04.1 (vegetação e ciclo hidrológico na bacia)
+RECLASS Pdec23512 G04.3 -> G02.4
+RECLASS P8240e152 G04.4 -> G05.1
+RECLASS P1555f957 G04.4 -> G06.6
+DADO P5b2faf4b: alternativas.E -> sem o " 01" no fim (o "01" não aparece no print)
+ANULAR Pf675553a (Cederj 2023.2 q24): a foto mostra um pequizeiro, árvore do Cerrado (letra A); o gabarito oficial é D (Mata de Araucárias), e a própria justificativa da banca diz "característico do cerrado"; sem errata. Fontes: https://www.cecierj.edu.br/wp-content/uploads/2023/06/VestibularCederj_2023.2_Gabarito.pdf e https://www.cecierj.edu.br/wp-content/uploads/2023/06/VestibularCEDERJ_2023.2_Justificativas-de-Respostas.pdf (p. 5)
