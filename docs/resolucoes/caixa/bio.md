@@ -74,3 +74,41 @@ DADO Pa4444dc1: alternativas.E -> sem "Matemática - Objetivas" (rodapé) e acen
 DADO P3bd49088: alternativas -> não vêm separadas, estão dentro de texto_da_prova (A–E no print)
 DADO P5f1bed47: alternativas.D -> "A mariposa tipo B é aquela que emite ultrassons e uma conclusão do experimento é que a emissão de ultrassons não beneficia o predador nem a presa." (texto do gráfico e nº de página colados)
 GABARITO P52bc2c31, P6ad3509a, Pe437270b, Pba08c0d2 (UFRR 2025 q22, q23, q26; UFRR 2026 q23): gravadas com Gabarito do Aprendice (letras B, A, E, D = preliminar = conferente às cegas); conferir o gabarito oficial da UFRR (site deu 503).
+
+## 2026-11-19 UTC — PENDENCIAS — session_01PveEKYyQUcXXXACEDrbiVW
+Lote bio-0065 gravado (58 ok, 2 pendentes). Aberto: bio-0066 (com os conferentes).
+RECLASS P3b4ab5f1 bio -> geo G05.4 (agenda ambiental global e ONU a partir da Covid-19) — pendente, não resolvida
+RECLASS P112c6236 bio -> por P10.1 (concordância do verbo haver impessoal) — pendente, não resolvida
+GABARITO P8c065f00 (EMESCAM 2022/1 q47), Pd2776b20 (UNIRG 2023/1 q23): gravadas com Gabarito do Aprendice (C, D = preliminar = conferente às cegas).
+RECLASS P7159f5a0 B10.1 -> B10.2
+RECLASS P613b7f1c B10.1 -> B07.5
+RECLASS Pc7a4d215 B10.1 -> B10.3
+RECLASS P36c9df9e B10.1 -> B10.2
+RECLASS P07015b2b B10.1 -> B01.2
+RECLASS Pe8be4f76 B10.1 -> B08.7
+DADO Pc7a4d215: alternativas.D -> sem o " 23" no fim (número da página)
+DADO P36c9df9e: alternativas.D -> "vírus." sem o " 20" (número da página)
+RECLASS P56e77769 B10.1 -> B12.1
+RECLASS P18d36578 B10.1 -> B12.1
+RECLASS P74da3e1b B09.6 -> B09.7
+RECLASS P0ed152d1 B09.6 -> B09.7
+RECLASS P1bb32660 B09.6 -> B09.7
+RECLASS P3277e626 B09.6 -> B09.7
+RECLASS P0af932a6 B09.6 -> B09.7
+RECLASS Pa25a5e3d B09.6 -> B12.7
+DADO P58ca3149: alternativas.E -> "Deserto." (sem o "Questão 27" colado)
+RECLASS P53f7e1a5 B09.6 -> B09.7
+RECLASS P0b1f7192 B09.6 -> B12.6
+RECLASS P8468a4fb B09.6 -> B09.3
+RECLASS P2210aea9 B09.6 -> B09.7
+RECLASS P725b66fb B09.6 -> B09.7
+RECLASS P9d1c69aa B09.6 -> B09.7
+RECLASS P435d8280 B09.6 -> B09.7
+DADO P8468a4fb: texto_da_prova -> começa "60. (URCA/2027.1) No topo da Chapada do Araripe…", acentos quebrados e texto todo em negrito
+GABARITO P8468a4fb (URCA 2027.1 q60): gabarito definitivo da URCA/CEV publicado = B (https://vestibulares.estrategia.com/portal/wp-content/uploads/2026/11/Gabarito-Oficial-1o-dia.pdf); passar gabarito_oficial a B e tirar o aviso de Gabarito do Aprendice (resolução já está com B)
+RECLASS P67a7f030 B10.1 -> B11.3
+RECLASS P47407015 B10.1 -> B10.5
+RECLASS P949ac016 B10.1 -> B08.6
+DADO P949ac016: texto_da_prova -> no print os acentos estão certos ("saúde", "proteína") e não há a coluna de letras soltas do início
+RECLASS Pe3ebbc14 B09.6 -> B09.7
+GABARITO P1f0ddacc (UFRR 2026 q22): gravada com Gabarito do Aprendice B (= preliminar = conferente às cegas); existe edital 93/25 da UFRR com gabarito pós-recursos que não abriu (connection reset) — conferir a letra oficial
