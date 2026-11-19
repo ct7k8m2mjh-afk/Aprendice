@@ -311,5 +311,243 @@
    "data": "2026-11-19",
    "lote": "mat-0071"
   }
+ },
+ "P71b348ec": {
+  "n": "55",
+  "conceito": "Quociente eleitoral e quociente partidário: duas divisões em sequência, desprezando a parte decimal.",
+  "equivocos": {
+   "A": "M02.1:quociente-calculado-errado",
+   "C": "M02.1:divisao-invertida",
+   "D": "M02.1:quociente-calculado-errado",
+   "E": "M02.1:dividiu-pelo-total-sem-qe"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto dá as duas fórmulas; o trabalho é aplicá-las na ordem certa. Primeiro descubra quantos votos valem uma vaga (QE). Depois veja quantas vezes esse valor cabe nos votos do partido (QP) e jogue fora a parte decimal, como o enunciado manda.",
+    "formulas": [
+     "QE = total de votos válidos ÷ número de vagas",
+     "QP = votos do partido ÷ QE, só a parte inteira"
+    ],
+    "simbolos": [
+     [
+      "QE",
+      "quociente eleitoral: votos necessários para uma vaga"
+     ],
+     [
+      "QP",
+      "quociente de partido: vagas iniciais do partido"
+     ],
+     [
+      "parte decimal desconsiderada",
+      "fica só o número inteiro, sem arredondar"
+     ]
+    ]
+   },
+   "pista": "Calcule primeiro quanto custa uma vaga em votos; só depois olhe os votos do partido.",
+   "passos": [
+    {
+     "faz": "Calcule o quociente eleitoral",
+     "conta": "QE = 840.000/8 → QE = 105.000 votos",
+     "porque": "Cada vaga custa a mesma quantidade de votos: o total válido repartido igualmente pelas 8 vagas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o quociente de partido",
+     "conta": "QP = 250.000/105.000 → QP ≈ 2,38",
+     "porque": "Você quer saber quantas vezes 105.000 votos cabem nos 250.000 do partido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Despreze a parte decimal",
+     "conta": "QP ≈ 2,38 → QP = 2",
+     "porque": "O enunciado diz que a parte decimal é desconsiderada: o 0,38 não vira vaga nesta etapa (pode contar só na distribuição das sobras).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "QP = 2 → 2 vagas → alternativa B",
+     "porque": "A pergunta é a quantidade eleita inicialmente, antes das sobras, que é exatamente o QP.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 2 vagas.",
+   "checagem": "Por proporção: o partido teve 250.000/840.000 ≈ 0,298 dos votos válidos, e 0,298 de 8 vagas é cerca de 2,38 vagas. A parte inteira é 2, o mesmo resultado.",
+   "erradas": {
+    "A": "A não confere: 2 × 105.000 = 210.000 votos, e o partido tem 250.000, então cabem duas vagas inteiras, não só uma.",
+    "C": "C sai de inverter a divisão: 840.000 ÷ 250.000 = 3,36, parte inteira 3. Esse número não tem sentido; o certo é votos do partido ÷ QE.",
+    "D": "D não confere: 4 vagas exigiriam 4 × 105.000 = 420.000 votos, bem mais que os 250.000 do partido.",
+    "E": "E sai de pular o QE e dividir pelos votos totais: 250.000 ÷ 840.000 ≈ 0,30, parte inteira 0. Faltou dividir o total pelas 8 vagas antes."
+   },
+   "armadilha": "O divisor dos votos do partido é o QE (105.000), não o total de votos válidos nem o contrário.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas vagas o partido conquista antes das sobras.",
+    "chave": "QE = 840.000 ÷ 8 = 105.000; QP = 250.000 ÷ 105.000 ≈ 2,38, parte inteira 2.",
+    "cuidado": "Divida na ordem do texto e jogue fora o decimal, sem arredondar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "múltiplos do QE",
+    "ideia": "Liste 105.000, 210.000, 315.000: os 250.000 votos passam de 2 quocientes e não chegam a 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "QE = 840.000/8 = 105.000",
+    "nota": "votos por vaga"
+   },
+   {
+    "linha": "QP = 250.000/105.000 ≈ 2,38",
+    "nota": "quantas vagas cabem"
+   },
+   {
+    "linha": "2,38 → 2",
+    "nota": "despreza o decimal"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
+ },
+ "P577ad146": {
+  "n": "54",
+  "conceito": "Porcentagens encadeadas (rendimento, distribuição, imposto) e divisão por cotas.",
+  "equivocos": {
+   "A": "M03.1:imposto-tomado-como-total",
+   "B": "M03.1:esqueceu-uma-porcentagem",
+   "C": "M03.1:parou-na-primeira-verdadeira",
+   "D": "M03.1:parou-na-primeira-verdadeira"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada porcentagem age sobre o resultado da anterior: 20% do fundo é o rendimento, 50% do rendimento vira dividendos, e a cota recebe 1/200 disso. Só então se aplica o imposto de 10%. Repare na alternativa E: é preciso testar C e D, não parar na primeira verdadeira.",
+    "formulas": [
+     "rendimento = 20% do fundo",
+     "dividendos = 50% do rendimento",
+     "dividendo da cota = dividendos ÷ 200",
+     "imposto = 10% do dividendo, se passar de R$ 600 mil"
+    ],
+    "simbolos": [
+     [
+      "dividendos",
+      "parte do lucro entregue aos cotistas"
+     ],
+     [
+      "cota",
+      "fração do fundo; aqui, 1 de 200"
+     ],
+     [
+      "bi",
+      "bilhão: 1.000.000.000"
+     ],
+     [
+      "mi",
+      "milhão: 1.000.000"
+     ]
+    ]
+   },
+   "pista": "Encadeie as porcentagens na ordem do texto e só depois divida pelas 200 cotas.",
+   "passos": [
+    {
+     "faz": "Calcule o rendimento do fundo",
+     "conta": "10.000.000.000 × 0,2 → 2.000.000.000",
+     "porque": "O fundo aumentou 20%: esse aumento é o rendimento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os dividendos distribuídos",
+     "conta": "2.000.000.000 × 0,5 → 1.000.000.000",
+     "porque": "Só metade do rendimento foi distribuída.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelas cotas",
+     "conta": "1.000.000.000/200 → 5.000.000",
+     "porque": "O cotista tem 1 das 200 cotas, então recebe 1/200 dos dividendos. B (10 milhões) cai.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste o imposto da alternativa C",
+     "conta": "5.000.000 > 600.000 → 0,1 × 5.000.000 = 500.000",
+     "porque": "Ele recebe mais de 600 mil, então paga 10%: 500 mil. C é verdadeira, e A cai, porque o governo não leva tudo.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste a doação da alternativa D",
+     "conta": "5.000.000 − 500.000 = 4.500.000 → 4.500.000/2 = 2.250.000",
+     "porque": "Cada pessoa recebe 2,25 milhões, mais de 1 milhão: as duas ficam milionárias. D também é verdadeira.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "C: V | D: V → alternativa E",
+     "porque": "Com C e D verdadeiras, a resposta é a alternativa que reúne as duas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — Os itens (c) e (d) estão corretos.",
+   "checagem": "Faça a conta pelo fundo inteiro: 2 bilhões × 50% × 90% (depois do imposto) = 900 milhões líquidos; ÷ 200 cotas = 4,5 milhões; ÷ 2 pessoas = 2,25 milhões cada, o mesmo valor da alternativa D.",
+   "erradas": {
+    "A": "A não confere: o imposto é 10% de 5.000.000 = 500.000; o cotista fica com 4.500.000, então o governo não toma todos os dividendos.",
+    "B": "B sai de dividir o rendimento inteiro pelas cotas: 2.000.000.000 ÷ 200 = 10.000.000. Só 50% do rendimento foi distribuído, o que dá 5.000.000.",
+    "C": "C é verdadeira (0,1 × 5.000.000 = 500.000), mas D também é (4.500.000 ÷ 2 = 2.250.000 cada); a alternativa que reúne as duas é a E.",
+    "D": "D é verdadeira (2.250.000 para cada pessoa), mas C também é (imposto de 500.000); a alternativa que reúne as duas é a E."
+   },
+   "armadilha": "Achar C verdadeira e marcar C: a alternativa E junta C e D, e D também é verdadeira.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre os dividendos de 1 cota está correta.",
+    "chave": "20% de 10 bi = 2 bi; metade = 1 bi; ÷ 200 = 5 mi; imposto 500 mil; sobra 4,5 mi.",
+    "cuidado": "Teste todas as afirmações antes de marcar, porque a E junta duas delas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fração única",
+    "ideia": "A cota recebe 20% × 50% × 1/200 = 1/2.000 do fundo: 10 bi ÷ 2.000 = 5 mi, e daí seguem o imposto e a doação."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10 bi × 0,2 = 2 bi",
+    "nota": "rendimento"
+   },
+   {
+    "linha": "2 bi × 0,5 = 1 bi",
+    "nota": "dividendos"
+   },
+   {
+    "linha": "1 bi ÷ 200 = 5 mi",
+    "nota": "parte da cota"
+   },
+   {
+    "linha": "0,1 × 5 mi = 500 mil",
+    "nota": "imposto"
+   },
+   {
+    "linha": "4,5 mi ÷ 2 = 2,25 mi",
+    "nota": "doação a cada pessoa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

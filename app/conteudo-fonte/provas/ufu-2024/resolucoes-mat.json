@@ -696,5 +696,113 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0002"
   }
+ },
+ "P024764c9": {
+  "n": "68",
+  "conceito": "Converter 103 para a base 2 e contar as permutações dos seus algarismos 0 e 1 (permutação com repetição).",
+  "equivocos": {
+   "A": "M17.2:nao-dividiu-pelos-zeros-repetidos",
+   "B": "M17.2:contagem-acima-do-total-possivel",
+   "D": "M17.2:contagem-acima-do-total-possivel"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro escreva 103 em binário e conte quantos 1 e quantos 0 aparecem. Depois, como no exemplo do enunciado (0111 conta), vale qualquer ordem dos algarismos, inclusive com 0 na frente. Algarismos iguais trocados entre si não geram número novo: é permutação com repetição.",
+    "formulas": [
+     "103 = soma de potências de 2",
+     "permutação com repetição = n!/(a! · b!)"
+    ],
+    "simbolos": [
+     [
+      "(N)₂",
+      "número N escrito na base 2"
+     ],
+     [
+      "n!",
+      "fatorial: n · (n − 1) · ... · 1"
+     ],
+     [
+      "permutação com repetição",
+      "ordens diferentes de uma lista com elementos repetidos"
+     ]
+    ]
+   },
+   "pista": "Escreva 103 como soma das maiores potências de 2 que cabem e conte os zeros.",
+   "passos": [
+    {
+     "faz": "Escreva 103 com potências de 2",
+     "conta": "103 = 64 + 32 + 4 + 2 + 1 → 1100111",
+     "porque": "Ocupam as posições 2⁶, 2⁵, 2², 2¹ e 2⁰; as posições 2⁴ e 2³ ficam com 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os algarismos",
+     "conta": "1100111: sete algarismos | 1: cinco vezes | 0: duas vezes",
+     "porque": "São esses algarismos que serão permutados.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique a permutação com repetição",
+     "conta": "7!/(5! · 2!) = 5040/(120 · 2) → 5040/240 = 21",
+     "porque": "Os 7! ordens contam cada número várias vezes: dividimos pelas 5! trocas entre os 1 e pelas 2! trocas entre os 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "21 números → alternativa C",
+     "porque": "Vale contar os que começam com 0, como o 0111 do exemplo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 21",
+   "checagem": "Escolha só as posições dos dois zeros entre as sete: C(7, 2) = (7 · 6)/2 = 21. É o mesmo número, contado por combinação.",
+   "erradas": {
+    "A": "42 sai de não dividir pelas trocas entre os dois zeros: 7!/5! = 7 · 6 = 42. Trocar um 0 com o outro dá o mesmo número.",
+    "B": "7! − 5! não confere: vale 5040 − 120 = 4920, mais que os 2⁷ = 128 números de sete algarismos binários que existem.",
+    "D": "5! não confere: 120 é mais que as 7 · 6 = 42 maneiras de pôr dois zeros em sete posições, mesmo contando a ordem deles."
+   },
+   "armadilha": "Esquecer que os algarismos repetidos não geram números novos: é preciso dividir pelas trocas entre os 1 e entre os 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos números saem das permutações dos algarismos de 103 na base 2.",
+    "chave": "103 = 1100111: cinco 1 e dois 0; 7!/(5! · 2!) = 21.",
+    "cuidado": "Divida pelos fatoriais das repetições, dos 1 e dos 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela posição do primeiro zero",
+    "ideia": "Fixe o primeiro 0 na posição 1, 2, ..., 6; o segundo vai em uma das posições à direita: 6 + 5 + 4 + 3 + 2 + 1 = 21."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "103 = 64 + 32 + 4 + 2 + 1",
+    "nota": "potências de 2"
+   },
+   {
+    "linha": "(103)₂ = 1100111",
+    "nota": "cinco 1 e dois 0"
+   },
+   {
+    "linha": "7!/(5! · 2!) = 5040/240",
+    "nota": "permutação com repetição"
+   },
+   {
+    "linha": "5040/240 = 21",
+    "nota": "total de números"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

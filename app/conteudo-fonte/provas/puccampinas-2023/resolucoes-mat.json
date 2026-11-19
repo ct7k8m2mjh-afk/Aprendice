@@ -300,5 +300,120 @@
    "data": "2026-11-12",
    "lote": "mat-0033"
   }
+ },
+ "P592ec81c": {
+  "n": "24",
+  "conceito": "Probabilidade condicional em teste diagnóstico: chance de estar doente dado um exame positivo.",
+  "equivocos": {
+   "A": "M13.5:respondeu-a-prevalencia",
+   "B": "M13.5:valor-que-nao-fecha",
+   "C": "M13.5:inverteu-a-condicional",
+   "E": "M13.5:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Dado que seu exame foi positivo\" troca o grupo de onde se sorteia: agora só contam as pessoas com exame positivo. Esse grupo junta doentes que o teste detectou e sadios com falso positivo. Monte uma população redonda e conte os dois grupos.",
+    "formulas": [
+     "P(doente | positivo) = verdadeiros positivos ÷ todos os positivos"
+    ],
+    "simbolos": [
+     [
+      "P(doente | positivo)",
+      "probabilidade de ter a doença sabendo que o exame deu positivo"
+     ],
+     [
+      "falso positivo",
+      "exame positivo numa pessoa sadia"
+     ],
+     [
+      "eficiência de 90%",
+      "entre os doentes, 90% têm exame positivo"
+     ]
+    ]
+   },
+   "pista": "Imagine 100 pessoas e separe quem deu positivo em dois grupos: doentes e sadios.",
+   "passos": [
+    {
+     "faz": "Separe a população",
+     "conta": "100 pessoas → 10 doentes | 90 sadias",
+     "porque": "Uma população de 100 deixa as porcentagens virarem pessoas: 10% de 100 = 10 doentes.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os positivos entre os doentes",
+     "conta": "90% × 10 = 9 verdadeiros positivos",
+     "porque": "A eficiência de 90% vale para quem tem a doença.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os falsos positivos",
+     "conta": "10% × 90 = 9 falsos positivos",
+     "porque": "Os 10% de falso positivo valem para os sadios, que são 90.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo total de positivos",
+     "conta": "9/(9 + 9) = 9/18 = 1/2 = 0,5",
+     "porque": "Dado o positivo, só os 18 positivos contam, e 9 deles estão doentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "P = 0,5 → alternativa D",
+     "porque": "Metade dos positivos tem a doença de fato.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 0,5",
+   "checagem": "Pela fórmula de Bayes com as probabilidades direto: (0,1 × 0,9)/(0,1 × 0,9 + 0,9 × 0,1) = 0,09/0,18 = 0,5. Mesmo resultado sem população inventada.",
+   "erradas": {
+    "A": "0,1 sai de responder a prevalência, os 10% da população que têm a doença, sem usar o exame positivo.",
+    "B": "0,2 não confere: com 9 verdadeiros positivos, exigiria 9 × 0,8/0,2 = 36 falsos positivos em 100 pessoas, mas são 10% × 90 = 9.",
+    "C": "0,9 sai de inverter a condicional: 0,9 é P(positivo | doente), a eficiência do teste, e não P(doente | positivo).",
+    "E": "0,4 não confere: com 9 verdadeiros positivos, exigiria 9 × 0,6/0,4 = 13,5 falsos positivos em 100 pessoas, mas são 9."
+   },
+   "armadilha": "Os 10% de falso positivo incidem sobre os 90% de sadios e geram tantos positivos quanto os doentes: confundir P(doente | positivo) com os 90% de eficiência é o erro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de a pessoa ter a doença sabendo que o exame deu positivo.",
+    "chave": "Em 100 pessoas: 9 positivos doentes e 9 positivos sadios; 9/18 = 0,5.",
+    "cuidado": "O denominador é o total de positivos, não o total de doentes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "chances",
+    "ideia": "Antes do exame a chance é 1 : 9; o positivo multiplica por 0,9 ÷ 0,1 = 9 e dá 9 : 9 = 1 : 1, metade."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10 doentes | 90 sadios",
+    "nota": "população de 100"
+   },
+   {
+    "linha": "0,9 × 10 = 9",
+    "nota": "verdadeiros positivos"
+   },
+   {
+    "linha": "0,1 × 90 = 9",
+    "nota": "falsos positivos"
+   },
+   {
+    "linha": "9/18 = 1/2 = 0,5",
+    "nota": "só os positivos contam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

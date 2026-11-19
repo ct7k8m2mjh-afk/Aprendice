@@ -351,5 +351,129 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0001"
   }
+ },
+ "Pe85c42cd": {
+  "n": "56",
+  "conceito": "Polinômio característico de uma matriz 2 × 2: subtrair x só da diagonal e calcular o determinante.",
+  "equivocos": {
+   "A": "M15.2:subtraiu-x-fora-da-diagonal",
+   "B": "M15.2:sinal-errado-no-determinante",
+   "D": "M15.2:subtraiu-x-fora-da-diagonal",
+   "E": "M15.2:subtraiu-x-fora-da-diagonal"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O polinômio característico é o determinante de A − xI. A matriz identidade só tem 1 na diagonal, então x é subtraído apenas dos elementos da diagonal principal. Calcule esse polinômio, ache as raízes e depois compare os dois determinantes da afirmativa IV.",
+    "formulas": [
+     "p(x) = det(A − xI)",
+     "det [[a, b], [c, d]] = a·d − b·c"
+    ],
+    "simbolos": [
+     [
+      "I",
+      "matriz identidade: 1 na diagonal principal e 0 fora dela"
+     ],
+     [
+      "A − xI",
+      "A com x subtraído dos elementos da diagonal principal"
+     ],
+     [
+      "det",
+      "determinante"
+     ],
+     [
+      "x′, x″",
+      "as duas raízes do polinômio"
+     ]
+    ]
+   },
+   "pista": "Escreva xI por extenso antes de subtrair: onde ficam os zeros?",
+   "passos": [
+    {
+     "faz": "Monte A − xI",
+     "conta": "[[1, 1], [2, 0]] − [[x, 0], [0, x]] → [[1 − x, 1], [2, −x]]",
+     "porque": "xI tem x só na diagonal e 0 fora dela; por isso os elementos 1 e 2 ficam como estão. A afirmativa II tira x de todos e, além disso, mostra uma matriz, não um polinômio: falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o determinante",
+     "conta": "(1 − x)·(−x) − 1·2 → −x + x² − 2 → p(x) = x² − x − 2",
+     "porque": "Produto da diagonal principal menos o da secundária. O termo independente é −2, então a afirmativa I (com +2) é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache as raízes",
+     "conta": "x² − x − 2 = 0 → (x − 2)(x + 1) = 0 → x = −1 ou x = 2",
+     "porque": "Dois números com soma 1 e produto −2: 2 e −1. A afirmativa III é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os determinantes de IV",
+     "conta": "det [[1, 1], [2, 0]] = 0 − 2 = −2 | det [[−1, 0], [0, 2]] = −2 − 0 = −2",
+     "porque": "Os dois valem −2, então a afirmativa IV é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as verdadeiras",
+     "conta": "I falsa, II falsa, III e IV verdadeiras → alternativa C",
+     "porque": "Só a letra C traz exatamente III e IV.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — somente as afirmativas III e IV são corretas",
+   "checagem": "Pelas relações de Girard: o produto das raízes, (−1)·2 = −2, tem de ser det A = −2, e a soma, −1 + 2 = 1, tem de ser a soma da diagonal de A, 1 + 0 = 1. As duas batem.",
+   "erradas": {
+    "A": "A sai de aceitar I e II: I vem de somar o produto da secundária, (1 − x)(−x) + 2 = x² − x + 2, e II de subtrair x de todos os elementos. As duas falham.",
+    "B": "B sai de aceitar I, que troca o sinal do termo independente: o certo é (1 − x)(−x) − 1·2 = x² − x − 2. A IV está certa, mas a III também.",
+    "D": "D sai de aceitar I e II: x² − x + 2 tem Δ = 1 − 8 = −7 e nem teria as raízes −1 e 2 da III, e II não é um polinômio.",
+    "E": "E sai de aceitar II, que tira x também do 1 e do 2 fora da diagonal; xI tem zeros ali, então eles não mudam."
+   },
+   "armadilha": "Subtrair x de todos os elementos de A: a identidade só tem 1 na diagonal, então x sai apenas da diagonal principal.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmativas sobre o polinômio característico de A estão corretas.",
+    "chave": "det(A − xI) = (1 − x)(−x) − 2 = x² − x − 2, com raízes −1 e 2; det A = −2.",
+    "cuidado": "x sai só da diagonal; o polinômio característico é um determinante (um número em x), não uma matriz."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "termo independente",
+    "ideia": "p(0) = det(A − 0·I) = det A = −2, então o polinômio não pode terminar em +2 (I falsa); II não é polinômio; só a C exclui as duas."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A − xI = [[1 − x, 1], [2, −x]]",
+    "nota": "x sai só da diagonal"
+   },
+   {
+    "linha": "p(x) = (1 − x)(−x) − 1·2",
+    "nota": "principal menos secundária"
+   },
+   {
+    "linha": "p(x) = x² − x − 2",
+    "nota": "distribui"
+   },
+   {
+    "linha": "(x − 2)(x + 1) = 0 → x = −1 ou 2",
+    "nota": "raízes"
+   },
+   {
+    "linha": "det A = −2 = det [[−1, 0], [0, 2]]",
+    "nota": "afirmativa IV"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

@@ -662,5 +662,133 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0001"
   }
+ },
+ "P1f04b93a": {
+  "n": "24",
+  "conceito": "Reta paralela por um ponto, intersecção de retas perpendiculares lidas no gráfico, circunferência por três pontos e posição de reta e circunferência pela distância ao centro.",
+  "equivocos": {
+   "B": "M12.4:tangente-tomada-por-secante",
+   "C": "M12.4:aceitou-equacao-que-nao-e-circunferencia",
+   "D": "M12.4:nao-testou-os-pontos-na-equacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São quatro testes independentes; resolva um por um e anote V ou F. Paralela tem os mesmos coeficientes de x e y; perpendiculares têm inclinações de produto −1. Circunferência tem x² e y² com o mesmo coeficiente. Para saber se a reta corta, toca ou não encosta, compare a distância do centro à reta com o raio.",
+    "formulas": [
+     "paralela a ax + by + c = 0: ax + by + k = 0",
+     "perpendiculares: m1 · m2 = −1",
+     "distância do ponto (x0, y0) à reta ax + by + c = 0: |ax0 + by0 + c|/√(a² + b²)",
+     "d < r secante ; d = r tangente ; d > r exterior"
+    ],
+    "simbolos": [
+     [
+      "m",
+      "coeficiente angular da reta"
+     ],
+     [
+      "d",
+      "distância do centro da circunferência à reta"
+     ],
+     [
+      "r",
+      "raio"
+     ],
+     [
+      "λ",
+      "nome da circunferência do item III"
+     ],
+     [
+      "secante",
+      "reta que corta a circunferência em dois pontos; tangente toca em um só"
+     ]
+    ]
+   },
+   "pista": "No item II, leia no gráfico onde cada reta corta o eixo y; no IV, compare distância e raio antes de qualquer conta grande.",
+   "passos": [
+    {
+     "faz": "Teste o item I",
+     "conta": "3x + 4y + k = 0 em A(−1, 6) → −3 + 24 + k = 0 → k = −21 → I é V",
+     "porque": "A paralela mantém 3x + 4y e só muda o termo independente, que sai do ponto A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste o item II pelo gráfico",
+     "conta": "v: (0, 2) e (2, 0) → y = −x + 2 | t ⟂ v, corta y em 3 → y = x + 3 → x + 3 = −x + 2 → x = −1/2, y = 5/2 → m + n = 2 → II é V",
+     "porque": "v desce com inclinação −1; t é perpendicular, então tem inclinação 1. Igualando as duas, o x passa para um lado e o número para o outro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste o item III com os pontos do gráfico",
+     "conta": "A(2, 2), B(2, 5), C(−2, 2) → centro (0; 3,5), r² = 2² + 1,5² = 6,25 → x² + y² − 7y + 6 = 0 → III é F",
+     "porque": "A mediatriz de AB é y = 3,5 e a de AC é x = 0; o centro é o cruzamento. A equação certa não é a do item.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste o item IV pela distância",
+     "conta": "x + y − √2 = 0 e centro (0, 0) → d = |−√2|/√(1 + 1) = √2/√2 = 1 = r → tangente → IV é F",
+     "porque": "Distância igual ao raio significa que a reta só encosta na circunferência; secante exigiria d < 1.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Junte as verdadeiras",
+     "conta": "I V | II V | III F | IV F → I − II → alternativa A",
+     "porque": "Só I e II são corretas, e a alternativa A é a única que traz exatamente essas duas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — I e II",
+   "checagem": "Confira o IV por outro caminho: substituindo y = −x + √2 em x² + y² = 1 sai 2x² − 2√2x + 1 = 0, com Δ = 8 − 8 = 0, uma raiz só, ou seja, tangente. E A(−1/2, 5/2) está nas duas retas: −(−1/2) + 2 = 5/2 e −1/2 + 3 = 5/2.",
+   "erradas": {
+    "B": "I − IV não confere: aceita o IV, mas a distância do centro (0, 0) à reta é √2/√2 = 1, igual ao raio; a reta é tangente, não secante. E deixa de fora o II, que é V.",
+    "C": "II − III não confere: deixa de fora o I, que é V (−3 + 24 − 21 = 0), e aceita o III, que é F: em A(2, 2), 45 · 4 + 18 · 4 − 63 · 2 = 126 ≠ 0.",
+    "D": "I − III − IV não confere: III é F (o ponto A(2, 2) dá 126 ≠ 0 na equação do item) e IV é F (distância 1 igual ao raio: tangente). E falta o II."
+   },
+   "armadilha": "No item IV, d = 1 igual ao raio quer dizer tangente; quem não compara com cuidado chama de secante.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das quatro afirmações de geometria analítica são verdadeiras.",
+    "chave": "I e II fecham na conta; III falha no ponto A e IV dá distância igual ao raio (tangente).",
+    "cuidado": "Equação com x² e y² de coeficientes diferentes (45 e 18) nunca é circunferência."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coeficientes",
+    "ideia": "No III nem precisa achar o centro: 45x² + 18y² tem coeficientes diferentes em x² e y², então a curva é uma elipse, não circunferência."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "−3 + 24 + k = 0 → k = −21",
+    "nota": "I: paralela por A(−1, 6)"
+   },
+   {
+    "linha": "x + 3 = −x + 2 → x = −1/2 → y = 5/2",
+    "nota": "II: cruzamento de t e v"
+   },
+   {
+    "linha": "m + n = −1/2 + 5/2 = 2",
+    "nota": "II é verdadeira"
+   },
+   {
+    "linha": "(x − 0)² + (y − 3,5)² = 6,25 → x² + y² − 7y + 6 = 0",
+    "nota": "III: circunferência certa"
+   },
+   {
+    "linha": "d = √2/√2 = 1 = r",
+    "nota": "IV: tangente, não secante"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

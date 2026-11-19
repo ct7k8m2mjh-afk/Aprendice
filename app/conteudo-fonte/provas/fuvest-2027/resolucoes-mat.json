@@ -598,5 +598,233 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0001"
   }
+ },
+ "Pea0103d5": {
+  "n": "59",
+  "conceito": "Contagem por combinações com descarte dos casos de resultante nula (pares diametralmente opostos).",
+  "equivocos": {
+   "B": "M13.3:paradas-contadas-a-mais",
+   "C": "M13.3:paradas-contadas-a-mais",
+   "D": "M13.3:total-menor-que-um-dos-casos",
+   "E": "M13.3:total-menor-que-um-dos-casos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As oito patas formam quatro diâmetros, cada um com duas pontas opostas. Conte todas as escolhas de 2 e de 4 patas (a ordem não importa: combinação) e tire as que deixam a aranha parada. Com duas bolinhas, ela para só se forem opostas; com quatro, só se forem dois pares opostos.",
+    "formulas": [
+     "combinação: C(n, p) = n!/(p!(n − p)!)",
+     "que se movem = total − paradas"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "número de jeitos de escolher p itens entre n, sem ordem"
+     ],
+     [
+      "diametralmente opostas",
+      "patas nas duas pontas do mesmo diâmetro"
+     ]
+    ]
+   },
+   "pista": "Separe em dois casos, duas bolinhas e quatro bolinhas, e em cada um conte primeiro os jeitos em que a aranha fica parada.",
+   "passos": [
+    {
+     "faz": "Conte as escolhas de duas patas",
+     "conta": "C(8, 2) = (8 · 7)/2 = 28",
+     "porque": "A bolinha não tem ordem: escolher a pata 1 e a 3 é o mesmo que 3 e 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire os pares opostos",
+     "conta": "pares opostos = 4 diâmetros → 28 − 4 = 24",
+     "porque": "Cada diâmetro dá um par de patas opostas, e só esses deixam a aranha parada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as escolhas de quatro patas",
+     "conta": "C(8, 4) = (8 · 7 · 6 · 5)/(4 · 3 · 2 · 1) = 70",
+     "porque": "Mesmo raciocínio, agora com quatro bolinhas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire os dois pares opostos",
+     "conta": "C(4, 2) = 6 escolhas de 2 diâmetros → 70 − 6 = 64",
+     "porque": "A aranha só fica parada quando as quatro formam dois pares opostos, ou seja, quando se escolhem 2 dos 4 diâmetros inteiros.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois casos",
+     "conta": "24 + 64 = 88 → alternativa A",
+     "porque": "O enunciado pede a situação com duas ou com quatro bolinhas: os casos se excluem e se somam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 88",
+   "checagem": "Conte as duplas que se movem diretamente: cada uma das 8 patas forma dupla com 6 outras (ela mesma e a oposta não servem), e cada dupla aparece duas vezes: 8 · 6/2 = 24, o mesmo do passo 2.",
+   "erradas": {
+    "B": "85 não confere: das 28 + 70 = 98 escolhas, sobrariam 13 paradas, mas só param 4 (pares opostos) + 6 (dois diâmetros inteiros) = 10.",
+    "C": "82 não confere: deixaria 98 − 82 = 16 paradas; com duas bolinhas a aranha para em 4 casos e com quatro em C(4, 2) = 6, total 10.",
+    "D": "58 não confere: é menos que os 64 casos de quatro bolinhas em que a aranha anda, sem somar ainda os 24 de duas bolinhas.",
+    "E": "63 não confere: fica abaixo de 64, que é só o número de escolhas de quatro patas em que a aranha se move (70 − 6)."
+   },
+   "armadilha": "Com quatro bolinhas, a aranha só fica parada com dois pares opostos inteiros; ter um par oposto só não basta (figura 5).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas escolhas de duas ou de quatro bolinhas fazem a aranha se mover.",
+    "chave": "C(8, 2) − 4 = 24 e C(8, 4) − C(4, 2) = 64; total 88.",
+    "cuidado": "Conte as paradas por diâmetro: 4 diâmetros, e escolher 2 deles dá 6."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por diâmetros",
+    "ideia": "Com quatro bolinhas, conte as que se movem direto: 1 diâmetro inteiro e 2 meias em outros (4 · C(3, 2) · 2² = 48) ou uma bolinha em cada diâmetro (2⁴ = 16); 48 + 16 = 64."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(8, 2) = 28 → 28 − 4 = 24",
+    "nota": "duas bolinhas, sem os pares opostos"
+   },
+   {
+    "linha": "C(8, 4) = 70",
+    "nota": "quatro bolinhas"
+   },
+   {
+    "linha": "C(4, 2) = 6 → 70 − 6 = 64",
+    "nota": "sem os dois pares opostos"
+   },
+   {
+    "linha": "24 + 64 = 88",
+    "nota": "soma dos dois casos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
+ },
+ "Pef7bf37f": {
+  "n": "67",
+  "conceito": "Contar pinturas distintas a menos de rotação: cada classe de equivalência reúne três pinturas.",
+  "equivocos": {
+   "B": "M13.9:dividiu-por-2-em-vez-de-3",
+   "C": "M13.9:valor-que-nao-fecha",
+   "D": "M13.9:nao-aplicou-a-rotacao",
+   "E": "M13.9:contou-a-ordem-das-casas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sem a regra de equivalência, basta escolher 2 das 36 casas. A rotação de 120° em torno do centro junta as pinturas em grupos: cada pintura, girada uma e duas vezes, gera outras duas equivalentes. Se nenhum grupo tiver menos de 3 pinturas, o número de pinturas diferentes é o total dividido por 3.",
+    "formulas": [
+     "C(36, 2) = (36 × 35)/2 : pares de casas sem ordem",
+     "pinturas não equivalentes = total ÷ 3, se cada classe tem 3 pinturas"
+    ],
+    "simbolos": [
+     [
+      "C(36, 2)",
+      "número de modos de escolher 2 casas entre 36, sem ordem"
+     ],
+     [
+      "encontro das bissetrizes",
+      "centro do triângulo, ponto em torno do qual se gira"
+     ],
+     [
+      "pinturas equivalentes",
+      "uma vira a outra girando 120° (ou duas vezes 120°)"
+     ]
+    ]
+   },
+   "pista": "Conte primeiro sem a rotação; depois pergunte quantas pinturas cada giro junta num mesmo grupo.",
+   "passos": [
+    {
+     "faz": "Conte as pinturas sem rotação",
+     "conta": "C(36, 2) = (36 × 35)/2 = 630",
+     "porque": "Escolher 2 casas para pintar, sem ordem, porque as duas são amarelas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Veja se alguma casa fica parada",
+     "conta": "centro = vértice da malha → nenhuma das 36 casas fica no lugar",
+     "porque": "No desenho, as três linhas vermelhas se cruzam num vértice da malha. Girando 120°, toda casa vai para outra casa.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Veja se alguma pintura fica parada",
+     "conta": "2 casas trocadas entre si exigiriam giro de ordem 2, mas o de 120° tem ordem 3 → nenhuma pintura fixa",
+     "porque": "Três giros de 120° voltam ao início; um par de casas não se repete em ciclo de 3 sem uma casa parada.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Divida pelo tamanho das classes",
+     "conta": "630/3 = 210",
+     "porque": "Cada pintura gera exatamente outras duas diferentes, então as 630 se agrupam de 3 em 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "210 pinturas não equivalentes → alternativa A",
+     "porque": "Há 210 pinturas que não se obtêm uma da outra por rotação.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 210",
+   "checagem": "Conte pelas órbitas das casas: as 36 casas formam 12 trios que giram entre si. Duas casas do mesmo trio dão 12 × 3 = 36 pinturas, 12 classes; de trios diferentes, C(12, 2) × 9 = 594 pinturas, 198 classes. 12 + 198 = 210.",
+   "erradas": {
+    "B": "315 sai de dividir por 2: 630/2 = 315, como se cada pintura tivesse uma só equivalente. A rotação de 120° gera três pinturas por classe.",
+    "C": "420 não confere: 630 pinturas em classes de 3 dão 630/3 = 210; 420 exigiria classes de 1,5 pinturas.",
+    "D": "630 sai de não aplicar a equivalência: C(36, 2) = 630 conta como diferentes pinturas que se obtêm por rotação.",
+    "E": "1260 sai de contar a ordem das casas: 36 × 35 = 1260. As duas casas são amarelas, então a ordem não importa, e ainda falta a rotação."
+   },
+   "armadilha": "A rotação de 120° junta as pinturas de 3 em 3, e não de 2 em 2: cada pintura tem duas outras equivalentes (giro de 120° e de 240°).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de pinturas de duas casas que não se obtêm uma da outra por rotação de 120°.",
+    "chave": "C(36, 2) = 630 pinturas, sem nenhuma fixa pelo giro, em classes de 3: 630/3 = 210.",
+    "cuidado": "Confira que nenhuma casa ou pintura fica parada antes de dividir por 3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lema de Burnside",
+    "ideia": "Média das pinturas fixas por giro: (630 do giro de 0° + 0 do de 120° + 0 do de 240°)/3 = 210."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(36, 2) = (36 × 35)/2 = 630",
+    "nota": "pares de casas"
+   },
+   {
+    "linha": "casas fixas = 0",
+    "nota": "centro é vértice da malha"
+   },
+   {
+    "linha": "pinturas fixas = 0",
+    "nota": "giro de ordem 3"
+   },
+   {
+    "linha": "630/3 = 210",
+    "nota": "classes de 3 pinturas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

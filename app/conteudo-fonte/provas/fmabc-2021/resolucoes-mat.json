@@ -862,5 +862,251 @@
    "data": "2026-11-12",
    "lote": "mat-0038"
   }
+ },
+ "P81a6574e": {
+  "n": "75",
+  "conceito": "Produto de matrizes 2 × 3 por 3 × 2, condição sobre a soma dos elementos e determinante da matriz 2 × 2 resultante.",
+  "equivocos": {
+   "A": "M15.2:respondeu-o-dado-do-enunciado",
+   "C": "M15.2:inverteu-as-diagonais",
+   "D": "M15.2:erro-no-produto-de-matrizes",
+   "E": "M15.2:erro-no-produto-de-matrizes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A é 2 × 3 e B é 3 × 2, então AB é 2 × 2. Calcule AB deixando x como letra, use a soma dos elementos para achar x e só então calcule o determinante. Não dá para usar det(AB) = det A · det B, porque A e B não são quadradas.",
+    "formulas": [
+     "elemento (i, j) de AB = linha i de A · coluna j de B",
+     "det [[a, b], [c, d]] = a·d − b·c"
+    ],
+    "simbolos": [
+     [
+      "AB",
+      "produto da matriz A pela matriz B, nessa ordem"
+     ],
+     [
+      "2 × 3",
+      "2 linhas e 3 colunas"
+     ],
+     [
+      "det",
+      "determinante"
+     ]
+    ]
+   },
+   "pista": "Escreva AB com x ainda como letra e some os quatro elementos.",
+   "passos": [
+    {
+     "faz": "Multiplique A por B",
+     "conta": "[[1·2 + (−2)·0 + 2·0, 1·2 + (−2)·1 + 2·x], [4·2 + 5·0 + (−1)·0, 4·2 + 5·1 + (−1)·x]] → AB = [[2, 2x], [8, 13 − x]]",
+     "porque": "Cada elemento é a linha de A vezes a coluna de B, termo a termo, somando. Os zeros de B anulam boa parte das parcelas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a soma dos elementos",
+     "conta": "2 + 2x + 8 + 13 − x = 20 → x + 23 = 20 → x = −3",
+     "porque": "Os termos em x somam 2x − x = x e os números somam 23. O 23 passa para o outro lado subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua x na matriz",
+     "conta": "AB = [[2, 2·(−3)], [8, 13 − (−3)]] → AB = [[2, −6], [8, 16]]",
+     "porque": "Com x = −3, o 2x vira −6 e o 13 − x vira 13 + 3 = 16.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o determinante",
+     "conta": "det(AB) = 2·16 − (−6)·8 → 32 + 48 = 80",
+     "porque": "Diagonal principal menos diagonal secundária. Menos com menos: −(−48) vira +48.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "det(AB) = 80 → alternativa B",
+     "porque": "A pergunta é o determinante de AB, e a soma 20 foi só a pista para achar x.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — o determinante de AB é 80",
+   "checagem": "Volte ao enunciado com x = −3: os elementos 2, −6, 8 e 16 somam 2 − 6 + 8 + 16 = 20, como diz a questão.",
+   "erradas": {
+    "A": "20 sai de responder a soma dos elementos de AB, que é o dado do enunciado, e não o determinante.",
+    "C": "−80 sai de inverter a ordem das diagonais: (−6)·8 − 2·16 = −48 − 32 = −80. O determinante é principal menos secundária.",
+    "D": "−40 não confere: det(AB) = 2(13 − x) − 2x·8 = 26 − 18x; para dar −40, x seria 11/3, e então a soma x + 23 não daria 20.",
+    "E": "40 não confere: 26 − 18x = 40 exigiria x = −7/9, e a soma x + 23 = 20 obriga x = −3."
+   },
+   "armadilha": "O determinante 2 × 2 é diagonal principal menos secundária, e o −6 traz um sinal que vira + na conta: 32 + 48.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O determinante de AB, sabendo que a soma dos seus elementos é 20.",
+    "chave": "AB = [[2, 2x], [8, 13 − x]]; a soma x + 23 = 20 dá x = −3 e det = 2·16 + 6·8 = 80.",
+    "cuidado": "A e B não são quadradas: calcule AB primeiro, não use det A · det B."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "determinante em função de x",
+    "ideia": "det(AB) = 2(13 − x) − 16x = 26 − 18x; com x = −3, 26 + 54 = 80."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "AB = [[2, 2x], [8, 13 − x]]",
+    "nota": "linha de A vezes coluna de B"
+   },
+   {
+    "linha": "2 + 2x + 8 + 13 − x = 20",
+    "nota": "soma dos elementos"
+   },
+   {
+    "linha": "x + 23 = 20 → x = −3",
+    "nota": "o 23 passa subtraindo"
+   },
+   {
+    "linha": "AB = [[2, −6], [8, 16]]",
+    "nota": "substitui x"
+   },
+   {
+    "linha": "det = 2·16 − (−6)·8 = 32 + 48 = 80",
+    "nota": "principal menos secundária"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
+ },
+ "P911453b3": {
+  "n": "72",
+  "conceito": "Valor numérico de polinômios gerando um sistema linear nas constantes a, b e c.",
+  "equivocos": {
+   "B": "M16.1:erro-ao-resolver-o-sistema",
+   "C": "M16.1:erro-ao-resolver-o-sistema",
+   "D": "M16.1:somou-em-vez-de-multiplicar",
+   "E": "M16.1:sinal-trocado-no-produto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada valor dado, p(1), p(2) e q(−1), vira uma equação em a, b e c: substitua o x e iguale. São três equações para três incógnitas. Resolva o sistema e multiplique os três valores.",
+    "formulas": [
+     "p(k): troque x por k em p(x)",
+     "três equações independentes determinam a, b e c"
+    ],
+    "simbolos": [
+     [
+      "p(1)",
+      "valor de p quando x = 1"
+     ],
+     [
+      "a, b, c",
+      "constantes reais desconhecidas"
+     ]
+    ]
+   },
+   "pista": "Escreva uma equação para cada valor dado; repare que q(−1) só envolve a e c.",
+   "passos": [
+    {
+     "faz": "Substitua x = 1 em p",
+     "conta": "a + b + c + 14 = 20 → a + b + c = 6",
+     "porque": "Com x = 1, toda potência de x vale 1. O 14 passa subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua x = 2 em p",
+     "conta": "8a + 4b + 2c + 14 = 22 → 8a + 4b + 2c = 8 → 4a + 2b + c = 4",
+     "porque": "2³ = 8 e 2² = 4. Depois de passar o 14, divida tudo por 2 para simplificar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua x = −1 em q",
+     "conta": "−1 + 3 − a − c = −3 → 2 − a − c = −3 → a + c = 5",
+     "porque": "(−1)³ = −1, 3·(−1)² = 3 e a·(−1) = −a. O 2 passa subtraindo e os sinais trocam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache b",
+     "conta": "a + b + c = 6 e a + c = 5 → b = 6 − 5 = 1",
+     "porque": "A soma a + c já é conhecida; o que falta para 6 é b.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a e c",
+     "conta": "4a + 2·1 + c = 4 → 4a + c = 2 | (4a + c) − (a + c) = 2 − 5 → 3a = −3 → a = −1 e c = 6",
+     "porque": "Subtraindo as duas equações, o c some. Com a = −1, a + c = 5 dá c = 6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as constantes",
+     "conta": "abc = (−1)·1·6 = −6 → alternativa A",
+     "porque": "A pergunta é o produto, não a soma.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — o produto abc vale −6",
+   "checagem": "Volte aos dados com a = −1, b = 1 e c = 6: p(2) = −8 + 4 + 12 + 14 = 22 e q(−1) = −1 + 3 + 1 − 6 = −3. Batem os dois.",
+   "erradas": {
+    "B": "−4 não confere: com b = 1, abc = −4 exigiria ac = −4; mas a + c = 5 e 4a + c = 2 fixam a = −1 e c = 6, com ac = −6.",
+    "C": "−12 não confere: é o dobro de −6, e com a = −1, b = 1, c = 6 todos os três dados fecham (p(1) = 20, p(2) = 22, q(−1) = −3); não sobra fator 2.",
+    "D": "6 sai de somar em vez de multiplicar: a + b + c = 6 é a primeira equação do sistema, não o produto.",
+    "E": "12 não confere: a = −1 é o único negativo entre a, b e c, então o produto tem de ser negativo."
+   },
+   "armadilha": "q(−1) tem a·(−1) = −a e o −c já negativo: os dois somam com sinal de menos, o que dá a + c = 5.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O produto abc.",
+    "chave": "p(1), p(2) e q(−1) dão a + b + c = 6, 4a + 2b + c = 4 e a + c = 5, logo a = −1, b = 1, c = 6.",
+    "cuidado": "Atenção aos sinais em q(−1) e não confunda a soma 6 com o produto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminar b primeiro",
+    "ideia": "(4a + 2b + c) − 2(a + b + c) = 4 − 12 dá 2a − c = −8; junto com a + c = 5, 3a = −3 e a = −1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a + b + c + 14 = 20 → a + b + c = 6",
+    "nota": "p(1)"
+   },
+   {
+    "linha": "8a + 4b + 2c + 14 = 22 → 4a + 2b + c = 4",
+    "nota": "p(2), dividido por 2"
+   },
+   {
+    "linha": "−1 + 3 − a − c = −3 → a + c = 5",
+    "nota": "q(−1)"
+   },
+   {
+    "linha": "b = 6 − 5 = 1",
+    "nota": "subtrai a 3ª da 1ª"
+   },
+   {
+    "linha": "4a + c = 2 e a + c = 5 → 3a = −3 → a = −1, c = 6",
+    "nota": "subtrai as duas"
+   },
+   {
+    "linha": "abc = (−1)·1·6 = −6",
+    "nota": "produto"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

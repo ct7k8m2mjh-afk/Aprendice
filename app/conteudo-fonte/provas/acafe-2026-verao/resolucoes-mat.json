@@ -560,5 +560,233 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0002"
   }
+ },
+ "P91ff5b07": {
+  "n": "23",
+  "conceito": "Probabilidade condicional: chance de estar infectado sabendo que a pessoa tem febre.",
+  "equivocos": {
+   "A": "M13.5:parou-na-interseccao",
+   "B": "M13.5:valor-que-nao-fecha",
+   "C": "M13.5:respondeu-o-denominador"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto sobre focos e notificações é contexto; os dados que contam estão no fim: 5% infectados, febre em 60% deles e em 10% dos não infectados. \"Apresenta febre\" fixa o grupo: só contam as pessoas com febre. Monte uma população de 1000 e conte as duas origens da febre.",
+    "formulas": [
+     "P(infectada | febre) = infectados com febre ÷ todos com febre"
+    ],
+    "simbolos": [
+     [
+      "P(infectada | febre)",
+      "chance de estar infectada sabendo que tem febre"
+     ]
+    ]
+   },
+   "pista": "A febre vem de dois grupos; conte quantos com febre há em cada um antes de dividir.",
+   "passos": [
+    {
+     "faz": "Separe a população",
+     "conta": "1000 pessoas → 50 infectadas | 950 não infectadas",
+     "porque": "5% de 1000 = 50. O resto, 950, não tem a doença.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte a febre nos infectados",
+     "conta": "60% × 50 = 30",
+     "porque": "Entre os infectados, 60% apresentam febre.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte a febre nos não infectados",
+     "conta": "10% × 950 = 95",
+     "porque": "Entre os não infectados, 10% têm febre por outras causas. É pouco por pessoa, mas o grupo é enorme.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo total com febre",
+     "conta": "30/(30 + 95) = 30/125 = 0,24 = 24%",
+     "porque": "Escolhida uma pessoa com febre, só os 125 com febre contam, e 30 deles estão infectados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "24% → alternativa D",
+     "porque": "A probabilidade é 24%.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 24%",
+   "checagem": "Volte do resultado: 24% dos 125 com febre são 0,24 × 125 = 30 infectados, e 30 é exatamente 60% de 50, os infectados da população. Os outros 95 são 10% de 950. Fecha.",
+   "erradas": {
+    "A": "3% sai de parar na interseção: 5% × 60% = 3% é a chance de estar infectado e com febre na população inteira, sem dividir pelos que têm febre.",
+    "B": "6% não confere: com 30 infectados com febre, exigiria 30 × 0,94/0,06 = 470 pessoas com febre sem a doença, mas são 10% × 950 = 95.",
+    "C": "12,5% sai de responder a chance de ter febre: (30 + 95)/1000 = 12,5%. Esse é o denominador da conta, não a resposta."
+   },
+   "armadilha": "A febre por outras causas é rara (10%), mas atinge um grupo 19 vezes maior: por isso só 24% dos febris estão infectados, e não 60%.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de uma pessoa com febre estar infectada com chikungunya.",
+    "chave": "Em 1000 pessoas: 30 infectados com febre e 95 não infectados com febre; 30/125 = 24%.",
+    "cuidado": "Divida pelo total de pessoas com febre, não pela população inteira."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "chances",
+    "ideia": "Antes, 5 : 95 = 1 : 19; a febre multiplica por 0,6 ÷ 0,1 = 6 e dá 6 : 19, ou seja, 6/25 = 24%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "50 infectadas | 950 não",
+    "nota": "5% de 1000"
+   },
+   {
+    "linha": "0,6 × 50 = 30",
+    "nota": "febre nos infectados"
+   },
+   {
+    "linha": "0,1 × 950 = 95",
+    "nota": "febre nos não infectados"
+   },
+   {
+    "linha": "30/125 = 0,24 = 24%",
+    "nota": "dado que tem febre"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
+ },
+ "Pa153d593": {
+  "n": "25",
+  "conceito": "Achar a maior multiplicidade entre as raízes de P(x) = x⁴ − 5x³ + 9x² − 7x + 2 fatorando por Briot-Ruffini.",
+  "equivocos": {
+   "A": "M16.1:leu-a-multiplicidade-da-outra-raiz",
+   "B": "M16.1:parou-de-dividir-cedo",
+   "D": "M16.1:confundiu-multiplicidade-com-grau"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Multiplicidade é quantas vezes o fator (x − r) aparece na fatoração. Para descobrir, ache uma raiz e divida P(x) por (x − r) quantas vezes der resto zero. Os coeficientes somam 1 − 5 + 9 − 7 + 2 = 0, então x = 1 já é raiz: comece por ela e insista nela.",
+    "formulas": [
+     "P(1) = soma dos coeficientes",
+     "divisão por (x − 1) com resto 0 → mais um fator (x − 1)",
+     "soma das multiplicidades = grau do polinômio"
+    ],
+    "simbolos": [
+     [
+      "multiplicidade",
+      "número de vezes que o fator (x − r) aparece na fatoração"
+     ],
+     [
+      "Briot-Ruffini",
+      "dispositivo prático para dividir um polinômio por (x − r)"
+     ],
+     [
+      "mᵢ",
+      "multiplicidade da raiz xᵢ"
+     ],
+     [
+      "Q(x)",
+      "o que sobra depois de tirar os fatores (x − r)"
+     ]
+    ]
+   },
+   "pista": "Some os coeficientes de P(x) e veja que raiz isso revela; depois não pare na primeira divisão.",
+   "passos": [
+    {
+     "faz": "Teste x = 1",
+     "conta": "P(1) = 1 − 5 + 9 − 7 + 2 → P(1) = 0",
+     "porque": "Em x = 1 cada termo vira o próprio coeficiente; soma zero quer dizer que 1 é raiz.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida por (x − 1) pela 1ª vez",
+     "conta": "1 −5 9 −7 2 → 1 −4 5 −2 | resto 0",
+     "porque": "Resto zero: P(x) = (x − 1)(x³ − 4x² + 5x − 2). O quociente também tem coeficientes de soma 0, então 1 é raiz de novo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida por (x − 1) de novo",
+     "conta": "1 −4 5 −2 → 1 −3 2 | resto 0 ; 1 −3 2 → 1 −2 | resto 0",
+     "porque": "Mais duas divisões exatas: P(x) = (x − 1)³(x − 2).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira se o 1 aparece uma 4ª vez",
+     "conta": "1 −2 → 1 −1 | resto −1 ≠ 0",
+     "porque": "O que sobrou é x − 2, que não zera em x = 1. A raiz 1 tem multiplicidade 3 e a raiz 2, multiplicidade 1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Escolha a maior multiplicidade",
+     "conta": "m(1) = 3 ; m(2) = 1 → máx = 3",
+     "porque": "O valor máximo de mᵢ é 3: alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3",
+   "checagem": "Pelas relações de Girard: com raízes 1, 1, 1 e 2, a soma é 1 + 1 + 1 + 2 = 5 (igual a −(−5)/1) e o produto é 1 · 1 · 1 · 2 = 2 (igual ao termo independente). Fecha.",
+   "erradas": {
+    "A": "1 sai de parar na raiz 2, que aparece uma vez só: m(2) = 1. A raiz 1 aparece três vezes, e o pedido é a maior multiplicidade.",
+    "B": "2 sai de parar na segunda divisão: depois de (x − 1)² sobra x² − 3x + 2, cujos coeficientes somam 1 − 3 + 2 = 0, então ainda há mais um (x − 1).",
+    "D": "4 sai de usar o grau: 4 é a soma das multiplicidades, 3 + 1. Multiplicidade 4 exigiria P(x) = (x − 1)⁴ = x⁴ − 4x³ + ..., e o coeficiente de x³ é −5."
+   },
+   "armadilha": "Parar de dividir cedo: o quociente continua tendo 1 como raiz, e só a divisão com resto diferente de zero encerra a contagem.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A maior multiplicidade entre as raízes de x⁴ − 5x³ + 9x² − 7x + 2.",
+    "chave": "Dividir por (x − 1) até o resto deixar de ser zero: P(x) = (x − 1)³(x − 2).",
+    "cuidado": "Não confunda a maior multiplicidade com o grau, que é a soma de todas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "derivadas",
+    "ideia": "P(1) = P′(1) = P″(1) = 0 e P‴(1) = −6 ≠ 0: a raiz 1 tem multiplicidade exatamente 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(1) = 1 − 5 + 9 − 7 + 2 = 0",
+    "nota": "1 é raiz"
+   },
+   {
+    "linha": "P(x) = (x − 1)(x³ − 4x² + 5x − 2)",
+    "nota": "1ª divisão, resto 0"
+   },
+   {
+    "linha": "x³ − 4x² + 5x − 2 = (x − 1)(x² − 3x + 2)",
+    "nota": "2ª divisão, resto 0"
+   },
+   {
+    "linha": "x² − 3x + 2 = (x − 1)(x − 2)",
+    "nota": "3ª divisão, resto 0"
+   },
+   {
+    "linha": "P(x) = (x − 1)³(x − 2)",
+    "nota": "raiz 1 com multiplicidade 3"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

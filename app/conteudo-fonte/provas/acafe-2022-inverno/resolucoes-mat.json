@@ -602,5 +602,127 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0001"
   }
+ },
+ "P19cb7750": {
+  "n": "27",
+  "conceito": "Intersecção de reta e circunferência e área de triângulo por coordenadas.",
+  "equivocos": {
+   "A": "M12.4:angulo-reto-sem-teste",
+   "C": "M12.4:mediatriz-sem-passar-pelo-centro",
+   "D": "M12.4:hexagono-com-um-so-triangulo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Quase todas as afirmações usam os dois pontos em que a reta corta a circunferência; comece por eles. Da equação, o centro é (−5, 4) e o raio é 5. Substituindo y = x + 8 na circunferência, sai uma equação do 2.º grau. Com os pontos, a área do triângulo vem do determinante.",
+    "formulas": [
+     "(x − a)² + (y − b)² = r² : centro (a, b), raio r",
+     "área = |det|/2, com det = x1·y2 − y1·x2 dos dois vetores que partem de um vértice"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "nome da circunferência"
+     ],
+     [
+      "r",
+      "nome da reta x − y + 8 = 0"
+     ],
+     [
+      "det",
+      "determinante: x1·y2 − y1·x2"
+     ],
+     [
+      "mediatriz",
+      "reta perpendicular à corda que passa pelo ponto médio dela (e pelo centro)"
+     ],
+     [
+      "circunscrito",
+      "hexágono por fora, com os lados tocando a circunferência"
+     ]
+    ]
+   },
+   "pista": "Ache primeiro os dois pontos em que r corta α; quase todas as afirmações dependem deles.",
+   "passos": [
+    {
+     "faz": "Leia centro e raio",
+     "conta": "(x + 5)² + (y − 4)² = 25 → centro (−5, 4) | raio 5",
+     "porque": "Em (x + 5)² a abscissa do centro é −5; em (y − 4)², a ordenada é 4.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Substitua a reta na circunferência",
+     "conta": "y = x + 8 → (x + 5)² + (x + 4)² = 25 → 2x² + 18x + 16 = 0 → x² + 9x + 8 = 0",
+     "porque": "Isole y na reta e troque na circunferência; o 25 passa subtraindo e tudo se divide por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva e ache os pontos",
+     "conta": "(x + 1)(x + 8) = 0 → x = −1 ou x = −8 → (−1, 7) e (−8, 0)",
+     "porque": "Soma −9 e produto 8 dão as raízes −1 e −8; o y vem de y = x + 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área do triângulo do item B",
+     "conta": "vetores do centro: (−1 + 5, 7 − 4) = (4, 3) e (−8 + 5, 0 − 4) = (−3, −4) → det = 4 · (−4) − 3 · (−3) = −7 → área = 7/2",
+     "porque": "Com os dois vetores que saem do centro, metade do módulo do determinante é a área.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "área = 7/2 → B é verdadeira → alternativa B",
+     "porque": "A pergunta pede a afirmação correta, e a área bate com a do item B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — o triângulo formado pelo centro de α e pelas intersecções de r com α tem área 7/2",
+   "checagem": "Por base e altura: a corda entre (−1, 7) e (−8, 0) mede √(49 + 49) = 7√2; a distância do centro à reta é |−5 − 4 + 8|/√2 = 1/√2. Área = (7√2 · 1/√2)/2 = 7/2.",
+   "erradas": {
+    "A": "A não confere: α só toca o eixo y, em (0, 4) (do eixo x o centro está a 4 < 5). Com (−1, 7) e (−8, 0), os produtos escalares nos vértices dão −4, 14 e 84; nenhum é zero, não há ângulo reto.",
+    "C": "C não confere: a mediatriz da corda passa pelo centro (−5, 4), mas −5 + 4 − 1 = −2 ≠ 0. A certa é x + y + 1 = 0.",
+    "D": "D sai de calcular só um dos seis triângulos equiláteros: lado 10/√3, área (√3/4) · (100/3) = 25√3/3. O hexágono tem seis deles: 50√3."
+   },
+   "armadilha": "Na alternativa D, o hexágono é circunscrito: o raio 5 é o apótema, não o lado, e a área tem seis triângulos, não um.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre a circunferência α e a reta r é correta.",
+    "chave": "r corta α em (−1, 7) e (−8, 0); com o centro (−5, 4), o determinante dá −7 e a área é 7/2.",
+    "cuidado": "Leia o centro com o sinal trocado: (x + 5) dá abscissa −5."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Derrube as outras: a mediatriz de C não passa pelo centro (−2 ≠ 0), o hexágono de D vale 50√3 e o triângulo de A não tem produto escalar nulo; sobra B."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x + 5)² + (x + 4)² = 25",
+    "nota": "y = x + 8 na circunferência"
+   },
+   {
+    "linha": "x² + 9x + 8 = 0 → x = −1 ou x = −8",
+    "nota": "pontos (−1, 7) e (−8, 0)"
+   },
+   {
+    "linha": "det = 4 · (−4) − 3 · (−3) = −7",
+    "nota": "vetores (4, 3) e (−3, −4) a partir do centro"
+   },
+   {
+    "linha": "área = 7/2",
+    "nota": "metade do módulo do determinante"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

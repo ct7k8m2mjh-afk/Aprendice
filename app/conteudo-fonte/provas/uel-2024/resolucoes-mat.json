@@ -699,5 +699,116 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0001"
   }
+ },
+ "Pd267af06": {
+  "n": "24",
+  "conceito": "Multiplicar a matriz de rotação pelo vetor do ponto para achar as coordenadas do ponto girado.",
+  "equivocos": {
+   "A": "M15.1:matriz-que-nao-e-rotacao",
+   "B": "M15.1:matriz-que-nao-preserva-distancia",
+   "C": "M15.1:matriz-que-nao-preserva-distancia",
+   "D": "M15.1:angulo-de-giro-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A questão entrega a regra pronta: o ponto girado sai do produto da matriz M pelo vetor coluna (a, b). Multiplicar é linha da matriz vezes coluna do vetor. Depois troque cos θ e sen θ pelos valores de π/6, que é 30°.",
+    "formulas": [
+     "a' = cos θ · a − sen θ · b",
+     "b' = sen θ · a + cos θ · b",
+     "cos(π/6) = (√3)/2 ; sen(π/6) = 1/2"
+    ],
+    "simbolos": [
+     [
+      "θ",
+      "ângulo do giro, aqui π/6 rad = 30°"
+     ],
+     [
+      "M",
+      "matriz de rotação dada no enunciado"
+     ],
+     [
+      "P' = (a', b')",
+      "ponto P depois do giro"
+     ]
+    ]
+   },
+   "pista": "Faça a primeira linha de M vezes a coluna (a, b): isso dá só a', e ainda sem números.",
+   "passos": [
+    {
+     "faz": "Multiplique a primeira linha",
+     "conta": "a' = cos θ · a + (−sen θ) · b → a' = cos θ · a − sen θ · b",
+     "porque": "Linha 1 de M (cos θ, −sen θ) vezes a coluna (a, b): termo a termo, depois soma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique a segunda linha",
+     "conta": "b' = sen θ · a + cos θ · b",
+     "porque": "Linha 2 de M (sen θ, cos θ) vezes a mesma coluna.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque pelos valores de π/6",
+     "conta": "a' = (√3)/2 · a − 1/2 · b ; b' = 1/2 · a + (√3)/2 · b",
+     "porque": "π/6 é 30°: cos 30° = (√3)/2 e sen 30° = 1/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "P' = ((√3)/2 a − 1/2 b, 1/2 a + (√3)/2 b) → alternativa E",
+     "porque": "É exatamente o par da alternativa E, com o sinal de menos só na primeira coordenada.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — P' = ((√3)/2 a − 1/2 b, 1/2 a + (√3)/2 b)",
+   "checagem": "Teste com P = (1, 0), sobre o eixo x: a fórmula dá P' = ((√3)/2, 1/2), que tem distância 1 até a origem e faz 30° com o eixo x, no sentido anti-horário. É o giro pedido.",
+   "erradas": {
+    "A": "A não confere: com P = (0, 1) dá (1/2, −(√3)/2), um ponto a −60°; quem estava a 90° girou 150° no sentido horário, não 30° no anti-horário.",
+    "B": "B não confere: com P = (1, 0) dá (1/2, 1/2), a distância √2/2 ≈ 0,71 da origem. Rotação mantém a distância, que era 1.",
+    "C": "C não confere: com P = (1, 0) dá (1/2, 1/2), distância √2/2 ≈ 0,71, e não 1; girar não muda a distância até O.",
+    "D": "D não confere: com P = (1, 0) dá (1/2, (√3)/2), um ponto a 60° do eixo x; o giro pedido é de 30°."
+   },
+   "armadilha": "Cada linha de M multiplica a coluna (a, b) termo a termo; o sinal de menos de −sen θ fica só na primeira coordenada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As coordenadas de P' depois do giro de π/6 no sentido anti-horário.",
+    "chave": "a' = (√3)/2 a − 1/2 b e b' = 1/2 a + (√3)/2 b, de M × (a, b) com cos 30° = (√3)/2 e sen 30° = 1/2.",
+    "cuidado": "Multiplique linha por coluna e não troque seno com cosseno."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "números complexos",
+    "ideia": "Multiplique a + bi por cos 30° + i sen 30° = (√3)/2 + i/2: a parte real e a imaginária dão a' e b'."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a' = cos θ · a − sen θ · b",
+    "nota": "linha 1 × coluna"
+   },
+   {
+    "linha": "b' = sen θ · a + cos θ · b",
+    "nota": "linha 2 × coluna"
+   },
+   {
+    "linha": "cos(π/6) = (√3)/2 ; sen(π/6) = 1/2",
+    "nota": "valores de 30°"
+   },
+   {
+    "linha": "P' = ((√3)/2 a − 1/2 b, 1/2 a + (√3)/2 b)",
+    "nota": "substitui"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

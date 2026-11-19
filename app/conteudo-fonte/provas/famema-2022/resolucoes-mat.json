@@ -410,5 +410,117 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0002"
   }
+ },
+ "P418be99b": {
+  "n": "18",
+  "conceito": "Contar pinturas distintas do tetraedro regular com quatro cores diferentes, descontando as rotações.",
+  "equivocos": {
+   "A": "M13.9:valor-que-nao-fecha",
+   "B": "M13.9:so-escolheu-as-cores",
+   "D": "M13.9:valor-que-nao-fecha",
+   "E": "M13.9:esqueceu-os-giros-em-torno-da-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Duas pinturas do tetraedro são a mesma se uma vira a outra girando o sólido. Primeiro escolha as 4 cores entre as 8 (a ordem não importa aqui). Depois veja de quantos modos realmente diferentes 4 cores fixas cabem nas faces: apoie a menor cor numa face, embaixo, e arrume as outras três em volta, como numa mesa redonda.",
+    "formulas": [
+     "C(8, 4) = (8 × 7 × 6 × 5)/(4 × 3 × 2 × 1)",
+     "permutação circular de n objetos: (n − 1)!"
+    ],
+    "simbolos": [
+     [
+      "tetraedro regular",
+      "sólido de 4 faces triangulares iguais"
+     ],
+     [
+      "C(8, 4)",
+      "modos de escolher 4 cores entre 8, sem ordem"
+     ],
+     [
+      "(n − 1)!",
+      "arranjos de n objetos em roda, quando giros são iguais"
+     ]
+    ]
+   },
+   "pista": "Separe em duas etapas: quais cores entram e como elas se arrumam nas faces.",
+   "passos": [
+    {
+     "faz": "Escolha as quatro cores",
+     "conta": "C(8, 4) = (8 × 7 × 6 × 5)/24 = 1680/24 = 70",
+     "porque": "São 4 faces e cada cor aparece uma vez, então entram exatamente 4 das 8 cores.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fixe uma cor embaixo",
+     "conta": "1 cor fixa na base → sobram 3 cores para as 3 faces laterais",
+     "porque": "Todas as faces são iguais; qualquer pintura pode ser girada até a cor escolhida ficar embaixo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Arrume as três laterais em roda",
+     "conta": "(3 − 1)! = 2",
+     "porque": "As três laterais giram em volta da base; giros não contam, só o sentido da sequência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as etapas",
+     "conta": "70 × 2 = 140",
+     "porque": "Para cada conjunto de 4 cores há 2 pinturas diferentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "140 maneiras → alternativa C",
+     "porque": "O tetraedro pode ser pintado de 140 maneiras.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 140",
+   "checagem": "Teste o caso de só 4 cores: a contagem dá C(4, 4) × 2 = 2. De fato, com 4 cores fixas há a pintura e a sua imagem no espelho, que nenhum giro junta.",
+   "erradas": {
+    "A": "64 não confere: cada conjunto de 4 cores gera o mesmo número de pinturas, então o total é múltiplo de C(8, 4) = 70; 64 não é.",
+    "B": "70 sai de contar só a escolha das cores: C(8, 4) = 70, esquecendo que as mesmas 4 cores podem ficar em 2 posições diferentes.",
+    "D": "210 não confere: 210 = 70 × 3 exigiria 3 pinturas por conjunto de cores, mas com a cor de baixo fixa sobram só (3 − 1)! = 2.",
+    "E": "420 sai de descontar só a face de baixo: 8 × 7 × 6 × 5 = 1680 e 1680/4 = 420, esquecendo os 3 giros em torno da base (1680/12 = 140)."
+   },
+   "armadilha": "Arrumar 4 cores no tetraedro não é 4! nem 4!/4: com a base fixa, as três laterais ainda giram, e sobram só 2 pinturas por conjunto.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de modos de pintar as 4 faces do tetraedro com 4 das 8 cores, todas diferentes.",
+    "chave": "C(8, 4) = 70 conjuntos de cores, cada um com (3 − 1)! = 2 pinturas: 70 × 2 = 140.",
+    "cuidado": "Desconte todos os giros do sólido, não só a escolha da face de baixo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dividir pelas rotações",
+    "ideia": "Pinte as faces numeradas, 8 × 7 × 6 × 5 = 1680, e divida pelas 12 rotações do tetraedro (4 faces embaixo × 3 giros): 1680/12 = 140."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(8, 4) = 1680/24 = 70",
+    "nota": "escolha das cores"
+   },
+   {
+    "linha": "(3 − 1)! = 2",
+    "nota": "laterais em roda"
+   },
+   {
+    "linha": "70 × 2 = 140",
+    "nota": "total de pinturas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

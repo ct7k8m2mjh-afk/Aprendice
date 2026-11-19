@@ -196,5 +196,117 @@
    "data": "2026-11-12",
    "lote": "mat-0031"
   }
+ },
+ "Pa6fd0aa1": {
+  "n": "77",
+  "conceito": "Contar as distribuições de dois lanches entre seis quartos que respeitam as lembranças e tomar uma delas como a certa.",
+  "equivocos": {
+   "A": "M13.4:esqueceu-o-empate-3-a-3",
+   "C": "M13.4:so-tirou-o-caso-sem-pao-com-queijo",
+   "D": "M13.4:espaco-maior-que-o-possivel",
+   "E": "M13.4:espaco-maior-que-o-possivel"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Renato vai chutar uma distribuição entre as que combinam com o que ele lembra; só uma é a verdadeira. Então a probabilidade é 1 dividido pelo número de distribuições compatíveis. Com 6 quartos, mais pão com queijo que cachorro-quente e pelo menos um de cada, o cachorro-quente aparece em 1 ou 2 quartos. Contar distribuições é escolher quais quartos pediram cachorro-quente.",
+    "formulas": [
+     "C(n, k) = n!/(k! (n − k)!) : modos de escolher k quartos entre n",
+     "probabilidade = 1 ÷ número de distribuições compatíveis"
+    ],
+    "simbolos": [
+     [
+      "C(6, k)",
+      "número de modos de escolher k quartos entre os 6, sem importar a ordem"
+     ],
+     [
+      "n!",
+      "fatorial: n × (n − 1) × ... × 1"
+     ]
+    ]
+   },
+   "pista": "Liste quantos cachorros-quentes pode haver ao todo, levando em conta as duas lembranças juntas.",
+   "passos": [
+    {
+     "faz": "Ache quantos cachorros-quentes cabem",
+     "conta": "k cachorros-quentes e 6 − k pães: 6 − k > k → k < 3 ; k ≥ 1 → k = 1 ou k = 2",
+     "porque": "Mais pão que cachorro-quente exige k menor que 3, e pelo menos um cachorro-quente exige k ≥ 1.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte o caso de 1 cachorro-quente",
+     "conta": "C(6, 1) = 6",
+     "porque": "Basta escolher qual quarto pediu o cachorro-quente; os outros cinco pediram pão com queijo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte o caso de 2 cachorros-quentes",
+     "conta": "C(6, 2) = (6 × 5)/2 = 15",
+     "porque": "Escolha os dois quartos do cachorro-quente; a ordem entre eles não importa, por isso divide por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e inverta",
+     "conta": "6 + 15 = 21 → P = 1/21",
+     "porque": "São 21 distribuições igualmente possíveis para Renato, e só uma é a real.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "P = 1/21 → alternativa B",
+     "porque": "A probabilidade de acertar todos os pedidos é 1/21.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1/21",
+   "checagem": "Conte pelo que sobra: das 2^6 = 64 distribuições possíveis, tire 1 (tudo pão), 1 (tudo cachorro-quente), 20 (empate 3 a 3), 15 (4 cachorros) e 6 (5 cachorros): 64 − 1 − 1 − 20 − 15 − 6 = 21.",
+   "erradas": {
+    "A": "1/31 sai de esquecer o empate: (64 − 2)/2 = 31. Os 20 casos de 3 a 3 não têm mais pão que cachorro-quente; sem eles, (62 − 20)/2 = 21.",
+    "C": "1/63 sai de tirar só o caso sem pão com queijo: 64 − 1 = 63, ignorando o resto das lembranças.",
+    "D": "1/119 não confere: 6 quartos com 2 opções cada têm só 2^6 = 64 distribuições ao todo; 119 casos compatíveis é impossível.",
+    "E": "1/215 não confere: passa de 64 = 2^6, o total de distribuições de dois lanches entre 6 quartos, com ou sem restrição."
+   },
+   "armadilha": "\"Mais pão com queijo\" exclui o empate 3 a 3, que tem 20 distribuições: quem só divide por 2 o total sem os extremos chega a 31.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de acertar todos os seis pedidos chutando uma distribuição compatível com as lembranças.",
+    "chave": "O cachorro-quente aparece em 1 ou 2 quartos: C(6, 1) + C(6, 2) = 6 + 15 = 21, e P = 1/21.",
+    "cuidado": "Exclua o empate 3 a 3 e conte quais quartos, não só quantos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria",
+    "ideia": "Sem os 2 casos de um só lanche e os 20 empates sobram 64 − 2 − 20 = 42, metade com mais pão: 42/2 = 21."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "k < 3 e k ≥ 1 → k = 1 ou 2",
+    "nota": "número de cachorros-quentes"
+   },
+   {
+    "linha": "C(6, 1) = 6",
+    "nota": "um cachorro-quente"
+   },
+   {
+    "linha": "C(6, 2) = 15",
+    "nota": "dois cachorros-quentes"
+   },
+   {
+    "linha": "6 + 15 = 21 → P = 1/21",
+    "nota": "uma só é a certa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

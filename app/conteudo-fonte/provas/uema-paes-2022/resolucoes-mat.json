@@ -401,5 +401,121 @@
    "data": "2026-11-19",
    "lote": "mat-0069"
   }
+ },
+ "Pe50b9019": {
+  "n": "49",
+  "conceito": "Porcentagem de ocupação em relação à capacidade máxima e soma de produtos quantidade × preço numa tabela.",
+  "equivocos": {
+   "A": "M03.1:percentual-nao-confere-com-a-contagem",
+   "B": "M03.1:percentual-nao-confere-com-a-contagem",
+   "D": "M03.1:percentual-nao-confere-com-a-contagem",
+   "E": "M03.1:percentual-nao-confere-com-a-contagem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São três contas independentes: quantos passageiros sobre 1.000, quantos veículos sobre 70 e quanto se arrecadou. Os passageiros gratuitos ocupam lugar, então entram na lotação, mas pagam zero, então não mudam a arrecadação.",
+    "formulas": [
+     "percentual = quantidade ÷ capacidade × 100%",
+     "arrecadação = soma de (quantidade × preço) de cada linha"
+    ],
+    "simbolos": [
+     [
+      "lotação máxima",
+      "1.000 passageiros e 70 veículos por viagem"
+     ],
+     [
+      "gratuidade",
+      "viaja sem pagar: preço 0"
+     ]
+    ]
+   },
+   "pista": "Separe a tabela em duas partes, passageiros e veículos, e some as quantidades de cada uma antes de qualquer porcentagem.",
+   "passos": [
+    {
+     "faz": "Calcule o percentual de passageiros",
+     "conta": "30 + 80 + 50 + 50 + 200 = 410 → 410/1.000 = 41%",
+     "porque": "Todas as cinco linhas de passageiros ocupam lugar, inclusive as gratuitas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o percentual de veículos",
+     "conta": "14 + 5 + 5 + 5 + 10 = 39 → 39/70 ≈ 55,71%",
+     "porque": "São cinco tipos de veículo; a capacidade de referência é 70.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a arrecadação dos passageiros",
+     "conta": "50 × 2 + 50 × 6 + 200 × 12 → 100 + 300 + 2.400 = 2.800",
+     "porque": "As duas linhas de gratuidade valem 0 e saem da soma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a arrecadação dos veículos",
+     "conta": "14 × 88 + 5 × 140 + 5 × 115 + 5 × 145 + 10 × 77 → 1.232 + 700 + 575 + 725 + 770 = 4.002",
+     "porque": "Cada linha é quantidade vezes preço da passagem daquele veículo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte e ligue à alternativa",
+     "conta": "2.800 + 4.002 = 6.802 → 41%, 55,71% e R$ 6.802,00 → alternativa C",
+     "porque": "Os três números batem ao mesmo tempo só com a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 41% e 55,71%; R$ 6.802,00.",
+   "checagem": "Refaça os veículos agrupando de outro jeito: caminhão, van e micro-ônibus são 5 cada, então 5 × (140 + 115 + 145) = 5 × 400 = 2.000; os de passeio dão 1.232 + 770 = 2.002. Total 4.002, o mesmo valor.",
+   "erradas": {
+    "A": "A não confere: 41,50% de 1.000 seriam 415 passageiros (são 410) e 50% de 70 seriam 35 veículos (são 39); o total também não é R$ 6.670,00.",
+    "B": "B não confere: 55% de 1.000 seriam 550 passageiros e 51% de 70 cerca de 35,7 veículos; a viagem tem 410 e 39.",
+    "D": "D não confere: 54,5% de 1.000 seriam 545 passageiros e 45% de 70 seriam 31,5 veículos; a viagem tem 410 e 39.",
+    "E": "E não confere: 50% de 1.000 seriam 500 passageiros (são 410) e 56,70% de 70 ≈ 39,7 veículos (são 39); o total certo é R$ 6.802,00."
+   },
+   "armadilha": "Os 110 passageiros gratuitos não pagam, mas ocupam lugar: entram na lotação (410) e ficam fora da arrecadação.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Percentuais de passageiros e de veículos sobre a lotação máxima e o total arrecadado.",
+    "chave": "410 ÷ 1.000 = 41%, 39 ÷ 70 ≈ 55,71%, arrecadação 2.800 + 4.002 = 6.802.",
+    "cuidado": "Conte os gratuitos na lotação e use 70, não 100, como base dos veículos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação pelo primeiro número",
+    "ideia": "410 de 1.000 passageiros é exatamente 41%, e só a alternativa C traz 41%; as outras contas apenas confirmam."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "410/1.000 = 41%",
+    "nota": "passageiros"
+   },
+   {
+    "linha": "39/70 ≈ 55,71%",
+    "nota": "veículos"
+   },
+   {
+    "linha": "100 + 300 + 2.400 = 2.800",
+    "nota": "bilhetes de passageiros"
+   },
+   {
+    "linha": "1.232 + 700 + 575 + 725 + 770 = 4.002",
+    "nota": "bilhetes de veículos"
+   },
+   {
+    "linha": "2.800 + 4.002 = 6.802",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

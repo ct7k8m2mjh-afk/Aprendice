@@ -221,5 +221,110 @@
    "data": "2026-11-19",
    "lote": "mat-0069"
   }
+ },
+ "P4d95bff5": {
+  "n": "60",
+  "conceito": "Saldo após entrada, capitalizado por juros compostos até o fim do prazo e dividido em parcelas iguais.",
+  "equivocos": {
+   "A": "M03.4:esqueceu-os-juros",
+   "B": "M03.4:juros-nao-confere",
+   "D": "M03.4:parcelou-a-entrada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A banca descreve o método: o valor que falta pagar é corrigido a 2% ao mês até o fim dos 5 meses e só depois dividido em 5 partes iguais. O fator já vem pronto: 1,02⁵ = 1,1. O trabalho é achar o saldo depois da entrada de 52,5%.",
+    "formulas": [
+     "saldo = valor × (1 − entrada)",
+     "montante = saldo × 1,02⁵",
+     "prestação = montante ÷ 5"
+    ],
+    "simbolos": [
+     [
+      "a.m.",
+      "ao mês"
+     ],
+     [
+      "entrada",
+      "parte paga no ato da compra"
+     ],
+     [
+      "1,02⁵",
+      "fator de 5 meses a 2% ao mês, dado como 1,1"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro quanto ficou para pagar depois da entrada; os juros incidem só sobre essa parte.",
+   "passos": [
+    {
+     "faz": "Calcule o saldo depois da entrada",
+     "conta": "1.564.000 × (1 − 0,525) → 1.564.000 × 0,475 = 742.900",
+     "porque": "Pagou 52,5% na entrada; restam 47,5% do valor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Corrija o saldo pelos 5 meses",
+     "conta": "742.900 × 1,02⁵ → 742.900 × 1,1 = 817.190",
+     "porque": "A taxa de 2% ao mês é convertida até o fim do período: o saldo é multiplicado pelo fator de 5 meses, que a prova dá como 1,1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida o montante em 5 prestações",
+     "conta": "817.190/5 → 163.438",
+     "porque": "O enunciado manda dividir o valor corrigido em 5 partes iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "R$ 163.438,00 → alternativa C",
+     "porque": "A pergunta é o valor de cada prestação, não o montante total.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — R$ 163.438,00.",
+   "checagem": "Separe juros e principal: sem juros, cada prestação seria 742.900 ÷ 5 = 148.580; os juros somam 10% de 742.900 = 74.290, ou 14.858 por parcela; 148.580 + 14.858 = 163.438.",
+   "erradas": {
+    "A": "A sai de dividir o saldo sem juros: 742.900 ÷ 5 = 148.580. Faltou multiplicar por 1,1.",
+    "B": "B não confere: 149.684 × 5 = 748.420, só cerca de 0,74% acima do saldo de 742.900, enquanto o fator de 5 meses dá 10% de acréscimo.",
+    "D": "D sai de financiar a entrada no lugar do saldo, sem juros: 1.564.000 × 0,525 ÷ 5 = 164.220. O que se parcela são os 47,5% restantes."
+   },
+   "armadilha": "A entrada é 52,5%: o que se parcela e recebe juros são os 47,5% que sobram.",
+   "alerta": "O enunciado manda corrigir todo o saldo até o fim dos 5 meses e dividir o montante em partes iguais. Não é o cálculo usual de financiamento com prestações iguais (tabela Price), que daria cerca de R$ 157.612,00, valor que não está entre as alternativas; vale o método descrito pela banca.",
+   "essencial": {
+    "pede": "O valor de cada uma das 5 prestações.",
+    "chave": "Saldo 1.564.000 × 0,475 = 742.900; × 1,1 = 817.190; ÷ 5 = 163.438.",
+    "cuidado": "Aplique o fator 1,1 só sobre o saldo, depois de tirar a entrada."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fração do preço",
+    "ideia": "Cada prestação é 0,475 × 1,1 ÷ 5 = 0,1045 do preço: 1.564.000 × 0,1045 = 163.438."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1.564.000 × 0,475 = 742.900",
+    "nota": "saldo após a entrada"
+   },
+   {
+    "linha": "742.900 × 1,1 = 817.190",
+    "nota": "fator de 5 meses"
+   },
+   {
+    "linha": "817.190/5 = 163.438",
+    "nota": "cada prestação"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

@@ -919,5 +919,128 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0002"
   }
+ },
+ "P5847657f": {
+  "n": "27",
+  "conceito": "Achar m para z₁ real não nulo, marcar z₁ e z₂ no plano de Argand-Gauss e calcular o perímetro do triângulo com a origem.",
+  "equivocos": {
+   "B": "M16.2:usou-m-no-lugar-da-parte-real",
+   "C": "M16.2:valor-que-nao-fecha-com-os-pontos",
+   "D": "M16.2:perimetro-menor-que-os-catetos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "z₁ é real quando a parte imaginária zera; não nulo quando a parte real não zera. As duas condições juntas escolhem um único m. Com ele, z₁ e z₂ viram pontos do plano, e o triângulo com a origem tem lados calculados por distância.",
+    "formulas": [
+     "z = x + yi ↔ ponto (x, y)",
+     "real: parte imaginária = 0 ; não nulo: parte real ≠ 0",
+     "distância de (x, y) à origem = √(x² + y²)"
+    ],
+    "simbolos": [
+     [
+      "Argand-Gauss",
+      "plano em que o eixo x é a parte real e o eixo y é a parte imaginária"
+     ],
+     [
+      "i",
+      "unidade imaginária, i² = −1"
+     ],
+     [
+      "T",
+      "triângulo de vértices O, z₁ e z₂"
+     ],
+     [
+      "m",
+      "constante real a descobrir"
+     ]
+    ]
+   },
+   "pista": "Comece pela parte imaginária de z₁ e não esqueça a condição \"não nulo\" antes de escolher m.",
+   "passos": [
+    {
+     "faz": "Zere a parte imaginária de z₁",
+     "conta": "m² − 9 = 0 → m² = 9 → m = 3 ou m = −3",
+     "porque": "z₁ real exige parte imaginária zero.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descarte o m que anula z₁",
+     "conta": "m = −3 → m + 3 = 0 → z₁ = 0",
+     "porque": "Com m = −3, z₁ seria o próprio zero, que o enunciado proíbe. Fica m = 3.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Marque os pontos com m = 3",
+     "conta": "z₁ = (3 + 3) + 0i = 6 → (6, 0) ; z₂ = (3 − 3) + (11 − 3)i = 8i → (0, 8)",
+     "porque": "z₁ cai no eixo real e z₂ no eixo imaginário: o ângulo em O é reto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a hipotenusa",
+     "conta": "√(6² + 8²) = √(36 + 64) → √100 = 10",
+     "porque": "O lado de (6, 0) a (0, 8) é a hipotenusa do triângulo retângulo com catetos 6 e 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os lados",
+     "conta": "6 + 8 + 10 = 24 → alternativa A",
+     "porque": "O perímetro é a soma dos três lados.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 24",
+   "checagem": "Pela distância entre z₁ e z₂ direto: |z₁ − z₂| = |6 − 8i| = √(36 + 64) = 10, a mesma hipotenusa. Perímetro = |z₁| + |z₂| + |z₁ − z₂| = 6 + 8 + 10 = 24.",
+   "erradas": {
+    "B": "11 + √73 sai de usar 3 (o valor de m) como parte real de z₁ no lugar de m + 3 = 6: lados 3, 8 e √(9 + 64) = √73, perímetro 11 + √73.",
+    "C": "14 + √14 não confere: os vértices têm coordenadas inteiras, então cada lado é √(inteiro que é soma de dois quadrados), e 14 não é soma de dois quadrados (1 + 13, 4 + 10, 9 + 5).",
+    "D": "12 não confere: os catetos já somam 6 + 8 = 14, mais que 12, e ainda falta a hipotenusa 10."
+   },
+   "armadilha": "Esquecer o \"não nulo\": com m = −3, z₁ vira 0 e coincide com a origem, sem triângulo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O perímetro do triângulo de vértices O, z₁ e z₂ quando z₁ é real não nulo.",
+    "chave": "m² − 9 = 0 e m + 3 ≠ 0 dão m = 3: pontos (6, 0) e (0, 8), triângulo 6, 8, 10.",
+    "cuidado": "O \"não nulo\" elimina m = −3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "terna pitagórica",
+    "ideia": "Catetos 6 e 8 são o dobro de 3 e 4; a hipotenusa é o dobro de 5, 10, e o perímetro é o dobro de 3 + 4 + 5 = 12, ou seja, 24."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m² − 9 = 0 → m = ±3",
+    "nota": "z₁ real"
+   },
+   {
+    "linha": "m + 3 ≠ 0 → m = 3",
+    "nota": "z₁ não nulo"
+   },
+   {
+    "linha": "z₁ = 6 → (6, 0) ; z₂ = 8i → (0, 8)",
+    "nota": "pontos nos eixos"
+   },
+   {
+    "linha": "√(6² + 8²) = √100 = 10",
+    "nota": "hipotenusa"
+   },
+   {
+    "linha": "6 + 8 + 10 = 24",
+    "nota": "perímetro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

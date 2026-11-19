@@ -501,5 +501,122 @@
    "data": "2026-11-19",
    "lote": "mat-0073"
   }
+ },
+ "P2670f202": {
+  "n": "35",
+  "conceito": "Contar as raízes reais de 5·2^x − 3x − 7 = 0 (exponencial contra reta) e contar os divisores inteiros desse número.",
+  "equivocos": {
+   "A": "M01.4:contagem-de-divisores-que-nao-fecha",
+   "B": "M01.4:contou-so-divisores-positivos",
+   "C": "M01.4:contagem-de-divisores-que-nao-fecha",
+   "E": "M01.4:contagem-de-divisores-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Uma raiz se acha por tentativa: x = 1. Para saber se há outras, use a forma do gráfico: 5·2^x é uma curva sempre côncava para cima e 3x + 7 é uma reta, e uma curva assim corta uma reta no máximo duas vezes. A troca de sinal de f mostra onde fica a segunda raiz. Por fim, pelo gabarito, a banca conta os divisores inteiros de n, positivos e negativos.",
+    "formulas": [
+     "f(a) e f(b) com sinais opostos → há raiz entre a e b",
+     "curva côncava para cima × reta → no máximo 2 pontos comuns",
+     "divisores inteiros de n: os positivos e os seus opostos"
+    ],
+    "simbolos": [
+     [
+      "f(x)",
+      "5·2^x − 3x − 7"
+     ],
+     [
+      "n",
+      "número de raízes reais distintas de f(x) = 0"
+     ],
+     [
+      "côncava para cima",
+      "curva em forma de U, que fica abaixo de qualquer corda"
+     ]
+    ]
+   },
+   "pista": "Teste valores inteiros pequenos de x em f e observe onde o sinal troca.",
+   "passos": [
+    {
+     "faz": "Teste x = 1",
+     "conta": "f(1) = 5 · 2 − 3 − 7 → f(1) = 0",
+     "porque": "x = 1 é raiz.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Procure troca de sinal à esquerda",
+     "conta": "f(−1) = 5/2 + 3 − 7 = −3/2 ; f(−2) = 5/4 + 6 − 7 = 1/4",
+     "porque": "f passa de positivo em −2 para negativo em −1: há uma segunda raiz entre −2 e −1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Limite o número de raízes",
+     "conta": "5·2^x côncava para cima × reta 3x + 7 → no máximo 2 cortes → n = 2",
+     "porque": "Uma curva em U cruza uma reta no máximo duas vezes, e já há duas raízes.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Liste os divisores inteiros de 2",
+     "conta": "D(2) = {−2, −1, 1, 2} → 4 divisores",
+     "porque": "Nos inteiros, cada divisor positivo tem o seu oposto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "4 divisores → alternativa D",
+     "porque": "Pelo gabarito, a banca conta os divisores inteiros.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 4",
+   "checagem": "Confira a segunda raiz com mais precisão: em x ≈ −1,88, 5·2^x ≈ 1,358 e 3x + 7 ≈ 1,358, os dois lados quase iguais. E em x = 1 os dois lados valem 10.",
+   "erradas": {
+    "A": "1 não confere: com n = 2 há pelo menos os divisores 1 e 2; nenhuma contagem de divisores de 2 dá 1.",
+    "B": "2 sai de contar só os divisores positivos de 2: 1 e 2. A banca contou os divisores inteiros, −2, −1, 1 e 2.",
+    "C": "3 não confere: nos inteiros os divisores vêm aos pares (d e −d), então a quantidade é par; e 2, primo, tem só 2 divisores positivos.",
+    "E": "6 não confere: exigiria n com 3 divisores positivos (um quadrado de primo, como 4 ou 9), mas a curva em U corta a reta no máximo 2 vezes, n ≤ 2."
+   },
+   "armadilha": "Achar só a raiz x = 1 e parar: a segunda raiz, entre −2 e −1, só aparece testando valores negativos.",
+   "alerta": "Pelo gabarito oficial (D), a banca contou os divisores de n = 2 no conjunto dos inteiros, D(2) = {−2, −1, 1, 2}, como na notação D(n) dos livros didáticos. Contando só os positivos, seriam 2 (alternativa B). Vale a oficial.",
+   "essencial": {
+    "pede": "Quantos são os divisores do número de raízes reais de 5·2^x − 3x − 7 = 0.",
+    "chave": "x = 1 é raiz, há outra entre −2 e −1 e no máximo duas no total: n = 2, com divisores inteiros ±1 e ±2.",
+    "cuidado": "Teste valores negativos de x e conte os divisores com sinal, como a banca."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela derivada",
+    "ideia": "f′(x) = 5 · ln 2 · 2^x − 3 zera uma só vez (x ≈ −0,21), onde f ≈ −2,05 < 0: f desce e depois sobe, cortando o zero exatamente duas vezes."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(1) = 10 − 3 − 7 = 0",
+    "nota": "primeira raiz"
+   },
+   {
+    "linha": "f(−2) = 1/4 > 0 ; f(−1) = −3/2 < 0",
+    "nota": "segunda raiz entre −2 e −1"
+   },
+   {
+    "linha": "curva em U × reta → n = 2",
+    "nota": "no máximo duas raízes"
+   },
+   {
+    "linha": "D(2) = {−2, −1, 1, 2}",
+    "nota": "4 divisores inteiros"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

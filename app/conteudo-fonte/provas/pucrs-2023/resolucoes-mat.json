@@ -879,5 +879,120 @@
    "data": "2026-11-19",
    "lote": "mat-0071"
   }
+ },
+ "P97c1862f": {
+  "n": "17",
+  "conceito": "Comparar pagamento à vista com desconto e pagamento a prazo investindo o dinheiro a juros compostos.",
+  "equivocos": {
+   "A": "M03.4:juros-nao-confere",
+   "B": "M03.4:contou-um-mes-so",
+   "D": "M03.4:juros-sobre-valor-sem-desconto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Compare tudo no mesmo instante, o fim do 4.º mês. O dinheiro que pagaria à vista (com 7% de desconto) pode ficar investido a 5% ao mês por 4 meses; se render mais do que a dívida de 9.600, vale pagar no fim. O fator de 4 meses já vem dado: 1,05⁴ ≈ 1,2.",
+    "formulas": [
+     "à vista = 9.600 × (1 − 0,07)",
+     "montante = capital × 1,05⁴ ≈ capital × 1,2",
+     "juros = montante − capital"
+    ],
+    "simbolos": [
+     [
+      "juros compostos",
+      "os juros de cada mês entram no capital do mês seguinte"
+     ],
+     [
+      "carência",
+      "prazo até o pagamento"
+     ],
+     [
+      "1,05⁴",
+      "fator de 4 meses a 5% ao mês, dado como 1,2"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro quanto a clínica tem em mãos hoje; é esse valor, e não 9.600, que fica investido.",
+   "passos": [
+    {
+     "faz": "Calcule o valor à vista",
+     "conta": "9.600 × (1 − 0,07) → 9.600 × 0,93 = 8.928",
+     "porque": "É o dinheiro que a clínica tem e que pode ser investido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o montante do investimento",
+     "conta": "8.928 × 1,05⁴ → 8.928 × 1,2 = 10.713,60",
+     "porque": "Quatro meses a 5% ao mês, juros compostos, com o fator dado na prova.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os juros",
+     "conta": "10.713,60 − 8.928 → 1.785,60",
+     "porque": "Juros são o que o investimento acrescentou ao capital.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com a dívida do 4.º mês",
+     "conta": "10.713,60 > 9.600 → sobram 1.113,60",
+     "porque": "No fim do 4.º mês a clínica paga 9.600 sem juros e ainda fica com dinheiro: pagar no fim é melhor.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "pagar no 4.º mês, juros de R$ 1.785,60 → alternativa C",
+     "porque": "A alternativa precisa ter a decisão certa e o valor certo dos juros.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — Pagamento ao final do 4.º mês, pois o investimento renderá juros de R$ 1.785,60.",
+   "checagem": "Compare em taxas: pagar à vista equivale a ganhar 9.600 ÷ 8.928 − 1 ≈ 7,5% em 4 meses; o investimento rende 1,2 − 1 = 20% no mesmo período. Como 20% passa de 7,5%, investir e pagar no fim vence.",
+   "erradas": {
+    "A": "A não confere: só o 1.º mês já rende 8.928 × 0,05 = 446,40, e em 4 meses os juros são maiores ainda; R$ 336,60 fica abaixo disso.",
+    "B": "B sai de contar um mês só: 8.928 × 0,05 = 446,40. São 4 meses compostos, que dão 1.785,60.",
+    "D": "D sai de aplicar os 20% sobre o valor sem desconto: 9.600 × 0,2 = 1.920. O dinheiro investido é o valor à vista, 8.928."
+   },
+   "armadilha": "Quem investe é o valor à vista (8.928), não os 9.600: aplicar os juros sobre 9.600 leva à D.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A melhor forma de pagamento e o valor dos juros do investimento.",
+    "chave": "8.928 × 1,2 = 10.713,60, juros de 1.785,60; isso passa dos 9.600 devidos no 4.º mês.",
+    "cuidado": "Invista o valor com desconto e compare no mesmo instante, o fim do 4.º mês."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "valor presente",
+    "ideia": "Traga a dívida para hoje: 9.600 ÷ 1,2 = 8.000, menos que os 8.928 à vista; pagar no fim custa menos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "9.600 × 0,93 = 8.928",
+    "nota": "valor à vista"
+   },
+   {
+    "linha": "8.928 × 1,2 = 10.713,60",
+    "nota": "montante em 4 meses"
+   },
+   {
+    "linha": "10.713,60 − 8.928 = 1.785,60",
+    "nota": "juros"
+   },
+   {
+    "linha": "10.713,60 > 9.600",
+    "nota": "pagar no fim compensa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }

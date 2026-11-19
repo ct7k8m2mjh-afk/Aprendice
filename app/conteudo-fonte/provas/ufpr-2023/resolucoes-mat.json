@@ -780,5 +780,251 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0002"
   }
+ },
+ "P728605ff": {
+  "n": "15",
+  "conceito": "Princípio multiplicativo com restrição: três pessoas em lugares sem ninguém em frente a outro.",
+  "equivocos": {
+   "B": "M13.1:restricao-mal-contada",
+   "C": "M13.1:restricao-mal-contada",
+   "D": "M13.1:restricao-mal-contada",
+   "E": "M13.1:esqueceu-de-ordenar-as-pessoas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os seis lugares formam três pares de lados opostos (1-4, 2-5, 3-6). Ninguém pode ficar em frente a outro, então cada pessoa precisa ocupar um par diferente. As pessoas são distintas, a ordem conta: escolha o lugar de cada uma, uma de cada vez.",
+    "formulas": [
+     "princípio multiplicativo: etapas em sequência se multiplicam"
+    ],
+    "simbolos": [
+     [
+      "lado oposto",
+      "1 e 4, 2 e 5, 3 e 6"
+     ],
+     [
+      "3!",
+      "3 · 2 · 1 = 6, jeitos de ordenar três pessoas"
+     ]
+    ]
+   },
+   "pista": "Escolha o lugar de Ana, depois veja quantos sobram para Beatriz sem o lugar oposto ao de Ana.",
+   "passos": [
+    {
+     "faz": "Escolha o lugar de Ana",
+     "conta": "Ana: 6 lugares",
+     "porque": "Ainda não há restrição nenhuma.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escolha o lugar de Beatriz",
+     "conta": "6 − 1 (o de Ana) − 1 (o oposto) → 4 lugares",
+     "porque": "Beatriz não pode sentar onde está Ana nem no lado oposto ao dela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o lugar de Carlos",
+     "conta": "4 − 1 (o de Beatriz) − 1 (o oposto) → 2 lugares",
+     "porque": "Sobram só os dois lados do par que ninguém usou, e nenhum deles fica em frente a Ana ou a Beatriz.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as etapas",
+     "conta": "6 · 4 · 2 = 48",
+     "porque": "As escolhas são feitas em sequência e cada uma tem sempre o mesmo número de opções.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "48 → alternativa A",
+     "porque": "A pergunta é o número de formas, com as pessoas distintas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 48",
+   "checagem": "Pelo complemento: sem restrição são 6 · 5 · 4 = 120. Com alguém em frente: escolha a dupla oposta (3 duplas de pessoas), o lugar do primeiro dela (6), o do segundo fica fixo (1) e o terceiro tem 4: 3 · 6 · 4 = 72. 120 − 72 = 48.",
+   "erradas": {
+    "B": "36 não confere: para cada um dos 6 lugares de Ana, Beatriz tem sempre 4 opções, então o total é múltiplo de 6 · 4 = 24; 36 não é.",
+    "C": "24 não confere: daria a Carlos uma só opção, mas sobram os dois lugares do par livre e nenhum deles fica em frente a Ana ou a Beatriz.",
+    "D": "12 não confere: é menos que as 6 · 4 = 24 formas de acomodar só Ana e Beatriz, e cada uma delas ainda deixa 2 lugares para Carlos.",
+    "E": "8 sai de contar só os conjuntos de lugares, um lado de cada par: 2 · 2 · 2 = 8, sem distribuir as três pessoas neles (falta × 3! = 6)."
+   },
+   "armadilha": "Esquecer que Ana, Beatriz e Carlos são pessoas diferentes: escolher os lugares não basta, é preciso dizer quem senta em cada um.",
+   "alerta": "",
+   "essencial": {
+    "pede": "De quantas formas três pessoas sentam numa mesa de seis lados sem ninguém em frente a outro.",
+    "chave": "Cada uma em um par diferente de lados opostos: 6 · 4 · 2 = 48.",
+    "cuidado": "Cada pessoa sentada tira dois lugares: o dela e o oposto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lugares, depois pessoas",
+    "ideia": "Escolha um lado de cada par oposto (2 · 2 · 2 = 8 conjuntos de lugares) e distribua as três pessoas neles (3! = 6): 8 · 6 = 48."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Ana: 6",
+    "nota": "sem restrição"
+   },
+   {
+    "linha": "Beatriz: 6 − 2 = 4",
+    "nota": "tira o lugar de Ana e o oposto"
+   },
+   {
+    "linha": "Carlos: 4 − 2 = 2",
+    "nota": "tira o de Beatriz e o oposto"
+   },
+   {
+    "linha": "6 · 4 · 2 = 48",
+    "nota": "princípio multiplicativo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
+ },
+ "P520ce2ed": {
+  "n": "17",
+  "conceito": "Expandir um determinante com polinômios, fatorar e usar o discriminante para impedir raízes reais extras.",
+  "equivocos": {
+   "A": "M15.2:discriminante-de-q-com-sinal-trocado",
+   "B": "M15.2:discriminante-de-q-com-sinal-trocado",
+   "D": "M15.2:desigualdade-invertida",
+   "E": "M15.2:esqueceu-a-raiz-dupla"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro calcule o determinante deixando q(x) como letra: ele vira −q(x) mais um polinômio que fatora em (x + 2)(x + 1)(x² − x + 1). Como q tem raízes −2 e −1, q(x) = a(x + 1)(x + 2), e o fator (x + 1)(x + 2) sai do p inteiro. Para −2 e −1 serem as únicas raízes reais de p, o fator de 2º grau que sobra não pode ter raiz real.",
+    "formulas": [
+     "polinômio com raízes r e s: a(x − r)(x − s)",
+     "Δ = b² − 4ac; Δ < 0 quer dizer nenhuma raiz real",
+     "x³ + 1 = (x + 1)(x² − x + 1)"
+    ],
+    "simbolos": [
+     [
+      "p(x)",
+      "polinômio dado pelo determinante"
+     ],
+     [
+      "q(x)",
+      "polinômio de 2º grau ax² + bx + c"
+     ],
+     [
+      "Δ",
+      "discriminante b² − 4ac do polinômio de 2º grau"
+     ],
+     [
+      "det",
+      "determinante"
+     ]
+    ]
+   },
+   "pista": "Expanda o determinante pela primeira linha, mantendo q(x) como uma letra só.",
+   "passos": [
+    {
+     "faz": "Expanda pela primeira linha",
+     "conta": "p = q·(0·1 − 1·1) − (x + 2)·[(x² + x) − (x + 1)] + (x² + 2x)·(x² + x) → p = −q − (x + 2)(x² − 1) + (x² + 2x)(x² + x)",
+     "porque": "Cada elemento da primeira linha multiplica o determinante 2 × 2 que sobra; o do meio entra com sinal de menos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique e fatore o resto",
+     "conta": "−(x³ + 2x² − x − 2) + (x⁴ + 3x³ + 2x²) = x⁴ + 2x³ + x + 2 → x³(x + 2) + (x + 2) = (x + 2)(x + 1)(x² − x + 1)",
+     "porque": "Agrupando, x + 2 aparece duas vezes e sai em evidência; x³ + 1 é soma de cubos e fatora em (x + 1)(x² − x + 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva q pelas raízes",
+     "conta": "q = a(x + 1)(x + 2) → p = (x + 1)(x + 2)(x² − x + 1 − a)",
+     "porque": "q tem as raízes −2 e −1, então tem esses dois fatores. Colocando (x + 1)(x + 2) em evidência no p, sobra x² − x + 1 − a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Proíba raízes reais no fator que sobra",
+     "conta": "Δ = (−1)² − 4·1·(1 − a) = 4a − 3 → 4a − 3 < 0 → a < 3/4",
+     "porque": "Se x² − x + 1 − a tivesse raiz real, p teria uma raiz além de −2 e −1. Ela só não tem com Δ negativo.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Calcule o discriminante de q",
+     "conta": "q = ax² + 3ax + 2a → b² − 4ac = 9a² − 8a² = a² > 0",
+     "porque": "Expandindo a(x + 1)(x + 2), b = 3a e c = 2a. Como a ≠ 0 (q é de 2º grau), a² é positivo: q tem duas raízes reais distintas, como deve.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as duas conclusões",
+     "conta": "b² − 4ac > 0 e a < 3/4 → alternativa C",
+     "porque": "O discriminante de q é positivo e a fica abaixo de 3/4: é a combinação da letra C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — b² − 4ac > 0 e a < 3/4",
+   "checagem": "Teste dois valores de a: com a = 1/2, x² − x + 1/2 tem Δ = 1 − 2 = −1 e p fica só com −2 e −1; com a = 1, x² − x = x(x − 1) traz as raízes 0 e 1, que o enunciado proíbe.",
+   "erradas": {
+    "A": "A não confere: q tem duas raízes reais distintas (−2 ≠ −1), então seu discriminante é a² > 0, nunca negativo.",
+    "B": "B não confere: o valor de a está certo, mas b² − 4ac = 9a² − 8a² = a² é positivo, já que q tem as raízes distintas −2 e −1.",
+    "D": "D não confere: com a = 1 (maior que 3/4), o fator x² − x + 1 − a vira x(x − 1) e p ganha as raízes 0 e 1.",
+    "E": "E não confere: com a = 3/4, o fator vira x² − x + 1/4 = (x − 1/2)², e 1/2 passa a ser raiz real de p."
+   },
+   "armadilha": "Exigir Δ > 0 no fator que sobra: o enunciado quer que ele NÃO tenha raiz real, então o Δ dele tem de ser negativo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O sinal do discriminante de q e a posição de a em relação a 3/4.",
+    "chave": "p = (x + 1)(x + 2)(x² − x + 1 − a); o último fator sem raiz real exige 4a − 3 < 0.",
+    "cuidado": "Não confunda os dois discriminantes: o de q é positivo; o do fator que sobra é que deve ser negativo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Raízes −2 e −1 distintas já dão b² − 4ac > 0 e eliminam A e B; a = 1 traz as raízes 0 e 1 e elimina D; a = 3/4 traz a raiz 1/2 e elimina E."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p = −q − (x + 2)(x² − 1) + (x² + 2x)(x² + x)",
+    "nota": "expansão pela 1ª linha"
+   },
+   {
+    "linha": "p = −q + x⁴ + 2x³ + x + 2",
+    "nota": "junta os termos"
+   },
+   {
+    "linha": "x⁴ + 2x³ + x + 2 = (x + 2)(x + 1)(x² − x + 1)",
+    "nota": "evidência e soma de cubos"
+   },
+   {
+    "linha": "p = (x + 1)(x + 2)(x² − x + 1 − a)",
+    "nota": "q = a(x + 1)(x + 2)"
+   },
+   {
+    "linha": "Δ = 4a − 3 < 0 → a < 3/4",
+    "nota": "fator sem raiz real"
+   },
+   {
+    "linha": "b² − 4ac = 9a² − 8a² = a² > 0",
+    "nota": "discriminante de q"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
  }
 }
