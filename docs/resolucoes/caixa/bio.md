@@ -321,3 +321,25 @@ DADO Pac689c1a: alternativas.E -> termina em "...onde a malária é endêmica." 
 DADO P18445047: alternativas -> faltam na entrada; no print: A "Ligado ao X recessivo | 50% caso seja menino", B "Ligado ao X recessivo | 25% caso seja menino", C "Ligado ao Y | 100% caso seja menino", D "Autossômico recessivo | 75% em qualquer caso", E "Autossômico recessivo | 12,5% em qualquer caso"
 ANULAR P59dd9fdc (UDESC 2026.1 Verão, q21): pede a incorreta e há duas: D (gabarito; Aa × Aa dá 3/4 de filhos com o alelo, não 50%) e C (III-1 é normal e filho de Aa × Aa, então P(não portador | normal) = 1/3, não 25%). Conferente confirmou a conta; ressalva: se "carregar o gene" na D for lido como ser heterozigoto (50%), a D vira correta e só a C fica incorreta, mas então o gabarito D estaria errado; em qualquer leitura a questão não fecha com uma única incorreta = D.
 RECLASS P1b73b180 B06.2 -> B04.2
+
+## 2026-11-19 18:01 UTC — PENDENCIAS — session_01PveEKXZwKo3vJj1Pbjeenm
+Lote gravado: bio-0075 (48 ok, 2 pendentes). Aberto: bio-0076.
+RECLASS Pcc2e85d5 B10.4 -> B09.4
+RECLASS Pdc177163 B11.2 -> B11.3
+ANULAR P1310e5f6: gabarito oficial D (24%) usa P(Fred Aa) = 2pq = 0,48 sem descontar o aa, mas Fred é dominante; P(Aa | dominante) = 0,48/0,64 = 0,75 e P(criança aa) = 0,75 × 0,5 = 37,5%, fora das alternativas (a resolução do Curso Objetivo repete a conta da banca: 0,48 × 0,5).
+RECLASS P0f22cd78 bio -> qui Q02.4
+RECLASS P0c81fb9a B12.1 -> B08.6
+DADO P0f22cd78: alternativas.E -> "As moléculas responsáveis pela comunicação por via aérea devem possuir alta volatilidade e baixa polaridade." (sem o "#####" final)
+DADO P6d8471c7: alternativas.C -> "Os ovócitos I iniciam o processo de divisão celular por meiose, mas ele é interrompido na prófase I da meiose I. Em cada ciclo menstrual, todos os ovócitos I formam ovócitos II. O processo é novamente interrompido, agora na metáfase II da meiose II. Nesta fase, somente um ovócito II é liberado do ovário e penetra na tuba uterina."
+DADO P6d8471c7: alternativas.E -> "Na ovulogênese, cada ovócito I forma quatro óvulos. No entanto, somente um deles é liberado a cada ciclo."
+DADO P6d8471c7: alternativas.B -> "( ) O zigoto forma-se pela fecundação de dois gametas diploides, o óvulo (gameta feminino) e o espermatozoide (gameta masculino)."
+DADO Pf109585d: alternativas A–E e texto_da_prova -> sem o espaço em "competiçã o", "relaçã o" e "interaçã o", e sem a hifenização de quebra de linha ("intraespecífica", "interespecífica")
+RECLASS Paede541f B09.6 -> B09.1
+RECLASS P62fa9d26 B09.6 -> B12.6
+RECLASS Pdeff4e8d B10.1 -> B08.3
+RECLASS P8e07f7bc B10.2 -> B10.5
+DADO Paede541f: alternativas -> B "Somente as proposições I, III e IV são verdadeiras."; C "Somente as proposições II, III e IV são verdadeiras."; D "Somente as proposições III, IV e V são verdadeiras."; E "Somente as proposições I, II, III e IV são verdadeiras." (no enunciado, "|." e "HI." são I. e III.)
+DADO Pdeff4e8d: alternativas A, C -> "O sistema nervoso periférico..." (veio "Osistema")
+DADO P62fa9d26: alternativas.E -> "Cerrado e Caatinga" (veio "Cerradoe")
+RECLASS Pfefa377c B08.4 -> B08.3
+RECLASS Pb64dfc31 B12.3 -> B12.7
