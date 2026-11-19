@@ -153,3 +153,14 @@ Também: corrigida Pfefc3f6a (geo-0044, já gravada) — "13h / 12h ..." virava 
 Checagem no site (3 questões, 390 e 1280 px): 4 blocos completos, "Por que as outras estão erradas" fechado e abrindo; aviso do Gabarito do Aprendice aparece.
 Testes: converte + tsc + vitest verdes (786 passed).
 A seguir: `python3 ferramentas/resolucoes/lote.py status` — Geografia                   1037     0     0   876    21    91    49.
+
+## 2026-11-19 16:45 UTC — PENDENCIAS — sessão geo (19/11, 2ª)
+Lote gravado: geo-0047 (48 resoluções; 3 com gabarito do Aprendice, letras iguais às cegas e ao preliminar: P86d67d4f D, P510c8b31 D, P023ff333 C). Pendentes: Paecc8f79 (é de Física), P0ca47d8c (ANULAR).
+DADO P5803c096: texto_da_prova -> no print está "não é apenas uma questão científica" e "É uma questão estratégica" (a entrada perdeu a palavra "questão" nos dois trechos)
+RECLASS Paecc8f79 G -> fis F08.5 (Unespar 2025 q27: convecção e brisa, na parte de Física da prova, junto da q26 e q28 já em fis)
+RECLASS P31ba8a5b G03.2 -> G03.6 (UFSM 2025 q66: definição do efeito estufa)
+RECLASS Pf85a4140 G03.1 -> G03.5 (pergunta sobre El Niño e La Niña)
+RECLASS P61761677 G03.2 -> G02.6 (meandros em planície, relevo)
+DADO P73705dde: texto_da_prova -> no print começa por "A estiagem é um dos desastres naturais..." (falta o "A" inicial)
+ANULAR P0ca47d8c: a foto é o West Mitten Butte (Monument Valley), morro de arenito, rocha sedimentar; o gabarito A e a justificativa oficial da Cecierj dizem "rochas cristalinas" (gnaisse, granito), o que é falso para a imagem
+DADO P18c4344c: texto_da_prova e alternativas -> texto embaralhado e sem alternativas; no print A dobramento moderno · B montanhas jovens · C chapadas sedimentares · D morros e depressões absolutas · E montanhas velhas
