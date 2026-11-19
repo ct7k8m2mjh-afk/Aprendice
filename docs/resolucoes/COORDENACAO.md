@@ -21,7 +21,7 @@ questão. Fala com o dono em português do Brasil, simples. Mantém a própria c
 ## Sessões de matéria
 - 6 matérias ao mesmo tempo (dono, 13/11: pediu Geografia de volta e autorizou uso extra): Matemática, Física, Química,
   Biologia, Português e Geografia. História, Inglês e Filosofia e Sociologia acabaram.
-- Modo enxuto (PROMPT-SESSAO-RESOLUCOES.md): lote de 60, 6 agentes resolvem em paralelo, 2 conferentes (30 cada) em
+- Modo enxuto (PROMPT-SESSAO-RESOLUCOES.md): lote de 50, 200 questões por sessão (4 lotes; dono 19/11), 6 agentes resolvem em paralelo, 2 conferentes (25 cada) em
   segundo plano enquanto o próximo lote já anda; a conversa principal só organiza. Troca pelo contexto (40%), não por
   número de lotes. Sessão de revisão separada: NÃO (avaliado em 13/11: o lote fica preso à sessão que o abriu, falar entre
   sessões pede aprovação ou consulta repetida, e o conferente em segundo plano já trabalha em paralelo e às cegas).
@@ -36,7 +36,7 @@ questão. Fala com o dono em português do Brasil, simples. Mantém a própria c
 `python3 ferramentas/resolucoes/vez.py <m>`: se der OCUPADO (outra sessão desta matéria gravou há menos de 45 min), encerre
 sem fazer nada. Senão, leia CLAUDE.md e siga integralmente docs/resolucoes/PROMPT-SESSAO-RESOLUCOES.md com a sua matéria =
 <m>, em especial o MODO ENXUTO (a sua conversa só organiza; resolver, conferir e abrir prints é sempre trabalho de agentes),
-o lote de 60 (`lote.py proximo <m> 60 --novo`) e o passo 9 (ao passar de 40% do contexto, termine os lotes abertos,
+o lote de 50 (`lote.py proximo <m> 50 --novo`) e o passo 9 (200 questões por sessão = 4 lotes de 50; ao gravar o 4º lote, ou se passar de 40% do contexto antes, termine os lotes abertos,
 escreva FIM na caixa e encerre). Retome antes os lotes abertos que o vez.py listar (`--retomar <lote>`). Prepare o
 ambiente em segundo plano: `cd app && (test -d node_modules || npm ci); python3 -m pip install -q --break-system-packages
 pillow numpy scipy; flock /tmp/converte.lock python3 scripts/converte.py`. Nunca use send_message e nunca pare esperando
