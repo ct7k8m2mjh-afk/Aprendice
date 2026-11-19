@@ -772,5 +772,122 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "P53f16b0b": {
+  "n": "31",
+  "conceito": "Achar um único elemento de um produto de matrizes com transposta, sem calcular o produto inteiro.",
+  "equivocos": {
+   "A": "M15.1:errou-sinal-no-produto",
+   "B": "M15.1:elemento-errado",
+   "D": "M15.1:trocou-linha-por-coluna",
+   "E": "M15.1:errou-sinal-no-produto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Você não precisa montar a matriz C inteira. O elemento c34 é a linha 3 de Aᵀ vezes a coluna 4 de B. E a linha 3 de Aᵀ é a coluna 3 de A: a transposta só troca linhas por colunas.",
+    "formulas": [
+     "c_ij = (linha i da 1ª matriz) · (coluna j da 2ª)",
+     "linha i de Aᵀ = coluna i de A"
+    ],
+    "simbolos": [
+     [
+      "Aᵀ",
+      "transposta de A: as linhas de A viram colunas"
+     ],
+     [
+      "c34",
+      "elemento da 3ª linha e 4ª coluna de C"
+     ]
+    ]
+   },
+   "pista": "Antes de multiplicar, descubra quem é a linha 3 de Aᵀ olhando para A.",
+   "passos": [
+    {
+     "faz": "Confira se o produto existe",
+     "conta": "Aᵀ: 4×3 | B: 3×5 → C: 4×5",
+     "porque": "A tem 3 linhas e 4 colunas, então Aᵀ é 4×3; o 3 do meio casa com as 3 linhas de B.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Tire a linha 3 de Aᵀ",
+     "conta": "coluna 3 de A = (3, −3, −1) → linha 3 de Aᵀ = (3, −3, −1)",
+     "porque": "Transpor transforma a coluna 3 de A na linha 3 de Aᵀ.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Tire a coluna 4 de B",
+     "conta": "coluna 4 de B = (1, −2, 4)",
+     "porque": "É o quarto número de cada linha de B: 1, −2 e 4.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Multiplique termo a termo e some",
+     "conta": "3·1 + (−3)·(−2) + (−1)·4 → 3 + 6 − 4 → 5",
+     "porque": "Cada termo da linha multiplica o termo correspondente da coluna; menos com menos dá mais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "c34 = 5",
+     "porque": "O valor bate com a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 5",
+   "checagem": "Sinal a sinal: os produtos são +3, +6 e −4; os positivos somam 9 e 9 − 4 = 5. E 5 não é 12, que seria c43 (linha e coluna trocadas).",
+   "erradas": {
+    "A": "A sai de errar um sinal: (−3)·(−2) contado como −6 dá 3 − 6 − 4 = −7.",
+    "B": "B não confere: 1 não aparece em nenhuma posição de AᵀB; o produto da linha 3 de Aᵀ pela coluna 4 de B só pode dar 5.",
+    "D": "D sai de trocar linha por coluna: c43 = (4, −4, 2)·(2, 0, 2) = 8 + 0 + 4 = 12.",
+    "E": "E sai de errar o último sinal: (−1)·4 contado como +4 dá 3 + 6 + 4 = 13."
+   },
+   "armadilha": "A linha 3 de Aᵀ é a COLUNA 3 de A, não a linha 3 de A; e c34 não é c43.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O elemento c34 de C = Aᵀ·B.",
+    "chave": "c34 = coluna 3 de A · coluna 4 de B.",
+    "cuidado": "Não confundir c34 com c43 e cuidar dos sinais nos produtos negativos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "somatório direto",
+    "ideia": "c34 = a13·b14 + a23·b24 + a33·b34, lendo a coluna 3 de A sem escrever a transposta."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "c34 = (linha 3 de Aᵀ) · (coluna 4 de B)",
+    "nota": "só o elemento pedido"
+   },
+   {
+    "linha": "(3, −3, −1) · (1, −2, 4)",
+    "nota": "linha 3 de Aᵀ = coluna 3 de A"
+   },
+   {
+    "linha": "3·1 + (−3)·(−2) + (−1)·4",
+    "nota": "termo a termo"
+   },
+   {
+    "linha": "3 + 6 − 4 = 5",
+    "nota": "menos com menos dá mais"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Caderno oficial PUCPR Vestibular de Inverno 2025, prova 1 branca (Medicina), questão 31",
+    "url": "https://static.pucpr.br/pucpr/2025/06/gabarito-vestibular-de-inverno-2025-prova-1-branca-medicina.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-pend-0001"
+  }
  }
 }

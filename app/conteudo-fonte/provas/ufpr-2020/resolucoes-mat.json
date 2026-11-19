@@ -834,5 +834,127 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0001"
   }
+ },
+ "Pbfde8575": {
+  "n": "18",
+  "conceito": "Vértices de um polígono regular centrado na origem: girar um vértice pelo ângulo central para achar o vizinho.",
+  "equivocos": {
+   "A": "M12.1:supos-vertice-no-eixo",
+   "B": "M12.1:ordenada-maior-que-o-raio",
+   "C": "M12.1:ordenada-maior-que-o-raio",
+   "E": "M12.1:usou-angulo-de-60"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No octógono regular com centro na origem, todos os vértices estão à mesma distância do centro (o raio), e de um vértice ao vizinho o ângulo central é 360° ÷ 8 = 45°. Na figura, B é o vizinho de A no sentido anti-horário. Então B é A girado 45° em torno da origem.",
+    "formulas": [
+     "raio: r = √(x² + y²)",
+     "ângulo central: 360°/8 = 45°",
+     "sen(α + 45°) = sen α · cos 45° + cos α · sen 45°"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "ângulo que o segmento da origem até A faz com o eixo x"
+     ],
+     [
+      "ângulo central",
+      "ângulo entre os segmentos que ligam o centro a dois vértices vizinhos"
+     ]
+    ]
+   },
+   "pista": "Calcule a distância de A até a origem e o ângulo entre dois vértices vizinhos.",
+   "passos": [
+    {
+     "faz": "Ache o raio pelo vértice A",
+     "conta": "r = √(8² + 6²) → √(64 + 36) → √100 → 10",
+     "porque": "O centro é a origem, então a distância de A à origem é o raio do octógono.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva seno e cosseno do ângulo de A",
+     "conta": "cos α = 8/10 = 0,8 | sen α = 6/10 = 0,6",
+     "porque": "A = (r cos α, r sen α), com r = 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Gire 45° até B",
+     "conta": "y_B = 10 · sen(α + 45°) = 10 · (sen α · cos 45° + cos α · sen 45°)",
+     "porque": "Pela figura, B é o vértice seguinte no sentido anti-horário; o ângulo central do octógono é 45°.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a ordenada",
+     "conta": "10 · (0,6 + 0,8) · √2/2 → 10 · 1,4 · √2/2 → 7√2",
+     "porque": "cos 45° = sen 45° = √2/2, então os dois termos se juntam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "y_B = 7√2 ≈ 9,90",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 7√2",
+   "checagem": "A abscissa de B é 10 · (0,8 − 0,6) · √2/2 = √2 ≈ 1,41, positiva e pequena: B fica logo à direita do eixo y, como na figura. E (√2)² + (7√2)² = 2 + 98 = 100 = 10²: B está no círculo de raio 10.",
+   "erradas": {
+    "A": "A sai de pôr B sobre o eixo y: aí a ordenada seria o próprio raio, 10. Mas B está um pouco à direita do eixo (x = √2).",
+    "B": "B não confere: nenhum vértice pode ter ordenada maior que o raio, 10.",
+    "C": "C não confere: 2 + 6√2 ≈ 10,49, maior que o raio 10.",
+    "E": "E sai de girar 60° em vez de 45°: 8 · sen 60° + 6 · cos 60° = 4√3 + 3. O ângulo de 60° é o do hexágono, não o do octógono."
+   },
+   "armadilha": "O ângulo entre vértices vizinhos é 360°/8 = 45°; quem usa 60° (hexágono) ou supõe B no eixo y erra.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A ordenada do vértice B, vizinho de A no octógono regular.",
+    "chave": "Raio 10 pelo ponto A e rotação de 45° (ângulo central do octógono).",
+    "cuidado": "B não está sobre o eixo y; nenhuma ordenada passa do raio."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "rotação por matriz",
+    "ideia": "B = A girado 45°: y_B = x_A · sen 45° + y_A · cos 45° = (8 + 6) · √2/2 = 7√2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "r = √(8² + 6²) = √100 = 10",
+    "nota": "distância de A ao centro"
+   },
+   {
+    "linha": "cos α = 8/10 | sen α = 6/10",
+    "nota": "ângulo de A"
+   },
+   {
+    "linha": "y_B = 10 · (sen α · cos 45° + cos α · sen 45°)",
+    "nota": "gira 45°"
+   },
+   {
+    "linha": "10 · (6/10 + 8/10) · √2/2",
+    "nota": "cos 45° = sen 45° = √2/2"
+   },
+   {
+    "linha": "10 · 14/10 · √2/2 = 7√2",
+    "nota": "o 10 se cancela"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Caderno oficial UFPR PS 2020, 1ª fase, Conhecimentos Gerais, questão 18 (gabarito definitivo)",
+    "url": "https://servicos.nc.ufpr.br/documentos/PS2020/provas1fase/ps2020_conhecimentos_gerais.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-pend-0001"
+  }
  }
 }
