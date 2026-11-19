@@ -1227,5 +1227,108 @@
    "data": "2026-11-19",
    "lote": "mat-0071"
   }
+ },
+ "Pbc284255": {
+  "n": "24",
+  "conceito": "Soma dos coeficientes de grau ímpar de um polinômio a partir de P(1) e P(−1).",
+  "equivocos": {
+   "B": "M16.1:esqueceu-de-dividir-por-2",
+   "C": "M16.1:substituicao-errada-em-x-igual-a-1",
+   "D": "M16.1:ignorou-fator-nulo",
+   "E": "M16.1:respondeu-p-de-menos-1"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Não expanda o produto: troque x por 1 e por −1. P(1) é a soma de todos os coeficientes; P(−1) é a soma dos de grau par menos a dos de grau ímpar, porque (−1) elevado a ímpar dá −1. Subtraindo uma da outra, os pares somem e sobra o dobro dos ímpares.",
+    "formulas": [
+     "P(1) = a₀ + a₁ + a₂ + a₃ + …",
+     "P(−1) = a₀ − a₁ + a₂ − a₃ + …",
+     "a₁ + a₃ + a₅ + … = (P(1) − P(−1))/2"
+    ],
+    "simbolos": [
+     [
+      "aₖ",
+      "coeficiente do termo de grau k"
+     ],
+     [
+      "2²⁴",
+      "2 elevado a 24"
+     ]
+    ]
+   },
+   "pista": "Calcule P(1) e P(−1); um dos fatores zera em um deles.",
+   "passos": [
+    {
+     "faz": "Calcule P(1)",
+     "conta": "P(1) = (1 + 1)²⁵ · (2 − 1)¹⁵ → 2²⁵ · 1 → 2²⁵",
+     "porque": "Com x = 1 todas as potências de x valem 1: sobra a soma de todos os coeficientes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule P(−1)",
+     "conta": "P(−1) = (1 − 1)²⁵ · (2 + 1)¹⁵ → 0 · 3¹⁵ → 0",
+     "porque": "O fator (1 + x)²⁵ zera em x = −1, e isso zera o produto inteiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a soma dos ímpares",
+     "conta": "P(1) − P(−1) = 2(a₁ + a₃ + …) → (2²⁵ − 0)/2 → 2²⁴",
+     "porque": "Na subtração os coeficientes pares se cancelam e os ímpares aparecem duas vezes; o 2 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "a₁ + a₃ + a₅ + … = 2²⁴ → alternativa A",
+     "porque": "É a soma pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2²⁴",
+   "checagem": "Como P(−1) = 0, a soma dos pares é igual à dos ímpares; as duas juntas dão P(1) = 2²⁵, então cada uma é 2²⁵/2 = 2²⁴.",
+   "erradas": {
+    "B": "2²⁵ sai de parar em P(1): essa é a soma de todos os coeficientes, pares e ímpares, e falta dividir por 2.",
+    "C": "2³⁹ sai de tratar (2 − x)¹⁵ como 2¹⁵ em x = 1: P(1) viraria 2²⁵ · 2¹⁵ = 2⁴⁰, e a metade, 2³⁹. Mas 2 − 1 = 1.",
+    "D": "3¹⁵ sai de olhar só o fator (2 + 1)¹⁵ de P(−1), esquecendo que o outro fator, (1 − 1)²⁵, vale 0.",
+    "E": "0 sai de responder P(−1), que é a diferença entre pares e ímpares, e não a soma dos ímpares."
+   },
+   "armadilha": "P(1) dá a soma de todos os coeficientes; a dos ímpares é (P(1) − P(−1))/2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos coeficientes de grau ímpar de (1 + x)²⁵(2 − x)¹⁵.",
+    "chave": "P(1) = 2²⁵ e P(−1) = 0, logo a soma é (2²⁵ − 0)/2 = 2²⁴.",
+    "cuidado": "Divida por 2 e não confunda P(−1) com a resposta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria",
+    "ideia": "Como P(−1) = 0, pares e ímpares têm a mesma soma; metade de P(1) = 2²⁵ é 2²⁴."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(1) = 2²⁵ · 1¹⁵ = 2²⁵",
+    "nota": "soma de todos os coeficientes"
+   },
+   {
+    "linha": "P(−1) = 0²⁵ · 3¹⁵ = 0",
+    "nota": "pares menos ímpares"
+   },
+   {
+    "linha": "(2²⁵ − 0)/2 = 2²⁴",
+    "nota": "isolar os ímpares"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
  }
 }

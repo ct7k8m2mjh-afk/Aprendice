@@ -788,5 +788,214 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "P63f6ecd3": {
+  "n": "16",
+  "conceito": "Soma dos inversos das raízes de uma cúbica pelas relações de Girard.",
+  "equivocos": {
+   "B": "M16.1:sinal-do-produto-no-grau-impar",
+   "C": "M16.1:esqueceu-denominador",
+   "D": "M16.1:respondeu-o-produto",
+   "E": "M16.1:numerador-nulo-suposto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Some as frações 1/a + 1/b + 1/c com denominador comum abc: o numerador vira bc + ac + ab. As duas partes saem de Girard: a soma dos produtos dois a dois é c/a e o produto é −d/a.",
+    "formulas": [
+     "1/a + 1/b + 1/c = (ab + ac + bc)/(abc)",
+     "ab + ac + bc = c/a (coeficientes)",
+     "abc = −d/a (coeficientes)"
+    ],
+    "simbolos": [
+     [
+      "a, b, c",
+      "as raízes da equação (não os coeficientes)"
+     ],
+     [
+      "Girard",
+      "relações entre coeficientes e raízes"
+     ]
+    ]
+   },
+   "pista": "Coloque as três frações no mesmo denominador antes de pensar nos coeficientes.",
+   "passos": [
+    {
+     "faz": "Junte as frações",
+     "conta": "1/a + 1/b + 1/c → (bc + ac + ab)/(abc)",
+     "porque": "O denominador comum é abc; cada fração ganha os outros dois fatores no numerador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia Girard na equação",
+     "conta": "x³ − x² + 4x − 4 = 0 → ab + ac + bc = 4/1 = 4 | abc = −(−4)/1 = 4",
+     "porque": "Soma dois a dois é o coeficiente de x dividido pelo de x³; o produto é o oposto do termo independente dividido pelo de x³.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua",
+     "conta": "(ab + ac + bc)/(abc) = 4/4 → 1",
+     "porque": "Numerador e denominador valem 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1/a + 1/b + 1/c = 1 → alternativa A",
+     "porque": "É o valor pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1",
+   "checagem": "A equação fatora: x²(x − 1) + 4(x − 1) = (x − 1)(x² + 4), raízes 1, 2i e −2i. Então 1/1 + 1/(2i) + 1/(−2i) = 1 + 0 = 1.",
+   "erradas": {
+    "B": "−1 sai de usar abc = d/a = −4 (sem o sinal de menos): 4/(−4) = −1.",
+    "C": "4 sai de parar no numerador ab + ac + bc = 4 e esquecer de dividir por abc.",
+    "D": "−4 sai de parar no produto com o sinal trocado, d/a = −4, sem montar a fração.",
+    "E": "0 não confere: o numerador ab + ac + bc = 4 não é zero, então a fração não pode ser 0."
+   },
+   "armadilha": "No 3º grau o produto das raízes é −d/a; com d/a o resultado troca de sinal.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de 1/a + 1/b + 1/c para as raízes de x³ − x² + 4x − 4 = 0.",
+    "chave": "(ab + ac + bc)/(abc) = 4/4 = 1.",
+    "cuidado": "Use −d/a para o produto e não pare no numerador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "achar as raízes",
+    "ideia": "Fatore por agrupamento, (x − 1)(x² + 4) = 0, raízes 1 e ±2i; os inversos de 2i e −2i se anulam e sobra 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1/a + 1/b + 1/c = (ab + ac + bc)/(abc)",
+    "nota": "denominador comum"
+   },
+   {
+    "linha": "ab + ac + bc = 4 | abc = −(−4)/1 = 4",
+    "nota": "Girard"
+   },
+   {
+    "linha": "4/4 = 1",
+    "nota": "substituir"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
+ },
+ "P053636f4": {
+  "n": "18",
+  "conceito": "Teorema do resto e fatoração: raízes dadas pela divisibilidade e coeficientes achados pelo resto.",
+  "equivocos": {
+   "A": "M16.1:conta-final-errada",
+   "B": "M16.1:conta-final-errada",
+   "C": "M16.1:respondeu-o-resto",
+   "D": "M16.1:conta-final-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Divisível por x − 1 e por x − 2 quer dizer que 1 e 2 são raízes. Repare também que p(x) não tem termo independente, então p(0) = 0 e 0 é raiz. Com três raízes conhecidas, só falta a quarta, e o resto 24 na divisão por x + 1 (que é p(−1) = 24) a revela.",
+    "formulas": [
+     "resto da divisão de p(x) por (x − r) = p(r)",
+     "p(x) = x(x − 1)(x − 2)(x − m)"
+    ],
+    "simbolos": [
+     [
+      "teorema do resto",
+      "o resto da divisão por (x − r) é o valor p(r)"
+     ],
+     [
+      "m",
+      "a quarta raiz, desconhecida"
+     ]
+    ]
+   },
+   "pista": "Olhe o termo independente de p(x): ele não existe. O que isso diz sobre x = 0?",
+   "passos": [
+    {
+     "faz": "Junte as raízes conhecidas",
+     "conta": "p(0) = 0 | p(1) = 0 | p(2) = 0 → p(x) = x(x − 1)(x − 2)(x − m)",
+     "porque": "Sem termo independente, 0 é raiz; divisível por x − 1 e x − 2 dá as raízes 1 e 2. O coeficiente de x⁴ é 1, então não há constante na frente.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use o resto 24 para achar m",
+     "conta": "p(−1) = (−1)(−2)(−3)(−1 − m) = 24 → −6(−1 − m) = 24 → 6 + 6m = 24 → m = 3",
+     "porque": "Pelo teorema do resto, dividir por x + 1 deixa resto p(−1). O 6 passa subtraindo e depois o 6 que multiplica m passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Expanda e leia a, b e c",
+     "conta": "x(x − 1)(x − 2)(x − 3) → x⁴ − 6x³ + 11x² − 6x → a = −6 | b = 11 | c = −6",
+     "porque": "Comparando com x⁴ + ax³ + bx² + cx, cada coeficiente sai direto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule (ab)/c",
+     "conta": "(ab)/c = ((−6) · 11)/(−6) → −66/(−6) → 11 → alternativa E",
+     "porque": "Os dois sinais negativos se cancelam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 11",
+   "checagem": "Confira as três condições com a = −6, b = 11, c = −6: p(1) = 1 − 6 + 11 − 6 = 0; p(2) = 16 − 48 + 44 − 12 = 0; p(−1) = 1 + 6 + 11 + 6 = 24.",
+   "erradas": {
+    "A": "10 não confere: com a = −6, b = 11 e c = −6, (ab)/c = −66/(−6) = 11.",
+    "B": "12 não confere: para dar 12 seria preciso ab = −72, mas ab = (−6) · 11 = −66.",
+    "C": "24 sai de responder o resto da divisão por x + 1, que é dado do enunciado e não o valor de (ab)/c.",
+    "D": "48 não confere: o cálculo dá 11, e 48 nem é divisor de ab = −66."
+   },
+   "armadilha": "Não perceber que a falta do termo independente faz de 0 uma raiz; sem isso, a questão vira um sistema de três equações.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de (ab)/c sabendo as divisibilidades e o resto 24.",
+    "chave": "p(x) = x(x − 1)(x − 2)(x − 3), logo a = −6, b = 11, c = −6 e (ab)/c = 11.",
+    "cuidado": "O resto na divisão por x + 1 é p(−1), com x = −1, não x = 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sistema",
+    "ideia": "p(1) = 0, p(2) = 0 e p(−1) = 24 dão a + b + c = −1, 8a + 4b + 2c = −16 e −a + b − c = 23; resolvendo, a = −6, b = 11, c = −6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p(x) = x(x − 1)(x − 2)(x − m)",
+    "nota": "raízes 0, 1 e 2"
+   },
+   {
+    "linha": "−6(−1 − m) = 24 → 6 + 6m = 24 → m = 3",
+    "nota": "p(−1) = 24"
+   },
+   {
+    "linha": "x⁴ − 6x³ + 11x² − 6x",
+    "nota": "a = −6, b = 11, c = −6"
+   },
+   {
+    "linha": "(−6 · 11)/(−6) = 11",
+    "nota": "(ab)/c"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
  }
 }

@@ -387,5 +387,123 @@
    "data": "2026-11-19",
    "lote": "mat-0069"
   }
+ },
+ "P07ecdb23": {
+  "n": "13",
+  "conceito": "Montar matrizes pela lei de formação, calcular um determinante 2x2 e testar divisibilidade do resultado.",
+  "equivocos": {
+   "A": "M15.2:trocou-linha-e-coluna",
+   "B": "M15.2:somou-as-diagonais",
+   "C": "M01.4:nao-testou-divisor-3",
+   "D": "M01.4:errou-paridade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Tudo começa pela lei de formação: a_ij usa a linha i e a coluna j. A matriz A é 2x2, então só i e j de 1 a 2; de B você só precisa de dois elementos, b21 e b33, sem montar a matriz inteira. Com o número final em mãos, cada afirmação é um teste de divisibilidade.",
+    "formulas": [
+     "a_ij = i + j ; b_ij = 2i + 3j",
+     "det de 2x2 = a11·a22 − a12·a21"
+    ],
+    "simbolos": [
+     [
+      "a_ij",
+      "elemento da linha i e da coluna j da matriz A"
+     ],
+     [
+      "b21",
+      "elemento de B na linha 2, coluna 1 (i = 2, j = 1)"
+     ],
+     [
+      "det A",
+      "determinante da matriz A"
+     ]
+    ]
+   },
+   "pista": "Monte A com i + j em cada posição e cuide da ordem dos índices em b21: o primeiro número é a linha.",
+   "passos": [
+    {
+     "faz": "Monte a matriz A",
+     "conta": "a11 = 2 | a12 = 3 | a21 = 3 | a22 = 4",
+     "porque": "Cada elemento é a soma do número da linha com o da coluna: a12 = 1 + 2 = 3, a22 = 2 + 2 = 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o determinante de A",
+     "conta": "det A = 2·4 − 3·3 → 8 − 9 → −1",
+     "porque": "Em 2x2, o determinante é o produto da diagonal principal menos o da secundária.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule b21 e b33",
+     "conta": "b21 = 2·2 + 3·1 → 7 | b33 = 2·3 + 3·3 → 15",
+     "porque": "Em b21, i = 2 (linha) e j = 1 (coluna); em b33, i = j = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e teste cada afirmação",
+     "conta": "−1 + 7 + 15 = 21 → 21 = 3·7",
+     "porque": "21 é ímpar (I falsa), é múltiplo de 3 (II verdadeira) e de 7 (III verdadeira).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — apenas II e III: o resultado 21 é divisível por 3 e por 7, mas não é par.",
+   "checagem": "Confira só pelos restos: 21 dividido por 2 deixa resto 1, por 3 deixa resto 0 e por 7 deixa resto 0. Só as afirmações II e III passam.",
+   "erradas": {
+    "A": "A sai de trocar b21 por b12: b12 = 2·1 + 3·2 = 8, e −1 + 8 + 15 = 22, que é par mas não é múltiplo de 3 nem de 7.",
+    "B": "B sai de somar as diagonais no determinante: 8 + 9 = 17, e 17 + 7 + 15 = 39 = 3·13, múltiplo de 3 só.",
+    "C": "C não confere: 21 também é múltiplo de 3 (21 = 3·7), então II é verdadeira junto com III.",
+    "D": "D não confere: 21 é ímpar, então I é falsa; além disso 21 é múltiplo de 7, o que D deixa de fora."
+   },
+   "armadilha": "Em b21 o primeiro índice é a linha: trocar por b12 muda o valor de 7 para 8 e o resultado vira par.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Julgar paridade e divisibilidade por 3 e por 7 de det A + b21 + b33.",
+    "chave": "A = [2 3; 3 4], det A = −1; b21 = 7, b33 = 15; total 21 = 3·7.",
+    "cuidado": "Respeite a ordem linha-coluna dos índices e subtraia (não some) a diagonal secundária."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "só restos",
+    "ideia": "Não precisa fatorar: some os restos de cada parcela por 2, 3 e 7 e veja quais dão zero."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a11 = 2, a12 = 3, a21 = 3, a22 = 4",
+    "nota": "montar A com i + j"
+   },
+   {
+    "linha": "det A = 2·4 − 3·3",
+    "nota": "diagonal principal menos secundária"
+   },
+   {
+    "linha": "det A = 8 − 9 = −1",
+    "nota": "fazer as contas"
+   },
+   {
+    "linha": "b21 = 2·2 + 3·1 = 7",
+    "nota": "linha 2, coluna 1"
+   },
+   {
+    "linha": "b33 = 2·3 + 3·3 = 15",
+    "nota": "linha 3, coluna 3"
+   },
+   {
+    "linha": "−1 + 7 + 15 = 21 = 3·7",
+    "nota": "ímpar, múltiplo de 3 e de 7"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
  }
 }

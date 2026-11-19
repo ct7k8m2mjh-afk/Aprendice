@@ -765,5 +765,129 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P76c1f1a5": {
+  "n": "4",
+  "conceito": "Fatorar um polinômio por agrupamento e analisar a multiplicidade da raiz −2.",
+  "equivocos": {
+   "A": "M16.1:nao-ajustou-o-parametro",
+   "C": "M16.1:soma-de-cubos-como-cubo",
+   "D": "M16.1:multiplicidade-sem-teste",
+   "E": "M16.1:ignorou-a-raiz-1"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Agrupe os termos com b e os sem b: os dois grupos têm o mesmo fator x² + x − 2. Assim g(x) = (x² + x − 2)(x³ + b) = (x + 2)(x − 1)(x³ + b). Um fator (x + 2) já existe; para ganhar outro, x³ + b precisa zerar em −2, e o que sobrar não pode ter −2 de novo.",
+    "formulas": [
+     "x² + x − 2 = (x + 2)(x − 1)",
+     "x³ + 8 = (x + 2)(x² − 2x + 4)"
+    ],
+    "simbolos": [
+     [
+      "(x + 2)^k",
+      "o fator x + 2 repetido k vezes"
+     ],
+     [
+      "multiplicidade",
+      "quantas vezes −2 é raiz de g"
+     ]
+    ]
+   },
+   "pista": "Separe os termos que têm b dos que não têm e procure um fator comum.",
+   "passos": [
+    {
+     "faz": "Fatore por agrupamento",
+     "conta": "x³(x² + x − 2) + b(x² + x − 2) → (x² + x − 2)(x³ + b)",
+     "porque": "x⁵ + x⁴ − 2x³ = x³(x² + x − 2) e bx² + bx − 2b = b(x² + x − 2).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore o 2º grau",
+     "conta": "x² + x − 2 → (x + 2)(x − 1)",
+     "porque": "Raízes −2 e 1: já há um fator (x + 2) para qualquer b.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça x³ + b zerar em −2",
+     "conta": "(−2)³ + b = 0 → b = 8 → x³ + 8 = (x + 2)(x² − 2x + 4)",
+     "porque": "É o único inteiro b que dá mais um fator (x + 2).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste um terceiro fator",
+     "conta": "x² − 2x + 4 em x = −2 → 4 + 4 + 4 = 12 ≠ 0",
+     "porque": "Nem x − 1 nem x² − 2x + 4 zeram em −2, então não há (x + 2)³.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "g(x) = (x + 2)²(x − 1)(x² − 2x + 4) → k = 2",
+     "porque": "O maior expoente possível é 2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — k = 2",
+   "checagem": "Pelas derivadas: com b = 8, g(−2) = 0 e g'(−2) = 0, mas g''(−2) = −72 ≠ 0, então −2 é raiz dupla e não tripla. Para outros b, g(−2) = 0 mas g'(−2) ≠ 0.",
+   "erradas": {
+    "A": "A sai de ver só o fator (x + 2) de x² + x − 2 e não escolher b = 8, que dá o segundo fator.",
+    "C": "C sai de confundir x³ + 8 com (x + 2)³: na verdade x³ + 8 = (x + 2)(x² − 2x + 4), um fator só.",
+    "D": "D não confere: (x + 2)⁴ exigiria (x + 2)³ dividindo x³ + b, mas x³ + b tem raízes distintas para b ≠ 0 e, com b = 8, sobra x² − 2x + 4, que vale 12 em −2.",
+    "E": "E não confere: (x + 2)⁵ seria o próprio g, mas g(1) = 0 para qualquer b, e 1 não é raiz de (x + 2)⁵."
+   },
+   "armadilha": "x³ + 8 é soma de cubos, não (x + 2)³: ele dá só mais um fator (x + 2).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O maior k com (x + 2)^k dividindo g para algum b inteiro.",
+    "chave": "g = (x + 2)(x − 1)(x³ + b); com b = 8 sai mais um (x + 2) e nada além.",
+    "cuidado": "Fatore a soma de cubos corretamente e teste se o fator restante zera em −2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "derivadas",
+    "ideia": "−2 é raiz de multiplicidade k ⇔ g e as derivadas até a ordem k − 1 zeram em −2; com b = 8, g''(−2) = −72 ≠ 0, logo k = 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "g = x³(x² + x − 2) + b(x² + x − 2)",
+    "nota": "agrupamento"
+   },
+   {
+    "linha": "g = (x + 2)(x − 1)(x³ + b)",
+    "nota": "fator comum e 2º grau fatorado"
+   },
+   {
+    "linha": "b = 8: x³ + 8 = (x + 2)(x² − 2x + 4)",
+    "nota": "soma de cubos"
+   },
+   {
+    "linha": "x² − 2x + 4 em −2 = 12 ≠ 0",
+    "nota": "sem terceiro fator"
+   },
+   {
+    "linha": "g = (x + 2)²(x − 1)(x² − 2x + 4)",
+    "nota": "k = 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
  }
 }

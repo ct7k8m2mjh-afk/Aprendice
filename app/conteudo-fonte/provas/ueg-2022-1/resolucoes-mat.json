@@ -798,5 +798,114 @@
    "data": "2026-11-19",
    "lote": "mat-0070"
   }
+ },
+ "Pa41be14d": {
+  "n": "19",
+  "conceito": "Divisão de polinômio de grau 4 por polinômio de grau 2 pelo método da chave, para achar o resto.",
+  "equivocos": {
+   "A": "M16.1:sinal-trocado-na-subtracao",
+   "B": "M16.1:termo-constante-errado",
+   "C": "M16.1:subtracao-do-termo-em-x-errada",
+   "D": "M16.1:sinal-do-termo-em-x-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O divisor h(x) tem grau 2, então o resto tem grau no máximo 1: é da forma mx + n. O método da chave resolve em três rodadas: em cada uma, divida o termo de maior grau do que sobrou por 2x², multiplique h(x) pelo resultado e subtraia. O cuidado é com os sinais na subtração.",
+    "formulas": [
+     "p(x) = h(x) · q(x) + r(x), com grau de r menor que o grau de h"
+    ],
+    "simbolos": [
+     [
+      "p(x)",
+      "o dividendo, 2x⁴ − 2x³ − 13x² + 10x − 1"
+     ],
+     [
+      "h(x)",
+      "o divisor, 2x² + 4x − 3"
+     ],
+     [
+      "q(x)",
+      "o quociente"
+     ],
+     [
+      "r(x)",
+      "o resto"
+     ]
+    ]
+   },
+   "pista": "Comece dividindo 2x⁴ por 2x² e subtraia de p(x) o produto desse termo por h(x), trocando todos os sinais.",
+   "passos": [
+    {
+     "faz": "Tire o primeiro termo do quociente",
+     "conta": "2x⁴ ÷ 2x² = x² → p(x) − x² · h(x) → −6x³ − 10x² + 10x − 1",
+     "porque": "x² · h(x) = 2x⁴ + 4x³ − 3x². Subtraindo: −2x³ − 4x³ = −6x³ e −13x² + 3x² = −10x².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire o segundo termo do quociente",
+     "conta": "−6x³ ÷ 2x² = −3x → (−6x³ − 10x² + 10x − 1) − (−3x) · h(x) → 2x² + x − 1",
+     "porque": "(−3x) · h(x) = −6x³ − 12x² + 9x. Subtraindo: −10x² + 12x² = 2x² e 10x − 9x = x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire o terceiro termo e chegue ao resto",
+     "conta": "2x² ÷ 2x² = 1 → (2x² + x − 1) − (2x² + 4x − 3) → −3x + 2",
+     "porque": "O que sobrou tem grau 1, menor que o de h(x): a divisão acabou. x − 4x = −3x e −1 − (−3) = 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resto à alternativa",
+     "conta": "q(x) = x² − 3x + 1 | r(x) = −3x + 2 → alternativa E",
+     "porque": "A pergunta é só o resto, não o quociente.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — r(x) = −3x + 2",
+   "checagem": "Faça a prova real: (2x² + 4x − 3)(x² − 3x + 1) = 2x⁴ − 2x³ − 13x² + 13x − 3; somando −3x + 2, sai 2x⁴ − 2x³ − 13x² + 10x − 1, que é p(x).",
+   "erradas": {
+    "A": "−3x + 4 não confere: h(x) · q(x) tem termo constante −3, e −3 + 4 = 1, não o −1 de p(x).",
+    "B": "−3x + 3 não confere: o termo constante ficaria −3 + 3 = 0, e p(x) termina em −1.",
+    "C": "−4x + 2 não confere: h(x) · q(x) tem 13x; 13x − 4x = 9x, e p(x) tem 10x.",
+    "D": "4x + 2 não confere: 13x + 4x = 17x, e não os 10x de p(x)."
+   },
+   "armadilha": "Na subtração de cada rodada, todos os sinais do produto se invertem: −1 − (−3) dá +2, não −4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O resto da divisão de p(x) por h(x) = 2x² + 4x − 3.",
+    "chave": "Método da chave em três rodadas: quociente x² − 3x + 1 e resto −3x + 2.",
+    "cuidado": "Troque o sinal de todos os termos ao subtrair e pare quando o grau ficar menor que 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coeficientes a determinar",
+    "ideia": "Escreva p(x) = (2x² + 4x − 3)(x² + mx + k) + ax + b e iguale coeficientes: m = −3, k = 1, a = −3, b = 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2x⁴ − 2x³ − 13x² + 10x − 1 − (2x⁴ + 4x³ − 3x²) = −6x³ − 10x² + 10x − 1",
+    "nota": "1ª rodada: quociente x²"
+   },
+   {
+    "linha": "−6x³ − 10x² + 10x − 1 − (−6x³ − 12x² + 9x) = 2x² + x − 1",
+    "nota": "2ª rodada: quociente −3x"
+   },
+   {
+    "linha": "2x² + x − 1 − (2x² + 4x − 3) = −3x + 2",
+    "nota": "3ª rodada: quociente 1; sobra o resto"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
  }
 }

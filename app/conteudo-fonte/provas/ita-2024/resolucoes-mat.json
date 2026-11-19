@@ -225,5 +225,125 @@
    "data": "2026-11-13",
    "lote": "mat-0063"
   }
+ },
+ "P8cd77c57": {
+  "n": "38",
+  "conceito": "Analisar um sistema matricial em blocos: a 2ª equação sempre determina Y; tudo depende de AX = B.",
+  "equivocos": {
+   "A": "M15.3:det-nulo-vira-impossivel",
+   "B": "M15.3:esqueceu-matriz-nula",
+   "C": "M15.3:exigiu-d-inversivel",
+   "D": "M15.3:esqueceu-matriz-nula"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A segunda equação sempre se resolve: dado qualquer X, Y = C − DX. Então o sistema tem exatamente tantas soluções quanto a equação AX = B. A matriz D não interfere em nada; quem decide é A (e B). Cada afirmação cai com um contraexemplo simples.",
+    "formulas": [
+     "DX + Y = C → Y = C − DX",
+     "A inversível → AX = B tem solução única X = A⁻¹B"
+    ],
+    "simbolos": [
+     [
+      "Mn(R)",
+      "matrizes quadradas n×n de números reais"
+     ],
+     [
+      "det",
+      "determinante"
+     ],
+     [
+      "inversível",
+      "matriz com determinante diferente de zero"
+     ],
+     [
+      "A⁻¹",
+      "inversa da matriz A"
+     ]
+    ]
+   },
+   "pista": "Isole Y na segunda equação e veja o que sobra para decidir o número de soluções.",
+   "passos": [
+    {
+     "faz": "Isole Y na 2ª equação",
+     "conta": "DX + Y = C → Y = C − DX",
+     "porque": "Para cada X, existe um único Y. A segunda equação nunca trava o sistema.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reduza o sistema a AX = B",
+     "conta": "nº de soluções (X, Y) = nº de soluções de AX = B",
+     "porque": "Cada X que resolve AX = B gera um único par (X, Y).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste I com A = B = 0",
+     "conta": "0·X = 0 → qualquer X serve",
+     "porque": "det A = 0 e o sistema tem infinitas soluções: possível, não impossível. Também det D = 0 não muda nada. I é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste II e III",
+     "conta": "A = B = 0: infinitas | A = I, D = 0: única",
+     "porque": "Em II, A = B = 0 tem infinitas soluções. Em III, A = I e D = 0 dão solução única X = B, Y = C, mesmo com D não inversível.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "I falsa | II falsa | III falsa → nenhuma",
+     "porque": "Nenhuma das três resiste a um contraexemplo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — nenhuma das afirmações é verdadeira.",
+   "checagem": "Pense por blocos: a matriz do sistema em (X, Y) é [A 0; D I], cujo determinante é det A · det I = det A. Solução única ⇔ det A ≠ 0, sem nenhuma exigência sobre D.",
+   "erradas": {
+    "A": "A não confere: com A = B = 0 temos det A = 0 e o sistema tem infinitas soluções; e det D = 0 nunca impede achar Y = C − DX.",
+    "B": "B não confere: com A = B = 0, a hipótese A = B vale e o sistema tem infinitas soluções, não uma só.",
+    "C": "C não confere: A = I e D = 0 dão solução única (X = B, Y = C) sem D ser inversível.",
+    "D": "D não confere: II e III caem com os contraexemplos A = B = 0 e D = 0, respectivamente."
+   },
+   "armadilha": "Achar que D precisa ser inversível: Y aparece sozinho na 2ª equação, então D não decide nada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmações sobre o sistema AX = B, DX + Y = C são verdadeiras.",
+    "chave": "Y = C − DX sempre existe; o número de soluções é o de AX = B, que só depende de A e B.",
+    "cuidado": "Teste cada afirmação com a matriz nula e a identidade antes de acreditar nela."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "determinante por blocos",
+    "ideia": "O sistema em (X, Y) tem matriz [A 0; D I], de determinante det A: unicidade ⇔ A inversível, nada sobre D."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "DX + Y = C → Y = C − DX",
+    "nota": "Y sempre determinado"
+   },
+   {
+    "linha": "sistema ⇔ AX = B",
+    "nota": "só A e B decidem"
+   },
+   {
+    "linha": "A = B = 0 → 0·X = 0",
+    "nota": "infinitas soluções: I e II caem"
+   },
+   {
+    "linha": "A = I, D = 0 → X = B, Y = C",
+    "nota": "única sem D inversível: III cai"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
  }
 }

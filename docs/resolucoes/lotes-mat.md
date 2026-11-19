@@ -1,6 +1,6 @@
 # Matemática: resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 745 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 24; ENEM nível 7-10 76; provas-alvo nível 7-10 253; demais nível 7-10 392.
+Faltam 695 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 50; provas-alvo nível 7-10 253; demais nível 7-10 392.
 
 ## Lotes
 
@@ -77,7 +77,8 @@ Faltam 745 questões sem resolução (fora as que estão em lote, pendentes ou c
 | mat-0069 | demais nível 1-6 | 50 | gravado | 48 | 2 | 0 |
 | mat-0070 | demais nível 1-6 | 50 | gravado | 48 | 2 | 0 |
 | mat-0071 | demais nível 1-6 | 50 | gravado | 44 | 6 | 0 |
-| mat-0072 | demais nível 1-6 | 50 | aberto |  |  |  |
+| mat-0072 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
+| mat-0073 | demais nível 1-6 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -85,6 +86,7 @@ Faltam 745 questões sem resolução (fora as que estão em lote, pendentes ou c
 |---|---|---|---|
 | Pa9476dac | FCM-MG 2021 2º semestre · questão 47 | M14.1 média, mediana e moda (tema M14 Estatística) | anular: nenhuma alternativa é correta. Valores do gráfico: 93, 131, 115, 57, 97, 50, 59, 92, 272, 558, 324, 329, 200, 119 (14 semanas). A (oficial): média das 4 primeiras = 396/4 = 99 e das 4 seguintes = 298/4 = 74,5; 99/74,5 = 1,329, ou seja, 33% maior (25% é quanto a segunda é MENOR que a primeira: 24,5/99 = 24,7%). B: mediana = (115 + 119)/2 = 117, não 76, e não há moda (nenhum valor se repete). C: mesma mediana 117 e moda inexistente. D: média = 2496/14 = 178,3, não 200, e não há moda. Busca na web sem errata nem resolução publicada. |
 | Pc99e3797 | ITA 2025 1ª fase · questão 3 | M13.9 combinatória e probabilidade — outros casos (tema M13 Combinatória e probabilidade) | print: os expoentes do enunciado foram cortados no topo do print (aparece só (x + 1/x)(x − 2/x)); no PDF oficial a expressão é (x + 1/x)⁶ (x − 2/x)⁵. Refazer o print do PDF oficial (vestibular.ita.br/provas/2025_fase1.pdf, questão 3). |
+| P528013c1 | PUCPR 2024 Medicina 2024/2 · questão 36 | M16.1 polinômios e relações de Girard (tema M16 Polinômios e complexos) | print: o recorte corta a 1ª equação do sistema (1/x + 1/y + 1/z = 2) e o topo da 2ª; no PDF oficial (pág. 18) o sistema tem 3 equações. Refazer o print do PDF oficial; com o PDF, a conta confere com o gabarito B (m = 1, n = 0: 1/x = 17/7, 1/y = −1/7, 1/z = −2/7, x + y + z = −343/34; det = 0 só em m = 9/2). |
 | P53f16b0b | PUCPR 2025 Medicina 2025/2 · questão 31 | M15.1 operações com matrizes (tema M15 Matrizes e determinantes) | print: o print corta a 1ª linha das duas matrizes. No PDF oficial (pág. 19) A e B têm 3 linhas: A = (1 2 3 4 ; −1 −2 −3 −4 ; 0 1 −1 2) e B = (1 0 2 1 −2 ; 2 1 0 −2 1 ; 0 −3 2 4 0). Com o print, c34 = (−3)(−2) + (−1)(4) = 2, sem alternativa; com o PDF, c34 = 3 × 1 + (−3)(−2) + (−1)(4) = 5 (C, gabarito). Refazer o print do PDF oficial. |
 | Pda63d44e | PUCPR 2026 Medicina 2026/2 · questão 35 | M11.3 pirâmides e cones (tema M11 Geometria espacial) | print: o topo da questão está cortado e os numeradores de H = 3R/2 e x = √(6πR³/V) ficam ilegíveis; conferido no PDF oficial (p. 16 do caderno-gabarito), a questão fecha com C (r² = 3R²/4, V = 3πR³/8, x = √16 = 4) — refazer o print e reenviar. |
 | Pe0819527 | UEG 2023 2023/1 · questão 20 | M15.1 operações com matrizes (tema M15 Matrizes e determinantes) | anular: duas alternativas verdadeiras. A 3ª equação (2x + 4y − 2z = 4) é o dobro da 1ª (x + 2y − z = 2), det = 0 e posto 2 com sistema compatível: há infinitas soluções (x = 3 − 2z/3, y = 5z/6 − 1/2), então a B é verdadeira; (1, 2, 3) também satisfaz as três equações (2, 7, 4), então a A (gabarito) é verdadeira. Gabarito definitivo A, sem anulação publicada; não dá para ensinar a B como errada. |

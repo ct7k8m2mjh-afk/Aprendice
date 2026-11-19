@@ -364,5 +364,129 @@
    "data": "2026-11-13",
    "lote": "mat-0060"
   }
+ },
+ "P28729564": {
+  "n": "48",
+  "conceito": "Usar a condição dada sobre as raízes (reais e complexas) para achar m e n, e depois Girard para a soma dos quadrados.",
+  "equivocos": {
+   "A": "M16.1:soma-dos-quadrados-errada",
+   "C": "M16.1:esqueceu-o-dobro-dos-produtos",
+   "D": "M16.2:quadrado-de-complexo-sem-i2",
+   "E": "M16.1:soma-dos-quadrados-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Um polinômio de grau 3 com coeficientes reais tem pelo menos uma raiz real. Na raiz real, b = 0, e a condição vira a = −1: então −1 é raiz. As outras duas são conjugadas a + bi e a − bi; as duas satisfazem a condição com b e com −b, o que força n = 0. Achados m e n, a soma dos quadrados sai de Girard.",
+    "formulas": [
+     "soma dos quadrados = (soma)² − 2·(soma dos produtos dois a dois)",
+     "x³ − mx² + x + (5 + n): soma = m | produtos dois a dois = 1"
+    ],
+    "simbolos": [
+     [
+      "Girard",
+      "relações entre os coeficientes e as raízes de um polinômio"
+     ],
+     [
+      "s",
+      "soma das raízes"
+     ],
+     [
+      "a + bi",
+      "número complexo com parte real a e parte imaginária b"
+     ],
+     [
+      "conjugada",
+      "a − bi, que também é raiz quando os coeficientes são reais"
+     ]
+    ]
+   },
+   "pista": "Comece pela raiz real que todo polinômio de grau 3 com coeficientes reais tem: quanto vale b nela?",
+   "passos": [
+    {
+     "faz": "Use a raiz real",
+     "conta": "b = 0 → a = m·0 + n·0 − 1 = −1 → p(−1) = 0",
+     "porque": "Toda cúbica de coeficientes reais tem raiz real, e nela b = 0.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Tire a primeira relação entre m e n",
+     "conta": "p(−1) = −1 − m − 1 + 5 + n = 0 → 3 − m + n = 0 → n = m − 3",
+     "porque": "Substitua x = −1 no polinômio e iguale a zero.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o par de raízes conjugadas",
+     "conta": "a = mb² + nb − 1 e a = mb² − nb − 1 → 2nb = 0 → n = 0 → m = 3",
+     "porque": "As raízes a + bi e a − bi têm a mesma parte real; a condição vale com b e com −b, e b ≠ 0, logo n = 0. Se as três raízes fossem reais, todas seriam −1, e (x + 1)³ = x³ + 3x² + 3x + 1 não tem coeficiente 1 em x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a soma dos quadrados",
+     "conta": "p(x) = x³ − 3x² + x + 5: soma = 3 | produtos = 1 → 3² − 2·1 = 9 − 2 = 7",
+     "porque": "Elevando a soma ao quadrado aparecem os quadrados mais o dobro dos produtos dois a dois; tire esse dobro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "soma dos quadrados = 7 → alternativa B",
+     "porque": "É o valor pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 7",
+   "checagem": "Fatore: x³ − 3x² + x + 5 = (x + 1)(x² − 4x + 5), com raízes −1, 2 + i e 2 − i. A condição confere: em 2 ± i, a = 2 = 3·1 − 1. Quadrados: 1 + (3 + 4i) + (3 − 4i) = 7.",
+   "erradas": {
+    "A": "6 não confere: com soma 3 e produtos dois a dois 1, a soma dos quadrados é 9 − 2·1 = 7; para dar 6, os produtos dois a dois teriam de valer 3/2.",
+    "C": "8 sai de esquecer o 2 da fórmula: 3² − 1 = 8. A expansão de (soma)² tem o DOBRO dos produtos dois a dois: 9 − 2 = 7.",
+    "D": "9 sai de somar só os quadrados das partes reais: 2² + 2² + (−1)² = 9. Mas (2 + i)² = 3 + 4i, e o i² = −1 tira 1 de cada uma.",
+    "E": "10 não confere: as raízes são −1 e 2 ± i, e 1 + (3 + 4i) + (3 − 4i) = 7; nenhum valor de m e n permitido pela condição muda isso, pois m = 3 e n = 0 são forçados."
+   },
+   "armadilha": "Achar que (2 + i)² = 4 + 1 ou somar só as partes reais: o quadrado de um complexo tem i² = −1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos quadrados das raízes de p(x), com m e n definidos pela condição sobre as raízes.",
+    "chave": "A raiz real dá −1 como raiz; o par conjugado força n = 0; daí m = 3 e soma dos quadrados 3² − 2·1 = 7.",
+    "cuidado": "Soma dos quadrados = (soma)² − 2·(produtos dois a dois): não esqueça o 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fatorar e elevar",
+    "ideia": "(x + 1)(x² − 4x + 5) dá −1, 2 + i, 2 − i; somando 1 + (3 + 4i) + (3 − 4i) = 7"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "b = 0 → a = −1 → p(−1) = 0",
+    "nota": "a raiz real é −1"
+   },
+   {
+    "linha": "−1 − m − 1 + 5 + n = 0 → n = m − 3",
+    "nota": "substitui x = −1"
+   },
+   {
+    "linha": "2nb = 0 → n = 0 → m = 3",
+    "nota": "par conjugado com b ≠ 0"
+   },
+   {
+    "linha": "soma = 3 | produtos = 1",
+    "nota": "Girard em x³ − 3x² + x + 5"
+   },
+   {
+    "linha": "3² − 2·1 = 7",
+    "nota": "soma dos quadrados: alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
  }
 }

@@ -97,5 +97,115 @@
    "data": "2026-11-12",
    "lote": "mat-0044"
   }
+ },
+ "Pf670fe9d": {
+  "n": "1",
+  "conceito": "Área de triângulo com vértices dados por números complexos (determinante das coordenadas).",
+  "equivocos": {
+   "A": "M16.2:valor-que-nao-fecha-a-area",
+   "C": "M16.2:valor-que-nao-fecha-a-area",
+   "D": "M16.2:valor-que-nao-fecha-a-area",
+   "E": "M16.2:valor-que-nao-fecha-a-area"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada número complexo é um ponto: 1 = (1, 0), z = (a, 2) e z² = (a² − 4, 4a). Com os três pontos, a área sai do determinante das coordenadas, dividido por 2. Isso dá uma equação do 2º grau em a.",
+    "formulas": [
+     "z² = (a + 2i)² = a² − 4 + 4a·i",
+     "área = |D|/2, D = determinante das coordenadas com coluna de 1"
+    ],
+    "simbolos": [
+     [
+      "plano de Argand-Gauss",
+      "plano em que a + bi é o ponto (a, b)"
+     ],
+     [
+      "D",
+      "determinante 3 × 3 das linhas (x, y, 1)"
+     ]
+    ]
+   },
+   "pista": "Antes de calcular área, escreva z² na forma a + bi para ter as coordenadas dos três pontos.",
+   "passos": [
+    {
+     "faz": "Calcule z²",
+     "conta": "(a + 2i)² = a² + 4a·i + 4i² → a² − 4 + 4a·i",
+     "porque": "i² = −1 faz o 4i² virar −4, que vai para a parte real.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o determinante",
+     "conta": "D = 1·(2 − 4a) − 0 + 1·(4a² − 2(a² − 4)) → D = 2a² − 4a + 10",
+     "porque": "Linhas (1, 0, 1), (a, 2, 1) e (a² − 4, 4a, 1); desenvolvendo pela primeira linha.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale a área a 200",
+     "conta": "(2a² − 4a + 10)/2 = 200 → a² − 2a + 5 = 200 → a² − 2a − 195 = 0",
+     "porque": "Dividir por 2 é a fórmula da área; o 200 passa subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva e escolha a positiva",
+     "conta": "(a − 15)(a + 13) = 0 → a = 15 ou a = −13 → a = 15",
+     "porque": "O enunciado diz que a é positivo. Alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 15",
+   "checagem": "Com a = 15: os pontos são (1, 0), (15, 2) e (221, 60). Vetores (14, 2) e (220, 60): 14·60 − 2·220 = 840 − 440 = 400, e 400/2 = 200.",
+   "erradas": {
+    "A": "14 não confere: a² − 2a + 5 com a = 14 dá 196 − 28 + 5 = 173, não 200.",
+    "C": "16 não confere: 256 − 32 + 5 = 229, não 200.",
+    "D": "17 não confere: 289 − 34 + 5 = 260, não 200.",
+    "E": "18 não confere: 324 − 36 + 5 = 293, não 200."
+   },
+   "armadilha": "Esquecer que i² = −1 em z² e usar (a², 4a) como ponto, ou esquecer de dividir o determinante por 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O a positivo que faz o triângulo de vértices 1, z, z² ter área 200.",
+    "chave": "Área = metade do determinante: a² − 2a + 5 = 200.",
+    "cuidado": "Escreva z² = a² − 4 + 4ai antes de tirar as coordenadas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar as alternativas",
+    "ideia": "Teste a² − 2a + 5 = 200 nas opções: só 15 dá 225 − 30 + 5 = 200."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "z² = a² − 4 + 4a·i",
+    "nota": "quadrado do complexo"
+   },
+   {
+    "linha": "D = 2 − 4a + 4a² − 2a² + 8 = 2a² − 4a + 10",
+    "nota": "determinante"
+   },
+   {
+    "linha": "(2a² − 4a + 10)/2 = 200",
+    "nota": "área = D/2"
+   },
+   {
+    "linha": "a² − 2a + 5 = 200 → a² − 2a − 195 = 0",
+    "nota": "200 passa subtraindo"
+   },
+   {
+    "linha": "(a − 15)(a + 13) = 0 → a = 15",
+    "nota": "raiz positiva"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
  }
 }

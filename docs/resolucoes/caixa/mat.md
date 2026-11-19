@@ -202,3 +202,18 @@ RECLASS P7f997dda M15.1 -> M14.1 (UEG 2025/2 q25: média e mediana de preços li
 RECLASS P1d0c81e2 M15.1 -> M15.2 (URCA 2026.1 q29: polinômio característico det(A − xI), soma e produto das raízes)
 DADO P39befc10 (ITA 2026 1ª fase, questão 3): alternativas -> vazias na entrada; no print: A Apenas I. | B Apenas II. | C Apenas I e II. | D Apenas I e III. | E I, II e III. (lei omitida no texto: aij = 1 + (1 − i)(1 − j))
 DADO P2daf5ace (FMJ 2022, questão 14): texto_da_prova -> falta a matriz; no print: Qn = [2n² −n; n + 1 1]
+
+## 2026-11-19 — PENDENCIAS — session_01PveEKZJXRTXQ8BArELQfeu
+Lote mat-0072 gravado.
+Gabarito do Aprendice (resolvedor e conferente às cegas iguais): P1bf589e2 C, P76c1f1a5 B, P84c242f6 C, Pd7f0ad5f D, Pe15a6d90 D (igual ao preliminar UFRR), Pd61bcac8 E.
+PENDENTE P528013c1: print: o recorte corta a 1ª equação do sistema (1/x + 1/y + 1/z = 2) e o topo da 2ª; no PDF oficial (pág. 18) o sistema tem 3 equações. Refazer o print do PDF oficial; com o PDF, a conta confere com o gabarito B (m = 1, n = 0: 1/x = 17/7, 1/y = −1/7, 1/z = −2/7, x + y + z = −343/34; det = 0 só em m 
+DADO P07ecdb23 (Unitins 2026/2 q13): alternativas.E -> "II e III." (no print não há o ". ." final)
+PRINT P528013c1 (PUCPR 2024 Medicina 2024/2, questão 36): o print corta a 1ª equação do sistema (1/x + 1/y + 1/z = 2) e o topo da 2ª (3/x + 1/y + 4/z = 6); no PDF oficial (pág. 18) o sistema tem 3 equações. Refazer o print do PDF oficial. Com o PDF a conta confere com o gabarito B (m = 1, n = 0: 1/x = 17/7, 1/y = −1/7, 1/z = −2/7, x + y + z = −343/34; det = 0 só em m = 9/2).
+DADO Pda0de8a1 (IME 2026 1ª fase, q. 3): texto_da_prova -> a camada de texto embaralhou a equação; no print: ((−√3 + i)/2)^n = ((−√3 − i)/2)^n + 2i
+DADO P00768b5e (ITA 2023 1ª fase, q. 38): alternativas -> faltam na entrada; no print: A 1 − i; B i − 1; C −1 − i; D i; E −i
+DADO P8e91de73 (UERR 2023, q. 27): texto_da_prova/alternativas -> camada de texto embaralhada e sem alternativas; no print: A x² − 3x + 3; B x² + 3x + 5; C x² − 2x + 3; D x² + 2x + 5; E x² + 3x + 5 (B e E impressas iguais na prova; D única correta)
+DADO P29cce72c (UERR 2025, q. 20): texto_da_prova -> símbolos ilegíveis; no print: z = √2/2 + (√2/2)i, w = z³; A w = −√2/2 − (√2/2)i; B w = √2/2 − (√2/2)i; C w = 1/2 + (√2/2)i; D w = 1/2 − (√2/2)i; E w = −√2/2 + (√2/2)i
+DADO P05b828ca (UFRR 2021, q. 18): alternativas -> caracteres trocados; no print: A −i e (−1 + i√3)/2; B −1 e (−1 + i√3)/2; C −i e (−√3 + i)/2; D −1 e (−√3 + i)/2; E −1 e −i
+DADO Pa2bed03b (UFRR 2022, q. 16): texto_da_prova -> falta a expressão; no print: "O valor de (1/2 + (√3/2)i)^15 é:"; alternativa E -> "-1" (a expressão do enunciado foi colada nela)
+DADO Pd61bcac8 (UFRR 2025, q. 17): texto_da_prova -> falta a expressão; no print: z = (i^2020 + i^2024)/(i + i² + i³ + i⁴ + … + i^2025); alternativas C -> 2024^(−1), D -> 2025^(−1) (vazias na entrada)
+RECLASS Pdc7fbbaa M16.2 -> M04.2 (URCA 2023.1, questão 28: discriminante de equação do 2.º grau com coeficiente cos 1°; não usa operações com complexos)

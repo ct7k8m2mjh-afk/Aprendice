@@ -762,5 +762,364 @@
    "data": "2026-11-19",
    "lote": "mat-0071"
   }
+ },
+ "Pe15f2d72": {
+  "n": "11",
+  "conceito": "Classificar um sistema linear 3x3 com parâmetro: determinante nulo e teste de compatibilidade.",
+  "equivocos": {
+   "A": "M15.3:testou-so-um-valor",
+   "B": "M15.3:esqueceu-cosseno-nulo",
+   "D": "M15.3:confundiu-det-maximo-com-nulo",
+   "E": "M15.3:nao-calculou-o-determinante"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sistema impossível só pode acontecer quando o determinante da matriz dos coeficientes é zero; com determinante diferente de zero ele tem solução única. Aqui o determinante se reduz a sen 2θ, que zera em θ = kπ/2. Falta conferir que, nesses valores, as equações se contradizem (e não ficam com infinitas soluções). A palavra \"todos\" do enunciado pede o conjunto completo.",
+    "formulas": [
+     "det ≠ 0 → sistema possível e determinado",
+     "det = 0 → impossível ou indeterminado (testar)",
+     "sen²θ + cos²θ = 1 ; 2·senθ·cosθ = sen 2θ"
+    ],
+    "simbolos": [
+     [
+      "det",
+      "determinante da matriz dos coeficientes"
+     ],
+     [
+      "k ∈ Z",
+      "k é um número inteiro qualquer"
+     ],
+     [
+      "sistema impossível",
+      "sistema sem nenhuma solução"
+     ]
+    ]
+   },
+   "pista": "Calcule o determinante e use sen²θ + cos²θ = 1 para simplificar antes de pensar nos valores de θ.",
+   "passos": [
+    {
+     "faz": "Calcule o determinante por Sarrus",
+     "conta": "det = 2·sen³θ·cosθ + 2·senθ·cos³θ → 2·senθ·cosθ·(sen²θ + cos²θ) → sen 2θ",
+     "porque": "Os termos com sen³θ·cosθ e senθ·cos³θ aparecem duas vezes; colocando 2·senθ·cosθ em evidência sobra sen²θ + cos²θ = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache onde o determinante zera",
+     "conta": "sen 2θ = 0 → 2θ = kπ → θ = kπ/2",
+     "porque": "Só nesses valores o sistema pode deixar de ter solução única.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste senθ = 0 (θ = kπ)",
+     "conta": "θ = 0: −y = 2025 e y = 2030 → contradição",
+     "porque": "Com senθ = 0 e cosθ = ±1, a 1ª equação fixa y = ∓2025 e a 3ª fixa y = 2030: não há y que sirva.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste cosθ = 0 (θ = π/2 + kπ)",
+     "conta": "θ = π/2: 3ª linha → 0x + 0y + 0z = 2030 → 0 = 2030",
+     "porque": "Com cosθ = 0, todos os coeficientes da 3ª equação somem e o lado direito continua 2030: impossível.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Junte os dois casos",
+     "conta": "kπ ∪ (π/2 + kπ) = kπ/2",
+     "porque": "Todos os zeros do determinante dão sistema impossível, então o conjunto pedido é exatamente {kπ/2}.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — {kπ/2 | k ∈ Z}",
+   "checagem": "Teste um valor fora do conjunto, θ = π/4: o determinante vale sen(π/2) = 1 ≠ 0, então o sistema tem solução única ali. Isso confirma que nenhum valor além de kπ/2 entra.",
+   "erradas": {
+    "A": "A sai de testar só θ = 0: ele torna o sistema impossível, mas π/2, π, 3π/2... também tornam, e a questão pede todos.",
+    "B": "B sai de olhar só senθ = 0. Com cosθ = 0 (θ = π/2) a 3ª equação vira 0 = 2030, também impossível.",
+    "D": "D não confere: em θ = π/4 o determinante é sen(π/2) = 1 ≠ 0; o sistema tem solução única.",
+    "E": "E não confere: em θ = π/3 o determinante é sen(2π/3) = √3/2 ≠ 0; o sistema tem solução única."
+   },
+   "armadilha": "Determinante zero não basta: é preciso testar os dois casos (seno nulo e cosseno nulo) para garantir que o sistema é impossível em todo o conjunto.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Todos os θ que deixam o sistema sem solução.",
+    "chave": "det = sen 2θ = 0 em θ = kπ/2, e nesses valores as equações se contradizem.",
+    "cuidado": "Não pare em senθ = 0: cosθ = 0 também zera o determinante."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste direto",
+    "ideia": "Ponha senθ = 0 e cosθ = 0 no sistema: os dois casos geram contradição; nos demais θ, det = sen 2θ ≠ 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "det = 2·sen³θ·cosθ + 2·senθ·cos³θ",
+    "nota": "Sarrus, juntando termos iguais"
+   },
+   {
+    "linha": "det = 2·senθ·cosθ·(sen²θ + cos²θ)",
+    "nota": "fator comum em evidência"
+   },
+   {
+    "linha": "det = sen 2θ",
+    "nota": "sen²θ + cos²θ = 1"
+   },
+   {
+    "linha": "sen 2θ = 0 → θ = kπ/2",
+    "nota": "zeros do determinante"
+   },
+   {
+    "linha": "θ = 0: y = −2025 e y = 2030",
+    "nota": "contradição"
+   },
+   {
+    "linha": "θ = π/2: 0 = 2030",
+    "nota": "contradição"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
+ },
+ "Pe70b61d3": {
+  "n": "5",
+  "conceito": "Raiz complexa de polinômio com coeficientes reais: a conjugada também é raiz; fatorar e contar as raízes reais.",
+  "equivocos": {
+   "A": "M16.2:esqueceu-a-raiz-conjugada",
+   "B": "M16.1:nao-testou-o-discriminante",
+   "C": "M16.2:raizes-complexas-em-pares",
+   "E": "M16.1:grau-impar-tem-raiz-real"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O polinômio tem coeficientes reais, então a conjugada da raiz dada também é raiz. As duas juntas formam um fator do 2º grau; dividindo por ele, sobra uma cúbica. O trabalho real é fatorar essa cúbica e ver quantas raízes dela são reais.",
+    "formulas": [
+     "raízes z e z̄ → fator x² − (z + z̄)x + z·z̄",
+     "ax² + bx + c tem raízes reais só se Δ = b² − 4ac ≥ 0"
+    ],
+    "simbolos": [
+     [
+      "z̄",
+      "conjugado de z: troca o sinal da parte imaginária"
+     ],
+     [
+      "Δ",
+      "discriminante, b² − 4ac"
+     ],
+     [
+      "i",
+      "unidade imaginária, i² = −1"
+     ]
+    ]
+   },
+   "pista": "Comece pela conjugada da raiz dada: com ela, monte um fator do 2º grau e divida o polinômio por ele.",
+   "passos": [
+    {
+     "faz": "Monte o fator das raízes conjugadas",
+     "conta": "z = (−1 + i√3)/2 e z̄ = (−1 − i√3)/2 → soma = −1 | produto = 1 → x² + x + 1",
+     "porque": "Coeficientes reais garantem que z̄ também é raiz. O fator é x² − (soma)x + produto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida o polinômio pelo fator",
+     "conta": "(x⁵ + x⁴ + 7x³ + 26x² + 26x + 20) ÷ (x² + x + 1) = x³ + 6x + 20, resto 0",
+     "porque": "Sobram três raízes, que são as da cúbica.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache uma raiz da cúbica",
+     "conta": "x = −2: (−2)³ + 6(−2) + 20 = −8 − 12 + 20 = 0 → x³ + 6x + 20 = (x + 2)(x² − 2x + 10)",
+     "porque": "Teste os divisores de 20; −2 zera a cúbica, e Briot-Ruffini dá o quociente do 2º grau.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste o fator do 2º grau",
+     "conta": "x² − 2x + 10: Δ = 4 − 40 = −36 < 0",
+     "porque": "Discriminante negativo: as duas raízes são complexas, não reais.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conte as raízes reais",
+     "conta": "reais: só x = −2 → 1 raiz real → alternativa D",
+     "porque": "As outras quatro raízes formam dois pares de complexas conjugadas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1",
+   "checagem": "Conte as cinco raízes: 2 (de x² + x + 1) + 2 (de x² − 2x + 10) + 1 (x = −2) = 5, o grau. E multiplicar os três fatores devolve o polinômio: (x + 2)(x² − 2x + 10)(x² + x + 1) = x⁵ + x⁴ + 7x³ + 26x² + 26x + 20.",
+   "erradas": {
+    "A": "4 sai de achar que só a raiz dada é complexa: 5 − 1 = 4. Com coeficientes reais, a conjugada também é raiz, e x² − 2x + 10 não tem raízes reais.",
+    "B": "3 sai de supor que x² − 2x + 10 tem raízes reais: 1 + 2 = 3. Mas Δ = 4 − 40 = −36 < 0.",
+    "C": "2 não confere: as raízes não reais vêm em pares conjugados, então de 5 raízes as reais são 1, 3 ou 5 (ímpar); aqui são as de (x + 2)(x² − 2x + 10), só uma.",
+    "E": "0 não confere: polinômio de grau ímpar com coeficientes reais tem pelo menos uma raiz real; aqui, x = −2 dá (−2)³ + 6(−2) + 20 = 0."
+   },
+   "armadilha": "Esquecer que a conjugada da raiz dada também é raiz, ou não testar o Δ do fator do 2º grau que sobra.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas das cinco raízes do polinômio são reais.",
+    "chave": "A raiz dada e a conjugada formam x² + x + 1; o resto é (x + 2)(x² − 2x + 10), com Δ < 0.",
+    "cuidado": "Raízes não reais vêm em pares conjugados quando os coeficientes são reais."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem por paridade",
+    "ideia": "de 5 raízes, 4 já são não reais (dois pares conjugados), então sobra exatamente 1 real"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "z + z̄ = −1 | z·z̄ = 1 → x² + x + 1",
+    "nota": "fator das raízes conjugadas"
+   },
+   {
+    "linha": "x⁵ + x⁴ + 7x³ + 26x² + 26x + 20 = (x² + x + 1)(x³ + 6x + 20)",
+    "nota": "divisão exata"
+   },
+   {
+    "linha": "x³ + 6x + 20 = (x + 2)(x² − 2x + 10)",
+    "nota": "x = −2 é raiz"
+   },
+   {
+    "linha": "Δ = 4 − 40 = −36 < 0",
+    "nota": "o fator do 2º grau não tem raiz real"
+   },
+   {
+    "linha": "raízes reais: x = −2 → 1",
+    "nota": "resultado: alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
+ },
+ "Pda0de8a1": {
+  "n": "3",
+  "conceito": "Potência de complexos na forma trigonométrica: diferença entre w^n e o conjugado de w^n.",
+  "equivocos": {
+   "A": "M16.2:nao-conferiu-o-valor-do-seno",
+   "B": "M16.2:nao-conferiu-o-valor-do-seno",
+   "D": "M16.2:nao-conferiu-o-valor-do-seno",
+   "E": "M16.2:nao-conferiu-o-valor-do-seno"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois números entre parênteses são conjugados: (−√3 + i)/2 e (−√3 − i)/2. Os dois têm módulo 1, então a forma trigonométrica transforma a potência em multiplicar o ângulo por n. Passando o conjugado para o outro lado, sobra w^n − w̄^n, que é sempre 2i vezes o seno do ângulo.",
+    "formulas": [
+     "w = cos θ + i·sen θ → w^n = cos(nθ) + i·sen(nθ)",
+     "w^n − w̄^n = 2i·sen(nθ)"
+    ],
+    "simbolos": [
+     [
+      "w̄",
+      "conjugado de w: troca o sinal da parte imaginária"
+     ],
+     [
+      "módulo",
+      "distância do número à origem: √(a² + b²)"
+     ],
+     [
+      "θ",
+      "ângulo do número com o eixo real positivo"
+     ]
+    ]
+   },
+   "pista": "Repare que os dois números dentro dos parênteses são conjugados um do outro e escreva-os com módulo e ângulo.",
+   "passos": [
+    {
+     "faz": "Escreva w na forma trigonométrica",
+     "conta": "w = (−√3 + i)/2 → |w| = √(3/4 + 1/4) = 1 → θ = 150° = 5π/6",
+     "porque": "Parte real −√3/2 e imaginária 1/2: é o ponto do círculo unitário no 2º quadrante, a 150°. O outro número é o conjugado, a −150°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe o conjugado para o outro lado",
+     "conta": "w^n = w̄^n + 2i → w^n − w̄^n = 2i → 2i·sen(5πn/6) = 2i",
+     "porque": "w^n e w̄^n têm a mesma parte real e partes imaginárias opostas; a diferença fica só com o dobro da parte imaginária.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva sen = 1",
+     "conta": "sen(5πn/6) = 1 → 5πn/6 = π/2 + 2kπ → n = (3 + 12k)/5",
+     "porque": "O seno vale 1 só nos ângulos π/2 + 2kπ. Divida tudo por π e isole n.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o menor n inteiro positivo",
+     "conta": "k = 0 → n = 3/5 | k = 1 → n = 15/5 = 3",
+     "porque": "Com k = 0 o n não é inteiro; com k = 1 sai n = 3, o primeiro inteiro positivo. Alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3",
+   "checagem": "Substitua n = 3: w³ = cos(450°) + i·sen(450°) = i e w̄³ = −i. Então −i + 2i = i, que é w³: a igualdade fecha.",
+   "erradas": {
+    "A": "1 não confere: n = 1 dá w − w̄ = i, não 2i (sen 150° = 1/2).",
+    "B": "2 não confere: n = 2 dá ângulo 300°, sen 300° = −√3/2, e a diferença fica −√3·i.",
+    "D": "5 não confere: ângulo 750° = 30° + 720°, sen 30° = 1/2, diferença i. Não é 2i.",
+    "E": "7 não confere: ângulo 1050° = 330° + 720°, sen 330° = −1/2, diferença −i."
+   },
+   "armadilha": "Tratar os dois lados como números sem relação e expandir as potências, em vez de ver que são conjugados.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor n inteiro positivo que cumpre a igualdade.",
+    "chave": "w^n − w̄^n = 2i·sen(nθ), com θ = 150°: precisa sen(150°·n) = 1.",
+    "cuidado": "O seno precisa valer exatamente 1: o ângulo 150°·n tem de cair em 90° + voltas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar as alternativas",
+    "ideia": "Ande de 150° em 150°: n = 1 → 150°, n = 2 → 300°, n = 3 → 450° = 90°, o primeiro com seno 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "w = (−√3 + i)/2 = cos 150° + i·sen 150°",
+    "nota": "forma trigonométrica"
+   },
+   {
+    "linha": "w^n − w̄^n = 2i",
+    "nota": "conjugado passa subtraindo"
+   },
+   {
+    "linha": "2i·sen(150°·n) = 2i → sen(150°·n) = 1",
+    "nota": "diferença de conjugados"
+   },
+   {
+    "linha": "150°·n = 90° + 360°·k → n = (3 + 12k)/5",
+    "nota": "isolar n"
+   },
+   {
+    "linha": "k = 1 → n = 3",
+    "nota": "menor inteiro positivo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
  }
 }
