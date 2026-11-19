@@ -880,5 +880,127 @@
    "data": "2026-11-19",
    "lote": "mat-0070"
   }
+ },
+ "Paa4c6a2c": {
+  "n": "12",
+  "conceito": "Calcular o nível sonoro com β = log((P/10^(−12))^10) usando propriedades do logaritmo e comparar com o limite do horário.",
+  "equivocos": {
+   "A": "M06.3:esqueceu-o-expoente-da-formula",
+   "B": "M06.3:errou-a-potencia-de-10",
+   "C": "M06.3:usou-o-limite-do-dia",
+   "D": "M06.3:errou-o-calculo-do-nivel-sonoro"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O expoente 10 da fórmula desce multiplicando o logaritmo: β = 10 · log(P/10^(−12)). Escreva P como 123 × 10^(−7) para usar o log 123 dado. Depois volte ao texto da lei: às 23h vale o período noturno, com limite de 60 decibéis.",
+    "formulas": [
+     "log(Xⁿ) = n · log X",
+     "log(a × 10ⁿ) = log a + n",
+     "10^a/10^b = 10^(a − b)"
+    ],
+    "simbolos": [
+     [
+      "β",
+      "nível do som, em decibéis"
+     ],
+     [
+      "P",
+      "intensidade sonora observada, em W/m²"
+     ],
+     [
+      "dB",
+      "decibel, a unidade de β"
+     ]
+    ]
+   },
+   "pista": "Antes de qualquer conta, desça o expoente 10 que está fora do parêntese.",
+   "passos": [
+    {
+     "faz": "Desça o expoente da fórmula",
+     "conta": "β = log((P/10^(−12))^10) → β = 10 · log(P/10^(−12))",
+     "porque": "O expoente do logaritmando passa para a frente multiplicando. É ele que transforma o resultado em dezenas de decibéis.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reescreva P/10^(−12)",
+     "conta": "P = 12,3 × 10^(−6) = 123 × 10^(−7) → P/10^(−12) = 123 × 10^(−7 + 12) = 123 × 10^5",
+     "porque": "Passar a vírgula uma casa para a direita tira um do expoente, e assim aparece o 123 do log dado. Na divisão de potências de 10, os expoentes se subtraem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule β",
+     "conta": "β = 10 · (log 123 + 5) → β = 10 · (2,09 + 5) = 10 · 7,09 = 70,9 dB",
+     "porque": "O log do produto é a soma dos logs, e log 10^5 = 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com o limite da noite",
+     "conta": "23h → período noturno, limite 60 dB → 70,9 − 60 = 10,9 dB acima",
+     "porque": "Das 22h às 6h o limite é 60 dB. O texto não diz que a medição foi no interior do imóvel, então às 23h vale o limite noturno de 60 dB, e não o de 55 dB.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "10,9 dB acima do limite → alternativa E",
+     "porque": "A pergunta é quanto o som passou do limite legal daquele horário.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 10,9 decibéis acima do limite estabelecido pela lei",
+   "checagem": "Pela ordem de grandeza: se P fosse 10^(−5) W/m², β seria 10 · log(10^7) = 70 dB. Como 12,3 × 10^(−6) é um pouco mais que 10^(−5), β passa um pouco de 70, e 70,9 é coerente. Contra os 60 dB da noite, sobra perto de 11 dB.",
+   "erradas": {
+    "A": "A sai de esquecer o expoente 10: log(123 × 10^5) = 7,09, que parece bem abaixo do limite. O expoente multiplica o log por 10: 70,9 dB.",
+    "B": "B sai de errar a vírgula: escrever 12,3 = 123 × 10^(−2) dá β = 10 · (2,09 + 4) = 60,9 dB, quase os 60 da noite. O certo é 123 × 10^(−1), e β = 70,9.",
+    "C": "C sai do limite errado: 70,9 − 70 = 0,9 usa o limite do dia. Às 23h vale o noturno, de 60 dB.",
+    "D": "D não confere: 6,9 dB acima exigiria β = 66,9 dB pelo limite da noite, e a conta dá 70,9 dB."
+   },
+   "armadilha": "O horário decide o limite: às 23h vale 60 dB, e quem compara com os 70 dB do dia marca 0,9 dB acima.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quanto o nível sonoro do bar, medido às 23h, ficou acima ou abaixo do limite da lei.",
+    "chave": "β = 10 · log(123 × 10^5) = 10 · 7,09 = 70,9 dB, e o limite noturno é 60 dB: 10,9 dB acima.",
+    "cuidado": "Desça o expoente 10 da fórmula e use o limite do período noturno."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "log de P direto",
+    "ideia": "β = 10 · (log P + 12), com log P = log(123 × 10^(−7)) = 2,09 − 7 = −4,91: β = 10 · 7,09 = 70,9 dB."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "β = 10 · log(P/10^(−12))",
+    "nota": "o expoente 10 desce multiplicando"
+   },
+   {
+    "linha": "P/10^(−12) = 123 × 10^5",
+    "nota": "12,3 × 10^(−6) = 123 × 10^(−7)"
+   },
+   {
+    "linha": "β = 10 · (2,09 + 5) = 70,9",
+    "nota": "log do produto vira soma"
+   },
+   {
+    "linha": "70,9 − 60 = 10,9",
+    "nota": "limite noturno, às 23h"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Unifor — caderno do Vestibular de Medicina 2027.1",
+    "url": "https://unifor.br/documents/d/graduacao/vtb2027_1medicina_23092026_final"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
  }
 }

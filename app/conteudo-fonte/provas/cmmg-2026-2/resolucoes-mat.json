@@ -824,5 +824,264 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "P9b414097": {
+  "n": "57",
+  "conceito": "Decaimento por meia-vida: achar o tempo em que 200 mg caem a 30 mg resolvendo uma equação exponencial com logaritmos.",
+  "equivocos": {
+   "B": "M06.5:contou-meias-vidas-inteiras",
+   "C": "M06.5:passou-do-tempo-de-decaimento",
+   "D": "M06.5:passou-do-tempo-de-decaimento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Meia-vida de 6 horas quer dizer que a cada 6 horas a quantidade cai pela metade. Depois de t horas passaram t/6 meias-vidas, e a quantidade é 200 · (1/2)^(t/6). Como 30 mg não é 200 dividido por uma potência exata de 2, o expoente sai de um logaritmo; por isso a prova dá log 2 e log 3.",
+    "formulas": [
+     "Q(t) = Q0 · (1/2)^(t/6)",
+     "log(a/b) = log a − log b",
+     "log(aⁿ) = n · log a"
+    ],
+    "simbolos": [
+     [
+      "Q(t)",
+      "quantidade do remédio no organismo, em mg, depois de t horas"
+     ],
+     [
+      "Q0",
+      "dose inicial, 200 mg"
+     ],
+     [
+      "t",
+      "tempo, em horas, desde a dose"
+     ],
+     [
+      "meia-vida",
+      "tempo para a quantidade cair à metade"
+     ],
+     [
+      "log",
+      "logaritmo na base 10"
+     ]
+    ]
+   },
+   "pista": "Escreva a quantidade depois de um tempo t usando a dose inicial e a metade elevada ao número de meias-vidas; só depois pense em logaritmo.",
+   "passos": [
+    {
+     "faz": "Monte a equação do decaimento",
+     "conta": "200 · (1/2)^(t/6) = 30 → (1/2)^(t/6) = 30/200 = 3/20",
+     "porque": "O 200 que multiplica passa dividindo. A potência fica sozinha de um lado, pronta para o logaritmo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Inverta os dois lados",
+     "conta": "(1/2)^(t/6) = 3/20 → 2^(t/6) = 20/3",
+     "porque": "Inverter troca 1/2 por 2 e 3/20 por 20/3. Assim os logaritmos ficam positivos e não há sinal para perder.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique log dos dois lados",
+     "conta": "log 2^(t/6) = log(20/3) → (t/6) · log 2 = log 2 + log 10 − log 3",
+     "porque": "O expoente desce multiplicando o log. E log 20 = log 2 + log 10, com log 10 = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua os dados e isole t",
+     "conta": "(t/6) · 0,301 = 0,301 + 1 − 0,477 → (t/6) · 0,301 = 0,824 → t = 6 · 0,824/0,301 ≈ 16,4",
+     "porque": "O 0,301 que multiplica passa dividindo e o 6 que divide passa multiplicando. São cerca de 2,74 meias-vidas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte ao comando",
+     "conta": "t ≈ 16,4 h → aproximadamente 16 horas → alternativa A",
+     "porque": "A pergunta pede o tempo aproximado; 16,4 h fica mais perto de 16 h do que de 18 h.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — cerca de 16 horas",
+   "checagem": "Conte as meias-vidas inteiras: 200 → 100 mg (6 h) → 50 mg (12 h) → 25 mg (18 h). Os 30 mg ficam entre 50 e 25 mg, então o tempo fica entre 12 h e 18 h; das alternativas, só 16 h está nesse intervalo.",
+   "erradas": {
+    "B": "18 horas sai de contar meias-vidas inteiras: 200 → 100 → 50 → 25 são 3 × 6 = 18 h. Mas em 18 h restam 25 mg, abaixo dos 30 mg; os 30 mg chegam antes.",
+    "C": "20 horas não confere: 200 · (1/2)^(20/6) ≈ 19,8 mg, bem abaixo dos 30 mg pedidos.",
+    "D": "22 horas não confere: 200 · (1/2)^(22/6) ≈ 15,7 mg, cerca de metade dos 30 mg pedidos."
+   },
+   "armadilha": "Contar meias-vidas inteiras até passar de 30 mg dá 18 h, mas aí restam 25 mg: o tempo certo cai no meio da 3ª meia-vida.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Em quanto tempo 200 mg de um remédio com meia-vida de 6 h caem para 30 mg.",
+    "chave": "200 · (1/2)^(t/6) = 30 vira 2^(t/6) = 20/3, e com logs t = 6 · 0,824/0,301 ≈ 16,4 h.",
+    "cuidado": "Não pare em meias-vidas inteiras e escreva log 20 como log 2 + 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "log de 0,15 direto",
+    "ideia": "Sem inverter: log 5 = 1 − log 2 = 1 − 0,301 = 0,699; então log 0,15 = log 3 + log 5 − 2 = 0,477 + 0,699 − 2 = −0,824 e log(1/2) = −0,301, logo t/6 = (−0,824)/(−0,301) ≈ 2,74 e t ≈ 16,4 h."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "200 · (1/2)^(t/6) = 30",
+    "nota": "metade a cada 6 horas"
+   },
+   {
+    "linha": "(1/2)^(t/6) = 3/20",
+    "nota": "o 200 passa dividindo"
+   },
+   {
+    "linha": "2^(t/6) = 20/3",
+    "nota": "inverte os dois lados"
+   },
+   {
+    "linha": "(t/6) · 0,301 = 0,301 + 1 − 0,477",
+    "nota": "log dos dois lados; log 20 = log 2 + 1"
+   },
+   {
+    "linha": "t = 6 · 0,824/0,301 ≈ 16,4",
+    "nota": "isola t"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Caderno oficial — FCM-MG 2026 2º semestre · questão 57",
+    "url": "https://vestibular.cmmg.edu.br/wp-content/uploads/2026/05/CADERNO-DE-QUESTOES-%E2%80%93-PROCESSO-SELETIVO-VESTIBULAR-2026-2%C2%B0-SEMESTRE-%E2%80%93-MEDICINA.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
+ },
+ "P46bce23a": {
+  "n": "60",
+  "conceito": "Decaimento exponencial de base e: achar o tempo em que a concentração chega a 70% da inicial usando logaritmo natural.",
+  "equivocos": {
+   "A": "M06.5:parou-antes-do-limite",
+   "C": "M06.5:passou-do-limite-de-concentracao",
+   "D": "M06.5:passou-do-limite-de-concentracao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O tempo máximo de validade é o último instante em que a concentração ainda vale pelo menos 70% da inicial. Então iguale C(t) a 0,7 · C0: o C0 some dos dois lados. Como a base é e, o expoente sai com o logaritmo natural (ln), e a prova dá ln 0,7.",
+    "formulas": [
+     "C(t) = C0 · e^(−kt)",
+     "ln(e^x) = x"
+    ],
+    "simbolos": [
+     [
+      "C(t)",
+      "concentração do princípio ativo depois de t meses"
+     ],
+     [
+      "C0",
+      "concentração inicial"
+     ],
+     [
+      "k",
+      "constante de degradação, aqui 0,2"
+     ],
+     [
+      "e",
+      "número de Euler, cerca de 2,718"
+     ],
+     [
+      "ln",
+      "logaritmo natural, na base e"
+     ]
+    ]
+   },
+   "pista": "Traduza \"não pode ser inferior a 70%\" como uma igualdade no limite e veja o que acontece com C0.",
+   "passos": [
+    {
+     "faz": "Traduza o limite de validade",
+     "conta": "C(t) ≥ 0,7 · C0 → limite: C0 · e^(−0,2t) = 0,7 · C0",
+     "porque": "A concentração só cai com o tempo; o prazo máximo é o instante em que ela chega exatamente a 70%.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Cancele C0",
+     "conta": "C0 · e^(−0,2t) = 0,7 · C0 → e^(−0,2t) = 0,7",
+     "porque": "C0 multiplica os dois lados e passa dividindo: o prazo não depende da concentração inicial.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique ln dos dois lados",
+     "conta": "ln e^(−0,2t) = ln 0,7 → −0,2t = −0,36",
+     "porque": "O ln desfaz a potência de e e deixa só o expoente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole t",
+     "conta": "−0,2t = −0,36 → t = (−0,36)/(−0,2) = 1,8",
+     "porque": "O −0,2 que multiplica t passa dividindo; negativo dividido por negativo dá positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte ao comando",
+     "conta": "t = 1,8 mês → alternativa B",
+     "porque": "Depois de 1,8 mês a concentração fica abaixo de 70%; esse é o prazo máximo de validade.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — cerca de 1,8 mês",
+   "checagem": "Volte ao modelo com t = 1,8: −0,2 · 1,8 = −0,36, e e^(−0,36) ≈ 0,698, ou seja, cerca de 70% de C0, exatamente o limite.",
+   "erradas": {
+    "A": "1,2 mês não confere: −0,2 · 1,2 = −0,24, e e^(−0,24) ≈ 0,79. Ainda restam 79% do princípio ativo, então o prazo pode ir além.",
+    "C": "2,0 meses não confere: −0,2 · 2 = −0,4, e e^(−0,4) ≈ 0,67. Aí já há menos de 70%, abaixo do limite.",
+    "D": "2,5 meses não confere: −0,2 · 2,5 = −0,5, e e^(−0,5) ≈ 0,61, bem abaixo dos 70%."
+   },
+   "armadilha": "Os 70% são o que resta, não o que se perde: a equação é e^(−kt) = 0,7, e o C0 cancela.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O prazo máximo, em meses, até a concentração cair a 70% da inicial com k = 0,2.",
+    "chave": "e^(−0,2t) = 0,7 dá −0,2t = ln 0,7 = −0,36, logo t = 1,8 mês.",
+    "cuidado": "Iguale ao que resta (70%) e mantenha os dois sinais negativos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "inequação direta",
+    "ideia": "e^(−0,2t) ≥ 0,7 ⇒ −0,2t ≥ −0,36 ⇒ t ≤ 1,8 (o sinal da desigualdade inverte ao dividir por −0,2); o maior t permitido é 1,8 mês."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C0 · e^(−0,2t) = 0,7 · C0",
+    "nota": "limite de 70%"
+   },
+   {
+    "linha": "e^(−0,2t) = 0,7",
+    "nota": "C0 cancela"
+   },
+   {
+    "linha": "−0,2t = −0,36",
+    "nota": "ln dos dois lados"
+   },
+   {
+    "linha": "t = (−0,36)/(−0,2) = 1,8",
+    "nota": "o −0,2 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Caderno oficial — FCM-MG 2026 2º semestre · questão 60",
+    "url": "https://vestibular.cmmg.edu.br/wp-content/uploads/2026/05/CADERNO-DE-QUESTOES-%E2%80%93-PROCESSO-SELETIVO-VESTIBULAR-2026-2%C2%B0-SEMESTRE-%E2%80%93-MEDICINA.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
  }
 }

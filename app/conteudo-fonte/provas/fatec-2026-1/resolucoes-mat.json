@@ -1264,5 +1264,124 @@
    "data": "2026-11-19",
    "lote": "mat-0073"
   }
+ },
+ "P2a6dbd38": {
+  "n": "36",
+  "conceito": "Crescimento por duplicação: achar o tempo de geração igualando potências de 2.",
+  "equivocos": {
+   "B": "M06.5:tempo-de-geracao-errado",
+   "C": "M06.5:tempo-de-geracao-errado",
+   "D": "M06.5:tempo-de-geracao-errado",
+   "E": "M06.5:tempo-de-geracao-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A fórmula N(t) = 1 000 · 2^(t/g) diz que a cultura começa com 1 000 bactérias e dobra a cada g minutos. Ir de 1 000 para 8 000 é multiplicar por 8, e 8 é potência de 2: o número de duplicações em 45 minutos dá g. Não precisa de logaritmo.",
+    "formulas": [
+     "N(t) = 1 000 · 2^(t/g)",
+     "2^a = 2^b ⇒ a = b"
+    ],
+    "simbolos": [
+     [
+      "N(t)",
+      "número de bactérias no tempo t"
+     ],
+     [
+      "t",
+      "tempo, em minutos"
+     ],
+     [
+      "g",
+      "tempo de geração: minutos para a população dobrar"
+     ],
+     [
+      "t/g",
+      "número de duplicações em t minutos"
+     ]
+    ]
+   },
+   "pista": "Divida as 8 000 bactérias pelas 1 000 do começo e escreva o resultado como potência de 2.",
+   "passos": [
+    {
+     "faz": "Substitua t = 45 e N = 8 000",
+     "conta": "1 000 · 2^(45/g) = 8 000 → 2^(45/g) = 8000/1000 = 8",
+     "porque": "O 1 000 que multiplica passa dividindo. Sobra só a potência de 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva 8 como potência de 2",
+     "conta": "2^(45/g) = 8 → 2^(45/g) = 2³ → 45/g = 3",
+     "porque": "Mesma base dos dois lados: os expoentes são iguais. Foram 3 duplicações.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole g",
+     "conta": "45/g = 3 → 45 = 3g → g = 45/3 = 15",
+     "porque": "O g que divide passa multiplicando e o 3 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte ao comando",
+     "conta": "g = 15 min → alternativa A",
+     "porque": "g é o tempo de uma duplicação, exatamente o que se pede.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 15 minutos",
+   "checagem": "Dobre a população a cada 15 minutos: 1 000 (0 min) → 2 000 (15 min) → 4 000 (30 min) → 8 000 (45 min). Fecha nos 45 minutos.",
+   "erradas": {
+    "B": "18 minutos não confere: 45/18 = 2,5 duplicações, e 1 000 · 2^2,5 ≈ 5 657 bactérias, não 8 000.",
+    "C": "20 minutos não confere: 45/20 = 2,25 duplicações, e 1 000 · 2^2,25 ≈ 4 757 bactérias.",
+    "D": "22 minutos não confere: 45/22 ≈ 2,05 duplicações, e 1 000 · 2^(45/22) ≈ 4 128 bactérias.",
+    "E": "25 minutos não confere: 45/25 = 1,8 duplicação, e 1 000 · 2^1,8 ≈ 3 482 bactérias."
+   },
+   "armadilha": "O 1 000 da fórmula é a população inicial: a potência de 2 tem de valer 8000 ÷ 1000 = 8, não 8 000.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O tempo de geração g de uma cultura que vai de 1 000 a 8 000 bactérias em 45 minutos.",
+    "chave": "2^(45/g) = 8 = 2³ dá 45/g = 3, logo g = 15 min.",
+    "cuidado": "Divida pela população inicial antes de comparar com a potência de 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "logaritmo na base 2",
+    "ideia": "Aplicando log₂ dos dois lados de 2^(45/g) = 8: 45/g = log₂ 8 = 3, então g = 45/3 = 15 min."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 000 · 2^(45/g) = 8 000",
+    "nota": "t = 45 e N = 8 000 na fórmula"
+   },
+   {
+    "linha": "2^(45/g) = 8 = 2³",
+    "nota": "o 1 000 passa dividindo"
+   },
+   {
+    "linha": "45/g = 3",
+    "nota": "bases iguais, expoentes iguais"
+   },
+   {
+    "linha": "g = 45/3 = 15",
+    "nota": "o g passa multiplicando e o 3 dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Caderno oficial — Fatec 2026 1º semestre · questão 36",
+    "url": "https://bkpsitecpsnew.blob.core.windows.net/uploadsitecps/sites/1/2025/12/CADERNO-VESTIBULAR-FATEC-1SEM2026.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
  }
 }

@@ -635,5 +635,107 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0003"
   }
+ },
+ "P19c58757": {
+  "n": "58",
+  "conceito": "Composição de funções: f(g(x)) e g(f(x)) com raiz quadrada e polinômio do 2º grau.",
+  "equivocos": {
+   "A": "M05.5:somou-depois-da-raiz",
+   "C": "M05.5:esqueceu-o-quadrado-de-g",
+   "D": "M05.5:raiz-da-soma-distribuida",
+   "E": "M05.5:sinal-trocado-em-g"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Compor é substituir: em f(g(x)), tudo o que é g(x) entra no lugar do x de f. A ordem importa: f ∘ g aplica g primeiro, g ∘ f aplica f primeiro. Em g(f(x)), a raiz entra no x² de g, e (√x)² = x para x ≥ 0.",
+    "formulas": [
+     "(f ∘ g)(x) = f(g(x))",
+     "(√x)² = x, para x ≥ 0"
+    ],
+    "simbolos": [
+     [
+      "f ∘ g",
+      "composição: aplica g e depois f"
+     ],
+     [
+      "√x",
+      "raiz quadrada de x, definida para x ≥ 0"
+     ]
+    ]
+   },
+   "pista": "Escreva f(g(x)) trocando o x de f pela expressão inteira de g, entre parênteses.",
+   "passos": [
+    {
+     "faz": "Monte f(g(x))",
+     "conta": "f(x) = √x → f(g(x)) = √(g(x)) → f(g(x)) = √(x² + 1)",
+     "porque": "f tira a raiz do que recebe. O que ela recebe é g(x) = x² + 1 inteiro, então a raiz cobre a soma toda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte g(f(x))",
+     "conta": "g(x) = x² + 1 → g(f(x)) = (√x)² + 1",
+     "porque": "g eleva ao quadrado o que recebe e soma 1. O que ela recebe agora é √x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique (√x)²",
+     "conta": "(√x)² + 1 → x + 1",
+     "porque": "A raiz e o quadrado se desfazem para x ≥ 0, que é onde √x existe.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "√(x² + 1) e x + 1 → alternativa B",
+     "porque": "A ordem pedida é f ∘ g primeiro e g ∘ f depois, e é a ordem da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — √(x² + 1) e x + 1",
+   "checagem": "Confira pela ordem das operações: f ∘ g termina com f, então o resultado tem de ser uma raiz quadrada; g ∘ f termina com g, que soma 1 no fim. Teste x = 9, que separa B de C: g(f(9)) = g(3) = 3² + 1 = 10, e B dá 9 + 1 = 10, enquanto C dá √9 + 1 = 4. Na outra, f(g(9)) = f(82) = √82, igual ao √(9² + 1) de B.",
+   "erradas": {
+    "A": "√x + 1 sai de somar 1 depois da raiz, f(x) + 1, em vez de pôr x² + 1 dentro dela. Em x = 1: √1 + 1 = 2, mas f(g(1)) = √2.",
+    "C": "√x + 1 como g ∘ f sai de esquecer o quadrado de g: g(√x) = (√x)² + 1 = x + 1. Em x = 4: √4 + 1 = 3, mas g(f(4)) = 5.",
+    "D": "x + 1 como f ∘ g sai de tirar a raiz parcela por parcela: √(x² + 1) não é x + 1. Em x = 1: √2 ≈ 1,41, e não 2.",
+    "E": "√(x² − 1) e x − 1 trocam o sinal de g, que é + 1. Em x = 0: f(g(0)) = √1 = 1, mas √(0 − 1) nem existe nos reais."
+   },
+   "armadilha": "A raiz de uma soma não se distribui: √(x² + 1) não vira x + 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As expressões de f ∘ g e de g ∘ f, nessa ordem.",
+    "chave": "f(g(x)) = √(x² + 1) e g(f(x)) = (√x)² + 1 = x + 1.",
+    "cuidado": "Na composição, a expressão inteira entra no lugar do x, com parênteses; e √(a + b) ≠ √a + √b."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação por um valor",
+    "ideia": "Teste x = 4 nas alternativas: f(g(4)) = √17 e g(f(4)) = 5; A dá 3 e 5, C dá √17 e 3, D dá 5 e 5, E dá √15 e 3. Só B dá √17 e 5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(g(x)) = √(x² + 1)",
+    "nota": "g entra no lugar do x de f"
+   },
+   {
+    "linha": "g(f(x)) = (√x)² + 1",
+    "nota": "f entra no lugar do x de g"
+   },
+   {
+    "linha": "(√x)² + 1 = x + 1",
+    "nota": "raiz e quadrado se desfazem"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
  }
 }

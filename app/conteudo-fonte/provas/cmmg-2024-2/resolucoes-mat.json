@@ -326,5 +326,237 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0003"
   }
+ },
+ "P1cec17ca": {
+  "n": "57",
+  "conceito": "Achar as constantes de Q(t) = k · 10^(3 − at) por dois pontos da tabela e resolver Q(t) = 50 com logaritmo decimal.",
+  "equivocos": {
+   "A": "M06.5:errou-o-tempo-do-decaimento",
+   "C": "M06.5:errou-o-tempo-do-decaimento",
+   "D": "M06.5:errou-o-tempo-do-decaimento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O modelo tem duas constantes e a tabela dá dois pontos: t = 0 fixa k e t = 1 fixa a. Depois iguale Q(t) a 50. Os dados log 89 e log 50 existem para isso: cada equação vira uma potência de 10 igual a um número, e o log tira o expoente.",
+    "formulas": [
+     "Q(t) = k · 10^(3 − at)",
+     "10^n = A ⇔ n = log A"
+    ],
+    "simbolos": [
+     [
+      "Q(t)",
+      "quantidade da substância no sangue, em %, t horas após a aplicação"
+     ],
+     [
+      "k, a",
+      "constantes reais positivas do modelo"
+     ],
+     [
+      "log",
+      "logaritmo na base 10"
+     ]
+    ]
+   },
+   "pista": "Use primeiro o ponto t = 0: ele elimina o a e entrega o k.",
+   "passos": [
+    {
+     "faz": "Ache k com t = 0",
+     "conta": "k · 10^(3 − 0) = 100 → k · 1000 = 100 → k = 100/1000 = 0,1",
+     "porque": "Com t = 0, o termo at some, e sobra 10³ = 1000. O 1000 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a com t = 1",
+     "conta": "0,1 · 10^(3 − a) = 89 → 10^(2 − a) = 89 → 2 − a = log 89 = 1,95 → a = 0,05",
+     "porque": "Multiplicar por 0,1 é tirar 1 do expoente. Aplicando log, o expoente fica igual a log 89.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale Q(t) a 50",
+     "conta": "0,1 · 10^(3 − 0,05t) = 50 → 10^(2 − 0,05t) = 50 → 2 − 0,05t = log 50 = 1,70",
+     "porque": "Mesmo movimento: o 0,1 vira −1 no expoente e o log iguala o expoente ao log 50.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole t",
+     "conta": "0,05t = 2 − 1,70 = 0,30 → t = 0,30/0,05 = 6",
+     "porque": "O 2 passa subtraindo e o 0,05 que multiplica t passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "t = 6 h → alternativa B",
+     "porque": "A pergunta é quantas horas após a aplicação a quantidade chega a 50%.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 6h",
+   "checagem": "Cada hora multiplica a quantidade por 10^(−0,05) ≈ 0,89, o mesmo fator de 100% para 89%. Seis horas dão 0,89⁶ ≈ 0,497, quase exatamente a metade.",
+   "erradas": {
+    "A": "5h não confere: log Q(5) = 2 − 0,05 · 5 = 1,75, maior que log 50 = 1,70; ainda há cerca de 56%.",
+    "C": "7h não confere: log Q(7) = 2 − 0,05 · 7 = 1,65, menor que 1,70; a quantidade já caiu para cerca de 45%.",
+    "D": "8h não confere: log Q(8) = 2 − 0,05 · 8 = 1,60, cerca de 40%, abaixo dos 50% pedidos."
+   },
+   "armadilha": "O k vale 0,1, não 100: o 100% em t = 0 já inclui o fator 10³ do modelo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quanto tempo após a aplicação a quantidade cai para 50%.",
+    "chave": "k = 0,1 e a = 0,05 pelos pontos da tabela; 2 − 0,05t = 1,70 dá t = 6 h.",
+    "cuidado": "Ache k em t = 0 antes de tudo e lembre que 0,1 · 10^n = 10^(n − 1)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "log é reta",
+    "ideia": "log Q = log k + 3 − at é uma reta em t: de log 100 = 2 para log 89 = 1,95 cai 0,05 por hora; até log 50 = 1,70 faltam 0,30, ou seja, 6 horas."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "k · 1000 = 100 → k = 0,1",
+    "nota": "ponto t = 0"
+   },
+   {
+    "linha": "10^(2 − a) = 89 → a = 2 − 1,95 = 0,05",
+    "nota": "ponto t = 1, com log 89"
+   },
+   {
+    "linha": "10^(2 − 0,05t) = 50 → 2 − 0,05t = 1,70",
+    "nota": "Q = 50, com log 50"
+   },
+   {
+    "linha": "t = 0,30/0,05 = 6",
+    "nota": "o 0,05 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "FCM-MG — caderno de questões do Vestibular de Medicina 2.2024",
+    "url": "https://vestibular.cmmg.edu.br/wp-content/uploads/2024/05/CADERNO-DE-QUESTOES-VESTIBULAR-DE-MEDICINA-2.2024-1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
+ },
+ "Pb1cb802c": {
+  "n": "56",
+  "conceito": "Sequência de Fibonacci na árvore de ancestrais do zangão: somar os ancestrais das dez primeiras gerações.",
+  "equivocos": {
+   "A": "M07.4:pegou-um-termo-no-lugar-da-soma",
+   "B": "M07.4:deu-so-a-ultima-geracao",
+   "D": "M07.4:somou-geracoes-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada geração de ancestrais tem um número de Fibonacci de indivíduos: 1 mãe, 2 avós, 3 bisavós, 5 tataravós. A pergunta pede todos os ancestrais até a décima geração, então é uma soma, e não um termo. O zangão não é ancestral dele mesmo: o primeiro 1 da sequência do texto é ele.",
+    "formulas": [
+     "Fibonacci: cada termo = soma dos dois anteriores",
+     "total de ancestrais = soma das 10 gerações"
+    ],
+    "simbolos": [
+     [
+      "geração",
+      "uma fila da árvore: 1ª = mãe, 2ª = avós, 3ª = bisavós, ..."
+     ],
+     [
+      "Fibonacci",
+      "sequência 1, 1, 2, 3, 5, 8, ... em que cada termo é a soma dos dois anteriores"
+     ]
+    ]
+   },
+   "pista": "Liste quantos ancestrais há em cada geração, da mãe até a décima, antes de somar.",
+   "passos": [
+    {
+     "faz": "Separe o zangão dos ancestrais",
+     "conta": "(1, 1, 2, 3, 5, ...) → zangão: 1 | 1ª geração: 1 | 2ª: 2 | 3ª: 3 | 4ª: 5",
+     "porque": "O primeiro 1 da sequência do texto é o próprio zangão; os ancestrais começam no segundo termo, a mãe.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Continue até a 10ª geração",
+     "conta": "1, 2, 3, 5 → 8, 13, 21, 34, 55, 89",
+     "porque": "Cada geração é a soma das duas anteriores: 3 + 5 = 8, 5 + 8 = 13, ..., 34 + 55 = 89.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as dez gerações",
+     "conta": "1 + 2 + 3 + 5 + 8 = 19 → 19 + 13 + 21 = 53 → 53 + 34 + 55 = 142 → 142 + 89 = 231",
+     "porque": "O pedido é o total de indivíduos, então entram todas as gerações, da mãe até a décima.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte ao comando",
+     "conta": "231 ≈ 230 → alternativa C",
+     "porque": "A questão pede o número aproximado; 230 é a alternativa mais próxima de 231.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — aproximadamente 230 indivíduos",
+   "checagem": "Use a propriedade da soma de Fibonacci: a soma de 1, 1, 2, ..., 89 é o termo dois lugares adiante menos 1. Depois de 89 vêm 144 e 233, e 233 − 1 = 232; tirando o zangão, 232 − 1 = 231. Fecha.",
+   "erradas": {
+    "A": "55 sai de pegar o 10º termo da sequência do texto, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, que começa no próprio zangão. É um termo só, não a soma das gerações.",
+    "B": "90 sai de dar só a décima geração: 89 ancestrais, cerca de 90. A pergunta pede todos os ancestrais até ela, somando as dez gerações.",
+    "D": "370 não confere: as dez gerações somam 231; mesmo acrescentando uma 11ª geração inteira (144), o total vai a 375, e aí já se passou da décima."
+   },
+   "armadilha": "Pede-se a soma de todas as gerações, não o número da décima: 89, cerca de 90, é só a última fila da árvore.",
+   "alerta": "A soma exata é 231; a alternativa traz 230 porque a questão pede o número \"aproximadamente\".",
+   "essencial": {
+    "pede": "Quantos ancestrais um zangão tem, somando da mãe até a décima geração.",
+    "chave": "As gerações são 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, que somam 231.",
+    "cuidado": "Não conte o próprio zangão como geração e some todas, não só a última."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação pelas alternativas",
+    "ideia": "Só as três últimas gerações já somam 34 + 55 + 89 = 178, o que derruba 55 e 90; as sete primeiras somam só 53, então o total fica abaixo de 2 · 178 = 356 e derruba 370."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1, 2, 3, 5, 8, 13, 21, 34, 55, 89",
+    "nota": "ancestrais da 1ª à 10ª geração"
+   },
+   {
+    "linha": "1 + 2 + 3 + 5 + 8 = 19",
+    "nota": "primeiras cinco gerações"
+   },
+   {
+    "linha": "19 + 13 + 21 = 53",
+    "nota": "mais a 6ª e a 7ª"
+   },
+   {
+    "linha": "53 + 34 + 55 = 142",
+    "nota": "mais a 8ª e a 9ª"
+   },
+   {
+    "linha": "142 + 89 = 231",
+    "nota": "mais a 10ª; cerca de 230"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Caderno oficial — FCM-MG 2024 2º semestre · questão 56",
+    "url": "https://vestibular.cmmg.edu.br/wp-content/uploads/2024/05/CADERNO-DE-QUESTOES-VESTIBULAR-DE-MEDICINA-2.2024-1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
  }
 }

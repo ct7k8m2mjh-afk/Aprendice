@@ -1059,5 +1059,236 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "Pfbc8c54a": {
+  "n": "19",
+  "conceito": "Sistema linear 2×2 montado a partir de porcentagens dos estoques de dois compostos.",
+  "equivocos": {
+   "B": "M04.3:resultado-sem-substituir-no-sistema",
+   "C": "M04.3:respondeu-o-estoque-total",
+   "D": "M04.3:resultado-sem-substituir-no-sistema",
+   "E": "M04.3:resultado-sem-substituir-no-sistema"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Chame de A e B as quantidades disponíveis de cada composto. Cada produto é feito com uma porcentagem desses estoques, e o volume do produto é a soma das partes usadas. Isso dá duas equações. A pergunta não é o estoque B, e sim quanto de B o pedido consome: 50% mais 10% de B.",
+    "formulas": [
+     "P1: 0,1A + 0,5B = 1150",
+     "P2: 0,8A + 0,1B = 1400",
+     "B usado no pedido = 0,5B + 0,1B = 0,6B"
+    ],
+    "simbolos": [
+     [
+      "A, B",
+      "litros disponíveis no mês do composto A e do composto B"
+     ],
+     [
+      "P1, P2",
+      "os dois produtos do pedido"
+     ]
+    ]
+   },
+   "pista": "Escreva o volume de cada produto como soma das porcentagens dos dois compostos e resolva o sistema antes de responder.",
+   "passos": [
+    {
+     "faz": "Monte uma equação para cada produto",
+     "conta": "P1: 0,1A + 0,5B = 1150 | P2: 0,8A + 0,1B = 1400",
+     "porque": "Os 1 150 L de P1 são feitos de 10% de A e 50% de B; os 1 400 L de P2, de 80% de A e 10% de B.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine A multiplicando a 1ª por 8",
+     "conta": "0,8A + 4B = 9200 ; (0,8A + 4B) − (0,8A + 0,1B) = 9200 − 1400 → 3,9B = 7800 → B = 2000",
+     "porque": "Com o mesmo 0,8A nas duas, a subtração faz o A sumir. O 3,9 que multiplica B passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache A na 1ª equação",
+     "conta": "0,1A + 0,5 · 2000 = 1150 → 0,1A = 150 → A = 1500",
+     "porque": "Não é o que se pede, mas serve para conferir o sistema.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o B usado no pedido",
+     "conta": "0,5B + 0,1B = 0,6 · 2000 → 1200 L",
+     "porque": "O pedido gasta 50% de B em P1 e 10% de B em P2: 60% do estoque de B.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao comando",
+     "conta": "B necessário = 1200 L → alternativa A",
+     "porque": "A pergunta é a quantidade de B necessária para o pedido, não o estoque de 2 000 L.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1200 litros",
+   "checagem": "Reconstrua os produtos: P1 = 10% de 1500 + 50% de 2000 = 150 + 1000 = 1150 L; P2 = 80% de 1500 + 10% de 2000 = 1200 + 200 = 1400 L. Os volumes batem com o pedido.",
+   "erradas": {
+    "B": "1800 não confere: 0,6B = 1800 exigiria B = 3000, e então 0,1A = 1150 − 1500 seria negativo.",
+    "C": "2000 sai de parar no estoque: B = 2000 é o total disponível; o pedido usa só 60% dele, 1200 L.",
+    "D": "600 não confere: 0,6B = 600 dá B = 1000 e A = 6500, e então P2 = 0,8 · 6500 + 0,1 · 1000 = 5300 L, não 1400.",
+    "E": "345 não confere: 0,6B = 345 dá B = 575 e A = 8625, e P2 sairia 0,8 · 8625 + 57,5 = 6957,5 L, não 1400."
+   },
+   "armadilha": "O sistema dá o estoque B = 2000 L, mas o pedido consome só 50% + 10% = 60% dele.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos litros do composto B o pedido de P1 e P2 consome.",
+    "chave": "0,1A + 0,5B = 1150 e 0,8A + 0,1B = 1400 dão B = 2000; o pedido usa 0,6 · 2000 = 1200 L.",
+    "cuidado": "Volte ao comando: a resposta é a parte usada, não o estoque."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "substituição",
+    "ideia": "Da 2ª equação, B = 14000 − 8A; na 1ª, 0,1A + 7000 − 4A = 1150 dá A = 1500 e B = 2000."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,1A + 0,5B = 1150 | 0,8A + 0,1B = 1400",
+    "nota": "uma equação por produto"
+   },
+   {
+    "linha": "0,8A + 4B = 9200",
+    "nota": "1ª equação vezes 8"
+   },
+   {
+    "linha": "3,9B = 7800 → B = 2000",
+    "nota": "subtrai a 2ª; o 3,9 passa dividindo"
+   },
+   {
+    "linha": "0,1A = 1150 − 1000 → A = 1500",
+    "nota": "volta na 1ª"
+   },
+   {
+    "linha": "0,6 · 2000 = 1200",
+    "nota": "B usado: 50% + 10%"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
+ },
+ "P8ce7550b": {
+  "n": "26",
+  "conceito": "Lucro com custo fixo e custo variável por peça (modelo afim), calculado mês a mês e comparado com o formato dos gráficos.",
+  "equivocos": {
+   "A": "M05.1:mais-pecas-igual-mais-lucro",
+   "B": "M05.1:ordem-dos-valores-trocada",
+   "C": "M05.1:mais-pecas-igual-mais-lucro",
+   "E": "M05.1:mais-pecas-igual-mais-lucro"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O lucro do mês é o que se vende menos o que se gasta. A venda é quantidade × preço de venda; o custo é C_A (fixo) mais quantidade × preço de custo. Dá para juntar: lucro = quantidade × (venda − custo por peça) − C_A. Com os quatro lucros na mão, compare o sobe e desce com cada gráfico.",
+    "formulas": [
+     "C = C_A + C_V, com C_V = x · (custo por peça)",
+     "lucro = x · (venda por peça − custo por peça) − C_A"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "quantidade de peças produzidas e vendidas no mês"
+     ],
+     [
+      "C_A",
+      "parte fixa do custo (aluguel, telefone)"
+     ],
+     [
+      "C_V",
+      "parte variável do custo: peças × preço de custo por peça"
+     ]
+    ]
+   },
+   "pista": "Calcule o lucro de cada mês e veja só o desenho: de janeiro para fevereiro sobe ou desce? Abril fica acima ou abaixo de janeiro?",
+   "passos": [
+    {
+     "faz": "Calcule o lucro de janeiro e fevereiro",
+     "conta": "jan: 100 · (60 − 30) − 2000 = 3000 − 2000 = 1000 ; fev: 180 · (50 − 35) − 1900 = 2700 − 1900 = 800",
+     "porque": "Cada peça dá a diferença entre venda e custo; do total, sai o custo fixo do mês.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o lucro de março e abril",
+     "conta": "mar: 200 · (60 − 25) − 2100 = 7000 − 2100 = 4900 ; abr: 150 · (55 − 30) − 2000 = 3750 − 2000 = 1750",
+     "porque": "Mesma conta: margem por peça vezes quantidade, menos C_A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descreva o formato do gráfico",
+     "conta": "1000 → 800 → 4900 → 1750 : desce pouco, sobe muito, desce até acima de janeiro",
+     "porque": "O pico é março; fevereiro é o menor valor; abril (1750) fica acima de janeiro (1000).",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste os gráficos e escolha",
+     "conta": "a, c, e: sobem de jan para fev (errado) ; b: abril maior que março (errado) ; d: tudo bate → alternativa D",
+     "porque": "Só o gráfico d tem a pequena queda até fevereiro, o pico em março e abril acima de janeiro.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — o gráfico d: queda leve até fevereiro, pico em março e abril acima de janeiro",
+   "checagem": "Calcule pelo caminho longo, venda menos custo total: março vende 200 · 60 = 12000 e gasta 2100 + 200 · 25 = 7100; 12000 − 7100 = 4900. Fevereiro: 180 · 50 = 9000 e 1900 + 180 · 35 = 8200; 9000 − 8200 = 800. Os valores conferem.",
+   "erradas": {
+    "A": "O gráfico a não confere: sobe de janeiro para fevereiro, mas o lucro cai de 1000 para 800; e o pico de março mal passa fevereiro, quando 4900 é mais de seis vezes 800.",
+    "B": "O gráfico b não confere: abril aparece acima de março, mas o lucro cai de 4900 para 1750.",
+    "C": "O gráfico c não confere: sobe de janeiro para fevereiro (o lucro cai de 1000 para 800) e quase não muda de março para abril (cai de 4900 para 1750).",
+    "E": "O gráfico e não confere: sobe de janeiro para fevereiro, quando o lucro cai, e termina abril abaixo de janeiro, quando 1750 é maior que 1000."
+   },
+   "armadilha": "Fevereiro vende mais peças que janeiro, mas lucra menos, porque a margem por peça cai de 30 para 15 reais.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O gráfico que representa o lucro mensal de janeiro a abril.",
+    "chave": "Lucro = peças × (venda − custo por peça) − C_A: 1000, 800, 4900 e 1750.",
+    "cuidado": "Compare o formato inteiro: a queda de janeiro para fevereiro e abril acima de janeiro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "formato pela margem",
+    "ideia": "Como C_A quase não muda (1900 a 2100), o formato segue peças × margem: 3000, 2700, 7000, 3750, com o mesmo desce, sobe muito, desce."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "jan: 100 · 30 − 2000 = 1000",
+    "nota": "margem 60 − 30 = 30 por peça"
+   },
+   {
+    "linha": "fev: 180 · 15 − 1900 = 800",
+    "nota": "margem 50 − 35 = 15"
+   },
+   {
+    "linha": "mar: 200 · 35 − 2100 = 4900",
+    "nota": "margem 60 − 25 = 35"
+   },
+   {
+    "linha": "abr: 150 · 25 − 2000 = 1750",
+    "nota": "margem 55 − 30 = 25"
+   },
+   {
+    "linha": "1000 → 800 → 4900 → 1750",
+    "nota": "desce, sobe muito, desce: gráfico d"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
  }
 }

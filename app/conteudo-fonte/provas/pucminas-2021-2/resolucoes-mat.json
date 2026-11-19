@@ -315,5 +315,133 @@
    "data": "2026-11-13",
    "lote": "mat-0061"
   }
+ },
+ "P9e4c4002": {
+  "n": "45",
+  "conceito": "Decaimento de 10% ao período sobre o que resta: resolver 0,9^t = 0,3 com logaritmos escritos a partir de log 3.",
+  "equivocos": {
+   "B": "M06.5:passou-do-tempo-de-decaimento",
+   "C": "M06.5:passou-do-tempo-de-decaimento",
+   "D": "M06.5:passou-do-tempo-de-decaimento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Consumir 10% do que ainda resta é ficar com 90% do volume da hora anterior: o volume é multiplicado por 0,9 a cada hora. Depois de t horas sobra V0 · 0,9^t. Chegar a 30% do inicial é resolver 0,9^t = 0,3, e o t no expoente sai com logaritmo; 0,9 e 0,3 se escrevem com log 3 e log 10.",
+    "formulas": [
+     "V(t) = V0 · 0,9^t",
+     "log 0,9 = log 9 − log 10 = 2 · log 3 − 1",
+     "log 0,3 = log 3 − log 10 = log 3 − 1"
+    ],
+    "simbolos": [
+     [
+      "V0",
+      "volume inicial de oxigênio no cilindro"
+     ],
+     [
+      "V(t)",
+      "volume que resta depois de t horas"
+     ],
+     [
+      "t",
+      "tempo de uso, em horas"
+     ],
+     [
+      "log",
+      "logaritmo na base 10; log 10 = 1"
+     ]
+    ]
+   },
+   "pista": "Antes de pensar em logaritmo, decida quanto sobra a cada hora: o consumo é sobre o que resta, não sobre o volume inicial.",
+   "passos": [
+    {
+     "faz": "Traduza o consumo em fator",
+     "conta": "consome 10% do que resta → sobra 90% → V(t) = V0 · 0,9^t",
+     "porque": "Cada hora tira 10% do volume daquela hora, então o volume é multiplicado por 1 − 0,1 = 0,9, hora após hora.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Iguale a 30% do inicial",
+     "conta": "V0 · 0,9^t = 0,3 · V0 → 0,9^t = 0,3",
+     "porque": "V0 está nos dois lados e cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique log e isole t",
+     "conta": "log 0,9^t = log 0,3 → t · log 0,9 = log 0,3 → t = (log 0,3)/(log 0,9)",
+     "porque": "O expoente desce multiplicando; o log 0,9 que multiplica t passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use log 3 = 0,48",
+     "conta": "t = (log 3 − 1)/(2 · log 3 − 1) → t = (0,48 − 1)/(0,96 − 1) = (−0,52)/(−0,04) = 13",
+     "porque": "0,3 = 3/10 e 0,9 = 3²/10, então tudo sai de log 3 e de log 10 = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte ao comando",
+     "conta": "t = 13 h → alternativa A",
+     "porque": "Com o dado da prova a conta dá exatamente 13 horas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — aproximadamente 13 horas",
+   "checagem": "Desfaça pelos logs: 13 horas de fator 0,9 dão log(0,9¹³) = 13 · (−0,04) = −0,52, que é log 3 − 1 = log 0,3. Com os dados da prova, sobram 30% do volume.",
+   "erradas": {
+    "B": "14 horas não confere: 14 · (−0,04) = −0,56, abaixo de log 0,3 = −0,52; com os dados da prova sobraria menos de 30% do volume.",
+    "C": "15 horas não confere: 15 · (−0,04) = −0,60, e não −0,52 = log 0,3.",
+    "D": "16 horas não confere: 16 · (−0,04) = −0,64, e não −0,52 = log 0,3."
+   },
+   "armadilha": "Os 10% saem do que ainda resta, não do volume inicial: quem tira 10% fixos por hora pensa em reta (70% gastos em 7 h) e não usa logaritmo.",
+   "alerta": "Com o valor mais preciso log 3 ≈ 0,4771, log 0,9 ≈ −0,0458 e o tempo dá cerca de 11,4 horas (em 13 h sobram cerca de 25%, pois 0,9¹³ ≈ 0,25). A diferença vem do arredondamento: log 0,9 é um número pequeno, e trocá-lo por −0,04 pesa na divisão. A prova manda usar log 3 = 0,48, e com esse dado a resposta é 13 horas; mesmo com o valor preciso, 13 h é a alternativa mais próxima.",
+   "essencial": {
+    "pede": "Em quantas horas o oxigênio cai a 30% do volume inicial, se cada hora consome 10% do que resta.",
+    "chave": "0,9^t = 0,3 dá t = (log 3 − 1)/(2 · log 3 − 1) = (−0,52)/(−0,04) = 13.",
+    "cuidado": "Escreva 0,9 como 3²/10 e 0,3 como 3/10 para usar só log 3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo inverso",
+    "ideia": "Invertendo, (10/9)^t = 10/3, e os logs ficam positivos: t · (1 − 2 · 0,48) = 1 − 0,48, ou seja, t · 0,04 = 0,52 e t = 13 h."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V0 · 0,9^t = 0,3 · V0",
+    "nota": "sobra 90% a cada hora"
+   },
+   {
+    "linha": "0,9^t = 0,3",
+    "nota": "V0 cancela"
+   },
+   {
+    "linha": "t = (log 0,3)/(log 0,9)",
+    "nota": "log dos dois lados"
+   },
+   {
+    "linha": "t = (0,48 − 1)/(0,96 − 1)",
+    "nota": "0,3 = 3/10 e 0,9 = 3²/10"
+   },
+   {
+    "linha": "t = (−0,52)/(−0,04) = 13",
+    "nota": "divide"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Caderno oficial — PUC Minas 2021 Medicina 2021/2 · questão 45",
+    "url": "https://www.pucminas.br/formas-ingresso/vestibular/Documents/2021/CadernoMedicinaBETIM2_2021.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
  }
 }

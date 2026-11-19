@@ -1307,5 +1307,268 @@
    "data": "2026-11-19",
    "lote": "mat-0071"
   }
+ },
+ "P83c42669": {
+  "n": "11",
+  "conceito": "Montar o lucro como receita menos despesa, achar o vértice e avaliar o lucro em pontos dados.",
+  "equivocos": {
+   "A": "M05.2:lucro-sempre-crescente",
+   "B": "M05.2:lucro-sempre-crescente",
+   "C": "M05.2:comparacao-de-lucros-errada",
+   "D": "M05.2:vertice-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Lucro é receita menos despesa: L(x) = R(x) − D(x). O resultado é uma parábola com a concavidade para baixo, então o lucro sobe até o vértice e depois cai. Cada afirmativa vira uma conta com L(x): vértice para I e II, valor em x = 35 para III, comparação de dois valores para IV.",
+    "formulas": [
+     "L(x) = R(x) − D(x)",
+     "vértice: x_v = −b/(2a)",
+     "prejuízo: L(x) < 0"
+    ],
+    "simbolos": [
+     [
+      "L(x)",
+      "lucro com x camisetas"
+     ],
+     [
+      "R(x)",
+      "receita das vendas de x camisetas"
+     ],
+     [
+      "D(x)",
+      "despesa para fabricar x camisetas"
+     ],
+     [
+      "x_v",
+      "quantidade no vértice, onde o lucro é máximo"
+     ]
+    ]
+   },
+   "pista": "Monte L(x) com cuidado no sinal: a despesa inteira, 2x + 10, é subtraída.",
+   "passos": [
+    {
+     "faz": "Monte o lucro",
+     "conta": "L = (−x² + 42x + 51) − (2x + 10) → L = −x² + 40x + 41",
+     "porque": "O sinal de menos vale para os dois termos da despesa: −2x e −10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o vértice (I e II)",
+     "conta": "x_v = −40/(2 · (−1)) → x_v = 20 → L(20) = −400 + 800 + 41 = 441",
+     "porque": "O máximo é com 20 camisetas: II é verdadeira. Depois de 20 o lucro cai, então I é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o lucro com 35 (III)",
+     "conta": "L(35) = −1.225 + 1.400 + 41 → L(35) = 216",
+     "porque": "Lucro positivo: com 35 camisetas não há prejuízo, e III é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare 15 com 41 camisetas (IV)",
+     "conta": "L(15) = −225 + 600 + 41 = 416 | L(41) = −1.681 + 1.640 + 41 = 0 → 416 > 0",
+     "porque": "Com 41 camisetas o lucro é zero; 15 rende mais, e IV é verdadeira.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Junte as afirmativas",
+     "conta": "I falsa | II, III e IV verdadeiras → alternativa E",
+     "porque": "Só a E traz exatamente II, III e IV.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — apenas II, III e IV estão corretas",
+   "checagem": "Confira pelas raízes: −x² + 40x + 41 = 0 dá x = −1 e x = 41, cuja média é 20, o vértice achado. Entre −1 e 41 a parábola fica acima do eixo, então 35 dá lucro e 41 dá lucro zero.",
+   "erradas": {
+    "A": "A inclui I, que é falsa: depois do vértice o lucro cai; L(30) = 341 é menor que L(20) = 441, mesmo vendendo mais.",
+    "B": "B inclui I, que é falsa (L(21) = 440 < L(20) = 441), e deixa de fora II e III, que são verdadeiras.",
+    "C": "C deixa de fora IV, que é verdadeira: L(15) = 416 e L(41) = 0, então 15 camisetas rendem mais.",
+    "D": "D deixa de fora II, que é verdadeira: o vértice de L(x) = −x² + 40x + 41 está em x = 20."
+   },
+   "armadilha": "Produzir mais não significa lucrar mais: o lucro é uma parábola que sobe até 20 camisetas e depois desce.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmativas sobre o lucro L(x) = R(x) − D(x) são verdadeiras.",
+    "chave": "L(x) = −x² + 40x + 41: máximo 441 em x = 20, L(35) = 216 e L(41) = 0 < L(15) = 416.",
+    "cuidado": "Subtraia a despesa inteira, com o sinal nos dois termos, antes de achar o vértice."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria",
+    "ideia": "Valores à mesma distância de 20 dão o mesmo lucro (L(15) = L(25) = 416); 41 está bem mais longe de 20 que 15, então L(41) < L(15)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "L = −x² + 42x + 51 − 2x − 10",
+    "nota": "receita menos despesa"
+   },
+   {
+    "linha": "L = −x² + 40x + 41",
+    "nota": "junta os termos"
+   },
+   {
+    "linha": "x_v = −40/(−2) = 20",
+    "nota": "vértice: II certa, I errada"
+   },
+   {
+    "linha": "L(35) = 216 > 0",
+    "nota": "III certa"
+   },
+   {
+    "linha": "L(15) = 416 > L(41) = 0",
+    "nota": "IV certa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
+ },
+ "Pdc135a03": {
+  "n": "22",
+  "conceito": "Equação exponencial de base 1/2 com expoente t²: achar T e julgar se é inteiro, racional e em que faixa está.",
+  "equivocos": {
+   "A": "M06.5:nao-reconheceu-inteiro-como-racional",
+   "B": "M06.5:achou-que-a-raiz-nao-e-exata",
+   "C": "M06.5:aceitou-afirmativas-contraditorias",
+   "E": "M06.5:aceitou-afirmativas-contraditorias"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Restar 25% é ter um quarto, e 1/4 = (1/2)². Igualando as bases, o expoente T²/(98 · 10⁴) tem de valer 2; daí sai T² e, depois, T. Por fim, cada afirmativa testa uma propriedade do número T: ser inteiro, ser racional, estar acima ou abaixo de um limite.",
+    "formulas": [
+     "Q(t) = q0 · (1/2)^(t²/(98 · 10⁴))",
+     "(1/2)^a = (1/2)^b ⇒ a = b",
+     "todo inteiro é racional: 1 400 = 1 400/1"
+    ],
+    "simbolos": [
+     [
+      "Q(t)",
+      "quantidade de carbono-14 no fóssil no tempo t"
+     ],
+     [
+      "q0",
+      "quantidade inicial de carbono-14"
+     ],
+     [
+      "t",
+      "tempo, em anos"
+     ],
+     [
+      "T",
+      "idade do fóssil que a questão quer"
+     ],
+     [
+      "98 · 10⁴",
+      "98 vezes 10 000, ou seja, 980 000"
+     ],
+     [
+      "número racional",
+      "número que se escreve como fração de inteiros"
+     ]
+    ]
+   },
+   "pista": "Escreva 25% como uma potência de 1/2 antes de mexer no expoente.",
+   "passos": [
+    {
+     "faz": "Iguale a 25% de q0",
+     "conta": "q0 · (1/2)^(T²/(98 · 10⁴)) = 0,25 · q0 → (1/2)^(T²/(98 · 10⁴)) = 1/4 = (1/2)²",
+     "porque": "O q0 cancela e 0,25 = 1/4 = (1/2)²: as duas potências ficam com a mesma base.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale os expoentes",
+     "conta": "T²/(98 · 10⁴) = 2 → T² = 2 · 98 · 10⁴ = 196 · 10⁴",
+     "porque": "Mesma base 1/2, expoentes iguais. O 98 · 10⁴ que divide passa multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a raiz",
+     "conta": "T² = 196 · 10⁴ → T = √196 · √10⁴ = 14 · 100 = 1 400",
+     "porque": "O tempo é t ≥ 0, então só a raiz positiva vale. 196 = 14² e 10⁴ = 100².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue cada afirmativa",
+     "conta": "I: racional e < 2 000 (V) | II: inteiro e > 1 000 (V) | III: inteiro e < 1 500 (V) | IV: diz que não é inteiro (F)",
+     "porque": "T = 1 400 é inteiro, portanto também racional, e fica entre 1 000 e 1 500. Só IV erra, porque nega que T seja inteiro.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Volte ao comando",
+     "conta": "I, II e III corretas → alternativa D",
+     "porque": "A pergunta pede quais afirmativas estão corretas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — apenas I, II e III",
+   "checagem": "Substitua T = 1 400 no modelo: 1 400² = 1 960 000 e 1 960 000/980 000 = 2, então Q = q0 · (1/2)² = q0/4, os 25% medidos.",
+   "erradas": {
+    "A": "Apenas III não confere: com T = 1 400, I também é verdadeira (1 400 = 1 400/1 é racional e menor que 2 000) e II também (inteiro maior que 1 000).",
+    "B": "I e IV não confere: IV diz que T não é inteiro, mas T² = 1 960 000 tem raiz exata 1 400. B ainda deixa de fora II e III, que são verdadeiras.",
+    "C": "II e IV não confere: as duas se contradizem, pois II diz que T é inteiro e IV diz que não é. Com T = 1 400, IV é falsa.",
+    "E": "Todas não confere: IV é falsa, porque T = 1 400 é inteiro."
+   },
+   "armadilha": "A raiz de 1 960 000 parece dar número quebrado, mas 196 · 10⁴ = (14 · 100)²: T = 1 400 é inteiro, e inteiro também é racional.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmativas sobre a idade T do fóssil, que tem 25% do carbono-14 inicial, estão corretas.",
+    "chave": "(1/2)^(T²/(98 · 10⁴)) = (1/2)² dá T² = 196 · 10⁴ e T = 1 400.",
+    "cuidado": "Lembre que todo inteiro é racional e que II e IV não podem valer juntas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação por contradição",
+    "ideia": "II diz que T é inteiro e IV diz que não é: as duas não valem juntas, o que derruba C e E; basta saber se T é inteiro (1 400) para decidir entre A, B e D."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(1/2)^(T²/(98 · 10⁴)) = 1/4",
+    "nota": "q0 cancela; 25% = 1/4"
+   },
+   {
+    "linha": "(1/2)^(T²/(98 · 10⁴)) = (1/2)²",
+    "nota": "1/4 como potência de 1/2"
+   },
+   {
+    "linha": "T²/(98 · 10⁴) = 2",
+    "nota": "bases iguais, expoentes iguais"
+   },
+   {
+    "linha": "T² = 196 · 10⁴",
+    "nota": "o 98 · 10⁴ passa multiplicando"
+   },
+   {
+    "linha": "T = 14 · 100 = 1 400",
+    "nota": "raiz positiva, pois t ≥ 0"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Caderno oficial — UFSM 2026 · questão 22",
+    "url": "https://www.ufsm.br/app/uploads/sites/342/2025/06/PROVA-1-VESTIBULAR-UFSM-2026.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
  }
 }

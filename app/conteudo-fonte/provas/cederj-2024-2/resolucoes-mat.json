@@ -307,5 +307,121 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "P41c1c6fd": {
+  "n": "33",
+  "conceito": "Equação logarítmica com bases diferentes: mudar de base, trocar log₂x por uma incógnita e usar que o produto das raízes é 2 elevado à soma dos logs.",
+  "equivocos": {
+   "B": "M06.4:errou-a-soma-das-raizes",
+   "C": "M06.4:respondeu-a-soma-dos-logaritmos",
+   "D": "M06.4:errou-a-soma-das-raizes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois logaritmos se ligam por log₂x: log na base x³ de 2 é 1/(3 · log₂x). Com u = log₂x, a equação vira do 2.º grau em u. O produto das raízes em x não pede as raízes: x₁ · x₂ = 2^(u₁ + u₂), e a soma das raízes sai da própria equação.",
+    "formulas": [
+     "log_(x³) 2 = 1/(3 · log₂x)",
+     "em au² + bu + c = 0, soma das raízes = −b/a",
+     "2^(u₁) · 2^(u₂) = 2^(u₁ + u₂)"
+    ],
+    "simbolos": [
+     [
+      "u",
+      "log₂x, a nova incógnita"
+     ],
+     [
+      "x₁, x₂",
+      "as duas raízes da equação original"
+     ]
+    ]
+   },
+   "pista": "Escreva os dois logaritmos com a mesma letra: tudo depende de log₂x.",
+   "passos": [
+    {
+     "faz": "Mude a base do primeiro log",
+     "conta": "3 · log_(x³) 2 → 3 · 1/(3 · log₂x) = 1/log₂x",
+     "porque": "Inverter base e logaritmando inverte o log, e o expoente 3 da base desce dividindo; o 3 da frente cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque log₂x por u",
+     "conta": "1/u − u = −2 → 1 − u² = −2u → u² − 2u − 1 = 0",
+     "porque": "Multiplicando tudo por u (que não é zero, porque x ≠ 1) some a fração, e −2u passa para o outro lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva em u",
+     "conta": "u = (2 ± √(4 + 4))/2 → u = 1 + √2 ou u = 1 − √2",
+     "porque": "Bhaskara com Δ = 8 = 4 · 2, e √8 = 2√2. As duas raízes são distintas, como diz o enunciado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as raízes em x",
+     "conta": "x₁ · x₂ = 2^(1 + √2) · 2^(1 − √2) → 2^(1 + √2 + 1 − √2) = 2² = 4",
+     "porque": "Se u = log₂x, então x = 2^u. Produto de potências de mesma base soma os expoentes, e os √2 se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "x₁ · x₂ = 4 → alternativa A",
+     "porque": "O pedido é o produto das raízes em x, não em u.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 4",
+   "checagem": "Pela soma das raízes, sem Bhaskara: em u² − 2u − 1 = 0, u₁ + u₂ = −b/a = 2, e log₂(x₁ · x₂) = u₁ + u₂ = 2 dá x₁ · x₂ = 4. Numericamente, x₁ ≈ 5,33 e x₂ ≈ 0,75, e 5,33 · 0,75 ≈ 4.",
+   "erradas": {
+    "B": "2√2 não confere: seria 2^(3/2), e exigiria u₁ + u₂ = 3/2; a equação u² − 2u − 1 = 0 tem soma 2.",
+    "C": "2 sai de responder a soma dos logaritmos: u₁ + u₂ = 2. O produto das raízes em x é 2 elevado a essa soma, 2² = 4.",
+    "D": "√2 não confere: seria 2^(1/2), e exigiria u₁ + u₂ = 1/2; a soma das raízes de u² − 2u − 1 = 0 é 2."
+   },
+   "armadilha": "A equação em u devolve logaritmos: a soma 2 é log₂(x₁ · x₂), e o produto pedido é 2² = 4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O produto das duas raízes de 3 · log_(x³)2 − log₂x = −2.",
+    "chave": "Com u = log₂x, vem u² − 2u − 1 = 0; a soma das raízes é 2, logo x₁ · x₂ = 2² = 4.",
+    "cuidado": "Volte de u para x: x = 2^u, e produto de potências soma expoentes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "base x",
+    "ideia": "Com v = log_x 2, a equação fica v − 1/v = −2, ou v² + 2v − 1 = 0; v = −1 ± √2, e u = 1/v dá de novo 1 ± √2, produto 2² = 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3 · log_(x³) 2 = 1/log₂x",
+    "nota": "mudança de base; o 3 cancela"
+   },
+   {
+    "linha": "1/u − u = −2 → u² − 2u − 1 = 0",
+    "nota": "multiplica por u e reorganiza"
+   },
+   {
+    "linha": "u = 1 + √2 ou u = 1 − √2",
+    "nota": "Bhaskara, Δ = 8"
+   },
+   {
+    "linha": "x₁ · x₂ = 2^(1 + √2 + 1 − √2) = 2² = 4",
+    "nota": "x = 2^u; os √2 se cancelam"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Fundação Cecierj — prova do Vestibular Cederj 2024.2",
+    "url": "https://www.cecierj.edu.br/wp-content/uploads/2024/06/VestibularCederj_2024-2_Prova.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
  }
 }

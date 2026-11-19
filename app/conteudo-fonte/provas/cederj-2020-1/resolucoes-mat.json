@@ -621,5 +621,119 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "Pb7023905": {
+  "n": "46",
+  "conceito": "Domínio de função com raiz quadrada: estudo de sinal de um quociente com exponencial.",
+  "equivocos": {
+   "B": "M06.1:intervalo-sem-teste-de-sinal",
+   "C": "M06.1:inverteu-desigualdade-do-numerador",
+   "D": "M06.1:ignorou-o-denominador"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A raiz quadrada só existe para número maior ou igual a zero, e o denominador não pode ser zero. Então o trabalho é estudar o sinal de (1 − eˣ)/(x + 2). O numerador muda de sinal em x = 0, porque e⁰ = 1, e o denominador em x = −2.",
+    "formulas": [
+     "√A existe se A ≥ 0",
+     "eˣ < 1 se x < 0; eˣ = 1 se x = 0; eˣ > 1 se x > 0"
+    ],
+    "simbolos": [
+     [
+      "e",
+      "número de Euler, cerca de 2,718; eˣ é sempre positivo e crescente"
+     ],
+     [
+      "(−2, 0]",
+      "intervalo dos x maiores que −2 e menores ou iguais a 0"
+     ],
+     [
+      "domínio",
+      "conjunto dos x para os quais a fórmula dá um número real"
+     ]
+    ]
+   },
+   "pista": "Estude separadamente o sinal do numerador e o do denominador, e só depois junte.",
+   "passos": [
+    {
+     "faz": "Escreva a condição de existência",
+     "conta": "(1 − eˣ)/(x + 2) ≥ 0 | x + 2 ≠ 0",
+     "porque": "Dentro da raiz quadrada não pode haver número negativo, e divisão por zero não existe.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Estude o sinal do numerador",
+     "conta": "1 − eˣ ≥ 0 → eˣ ≤ 1 → x ≤ 0",
+     "porque": "eˣ é crescente e vale 1 em x = 0; fica abaixo de 1 para x negativo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Estude o sinal do denominador",
+     "conta": "x + 2 > 0 → x > −2",
+     "porque": "O denominador é positivo à direita de −2 e negativo à esquerda; em −2 ele zera e o ponto sai.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os sinais nos três trechos",
+     "conta": "x < −2: (+)/(−) < 0 | −2 < x ≤ 0: (+)/(+) ≥ 0 | x > 0: (−)/(+) < 0",
+     "porque": "O quociente é positivo só onde numerador e denominador têm o mesmo sinal. Em x = 0 ele vale zero, que a raiz aceita.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Escreva o intervalo e marque",
+     "conta": "−2 < x ≤ 0 → (−2, 0] → alternativa A",
+     "porque": "−2 fica aberto (zera o denominador) e 0 fica fechado (zera o numerador, raiz de zero existe).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — (−2, 0]",
+   "checagem": "Teste um ponto de cada trecho: x = −1 dá (1 − 0,37)/1 ≈ 0,63 ≥ 0 (serve); x = −3 dá (1 − 0,05)/(−1) ≈ −0,95 (não serve); x = 1 dá (1 − 2,72)/3 ≈ −0,57 (não serve).",
+   "erradas": {
+    "B": "(1, 2) não confere: em x = 1,5, (1 − e^1,5)/3,5 ≈ −0,99, negativo; a raiz não existe em nenhum ponto desse intervalo.",
+    "C": "[0, ∞) sai de inverter a desigualdade do numerador (tomar eˣ ≥ 1, x ≥ 0) e esquecer o denominador. Em x = 1 o quociente vale (1 − e)/3 ≈ −0,57.",
+    "D": "(−8, 0] não confere: inclui x = −3, onde o quociente vale (1 − e⁻³)/(−1) ≈ −0,95, e inclui x = −2, onde o denominador zera."
+   },
+   "armadilha": "Olhar só o numerador: o denominador muda de sinal em −2, e à esquerda dele o quociente fica negativo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O domínio de f(x) = √((1 − eˣ)/(x + 2)).",
+    "chave": "Numerador ≥ 0 para x ≤ 0, denominador > 0 para x > −2; o quociente é ≥ 0 só em (−2, 0].",
+    "cuidado": "−2 fica fora (zera o denominador) e 0 fica dentro (raiz de zero existe)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "multiplicar por (x + 2)²",
+    "ideia": "Multiplique a condição pelo quadrado (x + 2)², que é positivo: fica (1 − eˣ)(x + 2) ≥ 0 com x ≠ −2, um produto que só é ≥ 0 entre as raízes −2 e 0, pois é positivo apenas quando os dois fatores têm o mesmo sinal."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 − eˣ ≥ 0 → eˣ ≤ 1 → x ≤ 0",
+    "nota": "sinal do numerador"
+   },
+   {
+    "linha": "x + 2 > 0 → x > −2",
+    "nota": "sinal do denominador"
+   },
+   {
+    "linha": "−2 < x ≤ 0",
+    "nota": "os dois com o mesmo sinal"
+   },
+   {
+    "linha": "D = (−2, 0]",
+    "nota": "intervalo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
  }
 }

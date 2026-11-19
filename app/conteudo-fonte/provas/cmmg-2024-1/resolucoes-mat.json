@@ -310,5 +310,125 @@
    "data": "2026-11-19",
    "lote": "mat-0071"
   }
+ },
+ "Pf05e8355": {
+  "n": "60",
+  "conceito": "Resolver P(T) = 500 num modelo de crescimento logístico, isolando a exponencial e aplicando ln com os valores dados.",
+  "equivocos": {
+   "A": "M06.5:errou-casa-decimal-na-divisao",
+   "B": "M06.5:nao-isolou-a-exponencial",
+   "C": "M06.5:esqueceu-de-tirar-o-1"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ponha P = 500 e desmonte a fração de fora para dentro: inverta, tire o 1, divida pelo 200. Quando sobrar só e^(−0,24T), o ln baixa o expoente. Os dados ln 3 e ln 10 servem porque 0,003 = 3/1000.",
+    "formulas": [
+     "P = 800/(200 · e^(−0,24t) + 1)",
+     "e^a = b ⇔ a = ln b",
+     "ln(3/1000) = ln 3 − 3 · ln 10"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "população, em número de microrganismos"
+     ],
+     [
+      "t, T",
+      "tempo em dias; T é o instante em que P chega a 500"
+     ],
+     [
+      "ln",
+      "logaritmo natural, na base e"
+     ]
+    ]
+   },
+   "pista": "Antes de pensar em logaritmo, deixe e^(−0,24T) sozinho de um lado.",
+   "passos": [
+    {
+     "faz": "Iguale o modelo a 500",
+     "conta": "500 = 800/(200 · e^(−0,24T) + 1) → 200 · e^(−0,24T) + 1 = 800/500 = 1,6",
+     "porque": "O denominador passa multiplicando o 500, e o 500 passa dividindo o 800.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a exponencial",
+     "conta": "200 · e^(−0,24T) = 1,6 − 1 = 0,6 → e^(−0,24T) = 0,6/200 = 0,003",
+     "porque": "O 1 passa subtraindo e o 200 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o ln",
+     "conta": "−0,24T = ln(3/1000) = ln 3 − 3 · ln 10 → −0,24T = 1,1 − 6,9 = −5,8",
+     "porque": "0,003 = 3/1000 = 3/10³: o log do quociente vira diferença e o expoente 3 desce multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule T",
+     "conta": "T = 5,8/0,24 ≈ 24,2 dias",
+     "porque": "O −0,24 que multiplica T passa dividindo, e os sinais de menos se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao intervalo",
+     "conta": "22 < 24,2 < 26 → alternativa D",
+     "porque": "24,2 dias está entre 22 e 26.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 22 < T < 26",
+   "checagem": "Confira nas pontas do intervalo: P(22) = 800/(200 · e^(−5,28) + 1) ≈ 396 e P(26) = 800/(200 · e^(−6,24) + 1) ≈ 576. A população passa de 500 entre os dias 22 e 26.",
+   "erradas": {
+    "A": "A sai de errar uma casa na divisão: 0,6/200 lido como 0,03 dá −0,24T = 1,1 − 2 · 2,3 = −3,5 e T ≈ 14,6. O certo é 0,003.",
+    "B": "B não confere: P(19) = 800/(200 · e^(−4,56) + 1) ≈ 259, ainda bem abaixo de 500; no dia 19 a população não chegou lá.",
+    "C": "C sai de esquecer de tirar o 1: 200 · e^(−0,24T) = 1,6 dá e^(−0,24T) = 0,008 e T ≈ 20,1. Mas P(22) ≈ 396 ainda é menor que 500."
+   },
+   "armadilha": "Do denominador, o 1 tem de sair antes de dividir por 200: sobra 0,6, e não 1,6.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O intervalo de tempo em que a população chega a 500 microrganismos.",
+    "chave": "200 · e^(−0,24T) = 0,6 dá e^(−0,24T) = 3/1000, −0,24T = 1,1 − 6,9 = −5,8 e T ≈ 24,2.",
+    "cuidado": "Desmonte a fração na ordem (inverte, tira o 1, divide por 200) e escreva 0,003 como 3/10³."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "inverter a razão",
+    "ideia": "Escreva e^(0,24T) = 200/0,6 = 1000/3; então 0,24T = 3 · ln 10 − ln 3 = 5,8 e T ≈ 24,2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "200 · e^(−0,24T) + 1 = 800/500 = 1,6",
+    "nota": "denominador passa multiplicando"
+   },
+   {
+    "linha": "e^(−0,24T) = 0,6/200 = 3/1000",
+    "nota": "tira o 1 e divide por 200"
+   },
+   {
+    "linha": "−0,24T = 1,1 − 3 · 2,3 = −5,8",
+    "nota": "ln 3 − 3 · ln 10"
+   },
+   {
+    "linha": "T = 5,8/0,24 ≈ 24,2",
+    "nota": "o −0,24 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "FCM-MG — caderno de questões do Vestibular de Medicina 1.2024",
+    "url": "https://vestibular.cmmg.edu.br/wp-content/uploads/2023/10/CADERNO-DE-QUESTOES-VESTIBULAR-DE-MEDICINA-1.2024.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
  }
 }

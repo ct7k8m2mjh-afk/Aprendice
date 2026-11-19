@@ -297,5 +297,124 @@
    "data": "2026-11-13",
    "lote": "mat-0061"
   }
+ },
+ "P103747e8": {
+  "n": "42",
+  "conceito": "Modelar a receita como produto de duas funções afins e achar o máximo no vértice da parábola.",
+  "equivocos": {
+   "B": "M05.2:valor-acima-do-maximo",
+   "C": "M05.2:valor-acima-do-maximo",
+   "D": "M05.2:valor-acima-do-maximo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada redução de R$ 15 no preço traz 10 ingressos a mais. Chame de k o número de reduções: o preço e a quantidade viram funções afins de k, e a receita, produto das duas, vira uma parábola com a concavidade para baixo. O máximo está no vértice, que fica no meio das raízes.",
+    "formulas": [
+     "preço = 270 − 15k ; ingressos = 100 + 10k",
+     "receita R = preço × ingressos",
+     "vértice no meio das raízes: k_v = (k₁ + k₂)/2"
+    ],
+    "simbolos": [
+     [
+      "k",
+      "número de reduções de R$ 15 no preço"
+     ],
+     [
+      "R",
+      "receita diária, em reais"
+     ],
+     [
+      "k_v",
+      "valor de k no vértice, onde a receita é máxima"
+     ],
+     [
+      "k₁, k₂",
+      "raízes: valores de k que zeram a receita"
+     ]
+    ]
+   },
+   "pista": "Dê um nome ao número de reduções de R$ 15 e escreva o preço e a quantidade de ingressos em função dele.",
+   "passos": [
+    {
+     "faz": "Escreva preço e quantidade com k",
+     "conta": "preço: 270 − 15k | ingressos: 100 + 10k",
+     "porque": "Cada redução tira 15 do preço e soma 10 ingressos; com k reduções, isso acontece k vezes.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache as raízes da receita",
+     "conta": "(270 − 15k)(100 + 10k) = 0 → k = 270/15 = 18 ou k = −100/10 = −10",
+     "porque": "Um produto zera quando um dos fatores zera. Não é preciso expandir.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire o vértice da média das raízes",
+     "conta": "k_v = (18 + (−10))/2 → k_v = 8/2 → k_v = 4",
+     "porque": "A parábola é simétrica; o ponto mais alto fica exatamente no meio das duas raízes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a receita com 4 reduções",
+     "conta": "R = (270 − 15 · 4)(100 + 10 · 4) → R = 210 · 140 → R = 29.400",
+     "porque": "Com 4 reduções o ingresso custa R$ 210 e são vendidos 140 por dia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o máximo à alternativa",
+     "conta": "R máxima = 29.400 → alternativa A",
+     "porque": "A pergunta é a receita máxima, não o preço nem o número de reduções.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — R$ 29.400,00 de receita diária máxima",
+   "checagem": "Teste os vizinhos do vértice: com 3 reduções, 225 × 130 = 29.250; com 5, 195 × 150 = 29.250. Os dois lados dão o mesmo valor, menor que 29.400, sinal de que k = 4 é o topo.",
+   "erradas": {
+    "B": "31.800 não confere: passa do máximo. Igualando −150k² + 1.200k + 27.000 = 31.800, sai k² − 8k + 32 = 0, com Δ = 64 − 128 < 0: nenhum preço dá essa receita.",
+    "C": "34.900 não confere: fica 5.500 acima de 29.400, e numa parábola de concavidade para baixo nenhum valor de k supera o vértice.",
+    "D": "40.200 não confere: seria cerca de 1,49 vez a receita inicial de 270 × 100 = 27.000, mas a receita só sobe até 29.400 (k = 4) e depois cai."
+   },
+   "armadilha": "Sem nomear o número de reduções, o aluno tenta preços ao acaso; com k, a receita vira uma parábola e o máximo sai do vértice.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A maior receita diária possível com a venda de ingressos.",
+    "chave": "R = (270 − 15k)(100 + 10k) tem raízes 18 e −10; vértice em k = 4, receita 210 × 140 = 29.400.",
+    "cuidado": "Responda a receita no vértice, não o valor de k nem o preço do ingresso."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula do vértice",
+    "ideia": "Expandindo, R = −150k² + 1.200k + 27.000; k_v = −1.200/(2 · (−150)) = 4 e R(4) = 29.400."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R = (270 − 15k)(100 + 10k)",
+    "nota": "preço × ingressos"
+   },
+   {
+    "linha": "k = 18 ou k = −10",
+    "nota": "cada fator igual a zero"
+   },
+   {
+    "linha": "k_v = (18 − 10)/2 = 4",
+    "nota": "meio das raízes"
+   },
+   {
+    "linha": "R = 210 · 140 = 29.400",
+    "nota": "receita no vértice"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
  }
 }

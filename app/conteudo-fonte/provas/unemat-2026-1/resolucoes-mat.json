@@ -414,5 +414,219 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0003"
   }
+ },
+ "P63c1b7f7": {
+  "n": "13",
+  "conceito": "Tradução de texto em equação: a receita total é a soma de preço por tonelada vezes toneladas de cada produto.",
+  "equivocos": {
+   "B": "M04.3:dividiu-so-um-lado",
+   "C": "M04.3:misturou-toneladas-e-reais",
+   "D": "M04.3:misturou-toneladas-e-reais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto traz duas informações: o total de toneladas (500) e o total de dinheiro (R$ 1.000.000,00). A equação pedida liga as quantidades à receita: cada tonelada de soja rende R$ 2.000,00 e cada uma de milho, R$ 1.500,00. Somando o que rendem os dois produtos, chega-se ao total recebido.",
+    "formulas": [
+     "receita = preço por tonelada × toneladas vendidas",
+     "receita total = receita da soja + receita do milho"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "toneladas de soja vendidas"
+     ],
+     [
+      "y",
+      "toneladas de milho vendidas"
+     ]
+    ]
+   },
+   "pista": "Pergunte, para cada produto, quanto dinheiro rendem x ou y toneladas, e com que total isso tem de bater.",
+   "passos": [
+    {
+     "faz": "Calcule a receita de cada produto",
+     "conta": "soja: 2000 · x | milho: 1500 · y",
+     "porque": "Preço por tonelada vezes número de toneladas dá quanto cada produto rendeu, em reais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e iguale à receita total",
+     "conta": "2000x + 1500y = 1000000",
+     "porque": "As duas receitas juntas formam o R$ 1.000.000,00 do mês. As duas pontas da igualdade estão em reais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe a outra equação do texto",
+     "conta": "x + y = 500",
+     "porque": "As 500 toneladas também dão uma equação, mas ela fala de toneladas, não de dinheiro, e não aparece com esse número nas alternativas.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "2.000x + 1.500y = 1.000.000 → alternativa A",
+     "porque": "É a única alternativa com os preços em reais dos dois lados e o total de receita certo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2.000x + 1.500y = 1.000.000",
+   "checagem": "Resolva o sistema com as duas informações para ver que faz sentido: x + y = 500 e 2000x + 1500y = 1000000 dão x = 500 e y = 0, com 2000 · 500 = 1.000.000. Há solução, e a equação A é a da receita.",
+   "erradas": {
+    "B": "2x + 1,5y = 1.000.000 sai de dividir só o lado esquerdo por 1 000. Dividindo os dois lados, ficaria 2x + 1,5y = 1.000; do jeito que está, as unidades não batem (mil reais de um lado, reais do outro).",
+    "C": "X + y = 1.000.000 sai de misturar as duas informações: x + y conta toneladas, e o total de toneladas é 500, não 1 milhão.",
+    "D": "2x + 1,5y = 500 sai de misturar receita com toneladas: o lado esquerdo é receita em milhares de reais, e 500 é o total de toneladas. Na escala certa, ficaria 2x + 1,5y = 1.000."
+   },
+   "armadilha": "Cada lado da equação precisa estar na mesma unidade: receita em reais com receita em reais, toneladas com toneladas.",
+   "alerta": "Com esses números, o sistema x + y = 500 e 2000x + 1500y = 1000000 dá y = 0 (nenhum milho), o que é estranho para o contexto; mas a pergunta pede só a equação da receita, que é a alternativa A.",
+   "essencial": {
+    "pede": "A equação que liga as toneladas de soja (x) e de milho (y) à receita total.",
+    "chave": "Receita = preço × quantidade: 2000x + 1500y = 1000000.",
+    "cuidado": "Não misture toneladas com reais nem divida só um lado da equação."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "análise de unidades",
+    "ideia": "Elimine pelas unidades: (R$/t) × t = R$, então o lado direito tem de ser a receita em reais na mesma escala do lado esquerdo; só A fecha."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "soja: 2000 · x ; milho: 1500 · y",
+    "nota": "preço por tonelada vezes toneladas"
+   },
+   {
+    "linha": "2000x + 1500y = 1000000",
+    "nota": "soma das receitas = receita total"
+   },
+   {
+    "linha": "x + y = 500",
+    "nota": "a outra equação, em toneladas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
+ },
+ "P57147a03": {
+  "n": "14",
+  "conceito": "Montar a lei de uma função afim (parte fixa mais taxa percentual) e calcular um valor dela.",
+  "equivocos": {
+   "B": "M05.1:fixo-e-taxa-trocados",
+   "C": "M05.1:porcentagem-sem-dividir-por-100",
+   "D": "M05.1:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O salário tem duas partes: uma que não muda (R$ 1.500,00) e outra que cresce com as vendas (2% de v). A parte fixa é o termo independente da função afim e a taxa é o número que multiplica v. Escreva os 2% como decimal antes de montar a lei: esse é o ponto em que a questão separa as alternativas.",
+    "formulas": [
+     "função afim: s = parte fixa + taxa × v",
+     "2% = 2/100 = 0,02"
+    ],
+    "simbolos": [
+     [
+      "s",
+      "salário do mês, em reais"
+     ],
+     [
+      "v",
+      "valor das vendas do mês, em reais"
+     ],
+     [
+      "%",
+      "por cento: dividido por 100"
+     ]
+    ]
+   },
+   "pista": "Separe o que não depende das vendas do que depende delas, e escreva a porcentagem como número decimal.",
+   "passos": [
+    {
+     "faz": "Separe a parte fixa da variável",
+     "conta": "fixo: 1.500 | variável: 2% de v",
+     "porque": "O fixo é pago com qualquer venda, até com v = 0. Só o adicional depende de v.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva 2% em decimal",
+     "conta": "2% → 2/100 → 0,02",
+     "porque": "Porcentagem é uma fração de denominador 100. É o 0,02 que multiplica v na lei.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a lei do salário",
+     "conta": "s = 1.500 + 2% · v → s = 1.500 + 0,02v",
+     "porque": "O fixo fica sozinho (termo independente) e a taxa multiplica a variável.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua v = 45.000",
+     "conta": "s = 1.500 + 0,02 · 45.000 → s = 1.500 + 900 → s = 2.400",
+     "porque": "A comissão do mês é 900 reais; somada ao fixo, dá o salário.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue lei e valor à alternativa",
+     "conta": "s = 1.500 + 0,02v e R$ 2.400,00 → alternativa A",
+     "porque": "A alternativa precisa acertar as duas coisas: a lei e o salário do mês.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — s = 1.500 + 0,02v, e o salário do mês é R$ 2.400,00",
+   "checagem": "Faça o caminho de volta: tire o fixo do salário, 2.400 − 1.500 = 900, e divida pelas vendas, 900/45.000 = 0,02. A taxa que sobra é exatamente 2%.",
+   "erradas": {
+    "B": "B troca os papéis de fixo e taxa. Teste com v = 45.000: 0,02 + 1.500 × 45.000 = 67.500.000,02, e não 2.400; a lei nem combina com o valor dado.",
+    "C": "C sai de usar 2% como 2, sem dividir por 100. Com essa lei, v = 45.000 daria 1.500 + 2 × 45.000 = 91.500, e não 2.400.",
+    "D": "D tem a lei certa, mas o valor não confere: 1.500 + 0,02 × 45.000 = 2.400. Para dar 2.700, a comissão teria de ser 1.200, o que exigiria vendas de 1.200/0,02 = 60.000."
+   },
+   "armadilha": "A taxa entra na lei como 0,02, não como 2: porcentagem é sempre dividida por 100.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A lei do salário em função das vendas e o salário com R$ 45.000,00 vendidos.",
+    "chave": "s = 1.500 + 0,02v; com v = 45.000, a comissão é 900 e o salário, 2.400.",
+    "cuidado": "Converta 2% para 0,02 e confira que a lei e o valor da alternativa estão certos ao mesmo tempo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Só A e D têm o fixo somado a 0,02v; entre as duas, 1% de 45.000 é 450, logo 2% é 900 e o salário é 2.400, não 2.700."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2% = 2/100 = 0,02",
+    "nota": "porcentagem em decimal"
+   },
+   {
+    "linha": "s = 1.500 + 0,02v",
+    "nota": "fixo + taxa × vendas"
+   },
+   {
+    "linha": "s = 1.500 + 0,02 · 45.000",
+    "nota": "substitui v"
+   },
+   {
+    "linha": "s = 1.500 + 900 = 2.400",
+    "nota": "soma a comissão ao fixo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
  }
 }

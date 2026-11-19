@@ -880,5 +880,155 @@
    "data": "2026-11-19",
    "lote": "mat-0072"
   }
+ },
+ "Pe3c7103d": {
+  "n": "10",
+  "conceito": "Composição de funções: somar as duas igualdades dadas e usar a injetividade de f + h para descobrir f e h.",
+  "equivocos": {
+   "A": "M05.5:esqueceu-que-f-tambem-vale-h",
+   "B": "M05.5:dividiu-por-4",
+   "D": "M05.5:f-diferente-de-h",
+   "E": "M05.5:multiplicou-em-vez-de-dividir"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Chame a soma de g: g(x) = f(x) + h(x). As igualdades II e III dizem o que f e h fazem com g(x). Somando as duas, aparece f(g(x)) + h(g(x)), que é a própria g aplicada em g(x). Como g é injetora (item I), g(g(x)) = g(x) só acontece se g(x) = x.",
+    "formulas": [
+     "(f ∘ g)(x) = f(g(x)): primeiro g, depois f",
+     "g injetora: g(u) = g(v) obriga u = v"
+    ],
+    "simbolos": [
+     [
+      "f ∘ g",
+      "composição: aplica g e, no resultado, aplica f"
+     ],
+     [
+      "f + h",
+      "a função que soma os valores: (f + h)(x) = f(x) + h(x)"
+     ],
+     [
+      "injetora",
+      "valores de entrada diferentes dão saídas diferentes"
+     ],
+     [
+      "sobrejetora",
+      "toda saída real é atingida"
+     ],
+     [
+      "bijetora",
+      "injetora e sobrejetora ao mesmo tempo"
+     ]
+    ]
+   },
+   "pista": "Dê um nome a f + h e some as igualdades II e III lado a lado.",
+   "passos": [
+    {
+     "faz": "Dê nome à soma das funções",
+     "conta": "g(x) = f(x) + h(x)",
+     "porque": "As três condições falam de f + h. Com um nome só, as igualdades ficam curtas e dá para ver o que somar.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some as igualdades II e III",
+     "conta": "f(g(x)) + h(g(x)) = h(x) + f(x) → g(g(x)) = g(x)",
+     "porque": "Do lado esquerdo, somar f e h no mesmo ponto g(x) é aplicar g em g(x). Do lado direito, h(x) + f(x) é g(x).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use que g é injetora",
+     "conta": "g(g(x)) = g(x) → g(x) = x → f(x) + h(x) = x",
+     "porque": "Se g leva g(x) e x ao mesmo valor, os dois pontos têm de ser iguais, porque g é injetora pelo item I.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte à igualdade II",
+     "conta": "f(g(x)) = h(x) → f(x) = h(x) → 2h(x) = x → h(x) = x/2",
+     "porque": "Com g(x) = x, a igualdade II diz que f e h são a mesma função. Na soma f + h = x, as duas parcelas iguais valem metade de x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule h(2026) e marque",
+     "conta": "h(2026) = 2026/2 → h(2026) = 1013 → alternativa C",
+     "porque": "A pergunta é o valor de h no ponto 2026, e h divide por 2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — h(2026) = 1013",
+   "checagem": "Teste as funções achadas nas três condições: com f(x) = h(x) = x/2, f + h é x, bijetora; f(x) = x/2 = h(x) e h(x) = x/2 = f(x). As três valem, e f e h não são constantes.",
+   "erradas": {
+    "A": "2026 sai de parar em f(x) + h(x) = x e tomar h(x) = x, esquecendo que f também vale x/2: com h(x) = x, f seria 0, constante, o que o enunciado proíbe.",
+    "B": "506,5 não confere: 506,5 = 2026/4 pediria h(x) = x/4; com f + h = x, f(x) = 3x/4, e então f ≠ h, contra a igualdade II.",
+    "D": "2025 não confere: se h(2026) = 2025, então f(2026) = 2026 − 2025 = 1, mas a igualdade II com g(x) = x obriga f(2026) = h(2026).",
+    "E": "4052 sai de ler 2h(x) = x como h(x) = 2x: 2 × 2026 = 4052. Com h(x) = 2x, f(x) = x − 2x = −x, e f ≠ h, contra a igualdade II."
+   },
+   "armadilha": "Achar f + h = x e parar ali: falta ver, pela igualdade II, que f e h são iguais, e por isso cada uma é a metade de x.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de h(2026).",
+    "chave": "Somando II e III, g(g(x)) = g(x) com g = f + h injetora; logo f + h = x, f = h e h(x) = x/2.",
+    "cuidado": "Use a injetividade para tirar g(x) = x; não divida nem cancele g sem essa justificativa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tentar funções afins",
+    "ideia": "Suponha f(x) = px e h(x) = qx: II dá p(p + q) = q e III dá q(p + q) = p; subtraindo, (p − q)(p + q + 1) = 0, e com p = q sai p = q = 1/2 (a outra opção, p + q = −1, faz II virar −p = q, ou seja, p + q = 0: contradição)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(g(x)) + h(g(x)) = h(x) + f(x)",
+    "nota": "somar II e III"
+   },
+   {
+    "linha": "g(g(x)) = g(x)",
+    "nota": "os dois lados viram g"
+   },
+   {
+    "linha": "g(x) = x",
+    "nota": "g é injetora"
+   },
+   {
+    "linha": "f(x) = h(x)",
+    "nota": "II com g(x) = x"
+   },
+   {
+    "linha": "2h(x) = x → h(x) = x/2",
+    "nota": "f + h = x com f = h"
+   },
+   {
+    "linha": "h(2026) = 2026/2 = 1013",
+    "nota": "substituir"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "UFRR, Edital nº 93/25-CPV, gabarito oficial do Vestibular 2026",
+    "url": "https://editais.ufrr.br/editais/arquivo/1209/edital-n-93-25-gabarito-oficial-vestibular-ufrr-2026.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [
+    {
+     "url": "https://editais.ufrr.br/editais/arquivo/1209/edital-n-93-25-gabarito-oficial-vestibular-ufrr-2026.pdf",
+     "letra": "C"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
  }
 }

@@ -1284,5 +1284,121 @@
    "data": "2026-11-19",
    "lote": "mat-0071"
   }
+ },
+ "Pff8f9b9b": {
+  "n": "2",
+  "conceito": "Desigualdades funcionais que se encaixam e forçam f(x + 1) = f(x) + 1, o que dá f nos inteiros a partir de f(1).",
+  "equivocos": {
+   "A": "M05.1:erro-de-um-na-contagem-de-passos",
+   "C": "M05.1:usou-f-de-x-em-vez-de-f-de-x-menos-1",
+   "D": "M05.1:parou-em-f-sem-calcular-g",
+   "E": "M05.1:parou-em-f-sem-calcular-g"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A segunda desigualdade, aplicada sete vezes seguidas, dá um teto para f(x + 7); a primeira dá um piso igual. Teto e piso iguais forçam a igualdade f(x + 7) = f(x) + 7. Com ela, a segunda desigualdade não pode ser estrita, e fica f(x + 1) = f(x) + 1. A partir de f(1) = 1, cada passo de 1 em x soma 1 em f.",
+    "formulas": [
+     "a ≤ b e a ≥ b ⇒ a = b",
+     "f(x + 1) = f(x) + 1 ⇒ f(1 + n) = f(1) + n, para n natural"
+    ],
+    "simbolos": [
+     [
+      "f(x + 7)",
+      "valor de f num ponto 7 unidades à frente de x"
+     ],
+     [
+      "g(x)",
+      "a função f(x − 1) − x + 2"
+     ]
+    ]
+   },
+   "pista": "Encadeie f(x + 1) ≤ f(x) + 1 sete vezes e compare com a primeira desigualdade.",
+   "passos": [
+    {
+     "faz": "Encadeie a 2ª desigualdade sete vezes",
+     "conta": "f(x + 7) ≤ f(x + 6) + 1 ≤ f(x + 5) + 2 ≤ … ≤ f(x) + 7",
+     "porque": "Cada passo de 1 em x soma no máximo 1 em f; em sete passos, no máximo 7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com a 1ª desigualdade",
+     "conta": "f(x + 7) ≥ f(x) + 7 e f(x + 7) ≤ f(x) + 7 → f(x + 7) = f(x) + 7",
+     "porque": "Piso e teto iguais forçam a igualdade, para todo x real.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Mostre que cada passo soma exatamente 1",
+     "conta": "f(x) + 7 = f(x + 7) ≤ f(x + 1) + 6 → f(x) + 1 ≤ f(x + 1) → f(x + 1) = f(x) + 1",
+     "porque": "Da 2ª desigualdade, de x + 1 até x + 7 são seis passos, então f(x + 7) ≤ f(x + 1) + 6. O 6 passa subtraindo, e com f(x + 1) ≤ f(x) + 1 vale a igualdade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule f(2022) a partir de f(1)",
+     "conta": "f(2022) = f(1) + (2022 − 1) → f(2022) = 1 + 2021 = 2022",
+     "porque": "De 1 até 2022 são 2021 passos de 1, e cada um soma 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua em g(2023)",
+     "conta": "g(2023) = f(2023 − 1) − 2023 + 2 → g(2023) = 2022 − 2023 + 2 = 1 → alternativa B",
+     "porque": "g usa f em x − 1, isto é, f(2022), e não f(2023).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1",
+   "checagem": "Por outro caminho: f(x + 1) = f(x) + 1 faz g(x + 1) = f(x) − (x + 1) + 2 = f(x − 1) + 1 − x − 1 + 2 = g(x), logo g é constante nos inteiros. Então g(2023) = g(2) = f(1) − 2 + 2 = 1.",
+   "erradas": {
+    "A": "0 sai de contar um passo a menos: f(2022) = 1 + 2020 = 2021, e g = 2021 − 2023 + 2 = 0. De 1 a 2022 são 2021 passos.",
+    "C": "2 sai de usar f(2023) no lugar de f(2022): f(2023) = 2023, e 2023 − 2023 + 2 = 2. A definição de g pede f(x − 1).",
+    "D": "2022 sai de parar em f(2022) = 2022, sem terminar a conta de g, que ainda subtrai 2023 e soma 2.",
+    "E": "2023 sai de responder f(2023) = 2023, o valor de f e não o de g, que é f(2022) − 2023 + 2."
+   },
+   "armadilha": "As desigualdades parecem dar só limites, mas juntas forçam f(x + 1) = f(x) + 1; depois, g pede f(x − 1), não f(x).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de g(2023) = f(2022) − 2023 + 2, sabendo f(1) = 1 e as duas desigualdades.",
+    "chave": "Encadeando, f(x + 7) = f(x) + 7 e daí f(x + 1) = f(x) + 1; f(2022) = 2022 e g(2023) = 1.",
+    "cuidado": "Use f(2022), não f(2023), e conte 2021 passos de 1 até 2022."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "f(x) = x cumpre f(1) = 1 e as duas desigualdades (com igualdade); então g(x) = x − 1 − x + 2 = 1 para todo x."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(x + 7) ≤ f(x) + 7",
+    "nota": "2ª desigualdade sete vezes"
+   },
+   {
+    "linha": "f(x + 7) = f(x) + 7",
+    "nota": "com a 1ª: piso igual ao teto"
+   },
+   {
+    "linha": "f(x) + 1 ≤ f(x + 1) → f(x + 1) = f(x) + 1",
+    "nota": "o 6 passa subtraindo"
+   },
+   {
+    "linha": "f(2022) = 1 + 2021 = 2022",
+    "nota": "2021 passos a partir de f(1)"
+   },
+   {
+    "linha": "g(2023) = 2022 − 2023 + 2 = 1",
+    "nota": "substitui em g"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
  }
 }
