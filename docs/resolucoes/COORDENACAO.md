@@ -92,6 +92,13 @@ http://localhost:4190 (só nesta coordenadora). 4 revisores rodando (casca, mat�
 comuns em scratchpad/qa-comum.md. Pendente de decisão do dono: contraste da cor da matéria direto no fundo claro (Quí 4,18,
 Bio 4,33, Fís 4,36; título/ícone ≥3 passa) e item ativo do menu/etiqueta de nível 3,94–4,48 (cores da paleta aprovada).
 
+## Correção da revisão (19/11 ~23h UTC) — ver docs/revisao-site/2026-11-19/PLANO.md
+Pacote A (questão/correção, código) e C (dados) com agentes desta coordenadora no checkout principal; depois B (matérias e
+casca) e D (motor de animação); depois nova revisão completa e publicação. Fábrica de CONTEÚDO pela API:
+session_01PveEKZzai8tN1n9vxoQYqX (prompt docs/resolucoes/PROMPT-FABRICA-CONTEUDO.md; teto US$ 40; caixa caixa/conteudo.md):
+flashcards e frases de fis/his/geo/ing/fs + "Por que eu errei" fracos (6.347; dono: só o que couber, ENEM e alvo primeiro).
+Orçamento API: 200 = ~81 gastos + 60 classificação + ~15 Português + 40 conteúdo.
+
 ## Fábrica de CLASSIFICAÇÃO pela API (dono, 19/11 ~21h15)
 Sessão session_01PveEKaueZxMsGjqv3gMYrd (ambiente Fabrica), prompt docs/resolucoes/PROMPT-FABRICA-CLASSIFICACAO.md.
 Confere o subtema de TODAS as questões; muda só com duas respostas iguais às cegas; sem subtema bom: encaixa no mais próximo e
