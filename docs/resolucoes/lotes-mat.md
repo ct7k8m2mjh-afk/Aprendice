@@ -73,7 +73,7 @@ Faltam 895 questões sem resolução (fora as que estão em lote, pendentes ou c
 | mat-0065 | demais nível 1-6 | 60 | gravado | 59 | 1 | 0 |
 | mat-0066 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | mat-0067 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
-| mat-0068 | demais nível 1-6 | 50 | aberto |  |  |  |
+| mat-0068 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
 | mat-0069 | demais nível 1-6 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
@@ -87,6 +87,7 @@ Faltam 895 questões sem resolução (fora as que estão em lote, pendentes ou c
 | P12e54be4 | UFRR 2026 Vestibular 2026 – Prova Integral · questão 11 | M08.3 circunferência e círculo (tema M08 Geometria plana — áreas) | dados inconsistentes: com AD diâmetro, BO ⊥ AD e AF = 3, EC nunca passa de 0,9 (razão EC/AF ≤ 0,30, conferido em python), então a figura com EC = 1 não existe; nenhuma letra se demonstra. Gabarito oficial pós-recursos (Edital 93/25-CPV) não acessível daqui (editais.ufrr.br e web.archive recusaram conexão); conferir se a questão 11 da PI foi anulada. |
 | P78a66ef3 | UFU 2023 1ª fase · questão 68 | M05.4 função definida por partes e modular (tema M05 Funções afim e quadrática) | print cortado: o print (ufu-2023/q/068.webp) termina na alternativa C; a alternativa D, que é o gabarito, não aparece inteira. Refazer o print do PDF oficial. Conta já conferida: triângulo de base 2k e altura k, área k² = 20, k = 2√5. |
 | Pf56e32e8 | UPE 2026 SSA3 · questão 54 | M08.2 quadriláteros (tema M08 Geometria plana — áreas) | print: a questão (UPE 2026 SSA3, item 9) pede o perímetro do quadrilátero OPRQ, mas o ponto R não é definido no texto nem no print desta questão. A definição está no item 7 da mesma prova (app/conteudo-fonte/provas/upe-ssa3-2026/q/052.webp): 'quadrilátero de vértices O (0,0), P(a,0), R (a, b) e Q (0, b)'. Com isso, OPRQ é um retângulo 3 × 6, de perímetro 18 (letra D, igual ao gabarito). Falta refazer o print ou o enunciado incluindo a definição de R, para o aluno conseguir resolver. |
+| P35fad689 | URCA 2025 2025.1 · questão 26 | M13.5 probabilidade condicional e teste diagnóstico (tema M13 Combinatória e probabilidade) | anular: a conta certa dá 60% (alternativa A): se 40% dos homens têm mais de 50 anos, no máximo 100% − 40% = 60% dos homens têm menos de 50. O gabarito oficial C (78,8%) é 100% − 53% × 40% = 78,8%, a porcentagem dos HABITANTES que não são homens com mais de 50 anos, e não responde ao que se pede. Mesmo lendo como porcentagem da população, homens com menos de 50 seriam 53% × 60% = 31,8%. A banca manteve C ao negar recurso (https://www.urca.br/cev/wp-content/uploads/sites/39/2025/01/Resposta-aos-recursosPSU-2025.1.pdf, questão 26: 'os 100% [...] é na verdade a população total, não representa o total de homens'), mas o comando pede 'a porcentagem dos homens'. Gabarito oficial: https://www.urca.br/cev/wp-content/uploads/sites/39/2025/01/GABARITO-OFICIAL-2025.1-.pdf |
 | P2e08b381 | Unicamp 2022 Vestibular Indígena · questão 13 | M07.4 padrões e recorrências (tema M07 Sequências) | a questão (Unicamp 2022 Vestibular Indígena, q13) é de interpretação de texto, de Português, e está classificada em Matemática (M07.4 padrões e recorrências). Precisa ser levada para a matéria certa antes de receber resolução. |
 
 ## Divergências de gabarito (o dono decide)

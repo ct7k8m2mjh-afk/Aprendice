@@ -850,5 +850,122 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "Pb3d99098": {
+  "n": "34",
+  "conceito": "Descobrir quantas duplas de cada tipo existem, com um sistema de três equações, e dividir pelo total de duplas.",
+  "equivocos": {
+   "B": "M13.4:tipo-de-dupla-trocado",
+   "C": "M13.4:dividiu-por-pessoas-em-vez-de-duplas",
+   "D": "M13.4:valor-sem-teste-de-consistencia",
+   "E": "M13.4:tipo-de-dupla-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O sorteio é de uma DUPLA, e não de pessoas: o espaço amostral são as 30 duplas. O trabalho real é descobrir quantas duplas são Infectologia–Neurologia. Como ninguém faz dupla com a própria especialidade, cada especialista aparece numa dupla com alguém de outra área, e isso dá um sistema de três equações.",
+    "formulas": [
+     "infectologistas = 60 − 24 − 20 = 16",
+     "duplas = 60 ÷ 2 = 30",
+     "probabilidade = duplas favoráveis ÷ total de duplas"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "número de duplas Neurologia–Cardiologia"
+     ],
+     [
+      "y",
+      "número de duplas Neurologia–Infectologia"
+     ],
+     [
+      "z",
+      "número de duplas Cardiologia–Infectologia"
+     ]
+    ]
+   },
+   "pista": "Conte os neurologistas pelas duplas em que eles aparecem: cada um está numa dupla com um cardiologista ou com um infectologista.",
+   "passos": [
+    {
+     "faz": "Ache os infectologistas e o total de duplas",
+     "conta": "60 − 24 − 20 = 16 infectologistas | 60/2 = 30 duplas",
+     "porque": "Os demais são de Infectologia. Cada pesquisador está em exatamente uma dupla, então as 60 pessoas formam 30 duplas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte uma equação por especialidade",
+     "conta": "x + y = 24 | x + z = 20 | y + z = 16",
+     "porque": "Cada neurologista está numa dupla N–C ou N–I, então x + y conta os 24 neurologistas. O mesmo vale para Cardiologia e Infectologia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as três e ache cada tipo",
+     "conta": "2(x + y + z) = 60 → x + y + z = 30 → z = 30 − 24 = 6 | y = 30 − 20 = 10 | x = 30 − 16 = 14",
+     "porque": "Somando, cada dupla aparece duas vezes. Tirando de 30 a soma de duas variáveis, sobra a terceira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida as duplas N–I pelo total",
+     "conta": "10/30 = 1/3",
+     "porque": "São 10 duplas favoráveis entre as 30 que podem ser sorteadas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1/3 → alternativa A",
+     "porque": "A probabilidade de a dupla sorteada ser de Infectologia e Neurologia é 1/3.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1/3",
+   "checagem": "Confira os totais de cada especialidade com x = 14, y = 10, z = 6: Neurologia 14 + 10 = 24, Cardiologia 14 + 6 = 20, Infectologia 10 + 6 = 16, e 14 + 10 + 6 = 30 duplas. Tudo fecha com o enunciado.",
+   "erradas": {
+    "B": "1/5 sai de usar as duplas Cardiologia–Infectologia: 6/30 = 1/5. A pergunta é Infectologia com Neurologia, que são 10 duplas.",
+    "C": "1/6 sai de dividir as 10 duplas N–I pelas 60 pessoas: 10/60 = 1/6. O sorteio é entre 30 duplas, não entre 60 pesquisadores.",
+    "D": "1/2 não confere: exigiria 15 duplas N–I; aí sobrariam 24 − 15 = 9 neurologistas e 16 − 15 = 1 infectologista para os cardiologistas, só 10 parceiros para 20 cardiologistas.",
+    "E": "7/15 sai de usar as duplas Neurologia–Cardiologia: 14/30 = 7/15. Essas não têm infectologista."
+   },
+   "armadilha": "O sorteio é entre as 30 duplas, não entre as 60 pessoas, e é preciso descobrir quantas duplas são de cada tipo antes de dividir.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de a dupla sorteada ser Infectologia–Neurologia.",
+    "chave": "Sistema x + y = 24, x + z = 20, y + z = 16 dá 10 duplas N–I em 30.",
+    "cuidado": "Divida pelo número de duplas (30), não pelo de pessoas (60)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula direta",
+    "ideia": "Duplas N–I = (neurologistas + infectologistas − cardiologistas)/2 = (24 + 16 − 20)/2 = 10; probabilidade 10/30 = 1/3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x + y = 24 | x + z = 20 | y + z = 16",
+    "nota": "uma equação por especialidade"
+   },
+   {
+    "linha": "2(x + y + z) = 60 → x + y + z = 30",
+    "nota": "somar as três"
+   },
+   {
+    "linha": "y = 30 − (x + z) = 30 − 20 = 10",
+    "nota": "tirar a soma da Cardiologia"
+   },
+   {
+    "linha": "P = 10/30 = 1/3",
+    "nota": "duplas N–I sobre o total de duplas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

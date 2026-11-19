@@ -641,5 +641,111 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "P266263b8": {
+  "n": "24",
+  "conceito": "Probabilidade de dois eventos sucessivos sem reposição: a primeira carta altera o baralho da segunda.",
+  "equivocos": {
+   "A": "M13.5:probabilidade-acima-do-teto",
+   "B": "M13.5:probabilidade-acima-do-teto",
+   "C": "M13.5:probabilidade-acima-do-teto",
+   "D": "M13.5:condicional-da-segunda-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sem reposição, multiplique a chance da 1ª carta pela chance da 2ª já com o baralho mexido. O ponto fino: copas é naipe vermelho. Se a 1ª foi de copas, saiu uma vermelha, e sobram 25 vermelhas em 51 cartas.",
+    "formulas": [
+     "P(A e B) = P(A) × P(B | A)",
+     "baralho: 52 cartas, 13 por naipe; copas e ouros são vermelhos (26 cartas)"
+    ],
+    "simbolos": [
+     [
+      "P(B | A)",
+      "probabilidade de B sabendo que A já aconteceu"
+     ],
+     [
+      "sem reposição",
+      "a carta retirada não volta ao baralho"
+     ]
+    ]
+   },
+   "pista": "Antes de multiplicar, pergunte: a carta de copas que saiu é vermelha ou preta?",
+   "passos": [
+    {
+     "faz": "Calcule a chance da 1ª ser de copas",
+     "conta": "P(1ª copas) = 13/52 = 1/4",
+     "porque": "Há 13 cartas de copas entre as 52.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Recalcule as vermelhas para a 2ª carta",
+     "conta": "26 vermelhas − 1 (a copas que saiu) = 25 | 52 − 1 = 51 cartas",
+     "porque": "A carta de copas é vermelha e não volta; sobram 25 vermelhas em 51.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as duas chances",
+     "conta": "1/4 × 25/51 = 25/204 ≈ 0,1225",
+     "porque": "Os dois fatos têm de acontecer em sequência, então as chances se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Arredonde e ligue à alternativa",
+     "conta": "0,1225 ≈ 0,12 → alternativa E",
+     "porque": "O valor mais próximo entre as alternativas é 0,12.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 0,12",
+   "checagem": "Compare com reposição: a conta daria 1/4 × 1/2 = 0,125. Sem reposição, a 2.ª vermelha fica um pouco menos provável (25/51 < 1/2), então o resultado tem de ficar um pouco abaixo de 0,125, como 0,1225 ≈ 0,12.",
+   "erradas": {
+    "A": "0,42 não confere: a chance das duas coisas juntas não passa da chance da primeira, P(1ª copas) = 0,25.",
+    "B": "0,37 não confere: é maior que 0,25, a chance só da 1ª ser de copas, e o evento pedido exige ainda a 2ª vermelha.",
+    "C": "0,28 não confere: também passa de 0,25 = P(1ª copas), que é teto para o evento pedido.",
+    "D": "0,20 não confere: exigiria 0,20 ÷ 0,25 = 0,8 de chance para a 2ª vermelha, mas ela é 25/51 ≈ 0,49."
+   },
+   "armadilha": "Esquecer que copas é vermelha: a 1ª carta já tira uma vermelha do baralho.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de a 1ª carta ser de copas e a 2ª ser vermelha, sem reposição.",
+    "chave": "13/52 × 25/51 = 25/204 ≈ 0,12.",
+    "cuidado": "A carta de copas que saiu é vermelha: sobram 25 vermelhas em 51."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem de sequências",
+    "ideia": "Favoráveis 13 × 25 = 325 sobre possíveis 52 × 51 = 2652: ≈ 0,12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(1ª copas) = 13/52 = 1/4",
+    "nota": "13 copas em 52"
+   },
+   {
+    "linha": "P(2ª verm. | 1ª copas) = 25/51",
+    "nota": "saiu uma vermelha e uma carta"
+   },
+   {
+    "linha": "1/4 × 25/51 = 25/204",
+    "nota": "multiplicar as chances"
+   },
+   {
+    "linha": "25/204 ≈ 0,12",
+    "nota": "arredondar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

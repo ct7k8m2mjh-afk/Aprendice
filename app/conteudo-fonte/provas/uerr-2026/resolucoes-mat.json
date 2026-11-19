@@ -547,5 +547,104 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P13ec999a": {
+  "n": "64",
+  "conceito": "Probabilidade com combinações: escolher 3 das 5 mulheres e 1 dos 4 homens, sobre todas as escolhas de 4 pessoas.",
+  "equivocos": {
+   "B": "M13.3:ordem-so-no-denominador",
+   "C": "M13.3:numero-de-mulheres-trocado",
+   "D": "M13.3:numero-de-mulheres-trocado",
+   "E": "M13.3:esqueceu-de-escolher-o-homem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escolher 4 pessoas para uma viagem não tem ordem, então tudo se conta com combinações. \"Exatamente três mulheres\" num grupo de quatro quer dizer três mulheres e um homem.",
+    "formulas": [
+     "casos possíveis = C(9, 4)",
+     "casos favoráveis = C(5, 3) · C(4, 1)",
+     "probabilidade = favoráveis ÷ possíveis"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "número de modos de escolher k pessoas entre n, sem ordem"
+     ]
+    ]
+   },
+   "pista": "Traduza \"exatamente três mulheres\" em quantas mulheres e quantos homens o grupo tem.",
+   "passos": [
+    {
+     "faz": "Conte os grupos possíveis",
+     "conta": "C(9, 4) = (9 · 8 · 7 · 6)/(4 · 3 · 2 · 1) = 126",
+     "porque": "São 4 pessoas escolhidas entre 9, sem ordem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os grupos favoráveis",
+     "conta": "C(5, 3) · C(4, 1) = 10 · 4 = 40",
+     "porque": "Três das cinco mulheres e um dos quatro homens; as duas escolhas se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "40/126 = 20/63",
+     "porque": "40 e 126 têm o fator 2 em comum.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "20/63 → alternativa A",
+     "porque": "É a chance de o grupo ter exatamente três mulheres.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 20/63",
+   "checagem": "Faça com ordem: a sequência M, M, M, H tem chance 5/9 · 4/8 · 3/7 · 4/6 = 240/3024, e o homem pode estar em 4 posições: 4 · 240/3024 = 960/3024 = 20/63.",
+   "erradas": {
+    "B": "5/378 sai de dividir os favoráveis sem ordem pelos possíveis com ordem: 40/(9 · 8 · 7 · 6) = 40/3024 = 5/378.",
+    "C": "5/126 sai de calcular quatro mulheres: C(5, 4)/C(9, 4) = 5/126. O enunciado pede exatamente três.",
+    "D": "10/21 sai de calcular duas mulheres e dois homens: C(5, 2) · C(4, 2)/126 = 60/126 = 10/21.",
+    "E": "5/63 sai de esquecer de escolher o homem: C(5, 3)/C(9, 4) = 10/126 = 5/63. Falta o fator C(4, 1) = 4."
+   },
+   "armadilha": "\"Exatamente três mulheres\" exige escolher também o homem: sem o fator 4, a resposta cai para 5/63.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de, entre 4 escolhidos, haver exatamente 3 mulheres.",
+    "chave": "C(5, 3) · C(4, 1)/C(9, 4) = 40/126 = 20/63.",
+    "cuidado": "Multiplique pela escolha do homem e conte tudo sem ordem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sequência com ordem",
+    "ideia": "5/9 · 4/8 · 3/7 · 4/6 vezes 4 posições para o homem = 20/63."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(9, 4) = (9 · 8 · 7 · 6)/(4 · 3 · 2 · 1) = 126",
+    "nota": "grupos possíveis"
+   },
+   {
+    "linha": "C(5, 3) · C(4, 1) = 10 · 4 = 40",
+    "nota": "3 mulheres e 1 homem"
+   },
+   {
+    "linha": "40/126 = 20/63",
+    "nota": "simplificar por 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

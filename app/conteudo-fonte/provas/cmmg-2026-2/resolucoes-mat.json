@@ -725,5 +725,104 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "Pa6655beb": {
+  "n": "56",
+  "conceito": "Teste diagnóstico: probabilidade de estar doente dado teste positivo, com população redonda.",
+  "equivocos": {
+   "A": "M13.5:valor-fora-da-conta",
+   "C": "M13.5:confundiu-sensibilidade-com-valor-preditivo",
+   "D": "M13.5:usou-a-prevalencia-de-saudaveis"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A pergunta é P(doente | positivo), não a eficiência do teste. Os positivos vêm de dois grupos: doentes que o teste detecta e saudáveis com falso positivo. Uma população redonda de 10 000 pessoas deixa tudo em números inteiros.",
+    "formulas": [
+     "P(doente | positivo) = verdadeiros positivos ÷ todos os positivos"
+    ],
+    "simbolos": [
+     [
+      "falso positivo",
+      "teste positivo numa pessoa saudável"
+     ],
+     [
+      "P(A | B)",
+      "probabilidade de A sabendo que B aconteceu"
+     ]
+    ]
+   },
+   "pista": "Imagine 10 000 pessoas e conte quantas recebem resultado positivo, separando doentes e saudáveis.",
+   "passos": [
+    {
+     "faz": "Separe doentes e saudáveis",
+     "conta": "10000 · 0,05 = 500 doentes | 10000 − 500 = 9500 saudáveis",
+     "porque": "5 % da população tem a doença; o restante é saudável.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os positivos de cada grupo",
+     "conta": "500 · 0,9 = 450 | 9500 · 0,01 = 95",
+     "porque": "O teste detecta 90 % dos doentes e dá falso positivo em 1 % dos saudáveis.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida doentes positivos por todos os positivos",
+     "conta": "450/(450 + 95) = 450/545 ≈ 0,826",
+     "porque": "O \"dado que o teste foi positivo\" fixa o grupo dos 545 positivos; entre eles, 450 são doentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa mais próxima",
+     "conta": "82,6 % ≈ 80 % → alternativa B",
+     "porque": "A questão pede o valor aproximado; 82,6 % fica mais perto de 80 % do que de 75 % ou 90 %.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — aproximadamente 80 %",
+   "checagem": "Pelos falsos: dos 545 positivos, 95 são saudáveis, 95/545 ≈ 0,174 = 17,4%. Então os doentes são 100% − 17,4% = 82,6% dos positivos.",
+   "erradas": {
+    "A": "75% não confere: só sairia com 150 falsos positivos (450/(450 + 150) = 0,75), cerca de 1,6% dos saudáveis; com 1%, são 95 e o resultado é 82,6%.",
+    "C": "90 % sai de responder a eficiência do teste, P(positivo | doente) = 0,9, e não P(doente | positivo).",
+    "D": "95 % sai de tomar a fração de saudáveis da população, 100 % − 5 % = 95 %, que não é a chance pedida."
+   },
+   "armadilha": "Confundir P(doente | positivo) com a eficiência do teste, 90 %, e esquecer os 95 falsos positivos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de ter a doença sabendo que o teste deu positivo.",
+    "chave": "Em 10 000 pessoas: 450 positivos doentes e 95 falsos positivos; 450/545 ≈ 82,6 % ≈ 80 %.",
+    "cuidado": "O denominador são todos os positivos, inclusive os falsos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula de Bayes",
+    "ideia": "0,045 ÷ (0,045 + 0,0095) = 0,045 ÷ 0,0545 ≈ 0,826"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "500 doentes | 9500 saudáveis",
+    "nota": "5 % de 10 000"
+   },
+   {
+    "linha": "500 · 0,9 = 450 | 9500 · 0,01 = 95",
+    "nota": "positivos de cada grupo"
+   },
+   {
+    "linha": "450/545 ≈ 0,826",
+    "nota": "doentes entre os positivos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

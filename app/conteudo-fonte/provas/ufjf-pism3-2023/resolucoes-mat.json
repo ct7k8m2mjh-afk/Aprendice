@@ -1,0 +1,108 @@
+{
+ "P8117b06d": {
+  "n": "17",
+  "conceito": "Arranjo: distribuir 25 turistas em 25 dos 40 assentos numerados, em que importa qual pessoa senta em qual lugar.",
+  "equivocos": {
+   "B": "M13.2:n-e-p-trocados-no-arranjo",
+   "C": "M13.2:so-a-primeira-escolha",
+   "D": "M13.2:permutou-os-lugares-vazios",
+   "E": "M13.2:subtraiu-em-vez-de-dividir"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os assentos são numerados e os turistas são pessoas diferentes, então trocar dois turistas de lugar gera outra acomodação: a ordem importa. Cada turista ocupa um assento, e sobram 15 vazios. É um arranjo de 40 assentos tomados 25 a 25, que se escreve com fatoriais e é exatamente o formato das alternativas.",
+    "formulas": [
+     "A(n, p) = n! ÷ (n − p)!",
+     "\"e\" entre etapas: multiplique"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "fatorial: n × (n − 1) × ... × 2 × 1"
+     ],
+     [
+      "A(n, p)",
+      "arranjo: número de filas ordenadas de p elementos escolhidos entre n"
+     ],
+     [
+      "não há preferência por lugares",
+      "qualquer turista pode ficar em qualquer assento"
+     ]
+    ]
+   },
+   "pista": "Pergunte: se dois turistas trocarem de assento, a acomodação muda?",
+   "passos": [
+    {
+     "faz": "Decida se a ordem importa",
+     "conta": "turista 1 no 05 e turista 2 no 12 ≠ turista 1 no 12 e turista 2 no 05",
+     "porque": "As pessoas e os assentos são distinguíveis; trocar duas pessoas de lugar dá outra acomodação, então é arranjo, não combinação.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte o arranjo de 40 tomados 25 a 25",
+     "conta": "A(40, 25) = 40!/(40 − 25)! → 40!/15!",
+     "porque": "Na fórmula do arranjo, o n são os 40 assentos e o p são os 25 turistas; 40 − 25 = 15 é o número de assentos que ficam vazios.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Veja o que a fração representa",
+     "conta": "40!/15! = 40 × 39 × ... × 16",
+     "porque": "Os fatores de 15! cancelam com os últimos de 40!, e sobra um produto de 25 fatores, um para cada turista.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a forma entre as alternativas",
+     "conta": "40!/15! → alternativa A",
+     "porque": "A alternativa A traz exatamente o arranjo A(40, 25).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 40!/15! modos",
+   "checagem": "Pelo princípio multiplicativo, turista por turista: o 1.º tem 40 assentos livres, o 2.º tem 39, ..., o 25.º tem 40 − 24 = 16. O produto 40 × 39 × ... × 16 tem 25 fatores e é o mesmo que 40!/15!. Num caso pequeno, 3 assentos e 2 turistas, a fórmula dá 3!/1! = 6, e de fato há 3 × 2 = 6 acomodações.",
+   "erradas": {
+    "B": "25!/15! sai de trocar os 40 assentos pelos 25 turistas no numerador; esse quociente é A(25, 10), filas de 10 pessoas tiradas de 25, que não descreve a viagem.",
+    "C": "40 sai de contar só as escolhas do primeiro turista; os outros 24 também escolhem entre os assentos que sobram, e as escolhas se multiplicam.",
+    "D": "15! sai de permutar só os 15 assentos que ficam vazios; essas posições não têm ninguém, e o que se conta é onde ficam os 25 turistas.",
+    "E": "40! − 15! sai de subtrair em vez de dividir; na fórmula A(n, p) = n! ÷ (n − p)!, o 15! entra dividindo, para cancelar os fatores que não são usados."
+   },
+   "armadilha": "O 15! não se subtrai: ele divide o 40! para tirar os 15 fatores dos assentos que ficam vazios.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas acomodações há para 25 turistas em 40 assentos numerados.",
+    "chave": "Ordem importa (pessoas e assentos diferentes): A(40, 25) = 40!/15!.",
+    "cuidado": "Em arranjo, o (n − p)! divide; não se subtrai."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "princípio multiplicativo",
+    "ideia": "turista por turista: 40 × 39 × ... × 16, que é 40!/15!"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A(40, 25) = 40!/(40 − 25)!",
+    "nota": "arranjo de 40 assentos, 25 turistas"
+   },
+   {
+    "linha": "40 − 25 = 15",
+    "nota": "assentos vazios"
+   },
+   {
+    "linha": "40!/15! = 40 × 39 × ... × 16",
+    "nota": "25 fatores, um por turista"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
+ }
+}

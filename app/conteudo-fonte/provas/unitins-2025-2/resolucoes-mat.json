@@ -385,5 +385,113 @@
    "data": "2026-11-19",
    "lote": "mat-0066"
   }
+ },
+ "Pc7ac26d1": {
+  "n": "15",
+  "conceito": "Probabilidade condicional em tabela: o \"dado que\" troca o denominador pelo total da linha.",
+  "equivocos": {
+   "B": "M13.5:denominador-da-condicao-errado",
+   "C": "M13.5:julgou-afirmacao-verdadeira-como-falsa",
+   "D": "M13.5:denominador-da-condicao-errado",
+   "E": "M13.5:julgou-afirmacao-verdadeira-como-falsa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em I e II o sorteado já se sabe técnico ou professor: o denominador passa a ser o total daquela linha. Em III não há condição: o denominador é o total de servidores. Some as linhas antes de testar.",
+    "formulas": [
+     "P(A | B) = casos de A dentro de B ÷ total de B",
+     "probabilidade = casos favoráveis ÷ casos possíveis"
+    ],
+    "simbolos": [
+     [
+      "P(A | B)",
+      "probabilidade de A sabendo que B aconteceu"
+     ]
+    ]
+   },
+   "pista": "Calcule primeiro o total de técnicos, o de professores e o geral.",
+   "passos": [
+    {
+     "faz": "Some cada linha e o total",
+     "conta": "técnicos: 5 + 8 + 4 + 11 = 28 | professores: 8 + 12 + 20 + 32 = 72 | total: 100",
+     "porque": "Esses três totais são os denominadores possíveis; a condição de cada afirmação diz qual usar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmação I",
+     "conta": "8/28 = 2/7 → verdadeira",
+     "porque": "Dado que é técnico, o denominador é 28; na progressão II há 8 técnicos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmação II",
+     "conta": "20/72 = 5/18 ≠ 5/6 → falsa",
+     "porque": "Dado que é professor, o denominador é 72; na progressão III há 20 professores.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmação III",
+     "conta": "(11 + 32)/100 = 43/100 → verdadeira",
+     "porque": "Sem condição, o denominador é o total de 100 servidores; na progressão IV há 11 técnicos e 32 professores.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue às alternativas",
+     "conta": "I e III verdadeiras → alternativa A",
+     "porque": "Só a II é falsa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — I e III, apenas",
+   "checagem": "Confira os totais pelas colunas: I: 5 + 8 = 13; II: 8 + 12 = 20; III: 4 + 20 = 24; IV: 11 + 32 = 43. Soma 13 + 20 + 24 + 43 = 100, igual a 28 + 72. Os denominadores estão certos.",
+   "erradas": {
+    "B": "I e II erra a II: 5/6 sai de dividir pelo total da coluna III, 20/(4 + 20) = 20/24 = 5/6. Dado que é professor, divide-se por 72: 20/72 = 5/18.",
+    "C": "Só a III esquece que a I também vale: 8 técnicos na progressão II entre 28 técnicos dá 8/28 = 2/7.",
+    "D": "Só a II é justamente a única falsa: 20/72 = 5/18, não 5/6.",
+    "E": "Só a I esquece que a III também vale: (11 + 32)/100 = 43/100."
+   },
+   "armadilha": "Na II, dividir pelo total da coluna III (24) em vez do total de professores (72): é o \"dado que\" que escolhe o denominador.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das três afirmações sobre sorteio de servidores estão certas.",
+    "chave": "I: 8/28 = 2/7; II: 20/72 = 5/18; III: 43/100.",
+    "cuidado": "\"Dado que foi sorteado um professor\" faz o denominador ser 72, o total da linha."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "a II é falsa (20/72 = 5/18) derruba B e D; a I e a III são verdadeiras e derrubam C e E"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "28 | 72 | 100",
+    "nota": "técnicos, professores e total"
+   },
+   {
+    "linha": "8/28 = 2/7",
+    "nota": "I: verdadeira"
+   },
+   {
+    "linha": "20/72 = 5/18",
+    "nota": "II: falsa (não é 5/6)"
+   },
+   {
+    "linha": "43/100",
+    "nota": "III: verdadeira"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

@@ -664,5 +664,95 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "Pab0372ac": {
+  "n": "19",
+  "conceito": "Total de entrevistados com dois conjuntos: união pela fórmula mais quem não está em nenhum.",
+  "equivocos": {
+   "A": "M13.6:so-a-regiao-de-fora",
+   "B": "M13.6:contou-intersecao-duas-vezes",
+   "D": "M13.6:somou-a-intersecao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os entrevistados são todos: quem compra algum analgésico e quem não compra nenhum. Os 60 que compram os dois tipos estão dentro dos 190 e dos 130, então a soma 190 + 130 os conta duas vezes.",
+    "formulas": [
+     "n(1 ∪ 2) = n(1) + n(2) − n(1 ∩ 2)",
+     "total = n(1 ∪ 2) + nenhum"
+    ],
+    "simbolos": [
+     [
+      "1 ∪ 2",
+      "quem compra o tipo 1 ou o tipo 2 (ou os dois)"
+     ],
+     [
+      "1 ∩ 2",
+      "quem compra os dois tipos"
+     ]
+    ]
+   },
+   "pista": "Antes de somar tudo, veja quais pessoas estão sendo contadas mais de uma vez.",
+   "passos": [
+    {
+     "faz": "Ache quem compra algum tipo",
+     "conta": "190 + 130 − 60 → 260",
+     "porque": "Os 60 estão nos 190 e nos 130; subtraindo uma vez, cada pessoa conta uma vez só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some quem não compra nenhum",
+     "conta": "260 + 230 → 490",
+     "porque": "Os 230 também foram entrevistados e ficam fora dos dois conjuntos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "490 entrevistados → alternativa C",
+     "porque": "É o total pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 490",
+   "checagem": "Conte quem compra um tipo só: 490 − 230 − 60 = 200, e de fato (190 − 60) + (130 − 60) = 130 + 70 = 200. As regiões fecham.",
+   "erradas": {
+    "A": "230 é só o grupo de quem não compra nenhum dos dois; faltam os 260 que compram algum tipo.",
+    "B": "320 sai de 190 + 130: soma só os compradores, conta duas vezes os 60 dos dois tipos e esquece os 230 que não compram.",
+    "D": "610 sai de 190 + 130 + 60 + 230: soma a intersecção em vez de subtraí-la. Os 60 já estão dentro dos 190 e dos 130."
+   },
+   "armadilha": "Os 60 que compram os dois já estão nos 190 e nos 130: devem ser subtraídos, não somados.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número total de entrevistados.",
+    "chave": "União 190 + 130 − 60 = 260, mais 230 de nenhum: 490.",
+    "cuidado": "Subtraia a intersecção uma vez e não esqueça quem não compra nenhum."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "regiões do diagrama",
+    "ideia": "só tipo 1: 130; só tipo 2: 70; os dois: 60; nenhum: 230; 130 + 70 + 60 + 230 = 490"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "190 + 130 − 60 = 260",
+    "nota": "compram algum tipo"
+   },
+   {
+    "linha": "260 + 230 = 490",
+    "nota": "todos os entrevistados"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

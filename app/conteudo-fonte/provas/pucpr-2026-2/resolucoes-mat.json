@@ -536,5 +536,107 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P41e46487": {
+  "n": "37",
+  "conceito": "Probabilidade condicional em retirada sem reposição: a informação sobre a 2ª bola muda o que sobra para a 1ª.",
+  "equivocos": {
+   "B": "M13.5:usou-so-o-denominador",
+   "C": "M13.5:inverteu-a-condicao",
+   "D": "M13.5:calculou-o-complementar",
+   "E": "M13.5:ignorou-a-condicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Dado que a 2ª bola era preta\" reduz o problema: uma das pretas já está presa na 2ª posição. As outras quatro bolas (3 brancas e 1 preta) se espalham ao acaso pelas posições restantes, e a 1ª posição recebe qualquer uma delas com a mesma chance. A ordem das retiradas não muda essa simetria.",
+    "formulas": [
+     "P(A | B) = P(A e B) ÷ P(B)",
+     "sem reposição, cada bola tem a mesma chance de ocupar cada posição"
+    ],
+    "simbolos": [
+     [
+      "P(A | B)",
+      "probabilidade de A acontecer sabendo que B aconteceu"
+     ],
+     [
+      "sem reposição",
+      "a bola retirada não volta para a caixa"
+     ]
+    ]
+   },
+   "pista": "Comece tirando da caixa a bola que você já sabe onde está e veja o que sobra para a 1ª posição.",
+   "passos": [
+    {
+     "faz": "Fixe a informação dada",
+     "conta": "caixa: 3 brancas | 2 pretas → 2ª bola: preta",
+     "porque": "O enunciado garante que uma preta ocupou a 2ª posição; é a condição que muda o espaço amostral.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Veja o que sobra para a 1ª posição",
+     "conta": "5 bolas − 1 preta (na 2ª) → 3 brancas + 1 preta",
+     "porque": "Tirada a preta da 2ª posição, as outras quatro bolas disputam a 1ª posição em igualdade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chance de a 1ª ser branca",
+     "conta": "P(1ª branca | 2ª preta) = 3/4",
+     "porque": "São 3 brancas entre as 4 bolas que podem ter saído primeiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "3/4 → alternativa A",
+     "porque": "A pergunta é exatamente a chance de a 1ª ter sido branca, já sabendo que a 2ª foi preta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 3/4",
+   "checagem": "Conte as arrumações: as 2 pretas ocupam 2 das 5 posições de 10 maneiras. Com uma preta na 2ª posição, a outra fica em uma das 4 posições restantes (4 casos); em 3 deles ela não está na 1ª, que então é branca. 3 em 4: fecha.",
+   "erradas": {
+    "B": "2/5 sai de calcular só P(2ª preta) = 3/10 + 1/10 = 2/5. Esse valor é o denominador da condicional, não a resposta.",
+    "C": "1/2 sai de inverter a condição: P(2ª preta | 1ª branca) = 2/4 = 1/2. A questão dá a 2ª e pergunta a 1ª.",
+    "D": "1/4 é a chance de a 1ª ter sido preta, dado que a 2ª é preta (sobra 1 preta entre 4). É o complementar do pedido.",
+    "E": "3/5 sai de ignorar a informação da 2ª bola: 3 brancas em 5. Saber que a 2ª é preta tira uma preta da disputa."
+   },
+   "armadilha": "Usar a ordem do tempo como desculpa para ignorar a informação: saber a 2ª bola muda a chance da 1ª.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de a 1ª bola ter sido branca, sabendo que a 2ª foi preta.",
+    "chave": "Fixada uma preta na 2ª posição, a 1ª é qualquer uma das outras 4 bolas: 3 brancas em 4.",
+    "cuidado": "Não troque a condição (2ª dada, 1ª pedida) nem ignore a informação."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula de Bayes",
+    "ideia": "P(1ª B e 2ª P) = 3/5 × 2/4 = 3/10; P(2ª P) = 2/5; (3/10) ÷ (2/5) = 3/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "caixa: 3B + 2P",
+    "nota": "composição inicial"
+   },
+   {
+    "linha": "2ª = P → restam 3B + 1P",
+    "nota": "tirar a preta que está na 2ª posição"
+   },
+   {
+    "linha": "P(1ª = B | 2ª = P) = 3/4",
+    "nota": "3 brancas entre 4 bolas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

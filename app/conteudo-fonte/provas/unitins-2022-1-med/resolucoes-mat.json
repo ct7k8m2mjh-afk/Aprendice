@@ -331,5 +331,107 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "P5db7db40": {
+  "n": "14",
+  "conceito": "Calcular sensibilidade e especificidade de um exame a partir das contagens de doentes e sadios.",
+  "equivocos": {
+   "A": "M13.5:sensibilidade-calculada-errado",
+   "B": "M13.5:confundiu-especificidade-com-proporcao-de-sadios",
+   "D": "M13.5:confundiu-sensibilidade-com-prevalencia",
+   "E": "M13.5:sensibilidade-calculada-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sensibilidade olha só os doentes: que fração deles o exame dá positivo. Especificidade olha só os sadios: que fração deles o exame dá negativo. Separe as 360 pessoas em doentes e sadios e faça cada conta dentro do seu grupo.",
+    "formulas": [
+     "sensibilidade = doentes com positivo ÷ doentes",
+     "especificidade = sadios com negativo ÷ sadios"
+    ],
+    "simbolos": [
+     [
+      "sensibilidade",
+      "fração dos doentes em que o exame dá positivo"
+     ],
+     [
+      "especificidade",
+      "fração dos sadios em que o exame dá negativo"
+     ]
+    ]
+   },
+   "pista": "Separe doentes e sadios primeiro; cada medida usa só um desses grupos.",
+   "passos": [
+    {
+     "faz": "Separe doentes e sadios",
+     "conta": "360 × 1/3 = 120 doentes | 360 − 120 = 240 sadios",
+     "porque": "Um terço das pessoas é doente; as demais são sadias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a sensibilidade",
+     "conta": "15% × 120 = 18 negativos → 120 − 18 = 102 positivos → 102/120 = 85%",
+     "porque": "Dos doentes, 15% deram negativo; o resto foi identificado pelo exame.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a especificidade",
+     "conta": "240 − 48 = 192 negativos → 192/240 = 80%",
+     "porque": "Dos sadios, 48 deram positivo; os outros deram negativo, como deveriam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "sensibilidade 85% | especificidade 80% → alternativa C",
+     "porque": "Só a C traz um valor certo: especificidade de 80%.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a especificidade do exame é de 80%",
+   "checagem": "Feche a tabela: 102 + 18 = 120 doentes e 48 + 192 = 240 sadios, somando 360. Pelo complementar, a especificidade é 100% − 48/240 = 100% − 20% = 80%.",
+   "erradas": {
+    "A": "Sensibilidade de 50% não confere: dos 120 doentes, 102 deram positivo, 102/120 = 85%.",
+    "B": "66% sai de 240/360 ≈ 66,7%, a fração de sadios na amostra. A especificidade é 192/240 = 80%.",
+    "D": "33% sai de 1/3 ≈ 33%, a fração de doentes (prevalência). A sensibilidade é 102/120 = 85%.",
+    "E": "Não confere: a sensibilidade é 85% e a especificidade é 80%; nenhuma das duas é 50%."
+   },
+   "armadilha": "Usar a fração de doentes ou de sadios na amostra (1/3 e 2/3) como se fosse sensibilidade ou especificidade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre sensibilidade ou especificidade é verdadeira.",
+    "chave": "120 doentes (102 positivos) e 240 sadios (192 negativos): sensibilidade 85%, especificidade 80%.",
+    "cuidado": "Cada medida usa só o seu grupo como denominador: doentes para sensibilidade, sadios para especificidade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelos erros do exame",
+    "ideia": "Falsos negativos 18/120 = 15% → sensibilidade 85%; falsos positivos 48/240 = 20% → especificidade 80%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "360 × 1/3 = 120 | 240",
+    "nota": "doentes e sadios"
+   },
+   {
+    "linha": "120 − 18 = 102 → 102/120 = 85%",
+    "nota": "sensibilidade"
+   },
+   {
+    "linha": "240 − 48 = 192 → 192/240 = 80%",
+    "nota": "especificidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

@@ -690,5 +690,103 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "Pf5fd9265": {
+  "n": "13",
+  "conceito": "Probabilidade com dois lançamentos de dado: contar os pares ordenados cuja soma é ímpar e menor que 7.",
+  "equivocos": {
+   "B": "M13.4:caso-favoravel-esquecido",
+   "C": "M13.4:probabilidade-maior-que-o-evento-amplo",
+   "D": "M13.4:pares-sem-ordem-no-numerador",
+   "E": "M13.4:contagem-de-favoraveis-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dois lançamentos de um dado formam 6 × 6 = 36 resultados igualmente prováveis, e a ordem conta: (1, 2) e (2, 1) são resultados diferentes. A soma mínima é 2, então as somas ímpares menores que 7 são só 3 e 5. Conte os pares de cada uma e divida por 36.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "dois lançamentos: 6 × 6 = 36 pares ordenados"
+    ],
+    "simbolos": [
+     [
+      "par ordenado (a, b)",
+      "a é o 1.º lançamento e b o 2.º; (1, 2) e (2, 1) são diferentes"
+     ]
+    ]
+   },
+   "pista": "Liste as somas ímpares menores que 7 que dois dados conseguem dar.",
+   "passos": [
+    {
+     "faz": "Liste as somas que servem",
+     "conta": "somas ímpares < 7: 1, 3, 5 → só 3 e 5",
+     "porque": "A soma de dois dados vai de 2 a 12; a soma 1 é impossível, sobram 3 e 5.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os pares de cada soma",
+     "conta": "soma 3: (1, 2), (2, 1) → 2 | soma 5: (1, 4), (4, 1), (2, 3), (3, 2) → 4",
+     "porque": "Cada par aparece nas duas ordens, porque o primeiro e o segundo lançamento são resultados distintos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo total de resultados",
+     "conta": "(2 + 4)/36 → 6/36 → 1/6",
+     "porque": "São 6 resultados favoráveis entre 36 igualmente prováveis; 6 e 36 se simplificam por 6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1/6 → alternativa A",
+     "porque": "A fração simplificada é exatamente a da alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1/6",
+   "checagem": "Pelas somas ímpares: das 36 duplas, 18 dão soma ímpar. Tirando as que dão 7, 9 ou 11 (6 + 4 + 2 = 12), sobram 18 − 12 = 6 duplas com soma 3 ou 5. São 6/36 = 1/6, o mesmo resultado.",
+   "erradas": {
+    "B": "1/9 sai de contar só a soma 5: 4/36 = 1/9; a soma 3, com (1, 2) e (2, 1), também é ímpar e menor que 7.",
+    "C": "2/3 não confere: a chance de a soma ser ímpar, qualquer que seja, é 18/36 = 1/2; a de ser ímpar e menor que 7 não pode passar disso.",
+    "D": "1/12 sai de contar os pares sem ordem, {1, 2}, {1, 4} e {2, 3}, e dividir pelos 36 resultados ordenados: 3/36 = 1/12; no numerador cada par vale duas vezes.",
+    "E": "1/4 não confere: seriam 9 resultados de 36, e as somas 3 e 5 dão só 2 + 4 = 6; nem acrescentando a soma 7 (mais 6 pares) se chega a 9."
+   },
+   "armadilha": "A ordem dos lançamentos conta: (1, 2) e (2, 1) são dois resultados, tanto no total de 36 quanto nos casos favoráveis.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de a soma de dois lançamentos ser ímpar e menor que 7.",
+    "chave": "Só as somas 3 e 5 servem: 2 + 4 = 6 pares de 36, ou seja, 1/6.",
+    "cuidado": "Conte pares ordenados também no numerador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contar pelo 1.º dado",
+    "ideia": "soma 3: 2 valores possíveis do 1.º dado; soma 5: 4 valores; 6 em 36"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "somas ímpares < 7 possíveis: 3 e 5",
+    "nota": "a soma 1 não existe"
+   },
+   {
+    "linha": "2 + 4 = 6",
+    "nota": "pares ordenados favoráveis"
+   },
+   {
+    "linha": "6/36 = 1/6",
+    "nota": "divide pelos 36 resultados"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

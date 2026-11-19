@@ -979,5 +979,119 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P66164f0f": {
+  "n": "26",
+  "conceito": "Probabilidade com jogadas alternadas até o primeiro sucesso: soma de uma progressão geométrica infinita.",
+  "equivocos": {
+   "B": "M13.9:chance-do-outro-jogador",
+   "C": "M13.9:ignorou-a-vantagem-de-comecar",
+   "D": "M13.9:menor-que-a-primeira-jogada",
+   "E": "M13.9:nao-somou-a-pg"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro ache a chance de sair soma 5 num turno: dois dados de 4 faces dão 16 pares, e 4 deles somam 5. X vence na 1.ª jogada dele, ou na 2.ª (se X e Y falharem antes), ou na 3.ª, e assim por diante. Cada rodada completa sem vencedor multiplica a chance por (3/4)², e as chances de X formam uma progressão geométrica infinita, que se soma com uma fração simples.",
+    "formulas": [
+     "chance de soma 5 num turno: p = favoráveis ÷ 16",
+     "soma da PG infinita: S = a₁ ÷ (1 − q), com 0 < q < 1"
+    ],
+    "simbolos": [
+     [
+      "p",
+      "chance de sair soma 5 em um turno"
+     ],
+     [
+      "a₁",
+      "primeiro termo da progressão"
+     ],
+     [
+      "q",
+      "razão da progressão; aqui, a chance de uma rodada (X e Y) sem vencedor"
+     ],
+     [
+      "tetraédrico",
+      "dado de 4 faces, numeradas de 1 a 4"
+     ]
+    ]
+   },
+   "pista": "Comece pela chance de um turno terminar o jogo: quantos dos 16 pares de faces somam 5?",
+   "passos": [
+    {
+     "faz": "Ache a chance de soma 5 num turno",
+     "conta": "(1, 4), (2, 3), (3, 2), (4, 1) → 4/16 → 1/4",
+     "porque": "Cada dado tem 4 faces, então há 4 × 4 = 16 pares igualmente prováveis; 4 deles somam 5. A chance de não sair 5 é 1 − 1/4 = 3/4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva as chances de X vencer",
+     "conta": "1/4 + (3/4)² × 1/4 + (3/4)⁴ × 1/4 + ...",
+     "porque": "X vence já no 1.º turno, ou depois de X e Y falharem uma vez cada ((3/4)²), ou depois de duas rodadas sem vencedor ((3/4)⁴), e assim por diante.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some a PG infinita",
+     "conta": "S = (1/4)/(1 − 9/16) → (1/4)/(7/16) → 1/4 × 16/7 → 4/7",
+     "porque": "O primeiro termo é 1/4 e a razão é (3/4)² = 9/16, menor que 1, então a soma infinita é a₁ ÷ (1 − q); dividir por 7/16 é multiplicar por 16/7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "P(X vence) = 4/7 → alternativa A",
+     "porque": "A soma de todas as chances de X é 4/7, a fração da alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 4/7",
+   "checagem": "Por equação, sem a série: seja P a chance de quem joga primeiro vencer. Ou X vence no 1.º turno (1/4), ou falha (3/4) e Y passa a ser o primeiro, ficando X com 1 − P. Então P = 1/4 + 3/4 × (1 − P), donde 7P/4 = 1 e P = 4/7. A chance de Y fica 3/7, e 4/7 + 3/7 = 1.",
+   "erradas": {
+    "B": "3/7 sai de calcular a chance de Y vencer: (3/4 × 1/4) ÷ (1 − 9/16) = (3/16)/(7/16) = 3/7; Y só joga depois de X falhar.",
+    "C": "2/7 não confere: X joga primeiro, então tem vantagem e a chance dele passa de 1/2; 2/7 deixaria Y com 5/7, mais do que X.",
+    "D": "1/7 não confere: só a primeira jogada já dá a X a chance de 1/4, que é maior que 1/7.",
+    "E": "Nenhuma das anteriores não confere: a soma da PG dá 4/7, que é exatamente a alternativa A."
+   },
+   "armadilha": "X não vence só na primeira jogada: as chances de todas as jogadas dele, depois de rodadas sem vencedor, se somam numa PG infinita.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de X, que começa, ser o primeiro a tirar soma 5 com dois dados de 4 faces.",
+    "chave": "p = 4/16 = 1/4; P(X) = (1/4) ÷ (1 − 9/16) = 4/7.",
+    "cuidado": "A razão da PG é a rodada inteira sem vencedor, (3/4)², e não só a falha de um jogador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "equação de recorrência",
+    "ideia": "P = 1/4 + 3/4 × (1 − P), logo P = 4/7"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p = 4/16 = 1/4",
+    "nota": "soma 5 em um turno"
+   },
+   {
+    "linha": "1 − 1/4 = 3/4",
+    "nota": "turno sem vencedor"
+   },
+   {
+    "linha": "q = (3/4)² = 9/16",
+    "nota": "rodada X e Y sem vencedor"
+   },
+   {
+    "linha": "S = (1/4)/(7/16) = 4/7",
+    "nota": "soma da PG infinita"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

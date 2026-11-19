@@ -524,5 +524,112 @@
    "data": "2026-11-13",
    "lote": "mat-0061"
   }
+ },
+ "P5b2506f7": {
+  "n": "4",
+  "conceito": "Probabilidade total: somar os ramos de quem cobra (CCT ou não) multiplicados pela chance de gol em cada caso.",
+  "equivocos": {
+   "A": "M13.5:resultado-fora-da-media-dos-casos",
+   "B": "M13.5:considerou-so-um-caso",
+   "C": "M13.5:resultado-fora-da-media-dos-casos",
+   "E": "M13.6:respondeu-o-complementar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O gol pode vir por dois caminhos: o cobrador é do CCT e converte, ou não é do CCT e converte. Cada caminho é \"e\" (multiplica) e os dois caminhos juntos são \"ou\" (soma). O texto longo sobre os jogos é só contexto; os dados estão no último parágrafo.",
+    "formulas": [
+     "P(gol) = P(CCT) · P(gol | CCT) + P(outro) · P(gol | outro)"
+    ],
+    "simbolos": [
+     [
+      "CCT",
+      "Centro de Ciências Tecnológicas"
+     ],
+     [
+      "P(gol | CCT)",
+      "chance de gol sabendo que o cobrador é do CCT"
+     ]
+    ]
+   },
+   "pista": "Desenhe a árvore: primeiro quem cobra, depois se converte.",
+   "passos": [
+    {
+     "faz": "Separe os dados em decimais",
+     "conta": "CCT: 80 % = 0,8 → gol 0,4 | outro: 20 % = 0,2 → gol 0,7",
+     "porque": "Se 80 % das cobranças são do CCT, as outras 20 % são de jogadores de fora dele, que convertem com 70 %.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o ramo do CCT",
+     "conta": "0,8 · 0,4 = 0,32",
+     "porque": "Cobrador do CCT e gol: as duas coisas juntas multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o ramo dos outros",
+     "conta": "0,2 · 0,7 = 0,14",
+     "porque": "Cobrador de fora do CCT e gol, também multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois ramos",
+     "conta": "0,32 + 0,14 = 0,46",
+     "porque": "O gol acontece por um caminho ou pelo outro, e os dois não ocorrem ao mesmo tempo, então as chances se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "0,46 → alternativa D",
+     "porque": "A pergunta é a chance de o pênalti ser convertido, sem saber quem vai cobrar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 0,46",
+   "checagem": "Pelo complementar: o pênalti é perdido com chance 0,8 · 0,6 + 0,2 · 0,3 = 0,48 + 0,06 = 0,54, e 1 − 0,54 = 0,46.",
+   "erradas": {
+    "A": "0,24 não confere: a chance de gol é uma média de 0,4 e 0,7 ponderada por quem cobra, então tem de ficar entre 0,4 e 0,7.",
+    "B": "0,32 sai de contar só o ramo do CCT: 0,8 · 0,4 = 0,32. Faltou somar os 0,2 · 0,7 = 0,14 dos outros cobradores.",
+    "C": "0,38 não confere: está abaixo de 0,4, e mesmo se todo pênalti fosse do CCT a chance de gol seria 0,4.",
+    "E": "0,48 sai de calcular a chance de o CCT cobrar e errar: 0,8 · 0,6 = 0,48. A pergunta é sobre converter."
+   },
+   "armadilha": "Parar no ramo do CCT (0,32) e esquecer os 20 % de pênaltis cobrados por quem é de fora dele.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de um pênalti do Pitágoras virar gol.",
+    "chave": "0,8 · 0,4 + 0,2 · 0,7 = 0,32 + 0,14 = 0,46.",
+    "cuidado": "Some os dois ramos da árvore; a resposta tem de ficar entre 0,4 e 0,7."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "população de 100 pênaltis",
+    "ideia": "80 · 0,4 = 32 gols e 20 · 0,7 = 14 gols: 46 em 100 = 0,46"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,8 · 0,4 = 0,32",
+    "nota": "cobrador do CCT e gol"
+   },
+   {
+    "linha": "0,2 · 0,7 = 0,14",
+    "nota": "outro cobrador e gol"
+   },
+   {
+    "linha": "0,32 + 0,14 = 0,46",
+    "nota": "soma dos dois caminhos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

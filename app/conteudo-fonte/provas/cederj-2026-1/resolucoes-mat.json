@@ -269,5 +269,101 @@
    "data": "2026-11-13",
    "lote": "mat-0061"
   }
+ },
+ "Pbe5e1945": {
+  "n": "33",
+  "conceito": "Probabilidade da união: múltiplos de 2 ou de 3 num intervalo, descontando os múltiplos de 6.",
+  "equivocos": {
+   "A": "M13.4:espaco-amostral-errado",
+   "B": "M13.6:respondeu-o-complementar",
+   "C": "M13.4:espaco-amostral-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Maior que 1 e menor que 15\" exclui o 1 e o 15: o sorteio é entre 2 e 14. \"Múltiplo de 2 ou de 3\" é uma união; os múltiplos de 6 estão nas duas listas e só podem contar uma vez.",
+    "formulas": [
+     "n(2 ou 3) = n(múltiplos de 2) + n(múltiplos de 3) − n(múltiplos de 6)",
+     "probabilidade = casos favoráveis ÷ casos possíveis"
+    ],
+    "simbolos": [
+     [
+      "múltiplo de 6",
+      "número que é múltiplo de 2 e de 3 ao mesmo tempo"
+     ]
+    ]
+   },
+   "pista": "Comece decidindo exatamente quais números podem ser sorteados: o 1 e o 15 entram?",
+   "passos": [
+    {
+     "faz": "Conte os casos possíveis",
+     "conta": "2, 3, …, 14 → 14 − 2 + 1 → 13 números",
+     "porque": "\"Maior que 1\" e \"menor que 15\" são desigualdades estritas: os extremos ficam de fora.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Liste os múltiplos de 2 e de 3",
+     "conta": "de 2: 2, 4, 6, 8, 10, 12, 14 → 7 | de 3: 3, 6, 9, 12 → 4 | de 6: 6, 12 → 2",
+     "porque": "O 6 e o 12 aparecem nas duas listas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Desconte os repetidos",
+     "conta": "7 + 4 − 2 → 9 favoráveis",
+     "porque": "Sem tirar o 6 e o 12, eles contariam duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e ligue à alternativa",
+     "conta": "9/13 → alternativa D",
+     "porque": "São 9 favoráveis entre 13 possíveis.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 9/13",
+   "checagem": "Conte o que sobra: entre 2 e 14, não são múltiplos nem de 2 nem de 3 só 5, 7, 11 e 13, ou seja, 4 números. 13 − 4 = 9 favoráveis, o mesmo de antes.",
+   "erradas": {
+    "A": "4/15 junta dois erros: os 4 números que não servem (5, 7, 11, 13) sobre 15, como se o sorteio fosse de 1 a 15.",
+    "B": "4/13 sai de responder o complementar: 5, 7, 11 e 13 são os 4 números que não são múltiplos nem de 2 nem de 3.",
+    "C": "9/15 tem os 9 favoráveis certos, mas divide por 15, como se o 1 e o 15 pudessem ser sorteados. \"Maior que 1 e menor que 15\" deixa só 13 números."
+   },
+   "armadilha": "\"Maior que 1 e menor que 15\" exclui os extremos: são 13 números, não 15.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de um inteiro entre 2 e 14 ser múltiplo de 2 ou de 3.",
+    "chave": "Favoráveis 7 + 4 − 2 = 9 entre 13 possíveis: 9/13.",
+    "cuidado": "Exclua o 1 e o 15 e conte o 6 e o 12 uma vez só."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "listagem direta",
+    "ideia": "favoráveis: 2, 3, 4, 6, 8, 9, 10, 12, 14 → 9 de 13"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "14 − 2 + 1 = 13",
+    "nota": "números possíveis"
+   },
+   {
+    "linha": "7 + 4 − 2 = 9",
+    "nota": "múltiplos de 2 ou de 3"
+   },
+   {
+    "linha": "(7 + 4 − 2)/13 = 9/13",
+    "nota": "probabilidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

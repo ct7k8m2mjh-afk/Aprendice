@@ -442,5 +442,108 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "P53d5c77f": {
+  "n": "23",
+  "conceito": "Probabilidade condicional inversa (Bayes): dado que o pacote vence em menos de um mês, qual a chance de ser da marca Q.",
+  "equivocos": {
+   "B": "M13.5:supos-grupos-iguais",
+   "C": "M13.5:ignorou-as-taxas-por-marca",
+   "D": "M13.5:denominador-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A informação \"a validade era inferior a um mês\" vira o novo universo: só contam os pacotes com validade curta. Imagine 10 000 pacotes, separe por marca e conte quantos de cada marca têm validade curta. A resposta é a fatia de Q dentro desse grupo.",
+    "formulas": [
+     "P(Q | curta) = (pacotes Q com validade curta) ÷ (todos com validade curta)"
+    ],
+    "simbolos": [
+     [
+      "P(Q | curta)",
+      "chance de ser da marca Q sabendo que a validade é menor que um mês"
+     ],
+     [
+      "validade curta",
+      "menos de um mês de validade"
+     ]
+    ]
+   },
+   "pista": "Comece transformando as porcentagens em quantidades com um total redondo de pacotes.",
+   "passos": [
+    {
+     "faz": "Divida os pacotes por marca",
+     "conta": "10 000 pacotes → P: 2 500 | Q: 7 500",
+     "porque": "25% são da marca P; o resto, 75%, é Q.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os de validade curta em cada marca",
+     "conta": "P: 20% × 2 500 = 500 | Q: 5% × 7 500 = 375",
+     "porque": "Cada porcentagem vale dentro da sua marca.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte o grupo de validade curta",
+     "conta": "500 + 375 = 875",
+     "porque": "A cliente está nesse grupo: é o novo denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a fatia de Q e ligue à alternativa",
+     "conta": "375/875 = 3/7 ≈ 42,9% ≈ 43% → alternativa A",
+     "porque": "Entre os 875 de validade curta, 375 são de Q.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — aproximadamente 43%",
+   "checagem": "Pelo complementar: a chance de ser da marca P é 500/875 = 4/7 ≈ 57,1%, e 57,1% + 42,9% = 100%. Faz sentido Q ficar abaixo de 50%: tem mais pacotes, mas a taxa de validade curta dela é quatro vezes menor.",
+   "erradas": {
+    "B": "50% não confere: exigiria tantos pacotes Q quanto P com validade curta, mas são 375 contra 500.",
+    "C": "54% não confere: passaria de 50%, mas os pacotes Q de validade curta (375) são menos que os de P (500).",
+    "D": "38% não confere: 38% de 875 = 332,5, e os pacotes Q de validade curta são 375."
+   },
+   "armadilha": "Dividir pelo total de pacotes ou achar que Q domina só por ter 75% das vendas: o denominador é o grupo de validade curta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de o pacote ser de Q, sabendo que a validade é menor que um mês.",
+    "chave": "Em 10 000 pacotes: 500 de P e 375 de Q com validade curta; 375/875 ≈ 43%.",
+    "cuidado": "O denominador é só o grupo de validade curta, e cada taxa vale dentro da sua marca."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula de Bayes",
+    "ideia": "P(Q | curta) = (0,75 × 0,05) ÷ (0,25 × 0,2 + 0,75 × 0,05) = 0,0375 ÷ 0,0875 ≈ 0,43."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P: 2 500 | Q: 7 500",
+    "nota": "25% e 75% de 10 000"
+   },
+   {
+    "linha": "0,2 × 2 500 = 500 | 0,05 × 7 500 = 375",
+    "nota": "validade curta por marca"
+   },
+   {
+    "linha": "500 + 375 = 875",
+    "nota": "grupo de validade curta"
+   },
+   {
+    "linha": "375/875 = 3/7 ≈ 43%",
+    "nota": "fatia de Q"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

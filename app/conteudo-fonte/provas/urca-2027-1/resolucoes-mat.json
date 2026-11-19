@@ -1400,5 +1400,129 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P86784579": {
+  "n": "28",
+  "conceito": "Probabilidade condicional em duas etapas: dado que a primeira dupla tem robô de manutenção, separar os casos pela composição da dupla.",
+  "equivocos": {
+   "A": "M13.5:resultado-fora-da-media-dos-casos",
+   "B": "M13.6:respondeu-o-complementar",
+   "C": "M13.5:considerou-so-um-caso",
+   "E": "M13.5:parou-na-primeira-etapa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O \"sabendo que\" muda o espaço amostral: só valem as duplas da primeira etapa que têm pelo menos um robô de manutenção. Dentro dele, a dupla pode já ter um robô de exploração ou nenhum, e isso decide o que o terceiro sorteado precisa ser. Por isso a questão se resolve em casos.",
+    "formulas": [
+     "P(A | B) = casos de A dentro de B ÷ casos de B",
+     "duplas de n: C(n, 2) = n · (n − 1) ÷ 2"
+    ],
+    "simbolos": [
+     [
+      "C(n, 2)",
+      "número de duplas escolhidas entre n, sem importar a ordem"
+     ],
+     [
+      "P(A | B)",
+      "probabilidade de A sabendo que B aconteceu"
+     ],
+     [
+      "E, M, C",
+      "robô de exploração, de manutenção e de comunicação"
+     ]
+    ]
+   },
+   "pista": "Liste que tipos de dupla a primeira etapa pode ter, sabendo que há manutenção nela, e pergunte em cada tipo o que o terceiro robô precisa ser.",
+   "passos": [
+    {
+     "faz": "Conte as duplas com manutenção",
+     "conta": "C(6, 2) − C(4, 2) = 15 − 6 = 9 duplas",
+     "porque": "Das 15 duplas possíveis, as 6 formadas só com os 4 robôs que não são de manutenção (3 E e 1 C) ficam fora pela condição.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe as 9 duplas em dois tipos",
+     "conta": "E + M: 3 · 2 = 6 | sem E (M + M ou M + C): 1 + 2 = 3",
+     "porque": "Todas as duplas são igualmente prováveis. O que importa é se a dupla já tem um robô de exploração.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o terceiro robô em cada tipo",
+     "conta": "E + M: restam 2 E e 2 não E → 2/4 = 1/2 | sem E: restam 3 E e 1 não E → 3/4",
+     "porque": "Com um E na dupla, o terceiro não pode ser E. Sem E na dupla, o terceiro tem de ser E. Em ambos os casos sobram 4 robôs.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os casos com o peso de cada um",
+     "conta": "(6/9) · (1/2) + (3/9) · (3/4) = 1/3 + 1/4 = 7/12",
+     "porque": "Cada tipo de dupla entra com a sua chance dentro da condição (6 de 9 e 3 de 9) multiplicada pela chance do terceiro robô.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "7/12 → alternativa D",
+     "porque": "A pergunta é a chance de a equipe final ter exatamente um robô de exploração, já com a condição aplicada.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 7/12",
+   "checagem": "Conte as equipes ordenadas por etapa: são 9 duplas · 4 terceiros = 36 resultados igualmente prováveis. Favoráveis: 6 duplas E + M com 2 terceiros cada = 12, mais 3 duplas sem E com 3 terceiros cada = 9; total 21. E 21/36 = 7/12.",
+   "erradas": {
+    "A": "1/3 não confere: a resposta é uma média ponderada de 1/2 e 3/4 (as chances de cada tipo de dupla), então tem de ficar entre 1/2 e 3/4; 1/3 está abaixo de 1/2.",
+    "B": "5/12 sai do complementar: é a chance de a equipe NÃO ter exatamente um robô de exploração, 15/36 = 5/12, já que 1 − 7/12 = 5/12.",
+    "C": "1/2 sai de olhar só o caso E + M: com um E na dupla, a chance do terceiro não ser E é 2/4 = 1/2. Faltou o caso da dupla sem E, que tem chance 3/4.",
+    "E": "2/3 sai de parar na primeira etapa: 6/9 = 2/3 é a chance de a dupla ter exatamente um E, sem olhar o terceiro robô."
+   },
+   "armadilha": "Achar que basta um robô de exploração na primeira dupla: o terceiro sorteado ainda pode ser outro E e estragar o \"exatamente um\".",
+   "alerta": "",
+   "essencial": {
+    "pede": "P(exatamente um E na equipe | primeira dupla com pelo menos um M).",
+    "chave": "9 duplas possíveis: 6 do tipo E + M (terceiro não E: 1/2) e 3 sem E (terceiro E: 3/4); 21/36 = 7/12.",
+    "cuidado": "A condição tira do espaço amostral as 6 duplas sem manutenção; não as conte."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem direta",
+    "ideia": "9 duplas · 4 terceiros = 36 resultados; 12 + 9 = 21 favoráveis: 21/36 = 7/12"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "15 − 6 = 9 duplas",
+    "nota": "só as que têm manutenção"
+   },
+   {
+    "linha": "E + M: 6 | sem E: 3",
+    "nota": "tipos de dupla"
+   },
+   {
+    "linha": "6 · 2 + 3 · 3 = 12 + 9 = 21",
+    "nota": "equipes favoráveis (terceiro robô certo)"
+   },
+   {
+    "linha": "21/(9 · 4) = 21/36 = 7/12",
+    "nota": "divide pelas 36 equipes possíveis"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

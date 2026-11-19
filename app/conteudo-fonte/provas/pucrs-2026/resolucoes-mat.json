@@ -541,5 +541,216 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P8ce97960": {
+  "n": "12",
+  "conceito": "Retirar 5 dígitos equivale a escolher os 2 que ficam; contar os pares com um 0 e um 1.",
+  "equivocos": {
+   "A": "M13.4:esqueceu-a-outra-ordem",
+   "B": "M13.6:respondeu-o-complementar",
+   "C": "M13.4:valor-sem-teste-de-contagem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Retirar 5 dos 7 dígitos ao acaso é o mesmo que escolher ao acaso os 2 que sobram. O número 1001001 tem três algarismos 1 e quatro algarismos 0. Basta contar os pares de posições que sobram com um 0 e um 1.",
+    "formulas": [
+     "pares que sobram = C(7, 2)",
+     "pares com um 0 e um 1 = 4 · 3",
+     "probabilidade = favoráveis ÷ possíveis"
+    ],
+    "simbolos": [
+     [
+      "palíndromo",
+      "número que se lê igual da esquerda para a direita e ao contrário"
+     ],
+     [
+      "C(7, 2)",
+      "número de modos de escolher 2 posições entre 7, sem ordem"
+     ]
+    ]
+   },
+   "pista": "Pense nos 2 dígitos que ficam, e não nos 5 que saem.",
+   "passos": [
+    {
+     "faz": "Conte os dígitos de cada tipo",
+     "conta": "1001001 → 1: três | 0: quatro",
+     "porque": "Os dígitos estão em posições diferentes; cada um conta como um objeto distinto.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os pares que podem sobrar",
+     "conta": "C(7, 2) = (7 · 6)/2 = 21",
+     "porque": "Escolher os 5 que saem é o mesmo que escolher os 2 que ficam: C(7, 5) = C(7, 2).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os pares com um 0 e um 1",
+     "conta": "4 · 3 = 12",
+     "porque": "Um dos quatro zeros e um dos três uns.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "12/21 = 4/7",
+     "porque": "12 e 21 têm o fator 3 em comum.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "4/7 → alternativa D",
+     "porque": "É a chance de sobrarem um zero e um um, em qualquer ordem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 4/7",
+   "checagem": "Pelo complementar: sobrarem dois zeros, C(4, 2) = 6, ou dois uns, C(3, 2) = 3, somam 9 dos 21 pares; 1 − 9/21 = 12/21 = 4/7.",
+   "erradas": {
+    "A": "2/7 sai de contar uma ordem só: primeiro um 0 e depois um 1, 4/7 · 3/6 = 12/42 = 2/7. O enunciado aceita qualquer ordem, e a outra ordem soma mais 2/7.",
+    "B": "3/7 sai do evento contrário: sobrarem dois dígitos iguais, (6 + 3)/21 = 9/21 = 3/7.",
+    "C": "1/2 não confere: com 21 pares possíveis, 1/2 exigiria 10,5 pares favoráveis, e o número de pares é inteiro."
+   },
+   "armadilha": "Contar uma ordem só (0 depois 1) dá metade da resposta; \"em qualquer ordem\" pede as duas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de os dois dígitos que sobram serem um 0 e um 1.",
+    "chave": "Escolher os 2 que ficam: 4 · 3 = 12 pares bons em C(7, 2) = 21.",
+    "cuidado": "Conte sem ordem nos dois lados, ou com ordem nos dois."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "Pares iguais: C(4, 2) + C(3, 2) = 9; 1 − 9/21 = 4/7."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(7, 2) = (7 · 6)/2 = 21",
+    "nota": "pares que podem sobrar"
+   },
+   {
+    "linha": "4 · 3 = 12",
+    "nota": "um zero e um um"
+   },
+   {
+    "linha": "12/21 = 4/7",
+    "nota": "simplificar por 3"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
+ },
+ "P0020ce7f": {
+  "n": "18",
+  "conceito": "Montar uma tabela de dupla entrada (sexo × raça) com porcentagens e comparar duas casas dela.",
+  "equivocos": {
+   "B": "M03.1:razao-sem-base-na-tabela",
+   "C": "M03.1:trocou-as-casas-da-tabela",
+   "D": "M03.1:comparou-com-o-grupo-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Imagine 100 animais e monte a tabela sexo × raça. O cuidado está no \"30% das fêmeas\": é porcentagem do grupo das fêmeas, não do rebanho todo. Com machos, fêmeas e o total de Nelore conhecidos, cada casa sai por subtração.",
+    "formulas": [
+     "parte = porcentagem × grupo de referência",
+     "casa da tabela = total da linha (ou coluna) − a outra casa"
+    ],
+    "simbolos": [
+     [
+      "Nelore e Hereford",
+      "as duas raças da fazenda"
+     ],
+     [
+      "tabela de dupla entrada",
+      "quadro que cruza duas classificações (aqui, sexo e raça)"
+     ]
+    ]
+   },
+   "pista": "Escolha um total redondo para o rebanho e descubra primeiro quantas são as fêmeas.",
+   "passos": [
+    {
+     "faz": "Divida o rebanho por sexo",
+     "conta": "total: 100 → machos: 40 | fêmeas: 60",
+     "porque": "Com 100 animais, as porcentagens viram quantidades e a conta fica inteira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe as fêmeas por raça",
+     "conta": "fêmeas Hereford = 30% × 60 = 18 → fêmeas Nelore = 60 − 18 = 42",
+     "porque": "Os 30% valem sobre as 60 fêmeas; o resto das fêmeas é Nelore.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe os machos por raça",
+     "conta": "machos Nelore = 60 − 42 = 18 → machos Hereford = 40 − 18 = 22",
+     "porque": "Dos 60 Nelore, 42 são fêmeas; os outros são machos. O resto dos machos é Hereford.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a razão pedida",
+     "conta": "machos Hereford/fêmeas Nelore = 22/42 = 11/21",
+     "porque": "A ordem é a do enunciado: machos Hereford em cima, fêmeas Nelore embaixo; 22 e 42 dividem por 2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 11/21",
+   "checagem": "Feche a coluna Hereford: o total Hereford é 100 − 60 = 40, e 22 machos + 18 fêmeas = 40. A tabela fecha em todas as linhas e colunas.",
+   "erradas": {
+    "B": "7/12 não confere: 7/12 de 42 fêmeas Nelore daria 24,5 machos Hereford, mas dos 40 machos 18 são Nelore e sobram 22.",
+    "C": "1 sai de trocar as casas: machos Nelore ÷ fêmeas Hereford = 18/18 = 1. A razão pedida é machos Hereford ÷ fêmeas Nelore.",
+    "D": "11/9 sai de pôr os machos Nelore no lugar das fêmeas Nelore: 22/18 = 11/9."
+   },
+   "armadilha": "Aplicar os 30% ao rebanho inteiro: são 30% das fêmeas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão entre machos Hereford e fêmeas Nelore.",
+    "chave": "Com 100 animais: 18 fêmeas Hereford, 42 fêmeas Nelore, 18 machos Nelore e 22 machos Hereford; 22/42 = 11/21.",
+    "cuidado": "Cada porcentagem vale sobre o seu grupo, e a razão segue a ordem do enunciado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "porcentagens direto",
+    "ideia": "Fêmeas Nelore = 0,7 × 60% = 42%; machos Hereford = 40% − (60% − 42%) = 22%; 22 ÷ 42 = 11/21."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "machos 40 | fêmeas 60",
+    "nota": "100 animais divididos por sexo"
+   },
+   {
+    "linha": "0,3 × 60 = 18 → 60 − 18 = 42",
+    "nota": "fêmeas Hereford e fêmeas Nelore"
+   },
+   {
+    "linha": "60 − 42 = 18 → 40 − 18 = 22",
+    "nota": "machos Nelore e machos Hereford"
+   },
+   {
+    "linha": "22/42 = 11/21",
+    "nota": "simplificar por 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

@@ -86,3 +86,26 @@ DADO Pd27194f7: alternativas -> no print são frações: A) 5/36 B) 5/18 C) 7/36
 DADO P7f88186b: alternativas -> no print são frações: A) 1/52 B) 1/26 C) 5/52 D) 5/26 E) 1/2
 DADO P1e824fac: alternativas -> no print são frações: A) 1/5 B) 3/11 C) 2/13 D) 5/17 E) 6/37
 RECLASS P6f0e5f3e M13.4 -> M08.4
+
+## 2026-11-19 — PENDENCIAS — session_01PveEKa7o3DaEHDo7jW4ttw
+Lote mat-0068 gravado (49 resoluções + 1 pendente). Lote aberto: mat-0069.
+ANULAR P35fad689 (URCA 2025.1 q26): pede a porcentagem dos homens com menos de 50 anos = 100% − 40% = 60% (A); a oficial C (78,8%) sai de 1 − 0,53 · 0,40, que mede outra coisa; recurso não aceito pela banca; conferente confirmou.
+Gabarito do Aprendice (resolvedor, conferente às cegas e preliminar iguais): P838cbbf3 A, P86784579 D.
+DADO P5db7db40: alternativas.E -> "Tanto a especificidade quanto a sensibilidade desse exame correspondem a 50%." (o crédito https://coronavirus.saude.mg.gov.br, 26/10/2021 é fonte do texto de apoio)
+RECLASS Pc8ce1b54 M13.4 -> M13.5
+RECLASS P8117b06d M13.4 -> M13.2 (é contagem por arranjo, não probabilidade)
+RECLASS P66164f0f M13.4 -> M13.9 (jogadas alternadas até o primeiro sucesso; soma de PG infinita)
+DADO P145c734c: alternativas -> A) 3/5 | B) 5/6 | C) 1/6 | D) 1/2
+DADO P93516b5f: alternativas -> A) (0,1)¹⁰ | B) (0,2)¹⁰ | C) (0,3)¹⁰ | D) (0,4)¹⁰ (a entrada não traz o campo alternativas)
+DADO P8117b06d: alternativas -> A) 40!/15! | B) 25!/15! | C) 40 | D) 15! | E) 40! − 15! (a entrada não traz o campo alternativas)
+DADO P80c5143b: alternativas -> A) 1/6 | B) 2/6 | C) 3/6 | D) 4/6
+DADO P66164f0f: alternativas -> A) 4/7 | B) 3/7 | C) 2/7 | D) 1/7 | E) nenhuma das anteriores
+DADO P4448f8b0: alternativas -> A 2/3; B 3/4; C 1/2; D 4/5; E 1/3 (na entrada vieram vazias)
+RECLASS Pc7ac26d1 M13.4 -> M13.5
+RECLASS P86784579 M13.4 -> M13.5
+RECLASS P4448f8b0 M13.5 -> M13.4
+AVISO P86784579: sem gabarito publicado; busca na web não achou gabarito nem resolução da URCA 2027.1 q28; letra do resolvedor D (7/12)
+DADO P5387dc6a: alternativas.D -> 70% (a entrada traz '70% f')
+RECLASS P0020ce7f M13.5 -> M03.1 (não pede probabilidade: porcentagem de porcentagem numa tabela sexo × raça)
+ANULAR P35fad689 (URCA 2025.1, questão 26): gabarito oficial C (78,8%) contraria a conta; o certo é 60% (A). Recurso negado pela banca, ver motivo na questão.
+DADO Pbe5e1945: alternativas -> no print são frações empilhadas: A) 4/15 B) 4/13 C) 9/15 D) 9/13

@@ -536,5 +536,115 @@
    "data": "2026-11-13",
    "lote": "mat-0061"
   }
+ },
+ "P6b2c8df8": {
+  "n": "13",
+  "conceito": "Usar o evento complementar: contar as mãos de 8 cartas que somam 27 ou 28 pontos e tirar da certeza.",
+  "equivocos": {
+   "A": "M13.6:contou-so-um-caso-do-complementar",
+   "B": "M13.6:parou-no-complementar",
+   "D": "M13.6:caso-esquecido-no-complementar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada jogador recebe 8 das 16 cartas, e a pontuação máxima de uma mão é pequena: 4 espadas e 4 escudos dão 28. Por isso é muito mais fácil contar as mãos que passam de 26 (27 ou 28) e usar o complementar do que contar as que ficam em 26 ou menos.",
+    "formulas": [
+     "total de mãos = C(16, 8)",
+     "P(26 ou menos) = 1 − P(27 ou 28)"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "número de modos de escolher k objetos entre n, sem importar a ordem"
+     ],
+     [
+      "complementar",
+      "o evento contrário; as duas probabilidades somam 1"
+     ]
+    ]
+   },
+   "pista": "Descubra a maior soma possível de uma mão de 8 cartas; só poucas mãos ficam acima de 26.",
+   "passos": [
+    {
+     "faz": "Conte as mãos possíveis",
+     "conta": "C(16, 8) = 12.870",
+     "porque": "Cada jogador recebe 8 das 16 cartas e todas as escolhas de 8 cartas são igualmente prováveis.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as mãos de 28 pontos",
+     "conta": "4 espadas + 4 escudos = 4·4 + 4·3 = 28 → C(4, 4)·C(4, 4) = 1 mão",
+     "porque": "28 é o máximo: as 8 cartas de maior valor. Só existe uma mão assim.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as mãos de 27 pontos",
+     "conta": "4 espadas + 3 escudos + 1 capacete = 16 + 9 + 2 = 27 → C(4, 3)·C(4, 1) = 4·4 = 16 mãos",
+     "porque": "Para perder só 1 ponto, troque um escudo (3) por um capacete (2). Qualquer outra troca perde 2 pontos ou mais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire do total as mãos acima de 26",
+     "conta": "1 − (1 + 16)/12.870 = 1 − 17/12.870 = 12.853/12.870",
+     "porque": "Somar 26 ou menos é o contrário de somar 27 ou 28.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "12.853/12.870 → alternativa C",
+     "porque": "É a probabilidade de o jogador somar 26 pontos ou menos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 12.853/12.870",
+   "checagem": "Confira a soma total do baralho: 4·(1 + 2 + 3 + 4) = 40 pontos. Se um jogador faz 27 ou 28, o outro fica com 13 ou 12; há 1 + 16 = 17 mãos com 12 ou 13 pontos (as 4 coroas e 4 capacetes, ou trocando um capacete por um escudo: C(4, 3)·C(4, 1) = 16), o mesmo 17 por simetria.",
+   "erradas": {
+    "A": "8/6.435 sai de contar só as mãos de 27 pontos: 16/12.870 = 8/6.435. Essa é a chance de somar exatamente 27, e não de 26 ou menos.",
+    "B": "17/12.870 sai de parar no evento contrário: é a chance de somar 27 ou 28. A pergunta é 26 ou menos, que é 1 menos isso.",
+    "D": "12.869/12.870 sai de excluir só a mão de 28 pontos: 1 − 1/12.870. Esquece as 16 mãos de 27 pontos, que também passam de 26."
+   },
+   "armadilha": "Contar direto as mãos de 26 ou menos é inviável; a saída é o complementar, sem esquecer nenhuma das 16 mãos de 27 pontos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de uma mão de 8 cartas somar 26 pontos ou menos.",
+    "chave": "Só 1 mão faz 28 e 16 fazem 27; P = 1 − 17/12.870.",
+    "cuidado": "Conte as mãos de 27 (troca de um escudo por um capacete) e use o complementar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela mão do adversário",
+    "ideia": "Somar 27 ou 28 equivale a deixar 13 ou 12 pontos para o outro jogador: há 17 mãos assim, e a resposta é 1 − 17/12.870."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(16, 8) = 12.870",
+    "nota": "total de mãos de 8 cartas"
+   },
+   {
+    "linha": "28 pontos: C(4, 4)·C(4, 4) = 1",
+    "nota": "4 espadas e 4 escudos"
+   },
+   {
+    "linha": "27 pontos: C(4, 3)·C(4, 1) = 16",
+    "nota": "um escudo trocado por um capacete"
+   },
+   {
+    "linha": "1 − 17/12.870 = 12.853/12.870",
+    "nota": "complementar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

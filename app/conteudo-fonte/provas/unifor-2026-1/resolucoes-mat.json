@@ -624,5 +624,223 @@
    "data": "2026-11-13",
    "lote": "mat-0058"
   }
+ },
+ "P163897e7": {
+  "n": "14",
+  "conceito": "Probabilidade com combinações: trios que contêm as duas peças defeituosas sobre todos os trios do lote.",
+  "equivocos": {
+   "B": "M13.4:calculou-outro-evento",
+   "C": "M13.4:considerou-so-um-evento",
+   "D": "M13.3:fracao-sem-sentido-de-contagem",
+   "E": "M13.3:fracao-sem-sentido-de-contagem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A vendedora escolhe 3 camisetas entre 20, sem ordem: cada trio é igualmente provável. Para a cliente levar as duas defeituosas, o trio tem de conter as 2 com defeito e mais 1 qualquer entre as 18 boas.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "C(n, p) = n! ÷ (p! · (n − p)!)"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "número de grupos de p objetos escolhidos entre n, sem importar a ordem"
+     ],
+     [
+      "n!",
+      "fatorial: n · (n − 1) · ... · 2 · 1"
+     ]
+    ]
+   },
+   "pista": "Conte de quantos jeitos se escolhem 3 camisetas do lote e, entre eles, quantos já trazem as duas com defeito.",
+   "passos": [
+    {
+     "faz": "Conte todos os trios possíveis",
+     "conta": "C(20, 3) = (20 · 19 · 18)/(3 · 2 · 1) = 6840/6 = 1140",
+     "porque": "A ordem em que as camisetas vão para a sacola não importa, então é combinação de 20 tomados 3 a 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os trios com as duas defeituosas",
+     "conta": "C(2, 2) · C(18, 1) = 1 · 18 = 18",
+     "porque": "As 2 defeituosas entram obrigatoriamente (1 jeito); a terceira peça é uma das 18 boas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "18/1140 = 3/190",
+     "porque": "Dividindo em cima e embaixo por 6: 18 ÷ 6 = 3 e 1140 ÷ 6 = 190.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "3/190 → alternativa A",
+     "porque": "A pergunta é a chance de as duas peças defeituosas estarem na compra.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 3/190",
+   "checagem": "Pela ordem das retiradas: a peça boa pode sair na 1.ª, 2.ª ou 3.ª retirada (3 ordens). Em cada ordem, as defeituosas saem com chance (2/20) · (1/19) e a boa com 18/18 = 1: 3 · (2/20) · (1/19) = 6/380 = 3/190.",
+   "erradas": {
+    "B": "1/10 sai de dar a fração de peças defeituosas no lote: 2/20 = 1/10. Isso não é a chance de levar as duas.",
+    "C": "3/20 sai de calcular a chance de uma peça específica entrar no trio: 3 vagas em 20. Para as duas, falta multiplicar por 2/19.",
+    "D": "2/170 não confere: as chances aqui têm a forma k/1140, e 1140 · 2/170 ≈ 13,4 não é número inteiro de trios.",
+    "E": "1/90 não confere: daria 1140/90 ≈ 12,7 trios favoráveis, que não é inteiro; os favoráveis são 18."
+   },
+   "armadilha": "Achar que a chance é 2/20 por haver 2 defeituosas em 20: a pergunta exige as DUAS no mesmo trio.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de um trio sorteado de 20 camisetas conter as 2 defeituosas.",
+    "chave": "18 trios favoráveis em C(20, 3) = 1140: 18/1140 = 3/190.",
+    "cuidado": "Escolha sem ordem: use combinação no total e nos favoráveis."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "chance de cada peça entrar",
+    "ideia": "1.ª defeituosa no trio: 3/20; 2.ª nas 2 vagas que sobram entre 19: 2/19; (3/20) · (2/19) = 3/190"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(20, 3) = 6840/6 = 1140",
+    "nota": "todos os trios"
+   },
+   {
+    "linha": "C(2, 2) · C(18, 1) = 18",
+    "nota": "trios com as duas defeituosas"
+   },
+   {
+    "linha": "18/1140 = 3/190",
+    "nota": "divide por 6"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
+ },
+ "Pec75a529": {
+  "n": "2",
+  "conceito": "Valor preditivo positivo de um classificador de spam a partir de sensibilidade, especificidade e proporção de spam.",
+  "equivocos": {
+   "A": "M13.5:trocou-sensibilidade-por-especificidade",
+   "B": "M13.5:denominador-errado",
+   "C": "M13.5:denominador-errado",
+   "E": "M13.5:denominador-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A pergunta é: entre os e-mails que o sistema marcou como spam, quantos são spam de verdade? A marcação vem de dois grupos: spams detectados (sensibilidade) e e-mails legítimos marcados por engano (1 − especificidade). Com 1 000 e-mails, tudo vira número inteiro.",
+    "formulas": [
+     "P(spam | marcado) = spams marcados ÷ (spams marcados + legítimos marcados)",
+     "legítimos marcados = (1 − especificidade) × legítimos"
+    ],
+    "simbolos": [
+     [
+      "sensibilidade",
+      "fração dos spams que o sistema detecta"
+     ],
+     [
+      "especificidade",
+      "fração dos e-mails legítimos que o sistema deixa passar como não spam"
+     ],
+     [
+      "P(spam | marcado)",
+      "chance de ser spam sabendo que o sistema marcou como spam"
+     ]
+    ]
+   },
+   "pista": "Pegue 1 000 e-mails e separe spam e legítimos antes de aplicar o sistema.",
+   "passos": [
+    {
+     "faz": "Separe spam e legítimos",
+     "conta": "1 000 e-mails → spam: 10% = 100 | legítimos: 900",
+     "porque": "10% dos e-mails são spam de verdade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os spams marcados",
+     "conta": "90% × 100 = 90",
+     "porque": "A sensibilidade age só sobre os spams.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os legítimos marcados por engano",
+     "conta": "(100% − 95%) × 900 = 5% × 900 = 45",
+     "porque": "Os legítimos que o sistema não acerta (5%) são marcados como spam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a fração de spam entre os marcados",
+     "conta": "90/(90 + 45) = 90/135 = 2/3 ≈ 0,67",
+     "porque": "Dos 135 marcados, 90 são spam de verdade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "0,67 → alternativa D",
+     "porque": "É exatamente a chance pedida: ser spam dado que foi marcado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 0,67",
+   "checagem": "Pelo complementar: dos 135 marcados, 45 são legítimos, 45 ÷ 135 = 1/3; 1 − 1/3 = 2/3 ≈ 0,67. Faz sentido ficar abaixo de 0,9: os legítimos são 9 vezes mais numerosos, e 5% deles pesa contra os acertos.",
+   "erradas": {
+    "A": "0,50 sai de usar 10% (1 − sensibilidade) como taxa de engano dos legítimos: 90/(90 + 10% × 900) = 90/180. A taxa de engano é 1 − especificidade = 5%.",
+    "B": "0,54 não confere: 0,54 × 135 marcados = 72,9, e os spams marcados são 90.",
+    "C": "0,60 não confere: 0,60 × 135 = 81, e os spams marcados são 90.",
+    "E": "0,70 não confere: 0,70 × 135 = 94,5, e os spams marcados são 90."
+   },
+   "armadilha": "Responder a sensibilidade (0,90) ou misturar as taxas: o engano com legítimos é 1 − especificidade = 5%.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de um e-mail marcado como spam ser spam de verdade.",
+    "chave": "Em 1 000: 90 spams marcados e 45 legítimos marcados; 90/135 = 2/3 ≈ 0,67.",
+    "cuidado": "Os falsos alarmes vêm dos legítimos e usam 1 − especificidade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula de Bayes",
+    "ideia": "(0,9 × 0,1) ÷ (0,9 × 0,1 + 0,05 × 0,9) = 0,09 ÷ 0,135 = 2/3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "spam 100 | legítimos 900",
+    "nota": "10% de 1 000"
+   },
+   {
+    "linha": "0,9 × 100 = 90",
+    "nota": "spams marcados"
+   },
+   {
+    "linha": "0,05 × 900 = 45",
+    "nota": "legítimos marcados por engano"
+   },
+   {
+    "linha": "90/135 = 2/3 ≈ 0,67",
+    "nota": "fração de spam entre os marcados"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

@@ -1,0 +1,103 @@
+{
+ "P840790a6": {
+  "n": "12",
+  "conceito": "Probabilidade condicional com diagrama de Venn: dengue dado chikungunya.",
+  "equivocos": {
+   "A": "M13.5:denominador-sem-a-intersecao",
+   "B": "M13.5:ignorou-a-condicao",
+   "D": "M13.5:ignorou-a-condicao",
+   "E": "M13.5:denominador-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Dado que já teve chikungunya\" troca o universo: só contam as 50 pessoas que tiveram chikungunya. Dentro delas, as favoráveis são as que tiveram dengue também, isto é, a interseção.",
+    "formulas": [
+     "P(D | C) = (pessoas com D e C) ÷ (pessoas com C)"
+    ],
+    "simbolos": [
+     [
+      "P(D | C)",
+      "chance de ter tido dengue sabendo que teve chikungunya"
+     ],
+     [
+      "interseção",
+      "quem teve as duas doenças"
+     ]
+    ]
+   },
+   "pista": "Antes de dividir, pergunte: qual é o grupo de onde a pessoa foi escolhida?",
+   "passos": [
+    {
+     "faz": "Ache o novo universo",
+     "conta": "condição: teve chikungunya → 50 pessoas",
+     "porque": "O \"dado que\" fixa o grupo de onde se escolhe: os 50 que tiveram chikungunya.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache os favoráveis dentro dele",
+     "conta": "dengue e chikungunya → 10 pessoas",
+     "porque": "Dentro desse grupo, teve dengue quem está na interseção.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "10/50 = 1/5",
+     "porque": "Favoráveis sobre o novo universo; 10 e 50 dividem por 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1/5 → alternativa C",
+     "porque": "É a chance pedida: dengue, sabendo que teve chikungunya.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1/5",
+   "checagem": "Monte o diagrama inteiro: só dengue 160 − 10 = 150, só chikungunya 50 − 10 = 40, ambas 10, nenhuma 200; 150 + 40 + 10 + 200 = 400, o total. Com os dados coerentes, a fração 10/50 = 0,2 confirma.",
+   "erradas": {
+    "A": "1/4 sai de dividir pelos que tiveram só chikungunya: 10/40. O universo inclui os 10 que tiveram as duas: são 50.",
+    "B": "2/5 sai de ignorar a condição: 160/400, a chance de ter tido dengue no grupo todo.",
+    "D": "3/8 sai de 150/400, os que tiveram só dengue sobre o total. A condição pede o grupo da chikungunya.",
+    "E": "16/35 sai de 160/(400 − 50): dividiu todos os casos de dengue pelos que NÃO tiveram chikungunya; a condição pede os 50 com chikungunya: 10/50 = 1/5."
+   },
+   "armadilha": "Dividir pelo total de 400, ou pelos 40 de \"só chikungunya\", em vez dos 50 que tiveram chikungunya.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de ter tido dengue entre os que tiveram chikungunya.",
+    "chave": "Interseção 10 sobre os 50 com chikungunya: 10/50 = 1/5.",
+    "cuidado": "O \"dado que\" troca o denominador para o grupo da condição, inteiro (com a interseção)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula",
+    "ideia": "P(D | C) = P(D e C) ÷ P(C) = (10/400) ÷ (50/400) = 1/5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "universo: 50 (chikungunya)",
+    "nota": "o grupo da condição"
+   },
+   {
+    "linha": "favoráveis: 10 (as duas)",
+    "nota": "a interseção"
+   },
+   {
+    "linha": "10/50 = 1/5",
+    "nota": "simplificar por 10"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
+ }
+}

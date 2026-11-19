@@ -616,5 +616,102 @@
    "data": "2026-11-19",
    "lote": "mat-0064"
   }
+ },
+ "P4f1923d8": {
+  "n": "16",
+  "conceito": "Probabilidade de uma partida, sorteada entre todos os pares de equipes, juntar uma equipe do Sul e uma do Sudeste.",
+  "equivocos": {
+   "A": "M13.4:esqueceu-a-outra-ordem",
+   "C": "M13.4:ordem-so-no-numerador",
+   "D": "M13.4:incluiu-pares-da-mesma-regiao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Uma partida é um par de equipes, sem ordem (A contra B é o mesmo jogo que B contra A). O espaço amostral são todos os pares possíveis entre as 20 equipes; os favoráveis são os pares com uma equipe do Sul e uma do Sudeste.",
+    "formulas": [
+     "pares possíveis = C(20, 2) = (20 · 19)/2",
+     "pares favoráveis = 5 · 10",
+     "probabilidade = favoráveis ÷ possíveis"
+    ],
+    "simbolos": [
+     [
+      "C(20, 2)",
+      "número de pares de equipes, sem importar a ordem"
+     ]
+    ]
+   },
+   "pista": "Conte as partidas possíveis como pares sem ordem e conte os favoráveis do mesmo jeito.",
+   "passos": [
+    {
+     "faz": "Conte as partidas possíveis",
+     "conta": "C(20, 2) = (20 · 19)/2 = 190",
+     "porque": "Cada partida é um par de equipes e a ordem não importa, por isso se divide por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as partidas Sul × Sudeste",
+     "conta": "5 · 10 = 50",
+     "porque": "Escolha uma das 5 equipes do Sul e uma das 10 do Sudeste. Cada escolha é uma partida diferente, já sem ordem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "50/190 = 5/19",
+     "porque": "50 e 190 têm o fator 10 em comum.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "5/19 → alternativa B",
+     "porque": "É a chance de a partida reunir uma equipe do Sul e uma do Sudeste.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 5/19",
+   "checagem": "Faça com ordem: a 1ª equipe é do Sul e a 2ª do Sudeste (5/20 · 10/19) ou o contrário (10/20 · 5/19); somando, 50/380 + 50/380 = 100/380 = 5/19. Mesmo resultado.",
+   "erradas": {
+    "A": "5/38 sai de contar só uma ordem: 5/20 · 10/19 = 50/380 = 5/38. Esquece o caso em que a equipe do Sudeste vem primeiro.",
+    "C": "10/19 sai de contar com ordem só os favoráveis: 2 · 50 = 100 sobre os 190 pares sem ordem. Numerador e denominador têm de ser contados do mesmo jeito.",
+    "D": "21/38 sai de contar todos os pares com as duas equipes do Sul ou do Sudeste: C(15, 2)/C(20, 2) = 105/190 = 21/38. Isso inclui Sul × Sul e Sudeste × Sudeste."
+   },
+   "armadilha": "A ordem não importa numa partida: contar os favoráveis com ordem e o total sem ordem (ou o contrário) dobra ou corta pela metade a resposta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de uma partida ser entre uma equipe do Sul e uma do Sudeste.",
+    "chave": "50 pares Sul × Sudeste entre 190 pares possíveis: 5/19.",
+    "cuidado": "Conte numerador e denominador do mesmo jeito: os dois sem ordem, ou os dois com ordem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sorteio com ordem",
+    "ideia": "5/20 · 10/19 + 10/20 · 5/19 = 100/380 = 5/19."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(20, 2) = (20 · 19)/2 = 190",
+    "nota": "partidas possíveis"
+   },
+   {
+    "linha": "5 · 10 = 50",
+    "nota": "partidas Sul × Sudeste"
+   },
+   {
+    "linha": "50/190 = 5/19",
+    "nota": "simplificar por 10"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

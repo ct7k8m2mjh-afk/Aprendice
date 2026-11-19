@@ -515,5 +515,121 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P83d1a291": {
+  "n": "21",
+  "conceito": "Princípio da inclusão-exclusão com três conjuntos: quem não está em nenhum.",
+  "equivocos": {
+   "A": "M13.6:valor-sem-base",
+   "B": "M13.6:valor-sem-base",
+   "C": "M13.6:regiao-errada-do-diagrama",
+   "D": "M13.6:regiao-errada-do-diagrama"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Somar os três grupos conta duas vezes quem gosta de dois candidatos e três vezes quem gosta dos três. Tirar as três duplas corrige os de dois, mas apaga de vez quem gosta dos três, que precisa voltar. O que sobra de 1000 depois da união é quem não gosta de nenhum.",
+    "formulas": [
+     "n(A ∪ B ∪ C) = n(A) + n(B) + n(C) − n(A ∩ B) − n(B ∩ C) − n(A ∩ C) + n(A ∩ B ∩ C)",
+     "nenhum = total − n(A ∪ B ∪ C)"
+    ],
+    "simbolos": [
+     [
+      "A ∪ B ∪ C",
+      "quem gosta de pelo menos um candidato"
+     ],
+     [
+      "A ∩ B",
+      "quem gosta de A e de B (pode gostar também de C)"
+     ],
+     [
+      "A ∩ B ∩ C",
+      "quem gosta dos três"
+     ]
+    ]
+   },
+   "pista": "Some os três grupos e pergunte quantas vezes quem gosta dos três foi contado em cada etapa.",
+   "passos": [
+    {
+     "faz": "Some os três grupos",
+     "conta": "460 + 360 + 280 → 1100",
+     "porque": "Passa de 1000 porque quem gosta de mais de um candidato aparece em mais de um grupo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire as três duplas",
+     "conta": "1100 − (200 + 160 + 180) → 1100 − 540 → 560",
+     "porque": "Cada dupla foi contada a mais na soma; tirando, quem gosta de exatamente dois passa a contar uma vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Devolva quem gosta dos três",
+     "conta": "560 + 100 → 660",
+     "porque": "Os 100 entraram três vezes na soma e saíram três vezes nas duplas; precisam voltar uma vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a união do total",
+     "conta": "1000 − 660 → 340",
+     "porque": "Fora da união fica quem não gosta de nenhum candidato.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "340 → alternativa E",
+     "porque": "É o número pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 340",
+   "checagem": "Feche o diagrama a partir do centro: só A e B 200 − 100 = 100, só B e C 60, só A e C 80; só A 460 − 100 − 80 − 100 = 180, só B 360 − 100 − 60 − 100 = 100, só C 280 − 60 − 80 − 100 = 40. As sete regiões somam 660, e 1000 − 660 = 340.",
+   "erradas": {
+    "A": "420 não confere: daria 1000 − 420 = 580 pessoas gostando de algum candidato, mas as sete regiões do diagrama somam 660.",
+    "B": "480 não confere: daria 1000 − 480 = 520 pessoas gostando de algum candidato, mas as sete regiões do diagrama somam 660.",
+    "C": "240 é quem gosta de exatamente dois candidatos: (200 − 100) + (160 − 100) + (180 − 100) = 100 + 60 + 80. Não é quem não gosta de nenhum.",
+    "D": "100 é quem gosta dos três candidatos, dado do enunciado; a pergunta é a região de fora."
+   },
+   "armadilha": "Ao tirar as três duplas, quem gosta dos três some da conta e precisa ser somado de volta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas pessoas não gostam de nenhum dos três candidatos.",
+    "chave": "União 1100 − 540 + 100 = 660; nenhum 1000 − 660 = 340.",
+    "cuidado": "Depois de subtrair as duplas, some de novo os 100 que gostam dos três."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula do complemento direto",
+    "ideia": "nenhum = 1000 − 1100 + 540 − 100 = 340"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "460 + 360 + 280 = 1100",
+    "nota": "soma dos grupos"
+   },
+   {
+    "linha": "1100 − 540 = 560",
+    "nota": "tirar as duplas"
+   },
+   {
+    "linha": "560 + 100 = 660",
+    "nota": "devolver o trio"
+   },
+   {
+    "linha": "1000 − 660 = 340",
+    "nota": "não gostam de nenhum"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

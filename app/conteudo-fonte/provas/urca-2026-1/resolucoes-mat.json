@@ -991,5 +991,121 @@
    "data": "2026-11-19",
    "lote": "mat-0065"
   }
+ },
+ "P8f2919e1": {
+  "n": "23",
+  "conceito": "Probabilidade em anagramas: contar os que têm o bloco fraca + forte + fraca tratando o bloco como uma letra só.",
+  "equivocos": {
+   "A": "M13.4:contagem-de-favoraveis-errada",
+   "C": "M13.4:favoraveis-acima-do-possivel",
+   "D": "M13.4:favoraveis-acima-do-possivel",
+   "E": "M13.2:ignorou-a-restricao-do-meio-do-bloco"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "CAJUEIRO tem 8 letras, todas diferentes, então há 8! anagramas igualmente prováveis. Para contar os que têm a sequência especial, cole as três vogais num bloco: ele anda junto e conta como uma letra só. Como só existem duas vogais fracas (I e U), o bloco aparece no máximo uma vez em cada anagrama, e não há dupla contagem.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "n letras distintas: n! arranjos"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "fatorial: n · (n − 1) · ... · 2 · 1"
+     ],
+     [
+      "anagrama",
+      "qualquer reordenação das letras da palavra"
+     ],
+     [
+      "bloco",
+      "grupo de letras que fica sempre junto, na mesma ordem"
+     ]
+    ]
+   },
+   "pista": "Monte primeiro o bloco de três vogais e conte de quantos jeitos ele pode ser formado; depois trate o bloco como uma letra.",
+   "passos": [
+    {
+     "faz": "Conte os anagramas possíveis",
+     "conta": "8 letras distintas → 8! = 40320",
+     "porque": "C, A, J, U, E, I, R, O não se repetem, então cada ordem é um anagrama diferente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os blocos fraca + forte + fraca",
+     "conta": "pontas: 2 · 1 = 2 | meio: 3 → 2 · 3 = 6 blocos",
+     "porque": "As pontas são I e U, em duas ordens (IAU... ou UAI...); o meio é uma das 3 fortes, A, E ou O.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Trate o bloco como uma letra",
+     "conta": "bloco + 5 letras = 6 objetos → 6 · 6! = 6 · 720 = 4320",
+     "porque": "Sobram C, J, R e as duas fortes fora do bloco: 5 letras. Com o bloco, são 6 objetos para ordenar, e cada um dos 6 blocos gera 6! anagramas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida favoráveis por possíveis",
+     "conta": "4320/40320 → (6 · 720)/(8 · 7 · 720) → 6/56 = 3/28",
+     "porque": "O 720 = 6! aparece em cima e embaixo e se cancela; sobra 6/56, que simplifica por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "3/28 → alternativa B",
+     "porque": "A pergunta é a probabilidade de o anagrama conter a sequência especial, e foi o que a conta deu.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 3/28",
+   "checagem": "Olhe só as posições: o bloco pode começar em 6 lugares (1 a 6). Para um início fixo, a chance de as três casas terem fraca, forte, fraca é (2/8) · (3/7) · (1/6) = 6/336 = 1/56. Como os 6 inícios são incompatíveis entre si (só há duas fracas), soma-se: 6 · 1/56 = 6/56 = 3/28.",
+   "erradas": {
+    "A": "1/14 não confere: 1/14 = 2880/40320 exigiria 2880 = 4 · 6! anagramas favoráveis, ou seja, só 4 blocos; são 6 (2 ordens de I e U · 3 fortes).",
+    "C": "1/7 não confere: daria 40320/7 = 5760 anagramas favoráveis, e o máximo possível é 6 blocos · 6! = 4320.",
+    "D": "5/28 não confere: exigiria 40320 · 5/28 = 7200 favoráveis, mais que os 4320 que existem.",
+    "E": "3/14 sai de aceitar qualquer letra no meio do bloco: 2 · 6 = 12 blocos e 12 · 6! = 8640; 8640/40320 = 3/14. O meio tem de ser forte."
+   },
+   "armadilha": "Esquecer que as duas fracas podem vir em qualquer ordem nas pontas (UAI e IAU são blocos diferentes) e contar só 3 blocos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de um anagrama de CAJUEIRO ter, juntas, fraca + forte + fraca.",
+    "chave": "6 blocos possíveis (2 ordens das fracas · 3 fortes) e 6! ordens com o bloco: 4320/40320 = 3/28.",
+    "cuidado": "Bloco conta como uma letra só, e a ordem interna dele também se multiplica."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "probabilidade por posição",
+    "ideia": "6 inícios possíveis do bloco, cada um com chance (2/8) · (3/7) · (1/6) = 1/56: total 6/56 = 3/28"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "total = 8! = 40320",
+    "nota": "8 letras distintas"
+   },
+   {
+    "linha": "blocos = 2 · 3 = 6",
+    "nota": "ordem de I e U · forte do meio"
+   },
+   {
+    "linha": "favoráveis = 6 · 6! = 4320",
+    "nota": "bloco + 5 letras = 6 objetos"
+   },
+   {
+    "linha": "4320/40320 = 6/56 = 3/28",
+    "nota": "cancela 6! e simplifica por 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

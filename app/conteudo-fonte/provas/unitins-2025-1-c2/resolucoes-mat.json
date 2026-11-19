@@ -105,5 +105,120 @@
    "data": "2026-11-13",
    "lote": "mat-0055"
   }
+ },
+ "Pa24e9dee": {
+  "n": "13",
+  "conceito": "Leitura de diagrama de Venn: total da amostra, probabilidade simples e probabilidade condicional.",
+  "equivocos": {
+   "A": "M13.5:inverteu-a-condicao",
+   "C": "M13.6:esqueceu-regiao-de-fora",
+   "D": "M13.4:denominador-errado",
+   "E": "M13.6:contou-intersecao-duas-vezes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada número do diagrama conta uma região que não se repete. O total da amostra é a soma de todas as regiões, inclusive o 100 fora dos círculos: são cães sem nenhuma das duas doenças. Ter anemia é estar em qualquer ponto do círculo A (50 + 20). \"Dado que tem babesia\" troca o total: só os cães do círculo B contam.",
+    "formulas": [
+     "total = soma de todas as regiões do diagrama",
+     "probabilidade = casos favoráveis ÷ total",
+     "P(A | B) = n(A ∩ B) ÷ n(B)"
+    ],
+    "simbolos": [
+     [
+      "A",
+      "cães com anemia (círculo da esquerda)"
+     ],
+     [
+      "B",
+      "cães com babesia (círculo da direita)"
+     ],
+     [
+      "A ∩ B",
+      "intersecção: cães com as duas doenças"
+     ],
+     [
+      "n(B)",
+      "número de cães do círculo B"
+     ],
+     [
+      "P(A | B)",
+      "probabilidade de A sabendo que B aconteceu"
+     ]
+    ]
+   },
+   "pista": "Antes de qualquer probabilidade, decida o que cada número do diagrama conta e onde estão os cães sem nenhuma das duas doenças.",
+   "passos": [
+    {
+     "faz": "Some todas as regiões",
+     "conta": "50 + 20 + 30 + 100 → 200",
+     "porque": "Os 100 de fora dos círculos também fazem parte da amostra. Então a amostra tem 200 cães e a afirmação I está correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chance de anemia",
+     "conta": "n(A) = 50 + 20 → 70 → 70/200 → 7/20",
+     "porque": "Com anemia é o círculo A inteiro, inclusive os 20 que também têm babesia. O resultado é 7/20, e não 7/10: a afirmação II é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque o total pelo círculo B",
+     "conta": "n(B) = 20 + 30 → 50 → P(A | B) = 20/50 → 2/5",
+     "porque": "\"Dado que tem babesia\" restringe o sorteio aos 50 cães de B; entre eles, têm anemia os 20 da intersecção. A afirmação III está correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os julgamentos",
+     "conta": "I correta | II falsa | III correta → I e III → alternativa B",
+     "porque": "Só I e III resistem às contas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — I e III.",
+   "checagem": "Confira II pelo complemento: sem anemia são 30 + 100 = 130 cães, e 70/200 + 130/200 = 1. Se a anemia fosse 7/10, os sem anemia seriam só 3/10 de 200 = 60, mas o diagrama mostra 130.",
+   "erradas": {
+    "A": "Só I sai de inverter a condição em III: 20/70 = 2/7 é a chance de babesia entre os anêmicos. \"Dado que tem babesia\" põe os 50 do círculo B no denominador: 20/50 = 2/5.",
+    "C": "II e III sai de esquecer os 100 cães de fora dos círculos: o total vira 50 + 20 + 30 = 100, I fica falsa e a anemia vira 70/100 = 7/10. Os 100 de fora também são da amostra.",
+    "D": "I e II não confere: se a amostra tem 200 cães (I), a anemia é 70/200 = 7/20, e não 7/10. As duas afirmações não podem ser verdadeiras juntas.",
+    "E": "Só III sai de contar a intersecção duas vezes: 70 + 50 + 100 = 220 cães, I fica falsa e a anemia vira 70/220 = 7/22. Os 20 do meio são os mesmos cães nos dois círculos."
+   },
+   "armadilha": "Os 100 de fora dos círculos são cães da amostra: quem os esquece acha total 100 e anemia 7/10.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Julgar o total da amostra, a chance de anemia e a chance de anemia entre os cães com babesia.",
+    "chave": "Total 50 + 20 + 30 + 100 = 200; anemia 70/200 = 7/20; anemia entre os de babesia 20/50 = 2/5.",
+    "cuidado": "Some a região de fora no total e, no \"dado que\", use só o círculo B no denominador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela 2 × 2",
+    "ideia": "anemia com babesia 20, anemia sem babesia 50, babesia sem anemia 30, nenhuma 100; total 200, coluna da babesia 50 e 20/50 = 2/5"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "50 + 20 + 30 + 100 = 200",
+    "nota": "total da amostra: I correta"
+   },
+   {
+    "linha": "70/200 = 7/20",
+    "nota": "anemia: II falsa"
+   },
+   {
+    "linha": "20/50 = 2/5",
+    "nota": "anemia entre os de babesia: III correta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

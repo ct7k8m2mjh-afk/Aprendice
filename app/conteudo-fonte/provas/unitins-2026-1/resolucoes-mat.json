@@ -194,5 +194,111 @@
    "data": "2026-11-13",
    "lote": "mat-0046"
   }
+ },
+ "P891b4959": {
+  "n": "13",
+  "conceito": "Probabilidade condicional invertida (Bayes): sabendo que houve erro, qual a chance de o processo ser de Amanda.",
+  "equivocos": {
+   "B": "M13.5:nao-dividiu-pelo-total-condicional",
+   "C": "M13.6:complementar-do-evento-errado",
+   "D": "M13.5:inverteu-a-condicao",
+   "E": "M13.5:denominador-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O erro já aconteceu: a pergunta é a chance de o processo ter vindo de Amanda entre os processos com erro. Por isso o novo total são só os processos com erro, de Amanda e de Carlos juntos. Imaginar 100 processos transforma as porcentagens em contagem.",
+    "formulas": [
+     "processos com erro de cada um = porcentagem de erro × processos dele",
+     "P(Amanda | erro) = erros de Amanda ÷ total de erros"
+    ],
+    "simbolos": [
+     [
+      "P(Amanda | erro)",
+      "probabilidade de ser de Amanda sabendo que o processo tem erro"
+     ],
+     [
+      "P(erro | Amanda)",
+      "probabilidade de erro entre os processos de Amanda (os 5%)"
+     ]
+    ]
+   },
+   "pista": "Comece por uma quantidade redonda de processos e conte quantos têm erro de cada analista.",
+   "passos": [
+    {
+     "faz": "Imagine 100 processos",
+     "conta": "Amanda: 60 | Carlos: 40",
+     "porque": "Com 100 processos, 60% e 40% viram 60 e 40 processos, e as contas seguintes ficam em números inteiros.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os erros de cada um",
+     "conta": "Amanda: 5/100 × 60 → 3 | Carlos: 10/100 × 40 → 4",
+     "porque": "Cada porcentagem de erro vale só para os processos daquele analista.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os processos com erro",
+     "conta": "3 + 4 → 7 processos com erro",
+     "porque": "\"Sabe-se que apresenta erro\" faz desses 7 o novo total do sorteio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida os de Amanda pelos com erro",
+     "conta": "3/7 → alternativa A",
+     "porque": "Dos 7 processos com erro, 3 são de Amanda.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 3/7",
+   "checagem": "Pelo complementar: a chance de ter sido Carlos é 4/7, e 3/7 + 4/7 = 1. Faz sentido Carlos ficar com a maior parte: ele analisa menos processos, mas erra o dobro, e 40 × 10% = 4 supera 60 × 5% = 3.",
+   "erradas": {
+    "B": "3/100 sai de parar em 0,6 × 0,05 = 0,03: é a chance de o processo ser de Amanda e ter erro, entre todos. Falta dividir pelo total com erro, 0,07.",
+    "C": "97/100 sai de 1 − 0,03 = 0,97: é a chance de o processo não ser um erro de Amanda, entre todos. Não responde à pergunta.",
+    "D": "5/100 sai de inverter a condição: 5% é a chance de erro sabendo que foi Amanda. A pergunta é a contrária: a chance de ser de Amanda sabendo que há erro.",
+    "E": "1/8 não confere: dos 7 processos com erro em cada 100, 1/8 seria 7/8 = 0,875 processo, mas Amanda tem 3 deles."
+   },
+   "armadilha": "Confundir a chance de ser de Amanda sabendo que há erro com a chance de erro sabendo que é de Amanda (os 5%).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de o processo ser de Amanda, sabendo que ele tem erro.",
+    "chave": "Em 100 processos há 3 erros de Amanda e 4 de Carlos; 3 de 7: 3/7.",
+    "cuidado": "O denominador são só os processos com erro, somando os dois analistas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula de Bayes",
+    "ideia": "P = (0,6 × 0,05)/(0,6 × 0,05 + 0,4 × 0,10) = 0,03/0,07 = 3/7"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Amanda: 5/100 × 60 = 3",
+    "nota": "erros de Amanda em 100 processos"
+   },
+   {
+    "linha": "Carlos: 10/100 × 40 = 4",
+    "nota": "erros de Carlos"
+   },
+   {
+    "linha": "3 + 4 = 7",
+    "nota": "processos com erro: novo total"
+   },
+   {
+    "linha": "3/(3 + 4) = 3/7",
+    "nota": "fatia de Amanda"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }

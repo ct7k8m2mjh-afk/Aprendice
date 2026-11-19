@@ -572,5 +572,103 @@
    "data": "2026-11-13",
    "lote": "mat-0063"
   }
+ },
+ "P69e52388": {
+  "n": "15",
+  "conceito": "Probabilidade de tirar, sem reposição, dois lenços da mesma cor: somar o caso dos dois azuis e o dos dois brancos.",
+  "equivocos": {
+   "A": "M13.4:esqueceu-um-caso",
+   "B": "M13.6:complementar-do-evento-errado",
+   "D": "M13.4:valor-sem-teste-de-contagem",
+   "E": "M13.4:valor-sem-teste-de-contagem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Mesma cor\" tem dois casos que não acontecem juntos: dois azuis ou dois brancos. Calcule cada um e some. Sem reposição, o segundo lenço é tirado de uma caixa com um lenço a menos.",
+    "formulas": [
+     "P(mesma cor) = P(dois azuis) + P(dois brancos)",
+     "sem reposição: P(1º e 2º) = P(1º) · P(2º depois do 1º)"
+    ],
+    "simbolos": [
+     [
+      "sem reposição",
+      "o lenço tirado não volta para a caixa"
+     ]
+    ]
+   },
+   "pista": "Separe os dois jeitos de ter sucesso e calcule cada um.",
+   "passos": [
+    {
+     "faz": "Calcule a chance de dois azuis",
+     "conta": "3/7 · 2/6 = 6/42 = 1/7",
+     "porque": "No 1º sorteio há 3 azuis em 7; sobram 2 azuis em 6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chance de dois brancos",
+     "conta": "4/7 · 3/6 = 12/42 = 2/7",
+     "porque": "No 1º sorteio há 4 brancos em 7; sobram 3 brancos em 6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois casos",
+     "conta": "1/7 + 2/7 = 3/7",
+     "porque": "Os casos se excluem (ou são azuis, ou brancos), então as probabilidades se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "3/7 → alternativa C",
+     "porque": "É a chance de o mágico tirar dois lenços da mesma cor.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3/7",
+   "checagem": "Conte pares sem ordem: C(3, 2) + C(4, 2) = 3 + 6 = 9 pares de mesma cor em C(7, 2) = 21 pares; 9/21 = 3/7.",
+   "erradas": {
+    "A": "1/7 sai de contar só os dois azuis: 3/7 · 2/6 = 1/7. Esquece os dois brancos, que também são da mesma cor.",
+    "B": "5/7 sai de 1 − 2/7, a chance de sair pelo menos um azul; isso inclui o par azul e branco, que não tem a mesma cor.",
+    "D": "1/6 não confere: em pares, daria 21/6 = 3,5 pares de mesma cor, mas a contagem é inteira (são 9 pares).",
+    "E": "1/147 não confere: é menor que só a chance de dois azuis, 1/7 = 21/147, que já é parte do sucesso."
+   },
+   "armadilha": "\"Mesma cor\" são dois casos: quem calcula só os azuis (ou só os brancos) para no meio do caminho.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de dois lenços tirados sem reposição terem a mesma cor.",
+    "chave": "Dois azuis (1/7) mais dois brancos (2/7) = 3/7.",
+    "cuidado": "Some os dois casos e lembre que o 2º sorteio tem um lenço a menos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pares sem ordem",
+    "ideia": "(C(3, 2) + C(4, 2))/C(7, 2) = 9/21 = 3/7."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3/7 · 2/6 = 1/7",
+    "nota": "dois azuis"
+   },
+   {
+    "linha": "4/7 · 3/6 = 2/7",
+    "nota": "dois brancos"
+   },
+   {
+    "linha": "1/7 + 2/7 = 3/7",
+    "nota": "somar os casos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
  }
 }
