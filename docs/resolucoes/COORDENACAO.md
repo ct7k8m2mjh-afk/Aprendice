@@ -84,13 +84,13 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 | Matéria | Sessão | Situação |
 |---|---|---|
 | Matemática parte 1 | session_01PveEKXYevuT6GfnZTi2dnc | trabalhando (aberta 19/11 17h44, --parte 1; anterior ZJXR deu FIM) |
-| Física | session_01PveEKWeU9BGX5xnf2nstPb | trabalhando (aberta 19/11 17h24 para TERMINAR Física, ~244, esteira; anterior YFao deu FIM) |
+| Física | — | ACABOU (19/11 18h18). Não reabrir. |
 | Química | session_01PveEKavURMVSSh5SgqLorw | trabalhando (aberta 19/11 18h04 para TERMINAR Química; anterior YZfy deu FIM) |
-| Geografia parte 1 | session_01PveEKZFZaaQtEjuACaowLy | trabalhando (aberta 19/11 17h44, --parte 1; anterior axbg deu FIM) |
-| Biologia | session_01PveEKXZwKo3vJj1Pbjeenm | trabalhando (aberta 19/11 17h44 para TERMINAR Biologia, ~130; anterior Yq8u deu FIM) |
+| Geografia parte 1 | session_01PveEKYqWE3LcZtAa7jJgxm | trabalhando (aberta 19/11 18h24 para TERMINAR a parte 1; anterior ZFZa deu FIM) |
+| Biologia | — | ACABOU (19/11 18h19, bio-0077). Não reabrir. |
 | Português | session_01PveEKX1JnJpMCfgHmpRupU (FÁBRICA pela API) | trabalhando: piloto por-0094 ok (US$ 6,11); o dono autorizou continuar, lotes por-0095/0096 em esteira. Não abrir outra sessão de Português |
-| Matemática parte 2 | session_01PveEKa42KpJLXPbhM1bBJc | trabalhando (aberta 19/11 17h29; --parte 2, caixa mat-p2.md) |
-| Geografia parte 2 | session_01PveEKYMtZPCNo9ZMeKjY5w | trabalhando (aberta 19/11 17h29; --parte 2, caixa geo-p2.md) |
+| Matemática parte 2 | session_01PveEKWuGdwD9YpZh1MPfeW | trabalhando (aberta 19/11 18h24 para TERMINAR a parte 2; anterior a42K deu FIM) |
+| Geografia parte 2 | session_01PveEKXfwDwxpafRSJy8uyA | trabalhando (aberta 19/11 18h24 para TERMINAR a parte 2; anterior YMtZ deu FIM) |
 | Português parte 2 | session_01PveEKYbUNBrLzmbEMaYKtg | trabalhando (aberta 19/11 18h04, --parte 2; anterior Ykyc deu FIM) |
 Caídas pelo limite em 13/11 (o dono pode arquivar): Mat session_01PveEKWKTewFDUJvA5Y5s91, Fís session_01PveEKXXFLhp4ro4vnf1rh7,
 Quí session_01PveEKZxREDvirT6VTx5nKy, Geo session_01PveEKaHNFQdko42Ddhy3XZ, Bio session_01PveEKaPh1PAjF3bRbuJ5fG, Por session_01PveEKY3G8XPW7thJLdH3jL.
@@ -204,8 +204,7 @@ depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resoluco
 `url` = o link acima, de outra conversa; read antes).
 
 ## Publicação
-Última no ar: dpl_BiZ7h9S452zmp35kGwEBCLiRBmoo (commit da7ef3f6, 19/11 17h33, conferido no site 17h45): 22.486 resoluções. Próxima ao passar de 22.986.
-Disparada 19/11 18h13: dpl_6EuVSRQh76CVcYZBe822yrYBf5aM (commit 0639901f, 786 testes verdes, 23.815 no relatório local). Conferir no site e atualizar publicacao.json; depois atualizar o painel (passa de 22.658); próxima ao passar de 24.315.
+Última no ar: dpl_6EuVSRQh76CVcYZBe822yrYBf5aM (commit 0639901f, 19/11 18h13, conferido no site 18h25): 23.815 resoluções. Próxima ao passar de 24.315.
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
 Coordenadora atual: ver a tabela de sessões e a tarefa agendada (13/11: nova coordenadora enxuta).
