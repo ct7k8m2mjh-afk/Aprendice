@@ -80,6 +80,12 @@ export function origemGabarito(q: Pick<Questao, 'gabFonte'>): string {
   return 'Gabarito oficial publicado';
 }
 
+/** Aviso que acompanha a questão com gabarito do Aprendice em toda parte: antes de responder, na correção e na aba Fonte
+ *  (princípio 2; revisão de 19/11/2026). Nulo quando o gabarito é publicado ou a questão está indisponível. */
+export function avisoGabarito(q: Pick<Questao, 'gabFonte' | 'indisponivel'>): string | null {
+  return q.gabFonte === 'aprendice' && !q.indisponivel ? origemGabarito(q) : null;
+}
+
 /** Texto de uma questão de prova (arquivo txt/<conteúdo>.json). */
 export interface TextoQuestao { enun: string; transcricao?: Transcricao }
 

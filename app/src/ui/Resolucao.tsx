@@ -1,8 +1,14 @@
-import { numeroQuestao, origemGabarito, type Letra, type Questao, type Resolucao } from '../dados/tipos';
+import { avisoGabarito, numeroQuestao, origemGabarito, type Letra, type Questao, type Resolucao } from '../dados/tipos';
+import { origemDoLink } from '../logica/origemLink';
+import type { ReactNode } from 'react';
 import { Icone } from './Icone';
 import { MATERIAS_ANIMADAS } from '../dados/revisao';
 import { ResolucaoAnimada } from './ResolucaoAnimada';
 import { comFracoes } from './Fracao';
+import { aspasCurvas } from '../logica/aspas';
+
+/** texto da correção: aspas curvas e frações empilhadas (o texto dos dados não muda) */
+const txt = (s: string) => comFracoes(aspasCurvas(s));
 import { materiaDoCodigo } from '../logica/fracao';
 import { materiaDaArea } from '../dados/provasCompletas';
 
@@ -26,9 +32,9 @@ function ResolucaoTexto({ r }: { r: Resolucao }) {
       <ol className="cor-passos">
         {passos.map((p, i) => (
           <li key={i}>
-            {p.faz && <p className="cor-expl"><b>{comFracoes(p.faz)}</b></p>}
-            {p.conta && <p className="cor-expl cor-trecho">{comFracoes(p.conta)}</p>}
-            {p.porque && <p className="cor-expl">{comFracoes(p.porque)}</p>}
+            {p.faz && <p className="cor-expl"><b>{txt(p.faz)}</b></p>}
+            {p.conta && <p className="cor-expl cor-trecho">{txt(p.conta)}</p>}
+            {p.porque && <p className="cor-expl">{txt(p.porque)}</p>}
           </li>
         ))}
       </ol>
@@ -36,11 +42,14 @@ function ResolucaoTexto({ r }: { r: Resolucao }) {
   );
 }
 
-export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | null | undefined; marcada: Letra | null }) {
+export function ResolucaoView({ q, r, marcada, materia, origem, semFonte }: { q: Questao; r: Resolucao | null | undefined; marcada: Letra | null;
+  /** matéria quando a questão não tem código de conteúdo (Questão Aprendice da revisão essencial) */ materia?: string;
+  /** linha de origem no cabeçalho no lugar da do gabarito e da prova (Questão Aprendice) */ origem?: ReactNode;
+  /** sem o rodapé da fonte (questão que não é de prova) */ semFonte?: boolean }) {
   const acertou = marcada === q.gab;
   const erradaTxt = marcada && !acertou ? r?.erradas?.[marcada] : null;
   // a matéria decide se a "conta" de um passo é conta (letra à mão) ou texto (Português, Inglês, humanas)
-  const mat = materiaDoCodigo(q.modulo) || materiaDoCodigo(q.sub) || materiaDaArea(q.conceito);
+  const mat = materia || materiaDoCodigo(q.modulo) || materiaDoCodigo(q.sub) || materiaDaArea(q.conceito);
   // as outras alternativas erradas (a marcada já foi explicada no bloco 1)
   const outras = (Object.entries(r?.erradas || {}) as [Letra, string][])
     .filter(([l, t]) => t && l !== q.gab && !(erradaTxt && l === marcada)).sort(([a], [b]) => a.localeCompare(b));
@@ -52,7 +61,12 @@ export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | nu
         </span>
         <div>
           <h2 id="res-tit">{acertou ? 'Você acertou' : marcada ? `Você marcou ${marcada}. A resposta é ${q.gab}.` : `Gabarito: ${q.gab}`}</h2>
-          <p className="fraco">{origemGabarito(q)} · {q.escola} {q.ano}{q.n ? `, questão ${numeroQuestao(q)}` : ''}</p>
+          {origem ?? (
+            <>
+              <p className="fraco">{avisoGabarito(q) ? '' : `${origemGabarito(q)} · `}{q.escola} {q.ano}{q.n ? `, questão ${numeroQuestao(q)}` : ''}</p>
+              {avisoGabarito(q) && <p className="res-gab-ap"><span className="etq aviso"><Icone nome="info" tam={14} /> {avisoGabarito(q)}</span></p>}
+            </>
+          )}
         </div>
       </header>
 
@@ -63,18 +77,18 @@ export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | nu
           {erradaTxt && (
             <div className="cor-bloco cor-errei">
               <h3 className="cor-tit">Por que eu errei</h3>
-              <p className="cor-expl">{comFracoes(erradaTxt)}</p>
+              <p className="cor-expl">{txt(erradaTxt)}</p>
             </div>
           )}
           {/* 2. Resposta correta + a pegadinha */}
           {(r.resposta || r.armadilha) && (
             <div className="cor-bloco cor-resposta">
               <h3 className="cor-tit">Resposta correta</h3>
-              {r.resposta && <p className="cor-resp">{comFracoes(r.resposta)}</p>}
+              {r.resposta && <p className="cor-resp">{txt(r.resposta)}</p>}
               {r.armadilha && (
                 <div className="cor-pegadinha">
                   <b>A pegadinha</b>
-                  <p className="cor-expl">{comFracoes(r.armadilha)}</p>
+                  <p className="cor-expl">{txt(r.armadilha)}</p>
                 </div>
               )}
             </div>
@@ -87,14 +101,14 @@ export function ResolucaoView({ q, r, marcada }: { q: Questao; r: Resolucao | nu
           {outras.length > 0 && (
             <details className="cor-outras">
               <summary>Por que as outras estão erradas</summary>
-              <ul>{outras.map(([l, t]) => <li key={l}><b>{l}</b><span className="cor-expl">{comFracoes(t)}</span></li>)}</ul>
+              <ul>{outras.map(([l, t]) => <li key={l}><b>{l}</b><span className="cor-expl">{txt(t)}</span></li>)}</ul>
             </details>
           )}
         </>
       )}
-      <p className="res-fonte">
-        Fonte: {q.origem === 'prova' ? 'caderno de prova' : 'lista pública de exercícios'} · <a href={q.url} target="_blank" rel="noreferrer noopener">{q.escola} {q.ano} <Icone nome="externo" tam={13} /></a>
-      </p>
+      {!semFonte && <p className="res-fonte">
+        Fonte: {(() => { const r = origemDoLink(q.url, q.origem).rotulo; return /^[A-Z][a-zà-ÿ]/.test(r) ? r.charAt(0).toLowerCase() + r.slice(1) : r; })()} · <a href={q.url} target="_blank" rel="noreferrer noopener">{q.escola} {q.ano} <Icone nome="externo" tam={13} /></a>
+      </p>}
     </section>
   );
 }

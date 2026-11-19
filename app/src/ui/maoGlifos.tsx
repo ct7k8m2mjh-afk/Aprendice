@@ -22,7 +22,11 @@ const G: Record<string, { w: number; d: string }> = {
   '∴': { w: 70, d: 'M33 26 l0.1 0 M14 74 l0.1 0 M54 74 l0.1 0' },
   '∝': { w: 84, d: 'M78 34 Q60 28 46 48 Q32 70 18 66 Q6 62 8 50 Q10 36 24 36 Q38 38 50 56 Q62 72 78 66' },
 };
-const PEQ_SOBE: Record<string, string> = { '⁰': '0', '⁴': '4', '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9', '⁻': '−', '⁺': '+' };
+// "¹²³" entram também (revisão de 19/11/2026, item 21): misturados com os outros ("3d¹⁰"), o "¹" miúdo da Caveat ao lado do
+// "0" escrito em <sup> se lia como "ᴾ"; e as letras pequenas dos índices ("XᴬXᵃ") saem com as letras da própria Caveat
+const PEQ_SOBE: Record<string, string> = { '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4', '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9', '⁻': '−', '⁺': '+',
+  ...Object.fromEntries([...'ᴬᴮᴰᴱᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᴿᵀᵁᵂ'].map((c, i) => [c, 'ABDEGHIJKLMNOPRTUW'[i]])),
+  ...Object.fromEntries([...'ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻ'].map((c, i) => [c, 'abcdefghijklmnoprstuvwxyz'[i]])) };
 const PEQ_DESCE: Record<string, string> = { '₀': '0', '₁': '1', '₂': '2', '₃': '3', '₄': '4', '₅': '5', '₆': '6', '₇': '7', '₈': '8', '₉': '9', 'ₙ': 'n' };
 const TROCA: Record<string, string> = { 'μ': 'µ' }; // o "micro" da Caveat é o mesmo desenho
 

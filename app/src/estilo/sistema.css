@@ -76,7 +76,7 @@
 .q-enun { display: flex; flex-direction: column; }
 .q-meta { position: relative; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-height: 36px; margin: 0; font-size: 14px; }
 .q-meta .etq { padding: 4px 10px; border-radius: 20px; font-size: 13px; font-weight: 500; background: color-mix(in srgb, var(--tinta) 7%, transparent); color: var(--tinta); max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
-.q-meta .etq.cor { background: var(--sv); color: var(--t); }
+.q-meta .etq.cor { background: var(--sv); color: var(--t-texto); }
 .q-meta .q-fonte b { font-weight: 500; color: inherit; }
 .q-meta-acao { margin-left: auto; flex: none; display: flex; }
 .q-marca { width: 36px; height: 36px; display: grid; place-items: center; padding: 0; border: 0; border-radius: 10px; background: transparent; color: var(--lapis); }
@@ -117,8 +117,11 @@
 .q-resp.com-texto { position: static; }
 /* questão indisponível (dono, 19/11/2026): o mesmo pé, rótulo "Questão indisponível" e uma linha no lugar das letras */
 .q-resp.q-indisp { --q-pw: 100%; } /* começa no mesmo x da caixa normal, não no do print estreito */
-/* sem letras para tocar, o pé da indisponível não fica preso: segue o conteúdo, que assim nunca fica embaixo dele ("Ver em texto" no celular) */
+/* sem letras para tocar, o pé da indisponível não fica preso: segue o conteúdo, que assim nunca fica embaixo dele ("Ver em texto")
+   Celular com a barra de abas (≤640): preso logo acima das abas, como o pé da questão normal, para o aviso nunca ficar
+   atrás delas (revisão de 19/11/2026, item 11); no fim da rolagem volta ao lugar, depois de "Ver em texto". */
 .q-resp.q-indisp:not(.com-texto) { position: static; }
+@media (max-width: 640px) { .casca:not(.foco) .q-resp.q-indisp:not(.com-texto) { position: sticky; bottom: var(--tabs-h, 0px); } }
 .q-resp.q-indisp .q-bolhas::before { content: 'Questão indisponível'; }
 .q-indisp-txt { flex: 1; min-width: 0; margin: 0; font-size: 15px; line-height: 1.4; color: var(--tinta); }
 .q-bolhas { display: flex; align-items: center; gap: 10px; }
@@ -130,7 +133,7 @@
 .q-bolhas .alts:where(:not(.com-texto)) .alt { position: relative; flex: 1 1 0; min-width: 0; height: 50px; padding: 0; border: 1.5px solid var(--linha); border-radius: 12px; background: var(--folha); box-shadow: 0 1px 0 rgba(20, 22, 30, .04); font-size: 18px; font-weight: 600; color: var(--tinta); }
 .q-bolhas .alts:not(.com-texto) .alt .alt-l { width: auto; }
 @media (hover: hover) { .q-bolhas .alt:not([disabled]):not(.sel):hover { border-color: color-mix(in srgb, var(--c) 45%, var(--linha)); background: color-mix(in srgb, var(--c) 5%, var(--folha)); } }
-.q-bolhas .alt.sel { border-color: var(--c); background: color-mix(in srgb, var(--c) 11%, var(--folha)); color: var(--t); box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 16%, transparent); }
+.q-bolhas .alt.sel { border-color: var(--c); background: color-mix(in srgb, var(--c) 11%, var(--folha)); color: var(--t-texto); box-shadow: 0 0 0 3px color-mix(in srgb, var(--c) 16%, transparent); }
 .q-bolhas .alt.certa { border-color: var(--certo); background: var(--certo-bg); color: var(--certo); box-shadow: none; }
 .q-bolhas .alt.errada { border-color: var(--errado); background: var(--errado-bg); color: var(--errado); box-shadow: none; }
 .q-bolhas .alt[disabled]:not(.certa):not(.errada) { opacity: .45; }
@@ -155,7 +158,7 @@
 .q-ant[disabled] { opacity: .4; cursor: default; }
 .q-resp .q-acoes .btn-conf { margin-left: auto; min-width: 180px; min-height: 54px; padding: 0 26px; border-radius: 13px; font-size: 18px; font-weight: 700; box-shadow: none; }
 /* "Confirmar resposta" antes de marcar: contorno com fundo lavado (não parece desligado) */
-.q-resp .q-acoes .btn-conf[disabled] { opacity: 1; cursor: default; background: color-mix(in srgb, var(--c) 12%, var(--folha)); color: var(--t); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--c) 45%, transparent); }
+.q-resp .q-acoes .btn-conf[disabled] { opacity: 1; cursor: default; background: color-mix(in srgb, var(--c) 12%, var(--folha)); color: var(--t-texto); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--c) 45%, transparent); }
 .q-resp .q-acoes .btn.fantasma { min-height: 40px; padding: 0 10px; font-weight: 500; font-size: 15px; }
 .q-resp .q-acoes .btn.fantasma .ic { color: var(--aviso); }
 .q-resp .q-acoes .btn.sec { min-height: 40px; }
@@ -248,7 +251,7 @@
 .tp-capa h1 { margin: 0; font-size: 36px; font-weight: 700; line-height: 1.12; letter-spacing: -0.015em; }
 .tp-stat { margin-top: 8px; font-size: 17px; color: var(--lapis); }
 .tp-stat b { font-size: 22px; font-weight: 700; letter-spacing: -0.2px; color: var(--tinta); }
-.tp-stat b:first-child { color: var(--t); }
+.tp-stat b:first-child { color: var(--t-texto); }
 .tp-niveis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin: 24px 0 0; }
 .tp-nivel { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; column-gap: 8px; }
 .tp-nivel .r { font-weight: 600; font-size: 15px; }
@@ -368,7 +371,7 @@
 .fl-capa .fl-resumo { display: flex; flex-wrap: nowrap; gap: 28px; padding: 0; margin-top: 4px; }
 .fl-capa .fl-resumo > div { display: flex; flex-direction: column; min-width: 76px; }
 .fl-capa .fl-resumo > div span { margin-top: 4px; color: var(--lapis); }
-.fl-capa .fl-resumo > .ven b { color: var(--t); }
+.fl-capa .fl-resumo > .ven b { color: var(--t-texto); }
 .fl-capa .tp-acoes { margin-top: 22px; }
 .fl-bloco { padding-bottom: 14px; }
 .fl-bloco .tp-h { margin-bottom: 12px; border-bottom: 1px solid var(--linha); }
@@ -413,7 +416,7 @@
 .fc-faixa-nm span { display: block; color: var(--lapis); }
 .fc-faixa-tg { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
 .fc-faixa-tg .etq { padding: 4px 10px; border-radius: 999px; background: color-mix(in srgb, var(--tinta) 7%, transparent); color: var(--lapis); white-space: nowrap; }
-.fc-faixa-tg .etq.cor { background: var(--sv); color: var(--t); }
+.fc-faixa-tg .etq.cor { background: var(--sv); color: var(--t-texto); }
 .flashcard > .fc-frente { margin-top: 18px; }
 .flashcard > .fc-lab { display: flex; align-items: center; gap: 8px; margin-top: 22px; font-weight: 600; color: var(--lapis); }
 .fc-lab .ic { color: var(--t); }
@@ -509,7 +512,7 @@
 .sc-qtd > .fraco { margin-right: 4px; }
 .sc-resumo { flex: 1; min-width: 160px; font-size: var(--fs-info); }
 /* "Marcar o tema": botão com cara de link, igual ao "Trocar" da região (.fr-trocar) */
-.sc-tema .sim-grupo-cab .link-sec { padding: 0; border: 0; background: none; font-size: 14px; font-weight: 600; color: var(--t, var(--tinta)); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.sc-tema .sim-grupo-cab .link-sec { padding: 0; border: 0; background: none; font-size: 14px; font-weight: 600; color: var(--t-texto, var(--tinta)); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .sc-tema .sim-grupo-cab .link-sec:hover { color: var(--tinta); }
 @media (max-width: 700px) {
   .sc-sub { grid-template-columns: auto auto minmax(0, 1fr); padding: 12px 2px; }
@@ -519,3 +522,24 @@
   .sc-conteudo .chip, .sc-tema .sim-grupo-cab .link-sec { min-height: 40px; }
   .sc-tema .sim-grupo-cab .link-sec { display: inline-flex; align-items: center; }
 }
+
+/* gabarito do Aprendice (princípio 2; revisão de 19/11/2026, itens 2 e 3): a etiqueta de aviso logo abaixo das etiquetas
+   da questão, antes de responder, e no cabeçalho da correção; quebra a linha em vez de cortar */
+.q-gab-ap, .res-gab-ap { margin: 8px 0 0; }
+.q-gab-ap .etq, .res-gab-ap .etq { display: inline-flex; align-items: flex-start; gap: 6px; max-width: 100%; white-space: normal; padding: 4px 10px;
+  border-radius: 8px; font-size: 13px; font-weight: 600; line-height: 1.35; text-align: left; }
+.q-gab-ap .etq .ic, .res-gab-ap .etq .ic { flex: none; margin-top: 1px; }
+.res-gab-ap { margin-top: 6px; }
+
+/* alvo de toque de 44 × 44 px no celular (revisão de 19/11/2026, item 13; WCAG 2.5.5): o desenho fica igual, uma área
+   invisível centrada em cada controle pequeno recebe o toque; listas ganham altura mínima */
+@media (pointer: coarse), (max-width: 700px) {
+  .q-volta, .q-pausa, .q-tela, .q-marca, .q-ant, .q-print .q-amplia, .q-print-fonte, .q-ver-txt, .q-resp .certeza .chip, .q-dica, .ra-bt, .ra-link, .q-orig, .q-abas button { position: relative; }
+  .q-volta::before, .q-pausa::before, .q-tela::before, .q-marca::before, .q-ant::before, .q-amplia::before, .q-print-fonte::before, .q-ver-txt::before,
+  .q-resp .certeza .chip::before, .q-dica::before, .ra-bt::before, .ra-link::before, .q-orig::before {
+    content: ''; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%); }
+  .q-rel-g a { min-height: 44px; }
+  .q-abas button { min-height: 44px; }
+}
+/* etiqueta da fonte: texto corrido (o "gap" da etiqueta somava ao espaço entre o nome e o " · ", item 16 da revisão de 19/11/2026) */
+@media (min-width: 701px) { .q-meta .etq.q-fonte { display: inline-block; } } /* até 700 px ela fica escondida (item 14, decisão do dono) */

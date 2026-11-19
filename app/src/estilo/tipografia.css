@@ -12,7 +12,7 @@
    maiúsculas em frases (só em rótulos curtos); números de cronômetro, placar e porcentagem sem algarismos tabulares. */
 
 /* ---------- título da matéria: Dancing Script 700 · 36 / 44 px · 1,05 ---------- */
-.tit-mat { font: 700 var(--fs-materia)/1.05 var(--escrita); letter-spacing: 0; color: var(--t); }
+.tit-mat { font: 700 var(--fs-materia)/1.05 var(--escrita); letter-spacing: 0; color: var(--t-texto); }
 
 /* ---------- título da tela: Familjen 700 · 25 / 32 px · 1,15 · -0,02em ---------- */
 .titulo-pag h1, .tema-cab h1, .bv-corpo h1, .resultado-fl h1, .res-sim h1, .capa-txt h2 {
@@ -115,9 +115,21 @@
    Barra de progresso na cor principal; seleção e abas nos tons de texto e de fundo suave da paleta. */
 .q-barq .p i { background: var(--p); }
 .q-abas button[aria-selected='true']::after { background: var(--t); }
-.q-bolhas .alt.sel { border-color: var(--t); background: var(--s); color: var(--t); box-shadow: 0 0 0 3px color-mix(in srgb, var(--p) 16%, transparent); }
+.q-bolhas .alt.sel { border-color: var(--t-texto); background: var(--s); color: var(--t-texto); box-shadow: 0 0 0 3px color-mix(in srgb, var(--p) 16%, transparent); }
+/* depois de responder, a letra marcada fica verde (certa) ou vermelha (errada), com o sinal no canto como no protótipo
+   (app-atual/design/materia.css: .bolha.certo / .bolha.errado); a regra da seleção acima não pode vencer (revisão de 19/11/2026, item 1) */
+.q-bolhas .alt.certa, .q-bolhas .alt.sel.certa { border-color: var(--certo); background: var(--certo-bg); color: var(--certo); box-shadow: none; }
+.q-bolhas .alt.errada, .q-bolhas .alt.sel.errada { border-color: var(--errado); background: var(--errado-bg); color: var(--errado); box-shadow: none; }
+.q-bolhas .alts:not(.com-texto) .alt.certa::before, .q-bolhas .alts:not(.com-texto) .alt.errada::before {
+  content: ''; position: absolute; top: 6px; right: 6px; width: 14px; height: 14px; background: currentColor;
+  -webkit-mask: var(--sinal-ok) center / contain no-repeat; mask: var(--sinal-ok) center / contain no-repeat; }
+.q-bolhas .alts:not(.com-texto) .alt.errada::before { -webkit-mask-image: var(--sinal-x); mask-image: var(--sinal-x); }
+:root {
+  --sinal-ok: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+  --sinal-x: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E");
+}
 @media (hover: hover) { .q-bolhas .alt:not([disabled]):not(.sel):hover { border-color: color-mix(in srgb, var(--p) 45%, var(--linha)); background: var(--sv2); } }
-.q-resp .q-acoes .btn-conf[disabled] { background: var(--s); color: var(--t); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--p) 45%, transparent); }
+.q-resp .q-acoes .btn-conf[disabled] { background: var(--s); color: var(--t-texto); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--p) 45%, transparent); }
 .q-resp .certeza .chip[aria-checked='true'] { box-shadow: 0 1px 2px rgba(0, 0, 0, .2), inset 0 0 0 1.5px color-mix(in srgb, var(--p) 60%, transparent); }
 
 /* ===================== guia sobre as peças de layout novas (revisão do comando 18) =====================

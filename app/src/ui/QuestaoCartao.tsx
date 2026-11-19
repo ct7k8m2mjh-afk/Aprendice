@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { Letra, MateriaId, Questao } from '../dados/tipos';
-import { numeroQuestao } from '../dados/tipos';
+import { avisoGabarito, numeroQuestao, origemGabarito } from '../dados/tipos';
+import { origemDoLink } from '../logica/origemLink';
+import { juntaQuebrasDoPdf, perdeDestaque } from '../logica/transcricao';
+import { materiaDoCodigo } from '../logica/fracao';
 import { urlPrint } from '../dados/conteudo';
 import { Icone } from './Icone';
 import { defineTelaCheia, useTelaCheia } from './telaCheia';
@@ -28,17 +31,20 @@ export function Lupa({ src, alt, aoFechar }: { src: string; alt: string; aoFecha
   );
 }
 
-/** Texto com a marcação da transcrição: **negrito**, ~~itálico~~ e quebras de linha. */
+/** Texto com a marcação da transcrição: **negrito**, ~~itálico~~, __sublinhado__ e quebras de linha. */
 export function TextoBanca({ t }: { t: string }) {
-  const partes = t.split(/(\*\*|~~|\n)/);
+  // "__" só marca quando cola numa palavra ("__trai__"); linha de lacuna ("_____") fica como está
+  const partes = t.split(/(\*\*|~~|(?<!_)__(?=[^_\s])|(?<=[^_\s])__(?!_)|\n)/);
   const out: ReactNode[] = [];
-  let neg = false, ita = false;
+  let neg = false, ita = false, sub = false;
   partes.forEach((p, i) => {
     if (p === '**') { neg = !neg; return; }
     if (p === '~~') { ita = !ita; return; }
+    if (p === '__') { sub = !sub; return; }
     if (p === '\n') { out.push(<br key={i} />); return; }
     if (!p) return;
     let n: ReactNode = p;
+    if (sub) n = <u key={'u' + i}>{n}</u>;
     if (ita) n = <i key={'i' + i}>{n}</i>;
     if (neg) n = <b key={'b' + i}>{n}</b>;
     out.push(<span key={i}>{n}</span>);
@@ -49,12 +55,14 @@ export function TextoBanca({ t }: { t: string }) {
 /** Questão só de texto: transcrição da prova oficial, organizada como a banca organizou, com a fonte entre parênteses. */
 function EnunciadoTexto({ q }: { q: Questao }) {
   const tr = q.transcricao!;
+  // quebras do PDF no meio da frase viram espaço; verso e quebra de propósito ficam (logica/transcricao.ts)
+  const mat = materiaDoCodigo(q.modulo) || materiaDoCodigo(q.sub);
   return (
     <div className="q-transcricao">
       {tr.enun.map((p, i) => (
         <p key={i} className={'tr-' + p.a}>
           {i === 0 && <b className="tr-fonte">({q.escola} {q.ano}) </b>}
-          <TextoBanca t={p.t} />
+          <TextoBanca t={juntaQuebrasDoPdf(p.t, mat)} />
         </p>
       ))}
     </div>
@@ -144,14 +152,18 @@ function useLarguraPrint(pr: HTMLDivElement | null, src: string | null) {
 export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao }: { m?: MateriaId; q: Questao; numero?: string; print?: string | null; antes?: ReactNode; depois?: ReactNode; acao?: ReactNode }) {
   const [lupa, setLupa] = useState(false);
   const [txt, setTxt] = useState(false);
-  const [original, setOriginal] = useState(false);
-  const [prEl, setPrEl] = useState<HTMLDivElement | null>(null);
-  useEffect(() => setOriginal(false), [q.id]);
   const src = print !== undefined ? print : m ? urlPrint(m, q.id) : null;
+  // a transcrição que fala do termo sublinhado sem a marcação perderia o destaque da banca: abre no print (item 4)
+  const soNoPrint = !!src && perdeDestaque(q.transcricao);
+  const [original, setOriginal] = useState(soNoPrint);
+  const [prEl, setPrEl] = useState<HTMLDivElement | null>(null);
+  useEffect(() => setOriginal(soNoPrint), [q.id, soNoPrint]);
   useLarguraPrint(prEl, src);
   const alt = textoAlternativo(q);
-  const fonte = `${q.escola} ${q.ano}`;
-  const detalhe = [q.fase, q.n ? `questão ${numeroQuestao(q)}` : '', q.banca && q.banca !== q.escola ? q.banca : ''].filter(Boolean).join(' · ');
+  // sem espaço sobrando nos campos (revisão de 19/11/2026, item 16: "Cederj 2026  · 2026.2")
+  const limpa = (x: string | undefined) => (x || '').replace(/\s+/g, ' ').trim();
+  const fonte = limpa(`${limpa(q.escola)} ${limpa(q.ano)}`);
+  const detalhe = [limpa(q.fase), q.n ? `questão ${limpa(numeroQuestao(q))}` : '', q.banca && limpa(q.banca) !== limpa(q.escola) ? limpa(q.banca) : ''].filter(Boolean).join(' · ');
   return (
     <div className="q-enun">
       <div className="q-meta">
@@ -161,6 +173,8 @@ export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao }: {
         {depois}
         {acao ? <span className="q-meta-acao">{acao}</span> : !src && <a className="q-link" href={q.url} target="_blank" rel="noreferrer noopener" title="Abrir a fonte original"><Icone nome="externo" tam={15} /><span className="sr">Fonte original</span></a>}
       </div>
+      {/* gabarito do Aprendice (princípio 2): o aviso aparece já antes de responder, não só na correção */}
+      {avisoGabarito(q) && <p className="q-gab-ap"><span className="etq aviso"><Icone nome="info" tam={14} /> {avisoGabarito(q)}</span></p>}
       {q.transcricao && !original ? (
         <>
           <EnunciadoTexto q={q} />
@@ -183,7 +197,7 @@ export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao }: {
         </div>
       )}
       {src && q.transcricao && original && (
-        <button className="q-ver-txt" onClick={() => setOriginal(false)}><Icone nome="arquivo" tam={15} /> Voltar para o texto</button>
+        <button className="q-ver-txt" onClick={() => setOriginal(false)}><Icone nome="arquivo" tam={15} /> {soNoPrint ? 'Ver em texto (o sublinhado da prova só aparece no print)' : 'Voltar para o texto'}</button>
       )}
       {src && !q.transcricao && (
         <button className="q-ver-txt" onClick={() => setTxt(!txt)} aria-expanded={txt}><Icone nome="arquivo" tam={15} /> {txt ? 'Esconder texto' : 'Ver em texto (leitor de tela, busca)'}</button>
@@ -230,9 +244,10 @@ export function FonteQuestao({ q }: { q: Questao }) {
     ...(q.fase ? [['Fase', q.fase] as [string, ReactNode]] : []),
     ...(q.n ? [['Questão', numeroQuestao(q)] as [string, ReactNode]] : []),
     ...(q.banca && q.banca !== q.escola ? [['Banca', q.banca] as [string, ReactNode]] : []),
-    ['Origem', q.origem === 'prova' ? 'Caderno da prova oficial' : 'Lista pública de exercícios'],
-    // questão indisponível (dono, 19/11/2026)
-    ['Gabarito', q.indisponivel ? 'Indisponível: a banca do Aprendice encontrou erro no gabarito oficial, e a banca da prova não publicou errata. A questão fica só para consulta: sem resposta nem correção, fora dos treinos, simulados e revisões' : 'Publicado (oficial ou resolução reconhecida)'],
+    // de onde é o link: caderno oficial ou cópia de cursinho (revisão de 19/11/2026, item 19)
+    ['Origem', origemDoLink(q.url, q.origem).rotulo],
+    // questão indisponível (dono, 19/11/2026); gabarito do Aprendice (princípio 2): o mesmo texto da correção
+    ['Gabarito', q.indisponivel ? 'Indisponível: a banca do Aprendice encontrou erro no gabarito oficial, e a banca da prova não publicou errata. A questão fica só para consulta: sem resposta nem correção, fora dos treinos, simulados e revisões' : origemGabarito(q)],
   ];
   return (
     <div className="q-fonte-aba">
