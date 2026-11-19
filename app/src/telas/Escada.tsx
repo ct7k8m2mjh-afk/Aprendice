@@ -11,7 +11,7 @@ import { Icone } from '../ui/Icone';
 import { CartaoTeoriaView } from './Tema';
 import { CabMateria, subMateria, FaixaTemas } from './Materia';
 import type { MateriaId } from '../dados/tipos';
-import { numeroQuestao } from '../dados/tipos';
+import { textoDegrau } from '../logica/escada';
 import { useResumos } from '../dados/revisao';
 import { ResumoSubtemaView } from '../ui/revisao/ResumoSubtema';
 import { AvisoRegiao, FiltroRegiaoChips, useRegiao } from '../ui/FiltroRegiao';
@@ -54,7 +54,7 @@ export function Escada() {
       <div className="pag-estreita">
       <nav className="migalhas" aria-label="Você está em">
         <Link to={`/m/${m}`}>{infoMateria(m)?.nome}</Link><Icone nome="direita" tam={14} />
-        <Link to={`/m/${m}/tema/${mod.id}`}>{mod.nome}</Link><Icone nome="direita" tam={14} /><span>Conteúdo</span>
+        <Link to={`/m/${m}/tema/${mod.id}`}>{mod.nome}</Link><Icone nome="direita" tam={14} /><span aria-current="page">{cap(conteudo.nome)}</span>
       </nav>
       <div className="tema-cab">
         <h1>{cap(conteudo!.nome)}</h1>
@@ -129,8 +129,7 @@ export function Escada() {
                     <Link to={`/m/${m}/q/${q.id}?ctx=escada`} className="degrau indisp">
                       <span className="dg-n" aria-hidden><i className="dg-ponto" /></span>
                       <span className="dg-txt">
-                        <b>{q.conceito || cap(conteudo.nome)}</b>
-                        <small>{q.escola} {q.ano}{q.n ? ` · questão ${numeroQuestao(q)}` : ''}</small>
+                        <b>{textoDegrau(q, false).titulo}</b>
                         <span className="etq aviso">Questão indisponível</span>
                       </span>
                       <Icone nome="direita" />
@@ -140,13 +139,16 @@ export function Escada() {
                 const t = s.q[q.id]?.tent || [];
                 const ult = t[t.length - 1];
                 const f = filaDe(s.q[q.id], ag);
+                // o conceito só depois de responder (não entrega a resposta antes; logica/escada.ts)
+                const tx = textoDegrau(q, !!ult);
+                const apoio = [tx.apoio, f ? `revisar ${emDias(f.vence)}` : ''].filter(Boolean).join(' · ');
                 return (
                   <li key={q.id}>
                     <Link to={`/m/${m}/q/${q.id}?ctx=escada`} className={'degrau' + (ult ? (ult.ok ? ' ok' : ' err') : '') + (q.id === prox?.id ? ' prox' : '')}>
                       <span className="dg-n num" aria-label={ult ? (ult.ok ? 'Acertou' : 'Errou') : 'Não feita'}>{ult ? <Icone nome={ult.ok ? 'check' : 'fechar'} tam={16} /> : <i className="dg-ponto" />}</span>
                       <span className="dg-txt">
-                        <b>{q.conceito || `${q.escola} ${q.ano}`}</b>
-                        <small>{q.escola} {q.ano}{q.n ? ` · questão ${numeroQuestao(q)}` : ''}{f ? ` · revisar ${emDias(f.vence)}` : ''}</small>
+                        <b>{tx.titulo}</b>
+                        {apoio && <small>{apoio}</small>}
                       </span>
                       <Icone nome="direita" />
                     </Link>

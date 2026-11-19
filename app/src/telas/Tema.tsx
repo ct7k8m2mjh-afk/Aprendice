@@ -18,7 +18,7 @@ import { ResumoSubtemaView } from '../ui/revisao/ResumoSubtema';
 import { emDias } from '../logica/revisao';
 import type { EstadoMateria } from '../estado/tipos';
 import { AvisoRegiao, FiltroRegiaoChips, useRegiao } from '../ui/FiltroRegiao';
-import { POUCAS, filtraRegiao } from '../logica/regiao';
+import { deFiltro, filtraTema } from '../logica/regiao';
 
 export function CartaoTeoriaView({ c, figs }: { c: CartaoTeoria; figs?: Figura[] }) {
   return (
@@ -94,12 +94,13 @@ export function Tema() {
   const prox = idx < mods.length - 1 ? mods[idx + 1] : undefined;
   const subs = mod.subs.filter((x) => mc.porSub.get(x.id)?.length);
   // pedido do dono (09/11/2026): questões da região do aluno (+ ENEM); conteúdo sem nenhuma da região usa todas (reserva)
-  const porSubR = new Map(subs.map((x) => [x.id, filtraRegiao(mc.porSub.get(x.id)!, rg.conj)]));
+  // critério único de contagem (logica/regiao.ts: filtraTema), o mesmo da matéria, da faixa e do aviso
+  const ft = filtraTema(subs.map((x) => x.id), (id) => mc.porSub.get(id) || [], rg.conj);
+  const porSubR = ft.porSub;
   const qsDe = (id: string) => porSubR.get(id)?.l || [];
-  const todas = subs.flatMap((x) => qsDe(x.id));
-  const daRegiao = subs.reduce((a, x) => a + porSubR.get(x.id)!.daRegiao, 0), totalTema = subs.reduce((a, x) => a + porSubR.get(x.id)!.total, 0);
-  const avisoTema = { daRegiao, total: totalTema, reserva: !!rg.conj && !daRegiao && totalTema > 0, poucas: !!rg.conj && daRegiao < POUCAS && totalTema > daRegiao };
+  const todas = ft.l;
   const p = progressoEscada(todas, s);
+  const pct = (a: number, b: number) => `${b ? Math.round((a / b) * 100) : 0}%`;
   const niveis = desempenhoPorNivel(todas, s);
   const temTeoria = mod.cartoes.length > 0 || !!mod.resumo;
   // revisão em slides do tema (docs/revisao/<m>/<TEMA>.json): conteúdos com slides
@@ -121,7 +122,7 @@ export function Tema() {
       <CabMateria m={m} nome={nomeMat} sub={subMateria(mods.length, mc.banco.length === 0)} titulo={false} />
       <FaixaTemas mc={mc} s={s} atual={mod.id} compacta />
       <div className="tp-topo"><Link to={`/m/${m}`} className="tp-volta"><Icone nome="esquerda" />Todos os temas</Link></div>
-      {subs.length > 0 && <div className="tp-regiao"><FiltroRegiaoChips /><AvisoRegiao f={avisoTema} onde="neste tema" /></div>}
+      {subs.length > 0 && <div className="tp-regiao"><FiltroRegiaoChips /><AvisoRegiao f={ft} onde="neste tema" /></div>}
 
       <section className="tp-capa" aria-labelledby="tp-tit">
         <div className="tp-cab">
@@ -131,7 +132,7 @@ export function Tema() {
             <h1 id="tp-tit">{mod.nome}</h1>
             <p className="tp-stat num">
               {todas.length
-                ? <><b>{p.feitas}</b> de {todas.length} respondidas · acerto <b>{p.feitas ? `${Math.round((p.certas / p.feitas) * 100)}%` : '—'}</b> · {plural(subs.length, 'conteúdo', 'conteúdos')}</>
+                ? <><b>{pct(p.feitas, p.total)}</b> feito · acerto <b>{p.feitas ? pct(p.certas, p.feitas) : '—'}</b> · {plural(subs.length, 'conteúdo', 'conteúdos')}</>
                 : 'Questões em preparação'}
             </p>
           </div>
@@ -140,15 +141,15 @@ export function Tema() {
           <div className="tp-niveis" role="list" aria-label="Progresso por nível">
             {niveis.map((n) => (
               <div key={n.nivel} className="tp-nivel" role="listitem">
-                <span className="r">{nomeNivel(n.nivel)}</span><span className="n num">{n.feitas} de {n.total}</span>
-                <Barra valor={n.total ? n.feitas / n.total : 0} rotulo={`${nomeNivel(n.nivel)}: ${n.feitas} de ${n.total}`} />
+                <span className="r">{nomeNivel(n.nivel)}</span><span className="n num">{pct(n.feitas, n.total)}</span>
+                <Barra valor={n.total ? n.feitas / n.total : 0} rotulo={`${nomeNivel(n.nivel)}: ${pct(n.feitas, n.total)} feito`} />
               </div>
             ))}
           </div>
         )}
         <div className="tp-acoes">
           {destino && <Link to={`/m/${m}/q/${destino}?ctx=escada`} className="btn tp-comecar"><Icone nome="raio" />{p.feitas === 0 ? 'Começar' : alvo ? 'Continuar' : 'Refazer'}</Link>}
-          {todas.length > 0 && <p className="tp-comp num">{plural(todas.length, 'questão', 'questões')} de {plural(subs.length, 'conteúdo', 'conteúdos')} · do mais fácil ao mais difícil</p>}
+          {todas.length > 0 && <p className="tp-comp num">{plural(subs.length, 'conteúdo', 'conteúdos')} · do mais fácil ao mais difícil</p>}
           {temRev && (
             <button className="btn sec tp-teo tp-rev" aria-pressed={aba === 'revisao'} onClick={() => setQs(aba === 'revisao' ? {} : { aba: 'revisao' }, { replace: true })}>
               <Icone nome="play" />{aba === 'revisao' ? 'Ver os conteúdos' : nEss || !subsRev.length ? 'Revisão' : 'Revisão em slides'}
@@ -206,7 +207,7 @@ export function Tema() {
                 <li key={sub.id}>
                   <Link to={`/m/${m}/escada/${sub.id}`}>
                     <i className="ponto-sub" aria-hidden />
-                    <span className="t"><b>{cap(sub.nome)}</b>{frase && <span>{frase}</span>}</span>
+                    <span className="t"><b>{cap(sub.nome)}</b>{frase && <span>{frase}</span>}{rg.conj && porSubR.get(sub.id)?.reserva && <span className="tp-outras">De outras regiões: nenhuma questão {deFiltro(rg.filtro, rg.minhas)} neste conteúdo</span>}</span>
                     <span className="p"><span className="num">{pe.feitas}/{pe.total}</span><Barra valor={pe.total ? pe.feitas / pe.total : 0} rotulo={`Progresso em ${sub.nome}`} /></span>
                     <Icone nome="direita" className="tp-seta" />
                   </Link>

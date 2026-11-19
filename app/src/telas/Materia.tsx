@@ -1,5 +1,5 @@
 import { useRegiao } from '../ui/FiltroRegiao';
-import { questoesTreinoGeral } from '../logica/regiao';
+import { filtraTema, questoesTreinoGeral } from '../logica/regiao';
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useLayoutEffect, type CSSProperties, type ReactNode } from 'react';
 import { urlCapa, useMateria, type MateriaCarregada } from '../dados/conteudo';
@@ -78,6 +78,7 @@ export function CapaMateria({ m, nome, sub, children }: { m: MateriaId; nome: st
 export function FaixaTemas({ mc, s, atual, compacta = false }: { mc: MateriaCarregada; s: EstadoMateria; atual?: string; compacta?: boolean }) {
   // rolagem lateral, roda do mouse (girar para baixo anda para a direita) e setas: ui/rolo.ts
   const { rolo, bordas, mede, anda } = useRoloHorizontal(mc.id);
+  const rg = useRegiao();
   // Todos os cartões têm a mesma altura (ícone + duas linhas de nome), em todas as matérias. O nome nunca é cortado:
   // o cartão cujo nome pediria 3 ou mais linhas fica mais largo, de 10 em 10 px, até caber em duas.
   const ajusta = () => {
@@ -113,8 +114,7 @@ export function FaixaTemas({ mc, s, atual, compacta = false }: { mc: MateriaCarr
       {bordas.e && <button className="ft-seta esq" onClick={() => anda(-1)} aria-label="Temas anteriores"><Icone nome="esquerda" /></button>}
       <div className="ft-rolo" ref={rolo} onScroll={mede}>
         {mc.conteudo.modulos.map((mod) => {
-          const qs = mc.banco.filter((q) => q.modulo === mod.id);
-          const p = progressoEscada(qs, s);
+          const p = progressoEscada(questoesDoTema(mc, mod.id, rg.conj), s);
           return (
             <Link key={mod.id} to={`/m/${mc.id}/tema/${mod.id}`} className={'ft-item' + (atual === mod.id ? ' atual' : '')} aria-current={atual === mod.id ? 'page' : undefined}>
               <span className="ft-ic"><IcTema m={mc.id} tema={mod.id} tam={compacta ? 76 : 112} /></span>
@@ -127,6 +127,12 @@ export function FaixaTemas({ mc, s, atual, compacta = false }: { mc: MateriaCarr
       {bordas.d && <button className="ft-seta dir" onClick={() => anda(1)} aria-label="Próximos temas"><Icone nome="direita" /></button>}
     </nav>
   );
+}
+
+/** As questões de prática de um tema pelo filtro de região (soma das listas de cada conteúdo, logica/regiao.ts: filtraTema). */
+export function questoesDoTema(mc: MateriaCarregada, modId: string, conj: Parameters<typeof filtraTema>[2]) {
+  const mod = mc.conteudo.modulos.find((x) => x.id === modId);
+  return mod ? filtraTema(mod.subs.map((x) => x.id), (id) => mc.porSub.get(id) || [], conj).l : [];
 }
 
 function EmPreparacao({ m }: { m: MateriaId }) {
@@ -267,8 +273,8 @@ export function Materia() {
               {a.mods.map((mid) => {
                 const mod = mc.conteudo.modulos.find((x) => x.id === mid);
                 if (!mod) return null;
-                const qs = mc.banco.filter((q) => q.modulo === mid);
-                const p = progressoEscada(qs, s);
+                // critério único de contagem (filtraTema), o mesmo do tema; quantidade de questões só nos conteúdos (CLAUDE.md)
+                const p = progressoEscada(questoesDoTema(mc, mid, rg.conj), s);
                 const nCont = mod.subs.filter((x) => mc.porSub.get(x.id)?.length).length;
                 const v = p.total ? p.feitas / p.total : 0;
                 return (
@@ -277,7 +283,7 @@ export function Materia() {
                     <span className="at-txt">
                       <b>{mod.nome}</b>
                       <Barra valor={v} rotulo={`Progresso em ${mod.nome}`} />
-                      <small className="num">{nCont ? `${plural(nCont, 'conteúdo', 'conteúdos')} · ${p.feitas} de ${p.total} feitas` : 'Em preparação'}</small>
+                      <small className="num">{nCont ? plural(nCont, 'conteúdo', 'conteúdos') : 'Em preparação'}</small>
                     </span>
                     <span className="at-pc num">{Math.round(v * 100)}%</span>
                   </Link>

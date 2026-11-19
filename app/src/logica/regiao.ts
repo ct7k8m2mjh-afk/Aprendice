@@ -165,3 +165,29 @@ export function questoesTreinoGeral<T extends Pick<Questao, 'id' | 'escola' | 'm
   }
   return base.length ? base : abc;
 }
+
+/** Um tema (ou qualquer grupo de conteúdos) pelo filtro de região — o critério ÚNICO de contagem do site (revisão de
+ *  19/11/2026, item 3 das matérias): cada conteúdo vira a sua lista de prática (`filtraRegiao`, com a reserva de todas as
+ *  regiões quando o conteúdo não tem nenhuma da região), e o tema é a soma dessas listas. Matéria, faixa de temas, tema,
+ *  lista de conteúdos e aviso usam esta mesma conta, para nenhum número contradizer outro. */
+export interface FiltradoTema<T> extends Filtrado<T> {
+  /** a lista de prática de cada conteúdo */
+  porSub: Map<string, Filtrado<T>>;
+  /** conteúdos que praticam com as de todas as regiões por não terem nenhuma da região */
+  subsReserva: number;
+}
+export function filtraTema<T extends Pick<Questao, 'escola'> & { rg?: string }>(subs: string[], questoesDe: (sub: string) => T[], conj: Set<RegiaoId> | null): FiltradoTema<T> {
+  const porSub = new Map<string, Filtrado<T>>();
+  const l: T[] = [];
+  let daRegiao = 0, total = 0, subsReserva = 0;
+  for (const id of subs) {
+    const f = filtraRegiao(questoesDe(id), conj);
+    if (!f.total) continue;
+    porSub.set(id, f);
+    l.push(...f.l);
+    daRegiao += f.daRegiao; total += f.total;
+    if (f.reserva) subsReserva++;
+  }
+  const reserva = !!conj && !daRegiao && total > 0;
+  return { l, daRegiao, total, reserva, poucas: !!conj && !reserva && daRegiao < POUCAS && total > daRegiao, porSub, subsReserva };
+}
