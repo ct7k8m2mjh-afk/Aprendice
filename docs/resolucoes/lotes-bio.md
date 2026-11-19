@@ -1,6 +1,6 @@
 # Biologia: resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 227 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 25; ENEM nível 7-10 16; provas-alvo nível 7-10 115; demais nível 7-10 71.
+Faltam 177 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 106; demais nível 7-10 71.
 
 ## Lotes
 
@@ -77,7 +77,8 @@ Faltam 227 questões sem resolução (fora as que estão em lote, pendentes ou c
 | bio-0069 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
 | bio-0070 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | bio-0071 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
-| bio-0072 | demais nível 1-6 | 50 | aberto |  |  |  |
+| bio-0072 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
+| bio-0073 | demais nível 1-6 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -87,6 +88,7 @@ Faltam 227 questões sem resolução (fora as que estão em lote, pendentes ou c
 | P03179d3d | Fatec 2024 1º semestre · questão 3 | B11.5 especiação, isolamento reprodutivo, irradiação adaptativa e origem da vida (tema B11 Evolução) | classificação: é de História H01.2 pré-história e revolução neolítica (leitura de texto sobre arte rupestre da Serra da Capivara; não há conteúdo de Biologia) |
 | Pbd81dec9 | PUC Minas 2022 Medicina 2022/2 · questão 16 | B10.2 bacterioses e resistência bacteriana (tema B10 Saúde e doenças) | anular: comando pede a NÃO correta e há duas falsas. A é falsa (a placa mostra halos de inibição em torno da maioria dos discos: a bactéria é sensível à maioria), mas B também é falsa: estreptomicina, tetraciclina e puromicina inibem a TRADUÇÃO (ribossomo 70S × 80S, como a própria figura mostra), não por diferenças transcricionais. Gabarito oficial A obrigaria a ensinar B como correta. Web sem errata nem resolução publicada. |
 | P5f1bed47 | PUC Minas 2024 Medicina 2024/1 · questão 20 | B09.6 biomas brasileiros e impactos (tema B09 Ecologia) | anular: pelo gráfico do print, o tipo A (≈25% de capturas) é o que emite ultrassons e o B (≈97%) o silencioso; o texto diz que o ultrassom atrapalha o sonar e gera ataques "atrapalhados e confusos", então o experimento só mostra benefício à presa. A oficial A afirma que a emissão "beneficia tanto o predador como a presa", conclusão que os dados não sustentam (só se sustentaria com aposematismo acústico, que o texto não menciona); nenhuma alternativa fica correta pelos dados. Busca na web sem resolução publicada. Além disso, o enunciado chama os tipos de mariposa de "1" e "2" e o gráfico os chama de "A" e "B", sem dizer qual é qual. |
+| Pa8e26be1 | PUCRS 2022 Verão · questão 48 | B12.6 vertebrados, classificação, nomenclatura e filogenia (tema B12 Diversidade dos seres vivos) | anular: o gabarito oficial (A, ascídia) segue a filogenia morfológica antiga. A filogenia molecular aceita hoje (Delsuc et al., Nature 439:965-968, 2006, "Tunicates and not cephalochordates are the closest living relatives of vertebrates") põe os tunicados (ascídias) como grupo-irmão dos vertebrados e os cefalocordados (anfioxo, B) como a linhagem de cordados que se separou primeiro; ensinar a ascídia como o cordado mais basal seria ensinar um fato desatualizado. Confirmado por Putnam et al., Nature 453:1064-1071, 2008. |
 | Pc68c4acb | PUCRS 2023 Verão · questão 37 | B01.2 transporte ativo e vesicular (tema B01 Citologia) | classificação: é de Química (configuração eletrônica dos íons Na+ e K+; o contexto da célula nervosa é só ilustração) |
 | Pd59592fa | UECE 2023 2023.1 – 1ª fase · questão 65 | B07.4 coração e as duas circulações (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2023.1, questão 65: nível de atividade física e gasto calórico), não de Biologia. |
 | P98fb7dec | UECE 2024 2024.2 – 1ª fase · questão 65 | B07.4 coração e as duas circulações (tema B07 Fisiologia humana I) | classificação: é de Educação Física (UECE 2024.2, questão 65: conceito de literacia física), não de Biologia. |

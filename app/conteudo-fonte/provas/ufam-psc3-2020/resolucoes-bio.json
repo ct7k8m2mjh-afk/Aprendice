@@ -315,5 +315,219 @@
    "data": "2026-11-19",
    "lote": "bio-0071"
   }
+ },
+ "P426515a8": {
+  "n": "34",
+  "conceito": "Usar a hierarquia das categorias taxonômicas para deduzir a categoria comum a dois organismos.",
+  "equivocos": {
+   "A": "B12.6:propagou-categoria-para-baixo",
+   "B": "B12.6:propagou-categoria-para-baixo",
+   "C": "B12.6:repetiu-o-dado",
+   "E": "B12.6:propagou-categoria-para-baixo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As categorias taxonômicas formam uma escada: reino, filo, classe, ordem, família, gênero, espécie. Cada família está dentro de uma única ordem, que está dentro de uma única classe. Quem é da mesma família é obrigatoriamente da mesma ordem; o contrário não vale: da mesma família não garante o mesmo gênero.",
+    "formulas": [
+     "reino > filo > classe > ordem > família > gênero > espécie",
+     "mesma categoria → mesmas categorias acima dela",
+     "mesma categoria → nada garantido abaixo dela"
+    ],
+    "simbolos": [
+     [
+      "categoria taxonômica",
+      "cada degrau da classificação dos seres vivos"
+     ],
+     [
+      "ordem",
+      "categoria logo acima da família"
+     ],
+     [
+      "gênero",
+      "categoria logo abaixo da família"
+     ],
+     [
+      "subespécie",
+      "divisão de uma espécie, abaixo dela"
+     ]
+    ]
+   },
+   "pista": "Desenhe a escada das categorias e veja para que lado a informação \"mesma família\" se propaga.",
+   "passos": [
+    {
+     "faz": "Escreva a escada das categorias",
+     "conta": "reino → filo → classe → ordem → família → gênero → espécie → subespécie",
+     "porque": "Cada degrau fica inteiro dentro do degrau de cima, como caixas dentro de caixas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Propague para cima",
+     "conta": "mesma família → mesma ordem → mesma classe",
+     "porque": "Uma família pertence a uma só ordem; por isso dois organismos da mesma família estão, com certeza, na mesma ordem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine os degraus de baixo",
+     "conta": "mesma família ≠ mesmo gênero | ≠ mesma espécie | ≠ mesma subespécie",
+     "porque": "Uma família pode ter vários gêneros, e cada gênero várias espécies; nada abaixo da família fica garantido.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "categoria nova deduzida entre classe e família: ordem → alternativa D",
+     "porque": "A ordem é a categoria que a questão quer: a que fica entre as duas dadas e que se conclui delas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — Ordem.",
+   "checagem": "Lobo e cachorro-do-mato são da família Canidae; ambos estão na ordem Carnivora e na classe Mammalia, mas são de gêneros diferentes (Canis e Cerdocyon). Mesma família garantiu a mesma ordem, e não o mesmo gênero.",
+   "erradas": {
+    "A": "Mesma família não garante a mesma espécie: uma família reúne vários gêneros e muitas espécies.",
+    "B": "Mesma família não garante o mesmo gênero: a família Canidae, por exemplo, tem os gêneros Canis e Cerdocyon.",
+    "C": "Família já é dado do enunciado; a pergunta é o que se conclui a partir dela, e a categoria nova garantida é a ordem.",
+    "E": "Subespécie fica abaixo da espécie; estar na mesma família não diz nada sobre ela."
+   },
+   "armadilha": "Achar que estar na mesma família garante as categorias de baixo (gênero, espécie), quando só garante as de cima.",
+   "alerta": "A alternativa C (família) é literalmente verdadeira, porque repete o que o enunciado já afirma. A banca considerou a resposta a categoria que se deduz dos dados e que não foi dada, a ordem, que fica entre classe e família; o gabarito oficial é D.",
+   "essencial": {
+    "pede": "Em qual categoria ficam dois organismos da mesma classe e da mesma família.",
+    "chave": "Mesma família garante as categorias de cima: a ordem, entre classe e família.",
+    "cuidado": "Nada abaixo da família (gênero, espécie) fica garantido."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "exemplo concreto",
+    "ideia": "Pegue dois canídeos de gêneros diferentes, como lobo e cachorro-do-mato: mesma família e mesma ordem, gênero diferente."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "Quadro 1: caixas uma dentro da outra, de reino a espécie. Quadro 2: dois animais aparecem na mesma caixa da família. Quadro 3: uma seta sobe e acende ordem e classe. Quadro 4: uma seta desce e mostra os dois em gêneros diferentes, com um sinal de diferente. Quadro 5: a caixa da ordem fica destacada."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0072"
+  }
+ },
+ "P5cea29bf": {
+  "n": "35",
+  "conceito": "Julgar conceitos de sistemática: grupo monofilético, cladogênese e diferença entre classificação e nomenclatura.",
+  "equivocos": {
+   "B": "B12.6:classificacao-como-nomenclatura",
+   "C": "B12.6:rejeitou-monofiletico-na-sistematica",
+   "D": "B12.6:classificacao-como-nomenclatura",
+   "E": "B12.6:classificacao-como-nomenclatura"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A sistemática organiza os seres vivos segundo a sua história evolutiva. Grupo monofilético é o que reúne um ancestral e todos os seus descendentes. Cladogênese é a divisão de uma linhagem em duas, que é a especiação. Classificar é agrupar os seres em categorias; dar nome aos grupos é tarefa da nomenclatura.",
+    "formulas": [
+     "monofilético: ancestral + todos os descendentes",
+     "cladogênese: 1 linhagem → 2 linhagens (especiação)",
+     "classificação: agrupar × nomenclatura: dar nome"
+    ],
+    "simbolos": [
+     [
+      "sistemática",
+      "ciência que estuda a diversidade e as relações de parentesco dos seres vivos"
+     ],
+     [
+      "monofilético",
+      "grupo formado por um ancestral comum e todos os seus descendentes"
+     ],
+     [
+      "cladogênese",
+      "ramificação de uma linhagem, que gera espécies novas"
+     ],
+     [
+      "especiação",
+      "formação de uma espécie nova"
+     ],
+     [
+      "nomenclatura",
+      "conjunto de regras para dar nome científico aos grupos"
+     ]
+    ]
+   },
+   "pista": "Comece pela III e pela II, que são definições, e depois compare a IV com o que é a nomenclatura.",
+   "passos": [
+    {
+     "faz": "Julgue a afirmativa III",
+     "conta": "monofilético = ancestral + todos os descendentes → III verdadeira",
+     "porque": "É a definição de grupo monofilético; se faltar algum descendente, o grupo é parafilético.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Julgue a afirmativa II",
+     "conta": "cladogênese: 1 linhagem → 2 linhagens = especiação → II verdadeira",
+     "porque": "\"Clado\" quer dizer ramo: a cladogênese é o surgimento de um ramo novo na árvore, isto é, de uma espécie nova.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Julgue a afirmativa IV",
+     "conta": "aplicar nomes aos grupos: nomenclatura × classificação: agrupar",
+     "porque": "Classificar é reunir os seres em grupos segundo critérios; pôr nome nesses grupos é a nomenclatura. IV troca um conceito pelo outro e é falsa.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Use as alternativas",
+     "conta": "II e III verdadeiras, IV falsa → B, D e E caem → sobram A (I, II, III) e C (II, III)",
+     "porque": "Com IV falsa, B, D e E saem; a decisão fica na afirmativa I, que a banca considerou verdadeira.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "I, II e III verdadeiras → alternativa A",
+     "porque": "A sistemática que considera a evolução reconhece os grupos monofiléticos, e o gabarito oficial é A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — somente as afirmativas I, II e III são verdadeiras.",
+   "checagem": "Teste com um exemplo: o grupo das aves é monofilético, pois reúne o ancestral comum e todas as aves descendentes (III). Cada vez que uma linhagem de aves se dividiu em duas houve cladogênese (II). E a regra de escrever o nome em latim com gênero e espécie é nomenclatura, não classificação (IV falsa).",
+   "erradas": {
+    "B": "Inclui a IV, que é falsa: aplicar nomes aos grupos é a nomenclatura, não a classificação. E deixa de fora II e III, que são verdadeiras.",
+    "C": "Deixa de fora a afirmativa I, que a banca considera verdadeira: a sistemática evolutiva reconhece os grupos monofiléticos.",
+    "D": "Inclui a IV, que é falsa, e deixa de fora I e II, que são verdadeiras.",
+    "E": "Não confere porque a IV é falsa: dar nome aos grupos é nomenclatura."
+   },
+   "armadilha": "Aceitar a IV porque classificação e nomenclatura andam juntas, quando dar nome é nomenclatura e classificar é agrupar.",
+   "alerta": "A afirmativa I é discutível: a escola chamada de sistemática evolucionária (de Mayr e Simpson) aceita também grupos parafiléticos; quem exige só grupos monofiléticos é a cladística (sistemática filogenética). A banca leu \"sistemática evolucionaria\" no sentido amplo de classificação baseada na evolução, que considera os grupos monofiléticos, e o gabarito oficial é A.",
+   "essencial": {
+    "pede": "Quais afirmativas sobre sistemática estão corretas.",
+    "chave": "Monofilético reúne o ancestral e todos os descendentes; cladogênese é especiação; dar nome é nomenclatura.",
+    "cuidado": "Não confunda classificar (agrupar) com nomear (nomenclatura)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "começar pela falsa",
+    "ideia": "Derrube a IV (nomear é nomenclatura): B, D e E saem; entre A e C, a banca aceita a I."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "Quadro 1: um cladograma com um ancestral na base. Quadro 2: um ramo se divide em dois, com o rótulo cladogênese. Quadro 3: um contorno envolve o ancestral e todos os seus descendentes, com o rótulo monofilético. Quadro 4: duas etiquetas lado a lado: agrupar (classificação) e dar nome (nomenclatura), com a IV riscada. Quadro 5: as afirmativas I, II e III acendem."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0072"
+  }
  }
 }

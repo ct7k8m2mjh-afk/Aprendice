@@ -260,3 +260,24 @@ RECLASS Pc7b0adbe B12.4 -> B02.1
 DADO Pe211ee2a: alternativas.D -> "Giberelinas – causam o alongamento do caule em plantas normais." (o "18" no fim é número da página)
 DADO P4c9f35e9: alternativas -> faltam na entrada; no print: A "detergentes e demais produtos de limpeza." | B "organismos com ação patogênica em humanos, tais como vírus, bactérias, fungos, protozoários e animais parasitos." | C "produtos orgânicos ou inorgânicos e substâncias insolúveis." | D "resíduos radioativos gerados em hospitais, usinas e experiências nucleares." | E "tintas, herbicidas, plásticos, medicamentos, solventes, detergentes e aditivos alimentares."
 DADO P5f3ad73e: alternativas -> faltam na entrada; no print: A "O fóssil citado no texto é de um animal vertebrado." B "As águas-vivas pertencem ao filo Cnidaria." C "Auroralumina é o epíteto específico da espécie." D "O fóssil a que o texto se refere é classificado como icnofóssil." E "As águas-vivas possuem apenas um tipo de reprodução."
+
+## 2026-11-19 17:12 UTC — PENDENCIAS — session_01PveEKYq8uSzJkiuk9txCUa
+Lote gravado: bio-0072 (49 ok, 1 pendente). Aberto: bio-0073.
+RECLASS P029d174c B12.6 -> B12.5
+RECLASS Pc50da4e9 B12.6 -> B11.1
+RECLASS P6415c2ba B12.6 -> B12.7
+RECLASS P9507295f B12.6 -> B12.7
+RECLASS P70f95e69 B12.6 -> B12.7
+DADO Pc50da4e9: alternativas.E -> "paleobiogeografia" (a legenda da figura veio grudada na alternativa E)
+DADO P70f95e69: alternativas -> faltam na entrada; no print: A briófita. / B hepática. / C briópsida. / D angiosperma. / E gimnosperma.
+DADO P70f95e69: texto_da_prova "Cupressacede" -> "Cupressaceae"
+ANULAR Pa8e26be1 (PUCRS 2022 Verão, q48): gabarito A ("ascídia" como cordado mais basal) contraria a filogenia molecular aceita: tunicados são grupo-irmão dos vertebrados e o anfioxo (B) é a linhagem que se separou primeiro (Delsuc et al., Nature 439:965-968, 2006; Putnam et al., Nature 453:1064-1071, 2008).
+RECLASS P00373853 B12.6 -> B11.1
+RECLASS P97db7db7 B12.6 -> B11.5
+RECLASS Pa96bb2d9 B12.6 -> B12.5
+RECLASS P81192679 B12.6 -> B09.7
+DADO Pa96bb2d9: alternativas.D -> sem o " 17" no fim (número da página)
+DADO P54364d21: alternativas.D -> sem o " 21" no fim (número da página)
+RECLASS P7ee790a4 B12.6 -> B11.1
+DADO P3f7e4cb9: alternativas.E -> termina em "seus grupos." (o "12" no fim é número da página)
+RECLASS P3f7e4cb9 B12.6 -> B12.7
