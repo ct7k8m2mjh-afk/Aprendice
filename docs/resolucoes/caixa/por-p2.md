@@ -190,3 +190,30 @@ RECLASS Pcc1c6df5 P01.2 -> P07.2 (FMABC 2020 q15: classificar "a" e "o" como art
 RECLASS Pb59c1850 P01.1 -> P02.1 (UFU 2026 q9: estratégia argumentativa, exemplificação)
 DADO P864a8568 (Unitins 2026/1 q45): texto_da_prova -> "Paulo Leminski" em linha própria abaixo do título (não colado no 1º verso) e poema em 4 estrofes, como no print
 DADO P2d1ec262 (URCA 2024.1 q103): texto_da_prova/alternativas -> "í" certo ("indígena", "língua"); na entrada saiu "´ı"
+Lote por-p2-0011 gravado (50 ok). Lote aberto: por-p2-0012.
+GABARITO Pe1eedff9 (UDESC 2025.1 Verão q50): resolvida com a oficial B (polêmica de critério: "de palmeira" em "mudas de palmeira" como complemento nominal); explicado no alerta
+GABARITO P8fcbd41d (UECE 2021.1 2ª fase q17): resolvida com a oficial C; D ("Entender essa dinâmica" predicativa × subjetiva) também discutível; conferir se houve recurso
+DADO P2c7558f5 (UPE 2025 SSA3 q1): alternativas -> as da entrada são da q2; pelo print: a) busca por evidências na própria história da língua portuguesa. b) contraponto feito a uma visão de tradicional sobre a história. c) adoção de uma perspectiva exclusiva sobre os fatos da língua. d) desenvolvimento de uma previsão acerca do futuro do português. e) afirmação de que ele não consegue ser derrubador de mitos. (o texto da prova está colado na E)
+DADO Pe3c9177f (UPE 2026 SSA3 q5): alternativas -> só há as linhas de fonte; pelo print, as manchetes: a) "Cade suspende moratória da soja e instaura processo contra tradings" b) "Suspensão da Moratória da Soja é ‘tiro no pé’, dizem organizações ambientalistas" c) "Por pressão do agro, Cade suspende Moratória da Soja e investiga empresas signatárias" d) "Cade suspende a Moratória da Soja e acende alerta sobre avanço do desmatamento na Amazônia" e) "Justiça suspende decisão do Cade sobre Moratória da Soja"
+DADO P565aa2a7 (UPE 2025 SSA3 q12): alternativas -> as da entrada são da q13 (com "13" grudado na E); pelo print: a) o verbo “Veda” e o adjetivo “consolidadas”. b) o advérbio “expressamente” e o verbo “decreta”. c) o pronome “todas” e o advérbio “independentemente”. d) o substantivo “contrariedade” e o pronome “Esta”. e) o adjetivo “inexistente” e o substantivo “vigor”.
+DADO P6fdd3f40 (UEA 2027 Biológicas q27): faltam os sublinhados do print — enunciado “que são apenas rosas”; A “a tarefa”, B “numa cadeira”, C “cegam”, D “intrincado”, E “morte”
+DADO Pca564b4c (Unesp 2024 q12): faltam os sublinhados do print — A "a", B "um", C "enquanto", D "então", E "para"
+DADO Pdc5e6d8a (lote 0011): alternativas.E -> "limitação por antítese." (sem "#####")
+DADO Pf9f9aee8 (lote 0011): alternativas -> "III e V", "II, III e V", "I, III e IV", "II, IV e V" (OCR trocou "III" por "Ill"/"Ille"); texto "cnamado" -> "chamado"
+RECLASS P4d4331eb P03.1 -> P12.5 (UFU 2025 q61: espaço narrativo das obras de leitura obrigatória)
+RECLASS P6f5bd809 P04.1 -> P09.3 (UEL 2026 q20: oração adjetiva restritiva × substantiva)
+RECLASS P63008e79 P04.1 -> P06.1 (UFU 2025 q53: metáfora "são capítulos de uma nova era")
+RECLASS P40dcff3f P04.1 -> P10.3 (UDESC 2025.1 q48: V/F; o item decisivo é colocação pronominal)
+RECLASS P81fb2b8e P04.2 -> P09.3 (UFU 2026 q7: adjetiva restritiva × explicativa)
+RECLASS P0f879242 P04.2 -> P11.3 (UDESC 2023.2 q43: Memórias póstumas de Brás Cubas e o Humanitismo)
+RECLASS P53b7c5ec P05.3 -> P06.2 (Acafe 2026 Inverno q11: paradoxo, gradação, paronomásia)
+RECLASS P237cd376 P05.4 -> P10.4 (UPE 2024 SSA3 q9: vírgula)
+RECLASS Pa6e8929b P05.1 -> P04.2 (FMABC 2020 q18: "contudo" × "não obstante")
+RECLASS P6ecd2dec P06.2 -> P10.5 (Acafe 2026 Inverno q5: efeito da voz passiva sintética)
+RECLASS P565aa2a7 P07.3 -> P02.2 (UPE 2025 SSA3 q12)
+RECLASS Pa18ed6ca P07.3 -> P12.1 (lote 0011)
+RECLASS Pa26662c2 P08.1 -> P08.2 (lote 0011)
+RECLASS Pb4920d26 P09.2 -> P05.1 (lote 0011)
+RECLASS P3ee04127 P09.5 -> P05.1 (lote 0011)
+RECLASS P0dd63f3c P10.5 -> P06.3 (Acafe 2024 Inverno q8: pleonasmo)
+RECLASS Pe1eedff9 P10.4 -> P12.5 (UDESC 2025.1 q50: Dois irmãos, Hatoum)
