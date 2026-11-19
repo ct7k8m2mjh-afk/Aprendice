@@ -312,3 +312,17 @@ Avisos: numeração da questão no site difere da entrada em Pa7839edd e P57b2db
 Checagem no site (Pa7839edd, Pc3c1dbef, P57b2db70; 390 e 1280 px): 4 blocos completos e na ordem, "Por que as outras estão erradas" fechado e abrindo, aviso do Gabarito do Aprendice presente, fração empilhada, sem rolagem lateral nem erro no console.
 Testes: converte + tsc + vitest verdes (786 passed).
 A seguir: `python3 ferramentas/resolucoes/lote.py status` — Geografia faltam 637 (parte 1: 317 · parte 2: 320).
+
+## 2026-11-19 18:03 UTC — PENDENCIAS — sessão geo (19/11, 4ª; parte 1)
+Lote gravado: geo-0055 (50 resoluções; 2 com gabarito do Aprendice, letras iguais às cegas e ao preliminar: P0b74c1bd D, P50e91882 C). Pendentes: 0.
+RECLASS Pf3b0c4c1 G09.3 -> G07.1
+RECLASS Pcf5c169a G08.5 -> G12.5
+RECLASS Peb139c24 G08.5 -> G08.6
+RECLASS P3e99d391 G08.6 -> G08.4
+RECLASS P5f58b76e G09.2 -> G09.1
+RECLASS P9f34a9c2 G08.3 -> G08.6
+DADO P65205ec8: número -> o print mostra "QUESTÃO 10" (a entrada diz questão 42)
+DADO P28aa49d0: texto_da_prova e alternativas -> o print traz "ti" onde a entrada tem a ligadura "Ɵ" (afirmativas, a partir, utilização, cultivo, engatilhadas, extinção, estiverem)
+RECLASS P8f3538cb G08.3 -> G08.5
+DADO P4ec65a09: alternativas.E -> no print, a E termina em "na ordem de 15% ao ano."; a tabela de ICMS (Especificação... Total 15.022.541) está colada no fim dela
+DADO P50e91882: texto_da_prova -> no print começa por "28. (URCA/2027.1) “As empresas apresentaram maior competitividade..."; a entrada está cortada no início e com acentos quebrados no texto e nas alternativas
