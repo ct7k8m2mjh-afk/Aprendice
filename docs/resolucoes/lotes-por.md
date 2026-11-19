@@ -117,7 +117,7 @@ Faltam 72 questões sem resolução (fora as que estão em lote, pendentes ou co
 | por-pend-0003 | pendentes obra | 25 | aberto |  |  |  |
 | por-pend-0004 | pendentes classificação,print,outra,gabarito,=a,=o | 25 | gravado | 14 | 11 | 0 |
 | por-pend-0005 | pendentes classificação,print,outra,gabarito,=a,=o | 18 | gravado | 6 | 12 | 0 |
-| por-pend-0006 | pendentes reclassificada | 6 | aberto |  |  |  |
+| por-pend-0006 | pendentes reclassificada | 6 | gravado | 6 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
