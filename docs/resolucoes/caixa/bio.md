@@ -163,3 +163,23 @@ RECLASS Pf3c86bcb B11.2 -> B11.1
 RECLASS P409aa24f B11.1 -> B12.6
 RECLASS Pff6b9820 B11.2 -> B09.4
 RECLASS P1288366d B11.2 -> B11.1
+
+## 2026-11-19 UTC — PENDENCIAS — session_01PveEKY2istqnzKBoRGFXC5
+Lote bio-0068 gravado (48 ok, 2 pendentes). 2 sem gabarito publicado com Gabarito do Aprendice (resolvedor = conferente às cegas = preliminar): Pa3ece9c8 B, P3b25fb29 B.
+OUTRA P03179d3d: classificação: é de História H01.2 (pré-história e revolução neolítica; leitura sobre arte rupestre)
+ANULAR P3c8e2e61 (URCA 2023.1 q59): pede a falsa e há duas: C (ictiossauros e plesiossauros não são arcossauros) e D (aves no Triássico; surgiram no Jurássico). Gabarito D mantido após recurso: https://www.urca.br/cev/wp-content/uploads/sites/39/2023/03/respostas-recursos-primeiro-dia_psu_20231.pdf
+DADO Pdc40a0b5: alternativas.D -> termina em "selecionados." (sem o "18" da página)
+DADO P7de32338: alternativas -> faltam na entrada; no print: A Deriva genética. B Endogamia. C Polimorfismo. D Mutação. E Seleção sexual.
+DADO P343d4a5a: texto_da_prova e alternativas -> acentos normais como no print ("mutações", "população")
+DADO P41eb7015: texto_da_prova -> os 4 versos ("Armar-me irei; mas temo que entrem moscas" a "Os dissolvidos membros lhe apodreçam.") e o comando estão em negrito no print
+DADO Pcc1199e7: texto_da_prova -> acentos normais ("científicas", "química", "plausível")
+DADO P07b314af: texto_da_prova e alternativas -> acentos normais ("arborícola", "característica", "específicas")
+DADO P19773542: texto_da_prova e alternativas -> acentos normais ("científica", "contribuído", "química", "específicas")
+RECLASS P8fb5239f B11.2 -> B06.1
+RECLASS P2d8381c3 B11.5 -> B11.2
+RECLASS P7686f3fa B11.3 -> B11.1
+RECLASS Pcb3fd122 B11.3 -> B11.4
+RECLASS Ped03a57d B11.3 -> B11.2
+RECLASS Pfca210ce B11.5 -> B09.7
+RECLASS P3c8e2e61 B11.5 -> B12.6
+RECLASS P07b314af B11.5 -> B11.2

@@ -1495,5 +1495,100 @@
    "data": "2026-11-19",
    "lote": "bio-0066"
   }
+ },
+ "P1ff25a89": {
+  "n": "26",
+  "conceito": "Calcular frequências alélicas a partir da contagem de genótipos de uma população.",
+  "equivocos": {
+   "B": "B11.4:frequencia-alelica-sem-conta",
+   "C": "B11.4:genotipo-como-alelo",
+   "D": "B11.4:esqueceu-heterozigoto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Frequência de alelo é contada em cópias do gene, não em indivíduos. Cada guepardo tem duas cópias: AA dá duas cópias de A, Aa dá uma de A e uma de a, aa dá duas de a. Com 100 animais há 200 cópias, e esse total é o denominador.",
+    "formulas": [
+     "f(A) = (2 × nº AA + nº Aa) ÷ (2 × total)",
+     "f(a) = 1 − f(A)"
+    ],
+    "simbolos": [
+     [
+      "frequência alélica",
+      "proporção de um alelo entre todas as cópias daquele gene na população"
+     ],
+     [
+      "loco gênico",
+      "posição de um gene no cromossomo"
+     ],
+     [
+      "AA, Aa, aa",
+      "genótipos: dois alelos A, um de cada, dois alelos a"
+     ]
+    ]
+   },
+   "pista": "Antes de dividir, conte quantas cópias do gene existem nos 100 guepardos.",
+   "passos": [
+    {
+     "faz": "Anote os genótipos e o total de cópias",
+     "conta": "AA: 36 | Aa: 48 | aa: 16 | cópias: 2 × 100 = 200",
+     "porque": "Cada animal carrega duas cópias do gene, uma de cada cromossomo do par.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte as cópias do alelo A",
+     "conta": "A = 2 × 36 + 48 = 72 + 48 = 120",
+     "porque": "Cada AA tem duas cópias de A e cada Aa tem uma; os aa não têm nenhuma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo total de cópias",
+     "conta": "f(A) = 120/200 = 0,6 → f(a) = 1 − 0,6 = 0,4",
+     "porque": "Com só dois alelos, as frequências somam 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "A = 0,6 e a = 0,4 → A",
+     "porque": "O resultado bate com a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — A = 0,6 e a = 0,4.",
+   "checagem": "Conte os alelos a direto: 2 × 16 + 48 = 80 cópias; 80/200 = 0,4. Fecha com 1 − 0,6. Bônus: 0,6² = 0,36, 2 × 0,6 × 0,4 = 0,48 e 0,4² = 0,16, exatamente 36, 48 e 16 em 100.",
+   "erradas": {
+    "B": "Não confere: 0,7 exigiria 140 cópias de A em 200, mas os 36 AA e 48 Aa somam 120.",
+    "C": "Sai de usar a frequência do genótipo Aa (48/100 = 0,48) como se fosse a do alelo A, e 1 − 0,48 = 0,52 para a.",
+    "D": "Sai de contar só as cópias dos AA (2 × 36 = 72) e dividir por 100 animais, esquecendo os 48 Aa: 0,72; e 1 − 0,72 = 0,28."
+   },
+   "armadilha": "Dividir pelo número de indivíduos (100) em vez do número de cópias do gene (200), ou esquecer que o heterozigoto também tem um A.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As frequências dos alelos A e a a partir da contagem de genótipos.",
+    "chave": "f(A) = (2 × AA + Aa) ÷ (2 × total) = 120/200 = 0,6; f(a) = 0,4.",
+    "cuidado": "O denominador são as 200 cópias do gene, não os 100 animais."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Hardy-Weinberg",
+    "ideia": "AA = 36/100 = 0,36 = p², logo p = √0,36 = 0,6 (vale porque 2pq = 0,48 confere)."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "Quadro 1: 100 guepardos em três grupos (36 AA, 48 Aa, 16 aa). Quadro 2: cada guepardo se abre em duas bolinhas de alelo; as bolinhas A (azuis) vão para uma pilha e as a (cinza) para outra. Quadro 3: contador mostra 120 A e 80 a de 200. Quadro 4: frações 120/200 = 0,6 e 80/200 = 0,4 aparecem empilhadas."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0068"
+  }
  }
 }

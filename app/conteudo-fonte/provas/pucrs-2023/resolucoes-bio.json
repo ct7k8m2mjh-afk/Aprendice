@@ -290,5 +290,113 @@
    "data": "2026-11-19",
    "lote": "bio-0067"
   }
+ },
+ "P901076f7": {
+  "n": "47",
+  "conceito": "Calcular a frequência de um alelo contando cópias a partir da proporção de genótipos.",
+  "equivocos": {
+   "A": "B11.4:contou-individuos-em-vez-de-alelos",
+   "B": "B11.4:dividiu-dominante-pelo-recessivo",
+   "D": "B11.4:frequencia-alelica-sem-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Frequência de alelo se conta em cópias do gene. Cada indivíduo tem duas cópias: Aa tem um A e um a, aa tem dois a. Imagine 100 indivíduos para trabalhar com números inteiros: 50 Aa e 50 aa dão 200 cópias, e só os Aa contribuem com A.",
+    "formulas": [
+     "f(A) = cópias de A ÷ total de cópias",
+     "total de cópias = 2 × número de indivíduos"
+    ],
+    "simbolos": [
+     [
+      "frequência do gene A",
+      "proporção de cópias do alelo A entre todas as cópias do gene"
+     ],
+     [
+      "Aa",
+      "heterozigoto: uma cópia de A e uma de a"
+     ],
+     [
+      "aa",
+      "homozigoto recessivo: duas cópias de a"
+     ]
+    ]
+   },
+   "pista": "Escolha um número de indivíduos, por exemplo 100, e conte as cópias do gene, não as pessoas.",
+   "passos": [
+    {
+     "faz": "Monte a população com 100 indivíduos",
+     "conta": "Aa: 50 | aa: 50 | cópias do gene: 2 × 100 = 200",
+     "porque": "Cada indivíduo carrega duas cópias do gene, e um número redondo facilita a contagem.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte as cópias de A",
+     "conta": "50 Aa × 1 A = 50 | 50 aa × 0 A = 0 → 50 cópias de A",
+     "porque": "Só o heterozigoto tem o alelo A, e cada um tem uma cópia só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo total de cópias",
+     "conta": "f(A) = 50/200 = 1/4",
+     "porque": "A frequência do alelo é a fração das cópias, não das pessoas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1/4 → C",
+     "porque": "O resultado bate com a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1/4.",
+   "checagem": "Conte o outro alelo: a = 50 (dos Aa) + 2 × 50 (dos aa) = 150 cópias; 150/200 = 3/4. E 1/4 + 3/4 = 1: fecha.",
+   "erradas": {
+    "A": "Sai de contar pessoas em vez de cópias: metade dos indivíduos (os Aa) tem o alelo A, 1/2. Mas cada Aa tem só uma cópia de A em duas.",
+    "B": "Sai de dividir as cópias de A pelas de a (50/150 = 1/3), em vez de dividir pelo total de cópias (200).",
+    "D": "Não confere: com 50 cópias de A em 200, a frequência é 1/4; para dar 1/6 seriam só cerca de 33 cópias de A."
+   },
+   "armadilha": "Contar indivíduos que têm o alelo (metade) em vez de contar as cópias do alelo (um quarto).",
+   "alerta": "O enunciado diz \"população em equilíbrio\", mas essas proporções não seguem Hardy-Weinberg: com f(A) = 1/4 o esperado seria 1/16 AA, 6/16 Aa e 9/16 aa. Isso não muda a resposta, porque a frequência de um alelo se obtém pela contagem direta das cópias, que não depende do equilíbrio.",
+   "essencial": {
+    "pede": "A frequência do alelo A numa população com metade Aa e metade aa.",
+    "chave": "Conte cópias: 50 A em 200 cópias = 1/4.",
+    "cuidado": "Cada indivíduo tem duas cópias do gene; o heterozigoto tem um A só."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média por genótipo",
+    "ideia": "Aa tem 1/2 de A e aa tem 0; metade de cada: 1/2 × 1/2 + 1/2 × 0 = 1/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "100 indivíduos → 200 cópias",
+    "nota": "duas cópias por indivíduo"
+   },
+   {
+    "linha": "A = 50 × 1 = 50",
+    "nota": "só os Aa têm A"
+   },
+   {
+    "linha": "f(A) = 50/200 = 1/4",
+    "nota": "cópias de A sobre o total"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "Quadro 1: duas metades da população, uma Aa e outra aa. Quadro 2: cada indivíduo se abre em duas bolinhas; nos Aa uma bolinha é A (azul), nos aa as duas são a (cinza). Quadro 3: as bolinhas se juntam numa barra: 1 parte azul para 3 cinza. Quadro 4: a fração 1/4 aparece empilhada e C é marcada."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0068"
+  }
  }
 }

@@ -504,5 +504,115 @@
    "data": "2026-11-13",
    "lote": "bio-0055"
   }
+ },
+ "Pc1008aa5": {
+  "n": "13",
+  "conceito": "Usar a frequência de homens afetados para achar a de mulheres afetadas numa herança recessiva ligada ao X em equilíbrio.",
+  "equivocos": {
+   "A": "B11.4:nao-converteu-para-porcentagem",
+   "B": "B11.4:frequencia-ligada-ao-x-sem-conta",
+   "C": "B11.4:frequencia-ligada-ao-x-sem-conta",
+   "E": "B11.4:usou-2-de-heterozigoto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No daltonismo, o gene está no cromossomo X. O homem tem um X só: se esse X traz o alelo recessivo, ele é daltônico. Por isso, a frequência de homens afetados é a própria frequência do alelo, q. A mulher tem dois X e precisa do alelo nos dois: a frequência dela é q².",
+    "formulas": [
+     "homens afetados (XdY) = q",
+     "mulheres afetadas (XdXd) = q²"
+    ],
+    "simbolos": [
+     [
+      "ligado ao X",
+      "gene localizado no cromossomo X, sem correspondente no Y"
+     ],
+     [
+      "Xd",
+      "cromossomo X com o alelo recessivo do daltonismo"
+     ],
+     [
+      "q",
+      "frequência do alelo recessivo na população"
+     ],
+     [
+      "hemizigoto",
+      "o homem, que tem só uma cópia dos genes do X"
+     ]
+    ]
+   },
+   "pista": "Quantos X o homem tem? Isso decide se 10% já é a frequência do alelo ou a de um genótipo com dois alelos.",
+   "passos": [
+    {
+     "faz": "Traduza a frequência dos homens",
+     "conta": "homem: XdY (um X só) → afetados = q = 10% = 0,1",
+     "porque": "Basta um alelo recessivo no único X para o homem ser daltônico; então a chance de ser afetado é a chance de receber o alelo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte o genótipo da mulher afetada",
+     "conta": "mulher afetada: XdXd → frequência = q × q = q²",
+     "porque": "Ela precisa do alelo recessivo nos dois X, e cada X é uma chance independente de valor q.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Calcule e converta para porcentagem",
+     "conta": "q² = 0,1 × 0,1 = 0,01 → 0,01 × 100 = 1%",
+     "porque": "As alternativas estão em porcentagem, então 0,01 precisa virar 1%.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1% → D",
+     "porque": "O valor bate com a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1%.",
+   "checagem": "Pense em 1.000 mulheres: cada X tem 1 chance em 10 de trazer o alelo; das 1.000, 100 recebem o alelo no primeiro X, e dessas só 1 em 10 recebe também no segundo, 10 mulheres. 10 em 1.000 é 1%.",
+   "erradas": {
+    "A": "Sai de calcular q² = 0,01 e escrever 0,01% sem multiplicar por 100; 0,01 é a fração, que equivale a 1%.",
+    "B": "Não confere: 0,1% seria q² = 0,001, que exigiria q ≈ 0,032, e não os 0,1 dados pelos homens.",
+    "C": "Não confere: 0,2% seria 0,002; q² com q = 0,1 dá 0,01, e nem 2 × q² (0,02) chega a esse valor.",
+    "E": "Sai de multiplicar q² por 2 (2 × 0,01 = 0,02 = 2%), como se fosse o 2pq dos heterozigotos; a mulher afetada é XdXd, só q²."
+   },
+   "armadilha": "Achar que 10% é q² nos homens e tirar a raiz; o homem tem um X só, então 10% já é q.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A frequência esperada de mulheres daltônicas, dada a de homens.",
+    "chave": "Na herança ligada ao X, homens afetados = q e mulheres afetadas = q²: 0,1² = 0,01 = 1%.",
+    "cuidado": "Não tire raiz da frequência dos homens, e converta 0,01 em 1%."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "proporção",
+    "ideia": "Mulher afetada precisa de dois X com o alelo: 10% de 10% = 1%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "homens XdY = q = 0,1",
+    "nota": "um X só: afetado = alelo"
+   },
+   {
+    "linha": "mulheres XdXd = q² = 0,01 = 1%",
+    "nota": "precisa do alelo nos dois X"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "Quadro 1: homem com um X e um Y; o X acende com o alelo d e um rótulo 'q = 0,1' aparece. Quadro 2: mulher com dois X; os dois precisam acender. Quadro 3: 0,1 × 0,1 = 0,01 surge entre os dois X. Quadro 4: 0,01 vira 1% e a alternativa D é marcada."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0068"
+  }
  }
 }

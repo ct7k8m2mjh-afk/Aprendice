@@ -318,5 +318,114 @@
    "data": "2026-11-19",
    "lote": "bio-0066"
   }
+ },
+ "Pcb3fd122": {
+  "n": "35",
+  "conceito": "Cálculo de frequências alélicas e genotípicas a partir do número de indivíduos de cada genótipo (Hardy-Weinberg).",
+  "equivocos": {
+   "A": "B11.4:confundiu-frequencia-genotipica-e-alelica",
+   "B": "B11.4:desequilibrio-por-diferenca-minima",
+   "C": "B11.4:frequencia-genotipica-errada",
+   "D": "B11.4:total-de-alelos-sem-dobrar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A questão dá indivíduos por genótipo e as alternativas misturam frequência de genótipo (contada em indivíduos) com frequência de alelo (contada em cópias do gene). Cada indivíduo tem duas cópias do gene: AA tem dois A, Aa tem um A e um a, aa tem dois a. O trabalho real é contar os alelos, não os indivíduos.",
+    "formulas": [
+     "total de alelos = 2 × número de indivíduos",
+     "f(A) = (2 × AA + Aa) ÷ total de alelos",
+     "atalho: f(A) = f(AA) + metade de f(Aa)",
+     "equilíbrio: p² + 2pq + q² = 1"
+    ],
+    "simbolos": [
+     [
+      "frequência genotípica",
+      "fração dos indivíduos que têm um genótipo (AA, Aa ou aa)"
+     ],
+     [
+      "frequência alélica",
+      "fração das cópias do gene que são do alelo A ou do alelo a"
+     ],
+     [
+      "p e q",
+      "frequências dos alelos A e a; p + q = 1"
+     ],
+     [
+      "Hardy-Weinberg",
+      "modelo em que, sem mutação, seleção, migração e com cruzamentos ao acaso, as frequências se mantêm"
+     ]
+    ]
+   },
+   "pista": "Antes de dividir, pergunte: cada ave carrega quantas cópias desse gene?",
+   "passos": [
+    {
+     "faz": "Anote os dados",
+     "conta": "AA: 3600 | Aa: 6000 | aa: 2400 | total: 12.000 indivíduos",
+     "porque": "São contagens de indivíduos; para falar de alelo é preciso transformar em cópias do gene.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os alelos",
+     "conta": "total = 2 × 12.000 = 24.000 alelos | A = 2 × 3600 + 6000 = 13.200",
+     "porque": "Cada AA contribui com dois A e cada Aa com um; os aa não têm nenhum.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a frequência de A",
+     "conta": "f(A) = 13200/24000 = 0,55 = 55%",
+     "porque": "Frequência de alelo é a parte das cópias do gene que são A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste as outras alternativas",
+     "conta": "f(AA) = 3600/12000 = 0,30 ≠ 0,1000 | alelos = 24.000 ≠ 15.000 | esperado p² = 0,3025 ≈ 0,30 observado",
+     "porque": "C e D caem nas contas; B cai porque as frequências observadas batem com as do equilíbrio.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "f(A) = 55% → alternativa E",
+     "porque": "É a única afirmação que as contas confirmam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — a frequência do alelo A é 55%.",
+   "checagem": "Pelo atalho das frequências genotípicas: f(AA) = 0,30 e f(Aa) = 0,50, então f(A) = 0,30 + 0,25 = 0,55. E f(a) = 0,20 + 0,25 = 0,45; 0,55 + 0,45 = 1, a soma fecha.",
+   "erradas": {
+    "A": "A não confere: frequência genotípica e alélica são medidas diferentes (indivíduos × cópias do gene). Cada uma soma 100% por conta própria; uma não \"corresponde a 100%\" da outra.",
+    "B": "B não confere: com p = 0,55 e q = 0,45, o esperado é 0,3025 AA, 0,495 Aa e 0,2025 aa, quase igual ao observado (0,30; 0,50; 0,20). Sem mutação nem seleção e com cruzamentos ao acaso, a população está em equilíbrio.",
+    "C": "C não confere: a frequência de AA é 3600/12000 = 0,30, não 0,1000.",
+    "D": "D não confere: cada indivíduo tem 2 alelos desse gene, então são 2 × 12.000 = 24.000 alelos, não 15.000."
+   },
+   "armadilha": "Dividir os alelos pelo número de indivíduos (12.000) em vez de pelo número de cópias do gene (24.000).",
+   "alerta": "A rigor, o observado (0,30; 0,50; 0,20) não coincide até a 4ª casa com o esperado (0,3025; 0,495; 0,2025). O teste qui-quadrado dá cerca de 1,22, abaixo de 3,84 (limite com 1 grau de liberdade a 5%): a diferença não é significativa e a banca trata a população como em equilíbrio. A resposta E (55%) vale de qualquer modo.",
+   "essencial": {
+    "pede": "A afirmação correta sobre as frequências de uma população de 12.000 aves com genótipos contados.",
+    "chave": "Conte cópias do gene: f(A) = (2 × 3600 + 6000) ÷ 24.000 = 0,55.",
+    "cuidado": "Total de alelos é o dobro do número de indivíduos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "atalho das frequências",
+    "ideia": "f(A) = f(AA) + f(Aa)/2 = 0,30 + 0,25 = 0,55, sem contar alelos um a um."
+   }
+  ],
+  "quadro": null,
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "Quadro 1: três barras de indivíduos, AA 3600, Aa 6000 e aa 2400. Quadro 2: cada barra se desdobra em duas cópias do gene; as de AA viram 7200 A, as de Aa viram 6000 A e 6000 a, as de aa viram 4800 a. Quadro 3: os A se juntam em 13.200 e os a em 10.800, de um total de 24.000. Quadro 4: a fração 13200/24000 vira 0,55 = 55%, destacada na alternativa E."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "bio-0068"
+  }
  }
 }
