@@ -80,6 +80,13 @@ em 11–13/11 (por-0024/27/32/44 × por-0046; por-0075/78 × por-0082; por-0084/
 REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, commit e push do registro ANTES de resolver
 (e `git pull` antes do proximo). Hoje só a fábrica trabalha em Português, sem risco.
 
+## Fábrica de CLASSIFICAÇÃO pela API (dono, 19/11 ~21h15)
+Sessão session_01PveEKaueZxMsGjqv3gMYrd (ambiente Fabrica), prompt docs/resolucoes/PROMPT-FABRICA-CLASSIFICACAO.md.
+Confere o subtema de TODAS as questões; muda só com duas respostas iguais às cegas; sem subtema bom: encaixa no mais próximo e
+anota a sugestão (docs/resolucoes/classificacao/sugestoes-novos-subtemas.md) para o DONO decidir se cria. Teto US$ 60.
+Caixa: docs/resolucoes/caixa/classificacao.md (AVISO PILOTO CLASSIFICAÇÃO → levar ao dono; FIM → levar o resumo e a lista de
+sugestões ao dono; NÃO reabrir sem ordem).
+
 ## Fábrica pela API (dono, 19/11)
 Teto: US$ 200 de créditos da API. Matéria sugerida para a fábrica: Português (a sessão deu FIM em 19/11 ~15h; NÃO reabrir
 sessão de Português enquanto a fábrica estiver com a matéria, para não haver dois trabalhando nos mesmos lotes).
