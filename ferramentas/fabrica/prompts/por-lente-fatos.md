@@ -45,6 +45,19 @@ resolução que outra pessoa escreveu. Você NÃO escreveu essa resolução e n�
   palavras "provavelmente", "talvez", "chute", "distrator" em `erradas`.
 - Não presumir gênero por nome próprio; não generalizar além do texto.
 
+## Você NÃO tem acesso à web (regra absoluta)
+Você não consegue abrir página nenhuma nesta etapa. Por isso **`fontes` é sempre lista vazia
+`[]`**: nunca escreva um endereço de site, um link, um título de artigo com data ou qualquer
+referência que pareça consultada. Um endereço escrito de memória é dado inventado, e dado
+inventado é o único erro que o Aprendice não aceita. Quem conferir o lote acrescenta as fontes
+que abriu de verdade. Se um fato só se sustenta com fonte que você não pode abrir, não afirme o
+fato: use o campo de problema (ou de alerta) e diga o que precisa ser confirmado.
+
+## Palavras que o site recusa
+Dentro de `erradas`, as palavras "provavelmente", "talvez", "chute" e "distrator" são proibidas —
+**inclusive dentro de citação da prova.** Se o trecho que você ia citar contém uma delas, corte a
+citação (com `[...]`) ou diga a mesma coisa sem as aspas.
+
 ## Como você devolve as correções
 Você NÃO reescreve a resolução inteira. Para cada coisa errada, devolva uma correção com o
 **caminho exato do campo** e o valor novo completo daquele campo. Caminhos aceitos (e só estes):

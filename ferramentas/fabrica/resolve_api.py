@@ -86,7 +86,7 @@ REGRAS_CAMPOS = """
 - `essencial`: `pede`, `chave`, `cuidado`, uma frase cada.
 - `equivocos`: por letra errada, `<conteúdo>:<equívoco-minúsculo-com-hífen>` (ex.:
   `P05.4:confundiu-registro-com-norma`). Sem acento depois dos dois-pontos.
-- `fontes`: só o que foi consultado de fato (lista vazia se tudo vem da questão).
+- `fontes`: SEMPRE lista vazia `[]` (esta etapa não abre a web; quem confere acrescenta).
 - Citação entre aspas é cópia literal do print. Sem emoji. Sem Brasil Escola, Mundo Educação,
   Prepara Enem, InfoEscola. Frases de até 30 palavras. Não presuma gênero por nome próprio.
 """.strip()
@@ -873,18 +873,89 @@ def cmd_teste(entrada, n, teto):
     print(f'gasto total registrado: US$ {gasto_total():.2f}')
 
 
+def cmd_lente(entrada, saida, ids, teto, max_tokens=12000):
+    """Roda a lente de fatos por Messages (sem batch) em poucas questões de uma saída já escrita,
+    aplica as correções no lugar e registra no relatório. Serve para a questão que foi cortada em
+    max_tokens no batch e para a reconferência dos itens corrigidos (passo 5 do padrão)."""
+    cl = cliente()
+    lote, materia, qs = carrega_entrada(entrada)
+    d = json.load(open(saida, encoding='utf-8'))
+    por_id = {q['id']: q for q in d['questoes']}
+    rel_f = os.path.join(SAIDA, lote, 'relatorio.json')
+    rel = json.load(open(rel_f, encoding='utf-8'))
+    sis = monta('por-lente-fatos.md')
+    for qid in ids:
+        mq = por_id.get(qid)
+        if not mq or mq.get('status') != 'ok':
+            print(f'{qid}: fora da saída ou não está ok — pulado')
+            continue
+        extra = {'gabarito_oficial': qs[qid].get('gabarito_oficial') or '(não publicado)',
+                 'resolucao_proposta': {'conceito': mq['conceito'], 'resolucao': mq['resolucao'],
+                                        'equivocos': mq.get('equivocos', {})}}
+        p = pedido(qid, MODELO_LENTE, sis, bloco_questao(qs[qid], extra), ESQ_FATOS,
+                   max_tokens)['params']
+        ja = gasto_total()
+        est = preco(MODELO_LENTE, conta_tokens(cl, p), max_tokens * 0.5, batch=False)
+        if ja + est > teto:
+            sys.exit(f'PARADO no teto: {ja:.2f} + {est:.2f} > {teto:.2f}. Nada enviado.')
+        r = cl.messages.create(**p)
+        custo = preco(MODELO_LENTE, r.usage.input_tokens, r.usage.output_tokens,
+                      getattr(r.usage, 'cache_read_input_tokens', 0) or 0,
+                      getattr(r.usage, 'cache_creation_input_tokens', 0) or 0, batch=False)
+        anota_gasto(lote, 'lente-fatos-avulsa', MODELO_LENTE, r.usage.input_tokens,
+                    r.usage.output_tokens, getattr(r.usage, 'cache_read_input_tokens', 0) or 0,
+                    getattr(r.usage, 'cache_creation_input_tokens', 0) or 0, custo, custo)
+        if r.stop_reason == 'max_tokens':
+            print(f'{qid}: cortado em max_tokens de novo (use --max-tokens maior) · US$ {custo:.2f}')
+            continue
+        f = json.loads(next(b.text for b in r.content if b.type == 'text'))
+        log = []
+        if f.get('reprovar'):
+            mq.clear()
+            mq.update({'id': qid, 'status': 'pendente',
+                       'motivo': 'lente de fatos reprovou: ' + f['reprovar']})
+            log.append('lente de fatos avulsa: REPROVOU — ' + f['reprovar'])
+        else:
+            for c in f.get('correcoes') or []:
+                aplica(mq, c['campo'], c['depois'], log)
+            if f.get('fontes'):
+                mq['fontes'] = (mq.get('fontes') or []) + f['fontes']
+            if f.get('reclass'):
+                log.append('RECLASS sugerido pela lente de fatos: ' + f['reclass'])
+            if f.get('dado_divergente'):
+                log.append('DADO (lente de fatos): ' + f['dado_divergente'])
+            if not f.get('fatos_ok'):
+                log.append('atenção: lente de fatos avulsa não marcou fatos_ok')
+        rel.setdefault('diario', {}).setdefault(qid, []).extend(
+            ['lente de fatos avulsa: ' + x for x in log] or ['lente de fatos avulsa: sem correções'])
+        print(f'{qid}: minha_letra {f.get("minha_letra")} · fatos_ok {f.get("fatos_ok")} · '
+              f'{len(f.get("correcoes") or [])} correção(ões) · US$ {custo:.2f}')
+        for x in log:
+            print('   ', x[:200])
+    json.dump(d, open(saida, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    json.dump(rel, open(rel_f, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    print(f'gasto total registrado: US$ {gasto_total():.2f}')
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('comando', choices=['estima', 'teste', 'roda'])
+    ap.add_argument('comando', choices=['estima', 'teste', 'roda', 'lente'])
     ap.add_argument('entrada')
     ap.add_argument('--saida', default=None)
     ap.add_argument('--n', type=int, default=3)
     ap.add_argument('--teto', type=float, default=10.0)
+    ap.add_argument('--ids', default='', help='ids separados por vírgula (comando lente)')
+    ap.add_argument('--max-tokens', type=int, default=12000)
     a = ap.parse_args()
     if a.comando == 'estima':
         cmd_estima(a.entrada, a.teto)
     elif a.comando == 'teste':
         cmd_teste(a.entrada, a.n, a.teto)
+    elif a.comando == 'lente':
+        if not a.saida or not a.ids:
+            sys.exit('lente precisa de --saida e --ids')
+        cmd_lente(a.entrada, a.saida, [x.strip() for x in a.ids.split(',') if x.strip()],
+                  a.teto, a.max_tokens)
     else:
         if not a.saida:
             sys.exit('roda precisa de --saida')

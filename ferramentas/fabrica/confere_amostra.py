@@ -16,7 +16,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 TRAB = os.path.join(RAIZ, 'docs', 'resolucoes', 'trabalho')
 SAIDA = os.path.join(RAIZ, 'fabrica_saida', 'resolucoes')
 # "mudou muito": a lente trocou pelo menos esta quantidade de campos
-MUITO = 4
+MUITO = 12
 
 
 def main():
@@ -24,6 +24,7 @@ def main():
     ap.add_argument('lote')
     ap.add_argument('--agentes', type=int, default=3)
     ap.add_argument('--semente', type=int, default=0)
+    ap.add_argument('--erros', default='', help='ids com erro/aviso no lote.py valida, separados por vírgula')
     a = ap.parse_args()
 
     ent = {q['id']: q for q in json.load(open(os.path.join(TRAB, a.lote + '.entrada.json'),
@@ -44,17 +45,22 @@ def main():
             motivo.append('divergência de gabarito')
         if 'OBRA' in texto:
             motivo.append('obra literária')
-        if 'RECLASS' in texto:
-            motivo.append('reclassificação sugerida')
-        if 'DADO' in texto:
-            motivo.append('dado divergente do print')
+        if 'gabarito do Aprendice' in texto:
+            motivo.append('gabarito do Aprendice (sem gabarito publicado)')
         if 'REPROVOU' in texto or 'não marcou fatos_ok' in texto:
-            motivo.append('lente de fatos')
-        if 'confiança baixa' in texto:
-            motivo.append('confiança baixa')
-        mudancas = sum(l.count('" -> "') for l in linhas)
+            motivo.append('lente de fatos não assinou')
+        if 'didática viu possível erro de fato' in texto:
+            motivo.append('a lente didática viu possível erro de fato')
+        if 'cortado em max_tokens' in texto or 'avulsa' in texto:
+            motivo.append('lente refeita fora do batch')
+        if 'conserto impossível' in texto or 'caminho recusado' in texto:
+            motivo.append('correção de lente não aplicada')
+        mudancas = sum(l.count('" -> "') for l in linhas
+                       if l.startswith(('fatos:', 'didática:', 'fatos (2', 'lente de fatos avulsa')))
         if mudancas >= MUITO:
-            motivo.append(f'lentes mudaram {mudancas} campos')
+            motivo.append(f'as lentes mudaram {mudancas} campos')
+        if qid in (a.erros or '').split(','):
+            motivo.append('erro ou aviso do lote.py valida')
         if motivo:
             obrigatorias[qid] = '; '.join(motivo)
     resto = [q for q in por_id if q not in obrigatorias and por_id[q]['status'] == 'ok']
