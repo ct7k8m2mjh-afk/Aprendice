@@ -176,7 +176,7 @@ RECLASS P3a8b56f6 P12.5 -> P06.2 (UNEMAT 2023/2 q31: antítese "ao mal com o bem
 DADO Pa7a58868 (lote 0009): texto_da_prova -> começa por "42 - Leia com atenção" (entrada cortada em "eia"); alternativas.B -> "I e II estão corretas." (sobra um "l" no fim)
 GABARITO P669e7c8b (ITA 2024 q17, O avesso da pele): resolvida com a oficial B (onisciência do narrador); C também defensável (narrador-personagem), explicado no alerta; resolução publicada também dá B
 OBRA Pc430118e (UFT 2024/1 q10, O canto da carpideira): afirmativa IV (Ditinho Arrieiro) não confirmada na web; resolução chega à D por eliminação sem afirmar a IV
-Lote por-p2-0010 gravado (46 ok, 4 pendentes). Lote aberto: por-p2-0011.
+Lote por-p2-0010 gravado (45 ok, 5 pendentes). Lote aberto: por-p2-0011.
 OUTRA P9c0bfb8d (ENEM 2024 q36): outra matéria, Artes (comparação de duas esculturas, sem texto verbal); não resolvida, pôr em app/conteudo-fonte/outra-materia.json
 PRINT Pfeeca942 (Unespar 2024 q17): o print e o texto trazem só o enunciado e as alternativas; falta o trecho de O filho eterno, que está na q16; juntar ao print desta questão e reabrir
 OBRA Pd7b11d0e (UNIRG 2020/1 Medicina q12): Tribo cara baixa — na web só a sinopse da editora; não confirmado o que a crônica diz sobre a felicidade
