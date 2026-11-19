@@ -95,11 +95,11 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 | Geografia parte 2 | — | ACABOU (19/11 18h49). Não reabrir. |
 | Português parte 2 | session_01PveEKaafKU4T97asCdKPew | trabalhando (aberta 19/11 19h25 para TERMINAR, ~44) |
 | Inglês + Filosofia e Sociologia | — | ACABARAM (19/11 19h35). Não reabrir. |
-| Pendentes Português (obras) | session_01PveEKarwcAv6DnMKjRm9gq | trabalhando (19/11 19h36; lotes por-pend-) |
-| Pendentes Português (demais) | session_01PveEKZS5bzVVPhT2waFk6m | trabalhando (19/11 19h36) |
-| Pendentes Inglês (prints) | session_01PveEKYYDuvaWJCLx4ExYYN | trabalhando (19/11 19h36) |
-| Pendentes Bio/Quí/Mat/Fís | session_01PveEKY2v3nNa3i6GFngYfE | trabalhando (19/11 19h36) |
-| Pendentes Geo/His/FS | session_01PveEKXiupD7oFga9rxZKiB | trabalhando (19/11 19h36) |
+| Pendentes Português (obras) | — | ACABOU (19/11 ~20h15). |
+| Pendentes Português (demais) | — | ACABOU (19/11 ~20h15). |
+| Pendentes Inglês (prints) | — | ACABOU (19/11 ~20h15). |
+| Pendentes Bio/Quí/Mat/Fís | — | ACABOU (19/11 ~20h15). |
+| Pendentes Geo/His/FS | — | ACABOU (19/11 ~20h15). |
 "ANULAR" (53, docs/resolucoes/anular-para-o-dono.md): DONO 19/11 ~19h45 decidiu: vão ao site como "Questão indisponível" (print visível, sem responder nem corrigir; fora de treinos e simulados). Agente implementando; não reabrir.
 Caídas pelo limite em 13/11 (o dono pode arquivar): Mat session_01PveEKWKTewFDUJvA5Y5s91, Fís session_01PveEKXXFLhp4ro4vnf1rh7,
 Quí session_01PveEKZxREDvirT6VTx5nKy, Geo session_01PveEKaHNFQdko42Ddhy3XZ, Bio session_01PveEKaPh1PAjF3bRbuJ5fG, Por session_01PveEKY3G8XPW7thJLdH3jL.
@@ -213,8 +213,7 @@ depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resoluco
 `url` = o link acima, de outra conversa; read antes).
 
 ## Publicação
-Disparada 19/11 20h33: dpl_HVBmf5cTNEmUBmpDrfzbnPijjmF8 (commit 178ab0a4, 786 testes verdes, 26.300 local; SEM o 'Questão indisponível', que vai na próxima, depois da revisão visual). Conferir no site e registrar.
-Última no ar: dpl_A2nhkZUDgu11ZWxKRZ58fpnvw2dF (commit 67afb1b5, 19/11 19h04, conferido no site 19h25): 25.019 resoluções. Próxima: quando Português acabar (publicação final).
+Última no ar: dpl_HVBmf5cTNEmUBmpDrfzbnPijjmF8 (commit 178ab0a4, 19/11 20h33, conferido no site 20h24): 26.300 resoluções. Próxima: com o 'Questão indisponível' (depois da 2ª revisão visual) e/ou quando a fábrica de Português acabar.
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
 Coordenadora atual: ver a tabela de sessões e a tarefa agendada (13/11: nova coordenadora enxuta).
