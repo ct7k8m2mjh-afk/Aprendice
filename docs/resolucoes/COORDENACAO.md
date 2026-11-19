@@ -57,21 +57,22 @@ aprovação ou resposta: pendências e avisos vão para docs/resolucoes/caixa/<m
    list `respostas`), cumprir e gravar o retorno.
 6. Atualizar a tabela abaixo e encerrar.
 
-## Sessões (13/11/2026, 05h47 UTC)
+## Sessões (19/11/2026, 14h58 UTC)
 | Matéria | Sessão | Situação |
 |---|---|---|
-| Matemática | session_01PveEKWKTewFDUJvA5Y5s91 | trabalhando (aberta 13/11 05h47; anterior aSPVE deu FIM) |
-| Física | session_01PveEKXXFLhp4ro4vnf1rh7 | trabalhando (aberta 13/11 05h32 pela coordenadora antiga; anterior X5T4 deu FIM) |
-| Química | session_01PveEKZxREDvirT6VTx5nKy | trabalhando (aberta 13/11 05h52 pela coordenadora antiga; FIM da anterior após qui-0063 já tratado) |
-| Geografia | session_01PveEKaHNFQdko42Ddhy3XZ | trabalhando (aberta 13/11 05h52 a pedido do dono: 6ª sessão, além do limite de 5) |
-| Biologia | session_01PveEKaPh1PAjF3bRbuJ5fG | trabalhando (aberta 13/11 06h04; anterior b648 deu FIM no bio-0063) |
-| Português | session_01PveEKY3G8XPW7thJLdH3jL | trabalhando (aberta 13/11 05h47; anterior WhAd deu FIM) |
+| Matemática | session_01PveEKb7D6JK1CQcuUsmK6o | trabalhando (aberta 19/11 14h58; retoma mat-0064, mat-0065) |
+| Física | session_01PveEKZJQECSzmdn2ajLNFJ | trabalhando (aberta 19/11 14h58; retoma fis-0062) |
+| Química | session_01PveEKaFZ75HhzLpwG4RGm9 | trabalhando (aberta 19/11 14h58; retoma qui-0064) |
+| Geografia | session_01PveEKWnuQFkENPnSwCMngE | trabalhando (aberta 19/11 14h58; retoma geo-0039, geo-0040) |
+| Biologia | session_01PveEKYyQUcXXXACEDrbiVW | trabalhando (aberta 19/11 14h58) |
+| Português | session_01PveEKZx97iNBdqEKjza4nT | trabalhando (aberta 19/11 14h58; retoma por-0091, por-0093) |
+Caídas pelo limite em 13/11 (o dono pode arquivar): Mat session_01PveEKWKTewFDUJvA5Y5s91, Fís session_01PveEKXXFLhp4ro4vnf1rh7,
+Quí session_01PveEKZxREDvirT6VTx5nKy, Geo session_01PveEKaHNFQdko42Ddhy3XZ, Bio session_01PveEKaPh1PAjF3bRbuJ5fG, Por session_01PveEKY3G8XPW7thJLdH3jL.
 Paradas do sistema novo (o dono pode arquivar): Mat session_01PveEKaSPVEijwvkvEUmmWx, Fís session_01PveEKX5T4pY3Xx4fn4PR8G,
 Por session_01PveEKWhAdHoSJKa5to3K8D, Bio session_01PveEKb648gnNx7gv9Y2Xbs.
 19/11 04h45 UTC: as 6 sessões acima CAÍRAM em 13/11 ~06h10 (limite semanal; status failed). Limite renovou 19/11 04h.
 vez.py: todas LIVRES; lotes a retomar: mat-0064, mat-0065, fis-0062, qui-0064, por-0091, por-0093, geo-0039, geo-0040 (bio nenhum).
-Abrir as 6 de novo ficou PARADO: create_session pede aprovação do dono e ninguém respondeu (2 tentativas para Mat, sem recusa).
-Próxima coordenadora/rodada: só reabrir quando o dono estiver presente para aprovar; não repetir a tentativa a cada rodada.
+Reabertas as 6 em 19/11 14h58 com aprovação do dono.
 Última rodada: 19/11 04h45 UTC (caixa lida até 57a5a8a5; nada novo desde 13/11). Novas: DADO P233b33fd (texto de apoio colado na E); GABARITO P0e5ecbdc (UFRR, Edital 93/25). Agente de pendências da caixa disparado 05h48 (um por vez).
 Antigas, todas paradas (o dono pode arquivar): Mat session_01PveEKZRuBiHmg4Hm9HT1J1, Fís session_01PveEKXmCjqipC4JbNj9w73,
 Quí session_01PveEKadroQ4kNhHt52L2hy, Bio session_01PveEKaptKYR7JXwbmxDGXx, Por session_01PveEKaBDR2WGsLQUacMYFY; e as
