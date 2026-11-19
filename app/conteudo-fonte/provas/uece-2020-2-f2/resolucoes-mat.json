@@ -1770,5 +1770,106 @@
    "data": "2026-11-19",
    "lote": "mat-0076"
   }
+ },
+ "P78b92676": {
+  "n": "57",
+  "conceito": "Usar a propriedade det(A·B) = det A · det B para calcular o determinante de uma potência de matriz.",
+  "equivocos": {
+   "A": "M15.2:multiplicou-pelo-expoente",
+   "B": "M15.2:errou-sinal-de-potencia-impar",
+   "C": "M15.2:multiplicou-pelo-expoente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Não é preciso calcular M elevada a 2021. O determinante de um produto é o produto dos determinantes, então det(Mⁿ) = (det M)ⁿ. Basta achar det M e elevar à potência.",
+    "formulas": [
+     "det(A·B) = det A · det B",
+     "det(Mⁿ) = (det M)ⁿ",
+     "det [[a, b], [c, d]] = a·d − b·c"
+    ],
+    "simbolos": [
+     [
+      "det M",
+      "determinante da matriz M"
+     ],
+     [
+      "M²⁰²¹",
+      "M multiplicada por ela mesma 2021 vezes"
+     ]
+    ]
+   },
+   "pista": "Calcule primeiro o determinante da própria M; não tente multiplicar a matriz.",
+   "passos": [
+    {
+     "faz": "Calcule o determinante de M",
+     "conta": "det M = (−3/5)·(3/5) − (4/5)·(4/5) = −9/25 − 16/25 = −25/25 = −1",
+     "porque": "Diagonal principal menos diagonal secundária. Os dois produtos têm denominador 25 e somam −25/25.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a propriedade da potência",
+     "conta": "det(M²⁰²¹) = (det M)²⁰²¹ = (−1)²⁰²¹",
+     "porque": "Cada M do produto contribui com um fator det M; são 2021 fatores iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a potência de −1",
+     "conta": "(−1)²⁰²¹ = −1",
+     "porque": "2021 é ímpar: um número ímpar de fatores −1 deixa o sinal negativo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "det(M²⁰²¹) = −1 → alternativa D",
+     "porque": "O determinante pedido é −1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — −1",
+   "checagem": "Por outro caminho: M·M = [[9/25 + 16/25, −12/25 + 12/25], [−12/25 + 12/25, 16/25 + 9/25]] = I. Então M²⁰²¹ = (M²)¹⁰¹⁰·M = M, e det M = −1. Fecha.",
+   "erradas": {
+    "A": "A não confere: |det M| = 1, então |det(M²⁰²¹)| = 1²⁰²¹ = 1; nenhum determinante de potência de M chega a 2021.",
+    "B": "B sai de errar a paridade: (−1)²⁰²¹ lido como (−1) elevado a número par, que dá 1. Como 2021 é ímpar, o resultado é −1.",
+    "C": "C sai de multiplicar em vez de elevar: 2021 × det M = 2021 × (−1) = −2021. A propriedade é (det M)²⁰²¹."
+   },
+   "armadilha": "O expoente vai para o determinante como potência, e não como fator multiplicando: det(Mⁿ) = (det M)ⁿ.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O determinante de M²⁰²¹.",
+    "chave": "det(Mⁿ) = (det M)ⁿ, e det M = −1.",
+    "cuidado": "2021 é ímpar: (−1)²⁰²¹ = −1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "M² = I",
+    "ideia": "M·M dá a identidade, então M²⁰²¹ = M e o determinante é o de M, −1"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "det M = −9/25 − 16/25 = −1",
+    "nota": "diagonal principal menos secundária"
+   },
+   {
+    "linha": "det(M²⁰²¹) = (det M)²⁰²¹",
+    "nota": "determinante do produto"
+   },
+   {
+    "linha": "(−1)²⁰²¹ = −1",
+    "nota": "expoente ímpar mantém o sinal"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

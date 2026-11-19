@@ -488,5 +488,206 @@
    "data": "2026-11-19",
    "lote": "mat-0072"
   }
+ },
+ "P9740784e": {
+  "n": "49",
+  "conceito": "Contar os zeros finais de 100! pelos fatores 5 do produto.",
+  "equivocos": {
+   "A": "M01.4:esqueceu-os-multiplos-de-25",
+   "B": "M01.4:contou-fatores-errado",
+   "C": "M01.4:contou-fatores-errado",
+   "D": "M01.4:contou-fatores-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada zero no fim do número vem de um fator 10 = 2 · 5. Em 100! há fatores 2 de sobra, então quem limita é o número de fatores 5. Conte os múltiplos de 5 e some os de 25, que trazem um 5 extra.",
+    "formulas": [
+     "zeros finais de n! = [n/5] + [n/25] + [n/125] + ..."
+    ],
+    "simbolos": [
+     [
+      "100!",
+      "produto 100 · 99 · ... · 2 · 1"
+     ],
+     [
+      "[x]",
+      "parte inteira de x"
+     ]
+    ]
+   },
+   "pista": "Um zero final é um fator 10 = 2 · 5. Qual dos dois fatores aparece menos vezes no produto?",
+   "passos": [
+    {
+     "faz": "Conte os múltiplos de 5",
+     "conta": "[100/5] = 20",
+     "porque": "De 1 a 100, os números 5, 10, ..., 100 trazem pelo menos um fator 5 cada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os múltiplos de 25",
+     "conta": "[100/25] = 4",
+     "porque": "25, 50, 75 e 100 têm 5² e trazem um segundo fator 5; 125 já passa de 100.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e conclua",
+     "conta": "20 + 4 = 24 → alternativa E",
+     "porque": "Há 24 fatores 5 e mais fatores 2 que isso, então 24 fatores 10: 24 zeros finais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 24 zeros",
+   "checagem": "Conte os fatores 2 para ver que sobram: [100/2] + [100/4] + [100/8] + [100/16] + [100/32] + [100/64] = 50 + 25 + 12 + 6 + 3 + 1 = 97, bem mais que 24. O limite é mesmo o 5.",
+   "erradas": {
+    "A": "20 sai de contar só os múltiplos de 5, [100/5] = 20, esquecendo o 5 extra de 25, 50, 75 e 100.",
+    "B": "21 não confere: são 20 múltiplos de 5 e 4 múltiplos de 25, total 24.",
+    "C": "22 não confere: são 20 múltiplos de 5 e 4 múltiplos de 25, total 24.",
+    "D": "23 não confere: são 20 múltiplos de 5 e 4 múltiplos de 25, total 24."
+   },
+   "armadilha": "Esquecer que 25, 50, 75 e 100 trazem dois fatores 5 cada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos zeros há no fim de 100!.",
+    "chave": "Zeros finais = fatores 5 = [100/5] + [100/25] = 24.",
+    "cuidado": "Some os múltiplos de 25, que têm um 5 a mais."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo 2 · 5",
+    "ideia": "cada zero é um par 2 · 5; há 97 fatores 2 e 24 fatores 5, então 24 pares"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "[100/5] = 20",
+    "nota": "múltiplos de 5"
+   },
+   {
+    "linha": "[100/25] = 4",
+    "nota": "5 extra de 25, 50, 75, 100"
+   },
+   {
+    "linha": "20 + 4 = 24 → E",
+    "nota": "zeros finais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
+ },
+ "P6c66a671": {
+  "n": "41",
+  "conceito": "Escrever cada incógnita como logaritmo e multiplicar usando a mudança de base em cadeia.",
+  "equivocos": {
+   "B": "M06.3:cadeia-de-logaritmos-errada",
+   "C": "M06.3:cadeia-de-logaritmos-errada",
+   "D": "M06.3:cadeia-de-logaritmos-errada",
+   "E": "M06.3:cadeia-de-logaritmos-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada equação do tipo a^x = b dá x = log_a b. O produto dos seis logaritmos se simplifica pela regra da cadeia: log_a b · log_b c = log_a c. Basta agrupar os que encaixam: bases 2, 4, 6 e bases 3, 5, 7.",
+    "formulas": [
+     "a^x = b ⇔ x = log_a b",
+     "log_a b · log_b c = log_a c"
+    ],
+    "simbolos": [
+     [
+      "log_a b",
+      "logaritmo de b na base a: expoente que se dá a a para obter b"
+     ]
+    ]
+   },
+   "pista": "Escreva cada x como logaritmo e procure pares em que o logaritmando de um é a base do outro.",
+   "passos": [
+    {
+     "faz": "Escreva cada x como logaritmo",
+     "conta": "x1 = log_2 4 | x2 = log_3 5 | x3 = log_4 6 | x4 = log_5 7 | x5 = log_6 8 | x6 = log_7 9",
+     "porque": "a^x = b quer dizer que x é o expoente que leva a até b.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Encadeie as bases pares",
+     "conta": "log_2 4 · log_4 6 · log_6 8 = log_2 8 = 3",
+     "porque": "O 4 de cima cancela com a base 4 e o 6 com a base 6; sobra log_2 8, e 2^3 = 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Encadeie as bases ímpares",
+     "conta": "log_3 5 · log_5 7 · log_7 9 = log_3 9 = 2",
+     "porque": "Mesma cadeia: sobra log_3 9, e 3^2 = 9.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique os dois blocos",
+     "conta": "3 · 2 = 6 → alternativa A",
+     "porque": "A multiplicação pode ser reagrupada à vontade.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 6",
+   "checagem": "Em logaritmo natural: cada x é ln b ÷ ln a, e o produto vira (ln 4 · ln 5 · ln 6 · ln 7 · ln 8 · ln 9) ÷ (ln 2 · ln 3 · ln 4 · ln 5 · ln 6 · ln 7) = (ln 8 · ln 9) ÷ (ln 2 · ln 3) = 3 · 2 = 6. A conta numérica dá 2 · 1,465 · 1,292 · 1,209 · 1,161 · 1,129 ≈ 6,000.",
+   "erradas": {
+    "B": "8 não confere: o produto numérico dos seis logaritmos é 2 · 1,465 · 1,292 · 1,209 · 1,161 · 1,129 ≈ 6,000.",
+    "C": "10 não confere: o bloco de bases pares dá log_2 8 = 3 e o de ímpares log_3 9 = 2; 3 · 2 = 6.",
+    "D": "12 não confere: só x1 = 2 é inteiro; os outros cinco estão entre 1 e 1,5, e o produto é exatamente 6.",
+    "E": "14 não confere: pela mudança para ln, o produto reduz a (ln 8 · ln 9) ÷ (ln 2 · ln 3) = 3 · 2 = 6."
+   },
+   "armadilha": "A cadeia não segue a ordem x1, x2, x3...: log_2 4 encaixa com log_4 6 (x3), não com log_3 5 (x2).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O produto x1 · x2 · x3 · x4 · x5 · x6.",
+    "chave": "x = log_a b em cada equação e a cadeia log_a b · log_b c = log_a c.",
+    "cuidado": "Agrupe pelos encaixes (2-4-6-8 e 3-5-7-9), não pela ordem dos índices."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "logaritmo natural",
+    "ideia": "produto = (ln 8 · ln 9)/(ln 2 · ln 3) = 3 · 2 = 6, pois os ln de 4, 5, 6 e 7 cancelam"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x1 · x3 · x5 = log_2 4 · log_4 6 · log_6 8",
+    "nota": "bloco das bases pares"
+   },
+   {
+    "linha": "= log_2 8 = 3",
+    "nota": "cadeia"
+   },
+   {
+    "linha": "x2 · x4 · x6 = log_3 5 · log_5 7 · log_7 9",
+    "nota": "bloco das bases ímpares"
+   },
+   {
+    "linha": "= log_3 9 = 2",
+    "nota": "cadeia"
+   },
+   {
+    "linha": "3 · 2 = 6 → A",
+    "nota": "produto"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

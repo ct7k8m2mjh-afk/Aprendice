@@ -213,5 +213,336 @@
    "data": "2026-11-19",
    "lote": "mat-0071"
   }
+ },
+ "P7626aec2": {
+  "n": "46",
+  "conceito": "Reconhecer preços que caem R$ 0,60 por unidade como uma PA e somar os 10 primeiros termos.",
+  "equivocos": {
+   "A": "M07.3:ultimo-termo-errado",
+   "C": "M07.3:n-descontos-em-vez-de-n-menos-1",
+   "D": "M07.3:valor-acima-do-preco-cheio",
+   "E": "M07.3:somou-termos-demais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O quadro mostra os preços caindo sempre R$ 0,60 de uma unidade para a seguinte: é uma progressão aritmética. O padrão vale até a 12ª unidade, então a 10ª segue a mesma regra. O total pago é a soma dos 10 primeiros termos.",
+    "formulas": [
+     "an = a1 + (n − 1) · r",
+     "Sn = (a1 + an) · n/2"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais a razão r"
+     ],
+     [
+      "a1, an",
+      "primeiro e n-ésimo termos"
+     ],
+     [
+      "r",
+      "razão da PA (aqui, −0,60)"
+     ],
+     [
+      "Sn",
+      "soma dos n primeiros termos"
+     ]
+    ]
+   },
+   "pista": "Calcule a diferença entre duas unidades seguidas no quadro e veja se ela se repete.",
+   "passos": [
+    {
+     "faz": "Identifique a PA",
+     "conta": "36,80 − 36,20 = 0,60 | 36,20 − 35,60 = 0,60 → r = −0,60",
+     "porque": "A queda é sempre a mesma, então os preços formam uma PA de razão −0,60.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o preço da 10ª unidade",
+     "conta": "a10 = 36,80 + 9 · (−0,60) → a10 = 36,80 − 5,40 = 31,40",
+     "porque": "Da 1ª até a 10ª são 9 descontos de 0,60, não 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as 10 unidades",
+     "conta": "S10 = (36,80 + 31,40) · 10/2 → S10 = 68,20 · 5 = 341,00",
+     "porque": "Na PA, a soma é a média do primeiro com o último vezes a quantidade de termos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "R$ 341,00 → alternativa B",
+     "porque": "É o total pago pelas 10 bolsas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — R$ 341,00",
+   "checagem": "Some aos pares do começo e do fim: 36,80 + 31,40 = 36,20 + 32,00 = ... = 68,20; são 5 pares, 5 × 68,20 = 341,00. E fica abaixo de 10 × 36,80 = 368,00, como deve ser com desconto.",
+   "erradas": {
+    "A": "344,00 sai de parar na 9ª unidade como último termo: (36,80 + 32,00) · 10/2 = 344. O 10º termo leva 9 descontos e vale 31,40.",
+    "C": "338,00 sai de aplicar 10 descontos à 10ª unidade: a10 = 36,80 − 6,00 = 30,80, e (36,80 + 30,80) · 5 = 338. São só 9 descontos.",
+    "D": "395,00 não confere: é mais que 10 × 36,80 = 368,00, o preço das 10 bolsas sem nenhum desconto.",
+    "E": "402,00 sai de somar as 12 unidades em vez de 10: a12 = 30,20 e (36,80 + 30,20) · 12/2 = 402."
+   },
+   "armadilha": "Da 1ª até a 10ª unidade há 9 descontos, não 10: an = a1 + (n − 1)r.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quanto se paga por 10 bolsas com preço caindo R$ 0,60 por unidade.",
+    "chave": "PA com a1 = 36,80 e r = −0,60; a10 = 31,40 e S10 = 341.",
+    "cuidado": "n − 1 descontos até o n-ésimo termo, e 10 unidades, não as 12 do limite."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma direta",
+    "ideia": "10 × 36,80 − 0,60 × (0 + 1 + ... + 9) = 368 − 0,60 × 45 = 341"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "r = 36,20 − 36,80 = −0,60",
+    "nota": "razão da PA"
+   },
+   {
+    "linha": "a10 = 36,80 + 9 · (−0,60) = 31,40",
+    "nota": "10º preço"
+   },
+   {
+    "linha": "S10 = (36,80 + 31,40) · 10/2",
+    "nota": "fórmula da soma"
+   },
+   {
+    "linha": "S10 = 68,20 · 5 = 341,00 → B",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
+ },
+ "P3486670c": {
+  "n": "49",
+  "conceito": "Preço proporcional à área do disco: a razão das áreas é o quadrado da razão dos diâmetros.",
+  "equivocos": {
+   "A": "M02.4:razao-de-area-errada",
+   "B": "M02.4:razao-linear-em-vez-de-quadratica",
+   "D": "M02.4:razao-de-area-errada",
+   "E": "M02.4:razao-de-area-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O preço deve acompanhar a área da pizza, não o diâmetro. A área do círculo é proporcional ao quadrado do diâmetro, então a razão das áreas é (32/40)^2. Basta multiplicar o preço da grande por essa razão.",
+    "formulas": [
+     "área do disco = π · d^2/4",
+     "razão das áreas = (d2/d1)^2"
+    ],
+    "simbolos": [
+     [
+      "d",
+      "diâmetro da pizza"
+     ],
+     [
+      "π",
+      "pi, constante que cancela na razão"
+     ]
+    ]
+   },
+   "pista": "Compare as áreas, não os diâmetros: como a área cresce com o diâmetro?",
+   "passos": [
+    {
+     "faz": "Calcule a razão dos diâmetros",
+     "conta": "32/40 = 0,8",
+     "porque": "A pizza nova tem 80% do diâmetro da grande.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Eleve ao quadrado para ter a razão das áreas",
+     "conta": "(32/40)^2 = 0,8^2 = 0,64",
+     "porque": "Área depende de d²; o π e o 4 cancelam na razão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique ao preço",
+     "conta": "64,00 × 0,64 = 40,96",
+     "porque": "Preço proporcional à área mantém o mesmo preço por cm² e, assim, a margem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "R$ 40,96 → alternativa C",
+     "porque": "É o preço da pizza de 32 cm.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — R$ 40,96",
+   "checagem": "Pelo preço por área: 64 ÷ 40^2 = 64 ÷ 1600 = 0,04 real por unidade de d²; 0,04 × 32^2 = 0,04 × 1024 = 40,96. Fecha.",
+   "erradas": {
+    "A": "R$ 57,60 não confere: 57,60 ÷ 64 = 0,90, e a razão das áreas é (32/40)^2 = 0,64.",
+    "B": "R$ 51,20 sai de usar a razão dos diâmetros, que é linear: 64 × 32/40 = 51,20. Área escala com o quadrado: 0,8^2 = 0,64.",
+    "D": "R$ 38,40 não confere: 38,40 ÷ 64 = 0,60, diferente da razão das áreas 0,64.",
+    "E": "R$ 31,36 não confere: 31,36 ÷ 64 = 0,49 = 0,7^2, o que exigiria diâmetro de 28 cm, e não 32 cm."
+   },
+   "armadilha": "A pizza menor tem 80% do diâmetro, mas só 64% da área: usar a razão linear dá R$ 51,20.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O preço da pizza de 32 cm proporcional à área.",
+    "chave": "Razão das áreas = (32/40)^2 = 0,64; 64 × 0,64 = 40,96.",
+    "cuidado": "Área escala com o quadrado do diâmetro, não com o diâmetro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "preço por cm²",
+    "ideia": "64 ÷ (π · 20²) por cm² vezes π · 16² dá 64 × 256/400 = 40,96"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "32/40 = 0,8",
+    "nota": "razão dos diâmetros"
+   },
+   {
+    "linha": "(0,8)^2 = 0,64",
+    "nota": "razão das áreas"
+   },
+   {
+    "linha": "64 × 0,64 = 40,96 → C",
+    "nota": "preço proporcional à área"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
+ },
+ "P28a952a2": {
+  "n": "48",
+  "conceito": "Usar a diferença de magnitudes na escala Richter (diferença de logaritmos) para achar a razão entre amplitudes.",
+  "equivocos": {
+   "A": "M06.3:inverteu-a-razao",
+   "B": "M06.3:achou-que-a-referencia-zera-tudo",
+   "C": "M06.3:um-grau-no-lugar-de-dois",
+   "D": "M06.3:inverteu-a-razao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A fórmula M = log A − log A0 é um log de razão: M = log(A/A0). Como os dois terremotos têm a mesma referência A0, subtrair as magnitudes elimina A0 e sobra o log da razão entre as amplitudes. Cada grau a mais na escala multiplica a amplitude por 10.",
+    "formulas": [
+     "M = log A − log A0 = log(A/A0)",
+     "M1 − M2 = log(A1/A2)",
+     "log r = 2 → r = 10²"
+    ],
+    "simbolos": [
+     [
+      "M",
+      "magnitude, em graus"
+     ],
+     [
+      "A",
+      "amplitude máxima do terremoto"
+     ],
+     [
+      "A0",
+      "amplitude de referência, a mesma nos dois"
+     ],
+     [
+      "log",
+      "logaritmo decimal (base 10)"
+     ],
+     [
+      "A1, A2",
+      "amplitudes dos terremotos de 06 e de 27 de fevereiro"
+     ]
+    ]
+   },
+   "pista": "Escreva a fórmula para cada terremoto e subtraia uma da outra; veja o que acontece com A0.",
+   "passos": [
+    {
+     "faz": "Localize as duas magnitudes",
+     "conta": "06/02: M1 = 7,8 | 27/02: M2 = 5,8",
+     "porque": "Segundo o texto I, o terremoto de 6 de fevereiro teve magnitude 7,8; segundo o texto II, o de 27 de fevereiro teve 5,8.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Subtraia as duas fórmulas",
+     "conta": "M1 − M2 = (log A1 − log A0) − (log A2 − log A0) = log A1 − log A2 = log(A1/A2)",
+     "porque": "O log A0 aparece nas duas e se cancela. A diferença de logs é o log da razão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva o log",
+     "conta": "log(A1/A2) = 7,8 − 5,8 = 2 → A1/A2 = 10² = 100",
+     "porque": "Log decimal igual a 2 quer dizer que o número é 10 elevado a 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "A1/A2 = 100 → alternativa E",
+     "porque": "A pergunta é a razão da amplitude de 06 de fevereiro para a de 27 de fevereiro, nessa ordem: o maior sobre o menor.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 100",
+   "checagem": "Pense grau a grau: de 5,8 para 6,8 a amplitude multiplica por 10, e de 6,8 para 7,8 multiplica por 10 de novo. 10·10 = 100.",
+   "erradas": {
+    "A": "0,01 sai de inverter a razão: A2/A1 = 10^(5,8 − 7,8) = 10^(−2) = 0,01, a amplitude de 27 de fevereiro sobre a de 06.",
+    "B": "1 não confere: razão 1 daria log(A1/A2) = 0, ou seja, magnitudes iguais, mas elas são 7,8 e 5,8.",
+    "C": "10 não confere: razão 10 corresponde a uma diferença de 1 grau (log 10 = 1), e a diferença aqui é 7,8 − 5,8 = 2.",
+    "D": "0,1 não confere: daria log(A1/A2) = −1, uma diferença de −1 grau, com o terremoto de 06 de fevereiro mais fraco, o contrário do texto."
+   },
+   "armadilha": "Achar que 2 graus a mais é o dobro: na escala logarítmica, 2 graus a mais é 10² = 100 vezes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão entre a amplitude do terremoto de 06/02 (7,8) e a do de 27/02 (5,8).",
+    "chave": "M1 − M2 = log(A1/A2) = 2, logo A1/A2 = 100.",
+    "cuidado": "A0 cancela; e a ordem da razão é 06 sobre 27."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "uma fórmula por terremoto",
+    "ideia": "A1 = A0·10^7,8 e A2 = A0·10^5,8; dividindo, A1/A2 = 10^2 = 100"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "M1 − M2 = log A1 − log A2",
+    "nota": "log A0 cancela"
+   },
+   {
+    "linha": "log(A1/A2) = 7,8 − 5,8 = 2",
+    "nota": "diferença das magnitudes"
+   },
+   {
+    "linha": "A1/A2 = 10² = 100",
+    "nota": "definição de log"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

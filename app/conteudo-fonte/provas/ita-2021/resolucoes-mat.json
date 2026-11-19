@@ -495,5 +495,134 @@
    "data": "2026-11-19",
    "lote": "mat-0071"
   }
+ },
+ "Pd6e06d7a": {
+  "n": "46",
+  "conceito": "Contar as intersecções de uma reta pela origem com gráficos de exponenciais e logaritmo, usando a tangência como valor de corte.",
+  "equivocos": {
+   "A": "M06.1:nao-viu-trecho-com-um-ponto",
+   "C": "M06.1:esqueceu-ponto-comum-de-g-e-h",
+   "D": "M06.1:nao-viu-trecho-com-tres-pontos",
+   "E": "M06.1:esqueceu-ponto-comum-de-g-e-h"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Conte as intersecções da reta y = kx com cada curva separadamente e depois some. A quantidade muda nos valores de k em que a reta fica tangente à curva: antes da tangência há um número de pontos, depois outro. Cuidado extra: se a reta passa pelo ponto em que duas curvas se cruzam, esse ponto conta uma vez só para S.",
+    "formulas": [
+     "tangência: as duas funções e as duas inclinações iguais",
+     "(2^x)' = 2^x·ln 2",
+     "log₂x / x é máximo em x = e"
+    ],
+    "simbolos": [
+     [
+      "S",
+      "união dos três gráficos, para x > 0"
+     ],
+     [
+      "n",
+      "número de pontos comuns entre a reta e S"
+     ],
+     [
+      "k",
+      "inclinação da reta y = kx"
+     ],
+     [
+      "ln",
+      "logaritmo natural, base e ≈ 2,718"
+     ],
+     [
+      "k₀, k₁, k_p",
+      "valores de k em que n muda"
+     ]
+    ]
+   },
+   "pista": "Trate uma curva de cada vez e procure o k em que a reta passa a tocar a curva em um ponto só.",
+   "passos": [
+    {
+     "faz": "Conte os pontos com g(x) = 2^(−x)",
+     "conta": "2^(−x) = kx → 1 ponto para todo k > 0",
+     "porque": "Para x > 0, g desce de 1 para perto de 0 e kx sobe a partir de 0. Uma desce e a outra sobe: elas se cruzam uma única vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a tangência com f(x) = 2^x",
+     "conta": "2^x = kx e 2^x·ln 2 = k → x = 1/ln 2 → k₀ = e·ln 2 ≈ 1,88",
+     "porque": "Dividindo as duas igualdades sai x·ln 2 = 1. Com 2^(1/ln 2) = e, a reta tangente tem k₀ ≈ 1,88. Abaixo dele a reta não toca f (0 pontos), em k₀ toca 1 vez, acima corta 2 vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a tangência com h(x) = log₂x",
+     "conta": "log₂x = kx → k = (log₂x)/x → máximo em x = e → k₁ = 1/(e·ln 2) ≈ 0,53",
+     "porque": "A reta corta h quando k é um valor de (log₂x)/x. Esse quociente sobe até x = e e depois cai, com máximo 1/(e·ln 2). Logo: 2 pontos se k < k₁, 1 ponto em k₁, nenhum acima.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte o ponto comum de g e h",
+     "conta": "2^(−x) = log₂x → x ≈ 1,32 ; y ≈ 0,40 → k_p = 0,40/1,32 ≈ 0,30",
+     "porque": "g e h se cruzam num ponto P. Para a reta que passa por P, o ponto da g e um dos pontos da h são o mesmo: n = 1 + 2 − 1 = 2, e k_p ≈ 0,30 < k₁.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a tabela de n e ligue à alternativa",
+     "conta": "n = 2 em k ≈ 0,30 ; k₁ ≈ 0,53 ; k₀ ≈ 1,88 → alternativa B",
+     "porque": "Somando: n = 3 para k < k₁ (fora k_p), n = 2 em k₁, n = 1 entre k₁ e k₀, n = 2 em k₀ e n = 3 acima de k₀. Há três valores com n = 2, ou seja, pelo menos três.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — n = 2 para pelo menos três valores distintos de k.",
+   "checagem": "Teste valores avulsos: k = 1 dá só o ponto da g (2^x = x e log₂x = x não têm solução), n = 1; k = 3 dá 2 pontos com f (x ≈ 0,46 e x ≈ 3,31) e 1 com g, n = 3. Bate com a tabela.",
+   "erradas": {
+    "A": "n ≠ 1 para todo k não confere: com k = 1 a reta só encontra a g (2^x = x e log₂x = x não têm solução), então n = 1.",
+    "C": "Exatamente dois valores sai de contar só as duas tangências (k₁ ≈ 0,53 e k₀ ≈ 1,88) e esquecer k_p ≈ 0,30, a reta que passa pelo cruzamento de g e h.",
+    "D": "n ≠ 3 para todo k não confere: com k = 3 a reta corta f em x ≈ 0,46 e x ≈ 3,31 e corta g uma vez, então n = 3.",
+    "E": "Dois intervalos sai de esquecer k_p: o conjunto com n = 3 é (0; k_p) ∪ (k_p; k₁) ∪ (k₀; +∞), três intervalos disjuntos."
+   },
+   "armadilha": "Esquecer que a reta pode passar pelo ponto em que g e h se cruzam, onde dois pontos viram um só.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Uma afirmação correta sobre o número n de intersecções de y = kx com os três gráficos.",
+    "chave": "Uma intersecção com g sempre; tangências em k₀ = e·ln 2 (com f) e k₁ = 1/(e·ln 2) (com h); e o k da reta pelo cruzamento de g e h.",
+    "cuidado": "Ponto comum a duas curvas conta uma vez só em S."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "esboço dos gráficos",
+    "ideia": "desenhe 2^x, 2^(−x) e log₂x e gire a reta pela origem de k pequeno a k grande, anotando quando ela ganha ou perde pontos"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2^(−x) = kx → 1 ponto",
+    "nota": "g: sempre uma vez"
+   },
+   {
+    "linha": "2^x = kx e 2^x·ln 2 = k → k₀ = e·ln 2 ≈ 1,88",
+    "nota": "tangência com f"
+   },
+   {
+    "linha": "k = (log₂x)/x → k₁ = 1/(e·ln 2) ≈ 0,53",
+    "nota": "tangência com h"
+   },
+   {
+    "linha": "k_p = 0,40/1,32 ≈ 0,30 → n = 1 + 2 − 1 = 2",
+    "nota": "reta pelo cruzamento de g e h"
+   },
+   {
+    "linha": "n = 2 em k_p, k₁ e k₀",
+    "nota": "três valores"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

@@ -350,5 +350,118 @@
    "data": "2026-11-19",
    "lote": "mat-0072"
   }
+ },
+ "P96c925c3": {
+  "n": "41",
+  "conceito": "Julgar desigualdades com exponenciais de bases diferentes para todo x real, testando valores negativos de x.",
+  "equivocos": {
+   "A": "M06.1:testou-so-x-positivo",
+   "C": "M06.1:testou-so-x-positivo",
+   "D": "M06.1:testou-so-x-positivo",
+   "E": "M06.1:nao-separou-casos-de-x"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sempre verdadeira quer dizer para todo x real, inclusive negativo. Um único x que falha derruba a afirmação. A chave é comparar 3^x e 2^x: para x > 0 a base maior ganha, mas para x < 0 a base maior dá o número menor. Para provar uma afirmação, separe x ≥ 0 e x < 0.",
+    "formulas": [
+     "x > 0 → 3^x > 2^x ; x < 0 → 3^x < 2^x",
+     "3^(2x) = 9^x = 3^x·3^x",
+     "a^x > 0 para toda base a > 0"
+    ],
+    "simbolos": [
+     [
+      "ℝ",
+      "conjunto dos números reais"
+     ],
+     [
+      "3^(2x)",
+      "3 elevado a 2x, o mesmo que 9^x"
+     ]
+    ]
+   },
+   "pista": "Antes de tentar provar, teste x negativo em cada afirmação.",
+   "passos": [
+    {
+     "faz": "Teste a I com x = −1",
+     "conta": "g(−1) = 3^(−1) − 2^(−1) = 1/3 − 1/2 = −1/6 < 0 → I falsa",
+     "porque": "Com expoente negativo, a base maior dá o número menor: 1/3 é menor que 1/2. Um contraexemplo basta.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Prove a II para x ≥ 0",
+     "conta": "x ≥ 0 → 3^x ≥ 1 → 9^x = 3^x·3^x ≥ 3^x > 3^x − 2^x",
+     "porque": "Multiplicar 3^x por um número maior ou igual a 1 não diminui. E tirar 2^x, que é positivo, deixa menor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Prove a II para x < 0",
+     "conta": "x < 0 → 3^x < 2^x → g(x) < 0 < 9^x",
+     "porque": "Para x negativo, g(x) é negativo, enquanto qualquer potência de base positiva é positiva. Nos dois casos f(x) ≥ g(x): II verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a III com x = −3",
+     "conta": "9^(−3) + 3^(−3) − 2^(−3) = 1/729 + 1/27 − 1/8 ≈ −0,087 < 0 → III falsa",
+     "porque": "Para x bem negativo, 2^x é o termo que encolhe mais devagar e supera os outros dois juntos.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "I falsa ; II verdadeira ; III falsa → alternativa B",
+     "porque": "Só a II vale para todo x real.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — apenas II.",
+   "checagem": "Reescreva a II como 9^x + 2^x ≥ 3^x e teste pontos dos dois lados: x = 2 dá 81 + 4 = 85 ≥ 9; x = −1 dá 1/9 + 1/2 ≈ 0,61 ≥ 1/3 ≈ 0,33. Nenhum ponto falha, ao contrário de I e III.",
+   "erradas": {
+    "A": "Apenas I não confere: g(−1) = 1/3 − 1/2 = −1/6 é negativo, então a I falha; e a II, que é verdadeira, ficou de fora.",
+    "C": "Apenas III não confere: em x = −3, f + g = 1/729 + 1/27 − 1/8 ≈ −0,087, negativo; e a II, verdadeira, ficou de fora.",
+    "D": "Todas sai de testar só x ≥ 0, onde as três valem (em x = 1: g = 1, f = 9, f + g = 10). Com x negativo, I e III falham.",
+    "E": "Nenhuma não confere: a II vale para todo x, pois para x ≥ 0 tem-se 9^x ≥ 3^x > g(x) e para x < 0 tem-se g(x) < 0 < 9^x."
+   },
+   "armadilha": "Testar só x positivo: com expoente negativo, a base maior dá a potência menor.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das três desigualdades valem para todo x real.",
+    "chave": "Para x < 0, 3^x < 2^x: isso derruba I (x = −1) e III (x = −3), mas não a II, porque f é sempre positiva.",
+    "cuidado": "Sempre verdadeira exige testar x negativo; um contraexemplo basta para eliminar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "divisão por 9^x",
+    "ideia": "a II equivale a 1 ≥ (1/3)^x − (2/9)^x; para x < 0 o lado direito é negativo e para x ≥ 0 ele é menor que (1/3)^x ≤ 1"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "g(−1) = 1/3 − 1/2 = −1/6",
+    "nota": "I falha"
+   },
+   {
+    "linha": "x ≥ 0: 9^x = 3^x·3^x ≥ 3^x > 3^x − 2^x",
+    "nota": "II vale para x ≥ 0"
+   },
+   {
+    "linha": "x < 0: g(x) < 0 < 9^x",
+    "nota": "II vale para x < 0"
+   },
+   {
+    "linha": "1/729 + 1/27 − 1/8 ≈ −0,087",
+    "nota": "III falha em x = −3"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

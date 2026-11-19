@@ -811,5 +811,109 @@
    "data": "2026-11-19",
    "lote": "mat-0074"
   }
+ },
+ "Pa7296ea3": {
+  "n": "65",
+  "conceito": "Usar o ciclo das potências de i (período 4) para contar pares de expoentes que satisfazem uma soma.",
+  "equivocos": {
+   "A": "M16.2:contagem-errada",
+   "B": "M16.2:contagem-errada",
+   "C": "M16.2:somou-em-vez-de-multiplicar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As potências de i repetem a cada 4: i, −1, −i, 1. Cada iⁿ tem módulo 1, então a única forma de somar −2i é as duas parcelas valerem −i. Isso acontece quando o expoente deixa resto 3 na divisão por 4. Depois é só contar.",
+    "formulas": [
+     "iⁿ depende do resto de n por 4: resto 1 → i ; 2 → −1 ; 3 → −i ; 0 → 1",
+     "pares (n, m) independentes: total = (opções de n) × (opções de m)"
+    ],
+    "simbolos": [
+     [
+      "i",
+      "unidade imaginária, i² = −1"
+     ],
+     [
+      "n ≡ 3 (mod 4)",
+      "n deixa resto 3 na divisão por 4"
+     ]
+    ]
+   },
+   "pista": "Liste os quatro valores possíveis de iⁿ e veja quais dois deles somam −2i.",
+   "passos": [
+    {
+     "faz": "Descubra o que cada parcela vale",
+     "conta": "iⁿ + iᵐ = −2i → iⁿ = −i e iᵐ = −i",
+     "porque": "Os valores possíveis são i, −1, −i e 1; a única soma de dois deles que dá −2i é (−i) + (−i).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os n",
+     "conta": "n = 3, 7, 11, …, 47 → (47 − 3)/4 + 1 = 12",
+     "porque": "iⁿ = −i quando n deixa resto 3 por 4. Entre 1 e 50, o primeiro é 3 e o último é 47, de 4 em 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os m",
+     "conta": "m = 83, 87, 91, 95, 99 → 5",
+     "porque": "Entre 80 e 100, os números com resto 3 por 4 são esses cinco.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as escolhas",
+     "conta": "12 × 5 = 60 → alternativa D",
+     "porque": "Cada n pode formar par com cada m: as escolhas se multiplicam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 60",
+   "checagem": "Teste um par: n = 3 e m = 83. i³ = −i e i⁸³ = i⁸⁰·i³ = 1·(−i) = −i; soma −2i. E n = 1 não serve: i¹ + i⁸³ = i − i = 0.",
+   "erradas": {
+    "A": "A não confere: 25 = 5 × 5 exigiria só 5 valores de n, mas são 12 (3, 7, …, 47); com 5 valores de m, o total é 12 × 5 = 60.",
+    "B": "B não confere: 78 = 13 × 6 exigiria 13 valores de n e 6 de m, mas entre 1 e 50 há 12 com resto 3 e entre 80 e 100 há 5.",
+    "C": "C sai de somar as escolhas em vez de multiplicar: 12 + 5 = 17. Cada par usa um n e um m, então são 12 × 5."
+   },
+   "armadilha": "Somar 12 + 5: para formar pares ordenados, cada n combina com cada m, e as escolhas se multiplicam.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos pares (n, m) com 1 ≤ n ≤ 50 e 80 ≤ m ≤ 100 dão iⁿ + iᵐ = −2i.",
+    "chave": "Só (−i) + (−i) = −2i: n e m com resto 3 por 4; 12 × 5 = 60.",
+    "cuidado": "Conte os extremos: 3 e 47 para n; 83 e 99 para m."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lista",
+    "ideia": "como i⁸⁰ = 1, iᵐ = −i para m = 83, 87, 91, 95, 99; para cada um, os 12 valores n = 3, 7, …, 47 servem: 5 × 12 = 60"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "iⁿ = −i e iᵐ = −i",
+    "nota": "única soma possível"
+   },
+   {
+    "linha": "n: (47 − 3)/4 + 1 = 12",
+    "nota": "resto 3, de 1 a 50"
+   },
+   {
+    "linha": "m: 83, 87, 91, 95, 99 → 5",
+    "nota": "resto 3, de 80 a 100"
+   },
+   {
+    "linha": "12 × 5 = 60",
+    "nota": "princípio multiplicativo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

@@ -614,5 +614,225 @@
    "data": "2026-11-12",
    "lote": "mat-0038"
   }
+ },
+ "P3961a210": {
+  "n": "70",
+  "conceito": "Fatorar um polinômio para achar raízes, grau, divisibilidade e um coeficiente do binômio de Newton.",
+  "equivocos": {
+   "A": "M16.1:esqueceu-raiz-nula",
+   "B": "M16.1:somou-expoentes",
+   "C": "M16.1:coeficiente-binomial-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Tudo fica fácil depois de pôr x² em evidência: x² + x³ = x²·(1 + x). Elevando à 20, p(x) = x⁴⁰·(1 + x)²⁰. Com essa forma, raízes, grau e coeficientes saem direto.",
+    "formulas": [
+     "(a·b)ⁿ = aⁿ·bⁿ",
+     "p(x) divisível por x + 1 ⇔ p(−1) = 0",
+     "em (1 + x)ⁿ, o coeficiente de xᵏ é C(n, k)"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "número binomial: n!/(k!·(n − k)!)"
+     ],
+     [
+      "grau",
+      "maior expoente de x"
+     ]
+    ]
+   },
+   "pista": "Antes de analisar as afirmações, ponha um fator comum em evidência dentro do parêntese.",
+   "passos": [
+    {
+     "faz": "Fatore o polinômio",
+     "conta": "(x² + x³)²⁰ = (x²·(1 + x))²⁰ = x⁴⁰·(1 + x)²⁰",
+     "porque": "x² é comum às duas parcelas. A potência se distribui: (x²)²⁰ = x⁴⁰.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Analise I e III",
+     "conta": "x⁴⁰·(1 + x)²⁰ = 0 → x = 0 ou x = −1 ; p(−1) = 0",
+     "porque": "Só há duas raízes distintas, 0 e −1 (com repetição). Como −1 é raiz, p é divisível por x + 1: I e III verdadeiras.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Analise II",
+     "conta": "grau = 40 + 20 = 60 ≠ 100",
+     "porque": "O grau de x⁴⁰ vezes um polinômio de grau 20 é 60. II é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Analise IV",
+     "conta": "x⁴³ = x⁴⁰·x³ → coeficiente = C(20, 3) = 1140 ≠ C(20, 2) = 190",
+     "porque": "Para chegar a x⁴³, o fator (1 + x)²⁰ tem de fornecer x³; o coeficiente de x³ ali é C(20, 3). IV é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "I e III verdadeiras → alternativa D",
+     "porque": "Só I e III resistem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — apenas I e III",
+   "checagem": "Teste numérico de III: p(−1) = ((−1)² + (−1)³)²⁰ = (1 − 1)²⁰ = 0. E o maior termo de (x² + x³)²⁰ é (x³)²⁰ = x⁶⁰, confirmando o grau 60.",
+   "erradas": {
+    "A": "A deixa I de fora, mas I é verdadeira: x⁴⁰·(1 + x)²⁰ só se anula em x = 0 e x = −1.",
+    "B": "B sai de somar os expoentes antes de multiplicar, (2 + 3)·20 = 100, e de tomar C(20, 2); o grau é 3·20 = 60 e o coeficiente de x⁴³ é C(20, 3).",
+    "C": "C inclui IV, que é falsa: x⁴³ pede x³ do fator (1 + x)²⁰, coeficiente C(20, 3) = 1140, e não C(20, 2) = 190."
+   },
+   "armadilha": "Somar os expoentes 2 + 3 dentro do parêntese: o grau é o do maior termo, (x³)²⁰ = x⁶⁰.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das afirmações I a IV sobre (x² + x³)²⁰ são corretas.",
+    "chave": "p(x) = x⁴⁰·(1 + x)²⁰: raízes 0 e −1, grau 60, x⁴³ com coeficiente C(20, 3).",
+    "cuidado": "Desconte o x⁴⁰ antes de buscar o coeficiente: sobra x³, não x²."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de casos",
+    "ideia": "p(0) = 0 e p(−1) = 0; o termo de maior grau é x⁶⁰; e x⁴³ = (x²)¹⁷·(x³)³ dá C(20, 3)"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x² + x³)²⁰ = x⁴⁰·(1 + x)²⁰",
+    "nota": "x² em evidência"
+   },
+   {
+    "linha": "raízes: x = 0 ou x = −1",
+    "nota": "I e III verdadeiras"
+   },
+   {
+    "linha": "grau = 40 + 20 = 60",
+    "nota": "II falsa"
+   },
+   {
+    "linha": "x⁴³ = x⁴⁰·x³ → C(20, 3)",
+    "nota": "IV falsa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
+ },
+ "P837e8ec4": {
+  "n": "71",
+  "conceito": "Usar que as raízes cúbicas de um complexo ficam espaçadas de 120° numa circunferência e calcular a inclinação da reta entre duas delas.",
+  "equivocos": {
+   "B": "M16.2:inclinacao-mal-calculada",
+   "C": "M16.2:usou-reta-pela-origem",
+   "D": "M16.2:confundiu-coordenada-com-inclinacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As três raízes cúbicas de w têm o mesmo módulo e ficam a 120° uma da outra. Se z₂ = bi com b < 0, z₂ está a 270°; as outras ficam em 270° − 120° = 150° e 270° + 120° = 390° = 30°. A do primeiro quadrante é a de 30°. O raio não importa: ele se cancela na inclinação.",
+    "formulas": [
+     "raízes cúbicas: mesmo módulo, ângulos separados de 360°/3 = 120°",
+     "z = ρ·(cos θ + i·sen θ) ↔ ponto (ρ cos θ, ρ sen θ)",
+     "inclinação = Δy/Δx"
+    ],
+    "simbolos": [
+     [
+      "ρ",
+      "módulo comum das raízes (distância à origem)"
+     ],
+     [
+      "θ",
+      "argumento: ângulo com o eixo real"
+     ],
+     [
+      "coeficiente angular",
+      "inclinação da reta, Δy ÷ Δx"
+     ]
+    ]
+   },
+   "pista": "Localize z₂ no círculo e lembre como as raízes cúbicas se distribuem em volta da origem.",
+   "passos": [
+    {
+     "faz": "Localize as raízes",
+     "conta": "z₂: 270° → 270° − 120° = 150° ; 270° + 120° = 390° = 30° → z₁: 30°",
+     "porque": "z₂ = bi com b negativo fica no eixo imaginário, para baixo: 270°. Das outras duas, só a de 30° está no 1.º quadrante.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva as coordenadas",
+     "conta": "z₁ = (ρ·√3/2, ρ/2) ; z₂ = (0, −ρ)",
+     "porque": "cos 30° = √3/2 e sen 30° = 1/2; z₂ está a distância ρ abaixo da origem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a inclinação",
+     "conta": "Δy/Δx = (ρ/2 + ρ)/(ρ√3/2) = (3/2)/(√3/2) = 3/√3 = √3",
+     "porque": "O ρ cancela em cima e embaixo. Dividir por √3/2 é multiplicar por 2/√3; racionalizando, 3/√3 = √3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "coeficiente angular = √3 → alternativa A",
+     "porque": "A reta por z₁ e z₂ tem inclinação √3.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — √3",
+   "checagem": "Pelo ângulo: z₁ (30°) e z₂ (270°) estão na mesma circunferência; a corda entre pontos de ângulos α e β tem direção (α + β)/2 + 90° = 150° + 90° = 240°, e tg 240° = tg 60° = √3. Fecha.",
+   "erradas": {
+    "B": "B não confere: inclinação 1 exigiria Δy = Δx, mas Δy = 3ρ/2 e Δx = ρ√3/2 ≈ 0,87ρ.",
+    "C": "C sai de calcular a inclinação da reta da origem até z₁: tg 30° = √3/3. A reta pedida passa por z₁ e z₂.",
+    "D": "D não confere: √3/2 é a parte real de z₁ quando ρ = 1, uma coordenada e não uma razão Δy/Δx; a razão é (3/2)/(√3/2) = √3."
+   },
+   "armadilha": "Calcular a inclinação do segmento da origem até z₁ (tg 30°) em vez da reta que liga z₁ a z₂.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O coeficiente angular da reta por z₁ e z₂, raízes cúbicas de w.",
+    "chave": "Raízes a 120°: z₂ em 270° coloca z₁ em 30°; Δy/Δx = (3/2)/(√3/2) = √3.",
+    "cuidado": "O módulo não é dado porque não importa: ele se cancela."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ρ = 1",
+    "ideia": "tome z₁ = √3/2 + i/2 e z₂ = −i: inclinação (1/2 + 1)/(√3/2 − 0) = 3/√3 = √3"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "z₂: 270° → z₁: 30°",
+    "nota": "raízes a 120°"
+   },
+   {
+    "linha": "z₁ = (ρ√3/2, ρ/2) ; z₂ = (0, −ρ)",
+    "nota": "coordenadas"
+   },
+   {
+    "linha": "Δy/Δx = (3ρ/2)/(ρ√3/2)",
+    "nota": "inclinação"
+   },
+   {
+    "linha": "= 3/√3 = √3",
+    "nota": "racionalizar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

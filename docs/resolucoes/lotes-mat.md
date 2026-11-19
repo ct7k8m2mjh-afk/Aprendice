@@ -82,7 +82,7 @@ Faltam 158 questões sem resolução (fora as que estão em lote, pendentes ou c
 | mat-0074 | ENEM nível 7-10 | 50 | gravado | 49 | 1 | 0 |
 | mat-0075 | provas-alvo nível 7-10 | 50 | gravado | 49 | 1 | 0 |
 | mat-0076 | provas-alvo nível 7-10 | 50 | gravado | 50 | 0 | 0 |
-| mat-0077 | provas-alvo nível 7-10 | 50 | aberto |  |  |  |
+| mat-0077 | provas-alvo nível 7-10 | 50 | gravado | 50 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 

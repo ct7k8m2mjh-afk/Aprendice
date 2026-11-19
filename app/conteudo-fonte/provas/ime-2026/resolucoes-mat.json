@@ -1121,5 +1121,134 @@
    "data": "2026-11-19",
    "lote": "mat-0072"
   }
+ },
+ "P62a58056": {
+  "n": "12",
+  "conceito": "Simplificar uma expressão com logaritmos por substituição e achar seu mínimo num intervalo pelo vértice de uma parábola.",
+  "equivocos": {
+   "B": "M06.3:testou-so-a-ponta-do-intervalo",
+   "C": "M06.3:nao-e-o-maior-valor",
+   "D": "M06.3:nao-e-o-maior-valor",
+   "E": "M06.3:nao-e-o-maior-valor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O maior A que fica abaixo da expressão para todo x é o menor valor que a expressão assume no intervalo. Troque ln x por t: todos os logs viram expressões em t. O numerador vira a constante 8, e o problema se reduz a achar o maior valor do denominador, uma parábola em √t.",
+    "formulas": [
+     "log_√e(x) = ln x / ln √e = 2·ln x",
+     "ln(a/b) = ln a − ln b ; ln(a·b) = ln a + ln b ; ln a^m = m·ln a",
+     "vértice: u_v = −b/(2a)"
+    ],
+    "simbolos": [
+     [
+      "e",
+      "número de Euler, ≈ 2,718"
+     ],
+     [
+      "ln",
+      "logaritmo natural, base e"
+     ],
+     [
+      "log_√e",
+      "logaritmo na base √e"
+     ],
+     [
+      "[1, e)",
+      "de 1 (incluído) até e (excluído)"
+     ],
+     [
+      "t, u",
+      "t = ln x e u = √t, variáveis auxiliares"
+     ]
+    ]
+   },
+   "pista": "Chame ln x de t e reescreva cada log em função de t antes de pensar em máximo ou mínimo.",
+   "passos": [
+    {
+     "faz": "Troque a variável",
+     "conta": "t = ln x ; x ∈ [1, e) → t ∈ [0, 1)",
+     "porque": "ln 1 = 0 e ln e = 1. Todos os logs da expressão viram polinômios em t.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Simplifique o numerador",
+     "conta": "log_√e(x) = 2t ; 2·ln(x/e) = 2t − 2 → 2t − (2t − 2) + 6 = 8",
+     "porque": "ln √e = 1/2, então dividir por 1/2 dobra: 2t. E ln(x/e) = t − 1. O t se cancela e o numerador é sempre 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique o denominador",
+     "conta": "|ln(1/x⁵)| = |−5t| = 5t ; √(ln(x⁴e²) − 2) = √(4t + 2 − 2) = 2√t → 3 − 5t + 2√t",
+     "porque": "Como t ≥ 0, o módulo de −5t é 5t. E ln(x⁴e²) = 4t + 2, que menos 2 dá 4t, com raiz 2√t.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Maximize o denominador",
+     "conta": "u = √t ∈ [0, 1) → −5u² + 2u + 3 → u_v = −2/(2·(−5)) = 1/5 → 3 + 2/5 − 1/5 = 16/5",
+     "porque": "Com u = √t o denominador é uma parábola de concavidade para baixo; o vértice u = 1/5 está dentro de [0, 1) e dá o maior denominador, 16/5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o menor valor da fração",
+     "conta": "8/(16/5) = 8·5/16 = 5/2 → A ≤ 5/2 → alternativa A",
+     "porque": "Numerador fixo e denominador positivo: a fração é mínima quando o denominador é máximo. O maior A que cabe abaixo de todos os valores é esse mínimo, 5/2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 5/2",
+   "checagem": "Complete o quadrado: −5u² + 2u + 3 = 16/5 − 5(u − 1/5)², que nunca passa de 16/5. E fatorando, (5u + 3)(1 − u) > 0 em [0, 1): o denominador é positivo, vai a 0 quando x → e (a fração cresce sem limite) e vale 3 em x = 1 (fração 8/3). O menor valor é mesmo 5/2.",
+   "erradas": {
+    "B": "8/3 sai de testar só x = 1 (t = 0), onde o denominador vale 3. Em x = e^(1/25) a expressão vale 5/2 < 8/3, então A = 8/3 não cumpre a desigualdade para todo x.",
+    "C": "e/2 ≈ 1,36 não confere como resposta: é menor que 5/2, então cumpre a desigualdade, mas não é o maior A; qualquer número entre 1,36 e 2,5 também serve.",
+    "D": "8/5 = 1,6 não confere como resposta: exigiria denominador máximo 5, mas o denominador nunca passa de 16/5 = 3,2. Cumpre a desigualdade, mas não é o maior A.",
+    "E": "6√e/5 ≈ 1,98 não confere como resposta: é menor que 5/2, então cumpre a desigualdade, mas não é o maior A."
+   },
+   "armadilha": "Avaliar só na ponta x = 1 e achar 8/3: o mínimo está no interior, onde o denominador é máximo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O maior A que fica abaixo da expressão para todo x em [1, e).",
+    "chave": "Com t = ln x, a expressão vira 8/(3 − 5t + 2√t); o denominador máximo é 16/5 em √t = 1/5, e o mínimo da fração é 5/2.",
+    "cuidado": "Maior A é o mínimo da expressão; numerador constante faz o mínimo vir do denominador máximo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "derivada",
+    "ideia": "derive D(t) = 3 − 5t + 2√t: D'(t) = −5 + 1/√t = 0 → t = 1/25, D = 16/5 e a fração vale 5/2"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "t = ln x ∈ [0, 1)",
+    "nota": "troca de variável"
+   },
+   {
+    "linha": "2t − (2t − 2) + 6 = 8",
+    "nota": "numerador constante"
+   },
+   {
+    "linha": "3 − 5t + 2√t",
+    "nota": "denominador em t"
+   },
+   {
+    "linha": "u = √t → −5u² + 2u + 3 → u_v = 1/5 → 16/5",
+    "nota": "vértice da parábola"
+   },
+   {
+    "linha": "8/(16/5) = 5/2",
+    "nota": "valor mínimo da fração"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

@@ -969,5 +969,118 @@
    "data": "2026-11-19",
    "lote": "mat-0076"
   }
+ },
+ "Pdc60cc75": {
+  "n": "80",
+  "conceito": "Executar um laço de programa à mão, acompanhando os valores de x e y a cada repetição.",
+  "equivocos": {
+   "A": "M17.2:contou-voltas-a-menos",
+   "B": "M17.2:errou-a-execucao-do-laco",
+   "C": "M17.2:contou-voltas-a-menos",
+   "E": "M17.2:errou-a-execucao-do-laco"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Execute o programa linha por linha, anotando x e y depois de cada repetição; só importa o algarismo das unidades. Repare que o x de dentro do laço é recalculado do zero a partir de y (x = 5 + y), então o valor antigo de x não conta.",
+    "formulas": [
+     "a cada volta: x = 5 + y → x = 3 · x → y = unidade de x"
+    ],
+    "simbolos": [
+     [
+      "Unidade(x)",
+      "algarismo das unidades de x"
+     ],
+     [
+      "x *= 3",
+      "x passa a valer 3 · x"
+     ],
+     [
+      "laço",
+      "bloco entre chaves repetido 4 vezes"
+     ]
+    ]
+   },
+   "pista": "Monte uma tabela com as colunas volta, x e y, e comece com y = Unidade(22).",
+   "passos": [
+    {
+     "faz": "Calcule o valor inicial de y",
+     "conta": "x = 22 → y = 2",
+     "porque": "Antes do laço, y recebe o algarismo das unidades de 22.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a 1ª e a 2ª voltas",
+     "conta": "x = 5 + 2 = 7 → 7 · 3 = 21 → y = 1; x = 5 + 1 = 6 → 6 · 3 = 18 → y = 8",
+     "porque": "Em cada volta o novo x nasce do y anterior, é triplicado, e y vira a unidade do resultado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a 3ª e a 4ª voltas",
+     "conta": "x = 5 + 8 = 13 → 13 · 3 = 39 → y = 9; x = 5 + 9 = 14 → 14 · 3 = 42 → y = 2",
+     "porque": "São 4 repetições ao todo; pare depois da quarta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia o que é impresso",
+     "conta": "y = 2 → alternativa D",
+     "porque": "O programa imprime y ao sair do laço, depois da 4ª volta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 2",
+   "checagem": "A sequência de y é 2 → 1 → 8 → 9 → 2. Como y voltou a 2, o ciclo tem 4 passos; depois de 4 voltas exatas, y volta ao valor inicial, 2.",
+   "erradas": {
+    "A": "9 sai de parar uma volta antes: depois da 3ª repetição, y = 9.",
+    "B": "0 não confere: os valores de y no programa são 2, 1, 8, 9 e 2; nenhum é 0.",
+    "C": "8 sai de parar na 2ª repetição: 6 · 3 = 18, y = 8.",
+    "E": "5 não confere: os valores de y no programa são 2, 1, 8, 9 e 2; o 5 é a parcela somada, não um valor de y."
+   },
+   "armadilha": "Contar as voltas errado: são 4 repetições, e o y impresso é o da 4ª, não o da 3ª.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de y impresso depois de 4 repetições do laço.",
+    "chave": "y percorre 2 → 1 → 8 → 9 → 2.",
+    "cuidado": "Recalcule x a partir de y em cada volta e conte as 4 voltas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ciclo",
+    "ideia": "y vai 2 → 1 → 8 → 9 → 2: o ciclo tem 4 passos, então após 4 voltas y volta a 2"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x = 22 → y = 2",
+    "nota": "antes do laço"
+   },
+   {
+    "linha": "(5 + 2) · 3 = 21 → y = 1",
+    "nota": "1ª volta"
+   },
+   {
+    "linha": "(5 + 1) · 3 = 18 → y = 8",
+    "nota": "2ª volta"
+   },
+   {
+    "linha": "(5 + 8) · 3 = 39 → y = 9",
+    "nota": "3ª volta"
+   },
+   {
+    "linha": "(5 + 9) · 3 = 42 → y = 2",
+    "nota": "4ª volta: imprime 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

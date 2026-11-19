@@ -851,5 +851,217 @@
    "data": "2026-11-19",
    "lote": "mat-0076"
   }
+ },
+ "Pf8a942e7": {
+  "n": "16",
+  "conceito": "Combinar det(Aⁿ) = (det A)ⁿ com a soma infinita de uma progressão geométrica.",
+  "equivocos": {
+   "B": "M15.2:soma-infinita-mal-calculada",
+   "C": "M15.2:usou-elemento-no-lugar-do-determinante",
+   "D": "M15.2:parou-no-denominador"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os determinantes d₁, d₂, d₃, … formam uma progressão geométrica, porque det(Aⁿ) = (det A)ⁿ. A matriz é diagonal, então o determinante é o produto da diagonal. Com razão entre 0 e 1, a soma infinita tem valor finito.",
+    "formulas": [
+     "det(Aⁿ) = (det A)ⁿ",
+     "soma infinita da PG = a₁/(1 − q), se −1 < q < 1"
+    ],
+    "simbolos": [
+     [
+      "dₙ",
+      "determinante da matriz Aⁿ"
+     ],
+     [
+      "PG",
+      "progressão geométrica"
+     ],
+     [
+      "a₁",
+      "primeiro termo da PG"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ]
+    ]
+   },
+   "pista": "Calcule d₁ e veja como d₂, d₃, … dependem dele.",
+   "passos": [
+    {
+     "faz": "Calcule o determinante de A",
+     "conta": "d₁ = (1/2)·(1/2) − 0·0 = 1/4",
+     "porque": "A é diagonal: o determinante é o produto dos elementos da diagonal principal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reconheça a PG",
+     "conta": "dₙ = (det A)ⁿ = (1/4)ⁿ → a₁ = 1/4 ; q = 1/4",
+     "porque": "Cada potência a mais multiplica o determinante por mais um fator 1/4.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique a soma infinita",
+     "conta": "S = (1/4)/(1 − 1/4) = (1/4)/(3/4) = 1/3",
+     "porque": "A razão 1/4 está entre −1 e 1, então a soma converge. Dividir por 3/4 é multiplicar por 4/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "S = 1/3 → alternativa A",
+     "porque": "A soma de todos os determinantes vale 1/3.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1/3",
+   "checagem": "Somas parciais: 1/4 = 0,25; 1/4 + 1/16 = 0,3125; + 1/64 = 0,328125. Elas sobem e se aproximam de 0,333…, sem passar de 1/3. Fecha.",
+   "erradas": {
+    "B": "B não confere: as somas parciais nunca passam de 1/3 (0,25; 0,3125; 0,328…), então a soma não pode ser 1/2.",
+    "C": "C sai de usar a entrada 1/2 da matriz como primeiro termo: (1/2)/(1 − 1/4) = 2/3. O primeiro termo é d₁ = 1/4.",
+    "D": "D sai de parar no denominador da fórmula: 1 − 1/4 = 3/4. Ainda falta dividir a₁ = 1/4 por esse valor."
+   },
+   "armadilha": "O primeiro termo e a razão são o determinante 1/4, e não a entrada 1/2 da matriz.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma infinita dos determinantes de A, A², A³, …",
+    "chave": "dₙ = (1/4)ⁿ é PG de razão 1/4; soma = (1/4)/(3/4) = 1/3.",
+    "cuidado": "Use o determinante (1/4), não o elemento da diagonal (1/2)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diagonal direto",
+    "ideia": "Aⁿ é diagonal com (1/2)ⁿ, então dₙ = (1/2)²ⁿ = (1/4)ⁿ, e a soma é a mesma PG"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "d₁ = 1/2 · 1/2 = 1/4",
+    "nota": "produto da diagonal"
+   },
+   {
+    "linha": "dₙ = (1/4)ⁿ",
+    "nota": "PG de razão 1/4"
+   },
+   {
+    "linha": "S = (1/4)/(3/4)",
+    "nota": "soma infinita"
+   },
+   {
+    "linha": "S = 1/3",
+    "nota": "dividir é multiplicar pelo inverso"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
+ },
+ "P1ed78d51": {
+  "n": "13",
+  "conceito": "Usar o teorema do resto e o valor de P(−1) para separar a soma dos coeficientes de expoente par e ímpar.",
+  "equivocos": {
+   "A": "M16.1:erro-na-paridade",
+   "B": "M16.1:igualou-somas",
+   "D": "M16.1:erro-na-paridade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O resto da divisão por x + 1 é P(−1). Em x = −1, potência par vale 1 e potência ímpar vale −1. Então P(−1) é a soma dos coeficientes de expoente par menos a soma dos de expoente ímpar.",
+    "formulas": [
+     "resto de P(x) ÷ (x − a) = P(a)",
+     "P(−1) = (soma dos coef. pares) − (soma dos coef. ímpares)"
+    ],
+    "simbolos": [
+     [
+      "xᵖ",
+      "potência de x com expoente p"
+     ],
+     [
+      "P(−1)",
+      "valor do polinômio em x = −1"
+     ]
+    ]
+   },
+   "pista": "Descubra em que número a divisão por x + 1 manda calcular P, e o que acontece com cada potência nesse número.",
+   "passos": [
+    {
+     "faz": "Aplique o teorema do resto",
+     "conta": "x + 1 = 0 → x = −1 → P(−1) = 4",
+     "porque": "O resto da divisão por x + 1 é o valor de P na raiz do divisor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Abra P(−1) por paridade",
+     "conta": "P(−1) = S_par − S_ímpar",
+     "porque": "(−1) elevado a expoente par dá 1 e a expoente ímpar dá −1; o termo independente (expoente 0) entra como par.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a soma dos pares",
+     "conta": "S_par − 2016 = 4 → S_par = 4 + 2016 = 2020",
+     "porque": "O 2016 que está subtraindo passa para o outro lado somando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "S_par = 2020 → alternativa C",
+     "porque": "A soma dos coeficientes de expoente par é 2020.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 2020",
+   "checagem": "Exemplo concreto: P(x) = 2020x² + 2016x tem grau 2, soma dos coeficientes ímpares 2016 e dos pares 2020. Dividindo por x + 1, o resto é P(−1) = 2020 − 2016 = 4, o dado do enunciado. Fecha.",
+   "erradas": {
+    "A": "A não confere: com pares 2018, P(−1) = 2018 − 2016 = 2, e o resto dado é 4.",
+    "B": "B sai de supor que as duas somas são iguais: com pares 2016, P(−1) = 2016 − 2016 = 0, e não 4.",
+    "D": "D não confere: com pares 2022, P(−1) = 2022 − 2016 = 6, e não 4."
+   },
+   "armadilha": "Esquecer que em x = −1 os termos de expoente ímpar trocam de sinal: o resto é pares menos ímpares, não a soma de todos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos coeficientes de expoente par de P(x).",
+    "chave": "Resto por x + 1 é P(−1) = pares − ímpares = 4.",
+    "cuidado": "O termo independente conta como expoente par (x⁰)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "para cada valor, faça pares − 2016; só 2020 − 2016 dá o resto 4"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(−1) = 4",
+    "nota": "teorema do resto"
+   },
+   {
+    "linha": "P(−1) = S_par − S_ímpar",
+    "nota": "(−1)ᵖ = ±1"
+   },
+   {
+    "linha": "S_par − 2016 = 4 → S_par = 2020",
+    "nota": "o 2016 passa somando"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

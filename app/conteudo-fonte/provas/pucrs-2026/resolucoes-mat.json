@@ -867,5 +867,124 @@
    "data": "2026-11-19",
    "lote": "mat-0070"
   }
+ },
+ "P1f55003a": {
+  "n": "13",
+  "conceito": "Igualar dois modelos exponenciais num mesmo ano e isolar o parâmetro do expoente com logaritmo decimal.",
+  "equivocos": {
+   "A": "M06.1:inverteu-metade-e-nao-dividiu",
+   "B": "M06.1:parou-em-5c",
+   "C": "M06.1:inverteu-metade-e-dobro"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "1955 é n = 5 anos depois de 1950. Calcule a população de Girassol, que não tem incógnita, e tome a metade: essa é a população de Hortênsia. Depois isole a potência de 10 e aplique log, que derruba o expoente. 1024 é 2¹⁰, e é isso que faz aparecer o log(2).",
+    "formulas": [
+     "log 10^a = a",
+     "log(a/b) = log a − log b",
+     "log 2^m = m·log 2"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "anos desde 1950"
+     ],
+     [
+      "c",
+      "constante positiva do expoente de Hortênsia"
+     ],
+     [
+      "log",
+      "logaritmo decimal (base 10)"
+     ]
+    ]
+   },
+   "pista": "Antes de mexer em c, descubra quantas pessoas Hortênsia tinha em 1955.",
+   "passos": [
+    {
+     "faz": "Calcule Girassol em 1955",
+     "conta": "y(5) = 3125·2⁵ = 3125·32 = 100000",
+     "porque": "De 1950 a 1955 passam 5 anos, então n = 5. Girassol não tem incógnita e dá um número exato.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tome a metade para Hortênsia",
+     "conta": "x(5) = 100000/2 = 50000",
+     "porque": "O enunciado diz que Hortênsia tinha a metade da população de Girassol em 1955.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a potência de 10",
+     "conta": "1024·10^(5c) = 50000 → 10^(5c) = 50000/1024",
+     "porque": "O 1024 que multiplica a potência passa para o outro lado dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique log dos dois lados",
+     "conta": "5c = log 50000 − log 1024 = (5 − log 2) − 10·log 2 = 5 − 11·log 2",
+     "porque": "log 10^(5c) = 5c. Como 50000 = 10⁵/2, log 50000 = 5 − log 2; e 1024 = 2¹⁰ dá log 1024 = 10·log 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida por 5 e ligue à alternativa",
+     "conta": "c = (5 − 11·log 2)/5 = 1 − (11/5)·log 2 → alternativa D",
+     "porque": "O 5 que multiplica c vai para o outro lado dividindo cada parcela. A pergunta é c, não 5c.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — c = 1 − (11/5)·log(2)",
+   "checagem": "Use log 2 ≈ 0,301: c ≈ 1 − 2,2·0,301 ≈ 0,338, positivo como o enunciado exige. Então 10^(5·0,338) ≈ 48,8 e 1024·48,8 ≈ 50000, a metade de 100000.",
+   "erradas": {
+    "A": "5 − 9·log(2) sai de dois erros: inverter a relação (Hortênsia com o dobro, 200000) e não dividir por 5. Fica 5c = log 200000 − log 1024 = 5 + log 2 − 10·log 2 = 5 − 9·log 2.",
+    "B": "5 − 11·log(2) é o valor de 5c: a conta está certa até o fim, mas faltou dividir por 5 para chegar a c.",
+    "C": "1 − (9/5)·log(2) sai de inverter a metade: com Hortênsia = 2·100000 = 200000, 5c = 5 − 9·log 2 e c = 1 − (9/5)·log 2."
+   },
+   "armadilha": "Hortênsia é a metade de Girassol, não o dobro; e a pergunta é c, não 5c.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O parâmetro c do modelo de Hortênsia, sabendo que em 1955 ela tinha metade da população de Girassol.",
+    "chave": "y(5) = 100000, x(5) = 50000, 10^(5c) = 50000/1024, 5c = 5 − 11·log 2.",
+    "cuidado": "Escreva 1024 = 2¹⁰ e 50000 = 10⁵/2 para tudo virar log 2, e divida por 5 no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "log da razão",
+    "ideia": "escreva x(5)/y(5) = 1/2 direto: 1024·10^(5c)/(3125·32) = 1/2 e aplique log de uma vez"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "y(5) = 3125·32 = 100000",
+    "nota": "n = 5 em 1955"
+   },
+   {
+    "linha": "x(5) = 100000/2 = 50000",
+    "nota": "metade de Girassol"
+   },
+   {
+    "linha": "10^(5c) = 50000/1024",
+    "nota": "1024 passa dividindo"
+   },
+   {
+    "linha": "5c = (5 − log 2) − 10·log 2 = 5 − 11·log 2",
+    "nota": "log dos dois lados"
+   },
+   {
+    "linha": "c = 1 − (11/5)·log 2",
+    "nota": "divide por 5"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

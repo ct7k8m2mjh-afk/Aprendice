@@ -889,5 +889,131 @@
    "data": "2026-11-19",
    "lote": "mat-0072"
   }
+ },
+ "Pd2fe7a55": {
+  "n": "5",
+  "conceito": "Função por partes: achar o maior raio α em torno de x = 1 em que f fica a menos de 1 do valor 1.",
+  "equivocos": {
+   "A": "M05.4:comprimento-em-vez-de-raio",
+   "B": "M05.4:analisou-so-um-lado",
+   "C": "M05.4:limite-de-x-em-vez-de-distancia",
+   "E": "M05.4:nao-testou-o-raio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "|f(x) − 1| < 1 é o mesmo que 0 < f(x) < 2. Para x > 1, a fração simplifica: (x⁴ − x³)/(x − 1) = x³. Analise cada lado de x = 1 separadamente; o α é o menor dos dois raios, porque o intervalo em volta de 1 tem o mesmo raio dos dois lados. O ponto x = 1 fica de fora (0 < |x − 1|).",
+    "formulas": [
+     "|f − 1| < 1 ⇔ 0 < f < 2",
+     "(x⁴ − x³)/(x − 1) = x³(x − 1)/(x − 1) = x³"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "raio do intervalo em volta de x = 1"
+     ],
+     [
+      "∛2",
+      "raiz cúbica de 2, cerca de 1,26"
+     ],
+     [
+      "⇒",
+      "implica: se vale a esquerda, vale a direita"
+     ]
+    ]
+   },
+   "pista": "Troque |f(x) − 1| < 1 por uma dupla desigualdade e simplifique a fração do caso x > 1.",
+   "passos": [
+    {
+     "faz": "Reescreva a condição",
+     "conta": "|f(x) − 1| < 1 → −1 < f(x) − 1 < 1 → 0 < f(x) < 2",
+     "porque": "Tirar o módulo dá uma dupla desigualdade; o 1 passa somando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Analise x > 1",
+     "conta": "(x⁴ − x³)/(x − 1) = x³ → x³ < 2 → x < ∛2 → α ≤ ∛2 − 1",
+     "porque": "Para x um pouco maior que 1, x³ > 1 > 0; o limite é x³ < 2. A distância de 1 até ∛2 é ∛2 − 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Analise x < 1",
+     "conta": "−2x + 3 < 2 → x > 1/2 → α ≤ 1 − 1/2 = 1/2",
+     "porque": "Para x < 1, −2x + 3 > 1 > 0; o limite é ficar abaixo de 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fique com o menor raio",
+     "conta": "∛2 − 1 ≈ 0,26 < 1/2 → α = ∛2 − 1",
+     "porque": "O intervalo tem o mesmo raio dos dois lados de 1; o lado direito é o mais apertado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — −1 + ∛2",
+   "checagem": "Com α = ∛2 − 1, x vai de 2 − ∛2 ≈ 0,74 a ∛2 ≈ 1,26: à esquerda, f(0,74) = 1,52 < 2; à direita, x³ < 2. Com α um pouco maior, um x logo acima de ∛2 dá x³ > 2 e falha.",
+   "erradas": {
+    "A": "∛2 − 1/2 ≈ 0,76 sai de medir o comprimento do intervalo (1/2, ∛2) em vez do raio em volta de 1; com ele, x = 1,7 dá f = 4,9 e |f − 1| > 1.",
+    "B": "1/2 é o raio do lado esquerdo só; à direita, x = 1,4 está a menos de 1/2 de 1 e dá f = 2,744 > 2.",
+    "C": "∛2 é o limite de x, não a distância até 1: com α ≈ 1,26, x = 2 dá f = 8.",
+    "E": "1 não confere: x = 1,9 está a menos de 1 de 1 e dá f = 6,859, longe de 1."
+   },
+   "armadilha": "Esquecer de simplificar (x⁴ − x³)/(x − 1) = x³ ou responder o limite de x (∛2) em vez da distância até 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O maior raio α em volta de 1 que mantém f entre 0 e 2.",
+    "chave": "À direita, x³ < 2 dá raio ∛2 − 1; à esquerda, raio 1/2; vale o menor.",
+    "cuidado": "α é distância até 1, e o valor f(1) = 2 não entra porque x = 1 está excluído."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Ordene os candidatos: o lado direito exige x < ∛2 ≈ 1,26, então qualquer α > 0,26 deixa entrar um x com x³ > 2; só ∛2 − 1 serve."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "|f − 1| < 1 → 0 < f < 2",
+    "nota": "tirar o módulo"
+   },
+   {
+    "linha": "(x⁴ − x³)/(x − 1) = x³",
+    "nota": "x³ em evidência e cancela x − 1"
+   },
+   {
+    "linha": "x³ < 2 → x < ∛2",
+    "nota": "lado direito"
+   },
+   {
+    "linha": "−2x + 3 < 2 → x > 1/2",
+    "nota": "lado esquerdo"
+   },
+   {
+    "linha": "α = mín(∛2 − 1, 1/2) = ∛2 − 1",
+    "nota": "o raio mais apertado"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "Desenha a reta −2x + 3 à esquerda de 1 e a curva x³ à direita, a faixa 0 < y < 2 e marca os cortes em x = 1/2 e x = ∛2; destaca o intervalo simétrico de raio ∛2 − 1."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

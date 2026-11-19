@@ -391,5 +391,114 @@
    "data": "2026-11-13",
    "lote": "mat-0060"
   }
+ },
+ "P9bded7e5": {
+  "n": "35",
+  "conceito": "Calcular um determinante 3×3 com logaritmos nas entradas e resolver a equação logarítmica resultante.",
+  "equivocos": {
+   "B": "M06.4:erro-no-determinante",
+   "C": "M06.4:erro-no-determinante",
+   "D": "M06.4:usou-log-na-base-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A primeira coluna tem dois zeros: desenvolvendo o determinante por ela (Laplace), só um termo sobrevive, e o determinante vira uma conta 2×2. Nessa conta só aparece log₂(x), então log₃(x) e log₃(2) nem entram. Depois é só resolver log₂(x) = número.",
+    "formulas": [
+     "Laplace: det = soma de a_ij·(−1)^(i+j)·menor_ij numa linha ou coluna",
+     "det de [a b; c d] = a·d − b·c",
+     "log₂x = m ⇔ x = 2^m"
+    ],
+    "simbolos": [
+     [
+      "det A",
+      "determinante da matriz A"
+     ],
+     [
+      "menor_ij",
+      "determinante que sobra ao riscar a linha i e a coluna j"
+     ],
+     [
+      "a",
+      "abreviação de log₂(x)"
+     ]
+    ]
+   },
+   "pista": "Escolha a linha ou coluna com mais zeros para desenvolver o determinante.",
+   "passos": [
+    {
+     "faz": "Desenvolva pela 1ª coluna",
+     "conta": "det A = (−1)·(−1)^(2+1)·det[log₂x 1/3 ; log₂x 1]",
+     "porque": "Na 1ª coluna só o −1 (linha 2) não é zero. Riscando a linha 2 e a coluna 1, sobra a matriz 2×2 das linhas 1 e 3, colunas 2 e 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o menor 2×2",
+     "conta": "a·1 − (1/3)·a = 2a/3 → det A = (−1)·(−1)·2a/3 = 2a/3",
+     "porque": "Com a = log₂x, o menor vale a − a/3 = 2a/3. Os dois sinais negativos se anulam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale a 1",
+     "conta": "2a/3 = 1 → a = 3/2",
+     "porque": "O 3 que divide passa multiplicando e o 2 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte para x e ligue à alternativa",
+     "conta": "log₂x = 3/2 → x = 2^(3/2) = 2·√2 → alternativa A",
+     "porque": "2^(3/2) = 2¹·2^(1/2) = 2√2, que é positivo, como o logaritmando exige.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — x = 2√2",
+   "checagem": "Faça por Sarrus, com a = log₂x e b = log₃x: diagonais principais 0·b·1 + a·log₃2·0 + (1/3)·(−1)·a = −a/3; secundárias (1/3)·b·0 + 0·log₃2·a + a·(−1)·1 = −a. det = −a/3 − (−a) = 2a/3, o mesmo resultado.",
+   "erradas": {
+    "B": "3√2 não confere: log₂(3√2) ≈ 2,085, e o determinante daria (2/3)·2,085 ≈ 1,39, não 1.",
+    "C": "2√3 não confere: log₂(2√3) ≈ 1,792, e o determinante daria (2/3)·1,792 ≈ 1,19, não 1.",
+    "D": "3√3 sai de usar log₃x no lugar de log₂x: log₃x = 3/2 dá x = 3^(3/2) = 3√3. Mas o menor que sobra só tem log₂x; com x = 3√3 o determinante dá ≈ 1,58."
+   },
+   "armadilha": "Pegar a entrada errada ao riscar linha e coluna: o menor do −1 usa só log₂(x), das linhas 1 e 3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de x para o qual o determinante da matriz vale 1.",
+    "chave": "Desenvolvendo pela 1ª coluna, det A = 2·log₂(x)/3 = 1, logo log₂x = 3/2 e x = 2√2.",
+    "cuidado": "Escolha a coluna com dois zeros e confira o sinal (−1)^(i+j) do único termo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Sarrus",
+    "ideia": "repita as duas primeiras colunas e some as diagonais: det = −a/3 + a = 2a/3, com a = log₂x"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "det A = (−1)·(−1)^(2+1)·(a·1 − (1/3)·a)",
+    "nota": "Laplace pela 1ª coluna"
+   },
+   {
+    "linha": "det A = 2a/3",
+    "nota": "sinais se anulam"
+   },
+   {
+    "linha": "2a/3 = 1 → a = 3/2",
+    "nota": "isolar a = log₂x"
+   },
+   {
+    "linha": "x = 2^(3/2) = 2√2",
+    "nota": "definição de log"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

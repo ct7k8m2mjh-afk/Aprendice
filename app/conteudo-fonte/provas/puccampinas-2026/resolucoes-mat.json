@@ -622,5 +622,121 @@
    "data": "2026-11-19",
    "lote": "mat-0074"
   }
+ },
+ "Pab4fa232": {
+  "n": "25",
+  "conceito": "Dedução lógica: posicionar motoristas e cores de 6 carros em fila com as restrições de colisão.",
+  "equivocos": {
+   "A": "M17.1:errou-a-ordem-da-fila",
+   "B": "M17.1:errou-a-ordem-da-fila",
+   "D": "M17.1:ignorou-a-ultima-condicao",
+   "E": "M17.1:ignorou-a-ultima-condicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na fila, cada carro bate só nos vizinhos: o carro 1 bate no 2, o 6 bate no 5, e os do meio batem em dois. Primeiro ponha os motoristas, que a posição define; depois teste as cores, que são poucas combinações. A frase final (\"um dos carros colidiu com dois carros de mesma cor\") é a que elimina os casos que sobram.",
+    "formulas": [
+     "carro do meio colide com 2 vizinhos; carro da ponta, com 1",
+     "vizinhos nunca têm a mesma cor"
+    ],
+    "simbolos": [
+     [
+      "V, A, B, G",
+      "vermelho, azul, branco, verde"
+     ],
+     [
+      "carro k",
+      "posição k na fila, de 1 (Antônio) a 6 (Flávia)"
+     ]
+    ]
+   },
+   "pista": "Comece por quem bate em Flávia (carro 6): o vizinho dela é um só.",
+   "passos": [
+    {
+     "faz": "Posicione os motoristas",
+     "conta": "6: Flávia → 5: Élio → 4: Clara → 3: Bruna → 2: David",
+     "porque": "Élio bate em Flávia (6), então é o 5, e o outro vizinho dele, Clara, é o 4. Bruna bate em Clara e em David: é o 3, e David fica no 2.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Limite as cores",
+     "conta": "1: A | 3: B | 2, 4, 5, 6 ← {V, V, A, G}; 2 ≠ A, 5 ≠ A",
+     "porque": "O carro 2 encosta no 1, que é azul; Élio (5) não é azul. O segundo azul fica no 4 ou no 6.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste o azul no carro 4",
+     "conta": "4: A → (2, 5, 6) = (V, V, G) ou (V, G, V) → nenhum carro entre dois de mesma cor",
+     "porque": "Os dois vermelhos não podem ser 5 e 6 (vizinhos). Nos dois casos que sobram, nenhum carro tem os dois vizinhos da mesma cor, e a última condição falha.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste o azul no carro 6",
+     "conta": "6: A → (2, 4, 5) = (V, V, G) (vale) ou (V, G, V) (falha)",
+     "porque": "Com 2 e 4 vermelhos, o carro 3 (Bruna) bate em dois vermelhos: a condição se cumpre. No outro caso nenhum carro fica entre duas cores iguais.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua a fila",
+     "conta": "A, V, B, V, G, A → carro 5 verde → alternativa C",
+     "porque": "Só uma distribuição cumpre tudo, e nela o carro 5, de Élio, é verde.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — o carro 5 é verde",
+   "checagem": "Releia a fila azul-vermelho-branco-vermelho-verde-azul: dois vermelhos, dois azuis, um branco, um verde; nenhum par de vizinhos com a mesma cor; Élio (5) não é azul; Bruna (3) bate em dois vermelhos. Tudo fecha.",
+   "erradas": {
+    "A": "O carro 2 é de David, não de Élio: Élio bate em Flávia, a última, então é o carro 5.",
+    "B": "O carro 4 é de Clara: Bruna bate em Clara e em David, por isso fica entre eles, no carro 3.",
+    "D": "Flávia (carro 6) dirige um carro azul; o verde é o de Élio, no carro 5.",
+    "E": "Clara (carro 4) dirige um carro vermelho; com o azul no 4, nenhum carro fica entre dois de mesma cor."
+   },
+   "armadilha": "A frase \"um dos carros colidiu com dois carros de mesma cor\" é a que decide: sem ela, o azul poderia estar no carro 4 e o verde em outro lugar.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O que é necessariamente verdade sobre os carros e as cores.",
+    "chave": "Motoristas pela vizinhança (David, Bruna, Clara, Élio, Flávia do 2 ao 6) e cores por casos: só A, V, B, V, G, A cumpre tudo.",
+    "cuidado": "Teste cada caso contra todas as condições, inclusive a última."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela última condição",
+    "ideia": "o carro entre dois de mesma cor só pode ser o 3 ou o 5 (o 1 e o 6 têm um vizinho só; o 2 fica entre azul e branco; o 4 encosta no branco); no 5, os carros 4 e 6 iguais exigiriam os dois azuis (só sobra um) ou os dois vermelhos, e aí o azul cairia no 2 ou no 5, proibido; então é o 3, com 2 e 4 vermelhos, o azul no 6 e o verde no 5"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 Antônio | 2 David | 3 Bruna | 4 Clara | 5 Élio | 6 Flávia",
+    "nota": "posições pela vizinhança"
+   },
+   {
+    "linha": "1: A | 3: B | 2 ≠ A | 5 ≠ A",
+    "nota": "cores já fixadas"
+   },
+   {
+    "linha": "4: A → nenhum carro entre duas cores iguais (falha)",
+    "nota": "primeiro caso cai"
+   },
+   {
+    "linha": "6: A, 2: V, 4: V, 5: G → carro 3 entre V e V (vale)",
+    "nota": "único caso que vale"
+   },
+   {
+    "linha": "carro 5 = G → C",
+    "nota": "conclusão"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

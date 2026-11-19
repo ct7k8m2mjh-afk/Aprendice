@@ -342,3 +342,30 @@ DADO P1bbc96c0 (PUC-Campinas 2024 q25): alternativas -> A 1/32! | B 6/32! | C 1/
 RECLASS P02b21574 M13.4 -> M13.1 (Acafe 2025 Verão q26: questão de afirmações sem probabilidade; I é contagem 2^5 − 1, II é PA e III é equação modular)
 DADO Pb9eee94f (PUC-Campinas 2027 q27): alternativas -> no print A é π² (pi ao quadrado), D é π^−1 e E é π^−2 (expoentes negativos), não π−1 e π−2
 GABARITO Pb9eee94f (PUC-Campinas 2027 q27): o enunciado diz que os números estão em ordem crescente, mas a média e y − 4x = 1 dão x = π e y = 4π + 1 ≈ 13,57 < 16; a ordem não entra na conta (y/x = 4 + π^−1, alternativa D). Conferir o gabarito definitivo/anulação após recursos.
+
+## 2026-11-19 18:25 UTC — PENDENCIAS — session_01PveEKXYevuT6GfnZTi2dnc
+Lote mat-0077 gravado (50 resoluções).
+Gabarito do Aprendice (resolvedor e conferente às cegas iguais e iguais ao preliminar; sem gabarito na web): P9a25175b B, Pd2fe7a55 D, P5ba993c0 E.
+DADO Pa6a3b07e (UEL 2023 q52): texto_da_prova e alternativas -> o símbolo de valor 0 no print é o losango vazado ◇ (\Diamond), não ♦
+DADO P9740784e (ITA 2020 q49): alternativas -> faltam na entrada; no print: A 20, B 21, C 22, D 23, E 24 (o texto da entrada traz "E()2.")
+RECLASS P67fa8c4b M01.4 -> M05.5 (URCA 2025.2/2026.1 q19: domínio de função composta com log e potência, não é divisibilidade)
+DADO P4dccb275 (UFJF PISM III 2024 q18): alternativas -> faltam na entrada; no print: A 1/5^5, B 1/(5·4^4), C 1/5!, D 3/2^5, E 5/4!
+RECLASS P4dccb275 M03.1 -> M13.4 (UFJF PISM III 2024 q18: probabilidade de escolhas sucessivas, não porcentagem)
+RECLASS P7626aec2 M03.2 -> M07.3 (UEMA PAES 2024 q46: soma de PA de preços, não desconto percentual sucessivo)
+DADO P6c66a671 (ITA 2020 q41): texto_da_prova -> OCR embaralhado; no print: 2^x1 = 4; 3^x2 = 5; 4^x3 = 6; 5^x4 = 7; 6^x5 = 8 e 7^x6 = 9; produto x1x2x3x4x5x6
+DADO P6c66a671 (ITA 2020 q41): alternativas -> faltam na entrada; no print: A 6, B 8, C 10, D 12, E 14
+RECLASS P6c66a671 M04.3 -> M06.3 (ITA 2020 q41: propriedades do logaritmo, mudança de base; não é sistema linear)
+DADO Pa4b85181 (UEG 2022/2 q17): texto_da_prova -> faltam os nomes dos tipos; no print: "dois tipos de embalagens, A e B", "cada embalagem do tipo A", "do tipo B", "do tipo A e do tipo B"
+RECLASS P3486670c M04.3 -> M02.4 (UEMA PAES 2024 q49: preço proporcional à área, razão ao quadrado; não é sistema linear)
+DADO Pd8a34964 (UERR 2025 q19): texto_da_prova -> f(x) = −(1/10)x² + bx + 9/5, para 0 ≤ x ≤ 18 (texto da entrada embaralhado); alternativas -> A 361/100; B 17/2; C 361/40; D 9/5; E 17/10
+DADO Pae2a006f (PUCPR 2026/2 q34): alternativas E -> 0
+RECLASS Pae2a006f M05.5 -> M05.4 (PUCPR 2026/2 q34: módulo de função quadrática, não composição nem inversa)
+DADO P977ab99b (Unioeste 2021 q64, no caderno 43): texto_da_prova -> f: (a, b) → ℝ bijetora, f⁻¹: ℝ → (a, b), f(x + y) = (f(x) + f(y))/(1 − f(x)f(y)) para x, y ∈ (a, b) com x + y ∈ (a, b); igualdade f⁻¹(x) = f⁻¹(y) + f⁻¹(z); alternativas -> A x = y + z; B yz = xy + xz; C xyz = x − y − z; D y + z − x = a; E x − y − z = b
+DADO Pf4db7c1b (Unitins 2023/2 q10): texto_da_prova -> as afirmações I a IV são fórmulas que só aparecem no print: I. f(x) = n(x)/d(x), com d(x) ≠ 0; II. f(x) = raiz de índice par de r(x), com r(x) ≥ 0; III. f(x) = n(x)/raiz par de r(x), com r(x) > 0; IV. f(x) = n(x)/raiz par de r(x), com r(x) ≠ 0
+DADO P1f55003a (PUCRS 2026 q13): alternativas -> A) 5 − 9 log(2); B) 5 − 11 log(2); C) 1 − (9/5) log(2); D) 1 − (11/5) log(2)
+RECLASS P96c925c3 M06.2 -> M06.1 (ITA 2023 1ª fase q41: desigualdades com a função exponencial, sem equação exponencial)
+DADO Pe6e2b1cd (FCM-MG 2025/1 q54): texto_da_prova -> a fórmula do print é D = log N(ε) / log(1/ε), com 0 < ε ≪ 1 e N(ε) > 0 (o OCR leu D = 8 e trocou ε por e/£/g)
+DADO P62a58056 (IME 2026 q12): texto_da_prova -> A ≤ [log_√e(x) − 2 ln(x/e) + 6] / [3 − |ln(1/x⁵)| + √(ln(x⁴e²) − 2)], para todo x ∈ [1, e); alternativas -> (A) 5/2 (B) 8/3 (C) e/2 (D) 8/5 (E) 6√e/5
+DADO Pef9d892c (URCA 2025.2 q23): texto_da_prova -> 10 × 2^(−3x) = 1; alternativas -> A) (log 5 − log 2)/(3 log 2); B) (log 5 − log 3)/(3 log 2); C) (log 3 + log 5)/(2 log 3); D) (log 2 + log 3)/(2 log 3); E) (log 2 + log 5)/(3 log 2)
+RECLASS Pef9d892c M06.3 -> M06.2 (URCA 2025.2 q23: equação exponencial resolvida com log)
+DADO P9bded7e5 (Cederj 2023.2 q35): texto_da_prova -> A = [[0, log₂(x), 1/3], [−1, log₃(x), log₃(2)], [0, log₂(x), 1]]; alternativas -> (A) 2√2 (B) 3√2 (C) 2√3 (D) 3√3

@@ -300,5 +300,119 @@
    "data": "2026-11-19",
    "lote": "mat-0067"
   }
+ },
+ "P977ab99b": {
+  "n": "64",
+  "conceito": "Equação funcional do tipo tangente da soma aplicada pela inversa.",
+  "equivocos": {
+   "A": "M05.5:tratou-f-como-aditiva",
+   "B": "M05.5:nao-testou-a-relacao",
+   "D": "M05.5:confundiu-com-extremos-do-dominio",
+   "E": "M05.5:confundiu-com-extremos-do-dominio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A regra f(x + y) = (f(x) + f(y))/(1 − f(x)f(y)) é a da tangente da soma. Para usar a igualdade das inversas, dê nomes: u = f⁻¹(x), v = f⁻¹(y), w = f⁻¹(z). Então x = f(u), y = f(v), z = f(w) e u = v + w.",
+    "formulas": [
+     "f(v + w) = (f(v) + f(w))/(1 − f(v)f(w))",
+     "f(f⁻¹(x)) = x"
+    ],
+    "simbolos": [
+     [
+      "f⁻¹",
+      "função inversa de f"
+     ],
+     [
+      "bijetora",
+      "cada valor de ℝ vem de exatamente um ponto de (a, b)"
+     ]
+    ]
+   },
+   "pista": "Aplique f dos dois lados da igualdade f⁻¹(x) = f⁻¹(y) + f⁻¹(z).",
+   "passos": [
+    {
+     "faz": "Dê nomes às inversas",
+     "conta": "u = f⁻¹(x) | v = f⁻¹(y) | w = f⁻¹(z) → u = v + w",
+     "porque": "A igualdade dada diz que u é a soma de v e w; como u está em (a, b), v + w também está.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique f dos dois lados",
+     "conta": "f(u) = f(v + w) → x = (f(v) + f(w))/(1 − f(v)f(w)) = (y + z)/(1 − yz)",
+     "porque": "f desfaz a inversa: f(u) = x, f(v) = y, f(w) = z.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire o denominador",
+     "conta": "x(1 − yz) = y + z → x − xyz = y + z → xyz = x − y − z",
+     "porque": "O (1 − yz) passa multiplicando; o xyz passa para o outro lado e o y + z também.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "xyz = x − y − z → alternativa C",
+     "porque": "É exatamente a relação da C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — xyz = x − y − z",
+   "checagem": "Teste com f = tangente em (−π/2, π/2): y = z = tg 30° = 1/√3 e x = tg 60° = √3. Então xyz = √3·(1/3) = 1/√3 e x − y − z = √3 − 2/√3 = 1/√3. Fecha.",
+   "erradas": {
+    "A": "x = y + z sai de tratar f como se somasse (f(v + w) = f(v) + f(w)), ignorando o denominador. No teste da tangente, y + z = 2/√3 ≈ 1,15 ≠ √3.",
+    "B": "yz = xy + xz não confere: no teste da tangente, yz = 1/3 e xy + xz = 1 + 1 = 2.",
+    "D": "y + z − x = a não confere: no teste da tangente, y + z − x = −1/√3 ≈ −0,58, e a = −π/2 ≈ −1,57.",
+    "E": "x − y − z = b não confere: no teste da tangente, x − y − z = 1/√3 ≈ 0,58, e b = π/2 ≈ 1,57."
+   },
+   "armadilha": "Achar que a soma das inversas vira soma de x, y, z: a regra de f tem o denominador 1 − f(x)f(y).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A relação entre x, y e z quando f⁻¹(x) = f⁻¹(y) + f⁻¹(z).",
+    "chave": "Aplicar f dos dois lados: x = (y + z)/(1 − yz).",
+    "cuidado": "Lembrar que f(f⁻¹(x)) = x e manter o denominador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "A tangente em (−π/2, π/2) satisfaz a regra; com y = z = 1/√3 e x = √3, só a relação da C fecha."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "u = v + w",
+    "nota": "as inversas viram letras"
+   },
+   {
+    "linha": "x = f(v + w)",
+    "nota": "aplicar f nos dois lados"
+   },
+   {
+    "linha": "x = (y + z)/(1 − yz)",
+    "nota": "regra dada no enunciado"
+   },
+   {
+    "linha": "x − xyz = y + z",
+    "nota": "o denominador passa multiplicando"
+   },
+   {
+    "linha": "xyz = x − y − z",
+    "nota": "reorganizar"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Mostra a igualdade das inversas, troca por u = v + w, aplica f, usa a regra da soma e rearruma até xyz = x − y − z."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

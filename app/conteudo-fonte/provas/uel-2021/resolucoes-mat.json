@@ -421,5 +421,115 @@
    "data": "2026-11-19",
    "lote": "mat-0076"
   }
+ },
+ "P89b7d221": {
+  "n": "11",
+  "conceito": "Escrever o número 42 na base 2 com seis algarismos.",
+  "equivocos": {
+   "A": "M17.2:decomposicao-errada",
+   "B": "M17.2:inverteu-a-ordem-dos-algarismos",
+   "D": "M17.2:decomposicao-errada",
+   "E": "M17.2:decomposicao-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A regra de Simão é a escrita em base 2: cada algarismo m vale 0 ou 1 e multiplica uma potência de 2, de 2^5 = 32 até 2^0 = 1. Para achar a sequência, decomponha 42 em potências de 2 distintas, começando pela maior que cabe.",
+    "formulas": [
+     "N = m5 · 2^5 + m4 · 2^4 + m3 · 2^3 + m2 · 2^2 + m1 · 2^1 + m0 · 2^0",
+     "potências: 32, 16, 8, 4, 2, 1"
+    ],
+    "simbolos": [
+     [
+      "m5, ..., m0",
+      "algarismos da sequência, cada um 0 ou 1"
+     ],
+     [
+      "2^5",
+      "2 multiplicado 5 vezes: 32"
+     ],
+     [
+      "base 2",
+      "sistema com só dois algarismos, 0 e 1"
+     ]
+    ]
+   },
+   "pista": "Qual é a maior potência de 2 que cabe em 42? Tire-a e repita com o que sobra.",
+   "passos": [
+    {
+     "faz": "Tire a maior potência que cabe",
+     "conta": "42 − 32 = 10 → m5 = 1",
+     "porque": "32 cabe em 42 e 64 já passa; o 16 não cabe no resto 10, então m4 = 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Continue com o resto",
+     "conta": "10 − 8 = 2 → m3 = 1; 4 não cabe → m2 = 0",
+     "porque": "8 cabe em 10, sobra 2; o 4 é maior que 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Feche as últimas casas",
+     "conta": "2 − 2 = 0 → m1 = 1, m0 = 0",
+     "porque": "O 2 cabe exatamente e não sobra nada para a casa do 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a sequência",
+     "conta": "42 = 32 + 8 + 2 → 1, 0, 1, 0, 1, 0 → alternativa C",
+     "porque": "Os 1 ficam nas casas de 32, 8 e 2, na ordem m5 até m0.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1, 0, 1, 0, 1, 0",
+   "checagem": "Divida 42 por 2 sucessivamente e leia os restos de baixo para cima: 42 → 21 (resto 0) → 10 (1) → 5 (0) → 2 (1) → 1 (0) → 0 (1). De baixo para cima: 101010.",
+   "erradas": {
+    "A": "0, 0, 1, 1, 1, 1 não confere: 8 + 4 + 2 + 1 = 15.",
+    "B": "0, 1, 0, 1, 0, 1 sai de escrever a sequência certa de trás para a frente, de m0 para m5: lida na ordem pedida, vale 16 + 4 + 1 = 21.",
+    "D": "1, 0, 1, 1, 0, 0 não confere: 32 + 8 + 4 = 44.",
+    "E": "1, 1, 0, 0, 1, 0 não confere: 32 + 16 + 2 = 50."
+   },
+   "armadilha": "A ordem é de m5 (casa de 32) para m0 (casa de 1); ler ao contrário troca o número.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A sequência m5, ..., m0 de 0 e 1 que representa N = 42.",
+    "chave": "42 = 32 + 8 + 2, então há 1 nas casas de 32, 8 e 2: 101010.",
+    "cuidado": "Comece pela casa de 32 (m5) e mantenha a ordem pedida."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "calcule N em cada opção: só 1, 0, 1, 0, 1, 0 dá 32 + 8 + 2 = 42"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "42 − 32 = 10",
+    "nota": "m5 = 1; 16 não cabe, m4 = 0"
+   },
+   {
+    "linha": "10 − 8 = 2",
+    "nota": "m3 = 1; 4 não cabe, m2 = 0"
+   },
+   {
+    "linha": "2 − 2 = 0",
+    "nota": "m1 = 1, m0 = 0"
+   },
+   {
+    "linha": "101010 → C",
+    "nota": "sequência de m5 a m0"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

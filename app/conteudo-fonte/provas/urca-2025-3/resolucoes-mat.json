@@ -1093,5 +1093,120 @@
    "data": "2026-11-19",
    "lote": "mat-0068"
   }
+ },
+ "P67fa8c4b": {
+  "n": "19",
+  "conceito": "Domínio da composta f(g(x)): g definida e positiva, e o logaritmando a·g² − g positivo.",
+  "equivocos": {
+   "B": "M05.5:errou-a-troca-de-sentido",
+   "C": "M05.5:errou-o-sinal-ao-isolar-x",
+   "D": "M05.5:errou-a-condicao-do-logaritmo",
+   "E": "M05.5:errou-a-troca-de-sentido"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A composta f(g(x)) existe quando g(x) existe e o log recebe um número positivo. g(x) = 1/√(1 − bx) pede 1 − bx > 0 e já dá g(x) > 0. Fatorando a·u² − u = u(a·u − 1), com u > 0 o log exige u > 1/a. O trabalho é transformar g(x) > 1/a numa condição em x.",
+    "formulas": [
+     "(1 − bx)^(−1/2) = 1/√(1 − bx)",
+     "log(w) existe só para w > 0",
+     "u(au − 1) > 0 com u > 0 → u > 1/a"
+    ],
+    "simbolos": [
+     [
+      "f(g(x))",
+      "f aplicada ao valor de g(x)"
+     ],
+     [
+      "u",
+      "abreviação de g(x)"
+     ],
+     [
+      "(p, q)",
+      "intervalo aberto de p a q"
+     ]
+    ]
+   },
+   "pista": "Chame g(x) de u. Primeiro descubra para que valores de u o log de a·u² − u existe, sabendo que u é positivo.",
+   "passos": [
+    {
+     "faz": "Exija que g exista",
+     "conta": "1 − bx > 0 → bx < 1 → x < 1/b",
+     "porque": "Expoente −1/2 é 1 sobre a raiz: a raiz exige 1 − bx ≥ 0 e o denominador não pode ser 0. Como b > 0, divide sem trocar o sinal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Exija o logaritmando positivo",
+     "conta": "u = g(x) > 0 → a·u² − u = u(a·u − 1) > 0 → u > 1/a",
+     "porque": "Como u é positivo, o sinal do produto é o de a·u − 1, que precisa ser positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte para x",
+     "conta": "1/√(1 − bx) > 1/a → √(1 − bx) < a → 1 − bx < a² → x > (1 − a²)/b",
+     "porque": "Inverter os dois lados positivos troca o sentido; elevar ao quadrado mantém; −bx < a² − 1 dividido por −b troca de novo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as condições",
+     "conta": "(1 − a²)/b < x < 1/b → alternativa A",
+     "porque": "As duas condições juntas formam o intervalo aberto; ele não é vazio porque 1 − a² < 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — ((1 − a²)/b, 1/b)",
+   "checagem": "Teste com a = 2 e b = 1, que dá o intervalo (−3, 1). Em x = −2,5: g ≈ 0,535 e 2 · 0,535² − 0,535 ≈ 0,037 > 0, o log existe. Em x = −4: g ≈ 0,447 e 2 · 0,447² − 0,447 ≈ −0,047 < 0, não existe. A fronteira em −3 confere.",
+   "erradas": {
+    "B": "((1 + a²)/b, 1/b) não confere: (1 + a²)/b é maior que 1/b, então o intervalo é vazio; com a = 2 e b = 1, x = −2,5 é ponto válido e ficaria de fora.",
+    "C": "((−1 − a²)/b, 1/b) sai de errar o sinal do 1 ao isolar x; com a = 2 e b = 1 incluiria x = −4, onde 2g² − g ≈ −0,047 < 0 e o log não existe.",
+    "D": "((a − a²)/b, 1/b) não confere: com a = 2 e b = 1 o intervalo seria (−2, 1), deixando de fora x = −2,5, onde 2g² − g ≈ 0,037 > 0 e a composta existe.",
+    "E": "((a + a²)/b, 1/b) não confere: (a + a²)/b é maior que 1/b, intervalo vazio; com a = 2 e b = 1, x = −2,5 é válido e ficaria de fora."
+   },
+   "armadilha": "Trocar o sentido da desigualdade na hora errada: ao inverter 1/√(1 − bx) > 1/a e ao dividir por −b o sentido muda, e esquecer uma das trocas muda o extremo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O conjunto dos x para os quais f(g(x)) está definida.",
+    "chave": "1 − bx > 0 e g(x) > 1/a, que dá 1 − bx < a²: (1 − a²)/b < x < 1/b.",
+    "cuidado": "Controle cada troca de sentido da desigualdade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste numérico",
+    "ideia": "com a = 2 e b = 1 o domínio verdadeiro é (−3, 1); só a alternativa A dá esse intervalo"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 − bx > 0 → x < 1/b",
+    "nota": "g existe"
+   },
+   {
+    "linha": "u(au − 1) > 0 → u > 1/a",
+    "nota": "log existe, com u = g(x) > 0"
+   },
+   {
+    "linha": "√(1 − bx) < a → 1 − bx < a²",
+    "nota": "inverter troca o sentido"
+   },
+   {
+    "linha": "−bx < a² − 1 → x > (1 − a²)/b",
+    "nota": "dividir por −b troca o sentido"
+   },
+   {
+    "linha": "((1 − a²)/b, 1/b) → A",
+    "nota": "juntar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }

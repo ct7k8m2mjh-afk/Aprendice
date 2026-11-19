@@ -1191,5 +1191,122 @@
    "data": "2026-11-19",
    "lote": "mat-0076"
   }
+ },
+ "P7ecccbf3": {
+  "n": "8",
+  "conceito": "Usar que a transposta de uma matriz de rotação é a rotação no sentido contrário e que rotações se compõem somando ângulos.",
+  "equivocos": {
+   "A": "M15.1:rotacao-com-angulo-errado",
+   "C": "M15.1:fator-escalar-errado",
+   "D": "M15.1:rotacao-com-angulo-errado",
+   "E": "M15.1:fator-escalar-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "R(θ) gira o vetor θ radianos. A transposta de R(θ) é R(−θ): basta trocar sen θ por −sen θ, e o cosseno não muda. Duas rotações seguidas somam os ângulos, então R(5π/4)·R(−π/4) é uma rotação só. Com isso a conta de matrizes vira conta de ângulos.",
+    "formulas": [
+     "(R(θ))^t = R(−θ)",
+     "R(α)·R(β) = R(α + β)",
+     "(k·A)³ = k³·A³"
+    ],
+    "simbolos": [
+     [
+      "R(θ)",
+      "matriz que gira um vetor θ radianos no sentido anti-horário"
+     ],
+     [
+      "(R)^t",
+      "transposta: linhas viram colunas"
+     ],
+     [
+      "I",
+      "matriz identidade [[1, 0], [0, 1]]"
+     ]
+    ]
+   },
+   "pista": "Antes de multiplicar matrizes, escreva a transposta de R(π/4) como uma rotação de outro ângulo.",
+   "passos": [
+    {
+     "faz": "Troque a transposta por rotação",
+     "conta": "(R(π/4))^t = R(−π/4)",
+     "porque": "Transpor R(θ) troca de lugar o −sen θ e o sen θ; isso é o mesmo que trocar θ por −θ, porque cos(−θ) = cos θ e sen(−θ) = −sen θ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as duas rotações",
+     "conta": "R(5π/4)·R(−π/4) = R(5π/4 − π/4) = R(π)",
+     "porque": "Girar 5π/4 e depois voltar π/4 é girar π de uma vez: os ângulos se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva R(π) e multiplique por 4",
+     "conta": "R(π) = [[−1, 0], [0, −1]] = −I → 4R(π) = −4I",
+     "porque": "cos π = −1 e sen π = 0: a rotação de meia volta troca o sinal das duas coordenadas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Eleve ao cubo",
+     "conta": "(−4I)³ = (−4)³·I³ = −64I = [[−64, 0], [0, −64]]",
+     "porque": "Número vezes identidade se eleva como número: (−4)³ = −64, e I³ = I.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "[[−64, 0], [0, −64]] → alternativa B",
+     "porque": "É a matriz com −64 na diagonal e zeros fora dela.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a matriz [[−64, 0], [0, −64]]",
+   "checagem": "Pelo determinante: det(R) = cos² + sen² = 1, então det(4R(5π/4)R(π/4)^t) = 4² · 1 · 1 = 16 e o cubo tem determinante 16³ = 4096; em B, (−64)·(−64) − 0 = 4096. Fecha.",
+   "erradas": {
+    "A": "A não confere: [[0, 64], [−64, 0]] é 64·R(3π/2), giro de 270°; o produto dá giro de π, e três giros de π somam 3π, que equivale a π, de novo diagonal.",
+    "C": "C não confere: o determinante de [[−8, 0], [0, −8]] é 64, mas a matriz pedida tem determinante 16³ = 4096.",
+    "D": "D não confere: o determinante de [[0, −8], [8, 0]] é 0 − (−64) = 64, longe dos 4096 da matriz pedida; e ela é giro de 90°, não de π.",
+    "E": "E não confere: o determinante de [[0, −2], [2, 0]] é 4, e a matriz pedida tem determinante 4096."
+   },
+   "armadilha": "Tratar a transposta como se fosse a própria R(π/4): a transposta de uma rotação gira para o lado contrário.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A matriz [4·R(5π/4)·(R(π/4))^t]³.",
+    "chave": "Transposta de rotação é R(−θ); R(5π/4)·R(−π/4) = R(π) = −I, e (−4I)³ = −64I.",
+    "cuidado": "O 4 também vai ao cubo: 4³ = 64, com o sinal de (−1)³ = −1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "multiplicação direta",
+    "ideia": "calcule R(5π/4) e R(π/4)^t com ±√2/2, multiplique (sai −I), vezes 4 dá −4I e o cubo é −64I"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(R(π/4))^t = R(−π/4)",
+    "nota": "transposta gira ao contrário"
+   },
+   {
+    "linha": "R(5π/4)·R(−π/4) = R(π) = −I",
+    "nota": "somar os ângulos"
+   },
+   {
+    "linha": "4R(π) = −4I",
+    "nota": "multiplicar pelo 4"
+   },
+   {
+    "linha": "(−4I)³ = −64I",
+    "nota": "elevar ao cubo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
  }
 }
