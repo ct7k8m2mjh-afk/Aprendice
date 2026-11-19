@@ -343,3 +343,20 @@ DADO Pdeff4e8d: alternativas A, C -> "O sistema nervoso periférico..." (veio "O
 DADO P62fa9d26: alternativas.E -> "Cerrado e Caatinga" (veio "Cerradoe")
 RECLASS Pfefa377c B08.4 -> B08.3
 RECLASS Pb64dfc31 B12.3 -> B12.7
+
+## 2026-11-19 18:07 UTC — PENDENCIAS — session_01PveEKXZwKo3vJj1Pbjeenm
+Lote gravado: bio-0076 (48 ok, 2 pendentes). Aberto: bio-0077.
+RECLASS P40625e1a B08.4 -> B08.8
+DADO P7dab3d4c: alternativas.D -> o texto termina em "mesmo padrão paterno." (o "22" no fim é o número da página)
+RECLASS P23f44649 B05.6 -> B11.2
+RECLASS P76e0b713 B06.1 -> B06.2
+RECLASS Pe7a08279 B06.2 -> B06.6
+RECLASS Pff502182 B02.1 -> B07.2
+RECLASS Paa83d55c B03.4 -> B08.5
+RECLASS Pdc4e04f7 B04.1 -> B01.6
+ANULAR P35e8537a: o gabarito oficial definitivo (A) diz que a derme é a camada mais externa da pele e que as substâncias agem no tecido epitelial; a camada mais externa é a epiderme, e a derme é tecido conjuntivo. Gabarito: https://www.nucleodeselecao.ueg.br/pdfs/processos/254/PS%202020-1_GABARITO_ESPANHOL-%20INGLES_definitivo.pdf
+RECLASS P35e8537a B06.6 -> B07.1
+RECLASS P55fa50be B06.6 -> B06.5
+RECLASS Pb37e6d3f B04.4 -> B05.4
+ANULAR Pbc448a30 (URCA 2023.2, q47): a afirmação I é verdadeira (o nucléolo se forma nas regiões organizadoras do nucléolo, onde os genes de rRNA são transcritos intensamente) e a III é falsa (quem se liga às histonas é o DNA, não o RNA); com I e II verdadeiras a resposta seria C, não a B oficial. Sem errata; a correção do Estratégia Vestibulares também dá B, sem comentário.
+RECLASS P671465bb B12.6 -> B09.4
