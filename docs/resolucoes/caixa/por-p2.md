@@ -45,3 +45,24 @@ DADO Pcd8302da: alternativas -> faltam no campo (estão coladas no texto_da_prov
 RECLASS Pb2ab6be2 P09.4 -> P07.3
 RECLASS Pcd8302da P09.4 -> P06.2
 GABARITO Pbbd3645d (UFRR 2026 PI q8): sem gabarito conferido; letra do resolvedor D; conferir no Edital 93/25-CPV (editais.ufrr.br/editais/arquivo/1209), que deu 503
+
+## 2026-11-19 17:58 UTC — PENDENCIAS — sessão por-p2 (session_01PveEKYkycZkrPrW3hd17Vg)
+Último lote gravado: por-p2-0003 (48 ok, 1 pendente, 1 divergência). Lote aberto: por-p2-0004.
+ANULAR Pcfeab3fb: Fema 2021 q23 — gabarito oficial B põe crase em 'após às 18 horas'; 'após' é preposição e não admite crase; pela norma a sequência certa é A (conferente confirmou no PDF oficial, sem errata).
+GABARITO P2b2aa288 (UFRR 2026 PI q9): divergência — resolvedor e conferente às cegas = D, preliminar = A; busca indica possível anulação no Edital 93/25-CPV (não confirmada; PDF não abriu).
+RECLASS P6da9671b P09.4 -> P07.1
+RECLASS Pe843ed5a P09.4 -> P09.5
+RECLASS P8c6c39db P09.4 -> P09.1
+DADO Pe843ed5a: alternativas.D -> "O período contém uma oração coordenada conclusiva, introduzida por “quando”." (sem o " t" final)
+DADO Pbc3dc571: alternativas A, B, D, E -> "revelaram" sem o hífen de quebra de linha (caractere \xad + espaço)
+GABARITO P2b2aa288 (UFRR 2026 Prova Integral q9): sem gabarito oficial conferido; letra do resolvedor D × preliminar A (divergência). Um resultado de busca indica que o Edital 93/25-CPV (https://editais.ufrr.br/editais/arquivo/1209/edital-n-93-25-gabarito-oficial-vestibular-ufrr-2026.pdf) traz a q9 da E3/PI como ANULADA; o PDF não abriu daqui (503/conexão recusada). Conferir no edital: se anulada, tirar a questão.
+RECLASS P2b2aa288 P10.1 -> P10.3
+DADO P53390d52: alternativas C e E -> aspas no print são “ ” (a entrada traz ― ‖)
+DADO P2b2aa288: texto_da_prova e alternativas -> aspas no print são “ ” (a entrada traz ― ‖)
+ANULAR Pcfeab3fb: Fema 2022 q23 — gabarito oficial B ("a - a - às") põe crase depois de "após", que já é preposição; o certo pela norma é "após as 18 horas", alternativa A ("a - a - as"). Sem errata encontrada na web.
+DADO Pe3a458c8: texto_da_prova "Está correto o que se afi rma em" -> no print "Está correto o que se afirma em"
+DADO P3634baa8: texto_da_prova "Que a análise do discurso é política" -> no print "análise do discurso" está em negrito (no texto de apoio e no enunciado)
+RECLASS P8c11541f P10.2 -> P05.3 (PUCRS 2023 Verão q26: grafia de parônimos/homônimos externar, concerto × conserto, repercussão; não há conteúdo de ortografia, P05.3 é o mais próximo)
+RECLASS Pdd2fb6fe P10.2 -> P09.3 (UFAM PSC3 2022 q4: função sintática do pronome relativo "que" em orações adjetivas)
+RECLASS Pb65050f0 P10.2 -> P05.2 (UFRR 2025 PI q2: duplo sentido literal/metafórico de "Democracia", nome do time na obra O jogo da democracia)
+RECLASS P08a600d8 P10.4 -> P04.1   (Cederj 2020.1 q6: referente de "nesse aspecto" é coesão referencial, não pontuação)
