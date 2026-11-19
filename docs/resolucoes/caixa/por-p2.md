@@ -176,3 +176,17 @@ RECLASS P3a8b56f6 P12.5 -> P06.2 (UNEMAT 2023/2 q31: antítese "ao mal com o bem
 DADO Pa7a58868 (lote 0009): texto_da_prova -> começa por "42 - Leia com atenção" (entrada cortada em "eia"); alternativas.B -> "I e II estão corretas." (sobra um "l" no fim)
 GABARITO P669e7c8b (ITA 2024 q17, O avesso da pele): resolvida com a oficial B (onisciência do narrador); C também defensável (narrador-personagem), explicado no alerta; resolução publicada também dá B
 OBRA Pc430118e (UFT 2024/1 q10, O canto da carpideira): afirmativa IV (Ditinho Arrieiro) não confirmada na web; resolução chega à D por eliminação sem afirmar a IV
+Lote por-p2-0010 gravado (46 ok, 4 pendentes). Lote aberto: por-p2-0011.
+OUTRA P9c0bfb8d (ENEM 2024 q36): outra matéria, Artes (comparação de duas esculturas, sem texto verbal); não resolvida, pôr em app/conteudo-fonte/outra-materia.json
+PRINT Pfeeca942 (Unespar 2024 q17): o print e o texto trazem só o enunciado e as alternativas; falta o trecho de O filho eterno, que está na q16; juntar ao print desta questão e reabrir
+OBRA Pd7b11d0e (UNIRG 2020/1 Medicina q12): Tribo cara baixa — na web só a sinopse da editora; não confirmado o que a crônica diz sobre a felicidade
+OBRA P17067f79 (UNIRG 2026/1 q14): O misterioso Mestre Z, de Zé Nascimento — nenhuma fonte na web descreve a obra; precisa da lista de leituras da UNIRG ou do livro
+OBRA P3761593f (UNIRG 2026/1 q18): conto "O caçador e o lobisomem", de Zé Nascimento — mesmo problema
+RECLASS P5dd93ea3 P12.5 -> P05.4 (UNIRG 2024/2 q18: desvio de concordância como marca de registro)
+RECLASS Paa0609dd P12.5 -> P08.1 (URCA 2026.1 q93: sujeito posposto de "agem")
+RECLASS P6bbd3303 P12.5 -> P04.2 (UTFPR Verão 2024 q7: elementos coesivos, "mas também" aditivo)
+RECLASS P5f213a24 P12.5 -> P12.1 (ENEM 2025 q40: "A luta", de Carmen Dolores, 1909/1911, não é literatura contemporânea)
+RECLASS Pcc1c6df5 P01.2 -> P07.2 (FMABC 2020 q15: classificar "a" e "o" como artigo, pronome ou preposição)
+RECLASS Pb59c1850 P01.1 -> P02.1 (UFU 2026 q9: estratégia argumentativa, exemplificação)
+DADO P864a8568 (Unitins 2026/1 q45): texto_da_prova -> "Paulo Leminski" em linha própria abaixo do título (não colado no 1º verso) e poema em 4 estrofes, como no print
+DADO P2d1ec262 (URCA 2024.1 q103): texto_da_prova/alternativas -> "í" certo ("indígena", "língua"); na entrada saiu "´ı"
