@@ -1,6 +1,6 @@
 # Geografia (parte 1): resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 217 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 125; ENEM nível 7-10 16; provas-alvo nível 7-10 52; demais nível 7-10 24.
+Faltam 167 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 75; ENEM nível 7-10 16; provas-alvo nível 7-10 52; demais nível 7-10 24.
 
 ## Lotes
 
@@ -61,7 +61,8 @@ Faltam 217 questões sem resolução (fora as que estão em lote, pendentes ou c
 | geo-0053 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | geo-0054 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
 | geo-0055 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
-| geo-0056 | demais nível 1-6 | 50 | aberto |  |  |  |
+| geo-0056 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
+| geo-0057 | demais nível 1-6 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -72,6 +73,7 @@ Faltam 217 questões sem resolução (fora as que estão em lote, pendentes ou c
 | Pd1aeb2d4 |  |  | reclassificada para outra matéria |
 | Pf675553a | Cederj 2023 2023.2 · questão 24 | G05.1 biomas brasileiros (tema G05 Biomas e vegetação) | anular: o gabarito oficial é D (Mata de Araucárias), mas a árvore da foto é o pequizeiro, espécie típica do Cerrado (letra A), como diz o próprio endereço da fonte e a justificativa oficial da banca, que escreve “Resposta correta: Mata de Araucárias” e logo depois “Trata-se do pequizeiro, um indivíduo arbóreo característico do cerrado”. Gabarito https://www.cecierj.edu.br/wp-content/uploads/2023/06/VestibularCederj_2023.2_Gabarito.pdf ; justificativas https://www.cecierj.edu.br/wp-content/uploads/2023/06/VestibularCEDERJ_2023.2_Justificativas-de-Respostas.pdf (p. 5). Sem errata localizada. |
 | P0ca47d8c | Cederj 2026 2026.1 · questão 19 | G02.6 relevo brasileiro e suas classificações (tema G02 Relevo e estrutura da Terra) | anular: a foto é o West Mitten Butte, em Monument Valley (EUA), um morro-testemunho (butte) de arenito sobre folhelho, rocha sedimentar; o gabarito oficial A (e a justificativa oficial da Cecierj: inselberg 'de gnaisse e granito') afirma 'constituída por rochas cristalinas', o que é falso para o relevo da imagem. Resolver com A ensinaria um fato errado. Justificativa oficial: https://www.cecierj.edu.br/wp-content/uploads/2025/12/Vestibular_Cederj_2026_1_Justificativa_de_Respostas.pdf |
+| P7adb8870 | Fatec 2023 2º semestre · questão 50 | G10.2 Divisão Internacional do Trabalho, desenvolvimento e comércio (tema G10 Geopolítica e globalização) | classificação: é de Português (interpretação de texto) — a questão pede só o que o texto afirma sobre a CTA, sem conteúdo de Geografia |
 | P1c45fada | Fuvest 2024 1ª fase · questão 32 | G12.4 resíduos sólidos, reciclagem e saneamento (tema G12 Meio ambiente e sustentabilidade) | classificação: é de Biologia B10.5 (profilaxia, saneamento, imunização): a questão pede quais doenças se ligam à falta de saneamento (amebíase, cólera, teníase) e quais à baixa cobertura vacinal (tuberculose, poliomielite, hepatite B); o conhecimento cobrado é de transmissão e prevenção de doenças. |
 | P9bfc87ab | PUC-Rio 2025 Grupo 4 · questão 51 | G07.4 problemas urbanos: segregação, favelização e gentrificação (tema G07 Urbanização) | classificação: é de História H04.6 (imigração e trabalho livre: foto da Hospedaria da Ilha das Flores e política de branqueamento da população; gabarito D). Obs.: o print mostra o número 41, e a entrada diz questão 51. |
 | P1c3226af | PUCPR 2024 Medicina 2024/1 · questão 48 | G01.1 coordenadas geográficas, orientação e movimentos da Terra (tema G01 Cartografia) | anular: o oficial E (Sol à esquerda e atrás em todo o percurso) contraria a posição real do Sol. Foz 25,5ºS 54,6ºW → Curitiba 25,4ºS 49,3ºW, rumo leste, das 14h às 15h10 (hora de Brasília, UTC−3), em dezembro (declinação −21,8º a −23,4º): azimute solar calculado em python vai de cerca de 272º–275º na partida (oeste um pouco ao norte: atrás e levemente à esquerda) a cerca de 263º–265º na chegada (oeste um pouco ao sul: atrás e levemente à direita), em qualquer dia de dezembro. A 25ºS no verão o Sol só fica ao norte perto do meio-dia solar (cruza o primeiro vertical cerca de 1h35 depois); 'lado esquerdo ao longo de todo o percurso' é falso. O 'atrás' está certo; o lado não se sustenta. Busca na web sem resolução publicada. |

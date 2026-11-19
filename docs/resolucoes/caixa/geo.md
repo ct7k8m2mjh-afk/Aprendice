@@ -326,3 +326,16 @@ DADO P28aa49d0: texto_da_prova e alternativas -> o print traz "ti" onde a entrad
 RECLASS P8f3538cb G08.3 -> G08.5
 DADO P4ec65a09: alternativas.E -> no print, a E termina em "na ordem de 15% ao ano."; a tabela de ICMS (Especificação... Total 15.022.541) está colada no fim dela
 DADO P50e91882: texto_da_prova -> no print começa por "28. (URCA/2027.1) “As empresas apresentaram maior competitividade..."; a entrada está cortada no início e com acentos quebrados no texto e nas alternativas
+
+## 2026-11-19 18:07 UTC — PENDENCIAS — sessão geo (19/11, 4ª; parte 1)
+Lote gravado: geo-0056 (49 resoluções; 1 com gabarito do Aprendice, letras iguais às cegas e ao preliminar: Pa050ec5b C). Pendente: P7adb8870 (classificação: Português, interpretação de texto).
+OUTRA P7adb8870 (Fatec 2023/2, q50): classificação: é de Português (interpretação de texto sobre a CTA, sem conteúdo de Geografia)
+DADO P0b75a3ca: n -> no print a questão aparece com o número 32 (na entrada é "questão 42"; pode ser renumeração do grupo 4)
+DADO P35380f3b: texto_da_prova -> no print, "A união entre a técnica e a ciência vai dar-se sob a égide* do mercado que, graças à ciência e à técnica, torna-se um mercado global." está em negrito e "meio técnico-científico-informacional" em itálico
+DADO Pfc73f734: alternativas.E -> no print, "status" está em itálico
+DADO P7adb8870: alternativas.E -> "rivaliza com a Medicina e com a Agronomia, pois questiona pesquisas consolidadas dessas áreas." (o texto de apoio sobre a CTA está colado na E e falta em texto_da_prova)
+RECLASS Pa6e4518c G10.2 -> G08.3
+RECLASS P6e553548 G10.2 -> G10.8
+DADO P47626daa: alternativas -> a entrada não traz o campo; as cinco alternativas vêm coladas no fim do texto_da_prova, sem as letras (no print estão em A–E, nesta ordem)
+DADO P7f455176: texto_da_prova -> truncado em colunas na entrada; vale o print
+AUTORAL Pbca1f0ab (URCA 2023.1 q87): o texto de apoio no print cita "Brasil Escola" como fonte (crédito da própria banca); dono decide pela regra dos sites didáticos
