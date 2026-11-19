@@ -125,3 +125,16 @@ OBRA Pa46a5af1: Canaã, de Graça Aranha — CONFERIDA na web por esta sessão (
 OBRA P29a3ea3b: Capão Pecado, de Ferréz — CONFERIDA na web por esta sessão (2000, Capão Redondo, literatura marginal/periférica com oralidade e gíria). Sustenta o gabarito B. Fontes gravadas na questão
 OUTRA Pee47b572: dúvida de regra para a coordenadora decidir — o código do equívoco da letra C ficou em P10.3 (colocação pronominal) numa questão cujo conteúdo é P10.2 (regência). O conferente argumentou que o equívoco deve apontar o conteúdo DO ERRO, e o PROMPT-SESSAO manda usar o código do conteúdo CERTO DA QUESTÃO. Se a regra é a segunda, trocar para P10.2
 OUTRA por-0094: 20 das 50 questões estavam no conteúdo errado, quase todas em P05.4 (variação linguística), que está virando depósito da matéria. Vale uma passada de reclassificação no banco de Português antes de abrir mais lotes
+
+## 2026-11-19 16:26 UTC — FIM — session_01PveEKX1JnJpMCfgHmpRupU
+Sessão da FÁBRICA de Português (piloto pela API). Último lote gravado: **por-0094** (50 ok, 0 pendentes, 0
+divergências). Nenhum lote aberto. Não abri o segundo lote: o dono decide se a fábrica continua (era a regra
+do piloto). Não publiquei o site.
+Faltam 1584 questões de Português sem resolução (`python3 ferramentas/resolucoes/lote.py status`).
+Gasto total da fábrica até aqui: US$ 6,11 de um teto de US$ 200 (`fabrica_saida/gastos.csv`).
+O que fica pronto para a próxima sessão: `ferramentas/fabrica/resolve_api.py` (comandos `estima`, `teste`,
+`roda`, `lente`), os prompts em `ferramentas/fabrica/prompts/por-*.md` já com os cinco defeitos do piloto
+corrigidos, e `ferramentas/fabrica/confere_amostra.py`. Para rodar o lote seguinte:
+`python3 ferramentas/resolucoes/lote.py proximo por 50 --novo` e depois
+`python3 ferramentas/fabrica/resolve_api.py roda <entrada> --saida <saida> --teto <teto>`.
+As pendências deste lote estão no bloco AVISO PILOTO FÁBRICA logo acima.
