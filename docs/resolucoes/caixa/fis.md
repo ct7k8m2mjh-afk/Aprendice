@@ -443,3 +443,10 @@ Física terminada: lote.py status mostra 0 questões faltando. Último lote grav
 Nesta sessão: fis-0073 (50), fis-0074 (49 + 1 pendente), fis-0075 (49 + 1 pendente), fis-0076 (50), fis-0077 (44) = 242 resoluções conferidas.
 Pendentes desta sessão: P1e7255e2 (RECLASS para mat M01.5), P82169a8f (RECLASS para qui Q09.1). A conferir: GABARITO P0e87de45 (resolvida com a oficial B, mas os dados se contradizem; decidir se anula). Pendentes de Física no registro: 17.
 Site: AVISO de Pe70050bf (fração em linha no bloco Resposta correta), acima. A vaga desta sessão fica livre para outra matéria.
+
+## 2026-11-19 20:03 UTC — ACABOU (pendentes) — session_01PveEKY2v3nNa3i6GFngYfE
+Sessão de pendentes de Física: lote fis-pend-0001 (12 pendentes) gravado.
+- Resolvidas: 5 (Pa6cf7d38 UDESC 2024.2 com o gabarito oficial pós-recursos em fontes, Pf32f80b2, Ped0dc1fd, P806713a7, P8de70adc com print refeito) + 8 vindas de Química e Matemática (fis-0078). Total 13.
+- DADO P8de70adc (Fatec 2025-1 q26): texto_da_prova truncado; vale o print novo (95 °F).
+- Reclassificadas (prova.json corrigido): Pedc8d618 → bio B06.2, P1e7255e2 → mat M01.5, P82169a8f → qui Q09.1 (resolvidas nas matérias novas); Pb1b726b3 → geo G09.6 (só a classificação; está nos pendentes de registro-geo.json).
+- Ficaram pendentes: 3 — ANULAR Pcf680d36 (Acafe 2023 q32: faltam sen α, cos α e cos θ e o equilíbrio vertical não fecha); ANULAR P9615ec2a (UERR 2023 q44: a conta dá Δθ ≈ 252 °C, alternativa E; a oficial C só sai com 2α nos raios); ANULAR Pf4c499ee (PUC-Rio 2026 q18: vista de fora a pedra parece mais perto, II é falsa e nenhuma alternativa sobra).

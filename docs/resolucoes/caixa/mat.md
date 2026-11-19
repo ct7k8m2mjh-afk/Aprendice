@@ -460,3 +460,9 @@ Pendências: ANULAR P71aca1f8 (mat-0078) e ANULAR Pcdca0c12 (URCA PSU 2025.1, ma
 
 ## 2026-11-19 19:28 UTC — ACABOU — session_01PveEKX1qHQh5Qz4UFj3KyL
 Matemática parte 1 terminou: `lote.py status` mostra 0 questões faltando na parte 1 (e 0 em Matemática inteira, parte 2 incluída).
+
+## 2026-11-19 20:03 UTC — ACABOU (pendentes) — session_01PveEKY2v3nNa3i6GFngYfE
+Sessão de pendentes de Matemática: lote mat-pend-0001 (15 pendentes) gravado.
+- Resolvidas: 8 (P78a66ef3, Pf56e32e8, P5a76aa41, Pda63d44e, Pc99e3797, P53f16b0b, Pbc716955, Pbfde8575; prints refeitos do PDF oficial, sem a marca de gabarito) + 4 vindas de Biologia, Química e Física (mat-0082: 3; mat-p2-0008: 1). Total 12.
+- Reclassificadas (prova.json corrigido): P6272d008 → fis F08.2, P151d953b → fis F05.3, Peb68d097 → fis F09.2 (resolvidas em Física); P2e08b381 → por P01.2 (só a classificação; está nos pendentes de registro-por.json).
+- Ficaram pendentes: 3 — ANULAR P12e54be4 (UFRR 2026 q11, dados impossíveis: EC/AF nunca chega a 1/3); ANULAR P528013c1 (PUCPR 2024 Medicina: B e D ficam corretas; RECLASS M16.1 -> M15.3 se for mantida); PRINT P17aea30d (UFRR 2022: falta a alternativa E; o prova.json só tem o link genérico de editais.ufrr.br, que não responde daqui — precisa do link direto do caderno).

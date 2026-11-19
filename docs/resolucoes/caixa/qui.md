@@ -413,3 +413,10 @@ Nesta sessão: qui-0075 (50 ok), qui-0076 (47 ok, 3 ANULAR), qui-0077 (50 ok), q
 Testes após o qui-0076: tsc ok, 786 passed. Checagem no site: ver AVISO acima (frações com colchetes/índices não empilham; espaço de milhar quebra a fração).
 Pendências desta sessão: ANULAR Pf138dc18, P53cb39bd, P8c36b34b; gabarito do Aprendice P9f3bd7a8 (B), P2d15159f (C), P6135def7 (C), Pd1b2c6cf (A), P77184a68 (B), P5fb068c7 (B); RECLASS e DADO nos blocos acima. Pendências antigas da matéria continuam nos blocos anteriores (ANULAR P4bbfc2bf, P7bdaef74, P5f4aa130, Pa49ba080, Pecd73277; PRINT P2d222dbc).
 A vaga da Química fica livre.
+
+## 2026-11-19 20:03 UTC — ACABOU (pendentes) — session_01PveEKY2v3nNa3i6GFngYfE
+Sessão de pendentes de Química: lote qui-pend-0001 (11 pendentes) gravado.
+- Resolvidas: 4 (Pa91b52ff Fuvest 2021 q84, P49c155b4 Fatec 2025-1 q31, Pba420dcb PUC-Rio 2026 q31 com prints refeitos; P1f92eb26 IME 2024 q36) + 4 vindas de Biologia e Física (qui-0079). Total 8.
+- GABARITO P1f92eb26 (IME 2024 q36): D -> E pela errata/gabarito definitivo (https://www.ime.eb.mil.br/images/arquivos/admissao/cfg/provas-anteriores/2023-2024/Gabarito_Prova_Objetiva_1_FASE.pdf; o site não abriu daqui, a letra E veio da busca e bate com o Poliedro e com a conta). gab e nota_gabarito já trocados no prova.json.
+- Reclassificadas (prova.json corrigido e resolvidas nas matérias novas): Pc3a9046b → mat M04.4; P7b93c864 → mat M13.9; Pf0174648 → fis F09.4; P904e00fe → fis F07.4; P1e229c9e → fis F08.6; P5e8f83b1 → fis F08.7.
+- Ficou pendente: 1 — ANULAR P523fcc4a (UFRR 2025: 5,00 g de sal com 1,70 g de água não dão n = 2 para NaCl; edital pós-recursos não abriu daqui).

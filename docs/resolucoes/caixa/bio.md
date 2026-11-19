@@ -382,3 +382,12 @@ Status bio (lote.py status): 0 faltam.
 
 ## 2026-11-19 18:27 UTC — ACABOU — session_01PveEKXZwKo3vJj1Pbjeenm
 Biologia terminada: nenhuma questão de Biologia sem resolução fora das pendências registradas. A vaga pode ir para outra matéria.
+
+## 2026-11-19 20:03 UTC — ACABOU (pendentes) — session_01PveEKY2v3nNa3i6GFngYfE
+Sessão de pendentes de Biologia: lote bio-pend-0001 (20 pendentes) gravado.
+- Resolvidas: 2 (Pc481e226 Unimontes PAES3 2020 q17 e Pd1fa689a UFJF PISM3 2022 q11, prints refeitos do PDF) + 1 vinda de Física (bio-0078: Pedc8d618 UEMA 2022, genética). Total 3.
+- Reclassificadas (prova.json corrigido): Pa1b2ee02 → mat M13.4; Pc6c1048f → fis F02.1; Pb536f4cb → qui Q07.1; Pfd1ea733 → qui Q08.1; P0f22cd78 → qui Q02.4 (todas já resolvidas nas matérias novas). Geografia (P14847885, Pe6441b8a, P46397713, P9688242b, P7d45e236, P113e5a1b, P3b4ab5f1), Português (P112c6236) e História (P03179d3d): só a classificação; entraram nos pendentes de registro-geo/por/his.json para as sessões dessas matérias.
+- OUTRA P56bf6cb4, Pd59592fa, P98fb7dec (UECE, Educação Física): já estavam em outra-materia.json.
+- RECLASS Pd1fa689a B10.1 -> B06.4 (UFJF PISM3 2022 q11).
+- AUTORAL Pc481e226: o caderno da Unimontes PAES3 2020 só foi achado no pacote de download de vestibular.brasilescola.uol.com.br (o link do prova.json é a página da Coteps). O print é da prova oficial, sem logo, nome nem marca do site; a origem está em docs/provas/prints-refeitos.md. Dono decide.
+- Ficou pendente: 1 — ANULAR P50441003 (UECE 2025.2, sem gabarito definitivo: a A, preliminar mantido, chama a rodopsina de neurotransmissor e a põe nos cones).
