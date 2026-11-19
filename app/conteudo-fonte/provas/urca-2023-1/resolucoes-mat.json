@@ -611,5 +611,129 @@
    "data": "2026-11-13",
    "lote": "mat-0062"
   }
+ },
+ "P003ae600": {
+  "n": "25",
+  "conceito": "Achar os vértices de um triângulo a partir dos pontos médios dos lados e comparar os lados.",
+  "equivocos": {
+   "A": "M12.1:comparou-lados-sem-calcular",
+   "B": "M12.1:supos-triangulo-regular",
+   "C": "M12.1:inverteu-maior-e-menor",
+   "D": "M12.1:nao-reconstruiu-os-vertices"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada ponto médio é a média das coordenadas de dois vértices. Somando dois pontos médios e tirando o terceiro, sobra um vértice: por exemplo, M + P − N = A. Com os três vértices, calcule os três lados e compare.",
+    "formulas": [
+     "ponto médio de XY = ((x₁ + x₂)/2, (y₁ + y₂)/2)",
+     "A = M + P − N; B = M + N − P; C = N + P − M",
+     "d² = (Δx)² + (Δy)²"
+    ],
+    "simbolos": [
+     [
+      "ponto médio",
+      "ponto que divide o segmento em duas partes iguais"
+     ],
+     [
+      "Δx, Δy",
+      "diferença entre as abscissas e entre as ordenadas dos dois pontos"
+     ],
+     [
+      "d",
+      "distância entre dois pontos"
+     ]
+    ]
+   },
+   "pista": "Escreva cada ponto médio como a média de dois vértices. Que combinação de M, N e P isola o vértice A?",
+   "passos": [
+    {
+     "faz": "Ache os três vértices",
+     "conta": "A = M + P − N = (3 + 4 − 5, 1 + 0 − 1) → A = (2, 0)\nB = M + N − P = (3 + 5 − 4, 1 + 1 − 0) → B = (4, 2)\nC = N + P − M = (5 + 4 − 3, 1 + 0 − 1) → C = (6, 0)",
+     "porque": "M é a média de A e B, P a de A e C, N a de B e C. Em M + P o vértice A aparece duas vezes; tirando N, sobra só A. O mesmo vale para B e C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o lado AC",
+     "conta": "AC² = (6 − 2)² + (0 − 0)² = 16 → AC = 4",
+     "porque": "A e C estão na mesma altura (y = 0), então o lado é só a diferença das abscissas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os lados AB e BC",
+     "conta": "AB² = (4 − 2)² + (2 − 0)² = 8 → AB = 2√2\nBC² = (6 − 4)² + (0 − 2)² = 8 → BC = 2√2",
+     "porque": "Os dois lados que saem de B têm a mesma medida: o triângulo é isósceles de base AC.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare e conclua",
+     "conta": "AC = 4 > AB = BC = 2√2 ≈ 2,83 → maior lado: AC",
+     "porque": "Compare os quadrados: 16 > 8. O maior lado é AC, alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — o maior lado é AC (mede 4; AB e BC medem 2√2).",
+   "checagem": "Pelo teorema da base média, cada lado de ABC mede o dobro do segmento que liga os pontos médios dos outros dois lados: AC = 2·MN = 2·2 = 4 e AB = 2·NP = 2·√2. Fecha com os vértices.",
+   "erradas": {
+    "A": "AB = 2√2 ≈ 2,83, menor que AC = 4. AB empata com BC; não é o maior lado.",
+    "B": "Os lados medem 2√2, 2√2 e 4: dois iguais e um diferente. O triângulo é isósceles, não equilátero.",
+    "C": "AC = 4 é o maior lado, não o menor. Os menores são AB e BC, ambos com 2√2.",
+    "D": "O triângulo existe: A = (2, 0), B = (4, 2) e C = (6, 0) não estão alinhados, pois B está fora da reta y = 0 que contém A e C."
+   },
+   "armadilha": "M, N e P são pontos médios, não vértices: comparar as distâncias entre eles troca os lados de lugar (MN é paralelo a AC, não a AB).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre os lados do triângulo ABC é correta.",
+    "chave": "Cada vértice sai de somar dois pontos médios e subtrair o terceiro.",
+    "cuidado": "Calcule com os vértices, não com os pontos médios."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "base média",
+    "ideia": "Cada lado de ABC é o dobro do segmento entre os pontos médios dos outros dois: AC = 2·MN = 4, AB = 2·NP = 2√2, BC = 2·MP = 2√2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A = M + P − N → A = (2, 0)",
+    "nota": "vértice A"
+   },
+   {
+    "linha": "B = M + N − P → B = (4, 2)",
+    "nota": "vértice B"
+   },
+   {
+    "linha": "C = N + P − M → C = (6, 0)",
+    "nota": "vértice C"
+   },
+   {
+    "linha": "AC² = 4² + 0² = 16 → AC = 4",
+    "nota": "lado AC"
+   },
+   {
+    "linha": "AB² = 2² + 2² = 8 → AB = 2√2",
+    "nota": "AB; BC dá o mesmo"
+   },
+   {
+    "linha": "16 > 8 → maior lado: AC",
+    "nota": "conclusão"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0064"
+  }
  }
 }

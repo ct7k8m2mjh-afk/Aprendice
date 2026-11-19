@@ -1,6 +1,6 @@
-# Matemática: resoluções (gerado por lote.py em 2026-11-13)
+# Matemática: resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 1215 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 494; ENEM nível 7-10 76; provas-alvo nível 7-10 253; demais nível 7-10 392.
+Faltam 1095 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 374; ENEM nível 7-10 76; provas-alvo nível 7-10 253; demais nível 7-10 392.
 
 ## Lotes
 
@@ -69,11 +69,15 @@ Faltam 1215 questões sem resolução (fora as que estão em lote, pendentes ou 
 | mat-0061 | demais nível 1-6 | 60 | gravado | 59 | 1 | 0 |
 | mat-0062 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
 | mat-0063 | demais nível 1-6 | 60 | gravado | 60 | 0 | 0 |
+| mat-0064 | demais nível 1-6 | 60 | gravado | 58 | 2 | 0 |
+| mat-0065 | demais nível 1-6 | 60 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
+| Pda63d44e | PUCPR 2026 Medicina 2026/2 · questão 35 | M11.3 pirâmides e cones (tema M11 Geometria espacial) | print: o topo da questão está cortado e os numeradores de H = 3R/2 e x = √(6πR³/V) ficam ilegíveis; conferido no PDF oficial (p. 16 do caderno-gabarito), a questão fecha com C (r² = 3R²/4, V = 3πR³/8, x = √16 = 4) — refazer o print e reenviar. |
+| P6272d008 | UEMA 2021 PAES · questão 30 | M11.3 pirâmides e cones (tema M11 Geometria espacial) | classificação: é de física (F06.2, dilatação térmica), está em M11.3 pirâmides e cones. A conta: V₀ = (4/3) · π · 10³ = 4000 m³ (π = 3); γ = 5,04 ÷ (4000 · 30) = 4,2 · 10⁻⁵ °C⁻¹; ΔV = 250 · 4,2 · 10⁻⁵ · 40 = 0,42 m³ = 42 · 10⁻² m³ (alternativa E). |
 | P5a76aa41 | UFPR 2021 Fase única · questão 47 | M10.4 ciclo trigonométrico e arcos (tema M10 Trigonometria) | print: a imagem da questão está cortada e corrompida; a figura da circunferência aparece só em parte e as alternativas b) a e) estão ilegíveis. A sessão principal precisa refazer o print a partir do caderno da UFPR 2021. |
 | P12e54be4 | UFRR 2026 Vestibular 2026 – Prova Integral · questão 11 | M08.3 circunferência e círculo (tema M08 Geometria plana — áreas) | dados inconsistentes: com AD diâmetro, BO ⊥ AD e AF = 3, EC nunca passa de 0,9 (razão EC/AF ≤ 0,30, conferido em python), então a figura com EC = 1 não existe; nenhuma letra se demonstra. Gabarito oficial pós-recursos (Edital 93/25-CPV) não acessível daqui (editais.ufrr.br e web.archive recusaram conexão); conferir se a questão 11 da PI foi anulada. |
 | P78a66ef3 | UFU 2023 1ª fase · questão 68 | M05.4 função definida por partes e modular (tema M05 Funções afim e quadrática) | print cortado: o print (ufu-2023/q/068.webp) termina na alternativa C; a alternativa D, que é o gabarito, não aparece inteira. Refazer o print do PDF oficial. Conta já conferida: triângulo de base 2k e altura k, área k² = 20, k = 2√5. |

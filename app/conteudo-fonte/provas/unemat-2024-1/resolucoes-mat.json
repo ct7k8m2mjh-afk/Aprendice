@@ -499,5 +499,119 @@
    "data": "2026-11-13",
    "lote": "mat-0062"
   }
+ },
+ "P970d37c0": {
+  "n": "10",
+  "conceito": "Classificação de triângulo pelos lados e perímetro, com distância entre pontos.",
+  "equivocos": {
+   "B": "M12.1:classificacao-errada-com-perimetro-certo",
+   "C": "M12.1:erro-no-calculo-de-um-lado",
+   "D": "M12.1:classificacao-errada-com-perimetro-certo",
+   "E": "M12.1:classificacao-errada-com-perimetro-certo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada alternativa traz uma classificação e um perímetro, e os dois têm de estar certos. Calcule os três lados pela distância entre pontos. Dois lados iguais: isósceles; três iguais: equilátero; todos diferentes: escaleno. O perímetro é a soma dos três lados.",
+    "formulas": [
+     "d = √((Δx)² + (Δy)²)",
+     "perímetro = AB + AC + BC"
+    ],
+    "simbolos": [
+     [
+      "isósceles",
+      "triângulo com pelo menos dois lados iguais"
+     ],
+     [
+      "escaleno",
+      "triângulo com os três lados diferentes"
+     ],
+     [
+      "equilátero",
+      "triângulo com os três lados iguais"
+     ],
+     [
+      "Δx, Δy",
+      "diferenças das coordenadas x e y"
+     ]
+    ]
+   },
+   "pista": "Calcule os três lados ao quadrado primeiro; compare antes de tirar raiz.",
+   "passos": [
+    {
+     "faz": "Calcule o lado AB",
+     "conta": "AB = √((5 − 2)² + (1 − 4)²) → AB = √(9 + 9) = √18 → AB = 3√2",
+     "porque": "√18 = √(9 · 2) = 3√2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os lados AC e BC",
+     "conta": "AC = √(4² + 1²) = √17 | BC = √(1² + 4²) = √17",
+     "porque": "De A(2, 4) a C(6, 5): Δx = 4, Δy = 1. De B(5, 1) a C(6, 5): Δx = 1, Δy = 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Classifique e some",
+     "conta": "AC = BC = √17 → isósceles | 3√2 + √17 + √17 = 3√2 + 2√17",
+     "porque": "Dois lados iguais fazem o triângulo isósceles; o perímetro junta os dois √17.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha a alternativa",
+     "conta": "Isósceles, 3√2 + 2√17 → alternativa A",
+     "porque": "A tem a classificação e o perímetro certos; C repete a palavra isósceles com outro perímetro.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — Isósceles, 3√2 + 2√17",
+   "checagem": "Em decimal: 3√2 ≈ 4,243 e √17 ≈ 4,123, então o perímetro é ≈ 4,243 + 4,123 + 4,123 ≈ 12,49. E AC = BC confere por outro caminho: o ponto médio de AB é (3,5; 2,5), e de lá até C o deslocamento é (2,5; 2,5), perpendicular a AB, de deslocamento (3; −3), porque 2,5 · 3 + 2,5 · (−3) = 0. C está na mediatriz de AB, logo a mesma distância de A e de B.",
+   "erradas": {
+    "B": "B (Escaleno, 3√2 + 2√17) não confere: o perímetro está certo, mas AC e BC valem √17 os dois, então o triângulo tem dois lados iguais.",
+    "C": "C (Isósceles, 3√2 + 2√5) não confere: nenhum lado vale √5; os lados iguais valem √17, de 4² + 1² = 17.",
+    "D": "D (Equilátero, 2√3 + 2√5) não confere: AB = 3√2 ≈ 4,24 é diferente de √17 ≈ 4,12; e o perímetro 2√3 + 2√5 não tem nenhum dos lados.",
+    "E": "E (Equilátero, 4(√2 + √5)) não confere: os lados não são todos iguais, e 4(√2 + √5) ≈ 14,60 não é o perímetro, que dá ≈ 12,49."
+   },
+   "armadilha": "Conferir só o perímetro e marcar escaleno: √18 e √17 parecem próximos, mas o que define isósceles são os dois √17.",
+   "alerta": "No texto da prova as alternativas aparecem só com a classificação, e A e C ficam iguais (\"Isósceles\"); o perímetro de cada alternativa está só no print: (A) Isósceles 3√2 + 2√17; (B) Escaleno 3√2 + 2√17; (C) Isósceles 3√2 + 2√5; (D) Equilátero 2√3 + 2√5; (E) Equilátero 4(√2 + √5).",
+   "essencial": {
+    "pede": "A classificação pelos lados e o perímetro do triângulo A(2, 4), B(5, 1), C(6, 5).",
+    "chave": "AB = 3√2 e AC = BC = √17: isósceles, perímetro 3√2 + 2√17.",
+    "cuidado": "A alternativa precisa acertar a classificação e o perímetro ao mesmo tempo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "comparar os quadrados",
+    "ideia": "AB² = 18, AC² = 17, BC² = 17: dois quadrados iguais já dizem isósceles e eliminam B, D e E sem tirar raiz."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "AB² = 3² + (−3)² = 18 → AB = 3√2",
+    "nota": "lado AB"
+   },
+   {
+    "linha": "AC² = 4² + 1² = 17 → AC = √17",
+    "nota": "lado AC"
+   },
+   {
+    "linha": "BC² = 1² + 4² = 17 → BC = √17",
+    "nota": "lado BC, igual a AC"
+   },
+   {
+    "linha": "P = 3√2 + 2√17",
+    "nota": "perímetro do isósceles"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0064"
+  }
  }
 }

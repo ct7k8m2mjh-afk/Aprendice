@@ -628,5 +628,126 @@
    "data": "2026-11-13",
    "lote": "mat-0063"
   }
+ },
+ "P0e525d0d": {
+  "n": "35",
+  "conceito": "Arestas e vértices de um poliedro pela contagem das faces e pela relação de Euler, e volume de pirâmide de base quadrada.",
+  "equivocos": {
+   "A": "M11.5:altura-errada-na-piramide",
+   "B": "M11.5:euler-sem-o-2",
+   "D": "M11.5:dividiu-por-2-no-volume",
+   "E": "M11.5:esqueceu-o-terco-da-piramide"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O poliedro não aparece desenhado: tudo sai da contagem das faces. Cada aresta é lado de exatamente duas faces, então somar os lados de todas as faces conta cada aresta duas vezes. Com F e A, a relação de Euler dá V, que é a altura da pirâmide. A base da pirâmide é uma face do poliedro e não pode ser triângulo (a pirâmide não é tetraédrica), então é uma face de quatro lados de 6 cm. Como a pirâmide é regular, a base é um polígono regular: um quadrilátero regular de lado 6 cm é um quadrado, de área 36 cm².",
+    "formulas": [
+     "A = (soma dos lados de todas as faces)/2",
+     "V − A + F = 2 (relação de Euler)",
+     "volume da pirâmide = (área da base × altura)/3"
+    ],
+    "simbolos": [
+     [
+      "F",
+      "número de faces"
+     ],
+     [
+      "A",
+      "número de arestas"
+     ],
+     [
+      "V",
+      "número de vértices"
+     ],
+     [
+      "pirâmide tetraédrica",
+      "pirâmide de base triangular (tetraedro)"
+     ]
+    ]
+   },
+   "pista": "Antes de pensar na pirâmide, descubra quantos vértices o poliedro tem: some os lados de todas as faces e lembre que cada aresta foi contada duas vezes.",
+   "passos": [
+    {
+     "faz": "Conte as arestas pelas faces",
+     "conta": "A = (12 · 3 + 8 · 4)/2 = (36 + 32)/2 = 68/2 = 34",
+     "porque": "Cada triângulo tem 3 lados e cada quadrilátero 4. Cada aresta é lado de duas faces, por isso a soma é dividida por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache os vértices pela relação de Euler",
+     "conta": "V − 34 + 20 = 2 → V = 2 + 34 − 20 → V = 16",
+     "porque": "O poliedro é convexo, então vale V − A + F = 2, com F = 12 + 8 = 20 faces. O 34 passa para o outro lado somando e o 20 subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha a base da pirâmide",
+     "conta": "base: quadrado de lado 6 → área = 6 · 6 = 36 cm²",
+     "porque": "A base é uma face do poliedro: triângulo ou quadrilátero. Base triangular faria da pirâmide um tetraedro, o que o enunciado proíbe; sobra a face de quatro lados, todos de 6 cm. Ter os lados iguais não basta (podia ser um losango): o que garante o quadrado é a pirâmide ser regular, porque pirâmide regular tem base em polígono regular.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Calcule o volume com altura 16",
+     "conta": "V = (36 · 16)/3 = 576/3 = 192 cm³",
+     "porque": "A altura vale numericamente o número de vértices, 16 cm. Pirâmide leva o fator 1/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "192 cm³ → alternativa C",
+     "porque": "É o volume pedido, em centímetros cúbicos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 192 cm³",
+   "checagem": "Confira os vértices pelo outro lado: com V = 16, A = 34 e F = 20, V − A + F = 16 − 34 + 20 = 2. E 192 × 3 ÷ 36 = 16 devolve a altura.",
+   "erradas": {
+    "A": "128 não confere: daria altura 128 × 3 ÷ 36 ≈ 10,67 cm, que não é um número inteiro e não pode ser número de vértices.",
+    "B": "168 sai de esquecer o 2 de Euler: V = A − F = 34 − 20 = 14, e (36 · 14)/3 = 168.",
+    "D": "288 sai de dividir por 2 em vez de 3: (36 · 16)/2 = 288.",
+    "E": "576 sai de esquecer o fator 1/3 da pirâmide: 36 · 16 = 576, que é o volume de um prisma."
+   },
+   "armadilha": "Pensar que a altura é dada: ela é o número de vértices, que só sai com a contagem das arestas e a relação de Euler.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume da pirâmide cuja base é uma face do poliedro e cuja altura vale o número de vértices.",
+    "chave": "A = (36 + 32)/2 = 34; V = 2 + 34 − 20 = 16; volume = (36 · 16)/3 = 192.",
+    "cuidado": "Divida a soma dos lados por 2 e não esqueça o 2 da relação de Euler nem o 1/3 da pirâmide."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Euler direto",
+    "ideia": "Some as faces e as arestas: V = 2 + A − F = 2 + 34 − 20 = 16, e o volume é 36 · 16 ÷ 3 = 12 · 16 = 192."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A = (12 · 3 + 8 · 4)/2 = 68/2 = 34",
+    "nota": "arestas contadas duas vezes"
+   },
+   {
+    "linha": "V − 34 + 20 = 2 → V = 16",
+    "nota": "relação de Euler"
+   },
+   {
+    "linha": "área da base = 6 · 6 = 36",
+    "nota": "base quadrada"
+   },
+   {
+    "linha": "volume = (36 · 16)/3 = 192",
+    "nota": "pirâmide: um terço"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0064"
+  }
  }
 }

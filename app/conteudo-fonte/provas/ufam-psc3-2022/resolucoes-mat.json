@@ -1,0 +1,114 @@
+{
+ "P45fb4ae7": {
+  "n": "54",
+  "conceito": "Pontos que dividem um segmento em três partes iguais (divisão em razão dada).",
+  "equivocos": {
+   "A": "M12.1:ponto-fora-do-segmento",
+   "B": "M12.1:ponto-fora-do-segmento",
+   "C": "M12.1:ponto-fora-do-segmento",
+   "D": "M12.1:sinal-do-deslocamento-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para dividir AB em três partes iguais, ande de A até B em três passos iguais. Cada passo é um terço do deslocamento total em x e em y. De A(5, 3) até B(0, 4), x diminui 5 e y aumenta 1.",
+    "formulas": [
+     "passo = (B − A)/3",
+     "P1 = A + passo ; P2 = A + 2 · passo"
+    ],
+    "simbolos": [
+     [
+      "P1, P2",
+      "os dois pontos que dividem o segmento em três partes iguais"
+     ],
+     [
+      "B − A",
+      "deslocamento de A até B, coordenada a coordenada"
+     ]
+    ]
+   },
+   "pista": "Descubra quanto x e y variam de A até B e divida cada variação por 3.",
+   "passos": [
+    {
+     "faz": "Calcule o deslocamento de A até B",
+     "conta": "Δx = 0 − 5 = −5 | Δy = 4 − 3 = 1",
+     "porque": "Ir de A até B tira 5 de x e soma 1 a y.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida o deslocamento em três",
+     "conta": "passo: (−5/3, 1/3)",
+     "porque": "Três partes de mesmo comprimento significam três passos iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Dê o primeiro passo a partir de A",
+     "conta": "x = 5 − 5/3 = 10/3 | y = 3 + 1/3 = 10/3 → P1 = (10/3, 10/3)",
+     "porque": "Somando um passo a A, chega-se ao ponto que fica a um terço do caminho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Dê o segundo passo",
+     "conta": "x = 10/3 − 5/3 = 5/3 | y = 10/3 + 1/3 = 11/3 → P2 = (5/3, 11/3)",
+     "porque": "Mais um passo igual leva ao ponto a dois terços do caminho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Procure o par nas alternativas",
+     "conta": "(5/3, 11/3) e (10/3, 10/3) → alternativa E",
+     "porque": "A ordem dos dois pontos na alternativa não importa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — (5/3, 11/3) e (10/3, 10/3)",
+   "checagem": "Mais um passo a partir de P2 tem de cair em B: 5/3 − 5/3 = 0 e 11/3 + 1/3 = 12/3 = 4, ou seja, (0, 4). Fecha.",
+   "erradas": {
+    "A": "(5/3, 8/3) não confere: no segmento, y vai de 3 a 4, e 8/3 ≈ 2,67 fica abaixo de 3. Com x = 5/3, o y certo é 11/3.",
+    "B": "(8/3, 10/3) não confere: os x dos pontos de divisão são 5 − 5/3 = 10/3 e 5 − 10/3 = 5/3; 8/3 não é nenhum deles.",
+    "C": "(8/3, 11/3) não confere: o x 8/3 não sai de nenhum terço do deslocamento horizontal, que dá 10/3 e 5/3.",
+    "D": "(10/3, 8/3) sai de subtrair 1/3 do y em vez de somar: 3 − 1/3 = 8/3. De A para B o y sobe, de 3 para 4."
+   },
+   "armadilha": "Trocar o sinal de um dos deslocamentos: x diminui de A para B, mas y aumenta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os dois pontos que dividem o segmento de A(5, 3) a B(0, 4) em três partes iguais.",
+    "chave": "Passo = (−5/3, 1/3); somando a A uma e duas vezes: (10/3, 10/3) e (5/3, 11/3).",
+    "cuidado": "Respeite o sinal de cada variação e confira se o último passo chega a B."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ponto médio",
+    "ideia": "P1 e P2 são simétricos em relação ao ponto médio (5/2, 7/2): a média das coordenadas de cada par tem de dar 5/2 e 7/2, o que só a E cumpre com os dois pontos no segmento."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "B − A = (0 − 5, 4 − 3) = (−5, 1)",
+    "nota": "deslocamento total"
+   },
+   {
+    "linha": "passo = (−5/3, 1/3)",
+    "nota": "um terço do deslocamento"
+   },
+   {
+    "linha": "P1 = (5 − 5/3, 3 + 1/3) = (10/3, 10/3)",
+    "nota": "um passo a partir de A"
+   },
+   {
+    "linha": "P2 = (10/3 − 5/3, 10/3 + 1/3) = (5/3, 11/3)",
+    "nota": "dois passos a partir de A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0064"
+  }
+ }
+}
