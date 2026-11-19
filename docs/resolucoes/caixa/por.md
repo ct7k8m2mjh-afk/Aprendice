@@ -293,3 +293,74 @@ DADO P2e08b381 (Unicamp Indígena 2022 q13): area -> prova.json marca 'Matemáti
 DADO P112c6236 (UNEMAT 2022/2 q32): area -> prova.json marca 'Biologia', mas é gramática (haver impessoal); resolvida em por P10.1
 OBRA P63da1bf6 (ITA 2021 q25): resolvida com conhecimento do conto 'A sauna' (Seminário dos ratos), epítetos confirmados em dissertação da UEL (2024); fontes na questão
 DADO Pb28d85a4 (Fuvest 2026 q13, agora mat M14.2): alternativas.E -> sem o "#####" final, que não está no print
+## 2026-11-19 21:30 UTC — PENDENCIAS (lote por-0105) — session_01PveEKX1JnJpMCfgHmpRupU
+
+48 resoluções gravadas em 17 provas; 2 pendentes. Três conferentes
+independentes abriram os prints e devolveram 33 achados, todos aplicados ou
+decididos. O que precisa da coordenação:
+
+### RECLASS (a classificação da questão está errada no `prova.json`)
+
+| Questão | Hoje | Deveria ser | Por quê |
+|---|---|---|---|
+| P709b03ee | P12.5 literatura contemporânea e autores africanos | **P12.1** Pré-Modernismo | É de *Os Sertões*, Euclides da Cunha. Deixei os `equivocos` apontando P12.1, que é onde o aluno precisa voltar na revisão, e não mexi na classificação da questão, que não é minha. |
+| P5335b921 | P12.5 | **P06.1** figuras de linguagem (a conferir) | A questão decide pela leitura da metáfora (a árvore espoliada = o sujeito periférico). Os `equivocos` ficaram em P06.1. O conferente não fechou qual é o certo: os dois se defendem. |
+| Pfc99ec33 | P01.2 (Português) | **Artes** ou Português — duas leituras | O resolvedor da fábrica recusou duas vezes, por entender que a questão pede característica estilística do Maneirismo. O conferente, com o print aberto, sustenta que é leitura de texto e imagem: o enunciado já diz que a obra é maneirista, C e D só repetem o Texto II, A é comum à pintura clássica, E se desmente no print e B se vê na imagem. Gabarito oficial B. **Fica pendente até a coordenação decidir.** |
+
+Em P204666bc os `equivocos` apontavam P01.2 e a questão é P12.5: corrigi os
+três para P12.5. Esse defeito manda o aluno para o conteúdo errado na revisão
+espaçada, e é o mesmo que já apareceu em lotes anteriores — vale olhar nos
+lotes das outras matérias.
+
+### Pendentes que continuam fora
+
+- **Pe350965f** (*Tribo Cara Baixa*, UNIRG 2021 q12) — pendência **confirmada**
+  por dois agentes em separado. O print não traz uma linha da obra e não há
+  caminho por eliminação. Um deles procurou o título na web, inclusive junto
+  às leituras obrigatórias da UNIRG, e não achou nenhuma página sobre a obra,
+  o autor ou a estrutura do livro. Ou alguém lê o livro e registra a fonte, ou
+  a questão sai do banco nacional.
+- **Pfc99ec33** — acima, à espera da decisão de matéria.
+
+### Duas pendências que a fábrica pediu e não se sustentavam
+
+Pb2f7e5d3 (ENEM 2020 q25, Kosuth) e Pfc99ec33 foram declaradas pendentes pelo
+resolvedor **antes de ele escrever qualquer resolução** — e por isso, quando o
+conferente derrubou a pendência, não havia nada para aprovar. Pb2f7e5d3 foi
+resolvida depois (letra A, igual ao gabarito oficial) e passou pela lente de
+fatos por US$ 0,11. É o defeito mais caro da fábrica: ela desiste cedo e
+descarta questão boa sem fazer barulho.
+
+### Divergência entre conferentes, resolvida por regra
+
+Em P4bb69996 e P709b03ee o conferente pediu `fontes` para dados de obra que o
+print não traz: Mia Couto moçambicano, Baltasar Lopes cabo-verdiano, Lídia
+Jorge portuguesa, a divisão de *Os Sertões* em "A Terra", "O Homem" e "A Luta".
+O agente de obras já havia decidido o contrário, invocando a regra 5 do
+`CONFIRMA-OBRAS`: fato consolidado de livro didático não precisa de fonte.
+**Mantive a decisão do agente de obras**, porque a regra é expressa. Registro
+para quem quiser rever a regra: ela é a fronteira entre "não enche a resolução
+de referência óbvia" e "o aluno não tem como conferir".
+
+### O que a conferência pegou e as lentes da API não
+
+Uma **leitura invertida** em Pb02b7c85 (*O Homem Duplicado*): a `checagem`
+dizia que António Claro impõe uma noite com Maria da Paz, "namorada de
+Tertuliano, **que consente**" — e na obra quem cede é Tertuliano (entrega
+roupas, documentos e chaves do carro); Maria da Paz é enganada e só descobre
+depois. Letra certa, as duas lentes de fatos assinaram, e o sentido estava
+trocado. Mais duas trocas de sujeito do mesmo tipo em Pe16dc549 ("quem
+vasculha arquivos é o filme" em vez de Petra) e Pb269f53f.
+
+Também dois casos de **justificativa circular**: `passos[3].porque` e
+`erradas.C` de Pb02b7c85 sustentavam a afirmativa pelo gabarito ("a banca a deu
+por correta"), que não ensina nada ao aluno. Trocados por fato da obra.
+
+### Observação da fábrica para quem mexer nos prints
+
+Em 5 questões da parte 2 (P66f51545, P8c683f2c, Pb269f53f, Pe16dc549,
+Pf0dda522) o campo `figura` está marcado como verdadeiro, mas o print não tem
+figura nenhuma: é só texto, e as cinco têm `texto_da_prova`. Pelo princípio 1,
+questão de prova só de texto deve aparecer **escrita**, copiada da camada de
+texto da prova, não como print. Não é defeito da resolução; é do levantamento
+da prova.
