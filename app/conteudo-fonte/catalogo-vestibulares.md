@@ -8,7 +8,7 @@ Gerado em 2026-11-01. Fonte de dados: `catalogo-vestibulares.json`. Legenda: ✔
 |---|---|---|---|---|---|---|---|
 | Enem | Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (INEP) | — | publica | Inep | enem_sisu, enem_nota | ✔ | provas_anteriores (página oficial de provas e gabaritos do Inep não confirmada) |
 
-## Sudeste (28)
+## Sudeste (31)
 
 | Prova | Instituição | UF | Rede | Banca | Ingresso | Verif. | A verificar |
 |---|---|---|---|---|---|---|---|
@@ -40,6 +40,9 @@ Gerado em 2026-11-01. Fonte de dados: `catalogo-vestibulares.json`. Legenda: ✔
 | Vestibular Mackenzie | Universidade Presbiteriana Mackenzie (Mackenzie) | SP | privada | Mackenzie | vestibular_proprio, enem_nota | ✖ | questoes_objetivas; duracao_horas |
 | Vestibular Unificado FGV | Fundação Getulio Vargas (FGV) | SP | privada | FGV | vestibular_proprio, enem_nota | ✖ | questoes_objetivas por curso; duracao_horas |
 | Vestibular Mauá | Centro Universitário do Instituto Mauá de Tecnologia (Mauá) | SP | privada | Instituto Mauá de Tecnologia | vestibular_proprio, enem_nota | ✖ | questoes_objetivas; duracao_horas |
+| Vestibular Medicina Anhembi Morumbi | Universidade Anhembi Morumbi (Anhembi Morumbi) | SP | privada | Vunesp | vestibular_proprio | ✖ | formato do ciclo atual (edital); discursivas; duracao_horas; materias |
+| Processo Seletivo Fema | Fundação Educacional do Município de Assis (Fema) | SP | publica | Fema | vestibular_proprio | ✖ | rede (fundação pública municipal que cobra mensalidade: conferir a classificação no e-MEC); formato do ciclo atual (edital) |
+| Vestibular UEMG | Universidade do Estado de Minas Gerais (UEMG) | MG | publica | UEMG / Instituto AOCP | vestibular_proprio | ✖ | formato do ciclo atual (edital); banca do ciclo atual |
 
 ## Sul (16)
 
