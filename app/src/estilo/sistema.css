@@ -97,9 +97,9 @@
   .q-meta-acao { position: absolute; right: -4px; top: -4px; }
 }
 
-/* print: papel branco nos dois temas, pé com "Ampliar" e a fonte */
+/* print: a imagem é a página da prova (papel branco dela, não se mexe); o quadro em volta segue o cartão. Pé com "Ampliar" e a fonte */
 /* --q-pw (QuestaoCartao: useLarguraPrint) estreita e centra o print quando ele cabe inteiro na tela; a resposta segue a largura dele */
-.q-print { width: 100%; max-width: var(--q-pw, 100%); margin: 14px auto 0; overflow: hidden; border: 0; border-radius: 12px; background: #FFFFFF; box-shadow: 0 0 0 1px var(--linha); cursor: auto; }
+.q-print { width: 100%; max-width: var(--q-pw, 100%); margin: 14px auto 0; overflow: hidden; border: 0; border-radius: 12px; background: var(--folha); box-shadow: 0 0 0 1px var(--linha); cursor: auto; }
 .q-print-img { display: block; width: 100%; padding: 0; border: 0; background: #FFFFFF; cursor: zoom-in; }
 .q-print-img img { display: block; width: 100%; height: auto; }
 [data-theme='dark'] .q-print-img img { filter: brightness(.88) contrast(1.02); }
@@ -117,6 +117,8 @@
 .q-resp.com-texto { position: static; }
 /* questão indisponível (dono, 19/11/2026): o mesmo pé, rótulo "Questão indisponível" e uma linha no lugar das letras */
 .q-resp.q-indisp { --q-pw: 100%; } /* começa no mesmo x da caixa normal, não no do print estreito */
+/* sem letras para tocar, o pé da indisponível não fica preso: segue o conteúdo, que assim nunca fica embaixo dele ("Ver em texto" no celular) */
+.q-resp.q-indisp:not(.com-texto) { position: static; }
 .q-resp.q-indisp .q-bolhas::before { content: 'Questão indisponível'; }
 .q-indisp-txt { flex: 1; min-width: 0; margin: 0; font-size: 15px; line-height: 1.4; color: var(--tinta); }
 .q-bolhas { display: flex; align-items: center; gap: 10px; }

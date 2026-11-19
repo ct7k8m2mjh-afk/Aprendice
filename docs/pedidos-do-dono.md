@@ -24,6 +24,7 @@ Uma linha por decisão, com a data. Só a versão mais nova de cada regra; o que
 - 05/11 — Paleta aprovada (`docs/cores/paleta.json` + PDF): Biologia verde-folha, Química magenta, Matemática azul-marinho vivo, Português roxo, Física laranja, História marrom couro, Geografia azul-petróleo, Inglês vermelho-cereja, Filosofia e Sociologia amarelo-ouro; ao entrar na matéria o site inteiro assume a cor dela. Valores: `DESIGN.md`.
 - 05/11 — Guia tipográfico aprovado (`docs/fontes/Guia-tipografico-APRENDICE.pdf`, fontes em `docs/fontes/fontes/`): Dancing Script no título da matéria, Familjen Grotesk na interface, Literata na explicação da correção, Caveat nas contas, DM Sans só no login.
 - 06/11 — Título da matéria maior e páginas mais largas em telas grandes (valores em `DESIGN.md`).
+- 19/11 — Fundo nunca neutro (preto ou branco), escolha "Tom da matéria": véu leve da cor da matéria no fundo (Biologia claro #EEF4EA, cartão #FAFCF7; escuro #0F1A12, cartão #17241A), creme fora das matérias (claro #F5F0E6 / cartão #FCFAF5; escuro #1A1712 / cartão #24201A); cartões sempre levemente tingidos. Tokens: `DESIGN.md`, "Superfícies".
 
 ## Ícones e capas
 - 03/11 — Desenho do ícone cientificamente certo; resolução máxima, nada borrado em tela cheia; recorte nunca corta o objeto; sem fundo branco em volta.

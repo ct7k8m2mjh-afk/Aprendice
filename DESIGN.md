@@ -1,6 +1,6 @@
 ---
 name: APRENDICE
-description: Site de estudo para vestibulares pelas questões reais das provas, em folhas brancas sobre papel cinza, uma cor por matéria.
+description: Site de estudo para vestibulares pelas questões reais das provas, com fundo no tom da matéria (creme fora delas) e uma cor por matéria.
 ---
 
 # Design System: APRENDICE
@@ -11,7 +11,7 @@ Versão compacta (09/11/2026). Texto longo anterior: `docs/historico/2026-11-09-
 - Sistema = protótipo `app-atual/` (`design/materia.css`, `fontes.css`, `shell.html`); ver: `PUBLICAR=1 python3 design/gera_design.py` em `app-atual/`. Sistema, não conteúdo: telas e matérias novas seguem o sistema.
 - Reproduzir referência, nunca copiar (princípio 12). Exceção: login segue a referência própria (Aprendice_Login_Pacote).
 - Conferir em 390, 768, 1280, 1440 px, claro e escuro (princípio 9).
-- Clima "mesa de estudo": papel cinza, folhas brancas com borda 1px, sombra neutra discreta; cor da matéria só no que é da matéria; fora dela, grafite `neutro-c`. Claro é o padrão; escuro troca superfícies e clareia as cores das matérias.
+- Clima "mesa de estudo": fundo nunca neutro (véu da cor da matéria; creme fora das matérias, decisão do dono 19/11/2026), cartões levemente tingidos com borda 1px, sombra neutra discreta; cor da matéria só no que é da matéria; fora dela, grafite `neutro-c`. Claro é o padrão; escuro troca superfícies e clareia as cores das matérias.
 - Proibido: emoji, ícone de glifo, rótulo-chamada (kicker) acima de título, brilho/sombra colorida, cor de matéria fora do escopo `.m-<id>`, verde/vermelho/âmbar fora de certo/errado/aviso, hexadecimal de matéria direto no CSS.
 
 ## Cores
@@ -19,25 +19,49 @@ Versão compacta (09/11/2026). Texto longo anterior: `docs/historico/2026-11-09-
 ### Base (`base.css`, claro / escuro)
 | Token | Claro | Escuro | Uso |
 |---|---|---|---|
-| papel | #F1F1EE | #0C0D10 | fundo da mesa |
-| folha | #FFFFFF | #16171B | superfícies |
-| folha2 | #F4F4F1 | #1D1F24 | hover, blocos internos |
-| malha | #EEEEEA | #1A1B1F | trilhos, etiquetas neutras |
-| linha | #E5E5E0 | #25272D | borda 1px de toda folha |
-| borda2 | #D6D6D0 | #32353D | borda em hover, secundário |
+| papel / folha / folha2 / malha / linha / borda2 | ver "Superfícies" abaixo | | fundo, cartão, blocos internos, etiquetas neutras, bordas |
 | campo-borda | #878A93 | #666A74 | campos e alternativas (3:1) |
 | tinta / lapis / fraco | #17181C / #585B64 / #62656F | #EDEEF1 / #A3A6B0 / #8C8F99 | texto principal / apoio / metadado |
 | neutro (`--c`,`--t`,`--p` fora de matéria) | #2B2D33 (ink #FFFFFF) | #D9DBE0 (ink #0C0D10) | grafite |
-| `--s` fora de matéria | #EEEEEA | #1A1B1F | |
+| `--s` fora de matéria | tinta 7% sobre a folha | tinta 3% sobre a folha | |
 | certo / certo-bg | #0A7550 / #E2F6EE | #2FD39A / #0F2A22 | só certo |
 | errado / errado-bg | #B3302A / #FCEAE7 | #FF7B6B / #2E1714 | só errado |
 | aviso / aviso-bg | #8A6200 / #FBF1DA | #F5C451 / #2A2312 | só aviso, pegadinha, pausa |
 | cad-papel / cad-tinta / cad-borda / cad-caneta | #FBF7EA / #1C2F74 / #E6DCC0 / #C0392B | #1C1B18 / #EFE8CF / #34312A / #FF8A7A | caderno (conta à mão) |
-| lado (menu) | #FFFFFF | #131418 | |
+| lado (menu) | = folha | folha 70% + papel 30% | |
 | verde-marca | #1A8038 | #4CC46E | marca (nunca ao lado do verde de Bio) |
 | cad-marca (marca-texto) | #FFE36E | rgba(255,214,90,.28) | resultado da conta |
 
 Sombras: `--sombra` 0 1px 2px rgba(21,25,51,.05), 0 8px 22px rgba(21,25,51,.06) (escuro: fio interno 3% + 0 8px 24px preto .22); `--sombra-alta` 0 2px 6px .08, 0 18px 48px .14 (escuro .5); `--sombra-folha` 0 1px 2px .04 (escuro nenhuma); `--sombra-tema` 0 1px 2px .04, 0 10px 26px -18px .22. Foco de campo: anel 3px de `--c` a 22% + borda `--t`. Seleção: `inset 0 0 0 1px` na cor do estado. Borda primeiro: sombra nunca substitui a borda.
+
+### Superfícies: fundo nunca neutro (decisão do dono, 19/11/2026; `base.css`, bloco "SUPERFÍCIES")
+Regra: **o fundo e os cartões nunca são branco nem preto.** Dentro de uma matéria (`.casca.em-materia`, rotas `/m/<id>`) o fundo ganha um véu da cor principal dela (`--p`); fora das matérias (início, simulados, revisão, perfil, busca, entrada), creme quente. Cartão sempre levemente tingido. Proporções **fixas**, iguais nas nove matérias, calibradas para dar exatamente os valores aprovados de Biologia.
+
+| Token | Claro | Escuro |
+|---|---|---|
+| papel (fundo), fora das matérias | #F5F0E6 | #1A1712 |
+| folha (cartão), fora das matérias | #FCFAF5 | #24201A (café) |
+| papel, em matéria | `color-mix(in srgb, var(--p) 8%, #FDFBFA)` | `color-mix(in srgb, var(--p) 10%, #0A0B0E)` |
+| folha, em matéria | `color-mix(in srgb, var(--p) 2.5%, #FFFEFC)` | `color-mix(in srgb, var(--p) 11%, #121417)` |
+| folha2 | folha 30% + papel 70% | tinta 4% sobre a folha |
+| linha / borda2 | tinta 11% / 18% sobre a folha | tinta 7% / 13% sobre a folha |
+| malha | tinta 7% sobre a folha | tinta 3% sobre a folha |
+
+Resultado por matéria (papel / folha):
+
+| Matéria | Claro | Escuro |
+|---|---|---|
+| Biologia | #EEF4EA / #FAFCF7 | #0F1A12 / #17241A |
+| Química | #FAE9F1 / #FEF8F9 | #1E0C1B / #271524 |
+| Matemática | #EBECF3 / #F9F9FA | #0C101D / #131927 |
+| Português | #F4ECF7 / #FCF9FB | #171022 / #1F192B |
+| Física | #FCF0E6 / #FFFBF6 | #21160D / #2B1F14 |
+| História | #F2ECE8 / #FCF9F6 | #151110 / #1D1918 |
+| Geografia | #EAF0F0 / #F9FAF9 | #0A1519 / #121E22 |
+| Inglês | #F7E7E9 / #FDF8F7 | #1A0A11 / #231219 |
+| Filosofia e Sociologia | #FBF5E8 / #FEFCF6 | #201C0F / #2A2617 |
+
+Contraste (19/11/2026, todas as matérias e o creme, nos dois temas): tinta ≥ 13,0:1, lapis ≥ 5,7:1, fraco ≥ 4,7:1 em fundo e cartão; cor da matéria (`--t`) ≥ 4,65:1 no cartão e ≥ 4,18:1 no fundo (Química clara; passa 3:1 de texto grande e ícone; texto pequeno na cor da matéria fica nos cartões). Exceções que continuam: o print da questão é a página da prova (papel branco dela; o quadro em volta segue o cartão); o caderno da resolução animada é `cad-papel`; os círculos dos ícones continuam claros no escuro.
 
 ### Matérias (paleta do dono, `docs/cores/paleta.json`; `materias.ts`, conferido por `unificacao.test.ts`)
 | Matéria (id) | Principal `--p` | Texto claro `--t` | Texto escuro | Fundo claro `--s` | Fundo escuro | Sobre principal | Botão claro `--c`/`--ink` |
@@ -141,7 +165,7 @@ Hover brilho +5%; pressionar desce 1px; foco contorno 2px `--t` afastado 2px; de
 
 ### Questão
 - Barra 52px presa no topo da área: "‹ Voltar", ícone da matéria, "Matéria · Tema · nível · N de M" com progresso 2px; ajuda de teclado; cronômetros TOTAL e QUESTÃO (28px, canto 8); pausa 32px; Tela cheia. ≤900 saem os rótulos TOTAL/QUESTÃO e o texto usa até 2 linhas; ≤520 sai o ícone (e Tela cheia no simulado); ≤420 sai o tempo total.
-- Cartão único (padding 16/16/0, 14 ≤700; canto 18): etiquetas + marcador 36px; print em papel branco (canto 12) com "Ampliar" + fonte; no escuro brilho 0,88. Largura do print (`useLarguraPrint`, >700px): estreita e centra quando print + A–E + Confirmar cabem sem ficar < 90% do natural; máx. 1,3× (1,05× quando medido pelas linhas, ~25px por linha); mín. 320px.
+- Cartão único (padding 16/16/0, 14 ≤700; canto 18): etiquetas + marcador 36px; print (imagem da prova, papel branco dela; quadro na cor do cartão, canto 12) com "Ampliar" + fonte; no escuro brilho 0,88. Largura do print (`useLarguraPrint`, >700px): estreita e centra quando print + A–E + Confirmar cabem sem ficar < 90% do natural; máx. 1,3× (1,05× quando medido pelas linhas, ~25px por linha); mín. 320px.
 - Resposta presa ao pé: "SUA RESPOSTA" + 5 letras 50px (canto 12, gap 10, borda 1.5px; ≤700 de borda a borda acima das abas, sem rótulo); certeza segmentada 36px; Dica; Confirmar 54px mín. 180 canto 13. Selecionada: borda `--c`, fundo `--c` 11%, anel 3px; riscada 60% tachada; com texto viram linhas empilhadas. Depois: "Correta"/"Sua", anterior (40px) e Próxima.
 - Painel Resolução · Teoria · Fonte (abas 45px, corpo 16/20/20): embaixo até 1100px de área útil; ≥1101 à direita (1,45 : 1 mín. 360; >1280 de área 1,55 : 1 mín. 380), preso e rolando por dentro. Conteúdos relacionados em 2 colunas com ponto 8px, nomes inteiros.
 - **Simulado**: mesmo cartão; folha de respostas embaixo; ≤520 contador numa linha 14px. Lista: folha por instituição (canto 16), linhas com ícone 56px (44 ≤640).
