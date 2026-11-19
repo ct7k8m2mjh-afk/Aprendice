@@ -852,5 +852,126 @@
    "data": "2026-11-19",
    "lote": "fis-0074"
   }
+ },
+ "P31a0b004": {
+  "n": "3",
+  "conceito": "Equilíbrio do êmbolo num sistema acelerado e transformação adiabática reversível (pV^γ constante) de gás monoatômico.",
+  "equivocos": {
+   "A": "F08.7:fator-numerico-sem-origem",
+   "B": "F08.7:expoente-gama-invertido",
+   "C": "F08.7:fator-numerico-sem-origem",
+   "D": "F08.7:tratou-adiabatica-como-isotermica"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com o sistema acelerando para cima com g/10, o êmbolo se comporta como se a gravidade fosse 1,1g: o gás precisa sustentar um peso efetivo maior e é comprimido. Isentrópica é adiabática reversível, então vale p·V^γ constante, com γ = 5/3 para gás monoatômico. O deslocamento do êmbolo é a variação de volume dividida pela área.",
+    "formulas": [
+     "equilíbrio do êmbolo: p·A = P_atm·A + m·g_ef",
+     "isentrópica: p_i·V_i^γ = p_f·V_f^γ, γ = 5/3",
+     "Δx = (V_i − V_f)/A"
+    ],
+    "simbolos": [
+     [
+      "γ",
+      "razão entre os calores específicos; 5/3 para gás monoatômico"
+     ],
+     [
+      "P_atm",
+      "pressão atmosférica"
+     ],
+     [
+      "g_ef",
+      "gravidade efetiva no referencial acelerado: g + a"
+     ],
+     [
+      "isentrópica",
+      "adiabática e reversível"
+     ]
+    ]
+   },
+   "pista": "Escreva a pressão do gás nas duas situações pelo equilíbrio do êmbolo antes de pensar no gás.",
+   "passos": [
+    {
+     "faz": "Ache a pressão inicial do gás",
+     "conta": "p_i·A = P_atm·A + m·g → p_i = (A·P_atm + m·g)/A",
+     "porque": "Parado, o gás sustenta o ar de cima e o peso do êmbolo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a pressão final com a aceleração",
+     "conta": "p_f·A − P_atm·A − m·g = m·(g/10) → p_f = (A·P_atm + 1,1·m·g)/A",
+     "porque": "Para o êmbolo acelerar para cima junto com o recipiente, a força do gás tem de superar o ar e o peso pela parcela m·a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a adiabática reversível",
+     "conta": "p_i·V_i^(5/3) = p_f·V_f^(5/3) → V_f = V_i·(p_i/p_f)^(3/5)",
+     "porque": "Elevar os dois lados a 3/5 desfaz o expoente 5/3 do volume.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o deslocamento",
+     "conta": "Δx = (V_i − V_f)/A → Δx = (V_i/A)·[1 − ((A·P_atm + m·g)/(A·P_atm + 1,1·m·g))^(3/5)]",
+     "porque": "O volume perdido é a área vezes o quanto o êmbolo desceu; os A das pressões se cancelam na razão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque",
+     "conta": "expoente 3/5 e razão (AP_atm + mg)/(AP_atm + 1,1mg)",
+     "porque": "É a expressão da alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — Δx = (V_i/A)·[1 − ((A·P_atm + m·g)/(A·P_atm + 1,1·m·g))^(3/5)].",
+   "checagem": "Teste com números: P_atm = 10⁵ Pa, A = 0,01 m², m = 10 kg, g = 10 m/s², V_i = 1 L. A pressão sobe de 1,10 × 10⁵ para 1,11 × 10⁵ Pa e a fórmula dá Δx ≈ 0,54 mm, perto da estimativa linear (3/5)·(V_i/A)·(0,1mg)/(AP_atm + 1,1mg) ≈ 0,54 mm. E sem aceleração a razão vira 1 e Δx = 0, como deve.",
+   "erradas": {
+    "A": "Não confere: é 5,5 vezes a estimativa linear da adiabática, 3V_i/A · mg/(50P_atmA + 55mg); no teste numérico dá ≈ 2,97 mm contra 0,54 mm.",
+    "B": "Sai de usar o expoente γ = 5/3 em vez de 1/γ = 3/5 ao isolar V_f: de p·V^γ constante sai V_f/V_i = (p_i/p_f)^(1/γ).",
+    "C": "Não confere: é 11 vezes a estimativa linear da adiabática, 3V_i/A · mg/(50P_atmA + 55mg); no teste numérico dá ≈ 5,95 mm.",
+    "D": "Sai de tratar a compressão como isotérmica: V_f = V_i·p_i/p_f dá Δx = (V_i/A)·0,1mg/(AP_atm + 1,1mg). Isentrópica pede o expoente 3/5."
+   },
+   "armadilha": "Inverter o expoente: em pV^γ constante, o volume vai com (p_i/p_f) elevado a 1/γ = 3/5, não a γ = 5/3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O deslocamento do êmbolo quando o sistema passa a acelerar para cima com g/10, com o gás sofrendo transformação isentrópica.",
+    "chave": "p_i = P_atm + mg/A, p_f = P_atm + 1,1mg/A e V_f = V_i(p_i/p_f)^(3/5).",
+    "cuidado": "Somar m·a no equilíbrio do êmbolo e usar 1/γ = 3/5 no expoente."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "referencial acelerado",
+    "ideia": "No referencial do recipiente a gravidade vale 1,1g; basta trocar mg por 1,1mg na pressão final e usar pV^(5/3) constante."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p_i = (AP_atm + mg)/A",
+    "nota": "êmbolo parado"
+   },
+   {
+    "linha": "p_f = (AP_atm + 1,1mg)/A",
+    "nota": "gravidade efetiva 1,1g"
+   },
+   {
+    "linha": "V_f = V_i·(p_i/p_f)^(3/5)",
+    "nota": "pV^(5/3) constante"
+   },
+   {
+    "linha": "Δx = (V_i/A)·[1 − (p_i/p_f)^(3/5)]",
+    "nota": "alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
  }
 }

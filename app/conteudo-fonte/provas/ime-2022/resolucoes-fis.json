@@ -1251,5 +1251,372 @@
    "data": "2026-11-19",
    "lote": "fis-0074"
   }
+ },
+ "P5b4bed45": {
+  "n": "19",
+  "conceito": "Desvio no prisma de ângulo pequeno: δ = (n − 1)α; a dispersão é a diferença de desvio entre λ1 e λ2, com n(λ) = A + B/λ².",
+  "equivocos": {
+   "A": "F09.7:constante-a-no-lugar-de-b",
+   "B": "F09.7:angulo-de-incidencia-no-desvio",
+   "C": "F09.7:soma-no-lugar-da-diferenca",
+   "D": "F09.7:angulo-de-incidencia-no-desvio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com ângulos pequenos, seno vira o próprio ângulo, e o desvio total do prisma fica simples: δ = (n − 1)α, sem depender do ângulo de incidência. Cada cor tem seu n, então sai com um desvio diferente. A maior abertura do leque é a diferença entre os desvios das duas pontas do espectro, λ1 e λ2. A constante A cancela, porque é igual para todas as cores.",
+    "formulas": [
+     "primeira face: θ₀ = n · r₁",
+     "segunda face: r₂ = α − r₁ e θ_saída = n · r₂",
+     "desvio: δ = θ₀ + θ_saída − α",
+     "n(λ) = A + B/λ²"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "ângulo do prisma entre as faces de entrada e saída"
+     ],
+     [
+      "θ₀",
+      "ângulo de incidência na face vertical"
+     ],
+     [
+      "r₁, r₂",
+      "ângulos dentro do prisma, nas duas faces"
+     ],
+     [
+      "δ",
+      "desvio total do raio"
+     ],
+     [
+      "Δθ",
+      "abertura angular entre as cores extremas"
+     ],
+     [
+      "λ",
+      "comprimento de onda"
+     ]
+    ]
+   },
+   "pista": "Escreva o desvio de um raio de índice n usando sen x ≈ x nas duas faces.",
+   "passos": [
+    {
+     "faz": "Ache o desvio de uma cor",
+     "conta": "θ_saída = n(α − θ₀/n) = nα − θ₀ → δ = θ₀ + nα − θ₀ − α → δ = (n − 1)α",
+     "porque": "Snell com sen x ≈ x nas duas faces; o θ₀ cancela, então o desvio só depende de n.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare as duas cores extremas",
+     "conta": "Δθ = δ(λ1) − δ(λ2) = α[n(λ1) − n(λ2)]",
+     "porque": "λ1 é o menor comprimento de onda, tem o maior n e é a cor mais desviada.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Substitua n(λ)",
+     "conta": "n(λ1) − n(λ2) = B/λ1² − B/λ2² → B(λ2² − λ1²)/(λ1λ2)²",
+     "porque": "O A cancela; com denominador comum (λ1λ2)², sobra a diferença dos quadrados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "Δθ = αB(λ2² − λ1²)/(λ1λ2)² → alternativa E",
+     "porque": "Positivo, pois λ2 > λ1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — Δθ ≈ αB(λ2² − λ1²)/(λ1λ2)².",
+   "checagem": "Confira por caso extremo: se B = 0, n não depende de λ e não há dispersão; a expressão E zera, como deveria. Se α = 0 (lâmina de faces paralelas), também não há leque, e E zera.",
+   "erradas": {
+    "A": "Troca B por A e erra o denominador: a constante A é igual para todas as cores e cancela na diferença; só B/λ² muda com a cor.",
+    "B": "Usa θ₀ e A: o ângulo de incidência cancela no desvio δ = (n − 1)α, e A cancela na diferença entre as cores.",
+    "C": "Soma os quadrados: B/λ1² − B/λ2² tem a diferença λ2² − λ1² no numerador, não a soma.",
+    "D": "Usa θ₀ no lugar de α: no prisma de ângulo pequeno o desvio é (n − 1)α e não depende do ângulo de incidência."
+   },
+   "armadilha": "Achar que o ângulo de incidência θ₀ entra na abertura: ele cancela, e quem multiplica é o ângulo do prisma α.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A abertura angular máxima do leque de cores na saída do prisma.",
+    "chave": "δ = (n − 1)α, logo Δθ = α[n(λ1) − n(λ2)] = αB(λ2² − λ1²)/(λ1λ2)².",
+    "cuidado": "A cancela, θ₀ cancela, e o sinal do numerador é λ2² − λ1²."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "derivada",
+    "ideia": "dδ/dλ = α · dn/dλ = −2αB/λ³; a diferença exata entre λ1 e λ2 é a da alternativa E."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "θ₀ = n · r₁",
+    "nota": "Snell na 1ª face, sen x ≈ x"
+   },
+   {
+    "linha": "θ_saída = n(α − r₁) = nα − θ₀",
+    "nota": "Snell na 2ª face com r₂ = α − r₁"
+   },
+   {
+    "linha": "δ = θ₀ + θ_saída − α = (n − 1)α",
+    "nota": "o θ₀ cancela"
+   },
+   {
+    "linha": "Δθ = α(B/λ1² − B/λ2²)",
+    "nota": "diferença entre as cores; A cancela"
+   },
+   {
+    "linha": "Δθ = αB(λ2² − λ1²)/(λ1λ2)²",
+    "nota": "denominador comum"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
+ },
+ "P3f06b428": {
+  "n": "17",
+  "conceito": "Interferência entre o raio direto e o raio refletido uma vez num espelho semicircular, com inversão de fase na reflexão: contagem de máximos pela diferença de caminho.",
+  "equivocos": {
+   "A": "F10.3:diferenca-de-caminho-subestimada",
+   "B": "F10.3:diferenca-de-caminho-subestimada",
+   "C": "F10.3:diferenca-de-caminho-subestimada",
+   "E": "F10.3:diferenca-de-caminho-igual-ao-raio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada ponto P do anteparo recebe dois raios: o que vai direto da fonte e o que reflete uma vez no espelho antes de chegar. Num círculo, o raio que sai da fonte e reflete em Q chega a P só se Q estiver no meio do arco entre a fonte e P (ângulos iguais com o raio OQ). Com a inversão de fase na reflexão, há máximo quando a diferença de caminho é um número inteiro de comprimentos de onda mais meio. Basta ver até quanto essa diferença cresce ao longo da semicircunferência.",
+    "formulas": [
+     "corda de ângulo central α = 2R · sen(α/2)",
+     "Δ = 4R · sen(α/4) − 2R · sen(α/2)",
+     "máximo (com inversão): Δ = (k + 1/2) · λ"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "ângulo central entre a fonte e o ponto P, de 0 a 180°"
+     ],
+     [
+      "Δ",
+      "diferença de caminho entre o raio refletido e o direto"
+     ],
+     [
+      "λ",
+      "comprimento de onda"
+     ],
+     [
+      "k",
+      "número inteiro 0, 1, 2, ..."
+     ]
+    ]
+   },
+   "pista": "Escreva os dois caminhos como cordas da circunferência e veja o maior valor da diferença entre eles.",
+   "passos": [
+    {
+     "faz": "Escreva os dois caminhos até P",
+     "conta": "direto: 2R · sen(α/2) | refletido: 2 · 2R · sen(α/4) = 4R · sen(α/4)",
+     "porque": "O refletido percorre duas cordas iguais, cada uma de ângulo central α/2, porque Q fica no meio do arco.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a maior diferença de caminho",
+     "conta": "Δ(180°) = 4R · sen 45° − 2R · sen 90° → Δ = R · (2√2 − 2) ≈ 0,828 · R",
+     "porque": "Δ cresce desde zero, perto da fonte, até a outra ponta da semicircunferência (α = 180°).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para comprimentos de onda",
+     "conta": "Δ_máx = 0,828 · 30 · λ → Δ_máx ≈ 24,85 · λ",
+     "porque": "O enunciado dá R/λ = 30.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os máximos",
+     "conta": "k + 1/2 ≤ 24,85 → k = 0, 1, ..., 24 → N = 25",
+     "porque": "A inversão de fase na reflexão desloca a condição de máximo para meio comprimento de onda a mais: 0,5λ; 1,5λ; ...; 24,5λ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Localize N na faixa",
+     "conta": "21 ≤ 25 < 27",
+     "porque": "Só a faixa da alternativa D contém 25.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 21 ≤ N < 27 (N = 25 máximos).",
+   "checagem": "Δ é crescente em α (a derivada R · cos(α/4) − R · cos(α/2) é positiva de 0 a 180°), então cada valor 0,5λ, 1,5λ, ..., 24,5λ aparece uma única vez: 25 máximos. Mesmo sem a inversão de fase, seriam 24 (k = 1 a 24), ainda na faixa D.",
+   "erradas": {
+    "A": "Não confere: menos de 5 máximos exigiria Δ_máx < 5λ, mas Δ_máx ≈ 0,828 · 30λ ≈ 24,85λ.",
+    "B": "Não confere: até 11 máximos exigiria Δ_máx < 11,5λ, menos da metade dos 24,85λ calculados.",
+    "C": "Não confere: até 20 máximos exigiria Δ_máx < 20,5λ; a diferença chega a 24,85λ, o que dá 25 máximos.",
+    "E": "Sai de tomar a diferença de caminho máxima como o próprio raio, N = R/λ = 30; a maior diferença é só R · (2√2 − 2) ≈ 0,83R."
+   },
+   "armadilha": "Esquecer que o ponto de reflexão fica no meio do arco: os dois caminhos são cordas, e a diferença máxima é só cerca de 0,83R, não R nem 2R.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos máximos de interferência aparecem ao longo do anteparo semicircular.",
+    "chave": "Δ = 4R · sen(α/4) − 2R · sen(α/2), de 0 a 0,828R = 24,85λ; máximos em (k + 1/2)λ dão N = 25.",
+    "cuidado": "Usar a inversão de fase (máximo em meio comprimento de onda) e o ponto de reflexão no meio do arco."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "estimativa pela ponta",
+    "ideia": "Na outra ponta, direto = 2R e refletido = 2 · R√2 (dois lados do quadrado inscrito): Δ = 2,83R − 2R ≈ 0,83R ≈ 25λ, logo cerca de 25 máximos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "direto = 2R · sen(α/2) | refletido = 4R · sen(α/4)",
+    "nota": "duas cordas iguais no refletido"
+   },
+   {
+    "linha": "Δ = 4R · sen(α/4) − 2R · sen(α/2)",
+    "nota": "diferença de caminho"
+   },
+   {
+    "linha": "Δ(180°) = R · (2√2 − 2) ≈ 0,828R",
+    "nota": "valor máximo"
+   },
+   {
+    "linha": "Δ_máx = 0,828 · 30λ ≈ 24,85λ",
+    "nota": "R/λ = 30"
+   },
+   {
+    "linha": "(k + 1/2)λ ≤ 24,85λ → k = 0 a 24 → N = 25",
+    "nota": "inversão de fase"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
+ },
+ "P49aac226": {
+  "n": "18",
+  "conceito": "Sem efeito Doppler quando a distância entre fonte e observador não varia naquele instante: as componentes das velocidades na linha que os une são iguais.",
+  "equivocos": {
+   "A": "F10.7:doppler-zero-com-distancia-variando",
+   "B": "F10.7:doppler-zero-com-distancia-variando",
+   "C": "F10.7:doppler-zero-quando-uma-velocidade-anula",
+   "E": "F10.7:doppler-zero-com-distancia-variando"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O efeito Doppler vem da aproximação ou do afastamento. Se, num instante, a distância entre fonte e observador não está mudando, a frequência percebida é a emitida. Basta trabalhar com a posição relativa: os logaritmos se cancelam na diferença, e a distância muda conforme o produto escalar entre posição relativa e velocidade relativa.",
+    "formulas": [
+     "posição relativa: Δx = XA − XB, Δy = YA − YB",
+     "sem Doppler: d(d²)/dt = 0, ou seja, Δx · Δvx + Δy · Δvy = 0"
+    ],
+    "simbolos": [
+     [
+      "Δx, Δy",
+      "coordenadas de A em relação a B"
+     ],
+     [
+      "Δvx, Δvy",
+      "velocidade de A em relação a B"
+     ],
+     [
+      "d",
+      "distância entre fonte e observador"
+     ]
+    ]
+   },
+   "pista": "Subtraia as equações de A e B: o que sobra da posição relativa?",
+   "passos": [
+    {
+     "faz": "Monte a posição relativa",
+     "conta": "Δx = cos t + log(1 + t) − log(1 + t) + sen t → Δx = cos t + sen t | Δy = 2t + 3 − 2t + 1 → Δy = 4",
+     "porque": "Na diferença, os termos iguais de A e B se cancelam: o logaritmo some em x e o 2t some em y.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Derive para a velocidade relativa",
+     "conta": "Δvx = −sen t + cos t | Δvy = 0",
+     "porque": "A distância vertical é constante (4), e só a horizontal varia com o tempo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha distância sem variar",
+     "conta": "Δx · Δvx + Δy · Δvy = 0 → (cos t + sen t)(cos t − sen t) + 4 · 0 = 0 → cos² t − sen² t = 0 → cos 2t = 0",
+     "porque": "Sem aproximação nem afastamento, a taxa de variação de d² é zero; o produto vira cos 2t.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste as opções e marque",
+     "conta": "cos 2t = 0 → 2t = π/2 ou 3π/2 → t = π/4 ou 3π/4 → entre as opções: 3π/4",
+     "porque": "Das cinco opções, só 3π/4 zera cos 2t; em 0 e π, cos 2t = 1; em π/6, 1/2; em π/2, −1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — t = 3π/4.",
+   "checagem": "Em t = 3π/4, Δx = cos(3π/4) + sen(3π/4) = 0: A está exatamente acima de B, e a linha AB é vertical. As componentes verticais das duas velocidades são iguais (2); as horizontais são perpendiculares à linha AB, que é vertical, e não mudam a distância.",
+   "erradas": {
+    "A": "t = 0 não confere: cos 0 = 1, então (cos t + sen t)(cos t − sen t) = 1 ≠ 0; a distância está crescendo e há Doppler.",
+    "B": "t = π/6 não confere: cos(π/3) = 1/2 ≠ 0; Δx ≈ 1,37 e Δvx ≈ 0,37 têm o mesmo sinal, então A e B se afastam.",
+    "C": "t = π/2 não confere: cos π = −1 ≠ 0; Δx = 1 e Δvx = −1, então A e B se aproximam.",
+    "E": "t = π não confere: cos 2π = 1 ≠ 0; Δx = −1 e Δvx = −1, então a distância horizontal cresce em módulo e há afastamento."
+   },
+   "armadilha": "Procurar o instante em que alguma velocidade é zero: o que anula o Doppler é a distância entre fonte e observador ficar parada, não um dos corpos parar.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O instante em que o observador ouve a frequência emitida, sem Doppler.",
+    "chave": "Posição relativa (cos t + sen t, 4); sem variação de distância: cos 2t = 0, que entre as opções dá t = 3π/4.",
+    "cuidado": "Trabalhar com a posição relativa, para os logaritmos se cancelarem, e testar cada opção em cos 2t."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "geometria",
+    "ideia": "Em t = 3π/4, Δx = 0: A fica na vertical de B, e as duas sobem com a mesma velocidade 2, logo a distância (4) fica parada."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Δx = cos t + sen t; Δy = 4",
+    "nota": "diferença das posições"
+   },
+   {
+    "linha": "Δvx = cos t − sen t; Δvy = 0",
+    "nota": "derivada no tempo"
+   },
+   {
+    "linha": "(cos t + sen t)(cos t − sen t) = 0",
+    "nota": "distância sem variar"
+   },
+   {
+    "linha": "cos 2t = 0 → t = π/4 ou 3π/4",
+    "nota": "identidade cos² − sen²"
+   },
+   {
+    "linha": "t = 3π/4",
+    "nota": "alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
  }
 }

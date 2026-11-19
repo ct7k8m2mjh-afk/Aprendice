@@ -1,6 +1,6 @@
 # Física: resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 94 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 94.
+Faltam 44 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 44.
 
 ## Lotes
 
@@ -80,7 +80,8 @@ Faltam 94 questões sem resolução (fora as que estão em lote, pendentes ou co
 | fis-0072 | demais nível 7-10 | 50 | gravado | 49 | 1 | 0 |
 | fis-0073 | demais nível 7-10 | 50 | gravado | 50 | 0 | 0 |
 | fis-0074 | demais nível 7-10 | 50 | gravado | 49 | 1 | 0 |
-| fis-0075 | demais nível 7-10 | 50 | aberto |  |  |  |
+| fis-0075 | demais nível 7-10 | 50 | gravado | 49 | 1 | 0 |
+| fis-0076 | demais nível 7-10 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -93,6 +94,7 @@ Faltam 94 questões sem resolução (fora as que estão em lote, pendentes ou co
 | Pa6cf7d38 | UDESC 2024 Inverno 2024.2 · questão 64 | F01.4 relatividade restrita (tema F01 Fundamentos e grandezas) | UDESC 2024.2 q64 (dispositivo que usa mecânica quântica e relatividade): a resposta da banca coincide com a oficial, E (sistema de posicionamento global). Mas, para escrever por que a alternativa D (microscópio eletrônico) está errada, seria preciso afirmar que ele não depende de relatividade; nos microscópios de alta tensão os elétrons têm velocidade próxima à da luz e o cálculo do comprimento de onda leva correção relativística. O conferente concorda que não há frase segura para negar a relatividade no microscópio eletrônico e considera a alternativa D defensável. Se o dono autorizar, a questão pode ser publicada com alerta de gabarito discutível. |
 | Ped0dc1fd | UDESC 2024 Verão 2024.1 · questão 52 | F02.4 queda livre e lançamento vertical (tema F02 Cinemática) | Com g = 10 m/s², percorrer os últimos 2 m em 0,1 s dá velocidade de 20,5 m/s no solo e altura de queda de 21,0 m, que são exatamente 7 vãos de 3 m (sétimo andar se a janela do térreo estiver no nível do solo). A letra oficial é D (sexto andar), que sai da aproximação v ≈ 20 m/s (20 m de queda) ou de uma altura da janela do térreo que o enunciado não informa. Sem como justificar a letra oficial sem suposição, fica pendente. Busca na web não achou resolução publicada. |
 | P1e7255e2 | UEMA 2020 PAES · questão 48 | F06.3 satélites, órbitas e imponderabilidade (tema F06 Gravitação e astronomia) | classificação: é de Matemática M01.5 (operações com conjuntos lidas num diagrama de coberturas de satélites; nada de Física é cobrado) |
+| P82169a8f | UEMA 2020 PAES · questão 56 | F09.4 refração, lei de Snell e reflexão total (tema F09 Óptica) | classificação: é de Química Q09.1 (pilha galvânica de limão com zinco e cobre; questão de eletroquímica, não de refração) |
 | Pedc8d618 | UEMA 2022 PAES · questão 54 | F09.6 óptica da visão e defeitos visuais (tema F09 Óptica) | classificação: é de Biologia (genética: probabilidade de filho míope e albino, marido duplo heterozigoto × esposa aarr; 1/2 × 1/2 = 1/4, confere com o gabarito C). Não há física na questão. |
 | P8cad75ee | UEMG 2024 Vestibular 2024 · questão 18 | F11.5 associação de resistores (tema F11 Eletricidade e circuitos) | anular: a afirmativa III diz 264,5 µA, mas no circuito B (três lâmpadas de 160 Ω em série a 127 V) i = 127/480 = 0,2646 A = 264,6 mA, mil vezes maior que 264,5 µA; III é falsa. As verdadeiras ficam só I e V (R_eq de A = 160/3 ≈ 53,3 Ω), combinação que nenhuma alternativa traz (II e IV são falsas). Gabarito definitivo B (o preliminar era C), conferido em https://vestibulares.estrategia.com/portal/wp-content/uploads/2024/01/uemg-2024-gabarito-definitivo.pdf e https://vestibulares.estrategia.com/portal/wp-content/uploads/2023/12/vest-2024-gabarito-prelim.pdf; nenhuma anulação publicada encontrada. |
 | Pb1b726b3 | UERJ 2025 2º Exame de Qualificação · questão 7 | F02.1 velocidade média e movimento uniforme (tema F02 Cinemática) | classificação: é de Geografia (UERJ 2025, 2º Exame de Qualificação, questão 7: redes de transporte na França; a resposta oficial, A, “posição relativa na rede técnica”, compara cidades ligadas ou não por linha de trem de alta velocidade). Está classificada em Física, F02.1 velocidade média. |

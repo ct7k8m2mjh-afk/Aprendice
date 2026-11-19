@@ -625,5 +625,371 @@
    "data": "2026-11-19",
    "lote": "fis-0073"
   }
+ },
+ "P35980c5d": {
+  "n": "2",
+  "conceito": "Sombra projetada por fonte pontual em queda livre: semelhança de triângulos liga a altura da sombra na parede à altura da lâmpada.",
+  "equivocos": {
+   "A": "F09.1:esqueceu-a-razao-da-semelhanca",
+   "B": "F09.1:altura-de-inicio-da-sombra-errada",
+   "C": "F09.1:razao-da-semelhanca-invertida",
+   "E": "F09.1:altura-de-inicio-da-sombra-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A sombra do topo do objeto está na reta que sai da lâmpada e passa pelo topo do objeto. Com a lâmpada a 3a da parede e o objeto a 2a, semelhança de triângulos dá a altura da sombra na parede em função da altura y da lâmpada. A sombra só aparece na parede quando essa altura fica positiva, e a partir daí a velocidade dela é um múltiplo fixo da velocidade da lâmpada.",
+    "formulas": [
+     "semelhança: (y − h)/a = (s − h)/(−2a)",
+     "queda livre: v = √(2g · Δy)"
+    ],
+    "simbolos": [
+     [
+      "y",
+      "altura da lâmpada em cada instante"
+     ],
+     [
+      "s",
+      "altura do topo da sombra na parede"
+     ],
+     [
+      "a",
+      "distância entre marcas da figura (lâmpada a 3a, objeto a 2a da parede)"
+     ],
+     [
+      "g",
+      "aceleração da gravidade"
+     ]
+    ]
+   },
+   "pista": "Escreva a altura da sombra na parede em função da altura da lâmpada, e descubra a partir de que altura da lâmpada essa sombra começa a existir.",
+   "passos": [
+    {
+     "faz": "Relacione a sombra à altura da lâmpada",
+     "conta": "(y − h)/a = (h − s)/(2a) → h − s = 2(y − h) → s = 3h − 2y",
+     "porque": "O raio desce de y até h em uma distância horizontal a (da lâmpada ao objeto) e continua com a mesma inclinação por mais 2a até a parede.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache quando a sombra chega à parede",
+     "conta": "s = 0 → 3h − 2y = 0 → y = 3h/2",
+     "porque": "Com a lâmpada acima de 3h/2, o raio que passa no topo do objeto bate no chão antes da parede; a sombra começa na parede quando y = 3h/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a velocidade da lâmpada nesse instante",
+     "conta": "Δy = H − 3h/2 → v = √(2g(H − 3h/2))",
+     "porque": "A lâmpada parte do repouso do teto e cai livremente H − 3h/2 até esse instante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Derive a relação da sombra",
+     "conta": "s = 3h − 2y → |v_sombra| = 2 · v_lâmpada → 2√(2g(H − 3h/2))",
+     "porque": "Cada metro que a lâmpada desce faz a sombra subir 2 m na parede, porque a parede está ao dobro da distância (2a contra a).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 2√(2g(H − 3h/2)).",
+   "checagem": "Caso particular: com h = 0 (objeto rente ao chão) a sombra só chega à parede quando a lâmpada toca o chão (y = 0), e a velocidade seria 2√(2gH): a fórmula dá exatamente isso. A condição h < H/2 garante H − 3h/2 > 0.",
+   "erradas": {
+    "A": "É a velocidade da própria lâmpada, √(2g(H − 3h/2)); faltou o fator 2 da semelhança (a parede está a 2a do objeto e a lâmpada a a).",
+    "B": "Sai de supor que a sombra começa quando a lâmpada chega à altura h do objeto, e ainda sem o fator 2: √(2g(H − h)). A sombra começa com a lâmpada em 3h/2.",
+    "C": "Sai de inverter a razão da semelhança (a/2a em vez de 2a/a): (1/2)√(2g(H − 3h/2)). A sombra é mais rápida que a lâmpada, não mais lenta.",
+    "E": "Sai de usar a altura errada de início: 2√(2g(H − h)) supõe a sombra na parede com a lâmpada em h; pela semelhança ela começa em y = 3h/2."
+   },
+   "armadilha": "Achar que a sombra começa a subir na parede quando a lâmpada passa pela altura do objeto; pela semelhança, isso acontece com a lâmpada em 3h/2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O módulo da velocidade da sombra na parede no instante em que ela começa a ser projetada nela.",
+    "chave": "s = 3h − 2y: a sombra aparece com y = 3h/2 e anda 2 vezes mais rápido que a lâmpada, v = 2√(2g(H − 3h/2)).",
+    "cuidado": "Usar a razão das distâncias horizontais (2a para a) do jeito certo e a altura de queda até y = 3h/2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "vetor diretor",
+    "ideia": "O ponto da sombra é a lâmpada mais 3 vezes o vetor lâmpada→topo do objeto: s = y + 3(h − y) = 3h − 2y, e daí v_sombra = 2 v."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(y − h)/a = (h − s)/(2a)",
+    "nota": "semelhança de triângulos"
+   },
+   {
+    "linha": "s = 3h − 2y",
+    "nota": "altura da sombra na parede"
+   },
+   {
+    "linha": "s = 0 → y = 3h/2",
+    "nota": "instante em que a sombra chega à parede"
+   },
+   {
+    "linha": "v_lâmpada = √(2g(H − 3h/2))",
+    "nota": "queda livre de H até 3h/2"
+   },
+   {
+    "linha": "v_sombra = 2 · v_lâmpada = 2√(2g(H − 3h/2))",
+    "nota": "alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
+ },
+ "P4c7b1c15": {
+  "n": "7",
+  "conceito": "Aumento linear de um microscópio composto: a imagem da objetiva serve de objeto para a ocular e o aumento total é o produto dos dois.",
+  "equivocos": {
+   "A": "F09.7:so-aumento-da-ocular",
+   "B": "F09.7:aumento-sem-produto",
+   "C": "F09.7:so-aumento-da-objetiva",
+   "D": "F09.7:distancia-errada-ate-a-ocular"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O microscópio tem duas lentes em sequência. A objetiva forma uma imagem real da amostra; essa imagem é o objeto da ocular, que forma a imagem final. O aumento total é o aumento da objetiva vezes o da ocular. O trabalho real está em achar onde a primeira imagem fica para saber a distância dela até a ocular.",
+    "formulas": [
+     "1/f = 1/p + 1/p'",
+     "A = −p'/p",
+     "A_total = A_obj · A_oc"
+    ],
+    "simbolos": [
+     [
+      "f",
+      "distância focal da lente"
+     ],
+     [
+      "p",
+      "distância do objeto até a lente"
+     ],
+     [
+      "p'",
+      "distância da imagem até a lente (negativa: imagem virtual)"
+     ],
+     [
+      "A",
+      "aumento linear"
+     ]
+    ]
+   },
+   "pista": "Comece pela objetiva: descubra a que distância dela se forma a primeira imagem.",
+   "passos": [
+    {
+     "faz": "Ache a imagem da objetiva",
+     "conta": "1/p' = 1/5 − 1/5,2 → 1/p' = 0,2/26 → p' = 130 mm",
+     "porque": "A amostra está logo além do foco da objetiva (5,2 mm > 5 mm), então a imagem é real e bem afastada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o aumento da objetiva",
+     "conta": "A_obj = −130/5,2 → A_obj = −25",
+     "porque": "O aumento é a razão entre as distâncias da imagem e do objeto; o sinal só diz que a imagem é invertida.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe a imagem para a ocular",
+     "conta": "p_oc = 190 − 130 → p_oc = 60 mm",
+     "porque": "A primeira imagem fica entre as lentes; a distância dela até a ocular é a separação menos 130 mm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a imagem final e o aumento da ocular",
+     "conta": "1/p' = 1/70 − 1/60 → p' = −420 mm → A_oc = 420/60 = 7",
+     "porque": "O objeto está dentro do foco da ocular (60 mm < 70 mm): ela funciona como lupa e dá imagem virtual, direita e ampliada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique os aumentos",
+     "conta": "|A| = 25 · 7 → |A| = 175",
+     "porque": "Cada lente amplia a imagem que recebe, então os aumentos se multiplicam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — o módulo do aumento linear é 175.",
+   "checagem": "Pela equação dos pontos conjugados com as distâncias de volta: 1/5,2 + 1/130 = 0,2 = 1/5 e 1/60 − 1/420 = 1/70. As duas lentes fecham, e 25 × 7 = 175.",
+   "erradas": {
+    "A": "7 é só o aumento da ocular: faltou multiplicar pelo aumento 25 da objetiva.",
+    "B": "14 não confere: o total é 25 vezes o aumento da ocular, e 14 exigiria ocular com aumento 0,56, menor que 1, impossível para uma lupa com o objeto dentro do foco.",
+    "C": "25 é só o aumento da objetiva (130/5,2): faltou multiplicar pelo aumento 7 da ocular.",
+    "D": "75 não confere: exigiria ocular com aumento 3, ou seja, objeto a cerca de 46,7 mm dela; mas a primeira imagem está a 190 − 130 = 60 mm."
+   },
+   "armadilha": "Parar no aumento de uma lente só: o microscópio multiplica o aumento da objetiva (25) pelo da ocular (7).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O módulo do aumento linear total do microscópio.",
+    "chave": "Objetiva: p' = 130 mm e A = 25; ocular: objeto a 60 mm, A = 7; total 175.",
+    "cuidado": "Usar a imagem da objetiva como objeto da ocular, medindo a distância a partir da ocular."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "aumento da ocular pela fórmula A = f/(f − p)",
+    "ideia": "Para a ocular, A = 70/(70 − 60) = 7, sem calcular p'; para a objetiva, A = 5/(5 − 5,2) = −25."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1/p' = 1/5 − 1/5,2 → p' = 130 mm",
+    "nota": "imagem da objetiva"
+   },
+   {
+    "linha": "A_obj = 130/5,2 = 25",
+    "nota": "aumento da objetiva"
+   },
+   {
+    "linha": "p_oc = 190 − 130 = 60 mm",
+    "nota": "objeto da ocular"
+   },
+   {
+    "linha": "1/p' = 1/70 − 1/60 → p' = −420 mm",
+    "nota": "imagem virtual final"
+   },
+   {
+    "linha": "A_oc = 420/60 = 7",
+    "nota": "aumento da ocular"
+   },
+   {
+    "linha": "|A| = 25 · 7 = 175",
+    "nota": "aumentos se multiplicam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
+ },
+ "Pb7757677": {
+  "n": "8",
+  "conceito": "Experimento de Young com uma lâmina na frente de uma fenda: o atraso de caminho óptico (n − 1)·R desloca todo o padrão de franjas.",
+  "equivocos": {
+   "B": "F10.3:caminho-optico-inteiro-e-sinal-trocado",
+   "C": "F10.3:deslocamento-sem-fator-de-escala",
+   "D": "F10.3:caminho-optico-inteiro",
+   "E": "F10.3:espacamento-de-franjas-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sem a lente, o pico de ordem m está onde a diferença de caminho entre as fendas vale m·λ, ou seja, a·x/L = m·λ. A lente semicircular faz o raio da fenda de cima atravessar o raio R dentro do material: em vez de R no ar, ele percorre caminho óptico n·R, um atraso de (n − 1)·R. Para compensar esse atraso, o raio de baixo precisa andar mais, e o padrão inteiro sobe.",
+    "formulas": [
+     "diferença geométrica ≈ a · x/L (L muito maior que a)",
+     "atraso da lente = (n − 1) · R",
+     "máximo: a · x/L − (n − 1) · R = m · λ"
+    ],
+    "simbolos": [
+     [
+      "a",
+      "distância entre as fendas"
+     ],
+     [
+      "L",
+      "distância das fendas ao anteparo"
+     ],
+     [
+      "n",
+      "índice de refração da lente"
+     ],
+     [
+      "R",
+      "raio do semicírculo"
+     ],
+     [
+      "x_m",
+      "posição do pico de ordem m no anteparo"
+     ]
+    ]
+   },
+   "pista": "Escreva o caminho óptico de cada raio até um ponto x do anteparo e peça diferença igual a m·λ.",
+   "passos": [
+    {
+     "faz": "Escreva a diferença geométrica até o ponto x",
+     "conta": "r_baixo − r_cima ≈ a · x/L",
+     "porque": "Com L muito maior que a, os raios são quase paralelos e a diferença é a · sen θ ≈ a · x/L.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some o atraso da lente no raio de cima",
+     "conta": "caminho óptico extra = n · R − R → (n − 1) · R",
+     "porque": "O raio de cima atravessa R dentro do material em vez de R no ar; só o excesso conta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha a condição de máximo",
+     "conta": "a · x/L − (n − 1) · R = m · λ → a · x/L = m · λ + (n − 1) · R",
+     "porque": "Pico é diferença total de caminho óptico igual a número inteiro de λ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole x",
+     "conta": "x_m = (m · λ + (n − 1) · R) · L/a",
+     "porque": "O L/a passa multiplicando o lado direito; o padrão fica deslocado para cima de (n − 1) · R · L/a.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — x_m = (λm + (n − 1)R) · L/a.",
+   "checagem": "Caso extremo: com n = 1 a lente some e a fórmula volta ao Young comum, x_m = m·λ·L/a. E como (n − 1)·R < R < λ, o deslocamento é menor que uma franja, então a ordem m continua sendo contada a partir do máximo central.",
+   "erradas": {
+    "B": "Sai de usar n·R como atraso e pôr o sinal do lado errado: o excesso é só (n − 1)·R, porque o outro raio também anda R no ar, e o atraso em cima desloca o padrão para cima (sinal +).",
+    "C": "Não confere: soma (n − 1)·R fora do fator L/a, mas um atraso de caminho se converte em posição no anteparo multiplicado por L/a, como o próprio m·λ.",
+    "D": "Sai de usar o caminho óptico n·R inteiro como atraso, esquecendo de descontar o R de ar que o raio percorreria sem a lente.",
+    "E": "Não confere: com n = 1 daria x = m·λ·L/(2a), metade do espaçamento de Young λ·L/a; além disso, usa n·R com sinal negativo."
+   },
+   "armadilha": "Usar n·R como atraso: a lente só acrescenta o excesso (n − 1)·R sobre o caminho no ar.",
+   "alerta": "O enunciado chama de m-ésimo pico acima do máximo central o pico de ordem m; a fórmula oficial dá a posição medida a partir do eixo das fendas, com o máximo central (m = 0) já deslocado para x = (n − 1)·R·L/a.",
+   "essencial": {
+    "pede": "A posição do pico de ordem m com a lente numa das fendas.",
+    "chave": "Atraso (n − 1)·R somado: a·x/L = m·λ + (n − 1)·R.",
+    "cuidado": "Contar só o excesso de caminho óptico, n − 1, e multiplicar tudo por L/a."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "deslocamento do padrão",
+    "ideia": "Ache só onde fica o novo máximo central, a·x₀/L = (n − 1)·R, e some o espaçamento de Young m·λ·L/a."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Δ_geom ≈ a · x/L",
+    "nota": "diferença entre as fendas"
+   },
+   {
+    "linha": "atraso = n · R − R = (n − 1) · R",
+    "nota": "excesso da lente"
+   },
+   {
+    "linha": "a · x/L − (n − 1) · R = m · λ",
+    "nota": "condição de máximo"
+   },
+   {
+    "linha": "x_m = (m · λ + (n − 1) · R) · L/a",
+    "nota": "L/a passa multiplicando"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
  }
 }

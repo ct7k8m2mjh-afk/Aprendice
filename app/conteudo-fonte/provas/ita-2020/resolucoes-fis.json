@@ -1194,5 +1194,263 @@
    "data": "2026-11-19",
    "lote": "fis-0074"
   }
+ },
+ "P4e91097e": {
+  "n": "15",
+  "conceito": "Balanço de energia em máquinas térmicas acopladas e limite de Carnot: o rendimento real nunca passa o de Carnot, o que dá só um teto (≤) para a temperatura da fonte fria.",
+  "equivocos": {
+   "A": "F08.8:rendimento-relativo-a-carnot-mal-calculado",
+   "B": "F08.8:trabalho-do-sistema-incompleto",
+   "C": "F08.8:limite-de-carnot-lido-como-desigualdade-estrita",
+   "D": "F08.8:rendimento-relativo-a-carnot-mal-calculado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em cada máquina vale a conservação: calor recebido = trabalho + calor rejeitado. Como o rejeito de uma é a entrada da seguinte, dá para fechar o trabalho de todas a partir dos números do enunciado. A 2ª lei entra pelo rendimento de Carnot: nenhuma máquina rende mais que 1 − Tf/Tq, e isso só dá um limite para a temperatura, com a igualdade possível para a máquina ideal.",
+    "formulas": [
+     "Q_recebido = W + Q_rejeitado",
+     "η = W/Q_recebido",
+     "η ≤ η_Carnot = 1 − Tf/Tq (T em kelvin)"
+    ],
+    "simbolos": [
+     [
+      "η",
+      "rendimento: fração do calor recebido que vira trabalho"
+     ],
+     [
+      "Tq, Tf",
+      "temperaturas da fonte quente e da fonte fria, em kelvin"
+     ],
+     [
+      "W",
+      "trabalho realizado pela máquina em um ciclo"
+     ],
+     [
+      "Carnot",
+      "máquina ideal (reversível), a de maior rendimento possível entre duas temperaturas"
+     ]
+    ]
+   },
+   "pista": "Feche o balanço de energia de M1, M2 e M3 em sequência; só depois compare com Carnot, e repare se a 2ª lei dá um valor exato ou só um limite.",
+   "passos": [
+    {
+     "faz": "Faça o balanço das três máquinas",
+     "conta": "M1: 800 − 600 → W1 = 200 kJ | M2: 600 − 150 → rejeita 450 kJ | M3: 450 − 360 → W3 = 90 kJ",
+     "porque": "Cada máquina devolve como rejeito o que recebeu e não virou trabalho; o rejeito de uma é exatamente a entrada da seguinte.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmação I com Carnot em M1",
+     "conta": "η1 = 200/800 = 0,25 → 0,25 ≤ 1 − Tf/300 → Tf/300 ≤ 0,75 → Tf ≤ 225 K",
+     "porque": "A 2ª lei só garante Tf ≤ 225 K; Tf = 225 K é possível se M1 for reversível. Afirmar que Tf é inferior (estritamente) a 225 K não decorre dos dados, então I está incorreta.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Calcule o rendimento do sistema (II)",
+     "conta": "W = 200 + 150 + 90 → W = 440 kJ → η = 440/800 → η = 0,55 = 55%",
+     "porque": "O sistema recebe calor só da fonte quente (800 kJ); o trabalho útil é a soma dos três. II está correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com Carnot entre 300 K e 6 K (III)",
+     "conta": "η_C = 1 − 6/300 → η_C = 0,98 | 0,55/0,98 → 0,56 = 56%",
+     "porque": "O sistema rende cerca de 56% do rendimento de Carnot, não 80%. III está incorreta.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Junte os julgamentos",
+     "conta": "I incorreta | II correta | III incorreta → alternativa E",
+     "porque": "Só a combinação I e III incorretas corresponde à análise.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — as afirmações I e III estão incorretas.",
+   "checagem": "Feche a energia do sistema inteiro: entram 800 kJ, saem 360 kJ na fonte fria final e 440 kJ como trabalho; 360 + 440 = 800 kJ. E 80% de 98% seria 78,4%, bem acima dos 55% calculados.",
+   "erradas": {
+    "A": "Dá I como a única incorreta, aceitando III; mas 0,55/0,98 = 0,56, ou seja, 56% do rendimento de Carnot, não 80%.",
+    "B": "Dá II como incorreta; mas W = 200 + 150 + 90 = 440 kJ e 440/800 = 0,55: o rendimento do sistema é mesmo 55%.",
+    "C": "Aceita I como correta; a 2ª lei dá Tf ≤ 225 K, e a máquina reversível chegaria a 225 K exatos, então não se pode afirmar que Tf seja inferior a 225 K.",
+    "D": "III falha: com Carnot de 98%, o sistema (55%) fica em 56% dele, não 80%; e I também não se sustenta (o limite é Tf ≤ 225 K)."
+   },
+   "armadilha": "Ler o limite da 2ª lei (Tf ≤ 225 K) como desigualdade estrita: a máquina reversível atinge exatamente 225 K.",
+   "alerta": "Ponto polêmico: há resolução de cursinho (Estratégia Vestibulares) que considera I correta e marca C. O gabarito oficial do ITA é E: a 2ª lei só garante Tf ≤ 225 K (igualdade na máquina reversível), então a afirmação \"É inferior a 225 K\" não pode ser garantida. Vale o oficial.",
+   "essencial": {
+    "pede": "Julgar três afirmações sobre um sistema de três máquinas térmicas acopladas.",
+    "chave": "W = 200 + 150 + 90 = 440 kJ → η = 55%; Carnot = 98%, e 55/98 ≈ 56%; Carnot em M1 dá só Tf ≤ 225 K.",
+    "cuidado": "O rendimento de Carnot é um teto: dele sai \"menor ou igual\", nunca \"menor\" garantido."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo rejeito final",
+    "ideia": "η do sistema = 1 − 360/800 = 0,55, sem somar os trabalhos um a um."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "M1: W1 = 800 − 600 = 200 kJ",
+    "nota": "balanço de energia de M1"
+   },
+   {
+    "linha": "M2: 600 − 150 = 450 kJ; M3: W3 = 450 − 360 = 90 kJ",
+    "nota": "rejeito de uma é a entrada da outra"
+   },
+   {
+    "linha": "0,25 ≤ 1 − Tf/300 → Tf ≤ 225 K",
+    "nota": "Carnot em M1: só um teto (I incorreta)"
+   },
+   {
+    "linha": "η = 440/800 = 0,55",
+    "nota": "rendimento do sistema (II correta)"
+   },
+   {
+    "linha": "η_C = 1 − 6/300 = 0,98; 0,55/0,98 ≈ 0,56",
+    "nota": "56%, não 80% (III incorreta)"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Gabarito oficial ITA 2020",
+    "url": "https://vestibular.ita.br/provas/gabarito_2020.pdf"
+   },
+   {
+    "nome": "Estratégia Vestibulares — Prova ITA 2020 Física, resolução comentada (marca C)",
+    "url": "https://vestibulares.estrategia.com/portal/materias/fisica/prova-ita-2020-fisica-resolucao-comentada/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
+ },
+ "P3e48cf43": {
+  "n": "14",
+  "conceito": "Lente convergente seguida de refração na superfície do bloco: o raio a 45° refrata para 30° (Snell com n = √2) e precisa cruzar o eixo 1 mm dentro do bloco.",
+  "equivocos": {
+   "A": "F09.5:foco-na-superficie-ignorando-o-bloco",
+   "B": "F09.5:posicao-do-bloco-nao-confere",
+   "C": "F09.5:posicao-do-bloco-nao-confere",
+   "D": "F09.5:altura-de-entrada-no-lugar-da-distancia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os raios entram paralelos a 1 mm do eixo; a lente de foco 1 mm os dobra para cruzar o eixo a 1 mm dela, então cada raio sai inclinado 45° em relação ao eixo. Antes de cruzar o eixo, o raio bate na superfície do bloco, refrata e fica menos inclinado. A conta é geométrica: a altura em que o raio toca o bloco tem de ser a que leva ao eixo exatamente em P.",
+    "formulas": [
+     "Snell: sen i = n · sen r (do ar para o bloco)",
+     "altura percorrida = distância horizontal × tg do ângulo com o eixo"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "distância entre a lente e a superfície do bloco"
+     ],
+     [
+      "n",
+      "índice do bloco, √2"
+     ],
+     [
+      "i, r",
+      "ângulos com a normal na superfície do bloco (a normal é paralela ao eixo)"
+     ],
+     [
+      "tg",
+      "tangente: altura/distância horizontal"
+     ]
+    ]
+   },
+   "pista": "Descubra a inclinação do raio logo depois da lente: ele iria cruzar o eixo no foco, 1 mm à frente.",
+   "passos": [
+    {
+     "faz": "Ache a inclinação depois da lente",
+     "conta": "altura 1 mm, foco a 1 mm → tg i = 1/1 → i = 45°",
+     "porque": "Raio paralelo passa pelo foco; desce 1 mm em 1 mm de avanço, e a normal da face do bloco é paralela ao eixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Refrate na superfície do bloco",
+     "conta": "sen 45° = √2 · sen r → sen r = (√2/2)/√2 → sen r = 1/2 → r = 30°",
+     "porque": "No meio mais refringente o raio se aproxima da normal e fica menos inclinado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a altura na entrada do bloco",
+     "conta": "dentro: 1 mm até P → altura = 1 · tg 30° = √3/3 mm",
+     "porque": "Dentro do bloco o raio precisa descer até o eixo em 1 mm de avanço, com inclinação de 30°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache L pela parte no ar",
+     "conta": "1 − L · tg 45° = √3/3 → L = 1 − √3/3 mm",
+     "porque": "No ar, a 45°, o raio desce L em L de avanço; parte da altura 1 mm e chega a √3/3 mm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "L = (1 − √3/3) mm → alternativa E",
+     "porque": "L ≈ 0,42 mm: o bloco fica antes do foco, como precisa para o raio ainda estar acima do eixo ao entrar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — L = (1 − √3/3) mm.",
+   "checagem": "Confira a ordem de grandeza: sem o bloco, o foco estaria a 1 mm da lente. A refração deixa o raio menos inclinado e empurra o cruzamento para mais longe: L + 1 = 1,42 mm > 1 mm, coerente.",
+   "erradas": {
+    "A": "Sai de pôr o foco da lente na superfície do bloco (L = f = 1 mm), esquecendo que P está 1 mm para dentro.",
+    "B": "Não confere: com L = √2/2 ≈ 0,71 mm, o raio entra a 1 − 0,71 ≈ 0,29 mm do eixo e, a 30°, cruza o eixo a 0,29/tg 30° ≈ 0,51 mm da superfície, não a 1 mm.",
+    "C": "Não confere: com L = 1 − √2/2 ≈ 0,29 mm, o raio entra a √2/2 ≈ 0,71 mm do eixo e cruza a 0,71/tg 30° ≈ 1,22 mm da superfície, não a 1 mm.",
+    "D": "Sai de tomar como L a altura de entrada no bloco (√3/3 mm), sem subtraí-la de 1 mm."
+   },
+   "armadilha": "O raio não continua a 45° dentro do bloco: ele refrata para 30°, e é por isso que P fica além do foco da lente.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A distância L entre a lente e o bloco para focar em P, 1 mm dentro.",
+    "chave": "45° depois da lente; Snell com √2 dá 30°; 1 − L = tg 30° = √3/3.",
+    "cuidado": "Ângulos medidos com a normal, que aqui é paralela ao eixo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dioptro plano",
+    "ideia": "Dentro do bloco as distâncias ao longo do eixo ficam esticadas; para raios a 45°, o fator é tg 45°/tg 30° = √3, então o foco virtual a 1 − L da face vira 1 mm: (1 − L)·√3 = 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "tg i = 1/1 → i = 45°",
+    "nota": "raio vai ao foco a 1 mm"
+   },
+   {
+    "linha": "sen 45° = √2 · sen r",
+    "nota": "Snell na entrada do bloco"
+   },
+   {
+    "linha": "sen r = 1/2 → r = 30°",
+    "nota": "o √2 passa dividindo"
+   },
+   {
+    "linha": "1 − L = 1 · tg 30° = √3/3",
+    "nota": "altura na entrada do bloco"
+   },
+   {
+    "linha": "L = 1 − √3/3 mm",
+    "nota": "o L passa somando e o √3/3 subtraindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
  }
 }

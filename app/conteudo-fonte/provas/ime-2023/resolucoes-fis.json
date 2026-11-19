@@ -1328,5 +1328,130 @@
    "data": "2026-11-19",
    "lote": "fis-0074"
   }
+ },
+ "Pdb0792b7": {
+  "n": "25",
+  "conceito": "Imagem em espelho plano móvel: posição 2x_espelho e velocidade o dobro da do espelho; dois MHS defasados de 90° dão máximos com √2.",
+  "equivocos": {
+   "A": "F09.2:velocidade-da-imagem-igual-a-do-espelho",
+   "B": "F09.2:velocidade-da-imagem-dobrada-duas-vezes",
+   "C": "F10.8:defasagem-ignorada-no-maximo",
+   "D": "F09.2:velocidade-da-imagem-igual-a-do-espelho"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com a partícula parada na origem, a imagem num espelho em x fica em 2x: ela se move com o dobro do deslocamento e da velocidade do espelho. Cada espelho faz um MHS de amplitude A que encosta na partícula no extremo, e as observações dizem que os dois estão defasados de um quarto de período. Somar dois MHS defasados de 90° dá amplitude √2 vezes maior.",
+    "formulas": [
+     "imagem de um ponto na origem num espelho em x: x_img = 2x",
+     "MHS: x = x₀ + A · cos(ω · t + φ), ω = √(k/m)",
+     "sen θ − cos θ e sen θ + cos θ têm máximo √2"
+    ],
+    "simbolos": [
+     [
+      "ω",
+      "frequência angular do MHS, √(k/m)"
+     ],
+     [
+      "A",
+      "amplitude de cada bloco"
+     ],
+     [
+      "x_E, x_D",
+      "posições dos espelhos da esquerda e da direita"
+     ],
+     [
+      "I_E, I_D",
+      "posições das imagens da partícula"
+     ]
+    ]
+   },
+   "pista": "Ponha a partícula na origem e escreva a posição de cada espelho no tempo, usando a observação sobre o instante em que o da esquerda encosta.",
+   "passos": [
+    {
+     "faz": "Escreva o movimento dos espelhos",
+     "conta": "esquerdo: extremo direito em 0 → x_E = −A + A · cos(ω · t) | direito: no centro (x = A), indo para a direita → x_D = A + A · sen(ω · t)",
+     "porque": "Em t = 0 o espelho esquerdo encosta na partícula com velocidade nula (extremo); o direito passa pelo equilíbrio com velocidade máxima, indo comprimir a sua mola, à direita.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Passe para as imagens",
+     "conta": "I_E = 2 · x_E = −2A + 2A · cos(ω · t) | I_D = 2 · x_D = 2A + 2A · sen(ω · t)",
+     "porque": "Com a partícula na origem, cada imagem fica no dobro da coordenada do espelho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Maximize a distância",
+     "conta": "I_D − I_E = 4A + 2A · (sen ω · t − cos ω · t) → máx = 4A + 2A · √2 → 2(2 + √2)A",
+     "porque": "O máximo de sen − cos é √2, quando ω · t = 3π/4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Maximize a velocidade relativa",
+     "conta": "d(I_D − I_E)/dt = 2A · ω · (cos ω · t + sen ω · t) → máx = 2√2 · A · ω → 2√2 · A · √(k/m)",
+     "porque": "O máximo de cos + sen também é √2; com ω = √(k/m) sai a expressão das alternativas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "2(2 + √2)A e 2√2 · A · √(k/m)",
+     "porque": "Só uma alternativa traz os dois valores.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 2(2 + √2)A e 2√2 · A · √(k/m).",
+   "checagem": "Conferência numérica: varrendo ω · t de 0 a 2π, a distância entre as imagens chega a 6,828A = 2(2 + √2)A e a velocidade relativa a 2,828 · A · ω = 2√2 · A · ω. Para os espelhos sozinhos os máximos seriam a metade das variações: separação 2A + √2A e velocidade √2 · A · ω.",
+   "erradas": {
+    "A": "6A não confere: com defasagem de 90°, a distância máxima é 4A + 2√2A ≈ 6,83A; e √2 · A · √(k/m) é a velocidade relativa dos espelhos, sem dobrar para as imagens.",
+    "B": "6A não confere (o máximo é 4A + 2√2A ≈ 6,83A), e 4√2 · A · √(k/m) dobra duas vezes a velocidade relativa dos espelhos: o certo é dobrar uma vez só.",
+    "C": "Acerta a velocidade, 2√2 · A · √(k/m), mas 6A não confere: o termo sen − cos chega a √2, não a 1, e a distância máxima é 2(2 + √2)A ≈ 6,83A.",
+    "D": "Acerta a distância, mas √2 · A · √(k/m) é a velocidade relativa máxima dos espelhos; as imagens se movem com o dobro da velocidade deles."
+   },
+   "armadilha": "Usar a velocidade dos espelhos para as imagens: no espelho plano, a imagem de um objeto parado anda com o dobro da velocidade do espelho.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A maior distância e a maior velocidade relativa entre as imagens de uma partícula em dois espelhos que oscilam.",
+    "chave": "I_D − I_E = 4A + 2A · (sen ω · t − cos ω · t): máximo 2(2 + √2)A; derivada com máximo 2√2 · A · √(k/m).",
+    "cuidado": "Imagem = dobro do deslocamento do espelho, e a defasagem de 90° traz o fator √2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fasores",
+    "ideia": "Os dois espelhos são MHS de amplitude A defasados de 90°: a separação oscila com amplitude √2A em torno de 2A, e as imagens dobram tudo: 2 · (2A + √2A) e 2 · √2 · A · ω."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x_E = −A + A · cos ω · t; x_D = A + A · sen ω · t",
+    "nota": "espelhos em MHS, defasados de 90°"
+   },
+   {
+    "linha": "I_E = 2x_E; I_D = 2x_D",
+    "nota": "imagem no dobro da coordenada"
+   },
+   {
+    "linha": "I_D − I_E = 4A + 2A · (sen ω · t − cos ω · t)",
+    "nota": "distância entre imagens"
+   },
+   {
+    "linha": "máx = 4A + 2√2A = 2(2 + √2)A",
+    "nota": "sen − cos chega a √2"
+   },
+   {
+    "linha": "v_rel máx = 2√2 · A · √(k/m)",
+    "nota": "alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
  }
 }

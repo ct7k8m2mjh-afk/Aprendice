@@ -1352,5 +1352,372 @@
    "data": "2026-11-19",
    "lote": "fis-0074"
   }
+ },
+ "P473ea876": {
+  "n": "18",
+  "conceito": "Motor de Carnot acionando refrigerador reversível: potência do motor, balanço de energia do refrigerador e razão Q/T.",
+  "equivocos": {
+   "A": "F08.8:razao-de-carnot-mal-aplicada",
+   "B": "F08.8:razao-de-carnot-mal-aplicada",
+   "C": "F08.8:razao-de-carnot-mal-aplicada",
+   "E": "F08.8:razao-de-carnot-mal-aplicada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O motor reversível entrega como potência a fração 1 − T_f/T_q do calor que recebe da fonte quente. Essa potência aciona o refrigerador, que joga na fonte quente o calor retirado da fria mais o trabalho recebido. Sendo reversível, os calores do refrigerador estão na razão das temperaturas absolutas. As temperaturas vêm em °C; use T(K) = T(°C) + 273, como fazem os próprios dados (727 °C ↔ 1000 K).",
+    "formulas": [
+     "motor: P = (1 − T_f/T_q)·Q_q",
+     "refrigerador: Q_quente = Q_frio + P",
+     "reversível: Q_frio/Q_quente = T_frio/T_quente"
+    ],
+    "simbolos": [
+     [
+      "Q_q",
+      "taxa de calor que o motor recebe da fonte quente"
+     ],
+     [
+      "P",
+      "potência que o motor entrega ao refrigerador"
+     ],
+     [
+      "Q_frio",
+      "taxa de calor retirado da fonte fria do refrigerador"
+     ],
+     [
+      "Q_quente",
+      "taxa de calor que o refrigerador joga na fonte quente"
+     ]
+    ]
+   },
+   "pista": "Converta as temperaturas para kelvin e calcule a potência do motor antes de olhar o refrigerador.",
+   "passos": [
+    {
+     "faz": "Converta para kelvin",
+     "conta": "727 °C → 1000 K | 27 °C → 300 K",
+     "porque": "As relações de Carnot só valem com temperatura absoluta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a potência do motor",
+     "conta": "P = (1 − 300/1000) × 800 → P = 0,7 × 800 → P = 560 kJ/min",
+     "porque": "Os 800 kJ/min são o calor trocado com a fonte quente do motor, e o rendimento de Carnot é 0,7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o calor retirado da fonte fria",
+     "conta": "Q_frio = Q_quente − P → Q_frio = 5040 − 560 → Q_frio = 4480 kJ/min",
+     "porque": "O refrigerador entrega à fonte quente tudo o que tirou da fria mais o trabalho recebido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a razão dos calores",
+     "conta": "T_frio = 300 × 4480/5040 → T_frio = 800/3 K",
+     "porque": "No ciclo reversível Q_frio/Q_quente = T_frio/T_quente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte para Celsius e marque",
+     "conta": "800/3 − 273 = −19/3 °C",
+     "porque": "É a alternativa D, cerca de −6,3 °C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a fonte fria do refrigerador está a −19/3 °C.",
+   "checagem": "Confira pelo coeficiente de desempenho: Q_frio/P = 4480/560 = 8, e o de Carnot com T_frio = 800/3 K é (800/3)/(300 − 800/3) = 8. Fecha.",
+   "erradas": {
+    "A": "−1/3 °C não confere: dá T_frio = 818/3 K, e o desempenho de Carnot seria (818/3)/(300 − 818/3) ≈ 9,98, não os 4480/560 = 8 exigidos.",
+    "B": "9/2 °C não confere: T_frio = 277,5 K dá desempenho 277,5/22,5 ≈ 12,3, e o ciclo pede 8.",
+    "C": "22/3 °C não confere: T_frio = 841/3 K dá desempenho ≈ 14,3, e o ciclo pede 8.",
+    "E": "−5/2 °C não confere: T_frio = 270,5 K dá desempenho 270,5/29,5 ≈ 9,17, e o ciclo pede 8."
+   },
+   "armadilha": "Usar a temperatura em °C nas razões de Carnot, ou tomar os 5 040 kJ/min como o calor retirado da fonte fria: eles são o calor entregue à fonte quente, que já inclui o trabalho.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A temperatura da fonte fria do refrigerador reversível acionado pelo motor de Carnot.",
+    "chave": "P = 0,7 × 800 = 560; Q_frio = 5040 − 560 = 4480; T_frio = 300 × 4480/5040 = 800/3 K = −19/3 °C.",
+    "cuidado": "Converter para kelvin e descontar o trabalho do calor entregue à fonte quente."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coeficiente de desempenho",
+    "ideia": "COP = 4480/560 = 8 = T_frio/(300 − T_frio) → T_frio = 2400/9 = 800/3 K."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P = (1 − 300/1000) × 800 = 560",
+    "nota": "potência do motor, kJ/min"
+   },
+   {
+    "linha": "Q_frio = 5040 − 560 = 4480",
+    "nota": "balanço do refrigerador"
+   },
+   {
+    "linha": "T_frio = 300 × 4480/5040 = 800/3 K",
+    "nota": "Q/T igual no reversível"
+   },
+   {
+    "linha": "800/3 − 273 = −19/3 °C",
+    "nota": "alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
+ },
+ "P02295bbf": {
+  "n": "30",
+  "conceito": "Duas imagens na lente: a do objeto direto e a da imagem virtual que o espelho côncavo forma; equação de Gauss no espelho e duas vezes na lente.",
+  "equivocos": {
+   "A": "F09.5:posicao-da-imagem-nao-confere",
+   "B": "F09.5:posicao-de-uma-imagem-no-lugar-da-distancia",
+   "C": "F09.5:imagem-real-dentro-da-focal",
+   "D": "F09.5:imagem-do-espelho-mal-posicionada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com d = 6 m, o objeto está a 6 m da lente e a 9 − 6 = 3 m do espelho. A 3 m, o objeto está entre o foco (6 m) e o espelho côncavo, então a imagem do espelho é virtual, atrás dele. A luz refletida volta para a lente como se viesse dessa imagem, que vira objeto da lente. A lente então forma duas imagens: uma do objeto e outra da imagem do espelho.",
+    "formulas": [
+     "Gauss: 1/f = 1/p + 1/p' (espelho e lente)",
+     "p' negativo no espelho: imagem virtual, atrás dele"
+    ],
+    "simbolos": [
+     [
+      "f",
+      "distância focal (lente 3 m; espelho 6 m)"
+     ],
+     [
+      "p",
+      "distância do objeto ao espelho ou à lente"
+     ],
+     [
+      "p'",
+      "distância da imagem; negativa no espelho indica imagem virtual"
+     ],
+     [
+      "d",
+      "distância do objeto à lente, 6 m"
+     ]
+    ]
+   },
+   "pista": "Calcule primeiro a distância do objeto ao espelho e veja se ele está dentro ou fora do foco.",
+   "passos": [
+    {
+     "faz": "Ache a imagem no espelho",
+     "conta": "p = 9 − 6 = 3 m → 1/6 = 1/3 + 1/p' → 1/p' = 1/6 − 1/3 = −1/6 → p' = −6 m",
+     "porque": "Objeto dentro do foco do espelho côncavo: a imagem é virtual, 6 m atrás do espelho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a imagem A, vinda do espelho",
+     "conta": "distância à lente: 9 + 6 = 15 m → 1/3 = 1/15 + 1/p' → 1/p' = 4/15 → p' = 15/4 = 3,75 m",
+     "porque": "A luz refletida chega à lente como se viesse da imagem virtual, que funciona como objeto real a 15 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a imagem B, do objeto direto",
+     "conta": "1/3 = 1/6 + 1/p' → 1/p' = 1/6 → p' = 6 m",
+     "porque": "O objeto também manda luz direto para a lente, a 6 m dela; as duas imagens saem do outro lado da lente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia as posições",
+     "conta": "6 − 3,75 = 2,25 m",
+     "porque": "As duas imagens estão do mesmo lado da lente, então a distância entre elas é a diferença das posições.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "2,25 m → alternativa E",
+     "porque": "É a única alternativa com esse valor.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 2,25 m.",
+   "checagem": "Confira por Gauss ao contrário: 1/15 + 4/15 = 5/15 = 1/3 e 1/6 + 1/6 = 1/3; no espelho, 1/3 − 1/6 = 1/6. Tudo fecha com as focais dadas.",
+   "erradas": {
+    "A": "Não confere: 1,50 m exigiria que a imagem vinda do espelho ficasse a 6 − 1,5 = 4,5 m da lente, e Gauss com objeto a 15 m dá 3,75 m.",
+    "B": "Sai de responder só a posição da imagem A (3,75 m da lente), sem subtrair da posição da imagem B (6 m).",
+    "C": "Não confere: 3,50 m exigiria uma imagem a 6 − 3,5 = 2,5 m da lente, menor que a focal de 3 m; um objeto real na frente da lente convergente nunca dá imagem real a menos de f.",
+    "D": "Não confere: 0 exigiria a imagem do espelho também a 6 m da lente, mas ela está a 15 m, pois é virtual, atrás do espelho."
+   },
+   "armadilha": "Pôr a imagem do espelho na frente dele: a 3 m, o objeto está dentro do foco, e a imagem é virtual, 6 m atrás do espelho (15 m da lente).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A distância entre as duas imagens que a lente forma, com d = 6 m.",
+    "chave": "Espelho: imagem virtual a 6 m atrás (15 m da lente); lente: 3,75 m e 6 m; diferença 2,25 m.",
+    "cuidado": "Ver se o objeto está dentro do foco do espelho antes de pôr a imagem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "objeto em 2f",
+    "ideia": "O objeto a 6 m = 2f da lente dá imagem em 2f (6 m) na hora; só a imagem vinda do espelho precisa de conta."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1/p' = 1/6 − 1/3 = −1/6",
+    "nota": "Gauss no espelho, objeto a 3 m"
+   },
+   {
+    "linha": "p' = −6 m",
+    "nota": "imagem virtual atrás do espelho"
+   },
+   {
+    "linha": "1/p'A = 1/3 − 1/15 = 4/15",
+    "nota": "objeto da lente a 9 + 6 = 15 m"
+   },
+   {
+    "linha": "p'A = 15/4 = 3,75 m",
+    "nota": "inverter a fração"
+   },
+   {
+    "linha": "1/p'B = 1/3 − 1/6 = 1/6 → p'B = 6 m",
+    "nota": "objeto direto a 6 m"
+   },
+   {
+    "linha": "6 − 3,75 = 2,25 m",
+    "nota": "diferença das posições"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
+ },
+ "P06031f5a": {
+  "n": "29",
+  "conceito": "Batimento entre o som direto (drone afastando-se da fonte) e o refletido por uma parede móvel (parede como observador e depois como fonte, drone aproximando-se dela).",
+  "equivocos": {
+   "A": "F10.7:esqueceu-o-observador-no-som-refletido",
+   "B": "F10.7:batimento-incompativel-com-os-dois-doppler",
+   "C": "F10.7:batimento-incompativel-com-os-dois-doppler",
+   "E": "F10.7:batimento-incompativel-com-os-dois-doppler"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O drone ouve dois sons: o direto, da fonte parada, e o refletido pela parede. O refletido passa por dois Doppler: a parede recebe o som como observador que se afasta e o reemite como fonte que se afasta do drone. Depois o drone, que corre na direção da parede, recebe esse som como observador que se aproxima. O batimento é a diferença das duas frequências que o drone percebe.",
+    "formulas": [
+     "f' = f · (c ± v_obs)/(c ∓ v_fonte): + no numerador se o observador aproxima; + no denominador se a fonte afasta",
+     "batimento: f_bat = |f_direto − f_refletido|"
+    ],
+    "simbolos": [
+     [
+      "c",
+      "velocidade do som, 340 m/s"
+     ],
+     [
+      "u",
+      "velocidade da parede, 34 m/s"
+     ],
+     [
+      "v",
+      "velocidade do drone, 17 m/s"
+     ],
+     [
+      "batimento",
+      "oscilação do volume com frequência igual à diferença das duas frequências"
+     ]
+    ]
+   },
+   "pista": "Trate a parede em duas etapas: primeiro ela ouve, depois ela emite.",
+   "passos": [
+    {
+     "faz": "Calcule o som direto no drone",
+     "conta": "f₁ = f₀ · (c − v)/c → f₁ = 1000 · (340 − 17)/340 → f₁ = 1000 · 323/340 → f₁ = 950 Hz",
+     "porque": "O drone se afasta da fonte parada, então é observador que foge da onda: c − v no numerador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o que a parede recebe",
+     "conta": "f_p = f₀ · (c − u)/c → f_p = 1000 · 306/340 → f_p = 900 Hz",
+     "porque": "A parede também se afasta da fonte, como observador que foge: c − u no numerador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reemita pela parede e receba no drone",
+     "conta": "f₂ = f_p · c/(c + u) · (c + v)/c → f₂ = 900 · 340/374 · 357/340 → f₂ = 900 · 357/374 → f₂ ≈ 859,1 Hz",
+     "porque": "Na reflexão a parede é fonte que se afasta do drone (c + u embaixo); o drone corre na direção da parede, é observador que se aproxima (c + v em cima).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o batimento e marque",
+     "conta": "f_bat = f₁ − f₂ → f_bat = 950 − 859,1 → f_bat ≈ 91 Hz",
+     "porque": "O batimento é a diferença entre as duas frequências que chegam ao mesmo sensor.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — aproximadamente 91 Hz.",
+   "checagem": "Ordem de grandeza: para velocidades pequenas diante de c, f₁ − f₂ ≈ f₀ · 2(u − v)/c = 1000 · 2 · 17/340 = 100 Hz; o valor exato, 90,9 Hz, fica perto disso e longe de 66 e 132.",
+   "erradas": {
+    "A": "132 Hz sai de esquecer o movimento do drone no som refletido: 950 − 818,2 = 131,8 Hz, usando 818,2 Hz, que é o que a parede emite, sem o fator (c + v)/c.",
+    "B": "66 Hz não confere: exigiria um refletido de 950 − 66 = 884 Hz no drone, mas a conta com os dois Doppler da parede e o do drone dá 859,1 Hz.",
+    "C": "81 Hz não confere: exigiria um refletido de 869 Hz, e a cadeia 1000 · 306/340 · 357/374 dá 859,1 Hz.",
+    "E": "101 Hz não confere: exigiria um refletido de 950 − 101 = 849 Hz no drone, e a cadeia 1000 · 306/340 · 357/374 dá 859,1 Hz."
+   },
+   "armadilha": "Esquecer que o drone também se move em relação ao som refletido: ele corre na direção da parede, o que aumenta a frequência percebida desse som.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A frequência de batimento no drone entre o som direto e o refletido na parede móvel.",
+    "chave": "f₁ = 1000 · 323/340 = 950 Hz; f₂ = 1000 · 306/340 · 357/374 ≈ 859,1 Hz; batimento ≈ 91 Hz.",
+    "cuidado": "A parede entra duas vezes (observador e depois fonte), e o drone entra nos dois sons, com sinais opostos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fator único",
+    "ideia": "O refletido sai direto de f₂ = f₀ · (c − u)/(c + u) · (c + v)/c = 1000 · 306/374 · 357/340 ≈ 859,1 Hz, e 950 − 859,1 ≈ 91 Hz."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f₁ = 1000 · (340 − 17)/340 = 950 Hz",
+    "nota": "drone foge da fonte"
+   },
+   {
+    "linha": "f_p = 1000 · (340 − 34)/340 = 900 Hz",
+    "nota": "parede foge da fonte"
+   },
+   {
+    "linha": "f₂ = 900 · 340/374 · 357/340",
+    "nota": "parede emite afastando; drone aproxima"
+   },
+   {
+    "linha": "f₂ = 900 · 357/374 ≈ 859,1 Hz",
+    "nota": "o 340 se cancela"
+   },
+   {
+    "linha": "f_bat = 950 − 859,1 ≈ 91 Hz",
+    "nota": "alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
  }
 }
