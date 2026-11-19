@@ -33,3 +33,18 @@ DADO Pba783394: número da questão -> 34 no print (a entrada diz 44)
 DADO Pf5b143fd: alternativas.E -> "2022, em virtude do fechamento das fronteiras da França por conta de sua saída da União Europeia, aconteceu um aumento no número de visitantes." (sem o " 07" final da entrada)
 DADO P84e51787: alternativas.E -> "melhoria da qualidade dos processos produtivos." (sem o resto "l. os. res." da entrada)
 GABARITO Pc2d56bf9, P2298d5b1 (UFRR): entraram com gabarito do Aprendice (letra = preliminar, dois resolvedores às cegas); PDFs oficiais pós-recursos (Editais 93/25 e 97/24) não abriram; conferir.
+
+## 2026-11-19 — PENDENCIAS — sessão geo parte 2 (lote geo-p2-0003 em correção)
+DADO P0188451a: texto_da_prova -> começa por "Chamados" (a entrada traz "hamados")
+DADO Pe9844354: alternativas.E -> sem o " 44" (número da página) colado no fim
+DADO Pc8cd4a0b: alternativas.A -> "a “fronteira viva” da Coreia do Sul." (aspas normais no lugar de ―…‖)
+DADO P6a0c02f2: alternativas -> vêm coladas em texto_da_prova, sem letras; no print são A–E
+DADO P3d04a6ff: alternativas -> campo ausente; texto das 5 colado no fim de texto_da_prova (com ruído "Moss |")
+DADO P4830d235: alternativas -> campo ausente; texto das 5 colado no fim de texto_da_prova
+RECLASS P36366c62 G10.4 -> G10.8
+RECLASS P92f6e950 G10.4 -> G10.5
+RECLASS Pe4d26cee G10.4 -> G10.2
+RECLASS P36273c7a G10.5 -> G10.7
+RECLASS P799d7912 G10.5 -> G10.8
+RECLASS P97932ec3 G10.5 -> G02.5
+RECLASS P4a6d33de G10.3 -> G12.1
