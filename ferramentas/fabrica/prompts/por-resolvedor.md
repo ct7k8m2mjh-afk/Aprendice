@@ -100,15 +100,20 @@ Se o trecho da prova basta, `depende_da_obra: false`.
 - `equivocos`: para CADA letra errada, `<conteúdo>:<equívoco-em-minúsculas-com-hífen>`
   (ex.: `P05.4:confundiu-registro-formal-com-norma-culta`). Só minúsculas, dígitos e hífen
   depois dos dois-pontos; sem acento.
-  **O código antes dos dois-pontos é o MESMO nas letras todas, e é o conteúdo em que a questão
-  está classificada** — ou, se você preencheu `reclass`, o código que você pôs lá. Esse código
-  manda o aluno estudar aquele conteúdo na revisão espaçada, e é a única coisa que ele faz.
-  Dois erros que a conferência devolveu em 15 das 50 questões de um lote:
-  - cada letra com um código diferente (`P01.2` em A, `P08.3` em B, `P10.2` em D). O aluno cai
-    numa revisão diferente conforme a letra que marcou, na MESMA questão. Nunca faça isso.
-  - um código que não é o da questão, com `reclass` vazio. Aí ninguém sabe se o código está
-    errado ou se a classificação da questão está. Se você acha que a questão está no conteúdo
-    errado, **diga em `reclass`** e use o código novo nas letras todas; se não, use o da questão.
+  **O código antes dos dois-pontos é o conteúdo que o aluno precisa rever para não repetir
+  AQUELE erro** — é a única coisa que ele faz: mandar o aluno àquele conteúdo na revisão
+  espaçada. Em quase toda questão isso é o conteúdo em que ela está classificada (ou, se você
+  preencheu `reclass`, o código que você pôs lá), e aí o código é o mesmo nas letras todas.
+  Duas exceções e um erro:
+  - **pode ser diferente por letra** quando os erros são de conteúdos diferentes de verdade. Numa
+    questão de proposições, quem marcou B confundiu o foco narrativo (P03.1) e quem marcou A
+    confundiu predicativo do sujeito com do objeto (P08.4): são dois estudos diferentes, e cada
+    letra aponta o seu. Faça isso quando for o caso, não por descuido.
+  - **o erro** é usar um código que não é o da questão com `reclass` vazio, sem que o erro daquela
+    letra pertença a outro conteúdo. Aí ninguém sabe se o código está errado ou se a classificação
+    da questão está. Se você acha que a questão está no conteúdo errado, **diga em `reclass`**.
+  A conferência achou 15 questões assim em 50, quase todas por descuido: o código era o do assunto
+  do texto de apoio (literatura, porque o texto era de um romance) e não o do que a questão cobra.
 - `fontes`: só o que você consultou de fato. Lista vazia se tudo vem da questão.
 - `caminhos`: opcional em Português; se houver um segundo jeito bom de chegar à resposta, uma linha.
 

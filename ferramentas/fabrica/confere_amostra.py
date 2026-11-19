@@ -25,8 +25,10 @@ def equivocos_fora(questao, entrada):
     Cada `equivocos.<letra>` começa pelo código do conteúdo a que o aluno volta
     na revisão espaçada. Dois defeitos aparecem e nenhum é pego pelo validador:
 
-    - os prefixos discordam ENTRE SI, e então o aluno cai numa revisão diferente
-      conforme a letra que marcou — na mesma questão;
+    - os prefixos discordam ENTRE SI. Isso NÃO é erro por si: numa questão de
+      proposições, quem marcou B pode ter errado o foco narrativo e quem marcou A,
+      o predicativo, e aí cada letra aponta o estudo certo dela. Mas quase sempre é
+      descuido, e quem lê a questão decide;
     - todos concordam mas apontam para um conteúdo que não é o da questão, e aí
       ou o prefixo está errado, ou a classificação da questão está (RECLASS).
 
@@ -39,7 +41,7 @@ def equivocos_fora(questao, entrada):
     codigos = {str(v).split(':')[0] for v in eq.values()}
     da_questao = str(entrada.get('conteudo', '')).split()[0]
     if len(codigos) > 1:
-        return ('os equívocos apontam conteúdos diferentes entre si ('
+        return ('conferir os equívocos: apontam conteúdos diferentes entre si ('
                 + ', '.join(sorted(codigos)) + f'); a questão é {da_questao}')
     unico = codigos.pop()
     if da_questao and unico != da_questao:
