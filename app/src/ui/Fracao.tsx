@@ -50,3 +50,11 @@ export function comNotacao(s: string): ReactNode {
     </Fragment>
   ));
 }
+
+/** Texto com negrito marcado por **…** (cartões de teoria de Português; revisão de 19/11/2026, item 2): o trecho sai em
+ *  <b>, o resto pelas frações e notação de sempre. Os ** ficam nos dados; asterisco solto (sem par) continua texto. */
+export function comNegrito(texto: string): ReactNode {
+  if (!texto.includes('**')) return comFracoes(texto);
+  const ps = texto.split(/\*\*(.+?)\*\*/);
+  return ps.map((v, i) => (i % 2 ? <b key={i} className="negrito">{comFracoes(v)}</b> : <Fragment key={i}>{comFracoes(v)}</Fragment>));
+}

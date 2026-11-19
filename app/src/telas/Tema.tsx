@@ -9,13 +9,14 @@ import { Barra, Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { IcTema } from '../ui/IconeTema';
 import { CabMateria, subMateria, FaixaTemas } from './Materia';
-import { comFracoes } from '../ui/Fracao';
+import { comFracoes, comNegrito } from '../ui/Fracao';
 import { contaEhTexto, materiaDoCodigo } from '../logica/fracao';
 import type { CartaoTeoria, Figura, MateriaId, Modulo } from '../dados/tipos';
 import { Formula, TextoMat, ehLatex } from '../ui/Formula';
 import { useIndiceRevisao, useResumos } from '../dados/revisao';
 import { ResumoSubtemaView } from '../ui/revisao/ResumoSubtema';
 import { emDias } from '../logica/revisao';
+import { legendaFigura } from '../logica/legendaFigura';
 import type { EstadoMateria } from '../estado/tipos';
 import { AvisoRegiao, FiltroRegiaoChips, useRegiao } from '../ui/FiltroRegiao';
 import { deFiltro, filtraTema } from '../logica/regiao';
@@ -24,20 +25,20 @@ export function CartaoTeoriaView({ c, figs }: { c: CartaoTeoria; figs?: Figura[]
   return (
     <article className="cartao-teoria">
       <h3>{c.titulo}</h3>
-      {c.oque && <p>{comFracoes(c.oque)}</p>}
-      {c.identificar && <p><b>Como reconhecer na prova. </b>{comFracoes(c.identificar.replace(/^Pistas:\s*/i, ''))}</p>}
-      {c.exemplo && <p><b>Exemplo. </b>{comFracoes(c.exemplo)}</p>}
+      {c.oque && <p>{comNegrito(c.oque)}</p>}
+      {c.identificar && <p><b>Como reconhecer na prova. </b>{comNegrito(c.identificar.replace(/^Pistas:\s*/i, ''))}</p>}
+      {c.exemplo && <p><b>Exemplo. </b>{comNegrito(c.exemplo)}</p>}
       {c.caderno && c.caderno.length > 0 && (
         <ul className="caderno">{c.caderno.map((x, i) => ehLatex(x)
           // revisão (docs/revisao): texto na letra da interface com as fórmulas entre $…$ à mão
           ? <li key={i} className="texto com-fm"><TextoMat t={x} prosa={contaEhTexto('1 + 1', materiaDoCodigo(c.sub))} /></li>
           : <li key={i} className={contaEhTexto(x, materiaDoCodigo(c.sub)) ? 'texto' : undefined}>{comFracoes(x)}</li>)}</ul>
       )}
-      {c.cuidado && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Cuidado: </b>{comFracoes(c.cuidado)}</span></p>}
+      {c.cuidado && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Cuidado: </b>{comNegrito(c.cuidado)}</span></p>}
       {figs && figs.map((f, i) => (
         <figure key={i} className="fig-teoria">
           <img src={f.u} alt={f.t} loading="lazy" />
-          <figcaption>{f.t}<small>{f.fonte}</small></figcaption>
+          <figcaption>{f.t}<small title={f.fonte}>{legendaFigura(f.fonte)}</small></figcaption>
         </figure>
       ))}
     </article>
@@ -57,10 +58,21 @@ export function TeoriaModulo({ m, mod }: { m: MateriaId; mod: Modulo }) {
         {mod.erro && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Erro que mais derruba: </b>{comFracoes(mod.erro)}</span></p>}
       </section>
       <div className="grade g2" style={{ marginTop: 16 }}>
-        {mod.cartoes.map((c, i) => <CartaoTeoriaView key={i} c={c} figs={figs.filter((f) => f.subs.includes(c.sub)).slice(0, 2)} />)}
+        {figurasPorCartao(mod.cartoes, figs).map((fs, i) => <CartaoTeoriaView key={i} c={mod.cartoes[i]} figs={fs} />)}
       </div>
     </div>
   );
+}
+
+/** Figuras de cada cartão: até 2 do conteúdo dele, e cada figura uma vez só no tema (revisão de 19/11/2026, item 9:
+ *  a mesma figura não se repete em cartões vizinhos do mesmo conteúdo). */
+export function figurasPorCartao(cartoes: Pick<CartaoTeoria, 'sub'>[], figs: Figura[]): Figura[][] {
+  const usadas = new Set<string>();
+  return cartoes.map((c) => {
+    const l = figs.filter((f) => f.subs.includes(c.sub) && !usadas.has(f.u)).slice(0, 2);
+    for (const f of l) usadas.add(f.u);
+    return l;
+  });
 }
 
 /** Primeira frase do cartão de teoria do conteúdo: o resumo de uma linha em "O que você vai encontrar". */

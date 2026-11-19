@@ -7,7 +7,7 @@ import type { MateriaId } from '../dados/tipos';
 import { atualizaMateria, useMateriaEstado } from '../estado/loja';
 import { contaEhTexto } from '../logica/fracao';
 import {
-  agrupaPorCapitulo, alternaLido, alternaMarcado, avisoImagem, buscaTopicos, contaProgresso, ehParte, escolheImagem,
+  agrupaPorCapitulo, alternaLido, alternaMarcado, buscaTopicos, contaProgresso, ehParte, escolheImagem,
   marcaTrechos, parteDoTopico, partesDe, PARTES_FS, topicosDaParte, type ImagemTopico, type ParteGeral, type TopicoGeral,
 } from '../logica/revisaoGeral';
 import { Carregando, cap, plural, useTitulo } from '../ui/comum';
@@ -242,22 +242,17 @@ function TopicoView({ m, t, pos, n, nomeSub, tituloRef, lido, marc, onLido, onMa
   );
 }
 
-/** Caixa de imagem do tópico: a imagem do dono (docs/imagens/<m>/<id>.png, já em WebP) ou, sem ela ou se ela não
- *  carregar, o aviso "EM CONSTRUÇÃO — <descrição>". Nenhum código por tópico: o conversor resolve pelo nome. */
+/** Caixa de imagem do tópico: a imagem do dono (docs/imagens/<m>/<id>.png, já em WebP). Sem ela, ou se ela não carregar,
+ *  nada aparece (material incompleto não vai ao ar; revisão de 19/11/2026, item 8 das matérias). O aviso de produção
+ *  (`avisoImagem`) continua na lógica para os relatórios. Nenhum código por tópico: o conversor resolve pelo nome. */
 function CaixaImagem({ m, im }: { m: MateriaId; im: ImagemTopico }) {
   const [falhou, setFalhou] = useState(false);
   useEffect(() => { setFalhou(false); }, [im.img]);
   const img = escolheImagem(im, falhou);
+  if (!img) return null;
   return (
     <figure className="rg-fig">
-      {img
-        ? <img src={urlRevisao(m, img)} alt={im.descricao} loading="lazy" onError={() => setFalhou(true)} />
-        : (
-          <div className="rs-caixa rg-caixa" role="img" aria-label={avisoImagem(im)}>
-            <Icone nome="olho" tam={18} />
-            <span><b>EM CONSTRUÇÃO</b>{' — ' + (im.descricao || 'imagem em preparação')}</span>
-          </div>
-        )}
+      <img src={urlRevisao(m, img)} alt={im.descricao} loading="lazy" onError={() => setFalhou(true)} />
     </figure>
   );
 }
