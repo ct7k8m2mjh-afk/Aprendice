@@ -451,3 +451,12 @@ DADO P35ef5a54 (Unimontes PAES 2020 3ª etapa q37): alternativas -> A (−2 − 
 AVISO validador: recusa ♣ ♥ ♠ ♦ como emoji; em Pbcc62968 (Fatec 2023-1 q50) os naipes da resolução ficaram por extenso
 DADO P4a4aaf61 (ITA 2021 q54): texto_da_prova "z2" -> z²
 DADO Pc31f4b5e (ITA 2023 q43): texto_da_prova "z(2n+1)", "5021", "5020" -> z^(2n+1), z̄^(2n+1), 50^21, 50^20
+
+## 2026-11-19 19:28 UTC — FIM — session_01PveEKX1qHQh5Qz4UFj3KyL
+Último lote gravado: mat-0081. Lotes gravados nesta vez: mat-0078 (49 + 1 pendente), mat-0079 (50), mat-0080 (49 + 1 pendente), mat-0081 (8) = 156 resoluções, 2 pendentes, 0 divergências.
+Lotes abertos: nenhum. Testes (após mat-0081): 786 passed, tsc OK. Site conferido (Pa5fd59cb, P9eb01b32, P6184f6e8): 4 blocos, animação até o fim, frações empilhadas, sem erro de JS.
+Gabarito do Aprendice nesta vez (15; resolvedor e conferente às cegas iguais ao preliminar): ver os blocos PENDÊNCIAS mat-0078, mat-0079 e mat-0080.
+Pendências: ANULAR P71aca1f8 (mat-0078) e ANULAR Pcdca0c12 (URCA PSU 2025.1, mat-0080; conta confirmada pelo conferente); GABARITO P1ddbe8c2 (IME 2025 q3: definitivo B segundo o Estratégia); AVISO validador recusa ♣ ♥ ♠ ♦; RECLASS e DADO nos blocos acima.
+
+## 2026-11-19 19:28 UTC — ACABOU — session_01PveEKX1qHQh5Qz4UFj3KyL
+Matemática parte 1 terminou: `lote.py status` mostra 0 questões faltando na parte 1 (e 0 em Matemática inteira, parte 2 incluída).
