@@ -608,5 +608,96 @@
    "data": "2026-11-19",
    "lote": "geo-0058"
   }
+ },
+ "P906212e5": {
+  "n": "68",
+  "conceito": "Hora local pela longitude: cada 15° para leste adianta 1 hora.",
+  "equivocos": {
+   "B": "G01.3:par-43e-e-123e-nao-confere-com-15-graus-por-hora",
+   "C": "G01.3:par-37e-e-97e-nao-confere-com-15-graus-por-hora",
+   "D": "G01.3:somou-graus-para-oeste"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Hora local depende só da longitude: a Terra gira 15° por hora de oeste para leste, então quem está a leste vê o Sol antes e tem o relógio adiantado. Para achar onde é 12h quando no Rio (43° W) são 6h, conte quantas horas faltam e transforme em graus para leste. A data (22 de setembro) e a latitude (22° S) não entram na conta.",
+    "formulas": [
+     "360° ÷ 24 h = 15° por hora",
+     "horas de diferença × 15° = graus de longitude",
+     "para leste, a hora adianta; para oeste, atrasa"
+    ],
+    "simbolos": [
+     [
+      "meridiano",
+      "linha imaginária de polo a polo; a longitude é a sua distância em graus a Greenwich"
+     ],
+     [
+      "W (oeste)",
+      "a oeste de Greenwich"
+     ],
+     [
+      "E (leste)",
+      "a leste de Greenwich"
+     ],
+     [
+      "hora local",
+      "hora marcada pela posição do Sol em cada meridiano"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra quantas horas o lugar procurado está à frente do Rio; só depois transforme em graus.",
+   "passos": [
+    {
+     "faz": "Separe os dados que servem",
+     "conta": "Rio: 43° W, 6h | procurados: 12h e 18h | data e latitude não entram",
+     "porque": "A hora local só depende da longitude; a latitude e a data são distração.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o meridiano das 12h",
+     "conta": "12h − 6h = 6 h → 6 × 15° = 90° para leste → 90° − 43° = 47° E",
+     "porque": "Está 6 horas à frente, então fica 90° a leste do Rio. Os primeiros 43° levam a Greenwich (0°); sobram 47° além dele.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o meridiano das 18h",
+     "conta": "18h − 6h = 12 h → 12 × 15° = 180° para leste → 180° − 43° = 137° E",
+     "porque": "Está 12 horas à frente, meia volta da Terra. Passando de Greenwich, sobram 137° a leste.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o par à letra",
+     "conta": "47° E e 137° E = A",
+     "porque": "É o único par que bate com as duas horas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 47° E (12h) e 137° E (18h).",
+   "checagem": "Refaça por Greenwich: o Rio está 43° a oeste, 43 × 4 min = 2h52 atrás; em Greenwich são 8h52. Para 12h faltam 3h08 = 188 min ÷ 4 = 47° a leste; para 18h faltam 9h08 = 548 min ÷ 4 = 137° a leste. Mesmo par.",
+   "erradas": {
+    "B": "B não confere: 43° E está 86° a leste do Rio, 86 × 4 min = 5h44 → 11h44; e 123° E está 166° a leste → 17h04.",
+    "C": "C não confere: 37° E está 80° a leste do Rio → 11h20; e 97° E está 140° a leste → 15h20.",
+    "D": "D sai de ir para o lado errado: 133° W fica 90° a oeste do Rio, onde são 6h − 6h = 0h, não 12h; e 137° W, 94° a oeste, marca 23h44."
+   },
+   "armadilha": "Somar os 90° direto aos 43° (dando 133°) sem perceber que, rumo a leste, o caminho passa por Greenwich e muda de W para E.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os meridianos onde é 12h e 18h quando no Rio (43° W) são 6h.",
+    "chave": "Cada hora a mais = 15° para leste: 90° e 180° a leste de 43° W dão 47° E e 137° E.",
+    "cuidado": "Ao cruzar Greenwich, a longitude passa de W para E: desconte os 43°."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0060"
+  }
  }
 }

@@ -394,3 +394,27 @@ DADO P3af906c1 (ENEM 2021 q89): alternativas -> faltam na entrada; no print: A n
 DADO P5d464e16 (ENEM 2020 q67): alternativas -> faltam na entrada (estão coladas no texto_da_prova); no print: A colisão de placas tectônicas, B rifteamento da crosta terrestre, C subducção da plataforma oceânica, D formação de cadeias montanhosas, E metamorfismo de bordas continentais
 RECLASS P321a7d7d G01.4 -> G01.2 (FMABC 2025 q40: a questão é sobre escala, não projeção)
 DADO Pcad4d264: alternativas -> no print as proposições são "I", "II", "III" (a entrada traz "|", "Il", "Ill" por OCR); texto_da_prova com OCR embaralhado dos esquemas (vale o print)
+
+## 2026-11-19 18:47 UTC — PENDENCIAS — sessão geo (19/11, 5ª; parte 1)
+Lote gravado: geo-0060 (50 resoluções). Pendentes: 0.
+DADO Pb225f4e5: alternativas.E -> "decomposição da matéria orgânica em áreas inundadas." (sobra "q q p , p ," colada da camada de texto)
+DADO P06dd65aa: texto_da_prova -> "37.000 km³" e "1.087.000 km²" (camada de texto trocou os expoentes por "?" e acrescentou "J."); alternativas.E -> termina em "calçadas e praças." (sobra "2 DDD>>—>—>—>——" colada)
+DADO Pc0889af7: texto_da_prova -> comando "Analise, a seguir, o mapa e a tabela sobre os biomas do Brasil e assinale a alternativa incorreta." com mapa e tabela só no print (OCR embaralhado; "incorreta" em negrito)
+RECLASS Pbb30f861 G06.3 -> G12.2
+DADO P8b7bef32: alternativas -> OCR trocou os algarismos romanos ("Ill", "|", "Il"); no print: A "Somente as afirmativas III e IV são verdadeiras.", B "I e II", C "II e IV", D "I e IV", E "I e III"; texto_da_prova com numerais e palavras quebrados ("Il.", "| Existem", item IV uma palavra por linha)
+DADO Pc55f3db6: alternativas -> no print D "quebra da Bolsa de Nova Iorque" (não "lorque") e E termina em "Acordo de Vestfália." (sem " Dm"); B tem ~~New Deal~~ em itálico; texto_da_prova embaralhado (esquema)
+DADO P01f624da: alternativas e texto_da_prova -> OCR trocou os romanos ("|", "Il", "H.", "HI."); no print: A "I e II", B "II e III", C "I e III"; item II "agrotóxicos e fertilizantes" (não "agrotóxicose")
+RECLASS P224024d3 G09.1 -> G09.2
+DADO Pd0ceba02: alternativas -> no print: A) Somente as afirmativas II e III são verdadeiras. B) Somente as afirmativas I e II são verdadeiras. D) Somente as afirmativas I e III são verdadeiras. E) Somente a afirmativa II é verdadeira. (OCR trocou I/II/III por |, Il, Ill)
+DADO Pd0ceba02: texto_da_prova -> no print as afirmativas são I., II., III. (OCR: Il., IH., ll.) e 'chama' (OCR: cnama); no print a questão é a 50 do caderno vespertino
+DADO P01294522: texto_da_prova -> 'RUANDA' no fim é rótulo do mapa, não faz parte do enunciado; no print a questão é a 43 e o mapa 'África: hostilidades à vida humana' vem antes de 'África: estrutura das exportações'
+RECLASS Pe34d14d1 G11.5 -> G07.4
+RECLASS P391a40ce G12.1 -> G03.6
+DADO P8c34c713: texto_da_prova e alternativas -> OCR embaralhado dos mapas e da numeração das proposições ("Il.", "HI.", "|"; "2º" no lugar de "2ª"); vale o print
+DADO Pff62b980: texto_da_prova -> traz "Observe o mapa com dados de 2020", que é da questão vizinha na outra coluna; a tabela de alternativas está embaralhada pelo OCR; vale o print
+RECLASS P47f9e04a G12.6 -> G02.1 (UECE 2020.2 2ª fase q132: Antropoceno, tempo geológico)
+RECLASS P8fd93ee7 G12.6 -> G13.2 (UECE 2020.2 2ª fase q134: perspectiva da produção do espaço, Geografia crítica)
+RECLASS P906212e5 G01.1 -> G01.3 (PUCRS 2025 q68: hora local pela longitude)
+DADO P731eef64: alternativas.E -> "território." (sem o "j p p" final; PUC-SP 2025 q27)
+DADO Pdb3e9db3: texto_da_prova e alternativas -> acentos da camada de texto saíram soltos ('distribu´ıdas', 'obl´ıqua'); no print: 'distribuídas', 'oblíqua'
+DADO P0d7feb29: texto_da_prova e alternativas -> acentos soltos ('poss´ıveis', 'pac´ıfico', 'caracter´ıstica', 'Dispon´ıvel'); no print: 'possíveis', 'pacífico', 'característica', 'Disponível'
