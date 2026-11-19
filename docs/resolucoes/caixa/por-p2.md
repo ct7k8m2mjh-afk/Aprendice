@@ -22,3 +22,26 @@ RECLASS P31c5f8eb P08.1 -> P05.4
 RECLASS Pf5eebc32 P08.1 -> P09.2
 RECLASS P71fa1e13 P08.2 -> P08.3
 DADO P0da5dec8: alternativas -> vazio na entrada; as alternativas A–E estão coladas no fim de texto_da_prova (print: UFSM 2025 q26/106)
+
+## 2026-11-19 17:48 UTC — PENDENCIAS — sessão por-p2 (session_01PveEKYkycZkrPrW3hd17Vg)
+Último lote gravado: por-p2-0002 (50 ok). Lote aberto: por-p2-0003.
+DADO P3db56e86 (UNIRG 2026/1 q2): alternativas.D -> "Predicativo do objeto, explicando o termo “pesquisador”." (no print não há o " t A" do fim)
+DADO P425359f1 (Fatec 2024/1 q24): alternativas.E -> "modo, companhia e origem." (no print não há o " 24" do fim); texto_da_prova repete a linha "Leia o texto para responder às questões 23 e 24." e a põe depois do texto
+GABARITO Pa506a63b (UFRR 2025 Prova Integral q6): resolvida com gabarito do Aprendice D; conferir no Edital 97/24-CPV (https://editais.ufrr.br/editais/arquivo/568/edital-n-97-24-gabarito-oficial-vestibular-2025.pdf, não abriu daqui: conexão recusada) a letra e se houve anulação
+RECLASS Pc31cefd2 P08.3 -> P07.1
+RECLASS Pfa1c5157 P08.3 -> P08.2
+RECLASS Pd3b2a6d7 P08.3 -> P08.1
+DADO P2b85f30e: texto_da_prova -> acentos quebrados da camada de texto ("ind´ıgena", "equ´ıvoco", "l´ıngua"); no print: "indígena", "equívoco", "língua"; alternativas.C -> "objeto indireto circunstancial" (sem o hífen de quebra "cir- cunstancial")
+DADO Pc31cefd2: texto_da_prova -> acentos quebrados da camada de texto ("ind´ıgena", "amer´ındia"); no print: "indígena", "ameríndia"
+DADO P2566cc32: texto_da_prova -> "Sobre estrutura sintática..." (falta o "S" inicial) e os sublinhados das alternativas (A: "Desde o ano passado" e "as causas do incêndio"; B: "vêm denunciando"; C: "há mais de uma década"; D: "o fóssil humano mais antigo já encontrado no Brasil"; E: "com a repercussão da tragédia") só aparecem no print
+DADO P98d9b90b: alternativas.E -> "Verbo impessoal, com sujeito inexistente." (o " QUESTÃO 10" foi colado da camada de texto)
+DADO Pec4b64f7: alternativas.E -> "no segundo parágrafo, cinco períodos, sendo o segundo composto por uma coordenada aditiva." (o " 52" é o número da questão colado)
+RECLASS P4efc2b59 P09.2 -> P04.1 (UEG 2025/2 q6: referente do pronome "Eles", coesão referencial, não oração substantiva)
+DADO Pf0547283 (UFSM 2026 q110): alternativas -> ausentes na entrada; no print: A apenas I e II. | B apenas I e III. | C apenas II e III. | D apenas II e IV. | E apenas III e IV.
+GABARITO P24dcc7db (UFRR 2025 PI q8): sem gabarito definitivo conferido; letra do resolvedor C; o Edital 97/24-CPV (editais.ufrr.br) deu 503 em 19/11/2026; conferir letra e anulação no oficial
+DADO P62932f09: alternativas.D "coordenada sindética. 4" -> "coordenada sindética." (o "4" é o número da página do caderno UNIRG 2022/2 q5, colado na alternativa)
+DADO P86a679bc: alternativas.E -> "enquanto se visa reforçar a educação científica da população." (no print não há o "Questão 57" colado ao fim)
+DADO Pcd8302da: alternativas -> faltam no campo (estão coladas no texto_da_prova); no print: A Pleonasmo..., B Ironia..., C Paradoxo..., D Eufemismo..., E Metáfora...
+RECLASS Pb2ab6be2 P09.4 -> P07.3
+RECLASS Pcd8302da P09.4 -> P06.2
+GABARITO Pbbd3645d (UFRR 2026 PI q8): sem gabarito conferido; letra do resolvedor D; conferir no Edital 93/25-CPV (editais.ufrr.br/editais/arquivo/1209), que deu 503
