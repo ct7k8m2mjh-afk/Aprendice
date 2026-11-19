@@ -146,7 +146,7 @@ DADO Pf5c4085a: texto_da_prova e alternativas -> "ti" no lugar de "Ɵ" (cisticer
 
 ## 2026-11-19 UTC — FIM — session_01PveEKYyQUcXXXACEDrbiVW
 Encerrando a vez (tamanho da conversa). Último lote gravado: bio-0066. Nenhum lote aberto. A próxima sessão começa no bio-0067.
-Nesta sessão: bio-0064 (53 ok, 7 pendentes), bio-0065 (58 ok, 2 pendentes), bio-0066 (59 ok, 1 pendente) = 170 resoluções; 10 pendentes (7 de outra matéria: 6 Geografia, 1 Português; 2 ANULAR: P5f1bed47 e Pbd81dec9; 1 a classificar: P14847885 Geografia). Divergências: 0.
+Nesta sessão: bio-0064 (53 ok, 7 pendentes), bio-0065 (58 ok, 2 pendentes), bio-0066 (59 ok, 1 pendente) = 170 resoluções; 10 pendentes (8 de outra matéria: 7 Geografia, 1 Português; 2 ANULAR: P5f1bed47 e Pbd81dec9). Divergências: 0.
 15 questões sem gabarito publicado gravadas com Gabarito do Aprendice (letra do resolvedor = conferente às cegas = preliminar). P8468a4fb (URCA) já tem gabarito definitivo B: trocar para oficial.
 Testes depois do bio-0065: converte + tsc + vitest verdes (786 passed). Site local: P8cc9c6a8, Pc8c0bdc2 e P8b8ff908 abertos, 4 blocos completos e animação até o fim, sem erro no console.
 Status bio (lote.py status): 527 faltam.
