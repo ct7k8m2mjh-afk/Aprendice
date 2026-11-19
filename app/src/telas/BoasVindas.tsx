@@ -2,7 +2,8 @@ import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Logo, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
-import { atualiza } from '../estado/loja';
+import { atualiza, pegaEstado } from '../estado/loja';
+import { voltaAConta } from '../estado/conta';
 import { EscolhaProvas } from './EscolhaProvas';
 import { MATERIAS_PRINCIPAIS } from '../dados/materias';
 import { IluMateria, temIlu } from '../ui/IconeMateria';
@@ -25,7 +26,13 @@ export function BoasVindas() {
     nav('/', { replace: true });
   };
 
-  if (passo === 0) return <Login aoEntrar={(em) => { setEmail(em); if (!nome) setNome(nomeDoEmail(em)); setPasso(1); }} />;
+  // quem saiu da conta e entra de novo volta com o perfil inteiro (estado/conta.ts), sem refazer as boas-vindas
+  const entra = (em: string) => {
+    const volta = voltaAConta(pegaEstado(), em);
+    if (volta) { atualiza(() => volta); nav('/', { replace: true }); return; }
+    setEmail(em); if (!nome) setNome(nomeDoEmail(em)); setPasso(1);
+  };
+  if (passo === 0) return <Login aoEntrar={entra} />;
 
   return (
     <div className="bv">

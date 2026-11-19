@@ -159,6 +159,9 @@ export interface Estado {
   revisaoDesde?: number;
   /** sessão da tela Hoje / Escudo TRI em andamento (fase 3). Opcional: estados antigos não têm, e nada se perde */
   sessaoHoje?: SessaoHoje | null;
+  /** perfil guardado ao sair da conta (revisão de 19/11/2026, casca 38): nome, provas-alvo, datas e meta voltam ao entrar
+   *  de novo. Opcional: estados antigos não têm, e nada muda para eles */
+  perfilSalvo?: Perfil | null;
 }
 
 export function estadoMateriaVazio(): EstadoMateria {

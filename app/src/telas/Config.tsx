@@ -99,13 +99,13 @@ export function Config() {
       <section className="bloco secao">
         <h2 className="sec-tit">Créditos e fontes</h2>
         <ul className="creditos">
-          <li>Questões: cadernos oficiais das provas; cada questão traz o link da fonte e o gabarito publicado.</li>
-          <li>Ilustrações de flashcards: Servier Medical Art, CC BY 3.0; figuras de Matemática geradas por código.</li>
+          <li>Questões: cadernos oficiais das provas; cada questão traz o link da fonte e a origem do gabarito: o oficial publicado pela banca ou, quando a banca não publicou, o gabarito do Aprendice, conferido por dois especialistas e sempre identificado. As Questões Aprendice são criadas pelo site e aparecem com esse nome.</li>
+          <li>Ilustrações de flashcards: Servier Medical Art, CC BY 3.0; figuras de Matemática desenhadas pelo Aprendice.</li>
           <li>Logos de simulados: Wikimedia Commons (Fuvest, CC BY 3.0; São Camilo).</li>
-          <li>Ícones de interface: Lucide (ISC). Fontes: Familjen Grotesk, Caveat e DM Sans (SIL Open Font License).</li>
+          <li>Ícones de interface: Lucide (ISC). Fontes: Familjen Grotesk, Dancing Script, Literata, Caveat e DM Sans (SIL Open Font License).</li>
           <li>Catálogo de provas: editais e sites oficiais das bancas, ciclo 2027.</li>
         </ul>
-        <p className="fraco" style={{ fontSize: 13, marginTop: 12 }}>Aprendice · versão 0.1 (protótipo local)</p>
+        <p className="fraco" style={{ fontSize: 14, marginTop: 12 }}>Aprendice · versão de demonstração: o progresso fica salvo neste aparelho</p>
       </section>
       <Toast texto={toast} aoFechar={() => setToast(null)} />
     </div>

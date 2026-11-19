@@ -1,4 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { saiDaConta } from '../estado/conta';
 import { useEffect, useState } from 'react';
 import { atualiza, useEstado } from '../estado/loja';
 import { useTitulo } from '../ui/comum';
@@ -63,11 +64,11 @@ export function Perfil() {
 
       <section className="secao perfil-pe">
         <Link to="/config" className="btn sec"><Icone nome="config" /> Configurações e meus dados</Link>
-        <button className="btn fantasma" onClick={() => { atualiza((x) => ({ ...x, perfil: null })); nav('/boas-vindas'); }}>
+        <button className="btn fantasma" onClick={() => { atualiza(saiDaConta); nav('/boas-vindas'); }}>
           <Icone nome="sair" /> Sair da conta
         </button>
       </section>
-      <p className="fraco" style={{ fontSize: 14, marginTop: 10 }}>Sair não apaga o seu progresso: ele continua salvo neste aparelho e volta quando você entrar de novo.</p>
+      <p className="fraco" style={{ fontSize: 14, marginTop: 10 }}>Sair não apaga nada: o progresso, as provas-alvo, as datas e a meta continuam salvos neste aparelho e voltam quando você entrar de novo.</p>
     </div>
   );
 }
