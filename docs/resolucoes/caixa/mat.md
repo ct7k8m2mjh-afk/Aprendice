@@ -369,3 +369,13 @@ DADO P62a58056 (IME 2026 q12): texto_da_prova -> A ≤ [log_√e(x) − 2 ln(x/e
 DADO Pef9d892c (URCA 2025.2 q23): texto_da_prova -> 10 × 2^(−3x) = 1; alternativas -> A) (log 5 − log 2)/(3 log 2); B) (log 5 − log 3)/(3 log 2); C) (log 3 + log 5)/(2 log 3); D) (log 2 + log 3)/(2 log 3); E) (log 2 + log 5)/(3 log 2)
 RECLASS Pef9d892c M06.3 -> M06.2 (URCA 2025.2 q23: equação exponencial resolvida com log)
 DADO P9bded7e5 (Cederj 2023.2 q35): texto_da_prova -> A = [[0, log₂(x), 1/3], [−1, log₃(x), log₃(2)], [0, log₂(x), 1]]; alternativas -> (A) 2√2 (B) 3√2 (C) 2√3 (D) 3√3
+
+## 2026-11-19 18:26 UTC — AVISO — session_01PveEKXYevuT6GfnZTi2dnc
+AVISO motor de frações: em Pd122f0a5 (UDESC 2026.1 q14, M05.5) a linha do quadro "(x − 4)(x + 2)/(x + 1)" aparece no site como (x−4) · [(x+2) sobre (x+1)]: o motor só sobe para o numerador o último parêntese antes da barra. A conta está certa, mas o numerador fatorado devia ficar todo em cima. Duas saídas: o motor tratar produto de parênteses como numerador inteiro, ou a fábrica escrever "((x − 4)(x + 2))/(x + 1)". Deve se repetir em outras resoluções com produto de parênteses sobre a barra. Não mexi no código do site (fora do meu escopo).
+
+## 2026-11-19 18:26 UTC — FIM — session_01PveEKXYevuT6GfnZTi2dnc
+Último lote gravado: mat-0077. Lotes gravados nesta vez: mat-0074 (49 + 1 pendente), mat-0075 (49 + 1 pendente), mat-0076 (50), mat-0077 (50) = 198 resoluções, 2 pendentes, 0 divergências.
+Lotes abertos: nenhum. Testes (após mat-0075): 786 passed, tsc OK. Site conferido (Pf42fe072, Pd122f0a5, P8b1111b5): 4 blocos, animação até o fim, frações empilhadas (exceção: AVISO acima).
+Gabarito do Aprendice nesta vez (4; resolvedor e conferente às cegas iguais ao preliminar): Pbbeb215d D, P9a25175b B, Pd2fe7a55 D, P5ba993c0 E.
+Pendências: ANULAR Pb279b256 (Unesp 2020, quilates em massa: dá A, não C), ANULAR P6fc4c995 (dados incompatíveis com a reta pelo incentro); PRINT Pbbeb215d (Acafe 2022 Verão q28: topo cortado, falta x − y + 1 ≥ 0); GABARITO Pb9eee94f (PUC-Campinas 2027 q27: conferir o definitivo); RECLASS e DADO nos blocos acima.
+Próximo: `lote.py proximo mat 50 --novo --parte 1`. Faltam 158 questões na parte 1 (295 em Matemática).
