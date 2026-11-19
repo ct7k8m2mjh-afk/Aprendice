@@ -85,13 +85,13 @@ sessão de Português: ler o AVISO PILOTO FÁBRICA e levar o resultado ao dono, 
 |---|---|---|
 | Matemática parte 1 | session_01PveEKXYevuT6GfnZTi2dnc | trabalhando (aberta 19/11 17h44, --parte 1; anterior ZJXR deu FIM) |
 | Física | session_01PveEKWeU9BGX5xnf2nstPb | trabalhando (aberta 19/11 17h24 para TERMINAR Física, ~244, esteira; anterior YFao deu FIM) |
-| Química | session_01PveEKYZfyAMFDV6N1z8smo | trabalhando (aberta 19/11 17h02, largada rápida; anterior XC1x deu FIM) |
+| Química | session_01PveEKavURMVSSh5SgqLorw | trabalhando (aberta 19/11 18h04 para TERMINAR Química; anterior YZfy deu FIM) |
 | Geografia parte 1 | session_01PveEKZFZaaQtEjuACaowLy | trabalhando (aberta 19/11 17h44, --parte 1; anterior axbg deu FIM) |
 | Biologia | session_01PveEKXZwKo3vJj1Pbjeenm | trabalhando (aberta 19/11 17h44 para TERMINAR Biologia, ~130; anterior Yq8u deu FIM) |
 | Português | session_01PveEKX1JnJpMCfgHmpRupU (FÁBRICA pela API) | trabalhando: piloto por-0094 ok (US$ 6,11); o dono autorizou continuar, lotes por-0095/0096 em esteira. Não abrir outra sessão de Português |
 | Matemática parte 2 | session_01PveEKa42KpJLXPbhM1bBJc | trabalhando (aberta 19/11 17h29; --parte 2, caixa mat-p2.md) |
 | Geografia parte 2 | session_01PveEKYMtZPCNo9ZMeKjY5w | trabalhando (aberta 19/11 17h29; --parte 2, caixa geo-p2.md) |
-| Português parte 2 | session_01PveEKYkycZkrPrW3hd17Vg | trabalhando (aberta 19/11 17h29; --parte 2, caixa por-p2.md; a fábrica é a parte 1) |
+| Português parte 2 | session_01PveEKYbUNBrLzmbEMaYKtg | trabalhando (aberta 19/11 18h04, --parte 2; anterior Ykyc deu FIM) |
 Caídas pelo limite em 13/11 (o dono pode arquivar): Mat session_01PveEKWKTewFDUJvA5Y5s91, Fís session_01PveEKXXFLhp4ro4vnf1rh7,
 Quí session_01PveEKZxREDvirT6VTx5nKy, Geo session_01PveEKaHNFQdko42Ddhy3XZ, Bio session_01PveEKaPh1PAjF3bRbuJ5fG, Por session_01PveEKY3G8XPW7thJLdH3jL.
 Paradas do sistema novo (o dono pode arquivar): Mat session_01PveEKaSPVEijwvkvEUmmWx, Fís session_01PveEKX5T4pY3Xx4fn4PR8G,
