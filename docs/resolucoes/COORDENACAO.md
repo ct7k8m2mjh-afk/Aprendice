@@ -186,6 +186,7 @@ depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resoluco
 
 ## Publicação
 Última no ar: dpl_F8v9o7JrqP5ZjCPwCTtv3cYTYbGu (commit 59890c48, 19/11 15h35, conferido no site): 20.423 resoluções. Próxima ao passar de 20.923.
+Disparada 19/11 16h35: dpl_CApcpGGUuAm2ph9hYDXjcsLjwJFN (commit 0352c889, 786 testes verdes). Conferir no site e atualizar publicacao.json; depois atualizar o painel (passou de 20.483).
 Próxima ao passar de 19.983.
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
