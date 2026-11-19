@@ -1140,20 +1140,85 @@ def cmd_resolve(entrada, saida, ids, teto, max_tokens=14000):
     print(f'gasto do lote US$ {gasto_total(lote):.2f} · da fábrica US$ {gasto_total():.2f}')
 
 
+def cmd_patch(saida, arquivos, so_ver=False):
+    """Aplica os patches da conferência (patch-*.json) na saída do lote.
+
+    Cada arquivo traz {"patches": [{id, campo, depois, motivo}], "fontes": {id: [...]},
+    "nao_confirmado": [...]}. O campo passa pelo mesmo `aplica()` das lentes, com a
+    mesma lista de caminhos permitidos: patch que aponte para campo inexistente ou
+    fora da lista é recusado e aparece no relatório, nunca entra calado.
+    """
+    d = json.load(open(saida, encoding='utf-8'))
+    por_id = {q['id']: q for q in d['questoes']}
+    log, recusados, fontes_novas = [], [], 0
+    for arq in arquivos:
+        p = json.load(open(arq, encoding='utf-8'))
+        nome = os.path.basename(arq)
+        for c in p.get('patches', []):
+            q = por_id.get(c['id'])
+            if q is None:
+                recusados.append(f"{nome}: {c['id']} não está no lote")
+                continue
+            antes = len(log)
+            if not aplica(q, c['campo'], c['depois'], log):
+                if len(log) > antes:
+                    recusados.append(f"{nome}: {c['id']} {log[-1]}")
+                else:
+                    recusados.append(f"{nome}: {c['id']} {c['campo']} já estava assim")
+        for qid, nova in (p.get('resolucao_nova') or {}).items():
+            q = por_id.get(qid)
+            if q is None:
+                recusados.append(f'{nome}: resolucao_nova de {qid} fora do lote')
+                continue
+            faltam = [c for c in ('conceito', 'resolucao', 'equivocos') if c not in nova]
+            if faltam:
+                recusados.append(f'{nome}: resolucao_nova de {qid} sem {faltam}')
+                continue
+            for c in ('conceito', 'resolucao', 'equivocos', 'fontes', 'caminhos'):
+                if c in nova:
+                    q[c] = nova[c]
+            q['status'] = 'ok'
+            q.pop('motivo', None)
+            log.append(f'{qid}: resolução inteira trocada (estava pendente)')
+        for qid, fs in (p.get('fontes') or {}).items():
+            q = por_id.get(qid)
+            if q is None:
+                recusados.append(f'{nome}: fontes de {qid} fora do lote')
+                continue
+            tinha = {json.dumps(f, sort_keys=True) for f in (q.get('fontes') or [])}
+            for f in fs:
+                if json.dumps(f, sort_keys=True) not in tinha:
+                    q.setdefault('fontes', []).append(f)
+                    fontes_novas += 1
+    print(f'{len([l for l in log if ":" in l])} campo(s) mudado(s) · {fontes_novas} fonte(s) nova(s)')
+    for r in recusados:
+        print('  RECUSADO', r)
+    if so_ver:
+        return
+    json.dump(d, open(saida, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+    print(f'gravado em {saida}')
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('comando', choices=['estima', 'teste', 'roda', 'lente', 'resolve'])
+    ap.add_argument('comando', choices=['estima', 'teste', 'roda', 'lente', 'resolve', 'patch'])
     ap.add_argument('entrada')
     ap.add_argument('--saida', default=None)
     ap.add_argument('--n', type=int, default=3)
     ap.add_argument('--teto', type=float, default=10.0)
     ap.add_argument('--ids', default='', help='ids separados por vírgula (comando lente)')
     ap.add_argument('--max-tokens', type=int, default=12000)
+    ap.add_argument('--patches', nargs='*', default=[], help='arquivos patch-*.json (comando patch)')
+    ap.add_argument('--so-ver', action='store_true', help='mostra o que mudaria e não grava')
     a = ap.parse_args()
     if a.comando == 'estima':
         cmd_estima(a.entrada, a.teto)
     elif a.comando == 'teste':
         cmd_teste(a.entrada, a.n, a.teto)
+    elif a.comando == 'patch':
+        if not a.patches:
+            sys.exit('patch precisa de --patches arquivo1.json [arquivo2.json ...]')
+        cmd_patch(a.entrada, a.patches, a.so_ver)
     elif a.comando == 'resolve':
         if not a.saida or not a.ids:
             sys.exit('resolve precisa de --saida e --ids')
