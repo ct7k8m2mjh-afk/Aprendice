@@ -241,3 +241,17 @@ Gabarito do Aprendice (resolvedor = conferente às cegas = preliminar): Pa027143
 Conferência no site (1280 e 390 px): P669e7c8b, Pa0271438 (com o aviso de gabarito do Aprendice) e P6c072e7f OK, 4 blocos completos, sem rolagem lateral.
 tsc: OK; vitest: 786 passed (rodados após o lote 0010).
 A seguir: próxima sessão continua com lote.py proximo por 50 --novo --parte 2 (faltam 44 questões na parte 2, segundo lote.py status).
+
+## 2026-11-19 — ACABOU — sessão por-p2 (session_01PveEKaafKU4T97asCdKPew)
+Lote por-p2-0013 gravado (42 ok, 2 pendentes, 0 divergências). Nenhum lote aberto. A parte 2 de Português acabou (lote.py status: 0 restantes); a vaga pode ir para outra matéria.
+ANULAR Pa1c1cf9f (Unitins 2024/1 q41): o item III diz "pai e filha envenenados", mas no conto IV de Noite na Taverna Nauza é a segunda mulher de Godofredo Walsh (a filha é Laura, que morre antes); I e IV trocam os narradores (caixão = Solfieri; incesto = Johann); só o II é verdadeiro e nenhuma alternativa é "só II". Fonte: https://periodicos.ufjf.br/index.php/ronai/article/download/23084/12758/91133 — conferente confirmou; não achamos anulação publicada: conferir o gabarito definitivo antes de lançar em anuladas-aprendice.json
+ANULAR Pb61271f8 (UFSM 2026 q71): a 3ª afirmativa põe Brás Cubas "na casa dos 40 anos" no cap. XXXVIII de Memórias póstumas, mas a cronologia (nasce em 1805, volta de Coimbra uns 8 ou 9 anos depois de 1822, noivado com Virgília de "quinze ou dezesseis anos") dá uns 25 a 26 anos; com a 3ª falsa a sequência é F–V–F (D), não a C oficial. Fonte: https://archive.org/download/memoriasPostumasBrasCubas/memoriasBras.pdf — conferente confirmou; conferir o gabarito definitivo da UFSM (PROGRAD, edital 049/2025) antes de anular
+PRINT P0f8a047b (URCA 2026.1 q99): o print não traz o poema "Carta a Stalingrado" (texto de apoio); resolvida pelos trechos que o comando cita; refazer o print com o poema, se estiver no PDF
+DADO P0f8a047b (URCA 2026.1 q99): texto_da_prova/alternativas -> como no print, sem o prefixo "39. (URCA 2026.1/2026.2)", com "lírico", "físico", "símbolo", "figura-síntese" (a entrada traz "l´ırico", "f´ısico") e sem hifenização quebrada ("qual- quer", "comple- tamente")
+DADO P8db60009 (UFSM 2026 q84): alternativas -> faltam na entrada; no print: A F–V–F; B V–F–V; C V–F–F; D F–F–V; E V–V–V
+DADO Pc1fcb5ea (ITA 2024 q19): alternativas.A -> o print traz o erro de digitação "Apenas I e IIII" (= I e III); explicado no alerta
+RECLASS Pa53e139f P10.5 -> P10.4 (UEG 2025/2 q8: vírgula de elipse verbal)
+RECLASS P51c113bb P11.2 -> P12.4 (PUCRS 2023 Verão q54: Guimarães Rosa, Sagarana)
+RECLASS Pf2e8bd2e P12.4 -> P12.3 (UFAM 2021 PSC 3ª etapa q9: Cecília Meireles, Romanceiro da Inconfidência)
+RECLASS P7af7153d P12.5 -> P06.1 (FCM-MG 2024/2 q11: metáfora em Quarto de despejo)
+RECLASS Pce4aabee P12.5 -> P01.2 (UEG 2023/1 q13: arte Kusiwa como patrimônio imaterial, resolvida pelas pistas do texto)
