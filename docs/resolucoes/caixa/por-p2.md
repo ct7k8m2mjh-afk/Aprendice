@@ -108,3 +108,20 @@ DADO P8f150aad: alternativas -> vazias na entrada e texto_da_prova embaralhado p
 DADO Pd28851dc: texto_da_prova -> embaralhado pelo OCR; refazer pelo print
 RECLASS P46ceca92 P11.3 -> P01.4 (a questão cobra função emotiva da linguagem)
 GABARITO Pe24503bc (UFRR 2026 Prova Integral q4, O Ateneu): divergência — resolvedor e conferente às cegas = A, preliminar (Edital 89/25-CPV) = C; A e C têm o mesmo defeito em espelho (duas incorretas); conferir no Edital 93/25-CPV se foi anulada ou mantida em C
+
+## 2026-11-19 18:29 UTC — PENDENCIAS — sessão por-p2 (session_01PveEKYbUNBrLzmbEMaYKtg)
+Último lote gravado: por-p2-0006 (50 ok; Pf19e5f00 e Pa7d9b281 com gabarito do Aprendice B, resolvedor = conferente às cegas). Lotes abertos: por-p2-0007, por-p2-0008.
+DADO Pffcc2693 (Unitins 2020/1 q43): texto_da_prova "eia e analise" -> "Leia e analise" (falta o "43 - L")
+DADO P2c7a825b (UNIRG 2026/2 q15): texto_da_prova começa com "9" -> é o número da página no print, tirar
+DADO Pde1125e4 (UNIRG 2026/2 q18): texto_da_prova começa com "10" -> é o número da página no print, tirar
+GABARITO Pbda289a2 (UNIRG 2026/2 q17): a alternativa A (oficial) chama Os Sertões de "romance" (a obra é livro-reportagem/ensaio); mantido A com alerta porque B, C e D contrariam dados da obra
+RECLASS P74a07336 P11.3 -> P11.2 (UVA 2024.1 q4: iniciadores do regionalismo romântico, Alencar e Franklin Távora, não Naturalismo)
+GABARITO Pf19e5f00 (UFRR 2025 q4): gabarito do Aprendice B; conferir no Edital 97/24-CPV (oficial) e 96/24 (preliminar); editais.ufrr.br fora do ar (503) em 19/11
+GABARITO Pa7d9b281 (UFRR 2025 q5): gabarito do Aprendice B; conferir no Edital 97/24-CPV (oficial) e 96/24 (preliminar); editais.ufrr.br fora do ar (503) em 19/11
+DADO Pe574f7dc (q48): alternativas.E -> termina em "que assolavam suas existências."; o texto de apoio sobre Canudos e o trecho de Os Sertões (com um "48" solto) estão colados nela e vão para texto_da_prova, antes do comando
+RECLASS P16fce8df P11.4 -> P12.3 (q10: "Mãos dadas", de Drummond, Modernismo de 30)
+RECLASS P9d755f39 P12.1 -> P12.2 (q13: Macunaíma e Vila dos Confins, obras de leitura obrigatória; nada de Pré-Modernismo)
+RECLASS P684c79aa P11.3 -> P12.2 (Unitins 2022/2 q43: poemas de Oswald de Andrade, Pau-Brasil, Modernismo de 22)
+RECLASS P19763d2a P11.4 -> P12.5 (FCM-MG 2026/2 q11: A última quimera, de Ana Miranda, romance contemporâneo de 1995)
+DADO Pbf8fd2b7 (Unifor 2025/1 q44): texto_da_prova "confi ssão", "biográfi co" -> "confissão", "biográfico"; alternativa C "o fl uir" -> "o fluir"
+RECLASS Pb1403fd1 P12.1 -> P06.2 (a questão cobra figura de linguagem; equivocos já usam P06.2)
