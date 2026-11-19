@@ -225,3 +225,25 @@ RECLASS Pdb4c037d Q11.4 -> Q11.7 (UFU 2022 q74, PE/PF de solventes)
 DADO P2d222dbc: alternativas ausentes -> A a E estão no print (A óxidos; B –COOH "carbonila"; C acético "metanóico"; D cadeia maior → maior temperatura de ebulição; E butanóico "C3H6O2"); texto_da_prova com lixo de OCR da tabela periódica ("CaHsO»" = C3H6O2)
 DADO Paca80445: print -> o anel da direita da Figura 3 tem só duas duplas e carbonos de fusão como CH, diferente da antraquinona do nome oficial (a resposta não muda; registrado no alerta)
 PRINT P2d222dbc (UDESC 2024.2 q78): o print pega a tabela periódica inteira e o título "HISTÓRIA"; recortar só a questão 28
+
+## 2026-11-19 17:30 UTC — PENDENCIAS — session_01PveEKYZfyAMFDV6N1z8smo
+Lote qui-0072 gravado (50 ok). Aberto: qui-0073.
+DADO P7e979779: alternativas.E -> "64." (o texto de apoio "Os carbonos assimétricos... papéis diferentes no organismo." está colado na E e falta no texto_da_prova)
+DADO P1c7c14c8: alternativas A–E -> estruturas desenhadas no print (A neopentil, B F, C 4-nitrofenil, D hexil, E 3,4-dimetilciclopentil); a E tem colado o texto da estrutura base
+DADO P76d18efe: alternativas.E -> termina em "...formando um sal inorgânico e o ácido fórmico." (sobra um " H")
+DADO P8a140f39: alternativas.E -> "( ) Somente as proposições IV e V são verdadeiras." (sobra "Figura 1")
+DADO Pf087fdf4: alternativas A–E -> fórmulas no print (A –NO2, B –NH2, C –COOH, D –C≡N, E –CHO)
+DADO P5c27d102: alternativas.E -> "258 g/mol e a função química amida." (o "N N O O O O H" veio da figura)
+RECLASS P5c27d102 Q01.2 -> Q11.4
+DADO P9dd0a1a4: texto_da_prova -> "ponto de fusão do tensoativo puro é menor que −20 °C" (sem o sinal na entrada), "334 J·g⁻¹" ("Jg1"), afirmação II "é −180 J·g⁻¹" ("180 Jg1")
+DADO Pa6f4e564: alternativas.E -> "30,0 mL" (as duas equações da prova estão coladas na alternativa)
+RECLASS Pa6f4e564 Q02.3 -> Q05.6
+RECLASS P678ca9b1 Q02.2 -> Q07.2
+RECLASS Pbf42ef48 Q02.4 -> Q12.4
+DADO Pbd8d4997: texto_da_prova -> camada de texto embaralhada, vale o print (texto sobre COVs, isopreno 2-metil-1,3-butadieno e ozônio); alternativas.E -> "aldeído e cetona."
+DADO Pee411ee1: alternativas.E -> "Polipirrol"
+DADO Pa857483a: texto_da_prova -> OCR embaralhado e sem campo alternativas, vale o print (A a E são estruturas; E = asparagina)
+RECLASS P71af63fc Q12.4 -> Q11.7
+GABARITO P8bd920c8 (ITA 2021 q65): oficial C (9) aceita a proposição (1) como correta; há leitura que dá D (10); resolvida com C, explicado no alerta (fontes Poliedro e Indagação)
+GABARITO Pee411ee1 (UPE SSA3 2024 q60): a prova não dá valores; a oficial A bate com a tabela da QNEsc n. 11 (polianilina até 10³ S/cm), com alerta
+GABARITO Pde893c34 (UPE SSA3 2025 q87): a banca chama de "oxidação energética" a oxidação catalítica do propeno a ácido acrílico; resolvida com C, explicado no alerta
