@@ -92,7 +92,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | his-0084 | demais nível 7-10 | 2 | gravado | 2 | 0 | 0 |
 | his-pend-0001 | pendentes fato,as | 4 | gravado | 3 | 1 | 0 |
 | his-pend-0002 | pendentes reclassificada | 2 | gravado | 1 | 1 | 0 |
-| his-pend-0003 | pendentes =reclassificada | 2 | aberto |  |  |  |
+| his-pend-0003 | pendentes =reclassificada | 2 | gravado | 2 | 0 | 0 |
 | his-pend-0004 | pendentes reclassificada | 1 | gravado | 1 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
