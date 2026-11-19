@@ -666,5 +666,142 @@
    "data": "2026-11-19",
    "lote": "fis-0068"
   }
+ },
+ "P734013ac": {
+  "n": "32",
+  "conceito": "Converter nível sonoro em intensidade, intensidade em potência sonora numa esfera de 10 m, e usar o rendimento de 80% para achar a corrente e a resistência que dissipa os 20% restantes.",
+  "equivocos": {
+   "A": "F10.5:resistencia-dissipando-mais-que-o-total",
+   "C": "F10.5:inverteu-rendimento-som-e-calor",
+   "D": "F10.5:resistencia-dissipando-mais-que-o-total"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "110 dB está 110 dB acima do limiar: a intensidade é 10¹¹ vezes 10⁻¹² W/m², ou seja, 0,1 W/m². O som se espalha numa esfera de raio 10 m, então a potência sonora é intensidade vezes a área 4πr². Essa potência é 80% da potência elétrica; com a tensão de 150 V sai a corrente. Os outros 20% são dissipados na resistência interna R, e daí sai R.",
+    "formulas": [
+     "β = 10 · log(I/I₀)",
+     "P_som = I · 4πr²",
+     "P_total = U · i",
+     "P_R = R · i²"
+    ],
+    "simbolos": [
+     [
+      "β",
+      "nível sonoro, em dB"
+     ],
+     [
+      "I",
+      "intensidade sonora, em W/m²"
+     ],
+     [
+      "I₀",
+      "limiar de audibilidade, 10⁻¹² W/m²"
+     ],
+     [
+      "r",
+      "distância até a fonte, 10 m"
+     ],
+     [
+      "U",
+      "tensão da bateria, 150 V"
+     ],
+     [
+      "i",
+      "corrente lida no amperímetro"
+     ],
+     [
+      "P_R",
+      "potência dissipada na resistência interna"
+     ]
+    ]
+   },
+   "pista": "Comece transformando 110 dB em intensidade: cada 10 dB a mais multiplica a intensidade por 10.",
+   "passos": [
+    {
+     "faz": "Transforme decibéis em intensidade",
+     "conta": "110 = 10 · log(I/10⁻¹²) → I/10⁻¹² = 10¹¹ → I = 10⁻¹ W/m²",
+     "porque": "O nível em dB é dez vezes o logaritmo da razão entre a intensidade e o limiar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a potência sonora na esfera",
+     "conta": "P_som = 0,1 × 4π × 10² → P_som = 40π ≈ 120 W (π ≈ 3)",
+     "porque": "A 10 m da fonte, a potência emitida está espalhada por uma esfera de área 4πr².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a potência elétrica e a corrente",
+     "conta": "P_total = 120/0,8 = 150 W → i = 150/150 → i = 1,0 A",
+     "porque": "O som é 80% da energia do circuito; a bateria ideal de 150 V entrega P = U · i.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a resistência pela parte dissipada",
+     "conta": "P_R = 0,2 × 150 = 30 W → R = 30/1,0² → R = 30 Ω",
+     "porque": "Os 20% que não viram som ficam na resistência interna, que dissipa R · i².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "i = 1,0 A e R = 30 Ω",
+     "porque": "O par 1,0 A e 30 Ω é a alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1,0 A e 30 Ω.",
+   "checagem": "Feche o balanço de energia: a bateria entrega 150 V × 1,0 A = 150 W; o resistor dissipa 30 Ω × 1,0² = 30 W; sobram 120 W de som, que a 10 m dão 120/(4π × 100) ≈ 0,1 W/m², exatamente 110 dB.",
+   "erradas": {
+    "A": "Não confere: com 1,4 A a bateria entrega 150 × 1,4 = 210 W, mas 187 Ω dissipariam 187 × 1,4² ≈ 367 W, mais do que toda a potência fornecida.",
+    "C": "Não confere: com 2,0 A a potência total seria 300 W, e 60 Ω dissipariam 60 × 2,0² = 240 W, ou seja, 80% em calor e não em som, o inverso do enunciado.",
+    "D": "Não confere: 120 Ω com 2,5 A dissipariam 120 × 2,5² = 750 W, o dobro dos 150 × 2,5 = 375 W que a bateria entregaria."
+   },
+   "armadilha": "Calcular R por U/i (150 Ω) trata toda a energia como dissipada no resistor; pelo enunciado, só os 20% que não viram som ficam em R.",
+   "alerta": "A prova não informa o valor de π. Com π ≈ 3 as contas fecham exatamente em 1,0 A e 30 Ω; com π ≈ 3,14 dão cerca de 1,05 A e 28,6 Ω, e a alternativa B continua a única compatível.",
+   "essencial": {
+    "pede": "A corrente no amperímetro e a resistência interna do megafone.",
+    "chave": "I = 0,1 W/m²; P_som = I · 4πr² ≈ 120 W; P_total = 150 W → i = 1,0 A; 20% em R: 30 W → R = 30 Ω.",
+    "cuidado": "Usar a área da esfera 4πr² e lembrar que R dissipa só os 20% que não viram som."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação pelo balanço",
+    "ideia": "Em cada alternativa, R · i² tem de ser 20% de 150 · i: só 30 × 1,0² = 30 W = 20% de 150 W fecha."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "110 = 10 · log(I/10⁻¹²) → I = 10⁻¹ W/m²",
+    "nota": "dB vira intensidade"
+   },
+   {
+    "linha": "P_som = 0,1 × 4π × 100 ≈ 120 W",
+    "nota": "intensidade × área da esfera"
+   },
+   {
+    "linha": "P_total = 120/0,8 = 150 W → i = 150/150 = 1,0 A",
+    "nota": "rendimento de 80% e P = U · i"
+   },
+   {
+    "linha": "P_R = 30 W → R = 30/1,0² = 30 Ω",
+    "nota": "os 20% dissipados em R"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Acafe 2023 Verão, prova objetiva",
+    "url": "https://storage.acafe.org.br/concurso/vestibular/2023/1/02%20-%20Prova/04%20-%20Prova%20objetiva%20Ver%C3%A3o%202023.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0070"
+  }
  }
 }

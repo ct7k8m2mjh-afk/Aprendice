@@ -1192,5 +1192,124 @@
    "data": "2026-11-19",
    "lote": "fis-0069"
   }
+ },
+ "P6de86a7a": {
+  "n": "71",
+  "conceito": "Ler um ponto do gráfico, resolver a equação logarítmica da perda para achar λ e converter em frequência por f = c/λ.",
+  "equivocos": {
+   "B": "F10.2:usou-2pi-no-lugar-de-4pi",
+   "C": "F10.2:frequencia-alta-demais-para-a-perda-lida",
+   "D": "F10.2:frequencia-alta-demais-para-a-perda-lida",
+   "E": "F10.2:frequencia-alta-demais-para-a-perda-lida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A fórmula liga perda, distância e comprimento de onda. Escolha um ponto do gráfico fácil de ler, de preferência com d e L inteiros, e substitua: a única incógnita é λ. Depois, como é onda eletromagnética no espaço livre, f = c/λ. Com π = 3, o fator 4πd vira 12d.",
+    "formulas": [
+     "L = 20 log(4πd/λ), com π = 3: L = 20 log(12d/λ)",
+     "log x = 3 → x = 10³",
+     "f = c/λ"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "perda do sinal, em decibéis (dB)"
+     ],
+     [
+      "d",
+      "distância entre as antenas, em metro"
+     ],
+     [
+      "λ",
+      "comprimento de onda do sinal"
+     ],
+     [
+      "log",
+      "logaritmo na base 10"
+     ],
+     [
+      "c",
+      "velocidade da luz, 3 × 10⁸ m/s"
+     ]
+    ]
+   },
+   "pista": "Procure no gráfico um ponto em que L e d sejam números redondos antes de mexer no logaritmo.",
+   "passos": [
+    {
+     "faz": "Leia um ponto do gráfico",
+     "conta": "d = 10 m | L = 60 dB",
+     "porque": "No fim da curva, em d = 10 m, a perda chega a 60 dB; é um ponto de leitura limpa.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Isole o logaritmo",
+     "conta": "60 = 20 log(12 × 10/λ) → log(120/λ) = 60/20 = 3",
+     "porque": "O 20 que multiplica o logaritmo passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desfaça o logaritmo e ache λ",
+     "conta": "120/λ = 10³ → λ = 120/1000 = 0,12 m",
+     "porque": "Log de base 10 igual a 3 quer dizer que o número vale 1000.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a frequência",
+     "conta": "f = (3 × 10⁸)/0,12 → f = 2,5 × 10⁹ Hz = 2,5 GHz",
+     "porque": "Onda eletromagnética no ar viaja a c; frequência é c dividido por λ.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — aproximadamente 2,5 GHz.",
+   "checagem": "Confira em outro ponto do gráfico: em d = 1 m a curva passa por 40 dB. Com λ = 0,12 m, L = 20 log(12 × 1/0,12) = 20 log 100 = 40 dB. Bate com o gráfico.",
+   "erradas": {
+    "B": "Sai de usar 2πd no lugar de 4πd: 6 × 10/λ = 1000 dá λ = 0,06 m e f = (3 × 10⁸)/0,06 = 5 GHz.",
+    "C": "Não confere: 12 GHz dá λ = 0,025 m e, em d = 10 m, L = 20 log(120/0,025) ≈ 74 dB, acima dos 60 dB do gráfico.",
+    "D": "Não confere: 40 GHz dá λ = 0,0075 m e L(10 m) = 20 log 16000 ≈ 84 dB, longe dos 60 dB lidos.",
+    "E": "Não confere: 100 GHz dá λ = 0,003 m e L(10 m) = 20 log 40000 ≈ 92 dB, muito acima dos 60 dB do gráfico."
+   },
+   "armadilha": "Errar a volta do logaritmo: log(120/λ) = 3 significa 120/λ = 1000, não 120/λ = 3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a frequência do sinal a partir do gráfico de perda",
+    "chave": "em d = 10 m, L = 60 dB: 120/λ = 10³ → λ = 0,12 m → f = 2,5 GHz",
+    "cuidado": "dividir 60 por 20 antes de desfazer o log e usar π = 3"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "outro ponto",
+    "ideia": "em d = 1 m, L = 40 dB: log(12/λ) = 2 → λ = 0,12 m, a mesma frequência de 2,5 GHz."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "60 = 20 log(12 × 10/λ)",
+    "nota": "ponto (10 m; 60 dB)"
+   },
+   {
+    "linha": "log(120/λ) = 3",
+    "nota": "o 20 passa dividindo"
+   },
+   {
+    "linha": "120/λ = 1000 → λ = 0,12 m",
+    "nota": "desfaz o logaritmo"
+   },
+   {
+    "linha": "f = (3 × 10⁸)/0,12 = 2,5 × 10⁹ Hz",
+    "nota": "f = c/λ"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0070"
+  }
  }
 }

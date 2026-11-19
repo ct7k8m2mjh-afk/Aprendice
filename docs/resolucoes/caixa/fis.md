@@ -176,3 +176,34 @@ DADO Pafefa5c8: texto_da_prova -> no print, 'O período P' e 'períodos de oscil
 DADO P5697d0ea: alternativas.E -> 7 min e 21 s. (sem o ' p p' do fim)
 DADO P24553b9c: alternativas -> B 2,0 m/s; D 2,8 m/s; E 3,2 m/s
 ANULAR Pa4042d98: com o fio inclinado o bloco acelera 0,6a; T = 10 + 0,6a e 20 − 1,2T = 2a dão a = 50/17 ≈ 2,94 m/s², fora das alternativas (oficial C = 2,5 m/s² supõe blocos com a aceleração da placa)
+
+## 2026-11-19 16:49 UTC — PENDENCIAS — session_01PveEKYFao9mdqzruhVmuPm
+Lote gravado: fis-0070 (50 ok). Aberto: fis-0071.
+DADO P8d499ecf: alternativas.E -> "84°C" (o "Note e adote" é um quadro separado no print, não faz parte da alternativa E)
+DADO P5990633d: alternativas.E -> "É igual ou maior que 10 °C. Todo o gelo derreteu, e restou apenas água líquida na caixa." (o "Note e adote" e os dados são um quadro separado no print)
+RECLASS P39dd3ef1 F08.4 -> F08.3 (só a água recebe um calor dado; é calor sensível, sem troca entre corpos)
+DADO Pbcbb3398: alternativas.E -> "Material E." (lixo "#####" colado no fim)
+DADO P8e7cdb06: alternativas -> fórmulas estruturais em imagem: A) propan-2-ol (isopropanol), B) propanal, C) propanona, D) ácido propanoico, E) propanotriol (glicerol)
+DADO P272dcf3b: texto_da_prova -> "Sabe-se que o objeto se encontra a 20 cm da lente L1, a qual está a 40 cm da lente L2." e "se comporta como objeto P' para a lente L2. Assim, a imagem de P' conjugada pela lente L2 está localizada" (índices 1 e 2 lidos como vírgula/"a" pelo OCR)
+DADO P272dcf3b: alternativas.C -> "entre o objeto P e a lente L1."; alternativas.D -> "entre as lentes L1 e L2."; alternativas.E -> "à direita da lente L2."
+DADO Pd417f4f2: alternativas.E -> "18,1 cm" (o Note e adote está colado na alternativa)
+DADO P2a28cd0d: texto_da_prova -> camada de texto ilegível (fonte embaralhada); no print, Texto I: tabela Dinamarca 480 m, Espanha (Valência) 1.000 m, Irlanda do Norte 500 m, Itália (Basilicata) 2.000 m, Romênia 360 m; Texto II: distância percorrida por um ruído de infrassom em 3 segundos, com frequência 18 Hz e comprimento de onda 18,5 m
+DADO P2a28cd0d: alternativas -> A) Espanha (Valência). B) Irlanda do Norte. C) Itália (Basilicata). D) Dinamarca. E) Romênia. (estão dentro do texto_da_prova)
+DADO P6de86a7a: alternativas.E -> "100 GHz." (o Note e adote está colado: c = 3×10⁸ m/s; π ≅ 3; 1 GHz = 10⁹ Hz)
+RECLASS Pd417f4f2 F10.1 -> F10.6
+DADO P4ab31d4d: alternativas -> são figuras: (A) só pulso invertido voltando para a esquerda na corda fina; (B) só pulso para cima seguindo para a direita na corda grossa; (C) pulso para cima voltando na corda fina e pulso para cima seguindo na grossa; (D) pulso invertido voltando na corda fina e pulso para cima seguindo na grossa
+DADO P8f4cd7d3: alternativas -> E termina em "gerada em buracos negros." (o "#####" não está no print)
+DADO P06262d36: alternativas -> (A) 4,5 m e 9,0 m, apenas. (B) 4,5 m e 7,5 m, apenas. (C) 3,0 m e 9,0 m, apenas. (D) 3,0 m, 6,0 m e 9,0 m, apenas. (E) 3,0 m, 4,5 m, 6,0 m, 7,5 m e 9,0 m.; texto_da_prova -> sem o lixo de OCR da figura ("AB M jd 20m d-——>>>...")
+DADO Pf626cc05: alternativas -> E: '80 cm' (o 'Note e adote: vs = 340 m/s' foi colado na alternativa E).
+DADO Pa2f46795: texto_da_prova -> a camada mistura a questão 47; pelo print: corda de comprimento L, massa m₀, frequência f₁ no 1º harmônico; com massa M a frequência passa a 2f₁; pede M/m₀. Alternativas (A) 1/4 (B) 1/2 (C) 1 (D) 2 (E) 4; Note e adote: v ∝ √(tensão).
+DADO Pa2f46795: alternativas -> ausentes na entrada; no print: (A) 1/4 (B) 1/2 (C) 1 (D) 2 (E) 4.
+DADO P4ce2dde7: texto_da_prova -> faltam as distâncias da imagem: '8/11 m' em t₀ e '20/29 m' em t₁, e o vetor v na primeira frase.
+DADO Pc0f508ae: alternativas -> A. 250 Hz; B. 150 Hz; C. 750 Hz; D. 1250 Hz; E. 625 Hz (sem os parênteses do OCR).
+DADO P19eed56c: alternativas -> (A) 5 cm (B) 10 cm (C) 50 cm (D) 100 cm (E) 150 cm; texto mistura a questão 49; Note e adote: π = 3, g = 10 m/s².
+DADO P734013ac: alternativas -> A. 1,4 A e 187 Ω; B. 1,0 A e 30 Ω; C. 2,0 A e 60 Ω; D. 2,5 A e 120 Ω (faltou o Ω).
+RECLASS P4ce2dde7 F10.7 -> F09.3
+RECLASS P2c7d9b5a F10.5 -> F10.3
+DADO Pcca211b2: alternativas.C -> √Δ/2A.
+DADO P2e8d89a7: alternativas -> A: 3,6·10²² elétrons | B: 1,8·10¹⁹ elétrons | C: 1,6·10¹⁶ elétrons | D: 4·10¹⁸ elétrons (expoentes sobrescritos perdidos na camada de texto)
+DADO P34628cf3: texto_da_prova -> carga Q = 1,6 µC (no texto está 1,6 C)
+DADO P7b16fe01: texto_da_prova -> falta a função x(t) = 5·cos(4πt + π/3) (só no print)
