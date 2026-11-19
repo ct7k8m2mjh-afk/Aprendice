@@ -427,3 +427,81 @@ agente de obras, depois, confirmou na resenha de Valdemar Valente (*Estudos de
 Literatura Brasileira Contemporânea*, n. 45, 2015) que os dois vieram de
 Merequendu — ou seja, o texto corrigido é o certo, e o original estava errado.
 As duas lentes de fatos da API tinham assinado a versão errada.
+
+## 2026-11-19 22:50 UTC — PENDENCIAS (lote por-0107) — session_01PveEKX1JnJpMCfgHmpRupU
+
+49 resoluções conferidas (três conferentes, 24 achados aplicados), 1 pendente.
+O lote espera só a confirmação de obras para gravar.
+
+### O número que importa deste lote: 22 RECLASS em 50 questões
+
+O verificador novo apontou 27 questões com o prefixo de conteúdo fora do lugar.
+Um agente abriu o print de cada uma. **Em nenhuma das 27 o conteúdo da questão
+se mostrou o certo.** Onde havia divergência, o prefixo — escrito por quem leu
+letra a letra — estava certo, e a classificação da questão estava errada.
+Resultado: **22 RECLASS, 5 "deixar como está"** (divergência legítima entre
+letras, porque os erros são de conteúdos diferentes), **0 prefixos a mudar**.
+
+| Questão | Prova | De | Para |
+|---|---|---|---|
+| P778db3ab | UFU 2023 q63 | P12.5 | **P06.2** figuras de pensamento |
+| Pe4921648 | UDESC 2026.1 q44 | P12.5 | **P06.3** figuras de som e construção |
+| Pc1f664ef | UDESC 2026.1 q49 | P12.5 | **P05.4** variação linguística e registro |
+| Pb7f48a1b | UNEMAT 2025/1 q27 | P01.1 | **P01.4** finalidade e interlocutor |
+| Pe11dd740 | URCA 2025.1 q94 | P01.2 | **P01.1** tema, tese e ideia principal |
+| Pc03d1d53 | Unifor 2026.1 q47 | P01.2 | **P07.4** formação de palavras |
+| P6e3ec418 | PUCRS 2025 q26 | P02.1 | **P01.2** explícito × inferência |
+| Pee7ebaca | UEG 2020/1 q7 | P02.1 | **P10.4** pontuação (travessão duplo) |
+| P7623eae7 | UEG 2022/2 q8 | P02.1 | **P04.3** parágrafo e ordem das ideias |
+| P8bbbd1e8 | UEG 2020/1 q8 | P02.2 | **P04.2** conjunções e relações lógicas |
+| Pd1493c31 | PUCRS 2025 q29 | P02.3 | **P10.2** regência e crase |
+| P3c3bc969 | FCM-MG 2025.1 q5 | P06.1 | **P06.2** figuras de pensamento (ironia) |
+| P99058e57 | UEG 2024/1 q12 | P07.4 | **P01.2** explícito × inferência |
+| Pb2f84ba3 | FCM-MG 2025.1 q4 | P08.3 | **P08.1** sujeito e predicado |
+| Pe453ba3f | UERR 2026 q3 | P08.3 | **P07.1** classes de palavras |
+| P532d099f | Unifor 2026.1 q50 | P09.3 | **P08.1** oração sem sujeito ("havia") |
+| P85e9b021 | ITA 2020 q17 | P11.3 | **P12.3** Modernismo de 30 (São Bernardo) |
+| P22ef923d | ITA 2020 q25 | P11.3 | **P01.2** explícito × inferência |
+| P355dbff2 | PUCRS 2025 q52 | P11.4 | **P12.3** Cecília Meireles, 1942 |
+| Pea87c782 | ITA 2022 q19 | P12.1 | **P10.5** discurso direto, indireto e indireto livre |
+| P2cfe736f | ITA 2022 q20 | P12.1 | **P02.2** ponto de vista e marcas de opinião |
+| P6033d517 | PUCRS 2025 q56 | P12.1 | **P12.5** contemporânea (Conceição Evaristo) |
+
+**O padrão, em uma frase: literatura virou lixeira de classificação.** Oito
+questões foram para P11/P12 só porque o texto de apoio era literário — ITA com
+Graciliano Ramos ficou em "Machado de Assis", Cecília Meireles de 1942 ficou em
+"Parnasianismo", Conceição Evaristo ficou em "Pré-Modernismo". Em três delas o
+comando nem era de literatura: era discurso indireto livre, ponto de vista do
+narrador e inferência. E o inverso também ocorre: três questões em P12.5 eram
+figuras de som, figuras de pensamento e variação linguística, classificadas pelo
+autor contemporâneo do texto de apoio.
+
+Somando com o por-0106, são **34 RECLASS em 100 questões**, todos decididos com
+o print aberto. Vale rodar o verificador nas outras matérias: ele está em
+`ferramentas/fabrica/confere_amostra.py` e não custa nada.
+
+### A pendência: Pedde3b3b (UFJF 2025 PISM III q5) — print
+
+Esta merece ser contada porque o motivo mudou duas vezes.
+
+A fábrica a devolveu como "a API não devolveu resposta válida". O conferente
+abriu o print, teve de **fatiá-lo para ler** (8340 px de altura) e devolveu a
+pendência como **errada**: segundo ele, o print traz o Texto I e o Texto III, e
+as letras A, B, C e E caem com o que está neles, sobrando D.
+
+Fui ver por que a API não respondeu: **o print passa do limite de 8000 px por
+lado que a API aceita**, e o pedido voltava 400 — não era questão difícil nem
+falha passageira. Corrigi a fábrica (reduz o print antes de enviar, em PNG sem
+perda) e mandei resolver de novo. Com o print inteiro à vista, o resolvedor
+devolveu pendência outra vez, agora por outro motivo, e com razão: **falta o
+Texto II no print**, e a letra D afirma coisas sobre ele.
+
+Então ela fica pendente **por print**, como as outras oito que já estão nesta
+caixa, e não por falha de API. Entra quando o print trouxer os três textos.
+
+### Dois buracos da fábrica fechados por causa disso
+
+1. `garante_resolvedor`: questão que não volta do batch é refeita fora dele antes
+   de virar pendente. Antes saía como pendência com motivo errado, e a
+   conferência, sem saber, lia como questão difícil.
+2. `imagem()` mede o print e reduz o que passa de 8000 px, avisando no log.
