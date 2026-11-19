@@ -1,6 +1,6 @@
 # Geografia: resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 887 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 726; ENEM nível 7-10 21; provas-alvo nível 7-10 91; demais nível 7-10 49.
+Faltam 837 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 676; ENEM nível 7-10 21; provas-alvo nível 7-10 91; demais nível 7-10 49.
 
 ## Lotes
 
@@ -53,8 +53,9 @@ Faltam 887 questões sem resolução (fora as que estão em lote, pendentes ou c
 | geo-0045 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
 | geo-0046 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | geo-0047 | demais nível 1-6 | 50 | gravado | 48 | 2 | 0 |
-| geo-0048 | demais nível 1-6 | 50 | aberto |  |  |  |
+| geo-0048 | demais nível 1-6 | 50 | gravado | 48 | 2 | 0 |
 | geo-0049 | demais nível 1-6 | 50 | aberto |  |  |  |
+| geo-0050 | demais nível 1-6 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -69,8 +70,10 @@ Faltam 887 questões sem resolução (fora as que estão em lote, pendentes ou c
 | Pd4ca228f | Santa Casa 2024 Medicina · questão 40 | G01.4 projeções cartográficas (tema G01 Cartografia) | print: as cinco imagens do Atlas Escolar do IBGE não trazem o nome da projeção, e a quadrícula recortada não permite confirmar com certeza qual delas é a conforme pedida (gabarito C); falta a identificação das projeções no atlas para resolver sem inventar. |
 | P4113bb13 | UDESC 2026 Inverno 2026.2 · questão 93 | G11.4 Nordeste e semiárido (tema G11 Brasil e regiões brasileiras) | classificação: é de Português P12.3 (romance São Bernardo, de Graciliano Ramos; pergunta sobre a obra, não sobre Geografia) |
 | Pfcc1eb63 | UERJ 2026 2º Exame de Qualificação · questão 46 | G02.2 tectônica de placas, sismos e vulcanismo (tema G02 Relevo e estrutura da Terra) | classificação: é de Física (UERJ 2026, 2º Exame de Qualificação, questão 46: ordem de grandeza da razão entre duas energias, 7,9 × 10¹⁵ J e 2,0 × 10¹² J; a razão é 3,95 × 10³ e a resposta oficial é B, 10⁴). O terremoto é só o contexto; não há conteúdo de Geografia a resolver. Está classificada em Geografia, G02.2. |
+| Pe625626c | UFAM 2026 PSC 3ª etapa · questão 26 | G04.1 ciclo hidrológico, bacia hidrográfica e regime dos rios (tema G04 Hidrografia) | anular: a alternativa oficial E diz que o Guaíba superou a cheia de 1941 "em 45 cm"; o pico de maio de 2024 foi de cerca de 5,35 m (5,33 m a 5,37 m conforme a fonte) contra 4,76 m em 1941, ou seja, 57 a 61 cm acima (5,35 − 4,76 = 0,59 m). A, B, C e D são falsas; a E é a única defensável, mas o número está errado. Fontes: https://www.jornaldocomercio.com/geral/2024/05/1153287-tres-das-4-maiores-cheias-da-historia-de-porto-alegre-ocorreram-nos-ultimos-9-meses.html ; https://canaltech.com.br/meio-ambiente/recorde-de-53-m-do-nivel-do-guaiba-na-enchente-deve-ser-confirmado-290575/ |
 | Pb7bf59f8 | UFRR 2022 Vestibular 2022 – Prova Integral · questão 37 | G01.4 projeções cartográficas (tema G01 Cartografia) | anular: não há alternativa incorreta. A D (oficial) é verdadeira: projeção equivalente conserva áreas e por isso deforma comprimentos, e na projeção equidistante as áreas não guardam relação constante com a superfície (nenhuma projeção é equidistante e equivalente ao mesmo tempo). A banca parece ter trocado os nomes da definição do IBGE (equidistante: sem deformação linear; equivalente: áreas em relação constante), mas, ao inverter também as duas negações, a frase ficou verdadeira. A, B, C e E reproduzem conceitos corretos (posições das planas e das cônicas; conforme conserva ângulos e a forma de pequenas áreas; Robinson e Miller afiláticas). Gabarito oficial D (pós-recursos) e a questão não consta entre as anuladas registradas (22, 52, 53, 54). |
 | Paecc8f79 | Unespar 2025 Grupo I · questão 27 | G03.2 pressão, ventos, massas de ar e frentes (tema G03 Clima e atmosfera) | classificação: é de Física F08.5 (propagação do calor: convecção e brisas); a questão está na parte de Física da prova (área "Física" no prova.json, junto com a 26 e a 28, que já são fis). |
+| Pb5cb0b0f | Unitins 2020 Vestibular 2020/1 · questão 21 | G04.1 ciclo hidrológico, bacia hidrográfica e regime dos rios (tema G04 Hidrografia) | anular: o gabarito oficial B diz que as veredas formam "vegetação xerófila, como as palmeiras de buriti"; o buriti é palmeira de solo encharcado (vegetação de área úmida, o contrário de xerófila). A questão é a ENEM 2015, 1º dia, caderno azul, q. 32, com as alternativas embaralhadas, e o gabarito do ENEM é "constituem um sistema represador da água na chapada" (aqui, letra E). Provável troca de gabarito: conferir o gabarito definitivo da Unitins 2020/1 (GABARITO). Fontes: https://descomplica.com.br/gabarito-enem/questoes/2015/primeiro-dia/algumas-regioes-do-brasil-passam-por-uma-crise-de-agua-por-causa-da-seca/ ; https://plataformaassaad.com.br/?p=24208 |
 
 ## Divergências de gabarito (o dono decide)
 

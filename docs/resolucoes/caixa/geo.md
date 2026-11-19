@@ -164,3 +164,20 @@ RECLASS P61761677 G03.2 -> G02.6 (meandros em planície, relevo)
 DADO P73705dde: texto_da_prova -> no print começa por "A estiagem é um dos desastres naturais..." (falta o "A" inicial)
 ANULAR P0ca47d8c: a foto é o West Mitten Butte (Monument Valley), morro de arenito, rocha sedimentar; o gabarito A e a justificativa oficial da Cecierj dizem "rochas cristalinas" (gnaisse, granito), o que é falso para a imagem
 DADO P18c4344c: texto_da_prova e alternativas -> texto embaralhado e sem alternativas; no print A dobramento moderno · B montanhas jovens · C chapadas sedimentares · D morros e depressões absolutas · E montanhas velhas
+
+## 2026-11-19 16:50 UTC — PENDENCIAS — sessão geo (19/11, 2ª)
+Lote gravado: geo-0048 (48 resoluções; 3 com gabarito do Aprendice, letras iguais às cegas e ao preliminar: Pd4f3769f B, P02be2531 B, P0ca914fd D). Pendentes: Pe625626c e Pb5cb0b0f (ANULAR).
+DADO Pc73a3702: alternativas -> a entrada não traz o campo; estão no fim de texto_da_prova (A Polar · B Temperada de altitude · C Subtropical · D De alta montanha · E Intertropical)
+RECLASS P22940787 G03.5 -> G03.2
+RECLASS P6accd1ac G03.5 -> G03.2
+RECLASS Pd82e3a27 G03.5 -> G06.1
+DADO P341fa8ae: texto_da_prova "distribu´ıdas" -> "distribuídas"; alternativas.B "Tropical t´ıpico" -> "Tropical típico"
+RECLASS P9ad90a54 G04.1 -> G04.2 (FMJ 2022 q28: mapa das bacias brasileiras)
+DADO P7c9f8d69: texto_da_prova e alternativas -> "´ı" no lugar de "í" ("cr´ıticos", "superf´ıcie", "t´ıpico"); no print "críticos", "superfície", "típico"
+RECLASS P0e9453f2 G03.5 -> G03.2 (UTFPR 2025 q23: nome regional de ciclone tropical, tufão)
+DADO P66de87c2 (Unicentro 2027 q7): texto_da_prova -> entre "Leia a notícia a seguir." e a fonte, o print traz a notícia como imagem: título "NOAA aponta 81% de chance de El Niño muito forte até o fim do ano, com potencial de ficar entre os maiores já registrados" e linha fina "Fenômeno já está ativo no Pacífico e deve ganhar força nos próximos meses, segundo agência dos Estados Unidos. Probabilidade de continuidade até o início de 2027 chegou a 97%."
+GABARITO P02be2531 (UFRR 2026 q37): busca indica gabarito oficial pós-recursos (Edital 93/25-CPV) = B, q37 sem recurso deferido; PDF deu 503, não conferido no documento. Conferir e trocar pelo oficial (entrou com gabarito do Aprendice B)
+ANULAR Pe625626c (UFAM 2026 PSC3 q26): a alternativa oficial E diz que o Guaíba superou a cheia de 1941 "em 45 cm"; o pico de 2024 foi ~5,35 m contra 4,76 m (≈59 cm). E é a única defensável, mas o número está errado — decidir entre anular ou publicar com alerta
+ANULAR/GABARITO Pb5cb0b0f (Unitins 2020/1 q21): gabarito oficial B chama o buriti (palmeira de solo encharcado) de "vegetação xerófila"; a questão é cópia da ENEM 2015 (1º dia, azul, q32), cujo gabarito "sistema represador da água na chapada" é aqui a E. Provável troca de gabarito: conferir o definitivo da Unitins
+DADO P7c7c6c78 (UERR 2025 q66): alternativas -> campo vazio; as cinco estão no fim de texto_da_prova, iguais ao print
+DADO Pfa155239 (PUC-Rio 2023): número -> o print mostra a questão 34; a entrada diz 44
