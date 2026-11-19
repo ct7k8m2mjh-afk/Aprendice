@@ -112,3 +112,34 @@ RECLASS P949ac016 B10.1 -> B08.6
 DADO P949ac016: texto_da_prova -> no print os acentos estão certos ("saúde", "proteína") e não há a coluna de letras soltas do início
 RECLASS Pe3ebbc14 B09.6 -> B09.7
 GABARITO P1f0ddacc (UFRR 2026 q22): gravada com Gabarito do Aprendice B (= preliminar = conferente às cegas); existe edital 93/25 da UFRR com gabarito pós-recursos que não abriu (connection reset) — conferir a letra oficial
+
+## 2026-11-19 UTC — PENDENCIAS — session_01PveEKYyQUcXXXACEDrbiVW
+Lote bio-0066 gravado (59 ok, 1 pendente).
+ANULAR Pbd81dec9 (PUC Minas 2022/2 Medicina q16): comando pede a NÃO correta, mas A e B são falsas (bactéria sensível à maioria dos discos; antibióticos 2, 3 e 4 inibem a tradução, não a transcrição — a própria figura os põe em 'inibição da síntese de proteínas'); sem errata nem resolução na web
+GABARITO P937bb8e0, Pba84132b, P2ec3e91d, P2c2ec6c5, P123230d2, P38058011, Pe3786676: gravadas com Gabarito do Aprendice (C, B, B, D, B, C, A = preliminar = conferente às cegas).
+RECLASS P123230d2 B10.3 -> B12.2
+RECLASS P66e26ab1 B10.4 -> B05.6
+DADO P123230d2: texto_da_prova/alternativas -> no print os acentos estão normais e o enunciado começa por "55. (URCA/2027.1) Enquanto os antibióticos..."
+RECLASS Pbe3b2445 B10.2 -> B10.1
+RECLASS Pd06e8dbc B10.2 -> B09.7
+RECLASS Pc9c2e7e0 B10.3 -> B10.1
+RECLASS P3496d97e B10.3 -> B10.4
+RECLASS P74fcdced B10.3 -> B04.5
+RECLASS P85fcf836 B10.3 -> B09.7
+DADO P9d3c0834: alternativas.D -> sem o "24" (número da página)
+DADO P6a923656: alternativas.D -> sem o "19" (número da página)
+DADO Paeb54a9c: alternativas.D -> sem o "21" (número da página)
+DADO P85fcf836: texto_da_prova e alternativas -> com acentos certos como no print
+RECLASS P8a5ba351 B10.4 -> B10.1
+RECLASS Pf175ce0d B10.4 -> B12.2
+RECLASS Pcfc1e16a B10.5 -> B02.2
+DADO Pff7e490c: alternativas.E -> termina em "expelidas ao tossir, espirrar ou falar."; o trecho da canção (versos 1 a 13 e a fonte) é texto de apoio
+AVISO Pcfc1e16a: a Tabela 02 da prova traz "< 28,7" e "< 29,3" na coluna obesidade (17 e 18 anos), quando o certo é ">" (erro da própria prova, explicado no alerta)
+RECLASS P7a1c970d B10.2 -> B10.5
+RECLASS Pa73d472d B10.2 -> B08.1 (só leitura de gráfico sobre IA e memória; conferir se é de Biologia)
+RECLASS Pb79fc4ec B10.2 -> B08.2
+RECLASS Pa91789d8 B10.2 -> B11.2
+AUTORAL Pa91789d8: o texto de apoio da prova cita Brasil Escola como fonte (é questão de prova; só registro)
+DADO P66e26ab1: alternativas.E -> sem o "37" (número da questão)
+DADO Pe3786676: alternativas.A -> aspas normais: “cegueira dos rios” ou “mal do garimpeiro” (entrada traz ―…‖)
+DADO Pf5c4085a: texto_da_prova e alternativas -> "ti" no lugar de "Ɵ" (cisticercose, estiverem) e palavras inteiras ("dejetos", "preventivas"), como no print
