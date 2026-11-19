@@ -803,5 +803,276 @@
    "data": "2026-11-19",
    "lote": "fis-0073"
   }
+ },
+ "P0727817f": {
+  "n": "17",
+  "conceito": "Variação de empuxo num cone de vértice para baixo: o volume extra submerso, aproximado pela área da seção na linha da água vezes Δh, compensa a massa inserida.",
+  "equivocos": {
+   "A": "F07.4:raio-errado-no-cone",
+   "B": "F07.4:area-errada-na-linha-dagua",
+   "D": "F07.4:esqueceu-fator-da-aproximacao",
+   "E": "F07.4:area-errada-na-linha-dagua"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O recipiente já flutuava; a partícula de massa m exige um empuxo extra de m g, ou seja, um volume extra submerso ΔV = m/ρ. A figura marca o ângulo reto no vértice: a abertura é de 90°, então cada geratriz faz 45° com o eixo e o raio na linha da água é igual à profundidade h. O volume submerso é o de um cone, (1/3)π h³. A aproximação do enunciado transforma o aumento desse volume numa conta linear em Δh.",
+    "formulas": [
+     "V_cone = (1/3) π r² y, com r = y (ângulo reto no vértice)",
+     "ΔV × ρ = m",
+     "(1 + α)ⁿ ≈ 1 + n α"
+    ],
+    "simbolos": [
+     [
+      "ρ",
+      "massa específica da água"
+     ],
+     [
+      "Δh",
+      "quanto o recipiente afunda a mais"
+     ],
+     [
+      "K",
+      "constante que dá a massa da partícula"
+     ],
+     [
+      "α",
+      "número pequeno usado na aproximação"
+     ]
+    ]
+   },
+   "pista": "Escreva o volume submerso como função da profundidade e use que o raio é igual à profundidade (ângulo reto no vértice).",
+   "passos": [
+    {
+     "faz": "Leia a geometria do cone",
+     "conta": "ângulo no vértice = 90° → r = y | V_sub(y) = (1/3) π y³",
+     "porque": "Com abertura de 90°, cada lado faz 45° com o eixo, e tg 45° = 1: o raio na altura y vale y.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva o volume extra submerso",
+     "conta": "ΔV = (1/3) π (h + Δh)³ − (1/3) π h³ → ΔV = (1/3) π h³ [(1 + Δh/h)³ − 1]",
+     "porque": "O vértice afunda de h para h + Δh; o novo volume submerso é um cone maior.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a aproximação dada",
+     "conta": "(1 + Δh/h)³ ≈ 1 + 3Δh/h → ΔV ≈ (1/3) π h³ × 3Δh/h = π h² Δh",
+     "porque": "Como Δh ≪ h, vale (1 + α)³ ≈ 1 + 3α; o 3 cancela com o 1/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale o empuxo extra ao peso da partícula",
+     "conta": "ρ π h² Δh = K ρ π h³ → Δh = K h",
+     "porque": "ρ, π e h² aparecem dos dois lados e se cancelam; g também sai.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "Δh = K h",
+     "porque": "É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — Δh = Kh.",
+   "checagem": "Por outro caminho: para Δh pequeno, o volume extra é quase um disco de raio h (área da linha d'água) e espessura Δh: π h² Δh. Pelas unidades, Kh é comprimento, como Δh deve ser.",
+   "erradas": {
+    "A": "Kh/3 não confere: exigiria ΔV = 3π h² Δh, ou seja, uma linha d'água de área 3π h², que só ocorreria com raio √3 h; aqui o raio é h.",
+    "B": "Kh/6 não confere: corresponde a uma área de 6π h² na linha d'água, seis vezes maior que π h².",
+    "D": "3Kh sai de esquecer o fator 3 da aproximação: ΔV = (1/3) π h² Δh, logo (1/3) ρ π h² Δh = K ρ π h³ e Δh = 3Kh.",
+    "E": "2Kh não confere: exigiria área de (1/2) π h² na linha d'água, metade da área real π h²."
+   },
+   "armadilha": "Usar (1 + α)³ ≈ 1 + α, esquecendo o expoente: some o 3, e a resposta triplica para 3Kh.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quanto o cone afunda depois de receber a massa m = Kρπh³.",
+    "chave": "Raio = profundidade; ΔV ≈ π h² Δh = m/ρ, logo Δh = Kh.",
+    "cuidado": "O ângulo reto no vértice dá r = y, e a aproximação traz o fator 3 que cancela o 1/3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "disco fino",
+    "ideia": "O volume extra é um disco de área π h² (a seção na linha d'água) e espessura Δh: ρ π h² Δh = Kρπh³ dá Δh = Kh."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V_sub = (1/3) π y³",
+    "nota": "r = y (ângulo reto)"
+   },
+   {
+    "linha": "ΔV = (1/3) π h³ [(1 + Δh/h)³ − 1]",
+    "nota": "cone maior menos o antigo"
+   },
+   {
+    "linha": "ΔV ≈ (1/3) π h³ × 3Δh/h = π h² Δh",
+    "nota": "(1 + α)³ ≈ 1 + 3α"
+   },
+   {
+    "linha": "ρ π h² Δh = K ρ π h³",
+    "nota": "empuxo extra = peso da partícula"
+   },
+   {
+    "linha": "Δh = K h",
+    "nota": "cancela ρ, π e h²"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Estratégia Militares — correção da 1ª fase do IME 2024 (professores), questão 17: C",
+    "url": "https://militares.estrategia.com/portal/eventos/gabaritos/gabarito-ime-correcao-ao-vivo-2/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [
+    {
+     "url": "https://militares.estrategia.com/portal/eventos/gabaritos/gabarito-ime-correcao-ao-vivo-2/",
+     "letra": "C"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  }
+ },
+ "P7a8c7dc8": {
+  "n": "21",
+  "conceito": "Dilatação de uma estrutura com ponto fixo: cada ponto se afasta do ponto fixo proporcionalmente à sua distância, com α = γ/3.",
+  "equivocos": {
+   "A": "F08.2:volumetrico-usado-como-linear",
+   "B": "F08.2:deslocamentos-somados-sem-pitagoras",
+   "C": "F08.2:denominador-trocado",
+   "E": "F08.2:diagonal-ignorada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Quando um corpo inteiro se dilata por igual com um ponto fixo, tudo cresce como uma ampliação a partir desse ponto: o vetor que liga A a B aumenta α·T vezes o seu comprimento. Por isso basta a distância em linha reta de A até B. A questão dá o coeficiente volumétrico γ; o linear é α = γ/3.",
+    "formulas": [
+     "α = γ/3",
+     "deslocamento de B = α·T·|AB|",
+     "|AB| = √((L/4)² + L²)"
+    ],
+    "simbolos": [
+     [
+      "γ",
+      "coeficiente de dilatação volumétrica"
+     ],
+     [
+      "α",
+      "coeficiente de dilatação linear, α = γ/3"
+     ],
+     [
+      "T",
+      "aumento de temperatura"
+     ],
+     [
+      "|AB|",
+      "distância em linha reta de A até B"
+     ]
+    ]
+   },
+   "pista": "Não some os deslocamentos dos dois trechos do poste: pense no vetor que liga A a B.",
+   "passos": [
+    {
+     "faz": "Passe o coeficiente para linear",
+     "conta": "α = γ/3",
+     "porque": "O deslocamento é de comprimento; a dilatação de comprimentos usa o coeficiente linear, um terço do volumétrico.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a distância de A até B",
+     "conta": "|AB| = √((L/4)² + L²) → |AB| = √(17/16)·L → |AB| = √17·L/4",
+     "porque": "B está L acima de A e L/4 para o lado. Pitágoras: L²/16 + L² = 17L²/16.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a dilatação a esse segmento",
+     "conta": "d = α·T·|AB| → d = (γ/3)·T·√17·L/4 → d = √17·γ·T·L/12",
+     "porque": "Com A fixo, o ponto B se afasta de A na direção de AB, e o deslocamento é o aumento desse comprimento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "√17·γ·T·L/12",
+     "porque": "É a expressão da alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — √17·γ·T·L/12.",
+   "checagem": "Componente por componente: o trecho vertical L sobe α·T·L e o horizontal L/4 avança α·T·L/4. O deslocamento é √((αTL)² + (αTL/4)²) = αTL·√17/4, e com α = γ/3 dá √17·γTL/12, o mesmo valor.",
+   "erradas": {
+    "A": "Sai de usar γ como se fosse o coeficiente linear: γ·T·√17·L/4. Faltou dividir por 3.",
+    "B": "Sai de somar os deslocamentos dos dois trechos como números: (γ/3)·T·(L + L/4) = 5γTL/12. Eles são perpendiculares e somam por Pitágoras.",
+    "C": "Não confere: o 21 não sai de nenhuma das medidas; com α = γ/3 e |AB| = √17·L/4, o denominador é 3 × 4 = 12.",
+    "E": "Não confere: γTL/4 = 0,25·γTL, e o certo é √17/12 ≈ 0,344·γTL; além disso falta o √17 da diagonal AB."
+   },
+   "armadilha": "Usar o coeficiente volumétrico γ direto numa dilatação de comprimento, sem dividir por 3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quanto o ponto B se desloca quando o poste, com A fixo, é aquecido de T.",
+    "chave": "d = (γ/3)·T·|AB|, com |AB| = √17·L/4: d = √17·γTL/12.",
+    "cuidado": "Trocar γ por α = γ/3 e somar os trechos como vetores, não como números."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por componentes",
+    "ideia": "Dilate cada trecho (αTL para cima e αTL/4 para o lado) e junte por Pitágoras."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "α = γ/3",
+    "nota": "linear a partir do volumétrico"
+   },
+   {
+    "linha": "|AB|² = (L/4)² + L² = 17L²/16",
+    "nota": "Pitágoras de A até B"
+   },
+   {
+    "linha": "|AB| = √17·L/4",
+    "nota": "raiz"
+   },
+   {
+    "linha": "d = (γ/3)·T·√17·L/4 = √17·γTL/12",
+    "nota": "dilatação do segmento AB"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "IME, Concurso de Admissão 2023/2024, prova objetiva",
+    "url": "https://www.ime.eb.mil.br/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  }
  }
 }

@@ -1121,5 +1121,135 @@
    "data": "2026-11-19",
    "lote": "fis-0073"
   }
+ },
+ "Pc5e9df8e": {
+  "n": "26",
+  "conceito": "Equilíbrio de forças com empuxo no objeto e no balão, seguido da pressão hidrostática a 10 m para achar a pressão interna do balão.",
+  "equivocos": {
+   "A": "F07.4:pressao-fora-da-equacao",
+   "B": "F07.4:empuxo-insuficiente",
+   "C": "F07.4:empuxo-insuficiente",
+   "E": "F07.4:nao-e-o-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O objeto começa a subir quando o empuxo total (do objeto e do balão) iguala o peso total (objeto, cabo e balão), com a normal do fundo chegando a zero. Isso dá o volume V do balão. A equação do enunciado dá a diferença de pressão Δp para esse V. A pressão interna é a externa mais Δp, e a externa a 10 m é 1 atm do ar mais a pressão da coluna de água.",
+    "formulas": [
+     "E = ρ_água × V × g",
+     "Peso total = Empuxo total (normal = 0)",
+     "p_ext = p_atm + ρ g h",
+     "p_int = p_ext + Δp"
+    ],
+    "simbolos": [
+     [
+      "Δp",
+      "pressão interna menos pressão externa do balão, em atm"
+     ],
+     [
+      "V",
+      "volume de ar do balão, em m³"
+     ],
+     [
+      "p_ext",
+      "pressão da água em volta do balão"
+     ],
+     [
+      "p_int",
+      "pressão do ar dentro do balão"
+     ],
+     [
+      "ρ",
+      "massa específica"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra o volume do balão no instante em que o objeto está a ponto de sair do fundo; só depois use a equação de Δp.",
+   "passos": [
+    {
+     "faz": "Some os pesos",
+     "conta": "m_obj = 2850 × 1³ = 2850 kg | P = (2850 + 100 + 50) × 10 = 30000 N",
+     "porque": "Na iminência do movimento, o fundo não empurra mais: tudo o que pesa tem de ser sustentado pelos empuxos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale aos empuxos e ache V",
+     "conta": "30000 = 1000 × 1 × 10 + 1000 × V × 10 → 10000 V = 20000 → V = 2 m³",
+     "porque": "O objeto de 1 m³ também recebe empuxo; o cabo tem volume desprezível. O 10000 que multiplica V passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule Δp para V = 2",
+     "conta": "Δp = 1,4 × 2² − 1,2 × 2 + 1,8 → Δp = 5,6 − 2,4 + 1,8 = 5,0 atm",
+     "porque": "V = 2 está no intervalo de validade 1 ≤ V ≤ 3 da equação.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a pressão externa a 10 m",
+     "conta": "p_ext = 1 + (1000 × 10 × 10)/10⁵ → p_ext = 1 + 1 = 2 atm",
+     "porque": "A coluna de 10 m de água pesa 10⁵ Pa = 1 atm, que se soma ao 1 atm do ar na superfície.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e conclua",
+     "conta": "p_int = 2 + 5,0 = 7,0 atm",
+     "porque": "Δp é a diferença interna − externa, então a interna é a externa mais Δp. É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 7,0 atm.",
+   "checagem": "Com V = 2 m³, o balão desloca 2000 kg de água e o objeto 1000 kg: 3000 kg ao todo, igual a 2850 + 100 + 50 = 3000 kg. O equilíbrio fecha.",
+   "erradas": {
+    "A": "3,0 não confere: daria Δp = 1 atm com p_ext = 2 atm, mas no intervalo 1 ≤ V ≤ 3 a equação do balão nunca dá menos de 2,0 atm (valor em V = 1).",
+    "B": "4,2 não confere: exigiria Δp = 2,2 atm, ou seja V ≈ 1,11 m³, que com o objeto desloca cerca de 2114 kg de água; faltam cerca de 886 kg para tirar o objeto do fundo.",
+    "C": "5,5 não confere: com p_ext = 2 atm exigiria Δp = 3,5 atm, V ≈ 1,61 m³, água deslocada de cerca de 2611 kg, menor que os 3000 kg a sustentar.",
+    "E": "8,5 não confere: Δp = 6,5 atm leva a V ≈ 2,31 m³, mais que o necessário; o objeto já teria começado a subir antes, então não é a pressão mínima."
+   },
+   "armadilha": "Responder só com Δp = 5,0 atm ou somar apenas 1 atm de fora (6,0 atm): a pergunta é a pressão interna, e a externa a 10 m é 2 atm.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A pressão interna mínima do balão para tirar o objeto do fundo.",
+    "chave": "30000 = 10000 + 10000V → V = 2 m³; Δp = 5,0 atm; p_int = 2 + 5 = 7,0 atm.",
+    "cuidado": "Contar o empuxo no próprio objeto e somar a pressão da água (1 atm a cada 10 m) à atmosférica."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em massas",
+    "ideia": "Água deslocada = massa total: 1000 × (1 + V) = 3000 kg dá V = 2 m³ direto, sem g."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P = (2850 + 100 + 50) × 10 = 30000 N",
+    "nota": "peso total"
+   },
+   {
+    "linha": "30000 = 10000 + 10000 V",
+    "nota": "empuxo do objeto + do balão"
+   },
+   {
+    "linha": "V = 20000/10000 = 2 m³",
+    "nota": "o 10000 passa dividindo"
+   },
+   {
+    "linha": "Δp = 1,4 × 4 − 2,4 + 1,8 = 5,0 atm",
+    "nota": "equação do balão"
+   },
+   {
+    "linha": "p_int = (1 + 1) + 5,0 = 7,0 atm",
+    "nota": "externa a 10 m mais Δp"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  }
  }
 }

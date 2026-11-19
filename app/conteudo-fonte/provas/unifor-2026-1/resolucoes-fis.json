@@ -489,5 +489,137 @@
    "data": "2026-11-19",
    "lote": "fis-0072"
   }
+ },
+ "P26bddfd1": {
+  "n": "16",
+  "conceito": "Lâmina bimetálica: a diferença de dilatação entre duas lâminas coladas vira curvatura, com raio inversamente proporcional a (α₁ − α₂)·ΔT.",
+  "equivocos": {
+   "B": "F08.2:coeficientes-somados",
+   "C": "F08.2:ordem-dos-coeficientes-invertida",
+   "D": "F08.2:comprimento-no-lugar-da-espessura",
+   "E": "F08.2:comprimento-no-lugar-da-espessura"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As duas lâminas ficam coladas, então formam arcos concêntricos com o mesmo ângulo θ. A de maior α (lâmina 1) fica por fora, no arco maior. Os centros das duas lâminas estão separados pela espessura e, e é essa distância que transforma a diferença de comprimentos em curvatura.",
+    "formulas": [
+     "L = L₀·(1 + α·ΔT)",
+     "comprimento de arco = raio · θ",
+     "L₁ − L₂ = e·θ"
+    ],
+    "simbolos": [
+     [
+      "L₀",
+      "comprimento inicial das lâminas"
+     ],
+     [
+      "e",
+      "espessura de cada lâmina"
+     ],
+     [
+      "α₁, α₂",
+      "coeficientes de dilatação linear, α₁ > α₂"
+     ],
+     [
+      "ΔT",
+      "T − To"
+     ],
+     [
+      "θ",
+      "ângulo do arco, igual para as duas lâminas"
+     ],
+     [
+      "R",
+      "raio de curvatura"
+     ]
+    ]
+   },
+   "pista": "Escreva o comprimento de cada lâmina como raio vezes ângulo e subtraia um do outro.",
+   "passos": [
+    {
+     "faz": "Escreva cada comprimento aquecido como um arco",
+     "conta": "L₀·(1 + α₁·ΔT) = (R + e)·θ | L₀·(1 + α₂·ΔT) = R·θ",
+     "porque": "As lâminas coladas giram o mesmo ângulo θ; os centros delas estão a uma distância e um do outro, com a lâmina 1 por fora.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Subtraia as duas equações",
+     "conta": "L₀·(α₁ − α₂)·ΔT = e·θ",
+     "porque": "O L₀ comum some na subtração e sobra a diferença de alongamentos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque θ pelo arco da lâmina de dentro",
+     "conta": "θ = L₀·(1 + α₂·ΔT)/R ≈ L₀/R → L₀·(α₁ − α₂)·ΔT = e·L₀/R",
+     "porque": "α₂·ΔT é muito menor que 1, então o comprimento da lâmina quase não muda frente a L₀.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole R",
+     "conta": "R = e/((α₁ − α₂)·ΔT) → R = e·[(α₁ − α₂)·ΔT]⁻¹",
+     "porque": "O L₀ cancela dos dois lados: o raio só depende da espessura e da diferença de dilatação.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — R = e·[(α₁ − α₂)·ΔT]⁻¹.",
+   "checagem": "Caso extremo: se α₁ = α₂, as lâminas crescem igual, não há curvatura e o raio vai ao infinito; a fórmula dá divisão por zero, como deve. Unidade: (α·ΔT) é adimensional, então R sai em unidade de comprimento, a de e.",
+   "erradas": {
+    "B": "Sai de somar os coeficientes: a curvatura vem da diferença de dilatação; com α₁ = α₂ a lâmina não curvaria, mas a fórmula daria um raio finito.",
+    "C": "Sai de inverter a ordem: com α₁ > α₂, (α₂ − α₁) é negativo e daria raio negativo.",
+    "D": "Sai de usar L₀ no lugar de e: o L₀ cancela na conta, e a distância que converte comprimentos em ângulo é a espessura.",
+    "E": "Não confere: troca e por L₀ e ainda soma os coeficientes; com α₁ = α₂ daria raio finito sem curvatura nenhuma."
+   },
+   "armadilha": "Achar que o comprimento L₀ entra no raio: ele cancela, e o que conta é a espessura e.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O raio de curvatura de uma lâmina bimetálica aquecida de ΔT.",
+    "chave": "L₁ − L₂ = e·θ e θ ≈ L₀/R levam a R = e/((α₁ − α₂)ΔT).",
+    "cuidado": "Usar a diferença dos coeficientes e a espessura, não o comprimento."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação por caso extremo",
+    "ideia": "Com α₁ = α₂ não há curvatura (R infinito): só A, C e D zeram o denominador; C dá raio negativo e D traz L₀, que cancela na subtração dos arcos (L₁ − L₂ = e·θ): sobra A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "L₀·(1 + α₁·ΔT) = (R + e)·θ",
+    "nota": "lâmina 1, por fora"
+   },
+   {
+    "linha": "L₀·(1 + α₂·ΔT) = R·θ",
+    "nota": "lâmina 2, por dentro"
+   },
+   {
+    "linha": "L₀·(α₁ − α₂)·ΔT = e·θ",
+    "nota": "subtrai as duas"
+   },
+   {
+    "linha": "θ ≈ L₀/R → L₀·(α₁ − α₂)·ΔT = e·L₀/R",
+    "nota": "troca θ, α₂ΔT ≪ 1"
+   },
+   {
+    "linha": "R = e/((α₁ − α₂)·ΔT)",
+    "nota": "L₀ cancela"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Vestibular Unifor Medicina 2026.1",
+    "url": "https://unifor.br/documents/d/graduacao/vtb2026_1-medicina"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  }
  }
 }

@@ -871,5 +871,124 @@
    "data": "2026-11-19",
    "lote": "fis-0073"
   }
+ },
+ "P602bdb09": {
+  "n": "16",
+  "conceito": "Órbita circular com várias atrações: a resultante para o centro (estrela + dois planetas) faz o papel de força centrípeta.",
+  "equivocos": {
+   "A": "F06.3:expressao-falha-no-limite-de-kepler",
+   "B": "F06.3:usou-o-lado-como-raio-da-orbita",
+   "D": "F06.3:expressao-falha-no-limite-de-kepler",
+   "E": "F06.3:expressao-falha-no-limite-de-kepler"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada planeta gira em torno da estrela no centro do triângulo, com raio igual à distância do vértice ao centro, r = a/√3. Para o centro ele é puxado pela estrela e também pela resultante das atrações dos outros dois planetas, que aponta para o centro. Essa soma é a força centrípeta.",
+    "formulas": [
+     "r = a/√3 (vértice ao centro do triângulo equilátero)",
+     "resultante de duas forças F a 60°: 2·F·cos 30° = √3·F",
+     "F_centro = m·ω²·r e T = 2π/ω"
+    ],
+    "simbolos": [
+     [
+      "ω",
+      "velocidade angular da órbita"
+     ],
+     [
+      "T",
+      "período da órbita"
+     ],
+     [
+      "r",
+      "raio da órbita de cada planeta"
+     ],
+     [
+      "G",
+      "constante da gravitação universal"
+     ]
+    ]
+   },
+   "pista": "Antes de usar a força centrípeta, ache o raio da órbita: não é o lado a.",
+   "passos": [
+    {
+     "faz": "Ache o raio da órbita",
+     "conta": "r = a/√3 → r² = a²/3",
+     "porque": "O centro do triângulo equilátero fica a 2/3 da altura (a·√3/2) de cada vértice: (2/3)·(a·√3/2) = a/√3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as forças para o centro",
+     "conta": "F = G·M·m/(a²/3) + √3·G·m²/a² → F = (3GMm + √3Gm²)/a²",
+     "porque": "A estrela puxa direto para o centro; os dois planetas puxam a 30° da linha do centro, e a soma dá √3 vezes a atração de um deles.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale à força centrípeta",
+     "conta": "m·ω²·a/√3 = (3GMm + √3Gm²)/a² → ω² = √3·(3GM + √3Gm)/a³ → ω² = 3G(√3M + m)/a³",
+     "porque": "O m do planeta cancela dos dois lados e o √3 do raio passa multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para o período e marque",
+     "conta": "T = 2π/ω → T = 2π·a^(3/2)/√(3G(√3M + m))",
+     "porque": "O período é o inverso da velocidade angular vezes 2π. É a expressão da alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — T = 2π·a^(3/2)/√(3G(√3M + m)).",
+   "checagem": "Caso extremo m → 0: sobra ω² = 3√3·GM/a³ = GM/r³ com r = a/√3, que é a 3ª lei de Kepler para um planeta só. Com M → 0 sobra ω² = 3Gm/a³, o resultado conhecido de três corpos iguais girando juntos.",
+   "erradas": {
+    "A": "Não confere no caso m → 0: daria ω² = 3GM/a³, e Kepler com r = a/√3 exige ω² = 3√3·GM/a³.",
+    "B": "Não confere no caso m → 0: daria ω² = GM/a³, que é Kepler com raio a; o raio da órbita é a/√3, não o lado do triângulo.",
+    "D": "Não confere no caso m → 0: daria ω² = 3GM/a³ em vez de 3√3·GM/a³; com M → 0 daria Gm/a³, um terço do valor certo.",
+    "E": "Não confere no caso m → 0: daria ω² = 9GM/a³, bem maior que os 3√3·GM/a³ de Kepler com r = a/√3."
+   },
+   "armadilha": "Usar o lado a como raio da órbita ou esquecer a atração entre os planetas: o raio é a/√3 e a força para o centro tem as duas partes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O período da órbita comum dos três planetas.",
+    "chave": "m·ω²·(a/√3) = 3GMm/a² + √3Gm²/a², logo ω² = 3G(√3M + m)/a³.",
+    "cuidado": "Raio a/√3 e resultante dos dois planetas √3·Gm²/a², não 2·Gm²/a²."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "casos-limite",
+    "ideia": "Teste m → 0 (tem de dar Kepler com r = a/√3, ω² = 3√3GM/a³) e M → 0 (ω² = 3Gm/a³): só a C passa nos dois."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "r = a/√3",
+    "nota": "vértice ao centro"
+   },
+   {
+    "linha": "F = 3GMm/a² + √3Gm²/a²",
+    "nota": "estrela + dois planetas"
+   },
+   {
+    "linha": "m·ω²·a/√3 = F",
+    "nota": "força centrípeta"
+   },
+   {
+    "linha": "ω² = 3G(√3M + m)/a³",
+    "nota": "m cancela; √3 passa multiplicando"
+   },
+   {
+    "linha": "T = 2π·a^(3/2)/√(3G(√3M + m))",
+    "nota": "T = 2π/ω: alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  }
  }
 }

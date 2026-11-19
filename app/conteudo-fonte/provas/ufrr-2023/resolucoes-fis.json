@@ -783,5 +783,124 @@
    "data": "2026-11-19",
    "lote": "fis-0066"
   }
+ },
+ "Pefc7ba21": {
+  "n": "30",
+  "conceito": "Flutuação de tronco com carga: massa do homem + massa do tronco = massa de água deslocada por 2/3 do tronco.",
+  "equivocos": {
+   "A": "F07.4:fracao-submersa-trocada",
+   "B": "F07.4:expressao-sem-coerencia-de-unidade",
+   "C": "F07.4:expressao-sem-coerencia-de-unidade",
+   "D": "F07.4:resposta-por-volume-e-nao-por-massa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O homem fica sobre o tronco e o conjunto flutua, com 1/3 do tronco fora da água, ou seja, 2/3 do volume do tronco submerso. O empuxo sustenta o peso do tronco e o peso do homem. A resposta é pedida como fração da massa do tronco, então escreva tudo em termos de m_t = ρt × V e divida por m_t no fim.",
+    "formulas": [
+     "E = P_homem + P_tronco",
+     "E = ρa × (2/3) V × g",
+     "m_t = ρt × V"
+    ],
+    "simbolos": [
+     [
+      "ρa",
+      "densidade da água do mar"
+     ],
+     [
+      "ρt",
+      "densidade do tronco"
+     ],
+     [
+      "V",
+      "volume do tronco"
+     ],
+     [
+      "m_h",
+      "massa do homem"
+     ],
+     [
+      "m_t",
+      "massa do tronco"
+     ]
+    ]
+   },
+   "pista": "Transforme \"um terço acima da superfície\" em volume submerso antes de montar o equilíbrio.",
+   "passos": [
+    {
+     "faz": "Ache o volume submerso",
+     "conta": "1/3 fora → V_sub = (2/3) V",
+     "porque": "\"um terço do tronco continue acima da superfície\": o que resta, 2/3, fica dentro da água.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte o equilíbrio",
+     "conta": "m_h + ρt V = ρa × (2/3) V",
+     "porque": "Empuxo = peso total; g aparece em todos os termos e se cancela. O homem não toca a água, então não desloca água.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a massa do homem",
+     "conta": "m_h = (2/3) ρa V − ρt V → m_h = ρt V × (2ρa/(3ρt) − 1)",
+     "porque": "ρt V passa subtraindo; depois põe-se ρt V = m_t em evidência para aparecer a massa do tronco.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "m_h = (2ρa/(3ρt) − 1) × m_t",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — (2ρa/(3ρt) − 1) da massa do tronco.",
+   "checagem": "Caso particular: se ρt = (2/3) ρa, o tronco sozinho já flutua com 2/3 submersos e não sobra empuxo para o homem; a fórmula dá 2ρa/(3 · (2/3)ρa) − 1 = 1 − 1 = 0. Confere. E a expressão é adimensional, como uma fração da massa deve ser.",
+   "erradas": {
+    "A": "ρa/ρt − 2/3 não confere: no caso ρt = (2/3) ρa daria 3/2 − 2/3 = 5/6, mas nesse caso o homem não pode ter massa nenhuma.",
+    "B": "2ρa − 1/(3ρt) não confere pela unidade: subtrai uma densidade (kg/m³) de um inverso de densidade (m³/kg); não pode ser uma fração da massa.",
+    "C": "(2ρa3ρt − 1) não confere pela unidade: o produto de duas densidades tem unidade (kg/m³)², e não se pode subtrair 1 dele.",
+    "D": "Sai de parar na massa por volume do tronco: m_h = V × ((2/3) ρa − ρt). Isso multiplica o volume V, não a massa do tronco; tem unidade de densidade."
+   },
+   "armadilha": "Esquecer que o próprio tronco também pesa: o empuxo de 2/3 do volume sustenta o homem e o tronco juntos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A massa do homem como fração da massa do tronco.",
+    "chave": "m_h + ρt V = (2/3) ρa V → m_h = (2ρa/(3ρt) − 1) m_t.",
+    "cuidado": "Volume submerso é 2/3, e a resposta tem de ser adimensional."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "densidade média",
+    "ideia": "O conjunto flutua com 2/3 submersos: (m_h + m_t)/V = (2/3) ρa; dividindo por m_t/V = ρt, m_h/m_t + 1 = 2ρa/(3ρt)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m_h + ρt V = ρa × (2/3) V",
+    "nota": "empuxo = peso total"
+   },
+   {
+    "linha": "m_h = (2/3) ρa V − ρt V",
+    "nota": "ρt V passa subtraindo"
+   },
+   {
+    "linha": "m_h = ρt V × ((2ρa)/(3ρt) − 1)",
+    "nota": "ρt V em evidência"
+   },
+   {
+    "linha": "m_h = ((2ρa)/(3ρt) − 1) × m_t",
+    "nota": "ρt V = m_t"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  }
  }
 }

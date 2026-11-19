@@ -311,3 +311,37 @@ DADO P82322ec8: alternativas -> (A) vA = −(1/3) v e ΔEc = 0; (B) vA = +(1/3) 
 DADO P8963dd0f: texto_da_prova -> sem as três linhas "E ( ) mg + √8kmV 2." (lixo de outra questão; não estão no print)
 DADO Pbe492471: alternativas.E -> "I, II e III são verdadeiras." (sem o lixo "a a e a ar"); texto_da_prova começa em "Duas partículas X e Y" (sem "m e h. o m s i é")
 DADO Pe75e787b: alternativas -> a) 20/9  b) 9/20  c) 2√5/3  d) 2√5/9  e) 3√20 (entrada com A embaralhada, B–D vazias, E "3 20"; texto_da_prova termina com "20 9" solto)
+
+## 2026-11-19 17:51 UTC — PENDENCIAS — session_01PveEKWeU9BGX5xnf2nstPb
+Lote fis-0074 gravado (49 resoluções conferidas, 1 pendente). Aberto: fis-0075 (na conferência).
+Gabarito do Aprendice: P0729a463 D, P5d71170c D, P0727817f C, Pd59979ac A, P7a8c7dc8 D (resolvedor e conferente às cegas; iguais ao preliminar).
+RECLASS P1e7255e2 F -> mat M01.5 (operações com conjuntos no mapa de satélites; sem Física)
+RECLASS P1e7255e2 F06.3 -> M01.5 (UEMA PAES 2020 q48: operações com conjuntos num mapa de coberturas de satélites; é de Matemática — saiu como pendente "classificação")
+DADO P153752f7: alternativas -> no print as potências são 10⁸ (A 3,6 × 10⁸ m; B 5,0 × 10⁸ m; C 3,0 × 10⁸ m; D 4,0 × 10⁸ m; E 2,0 × 10⁸ m); a camada de texto achatou para "108m"
+DADO Pecbe72a5: alternativas -> no print: A √(2GM/b); B 2√(GM/b); C (1/2)√(GM/b); D √(GM/(2b)); E √(GM/b) (a camada de texto trocou o radical por "p")
+GABARITO P0729a463 (IME 2025 1ª fase q26): sem gabarito publicado; letra do Aprendice D (2CGmM/B²); web não achou gabarito nem resolução publicada; falta a letra do conferente às cegas e conferir com o preliminar
+DADO Pbfd8c979: alternativas.D -> "2,0" (PUCRS 2023 Verão q33: rótulos da figura "A B h1 h2" colados na alternativa D)
+DADO Pfe95ab06: alternativas -> no print: A 2,4 m; B 4,6 m; C 9,0 m; D 1,3 × 10 m; E 1,8 × 10 m (ITA 2023 q5; entrada sem alternativas separadas, texto com acentos quebrados)
+DADO Pad8fe9e4: alternativas -> no print: A 1,704 atm; B 1,756 atm; C 1,760 atm; D 1,764 atm; E 1,784 atm; texto_da_prova "1 atm = 105 Pa" -> "1 atm = 10⁵ Pa" e "9,8 m/s2" -> "9,8 m/s²" (UERR 2026 q59)
+DADO P79e085fd: alternativas -> fórmulas sumiram na entrada; no print: A m = (kx/g)(As/Ae); B m = (kx/g)(As/Ae); C m = (g/kx)(Ae/As); D m = (kx/g)(As/Ae); E m = (kx/g)(Ae/As) (Unioeste 2022 q57, numerada 36 no caderno)
+DADO P3b9c8769: alternativas -> expoentes no print: A 4,0 · 10²⁶; B 8,1 · 10²⁶; C 2,4 · 10²⁷; D 6,4 · 10²⁷ (FCM-MG 2023/2 q45)
+DADO P036abe46: alternativas -> no print todas são vetores: A p⃗; B −p⃗; C p⃗ − P⃗; D −(p⃗ + P⃗) (Cederj 2022.2 q16)
+GABARITO P5d71170c: gabarito do Aprendice D (x = 21 cm: p₁ = 72 cmHg, Boyle 72·45 = p₂·40 → 81 cmHg, x = 10 + 11); nenhuma resolução publicada achada na web; falta a letra do conferente às cegas e conferir com o preliminar do IME (IME 2025 1ª fase q18)
+DADO Pc4941ba7: alternativas.D -> "Nas duas situações, o peso da bolinha é igual ao módulo do empuxo exercido sobre ela." (sem o lixo "( 1 ) ( 2 ) água azeite" da figura)
+DADO P23d7b64f: texto_da_prova -> "quando a densidade do ar da sala do laboratório é igual a 1 kg/m³, é dada por" (entrada com "1 *+ ⁄"); alternativas -> A 8,10 m/s² B 8,34 m/s² C 8,82 m/s² D 8,91 m/s² E 9,12 m/s² (entrada sem o campo alternativas; estavam coladas no texto)
+DADO Pefc7ba21: alternativas -> A (ρa/ρt − 2/3) B (2ρa − 1/(3ρt)) C (2ρa3ρt − 1) D ((2/3)ρa − ρt) E (2ρa/(3ρt) − 1), todas seguidas de "da massa do tronco." (entrada com caracteres embaralhados)
+DADO P7ec4cd33: texto_da_prova -> fórmula "E_relativo = (peso real − peso medido)/(peso real)" (entrada com as palavras soltas "relativo peso real peso medido E peso real −  =")
+GABARITO P0727817f: IME 2024 (Concurso 2023/2024) 1ª fase q17 — letra do resolvedor C; Estratégia Militares (gabarito dos professores) também C: https://militares.estrategia.com/portal/eventos/gabaritos/gabarito-ime-correcao-ao-vivo-2/ — conferir com o preliminar/definitivo do IME
+GABARITO Pd59979ac: IME 2025 (Concurso 2024/2025) 1ª fase q20 — letra do resolvedor A; Estratégia Militares (página com links do preliminar e do final) também A: https://militares.estrategia.com/portal/eventos/gabarito-ime-2024-2025-correcao-primeira-fase/ — conferir com o preliminar/definitivo do IME
+DADO Pb020d69d: alternativas -> ausentes na entrada (no fim de texto_da_prova, com lixo "E ( ) mg + √8kmV2" colado); print: A 2√((H − h)(h + m/(ρA))), B √(2h(H − h + m/(ρA))), C 2√(h(H − h + m/(ρA))), D 2√(h(H − h + m/(2ρA))), E √(h(H − h + m/(ρA)))
+DADO P7ec8cfe4: alternativas -> ausentes na entrada (lixo "E ( ) mg + √8kmV2" colado); print: A 0, B ρv1²/2, C (ρv1²/2)((1 − k²)/k²), D (ρv1²/2)((1 − k)/k), E (ρv1²/2)((1 − k²)/k)
+DADO P81d2150c: texto_da_prova -> "α = 2 × 10⁻⁴ °C⁻¹" e "(1 + x)ⁿ ≈ 1 + nx, para |x| ≪ 1" (OCR embaralhado); alternativas ausentes: A aumenta de 0,1%, B aumenta de 0,05%, C diminui de 0,1%, D diminui de 0,05%, E permanece inalterado
+DADO P7a8c7dc8: alternativas -> frações: A √17γTL/4, B 5γTL/12, C √17γTL/21, D √17γTL/12, E γTL/4
+DADO P26bddfd1: alternativas.E -> "Lo [(α2 + α1) ∆T]-1" (sem "Questão 16 AS" colado)
+RECLASS Pa8ac08bb F08.1 -> F08.3
+DADO P924deffb: alternativas.E -> "9" (o "Questão 19" colado não está na alternativa do print)
+DADO Pd61b29a7: texto_da_prova -> o enunciado (regras da bola entre 0,60 e 1,10 atm, calibrada a 0,90 atm e 27 °C, aquecida a 57 °C a volume constante, fórmulas TK = TC + 273 e P0·V0/T0 = P1·V1/T1) está colado na alternativa E; no print ele vem antes do comando, e a alternativa E é só "foi mantida, pois a pressão alcançou aproximadamente 1,90 atm."
+DADO P2ab1243e: alternativas -> frações: A γ = 1/T1; B γ = 1/T2; C γ = 2/T2; D γ = 3/T1; E γ = n/T1
+DADO P39a488e6: alternativas -> expoentes: A 2 × 10⁻⁵ °C⁻¹; B 5 × 10⁻⁵ °C⁻¹; C −2 × 10⁻⁵ °C⁻¹; D 1,2 × 10⁻⁵ °C⁻¹; E −5 × 10⁻⁵ °C⁻¹
+RECLASS P074765f3 F08.3 -> F08.1
+RECLASS P39a488e6 F08.5 -> F08.2

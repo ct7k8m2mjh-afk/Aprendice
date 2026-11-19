@@ -1070,5 +1070,129 @@
    "data": "2026-11-19",
    "lote": "fis-0073"
   }
+ },
+ "P81d2150c": {
+  "n": "8",
+  "conceito": "Período do pêndulo simples proporcional à raiz do comprimento, com dilatação linear do fio e aproximação binomial.",
+  "equivocos": {
+   "B": "F08.2:expoente-errado-na-binomial",
+   "C": "F08.2:sentido-da-variacao-trocado",
+   "D": "F08.2:sentido-da-variacao-trocado",
+   "E": "F08.2:periodo-independe-do-comprimento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O período do pêndulo simples depende da raiz do comprimento do fio. Aquecido, o fio se alonga de α·Δθ, uma fração pequena; a aproximação binomial com n = 1/2 transforma a raiz em 'metade da variação'.",
+    "formulas": [
+     "T = 2π·√(L/g)",
+     "L' = L·(1 + α·Δθ)",
+     "(1 + x)ⁿ ≈ 1 + n·x"
+    ],
+    "simbolos": [
+     [
+      "T",
+      "período do pêndulo (o enunciado também usa T para a temperatura inicial)"
+     ],
+     [
+      "L",
+      "comprimento do fio"
+     ],
+     [
+      "α",
+      "coeficiente de dilatação linear do fio, 2 × 10⁻⁴ °C⁻¹"
+     ],
+     [
+      "Δθ",
+      "aumento de temperatura, 10 °C"
+     ],
+     [
+      "n",
+      "expoente da aproximação binomial"
+     ]
+    ]
+   },
+   "pista": "Escreva o novo período dividido pelo antigo: o 2π e o g cancelam e sobra uma raiz.",
+   "passos": [
+    {
+     "faz": "Calcule o alongamento relativo do fio",
+     "conta": "α·Δθ = 2 × 10⁻⁴ × 10 → α·Δθ = 2 × 10⁻³",
+     "porque": "O fio aumenta 0,2 % do comprimento com 10 °C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a razão dos períodos",
+     "conta": "T'/T = √(L'/L) → T'/T = (1 + 2 × 10⁻³)^(1/2)",
+     "porque": "2π e g não mudam e cancelam; só o comprimento muda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a aproximação binomial",
+     "conta": "(1 + 2 × 10⁻³)^(1/2) ≈ 1 + (1/2)·2 × 10⁻³ → T'/T ≈ 1 + 1 × 10⁻³",
+     "porque": "Com n = 1/2, a raiz faz a variação cair pela metade: 0,2 % no fio vira 0,1 % no período.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Traduza para porcentagem",
+     "conta": "T'/T ≈ 1,001 → aumento de 0,1 %",
+     "porque": "Fio mais longo, período maior: o pêndulo fica mais lento.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — o período aumenta 0,1 %.",
+   "checagem": "Sem aproximação: √1,002 = 1,0009995, ou seja, aumento de 0,09995 %, praticamente 0,1 %. O sentido também confere: fio maior, oscilação mais lenta.",
+   "erradas": {
+    "B": "Não confere: 0,05 % seria um quarto do alongamento de 0,2 %; com T ∝ √L o período varia metade, 0,1 %.",
+    "C": "Sai de trocar o sentido: o fio se alonga e o período cresce com √L; ele aumenta, não diminui.",
+    "D": "Não confere: o sentido está trocado (o período aumenta) e o valor também (é 0,1 %, não 0,05 %).",
+    "E": "Sai de achar que o período não depende do comprimento; ele não depende da massa nem da amplitude pequena, mas depende de √L."
+   },
+   "armadilha": "Esquecer a raiz e dizer que o período aumenta 0,2 %, como o fio, ou trocar o sentido da variação.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A variação percentual do período de um pêndulo quando o fio é aquecido de 10 °C.",
+    "chave": "T ∝ √L: ΔT/T ≈ (1/2)·α·Δθ = (1/2)·2 × 10⁻³ = 0,1 %.",
+    "cuidado": "A raiz divide a variação por 2, e o fio mais longo aumenta o período."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "conta direta",
+    "ideia": "√1,002 = 1,0009995 na calculadora: aumento de cerca de 0,1 %."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "α·Δθ = 2 × 10⁻⁴ × 10 = 2 × 10⁻³",
+    "nota": "alongamento relativo"
+   },
+   {
+    "linha": "T'/T = (1 + 2 × 10⁻³)^(1/2)",
+    "nota": "T ∝ √L"
+   },
+   {
+    "linha": "T'/T ≈ 1 + (1/2)·2 × 10⁻³ = 1,001",
+    "nota": "binomial com n = 1/2"
+   },
+   {
+    "linha": "aumento de 0,1 %",
+    "nota": "em porcentagem"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Prova ITA 2020, 1ª fase",
+    "url": "https://vestibular.ita.br/provas/2020_fase1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  }
  }
 }

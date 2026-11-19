@@ -222,5 +222,133 @@
    "data": "2026-11-19",
    "lote": "fis-0073"
   }
+ },
+ "Pe563fe90": {
+  "n": "18",
+  "conceito": "Calorímetro com óleo: o calor cedido pela peça de aço é absorvido pelo óleo e pelo recipiente; acha-se a temperatura inicial da peça.",
+  "equivocos": {
+   "A": "F08.4:calor-cedido-menor-que-o-recebido",
+   "B": "F08.4:calor-cedido-menor-que-o-recebido",
+   "C": "F08.4:calor-cedido-menor-que-o-recebido",
+   "D": "F08.4:confundiu-variacao-com-temperatura-inicial"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No calorímetro, o calor que a peça quente cede é o calor que o óleo e o próprio calorímetro recebem. O óleo vem em volume, então primeiro vire massa pela densidade. Todos terminam na temperatura final do óleo, 54 °C; a peça cai de T₀ até 54 °C.",
+    "formulas": [
+     "Q = m · c · ΔT",
+     "Q = C · ΔT (capacidade térmica)",
+     "calor cedido pela peça = calor recebido por óleo + calorímetro",
+     "m = d · V"
+    ],
+    "simbolos": [
+     [
+      "c",
+      "calor específico, em J/kg·K"
+     ],
+     [
+      "C",
+      "capacidade térmica do calorímetro: 190 J/K"
+     ],
+     [
+      "d",
+      "densidade do óleo: 870 kg/m³"
+     ],
+     [
+      "T₀",
+      "temperatura inicial da peça"
+     ],
+     [
+      "ΔT",
+      "variação de temperatura (1 K = 1 °C de variação)"
+     ]
+    ]
+   },
+   "pista": "O óleo foi dado em metros cúbicos: transforme em massa antes de usar o calor específico.",
+   "passos": [
+    {
+     "faz": "Converta o óleo em massa",
+     "conta": "m = d · V → m = 870 · 0,6 → m = 522 kg",
+     "porque": "O calor específico do óleo está por quilograma, então o volume precisa virar massa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o calor recebido",
+     "conta": "Q = (522 · 1800 + 190) · (54 − 24) → Q = 939790 · 30 → Q = 28193700 J",
+     "porque": "O óleo e o calorímetro sobem juntos de 24 °C para 54 °C; uma variação em K é igual à variação em °C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale ao calor cedido pela peça",
+     "conta": "100 · 480 · (T₀ − 54) = 28193700 → 48000 · (T₀ − 54) = 28193700 → T₀ − 54 = 28193700/48000 ≈ 587,4",
+     "porque": "A peça (100 000 g = 100 kg) cede exatamente esse calor ao esfriar até 54 °C; o 48 000 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os 54 °C e marque a faixa",
+     "conta": "T₀ ≈ 587,4 + 54 → T₀ ≈ 641,4 °C",
+     "porque": "O 54 passa para o outro lado somando. 641 °C fica entre 601 °C e 700 °C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — entre 601 °C e 700 °C (cerca de 641 °C).",
+   "checagem": "Teste os limites da faixa: se a peça entrasse a 600 °C cederia 48 000 · 546 = 26 208 000 J, pouco; a 700 °C cederia 48 000 · 646 = 31 008 000 J, demais. Os 28 193 700 J ficam entre os dois.",
+   "erradas": {
+    "A": "201 °C a 300 °C não confere: mesmo a 300 °C a peça cederia só 48 000 · 246 = 11 808 000 J, menos da metade dos 28 193 700 J recebidos.",
+    "B": "301 °C a 400 °C não confere: a 400 °C a peça cederia 48 000 · 346 = 16 608 000 J, bem abaixo dos 28 193 700 J.",
+    "C": "401 °C a 500 °C não confere: a 500 °C seriam 48 000 · 446 = 21 408 000 J, ainda menos que o calor recebido.",
+    "D": "Sai de parar na variação: ΔT = 28 193 700/48 000 ≈ 587 °C é a queda de temperatura da peça; faltou somar os 54 °C finais."
+   },
+   "armadilha": "Confundir a variação de temperatura da peça (≈ 587 °C) com a temperatura inicial dela: a peça terminou a 54 °C, e esse valor tem de ser somado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A temperatura com que a peça de aço entrou no calorímetro.",
+    "chave": "Q = (522 · 1 800 + 190) · 30 = 28 193 700 J; 48 000 · (T₀ − 54) = Q, logo T₀ ≈ 641 °C.",
+    "cuidado": "Converter o volume do óleo em massa, contar o calorímetro e somar a temperatura final da peça."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "estimativa",
+    "ideia": "Sem o calorímetro (190 J/K é pouco perto de 939 600 J/K do óleo), 939 600 · 30/48 000 ≈ 587; somando 54 dá ≈ 641 °C, a mesma faixa."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m_óleo = 870 · 0,6 = 522 kg",
+    "nota": "volume vira massa"
+   },
+   {
+    "linha": "Q = (522 · 1800 + 190) · 30",
+    "nota": "óleo + calorímetro de 24 a 54 °C"
+   },
+   {
+    "linha": "Q = 28193700 J",
+    "nota": "calor recebido"
+   },
+   {
+    "linha": "48000 · (T₀ − 54) = 28193700",
+    "nota": "calor cedido pela peça"
+   },
+   {
+    "linha": "T₀ − 54 ≈ 587,4",
+    "nota": "o 48 000 passa dividindo"
+   },
+   {
+    "linha": "T₀ ≈ 641,4 °C",
+    "nota": "o 54 passa somando: alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  }
  }
 }

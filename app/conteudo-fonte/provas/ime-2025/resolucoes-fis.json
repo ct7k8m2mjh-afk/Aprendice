@@ -853,5 +853,400 @@
    "data": "2026-11-19",
    "lote": "fis-0073"
   }
+ },
+ "P0729a463": {
+  "n": "26",
+  "conceito": "Órbita elíptica com o planeta num foco: a energia potencial é máxima no afastamento máximo (A + C) e mínima na menor distância (A − C).",
+  "equivocos": {
+   "A": "F06.3:somou-as-energias-em-vez-de-subtrair",
+   "B": "F06.3:perdeu-o-fator-2",
+   "C": "F06.3:fatorou-errado-a-diferenca-de-quadrados",
+   "E": "F06.3:expressao-falha-no-caso-circular"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As equações descrevem uma elipse centrada na origem, de semieixos A (em x) e B (em y). O planeta está em (C, 0), com C = √(A² − B²): é um foco da elipse. A energia potencial −GMm/r é menor (mais negativa) onde o satélite está mais perto e maior onde está mais longe.",
+    "formulas": [
+     "U = −G·M·m/r",
+     "distâncias ao foco: r_min = A − C e r_máx = A + C",
+     "(A − C)·(A + C) = A² − C² = B²"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "energia potencial gravitacional"
+     ],
+     [
+      "A, B",
+      "semieixos da elipse em x e em y"
+     ],
+     [
+      "C",
+      "distância do centro da elipse ao foco, onde está o planeta"
+     ],
+     [
+      "r",
+      "distância entre satélite e centro do planeta"
+     ]
+    ]
+   },
+   "pista": "Descubra os pontos da elipse mais perto e mais longe de (C, 0).",
+   "passos": [
+    {
+     "faz": "Reconheça a elipse e o foco",
+     "conta": "x²/A² + y²/B² = 1 | planeta em (C, 0), C = √(A² − B²)",
+     "porque": "Elevando x/A = cos(ωt) e y/B = sen(ωt) ao quadrado e somando, sai a elipse; o ponto (C, 0) é o seu foco.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache as distâncias extremas",
+     "conta": "r_min = A − C (em x = A) | r_máx = A + C (em x = −A)",
+     "porque": "Os extremos do eixo maior são o ponto mais próximo e o mais distante do foco.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia as energias",
+     "conta": "ΔU = −GMm/(A + C) − (−GMm/(A − C)) → ΔU = GMm·(1/(A − C) − 1/(A + C)) → ΔU = GMm·2C/(A² − C²)",
+     "porque": "A maior energia é a do ponto mais distante (menos negativa); o mínimo comum das frações é (A − C)(A + C).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque A² − C² por B² e marque",
+     "conta": "A² − C² = B² → ΔU = 2CGmM/B²",
+     "porque": "Pela definição de C, A² − C² = B². É a expressão da alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 2 CGmM/B².",
+   "checagem": "Com A = 5, B = 3 e C = 4: 1/(5 − 4) − 1/(5 + 4) = 1 − 1/9 = 8/9, e 2·4/3² = 8/9. Bate. Caso extremo: órbita circular (A = B, C = 0) dá diferença zero, como deve ser.",
+   "erradas": {
+    "A": "Sai de somar em vez de subtrair: GMm·(1/(A − C) + 1/(A + C)) = 2AGmM/B². A diferença das energias pede a subtração.",
+    "B": "Não confere: é a metade da diferença certa; com A = 5, B = 3 e C = 4 daria 4/9, e a conta direta dá 8/9.",
+    "C": "Não confere: o produto (A − C)(A + C) vale B², não A²; com A = 5, B = 3, C = 4 daria 8/25 em vez de 8/9.",
+    "E": "Não confere: com A = 5, B = 3 e C = 4 daria 5/16, e a conta direta dá 8/9; no caso circular (C = 0) ela nem existe, quando a diferença tem de ser zero."
+   },
+   "armadilha": "Pôr o planeta no centro da elipse: ele está no foco (C, 0), e é isso que torna as distâncias A − C e A + C diferentes.",
+   "alerta": "O enunciado chama de 'modelo unidimensional' um movimento descrito por x(t) e y(t), que é plano; isso não muda a conta.",
+   "essencial": {
+    "pede": "A diferença entre a maior e a menor energia potencial do satélite na órbita elíptica.",
+    "chave": "ΔU = GMm·(1/(A − C) − 1/(A + C)) = 2CGmM/B², usando A² − C² = B².",
+    "cuidado": "O planeta está no foco: as distâncias extremas são A − C e A + C."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "números",
+    "ideia": "Escolha A = 5, B = 3, C = 4: ΔU/(GMm) = 1 − 1/9 = 8/9, e só a D dá 2·4/9 = 8/9."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "r_min = A − C | r_máx = A + C",
+    "nota": "extremos do eixo maior"
+   },
+   {
+    "linha": "ΔU = GMm·(1/(A − C) − 1/(A + C))",
+    "nota": "maior menos menor"
+   },
+   {
+    "linha": "ΔU = GMm·2C/(A² − C²)",
+    "nota": "mínimo comum"
+   },
+   {
+    "linha": "ΔU = 2CGmM/B²",
+    "nota": "A² − C² = B²: alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  }
+ },
+ "P5d71170c": {
+  "n": "18",
+  "conceito": "Manômetro de mercúrio com gás preso: Stevin dá a pressão do gás e a lei de Boyle (temperatura constante) liga as duas situações.",
+  "equivocos": {
+   "A": "F07.2:coluna-inicial-tomada-como-50-cm",
+   "B": "F07.2:valor-que-nao-satisfaz-boyle",
+   "C": "F07.2:valor-que-nao-satisfaz-boyle",
+   "E": "F07.2:gas-comprimido-tratado-a-pressao-atmosferica"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O gás está preso no ramo fechado, e o mercúrio separa esse gás do ar. Em cada figura, a pressão do gás é a atmosférica mais o desnível de mercúrio entre os dois ramos, em cmHg. Como a temperatura não muda, pressão × comprimento da coluna de gás fica constante (o tubo tem seção constante, então o comprimento faz o papel do volume). As graduações lidas na régua, e não os números soltos, dão os comprimentos.",
+    "formulas": [
+     "p_gás = p_atm + desnível de Hg (em cmHg), quando o ramo aberto está mais alto",
+     "Boyle: p₁ · L₁ = p₂ · L₂ (T constante)"
+    ],
+    "simbolos": [
+     [
+      "cmHg",
+      "centímetro de mercúrio: pressão de uma coluna de 1 cm de mercúrio"
+     ],
+     [
+      "p_atm",
+      "pressão atmosférica, 70 cmHg segundo o enunciado"
+     ],
+     [
+      "L",
+      "comprimento da coluna de gás, lido na graduação"
+     ],
+     [
+      "Boyle",
+      "lei de Boyle: em temperatura constante, p · V é constante"
+     ]
+    ]
+   },
+   "pista": "Comece pela Figura 1: leia onde o gás começa e termina e o desnível entre os dois ramos de mercúrio.",
+   "passos": [
+    {
+     "faz": "Ache a pressão inicial do gás",
+     "conta": "desnível: 7 − 5 = 2 cm → p₁ = 70 + 2 = 72 cmHg",
+     "porque": "O mercúrio do ramo aberto está 2 cm acima do mercúrio do lado do gás; por Stevin, o gás aguenta a atmosfera mais essa coluna.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia os comprimentos da coluna de gás",
+     "conta": "L₁ = 50 − 5 = 45 cm | L₂ = 50 − 10 = 40 cm",
+     "porque": "O gás vai da graduação 50 (topo fechado) até o mercúrio: 5 na Figura 1 e 10 na Figura 2.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique Boyle",
+     "conta": "72 · 45 = p₂ · 40 → p₂ = (72 · 45)/40 → p₂ = 81 cmHg",
+     "porque": "A temperatura ficou constante e não houve vazamento: o produto pressão × volume se conserva, e o volume é proporcional ao comprimento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte a Stevin para achar x",
+     "conta": "81 = 70 + (x − 10) → x − 10 = 11 → x = 21 cm",
+     "porque": "Na Figura 2 o desnível de mercúrio é x − 10, e ele precisa equilibrar a diferença entre a pressão do gás e a atmosférica.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "x = 21 cm → alternativa D",
+     "porque": "É o único valor que satisfaz Boyle e Stevin ao mesmo tempo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — x = 21 cm",
+   "checagem": "Substitua de volta: com x = 21, o desnível é 11 cm e p₂ = 81 cmHg; 81 × 40 = 3 240 e 72 × 45 = 3 240. O produto p·L fecha igual nas duas figuras.",
+   "erradas": {
+    "A": "Sai de usar 50 cm (a graduação do topo) como coluna inicial de gás e 40 cm como final: 72 · 50/40 = 90 cmHg, desnível 20 cm, x = 30.",
+    "B": "Não confere: com x = 15 o desnível é 5 cm, p₂ = 75 cmHg, e 75 × 40 = 3 000, diferente de 72 × 45 = 3 240.",
+    "C": "Não confere: com x = 42 o desnível é 32 cm, p₂ = 102 cmHg, e 102 × 40 = 4 080, muito acima de 3 240.",
+    "E": "x = 10 deixaria os dois ramos no mesmo nível, com o gás em 70 cmHg; mas o gás foi comprimido de 45 para 40 cm, então sua pressão subiu acima de 72 cmHg."
+   },
+   "armadilha": "Tomar a graduação do topo (50) como comprimento da coluna de gás: o gás começa na graduação 5 (Figura 1) e 10 (Figura 2), então L₁ = 45 cm e L₂ = 40 cm.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A graduação x do mercúrio no ramo aberto depois de se acrescentar mercúrio ao manômetro.",
+    "chave": "p₁ = 72 cmHg com L₁ = 45 cm; Boyle dá p₂ = 81 cmHg com L₂ = 40 cm; Stevin: 81 = 70 + (x − 10), x = 21.",
+    "cuidado": "Ler os comprimentos pela graduação (50 − 5 e 50 − 10) e somar o desnível à pressão atmosférica."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Para cada x, calcule p₂ = 70 + (x − 10) e veja qual faz p₂ × 40 = 72 × 45 = 3 240: só x = 21."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p₁ = 70 + (7 − 5) = 72 cmHg",
+    "nota": "Stevin na Figura 1"
+   },
+   {
+    "linha": "72 · 45 = p₂ · 40",
+    "nota": "Boyle com L₁ = 45 e L₂ = 40"
+   },
+   {
+    "linha": "p₂ = (72 · 45)/40 = 81 cmHg",
+    "nota": "o 40 passa dividindo"
+   },
+   {
+    "linha": "81 = 70 + (x − 10)",
+    "nota": "Stevin na Figura 2"
+   },
+   {
+    "linha": "x = 21 cm",
+    "nota": "o 70 passa subtraindo e o −10 passa somando"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  }
+ },
+ "Pd59979ac": {
+  "n": "20",
+  "conceito": "Flutuação de um prisma de seção triangular com o vértice para baixo: a parte submersa é um prisma triangular semelhante, de volume proporcional a h², e sua água deslocada iguala a massa das chapas e da carga.",
+  "equivocos": {
+   "B": "F07.4:empuxo-maior-que-peso",
+   "C": "F07.4:empuxo-maior-que-peso",
+   "D": "F07.4:empuxo-maior-que-peso",
+   "E": "F07.4:empuxo-maior-que-peso"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A estrutura flutua: massa total = massa de água deslocada. A massa das chapas é a área × 8 kg/m²; a chapa de cima não pesa. A carga cúbica tem massa 240 × (0,5L)³. A parte submersa é um triângulo equilátero menor, de altura h, estendido pelo comprimento 6L. O dado 6/(5√3) ≈ 0,68 é exatamente o coeficiente desse volume quando L = 0,2 m.",
+    "formulas": [
+     "m = σ × área (chapas) e m = ρ × V (carga)",
+     "triângulo equilátero de altura h: lado = 2h/√3, área = h²/√3",
+     "V_sub = 6L × h²/√3",
+     "ρ_água × V_sub = m_total"
+    ],
+    "simbolos": [
+     [
+      "σ",
+      "massa específica superficial das chapas: 8 kg por m²"
+     ],
+     [
+      "h",
+      "profundidade do vértice abaixo da linha d'água"
+     ],
+     [
+      "V_sub",
+      "volume submerso"
+     ]
+    ]
+   },
+   "pista": "Trabalhe em metros (L = 0,2 m) e escreva a área do triângulo submerso só em função da altura h.",
+   "passos": [
+    {
+     "faz": "Calcule a massa das chapas",
+     "conta": "área = 2 × 6L × L + 2 × (√3/4) L² → área = 12 × 0,04 + (1,7/2) × 0,04 = 0,48 + 0,034 = 0,514 m² | m = 8 × 0,514 = 4,112 kg",
+     "porque": "São duas chapas retangulares 6L × L e duas triangulares de lado L; a superior tem massa desprezível.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a massa da carga",
+     "conta": "m_c = 240 × (0,5 × 0,2)³ = 240 × 0,001 = 0,24 kg",
+     "porque": "A carga é um cubo de aresta 0,1 m; massa é densidade vezes volume.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva o volume submerso",
+     "conta": "área do triângulo = (1/2) × (2h/√3) × h = h²/√3 → V_sub = 6 × 0,2 × h²/√3 = (6/(5√3)) h² ≈ 0,68 h²",
+     "porque": "A parte submersa é um triângulo equilátero menor, semelhante à seção; altura h dá lado 2h/√3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale à massa total e isole h",
+     "conta": "1000 × 0,68 h² = 4,112 + 0,24 → 680 h² = 4,352 → h² = 4,352/680 = 0,0064 → h = 0,08 m",
+     "porque": "Flutuando, empuxo = peso; o 680 que multiplica h² passa dividindo, e a raiz de 0,0064 é 0,08.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta e conclua",
+     "conta": "0,08 m = 8 cm",
+     "porque": "A pergunta pede centímetros: é a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — h ≈ 8 cm.",
+   "checagem": "Substitua h = 0,08 m: 680 × 0,08² = 680 × 0,0064 = 4,352 kg de água deslocada, igual à massa total. Com √3 exato em tudo (sem o 0,68), h ≈ 7,9 cm, que também arredonda para 8.",
+   "erradas": {
+    "B": "10 não confere: 680 × 0,10² = 6,8 kg de água deslocada, bem mais que os 4,35 kg da estrutura.",
+    "C": "12 não confere: 680 × 0,12² ≈ 9,8 kg deslocados, mais que o dobro da massa da estrutura.",
+    "D": "14 não confere: 680 × 0,14² ≈ 13,3 kg deslocados, cerca de três vezes a massa da estrutura.",
+    "E": "16 não confere: 680 × 0,16² ≈ 17,4 kg deslocados, quatro vezes a massa da estrutura."
+   },
+   "armadilha": "Tratar a parte submersa como retângulo (largura fixa L): no prisma com vértice para baixo, a largura molhada cresce com h, e o volume é proporcional a h², não a h.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A profundidade h que a estrutura afunda na água.",
+    "chave": "1000 × (6/(5√3)) h² = 4,112 + 0,24 → h² = 0,0064 m² → h = 8 cm.",
+    "cuidado": "Área do triângulo submerso = h²/√3, com L em metros e só quatro chapas com massa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "semelhança",
+    "ideia": "O volume submerso é o do prisma inteiro (6L × (√3/4)L² ≈ 0,0204 m³, ou 20,4 kg de água) vezes (h/H)², com H = (√3/2) × 0,2 ≈ 0,17 m: 20,4 × (h/0,17)² = 4,352 dá h ≈ 7,9 cm ≈ 8 cm."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m_chapas = 8 × (0,48 + 0,034) = 4,112 kg",
+    "nota": "duas retangulares + duas triangulares"
+   },
+   {
+    "linha": "m_carga = 240 × 0,1³ = 0,24 kg",
+    "nota": "cubo de 0,1 m"
+   },
+   {
+    "linha": "V_sub = 6L × h²/√3 = 0,68 h²",
+    "nota": "triângulo submerso de altura h"
+   },
+   {
+    "linha": "680 h² = 4,352",
+    "nota": "empuxo = peso"
+   },
+   {
+    "linha": "h² = 4,352/680 = 0,0064 → h = 0,08 m",
+    "nota": "o 680 passa dividindo; raiz"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Estratégia Militares — gabarito/correção da 1ª fase do IME 2024/2025, questão 20: A",
+    "url": "https://militares.estrategia.com/portal/eventos/gabarito-ime-2024-2025-correcao-primeira-fase/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  },
+  "gabarito_aprendice": {
+   "letra": "A",
+   "letra_conferente": "A",
+   "preliminar": "A",
+   "fontes_web": [
+    {
+     "url": "https://militares.estrategia.com/portal/eventos/gabarito-ime-2024-2025-correcao-primeira-fase/",
+     "letra": "A"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  }
  }
 }
