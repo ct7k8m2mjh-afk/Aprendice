@@ -1322,5 +1322,112 @@
    "data": "2026-11-19",
    "lote": "mat-0073"
   }
+ },
+ "P97045b10": {
+  "n": "50",
+  "conceito": "Testar a hipótese de Iara usar a camisa contra as três regras (disjunção exclusiva, bicondicional e condicional) e concluir pelo único caso possível.",
+  "equivocos": {
+   "B": "M17.1:leu-bicondicional-como-condicional",
+   "C": "M17.1:ignorou-a-disjuncao",
+   "D": "M17.1:inverteu-a-condicional",
+   "E": "M17.1:leu-bicondicional-como-condicional"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São três regras ao mesmo tempo. \"Ou Elias ou Iara\" é uma disjunção exclusiva: exatamente um dos dois usa. \"Se, e somente se\" amarra Andrea e Elias: os dois usam ou os dois não usam. \"Se Iara usar, então Andrea usa\" é uma condicional. Teste o que acontece se Iara usar.",
+    "formulas": [
+     "ou P ou Q: exatamente um dos dois é verdadeiro",
+     "P se, e somente se, Q: P e Q têm o mesmo valor",
+     "se P, então Q: P verdadeiro obriga Q verdadeiro"
+    ],
+    "simbolos": [
+     [
+      "disjunção exclusiva",
+      "\"ou... ou\": um e só um acontece"
+     ],
+     [
+      "bicondicional",
+      "\"se, e somente se\": os dois juntos ou nenhum"
+     ]
+    ]
+   },
+   "pista": "Suponha que Iara use a camisa e siga as regras 3 e 2 até ver se a regra 1 continua valendo.",
+   "passos": [
+    {
+     "faz": "Traduza as regras",
+     "conta": "regra 1: ou E ou I (só um) | regra 2: A ⇔ E | regra 3: I → A",
+     "porque": "Com letras, fica fácil encadear: A = Andrea usa, E = Elias usa, I = Iara usa.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste a hipótese de Iara usar",
+     "conta": "I → A (regra 3) → E (regra 2) → E e I juntos",
+     "porque": "Se Iara usa, Andrea usa; se Andrea usa, Elias usa. Os dois usando quebra o \"ou... ou\" da regra 1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua para Elias e Andrea",
+     "conta": "I não usa → E usa (regra 1) → A usa (regra 2)",
+     "porque": "Iara nunca pode usar; pela regra 1, então Elias usa; pela regra 2, Andrea também. A regra 3 fica valendo, porque Iara não usa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "Iara nunca; Andrea e Elias sempre → alternativa A",
+     "porque": "É o único arranjo que respeita as três regras ao mesmo tempo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — Iara nunca usa a camisa do time; Andrea e Elias sempre a usam.",
+   "checagem": "Confira o arranjo nas regras: só Elias entre Elias e Iara (regra 1 ok); Andrea e Elias juntos (regra 2 ok); Iara não usa, então a regra 3 não exige nada. Tudo vale.",
+   "erradas": {
+    "B": "B quebra a regra 2: Andrea usaria sem Elias, mas Andrea usa se, e somente se, Elias usar.",
+    "C": "C quebra a regra 1, porque nem Elias nem Iara usariam, e a regra 2, porque Andrea usaria sem Elias.",
+    "D": "D quebra a regra 3: Iara usaria e Andrea não, mas se Iara usa, Andrea também usa.",
+    "E": "E quebra a regra 2: Elias usaria sem Andrea, e os dois têm de estar sempre juntos."
+   },
+   "armadilha": "Ler \"ou Elias ou Iara\" como \"pelo menos um\"; é \"exatamente um\", e é isso que impede Iara de usar.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quem usa e quem não usa a camisa, respeitando as três regras.",
+    "chave": "Se Iara usasse, Andrea e Elias usariam e a regra do \"ou... ou\" cairia; logo Iara não usa e Elias e Andrea usam.",
+    "cuidado": "\"Ou... ou\" é exclusivo; \"se, e somente se\" vale nos dois sentidos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela de casos",
+    "ideia": "Pela regra 1, ou só Elias usa ou só Iara usa; no caso só Iara, a regra 3 obriga Andrea e a regra 2 obriga Elias, contradição; sobra só Elias, com Andrea junto."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ou E ou I  |  A ⇔ E  |  I → A",
+    "nota": "as três regras"
+   },
+   {
+    "linha": "I → A → E ⇒ E e I juntos",
+    "nota": "supor que Iara usa"
+   },
+   {
+    "linha": "contradição com \"ou E ou I\" ⇒ I não usa",
+    "nota": "descartar a hipótese"
+   },
+   {
+    "linha": "I não usa ⇒ E usa ⇒ A usa",
+    "nota": "regras 1 e 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
  }
 }

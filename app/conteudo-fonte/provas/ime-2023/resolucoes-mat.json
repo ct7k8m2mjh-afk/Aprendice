@@ -1627,5 +1627,119 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0006"
   }
+ },
+ "Pabe3156a": {
+  "n": "3",
+  "conceito": "Ver A como losango |x| + |y| ≤ r e B como quadrado de centro (a, b) e meio-lado c, e exigir que o vértice mais afastado do quadrado fique dentro do losango.",
+  "equivocos": {
+   "A": "M16.2:usou-o-centro-no-lugar-do-vertice",
+   "B": "M16.2:confundiu-norma-da-soma-com-distancia",
+   "C": "M16.2:condicao-insuficiente",
+   "E": "M16.2:nao-tomou-o-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Desenhe os dois conjuntos no plano. |x| + |y| ≤ r é um losango (quadrado girado) com centro na origem. max{|x − a|, |y − b|} ≤ c é um quadrado de lados paralelos aos eixos, centro (a, b) e lado 2c. O quadrado cabe no losango quando os quatro vértices cabem, porque o losango é convexo. Com a e b positivos, o vértice que mais sobe em |x| + |y| é o de cima à direita.",
+    "formulas": [
+     "max{|x − a|, |y − b|} ≤ c ⇔ a − c ≤ x ≤ a + c e b − c ≤ y ≤ b + c",
+     "ponto (x, y) está em A ⇔ |x| + |y| ≤ r"
+    ],
+    "simbolos": [
+     [
+      "max{x1, x2}",
+      "o maior dos dois números"
+     ],
+     [
+      "B ⊂ A",
+      "todo ponto de B também está em A"
+     ],
+     [
+      "convexo",
+      "o segmento entre dois pontos da figura fica dentro dela"
+     ],
+     [
+      "(a, b)",
+      "centro do quadrado B"
+     ]
+    ]
+   },
+   "pista": "Faça o desenho: que figura é cada conjunto? Depois pense em qual ponto de B fica mais longe da origem no sentido de |x| + |y|.",
+   "passos": [
+    {
+     "faz": "Identifique as duas figuras",
+     "conta": "A: |x| + |y| ≤ r (losango) | B: a − c ≤ x ≤ a + c e b − c ≤ y ≤ b + c (quadrado)",
+     "porque": "O máximo das duas distâncias não passar de c obriga x e y a ficarem, cada um, a no máximo c do centro: isso é um quadrado de lado 2c.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o vértice crítico de B",
+     "conta": "vértices (a ± c, b ± c) → maior |x| + |y| em (a + c, b + c)",
+     "porque": "Com a, b e c positivos, |a + c| ≥ |a − c| e |b + c| ≥ |b − c|; o vértice de cima à direita tem a maior soma. Como o losango é convexo, se os vértices cabem, o quadrado inteiro cabe.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Exija que esse vértice esteja em A",
+     "conta": "(a + c) + (b + c) ≤ r → a + b + 2c ≤ r",
+     "porque": "Esse é o pior ponto; se ele obedece |x| + |y| ≤ r, todos os outros pontos de B também obedecem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tome o menor r e marque",
+     "conta": "r mínimo = a + b + 2c → alternativa D",
+     "porque": "Qualquer r menor deixa o vértice (a + c, b + c) fora do losango; com r = a + b + 2c ele fica na borda e B ⊂ A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a + b + 2c.",
+   "checagem": "Caso numérico: a = 1, b = 2, c = 0,5. O quadrado vai de x = 0,5 a 1,5 e de y = 1,5 a 2,5; o maior |x| + |y| é 1,5 + 2,5 = 4, e a + b + 2c = 1 + 2 + 1 = 4. Bate.",
+   "erradas": {
+    "A": "A sai de somar c uma vez só: o vértice anda c em x e c em y. Com a = 1, b = 2, c = 0,5, A dá 3,5 e o vértice soma 4.",
+    "B": "B não confere: com a = b = 1 e c = 10, (a + b)√2 + c ≈ 12,83, mas o vértice (11, 11) soma 22, e B não caberia em A.",
+    "C": "C não confere: com a = b = 1 e c = 10, 2(a + b) + c = 14, menor que os 22 do vértice (11, 11); B ficaria fora de A.",
+    "E": "E não é o menor: 2(a + b + c) passa de a + b + 2c em a + b, que é positivo. Funciona, mas sobra folga."
+   },
+   "armadilha": "O pedido é o MENOR r: valores maiores que a + b + 2c também fazem B caber, mas não são mínimos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor r para que o quadrado B caiba no losango A.",
+    "chave": "Basta o vértice mais afastado, (a + c, b + c), estar em A: a + b + 2c ≤ r.",
+    "cuidado": "O vértice soma c em x e c em y; usar o centro mais c só uma vez deixa o canto de fora."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas desigualdades",
+    "ideia": "Em B, |x| ≤ a + c e |y| ≤ b + c, logo |x| + |y| ≤ a + b + 2c, com igualdade no vértice (a + c, b + c): r mínimo = a + b + 2c."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "B: a − c ≤ x ≤ a + c  e  b − c ≤ y ≤ b + c",
+    "nota": "o max vira um quadrado"
+   },
+   {
+    "linha": "vértice crítico: (a + c, b + c)",
+    "nota": "maior |x| + |y|"
+   },
+   {
+    "linha": "(a + c) + (b + c) ≤ r",
+    "nota": "o vértice tem de estar no losango"
+   },
+   {
+    "linha": "r ≥ a + b + 2c → r mínimo = a + b + 2c",
+    "nota": "juntar os termos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
  }
 }

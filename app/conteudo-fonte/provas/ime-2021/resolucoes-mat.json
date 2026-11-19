@@ -1606,5 +1606,123 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0005"
   }
+ },
+ "Pca409386": {
+  "n": "9",
+  "conceito": "Probabilidade com simetria: comparar duas binomiais independentes Bin(4, 1/2) com vantagem inicial de 1 ponto.",
+  "equivocos": {
+   "A": "M13.9:probabilidade-menor-que-meio",
+   "B": "M13.9:probabilidade-menor-que-meio",
+   "C": "M13.9:contou-um-unico-resultado",
+   "E": "M13.9:contou-partidas-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com 6 jogadores, cada um faz 5 partidas. José já venceu Maria, então ele começa com 1 ponto a mais nessa disputa, e cada um tem ainda 4 partidas contra os outros quatro jogadores. Essas 8 partidas são diferentes entre si e independentes. José fica à frente se 1 + X > Y, em que X e Y são as vitórias de cada um nas 4 partidas restantes, ou seja, se X ≥ Y. Pela simetria entre X e Y, basta saber a chance de empate X = Y.",
+    "formulas": [
+     "P(X = k) = C(4, k)/16 (4 partidas, chance 1/2 em cada)",
+     "P(X ≥ Y) = (1 + P(X = Y))/2, pois P(X > Y) = P(X < Y)"
+    ],
+    "simbolos": [
+     [
+      "X",
+      "vitórias de José nas 4 partidas contra os outros jogadores"
+     ],
+     [
+      "Y",
+      "vitórias de Maria nas 4 partidas contra os outros jogadores"
+     ],
+     [
+      "C(4, k)",
+      "maneiras de escolher quais k das 4 partidas foram vitórias"
+     ],
+     [
+      "p/q",
+      "a fração da probabilidade, já irredutível"
+     ]
+    ]
+   },
+   "pista": "Escreva a pontuação final de cada um: José tem 1 + X e Maria tem Y. Que relação entre X e Y deixa José à frente?",
+   "passos": [
+    {
+     "faz": "Traduza 'José à frente'",
+     "conta": "1 + X > Y → X ≥ Y",
+     "porque": "Os pontos são inteiros: 1 + X > Y é o mesmo que Y ≤ X. Empate em X e Y já basta, por causa do ponto do primeiro jogo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a chance de X = Y",
+     "conta": "P(X = Y) = (1² + 4² + 6² + 4² + 1²)/(16 · 16) → P(X = Y) = 70/256 = 35/128",
+     "porque": "X e Y são independentes e têm a mesma distribuição: P(X = k e Y = k) = (C(4, k)/16)², somado de k = 0 a 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a simetria",
+     "conta": "P(X ≥ Y) = (1 + 70/256)/2 → P(X ≥ Y) = (326/256)/2 = 326/512 = 163/256",
+     "porque": "P(X > Y) e P(X < Y) são iguais (José e Maria estão em situação idêntica nas 4 partidas restantes); juntas, elas são 1 − P(X = Y). Some uma delas com o empate.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some p e q e marque",
+     "conta": "p/q = 163/256 → p + q = 163 + 256 = 419 → alternativa D",
+     "porque": "163 é ímpar e 256 = 2⁸, então a fração já é irredutível: p = 163 e q = 256.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 419",
+   "checagem": "Ordem de grandeza: José começa 1 ponto à frente e o resto é simétrico, então a chance tem de passar de 1/2. De fato, 163/256 ≈ 0,64. E o denominador tem de ser potência de 2, porque os 2⁸ = 256 resultados das 8 partidas são igualmente prováveis.",
+   "erradas": {
+    "A": "A não confere: com q potência de 2 e fração menor que 1, p + q = 5 só dá 1/4, menor que 1/2, e José, que já está à frente, tem mais da metade de chance.",
+    "B": "B não confere: p + q = 19 com q potência de 2 e p < q só dá 3/16 ≈ 0,19, menor que 1/2, e a chance de José passa de 1/2.",
+    "C": "C não confere: p + q = 257 dá 1/256, a chance de um único resultado específico das 8 partidas, como José vencer as 4 e Maria perder as 4; o pedido inclui muitos resultados.",
+    "E": "E não confere: p + q = 4097 dá 1/4096 = (1/2)¹², chance de 12 partidas saírem de um jeito fixo; só 8 partidas ainda decidem a disputa."
+   },
+   "armadilha": "O ponto do primeiro jogo faz o empate em X e Y valer vitória para José: a condição é X ≥ Y, não X > Y.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de José terminar com mais pontos que Maria, sabendo que ele venceu o confronto direto, e o valor de p + q.",
+    "chave": "1 + X > Y equivale a X ≥ Y; P(X = Y) = 70/256 e, pela simetria, P = (1 + 70/256)/2 = 163/256.",
+    "cuidado": "Conte só as 4 partidas restantes de cada um, inclua o empate e confira que a fração é irredutível antes de somar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela de casos",
+    "ideia": "Some C(4, x) · C(4, y) para todos os pares com y ≤ x numa tabela 5 × 5: dá 163 dos 256 resultados."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "José: 1 + X | Maria: Y",
+    "nota": "pontos finais na disputa"
+   },
+   {
+    "linha": "1 + X > Y → X ≥ Y",
+    "nota": "o ponto do 1º jogo desempata"
+   },
+   {
+    "linha": "P(X = Y) = (1 + 16 + 36 + 16 + 1)/256 = 70/256",
+    "nota": "soma de (C(4, k)/16)²"
+   },
+   {
+    "linha": "P = (1 + 70/256)/2 = 163/256",
+    "nota": "simetria: P(X > Y) = P(X < Y)"
+   },
+   {
+    "linha": "p + q = 163 + 256 = 419",
+    "nota": "fração irredutível"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
  }
 }

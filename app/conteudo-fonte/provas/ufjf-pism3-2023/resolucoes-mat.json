@@ -446,5 +446,126 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0006"
   }
+ },
+ "P0b4a134d": {
+  "n": "19",
+  "conceito": "Montar um polinômio de grau 4 a partir de soma e produto de duas raízes e de valores numéricos, e classificar suas raízes.",
+  "equivocos": {
+   "A": "M16.1:nao-testou-o-segundo-fator",
+   "B": "M16.1:achou-raiz-dupla-no-segundo-fator",
+   "D": "M16.1:esqueceu-as-raizes-inteiras",
+   "E": "M16.1:ignorou-raizes-negativas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Duas raízes com soma 0 e produto −4 são as raízes de x² − 0x − 4 = x² − 4, isto é, 2 e −2. Então p(x) = (x² − 4)(x² + bx + c), com coeficiente líder 1. Os valores p(0) = 8 e p(1) = 9 dão c e b; depois o discriminante do segundo fator diz se as outras duas raízes são reais.",
+    "formulas": [
+     "raízes com soma S e produto P: x² − Sx + P = 0",
+     "p(x) = (x² − 4)(x² + bx + c)",
+     "Δ = b² − 4ac"
+    ],
+    "simbolos": [
+     [
+      "p(x)",
+      "polinômio de grau 4 com coeficiente líder 1"
+     ],
+     [
+      "b, c",
+      "coeficientes do segundo fator, a descobrir"
+     ],
+     [
+      "Δ",
+      "discriminante; Δ > 0 dá duas raízes reais distintas"
+     ]
+    ]
+   },
+   "pista": "Comece descobrindo quais são as duas raízes de soma 0 e produto −4, e escreva p(x) como produto de dois fatores de grau 2.",
+   "passos": [
+    {
+     "faz": "Ache as duas raízes conhecidas",
+     "conta": "x² − 0x − 4 = 0 → x² = 4 → x = ±2",
+     "porque": "Soma 0 e produto −4 definem a equação x² − Sx + P = 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva p(x) fatorado",
+     "conta": "p(x) = (x² − 4)(x² + bx + c)",
+     "porque": "O coeficiente de grau 4 é 1, então o segundo fator também começa por x².",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use p(0) = 8 e p(1) = 9",
+     "conta": "p(0) = −4c = 8 → c = 8/(−4) = −2 ; p(1) = −3(1 + b − 2) = 9 → b − 1 = −3 → b = −2",
+     "porque": "Em x = 0 sobra (−4)·c; em x = 1, x² − 4 vale −3. O que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva o segundo fator",
+     "conta": "x² − 2x − 2 = 0 → Δ = 4 + 8 = 12 > 0 → x = (2 ± 2√3)/2 = 1 ± √3",
+     "porque": "Δ positivo: duas raízes reais distintas, e irracionais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Classifique as raízes",
+     "conta": "raízes: −2, 2, 1 − √3, 1 + √3 → quatro reais → alternativa C",
+     "porque": "Todas as quatro raízes são reais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — p(x) tem exatamente 4 (quatro) raízes reais.",
+   "checagem": "Expanda: p(x) = (x² − 4)(x² − 2x − 2) = x⁴ − 2x³ − 6x² + 8x + 8. Então p(0) = 8 e p(1) = 1 − 2 − 6 + 8 + 8 = 9, como o enunciado pede. Fecha.",
+   "erradas": {
+    "A": "A não confere: além de 2 e −2, o fator x² − 2x − 2 tem Δ = 12 > 0 e dá mais duas raízes reais.",
+    "B": "B não confere: Δ = 12 > 0 dá duas raízes distintas, 1 + √3 e 1 − √3; não há raiz dupla, então são quatro reais, e não três.",
+    "D": "D não confere: 2 e −2 são raízes racionais.",
+    "E": "E não confere: −2 e 1 − √3 ≈ −0,73 são raízes reais negativas."
+   },
+   "armadilha": "Saber duas raízes não basta: o segundo fator também precisa ser testado pelo discriminante.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas e quais raízes reais tem o polinômio de grau 4 descrito.",
+    "chave": "Duas raízes ±2 dão o fator x² − 4; p(0) e p(1) dão o fator x² − 2x − 2, de Δ = 12 > 0.",
+    "cuidado": "Use o coeficiente líder 1 ao montar o segundo fator e confira o sinal de Δ."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Girard no grau 4",
+    "ideia": "O produto das quatro raízes é p(0) = 8; como 2·(−2) = −4, as outras duas têm produto c = −2. Sendo negativo, elas têm sinais opostos e são reais."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² − 4 = 0 → x = ±2",
+    "nota": "soma 0 e produto −4"
+   },
+   {
+    "linha": "p(x) = (x² − 4)(x² + bx + c)",
+    "nota": "fatorar com coeficiente líder 1"
+   },
+   {
+    "linha": "−4c = 8 → c = −2",
+    "nota": "p(0) = 8: o −4 passa dividindo"
+   },
+   {
+    "linha": "−3(b − 1) = 9 → b = −2",
+    "nota": "p(1) = 9: o −3 passa dividindo"
+   },
+   {
+    "linha": "Δ = 4 + 8 = 12 → x = 1 ± √3",
+    "nota": "segundo fator tem duas raízes reais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
  }
 }

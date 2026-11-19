@@ -1357,5 +1357,125 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0005"
   }
+ },
+ "P3caeccd0": {
+  "n": "24",
+  "conceito": "Montar a transposta, multiplicar uma matriz 2×3 por uma 3×2 e impor o valor do determinante da matriz 2×2 resultante.",
+  "equivocos": {
+   "A": "M15.1:nao-testou-o-valor-no-determinante",
+   "B": "M15.1:nao-testou-o-valor-no-determinante",
+   "D": "M15.1:erro-no-produto-de-matrizes",
+   "E": "M15.1:erro-no-produto-de-matrizes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A transposta troca linhas por colunas: B, que é 2×3, vira B^t, 3×2. O produto A·B^t de uma 2×3 por uma 3×2 dá uma matriz 2×2, e cada elemento é linha de A vezes coluna de B^t. No fim, o determinante 2×2 vira uma equação do 1.º grau em x.",
+    "formulas": [
+     "c_ij = (linha i de A) · (coluna j de B^t)",
+     "det [a b ; c d] = a·d − b·c"
+    ],
+    "simbolos": [
+     [
+      "B^t",
+      "transposta de B: a linha 1 de B vira a coluna 1"
+     ],
+     [
+      "c_ij",
+      "elemento da linha i e da coluna j de C"
+     ],
+     [
+      "det",
+      "determinante"
+     ]
+    ]
+   },
+   "pista": "Antes de multiplicar, escreva B^t por inteiro. A coluna j de B^t é a linha j de B.",
+   "passos": [
+    {
+     "faz": "Escreva a transposta de B",
+     "conta": "B = [x − 2  4  x − 3 ; −1  5  2] → B^t = [x − 2  −1 ; 4  5 ; x − 3  2]",
+     "porque": "Cada linha de B vira uma coluna de B^t. Assim A (2×3) e B^t (3×2) podem ser multiplicadas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os quatro elementos de C",
+     "conta": "c11 = −(x − 2) − 8 + 3(x − 3) = 2x − 15 | c12 = 1 − 10 + 6 = −3 | c21 = 2(x − 2) − 4 + (x − 3) = 3x − 11 | c22 = −2 − 5 + 2 = −5",
+     "porque": "Cada elemento é a soma dos produtos da linha de A pela coluna de B^t, termo a termo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o determinante de C",
+     "conta": "det C = (2x − 15)(−5) − (−3)(3x − 11) → −10x + 75 + 9x − 33 → 42 − x",
+     "porque": "Diagonal principal menos diagonal secundária. O −(−3) vira +3, que multiplica 3x − 11.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale a 15 e isole x",
+     "conta": "42 − x = 15 → −x = 15 − 42 → x = 27",
+     "porque": "O 42 passa para o outro lado subtraindo; trocando o sinal dos dois lados, x = 27.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "x = 27 → alternativa C",
+     "porque": "É o valor de x que faz det C = 15.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 27",
+   "checagem": "Substitua x = 27 em C: c11 = 54 − 15 = 39 e c21 = 81 − 11 = 70, então C = [39  −3 ; 70  −5] e det C = 39·(−5) − (−3)·70 = −195 + 210 = 15. Fecha.",
+   "erradas": {
+    "A": "A não confere: com x = 25, det C = 42 − 25 = 17, e não 15.",
+    "B": "B não confere: com x = 30, det C = 42 − 30 = 12, e não 15.",
+    "D": "D não confere: com x = 35, det C = 42 − 35 = 7, e não 15.",
+    "E": "E não confere: com x = 23, det C = 42 − 23 = 19, e não 15."
+   },
+   "armadilha": "Multiplicar A por B sem transpor, ou errar o sinal no −(−3)(3x − 11), que troca a equação inteira.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O x que faz det(A·B^t) = 15.",
+    "chave": "C = [2x − 15  −3 ; 3x − 11  −5], det C = 42 − x = 15, x = 27.",
+    "cuidado": "Transponha B antes de multiplicar e cuide dos sinais no determinante."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar alternativas",
+    "ideia": "Com C montada, substitua cada alternativa em det C = 42 − x: só x = 27 dá 15."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "B^t = [x − 2  −1 ; 4  5 ; x − 3  2]",
+    "nota": "linhas de B viram colunas"
+   },
+   {
+    "linha": "C = A·B^t = [2x − 15  −3 ; 3x − 11  −5]",
+    "nota": "linha de A vezes coluna de B^t"
+   },
+   {
+    "linha": "det C = (2x − 15)(−5) − (−3)(3x − 11)",
+    "nota": "diagonal principal menos secundária"
+   },
+   {
+    "linha": "det C = −10x + 75 + 9x − 33 = 42 − x",
+    "nota": "distribui e junta os termos"
+   },
+   {
+    "linha": "42 − x = 15 → x = 27",
+    "nota": "o 42 passa subtraindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
  }
 }

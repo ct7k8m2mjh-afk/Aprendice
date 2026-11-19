@@ -854,5 +854,129 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0005"
   }
+ },
+ "Pd20e9435": {
+  "n": "36",
+  "conceito": "Achar as raízes de um polinômio de grau 4 testando raízes racionais e fatorando, e classificá-las em reais, racionais e complexas.",
+  "equivocos": {
+   "A": "M16.1:ignorou-teste-de-raiz-racional",
+   "B": "M16.1:nao-testou-5-sobre-2",
+   "D": "M16.1:achou-que-real-nao-e-complexo",
+   "E": "M16.1:tratou-x2-mais-1-como-real"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Polinômio de grau 4 tem 4 raízes complexas, contando repetições. Para descobrir quais são reais, teste primeiro as candidatas racionais: frações p/q com p dividindo o termo independente 5 e q dividindo o coeficiente líder 2. Cada raiz achada vira um fator e abaixa o grau. Lembre ainda que todo número real também é complexo.",
+    "formulas": [
+     "candidatas racionais = (divisores de 5)/(divisores de 2) = ±1, ±5, ±1/2, ±5/2",
+     "se p(r) = 0, então (x − r) é fator de p(x)"
+    ],
+    "simbolos": [
+     [
+      "raiz",
+      "valor de x que zera o polinômio"
+     ],
+     [
+      "número complexo",
+      "número da forma a + bi; os reais são os complexos com b = 0"
+     ],
+     [
+      "i",
+      "unidade imaginária, i² = −1"
+     ],
+     [
+      "coeficiente líder",
+      "o número que multiplica a maior potência de x (aqui, 2)"
+     ]
+    ]
+   },
+   "pista": "Teste os valores mais simples da lista de candidatas racionais, começando por x = 1.",
+   "passos": [
+    {
+     "faz": "Teste x = 1 no polinômio",
+     "conta": "p(1) = 2 − 7 + 7 − 7 + 5 = 0",
+     "porque": "Somando os coeficientes dá zero, então 1 é raiz e (x − 1) é fator.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste x = 5/2",
+     "conta": "p(5/2) = 2·(625/16) − 7·(125/8) + 7·(25/4) − 7·(5/2) + 5 = 0",
+     "porque": "5/2 está na lista de candidatas (5 sobre 2) e também zera o polinômio: é a segunda raiz racional, e (2x − 5) é fator.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo produto dos dois fatores",
+     "conta": "(x − 1)(2x − 5) = 2x² − 7x + 5 → p(x) ÷ (2x² − 7x + 5) = x² + 1",
+     "porque": "Tirando as duas raízes achadas, sobra um fator de grau 2, onde estão as outras duas raízes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva o fator que sobrou",
+     "conta": "x² + 1 = 0 → x² = −1 → x = ±i",
+     "porque": "Nenhum número real ao quadrado dá −1, então essas duas raízes são complexas não reais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Classifique as quatro raízes",
+     "conta": "raízes: 1, 5/2, i, −i → reais: só 1 e 5/2 → alternativa C",
+     "porque": "Exatamente duas raízes são reais, e as duas são racionais. As quatro são números complexos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — apenas duas delas são números reais.",
+   "checagem": "Multiplique os fatores de volta: (2x² − 7x + 5)(x² + 1) = 2x⁴ − 7x³ + 5x² + 2x² − 7x + 5 = 2x⁴ − 7x³ + 7x² − 7x + 5, o polinômio dado. Pela soma de Girard, 1 + 5/2 + i + (−i) = 7/2, que é −(−7)/2. Fecha.",
+   "erradas": {
+    "A": "A não confere: p(1) = 2 − 7 + 7 − 7 + 5 = 0, então 1 é uma raiz real.",
+    "B": "B não confere: há duas raízes racionais, 1 e 5/2, e não apenas uma.",
+    "D": "D sai de chamar de \"complexo\" só o número não real. Todo real também é complexo (b = 0), então as quatro raízes são complexas, não apenas duas.",
+    "E": "E não confere: o fator x² + 1 só se anula em x = ±i, e i² = −1 não é real."
+   },
+   "armadilha": "Todo número real também é complexo: as raízes ±i são as \"não reais\", mas as quatro raízes são complexas, o que derruba a alternativa D.",
+   "alerta": "A alternativa D só é falsa no sentido matemático estrito de número complexo (que inclui os reais). Quem lê \"complexo\" como \"não real\" veria D também correta; o gabarito oficial C confirma que a banca usou o sentido estrito.",
+   "essencial": {
+    "pede": "Qual afirmação sobre as raízes de 2x⁴ − 7x³ + 7x² − 7x + 5 é correta.",
+    "chave": "Fatoração (x − 1)(2x − 5)(x² + 1): raízes 1, 5/2 e ±i, logo só duas reais.",
+    "cuidado": "Teste as candidatas racionais antes de qualquer outra coisa e lembre que real também é complexo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "agrupamento",
+    "ideia": "Agrupe: 2x⁴ + 2x² − 7x³ − 7x + 5x² + 5 = (x² + 1)(2x² − 7x + 5), e o fator x² + 1 já mostra duas raízes não reais."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p(1) = 2 − 7 + 7 − 7 + 5 = 0",
+    "nota": "x = 1 é raiz"
+   },
+   {
+    "linha": "p(5/2) = 0",
+    "nota": "x = 5/2 é raiz"
+   },
+   {
+    "linha": "p(x) = (2x² − 7x + 5)(x² + 1)",
+    "nota": "divide pelos dois fatores achados"
+   },
+   {
+    "linha": "x² + 1 = 0 → x = ±i",
+    "nota": "as outras duas não são reais"
+   },
+   {
+    "linha": "reais: 1 e 5/2",
+    "nota": "exatamente duas raízes reais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
  }
 }

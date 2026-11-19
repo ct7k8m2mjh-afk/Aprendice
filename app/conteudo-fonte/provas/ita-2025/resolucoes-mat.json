@@ -1045,5 +1045,126 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0005"
   }
+ },
+ "Pf9f83343": {
+  "n": "10",
+  "conceito": "Raiz comum de dois polinômios é raiz do resto da divisão de um pelo outro (algoritmo de Euclides).",
+  "equivocos": {
+   "A": "M16.1:sinal-trocado-na-parte-real",
+   "B": "M16.1:raiz-que-nao-anula-os-dois",
+   "C": "M16.1:raiz-que-nao-anula-os-dois",
+   "E": "M16.1:raiz-que-nao-anula-os-dois"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se z anula p e q, anula também p − (x + 1)·q, que é o resto da divisão de p por q. Esse resto é de grau 2, então as raízes comuns estão entre as raízes de uma equação do 2.º grau. Depois, basta confirmar que esse fator divide q.",
+    "formulas": [
+     "p(x) = Q(x)·q(x) + R(x)",
+     "p(z) = q(z) = 0 ⇒ R(z) = 0",
+     "x² − 2x + 3 = 0 → x = (2 ± √(4 − 12))/2"
+    ],
+    "simbolos": [
+     [
+      "Q(x)",
+      "quociente da divisão de p por q"
+     ],
+     [
+      "R(x)",
+      "resto da divisão"
+     ],
+     [
+      "i",
+      "unidade imaginária, i² = −1"
+     ]
+    ]
+   },
+   "pista": "Divida p por q. O que o resto da divisão tem a ver com uma raiz que anula os dois?",
+   "passos": [
+    {
+     "faz": "Divida p por q",
+     "conta": "x⁵ − x³ + 12x − 18 = (x + 1)(x⁴ − x³ + 5x − 3) + (−5x² + 10x − 15)",
+     "porque": "(x + 1)·q = x⁵ − x³ + 5x² + 2x − 3; tirando isso de p, sobra −5x² + 10x − 15.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use que a raiz comum anula o resto",
+     "conta": "−5x² + 10x − 15 = 0 → −5(x² − 2x + 3) = 0 → x² − 2x + 3 = 0",
+     "porque": "Se p(z) = 0 e q(z) = 0, então R(z) = p(z) − (z + 1)·q(z) = 0. O −5 sai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a equação do 2.º grau",
+     "conta": "x = (2 ± √(4 − 12))/2 → x = (2 ± 2√2 i)/2 → x = 1 ± √2 i",
+     "porque": "Δ = −8 e √(−8) = 2√2 i; o 2 se cancela com o denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confirme que o fator divide q",
+     "conta": "q(x) = (x² − 2x + 3)(x² + x − 1)",
+     "porque": "Sem isso, 1 ± √2 i anularia o resto mas talvez não q. A divisão é exata, então são raízes de q e, portanto, de p.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue a raiz à alternativa",
+     "conta": "1 + √2 i → alternativa D",
+     "porque": "Entre as alternativas, só 1 + √2 i está entre as raízes comuns 1 ± √2 i.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1 + √2 i",
+   "checagem": "Substitua z = 1 + √2 i: z² = 1 + 2√2 i − 2 = −1 + 2√2 i, e z² − 2z + 3 = −1 + 2√2 i − 2 − 2√2 i + 3 = 0. Como p(x) = (x² − 2x + 3)(x³ + 2x² − 6), z anula p também.",
+   "erradas": {
+    "A": "A não confere: −1 + √2 i e a conjugada têm soma −2 (fator x² + 2x + 3); as raízes comuns vêm de x² − 2x + 3, com soma 2.",
+    "B": "B não confere: √2 + √2 i e a conjugada têm soma 2√2 e produto 4; o fator comum tem soma 2 e produto 3.",
+    "C": "C não confere: √2 + i e a conjugada têm soma 2√2 e produto 3; a soma deveria ser 2.",
+    "E": "E não confere: −√2 + i e a conjugada têm soma −2√2 e produto 3; a soma deveria ser 2."
+   },
+   "armadilha": "Testar alternativa por alternativa em polinômios de grau 4 e 5, com conta longa e fácil de errar, em vez de dividir p por q.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Uma raiz comum a p e q.",
+    "chave": "Resto de p ÷ q: −5(x² − 2x + 3); raízes 1 ± √2 i, e o fator divide q.",
+    "cuidado": "Confirme que o fator do resto divide q antes de concluir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fator de cada alternativa",
+    "ideia": "z e z̄ formam o fator x² − 2·Re(z)·x + |z|²; só para 1 + √2 i ele é x² − 2x + 3, que divide p e q."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p = (x + 1)·q + (−5x² + 10x − 15)",
+    "nota": "divisão de p por q"
+   },
+   {
+    "linha": "−5x² + 10x − 15 = −5(x² − 2x + 3)",
+    "nota": "raiz comum anula o resto"
+   },
+   {
+    "linha": "x² − 2x + 3 = 0 → x = (2 ± √(−8))/2",
+    "nota": "fórmula de Bhaskara"
+   },
+   {
+    "linha": "x = 1 ± √2 i",
+    "nota": "√(−8) = 2√2 i"
+   },
+   {
+    "linha": "q = (x² − 2x + 3)(x² + x − 1)",
+    "nota": "o fator divide q"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
  }
 }

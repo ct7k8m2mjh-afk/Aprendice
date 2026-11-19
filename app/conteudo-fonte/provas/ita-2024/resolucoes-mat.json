@@ -1070,5 +1070,355 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0005"
   }
+ },
+ "P48cddac5": {
+  "n": "40",
+  "conceito": "Princípio das casas dos pombos: agrupar os elementos em pares de produto 256 e achar o maior subconjunto sem par.",
+  "equivocos": {
+   "A": "M13.9:esqueceu-o-elemento-isolado",
+   "C": "M13.9:nao-buscou-o-minimo",
+   "D": "M13.9:nao-buscou-o-minimo",
+   "E": "M13.9:nao-buscou-o-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Todos os elementos são potências de 2: 2⁰, 2¹, ..., 2⁸. O produto 2^a · 2^b é 256 = 2⁸ quando a + b = 8. Separe os elementos em grupos: cada par que dá 256 é uma 'casa', e o 16 = 2⁴ fica sozinho, porque precisaria de outro 16. O maior subconjunto SEM par pega no máximo um elemento de cada casa; o menor n que obriga um par é esse máximo mais 1.",
+    "formulas": [
+     "2^a · 2^b = 2^(a + b)",
+     "256 = 2⁸ → a + b = 8",
+     "menor n que obriga um par = (maior subconjunto sem par) + 1"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "tamanho do subconjunto"
+     ],
+     [
+      "casas dos pombos",
+      "se há mais objetos que caixas, alguma caixa recebe dois"
+     ],
+     [
+      "par",
+      "dois elementos diferentes do subconjunto"
+     ]
+    ]
+   },
+   "pista": "Escreva cada elemento como potência de 2 e junte os que se completam até 2⁸.",
+   "passos": [
+    {
+     "faz": "Forme as casas",
+     "conta": "{1, 256} | {2, 128} | {4, 64} | {8, 32} | {16}",
+     "porque": "Os expoentes que somam 8 são 0 e 8, 1 e 7, 2 e 6, 3 e 5. O 16 = 2⁴ só faria 256 com outro 16, e um subconjunto não repete elemento.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte o maior subconjunto sem par",
+     "conta": "{1, 2, 4, 8, 16} → maior produto 8 · 16 = 128 < 256",
+     "porque": "Um elemento de cada uma das 5 casas não forma par nenhum: com 5 elementos ainda dá para fugir do 256.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique as casas dos pombos",
+     "conta": "5 casas e 6 elementos → 6 − 5 = 1 casa com dois",
+     "porque": "Com 6 elementos, duas escolhas caem na mesma casa. Não pode ser a casa do 16 (ela tem um elemento só), então é um dos pares de produto 256.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua o menor n",
+     "conta": "máximo sem par = 5 → n = 5 + 1 = 6 → alternativa B",
+     "porque": "Com 5 há subconjunto sem par; com 6 o par é obrigatório. O menor n é 6.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — n = 6",
+   "checagem": "Teste os vizinhos: com n = 5 o conjunto {16, 32, 64, 128, 256} também escapa (o menor produto é 16 · 32 = 512, acima de 256, e 256 só sai de pares que somam expoente 8). Então 5 não basta; e 6 é o primeiro que força o par.",
+   "erradas": {
+    "A": "n = 5 não serve: o subconjunto {1, 2, 4, 8, 16} tem 5 elementos e nenhum par com produto 256 (o maior é 8 · 16 = 128).",
+    "C": "n = 7 garante o par, mas não é o menor: com 6 elementos o par já é obrigatório.",
+    "D": "n = 8 garante o par, mas não é o menor: 6 elementos já obrigam o produto 256.",
+    "E": "n = 9 é o conjunto inteiro, que tem o par 1 · 256; mas a pergunta é o MENOR n, e 6 já basta."
+   },
+   "armadilha": "O 16 não faz par consigo mesmo: são 5 casas, não 4, e por isso o subconjunto sem par chega a 5 elementos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor tamanho de subconjunto de A que obriga a existência de dois elementos com produto 256.",
+    "chave": "Pares de expoentes que somam 8 mais o 16 isolado formam 5 casas; 5 elementos ainda escapam, 6 não.",
+    "cuidado": "Não conte o 16 como par de si mesmo e lembre que a pergunta é o menor n, não um n que funcione."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelos expoentes",
+    "ideia": "Troque A por {0, 1, ..., 8} e procure pares com soma 8: os 4 pares mais o 4 sozinho dão 5 casas, e n = 6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "{1, 256} | {2, 128} | {4, 64} | {8, 32} | {16}",
+    "nota": "5 casas: expoentes que somam 8"
+   },
+   {
+    "linha": "{1, 2, 4, 8, 16}: 8 · 16 = 128 < 256",
+    "nota": "5 elementos sem par"
+   },
+   {
+    "linha": "6 elementos em 5 casas → 6 − 5 = 1 casa com dois",
+    "nota": "casas dos pombos"
+   },
+   {
+    "linha": "n = 5 + 1 = 6",
+    "nota": "menor n que obriga o par"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ },
+ "Pab4dcb68": {
+  "n": "42",
+  "conceito": "Relações de Girard com raízes em PG: escrever as raízes como a/q, a, aq e dividir duas relações para achar o termo do meio.",
+  "equivocos": {
+   "A": "M16.1:erro-nas-relacoes-de-girard",
+   "B": "M16.1:erro-nas-relacoes-de-girard",
+   "D": "M16.1:erro-nas-relacoes-de-girard",
+   "E": "M16.1:erro-nas-relacoes-de-girard"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Raízes em progressão geométrica se escrevem a/q, a e aq. As relações de Girard dão a soma, a soma dos produtos dois a dois e o produto. A soma e a soma dos produtos têm o mesmo fator (1/q + 1 + q); dividindo uma pela outra, esse fator some e sobra a. O produto, a³, dá k.",
+    "formulas": [
+     "x³ + bx² + cx + d: soma = −b; produtos 2 a 2 = c; produto = −d",
+     "raízes em PG: a/q, a, aq"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes a razão q"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ],
+     [
+      "a",
+      "termo do meio da PG"
+     ],
+     [
+      "Girard",
+      "relações entre coeficientes e raízes"
+     ]
+    ]
+   },
+   "pista": "Escreva a soma e a soma dos produtos dois a dois com as raízes a/q, a, aq. Que fator as duas têm em comum?",
+   "passos": [
+    {
+     "faz": "Escreva as relações de Girard",
+     "conta": "soma: a · (1/q + 1 + q) = −3 | produtos 2 a 2: a² · (1/q + 1 + q) = −6 | produto: a³ = −k",
+     "porque": "(a/q)·a + (a/q)·aq + a·aq = a²/q + a² + a²q, que tem o mesmo fator da soma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida as duas primeiras relações",
+     "conta": "(a² · (1/q + 1 + q))/(a · (1/q + 1 + q)) = (−6)/(−3) → a = 2",
+     "porque": "O fator (1/q + 1 + q) se cancela e um a de cima cancela com o de baixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o produto para achar k",
+     "conta": "a³ = −k → 2³ = −k → k = −8",
+     "porque": "O produto das raízes de x³ + … + k é −k.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "k = −8 → alternativa C",
+     "porque": "É o valor de k que põe as raízes em PG.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — −8",
+   "checagem": "Com k = −8, p(x) = x³ + 3x² − 6x − 8 = (x − 2)(x + 1)(x + 4): raízes −4, 2 e −1, que formam a PG de razão −1/2 (−4 · (−1/2) = 2; 2 · (−1/2) = −1). Fecha.",
+   "erradas": {
+    "A": "A não confere: o termo do meio da PG, 2, tem de ser raiz, mas p(2) = 8 + 12 − 12 − 18 = −10 ≠ 0.",
+    "B": "B não confere: com k = −16, p(2) = 8 − 16 = −8 ≠ 0; 2 não é raiz.",
+    "D": "D não confere: com k = −2, p(2) = 8 − 2 = 6 ≠ 0.",
+    "E": "E não confere: com k = −1, p(2) = 8 − 1 = 7 ≠ 0."
+   },
+   "armadilha": "Procurar a PG nas raízes em ordem de tamanho: o termo do meio é 2, mas a PG é −4, 2, −1, com razão negativa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O k que põe as raízes de x³ + 3x² − 6x + k em PG.",
+    "chave": "Dividindo produtos 2 a 2 pela soma: a = (−6)/(−3) = 2; a³ = −k, k = −8.",
+    "cuidado": "O produto das raízes do cúbico mônico é −k, não k."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "raiz do meio",
+    "ideia": "Achado a = 2, basta impor p(2) = 0: 8 + 12 − 12 + k = 0, k = −8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "raízes: a/q, a, aq",
+    "nota": "forma da PG"
+   },
+   {
+    "linha": "a · (1/q + 1 + q) = −3",
+    "nota": "soma das raízes"
+   },
+   {
+    "linha": "a² · (1/q + 1 + q) = −6",
+    "nota": "soma dos produtos 2 a 2"
+   },
+   {
+    "linha": "a = (−6)/(−3) = 2",
+    "nota": "divide e cancela o fator comum"
+   },
+   {
+    "linha": "a³ = −k → 8 = −k → k = −8",
+    "nota": "produto das raízes"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ },
+ "P08bd1f74": {
+  "n": "46",
+  "conceito": "Mostrar que a e b têm o mesmo módulo, reduzir a^m = b^m a (a/b)^m = 1 e achar o menor m pelo argumento de a/b.",
+  "equivocos": {
+   "A": "M16.2:parou-em-meia-volta",
+   "B": "M16.2:errou-o-argumento",
+   "C": "M16.2:errou-o-argumento",
+   "E": "M16.2:nao-comparou-os-modulos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "a^m = b^m com b ≠ 0 é o mesmo que (a/b)^m = 1. Para isso, o módulo de a/b tem de ser 1, e o argumento vezes m tem de dar um múltiplo de 2π. Então calcule os módulos e o quociente a/b na forma trigonométrica.",
+    "formulas": [
+     "|x + yi| = √(x² + y²)",
+     "a/b = (a · b̄)/|b|²",
+     "(cos θ + i sen θ)^m = cos(mθ) + i sen(mθ) (De Moivre)"
+    ],
+    "simbolos": [
+     [
+      "b̄",
+      "conjugado de b: troca o sinal da parte imaginária"
+     ],
+     [
+      "ℕ",
+      "números naturais"
+     ],
+     [
+      "cis θ",
+      "abreviação de cos θ + i sen θ"
+     ]
+    ]
+   },
+   "pista": "Compare os módulos de a e b antes de qualquer potência; depois divida um pelo outro.",
+   "passos": [
+    {
+     "faz": "Calcule os dois módulos",
+     "conta": "|a|² = 1² + (3√3)² = 1 + 27 = 28 | |b|² = (2√3)² + 4² = 12 + 16 = 28",
+     "porque": "Módulos iguais tornam possível a igualdade a^m = b^m; sem isso, os módulos das potências nunca bateriam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o quociente a/b",
+     "conta": "a/b = ((1 + 3√3i)(2√3 − 4i))/28 → (2√3 − 4i + 18i + 12√3)/28 → (14√3 + 14i)/28 = √3/2 + i/2",
+     "porque": "Multiplicar em cima e embaixo pelo conjugado de b deixa o denominador real, igual a |b|² = 28. Note que 3√3i · (−4i) = +12√3, porque i² = −1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia o argumento de a/b",
+     "conta": "√3/2 + i/2 = cos(π/6) + i sen(π/6)",
+     "porque": "Cosseno √3/2 e seno 1/2 correspondem a 30°, ou π/6.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o menor m",
+     "conta": "(a/b)^m = 1 → m · π/6 = 2kπ → m = 12k → menor m = 12",
+     "porque": "Pela fórmula de De Moivre, o argumento é multiplicado por m; volta a 1 só quando m · π/6 é múltiplo de 2π.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "m = 12 → alternativa D",
+     "porque": "12 é o menor natural positivo com (a/b)^m = 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 12.",
+   "checagem": "Por outro caminho, eleve ao cubo: a^3 = −80 − 72√3i e b^3 = −72√3 + 80i, e i · b^3 = −80 − 72√3i = a^3, então (a/b)^3 = i (é cis(π/2)). Logo (a/b)^12 = i^4 = 1, e (a/b)^6 = i^2 = −1, o que derruba o 6.",
+   "erradas": {
+    "A": "A sai de parar em meia volta: 6 · π/6 = π, e (a/b)^6 = −1, ou seja, a^6 = −b^6, não b^6.",
+    "B": "B não confere: 8 · π/6 = 4π/3, e (a/b)^8 = −1/2 − (√3/2)i, diferente de 1.",
+    "C": "C não confere: 10 · π/6 = 5π/3, e (a/b)^10 = 1/2 − (√3/2)i, diferente de 1.",
+    "E": "E é falsa: os módulos são iguais (√28) e m = 12 satisfaz a igualdade."
+   },
+   "armadilha": "Tentar elevar a e b às potências separadamente; dividir um pelo outro transforma tudo numa raiz da unidade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor natural m com a^m = b^m.",
+    "chave": "|a| = |b| = √28 e a/b = cis(π/6); (a/b)^m = 1 pede m · π/6 múltiplo de 2π: m = 12.",
+    "cuidado": "Em 3√3i · (−4i), i² = −1 deixa o termo positivo: +12√3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "argumentos separados",
+    "ideia": "a = √28 · cis(α) e b = √28 · cis(β); a^m = b^m pede m(α − β) múltiplo de 2π, e α − β = π/6 (tan α = 3√3 e tan β = 2/√3), logo m = 12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "|a|² = 1 + 27 = 28  e  |b|² = 12 + 16 = 28",
+    "nota": "módulos iguais"
+   },
+   {
+    "linha": "a/b = ((1 + 3√3i)(2√3 − 4i))/28",
+    "nota": "multiplicar pelo conjugado"
+   },
+   {
+    "linha": "a/b = (14√3 + 14i)/28 = √3/2 + i/2",
+    "nota": "simplificar por 14"
+   },
+   {
+    "linha": "a/b = cis(π/6) → m · π/6 = 2kπ",
+    "nota": "De Moivre"
+   },
+   {
+    "linha": "m = 12k → m = 12",
+    "nota": "menor natural"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
  }
 }

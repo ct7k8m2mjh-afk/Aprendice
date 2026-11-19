@@ -445,5 +445,134 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0004"
   }
+ },
+ "P11788208": {
+  "n": "30",
+  "conceito": "Construir A pela lei de formação e usar as propriedades det(A^t) = det A, det(kA) = k²·det A (ordem 2) e det(A²) = (det A)².",
+  "equivocos": {
+   "A": "M15.2:diagonal-trocada-no-determinante",
+   "B": "M15.2:sinal-trocado-no-resultado",
+   "C": "M15.2:calculo-incompleto",
+   "D": "M15.2:sinal-trocado-no-resultado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Monte A pela lei a_ij = i² + 2j e calcule só det A. As três parcelas saem dele pelas propriedades: transpor não muda o determinante; multiplicar uma matriz 2×2 por 2 multiplica as duas linhas por 2, então o determinante fica 2² = 4 vezes maior; e o determinante do produto é o produto dos determinantes.",
+    "formulas": [
+     "det(A^t) = det A",
+     "det(k·A) = k²·det A (ordem 2)",
+     "det(A²) = det A · det A"
+    ],
+    "simbolos": [
+     [
+      "a_ij",
+      "elemento da linha i e coluna j"
+     ],
+     [
+      "A^t",
+      "transposta de A"
+     ],
+     [
+      "A²",
+      "A·A"
+     ],
+     [
+      "det",
+      "determinante"
+     ]
+    ]
+   },
+   "pista": "Calcule os quatro elementos de A com i e j de 1 a 2. Depois pense: o que acontece com o determinante quando todos os elementos dobram?",
+   "passos": [
+    {
+     "faz": "Monte A pela lei de formação",
+     "conta": "a11 = 1 + 2 = 3 | a12 = 1 + 4 = 5 | a21 = 4 + 2 = 6 | a22 = 4 + 4 = 8 → A = [3  5 ; 6  8]",
+     "porque": "i é a linha e j a coluna; i² vem da linha e 2j da coluna.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule det A",
+     "conta": "det A = 3 · 8 − 5 · 6 → 24 − 30 → −6",
+     "porque": "Diagonal principal menos diagonal secundária.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use as propriedades para as três parcelas",
+     "conta": "det B = det A^t = −6 | det(2A) = 2² · (−6) = −24 | det C = (−6)² = 36",
+     "porque": "Transpor não muda; o 2 sai de cada uma das duas linhas, por isso 2²; e det(A·A) = det A · det A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a expressão pedida",
+     "conta": "−6 + (−24) − 36 → −30 − 36 → −66",
+     "porque": "det(B) + det(2A) − det(C), com cada sinal no lugar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "−66 → alternativa E",
+     "porque": "É o valor da expressão pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — −66",
+   "checagem": "Calcule as matrizes direto: 2A = [6  10 ; 12  16], det = 96 − 120 = −24; A² = [39  55 ; 66  94], det = 3666 − 3630 = 36. As parcelas batem com as propriedades: −6 − 24 − 36 = −66.",
+   "erradas": {
+    "A": "A sai de calcular det A com a diagonal trocada, 5 · 6 − 3 · 8 = 6: então 6 + 4 · 6 − 36 = −6.",
+    "B": "B não confere: det(B) = −6 e det(2A) = −24 são negativos e det(C) = 36 entra subtraindo, então a expressão tem de ser negativa.",
+    "C": "C sai de parar em det(2A) = 4 · (−6) = −24, sem somar det(B) nem subtrair det(C).",
+    "D": "D não confere: tem o sinal trocado; as três parcelas, −6, −24 e −36, são todas negativas e somam −66."
+   },
+   "armadilha": "Achar que det(2A) = 2·det A: numa matriz 2×2 o fator 2 sai das duas linhas, e o determinante fica multiplicado por 4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "det(A^t) + det(2A) − det(A²), com a_ij = i² + 2j.",
+    "chave": "A = [3  5 ; 6  8], det A = −6; parcelas −6, −24 e 36: total −66.",
+    "cuidado": "det(2A) = 4·det A na ordem 2, e det(A²) = (det A)² é positivo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "cálculo direto",
+    "ideia": "Monte B = [3  6 ; 5  8], 2A = [6  10 ; 12  16] e A² = [39  55 ; 66  94] e calcule os três determinantes: −6, −24 e 36."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A = [3  5 ; 6  8]",
+    "nota": "a_ij = i² + 2j"
+   },
+   {
+    "linha": "det A = 24 − 30 = −6",
+    "nota": "diagonal principal menos secundária"
+   },
+   {
+    "linha": "det B = det A^t = −6",
+    "nota": "transpor não muda o determinante"
+   },
+   {
+    "linha": "det(2A) = 2² · (−6) = −24",
+    "nota": "o 2 sai das duas linhas"
+   },
+   {
+    "linha": "det C = (−6)² = 36",
+    "nota": "det(A·A) = det A · det A"
+   },
+   {
+    "linha": "−6 + (−24) − 36 = −66",
+    "nota": "expressão pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
  }
 }

@@ -12,7 +12,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | mat-p2-0004 | demais nível 7-10 | 50 | gravado | 49 | 1 | 0 |
 | mat-p2-0005 | demais nível 7-10 | 50 | gravado | 50 | 0 | 0 |
 | mat-p2-0006 | demais nível 7-10 | 50 | gravado | 50 | 0 | 0 |
-| mat-p2-0007 | demais nível 7-10 | 37 | aberto |  |  |  |
+| mat-p2-0007 | demais nível 7-10 | 37 | gravado | 37 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 

@@ -675,5 +675,111 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0005"
   }
+ },
+ "P7244b669": {
+  "n": "45",
+  "conceito": "Multiplicar a linha de janeiro (quantidades) pela coluna do custo unitário: o elemento de um produto de matrizes.",
+  "equivocos": {
+   "A": "M15.1:calculo-incompleto",
+   "B": "M15.1:coluna-do-lucro-no-lugar-do-custo",
+   "D": "M15.1:linha-de-fevereiro-no-lugar-de-janeiro",
+   "E": "M15.1:leitura-errada-da-tabela"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O custo de janeiro é quantidade de cada modelo vezes o custo de cada modelo, somado nos três modelos. Isso é exatamente linha de janeiro da Matriz 1 vezes coluna do custo da Matriz 2. As outras linhas e colunas (fevereiro, lucro) não entram.",
+    "formulas": [
+     "custo total = Σ (quantidade × custo unitário)",
+     "elemento do produto = linha · coluna"
+    ],
+    "simbolos": [
+     [
+      "Σ",
+      "soma das parcelas dos três modelos"
+     ],
+     [
+      "Matriz 1",
+      "quantidades por mês (linhas) e modelo (colunas)"
+     ],
+     [
+      "Matriz 2",
+      "custo e lucro unitários (colunas) por modelo (linhas)"
+     ]
+    ]
+   },
+   "pista": "Escolha só uma linha da Matriz 1 e só uma coluna da Matriz 2: quais respondem à pergunta?",
+   "passos": [
+    {
+     "faz": "Separe a linha e a coluna que servem",
+     "conta": "janeiro: 900 | 1200 | 1000 ; custo: 12 | 10 | 16",
+     "porque": "A pergunta é o custo de janeiro: usa as quantidades de janeiro e o custo unitário, na ordem A, B, C.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Multiplique modelo a modelo",
+     "conta": "900 · 12 = 10.800 | 1200 · 10 = 12.000 | 1000 · 16 = 16.000",
+     "porque": "Cada produto é o custo de fabricar todas as camisetas de um modelo em janeiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os três custos",
+     "conta": "10.800 + 12.000 + 16.000 = 38.800",
+     "porque": "O custo total é a soma dos custos dos três modelos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o total à alternativa",
+     "conta": "R$ 38.800,00 → alternativa C",
+     "porque": "É o custo de janeiro, exatamente o pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — R$ 38.800,00",
+   "checagem": "Arredonde e corrija: se fossem 1000 de cada, o custo seria 1000·(12 + 10 + 16) = 38.000; o modelo A tem 100 a menos (−1.200) e o B, 200 a mais (+2.000). 38.000 − 1.200 + 2.000 = 38.800. Fecha.",
+   "erradas": {
+    "A": "A não confere: só o modelo C já custa 1000 · 16 = R$ 16.000,00 em janeiro, mais que R$ 10.600,00.",
+    "B": "B sai de usar a coluna do lucro: 900 · 5 + 1200 · 4 + 1000 · 6 = 15.300. A pergunta é o custo.",
+    "D": "D sai de usar a linha de fevereiro: 1000 · 12 + 1400 · 10 + 900 · 16 = 40.400. A pergunta é janeiro.",
+    "E": "E não confere: o custo de janeiro é 38.800 e o de fevereiro, 40.400; somar custo e lucro de janeiro daria 54.100. Nenhuma leitura da tabela dá 44.400."
+   },
+   "armadilha": "Pegar a linha ou a coluna errada: fevereiro no lugar de janeiro, ou lucro no lugar de custo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O custo total de fabricação em janeiro.",
+    "chave": "Linha de janeiro × coluna do custo: 900·12 + 1200·10 + 1000·16 = 38.800.",
+    "cuidado": "Use só janeiro e só o custo, modelo com modelo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "produto de matrizes",
+    "ideia": "Matriz 1 (2×3) vezes Matriz 2 (3×2) dá a matriz mês × (custo, lucro); o elemento janeiro-custo é 38.800."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "custo jan = 900 · 12 + 1200 · 10 + 1000 · 16",
+    "nota": "linha de janeiro vezes coluna do custo"
+   },
+   {
+    "linha": "= 10.800 + 12.000 + 16.000",
+    "nota": "custo de cada modelo"
+   },
+   {
+    "linha": "= 38.800",
+    "nota": "soma dos três"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
  }
 }

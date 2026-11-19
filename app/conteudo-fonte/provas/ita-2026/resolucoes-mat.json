@@ -838,5 +838,497 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0005"
   }
+ },
+ "P981b38f7": {
+  "n": "7",
+  "conceito": "Reconhecer a matriz de rotação de 30° e usar que a potência A^n gira n vezes 30°, aplicando o giro total ao vetor B.",
+  "equivocos": {
+   "B": "M15.1:sinal-trocado-na-primeira-coordenada",
+   "C": "M15.1:vetor-com-comprimento-errado",
+   "D": "M15.1:vetor-com-comprimento-errado",
+   "E": "M15.1:nao-reconheceu-a-rotacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A matriz A tem cos 30° = √3/2 e sen 30° = 1/2 na forma de rotação: multiplicar por A gira um vetor 30° no sentido anti-horário. Então A^31 gira 31 vezes 30°, e voltas inteiras de 360° não mudam nada. O vetor B = (√2/2, √2/2) tem comprimento 1 e aponta a 45°; basta somar os ângulos e ler cosseno e seno do ângulo final.",
+    "formulas": [
+     "rotação de θ: [cos θ  −sen θ ; sen θ  cos θ]",
+     "A^n = rotação de n·θ",
+     "vetor unitário de ângulo α: (cos α, sen α)"
+    ],
+    "simbolos": [
+     [
+      "A^31",
+      "A multiplicada por ela mesma 31 vezes"
+     ],
+     [
+      "θ",
+      "ângulo de rotação"
+     ],
+     [
+      "cos 75° = (√6 − √2)/4",
+      "valor de cos(45° + 30°)"
+     ],
+     [
+      "sen 75° = (√6 + √2)/4",
+      "valor de sen(45° + 30°)"
+     ]
+    ]
+   },
+   "pista": "Compare as entradas de A com cosseno e seno de um ângulo conhecido. O que essa matriz faz com um vetor?",
+   "passos": [
+    {
+     "faz": "Reconheça A como uma rotação",
+     "conta": "A = [cos 30°  −sen 30° ; sen 30°  cos 30°]",
+     "porque": "√3/2 é cos 30° e 1/2 é sen 30°, na posição exata da matriz de rotação. Cada multiplicação por A gira o vetor 30°.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some os giros e tire as voltas inteiras",
+     "conta": "31 · 30° = 930° → 930° − 2 · 360° = 210°",
+     "porque": "A^31 aplica 31 giros de 30°. Duas voltas completas (720°) deixam o vetor onde estava, então sobra um giro de 210°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Gire o vetor B",
+     "conta": "B: ângulo 45° → 45° + 210° = 255°",
+     "porque": "B = (√2/2, √2/2) tem comprimento 1 e ângulo 45°. A rotação não muda o comprimento, só soma o ângulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia as coordenadas do ângulo final",
+     "conta": "(cos 255°, sen 255°) = (−cos 75°, −sen 75°) → (−(√6 − √2)/4, −(√6 + √2)/4) → (−(√2/4)(√3 − 1), −(√2/4)(1 + √3))",
+     "porque": "255° = 180° + 75° fica no 3.º quadrante: as duas coordenadas são negativas. Colocando √2/4 em evidência, (√6 − √2)/4 = (√2/4)(√3 − 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o vetor à alternativa",
+     "conta": "(−(√2/4)(√3 − 1), −(√2/4)(1 + √3)) → alternativa A",
+     "porque": "As duas coordenadas coincidem com as da alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — o vetor coluna com −(√2/4)(√3 − 1) em cima e −(√2/4)(1 + √3) embaixo",
+   "checagem": "Confira pelas propriedades do giro: o resultado tem de ter comprimento 1 e estar no 3.º quadrante. Em A, (√2/4)²·[(√3 − 1)² + (1 + √3)²] = (2/16)·8 = 1, e as duas coordenadas são negativas. Fecha.",
+   "erradas": {
+    "B": "B não confere: a 1.ª coordenada, −(√2/4)(1 − √3) = (√6 − √2)/4 ≈ 0,26, é positiva. Esse vetor está a 285°, no 4.º quadrante; o giro leva B a 255°, no 3.º.",
+    "C": "C não confere: o comprimento do vetor é √(7/4) = √7/2 ≈ 1,32, pois [(1 − √6)² + (1 + √6)²]/8 = 14/8. A rotação preserva o comprimento de B, que é 1.",
+    "D": "D não confere: como em C, o comprimento é √7/2 ≈ 1,32, e não 1; uma rotação de B não pode gerar esse vetor.",
+    "E": "E não confere: o vetor obtido, (−(√2/4)(√3 − 1), −(√2/4)(1 + √3)), é exatamente o da alternativa A."
+   },
+   "armadilha": "Tentar multiplicar A por ela mesma 31 vezes em vez de reconhecer a rotação de 30° e descartar as voltas inteiras.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O vetor A^31 × B, com A de rotação de 30° e B unitário a 45°.",
+    "chave": "A^31 gira 930° ≡ 210°; B vai de 45° para 255°: (cos 255°, sen 255°).",
+    "cuidado": "255° está no 3.º quadrante: as duas coordenadas são negativas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "potência menor",
+    "ideia": "A^6 é um giro de 180°, ou seja, A^6 = −I; então A^31 = (A^6)^5 · A = −A, e −A·B = (−(√6 − √2)/4, −(√2 + √6)/4)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A = rotação de 30°",
+    "nota": "cos 30° = √3/2 e sen 30° = 1/2"
+   },
+   {
+    "linha": "A^31 = rotação de 31 · 30° = 930°",
+    "nota": "cada potência soma 30°"
+   },
+   {
+    "linha": "930° − 720° = 210°",
+    "nota": "tira duas voltas inteiras"
+   },
+   {
+    "linha": "45° + 210° = 255°",
+    "nota": "ângulo final do vetor B"
+   },
+   {
+    "linha": "(cos 255°, sen 255°) = (−(√6 − √2)/4, −(√6 + √2)/4)",
+    "nota": "3.º quadrante: os dois sinais negativos"
+   },
+   {
+    "linha": "= (−(√2/4)(√3 − 1), −(√2/4)(1 + √3))",
+    "nota": "√2/4 em evidência"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ },
+ "Pcae96488": {
+  "n": "8",
+  "conceito": "A condição p(2 + x) = −p(2 − x) diz que o gráfico é simétrico em relação ao ponto (2, 0); a cúbica fica (x − 2)³ + m(x − 2), e raízes reais exigem m ≤ 0.",
+  "equivocos": {
+   "A": "M16.1:ignorou-raizes-reais",
+   "C": "M16.1:valor-possivel-mas-nao-minimo",
+   "D": "M16.1:valor-possivel-mas-nao-minimo",
+   "E": "M16.1:valor-possivel-mas-nao-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Troque de variável: com g(t) = p(2 + t), a condição vira g(t) = −g(−t), ou seja, g é ímpar. Um polinômio ímpar só tem potências ímpares; como p começa por x³, g(t) = t³ + m·t. Voltando, p(x) = (x − 2)³ + m(x − 2). A exigência de raízes reais limita m, e p(0) fica em função de m.",
+    "formulas": [
+     "g(t) = p(2 + t) ímpar ⇒ g(t) = t³ + m·t",
+     "p(x) = (x − 2)[(x − 2)² + m]",
+     "(x − 2)² + m = 0 tem raízes reais ⇔ m ≤ 0"
+    ],
+    "simbolos": [
+     [
+      "função ímpar",
+      "g(−t) = −g(t)"
+     ],
+     [
+      "t",
+      "deslocamento a partir de x = 2"
+     ],
+     [
+      "m",
+      "coeficiente que sobra em g(t) = t³ + m·t"
+     ]
+    ]
+   },
+   "pista": "Chame x de t e pense em g(t) = p(2 + t). Que tipo de função satisfaz g(t) = −g(−t)?",
+   "passos": [
+    {
+     "faz": "Traduza a condição para uma função ímpar",
+     "conta": "g(t) = p(2 + t) → g(t) = −g(−t) → g(t) = t³ + m·t",
+     "porque": "p(2 − t) = g(−t). Polinômio ímpar só tem potências ímpares, e o coeficiente de t³ é 1 porque p é mônico.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte para x e fatore",
+     "conta": "p(x) = (x − 2)³ + m(x − 2) → p(x) = (x − 2)[(x − 2)² + m]",
+     "porque": "Basta trocar t por x − 2 e pôr (x − 2) em evidência: x = 2 é sempre raiz.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha raízes reais",
+     "conta": "(x − 2)² = −m → raízes reais só se −m ≥ 0 → m ≤ 0",
+     "porque": "Um quadrado não pode ser negativo: se m > 0, as outras duas raízes são complexas.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Calcule p(0) e minimize",
+     "conta": "p(0) = (−2)³ + m·(−2) → p(0) = −8 − 2m → m ≤ 0 dá −2m ≥ 0 → p(0) ≥ −8",
+     "porque": "O menor valor ocorre em m = 0, com p(x) = (x − 2)³ e raiz tripla 2, todas reais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o mínimo à alternativa",
+     "conta": "menor p(0) = −8 → alternativa B",
+     "porque": "É o menor valor que p(0) atinge com todas as raízes reais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — −8",
+   "checagem": "Teste o caso extremo m = 0: p(x) = (x − 2)³ = x³ − 6x² + 12x − 8. Então p(2 + x) = x³ e −p(2 − x) = −(−x)³ = x³: a condição vale, a raiz 2 é real (tripla) e p(0) = −8. Com m = −1, p(x) = (x − 1)(x − 2)(x − 3) e p(0) = −6, maior.",
+   "erradas": {
+    "A": "A sai de m = 1: p(x) = (x − 2)³ + (x − 2) dá p(0) = −8 − 2 = −10, mas (x − 2)² + 1 = 0 tem raízes 2 ± i, não reais.",
+    "C": "C é possível (m = −1, raízes 1, 2 e 3), mas não é o menor: −8 < −6.",
+    "D": "D é possível (m = −2, raízes 2 e 2 ± √2), mas não é o menor: −8 < −4.",
+    "E": "E é possível (m = −3, raízes 2 e 2 ± √3), mas não é o menor: −8 < −2."
+   },
+   "armadilha": "Esquecer a condição de raízes reais: sem ela, m pode ser positivo e p(0) = −8 − 2m não tem mínimo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor p(0) para a cúbica mônica com p(2 + x) = −p(2 − x) e raízes reais.",
+    "chave": "p(x) = (x − 2)[(x − 2)² + m], raízes reais ⇔ m ≤ 0, p(0) = −8 − 2m ≥ −8.",
+    "cuidado": "A condição de raízes reais é o que trava m; o mínimo é em m = 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coeficientes",
+    "ideia": "Comparando p(2 + x) + p(2 − x) = 0 termo a termo: b = −6 e d = 16 − 2c; com p = (x − 2)(x² − 4x + e), raízes reais exigem e ≤ 4 e p(0) = −2e ≥ −8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "g(t) = p(2 + t), g(t) = −g(−t)",
+    "nota": "g é ímpar"
+   },
+   {
+    "linha": "g(t) = t³ + m·t",
+    "nota": "só potências ímpares, mônico"
+   },
+   {
+    "linha": "p(x) = (x − 2)[(x − 2)² + m]",
+    "nota": "t vira x − 2"
+   },
+   {
+    "linha": "(x − 2)² = −m → m ≤ 0",
+    "nota": "raízes reais"
+   },
+   {
+    "linha": "p(0) = −8 − 2m ≥ −8",
+    "nota": "mínimo em m = 0"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ },
+ "P0fabcd8e": {
+  "n": "1",
+  "conceito": "Escrever w com módulo t e argumento π/6, usar z = w − 2√3 e a condição |z| = 2√3 para achar t, descartando t = 0 porque w ≠ 0.",
+  "equivocos": {
+   "A": "M16.2:nao-descartou-a-raiz-proibida",
+   "B": "M16.2:errou-o-modulo",
+   "C": "M16.2:errou-o-modulo",
+   "E": "M16.2:errou-o-modulo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O argumento de w fixa a direção dele; só falta o tamanho. Escreva w = t(cos(π/6) + i sen(π/6)) com t > 0. A relação z − w = −2√3 dá z em função de t, e |z| = 2√3 vira uma equação em t. Uma das raízes é t = 0, que o enunciado proíbe.",
+    "formulas": [
+     "w = t(cos θ + i sen θ), com t = |w|",
+     "|x + yi|² = x² + y²"
+    ],
+    "simbolos": [
+     [
+      "t",
+      "módulo de w, um número positivo"
+     ],
+     [
+      "arg w",
+      "ângulo de w com o eixo real; aqui π/6"
+     ],
+     [
+      "Re(z)",
+      "parte real de z"
+     ]
+    ]
+   },
+   "pista": "Escreva w na forma trigonométrica com módulo desconhecido e isole z na primeira relação.",
+   "passos": [
+    {
+     "faz": "Escreva w e z em função de t",
+     "conta": "w = t(√3/2 + i/2) → z = w − 2√3 = (t√3/2 − 2√3) + (t/2)i",
+     "porque": "cos(π/6) = √3/2 e sen(π/6) = 1/2. De z − w = −2√3, o w passa para o outro lado somando: z = w − 2√3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o módulo de z",
+     "conta": "(t√3/2 − 2√3)² + (t/2)² = 12 → 3t²/4 − 6t + 12 + t²/4 = 12",
+     "porque": "|z| = 2√3 significa |z|² = 12; a soma dos quadrados das partes real e imaginária dá isso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a equação em t",
+     "conta": "t² − 6t = 0 → t(t − 6) = 0 → t = 0 ou t = 6",
+     "porque": "Os 12 dos dois lados se cancelam e 3t²/4 + t²/4 = t². Como w ≠ 0, t = 0 não serve: t = 6.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ache a parte real de z",
+     "conta": "Re(z) = 6 · √3/2 − 2√3 → 3√3 − 2√3 = √3",
+     "porque": "Basta pôr t = 6 na parte real; z = √3 + 3i, com módulo √(3 + 9) = √12 = 2√3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "Re(z) = √3 → alternativa D",
+     "porque": "É o valor da alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — √3.",
+   "checagem": "Substitua: w = 6(√3/2 + i/2) = 3√3 + 3i, com argumento π/6; z = √3 + 3i. Então z − w = √3 − 3√3 = −2√3 e |z| = √(3 + 9) = 2√3. Tudo confere.",
+   "erradas": {
+    "A": "A sai da raiz t = 0: com w = 0, z = −2√3 e Re(z) = −2√3; mas o enunciado exige w ≠ 0.",
+    "B": "B não confere: Re(z) = −√3 pede t = 2, e aí |z|² = 3 + 1 = 4, não 12.",
+    "C": "C não confere: Re(z) = 0 pede t = 4, e aí z = 2i, com |z| = 2, não 2√3.",
+    "E": "E não confere: Re(z) = 2√3 pede t = 8, e aí |z|² = 12 + 16 = 28, não 12."
+   },
+   "armadilha": "A equação dá duas raízes, e a raiz t = 0 leva à alternativa A; a condição w ≠ 0 está no enunciado justamente para eliminá-la.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A parte real de z, sabendo z − w = −2√3, |z| = 2√3 e arg w = π/6.",
+    "chave": "w = t · cis(π/6), z = w − 2√3; |z|² = 12 dá t² − 6t = 0, t = 6 e Re(z) = √3.",
+    "cuidado": "Descarte t = 0 (w ≠ 0)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "geometria",
+    "ideia": "z e z + 2√3 = w: z está no círculo de raio 2√3 e z + 2√3 na semirreta de ângulo π/6; o triângulo 0, −2√3, z é isósceles, e o ponto que serve é z = √3 + 3i."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "w = t(√3/2 + i/2)",
+    "nota": "forma trigonométrica"
+   },
+   {
+    "linha": "z = (t√3/2 − 2√3) + (t/2)i",
+    "nota": "z = w − 2√3"
+   },
+   {
+    "linha": "(t√3/2 − 2√3)² + t²/4 = 12",
+    "nota": "|z|² = 12"
+   },
+   {
+    "linha": "t² − 6t = 0 → t = 6",
+    "nota": "t = 0 sai: w ≠ 0"
+   },
+   {
+    "linha": "Re(z) = 3√3 − 2√3 = √3",
+    "nota": "substituir t = 6"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ },
+ "P194d774e": {
+  "n": "4",
+  "conceito": "Tomar o módulo de iz² = 2z̄ para achar |z| = 2, multiplicar por z para chegar a z³ = −8i e calcular a área do triângulo equilátero formado pelas três raízes cúbicas.",
+  "equivocos": {
+   "A": "M16.2:contou-so-um-triangulo",
+   "B": "M16.2:errou-a-area-do-poligono",
+   "D": "M16.2:errou-a-area-do-poligono",
+   "E": "M16.2:errou-a-area-do-poligono"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Equação com z e z̄ ao mesmo tempo: comece pelo módulo, que tira o i e o conjugado do caminho. Depois, multiplicar os dois lados por z troca z · z̄ por |z|², que é um número real. As raízes cúbicas de um número complexo formam um triângulo equilátero centrado na origem.",
+    "formulas": [
+     "|i| = 1 e |z̄| = |z|",
+     "z · z̄ = |z|²",
+     "raízes de z³ = w: mesmo módulo, ângulos separados por 2π/3",
+     "área do equilátero inscrito em círculo de raio R = (3√3/4) · R²"
+    ],
+    "simbolos": [
+     [
+      "z̄",
+      "conjugado de z"
+     ],
+     [
+      "|z|",
+      "módulo de z"
+     ],
+     [
+      "R",
+      "raio do círculo onde estão os vértices"
+     ]
+    ]
+   },
+   "pista": "Tome o módulo dos dois lados primeiro: ele diz em que círculo estão os vértices.",
+   "passos": [
+    {
+     "faz": "Tome o módulo dos dois lados",
+     "conta": "|i| · |z|² = 2|z̄| → |z|² = 2|z| → |z| = 2",
+     "porque": "|i| = 1 e |z̄| = |z|. Como z ≠ 0, pode-se dividir por |z|. Todos os vértices estão no círculo de raio 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique a equação por z",
+     "conta": "iz² · z = 2z̄ · z → iz³ = 2|z|² = 8 → z³ = 8/i = −8i",
+     "porque": "z · z̄ = |z|² = 4. E 8/i = −8i, porque i · (−8i) = 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache as três raízes cúbicas",
+     "conta": "z³ = 8 · cis(−π/2) → z = 2 · cis(−π/6 + 2kπ/3) → √3 − i, 2i, −√3 − i",
+     "porque": "O módulo vira a raiz cúbica de 8, que é 2, e o ângulo se divide por 3, com saltos de 2π/3. Cada uma satisfaz a equação original.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área do triângulo",
+     "conta": "área = (3√3/4) · 2² = 3√3",
+     "porque": "As três raízes formam um triângulo equilátero inscrito no círculo de raio 2. Equivale a três triângulos centro-vértice-vértice, cada um com (1/2) · 2 · 2 · sen 120° = √3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "área = 3√3 → alternativa C",
+     "porque": "É o valor da alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3√3.",
+   "checagem": "Pelas coordenadas: vértices (√3, −1), (0, 2) e (−√3, −1). A base horizontal vai de −√3 a √3 (mede 2√3) e a altura vai de y = −1 a y = 2 (mede 3): área = (2√3 · 3)/2 = 3√3.",
+   "erradas": {
+    "A": "A sai de calcular só um dos três triângulos centro-vértice-vértice: (1/2) · 2 · 2 · sen 120° = √3. O polígono é formado por três deles.",
+    "B": "B não confere: as três raízes ficam a 120° uma da outra no círculo de raio 2, e cada um dos três triângulos centro-vértice-vértice tem área √3; o total é 3√3.",
+    "D": "D não confere: nenhum triângulo inscrito num círculo de raio 2 passa de 3√3, a área do equilátero, que é o maior possível.",
+    "E": "E não confere: pelo mesmo motivo de D, 5√3 é maior que a área máxima de um triângulo inscrito no círculo de raio 2."
+   },
+   "armadilha": "Tentar resolver com z = x + yi e duas equações reais; o módulo e a multiplicação por z levam direto a z³ = −8i.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do polígono cujos vértices são as soluções não nulas de iz² = 2z̄.",
+    "chave": "|z| = 2 e z³ = −8i: três raízes num triângulo equilátero de raio 2, área (3√3/4) · 4 = 3√3.",
+    "cuidado": "z = 0 também satisfaz a equação, mas o enunciado o exclui; e 8/i é −8i, não 8i."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas",
+    "ideia": "Vértices (√3, −1), (0, 2), (−√3, −1): base 2√3 e altura 3, área (2√3 · 3)/2 = 3√3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "|z|² = 2|z| → |z| = 2",
+    "nota": "módulo dos dois lados"
+   },
+   {
+    "linha": "iz³ = 2z̄z = 2 · 4 = 8",
+    "nota": "multiplicar por z"
+   },
+   {
+    "linha": "z³ = 8/i = −8i",
+    "nota": "dividir por i"
+   },
+   {
+    "linha": "z = √3 − i, 2i, −√3 − i",
+    "nota": "raízes cúbicas, saltos de 2π/3"
+   },
+   {
+    "linha": "área = (3√3/4) · 2² = 3√3",
+    "nota": "triângulo equilátero de raio 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
  }
 }
