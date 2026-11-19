@@ -613,5 +613,132 @@
    "data": "2026-11-12",
    "lote": "fis-0036"
   }
+ },
+ "P28977a79": {
+  "n": "23",
+  "conceito": "Energia dissipada pelo atrito num bloco que desce com velocidade constante vira calor sensível do próprio bloco.",
+  "equivocos": {
+   "A": "F08.3:potencia-dissipada-subestimada",
+   "B": "F03.3:atrito-sem-g-na-normal",
+   "D": "F08.3:potencia-dissipada-superestimada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Velocidade constante na rampa significa resultante nula: o atrito equilibra a componente do peso ao longo da rampa, e isso fixa a inclinação (tg θ = µ). Toda a energia potencial perdida a cada segundo vira calor pelo atrito. Supondo que esse calor fique no gelo, a potência por quilograma iguala o calor sensível por quilograma, e a massa cancela.",
+    "formulas": [
+     "velocidade constante: m · g · sen θ = µ · m · g · cos θ → tg θ = µ",
+     "potência dissipada = m · g · sen θ · v",
+     "Q = m · c · Δθ"
+    ],
+    "simbolos": [
+     [
+      "µ",
+      "coeficiente de atrito entre o gelo e a rampa"
+     ],
+     [
+      "θ",
+      "ângulo de inclinação da rampa"
+     ],
+     [
+      "c",
+      "calor específico do gelo"
+     ],
+     [
+      "Δθ",
+      "variação de temperatura do bloco"
+     ],
+     [
+      "v",
+      "velocidade do bloco"
+     ]
+    ]
+   },
+   "pista": "Velocidade constante diz algo sobre as forças: use isso para descobrir quanto o atrito dissipa a cada segundo.",
+   "passos": [
+    {
+     "faz": "Ache a inclinação pela velocidade constante",
+     "conta": "m · g · sen θ = µ · m · g · cos θ → tg θ = 0,5 → sen θ ≈ 0,447",
+     "porque": "Resultante nula: o atrito iguala a componente do peso ao longo da rampa, e m e g cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a potência dissipada por quilograma",
+     "conta": "P/m = g · sen θ · v → P/m = 10 · 0,447 · 4 → P/m ≈ 17,9 W/kg",
+     "porque": "A cada segundo o bloco desce v · sen θ de altura, e essa energia potencial é toda transformada em calor pelo atrito.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o calor por quilograma para 6 °C",
+     "conta": "Q/m = c · Δθ → Q/m = 2000 · 6 → Q/m = 12000 J/kg",
+     "porque": "O calor sensível do gelo também é proporcional à massa, então a massa cancela ao igualar as duas energias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida o calor pela potência",
+     "conta": "t = 12000/17,9 → t ≈ 671 s → t ≈ 11 min",
+     "porque": "Tempo é energia necessária dividida pela energia dissipada por segundo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha a alternativa mais próxima",
+     "conta": "11 min ≈ 10 min",
+     "porque": "O enunciado pede o tempo aproximado; 10 minutos é a única alternativa na ordem de grandeza certa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — cerca de 10 minutos.",
+   "checagem": "Calcule pelo atrito em vez do peso: força de atrito por kg = µ · g · cos θ = 0,5 · 10 · 0,894 ≈ 4,47 N/kg; vezes 4 m/s dá os mesmos 17,9 W/kg. E ordem de grandeza: 12000 J/kg a cerca de 20 W/kg dá centenas de segundos, ou seja, minutos, não horas.",
+   "erradas": {
+    "A": "Não confere: 60 min = 3600 s exigiria só 12000/3600 ≈ 3,3 W/kg dissipados, cerca de cinco vezes menos que os 17,9 W/kg do atrito.",
+    "B": "Sai de esquecer a gravidade na força de atrito (usar µ · m em vez de µ · m · g): t = 12000/(0,5 · 4) = 6000 s = 100 min. A normal depende do peso, m · g.",
+    "D": "Não confere: 1 min = 60 s exigiria 12000/60 = 200 W/kg, mais de dez vezes a potência que o atrito dissipa a 4 m/s."
+   },
+   "armadilha": "Esquecer que a massa cancela e travar por falta dela, ou deixar o g fora da força de atrito, o que leva aos 100 minutos.",
+   "alerta": "A conta exata, com N = m · g · cos θ, dá cerca de 671 s (11 min). Quem aproxima a normal pelo peso (cos θ ≈ 1) chega a 12000/(0,5 · 10 · 4) = 600 s, exatamente 10 min. Os dois caminhos levam à alternativa C, a única próxima.",
+   "essencial": {
+    "pede": "O tempo de escorregamento para o gelo esquentar 6 °C só com o calor do atrito.",
+    "chave": "Velocidade constante: potência dissipada por kg = g · sen θ · v ≈ 17,9 W/kg; 2000 · 6 = 12000 J/kg; t ≈ 671 s ≈ 10 min.",
+    "cuidado": "A massa cancela; o atrito depende de g; e o resultado é aproximado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "aproximação da normal",
+    "ideia": "Com N ≈ m · g, a potência por kg é µ · g · v = 20 W/kg, e t = 12000/20 = 600 s = 10 min."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m · g · sen θ = µ · m · g · cos θ → tg θ = 0,5",
+    "nota": "velocidade constante: resultante nula"
+   },
+   {
+    "linha": "P/m = 10 · 0,447 · 4 ≈ 17,9 W/kg",
+    "nota": "energia potencial perdida por segundo"
+   },
+   {
+    "linha": "Q/m = 2000 · 6 = 12000 J/kg",
+    "nota": "calor para subir 6 °C"
+   },
+   {
+    "linha": "t = 12000/17,9 ≈ 671 s ≈ 11 min",
+    "nota": "calor dividido pela potência"
+   },
+   {
+    "linha": "11 min ≈ 10 min",
+    "nota": "alternativa mais próxima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0069"
+  }
  }
 }

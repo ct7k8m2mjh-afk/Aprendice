@@ -426,5 +426,114 @@
    "data": "2026-11-12",
    "lote": "fis-0032"
   }
+ },
+ "P415a9abf": {
+  "n": "32",
+  "conceito": "Pressão hidrostática de uma coluna de soro igualada à pressão arterial em mmHg (Stevin com conversão de unidades).",
+  "equivocos": {
+   "A": "F07.2:coluna-subestimada",
+   "B": "F07.2:leu-mmhg-como-altura-de-soro",
+   "D": "F07.2:nao-buscou-a-altura-minima"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O soro só entra na veia se a pressão da coluna de líquido, d × g × h, for pelo menos igual à pressão do sangue. A pressão arterial vem em mmHg, por isso o trabalho real é converter para pascal. As constantes vêm da tabela da capa da prova: 1 atm = 760 mmHg = 10⁵ Pa, g = 10 m/s² e densidade da água 10³ kg/m³.",
+    "formulas": [
+     "p = d × g × h (Stevin), logo h = p/(d × g)",
+     "1 atm = 760 mmHg = 10⁵ Pa"
+    ],
+    "simbolos": [
+     [
+      "mmHg",
+      "milímetro de mercúrio, unidade de pressão usada para pressão arterial"
+     ],
+     [
+      "d",
+      "densidade do soro, igual à da água, 10³ kg/m³"
+     ],
+     [
+      "h",
+      "altura da bolsa acima do braço"
+     ]
+    ]
+   },
+   "pista": "Primeiro converta 90 mmHg em pascal usando a relação entre atm, mmHg e Pa da tabela de constantes.",
+   "passos": [
+    {
+     "faz": "Converta a pressão arterial para pascal",
+     "conta": "p = 90 mmHg × (10⁵ Pa)/(760 mmHg) → p ≈ 11842 Pa",
+     "porque": "A fórmula de Stevin trabalha em pascal (N/m²); o mmHg cancela com o mmHg da relação 760 mmHg = 10⁵ Pa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale à pressão da coluna de soro",
+     "conta": "d × g × h = p → 10³ × 10 × h = 11842",
+     "porque": "A altura mínima é a que faz a pressão do soro empatar com a do sangue; acima dela o soro vence.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a altura",
+     "conta": "h = 11842/(10⁴) → h ≈ 1,18 m",
+     "porque": "O produto d × g = 10⁴ passa para o outro lado dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "h ≈ 1,18 m → alternativa C",
+     "porque": "É o valor da alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — cerca de 1,18 m.",
+   "checagem": "Pela troca de líquido: 90 mm de mercúrio, que é 13,6 vezes mais denso que a água, equivalem a 0,090 × 13,6 ≈ 1,22 m de água. Dá a mesma ordem, e a alternativa mais próxima continua sendo 1,18 m.",
+   "erradas": {
+    "A": "Não confere: 0,43 m de soro dá 10⁴ × 0,43 = 4 300 Pa ≈ 33 mmHg, bem abaixo dos 90 mmHg; o sangue voltaria pela mangueira.",
+    "B": "Não confere: 0,90 m de soro dá 9 000 Pa ≈ 68 mmHg, menos que 90 mmHg; 90 mmHg são 90 mm de mercúrio, não 90 cm de soro.",
+    "D": "1,50 m funciona, mas não é a altura mínima: dá 15 000 Pa ≈ 114 mmHg, acima dos 90 mmHg pedidos para as pressões se igualarem."
+   },
+   "armadilha": "Ler 90 mmHg como altura de líquido: 90 mm de mercúrio correspondem a mais de 1 m de soro, porque o mercúrio é muito mais denso.",
+   "alerta": "As constantes usadas (1 atm = 760 mmHg = 10⁵ Pa, g = 10 m/s², densidade da água 10³ kg/m³) estão na tabela de constantes físicas da prova, não no enunciado da questão.",
+   "essencial": {
+    "pede": "A altura mínima da bolsa de soro para que sua pressão iguale 90 mmHg.",
+    "chave": "p = 90 × 10⁵ ÷ 760 ≈ 11 842 Pa; h = p ÷ (10³ × 10) ≈ 1,18 m.",
+    "cuidado": "Converter mmHg em pascal antes de usar d × g × h."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "troca de líquido",
+    "ideia": "Mesma pressão com líquidos diferentes: h_soro = h_Hg × (d_Hg/d_água) = 0,090 × 13,6 ≈ 1,2 m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p = 90 × (10⁵)/(760) ≈ 11842 Pa",
+    "nota": "mmHg vira pascal"
+   },
+   {
+    "linha": "10³ × 10 × h = 11842",
+    "nota": "pressão do soro = pressão arterial"
+   },
+   {
+    "linha": "h = 11842/(10⁴) ≈ 1,18 m",
+    "nota": "d × g passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Acafe Inverno 2024, prova oficial comentada (tabela de constantes físicas)",
+    "url": "https://storage.acafe.org.br/concurso/vestibular/2024/2/02%20-%20Prova/02%20-%20Prova%20objetiva%20Inverno%202024%20oficial%20comentada.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0069"
+  }
  }
 }

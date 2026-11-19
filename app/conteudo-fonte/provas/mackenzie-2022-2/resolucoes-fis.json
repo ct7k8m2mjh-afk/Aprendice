@@ -526,5 +526,130 @@
    "data": "2026-11-12",
    "lote": "fis-0035"
   }
+ },
+ "Pf5c90a21": {
+  "n": "20",
+  "conceito": "Equilíbrio de um ponto: decompor as trações dos dois fios e somar componentes horizontais e verticais.",
+  "equivocos": {
+   "A": "F03.6:equilibrio-horizontal-nao-fecha",
+   "B": "F03.6:deu-a-componente-vertical-de-tb",
+   "D": "F03.6:equilibrio-horizontal-nao-fecha",
+   "E": "F03.6:deu-a-componente-horizontal-de-tb"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O nó onde os três fios se encontram está em equilíbrio. Na horizontal, as componentes de T_A e T_B se cancelam; na vertical, somadas, seguram o peso de E. Atenção aos ângulos: α é medido com a vertical e β com o teto (horizontal), então as componentes usam seno e cosseno em posições diferentes nos dois fios.",
+    "formulas": [
+     "fio A (α com a vertical): horizontal T_A·sen α, vertical T_A·cos α",
+     "fio B (β com a horizontal): horizontal T_B·cos β, vertical T_B·sen β",
+     "sen² + cos² = 1; tg β = sen β/cos β"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "ângulo entre o fio A e a vertical"
+     ],
+     [
+      "β",
+      "ângulo entre o fio B e o teto"
+     ],
+     [
+      "T_A, T_B",
+      "trações nos fios A e B"
+     ],
+     [
+      "tg",
+      "tangente: seno dividido pelo cosseno"
+     ]
+    ]
+   },
+   "pista": "Antes de decompor, marque para cada fio se o ângulo é com a vertical ou com a horizontal, e tire cos α, sen β e cos β dos dados.",
+   "passos": [
+    {
+     "faz": "Tire os valores trigonométricos",
+     "conta": "sen α = 0,6 → cos α = 0,8 | tg β = 1/2 → sen β = 1/√5, cos β = 2/√5",
+     "porque": "Com tg β = 1/2, o triângulo tem catetos 1 e 2 e hipotenusa √5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Equilibre a horizontal",
+     "conta": "T_A·sen α = T_B·cos β → 100·0,6 = T_B·2/√5 → T_B = 30√5 ≈ 67 N",
+     "porque": "As componentes horizontais dos dois fios puxam para lados opostos e se anulam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as componentes verticais",
+     "conta": "T_A·cos α + T_B·sen β → 100·0,8 + 30√5·1/√5 → 80 + 30 = 110 N",
+     "porque": "As duas componentes para cima seguram o peso da bola.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta o peso em massa",
+     "conta": "m = 110/10 → m = 11 kg",
+     "porque": "Peso = m·g, com g = 10 m/s².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o par à alternativa",
+     "conta": "11 kg e 67 N → alternativa C",
+     "porque": "Massa e tração na ordem pedida (kg e N).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — massa de 11 kg e tração no fio B de cerca de 67 N.",
+   "checagem": "Pela tangente: no fio B, a vertical é metade da horizontal (tg β = 1/2), então vale 60/2 = 30 N; com os 80 N do fio A, o peso é 110 N. E T_B = √(60² + 30²) = √4500 ≈ 67 N, o mesmo valor.",
+   "erradas": {
+    "A": "9,0 kg e 20 N não confere: com T_B = 20 N, a componente horizontal seria 20·2/√5 ≈ 18 N, longe dos 60 N do fio A.",
+    "B": "A massa está certa, mas 30 N é só a componente vertical de T_B (T_B·sen β), não o módulo da tração.",
+    "D": "12 kg e 47 N não confere: 47·2/√5 ≈ 42 N na horizontal, que não equilibra os 60 N de T_A·sen α.",
+    "E": "60 N é só a componente horizontal de T_B, e 12 kg não confere: as componentes verticais somam 80 + 30 = 110 N, ou 11 kg."
+   },
+   "armadilha": "α é com a vertical e β é com a horizontal: as componentes trocam seno por cosseno de um fio para o outro, e a resposta pede o módulo de T_B, não uma componente.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A massa da bola e a tração no fio B, conhecida a tração de 100 N no fio A.",
+    "chave": "Horizontal: 100·0,6 = T_B·cos β → T_B ≈ 67 N; vertical: 80 + 30 = 110 N → 11 kg.",
+    "cuidado": "Ver com quem cada ângulo é medido e dar o módulo de T_B, não a componente."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "triângulo de catetos",
+    "ideia": "No fio B, componente horizontal 60 N e vertical 60 × 1/2 = 30 N; T_B = √(60² + 30²) ≈ 67 N e o peso é 80 + 30 = 110 N."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "100·0,6 = T_B·2/√5",
+    "nota": "equilíbrio na horizontal"
+   },
+   {
+    "linha": "T_B = 60·√5/2 = 30√5 ≈ 67 N",
+    "nota": "o 2/√5 passa dividindo"
+   },
+   {
+    "linha": "P = 100·0,8 + 30√5·1/√5",
+    "nota": "soma das componentes verticais"
+   },
+   {
+    "linha": "P = 80 + 30 = 110 N",
+    "nota": "o √5 cancela"
+   },
+   {
+    "linha": "m = 110/10 = 11 kg",
+    "nota": "P = m·g"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0069"
+  }
  }
 }

@@ -142,3 +142,37 @@ Pendente: ANULAR P8cad75ee (UEMG 2024 q18). Divergência: P58d32c58 (UFRR 2025 q
 Gabarito do Aprendice (resolvedor e conferente às cegas bateram; preliminar também quando existe): fis-0065 Pf2d7c301 B, Pb24b4c99 B, P008531fb B, P8e870c83 D; fis-0066 P342ad709 A, P23e9cfdf D, Pe0f4cec2 C; fis-0067 P6220eb09 C, P73cbd02f A.
 Testes depois do fis-0067 (converte + tsc + vitest): tsc ok; vitest 786 de 786. Conferência no site (Pa8c2a5ea, P717964b4, P57beb5b1, 390 e 1280 px): 4 blocos completos, fração empilhada, lousa até o fim, sem erro de console.
 Observação para as próximas sessões: os conferentes recusam rótulos de teste em equivocos (nao-confere-..., valor-sem-origem-...); usar a origem real ou o equívoco de conceito.
+
+## 2026-11-19 16:43 UTC — PENDENCIAS — session_01PveEKYFao9mdqzruhVmuPm
+Lote gravado: fis-0069 (49 ok, 1 pendente). Aberto: fis-0070.
+DADO P4762e0ac: texto_da_prova -> a camada de texto está embaralhada; enunciado lido no print (chave de roda em L de 25 cm, força de 400 N, torque mínimo de 500 N·m, tabela das alavancas I a V: 0,25; 0,50; 0,75; 1,00; 1,25 m)
+DADO P4762e0ac: alternativas.E -> "V."
+ANULAR Pa4042d98 (Unesp 2026/2 1ª fase, q76): oficial C exige blocos com a mesma aceleração da placa; o vínculo do fio inclinado dá a_bloco = a·senθ e a = 50/17 ≈ 2,94 m/s², fora das alternativas
+DADO Pf9094e2a: alternativas.E -> "20 segundos." (o enunciado do prédio, do elevador e do motor de 10 000 W está colado na alternativa; no print ele vem antes do comando)
+DADO P78558614: alternativas -> A) 14,08 m/s. B) 13,00 m/s. C) 12,49 m/s. D) 12,00 m/s. E) 11,00 m/s. (estão dentro do texto_da_prova, com lixo de OCR no fim)
+DADO P7f7346b1: alternativas.E -> "100 cm" (o "Note e adote" está colado na alternativa)
+DADO P7f372339: alternativas.A -> "as pedras 1 e 2 deslocaram-se para a frente, com velocidades v/2 e v, respectivamente."
+DADO P7f372339: alternativas.D -> "as pedras 1 e 2 deslocaram-se para a frente e juntas, com velocidade igual a v/2."
+DADO P7f372339: alternativas.E -> "a pedra 1 ficou parada e a pedra 2 deslocou-se para a frente com velocidade igual a v/2."
+DADO P11eeab1b: texto_da_prova -> "Considere uma banana de dinamite equivalente a 3,5 x 10⁶ J." (o expoente 6 sumiu)
+RECLASS P06e6cb46 F04.4 -> F11.9
+RECLASS P37bac67e F06.1 -> F06.2
+DADO P37bac67e: texto_da_prova -> potências com expoente: Massa do Sol 2 × 10^30 kg; Massa de Júpiter 2 × 10^27 kg; 1 UA 1,5 × 10^11 m; G = 6 × 10^-11 N·m²/kg²
+DADO P9719f376: alternativas -> (A) F_W/F_T = m_W R_T/(m_T R_W); (B) (m_T + m_S) R_W/(m_T R_T); (C) m_W R_W/(m_T R_T); (D) m_W (R_W − R_T)/(m_T R_T); (E) m_T (R_W − R_T)/(m_W R_T); o 'Note e adote' está colado na E e é do enunciado
+DADO Pa02b1056: alternativas -> (A) 2F; (B) F/9; (C) 2F/3; (D) 8F; (E) 8F/9
+DADO P16f8559e: alternativas -> A. 9,5 m/s²; B. 8,0 m/s²; C. 8,9 m/s²; D. 11 m/s²; E. 7,3 m/s² (a entrada não traz alternativas separadas; texto do OCR embaralhado)
+DADO P1eb72652: alternativas -> A. 6,67×10^-11 N para o lado da esfera A; B. 1,67×10^-10 N para o lado da esfera B; C. 3,34×10^-10 N para o lado da esfera B; D. 1,67×10^-10 N para o lado da esfera A; E. 3,34×10^-10 N para o lado da esfera A
+DADO P0a31f241: texto_da_prova -> 'Na missão Artemis II' e 'massa da Terra: M_T = 81M_L, onde M_L é a massa da Lua.'
+DADO P6ffc283e: alternativas -> (A) 3,6 × 10^6 km e 17 dias; (B) 1,8 × 10^6 km e 8,5 dias; (C) 9,0 × 10^5 km e 17 dias; (D) 9,0 × 10^5 km e 8,5 dias; (E) 1,8 × 10^6 km e 17 dias
+DADO Pf7efcfb5: texto_da_prova -> o print traz 'potência de aproximadamente 4 × 10²⁶ W' e 'cerca de 5 × 10⁹ anos atrás'; a camada de texto mistura trechos de outra questão ('entre outros aspectos, (A) fornece evidências...').
+DADO Pf7efcfb5: alternativas -> (A) 10⁷ kg. (B) 10¹⁷ kg. (C) 10²⁷ kg. (D) 10³⁷ kg. (E) 10⁴⁷ kg.
+DADO Pe59e67a2: alternativas -> A. a = 0,5 m/s² e Fv = P; B. a = 0,5 m/s² e Fv = P/2; C. a = 5,0 m/s² e Fv = P/2; D. a = 10 m/s² e Fv = P/2; E. a = 10 m/s² e Fv = P (o OCR trocou Fv por 'F', 'M', 'H', 'A').
+DADO Pfac558a1: texto_da_prova -> faltam os valores do print: densidade da água 10³ kg/m³, aceleração da gravidade 10 m/s² e a razão V2/V1.
+RECLASS Pe59e67a2 F07.1 -> F07.4
+RECLASS P5fa24d46 F07.2 -> F07.1
+RECLASS Pf12c914f F07.4 -> F07.2
+DADO Pafefa5c8: alternativas -> no print, cada termo tem a letra P com índice: (A) P1 < P2 < P3; (B) P1 = P3 < P2; (C) P2 < P1 < P3; (D) P3 < P2 < P1; (E) P1 < P2 = P3
+DADO Pafefa5c8: texto_da_prova -> no print, 'O período P' e 'períodos de oscilação P1, P2 e P3' (o símbolo P saiu embaralhado na camada de texto)
+DADO P5697d0ea: alternativas.E -> 7 min e 21 s. (sem o ' p p' do fim)
+DADO P24553b9c: alternativas -> B 2,0 m/s; D 2,8 m/s; E 3,2 m/s
+ANULAR Pa4042d98: com o fio inclinado o bloco acelera 0,6a; T = 10 + 0,6a e 20 − 1,2T = 2a dão a = 50/17 ≈ 2,94 m/s², fora das alternativas (oficial C = 2,5 m/s² supõe blocos com a aceleração da placa)

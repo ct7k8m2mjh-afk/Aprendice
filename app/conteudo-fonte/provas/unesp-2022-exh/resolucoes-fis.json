@@ -414,5 +414,128 @@
    "data": "2026-11-12",
    "lote": "fis-0038"
   }
+ },
+ "P37bac67e": {
+  "n": "77",
+  "conceito": "Calcular a força gravitacional entre uma estrela e um exoplaneta com a lei da gravitação universal, montando massas e distância a partir de Sol, Júpiter e UA.",
+  "equivocos": {
+   "B": "F06.2:valor-sem-relacao-com-d-ao-quadrado",
+   "C": "F06.2:distancia-menor-que-a-dada",
+   "D": "F06.2:superestimou-a-forca-gravitacional",
+   "E": "F06.2:superestimou-a-forca-gravitacional"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A força de atração entre dois corpos é F = G·M·m/d². O trabalho real da questão está em montar os três dados: a massa da estrela vem do Sol, a do planeta vem de Júpiter e a distância vem da UA. Depois, a conta de potências de dez se faz separada da conta dos números.",
+    "formulas": [
+     "F = G × M × m / d²",
+     "M = 0,025 × massa do Sol; m = 5 × massa de Júpiter",
+     "d = 40 × 1,5 × 10¹¹ m"
+    ],
+    "simbolos": [
+     [
+      "G",
+      "constante universal da gravitação, 6 × 10⁻¹¹ N·m²/kg² nesta prova"
+     ],
+     [
+      "M",
+      "massa da estrela 2M1207"
+     ],
+     [
+      "m",
+      "massa do exoplaneta 2M1207b"
+     ],
+     [
+      "d",
+      "distância entre os centros dos dois corpos, em metro"
+     ],
+     [
+      "UA",
+      "unidade astronômica, 1,5 × 10¹¹ m segundo a prova"
+     ]
+    ]
+   },
+   "pista": "Antes de usar a fórmula, transforme cada dado em quilograma e metro: as massas vêm em 'vezes o Sol' e 'vezes Júpiter', e a distância vem em UA.",
+   "passos": [
+    {
+     "faz": "Monte as duas massas em kg",
+     "conta": "M = 0,025 × 2 × 10³⁰ kg → M = 5 × 10²⁸ kg | m = 5 × 2 × 10²⁷ kg → m = 1 × 10²⁸ kg",
+     "porque": "A prova dá as massas em comparação com o Sol e com Júpiter; a fórmula pede quilograma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta a distância para metro",
+     "conta": "d = 40 × 1,5 × 10¹¹ m → d = 6 × 10¹² m → d² = 3,6 × 10²⁵ m²",
+     "porque": "G está em N·m²/kg², então a distância tem de estar em metro. Eleve ao quadrado o 6 e a potência: 6² = 36 e (10¹²)² = 10²⁴.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique G pelas massas",
+     "conta": "G × M × m = 6 × 10⁻¹¹ × 5 × 10²⁸ × 1 × 10²⁸ → G × M × m = 3 × 10⁴⁶",
+     "porque": "Números e potências em separado: 6 × 5 × 1 = 30 e 10⁻¹¹⁺²⁸⁺²⁸ = 10⁴⁵, logo 30 × 10⁴⁵ = 3 × 10⁴⁶.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida por d²",
+     "conta": "F = (3 × 10⁴⁶)/(3,6 × 10²⁵) → F ≈ 0,83 × 10²¹ N → F ≈ 8,3 × 10²⁰ N",
+     "porque": "3 ÷ 3,6 ≈ 0,83 e 10⁴⁶ ÷ 10²⁵ = 10²¹; passando a vírgula, 8,3 × 10²⁰ N.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — cerca de 8,3 × 10²⁰ N.",
+   "checagem": "Confira pela ordem de grandeza: o numerador 3 × 10⁴⁶ tem mantissa menor que a do denominador 3,6 × 10²⁵, então o resultado fica abaixo de 10²¹ N. Só A e B ficam nessa faixa, e 3/3,6 ≈ 0,83 escolhe 8,3.",
+   "erradas": {
+    "B": "Não confere: com os dados, 3 × 10⁴⁶ ÷ 3,6 × 10²⁵ ≈ 8,3 × 10²⁰ N; 5,0 × 10²⁰ N é só 0,6 desse valor e exigiria d² = 6 × 10²⁵ m², que não sai de 40 UA.",
+    "C": "Não confere: 2,5 × 10²¹ N é o triplo de 8,3 × 10²⁰ N; exigiria d² três vezes menor, uma distância de cerca de 23 UA, e a prova dá 40 UA.",
+    "D": "Não confere: 3,6 × 10²¹ N é cerca de 4,3 vezes o valor certo; nenhum dos dados da prova, montado em kg e metro, leva a ele.",
+    "E": "Não confere: 4,4 × 10²¹ N é cerca de 5,3 vezes o valor certo; com G = 6 × 10⁻¹¹, M = 5 × 10²⁸ kg, m = 10²⁸ kg e d = 6 × 10¹² m, a força é 8,3 × 10²⁰ N."
+   },
+   "armadilha": "Esquecer de elevar a distância ao quadrado ou deixá-la em UA estraga a potência de dez: d² = (6 × 10¹²)² = 3,6 × 10²⁵ m².",
+   "alerta": "",
+   "essencial": {
+    "pede": "A força de atração gravitacional entre o exoplaneta e a estrela, a 40 UA um do outro.",
+    "chave": "F = G·M·m/d² com M = 5 × 10²⁸ kg, m = 10²⁸ kg e d = 6 × 10¹² m: F ≈ 8,3 × 10²⁰ N.",
+    "cuidado": "Converter tudo para kg e metro e elevar ao quadrado o número e a potência da distância."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em razões com o sistema solar",
+    "ideia": "Escreva F = G·(0,025 Msol)·(5 Mjup)/(40 UA)², calcule 0,025 × 5/1600 e só depois multiplique por G·Msol·Mjup/UA²."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "M = 0,025 × 2 × 10³⁰ = 5 × 10²⁸ kg",
+    "nota": "massa da estrela"
+   },
+   {
+    "linha": "m = 5 × 2 × 10²⁷ = 1 × 10²⁸ kg",
+    "nota": "massa do exoplaneta"
+   },
+   {
+    "linha": "d = 40 × 1,5 × 10¹¹ = 6 × 10¹² m → d² = 3,6 × 10²⁵ m²",
+    "nota": "distância em metro, ao quadrado"
+   },
+   {
+    "linha": "F = (6 × 10⁻¹¹ × 5 × 10²⁸ × 10²⁸)/(3,6 × 10²⁵)",
+    "nota": "substituir na lei da gravitação"
+   },
+   {
+    "linha": "F = (3 × 10⁴⁶)/(3,6 × 10²⁵) ≈ 8,3 × 10²⁰ N",
+    "nota": "dividir números e potências"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0069"
+  }
  }
 }

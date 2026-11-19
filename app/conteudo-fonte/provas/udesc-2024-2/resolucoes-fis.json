@@ -1000,5 +1000,232 @@
    "data": "2026-11-13",
    "lote": "fis-0041"
   }
+ },
+ "P16f8559e": {
+  "n": "55",
+  "conceito": "Estimar a gravidade na superfície de Vênus pela proporção g = GM/R², comparando massa e raio com os da Terra.",
+  "equivocos": {
+   "A": "F06.2:raio-sem-quadrado-e-sem-massa",
+   "B": "F06.2:ignorou-o-raio",
+   "D": "F06.2:ignorou-a-massa",
+   "E": "F06.2:raio-lido-como-maior"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A gravidade na superfície de um planeta é g = G·M/R². Comparando Vênus com a Terra, G se cancela e basta multiplicar a razão das massas pelo inverso do quadrado da razão dos raios. Diâmetro 5% menor significa raio 5% menor, pois o raio é metade do diâmetro nos dois planetas. A prova não dá a gravidade da Terra: aqui se usa o valor usual de 10 m/s².",
+    "formulas": [
+     "g = G × M / R²",
+     "g_V/g_T = (M_V/M_T) × (R_T/R_V)²",
+     "20% menor → × 0,8; 5% menor → × 0,95"
+    ],
+    "simbolos": [
+     [
+      "g_V, g_T",
+      "aceleração da gravidade na superfície de Vênus e da Terra"
+     ],
+     [
+      "M_V, M_T",
+      "massas de Vênus e da Terra"
+     ],
+     [
+      "R_V, R_T",
+      "raios de Vênus e da Terra"
+     ]
+    ]
+   },
+   "pista": "Escreva g de Vênus dividido por g da Terra: o que se cancela e o que fica? Cuidado com o expoente do raio.",
+   "passos": [
+    {
+     "faz": "Traduza as porcentagens",
+     "conta": "M_V = 0,8 × M_T | R_V = 0,95 × R_T",
+     "porque": "'20% menor' é 100% − 20% = 80% da massa; diâmetro 5% menor dá raio também 5% menor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a razão das gravidades",
+     "conta": "g_V/g_T = (G·M_V/R_V²)/(G·M_T/R_T²) → g_V/g_T = 0,8/0,95²",
+     "porque": "G se cancela; a massa entra no numerador e o raio ao quadrado no denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a conta",
+     "conta": "g_V/g_T = 0,8/0,9025 → g_V/g_T ≈ 0,886",
+     "porque": "0,95² = 0,9025; o raio menor compensa em parte a massa menor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pela gravidade da Terra",
+     "conta": "g_V ≈ 0,886 × 10 m/s² → g_V ≈ 8,9 m/s²",
+     "porque": "Com g_T = 10 m/s², a estimativa é 8,86 m/s², que arredonda para 8,9 m/s².",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — cerca de 8,9 m/s².",
+   "checagem": "Confira os sentidos: massa menor diminui g (sozinha daria 8,0 m/s²) e raio menor aumenta g (sozinho daria cerca de 11 m/s²). O resultado tem de ficar entre 8,0 e 11, mais perto de 8,0, porque a massa muda 20% e o raio só 5%: 8,9 m/s² encaixa.",
+   "erradas": {
+    "A": "Sai de multiplicar pela razão dos raios sem o quadrado e esquecer a massa: 10 × 0,95 = 9,5 m/s². O raio menor aumenta g, e a massa menor também conta.",
+    "B": "Sai de considerar só a massa: 10 × 0,8 = 8,0 m/s². Faltou o raio menor, que aumenta a gravidade na superfície.",
+    "D": "Sai de considerar só o raio: 10/0,95² ≈ 11,1 m/s². Faltou multiplicar pela massa, que é 20% menor.",
+    "E": "Sai de ler o diâmetro como 5% maior: 10 × 0,8/1,05² ≈ 7,3 m/s². O enunciado diz que o diâmetro de Vênus é 5% menor."
+   },
+   "armadilha": "O raio entra ao quadrado e no denominador: raio menor AUMENTA a gravidade na superfície, compensando parte da massa menor.",
+   "alerta": "O enunciado não informa a gravidade na Terra. Com o valor usual g_T = 10 m/s² sai 8,86 ≈ 8,9 m/s²; com 9,8 m/s² sairia cerca de 8,7 m/s², e a alternativa mais próxima continua sendo 8,9 m/s².",
+   "essencial": {
+    "pede": "A gravidade na superfície de Vênus, sabendo massa 20% menor e diâmetro 5% menor que os da Terra.",
+    "chave": "g_V = g_T × 0,8/0,95² ≈ 0,886 × 10 ≈ 8,9 m/s².",
+    "cuidado": "Elevar a razão dos raios ao quadrado e lembrar que raio menor aumenta g."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por porcentagem aproximada",
+    "ideia": "Massa −20% tira 20% de g; raio −5% soma cerca de 2 × 5% = 10% (efeito do quadrado): 10 × 0,8 × 1,1 ≈ 8,8, perto de 8,9."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "M_V = 0,8 M_T; R_V = 0,95 R_T",
+    "nota": "traduzir as porcentagens"
+   },
+   {
+    "linha": "g_V/g_T = 0,8/0,95²",
+    "nota": "G se cancela"
+   },
+   {
+    "linha": "g_V/g_T = 0,8/0,9025 ≈ 0,886",
+    "nota": "calcular o quadrado"
+   },
+   {
+    "linha": "g_V ≈ 0,886 × 10 ≈ 8,9 m/s²",
+    "nota": "com g_T = 10 m/s²"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0069"
+  }
+ },
+ "Pe59e67a2": {
+  "n": "56",
+  "conceito": "Segunda lei de Newton com peso, empuxo e arrasto: aceleração inicial e força de arrasto na velocidade terminal.",
+  "equivocos": {
+   "A": "F07.4:esqueceu-o-empuxo",
+   "B": "F07.4:razao-de-densidades-sem-g",
+   "D": "F07.4:aceleracao-de-queda-livre-no-liquido",
+   "E": "F07.4:esqueceu-o-empuxo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dentro do líquido o objeto sofre peso para baixo e empuxo para cima; o arrasto só aparece quando há velocidade. Como a densidade do objeto é o dobro da do líquido, o empuxo vale metade do peso. No início (v = 0) não há arrasto; na velocidade constante a resultante é zero. A questão não dá g: use g = 10 m/s², o valor que as alternativas supõem.",
+    "formulas": [
+     "E = d_líquido × V × g e P = d_objeto × V × g",
+     "F_R = m × a",
+     "velocidade constante: F_R = 0"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "empuxo, força para cima exercida pelo líquido"
+     ],
+     [
+      "Fv",
+      "módulo da força de arrasto (resistência do líquido ao movimento)"
+     ],
+     [
+      "d",
+      "densidade"
+     ],
+     [
+      "g",
+      "aceleração da gravidade, adotada 10 m/s²"
+     ]
+    ]
+   },
+   "pista": "Compare o empuxo com o peso usando a razão das densidades; o volume é o mesmo nas duas forças.",
+   "passos": [
+    {
+     "faz": "Compare empuxo e peso",
+     "conta": "E/P = (d_líq × V × g)/(d_obj × V × g) → E/P = d_líq/(2 d_líq) → E = P/2",
+     "porque": "Empuxo e peso usam o mesmo volume e o mesmo g; tudo cancela, e sobra a razão das densidades, 1/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a aceleração inicial",
+     "conta": "m × a = P − E → m × a = P/2 → a = g/2 = 10/2 = 5 m/s²",
+     "porque": "Com velocidade nula ainda não há arrasto; a resultante é P − E = P/2, e P/2 dividido por m é g/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o arrasto na velocidade constante",
+     "conta": "P = E + Fv → Fv = P − P/2 → Fv = P/2",
+     "porque": "Velocidade constante é resultante nula: o arrasto completa o que falta ao empuxo para equilibrar o peso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os dois resultados",
+     "conta": "a = 5,0 m/s² e Fv = P/2 → alternativa C",
+     "porque": "Só a alternativa C traz os dois valores juntos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a = 5,0 m/s² e Fv = P/2.",
+   "checagem": "Caso extremo: se o objeto tivesse a mesma densidade do líquido, E = P e ele nem afundaria (a = 0, Fv = 0); se o líquido não existisse, a = g e Fv = 0. Densidade dupla fica no meio: a = g/2 e o arrasto final cobre a outra metade do peso.",
+   "erradas": {
+    "A": "Erra as duas: a = 0,5 m/s² usa a razão 1/2 sem multiplicar por g, e Fv = P ignora o empuxo, que já sustenta metade do peso.",
+    "B": "O arrasto P/2 está certo, mas a = 0,5 m/s² é a razão 1/2 sem o g: a aceleração é g/2 = 5 m/s².",
+    "D": "a = 10 m/s² é queda livre, sem empuxo; dentro do líquido o empuxo P/2 reduz a aceleração inicial para 5 m/s².",
+    "E": "Ignora o empuxo nas duas etapas: a = g só sem líquido, e Fv = P só se o arrasto sozinho equilibrasse o peso."
+   },
+   "armadilha": "Esquecer o empuxo: ele age desde o início e na velocidade terminal, e vale metade do peso porque a densidade do objeto é o dobro da do líquido.",
+   "alerta": "O enunciado não informa g; as alternativas pressupõem g = 10 m/s².",
+   "essencial": {
+    "pede": "A aceleração inicial e a força de arrasto final de um objeto com o dobro da densidade do líquido.",
+    "chave": "E = P/2; no início a = g/2 = 5 m/s²; na velocidade constante Fv = P − E = P/2.",
+    "cuidado": "O empuxo existe nas duas etapas; o arrasto só aparece com velocidade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "peso aparente",
+    "ideia": "O peso aparente no líquido é P − E = P/2; ele dá a aceleração inicial (g/2) e é exatamente o que o arrasto equilibra no fim."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "E/P = d_líq/d_obj = 1/2 → E = P/2",
+    "nota": "V e g cancelam"
+   },
+   {
+    "linha": "m · a = P − P/2 = P/2 → a = g/2 = 5 m/s²",
+    "nota": "início: sem arrasto"
+   },
+   {
+    "linha": "P = E + Fv → Fv = P/2",
+    "nota": "velocidade constante: resultante zero"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "UDESC Vestibular de Inverno 2024.2, caderno vespertino",
+    "url": "https://www.udesc.br/arquivos/udesc/id_cpmenu/17918/4___Caderno_de_Prova_2024_2___Per_odo_Vespertino_pb_17249514263672_17918.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0069"
+  }
  }
 }

@@ -340,5 +340,123 @@
    "data": "2026-11-12",
    "lote": "fis-0021"
   }
+ },
+ "Pf12c914f": {
+  "n": "45",
+  "conceito": "Superfície livre de um líquido num recipiente acelerado: inclinação tg θ = A/g e volume derramado.",
+  "equivocos": {
+   "A": "F07.2:considerou-que-todo-o-liquido-sai",
+   "C": "F07.2:inverteu-a-razao-a-sobre-g",
+   "D": "F07.2:expressao-sem-teste-de-caso-limite"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Num tanque que acelera para a frente, a superfície do líquido deixa de ser horizontal e se inclina, subindo na traseira e descendo na frente, com tg θ = A/g. Como o tanque estava cheio e é aberto, o líquido que fica acima da borda traseira transborda. O que se perde é uma cunha triangular de líquido. A resposta é em letras, então mantenha L, A e g até o fim.",
+    "formulas": [
+     "tg θ = A/g (inclinação da superfície)",
+     "volume da cunha = (1/2) × L × (L × tg θ) × L",
+     "M = d × volume derramado"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "aresta do tanque cúbico, com V = L³"
+     ],
+     [
+      "θ",
+      "ângulo da superfície do líquido com a horizontal"
+     ],
+     [
+      "A",
+      "aceleração do caminhão"
+     ],
+     [
+      "d",
+      "densidade do líquido"
+     ]
+    ]
+   },
+   "pista": "Descubra quanto a superfície desce na parede da frente quando ela continua passando pela borda de trás.",
+   "passos": [
+    {
+     "faz": "Ache a inclinação da superfície",
+     "conta": "tg θ = A/g",
+     "porque": "No referencial do caminhão, cada porção de líquido sente g para baixo e A para trás; a superfície fica perpendicular a essa combinação.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o desnível entre as paredes",
+     "conta": "Δh = L × tg θ → Δh = L × A/g",
+     "porque": "O líquido continua até a borda traseira e, ao longo do comprimento L, a superfície cai Δh até a parede da frente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o volume derramado num tanque",
+     "conta": "V_der = (1/2) × L × (L × A/g) × L → V_der = (L³ × A)/(2g) = (V × A)/(2g)",
+     "porque": "O espaço vazio é um prisma de base triangular (catetos L e Δh) com largura L; esse é o volume que saiu.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois tanques e passe para massa",
+     "conta": "M = 2 × d × (V × A)/(2g) → M = (d × V × A)/g",
+     "porque": "O 2 dos dois tanques cancela com o 2 da área do triângulo; massa é densidade vezes volume.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — M = dVA/g.",
+   "checagem": "Casos extremos: com A = 0 a superfície fica horizontal e nada derrama (M = 0, como em dVA/g); com A = g a superfície fica a 45° e cada tanque perde metade, os dois juntos perdem dV, de novo igual a dVA/g. Unidade: d × V é massa e A/g é adimensional.",
+   "erradas": {
+    "A": "2dV é a massa total dos dois tanques: valeria só se todo o líquido saísse. Com aceleração A, sai apenas uma cunha.",
+    "C": "Inverte a razão: dVg/2A cresce quando A diminui e tende ao infinito com o caminhão quase parado, quando nada deveria derramar.",
+    "D": "Não confere: com A → 0, dV(A + g)/A tende ao infinito, e com A = g dá 2dV (tudo), quando cada tanque perde só metade."
+   },
+   "armadilha": "Achar que a massa perdida depende de g/A: quanto maior a aceleração, mais a superfície inclina e mais líquido sai, então M cresce com A.",
+   "alerta": "A expressão vale enquanto A ≤ g; para A maior que g a superfície passaria abaixo do canto inferior da frente e a cunha deixaria de ser um triângulo dentro do tanque.",
+   "essencial": {
+    "pede": "A massa de líquido perdida por dois tanques cúbicos abertos e cheios num caminhão com aceleração A.",
+    "chave": "tg θ = A/g; cada tanque perde a cunha V × A/(2g), dois perdem dVA/g.",
+    "cuidado": "O volume derramado é um prisma triangular (metade do retângulo), e M cresce com A."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "casos extremos",
+    "ideia": "Testar A = 0 (nada sai) e A = g (sai metade de cada tanque) elimina A, C e D sem montar a geometria."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "tg θ = A/g",
+    "nota": "inclinação da superfície"
+   },
+   {
+    "linha": "Δh = L × A/g",
+    "nota": "desnível ao longo de L"
+   },
+   {
+    "linha": "V_der = (1/2) × L × Δh × L = (V × A)/(2g)",
+    "nota": "cunha por tanque"
+   },
+   {
+    "linha": "M = 2 × d × (V × A)/(2g) = (d × V × A)/g",
+    "nota": "dois tanques, o 2 cancela"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "UECE 2024.1, 1ª fase, gabarito 1",
+    "url": "https://www.cev.uece.br/wp-content/uploads/2023/11/vtb20241f1g1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0069"
+  }
  }
 }

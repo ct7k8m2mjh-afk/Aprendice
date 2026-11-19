@@ -740,5 +740,125 @@
    "data": "2026-11-12",
    "lote": "fis-0040"
   }
+ },
+ "P920b0413": {
+  "n": "53",
+  "conceito": "Equilíbrio do corpo extenso: soma das forças nula e soma dos momentos nula em relação ao centro da barra.",
+  "equivocos": {
+   "A": "F03.6:braco-das-anilhas-igual-ao-das-maos",
+   "B": "F03.6:momentos-nao-se-anulam-em-c",
+   "D": "F03.6:ignorou-os-momentos",
+   "E": "F03.6:momentos-nao-se-anulam-em-c"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A barra está parada na horizontal, então valem duas condições: as forças para cima equilibram as para baixo, e os momentos em torno de qualquer ponto se anulam. Pondo o eixo em C, o peso da barra (aplicado no centro) não gira nada. Pela figura, as anilhas ficam a 2d de C e as mãos a d de C.",
+    "formulas": [
+     "soma das forças: F_D + F_E = soma dos pesos",
+     "soma dos momentos em C = 0 (força × distância a C)"
+    ],
+    "simbolos": [
+     [
+      "F_D, F_E",
+      "forças verticais das mãos sobre a barra"
+     ],
+     [
+      "C",
+      "centro geométrico da barra, onde age o peso dela"
+     ],
+     [
+      "d",
+      "distância marcada na figura entre pontos vizinhos"
+     ]
+    ]
+   },
+   "pista": "Comece pela soma das forças, que não depende de distância; depois escolha o eixo em C para que o peso da barra suma da conta de momentos.",
+   "passos": [
+    {
+     "faz": "Some as forças verticais",
+     "conta": "F_D + F_E = 120 + 100 + 100 → F_D + F_E = 320 N",
+     "porque": "A barra não sobe nem desce: as mãos seguram as duas anilhas e o peso da barra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia as distâncias até C",
+     "conta": "anilha de 120 N: 2d | F_D: d | F_E: d | anilha de 100 N: 2d",
+     "porque": "Cada intervalo marcado vale d; as anilhas estão nas pontas, as mãos no meio de cada metade.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Iguale os momentos em C",
+     "conta": "120·2d + F_E·d = 100·2d + F_D·d → F_D − F_E = 240 − 200 → F_D − F_E = 40 N",
+     "porque": "Do lado da anilha de 120 N, ela gira a barra para baixo e F_E ajuda do outro lado no mesmo sentido; d cancela em todos os termos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva o sistema",
+     "conta": "F_D + F_E = 320 e F_D − F_E = 40 → 2F_D = 360 → F_D = 180 N e F_E = 140 N",
+     "porque": "Somar as duas equações elimina F_E.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao par da alternativa",
+     "conta": "180 N e 140 N → alternativa C",
+     "porque": "A mão do lado da anilha mais pesada faz a força maior.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — F_D = 180 N e F_E = 140 N.",
+   "checagem": "Refaça com o eixo na mão D, onde F_D some: de um lado o peso da barra (100 N a d) e a anilha de 100 N (a 3d); do outro, a anilha de 120 N (a d) e F_E (a 2d). 100·d + 100·3d = 120·d + F_E·2d → 400 = 120 + 2F_E → F_E = 140 N, e F_D = 320 − 140 = 180 N.",
+   "erradas": {
+    "A": "Sai de pôr as anilhas a d de C, como as mãos: 120·d − 100·d = (F_D − F_E)·d → diferença de 20 N, e com soma 320 dá 170 N e 150 N.",
+    "B": "200 N e 120 N não confere: a diferença de 80 N daria em C 120·2d + 120·d = 360d contra 100·2d + 200·d = 400d; não equilibra.",
+    "D": "Sai de dividir os 320 N igualmente entre as mãos, ignorando os momentos: a anilha mais pesada de um lado giraria a barra.",
+    "E": "190 N e 130 N não confere: em C, 120·2d + 130·d = 370d contra 100·2d + 190·d = 390d; não equilibra."
+   },
+   "armadilha": "As anilhas estão a 2d do centro e as mãos a d: quem usa a mesma distância para todos acha a diferença de 20 N em vez de 40 N.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As forças das duas mãos que mantêm a barra horizontal com anilhas desiguais.",
+    "chave": "F_D + F_E = 320 N e, em C, F_D − F_E = 2 × (120 − 100) = 40 N.",
+    "cuidado": "Usar as duas condições de equilíbrio e medir as distâncias até C corretamente."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diferença direta",
+    "ideia": "Em C, só a diferença das anilhas pesa: 20 N a 2d exige diferença de 40 N entre as mãos a d; com soma 320 N, 180 N e 140 N."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "F_D + F_E = 120 + 100 + 100 = 320",
+    "nota": "soma das forças nula"
+   },
+   {
+    "linha": "120·2d + F_E·d = 100·2d + F_D·d",
+    "nota": "momentos em C; o peso da barra não gira"
+   },
+   {
+    "linha": "F_D − F_E = 40",
+    "nota": "d cancela e 240 − 200 = 40"
+   },
+   {
+    "linha": "2F_D = 360 → F_D = 180 N",
+    "nota": "somar as duas equações"
+   },
+   {
+    "linha": "F_E = 320 − 180 = 140 N",
+    "nota": "voltar na soma das forças"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0069"
+  }
  }
 }

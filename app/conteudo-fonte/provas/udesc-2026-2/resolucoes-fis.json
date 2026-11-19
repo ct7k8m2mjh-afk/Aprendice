@@ -1037,5 +1037,119 @@
    "data": "2026-11-13",
    "lote": "fis-0041"
   }
+ },
+ "P0a31f241": {
+  "n": "54",
+  "conceito": "Achar o ponto entre a Terra e a Lua onde as atrações gravitacionais se anulam, igualando G·M/d² dos dois lados.",
+  "equivocos": {
+   "A": "F06.2:equilibrio-no-meio-ignorando-massas",
+   "B": "F06.2:raiz-mal-aplicada",
+   "D": "F06.2:esqueceu-o-quadrado-da-distancia",
+   "E": "F06.2:distancia-a-lua-no-lugar-de-x"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No ponto de equilíbrio, a Terra puxa a nave para um lado e a Lua para o outro com a mesma intensidade. Como as duas forças têm G e a massa da nave, eles se cancelam, e sobra a igualdade das massas divididas pelos quadrados das distâncias. Tirar a raiz quadrada dos dois lados transforma a equação numa conta de primeiro grau.",
+    "formulas": [
+     "G × M_T × m/x² = G × M_L × m/(D − x)²",
+     "M_T = 81 × M_L"
+    ],
+    "simbolos": [
+     [
+      "M_T, M_L",
+      "massas da Terra e da Lua"
+     ],
+     [
+      "x",
+      "distância da nave ao centro da Terra"
+     ],
+     [
+      "D − x",
+      "distância da nave ao centro da Lua"
+     ],
+     [
+      "D",
+      "distância entre os centros da Terra e da Lua"
+     ]
+    ]
+   },
+   "pista": "Iguale as duas atrações e veja o que se cancela; o 81 é um quadrado perfeito, e isso facilita muito.",
+   "passos": [
+    {
+     "faz": "Iguale as duas atrações",
+     "conta": "G × 81M_L × m/x² = G × M_L × m/(D − x)² → 81/x² = 1/(D − x)²",
+     "porque": "Resultante nula: as forças da Terra e da Lua têm o mesmo módulo; G, M_L e a massa da nave se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a raiz dos dois lados",
+     "conta": "81/x² = 1/(D − x)² → 9/x = 1/(D − x)",
+     "porque": "Todas as distâncias são positivas, então basta a raiz positiva: √81 = 9.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole x",
+     "conta": "9 × (D − x) = x → 9D = 10x → x = 0,9D",
+     "porque": "Multiplicação cruzada; os 9x passam para o outro lado somando com x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "x = 0,90D → alternativa C",
+     "porque": "A nave fica a 90% do caminho, bem mais perto da Lua, porque a Lua tem massa muito menor.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — x = 0,90D.",
+   "checagem": "Substitua de volta: com x = 0,9D, a distância à Lua é 0,1D. A razão das forças fica 81 × (0,1)²/(0,9)² = 0,81/0,81 = 1, ou seja, forças iguais.",
+   "erradas": {
+    "A": "Sai de pôr o equilíbrio no meio do caminho, como se as massas fossem iguais; em 0,5D a Terra puxa 81 vezes mais que a Lua.",
+    "B": "Não confere: em 0,75D, F_T/F_L = 81 × 0,25²/0,75² = 9; a Terra ainda puxa nove vezes mais que a Lua.",
+    "D": "Sai de esquecer o quadrado das distâncias: x/(D − x) = 81 dá x = 81D/82 ≈ 0,99D. Com o quadrado, a razão das distâncias é √81 = 9.",
+    "E": "0,10D é a distância da nave à Lua (D − x), não ao centro da Terra, que é o x pedido."
+   },
+   "armadilha": "Distância entra ao quadrado: a razão das distâncias é √81 = 9, não 81; e x é medido a partir da Terra.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A distância x da nave ao centro da Terra onde a força gravitacional resultante se anula, com M_T = 81 M_L.",
+    "chave": "81/x² = 1/(D − x)² → 9/x = 1/(D − x) → x = 0,9D.",
+    "cuidado": "Tirar a raiz (9, não 81) e responder a distância à Terra, não à Lua."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela razão das distâncias",
+    "ideia": "Forças iguais exigem x/(D − x) = √(M_T/M_L) = 9: divida D em 10 partes, 9 para a Terra e 1 para a Lua."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "81M_L/x² = M_L/(D − x)²",
+    "nota": "forças iguais; G e m cancelam"
+   },
+   {
+    "linha": "9/x = 1/(D − x)",
+    "nota": "raiz dos dois lados"
+   },
+   {
+    "linha": "9D − 9x = x",
+    "nota": "multiplicação cruzada"
+   },
+   {
+    "linha": "10x = 9D → x = 0,9D",
+    "nota": "isolar x"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0069"
+  }
  }
 }
