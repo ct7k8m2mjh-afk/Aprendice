@@ -781,5 +781,123 @@
    "data": "2026-11-13",
    "lote": "fis-0060"
   }
+ },
+ "P709de4d0": {
+  "n": "67",
+  "conceito": "Efeito Doppler com fonte e observador em movimento, afastando-se um do outro.",
+  "equivocos": {
+   "B": "F10.7:velocidades-trocadas",
+   "C": "F10.7:subtraiu-velocidades",
+   "D": "F10.7:esqueceu-observador",
+   "E": "F10.7:ignorou-doppler"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois se afastam, então a frequência percebida é menor que a emitida. Na fórmula do Doppler, o sinal de cada velocidade sai do sentido: o observador que se afasta da fonte diminui o numerador; a fonte que se afasta do observador aumenta o denominador.",
+    "formulas": [
+     "f' = f · (v ± v_o)/(v ∓ v_f)",
+     "afastamento: f' = f · (v − v_o)/(v + v_f)"
+    ],
+    "simbolos": [
+     [
+      "f",
+      "frequência emitida pela sirene"
+     ],
+     [
+      "f'",
+      "frequência percebida pelo motorista"
+     ],
+     [
+      "v",
+      "velocidade do som no ar"
+     ],
+     [
+      "v_o",
+      "velocidade do observador (automóvel)"
+     ],
+     [
+      "v_f",
+      "velocidade da fonte (ambulância)"
+     ]
+    ]
+   },
+   "pista": "Antes de pôr números, decida se a frequência percebida fica maior ou menor que 1 080 Hz; isso fixa os sinais.",
+   "passos": [
+    {
+     "faz": "Monte os sinais pelo afastamento",
+     "conta": "observador se afasta: v − v_o | fonte se afasta: v + v_f",
+     "porque": "Afastamento reduz a frequência: o numerador diminui e o denominador aumenta.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Substitua os valores",
+     "conta": "f' = 1080 · (340 − 30)/(340 + 20) → f' = 1080 · 310/360",
+     "porque": "v_o = 30 m/s (automóvel) e v_f = 20 m/s (ambulância).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique a fração",
+     "conta": "1080/360 = 3 → f' = 3 · 310 = 930 Hz",
+     "porque": "O 360 divide o 1 080 exatamente, o que poupa conta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "f' = 930 Hz < 1080 Hz",
+     "porque": "Menor que a emitida, como o afastamento exige: alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 930 Hz.",
+   "checagem": "Faça um fator de cada vez: o observador multiplica por 310/340 ≈ 0,912 e a fonte por 340/360 ≈ 0,944; 1 080 × 0,912 × 0,944 ≈ 930 Hz. O resultado é menor que 1 080 Hz, coerente com o afastamento.",
+   "erradas": {
+    "B": "Sai de usar 20 m/s nas duas velocidades: 1080 · (340 − 20)/(340 + 20) = 960 Hz. O automóvel anda a 30 m/s.",
+    "C": "Sai de pôr a diferença das velocidades (30 − 20 = 10) no observador: 1080 · (340 − 10)/360 = 990 Hz.",
+    "D": "Sai de considerar só o movimento da ambulância: 1080 · 340/360 = 1 020 Hz, esquecendo o afastamento do automóvel.",
+    "E": "É a frequência emitida: ignora o efeito Doppler, que existe porque os dois se movem."
+   },
+   "armadilha": "Esquecer que o observador também se move ou trocar as velocidades da fonte e do observador.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A frequência da sirene percebida pelo motorista que se afasta da ambulância.",
+    "chave": "f' = 1080 · (340 − 30)/(340 + 20) = 930 Hz.",
+    "cuidado": "No afastamento, o sinal tem de deixar f' menor que f; cada velocidade vai no seu lugar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dois fatores",
+    "ideia": "Aplique um fator de cada vez: o observador dá (340 − 30)/340 e a fonte 340/(340 + 20); o produto é 310/360 e 1 080 × 310/360 = 930 Hz."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f' = f · (v − v_o)/(v + v_f)",
+    "nota": "afastamento dos dois"
+   },
+   {
+    "linha": "f' = 1080 · (340 − 30)/(340 + 20)",
+    "nota": "substituir"
+   },
+   {
+    "linha": "f' = 1080 · 310/360",
+    "nota": "somar e subtrair"
+   },
+   {
+    "linha": "f' = 3 · 310 = 930 Hz",
+    "nota": "1080/360 = 3"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0063"
+  }
  }
 }

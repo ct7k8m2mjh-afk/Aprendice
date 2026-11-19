@@ -617,5 +617,132 @@
    "data": "2026-11-19",
    "lote": "fis-0062"
   }
+ },
+ "P3aff7b0d": {
+  "n": "31",
+  "conceito": "Efeito Doppler em duas etapas no eco: a parede recebe como observador parado e reemite como fonte parada para um observador que se aproxima.",
+  "equivocos": {
+   "A": "F10.7:sinais-de-afastamento-trocados",
+   "B": "F10.7:so-uma-etapa-do-eco",
+   "C": "F10.7:so-uma-etapa-do-eco",
+   "D": "F10.7:esquece-a-etapa-da-ida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O eco é um Doppler feito duas vezes. Na ida, a fonte (o morcego) anda na direção da parede, que é um observador parado: as frentes de onda chegam comprimidas. Na volta, a parede vira uma fonte parada que reemite f1, e o morcego é um observador que se aproxima. Cada etapa tem a sua fração, e as duas aumentam a frequência.",
+    "formulas": [
+     "f′ = f × (V ± v_obs) ÷ (V ∓ v_fonte)",
+     "fonte se aproximando: V − v_fonte no denominador",
+     "observador se aproximando: V + v_obs no numerador"
+    ],
+    "simbolos": [
+     [
+      "f₀",
+      "frequência emitida pelo morcego"
+     ],
+     [
+      "f₁",
+      "frequência que chega à parede"
+     ],
+     [
+      "f₂",
+      "frequência do eco que o morcego percebe"
+     ],
+     [
+      "V₁",
+      "velocidade do morcego"
+     ],
+     [
+      "V₂",
+      "velocidade do som no ar"
+     ],
+     [
+      "efeito Doppler",
+      "mudança da frequência percebida quando fonte ou observador se movem"
+     ]
+    ]
+   },
+   "pista": "Escreva primeiro só a etapa 1, com o morcego como fonte e a parede como observador parado; depois use f1 como frequência da nova fonte.",
+   "passos": [
+    {
+     "faz": "Monte a etapa 1: fonte que se aproxima",
+     "conta": "f₁ = f₀ × V₂/(V₂ − V₁)",
+     "porque": "O morcego é a fonte em movimento rumo à parede parada. Fonte que se aproxima encurta o comprimento de onda à frente, e isso aparece como V₂ − V₁ no denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a etapa 2: observador que se aproxima",
+     "conta": "f₂ = f₁ × (V₂ + V₁)/V₂",
+     "porque": "Agora a parede é fonte parada emitindo f₁, e o morcego é observador indo ao encontro das ondas: ele cruza mais frentes por segundo, o que soma V₁ no numerador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua f₁ na etapa 2",
+     "conta": "f₂ = [f₀ × V₂/(V₂ − V₁)] × [(V₂ + V₁)/V₂]",
+     "porque": "A expressão encadeia as duas etapas exatamente como o enunciado pede. Ela simplifica para f₂ = f₀ × (V₂ + V₁)/(V₂ − V₁), mas é a forma em produto que aparece nas alternativas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "produto das duas etapas → alternativa E",
+     "porque": "Só a E tem as duas frações, e as duas são maiores que 1, como deve ser quando fonte e observador se aproximam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — f₂ = [f₀ × V₂/(V₂ − V₁)] × [(V₂ + V₁)/V₂].",
+   "checagem": "Teste com números: f₀ = 40 000 Hz, V₂ = 340 m/s e V₁ = 10 m/s dão f₁ ≈ 41 212 Hz e f₂ ≈ 42 424 Hz, acima de f₀, como manda a aproximação. Caso extremo: com V₁ = 0, a expressão vira f₂ = f₀, eco sem desvio, o que está certo para morcego parado.",
+   "erradas": {
+    "A": "A sai de trocar aproximação por afastamento nas duas etapas: f₀ × (V₂ − V₁)/(V₂ + V₁) dá f₂ < f₀ (≈ 37 714 Hz no teste), mas o morcego vai em direção à parede.",
+    "B": "B não confere: é só uma etapa, e com o sinal de fonte que se afasta; dá f₂ < f₀ (≈ 38 857 Hz no teste), quando o eco deve sair mais agudo.",
+    "C": "C sai de tratar o morcego só como observador que se afasta: (V₂ − V₁)/V₂ < 1. Falta a etapa 1 e o sinal está trocado.",
+    "D": "D sai de fazer só a etapa 2 (observador que se aproxima) e esquecer que a parede recebe f₁, não f₀: falta a fração V₂/(V₂ − V₁)."
+   },
+   "armadilha": "O morcego é fonte na ida e observador na volta; quem faz uma etapa só, ou troca os sinais, cai em B, C ou D.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A expressão da frequência do eco percebido por um morcego que voa rumo a uma parede parada.",
+    "chave": "Duas etapas de Doppler: fonte que se aproxima (V₂ − V₁ embaixo) e observador que se aproxima (V₂ + V₁ em cima).",
+    "cuidado": "Na aproximação, as duas frações têm de ser maiores que 1: o eco fica mais agudo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula do eco",
+    "ideia": "Para fonte e refletor com o morcego se aproximando, f₂ = f₀ × (V₂ + V₁)/(V₂ − V₁), que é a E simplificada."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f₁ = f₀ × V₂/(V₂ − V₁)",
+    "nota": "ida: fonte se aproxima da parede"
+   },
+   {
+    "linha": "f₂ = f₁ × (V₂ + V₁)/V₂",
+    "nota": "volta: observador se aproxima"
+   },
+   {
+    "linha": "f₂ = [f₀ × V₂/(V₂ − V₁)] × [(V₂ + V₁)/V₂]",
+    "nota": "substitui f₁: alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0063"
+  },
+  "gabarito_aprendice": {
+   "letra": "E",
+   "letra_conferente": "E",
+   "preliminar": "E",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "fis-0063"
+  }
  }
 }
