@@ -231,3 +231,139 @@ DADO Pf49f3f6b (Fatec 2026 1º semestre · questão 54): alternativas E -> 'onom
 DADO Pf5b95e48 (UFRR 2026 Vestibular 2026 – Prova Integral · questão 6): No JSON, a alternativa E traz colado o enunciado do texto V ('Leia atentamente o texto V...'), que no print não faz parte da alternativa; a alternativa é só 'Mortalidade.'. As aspas do enunciado apare
 DADO Pfb341f53 (UNIRG 2024 Medicina 2024/2 · questão 15): No enunciado do print o fragmento aparece como “’Pobre Alphonsus! Pobre Alphonsus’”, sem o ponto de exclamação final. No poema, o verso tem as duas exclamações. A resolução cita a forma do poema, que 
 DADO Pff10eaf9 (Unitins 2025 Vestibular 2025/1 — Todos os Câmpus · questão 45): Na transcrição, os versos 'Papo reto, como esqueletos, de outro dialeto' e 'Só desafeto, vida de inseto imundo' aparecem colados numa linha só, assim como 'Nação sem teto...' e 'A cor de Eto...'. O tí
+
+## 2026-11-19 20:40 UTC — PENDENCIAS (lotes por-0097 a por-0105) — session_01PveEKX1JnJpMCfgHmpRupU
+
+As pendências questão por questão já estão em `docs/resolucoes/registro-por.json`
+(`pendentes`), com prova, conteúdo e motivo, e a coordenação já abriu lotes
+`por-pend-*` com elas. Este bloco traz **só o que o registro não carrega**: as
+decisões que não são minhas e os problemas que se repetem em muitas questões.
+
+### 1. Decisões que precisam da coordenação ou do dono
+
+**P49978098 — EMESCAM 2022 Medicina 2022/1, questão 4 (P09.3, orações adjetivas).**
+Três especialistas resolveram às cegas, sem ver a resposta um do outro, e os três
+deram **A**. O gabarito que a prova publicou é **preliminar** e dá **B**. Pela
+regra de 11/11/2026, o gabarito do Aprendice só vale quando bate com o
+preliminar — não bate. A questão está fora, marcada como pendente. Ela parece
+defeituosa (as duas leituras se sustentam). Decisão: **anular** (sai do banco de
+vez) ou **esperar** gabarito definitivo da banca, se houver.
+
+**P448cc999 — Viver é prejudicial à saúde, de Jamil Snege (UFPR/Gazeta).**
+A prova não traz trecho nenhum: a resposta depende de lembrar quem são Joana,
+Harry, Lucimara e Marcelo. Um agente procurou em fonte publicada (editora,
+repositórios, Cândido/Biblioteca Pública do Paraná, Rascunho, Gazeta do Povo) e
+só confirmou que o narrador-protagonista é arquiteto. Nada publicado descreve as
+personagens. Sustentar a letra assim seria palpite com cara de fato.
+Decisão: **só se resolve com o livro em mãos**, ou a questão fica fora.
+
+**Pe350965f — Tribo Cara Baixa (Editora Kelps).**
+Mesmo caso. A editora confirma tema e postura do autor e classifica o livro como
+não ficção, o que já derruba duas alternativas; mas nada publicado descreve a
+estrutura do livro ("pequenos textos cronísticos", a letra C) nem permite negar a
+letra A. Decisão: **só com o livro em mãos**.
+
+Nos três casos a pendência foi conferida por um agente que não escreveu a
+resolução, e confirmada. Não são pendências de preguiça da fábrica.
+
+### 2. Pendências de print: a resolução está pronta, falta a imagem
+
+Oito questões ficaram fora por um defeito do print, não do conteúdo. **A resolução
+inteira já está escrita e conferida**, guardada no `patch-*.json` do lote. Basta
+refazer o print e aplicar o patch.
+
+| Questão | Lote | O que falta no print |
+|---|---|---|
+| P8ce7e755 | por-0100 | o soneto de Gregório de Matos a que o enunciado se refere; está em `q/010.webp` da mesma prova |
+| Pb3cab0df | por-0100 | o TEXTO II (Gregório de Matos, "Ao casamento de Pedro Álvares da Neiva") não está em print nenhum da prova (conferidos 004 a 011), só na camada de texto do PDF oficial |
+| P875a491e | por-0100 | a FIGURA I (Pereda, *Alegoria da Vaidade*, 1634); está no rodapé de `q/008.webp` |
+| P6b2a2eec | por-0101 | o poema "Eu, Marília, não sou algum vaqueiro"; o print tem só o comando e as alternativas |
+| Pee5e3224 | por-0101 | o poema "Benze-se o poeta...", de Gregório de Matos |
+| Pbdf66d29 | por-0101 | a canção de Erasmo Carlos que o enunciado manda comparar com o poema de Gonçalves Dias |
+| P56bd4868 | por-0103 | os versos do texto de apoio; o print traz só "Texto para as questões 41 e 42", o comando e as alternativas |
+| P63da1bf6 | por-0103 | o conto "A Sauna"; o print traz só o comando e as alternativas |
+
+**Por que não resolvi juntando dois prints:** no banco, `print` é **um caminho só**
+e `figura` é um booleano — o aluno vê **uma imagem por questão**. Um agente
+chegou a recuperar o texto de apoio em prints vizinhos da mesma prova, e eu ia
+aceitar as quatro resoluções; conferi o banco antes e devolvi três para pendente.
+O texto de apoio tem de estar **dentro** do print da questão. Quem mexer no
+gerador de prints precisa saber disso.
+
+### 3. Questões de outra matéria caem em Português
+
+As que achei estão no registro, uma a uma (Artes: P0aaed1c4, Pb2f7e5d3,
+Pfc99ec33, Pbf58c381, P61c6a142; História: Peefa95fe; Filosofia: Pc401d7b0;
+Química: P15e171f5).
+
+O problema é maior que a lista. O `converte.py` conta hoje **156 questões do banco
+nacional que são de outra matéria**: 109 de **Artes** e 47 de **Educação Física** —
+matérias que o site não tem. Elas entram classificadas em Português porque pedem
+leitura de um texto de apoio. Hoje ficam só no simulado da prova inteira, fora
+dos exercícios, o que está certo; mas enquanto a classificação disser "por", elas
+vão continuar entrando nos meus lotes e gastando crédito. Vale classificá-las
+como `artes` / `edfis` na fonte, mesmo sem a matéria existir no site.
+
+### 4. Subtemas que faltam em Português
+
+Os 12 temas atuais (P01 a P12) não têm onde pôr três assuntos que as provas cobram:
+
+- **fonologia e fonética** (contagem de fonemas, encontros, dígrafos) — hoje cai em
+  P05.4 ou P07, que não é o lugar;
+- **acentuação e ortografia** — hoje cai em P10 "Norma e emprego", misturada com
+  regência e concordância;
+- **Classicismo** (Camões) — P11 começa no Barroco.
+
+Enquanto não existirem, essas questões viram RECLASS ou pendência de
+classificação a cada lote. Também registro que **P05.4 e P06 viraram depósito**:
+num levantamento de 100 questões desses dois conteúdos, 29 estavam classificadas
+em lugar errado.
+
+### 5. URCA: numeração e origem dos prints (princípio 10)
+
+- **Deslocamento de numeração:** nas provas da URCA, o número da questão no print
+  está **60 à frente** do número no `prova.json` em parte do caderno. Confirmei
+  caso a caso nos lotes, mas é um defeito do levantamento da prova, não das
+  questões: vale conferir o caderno inteiro de uma vez.
+- **Origem dos prints:** os prints de algumas provas da URCA têm cara de
+  compilação de terceiros (margem, marca d'água e recorte que não são do caderno
+  oficial), não de PDF da banca. Pelo princípio 10 isso é decisão do dono, e eu
+  só registro: **vale conferir de onde vieram antes de publicar**.
+
+### 6. "Brasil Escola" no acervo: dois casos diferentes
+
+**Caso 1 — registro de origem (não aparece ao aluno).** 94 arquivos `prova.json`
+citam Brasil Escola nos campos `origem.*` e `nota`: é o registro de onde saiu o
+PDF da prova, que o princípio 10 manda guardar. Conferi o código do site: nenhuma
+tela lê `prova.nota` nem `prova.origem`. **Não chega ao aluno. Nada a fazer.**
+
+**Caso 2 — a própria banca citou o site (aparece ao aluno).** 76 questões reais de
+prova trazem "Brasil Escola" ou "Mundo Educação" **na citação de fonte que a banca
+imprimiu** no enunciado: geo 25, bio 12, his 11, qui 7, **por 9**, fs 6, fis 5,
+mat 1. As 9 de Português são Pda751756 (UDESC 2023/2), Ped215a60 (UNEMAT 2025/1),
+P6bbd3303 (UTFPR 2024) e seis da Mackenzie 2026/1 (P4be591fb, Pc937c585,
+Pc02ba2c3, Pf19fc0df, Pf734dcad, P9ac700db) — **todas já com resolução no ar**.
+Isso não é questão de site didático: é questão de prova cujo texto de apoio a
+banca tirou de um site. O nome está dentro da imagem do print e não dá para
+apagar. Decisão do dono: **mantém** (é citação da banca, não nossa) ou **tira as
+76**. Enquanto não houver decisão, elas seguem no ar.
+
+### 7. O que a fábrica não pega (para quem for conferir os próximos lotes)
+
+Depois de 12 lotes, o defeito que as lentes da API **não** pegam é a **leitura
+invertida**: a resolução atribui a um personagem, a um texto ou a uma voz o que
+pertence a outro, e cada afirmação isolada continua defensável. Exemplo:
+`Pb9d8bba2`, em que a resolução atribuía aos sertanejos a falta de tática que o
+texto diz da coluna do Exército — letra certa, citação literal, e **as duas lentes
+de fatos assinaram**. Só a conferência humana (ou um agente com o print aberto)
+pega isso.
+
+O segundo defeito é o oposto: a fábrica **pede pendência demais**. Contando os
+lotes, de 10 pendências pedidas, até 8 eram infundadas. É o defeito mais caro,
+porque joga fora questão boa sem fazer barulho. Daí a regra: **toda pendência
+passa por um agente que não escreveu a resolução** antes de virar pendência de
+verdade.
+
+Terceiro: a nota "OBRA: confirmar" que a lente deixa é **uma pista, não uma
+ordem**. Numa delas (`Pe9950ce3`) a lente pediu para confirmar o **contrário** do
+que a resolução, correta, dizia; obedecer teria estragado conteúdo certo.
