@@ -14,6 +14,14 @@ Antes de tudo: `cd app && python3 scripts/converte.py` (o banco montado em app/p
   python3 ferramentas/resolucoes/lote.py proximo <m> [N]    abre o próximo lote da matéria (N questões, padrão 30)
       ... --parte k                                         matéria dividida (docs/resolucoes/partes.json): só as
                                                             provas da parte k (sem --parte = parte 1); lotes <m>-p<k>-NNNN
+  python3 ferramentas/resolucoes/lote.py pendentes [<m>] [--motivo <prefixo>]
+                                                            lista os pendentes (id, matéria, motivo) e conta por prefixo
+                                                            (1ª palavra do motivo: obra, classificação, print, anular...)
+  python3 ferramentas/resolucoes/lote.py proximo <m> N --novo --pendentes <p1,p2,...|todos-menos-anular>
+                                                            sessão de pendentes: lote <m>-pend-NNNN só com pendentes da
+                                                            matéria (de qualquer parte) cujo motivo começa por um dos
+                                                            prefixos; a questão sai dos pendentes e o motivo antigo vem na
+                                                            entrada (motivo_pendente_anterior)
   python3 ferramentas/resolucoes/lote.py valida <saida>     confere o arquivo de saída sem gravar
   python3 ferramentas/resolucoes/lote.py grava <saida>      confere e grava (só depois da conferência do lote)
   python3 ferramentas/resolucoes/lote.py relatorio          refaz docs/resolucoes/lotes-<matéria>.md
@@ -51,6 +59,21 @@ if '--parte' in sys.argv:
     except (IndexError, ValueError):
         sys.exit('--parte precisa de um número (ex.: --parte 2)')
     del sys.argv[i:i + 2]
+# sessão de pendentes (dono, 19/11/2026): --pendentes obra,print (ou todos-menos-anular) reabre questões pendentes;
+# --motivo <prefixo> filtra a listagem de `pendentes`. Sem essas opções nada muda.
+PENDENTES = None
+MOTIVO = None
+for _op in ('--pendentes', '--motivo'):
+    if _op in sys.argv:
+        i = sys.argv.index(_op)
+        if i + 1 >= len(sys.argv):
+            sys.exit(f'{_op} precisa de um valor (ex.: {_op} obra)')
+        v = sys.argv[i + 1].strip().lower()
+        del sys.argv[i:i + 2]
+        if _op == '--pendentes':
+            PENDENTES = v
+        else:
+            MOTIVO = v
 TRAB = os.path.join(DOCS, 'trabalho')  # lotes abertos (fora do git; refeitos a partir do registro se sumirem)
 REGISTRO_ANTIGO = os.path.join(DOCS, 'registro.json')  # um só para todas (até 11/11/2026); hoje um por matéria
 
@@ -109,7 +132,8 @@ def parte_pedida(m):
 
 
 def lote_info(lote):
-    """(matéria, parte) pelo id do lote: 'geo-0012' -> ('geo', 1); 'geo-p2-0003' -> ('geo', 2)."""
+    """(matéria, parte) pelo id do lote: 'geo-0012' -> ('geo', 1); 'geo-p2-0003' -> ('geo', 2); 'geo-pend-0001' ->
+    ('geo', 1) (lote de pendentes: sempre no registro da parte 1)."""
     x = re.match(r'^([a-z]+)-p(\d+)-\d+$', str(lote))
     return (x.group(1), int(x.group(2))) if x else (str(lote).split('-')[0], 1)
 
@@ -458,6 +482,8 @@ def cmd_proximo(m=None, n=30):
     # sessão não é devolvido (12/11/2026: duas sessões pegaram o mesmo lote e uma regravou por cima da outra).
     for nome, l in reg['lotes'].items():
         if l['materia'] == m and l['estado'] == 'aberto':
+            if e_pend(nome) != bool(PENDENTES) and RETOMAR != nome:
+                continue   # lote de pendentes só volta na sessão de pendentes (e vice-versa)
             if NOVO and l.get('dono') == SESSAO:
                 continue   # --novo: o lote aberto está com o conferente; abre o próximo enquanto isso (esteira, dono 12/11)
             if l.get('dono') != SESSAO and RETOMAR != nome:
@@ -470,13 +496,15 @@ def cmd_proximo(m=None, n=30):
             b, _ = banco(m)
             por_id = {q['id']: q for q in b}
             gravar(caminho_entrada(nome), {'lote': nome, 'materia': m, 'animada': m in ANIMADAS,
-                                           'questoes': entrada(m, [por_id[i] for i in l['ids'] if i in por_id])})
+                                           'questoes': marca_anterior(entrada(m, [por_id[i] for i in l['ids'] if i in por_id]), l)})
             print(f'Lote {nome} já estava aberto: {caminho_entrada(nome)}')
             print(f'Saída: {caminho_saida(nome)}')
             return
-    if NOVO and sum(1 for l in reg['lotes'].values() if l['materia'] == m and l['estado'] == 'aberto'
-                    and l.get('dono') == SESSAO) >= 3:
+    if NOVO and sum(1 for nm, l in reg['lotes'].items() if l['materia'] == m and l['estado'] == 'aberto'
+                    and l.get('dono') == SESSAO and e_pend(nm) == bool(PENDENTES)) >= 3:
         sys.exit('Esta sessão já tem 3 lotes abertos nesta matéria: grave um antes de abrir outro.')
+    if PENDENTES:
+        return abre_pendentes(m, n, tudo, reg)
     qs = faltam(m, tudo, resolvidas_em_provas())
     if partes(m) > 1:
         qs = [q for q in qs if parte_da_prova(m, q['prova']) == kp]
@@ -484,7 +512,7 @@ def cmd_proximo(m=None, n=30):
     if not qs:
         print(f'{NOMES[m]}' + (f' parte {kp}' if partes(m) > 1 else '') + ': nenhuma questão sem resolução.')
         return
-    k = 1 + sum(1 for v in reg['lotes'].values() if v['materia'] == m)
+    k = 1 + sum(1 for nm, v in reg['lotes'].items() if v['materia'] == m and not e_pend(nm))
     nome = f'{m}-{k:04d}' if kp == 1 else f'{m}-p{kp}-{k:04d}'
     reg['lotes'][nome] = {'materia': m, 'ids': [q['id'] for q in qs], 'estado': 'aberto', 'dono': SESSAO,
                           'aberto_em': datetime.date.today().isoformat(), 'faixa': FAIXAS[faixa(qs[0])]}
@@ -495,6 +523,93 @@ def cmd_proximo(m=None, n=30):
     print(f'Lote {nome}: {len(qs)} questões ({FAIXAS[faixa(qs[0])]}, conteúdos {", ".join(sorted({q["sub"] for q in qs}))})')
     print(f'Entrada: {caminho_entrada(nome)}')
     print(f'Saída (você escreve): {caminho_saida(nome)}')
+
+
+def e_pend(lote):
+    return bool(re.match(r'^[a-z]+-pend-\d+$', str(lote)))
+
+
+def prefixo(motivo):
+    """1ª palavra do motivo, em minúsculas ('Obra: ...' -> 'obra')."""
+    p = re.split(r'[^\w]+', str(motivo or '').strip().lower())
+    return next((x for x in p if x), '')
+
+
+def pede_prefixo(px, pedido):
+    """pedido: 'obra,print' ou 'todos-menos-anular' (anular/anulada ficam para a decisão do dono)."""
+    if pedido == 'todos-menos-anular':
+        return not px.startswith('anula')
+    return any(px.startswith(x.strip()) for x in pedido.split(',') if x.strip())
+
+
+def marca_anterior(qs, l):
+    for e in qs:
+        if e['id'] in (l.get('motivo_pendente_anterior') or {}):
+            e['motivo_pendente_anterior'] = l['motivo_pendente_anterior'][e['id']]
+    return qs
+
+
+def abre_pendentes(m, n, tudo, reg1):
+    """Lote <m>-pend-NNNN com pendentes da matéria (qualquer parte) cujo motivo bate com --pendentes. Registra na
+    parte 1; a questão sai dos pendentes do registro onde estava (não é oferecida duas vezes)."""
+    b, feitas = banco(m)
+    por_id = {q['id']: q for q in b}
+    fp = resolvidas_em_provas()
+    abertas = {i for l in tudo['lotes'].values() if l.get('estado') == 'aberto' for i in l['ids']}
+    ks = [1] + sorted({k for k in range(2, partes(m) + 1)} | {int(x) for x in re.findall(
+        rf'registro-{m}-p(\d+)\.json', ' '.join(os.listdir(DOCS)))} - {1})
+    cand = []
+    for k in ks:
+        for qid, p in registro_parte(m, k)['pendentes'].items():
+            q = por_id.get(qid)
+            if (q is None or qid in feitas or qid in fp or qid in abertas or p.get('materia', m) != m
+                    or not pede_prefixo(prefixo(p.get('motivo')), PENDENTES)):
+                continue   # fora do banco da matéria (reclassificada), já resolvida ou já em lote
+            cand.append((chave(q), qid, k, p))
+    cand = sorted(cand, key=lambda c: c[0])[:n]
+    if not cand:
+        print(f'{NOMES[m]}: nenhum pendente com motivo {PENDENTES}.')
+        return
+    k = 1 + sum(1 for nm in reg1['lotes'] if e_pend(nm) and nm.startswith(m + '-'))
+    nome = f'{m}-pend-{k:04d}'
+    lote = {'materia': m, 'ids': [c[1] for c in cand], 'estado': 'aberto', 'dono': SESSAO,
+            'aberto_em': datetime.date.today().isoformat(), 'faixa': 'pendentes ' + PENDENTES,
+            'motivo_pendente_anterior': {c[1]: c[3].get('motivo', '') for c in cand}}
+    # tira dos pendentes (por parte) e grava; a parte 1 recebe também o lote
+    for kx in sorted({c[2] for c in cand} | {1}):
+        r = reg1 if kx == 1 else registro_parte(m, kx)
+        for c in cand:
+            if c[2] == kx:
+                r['pendentes'].pop(c[1], None)
+        if kx == 1:
+            r['lotes'][nome] = lote
+        gravar(caminho_registro(m, kx), r)
+    gravar(caminho_entrada(nome), {'lote': nome, 'materia': m, 'animada': m in ANIMADAS,
+                                   'questoes': marca_anterior(entrada(m, [por_id[c[1]] for c in cand]), lote)})
+    print(f'Lote {nome}: {len(cand)} pendentes ({PENDENTES}; conteúdos {", ".join(sorted({por_id[c[1]]["sub"] for c in cand}))})')
+    print(f'Entrada: {caminho_entrada(nome)}')
+    print(f'Saída (você escreve): {caminho_saida(nome)}')
+
+
+def cmd_pendentes(m=None):
+    """Lista os pendentes (id, matéria, motivo curto) e conta por prefixo do motivo."""
+    import collections
+    ms = [m] if m else MATERIAS
+    cont = {}
+    for x in ms:
+        for qid, p in sorted(registro(x)['pendentes'].items()):
+            px = prefixo(p.get('motivo'))
+            if MOTIVO and not px.startswith(MOTIVO):
+                continue
+            cont.setdefault(x, collections.Counter())[px] += 1
+            mot = re.sub(r'\s+', ' ', str(p.get('motivo', '')))
+            print(f'{qid}  {x:3}  {mot[:110]}' + ('...' if len(mot) > 110 else ''))
+    print()
+    total = collections.Counter()
+    for x, c in cont.items():
+        total.update(c)
+        print(f'{NOMES[x]} ({sum(c.values())}): ' + ', '.join(f'{k} {v}' for k, v in c.most_common()))
+    print(f'total ({sum(total.values())}): ' + ', '.join(f'{k} {v}' for k, v in total.most_common()))
 
 
 def palavras(s):
@@ -522,7 +637,8 @@ def confere(saida):
         sys.exit(f'lote desconhecido no registro: {lote}')
     ent = {q['id']: q for q in ler(caminho_entrada(lote), {}).get('questoes', [])}
     if not ent:
-        sys.exit(f'falta a entrada do lote; rode: lote.py proximo {reg["lotes"][lote]["materia"]}')
+        sys.exit(f'falta a entrada do lote; rode: lote.py proximo {reg["lotes"][lote]["materia"]}'
+                 + (f' --retomar {lote}' if e_pend(lote) else ''))
     erros, avisos = [], []
     vistos = set()
     for q in d.get('questoes', []):
@@ -806,6 +922,8 @@ if __name__ == '__main__':
         cmd_grava(a[1])
     elif a[0] == 'relatorio':
         cmd_relatorio()
+    elif a[0] == 'pendentes':
+        cmd_pendentes(a[1] if len(a) > 1 else None)
     else:
         print(__doc__)
         sys.exit(1)

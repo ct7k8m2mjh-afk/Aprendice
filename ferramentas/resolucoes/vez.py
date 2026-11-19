@@ -5,6 +5,10 @@
 Matéria dividida em partes (docs/resolucoes/partes.json): --parte k olha só a parte k (registro-<m>-p<k>.json e
 lotes-<m>-p<k>.md; a parte 1 usa registro-<m>.json e lotes-<m>.md, como sempre). Sem --parte = parte 1.
 
+Sessão de pendentes (lotes <m>-pend-NNNN, lote.py proximo <m> N --novo --pendentes ...): --pendentes diz OCUPADO só
+se houve commit há menos de JANELA minutos tocando lotes <m>-pend- (mensagem do commit com "pendentes" ou o id do
+lote); LIVRE caso contrário, com os lotes de pendentes abertos para retomar.
+
 Imprime uma linha:
   OCUPADO ...  outra sessão desta matéria gravou ou abriu lote há menos de JANELA minutos: encerre já, sem fazer nada.
   ACABOU ...   não há mais questões desta matéria: escreva FIM na caixa e encerre.
@@ -23,6 +27,21 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 
 def git(*a):
     return subprocess.run(['git', '-C', RAIZ, *a], capture_output=True, text=True).stdout.strip()
+
+
+def main_pendentes(m):
+    git('fetch', '-q', 'origin', 'app-prototipo-completo')
+    arqs = [f'docs/resolucoes/registro-{m}.json', f'docs/resolucoes/lotes-{m}.md']
+    for ln in git('log', RAMO, f'--since={JANELA} minutes ago', '--format=%h %cr %s', '--', *arqs).splitlines():
+        if 'pendentes' in ln.lower() or f'{m}-pend-' in ln:
+            print(f'OCUPADO: {ln}')
+            return
+    try:
+        reg = json.loads(git('show', f'{RAMO}:docs/resolucoes/registro-{m}.json'))
+        abertos = [x for x, v in reg.get('lotes', {}).items() if v.get('estado') == 'aberto' and f'{m}-pend-' in x]
+    except Exception:
+        abertos = []
+    print(f'LIVRE: sessão de pendentes; lotes de pendentes abertos para retomar: {", ".join(abertos) or "nenhum"}')
 
 
 def main(m, k=1):
@@ -63,6 +82,10 @@ def main(m, k=1):
 if __name__ == '__main__':
     a = sys.argv[1:]
     k = 1
+    if '--pendentes' in a:
+        a.remove('--pendentes')
+        main_pendentes(a[0])
+        sys.exit(0)
     if '--parte' in a:
         i = a.index('--parte')
         k = int(a[i + 1])
