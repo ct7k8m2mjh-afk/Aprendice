@@ -281,3 +281,21 @@ DADO P54364d21: alternativas.D -> sem o " 21" no fim (número da página)
 RECLASS P7ee790a4 B12.6 -> B11.1
 DADO P3f7e4cb9: alternativas.E -> termina em "seus grupos." (o "12" no fim é número da página)
 RECLASS P3f7e4cb9 B12.6 -> B12.7
+
+## 2026-11-19 17:26 UTC — PENDENCIAS — session_01PveEKYq8uSzJkiuk9txCUa
+Lote gravado: bio-0073 (49 ok, 1 pendente). Aberto: bio-0074.
+DADO P21e69da2: alternativas.D -> "O ~~Homo sapiens~~ e o ~~Zea mays~~ são espécies do reino V." (sem o trecho "Monera Protista Fungi Plantae Animalia Reinos I II III IV V", colado da figura)
+DADO Pbee99e73: texto_da_prova -> começa por "Antes" (a entrada traz "ntes")
+DADO P8040d7a5: texto_da_prova -> "~~Chondrichthyes~~" em itálico no print, nas duas vezes
+DADO P03983371: alternativas.A -> "A fotossíntese não é influenciada pelas condições ambientais, como temperatura e disponibilidade de água."
+DADO P03983371: alternativas.E -> "Durante a fotossíntese, ocorre a quebra da molécula de gás carbônico (CO2), liberando oxigênio (O2) e água (H2O)."
+RECLASS Pbea3e171 B04.2 -> B05.5
+RECLASS Pcdfcc05a B12.6 -> B12.5
+DADO Pb62c59a1: alternativas -> faltam na entrada; no print: A Vacúolos. | B Mitocôndrias. | C Microfilamentos. | D Material genético. | E Membrana plasmática. (e o texto_da_prova tem marca d'água "ENEM2024..." repetida)
+DADO P3e91c9b8: alternativas -> faltam na entrada; no print: A ATP. | B água. | C NADH. | D dióxido de carbono. | E citocromo c oxidase.
+DADO Pceb7689f: alternativas -> faltam na entrada; no print: A correção do código genético para a tradução da proteína. | B alteração do RNA ribossômico ligado à síntese da proteína. | C produção de mutações benéficas para a correção do problema. | D liberação imediata da proteína normal na região ocular humana. | E expressão do gene responsável pela produção da enzima normal.
+ANULAR Pa39cb6fd (URCA 2023.1, q52, ciclóstomos): oficial A = 09 (01+08) exige a 04 falsa, mas ela é verdadeira (a notocorda persiste no adulto de lampreias e feiticeiras, da cabeça à cauda); pelos fatos a soma seria 13 (B) ou 45, conforme a leitura da 32. Recurso negado ('IMPROCEDENTE. Mantem-se o gabarito') citando só Silva Júnior, Sasson e Caldini, Biologia vol. 2, Saraiva, 2016: https://www.urca.br/cev/wp-content/uploads/sites/39/2023/03/respostas-recursos-primeiro-dia_psu_20231.pdf
+RECLASS P3d50a7c8 B12.6 -> B12.5
+RECLASS P86296b35 B09.1 -> B09.7
+RECLASS P0375cb42 B12.3 -> B12.7
+RECLASS P587bd6d0 B12.3 -> B12.7

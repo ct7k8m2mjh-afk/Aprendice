@@ -1,6 +1,6 @@
 # Biologia: resoluções (gerado por lote.py em 2026-11-19)
 
-Faltam 177 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 106; demais nível 7-10 71.
+Faltam 127 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 56; demais nível 7-10 71.
 
 ## Lotes
 
@@ -78,7 +78,8 @@ Faltam 177 questões sem resolução (fora as que estão em lote, pendentes ou c
 | bio-0070 | demais nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | bio-0071 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
 | bio-0072 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
-| bio-0073 | demais nível 1-6 | 50 | aberto |  |  |  |
+| bio-0073 | demais nível 1-6 | 50 | gravado | 49 | 1 | 0 |
+| bio-0074 | provas-alvo nível 7-10 | 50 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
@@ -106,6 +107,7 @@ Faltam 177 questões sem resolução (fora as que estão em lote, pendentes ou c
 | P7d45e236 | UFAM 2023 PSC 3ª etapa · questão 35 | B09.6 biomas brasileiros e impactos (tema B09 Ecologia) | classificação: é de Geografia G05.3 (dados de desmatamento na Amazônia Legal e política ambiental) |
 | P113e5a1b | UFAM 2025 PSC 3ª etapa · questão 36 | B09.6 biomas brasileiros e impactos (tema B09 Ecologia) | classificação: é de Geografia G05.4 (Código Florestal, APP e unidades de conservação) |
 | P112c6236 | UNEMAT 2022 2022/2 · questão 32 | B10.1 viroses e arboviroses (tema B10 Saúde e doenças) | classificação: é de Português P10.1 (concordância: verbo haver impessoal no pretérito perfeito, 'não houve nenhuma confirmação'); só o texto de apoio fala de coronavírus |
+| Pa39cb6fd | URCA 2023 2023.1 · questão 52 | B12.6 vertebrados, classificação, nomenclatura e filogenia (tema B12 Diversidade dos seres vivos) | anular: o gabarito oficial (A = 09 = 01 + 08) exige que a afirmativa 04 seja falsa, mas ela é verdadeira: a notocorda persiste no adulto dos ciclóstomos como principal eixo de sustentação, da cabeça à cauda (fato de livro didático; inverter para 'da cauda à cabeça' não muda o sentido). Pelos fatos, a soma seria 13 (01 + 04 + 08, alternativa B) se a 32 for lida como falsa, ou 45 (01 + 04 + 08 + 32, fora das alternativas) se for lida como verdadeira, pois ela descreve corretamente as lampreias (sexos separados, fecundação externa, brânquias em bolsas ligadas à faringe). Recurso julgado "IMPROCEDENTE. Mantem-se o gabarito", citando só o livro de Silva Júnior, Sasson e Caldini (Biologia, vol. 2, Saraiva, 2016): https://www.urca.br/cev/wp-content/uploads/sites/39/2023/03/respostas-recursos-primeiro-dia_psu_20231.pdf |
 | P3c8e2e61 | URCA 2023 2023.1 · questão 59 | B11.5 especiação, isolamento reprodutivo, irradiação adaptativa e origem da vida (tema B11 Evolução) | anular: alternativas C (ictiossauros e plesiossauros não são arcossauros) e D (aves no Triássico; surgiram no Jurássico) são ambas falsas; questão com duas respostas (gabarito D mantido após recurso: https://www.urca.br/cev/wp-content/uploads/sites/39/2023/03/respostas-recursos-primeiro-dia_psu_20231.pdf) |
 | P3c08d8ee | Unesp 2024 1ª fase – meio de ano · questão 78 | B12.6 vertebrados, classificação, nomenclatura e filogenia (tema B12 Diversidade dos seres vivos) | classificação: é de Física (propagação de calor: convecção em correntes de ar quente; não cobra Biologia) |
 | Pc481e226 | Unimontes 2020 PAES 2020 – 3ª etapa · questão 17 | B12.4 estômatos, transpiração, hormônios vegetais e fotoperiodismo (tema B12 Diversidade dos seres vivos) | print: falta a figura dos estágios I a III (fase de expansão celular) que o enunciado pede; q/017.webp só tem enunciado e alternativas, e a figura também não está em q/016.webp nem q/018.webp (prova páginas 11 e 12) |
