@@ -277,6 +277,12 @@ span.fm:not(.fm-bloco) .fm-linha + .fm-linha { margin-left: 1em; }
 /* tela Revisão no celular (revisão de 19/11/2026, casca 33): as abas numa linha só, rolando por dentro (não em 3 linhas);
    a aba "Revisão geral" sai enquanto o destaque do topo, que abre a mesma coisa, está na tela (não aparece duas vezes);
    na linha da questão o título vem em cima, inteiro, e a etiqueta embaixo, do tamanho do texto */
+/* 768 (revisão de 20/11/2026, casca N1 e N2): até 900px a lista das matérias fica numa coluna (a linha da questão não
+   aperta o título em 3 linhas) e a aba "Revisão geral" sai enquanto o destaque do topo está na tela (as 5 abas cabem) */
+@media (max-width: 900px) {
+  .grade.g2.rv-mats { grid-template-columns: minmax(0, 1fr); }
+  .abas.abas-rev .ab-geral:not([aria-pressed='true']) { display: none; }
+}
 @media (max-width: 700px) {
   .abas.abas-rev { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(-1 * var(--pag-x, 16px)); padding-inline: var(--pag-x, 16px); }
   .abas.abas-rev button { flex: none; white-space: nowrap; }
