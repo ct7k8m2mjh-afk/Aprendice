@@ -44,3 +44,35 @@ US$ 60; o programa não envia nada que faça a soma passar do teto.
   trigonométricas em M10. Lista completa sai em `docs/resolucoes/classificacao/sugestoes-novos-subtemas.md`.
 
 Seguindo para o todo sem esperar (27 lotes `classif-<m>-NN`, etapa por etapa).
+
+## 2026-11-20 01:10 — FIM — Fábrica — Classificação
+
+Todas as 25.798 questões conferidas (27 lotes `classif-<m>-NN` + o piloto `classif-todas-01`), aplicadas e commitadas por
+matéria (Bio, Quí, Mat, Por, Fís; His, Geo, Ing e FS num commit só, porque o teste quebrou na São Camilo 2024/2 — abaixo —
+e as quatro já estavam gravadas nos mesmos `prova.json`). converte + tsc + vitest verdes antes de cada commit (839 testes).
+
+- **Mudaram 6.590 questões (26%)**, 428 delas de matéria. Ficaram 19.207. Sugestão de conteúdo novo: 470 questões.
+- **Gasto total: US$ 46,22** (teto US$ 60): triagem US$ 7,97, conferência US$ 22,17, desempate US$ 11,48, agrupamento das
+  sugestões US$ 0,30, piloto e testes US$ 4,47. Registrado em `fabrica_saida/gastos.csv`.
+- Conferência minha no todo: amostra de 30 mudanças de subtema e 30 de matéria, agentes com o print: 1 erro em cada (3%),
+  corrigidos em `docs/resolucoes/classificacao/ajustes-conferencia.json`.
+- 413 questões que mudaram de matéria e já tinham resolução entraram nos `pendentes` da matéria nova
+  (`registro-<m>.json`, motivo "classificação: resolver na matéria nova"); a resolução antiga ficou onde estava.
+- Atenção para a fila: nas 6.590 questões mudadas, os `equivocos` das resoluções existentes ainda apontam o conteúdo
+  antigo. O verificador `equivocos_fora` vai apontá-las; o prefixo a corrigir é o da resolução, não a classificação.
+
+Saídas para o dono:
+- `docs/resolucoes/classificacao/mudancas.json` (uma linha por questão mudada)
+- `docs/resolucoes/classificacao/sugestoes-novos-subtemas.md` (agrupado por matéria e sugestão; o maior vazio é
+  botânica em Biologia — grupos vegetais e reprodução das plantas, ~47 questões —, depois Português e Filosofia/Sociologia)
+- `docs/resolucoes/classificacao/resumo.md`
+
+Pendências:
+RECLASS P1a5d57dd P03.3 -> P02.3      (São Camilo 2024/2: o resolucoes.json antigo da prova fixa materia/tema/conteudo e sobrepõe o prova.json; mudar lá e no prova.json juntos)
+RECLASS Pe79f547e H03.4 -> H02.9      (mesmo motivo)
+RECLASS P1854a731 H06.7 -> H03.3      (mesmo motivo)
+RECLASS P4ba973c3 I02.1 -> I03.2      (mesmo motivo)
+OUTRA: a triagem e a conferência disseram "nenhuma das 9 matérias" em 16 questões; NÃO apliquei (na única conferida,
+  PUC-SP 2024 q49, Expressionismo, não procede: é P12.2). Para olhar: P0f7c2424, P919354f5, P6a44dbf0, P392145fa,
+  P7ea54e91, Pba6e7050, Pd233a30a, Pfc99ec33, P29378ada, Pdbe65b87, P3ab2db95, P0aaed1c4, Pa5ffd05f, P2118aaac,
+  P0c0f05ec, Pd5c09dfe.
