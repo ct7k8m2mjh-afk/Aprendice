@@ -88,7 +88,8 @@ REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, comm
   session_01Tq253YL64uC84SwEt9PDxi (geo/his), session_01Tq253UuNCgZUQ9sTxeyRNY (por/fs/ing). 45 min sem commit = caiu; abrir
   outra com o mesmo prompt (seção 4.1 do prompt da passagem).
 - No ar: dpl_Ho7ikkdfpS7HHZkXnFsGzFR22Kas (commit 62c4b05e, login de demonstração), 26.549 resoluções. publicacao.json corrigido.
-- Conta nova sem conector do Vercel e do Supabase e sem acesso de rede a aprendice.vercel.app: pedido ao dono.
+- Conferido no site às 22h15 UTC: com_resolucao soma 26.549 (relatorio.json). Ambiente novo da conta nova: "Aprendice"
+  (env_017uFXKuGZ3YGuXrgUUTdSAd, libera aprendice.vercel.app). Faltam os conectores do Vercel e do Supabase: pedido ao dono.
 - Continua valendo "NÃO PUBLICAR" (abaixo) até o dono configurar o Supabase.
 
 ## Estado 20/11 06h10 UTC (antigo)
