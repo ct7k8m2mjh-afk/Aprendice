@@ -5,7 +5,8 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { avalia, contaTransicoes, junta, montaRoteiro, tokeniza, type Roteiro } from '../logica/motorConta';
+import { avalia, contaTransicoes, junta, montaRoteiro, quadroNaConta, tokeniza, type Roteiro } from '../logica/motorConta';
+import { cruzamento } from '../logica/punnett';
 import { ResolucaoAnimada } from '../ui/ResolucaoAnimada';
 import { ResolucaoView } from '../ui/Resolucao';
 import type { Questao, Resolucao } from '../dados/tipos';
@@ -35,10 +36,36 @@ function todas(): Item[] {
   }
   return out;
 }
-/** as linhas que os dados mandam escrever, na ordem */
-function linhasDosDados(r: Resolucao): string[] {
-  if (r.quadro && r.quadro.length) return r.quadro.map((q) => q.linha).filter(Boolean);
-  return (r.passos || []).flatMap((p) => (p.conta || '').split('\n').filter((x) => x.trim()));
+/** sem espaço e sem o separador de itens (" | ", ";"), para comparar o texto dos dados com as linhas desenhadas */
+const sem = (s: string) => s.replace(/[\s|;]+/g, '');
+/**
+ * As linhas do roteiro são o texto dos dados (revisão 19/11, itens 6 e 8b): a conta de cada passo, quebrada só nos
+ * separadores de itens, nada a mais nem a menos, na ordem; e as linhas do quadro: as que já estão na conta do passo
+ * deixam lá a nota, as outras entram como linha, inteiras. Devolve o erro, ou null.
+ */
+function confereLinhas(r: Resolucao, rt: Roteiro): string | null {
+  const ps = r.passos || [];
+  const q = (r.quadro || []).filter((x) => x.linha);
+  const comConta = ps.some((p) => (p.conta || '').trim());
+  if (!comConta) {
+    const esp = q.map((x) => x.linha);
+    return JSON.stringify(rt.linhas.map((l) => l.texto)) === JSON.stringify(esp) ? null : 'quadro sem conta: linhas diferentes';
+  }
+  const qs = new Set(q.map((x) => x.linha));
+  if (rt.passos.length !== ps.length) return 'número de passos';
+  for (let k = 0; k < ps.length; k++) {
+    const ls = rt.passos[k].linhas.map((l) => rt.linhas[l]);
+    if (ls.some((L) => L.doQuadro && !qs.has(L.texto))) return `passo ${k + 1}: linha do quadro inventada`;
+    const daConta = ls.filter((L) => !L.doQuadro);
+    if (sem(daConta.map((L) => L.texto).join('')) !== sem(ps[k].conta || '')) return `passo ${k + 1}: a conta não bate`;
+  }
+  const textos = rt.linhas.map((l) => l.texto), notas = rt.linhas.map((l) => l.nota || '').join(' ');
+  for (const x of q) {
+    if (textos.includes(x.linha)) continue;
+    if (!textos.some((t) => quadroNaConta(t, x.linha))) return `quadro "${x.linha}" sumiu`;
+    if (x.nota && !notas.includes(x.nota)) return `nota "${x.nota}" sumiu`;
+  }
+  return null;
 }
 const texto = (rt: Roteiro, l: number, i: number, p?: 'n' | 'd') => { const t = rt.linhas[l].toks[i]; return p ? (p === 'n' ? t.n : t.d) : t.v; };
 /** descrição curta dos termos que se movem: "43↷(+→−)" */
@@ -180,14 +207,117 @@ describe('rodada 2 da auditoria (comando 20)', () => {
   });
 });
 
+describe('revisão 19/11: passos + quadro, risco, itens e processo', () => {
+  it('item 6: com quadro, cada passo mostra a sua conta (numerada, com faz/porque) e a nota do quadro', () => {
+    // mat Peefb04b4 (UEA 2025, q. 8): o quadro só tinha "540", "315", "225/45 = 5"
+    const r = {
+      passos: [
+        { faz: 'Total', conta: '120 × 4,5 = 540', porque: 'Média × alunos.' },
+        { faz: 'P, Q, R', conta: '20 × 6 + 30 × 4 + 25 × 3 = 120 + 120 + 75 = 315', porque: 'Conhecidos.' },
+        { faz: 'Turma S', conta: '(540 − 315)/45 = 225/45 = 5 → alternativa C', porque: 'Por aluno.' },
+      ],
+      quadro: [{ linha: '540', nota: 'total' }, { linha: '315', nota: 'P, Q, R' }, { linha: '225/45 = 5', nota: 'S' }],
+    };
+    const rt = montaRoteiro(r, 'mat');
+    expect(rt.origem).toBe('passos');
+    expect(rt.passos.map((p) => p.faz)).toEqual(['Total', 'P, Q, R', 'Turma S']);
+    expect(rt.passos.map((p) => p.porque)).toEqual(['Média × alunos.', 'Conhecidos.', 'Por aluno.']);
+    expect(rt.linhas.map((l) => l.texto)).toEqual(r.passos.map((p) => p.conta));
+    expect(rt.linhas.map((l) => l.nota)).toEqual(['total', 'P, Q, R', 'S']);
+    // a conta que leva ao resultado anima (o resultado nasce da conta)
+    expect(rt.linhas.every((l) => l.planos.length)).toBe(true);
+    expect(confereLinhas(r, rt)).toBeNull();
+  });
+  it('item 6: linha do quadro que não está na conta entra no passo certo, inteira', () => {
+    const r = {
+      passos: [
+        { faz: 'S2', conta: '100% − 99,95% = 0,05% → 0,0005 × 10 L = 0,005 L', porque: '' },
+        { faz: 'Novo total', conta: '0,001 × T = 0,005', porque: '' },
+        { faz: 'Retirado', conta: '10 L − 5 L = 5 L de S1', porque: '' },
+      ],
+      quadro: [
+        { linha: 'S2 = 0,0005 × 10 = 0,005 L', nota: 'não muda' },
+        { linha: '0,001 × T = 0,005', nota: 'novo total' },
+        { linha: 'T = 0,005/0,001 = 5 L', nota: 'o 0,001 passa dividindo' },
+        { linha: '10 − 5 = 5 L', nota: 'tudo S1' },
+      ],
+    };
+    const rt = montaRoteiro(r, 'mat');
+    expect(rt.passos[1].linhas.map((l) => rt.linhas[l].texto)).toEqual(['0,001 × T = 0,005', 'T = 0,005/0,001 = 5 L']);
+    expect(rt.linhas[rt.passos[1].linhas[1]].planos.map((p) => p.tipo)).toContain('divide');
+    expect(rt.linhas[rt.passos[0].linhas[0]].nota).toBe('não muda');
+    expect(rt.linhas[rt.passos[2].linhas[0]].nota).toBe('tudo S1');
+    expect(confereLinhas(r, rt)).toBeNull();
+  });
+  it('item 7: o m que se cancela é riscado (fis P6478b5c2, µ com o sinal de micro)', () => {
+    const rt = montaRoteiro({ passos: [{ faz: 'Iguale', conta: 'µ × m × g = m × v²/R → µ = v²/(R × g)', porque: '' }] }, 'fis');
+    const [p] = rt.linhas[0].planos;
+    expect(p.riscos.map((x) => rt.linhas[0].toks[x.i].v)).toEqual(['m', 'm']);
+    // e o g atravessa o igual e vai dividindo
+    expect(p.tipo).toBe('divide');
+  });
+  it('item 7: o passo diz "cancela" e o termo some: risca os dois (fallback do texto)', () => {
+    const rt = montaRoteiro({ passos: [
+      { faz: 'Escreva', conta: 'k · q · Q/d² = q · E', porque: '' },
+      { faz: 'Cancela q dos dois lados', conta: 'E = k · Q/d²', porque: '' },
+    ] }, 'fis');
+    const riscos = rt.linhas[1].planos.flatMap((p) => p.riscos);
+    expect(riscos.map((x) => rt.linhas[x.l].toks[x.i].v)).toEqual(['q', 'q']);
+  });
+  it('item 7: cancelamento dentro da igualdade encadeada ("18·x ÷ (18·3) = x ÷ 3")', () => {
+    const rt = montaRoteiro({ passos: [{ faz: '', conta: 'm = 18·(a + b) ÷ (18·3) = (a + b) ÷ 3', porque: '' }] }, 'mat');
+    const rs = rt.linhas[0].planos.flatMap((p) => p.riscos).map((x) => { const t = rt.linhas[0].toks[x.i]; return x.p ? (x.s != null ? (x.p === 'n' ? t.nt! : t.dt!)[x.s].v : (x.p === 'n' ? t.n : t.d)) : t.v; });
+    expect(rs.filter((v) => v === '18').length).toBe(2);
+  });
+  it('item 8b: o separador " | " nunca aparece cru; cada item vira uma linha', () => {
+    const rt = montaRoteiro({ passos: [{ faz: '', conta: 'I correto | II correto | III falso | IV falso → C', porque: '' }] }, 'bio');
+    expect(rt.linhas.map((l) => l.texto)).toEqual(['I correto', 'II correto', 'III falso', 'IV falso → C']);
+    // módulo de Matemática não é separador
+    expect(montaRoteiro({ passos: [{ faz: '', conta: '|x| = 3 → x = 3 ou x = −3', porque: '' }] }, 'mat').linhas.length).toBe(1);
+  });
+  it('item 8a: frase em Biologia é texto (Familjen); só a fórmula vai à mão', () => {
+    const rt = montaRoteiro({ passos: [{ faz: '', conta: 'só homem afetado + variante passando por mulheres que não manifestam → recessiva ligada ao X → II correto', porque: '' }] }, 'bio');
+    expect(rt.linhas[0].conta).toBe(false);
+    const html = renderToStaticMarkup(createElement(ResolucaoAnimada, { r: { passos: [{ faz: '', conta: 'Kenisa XᴬXᵃ × marido XᴬY → criança XᵃY = 1/2 × 1/2 → 1/4 = 25% → I correto', porque: '' }] } as unknown as Resolucao, materia: 'bio' }));
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+    const mao = [...doc.querySelectorAll('.dg-mao')].map((e) => e.textContent);
+    const txt = [...doc.querySelectorAll('.dg-txt')].map((e) => e.textContent);
+    expect(mao).toContain('1/4 = 25%');
+    expect(txt).toContain('I correto');
+    expect(txt.some((t) => t!.startsWith('Kenisa'))).toBe(true);
+  });
+  it('item 8c: cruzamento vira quadro de Punnett montado pelo motor', () => {
+    const q = cruzamento('Kenisa XᴬXᵃ × marido XᴬY → criança XᵃY = 1/2 × 1/2 → 1/4 = 25% → I correto')!;
+    expect(q.pais).toEqual(['XᴬXᵃ', 'XᴬY']);
+    expect(q.gametas).toEqual([['Xᴬ', 'Xᵃ'], ['Xᴬ', 'Y']]);
+    expect(q.casas).toEqual([['XᴬXᴬ', 'XᴬXᵃ'], ['XᴬY', 'XᵃY']]);
+    expect(q.alvos).toEqual(['XᵃY']);
+    const di = cruzamento('AaBb × aabb')!;
+    expect(di.casas.length).toBe(4);
+    expect(di.casas[0]).toEqual(['AaBb', 'Aabb', 'aaBb', 'aabb']);
+    expect(cruzamento('IᴬIᴮ × ii')!.casas).toEqual([['Iᴬi', 'Iᴮi'], ['Iᴬi', 'Iᴮi']]);
+    // não é cruzamento: fórmula química, multiplicação, dois pais com Y
+    expect(cruzamento('NaCl × H2O')).toBeNull();
+    expect(cruzamento('1/2 × 1/2')).toBeNull();
+    expect(cruzamento('XᴬY × XᵃY')).toBeNull();
+    const rt = montaRoteiro({ passos: [{ faz: '', conta: 'Kenisa XᴬXᵃ × marido XᴬY → criança XᵃY', porque: '' }] }, 'bio');
+    expect(rt.linhas[0].cruza?.casas.flat()).toContain('XᵃY');
+    expect(montaRoteiro({ passos: [{ faz: '', conta: 'Aa × aa', porque: '' }] }, 'mat').linhas[0].cruza).toBeUndefined();
+  });
+  it('item 8c: um par só ("avó: XᴬXᵃ") é rótulo e valor; reação com coeficiente marca o coeficiente', () => {
+    expect(montaRoteiro({ passos: [{ faz: '', conta: 'avó: XᴬXᵃ', porque: '' }] }, 'bio').linhas[0].diagrama?.tipo).toBe('pares');
+    const html = renderToStaticMarkup(createElement(ResolucaoAnimada, { r: { passos: [{ faz: '', conta: '2 H2 + O2 → 2 H2O', porque: '' }] } as unknown as Resolucao, materia: 'qui' }));
+    expect((html.match(/dg-coef/g) || []).length).toBe(2);
+  });
+});
+
 describe.skipIf(!tem)('todas as resoluções do site', () => {
   const itens = todas();
   it('o motor nunca produz uma linha diferente da linha final dos dados', () => {
     expect(itens.length).toBeGreaterThan(1000);
     for (const { id, m, r } of itens) {
       const rt = montaRoteiro(r, m);
-      const esperado = linhasDosDados(r);
-      expect(rt.linhas.map((l) => l.texto), id).toEqual(esperado);
+      expect(confereLinhas(r, rt), id).toBeNull();
       for (const L of rt.linhas) expect(junta(L.toks), id).toBe(L.texto);
       // cada termo que se move vem de um pedaço que existe e já foi escrito (linha de antes, ou antes na mesma linha)
       rt.linhas.forEach((L, l) => {

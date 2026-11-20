@@ -15,6 +15,7 @@
  */
 import { contaEhTexto, partesFracao } from './fracao';
 import { ehFormulaQuimica } from './notacao';
+import { cruzamento, type Punnett } from './punnett';
 
 /* ============================================================== tokens */
 
@@ -38,7 +39,7 @@ const RE_TOK = new RegExp([
   // número com milhar separado por espaço ("6 480", "1 000 000"), decimal com vírgula, fatorial e expoente
   String.raw`(?<num>\d{1,3}(?:[   ]\d{3})+(?![\d])(?:,\d+)?[${SOBRE}]*!?|\d+(?:[.,]\d+)*[${SOBRE}]*!?${CIRC})`,
   // variável com índice colado ("m0", "a1", "b21") é um termo só
-  String.raw`(?<var>(?<![A-Za-z0-9])[a-zα-ω]\d{1,2}(?![\dA-Za-z#])${CIRC}|[A-Za-zÀ-ÖØ-öø-ÿα-ωΑ-ΩℓΔπθ∞μ][A-Za-zÀ-ÖØ-öø-ÿα-ωΑ-Ωℓμ₀-₉ₐ-ₜ'′]*(?:_\{[^{}\n]{1,20}\}|_[A-Za-zÀ-ÖØ-öø-ÿα-ωΑ-Ωℓμ₀-₉ₐ-ₜ'′]*)?[${SOBRE}]*${CIRC})`,
+  String.raw`(?<var>(?<![A-Za-z0-9])[a-zα-ω]\d{1,2}(?![\dA-Za-z#])${CIRC}|[A-Za-zÀ-ÖØ-öø-ÿα-ωΑ-ΩℓΔπθ∞μµ][A-Za-zÀ-ÖØ-öø-ÿα-ωΑ-Ωℓμµ₀-₉ₐ-ₜ'′]*(?:_\{[^{}\n]{1,20}\}|_[A-Za-zÀ-ÖØ-öø-ÿα-ωΑ-Ωℓμµ₀-₉ₐ-ₜ'′]*)?[${SOBRE}]*${CIRC})`,
   String.raw`(?<raiz>[√∛])`,
   String.raw`(?<op>[+\-−×÷·*/±∓])`,
   String.raw`(?<rel>[=≈≅<>≤≥≠])`,
@@ -723,6 +724,12 @@ export interface LinhaRot {
   planos: Plano[];
   /** processo desenhado (Biologia, Química, Física, texto): fluxo, reação, cadeia, pares, contraste */
   diagrama?: Diagrama;
+  /** reação escrita por extenso ("1 C2H5OH dá 1 C2H4 mais 1 H2O"): a mesma reação em símbolos, desenhada embaixo */
+  reacao?: string;
+  /** linha que veio do quadro (não estava na conta do passo) */
+  doQuadro?: boolean;
+  /** cruzamento de Biologia lido na linha: o quadro de Punnett que o motor monta embaixo dela */
+  cruza?: Punnett;
 }
 
 /**
@@ -784,7 +791,8 @@ export function diagrama(s: string, conta: boolean): Diagrama | undefined {
   if (setas.length) {
     const ps = pecasDe(corpo, setas, 'seta');
     const itens = ps.filter((p) => p.papel === 'item').map((p) => corpo.slice(p.ini, p.fim));
-    if (itens.some((x) => !x.trim() || palavras(x) > 7 || /=|:|;|\|/.test(x))) return undefined;
+    // conta: itens curtos, sem "=" (a conta fica com o motor da conta); texto: itens de até 12 palavras
+    if (itens.some((x) => !x.trim() || palavras(x) > (conta ? 7 : 12) || (conta ? /=|:|;|\|/ : /;|\|/).test(x))) return undefined;
     const temMais = itens.some((x) => / \+ /.test(x));
     if (!temMais) return { tipo: 'fluxo', pecas: comRotulo(ps) };
     // reação: os termos de cada lado separados por " + "
@@ -818,6 +826,9 @@ export function diagrama(s: string, conta: boolean): Diagrama | undefined {
     }
     return undefined;
   }
+  // 2b) um par só ("avó: XᴬXᵃ", "placa da esquerda: (−)"): o valor chega ao rótulo
+  const par = /^([^:=→]{1,40}:\s+)(\S.*)$/.exec(s);
+  if (par && palavras(s) <= 8 && palavras(par[1]) <= 5) return { tipo: 'pares', pecas: [{ ini: 0, fim: par[1].length, papel: 'rotulo' }, { ini: par[1].length, fim: s.length, papel: 'valor' }] };
   // 3) cadeia com traço ("algas – excesso de nutrientes – amensalismo")
   const tracos = cortes(s, /\s+–\s+/);
   if (tracos.length >= 1 && pecasDe(s, tracos, 'liga').every((p) => p.papel !== 'item' || palavras(s.slice(p.ini, p.fim)) <= 6)) return { tipo: 'cadeia', pecas: pecasDe(s, tracos, 'liga') };
@@ -958,6 +969,9 @@ function planejaLinha(linhas: LinhaRot[], l: number, anterior: number | null) {
         const f = faixa(mb);
         if (!livre(f.ini, f.fim)) continue;
         const aprox = ts[mm.rel[k]].v === '≈';
+        // o que se cancela de um membro para o seguinte ("18·x ÷ (18·3) = x ÷ 3"): riscado (item 7)
+        const pc = !temPalavra(ts, ma) && !temPalavra(ts, mb) ? planoProduto({ toks: ts, l }, ma, [], { toks: ts, l }, mb, []) : null;
+        if (pc && pc.riscos.length && !Object.values(pc.entradas).some((e) => e.atravessa)) { planos.push({ ...pc, ...f }); ocupados.push([f.ini, f.fim]); continue; }
         const p = planoResultado({ toks: ts, l }, ma, { toks: ts, l }, mb, aprox);
         if (p) { planos.push({ ...p, ...f }); ocupados.push([f.ini, f.fim]); }
       }
@@ -967,45 +981,243 @@ function planejaLinha(linhas: LinhaRot[], l: number, anterior: number | null) {
   L.planos = planos;
 }
 
+/* ============================================================== passos + quadro (revisão 19/11, itens 6 e 8) */
+
+/** palavra de texto corrido ("homem", "Kenisa", "correto"): três letras minúsculas seguidas, fora unidade e função */
+export function palavrasProsa(s: string): number {
+  let n = 0;
+  for (const w of s.split(/[\s,;:()"“”]+/)) {
+    const b = w.replace(/[.!?]+$/, '');
+    if (/^[A-Za-zÀ-ÿ]*[a-zà-ÿ]{3,}[A-Za-zÀ-ÿ]*$/.test(b) && !UNIDADES.has(b) && !FUNCOES.has(b)) n++;
+  }
+  return n;
+}
+/** pedaço que é conta ou fórmula (vai à mão, em Caveat): sem palavra de texto corrido */
+export const pedacoEhFormula = (s: string) => /[\dA-Za-z]/.test(s) && palavrasProsa(s) === 0;
+
+/**
+ * Os itens de uma conta, cada um numa linha (item 8b): quebra de linha dos dados e o separador " | " (que nunca é
+ * mostrado cru); em Biologia, Química e humanas, a lista com seta separada por ";" também vira uma linha por item.
+ * Nada mais muda no texto: só o separador sai.
+ */
+export function itensDaConta(conta: string, materia?: string): string[] {
+  const out: string[] = [];
+  const lista = !materia || !['mat', 'fis'].includes(materia);
+  for (const linha of conta.split('\n')) {
+    if (!linha.trim()) continue;
+    let ult = 0;
+    const partes: string[] = [];
+    for (const [a, b] of cortes(linha, /\s+\|\s+/)) { partes.push(linha.slice(ult, a)); ult = b; }
+    partes.push(linha.slice(ult));
+    for (const pt of partes) {
+      const sc = lista && /→|⇒/.test(pt) ? cortes(pt, /;\s+/) : [];
+      const ps: string[] = [];
+      let u = 0;
+      for (const [a, b] of sc) { ps.push(pt.slice(u, a)); u = b; }
+      ps.push(pt.slice(u));
+      const ok = sc.length && ps.every((x) => x.trim() && palavras(x) <= 14);
+      for (const x of ok ? ps : [pt]) if (x.trim()) out.push(x.trim());
+    }
+  }
+  return out;
+}
+
+/** a conta sem espaço, sem nome de quantidade e sem unidade ("108/3,6 = 30 m/s" → "108/3,6=30"), para comparar */
+function semNomeTexto(s: string): string {
+  return semNomes(tokeniza(s)).map((t) => (t.k === 'frac' ? t.v.replace(/[\s  ]+/g, '') : t.v)).join('').replace(/-/g, '−');
+}
+/** onde `x` aparece em `t` como termo inteiro (sem número ou letra colada), a partir de `de` */
+function achaInteiro(t: string, x: string, de: number): number {
+  for (let i = t.indexOf(x, de); i >= 0; i = t.indexOf(x, i + 1)) {
+    if (!/[\dA-Za-zÀ-ÿ,.]/.test(t[i - 1] || '') && !/[\dA-Za-zÀ-ÿ,.]/.test(t[i + x.length] || '')) return i;
+  }
+  return -1;
+}
+/**
+ * A linha do quadro já está na conta do passo? Cada membro dela (sem o nome do começo, "v =", "S2 =") aparece na conta,
+ * na ordem. Então o quadro só acrescenta a nota (e o destaque) àquela linha; senão, a linha do quadro entra no passo.
+ */
+export function quadroNaConta(linha: string, q: string): boolean {
+  const L = semNomeTexto(linha);
+  const ms = cortes(q, /\s*[=≈]\s*/);
+  const membrosQ: string[] = [];
+  let u = 0;
+  for (const [a, b] of ms) { membrosQ.push(q.slice(u, a)); u = b; }
+  membrosQ.push(q.slice(u));
+  const nomes = membrosQ.length > 1 && tokeniza(membrosQ[0]).every((t) => t.k === 'var' || t.k === 'esp' || t.k === 'abre' || t.k === 'fecha') ? membrosQ.slice(1) : membrosQ;
+  let pos = 0;
+  for (const m of nomes) {
+    const x = semNomeTexto(m);
+    if (!x) continue;
+    const i = achaInteiro(L, x, pos);
+    if (i < 0) return false;
+    pos = i + x.length;
+  }
+  return nomes.some((m) => semNomeTexto(m));
+}
+
+/**
+ * Reação escrita com palavras em Química (item 8c): "1 C2H5OH dá 1 C2H4 mais 1 H2O", "2 H2 e O2 formam 2 H2O". Só
+ * fórmulas de verdade dos dois lados; o verbo vira a seta e "mais"/"e" viram "+". Os termos (coeficientes e fórmulas)
+ * são os dos dados, na mesma ordem.
+ */
+export function reacaoPorExtenso(s: string): string | undefined {
+  const F = String.raw`(?:\d+\s+)?[A-Z][A-Za-z0-9()]*`;
+  const re = new RegExp(String.raw`(${F}(?:\s+(?:mais|e|\+)\s+${F})*)\s+(?:dá|dão|forma|formam|produz|produzem|gera|geram|origina|originam|libera|liberam)\s+(${F}(?:\s+(?:mais|e|\+)\s+${F})*)`, 'u');
+  const m = re.exec(s);
+  if (!m) return undefined;
+  const lado = (x: string) => {
+    const ts = x.split(/\s+(?:mais|e|\+)\s+/);
+    const ok = ts.every((t) => { const f = t.replace(/^\d+\s+/, ''); return /\d/.test(f) && ehFormulaQuimica(f); });
+    return ok ? ts.join(' + ') : null;
+  };
+  const a = lado(m[1]), b = lado(m[2]);
+  return a && b ? `${a} → ${b}` : undefined;
+}
+
+interface ItemPasso { texto: string; notas: string[]; destaque?: string; doQuadro?: boolean }
+
 /** Monta o roteiro da resolução animada a partir dos dados. `materia`: mat, qui, bio, por, fis… */
 export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
   const linhas: LinhaRot[] = [];
   const passos: PassoRot[] = [];
+  const calculo = !!materia && ['mat', 'fis'].includes(materia);
   const nova = (texto: string, extra: Partial<LinhaRot> = {}): number => {
-    const conta = !contaEhTexto(texto, materia);
+    let conta = !contaEhTexto(texto, materia);
+    // fora de Matemática e Física, frase com três palavras ou mais é texto corrido (Familjen), mesmo com sinais no meio;
+    // as fórmulas dentro dela vão à mão pedaço a pedaço (item 8a)
+    if (conta && materia && !calculo && palavrasProsa(texto) >= 3) conta = false;
     // o processo só é desenhado em Biologia, Química e Física (Português e humanas: o trecho fica como texto)
     const ciencia = !materia || ['bio', 'qui', 'fis'].includes(materia);
     // conta de Química com seta e sem "=" é reação (desenhada); conta com "=" fica com o motor da conta
     const dg = ciencia && (!conta || (materia !== 'mat' && !/=/.test(texto))) ? diagrama(texto, conta) : undefined;
-    linhas.push({ texto, toks: tokeniza(texto), conta, planos: [], diagrama: dg, ...extra });
+    const L: LinhaRot = { texto, toks: tokeniza(texto), conta, planos: [], diagrama: dg, ...extra };
+    if (materia === 'bio') { const c = cruzamento(texto); if (c) L.cruza = c; }
+    if (materia === 'qui' && (!dg || dg.tipo === 'etapas') && !conta) { const rx = reacaoPorExtenso(texto); if (rx) L.reacao = rx; }
+    linhas.push(L);
     return linhas.length - 1;
   };
-  const usaQuadro = !!(r.quadro && r.quadro.length);
-  if (usaQuadro) {
-    for (const q of r.quadro!) {
-      if (!q.linha) continue;
+  const quadro = (r.quadro || []).filter((q) => q.linha);
+  const ps = r.passos || [];
+  const itens: ItemPasso[][] = ps.map((p) => itensDaConta(p.conta || '', materia).map((texto) => ({ texto, notas: [] })));
+  const comConta = itens.some((x) => x.length);
+  const usaQuadro = !!quadro.length && !comConta;
+  if (usaQuadro || !ps.length) {
+    // só o quadro (sem conta nos passos): uma linha por passo, com faz/porque quando os números batem
+    const mesmo = ps.length === quadro.length;
+    quadro.forEach((q, k) => {
       const l = nova(q.linha, { nota: q.nota || undefined });
       if (q.destaque) linhas[l].marca = localiza(linhas[l], q.destaque);
-      passos.push({ linhas: [l] });
-    }
+      passos.push({ faz: mesmo ? ps[k].faz || undefined : undefined, porque: mesmo ? ps[k].porque || undefined : undefined, linhas: [l] });
+    });
   } else {
-    for (const p of r.passos || []) {
-      const ls = (p.conta || '').split('\n').filter((x) => x.trim()).map((t) => nova(t));
+    // passos com a conta de cada um; o quadro acrescenta a nota (e o destaque) à linha que já tem aquele resultado, ou
+    // entra como linha nova no passo a que pertence (item 6)
+    // 1) onde cada linha do quadro já está na conta (em ordem: nunca volta a um passo anterior)
+    const casa: ({ j: number; x: number } | null)[] = [];
+    let cj = 0, cx = 0;
+    for (const q of quadro) {
+      let achou: { j: number; x: number } | null = null;
+      for (let j = cj; j < itens.length && !achou; j++) {
+        for (let x = j === cj ? cx : 0; x < itens[j].length; x++) if (quadroNaConta(itens[j][x].texto, q.linha)) { achou = { j, x }; break; }
+      }
+      casa.push(achou);
+      if (achou) { cj = achou.j; cx = achou.x; }
+    }
+    quadro.forEach((q, k) => {
+      const c = casa[k];
+      if (!c) return;
+      const it = itens[c.j][c.x];
+      if (q.nota) it.notas.push(q.nota);
+      if (q.destaque && !it.destaque) it.destaque = q.destaque;
+    });
+    // 2) o que não está na conta entra como linha nova, entre o passo da linha casada antes e o da casada depois
+    //    (no passo proporcional, quando há folga), logo depois da linha casada antes ou antes da casada depois
+    const extras = new Map<number, { antes: Map<number, ItemPasso[]>; fim: ItemPasso[] }>();
+    const lugar = (j: number) => { let e = extras.get(j); if (!e) { e = { antes: new Map(), fim: [] }; extras.set(j, e); } return e; };
+    quadro.forEach((q, k) => {
+      if (casa[k]) return;
+      let a = -1, ax = -1, b = itens.length - 1, bx = Infinity;
+      for (let z = k - 1; z >= 0; z--) if (casa[z]) { a = casa[z]!.j; ax = casa[z]!.x; break; }
+      for (let z = k + 1; z < quadro.length; z++) if (casa[z]) { b = casa[z]!.j; bx = casa[z]!.x; break; }
+      const prop = Math.min(itens.length - 1, Math.floor((k * itens.length) / quadro.length));
+      const alvo = Math.max(Math.max(a, 0), Math.min(b, prop));
+      const item: ItemPasso = { texto: q.linha, notas: q.nota ? [q.nota] : [], destaque: q.destaque, doQuadro: true };
+      const e = lugar(alvo);
+      // depois da linha casada antes (mesmo passo); senão antes da casada depois (mesmo passo); senão no fim do passo
+      const pos = alvo === a ? ax + 1 : alvo === b && bx !== Infinity ? bx : Infinity;
+      if (pos === Infinity) e.fim.push(item);
+      else { const v = e.antes.get(pos) || []; v.push(item); e.antes.set(pos, v); }
+    });
+    for (const [j, e] of extras) {
+      const novo: ItemPasso[] = [];
+      itens[j].forEach((it, x) => { novo.push(...(e.antes.get(x) || []), it); });
+      for (const [pos, v] of e.antes) if (pos >= itens[j].length) novo.push(...v);
+      novo.push(...e.fim);
+      itens[j] = novo;
+    }
+    ps.forEach((p, k) => {
+      const ls = itens[k].map((it) => nova(it.texto, { nota: it.notas.length ? it.notas.join('; ') : undefined, ...(it.doQuadro ? { doQuadro: true } : {}) }));
+      itens[k].forEach((it, x) => { if (it.destaque) linhas[ls[x]].marca = localiza(linhas[ls[x]], it.destaque); });
       // termo-chave do passo: o resultado da conta, ou (texto) o que vem depois da seta
       const ult = ls[ls.length - 1];
-      if (ult != null) {
+      if (ult != null && !linhas[ult].marca) {
         const L = linhas[ult];
         L.marca = L.conta ? resultado(L.texto) : termoChave(L.texto);
       }
       passos.push({ faz: p.faz || undefined, porque: p.porque || undefined, linhas: ls });
-    }
+    });
   }
   let ant: number | null = null;
   for (let l = 0; l < linhas.length; l++) {
     planejaLinha(linhas, l, ant);
     ant = l;
   }
+  // o passo diz que cancela ("cancela m", "corta o 18") e a comparação não achou: risca o termo nos dois lugares
+  passos.forEach((p) => {
+    const dito = [p.faz, p.porque, ...p.linhas.map((l) => linhas[l].nota)].filter(Boolean).join(' ');
+    for (const l of p.linhas) riscaDito(linhas, l, dito);
+  });
   return { linhas, passos, origem: usaQuadro ? 'quadro' : 'passos' };
+}
+
+/**
+ * Cancelamento dito no passo (item 7): "cancela m", "corta o 18", "simplifica 2". O termo dito aparece pelo menos duas
+ * vezes na linha de antes (em cima e embaixo, ou nos dois lados) e some (ou aparece menos) na linha nova: os de antes
+ * são riscados. Só quando a comparação dos termos não riscou nada.
+ */
+function riscaDito(linhas: LinhaRot[], l: number, dito: string) {
+  const L = linhas[l];
+  if (!L.conta || L.diagrama || l === 0 || L.planos.some((p) => p.riscos.length)) return;
+  const A = linhas[l - 1];
+  if (!A.conta || A.diagrama) return;
+  const re = /\b(?:cancela|cancelam|cancelando|corta|cortam|cortando|simplifica|simplificam|simplificando)\w*\s+(?:(?:o|a|os|as|um|uma|de|do|da|fator|termo)\s+)*([^\s,.;:]+)/gi;
+  for (let m = re.exec(dito); m; m = re.exec(dito)) {
+    const x = m[1].replace(/[“”"']/g, '');
+    if (!x || /^(e|em|no|na|com|por|para)$/i.test(x)) continue;
+    // ocorrências do termo na linha de antes (termos soltos e dentro de frações)
+    const onde: Ref[] = [];
+    A.toks.forEach((t, i) => {
+      if (t.v === x && t.k !== 'esp') onde.push({ l: l - 1, i });
+      if (t.k === 'frac') {
+        (['n', 'd'] as const).forEach((pp) => {
+          const sub = pp === 'n' ? t.nt! : t.dt!;
+          if (sub.length === 1 && sub[0].v === x) onde.push({ l: l - 1, i, p: pp });
+          else sub.forEach((u, s) => { if (u.v === x) onde.push({ l: l - 1, i, p: pp, s }); });
+        });
+      }
+    });
+    const conta = (ts: Tok[]): number => ts.reduce((n, t) => n + (t.k === 'frac' ? conta(t.nt!) + conta(t.dt!) : t.v === x ? 1 : 0), 0);
+    const agora = conta(L.toks);
+    if (onde.length < 2 || agora >= onde.length) continue;
+    // risca os pares que somem (dois por vez)
+    const quantos = Math.floor((onde.length - agora) / 2) * 2;
+    if (!quantos) continue;
+    const riscos = onde.slice(0, quantos);
+    if (L.planos.length) L.planos[0].riscos.push(...riscos);
+    else L.planos.push({ tipo: 'cancela', entradas: {}, riscos, ini: 0, fim: L.toks.length });
+    return;
+  }
 }
 
 /** quantas transições animadas (com termos se movendo) o roteiro tem, por tipo */
