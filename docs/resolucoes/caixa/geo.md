@@ -444,3 +444,6 @@ PRINT Pd4ca228f: tentado de novo (print ampliado, caderno do Objetivo, Atlas Esc
 GABARITO P9688242b: a IV ("somente a cana" ganha com o calor) é contrariada pelo estudo Embrapa/Unicamp 2008 (cana e mandioca ganham área); números da I não achados no SEEG/MCTI. Possível "anular": dono decide.
 DADO P4172ca46: alternativas.D -> "heterogeneidade do sistema de localização" ("Fonte: Survey Monkey" é crédito do mapa, colado)
 DADO Pb1b726b3: alternativas.D -> "importância industrial na hierarquia urbana" (texto dos mapas colado)
+
+DADO P7b1dac11 (UERJ 2023 q60): alternativas.D -> "hierarquização da distribuição demográfica – modernização de redes rodoviárias"; o resto colado em D ("Quando Carlos Lacerda assumiu ... Adaptado de multirio.rio.rj.gov.br.") é o texto-base da questão, que falta em texto_da_prova.
+AVISO (pendentes, 20/11 22h UTC): limite de uso atingido até 02:50 UTC. geo-pend-0005 (25 resolvidas, aguardando conferência), geo-pend-0004 e his-pend-0006 (em resolução) seguem abertos nesta sessão; retomo depois do limite.
