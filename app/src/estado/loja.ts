@@ -54,7 +54,35 @@ function salvaJa() {
 if (migrou) setTimeout(salvaJa, 0);
 
 export function atualiza(f: (e: Estado) => Estado) {
+  const antes = estado;
   estado = f(estado);
+  // marca a mudança do aluno (desempate ao juntar com a nuvem, estado/mescla.ts)
+  if (estado !== antes && estado.mexidoEm === antes.mexidoEm) estado = { ...estado, mexidoEm: Date.now() };
+  avisa();
+}
+
+/** Troca o estado inteiro sem marcar como mudança do aluno (o estado juntado com a nuvem já traz o seu mexidoEm). */
+export function substituiSemMarcar(novo: Estado) {
+  estado = novo;
+  avisa();
+}
+
+/** Grava já, sem esperar (antes de sair da conta). */
+export function salvaAgora() { if (timer) clearTimeout(timer); salvaJa(); }
+
+/** Sair da conta (contas de verdade, 20/11/2026): o progresso desta conta sai do aparelho (já está na nuvem, ou numa
+ *  cópia pendente da própria conta) e a cópia de segurança do arquivo anterior também, para outra pessoa no mesmo
+ *  aparelho não ver nada. Tema e preferências do aparelho ficam. */
+export function limpaAparelho() {
+  const pref = estado.pref;
+  estado = { ...estadoVazio(), pref };
+  ouvintes.forEach((o) => o());
+  if (timer) clearTimeout(timer);
+  salvaJa();
+  try { localStorage.removeItem(CHAVE_BACKUP); } catch { /* sem armazenamento */ }
+}
+
+function avisa() {
   ouvintes.forEach((o) => o());
   if (timer) clearTimeout(timer);
   timer = setTimeout(salvaJa, 300);
@@ -71,10 +99,10 @@ export function substitui(novo: Estado) { atualiza(() => novo); }
 export function zera() {
   gravarLS(CHAVE + '.zerado.' + Date.now(), JSON.stringify(estado));
   const perfil = estado.perfil, pref = estado.pref;
-  atualiza(() => ({ ...estadoVazio(), perfil, pref, migradoDe: estado.migradoDe }));
+  atualiza(() => ({ ...estadoVazio(), perfil, pref, migradoDe: estado.migradoDe, conta: estado.conta }));
 }
 
-function inscreve(o: () => void) { ouvintes.add(o); return () => ouvintes.delete(o); }
+export function inscreve(o: () => void) { ouvintes.add(o); return () => { ouvintes.delete(o); }; }
 
 export function useEstado(): Estado {
   return useSyncExternalStore(inscreve, () => estado, () => estado);

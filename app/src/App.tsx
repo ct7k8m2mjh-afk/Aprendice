@@ -28,6 +28,8 @@ import { Config } from './telas/Config';
 import { Abertura } from './ui/Abertura';
 import { defineTelaCheia, useTelaCheia } from './ui/telaCheia';
 import { useEffect } from 'react';
+import { useConta } from './estado/sessao';
+import { Privacidade } from './telas/Privacidade';
 
 function Rotas() {
   const e = useEstado();
@@ -36,6 +38,12 @@ function Rotas() {
   const telaCheia = useTelaCheia();
   const estudo = /^\/m\/\w+\/(q|treino|revisao|essencial\/)/.test(loc.pathname) || loc.pathname.includes('/flashcards/sessao') || loc.pathname.startsWith('/simulado/agora') || loc.pathname === '/hoje/sessao';
   useEffect(() => { if (!estudo) defineTelaCheia(false); }, [estudo]);
+  // contas de verdade (20/11/2026): a privacidade abre sem conta; sem sessão (ou sem perfil de estudo), as boas-vindas
+  const conta = useConta();
+  if (loc.pathname === '/privacidade' && (conta.fase !== 'dentro' || !e.perfil)) return <Privacidade />;
+  if (conta.fase === 'carregando') return null;
+  if (conta.fase === 'fora' || conta.fase === 'nova-senha') return loc.pathname === '/boas-vindas' ? <BoasVindas /> : <Navigate to="/boas-vindas" replace />;
+  if (e.perfil && loc.pathname === '/boas-vindas' && conta.fase === 'dentro') return <Navigate to="/" replace />;
   if (!e.perfil && loc.pathname !== '/boas-vindas') return <Navigate to="/boas-vindas" replace />;
   const foco = estudo && telaCheia;
   if (loc.pathname === '/boas-vindas') return <BoasVindas />;
@@ -73,6 +81,7 @@ function Rotas() {
         <Route path="/provas/:id" element={<ProvaDetalhe />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/config" element={<Config />} />
+        <Route path="/privacidade" element={<Privacidade />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Casca>

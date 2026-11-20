@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { saiDaConta } from '../estado/conta';
+import { pegaConta, sair, useConta } from '../estado/sessao';
 import { useEffect, useState } from 'react';
 import { atualiza, useEstado } from '../estado/loja';
 import { useTitulo } from '../ui/comum';
@@ -21,20 +22,22 @@ export function Perfil() {
   const [email, setEmail] = useState(p.email);
   const [salvo, setSalvo] = useState(false);
   const rg = useRegiao();
+  const conta = useConta();
+  const naNuvem = conta.fase !== 'local';
   const muda = (f: Partial<typeof p>) => atualiza((x) => (x.perfil ? { ...x, perfil: { ...x.perfil, ...f } } : x));
 
   return (
     <div className="conteudo estreito">
       <div className="titulo-pag perfil-cab">
         <span className="avatar grande" aria-hidden>{(p.nome || 'E').charAt(0).toUpperCase()}</span>
-        <div><h1>{p.nome}</h1><p className="sub">Conta de demonstração · os dados ficam só neste aparelho</p></div>
+        <div><h1>{p.nome}</h1><p className="sub">{!naNuvem ? 'Os dados ficam só neste aparelho' : conta.papel === 'admin' ? 'Administrador · o que é oculto para o aluno aparece com etiqueta' : conta.sinc === 'ok' ? 'Progresso salvo na sua conta' : 'Progresso salvo neste aparelho · envio para a conta quando houver internet'}</p></div>
       </div>
 
       <section className="bloco">
         <h2 className="sec-tit">Seus dados</h2>
-        <form className="grade g2" onSubmit={(ev) => { ev.preventDefault(); muda({ nome: nome.trim() || 'Estudante', email: email.trim() }); setSalvo(true); setTimeout(() => setSalvo(false), 2000); }}>
+        <form className="grade g2" onSubmit={(ev) => { ev.preventDefault(); muda(naNuvem ? { nome: nome.trim() || 'Estudante' } : { nome: nome.trim() || 'Estudante', email: email.trim() }); setSalvo(true); setTimeout(() => setSalvo(false), 2000); }}>
           <div className="campo"><label htmlFor="pf-nome">Nome</label><input id="pf-nome" value={nome} onChange={(ev) => setNome(ev.target.value)} autoComplete="given-name" /></div>
-          <div className="campo"><label htmlFor="pf-email">E-mail</label><input id="pf-email" type="email" value={email} onChange={(ev) => setEmail(ev.target.value)} autoComplete="email" /></div>
+          <div className="campo"><label htmlFor="pf-email">E-mail</label><input id="pf-email" type="email" value={naNuvem ? conta.email || email : email} onChange={(ev) => setEmail(ev.target.value)} autoComplete="email" readOnly={naNuvem} title={naNuvem ? 'O e-mail é o da sua conta' : undefined} /></div>
           <div><button className="btn sec" type="submit">{salvo ? <><Icone nome="check" /> Salvo</> : 'Salvar'}</button></div>
         </form>
       </section>
@@ -64,11 +67,13 @@ export function Perfil() {
 
       <section className="secao perfil-pe">
         <Link to="/config" className="btn sec"><Icone nome="config" /> Configurações e meus dados</Link>
-        <button className="btn fantasma" onClick={() => { atualiza(saiDaConta); nav('/boas-vindas'); }}>
+        <button className="btn fantasma" onClick={() => { if (pegaConta().fase === 'local') { atualiza(saiDaConta); nav('/boas-vindas'); } else void sair().then(() => nav('/boas-vindas')); }}>
           <Icone nome="sair" /> Sair da conta
         </button>
       </section>
-      <p className="fraco" style={{ fontSize: 14, marginTop: 10 }}>Sair não apaga nada: o progresso, as provas-alvo, as datas e a meta continuam salvos neste aparelho e voltam quando você entrar de novo com o mesmo e-mail.</p>
+      <p className="fraco" style={{ fontSize: 14, marginTop: 10 }}>{pegaConta().fase === 'local'
+        ? 'Sair não apaga nada: o progresso, as provas-alvo, as datas e a meta continuam salvos neste aparelho e voltam quando você entrar de novo com o mesmo e-mail.'
+        : 'Sair não apaga nada: o progresso, as provas-alvo, as datas e a meta ficam guardados na sua conta e voltam quando você entrar de novo, neste ou em outro aparelho.'} <Link to="/privacidade">Privacidade</Link></p>
     </div>
   );
 }

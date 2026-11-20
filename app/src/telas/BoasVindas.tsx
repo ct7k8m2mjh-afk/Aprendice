@@ -4,6 +4,7 @@ import { Logo, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { atualiza, pegaEstado } from '../estado/loja';
 import { voltaAConta } from '../estado/conta';
+import { sair, useConta } from '../estado/sessao';
 import { EscolhaProvas } from './EscolhaProvas';
 import { MATERIAS_PRINCIPAIS } from '../dados/materias';
 import { IluMateria, temIlu } from '../ui/IconeMateria';
@@ -11,20 +12,30 @@ import { Login } from './Login';
 import { TemaSeg, usaTema } from '../ui/Casca';
 
 
-/** Primeira abertura: conta de demonstração (login simulado, fica só no aparelho), provas-alvo e meta. */
+/** Primeira abertura: a conta (login de verdade no serviço de contas; estado/sessao.ts), provas-alvo e meta.
+ *  Com a conta aberta e sem perfil de estudo na nuvem, começa direto nas provas-alvo. Sem serviço configurado (prévia),
+ *  o login é o modo local de antes. */
 export function BoasVindas() {
   useTitulo('Boas-vindas');
   const nav = useNavigate();
   // tema claro/escuro também antes de entrar (princípio 8; revisão de 19/11/2026, casca 2)
   const escuro = usaTema();
-  const [passo, setPasso] = useState(0);
-  const [nome, setNome] = useState('');
-  const [email, setEmail] = useState('');
+  const conta = useConta();
+  const dentro = conta.fase === 'dentro';
+  const [passo, setPasso] = useState(dentro ? 1 : 0);
+  const [nome, setNome] = useState(dentro && conta.email ? nomeDoEmail(conta.email) : '');
+  const [email, setEmail] = useState(conta.email || '');
   const [provas, setProvas] = useState<string[]>(['enem']);
   const [meta, setMeta] = useState(150);
 
   // cada etapa abre no topo (revisão de 19/11/2026, casca 9)
   useEffect(() => { window.scrollTo(0, 0); }, [passo]);
+  // conta aberta sem perfil de estudo: segue para as provas-alvo; conta fechada: volta ao login
+  useEffect(() => {
+    if (conta.fase === 'dentro' && passo === 0) { const em = conta.email || ''; setEmail(em); if (!nome) setNome(nomeDoEmail(em)); setPasso(1); }
+    if ((conta.fase === 'fora' || conta.fase === 'nova-senha') && passo !== 0) setPasso(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [conta.fase]);
   const conclui = () => {
     atualiza((e) => ({ ...e, perfil: { nome: nome.trim() || 'Estudante', email: email.trim(), provasAlvo: provas, meta, criadoEm: Date.now() } }));
     nav('/', { replace: true });
@@ -36,6 +47,8 @@ export function BoasVindas() {
     if (volta) { atualiza(() => volta); nav('/', { replace: true }); return; }
     setEmail(em); if (!nome) setNome(nomeDoEmail(em)); setPasso(1);
   };
+  // "Voltar" na primeira etapa depois do login: sai da conta e volta à tela de entrar
+  const voltaAoLogin = () => { if (conta.fase === 'local') setPasso(0); else void sair(); };
   if (passo === 0) return <Login aoEntrar={entra} emailInicial={email} tema={<TemaSeg escuro={escuro} className="l-tema" />} />;
 
   return (
@@ -60,7 +73,7 @@ export function BoasVindas() {
             <p className="miolo">O site prioriza o que essas provas cobram: simulados, sugestões e treinos. Dá para mudar depois no perfil.</p>
             <EscolhaProvas valor={provas} aoMudar={setProvas} />
             <div className="bv-acoes">
-              <button className="btn fantasma" onClick={() => setPasso(0)}><Icone nome="esquerda" /> Voltar</button>
+              <button className="btn fantasma" onClick={voltaAoLogin}><Icone nome="esquerda" /> Voltar</button>
               <button className="btn grande" onClick={() => setPasso(2)} disabled={!provas.length}>Continuar <Icone nome="direita" /></button>
             </div>
           </div>

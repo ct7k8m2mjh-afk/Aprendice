@@ -13,6 +13,10 @@ import './estilo/tipografia.css'; // guia tipográfico: carregado por último
 import './estilo/correcao.css'; // correção em 4 blocos + resolução animada (comando 20)
 import { App } from './App';
 import { preparaConteudo } from './dados/conteudo';
+import { iniciaConta } from './estado/sessao';
+
+// contas de verdade (20/11/2026): abre a sessão guardada e junta o progresso com a nuvem, sem esperar o conteúdo
+iniciaConta();
 
 preparaConteudo().then(() => {
   createRoot(document.getElementById('raiz')!).render(<StrictMode><App /></StrictMode>);

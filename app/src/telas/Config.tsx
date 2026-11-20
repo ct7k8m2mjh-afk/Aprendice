@@ -1,3 +1,4 @@
+import { pegaConta } from '../estado/sessao';
 import { useRef, useState } from 'react';
 import { carregaMateria, MATERIAS_COM_CONTEUDO } from '../dados/conteudo';
 import { pegaEstado, substitui, useEstado, zera } from '../estado/loja';
@@ -55,7 +56,7 @@ export function Config() {
 
       <section className="bloco secao">
         <h2 className="sec-tit">Meus dados</h2>
-        <p className="miolo">Seu progresso fica salvo neste aparelho. Baixe uma cópia de vez em quando ou traga o progresso de outro aparelho ou do protótipo antigo: a importação junta tudo e não apaga nada.</p>
+        <p className="miolo">{pegaConta().fase === 'local' ? 'Seu progresso fica salvo neste aparelho.' : 'Seu progresso fica salvo na sua conta e neste aparelho: funciona sem internet e é enviado quando a conexão volta.'} Baixe uma cópia de vez em quando ou traga o progresso de outro aparelho ou do protótipo antigo: a importação junta tudo e não apaga nada.</p>
         <div className="dados-acoes">
           <button className="btn sec" onClick={exporta}><Icone nome="download" /> Baixar meu progresso</button>
           <button className="btn sec" onClick={() => arq.current?.click()}><Icone nome="upload" /> Importar progresso</button>

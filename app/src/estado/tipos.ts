@@ -166,6 +166,12 @@ export interface Estado {
   /** perfis guardados por conta (chave = e-mail em minúsculas; revisão de 20/11/2026, casca N5): só voltam para o mesmo
    *  e-mail. Substitui `perfilSalvo` (lido uma vez e movido para cá). Opcional: estados antigos não têm */
   perfisSalvos?: Record<string, Perfil>;
+  /** contas de verdade (20/11/2026): id da conta na nuvem dona do progresso guardado neste aparelho. Sem ele, o progresso
+   *  é anterior às contas e é juntado ao da primeira conta que entrar (princípio 7). Opcional: estados antigos não têm */
+  conta?: string;
+  /** momento da última mudança feita pelo aluno (desempate ao juntar com a nuvem: sessão em andamento e preferências de
+   *  estudo ficam com o lado mais recente). Opcional: estados antigos não têm */
+  mexidoEm?: number;
 }
 
 export function estadoMateriaVazio(): EstadoMateria {
