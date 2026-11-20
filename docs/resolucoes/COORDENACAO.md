@@ -80,6 +80,12 @@ em 11–13/11 (por-0024/27/32/44 × por-0046; por-0075/78 × por-0082; por-0084/
 REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, commit e push do registro ANTES de resolver
 (e `git pull` antes do proximo). Hoje só a fábrica trabalha em Português, sem risco.
 
+## Estado 20/11 06h10 UTC
+Fila normal: TODAS as matérias acabaram (falta 1 de História, incluída abaixo). Fábrica de Português parou em 19/11 21h38 (13 lotes, 654;
+as partes 2–4 cobriram o resto). Pendentes "classificação: resolver na matéria nova" (418) com 3 sessões de pendentes:
+session_01PveEKYJhKA7RfgZCSftpct (bio/qui/mat/fis), session_01PveEKaCdFfRjWqaTYysva1 (geo/his), session_01PveEKYZChYRBxQSMaSYeoU
+(por/fs/ing). Ficam para o dono: 66 "anular" (já no site como indisponível ou para decidir), 17 outra matéria, 4 obra.
+
 ## NÃO PUBLICAR até o dono configurar o Supabase (20/11 04h45)
 O ramo já tem as contas de verdade (commits 009df6826, 058fa7ffc, 47e5e6d9c, 834909bfa; docs/contas.md). Publicar antes de o dono
 configurar Site URL/Redirect (Authentication → URL Configuration) e SMTP próprio (Resend/Brevo) deixa os alunos sem conseguir se
