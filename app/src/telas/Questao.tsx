@@ -65,12 +65,19 @@ export function QuestaoTela() {
   useTitulo(q ? `${q.escola} ${q.ano}` : 'Questão');
 
   // a fila da revisão é fixada ao abrir (responder não muda a ordem no meio da sessão)
+  // revisão: a lista da sessão fica guardada enquanto o aluno anda por ela (a questão respondida sai das vencidas, mas
+  // não da sessão; o contador segue "2 de 4", e não volta a "1 de 3"; revisão de 19/11/2026, casca 30)
+  const filaRev = useRef<{ m: string; l: Questao[] } | null>(null);
   const fila = useMemo<Questao[]>(() => {
     if (!mc || !q) return [];
     if (ctx === 'revisao') {
+      const g = filaRev.current;
+      if (g && g.m === m && g.l.some((x) => x.id === q.id)) return g.l;
       const v0 = questoesVencidas(mc, pegaEstado().materias[m] || s, Date.now(), agendaDe(pegaEstado()));
       const v = filtraRegiao(v0, regiaoDoEstado(pegaEstado()).conj).l;
-      return v.some((x) => x.id === q.id) ? v : v0.some((x) => x.id === q.id) ? v0 : [q, ...v];
+      const l = v.some((x) => x.id === q.id) ? v : v0.some((x) => x.id === q.id) ? v0 : [q, ...v];
+      filaRev.current = { m, l };
+      return l;
     }
     const l0 = mc.porSub.get(q.sub) || [q];
     const l = nv ? l0.filter((x) => nivelDe(x.dif) === nv) : l0;
@@ -79,7 +86,7 @@ export function QuestaoTela() {
     const f = filtraRegiao(l, regiaoDoEstado(pegaEstado()).conj).l;
     return f.some((x) => x.id === q.id) ? f : l;
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mc, q?.sub, ctx, nv]);
+  }, [mc, q?.sub, q?.id, ctx, nv]);
 
   useEffect(() => { setEscolha(null); setConf(null); setRevelado(false); setPista(false); setRiscadas(new Set()); setAba('res'); }, [id]);
 
