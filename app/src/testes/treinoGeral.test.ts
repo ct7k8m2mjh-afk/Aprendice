@@ -62,9 +62,19 @@ describe.skipIf(!temConteudo)('treino geral em todas as matérias', () => {
       for (const q of lista) freq.set(q.modulo, (freq.get(q.modulo) || 0) + 1);
       const topo = [...freq.entries()].sort((a, b) => b[1] - a[1])[0][0];
       expect(qs.some((q: Q) => q.modulo === topo)).toBe(true);
-      // sem flashcards e frases criados sem lentes
-      expect(mat.flash).toEqual([]);
-      expect(mat.essencial.completar).toEqual([]);
+      // flashcards e frases só entram depois das lentes e da conferência (fábrica de conteúdo, 19/11/2026):
+      // vazio, ou 60 cartões e 40 frases com fonte aberta na web e nunca de site didático
+      const proibidos = /brasilescola|mundoeducacao|preparaenem|infoescola|todamateria|sofisica|wikipedia/i;
+      if (mat.flash.length || mat.essencial.completar.length) {
+        expect(mat.flash.length).toBe(60);
+        expect(mat.essencial.completar.length).toBe(40);
+        for (const c of [...mat.flash, ...mat.essencial.completar]) {
+          expect(c.fonte).toMatch(/https?:\/\//);
+          expect(c.fonte).not.toMatch(proibidos);
+        }
+        for (const c of mat.flash) { expect(c.frente.length).toBeGreaterThan(0); expect(c.verso.length).toBeGreaterThan(0); }
+        for (const c of mat.essencial.completar) expect(c.frase.split('___').length).toBe(2);
+      }
     });
   }
 });
