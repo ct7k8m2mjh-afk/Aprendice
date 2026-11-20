@@ -71,7 +71,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | geo-pend-0002 | pendentes reclassificada | 4 | gravado | 4 | 0 | 0 |
 | geo-pend-0003 | pendentes reclassificada | 8 | gravado | 7 | 1 | 0 |
 | geo-pend-0004 | pendentes todos-menos-anular | 2 | gravado | 1 | 1 | 0 |
-| geo-pend-0005 | pendentes todos-menos-anular | 25 | aberto |  |  |  |
+| geo-pend-0005 | pendentes todos-menos-anular | 25 | gravado | 25 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 

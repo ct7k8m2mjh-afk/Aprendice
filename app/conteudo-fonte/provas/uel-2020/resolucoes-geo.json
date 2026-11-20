@@ -733,5 +733,118 @@
    "data": "2026-11-19",
    "lote": "geo-0042"
   }
+ },
+ "P605bb068": {
+  "n": "11",
+  "conceito": "Calcular horários de chegada em três viagens somando a duração do voo e a diferença de fuso lida no mapa.",
+  "equivocos": {
+   "A": "G01.3:esqueceu-o-fuso",
+   "B": "G01.3:esqueceu-o-fuso",
+   "D": "G01.3:fuso-lido-errado",
+   "E": "G01.3:fuso-lido-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada viagem tem duas contas: a duração, que sempre soma, e a diferença de fuso, que soma quando o destino está a leste e subtrai quando está a oeste. Os fusos saem da faixa de números embaixo do mapa. O enunciado ainda exige contar os dias: o dia de chegada é o 1º dia de permanência.",
+    "formulas": [
+     "chegada = partida + duração ± diferença de fuso",
+     "destino a leste: soma; destino a oeste: subtrai",
+     "diferença de fuso = fuso do destino − fuso da origem"
+    ],
+    "simbolos": [
+     [
+      "fuso horário",
+      "faixa de longitude em que vale a mesma hora oficial; no mapa, o número diz quantas horas está à frente (+) ou atrás (−) de Greenwich"
+     ],
+     [
+      "Greenwich",
+      "meridiano de referência, fuso 0"
+     ],
+     [
+      "hora local",
+      "a hora do relógio na cidade onde a pessoa está"
+     ]
+    ]
+   },
+   "pista": "Leia no mapa o fuso de São Paulo, de Roma, de Nova Iorque e do Rio de Janeiro antes de qualquer soma.",
+   "passos": [
+    {
+     "faz": "Leia os fusos no mapa",
+     "conta": "São Paulo: −3 | Roma: +1 | Nova Iorque: −5 | Rio de Janeiro: −3",
+     "porque": "Cada cidade está numa faixa vertical; o número na base da faixa é o fuso. Roma está 4 h à frente de São Paulo; Nova Iorque, 6 h atrás de Roma; o Rio, 2 h à frente de Nova Iorque.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a chegada a Roma",
+     "conta": "11h + 12h = 23h de sexta (hora de SP) → 23h + 4h = 27h → 3h de sábado em Roma",
+     "porque": "Roma fica a leste, então o relógio de lá está adiantado: soma 4 h. Passou de 24 h, vira o dia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chegada a Nova Iorque",
+     "conta": "1º dia em Roma: sábado → 3º dia: segunda · 11h + 10h = 21h (hora de Roma) → 21h − 6h = 15h de segunda em NY",
+     "porque": "A permanência começa a contar no dia da chegada (sábado), então o 3º dia é segunda. Nova Iorque fica a oeste: subtrai 6 h.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chegada ao Rio",
+     "conta": "1º dia em NY: segunda → 4º dia: quinta · 11h + 9h = 20h (hora de NY) → 20h + 2h = 22h de quinta no Rio",
+     "porque": "O Rio fica a leste de Nova Iorque, 2 h à frente: soma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "3h de sábado; 15h de segunda; 22h de quinta = alternativa C",
+     "porque": "Só a C acerta as três horas e os três dias ao mesmo tempo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3h de sábado em Roma; 15h de segunda-feira em Nova Iorque; 22h de quinta-feira no Rio de Janeiro.",
+   "checagem": "Refaça por Greenwich. Saída de SP às 11h (−3) = 14h em Greenwich; +12 h = 26h = 2h de sábado em Greenwich = 3h em Roma (+1). Saída de Roma às 11h = 10h em Greenwich; +10 h = 20h = 15h em NY (−5). Saída de NY às 11h = 16h em Greenwich; +9 h = 25h = 1h de sexta em Greenwich = 22h de quinta no Rio (−3).",
+   "erradas": {
+    "A": "A sai de esquecer todos os fusos: 11h + 12h = 23h, 11h + 10h = 21h e 11h + 9h = 20h são as horas no relógio da cidade de partida, não no da chegada.",
+    "B": "B não confere: 23h de sexta é a hora de São Paulo na chegada; em Roma, 4 h à frente, já são 3h de sábado.",
+    "D": "D não confere: Nova Iorque está 6 h atrás de Roma (21h − 6h = 15h), e o 4º dia contado a partir de segunda é quinta, não quarta.",
+    "E": "E não confere: Nova Iorque está 6 h atrás de Roma (21h − 6h = 15h), e o Rio está só 2 h à frente de NY (20h + 2h = 22h, ainda na quinta)."
+   },
+   "armadilha": "Fazer só a conta da duração da viagem e esquecer o fuso, ou contar os dias de permanência a partir do dia seguinte à chegada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Hora e dia locais dos três desembarques.",
+    "chave": "Chegada = partida + duração ± fuso; Roma +4 h em relação a SP, NY −6 h em relação a Roma, Rio +2 h em relação a NY.",
+    "cuidado": "O dia da chegada é o 1º dia de permanência; vire o dia quando passar de 24 h."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por Greenwich",
+    "ideia": "Converta cada partida para a hora de Greenwich, some a duração e converta para o fuso do destino."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Roma: 11h + 12h = 23h → 23h + 4h = 3h de sábado",
+    "nota": "Roma 4 h à frente de SP"
+   },
+   {
+    "linha": "NY: 11h + 10h = 21h → 21h − 6h = 15h de segunda",
+    "nota": "NY 6 h atrás de Roma"
+   },
+   {
+    "linha": "Rio: 11h + 9h = 20h → 20h + 2h = 22h de quinta",
+    "nota": "Rio 2 h à frente de NY"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-20",
+   "lote": "geo-pend-0005"
+  }
  }
 }

@@ -96,7 +96,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | his-pend-0003 | pendentes =reclassificada | 2 | gravado | 2 | 0 | 0 |
 | his-pend-0004 | pendentes reclassificada | 1 | gravado | 1 | 0 | 0 |
 | his-pend-0005 | pendentes todos-menos-anular | 2 | gravado | 0 | 2 | 0 |
-| his-pend-0006 | pendentes todos-menos-anular | 25 | aberto |  |  |  |
+| his-pend-0006 | pendentes todos-menos-anular | 25 | gravado | 25 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
