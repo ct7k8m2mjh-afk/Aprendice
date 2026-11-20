@@ -95,7 +95,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | his-pend-0002 | pendentes reclassificada | 2 | gravado | 1 | 1 | 0 |
 | his-pend-0003 | pendentes =reclassificada | 2 | gravado | 2 | 0 | 0 |
 | his-pend-0004 | pendentes reclassificada | 1 | gravado | 1 | 0 | 0 |
-| his-pend-0005 | pendentes todos-menos-anular | 2 | aberto |  |  |  |
+| his-pend-0005 | pendentes todos-menos-anular | 2 | gravado | 0 | 2 | 0 |
 | his-pend-0006 | pendentes todos-menos-anular | 25 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
@@ -110,10 +110,12 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | Peb139c24 | Fatec 2025/2 · questão 11 | H02.1 reinos germânicos e feudalismo (tema H02 Idade Média) | classificação: resolver na matéria nova (era geo G08.5; resolução antiga em resolucoes-geo.json, que fica) |
 | Pd098232b | Fatec 2026/2 · questão 18 | H04.5 Segundo Reinado: política e café (tema H04 Independência e Império) | classificação: resolver na matéria nova (era geo G09.6; resolução antiga em resolucoes-geo.json, que fica) |
 | Pff62b980 | Fuvest 2021 · questão 15 | H05.8 ditadura militar: repressão, AI-5 e milagre econômico (tema H05 República Brasileira) | classificação: resolver na matéria nova (era geo G11.7; resolução antiga em resolucoes-geo.json, que fica) |
+| P3a2fa1cd | Fuvest 2026 1ª fase · questão 42 | H06.9 nacionalismos, unificações e revoluções de 1848 (tema H06 Revoluções) | outra matéria: Artes (história do circo; já em app/conteudo-fonte/outra-materia.json desde 13/11). A questão trata da linguagem circense e do circo como arte contemporânea, não de nacionalismos ou de 1848; não se resolve. |
 | P5d5df3b3 | Fuvest 2026 · questão 45 | H02.6 Renascimento e humanismo (tema H02 Idade Média) | classificação: resolver na matéria nova (era fs L03.3; resolução antiga em resolucoes-fs.json, que fica) |
 | Pbc70c1d1 | PUCPR Medicina 2023/2 · questão 52 | H07.1 imperialismo na África e na Ásia (tema H07 Guerras Mundiais) | classificação: resolver na matéria nova (era geo G10.2; resolução antiga em resolucoes-geo.json, que fica) |
 | Pa095a040 | PUCRS 2023 · questão 67 | H05.8 ditadura militar: repressão, AI-5 e milagre econômico (tema H05 República Brasileira) | classificação: resolver na matéria nova (era geo G09.3; resolução antiga em resolucoes-geo.json, que fica) |
 | Pe227155f | UDESC 2023.2 · questão 85 | H02.3 Império Bizantino e mundo islâmico (tema H02 Idade Média) | classificação: resolver na matéria nova (era fs L02.7; resolução antiga em resolucoes-fs.json, que fica) |
+| P881983dc | UECE 2020 2020.2 – 2ª fase · questão 151 | H02.4 reinos e impérios africanos (tema H02 Idade Média) | fato: tentado de novo (20/11) na web: busca da questão UECE 2020.2 resolvida (nenhum cursinho publicou), Macedo, História da África, pp. 132-135 (fora da web), Wikipedia Kingdom of Bamum e artigo da RBHR/UFMA. Gabarito A (V,V,F,V) pede a 2ª afirmativa verdadeira, mas as fontes mostram que a diplomacia de Njoya foi com os alemães e que ele aceitou a ocupação britânica de Fumban em 1915 (depois mandato francês); a 1ª (islã como resistência ao avanço cristão) não aparece nas fontes. Falta o trecho de Macedo (2019) ou resolução publicada. |
 | P90f850e6 | UEG 2020/1 · questão 13 | H07.6 Segunda Guerra Mundial (tema H07 Guerras Mundiais) | classificação: resolver na matéria nova (era por P12.3; resolução antiga em resolucoes-por.json, que fica) |
 | Pcfcfd53e | UEG 2021/2 · questão 44 | H06.2 Iluminismo e despotismo esclarecido (tema H06 Revoluções) | classificação: resolver na matéria nova (era fs L07.3; resolução antiga em resolucoes-fs.json, que fica) |
 | P5b13b11f | UEMA PAES 2020 · questão 34 | H01.8 Império Romano, cristianismo e crise (tema H01 Antiguidade) | classificação: resolver na matéria nova (era fs L02.6; resolução antiga em resolucoes-fs.json, que fica) |
