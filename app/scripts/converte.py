@@ -47,6 +47,59 @@ ANULADAS_APRENDICE = os.path.join(APP, 'conteudo-fonte', 'anuladas-aprendice.jso
 # site como "Questão indisponível": aparece na lista do conteúdo com o print, sem responder nem corrigir, e fica fora de
 # treinos, simulados, revisão e contagens. Lista única: conteudo-fonte/indisponiveis.json.
 INDISPONIVEIS = os.path.join(APP, 'conteudo-fonte', 'indisponiveis.json')
+# Decisão do dono (20/11/2026, revisão de 19/11, itens 10 e 11): nomes de temas e conteúdos corrigidos e cada tema em UMA
+# área só. As fontes (app-atual/ e conteudo-fonte/materias/) não mudam; a correção fica em conteudo-fonte/ajustes-temas.json
+# e entra aqui ao montar cada matéria. Só textos e agrupamento mudam; ids nunca (princípio 7).
+AJUSTES_TEMAS = os.path.join(APP, 'conteudo-fonte', 'ajustes-temas.json')
+
+
+def ajustes_temas(m):
+    if not os.path.exists(AJUSTES_TEMAS):
+        return {}
+    return ler(AJUSTES_TEMAS).get(m) or {}
+
+
+def aplica_ajustes_temas(m, materia):
+    """20/11/2026: aplica conteudo-fonte/ajustes-temas.json (nomes por id e áreas) no materia.json montado."""
+    aj = ajustes_temas(m)
+    temas, conteudos = aj.get('temas', {}), aj.get('conteudos', {})
+    for mod in materia['modulos']:
+        mod['nome'] = temas.get(mod['id'], mod['nome'])
+        for s in mod['subs']:
+            s['nome'] = conteudos.get(s['id'], s['nome'])
+    fora = set(aj.get('areas_fora', []))
+    materia['areas'] = [{**a, **aj.get('areas', {}).get(a['id'], {})} for a in materia.get('areas', []) if a['id'] not in fora]
+    # cada tema em uma área só (item 10): para a conversão se o ajuste deixar tema repetido
+    vistos = {}
+    for a in materia['areas']:
+        for mid in a['mods']:
+            if mid in vistos:
+                raise SystemExit(f'{m}: tema {mid} nas áreas {vistos[mid]} e {a["id"]} (conteudo-fonte/ajustes-temas.json)')
+            vistos[mid] = a['id']
+    return materia
+
+
+def aplica_ajustes_revisao():
+    """20/11/2026: a revisão em slides (docs/revisao/<m>/<tema>.json) traz o nome do tema; vale o nome corrigido."""
+    n = 0
+    for m in MATERIAS + NOVAS:
+        temas = ajustes_temas(m).get('temas', {})
+        pasta = os.path.join(DESTINO, m, 'revisao')
+        pi = os.path.join(pasta, 'indice.json')
+        if not temas or not os.path.exists(pi):
+            continue
+        indice = ler(pi)
+        for tid, nome in temas.items():
+            if tid in indice['temas']:
+                indice['temas'][tid]['nome'] = nome
+            p = os.path.join(pasta, tid + '.json')
+            if os.path.exists(p):
+                d = ler(p)
+                d['nome'] = nome
+                gravar(p, d)
+                n += 1
+        gravar(pi, indice)
+    return n
 
 
 def triagem():
@@ -231,6 +284,7 @@ def converte_materia(m, amostra_ids=None):
         'essencial': d.get('essencial') or {'abc': [], 'completar': []},
         'alias': d.get('alias') or {},
     }
+    aplica_ajustes_temas(m, materia)  # 20/11/2026: nomes e áreas corrigidos (conteudo-fonte/ajustes-temas.json)
 
     if amostra_ids is not None:
         return banco, materia, res_por_sub, prints, icones, figuras
@@ -290,6 +344,7 @@ def converte_nova(m, amostra_ids=None):
     """Física, Geografia...: temas definidos, sem questões ainda (entram com as provas completas)."""
     materia = ler(os.path.join(FONTE_NOVAS, m + '.json'))
     materia.pop('_sobre', None)
+    aplica_ajustes_temas(m, materia)  # 20/11/2026: nomes e áreas corrigidos (conteudo-fonte/ajustes-temas.json)
     banco = []
     icones = icones_da_materia(m)
     if amostra_ids is not None:
@@ -1136,6 +1191,7 @@ def main():
     # revisão em slides: depois das matérias (alimenta a Teoria em cartões no materia.json de cada uma)
     relatorio['revisao'] = revisao.converte()
     print('revisão em slides', relatorio['revisao'])
+    relatorio['revisao']['nomes_ajustados'] = aplica_ajustes_revisao()  # 20/11/2026: nome corrigido do tema também nos slides
     relatorio['com_resolucao'] = marca_resolvidas()
     print('questões com resolução', relatorio['com_resolucao'])
     relatorio['treino_geral'] = treino_geral_novas()
