@@ -6,7 +6,7 @@ import { filaRetirada, questoesVencidas, resumoMateria } from '../logica/estatis
 import { agendaDe, filaDe, emDias, DIA, iniDia, SAIDA } from '../logica/revisao';
 import { AgendaRevisao } from '../ui/revisao/AgendaRevisao';
 import { PainelDominio } from '../ui/revisao/PainelDominio';
-import { Carregando, plural, useTitulo } from '../ui/comum';
+import { Carregando, plural, useTitulo, useCelular } from '../ui/comum';
 import { Icone, type NomeIcone } from '../ui/Icone';
 import { estadoMateriaVazio } from '../estado/tipos';
 import { revisoesVencidas } from '../logica/cicloRevisao';
@@ -21,6 +21,7 @@ export function Revisao() {
   const todas = useTodasMaterias();
   const e = useEstado();
   const [qs, setQs] = useSearchParams();
+  const cel = useCelular();
   const aba = qs.get('aba') || 'questoes';
   const rg = useRegiao();
   if (!todas) return <div className="conteudo"><Carregando /></div>;
@@ -53,17 +54,11 @@ export function Revisao() {
   const totCont = porMat.reduce((a, x) => a + x.conteudos.length, 0);
   const futuras = porMat.flatMap((x) => x.futuras);
 
-  return (
-    <div className="conteudo">
-      <div className="titulo-pag"><div><h1>Revisão</h1><p className="sub">{aba === 'conteudos'
-        ? 'Cada conteúdo revisado em slides volta no dia marcado no fim da revisão: amanhã quando algo não firmou, mais tarde quando firmou.'
-        : aba === 'geral'
-          ? 'A matéria inteira em tópicos curtos, com busca: o essencial, a pegadinha da banca e a imagem de cada tópico. Filosofia e Sociologia em duas listas.'
-          : aba === 'dominio'
-          ? 'O que você domina, está aprendendo ou esqueceu, pelos acertos em dias diferentes, cada um na data marcada.'
-          : `Errou, chutou ou pediu pista: a questão volta no dia certo. Sai da revisão depois de ${SAIDA} acertos em dias diferentes, cada um na data marcada.`}</p></div>
-        <Link to="/hoje" className="btn sec peq rv-hoje"><Icone nome="calendario" />O que estudar hoje</Link></div>
-      {/* pedido do dono (11/11/2026): a revisão geral em destaque, porque nela está o conteúdo de todas as questões */}
+  // pedido do dono (11/11/2026): a revisão geral em destaque, porque nela está o conteúdo de todas as questões.
+  // No celular (revisão de 19/11/2026, casca 32; aprovado pelo dono em 20/11), a lista do dia vem primeiro e o destaque
+  // e a agenda vão para baixo dela (na ordem do código, para o leitor de tela e o Tab seguirem a mesma ordem).
+  const destaque = (
+    <>
       {aba !== 'geral' && (
         <section className="bloco rv-geral-dest" aria-labelledby="rv-gd-tit">
           <div className="rv-gd-txt">
@@ -79,6 +74,19 @@ export function Revisao() {
         </section>
       )}
       <AgendaRevisao ag={ag} hoje={totVenc} futuras={futuras} agora={agora} />
+    </>
+  );
+  return (
+    <div className="conteudo">
+      <div className="titulo-pag"><div><h1>Revisão</h1><p className="sub">{aba === 'conteudos'
+        ? 'Cada conteúdo revisado em slides volta no dia marcado no fim da revisão: amanhã quando algo não firmou, mais tarde quando firmou.'
+        : aba === 'geral'
+          ? 'A matéria inteira em tópicos curtos, com busca: o essencial, a pegadinha da banca e a imagem de cada tópico. Filosofia e Sociologia em duas listas.'
+          : aba === 'dominio'
+          ? 'O que você domina, está aprendendo ou esqueceu, pelos acertos em dias diferentes, cada um na data marcada.'
+          : `Errou, chutou ou pediu pista: a questão volta no dia certo. Sai da revisão depois de ${SAIDA} acertos em dias diferentes, cada um na data marcada.`}</p></div>
+        <Link to="/hoje" className="btn sec peq rv-hoje"><Icone nome="calendario" />O que estudar hoje</Link></div>
+      {!cel && destaque}
       <div className="abas abas-rev" role="group" aria-label="Seções">
         <button aria-pressed={aba === 'questoes'} onClick={() => setQs({}, { replace: true })}>Questões <small>{totVenc}</small></button>
         <button aria-pressed={aba === 'flash'} onClick={() => setQs({ aba: 'flash' }, { replace: true })}>Flashcards <small>{totFlash}</small></button>
@@ -173,6 +181,8 @@ export function Revisao() {
           }))}
         </div>
       ))}
+
+      {cel && <div className="rv-pe">{destaque}</div>}
     </div>
   );
 }

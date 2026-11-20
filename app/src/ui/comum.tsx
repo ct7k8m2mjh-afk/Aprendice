@@ -1,4 +1,4 @@
-import { useEffect, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 import { LOGO } from './logo-path';
 import { MATERIAS, type Tons } from '../dados/materias';
 
@@ -94,4 +94,20 @@ export function cap(s: string) {
   if (!s) return s;
   if (/^[a-zα-ω][A-Z]/.test(s)) return s;
   return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+/** tela de celular (até 640px, o mesmo corte do CSS): muda a ORDEM do conteúdo quando o CSS sozinho deixaria a
+ *  ordem de leitura diferente da visual */
+export function useCelular(): boolean {
+  const q = '(max-width: 640px)';
+  const [cel, setCel] = useState(() => typeof matchMedia !== 'undefined' && matchMedia(q).matches);
+  useEffect(() => {
+    if (typeof matchMedia === 'undefined') return;
+    const mq = matchMedia(q);
+    const f = () => setCel(mq.matches);
+    f();
+    mq.addEventListener('change', f);
+    return () => mq.removeEventListener('change', f);
+  }, []);
+  return cel;
 }
