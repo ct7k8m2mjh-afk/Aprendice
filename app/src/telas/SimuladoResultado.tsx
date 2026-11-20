@@ -51,7 +51,7 @@ export function SimuladoResultado() {
               <div key={g} className="pm">
                 <span className="pm-nome"><i className="ponto" />{g}</span>
                 <Barra valor={p.acertos / p.total} rotulo={g} />
-                <b className="num">{p.acertos}/{p.total}</b>
+                <b className="num">{p.acertos} de {p.total}</b>
               </div>
             ))}
         </div>

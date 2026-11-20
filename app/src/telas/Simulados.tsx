@@ -97,7 +97,7 @@ export function Simulados() {
                             <span className="num">{plural(ed.questoes, 'questão', 'questões')}{ed.duracao_horas ? ` · ${String(ed.duracao_horas).replace('.', ',')} h` : ''}</span>
                             <span className="cs-mats">{Object.keys(ed.areas).slice(0, 6).map((a) => <span key={a}><i className="ponto" />{a}</span>)}{Object.keys(ed.areas).length > 6 ? <span>+{Object.keys(ed.areas).length - 6}</span> : null}</span>
                           </span>
-                          <span className="sim-etq">{feito && <span className="etq ok num">Feito · {feito.acertos}/{feito.total}</span>}</span>
+                          <span className="sim-etq">{feito && <span className="etq ok num">Feito · {feito.acertos} de {feito.total}</span>}</span>
                           <Icone nome="direita" className="sim-seta" />
                         </Link>
                       );

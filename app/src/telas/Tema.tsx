@@ -226,7 +226,7 @@ export function Tema() {
                   <Link to={`/m/${m}/escada/${sub.id}`}>
                     <i className="ponto-sub" aria-hidden />
                     <span className="t"><b>{cap(sub.nome)}</b>{frase && <span>{frase}</span>}{rg.conj && porSubR.get(sub.id)?.reserva && <span className="tp-outras">De outras regiões: nenhuma questão {deFiltro(rg.filtro, rg.minhas)} neste conteúdo</span>}</span>
-                    <span className="p"><span className="num">{pe.feitas}/{pe.total}</span><Barra valor={pe.total ? pe.feitas / pe.total : 0} rotulo={`Progresso em ${sub.nome}`} /></span>
+                    <span className="p"><span className="num">{pe.feitas} de {pe.total}</span><Barra valor={pe.total ? pe.feitas / pe.total : 0} rotulo={`Progresso em ${sub.nome}`} /></span>
                     <Icone nome="direita" className="tp-seta" />
                   </Link>
                 </li>
