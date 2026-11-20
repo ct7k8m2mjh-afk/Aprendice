@@ -24,3 +24,6 @@ PRINT P315368d9 (UFRR 2026 q65): Text I no print 064.webp. Pffee7437 (UFRR 2026 
 PRINT P4ace9dcd (Unespar 2023 q1): Texto I, PDF p. 6. P62ca9403 Pe92ce2de (Unespar 2023 q3–4): Textos II e III (imagem), PDF p. 7.
 RECLASS Pf1373916 I01.3 -> I01.1
 RECLASS Pd0f594c1 I01.3 -> I01.1
+
+## ACABOU (pendentes) — 20/11
+Sessão de pendentes por/fs/ing: ing-pend-0004 gravado, 1 resolvida (P159b6f56, vinda de Geografia). Ficaram 0 pendentes em Inglês.
