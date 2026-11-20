@@ -10,3 +10,8 @@ Outras matérias (lotes desta sessão): por-pend-0006 (6), bio-pend-0002 (3), fi
 DADO P7adb8870: alternativas.E -> termina em "...consolidadas dessas áreas." (CTA, tinyurl e "50" colados)
 DADO Pfcc1eb63: alternativas.D -> "10⁶" ("46" é número de página colado)
 DADO P4227aeb2: alternativas.E -> "Tsiolkovsky foi um pioneiro da astronáutica e dos foguetes modernos." (texto de apoio colado)
+
+## Pendentes (sessão de pendentes por/fs/ing, 20/11)
+fs-pend-0004 gravado: 25 resolvidas (vindas de outras matérias por reclassificação), 0 pendentes.
+DADO P51a75087: número -> 41 no print (a entrada diz questão 83; conferir no caderno oficial)
+RECLASS P933c8bac L06.5 -> L06.3
