@@ -98,25 +98,14 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | his-pend-0005 | pendentes todos-menos-anular | 2 | gravado | 0 | 2 | 0 |
 | his-pend-0006 | pendentes todos-menos-anular | 25 | gravado | 25 | 0 | 0 |
 | his-pend-0007 | pendentes todos-menos-anular | 25 | gravado | 24 | 1 | 0 |
+| his-pend-0008 | pendentes todos-menos-anular | 14 | gravado | 12 | 2 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
-| Pff62b980 | Fuvest 2021 · questão 15 | H05.8 ditadura militar: repressão, AI-5 e milagre econômico (tema H05 República Brasileira) | classificação: resolver na matéria nova (era geo G11.7; resolução antiga em resolucoes-geo.json, que fica) |
 | P3a2fa1cd | Fuvest 2026 1ª fase · questão 42 | H06.9 nacionalismos, unificações e revoluções de 1848 (tema H06 Revoluções) | outra matéria: Artes (história do circo; já em app/conteudo-fonte/outra-materia.json desde 13/11). A questão trata da linguagem circense e do circo como arte contemporânea, não de nacionalismos ou de 1848; não se resolve. |
-| Pa095a040 | PUCRS 2023 · questão 67 | H05.8 ditadura militar: repressão, AI-5 e milagre econômico (tema H05 República Brasileira) | classificação: resolver na matéria nova (era geo G09.3; resolução antiga em resolucoes-geo.json, que fica) |
-| P881983dc | UECE 2020 2020.2 – 2ª fase · questão 151 | H02.4 reinos e impérios africanos (tema H02 Idade Média) | fato: tentado de novo (20/11) na web: nenhuma resolução publicada da UECE 2020.2 q151; o trecho de Macedo (2019, pp. 132-135) não está acessível na web. As fontes consultadas (Wikipedia Kingdom of Bamum/Ibrahim Njoya, RBHR/UFMA 2024) mostram que a diplomacia de Njoya foi com os alemães e que Fumban foi ocupada pelos britânicos em 1915 e passou ao mandato francês, o que contraria a 2ª afirmativa (V no gabarito A); a 1ª (islã como resistência ao avanço cristão) também não aparece nas fontes. Sem o livro de Macedo não há certeza: se o dono não conseguir o trecho, candidata a ANULAR pela 2ª afirmativa. |
-| P520a6178 | UERR 2025 · questão 68 | H05.7 República de 1946: de Dutra a Jango (tema H05 República Brasileira) | classificação: resolver na matéria nova (era geo G11.3; resolução antiga em resolucoes-geo.json, que fica) |
-| P401b5b96 | UFSM 2026 · questão 28 | H03.6 resistência escravizada e quilombos (tema H03 Brasil Colonial) | classificação: resolver na matéria nova (era fs S04.3; resolução antiga em resolucoes-fs.json, que fica) |
-| Pbdfa7bf1 | UFSM 2026 · questão 51 | H06.5 Era Napoleônica e Congresso de Viena (tema H06 Revoluções) | classificação: resolver na matéria nova (era por P11.3; resolução antiga em resolucoes-por.json, que fica) |
-| Pe14b20dd | UFU 2024 · questão 82 | H05.8 ditadura militar: repressão, AI-5 e milagre econômico (tema H05 República Brasileira) | classificação: resolver na matéria nova (era fs S05.2; resolução antiga em resolucoes-fs.json, que fica) |
-| P20105305 | UFU 2026 · questão 62 | H07.5 fascismo e nazismo (tema H07 Guerras Mundiais) | classificação: resolver na matéria nova (era fs S05.2; resolução antiga em resolucoes-fs.json, que fica) |
-| P10921f4c | URCA 2023.1 · questão 80 | H03.5 economia açucareira e escravidão africana (tema H03 Brasil Colonial) | classificação: resolver na matéria nova (era geo G08.3; resolução antiga em resolucoes-geo.json, que fica) |
-| P6324195f | URCA 2023.2 · questão 87 | H08.1 origens e blocos da Guerra Fria (tema H08 Guerra Fria) | classificação: resolver na matéria nova (era geo G10.4; resolução antiga em resolucoes-geo.json, que fica) |
-| P361801c7 | URCA 2025.2 · questão 88 | H04.5 Segundo Reinado: política e café (tema H04 Independência e Império) | classificação: resolver na matéria nova (era geo G08.3; resolução antiga em resolucoes-geo.json, que fica) |
-| Pb5b4b8d3 | URCA 2026.1 · questão 78 | H04.6 imigração e trabalho livre (tema H04 Independência e Império) | classificação: resolver na matéria nova (era geo G11.2; resolução antiga em resolucoes-geo.json, que fica) |
-| Pa399fcd2 | URCA PSU out/2025 · questão 84 | H03.1 povos indígenas e o contato com os europeus (tema H03 Brasil Colonial) | classificação: resolver na matéria nova (era geo G11.6; resolução antiga em resolucoes-geo.json, que fica) |
+| P881983dc | UECE 2020 2020.2 – 2ª fase · questão 151 | H02.4 reinos e impérios africanos (tema H02 Idade Média) | fato: tentado de novo (20/11) na web: nenhuma resolução publicada da UECE 2020.2 q151; o trecho de Macedo (2019, pp. 132-135) não está acessível na web. As fontes consultadas (Wikipedia Kingdom of Bamum/Ibrahim Njoya, RBHR/UFMA 2024) mostram que a diplomacia de Njoya foi com os alemães e que Fumban foi ocupada pelos britânicos em 1915 e passou ao mandato francês, o que contraria a 2ª afirmativa (V no gabarito A); a 1ª (islã como resistência ao avanço cristão) também não aparece nas fontes. Sem o livro de Macedo não há certeza: se o dono não conseguir o trecho, candidata a ANULAR pela 2ª afirmativa. (Lote his-pend-0008: não retentada, já são 3 tentativas.) |
 
 ## Divergências de gabarito (o dono decide)
 
