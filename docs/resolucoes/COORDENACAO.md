@@ -80,6 +80,13 @@ em 11–13/11 (por-0024/27/32/44 × por-0046; por-0075/78 × por-0082; por-0084/
 REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, commit e push do registro ANTES de resolver
 (e `git pull` antes do proximo). Hoje só a fábrica trabalha em Português, sem risco.
 
+## NÃO PUBLICAR até o dono configurar o Supabase (20/11 04h45)
+O ramo já tem as contas de verdade (commits 009df6826, 058fa7ffc, 47e5e6d9c, 834909bfa; docs/contas.md). Publicar antes de o dono
+configurar Site URL/Redirect (Authentication → URL Configuration) e SMTP próprio (Resend/Brevo) deixa os alunos sem conseguir se
+cadastrar. Site no ar: dpl_Ho7ikkdfpS7HHZkXnFsGzFR22Kas (62c4b05e, login de demonstração). Quando o dono avisar: publicar,
+testar cadastro real com conta de teste (apagar depois) e mandar o passo a passo do admin. Pendente decisão: botão "Excluir
+minha conta" no Perfil (LGPD).
+
 ## Revisão completa do site (dono, 19/11 ~21h30) — ANTES de publicar de novo
 1) Fundo "tom da matéria" (dono escolheu; nunca branco/preto; creme fora das matérias; Bio claro #EEF4EA/#FAFCF7, escuro
 #0F1A12/#17241A) — agente implementando. 2) Depois: 4 revisores independentes sobre UM build (casca; 9 matérias; questão e
