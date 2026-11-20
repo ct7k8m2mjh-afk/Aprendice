@@ -41,6 +41,12 @@ interface LinhaPerfil {
 }
 
 const CHAVE_PENDENTE = 'aprendice.pendente.';
+/** perfil mudado no aparelho e ainda não enviado (revisão de segurança, 20/11/2026): ao entrar de novo, ele vence o da nuvem */
+const CHAVE_PERFIL_PENDENTE = 'aprendice.perfil-pendente.';
+function marcaPerfilPendente(uid: string, p: Perfil | null) { try { if (p) localStorage.setItem(CHAVE_PERFIL_PENDENTE + uid, JSON.stringify(p)); else localStorage.removeItem(CHAVE_PERFIL_PENDENTE + uid); } catch { /* sem armazenamento */ } }
+function perfilPendente(uid: string): Perfil | null {
+  try { const t = localStorage.getItem(CHAVE_PERFIL_PENDENTE + uid); const p = t ? JSON.parse(t) : null; return p && typeof p === 'object' && typeof p.nome === 'string' ? (p as Perfil) : null; } catch { return null; }
+}
 
 let conta: Conta = { fase: 'local', uid: null, email: null, papel: 'aluno', sinc: 'ok', aviso: '' };
 const ouvintes = new Set<() => void>();
@@ -84,6 +90,8 @@ function cli(): SupabaseClient { return nuvem()!; }
 async function baixaEJunta(uid: string): Promise<void> {
   const { data, error } = await cli().from('progresso').select('dados, rev').eq('user_id', uid).maybeSingle();
   if (error) throw error;
+  // conta sem linha de progresso (não deveria acontecer: o cadastro cria): erro, para não repetir em silêncio
+  if (!data) throw new Error('progresso sem linha na nuvem');
   rev = data?.rev ?? 0;
   const daNuvem = estadoDaNuvem(data?.dados);
   if (daNuvem) substituiSemMarcar(mesclaEstados(pegaEstado(), daNuvem));
@@ -129,11 +137,15 @@ function retentaDepois() {
   tRetentar = setTimeout(() => { tRetentar = null; if (conta.fase === 'dentro') { void enviaAgora(); void enviaPerfil(); } }, 30000);
 }
 
-async function enviaPerfil(): Promise<void> {
+async function enviaPerfil(): Promise<boolean> {
   const p = pegaEstado().perfil;
-  if (!p || !conta.uid || conta.fase !== 'dentro') return;
-  const { error } = await cli().from('perfis').update(linhaDoPerfil(p)).eq('id', conta.uid);
-  if (error) retentaDepois(); else ultimoPerfil = p;
+  if (!p || !conta.uid || conta.fase !== 'dentro') return false;
+  const uid = conta.uid;
+  const r = await cli().from('perfis').update(linhaDoPerfil(p)).eq('id', uid).then((x) => x, () => ({ error: true }));
+  if (r.error) { retentaDepois(); return false; }
+  ultimoPerfil = p;
+  if (pegaEstado().perfil === p) marcaPerfilPendente(uid, null);
+  return true;
 }
 
 // o aluno mexeu no aparelho: agenda o envio (perfil e progresso)
@@ -144,7 +156,7 @@ function ouveLoja() {
   inscreve(() => {
     if (conta.fase !== 'dentro') return;
     const p = pegaEstado().perfil;
-    if (p && p !== ultimoPerfil) { if (tPerfil) clearTimeout(tPerfil); tPerfil = setTimeout(() => { tPerfil = null; void enviaPerfil(); }, 1500); }
+    if (p && p !== ultimoPerfil) { if (conta.uid) marcaPerfilPendente(conta.uid, p); if (tPerfil) clearTimeout(tPerfil); tPerfil = setTimeout(() => { tPerfil = null; void enviaPerfil(); }, 1500); }
     agendaEnvio();
   });
   if (typeof window !== 'undefined') {
@@ -156,11 +168,14 @@ function ouveLoja() {
 
 // ---------- entrar ----------
 let entrandoUid: string | null = null;
+/** entrou com o que estava no aparelho sem ouvir o serviço (sem rede ou lento): a sessão que chegar depois junta tudo */
+let faltaJuntar = false;
 
 /** sessão aberta (login, link do e-mail ou sessão guardada): junta o progresso e carrega o perfil */
 export async function entraNaConta(user: Pick<User, 'id' | 'email'>): Promise<void> {
   const uid = user.id, email = user.email || '';
-  if ((conta.fase === 'dentro' && conta.uid === uid) || entrandoUid === uid) return;
+  if ((conta.fase === 'dentro' && conta.uid === uid && !faltaJuntar) || entrandoUid === uid) return;
+  faltaJuntar = false;
   entrandoUid = uid;
   ouveLoja();
   const local = pegaEstado();
@@ -187,7 +202,9 @@ export async function entraNaConta(user: Pick<User, 'id' | 'email'>): Promise<vo
     // perfil: o da nuvem; conta nova com perfil no aparelho (de antes das contas, ou guardado ao sair) leva esse perfil
     let perfil: Perfil | null = null;
     let sobePerfil = false;
-    if (linha?.completo) perfil = perfilDaLinha(linha, email);
+    const pendP = herdaLocal ? perfilPendente(uid) : null;
+    if (pendP) { perfil = { ...pendP, email }; sobePerfil = true; }
+    else if (linha?.completo) perfil = perfilDaLinha(linha, email);
     else if (herdaLocal) {
       const doAparelho = local.perfil || voltaAConta(local, email)?.perfil || null;
       if (doAparelho) { perfil = { ...doAparelho, email }; sobePerfil = true; }
@@ -227,7 +244,8 @@ function fechaConta(aviso = '') {
   tEnvio = tPerfil = tRetentar = null;
   rev = 0; ultimoEnviado = ''; ultimoPerfil = null;
   defineAdmin(false);
-  limpaAparelho();
+  // as cópias de segurança antigas do aparelho saem junto quando tudo já está na nuvem
+  limpaAparelho(!(uid && conta.sinc !== 'ok'));
   muda({ fase: 'fora', uid: null, email: null, papel: 'aluno', sinc: 'ok', aviso });
 }
 
@@ -235,6 +253,9 @@ export async function sair(): Promise<void> {
   if (conta.fase === 'local' || conta.fase === 'fora') return;
   if (!nuvem()) { fechaConta(); return; }
   salvaAgora();
+  if (tPerfil) { clearTimeout(tPerfil); tPerfil = null; }
+  // perfil mudado e ainda não enviado: envia agora (sem internet, a cópia pendente dele fica para o próximo login)
+  if (conta.fase === 'dentro' && conta.uid && perfilPendente(conta.uid)) await limitaTempo(enviaPerfil(), 5000, false);
   const ok = conta.fase === 'dentro' ? await limitaTempo(enviaAgora(), 6000, false) : true;
   if (!ok && conta.uid) guardaPendente(conta.uid, pegaEstado());
   saindo = true;
@@ -319,7 +340,7 @@ export function iniciaConta(): void {
     if (s?.user) return; // INITIAL_SESSION / SIGNED_IN cuidam
     if (conta.fase !== 'carregando') return;
     // sem internet com a conta já no aparelho: entra com o que está guardado e envia depois
-    if ((semRede || !r) && local.conta && local.perfil) { muda({ fase: 'dentro', uid: local.conta, email: local.perfil.email, sinc: 'pendente' }); ouveLoja(); retentaDepois(); return; }
+    if ((semRede || !r) && local.conta && local.perfil) { faltaJuntar = true; muda({ fase: 'dentro', uid: local.conta, email: local.perfil.email, sinc: 'pendente' }); ouveLoja(); retentaDepois(); return; }
     limpaUrl();
     muda({ fase: 'fora', aviso });
   });

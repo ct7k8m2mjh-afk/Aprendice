@@ -6,7 +6,7 @@ import { estadoDaNuvem, mesclaEstados, paraNuvem } from '../estado/mescla';
 import { estadoVazio, type Estado } from '../estado/tipos';
 import { defineClienteNuvem } from '../nuvem/cliente';
 import { entraNaConta, enviaAgora, pegaConta, sair, traduzErro } from '../estado/sessao';
-import { pegaEstado, substituiSemMarcar } from '../estado/loja';
+import { atualiza, pegaEstado, substituiSemMarcar } from '../estado/loja';
 import { ehAdmin } from '../dados/modoAdmin';
 import { monta } from '../dados/conteudo';
 
@@ -171,6 +171,28 @@ describe('entrar, enviar e sair (estado/sessao.ts, sem rede)', () => {
     await entraNaConta({ id: UID, email: 'eu@x.com' });
     expect(pegaEstado().materias.bio?.q['DE-OUTRA']).toBeUndefined();
     expect(localStorage.getItem('aprendice.pendente.outra-conta')).toContain('DE-OUTRA');
+  });
+
+  it('perfil mudado sem internet vence o da nuvem no próximo login; sair com tudo enviado apaga as cópias antigas', async () => {
+    const banco = { perfis: [linhaPerfil({ completo: true, nome: 'Duda', datas_prova: { enem: '2026-11-08' } })], progresso: [{ user_id: UID, dados: {}, rev: 0 }] };
+    defineClienteNuvem(clienteFalso(banco) as never);
+    await entraNaConta({ id: UID, email: 'duda@x.com' });
+    localStorage.setItem('aprendice.v1.zerado.1', '{"perfil":{"nome":"Duda"}}');
+    // sem internet, muda a data da prova; o envio do perfil falha
+    defineClienteNuvem(clienteFalso(banco, { offline: true }) as never);
+    atualiza((e) => ({ ...e, perfil: { ...e.perfil!, datasProva: { enem: '2026-11-15' } } }));
+    expect(localStorage.getItem('aprendice.perfil-pendente.' + UID)).toContain('2026-11-15');
+    // sai ainda sem internet: o perfil fica pendente só para esta conta; volta a internet e entra de novo
+    await sair();
+    expect(pegaEstado().perfil).toBeNull();
+    expect(banco.perfis[0].datas_prova).toEqual({ enem: '2026-11-08' });
+    defineClienteNuvem(clienteFalso(banco) as never);
+    await entraNaConta({ id: UID, email: 'duda@x.com' });
+    expect(pegaEstado().perfil?.datasProva).toEqual({ enem: '2026-11-15' });
+    expect(banco.perfis[0].datas_prova).toEqual({ enem: '2026-11-15' });
+    expect(localStorage.getItem('aprendice.perfil-pendente.' + UID)).toBeNull();
+    await sair();
+    expect(localStorage.getItem('aprendice.v1.zerado.1')).toBeNull();
   });
 
   it('mensagens do serviço de contas em português', () => {

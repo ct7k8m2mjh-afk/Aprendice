@@ -12,8 +12,9 @@ O site tem login real (e-mail e senha) e o progresso de cada aluno fica salvo na
 - **Entrar com o Google**: escondido até o dono criar as credenciais do Google (OAuth) no Supabase.
 - **Sem internet**: o site funciona com o que está no aparelho e envia quando a conexão volta.
 - **Sair**: envia o que falta, encerra a sessão e tira o progresso e o perfil do aparelho (outra pessoa no mesmo
-  aparelho não vê nada). Se estiver sem internet, o que não foi enviado fica numa cópia só desta conta, juntada no
-  próximo login dela.
+  aparelho não vê nada); as cópias de segurança antigas do aparelho saem junto quando tudo já está na conta. Se
+  estiver sem internet, o que não foi enviado fica numa cópia só desta conta, juntada no próximo login dela.
+- Perfil mudado sem internet (ex.: data da prova) fica marcado como pendente e vence o da nuvem no próximo login.
 - **Privacidade**: página `#/privacidade` (link no rodapé do login e no Perfil): o que é guardado (e-mail, perfil de
   estudo, progresso), para quê, onde, e que não há rastreamento de terceiros.
 
@@ -38,7 +39,8 @@ O site tem login real (e-mail e senha) e o progresso de cada aluno fica salvo na
   nascem no cadastro (gatilho `privado.nova_conta`).
 - **Papel**: o site não tem permissão de alterar a coluna `papel` (privilégio por coluna) e um gatilho recusa qualquer
   mudança vinda da API. Só muda por SQL no painel do Supabase.
-- `privado.admins`: lista de e-mails que nascem administradores ao se cadastrar. Fica num schema fora da API; o e-mail
+- `privado.admins`: lista de e-mails que viram administradores **depois de confirmar o e-mail** (gatilhos
+  `privado.nova_conta` e `privado.confirma_admin`). Fica num schema fora da API; o e-mail
   do dono está só no banco, nunca no repositório.
 - Chaves: o site usa só a URL e a chave **pública** (publishable), em `VITE_SUPABASE_URL` e
   `VITE_SUPABASE_PUBLISHABLE_KEY` (Vercel: produção e prévia; local: `app/.env.local`, fora do git). Nenhuma chave
@@ -58,17 +60,20 @@ O site tem login real (e-mail e senha) e o progresso de cada aluno fica salvo na
 1. Abra o site e toque em **Criar conta**.
 2. Use o seu e-mail de administrador (o que foi combinado) e uma senha.
 3. Abra o link de confirmação que chega por e-mail e entre com o e-mail e a senha.
-4. A conta já nasce administradora. O Perfil mostra "Administrador".
+4. Ao confirmar o e-mail, a conta vira administradora. O Perfil mostra "Administrador".
 
 Para tornar outra pessoa administradora: no painel do Supabase, SQL Editor,
 `update public.perfis set papel = 'admin' where id = (select id from auth.users where email = '<e-mail>');`
 
 ## O que o dono precisa fazer no painel do Supabase (uma vez)
-1. **Authentication → URL Configuration**: *Site URL* = `https://aprendice.vercel.app`; em *Redirect URLs*, adicionar
-   `https://aprendice.vercel.app/**` e `https://*-aprendice*.vercel.app/**` (prévias). Sem isso, os links de
-   confirmação e de nova senha voltam para `localhost`.
+1. **Authentication → URL Configuration**: *Site URL* = `https://aprendice.vercel.app`; em *Redirect URLs*, só
+   `https://aprendice.vercel.app/**`. Sem isso, os links de confirmação e de nova senha voltam para `localhost`.
+   **Nunca** usar curinga com `vercel.app` (ex.: `https://*-aprendice*.vercel.app/**`): qualquer pessoa cria um projeto
+   na Vercel com esse nome e poderia receber o link de nova senha de outra pessoa. Prévia que precisar de login entra
+   com o endereço exato dela.
 2. **E-mails**: o envio padrão do Supabase só entrega para e-mails da equipe do projeto e tem limite baixo por hora.
-   Para alunos de verdade, configurar um SMTP próprio (Authentication → Emails → SMTP Settings; ex.: Resend, Brevo)
-   ou, enquanto isso, desligar "Confirm email" (Authentication → Sign In / Providers → Email).
+   Para alunos de verdade, configurar um SMTP próprio (Authentication → Emails → SMTP Settings; ex.: Resend, Brevo).
+   Manter "Confirm email" **ligado**: é a confirmação que prova que a conta é do dono do e-mail (o papel de
+   administrador só vem depois dela).
 3. Opcional: login com Google (Authentication → Providers → Google, com as credenciais do Google Cloud do dono).
 4. Opcional: proteção contra senhas vazadas (Authentication → Passwords; depende do plano).

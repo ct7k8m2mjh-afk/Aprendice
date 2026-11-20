@@ -33,7 +33,7 @@ export function Privacidade() {
 
       <section className="bloco secao">
         <h2 className="sec-tit">Onde fica</h2>
-        <p className="miolo">Neste aparelho, para o site funcionar sem internet, e na nuvem, no serviço de contas Supabase (servidor em São Paulo). Cada conta só consegue ler e gravar os próprios dados. Ao sair da conta, o progresso sai deste aparelho e continua guardado na sua conta.</p>
+        <p className="miolo">Neste aparelho, para o site funcionar sem internet, e na nuvem, no serviço de contas Supabase (servidor em São Paulo). Cada conta só consegue ler e gravar os próprios dados. Ao sair da conta, o progresso sai deste aparelho e continua guardado na sua conta. Se você sair sem internet, o que ainda não foi enviado fica guardado neste aparelho, só para a sua conta, até você entrar de novo.</p>
       </section>
 
       <section className="bloco secao">

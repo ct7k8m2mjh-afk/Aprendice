@@ -117,7 +117,7 @@ export function Login({ aoEntrar, tema, emailInicial = '' }: { aoEntrar: (email:
               {/* "Entrar com o Google" fica escondido até o dono criar as credenciais do Google (OAuth) no serviço de contas */}
               {modo !== 'nova' && <p className="l-trocar">{entrar_ ? 'Ainda não tem uma conta? ' : 'Já tem uma conta? '}<button type="button" onClick={() => { setModo(entrar_ ? 'criar' : 'entrar'); setRecado(''); }}>{entrar_ ? 'Criar conta' : 'Entrar'}</button></p>}
               <div className="l-faixa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinejoin="round"><path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2Z" /></svg><span>Seu próximo avanço começa aqui.</span></div>
-              <div className="l-rodape">{naNuvem ? 'Guardamos só o seu e-mail, o perfil de estudo e o progresso' : 'Tudo fica salvo só neste aparelho'} • <Link to="/privacidade" style={{ color: 'inherit' }}>Privacidade</Link></div>
+              <div className="l-rodape">{naNuvem ? 'Guardamos só e-mail, perfil de estudo e progresso' : 'Tudo fica salvo só neste aparelho'} • <Link to="/privacidade">Privacidade</Link></div>
             </div>
           </section>
         </main>

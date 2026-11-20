@@ -73,13 +73,17 @@ export function salvaAgora() { if (timer) clearTimeout(timer); salvaJa(); }
 /** Sair da conta (contas de verdade, 20/11/2026): o progresso desta conta sai do aparelho (já está na nuvem, ou numa
  *  cópia pendente da própria conta) e a cópia de segurança do arquivo anterior também, para outra pessoa no mesmo
  *  aparelho não ver nada. Tema e preferências do aparelho ficam. */
-export function limpaAparelho() {
+export function limpaAparelho(copiasTambem = true) {
   const pref = estado.pref;
   estado = { ...estadoVazio(), pref };
   ouvintes.forEach((o) => o());
   if (timer) clearTimeout(timer);
   salvaJa();
-  try { localStorage.removeItem(CHAVE_BACKUP); } catch { /* sem armazenamento */ }
+  try {
+    localStorage.removeItem(CHAVE_BACKUP);
+    // cópias de segurança antigas (zerado, antes de migrar, corrompido): só com o progresso já guardado na conta
+    if (copiasTambem) for (const k of Object.keys(localStorage)) if (k.startsWith(CHAVE + '.')) localStorage.removeItem(k);
+  } catch { /* sem armazenamento */ }
 }
 
 function avisa() {

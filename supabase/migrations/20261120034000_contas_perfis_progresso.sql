@@ -77,3 +77,31 @@ begin
 end $$;
 revoke all on function privado.nova_conta() from public, anon, authenticated;
 create trigger ao_criar_conta after insert on auth.users for each row execute function privado.nova_conta();
+
+-- ===== revisão de segurança (20/11/2026, migration admin_so_com_email_confirmado) =====
+-- o papel de administrador só vem depois de o e-mail ser confirmado
+create or replace function privado.nova_conta() returns trigger
+language plpgsql security definer set search_path = '' as $$
+begin
+  insert into public.perfis (id, papel)
+  values (new.id, case when new.email_confirmed_at is not null
+                        and exists (select 1 from privado.admins a where a.email = lower(new.email)) then 'admin' else 'aluno' end)
+  on conflict (id) do nothing;
+  insert into public.progresso (user_id) values (new.id) on conflict (user_id) do nothing;
+  return new;
+end $$;
+
+create or replace function privado.confirma_admin() returns trigger
+language plpgsql security definer set search_path = '' as $$
+begin
+  if new.email_confirmed_at is not null and old.email_confirmed_at is null
+     and exists (select 1 from privado.admins a where a.email = lower(new.email)) then
+    update public.perfis set papel = 'admin' where id = new.id;
+  end if;
+  return new;
+end $$;
+revoke all on function privado.confirma_admin() from public, anon, authenticated;
+create trigger ao_confirmar_email after update of email_confirmed_at on auth.users for each row execute function privado.confirma_admin();
+
+insert into public.perfis (id) select id from auth.users on conflict (id) do nothing;
+insert into public.progresso (user_id) select id from auth.users on conflict (user_id) do nothing;
