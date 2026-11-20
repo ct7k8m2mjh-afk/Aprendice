@@ -569,3 +569,4 @@ por-pend-0011 gravado: 24 resolvidas (vindas de geo/his), 1 pendente.
 RECLASS P474a411a (PUC-Campinas 2027, q.17) por -> ing I01.3: texto-base em inglês, irmãs 15, 16 e 18 já em ing.
 DADO P5090f245: alternativas.E -> "ironia, pois o texto verbal contradiz o texto não-verbal." ("Leia a charge. <link> Acesso em…" colado no fim)
 DADO P19d5185f, Paf856539, Pa2441679, Pf9067e44: alternativas.E -> sem o número da questão colado no fim (Pf9067e44 também com o título da prova colado); o print está certo
+por-pend-0012 gravado: 17 resolvidas, 8 continuam pendentes (Artes = outra matéria, obras sem fonte). Obs.: as questões "outra matéria: Artes" voltam a cada lote de pendentes; sugiro tirá-las da fila (decisão do dono: "outra" não entra).

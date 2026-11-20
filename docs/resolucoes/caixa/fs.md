@@ -21,3 +21,5 @@ DADO P3df3eea4: alternativas.E -> sem o "#####" colado no fim
 ANULAR Peefb896f (PUCPR Inverno 2023, Medicina): gabarito E exige a I como certa ("as únicas desigualdades naturais são as de força física"), mas Rousseau define a desigualdade natural por idade, saúde, forças do corpo e qualidades do espírito; a IV atribui a Rousseau as bases da Revolução Americana. A resolução antiga em pucpr-2023-2/resolucoes-his.json (aprovada, ensina E) também precisa sair.
 ANULAR Pa8bd2834: gabarito exige a proposição 5 (EZLN "participou ativamente dos Fóruns Sociais Mundiais"); a Carta de Princípios do FSM excluía organizações armadas e o EZLN ficou de fora (La Jornada 03/02/2002; Bulatlat 2004).
 RECLASS? P284b35f0 S08.5 -> História (dúvida do conferente: comando pede "mundo contemporâneo e Teoria da História"; só a 5ª afirmativa toca Benjamin) — a coordenadora decide.
+DADO P84e51787: alternativas.C -> "previsão das demandas do mercado para múltiplos setores." ; alternativas.E -> "melhoria da qualidade dos processos produtivos." (sem "l. os. res." colado)
+DADO P02cbda16: texto_da_prova -> 5ª afirmativa "Sejam A, B e A ∩ B" (a entrada traz "A T B")
