@@ -30,6 +30,7 @@ import { defineTelaCheia, useTelaCheia } from './ui/telaCheia';
 import { useEffect } from 'react';
 import { useConta } from './estado/sessao';
 import { Privacidade } from './telas/Privacidade';
+import { NaoEncontrada } from './telas/NaoEncontrada';
 
 function Rotas() {
   const e = useEstado();
@@ -82,7 +83,7 @@ function Rotas() {
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/config" element={<Config />} />
         <Route path="/privacidade" element={<Privacidade />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NaoEncontrada />} />
       </Routes>
     </Casca>
   );
