@@ -814,5 +814,139 @@
    "data": "2026-11-19",
    "lote": "mat-0076"
   }
+ },
+ "P7f949635": {
+  "n": "50",
+  "conceito": "Ler uma tabela de números absolutos e taxas por 100 mil habitantes e testar proposições com somas e comparações.",
+  "equivocos": {
+   "A": "M14.2:testou-so-um-ano-do-intervalo",
+   "B": "M14.2:confundiu-taxa-com-numero-absoluto",
+   "D": "M14.2:generalizou-sem-conferir-todos-os-estados",
+   "E": "M14.2:testou-so-um-ano-do-intervalo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A tabela traz dois números em cada célula: o número de homicídios (em cima) e a taxa por 100 mil habitantes (entre parênteses). Proposições sobre quantidade usam o número; \"proporcionalmente\" e \"taxas\" usam o número entre parênteses. \"Entre 2014 e 2016\" exige que a condição valha em todos os anos do intervalo.",
+    "formulas": [
+     "total no período = soma dos 11 anos",
+     "taxa = homicídios por 100 mil habitantes"
+    ],
+    "simbolos": [
+     [
+      "taxa por 100 mil",
+      "quantas mulheres foram mortas para cada 100 mil habitantes; compara lugares de populações diferentes"
+     ],
+     [
+      "UF",
+      "unidade da federação (estado)"
+     ]
+    ]
+   },
+   "pista": "Separe as proposições que pedem soma (I e IV) das que pedem comparação de taxas (II e V).",
+   "passos": [
+    {
+     "faz": "Some a linha Brasil (proposição I)",
+     "conta": "4836 + 4621 + 4645 + 4936 + 4519 + 3737 + 3833 + 3858 + 3806 + 3903 + 3642 = 46336",
+     "porque": "A soma dos 11 anos dá exatamente o número da proposição. I é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare as taxas RJ × Brasil de 2014 a 2016 (II)",
+     "conta": "2014: 5,3 > 4,7 | 2015: 4,3 < 4,5 | 2016: 4,9 > 4,5",
+     "porque": "Em 2015 a taxa do Rio ficou abaixo da do Brasil; a proposição exige todos os anos do intervalo. II é falsa.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Confira 2023 → 2024 em cada estado do Sudeste (III)",
+     "conta": "ES: 99 → 110 | MG: 280 → 264 | SP: 389 → 351 | RJ: 334 → 264",
+     "porque": "No Espírito Santo o número subiu; \"em todos os estados\" cai. III é falsa.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Some o ES no período (IV)",
+     "conta": "ES: 140 + 141 + … + 110 → 1270",
+     "porque": "Soma dos 11 anos de homicídios no Espírito Santo (parcelas no quadro).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some o RJ no período e compare (IV)",
+     "conta": "RJ: 464 + 387 + … + 264 → 3697",
+     "porque": "1270 < 3697: o Rio teve quase o triplo de mortes. IV é falsa (a taxa do ES é maior em todos os anos, mas a proposição fala em quantidade).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare as taxas de 2017 (V) e conclua",
+     "conta": "MG 3,7 > SP 2,1 → I e V",
+     "porque": "\"Proporcionalmente\" é a taxa: 3,7 por 100 mil em MG contra 2,1 em SP, embora SP tenha mais mortes (495 > 388). V é verdadeira; ficam I e V.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — I e V.",
+   "checagem": "Em V, o número absoluto aponta o contrário (SP 495 > MG 388), o que confirma que \"proporcionalmente\" só se responde pela taxa. Em I, a ordem de grandeza bate: 11 anos com média perto de 4200 dão cerca de 46 mil.",
+   "erradas": {
+    "A": "Inclui II e IV. II falha em 2015 (4,3 < 4,5) e IV falha pela soma (ES 1270 < RJ 3697).",
+    "B": "Inclui II, III e IV, todas falsas: RJ abaixo do Brasil em 2015, ES subiu de 99 para 110 e ES somou 1270 contra 3697 do RJ.",
+    "D": "III e IV são falsas: o Espírito Santo subiu de 99 para 110 entre 2023 e 2024 e somou 1270 mortes contra 3697 do Rio.",
+    "E": "Acerta I e V, mas inclui II e III: o Rio ficou abaixo do Brasil em 2015 e o Espírito Santo teve aumento em 2024."
+   },
+   "armadilha": "Usar a taxa onde a proposição fala em número de mortes (IV) ou o número onde ela fala \"proporcionalmente\" (V), e esquecer de testar todos os anos do intervalo em II.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais proposições sobre a tabela de homicídios de mulheres estão corretas.",
+    "chave": "Número absoluto para quantidades, taxa por 100 mil para comparações proporcionais.",
+    "cuidado": "Leia qual dos dois números cada proposição usa e confira todos os anos ou estados que ela abrange."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "III cai pelo ES (99 → 110) e II cai em 2015; a única alternativa sem II e sem III é C."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4836 + 4621 + 4645 + 4936 + 4519 = 23557",
+    "nota": "Brasil, 2014 a 2018"
+   },
+   {
+    "linha": "23557 + 3737 + 3833 + 3858 + 3806 + 3903 + 3642 = 46336",
+    "nota": "I verdadeira"
+   },
+   {
+    "linha": "RJ 2015: 4,3 < 4,5",
+    "nota": "II falsa"
+   },
+   {
+    "linha": "ES: 99 → 110",
+    "nota": "III falsa"
+   },
+   {
+    "linha": "ES: 140 + 141 + 104 + 151 + 100 + 97 + 101 + 125 + 102 + 99 + 110 = 1270",
+    "nota": "Espírito Santo, 2014 a 2024"
+   },
+   {
+    "linha": "RJ: 464 + 387 + 428 + 401 + 380 + 217 + 285 + 284 + 253 + 334 + 264 = 3697",
+    "nota": "Rio de Janeiro, 2014 a 2024"
+   },
+   {
+    "linha": "1270 < 3697",
+    "nota": "IV falsa"
+   },
+   {
+    "linha": "2017: MG 3,7 > SP 2,1",
+    "nota": "V verdadeira"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-20",
+   "lote": "mat-pend-0004"
+  }
  }
 }

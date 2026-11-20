@@ -818,5 +818,111 @@
    "data": "2026-11-12",
    "lote": "mat-0039"
   }
+ },
+ "Paba3b2bf": {
+  "n": "85",
+  "conceito": "Calcular \"pelo menos um\" pelo evento complementar, com dois testes independentes.",
+  "equivocos": {
+   "B": "M13.6:calculou-so-os-dois-falsos",
+   "C": "M13.6:usou-um-teste-so",
+   "D": "M13.6:calculou-exatamente-um",
+   "E": "M13.6:esqueceu-a-outra-ordem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Pelo menos um falso\" é tudo, menos o caso em que os dois são verdadeiros. É mais rápido calcular esse único caso e tirar de 100 %. Cada teste é verdadeiro com 60 %, e os dois testes são tratados como independentes.",
+    "formulas": [
+     "P(pelo menos um falso) = 1 − P(os dois verdadeiros)",
+     "P(A e B) = P(A) × P(B), se independentes"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "probabilidade"
+     ],
+     [
+      "evento complementar",
+      "tudo o que não é o evento; as duas probabilidades somam 1"
+     ]
+    ]
+   },
+   "pista": "Qual é o único caso que NÃO tem nenhum teste falso?",
+   "passos": [
+    {
+     "faz": "Identifique o complementar",
+     "conta": "pelo menos um falso = 1 − P(V e V)",
+     "porque": "O único jeito de não ter teste falso é os dois serem verdadeiros.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule os dois verdadeiros",
+     "conta": "P(V e V) = 0,6 × 0,6 = 0,36",
+     "porque": "Testes independentes: as probabilidades se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire do total",
+     "conta": "1 − 0,36 = 0,64 = 64 %",
+     "porque": "Tudo o que sobra tem ao menos um resultado falso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "64 % → alternativa A",
+     "porque": "A pergunta é a probabilidade de pelo menos um falso.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 64 %",
+   "checagem": "Some os casos com falso: exatamente um falso = 2 × 0,6 × 0,4 = 0,48 e os dois falsos = 0,4 × 0,4 = 0,16; 0,48 + 0,16 = 0,64.",
+   "erradas": {
+    "B": "16 % sai de calcular só os dois falsos: 0,4 × 0,4 = 0,16. \"Pelo menos um\" inclui também o caso de exatamente um falso.",
+    "C": "40 % sai de responder a chance de um teste ser falso (1 − 0,6 = 0,4), como se houvesse um teste só.",
+    "D": "48 % sai de calcular exatamente um falso: 2 × 0,6 × 0,4 = 0,48, esquecendo o caso dos dois falsos (0,16).",
+    "E": "24 % sai de 0,6 × 0,4 = 0,24, só uma ordem de exatamente um falso (1º verdadeiro e 2º falso), sem o caso inverso nem os dois falsos."
+   },
+   "armadilha": "\"Pelo menos um\" não é \"exatamente um\": inclui o caso dos dois falsos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de pelo menos um de dois testes ser falso.",
+    "chave": "1 − 0,6 × 0,6 = 1 − 0,36 = 0,64.",
+    "cuidado": "Usar o complementar e não parar em \"exatamente um\"."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma dos casos",
+    "ideia": "Exatamente um falso (2 × 0,6 × 0,4 = 0,48) mais os dois falsos (0,4 × 0,4 = 0,16) dá 0,64."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(pelo menos um F) = 1 − P(V e V)",
+    "nota": "evento complementar"
+   },
+   {
+    "linha": "P(V e V) = 0,6 × 0,6 = 0,36",
+    "nota": "testes independentes"
+   },
+   {
+    "linha": "1 − 0,36 = 0,64",
+    "nota": "tirar do total"
+   },
+   {
+    "linha": "0,64 = 64 %",
+    "nota": "em porcentagem"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-20",
+   "lote": "mat-pend-0004"
+  }
  }
 }

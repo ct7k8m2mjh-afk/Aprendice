@@ -973,5 +973,116 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0002"
   }
+ },
+ "Pac7c0bf5": {
+  "n": "63",
+  "conceito": "Contar pares sem ordem com combinação de 20 tomados 2 a 2 e reconhecer a transgenia.",
+  "equivocos": {
+   "A": "M13.3:contou-ordem-e-repeticao",
+   "C": "M13.3:arranjo-no-lugar-de-combinacao",
+   "D": "M13.3:errou-o-conceito-associado",
+   "E": "M13.3:contou-ordem-e-repeticao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Uma quimera é metade de uma espécie e metade de outra: tubarão com cavalo é a mesma combinação que cavalo com tubarão. Então a ordem não importa, e o número de quimeras é a combinação de 20 espécies tomadas 2 a 2. Como sai uma quimera por dia, o número de quimeras é o número de dias. A técnica de pôr gene de uma espécie em outra é a transgenia.",
+    "formulas": [
+     "C(n, 2) = n·(n − 1)/2"
+    ],
+    "simbolos": [
+     [
+      "C(n, 2)",
+      "número de grupos de 2 elementos, sem ordem, entre n"
+     ],
+     [
+      "transgenia",
+      "transferência de gene de uma espécie para outra (organismo transgênico)"
+     ]
+    ]
+   },
+   "pista": "Pergunte se \"tubarão + cavalo\" e \"cavalo + tubarão\" são quimeras diferentes.",
+   "passos": [
+    {
+     "faz": "Decida se a ordem importa",
+     "conta": "tubarão + cavalo = cavalo + tubarão → combinação",
+     "porque": "A quimera é o par de espécies; trocar a ordem não cria um animal novo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os pares",
+     "conta": "C(20, 2) = (20 · 19)/2 = 380/2 = 190",
+     "porque": "Cada uma das 20 espécies forma par com 19 outras (380), mas assim cada par é contado duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta em dias",
+     "conta": "190 quimeras × 1 por dia = 190 dias",
+     "porque": "Uma quimera nova por dia, todos os dias da semana: não há dia sem produção.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Identifique a técnica real",
+     "conta": "gene de outra espécie no organismo → transgenia",
+     "porque": "Bactéria que produz insulina humana recebeu o gene humano: é um organismo transgênico. Terapia gênica trata doença em pessoa; clonagem gera cópia genética.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "190 dias e transgenia → alternativa B",
+     "porque": "As duas partes da resposta batem com a alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 190 dias e transgenia",
+   "checagem": "Conte por soma: a 1ª espécie forma 19 pares novos, a 2ª mais 18, e assim por diante: 19 + 18 + ... + 1 = (19 · 20)/2 = 190.",
+   "erradas": {
+    "A": "400 dias sai de 20 × 20 = 400, que conta a ordem e ainda junta cada espécie com ela mesma; e terapia gênica é tratar doença inserindo gene em células de uma pessoa.",
+    "C": "380 dias sai de 20 × 19 = 380, contando tubarão-cavalo e cavalo-tubarão como diferentes; e clonagem produz cópia geneticamente igual, sem gene de outra espécie.",
+    "D": "Acerta os 190 dias, mas terapia gênica é inserir genes em células de uma pessoa para tratar doença; a bactéria com insulina humana é transgênica.",
+    "E": "Acerta a transgenia, mas 400 dias sai de 20 × 20, que conta pares ordenados e inclui uma espécie com ela mesma."
+   },
+   "armadilha": "Contar a ordem (20 × 19 = 380): a quimera tubarão-cavalo é a mesma que cavalo-tubarão.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O tempo para criar todas as quimeras de 2 entre 20 espécies e o nome da técnica real.",
+    "chave": "C(20, 2) = 20 · 19 ÷ 2 = 190 dias; gene de outra espécie = transgenia.",
+    "cuidado": "Dividir por 2, porque a ordem das duas espécies não importa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma de 19 a 1",
+    "ideia": "A 1ª espécie forma 19 pares novos, a 2ª 18, ..., a 19ª 1: 19 + 18 + ... + 1 = 190."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(20, 2) = (20 · 19)/2",
+    "nota": "pares sem ordem"
+   },
+   {
+    "linha": "(20 · 19)/2 = 380/2",
+    "nota": "multiplicar em cima"
+   },
+   {
+    "linha": "380/2 = 190",
+    "nota": "cada par contado duas vezes"
+   },
+   {
+    "linha": "190 quimeras → 190 dias",
+    "nota": "uma por dia, todo dia"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-20",
+   "lote": "mat-pend-0004"
+  }
  }
 }

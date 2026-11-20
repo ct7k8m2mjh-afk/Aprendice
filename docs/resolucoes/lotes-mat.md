@@ -1,4 +1,4 @@
-# Matemática (parte 1): resoluções (gerado por lote.py em 2026-11-19)
+# Matemática (parte 1): resoluções (gerado por lote.py em 2026-11-20)
 
 Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 0.
 
@@ -91,6 +91,8 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | mat-pend-0001 | pendentes todos-menos-anular | 15 | gravado | 8 | 7 | 0 |
 | mat-pend-0002 | pendentes reclassificada | 2 | gravado | 2 | 0 | 0 |
 | mat-pend-0003 | pendentes =reclassificada | 1 | gravado | 1 | 0 | 0 |
+| mat-pend-0004 | pendentes todos-menos-anular | 25 | gravado | 25 | 0 | 0 |
+| mat-pend-0005 | pendentes classificação | 12 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
