@@ -94,6 +94,12 @@ REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, comm
 - "Por que eu errei" fracos: dono decidiu (20/11 22h) "ignora API, faça aqui no Claude". Roteiro em
   docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md (provas-alvo, ~1.700: mat ~436, fís ~825, quí ~435). Sessões abertas 22h13 UTC:
   session_01Tq253ZPg9jdmFb9cbntD91 (mat → qui, série mq) e session_01Tq253VAQptS9rzESrtPqkE (fís, série fis). Caixa: conteudo.md.
+- DECISÕES DO DONO 20/11 22h20 UTC ("todas sim", itens 1–6 e 8 da seção 6 do prompt da passagem): excluir conta no Perfil,
+  3 ajustes de layout, 23 fontes de flashcards, subtemas novos sugeridos, 66 "anular" viram "Questão indisponível", 7 itens
+  "para o dono" do PLANO.md, apagar o ramo rascunho-teoria-lentes (conteúdo já está em app/conteudo-fonte/materias/his.json;
+  o GitHub recusou o delete a partir da sessão: fica com o dono). Sessões 22h21: session_01Tq253Y5RX4sCDxee8CTceS (telas;
+  relatório docs/revisao-site/2026-11-20/decisoes-do-dono-telas.md) e session_01Tq253ZZrpookBgGHXXqZHc (conteúdo;
+  relatório docs/resolucoes/decisoes-do-dono-conteudo.md). Arquivar sessões da conta antiga: só o dono.
 
 ## Estado 20/11 06h10 UTC (antigo)
 Fila normal: TODAS as matérias acabaram (falta 1 de História, incluída abaixo). Fábrica de Português parou em 19/11 21h38 (13 lotes, 654;
