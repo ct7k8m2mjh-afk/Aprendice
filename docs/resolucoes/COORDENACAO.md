@@ -97,6 +97,9 @@ Pacote A (questão/correção, código) e C (dados) com agentes desta coordenado
 casca) e D (motor de animação); depois nova revisão completa e publicação. Fábrica de CONTEÚDO pela API:
 session_01PveEKZzai8tN1n9vxoQYqX (prompt docs/resolucoes/PROMPT-FABRICA-CONTEUDO.md; teto US$ 40; caixa caixa/conteudo.md):
 flashcards e frases de fis/his/geo/ing/fs + "Por que eu errei" fracos (6.347; dono: só o que couber, ENEM e alvo primeiro).
+20/11 01h UTC: pacotes A, B, C, D feitos (motor b20901f9a); fontes Toda Matéria trocadas (6fcfd743d); dicionário em
+andamento. 2ª RODADA da revisão rodando (4 revisores; relatórios irão para docs/revisao-site/2026-11-20/; build em /tmp/qa,
+porta 4190). Depois: corrigir o que sobrar, 3ª rodada se preciso, e PUBLICAR.
 Orçamento API: 200 = ~81 gastos + 60 classificação + ~15 Português + 40 conteúdo.
 
 ## Fábrica de CLASSIFICAÇÃO pela API (dono, 19/11 ~21h15)
