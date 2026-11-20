@@ -91,13 +91,15 @@ export function nomeEdicao(e: Pick<Edicao, 'escola' | 'ano' | 'fase'>): string {
 /**
  * Provas completas já baixadas da fonte oficial (caderno + gabarito), em recorte e conferência.
  * Viram simulado quando todas as questões entram no banco. Fonte: fabrica_saida/ingestao/<prova>/manifesto.json.
+ * O motivo é o texto que o aluno lê (revisão de 19/11/2026, casca 16; aprovado pelo dono em 20/11): frase com
+ * inicial maiúscula, sem termo de produção ("caderno a baixar", "formato Cebraspe").
  */
 export const PROVAS_EM_PREPARO: { catalogoId: string; titulo: string; motivo: string }[] = [
-  { catalogoId: 'unb', titulo: 'UnB PAS 3 2020 a 2026', motivo: 'itens de certo ou errado (formato Cebraspe)' },
-  { catalogoId: 'uem', titulo: 'UEM 2020 a 2026', motivo: 'questões de somatória (01, 02, 04, 08, 16)' },
-  { catalogoId: 'saocamilo', titulo: 'São Camilo 2020 a 2026 (outros semestres)', motivo: 'caderno a baixar manualmente (site da Vunesp)' },
-  { catalogoId: 'santacasa', titulo: 'Santa Casa 2020 a 2026', motivo: 'caderno a baixar manualmente (site da Vunesp)' },
-  { catalogoId: 'einstein', titulo: 'Einstein 2020 a 2026', motivo: 'caderno a baixar manualmente (site da Vunesp)' },
+  { catalogoId: 'unb', titulo: 'UnB PAS 3 2020 a 2026', motivo: 'Formato de certo ou errado: o simulado está sendo adaptado para esse tipo de item.' },
+  { catalogoId: 'uem', titulo: 'UEM 2020 a 2026', motivo: 'Questões de somatória: o simulado está sendo adaptado para esse tipo de resposta.' },
+  { catalogoId: 'saocamilo', titulo: 'São Camilo 2020 a 2026 (outros semestres)', motivo: 'As provas estão sendo conferidas questão por questão e entram em breve.' },
+  { catalogoId: 'santacasa', titulo: 'Santa Casa 2020 a 2026', motivo: 'As provas estão sendo conferidas questão por questão e entram em breve.' },
+  { catalogoId: 'einstein', titulo: 'Einstein 2020 a 2026', motivo: 'As provas estão sendo conferidas questão por questão e entram em breve.' },
 ];
 
 /** Escolas do banco que têm catálogo de vestibular (podem ser provas-alvo com questões). */
