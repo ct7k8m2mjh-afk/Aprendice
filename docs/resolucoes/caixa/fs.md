@@ -23,3 +23,4 @@ ANULAR Pa8bd2834: gabarito exige a proposição 5 (EZLN "participou ativamente d
 RECLASS? P284b35f0 S08.5 -> História (dúvida do conferente: comando pede "mundo contemporâneo e Teoria da História"; só a 5ª afirmativa toca Benjamin) — a coordenadora decide.
 DADO P84e51787: alternativas.C -> "previsão das demandas do mercado para múltiplos setores." ; alternativas.E -> "melhoria da qualidade dos processos produtivos." (sem "l. os. res." colado)
 DADO P02cbda16: texto_da_prova -> 5ª afirmativa "Sejam A, B e A ∩ B" (a entrada traz "A T B")
+DADO Pe9844354: alternativas.E -> termina em "demanda dos consumidores." (o "44" é o número da questão)
