@@ -562,3 +562,8 @@ para P12.3 (Modernismo de 30), porque ela é da 2ª geração e não da Geraçã
 comando já entrega "linguagem psicológica e intimista" e o aluno só identifica o
 tema. Deixei os prefixos em P01.1, coerente com a regra que escrevi (não
 classificar pelo autor do texto de apoio), e registro aqui que há duas leituras.
+
+## Pendentes (sessão de pendentes por/fs/ing, 20/11)
+por-pend-0010 gravado: 1 resolvida, 17 continuam pendentes (Artes/Educação Física = outra matéria; obras sem fonte: O conto da mulher brasileira, Viver é prejudicial à saúde, Tribo Cara Baixa ×2).
+por-pend-0011 gravado: 24 resolvidas (vindas de geo/his), 1 pendente.
+RECLASS P474a411a (PUC-Campinas 2027, q.17) por -> ing I01.3: texto-base em inglês, irmãs 15, 16 e 18 já em ing.
