@@ -102,7 +102,12 @@ andamento. 2ª RODADA da revisão rodando (4 revisores; relatórios irão para d
 porta 4190). Depois: corrigir o que sobrar, 3ª rodada se preciso, e PUBLICAR.
 Orçamento API: 200 = ~81 gastos + 60 classificação + ~15 Português + 40 conteúdo.
 
-## Fábrica de CLASSIFICAÇÃO pela API (dono, 19/11 ~21h15)
+## Fábrica de CLASSIFICAÇÃO pela API (dono, 19/11 ~21h15) — FIM 20/11 00h58
+6.590 questões mudaram de subtema (428 de matéria), 470 sugestões de subtema novo, US$ 46,22. Saídas em
+docs/resolucoes/classificacao/ (resumo.md, mudancas.json, sugestoes-novos-subtemas.md). PENDENTE: dono decidir os subtemas
+novos; as ~428 que mudaram de matéria precisam de resolução na matéria nova (pendentes "classificação") — abrir sessão de
+pendentes depois da revisão do site.
+
 Sessão session_01PveEKaueZxMsGjqv3gMYrd (ambiente Fabrica), prompt docs/resolucoes/PROMPT-FABRICA-CLASSIFICACAO.md.
 Confere o subtema de TODAS as questões; muda só com duas respostas iguais às cegas; sem subtema bom: encaixa no mais próximo e
 anota a sugestão (docs/resolucoes/classificacao/sugestoes-novos-subtemas.md) para o DONO decidir se cria. Teto US$ 60.
