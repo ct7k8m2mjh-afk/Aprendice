@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import type { Figura, MateriaConteudo, MateriaId, Questao, Resolucao, TextoQuestao } from './tipos';
 import { ordemEvolucao } from '../logica/nivel';
 import { retiradasDe } from '../estado/migracao';
+import { ehAdmin, inscreveAdmin, useAdmin } from './modoAdmin';
 
 const PREVIA = import.meta.env.VITE_PREVIA === '1';
 const BASE = import.meta.env.BASE_URL + 'conteudo/';
@@ -45,6 +46,11 @@ export interface MateriaCarregada {
    *  lista do conteúdo e pelo endereço direto, com o print e o selo "Questão indisponível" */
   indisponiveis?: Map<string, Questao>;
   indispPorSub?: Map<string, Questao[]>;
+  /** modo administrador (dono, 20/11/2026): as questões escondidas do aluno (fora do ar, de outra matéria, anuladas pelo
+   *  Aprendice) aparecem na lista do conteúdo e pelo endereço direto, com a etiqueta "oculto para o aluno"; continuam
+   *  fora do banco (treinos, simulados, revisão e contagens). Vazio para o aluno. */
+  ocultas?: Map<string, Questao>;
+  ocultasPorSub?: Map<string, Questao[]>;
 }
 
 /** Marcador de uma questão retirada: só conteúdo, tema e dificuldade (o texto e o print não existem no site). */
@@ -54,11 +60,13 @@ function marcadorRetirada(id: string, sub: string, dif: number): Questao {
 }
 
 const cache = new Map<MateriaId, Promise<MateriaCarregada>>();
+// entrar ou sair do modo administrador monta as matérias de novo (com ou sem o que é oculto para o aluno)
+inscreveAdmin(() => cache.clear());
 /** Print das questões que vieram das provas completas (id -> caminho dentro de conteudo/). */
 const PRINTS_PROVA = new Map<string, string>();
 
 /** Monta a matéria a partir do banco gravado (exportada para os testes). */
-export function monta(id: MateriaId, bancoTodo: Questao[], conteudo: MateriaConteudo, amostra?: string[]): MateriaCarregada {
+export function monta(id: MateriaId, bancoTodo: Questao[], conteudo: MateriaConteudo, amostra?: string[], admin = ehAdmin()): MateriaCarregada {
   // a banca do ENEM tem uma grafia só no site, "Inep" (revisão de 20/11/2026, casca N13; parte do banco ainda traz "INEP")
   for (const q of bancoTodo) if (q.banca === 'INEP') q.banca = 'Inep';
   // fora do ar (pendente), de outra matéria fora das 9 (decisão do dono, 13/11/2026: só no simulado da prova inteira)
@@ -79,8 +87,14 @@ export function monta(id: MateriaId, bancoTodo: Questao[], conteudo: MateriaCont
   for (const l of porSub.values()) l.sort(ordemEvolucao);
   for (const q of [...banco, ...indisp]) if (q.print) PRINTS_PROVA.set(q.id, q.print);
   const retiradas = retiradasDe(id).filter((r) => !r.para).map((r) => marcadorRetirada(r.id, r.sub, r.dif));
+  // modo administrador: o que o aluno não vê, à parte (só exibição)
+  const ocult = admin ? bancoTodo.filter((q) => !visivel(q)) : [];
+  const ocultasPorSub = new Map<string, Questao[]>();
+  for (const q of ocult) ocultasPorSub.set(q.sub, [...(ocultasPorSub.get(q.sub) || []), q]);
+  for (const l of ocultasPorSub.values()) l.sort(ordemEvolucao);
+  for (const q of ocult) if (q.print) PRINTS_PROVA.set(q.id, q.print);
   return { id, banco, porId: new Map(banco.map((q) => [q.id, q])), conteudo, porSub, amostra, retiradas,
-    indisponiveis: new Map(indisp.map((q) => [q.id, q])), indispPorSub };
+    indisponiveis: new Map(indisp.map((q) => [q.id, q])), indispPorSub, ocultas: new Map(ocult.map((q) => [q.id, q])), ocultasPorSub };
 }
 
 export function carregaMateria(id: MateriaId): Promise<MateriaCarregada> {
@@ -197,12 +211,13 @@ export async function preparaConteudo(): Promise<void> { if (PREVIA) await pacot
 
 export function useMateria(id: MateriaId | null | undefined): MateriaCarregada | null {
   const [d, setD] = useState<MateriaCarregada | null>(null);
+  const admin = useAdmin();
   useEffect(() => {
     let vivo = true;
     setD(null);
     if (id && MATERIAS_COM_CONTEUDO.includes(id)) carregaMateria(id).then((x) => vivo && setD(x));
     return () => { vivo = false; };
-  }, [id]);
+  }, [id, admin]);
   return d;
 }
 

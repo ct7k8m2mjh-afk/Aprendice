@@ -16,6 +16,25 @@ import { useResumos } from '../dados/revisao';
 import { ResumoSubtemaView } from '../ui/revisao/ResumoSubtema';
 import { AvisoRegiao, FiltroRegiaoChips, useRegiao } from '../ui/FiltroRegiao';
 import { filtraRegiao, passa } from '../logica/regiao';
+import { ETIQUETA_OCULTO } from '../dados/modoAdmin';
+import type { Questao } from '../dados/tipos';
+
+/** Modo administrador (dono, 20/11/2026): questão escondida do aluno, na lista com a etiqueta "oculto para o aluno". */
+function DegrauOculto({ m, q }: { m: MateriaId; q: Questao }) {
+  return (
+    <li>
+      <Link to={`/m/${m}/q/${q.id}?ctx=escada`} className="degrau indisp">
+        <span className="dg-n" aria-hidden><i className="dg-ponto" /></span>
+        <span className="dg-txt">
+          <b>{textoDegrau(q, false).titulo}</b>
+          <span className="etq aviso">{ETIQUETA_OCULTO}</span>
+          {q.pendente && <small>{q.pendente}</small>}
+        </span>
+        <Icone nome="direita" />
+      </Link>
+    </li>
+  );
+}
 
 /**
  * Conteúdo (rota antiga /escada, mantida para não quebrar links e progresso): as questões reais do conteúdo,
@@ -38,7 +57,13 @@ export function Escada() {
   const fr = filtraRegiao(todasRegioes, rg.conj);
   const l = fr.l;
   if (!mod || !conteudo) return <div className="conteudo vazio"><h3>Conteúdo não encontrado</h3><Link className="btn sec" to={`/m/${m}`}>Voltar</Link></div>;
-  if (!l.length) return <div className="conteudo vazio"><h3>{cap(conteudo.nome)}</h3><p>Este conteúdo está sem questões no momento. Questões novas estão em preparação.</p><Link className="btn sec" to={`/m/${m}/tema/${mod.id}`}>Voltar ao tema</Link></div>;
+  // modo administrador: o que o aluno não vê (vazio para o aluno)
+  const ocultas = mc.ocultasPorSub?.get(sub) || [];
+  if (!l.length) return (
+    <div className="conteudo vazio"><h3>{cap(conteudo.nome)}</h3><p>Este conteúdo está sem questões no momento. Questões novas estão em preparação.</p><Link className="btn sec" to={`/m/${m}/tema/${mod.id}`}>Voltar ao tema</Link>
+      {ocultas.length > 0 && <ol className="degraus">{ocultas.map((q) => <DegrauOculto key={q.id} m={m} q={q} />)}</ol>}
+    </div>
+  );
   const p = progressoEscada(l, s);
   const prox = l.find((q) => !s.q[q.id]?.tent.length);
   const cartoes = mod.cartoes.filter((c) => c.sub === sub);
@@ -117,13 +142,15 @@ export function Escada() {
       {NIVEIS.map((nv) => {
         const lv = l.filter((q) => nivelDe(q.dif) === nv.id);
         const li = indisp.filter((q) => nivelDe(q.dif) === nv.id);
-        if (!lv.length && !li.length) return null;
+        const lo = ocultas.filter((q) => nivelDe(q.dif) === nv.id);
+        if (!lv.length && !li.length && !lo.length) return null;
         return (
           <section key={nv.id} className="secao">
             <h2 className="sec-tit">{nv.nome}</h2>
             <ol className="degraus">
               {/* a indisponível (dono, 19/11/2026) entra na ordem de dificuldade, com o selo */}
-              {[...lv, ...li].sort(ordemEvolucao).map((q) => {
+              {[...lv, ...li, ...lo].sort(ordemEvolucao).map((q) => {
+                if (lo.includes(q)) return <DegrauOculto key={q.id} m={m} q={q} />;
                 if (q.indisponivel) return (
                   <li key={q.id}>
                     <Link to={`/m/${m}/q/${q.id}?ctx=escada`} className="degrau indisp">

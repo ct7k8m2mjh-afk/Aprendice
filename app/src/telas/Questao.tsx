@@ -1,5 +1,6 @@
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { ETIQUETA_OCULTO } from '../dados/modoAdmin';
 import { useMateria, useQuestaoComTexto, useResolucoes, type MateriaCarregada } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
 import { atualizaMateria, pegaEstado, useMateriaEstado } from '../estado/loja';
@@ -44,7 +45,8 @@ export function QuestaoTela() {
   const mc = useMateria(m);
   const s = useMateriaEstado(m);
   // questão indisponível (dono, 19/11/2026): fora do banco, aberta só para consulta (print e selo, sem responder)
-  const q0 = mc?.porId.get(id) || mc?.indisponiveis?.get(id);
+  // modo administrador (dono, 20/11/2026): a questão escondida do aluno também abre, com a etiqueta
+  const q0 = mc?.porId.get(id) || mc?.indisponiveis?.get(id) || mc?.ocultas?.get(id);
   // questões das provas: o texto e a transcrição chegam à parte (txt/<conteúdo>.json)
   const qTexto = useQuestaoComTexto(m, q0);
   const q = qTexto || q0;
@@ -70,6 +72,7 @@ export function QuestaoTela() {
   const filaRev = useRef<{ m: string; l: Questao[] } | null>(null);
   const fila = useMemo<Questao[]>(() => {
     if (!mc || !q) return [];
+    if (mc.ocultas?.has(q.id)) return [q];
     if (ctx === 'revisao') {
       const g = filaRev.current;
       if (g && g.m === m && g.l.some((x) => x.id === q.id)) return g.l;
@@ -108,7 +111,7 @@ export function QuestaoTela() {
     const f = (e: KeyboardEvent) => {
       const alvo = e.target as HTMLElement;
       if (alvo && (alvo.tagName === 'INPUT' || alvo.tagName === 'TEXTAREA') || e.ctrlKey || e.metaKey || e.altKey) return;
-      if (q?.indisponivel) { if (e.key === 'Escape') { if (telaCheia) defineTelaCheia(false); else nav(voltarPara); } return; }
+      if (q?.indisponivel || (q && !q.gab && mc?.ocultas?.has(q.id))) { if (e.key === 'Escape') { if (telaCheia) defineTelaCheia(false); else nav(voltarPara); } return; }
       const k = e.key.toUpperCase();
       const mapa: Record<string, Letra> = { '1': 'A', '2': 'B', '3': 'C', '4': 'D', '5': 'E' };
       const l = (['A', 'B', 'C', 'D', 'E'].includes(k) ? k : mapa[k]) as Letra | undefined;
@@ -137,7 +140,9 @@ export function QuestaoTela() {
 
   const mod = mc.conteudo.modulos.find((x) => x.id === q.modulo);
   const sub = mod?.subs.find((x) => x.id === q.sub);
-  if (q.indisponivel) return <QuestaoIndisponivel m={m} q={q} mc={mc} mod={mod} sub={sub} ctx={ctx} aoVoltar={() => nav(voltarPara)} />;
+  const oculta = !!mc.ocultas?.has(q.id);
+  const etqOculta = oculta ? <span className="etq aviso" title={q.pendente}>{ETIQUETA_OCULTO}</span> : null;
+  if (q.indisponivel || (oculta && !q.gab)) return <QuestaoIndisponivel m={m} q={q} mc={mc} mod={mod} sub={sub} ctx={ctx} aoVoltar={() => nav(voltarPara)} etq={etqOculta} />;
   const r = res?.[q.id];
   const textoPista = q.pista || r?.pista;
   const eq = s.q[q.id];
@@ -181,7 +186,7 @@ export function QuestaoTela() {
           <article className="folha q-cartao">
             <EnunciadoQuestao m={m} q={q}
               antes={<span className={`etq cor nivel n-${nivelDe(q.dif)}`}>{nomeNivel(nivelDe(q.dif))}</span>}
-              depois={sub && <span className="etq q-sub" title={cap(sub.nome)}>{cap(sub.nome)}</span>}
+              depois={<>{sub && <span className="etq q-sub" title={cap(sub.nome)}>{cap(sub.nome)}</span>}{etqOculta}</>}
               acao={<button className={'q-marca' + (eq?.rev ? ' marcado' : '')} onClick={() => alternaMarcada(m, q.id)} aria-pressed={!!eq?.rev} aria-label="Revisar depois" title="Revisar depois"><Icone nome="marcador" /></button>} />
             <RespostaCartao q={q} escolha={escolha} aoEscolher={setEscolha} revelado={revelado} riscadas={riscadas}
               aoRiscar={(l) => setRiscadas((rr) => { const n = new Set(rr); n.has(l) ? n.delete(l) : n.add(l); return n; })}
@@ -250,7 +255,7 @@ export function QuestaoTela() {
  *  prova não publicou errata. Mesma estrutura da questão normal (barra com o lugar na lista do conteúdo, etiqueta de nível,
  *  marcador, cartão com o pé fixo, abas Teoria e Fonte, conteúdos relacionados); no lugar de "Sua resposta", o aviso
  *  (.q-trava): sem alternativas, sem gabarito e sem correção. */
-function QuestaoIndisponivel({ m, q, mc, mod, sub, ctx, aoVoltar }: { m: MateriaId; q: Questao; mc: MateriaCarregada; mod?: Modulo; sub?: { id: string; nome: string }; ctx: string; aoVoltar: () => void }) {
+function QuestaoIndisponivel({ m, q, mc, mod, sub, ctx, aoVoltar, etq }: { m: MateriaId; q: Questao; mc: MateriaCarregada; mod?: Modulo; sub?: { id: string; nome: string }; ctx: string; aoVoltar: () => void; etq?: ReactNode }) {
   const [aba, setAba] = useState<AbaPainel>('teo');
   const s = useMateriaEstado(m);
   const eq = s.q[q.id];
@@ -282,11 +287,11 @@ function QuestaoIndisponivel({ m, q, mc, mod, sub, ctx, aoVoltar }: { m: Materia
         <article className="folha q-cartao">
           <EnunciadoQuestao m={m} q={q}
             antes={<span className={`etq cor nivel n-${nivelDe(q.dif)}`}>{nomeNivel(nivelDe(q.dif))}</span>}
-            depois={sub && <span className="etq q-sub" title={cap(sub.nome)}>{cap(sub.nome)}</span>}
+            depois={<>{sub && <span className="etq q-sub" title={cap(sub.nome)}>{cap(sub.nome)}</span>}{etq}</>}
             acao={<button className={'q-marca' + (eq?.rev ? ' marcado' : '')} onClick={() => alternaMarcada(m, q.id)} aria-pressed={!!eq?.rev} aria-label="Revisar depois" title="Revisar depois"><Icone nome="marcador" /></button>} />
           {/* o pé da questão normal ("Sua resposta" + letras), com o rótulo "Questão indisponível" e uma linha no lugar das letras */}
           <div className={'q-resp q-indisp' + (q.transcricao || !urlPrint(m, q.id) ? ' com-texto' : '')}>
-            <div className="q-bolhas" role="status" aria-label="Questão indisponível"><p className="q-indisp-txt">Gabarito oficial com erro e sem correção da banca. Só para consulta.</p></div>
+            <div className="q-bolhas" role="status" aria-label={q.indisponivel ? 'Questão indisponível' : ETIQUETA_OCULTO}><p className="q-indisp-txt">{q.indisponivel ? 'Gabarito oficial com erro e sem correção da banca. Só para consulta.' : `Oculta para o aluno: ${q.pendente || 'fora do ar'}.`}</p></div>
           </div>
         </article>
         <aside className="folha q-lado" id="q-lado" aria-label="Teoria e fonte">

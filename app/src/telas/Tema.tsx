@@ -1,3 +1,4 @@
+import { ETIQUETA_OCULTO } from '../dados/modoAdmin';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { carregaFiguras, useMateria } from '../dados/conteudo';
@@ -107,6 +108,8 @@ export function Tema() {
   const subs = mod.subs.filter((x) => mc.porSub.get(x.id)?.length);
   // conteúdo ainda sem questão não some: aparece no fim da lista, sem link, com "ainda sem questões" (revisão 20/11, matérias 12)
   const semQuestao = mod.subs.filter((x) => !mc.porSub.get(x.id)?.length);
+  // modo administrador (dono, 20/11/2026): conteúdo cujas questões estão todas escondidas do aluno abre, com a etiqueta
+  const subsOcultos = semQuestao.filter((x) => mc.ocultasPorSub?.get(x.id)?.length);
   // pedido do dono (09/11/2026): questões da região do aluno (+ ENEM); conteúdo sem nenhuma da região usa todas (reserva)
   // critério único de contagem (logica/regiao.ts: filtraTema), o mesmo da matéria, da faixa e do aviso
   const ft = filtraTema(subs.map((x) => x.id), (id) => mc.porSub.get(id) || [], rg.conj);
@@ -208,6 +211,7 @@ export function Tema() {
           <h2 className="tp-h">Questões em preparação</h2>
           <p className="miolo">As questões de {mod.nome.toLowerCase()} entram com as provas completas: print fiel da prova, fonte (prova, ano, número, link) e gabarito oficial. Cada uma recebe o seu nível: básico, intermediário ou avançado.</p>
           <div className="preparo-acoes"><Link to="/simulados" className="btn sec">Ver simulados</Link></div>
+          {subsOcultos.length > 0 && <ul className="tp-enc">{subsOcultos.map((sub) => <SubOculto key={sub.id} m={m} sub={sub} frase={fraseDe(mod, sub.id)} n={mc.ocultasPorSub!.get(sub.id)!.length} />)}</ul>}
         </section>
       ) : (
         <section className="tp-bloco" aria-labelledby="tp-enc-tit">
@@ -230,6 +234,7 @@ export function Tema() {
             })}
             {semQuestao.map((sub) => {
               const frase = fraseDe(mod, sub.id);
+              if (subsOcultos.includes(sub)) return <SubOculto key={sub.id} m={m} sub={sub} frase={frase} n={mc.ocultasPorSub!.get(sub.id)!.length} />;
               return (
                 <li key={sub.id}>
                   <div className="tp-semq">
@@ -278,5 +283,18 @@ function RevisaoDoTema({ m, mod, subs, s, questoes, embutida }: { m: MateriaId; 
         })}
       </ul>
     </section>
+  );
+}
+
+/** Modo administrador: conteúdo só com questões escondidas do aluno, com link e a etiqueta "oculto para o aluno". */
+function SubOculto({ m, sub, frase, n }: { m: MateriaId; sub: { id: string; nome: string }; frase?: string | null; n: number }) {
+  return (
+    <li>
+      <Link to={`/m/${m}/escada/${sub.id}`}>
+        <i className="ponto-sub" aria-hidden />
+        <span className="t"><b>{cap(sub.nome)}</b>{frase && <span>{frase}</span>}<span className="tp-outras num">{plural(n, 'questão', 'questões')} · <span className="etq aviso">{ETIQUETA_OCULTO}</span></span></span>
+        <Icone nome="direita" className="tp-seta" />
+      </Link>
+    </li>
   );
 }
