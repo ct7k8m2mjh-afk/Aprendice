@@ -14,7 +14,7 @@ Gravidade: **erro** · **diferença do sistema** · **sugestão (decisão do don
 | 2 | Sem tema escuro antes de entrar | resolvido | Dia/Noite (`.l-tema`) na entrada e nas boas-vindas; escuro #1A1712 / folha #24201A. O padrão continua claro mesmo com o aparelho no escuro (aceito: "tema claro padrão") |
 | 3 | Painel e Google quase brancos | resolvido | `.l-painel` #FCFAF5 / #24201A; `.l-google` #F7F2E9 / #2B261F |
 | 4 | Rodapé 10px, 2,9:1 | resolvido | 13,5px; 6,12:1 claro, 6,99:1 escuro |
-| 5 | Textos pequenos em 390 | resolvido em 390 | selo e faixa 13,5px, lead 16px, vantagens 14/13,5px (ver novo item N3 para 1280/1440) |
+| 5 | Textos pequenos em 390 | resolvido em 390 | selo e faixa 13,5px, lead 16px, vantagens 14/13,5px (ver novo item N8 para 1280/1440) |
 | 6 | Toque < 44px na entrada | resolvido | área invisível de 44px em `.l-esqueci`, `.l-trocar button`, `.l-olho` (`app.css:258-266`) |
 | 7 | "Esqueceu" no modo Criar conta | resolvido | some no modo Criar |
 | 8 | Palavra sozinha em `.l-painel-sub` (1440) | resolvido | `text-wrap: balance`, duas linhas equilibradas |
@@ -22,7 +22,7 @@ Gravidade: **erro** · **diferença do sistema** · **sugestão (decisão do don
 | 10 | Voltar apaga o e-mail | resolvido | o e-mail volta preenchido (a senha, corretamente, não) |
 | 11 | Verde de "certo" em etiqueta neutra | resolvido | `.ep-item .etq` neutra (#585B64 sobre folha2); etapa feita sem verde |
 | 12 | "em preparação" falso enquanto carrega | resolvido | mostra "carregando…" até o banco chegar |
-| 13 | ENEM escrito de três jeitos | parcial | "ENEM" nas listas, mas ainda "ENEM · INEP" (provas-alvo) e "banca Inep" (cabeçalho do grupo em Simulados) / "questão 103 · Inep" (questão): INEP e Inep convivem. Ver N10 |
+| 13 | ENEM escrito de três jeitos | parcial | "ENEM" nas listas, mas ainda "ENEM · INEP" (provas-alvo) e "banca Inep" (cabeçalho do grupo em Simulados) / "questão 103 · Inep" (questão): INEP e Inep convivem. Ver N13 |
 | 14 | "Minha região" com prova sem região | resolvido | com provas-alvo = ENEM só aparece o grupo ENEM (6 provas) |
 | 15 | Título da prova em `lapis` | resolvido | `.cs-titulo` em `tinta` (17px 600; 15px em 390) |
 | 17 | Por conteúdo promete gabarito oficial | resolvido | `entraNoSimuladoConteudo` tira `gabFonte:'aprendice'`; texto "Só questões com gabarito publicado (oficial ou de resolução reconhecida)" |
@@ -44,7 +44,7 @@ Gravidade: **erro** · **diferença do sistema** · **sugestão (decisão do don
 | 34 | Agenda "S S D S T Q Q" e frase confusa | não (não estava no pacote) | igual: "4 questões voltam nos próximos 7 dias, 4 hoje." |
 | 35 | Menu com Outras matérias aberta passa da tela | resolvido | 1440×900 e 1280×900: `scrollHeight` 900 = altura; Configurações em y=888 (itens de 34px, como o DESIGN.md:139 prevê) |
 | 36 | Ícones coloridos de His, Fil/Soc, Ing | resolvido | Lucide de traço 1,75 (ampulheta, balança, idiomas) |
-| 37 | Medidas fora do DESIGN.md | resolvido em parte | chip 14,5px 500; abas do celular 12px 500; grupo do menu 14px 500; Dia/Noite com área de 44px. Fica a fonte do Dia/Noite (N9) |
+| 37 | Medidas fora do DESIGN.md | resolvido em parte | chip 14,5px 500; abas do celular 12px 500; grupo do menu 14px 500; Dia/Noite com área de 44px. Fica a fonte do Dia/Noite (N11) |
 | 38 | Créditos, versão, atalhos, sair apaga perfil | resolvido | créditos com gabarito do Aprendice e as 5 fontes; "versão de demonstração"; atalhos em 2 colunas com tecla e descrição juntas; sair guarda o perfil (ver N5) |
 
 ## 2. Problemas novos (inclusive regressões)
