@@ -177,27 +177,11 @@ export function Materia() {
   if (!mc) return <div className="conteudo"><Carregando /></div>;
 
   const r = resumoMateria(mc, s, Date.now(), agendaDe(e));
-  const tg = e.treino[m];
-  // questões do treino geral na região do aluno (+ ENEM), as mesmas que a rodada sorteia (logica/regiao.ts)
-  const abc = questoesTreinoGeral(mc.conteudo.essencial.abc, mc.banco, rg.conj);
-  const nAbc = abc.length, nComp = mc.conteudo.essencial.completar.length;
-  const nFlash = mc.conteudo.flash.length + mc.conteudo.flashImg.length;
   const ultQ = s.ult ? mc.porId.get(s.ult) : null;
-  // contadores da capa do treino geral (protótipo: .ad-tg-n) e a composição de uma rodada (logica/rodadaTreino.ts: 6 questões, 4 frases, 5 flashcards; sem frases e flashcards, mais questões)
-  const feitoAbc = abc.filter((id) => s.q[id]?.tent.length).length;
-  const feitoComp = mc.conteudo.essencial.completar.filter((c) => s.flash[c.id]).length;
-  const feitoFlash = [...mc.conteudo.flash, ...mc.conteudo.flashImg].filter((c) => s.flash[c.id]).length;
-  // quantidade de questões só nos conteúdos (CLAUDE.md, vocabulário; revisão 20/11, matérias 1): o contador de questões
-  // mostra as feitas e a barra, nunca "x de N"
-  // acertos (última resposta certa): quarta linha de cada contador, como no protótipo
-  const ultFlashOk = (id: string) => { const h = s.flash[id]?.hist; return !!h?.length && h[h.length - 1].v === 'a'; };
-  const okAbc = abc.filter((id) => { const t = s.q[id]?.tent; return !!t?.length && t[t.length - 1].ok; }).length;
-  const okComp = mc.conteudo.essencial.completar.filter((c) => ultFlashOk(c.id)).length;
-  const okFlash = [...mc.conteudo.flash, ...mc.conteudo.flashImg].filter((c) => ultFlashOk(c.id)).length;
-  const { q: nRq, c: nRc, f: nRf } = composicaoRodada(nAbc, nFlash, nComp), porRodada = nRq + nRc + nRf;
+  const nFlash = mc.conteudo.flash.length + mc.conteudo.flashImg.length;
+  const temTreino = temTreinoGeral(mc, rg.conj);
 
   const vazia = mc.banco.length === 0;
-  const temTreino = nAbc + nComp + nFlash > 0;
   const acertoPct = r.feitas ? Math.round((r.acertos / r.feitas) * 100) : 0;
 
   return (
@@ -223,20 +207,7 @@ export function Materia() {
       <div className={'mat-topo' + (temTreino ? '' : ' sem-capa')}>
         <div className={'mat-duo' + (temTreino ? '' : ' so-prog')}>
         {temTreino && (
-        <Link to={`/m/${m}/treino`} className="capa-tg">
-          <span className="capa-txt">
-            <h2>Treino geral de {info.nome}</h2>
-            <span className="capa-p">{tg ? 'Seu treino está salvo onde você parou. ' : ''}{descreveTreino(nAbc, nComp, nFlash)}</span>
-            <span className="tg-nums">
-              {([['Questões de prova', feitoAbc, nAbc, okAbc], ['Completar a frase', feitoComp, nComp, okComp], ['Flashcards', feitoFlash, nFlash, okFlash]] as [string, number, number, number][]).filter(([, , n]) => n > 0).map(([t, f, n, ok]) => (
-                <span key={t} className="tg-n"><i>{t}</i><b className="num">{f}<small>{t === 'Questões de prova' ? (f === 1 ? ' feita' : ' feitas') : ` de ${n}`}</small></b><span className="barra" aria-hidden><i style={{ width: `${n ? (f / n) * 100 : 0}%` }} /></span><small className="num">{f ? plural(ok, 'acerto', 'acertos') : '\u00a0'}</small></span>
-              ))}
-            </span>
-            <span className="btn btn-capa"><Icone nome="alvo" /> {tg ? `Retomar (${tg.i} de ${tg.it.length})` : 'Começar treino'}</span>
-            <span className="tg-comp num">{porRodada === nRq ? `${plural(nRq, 'questão', 'questões')} por rodada` : `${porRodada} itens por rodada: ${[nRq && plural(nRq, 'questão', 'questões'), nRc && plural(nRc, 'frase', 'frases'), nRf && plural(nRf, 'flashcard', 'flashcards')].filter(Boolean).join(', ').replace(/, ([^,]*)$/, ' e $1')}`}</span>
-          </span>
-          <ArteTreinoMateria m={m} className="capa-ilu" />
-        </Link>
+        <CapaTreinoGeral mc={mc} s={s} conj={rg.conj} />
         )}
         <ProgressoMateria mc={mc} s={s} />
         </div>
@@ -297,4 +268,59 @@ export function Materia() {
       </section>
     </div>
   );
+}
+
+/** quantas questões, frases e flashcards a matéria tem para o treino geral (na região do aluno) */
+function contaTreino(mc: MateriaCarregada, conj: Parameters<typeof questoesTreinoGeral>[2]) {
+  const abc = questoesTreinoGeral(mc.conteudo.essencial.abc, mc.banco, conj);
+  return { abc, nAbc: abc.length, nComp: mc.conteudo.essencial.completar.length, nFlash: mc.conteudo.flash.length + mc.conteudo.flashImg.length };
+}
+export function temTreinoGeral(mc: MateriaCarregada, conj: Parameters<typeof questoesTreinoGeral>[2]): boolean {
+  const { nAbc, nComp, nFlash } = contaTreino(mc, conj);
+  return nAbc + nComp + nFlash > 0;
+}
+
+/** Capa do Treino geral (protótipo: .ad-tg). Na página da matéria é um link que já começa o treino; na tela própria do
+ *  treino (`/m/<m>/treino`, revisão de 19/11/2026, matérias 27; aprovado pelo dono em 20/11) é a abertura, com o botão. */
+export function CapaTreinoGeral({ mc, s, conj, aoComecar }: { mc: MateriaCarregada; s: EstadoMateria; conj: Parameters<typeof questoesTreinoGeral>[2]; aoComecar?: () => void }) {
+  const m = mc.id;
+  const e = useEstado();
+  const info = infoMateria(m)!;
+  const tg = e.treino[m];
+  const { abc, nAbc, nComp, nFlash } = contaTreino(mc, conj);
+  // questões do treino geral na região do aluno (+ ENEM), as mesmas que a rodada sorteia (logica/regiao.ts)
+  // contadores da capa do treino geral (protótipo: .ad-tg-n) e a composição de uma rodada (logica/rodadaTreino.ts: 6 questões, 4 frases, 5 flashcards; sem frases e flashcards, mais questões)
+  const feitoAbc = abc.filter((id) => s.q[id]?.tent.length).length;
+  const feitoComp = mc.conteudo.essencial.completar.filter((c) => s.flash[c.id]).length;
+  const feitoFlash = [...mc.conteudo.flash, ...mc.conteudo.flashImg].filter((c) => s.flash[c.id]).length;
+  // quantidade de questões só nos conteúdos (CLAUDE.md, vocabulário; revisão 20/11, matérias 1): o contador de questões
+  // mostra as feitas e a barra, nunca "x de N"
+  // acertos (última resposta certa): quarta linha de cada contador, como no protótipo
+  const ultFlashOk = (id: string) => { const h = s.flash[id]?.hist; return !!h?.length && h[h.length - 1].v === 'a'; };
+  const okAbc = abc.filter((id) => { const t = s.q[id]?.tent; return !!t?.length && t[t.length - 1].ok; }).length;
+  const okComp = mc.conteudo.essencial.completar.filter((c) => ultFlashOk(c.id)).length;
+  const okFlash = [...mc.conteudo.flash, ...mc.conteudo.flashImg].filter((c) => ultFlashOk(c.id)).length;
+  const { q: nRq, c: nRc, f: nRf } = composicaoRodada(nAbc, nFlash, nComp), porRodada = nRq + nRc + nRf;
+  const rotulo = tg && tg.i > 0 && tg.i < tg.it.length ? `Retomar (${tg.i + 1} de ${tg.it.length})` : 'Começar treino';
+  const miolo = (
+    <>
+          <span className="capa-txt">
+            <h2>Treino geral de {info.nome}</h2>
+            <span className="capa-p">{tg && tg.i > 0 && tg.i < tg.it.length ? 'Seu treino está salvo onde você parou. ' : ''}{descreveTreino(nAbc, nComp, nFlash)}</span>
+            <span className="tg-nums">
+              {([['Questões de prova', feitoAbc, nAbc, okAbc], ['Completar a frase', feitoComp, nComp, okComp], ['Flashcards', feitoFlash, nFlash, okFlash]] as [string, number, number, number][]).filter(([, , n]) => n > 0).map(([t, f, n, ok]) => (
+                <span key={t} className="tg-n"><i>{t}</i><b className="num">{f}<small>{t === 'Questões de prova' ? (f === 1 ? ' feita' : ' feitas') : ` de ${n}`}</small></b><span className="barra" aria-hidden><i style={{ width: `${n ? (f / n) * 100 : 0}%` }} /></span><small className="num">{f ? plural(ok, 'acerto', 'acertos') : '\u00a0'}</small></span>
+              ))}
+            </span>
+            {aoComecar
+              ? <button type="button" className="btn btn-capa" onClick={aoComecar}><Icone nome="alvo" /> {rotulo}</button>
+              : <span className="btn btn-capa"><Icone nome="alvo" /> {rotulo}</span>}
+            <span className="tg-comp num">{porRodada === nRq ? `${plural(nRq, 'questão', 'questões')} por rodada` : `${porRodada} itens por rodada: ${[nRq && plural(nRq, 'questão', 'questões'), nRc && plural(nRc, 'frase', 'frases'), nRf && plural(nRf, 'flashcard', 'flashcards')].filter(Boolean).join(', ').replace(/, ([^,]*)$/, ' e $1')}`}</span>
+          </span>
+          <ArteTreinoMateria m={m} className="capa-ilu" />
+    </>
+  );
+  return aoComecar
+    ? <section className="capa-tg capa-tg-tela" aria-label={`Treino geral de ${info.nome}`}>{miolo}</section>
+    : <Link to={`/m/${m}/treino?comecar=1`} className="capa-tg">{miolo}</Link>;
 }

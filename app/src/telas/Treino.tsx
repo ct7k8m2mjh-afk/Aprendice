@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { EH_PREVIA, urlPrint, useMateria, useQuestaoComTexto, useResolucoes, type MateriaCarregada } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
@@ -14,8 +14,9 @@ import { CompletarView, FlashcardView, type Nota } from '../ui/Cartoes';
 import { registraTentativa } from './Questao';
 import { notaFlash } from './Flashcards';
 import type { Letra, MateriaId, Questao } from '../dados/tipos';
-import type { SessaoTreino } from '../estado/tipos';
-import { FiltroRegiaoChips, regiaoDoEstado } from '../ui/FiltroRegiao';
+import { estadoMateriaVazio, type SessaoTreino } from '../estado/tipos';
+import { FiltroRegiaoChips, regiaoDoEstado, useRegiao } from '../ui/FiltroRegiao';
+import { CapaTreinoGeral } from './Materia';
 import { questoesTreinoGeral } from '../logica/regiao';
 
 function embaralha<T>(l: T[]): T[] { const a = [...l]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
@@ -113,6 +114,11 @@ export function Treino() {
   const e = useEstado();
   useTitulo('Treino geral');
   const ses = e.treino[m];
+  const rg = useRegiao();
+  // capa própria (revisão de 19/11/2026, matérias 27; aprovado pelo dono em 20/11): quem abre /m/<m>/treino vê a
+  // abertura do treino; a capa da página da matéria já é a abertura, por isso o link dela leva ?comecar=1
+  const [busca, setBusca] = useSearchParams();
+  const comecou = busca.get('comecar') === '1';
 
   // matéria sem questões (ou sem nada para o treino): a tela da matéria não oferece treino, então a rota leva ao aviso "em preparação" dela
   const semTreino = !!mc && (mc.banco.length === 0 || !(mc.conteudo.essencial.abc.length + mc.conteudo.essencial.completar.length + mc.conteudo.flash.length + mc.conteudo.flashImg.length));
@@ -126,6 +132,15 @@ export function Treino() {
   const salva = (f: (s: SessaoTreino) => SessaoTreino) => atualiza((x) => ({ ...x, treino: { ...x.treino, [m]: f(x.treino[m]!) } }));
   const avanca = (id: string, n: Nota) => salva((s) => ({ ...s, i: s.i + 1, res: { ...s.res, [id]: n } }));
   const recomecar = () => atualiza((x) => ({ ...x, treino: { ...x.treino, [m]: montaTreino(mc) } }));
+  if (!comecou) {
+    const comecar = () => { if (ses.i >= ses.it.length) recomecar(); setBusca({ comecar: '1' }, { replace: true }); };
+    return (
+      <div className={`conteudo m-${m} tg-tela`}>
+        <div className="tp-topo"><Link to={`/m/${m}`} className="tp-volta"><Icone nome="esquerda" />{info.nome}</Link></div>
+        <CapaTreinoGeral mc={mc} s={e.materias[m] || estadoMateriaVazio()} conj={rg.conj} aoComecar={comecar} />
+      </div>
+    );
+  }
   const encerrar = () => { atualiza((x) => { const t = { ...x.treino }; delete t[m]; return { ...x, treino: t }; }); nav(`/m/${m}`); };
 
   if (ses.i >= ses.it.length) {
@@ -139,7 +154,7 @@ export function Treino() {
           <p className="miolo">{v.filter((x) => x === 'a').length} de {v.length} itens certos.</p>
           <div className="rf-nums">
             {([[q, 'questões de prova'], [f, 'flashcards'], [c, 'frases']] as [{ n: number; ok: number }, string][]).filter(([x]) => x.n > 0).map(([x, t]) => (
-              <div key={t}><b className="num">{x.ok}/{x.n}</b><span>{t}</span></div>
+              <div key={t}><b className="num">{x.ok} de {x.n}</b><span>{t}</span></div>
             ))}
           </div>
           <p className="miolo">Erros e chutes entram na revisão espaçada automaticamente.</p>
