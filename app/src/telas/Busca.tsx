@@ -6,6 +6,7 @@ import { MATERIAS, nomeMateria } from '../dados/materias';
 import { CATALOGO } from '../dados/provas';
 import { useIndiceProvas } from '../dados/provasCompletas';
 import { norm } from '../logica/correcao';
+import { ordenaBusca } from '../logica/busca';
 import { IcTema } from '../ui/IconeTema';
 import { useRegiao } from '../ui/FiltroRegiao';
 import { filtraRegiao } from '../logica/regiao';
@@ -22,6 +23,13 @@ export function Busca({ aoFechar }: { aoFechar: () => void }) {
   const [sel, setSel] = useState(0);
   const inp = useRef<HTMLInputElement>(null);
   useEffect(() => { inp.current?.focus(); }, []);
+  // Esc fecha com o foco em qualquer lugar da janela (no Fechar, num resultado), não só no campo (casca 26)
+  useEffect(() => {
+    // na captura: o Esc fecha só a busca, sem chegar ao atalho da tela de baixo (sair da questão)
+    const f = (e: KeyboardEvent) => { if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); aoFechar(); } };
+    addEventListener('keydown', f, true);
+    return () => removeEventListener('keydown', f, true);
+  }, [aoFechar]);
 
   const indice = useMemo<Resultado[]>(() => {
     const r: Resultado[] = [];
@@ -45,17 +53,8 @@ export function Busca({ aoFechar }: { aoFechar: () => void }) {
   const lista = useMemo(() => {
     const q = norm(t);
     if (!q) return indice.filter((x) => x.grupo === 'Matérias' || x.grupo === 'Temas').slice(0, 14);
-    const ps = q.split(' ');
-    const porRelevancia = indice
-      .map((x) => { const h = norm(x.titulo + ' ' + x.det); const ok = ps.every((p) => h.includes(p)); return ok ? { x, s: norm(x.titulo).startsWith(ps[0]) ? 0 : 1 } : null; })
-      .filter(Boolean)
-      .sort((a, b) => a!.s - b!.s)
-      .slice(0, 40)
-      .map((y) => y!.x);
-    // cada grupo aparece uma vez: os grupos na ordem do seu melhor resultado, e dentro do grupo a ordem por relevância
-    const grupos = new Map<string, Resultado[]>();
-    for (const x of porRelevancia) { const g = grupos.get(x.grupo); if (g) g.push(x); else grupos.set(x.grupo, [x]); }
-    return [...grupos.values()].flat();
+    // singular e plural casam, e a ordem é por relevância com conteúdos e temas antes dos cartões (logica/busca.ts)
+    return ordenaBusca(indice, t);
   }, [t, indice]);
 
   useEffect(() => setSel(0), [t]);
@@ -68,11 +67,10 @@ export function Busca({ aoFechar }: { aoFechar: () => void }) {
       <div className="janela busca" role="dialog" aria-modal="true" aria-label="Buscar">
         <div className="cab" style={{ gap: 12 }}>
           <Icone nome="busca" />
-          <input ref={inp} className="entrada" style={{ border: 0, boxShadow: 'none', height: 40, padding: 0 }} placeholder="Buscar conteúdos, temas, provas, cartões" value={t}
+          <input ref={inp} className="entrada" style={{ border: 0, boxShadow: 'none', height: 40, padding: 0 }} placeholder="Buscar matérias, temas, conteúdos, flashcards e provas" value={t}
             onChange={(e) => setT(e.target.value)} aria-label="O que você procura"
             onKeyDown={(e) => {
-              if (e.key === 'Escape') aoFechar();
-              else if (e.key === 'ArrowDown') { e.preventDefault(); setSel((s) => Math.min(lista.length - 1, s + 1)); }
+              if (e.key === 'ArrowDown') { e.preventDefault(); setSel((s) => Math.min(lista.length - 1, s + 1)); }
               else if (e.key === 'ArrowUp') { e.preventDefault(); setSel((s) => Math.max(0, s - 1)); }
               else if (e.key === 'Enter' && lista[sel]) vai(lista[sel]);
             }} />

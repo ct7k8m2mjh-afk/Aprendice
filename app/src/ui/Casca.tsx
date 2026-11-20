@@ -144,8 +144,8 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
         <header className={'topo' + (rolou ? ' rolou' : '')}>
           <button className="btn-ic abre-trilho" onClick={() => poeOculto(false)} aria-label="Mostrar a barra lateral" title="Mostrar a barra"><Icone nome="direita" /></button>
           <Link to="/" className="logo-cel" aria-label="Início"><Logo /></Link>
-          <button className="busca-btn" onClick={() => setBusca(true)} aria-label="Buscar conteúdo, questões ou simulados" aria-keyshortcuts="Control+K">
-            <Icone nome="busca" tam={20} /><span className="txt">Buscar conteúdo, questões ou simulados...</span><kbd>Ctrl K</kbd>
+          <button className="busca-btn" onClick={() => setBusca(true)} aria-label="Buscar matérias, temas, conteúdos, flashcards e provas" aria-keyshortcuts="Control+K">
+            <Icone nome="busca" tam={20} /><span className="txt">Buscar conteúdos, flashcards e provas...</span><kbd>Ctrl K</kbd>
           </button>
           <div className="direita">
             <TemaSeg escuro={escuro} />
