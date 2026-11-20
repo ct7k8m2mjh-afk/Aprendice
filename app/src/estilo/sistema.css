@@ -360,10 +360,13 @@
 @media (max-width: 700px) { .q-meta .etq.q-sub { white-space: normal; } }
 /* barra de estudo até 900 px: rótulos "Total"/"Questão" dos cronômetros saem e o texto da barra pode usar duas linhas
    (nada cortado: "Citologia · Básico · 1 de 8") */
-/* barra de estudo até 900 px: rótulos "Total"/"Questão" dos cronômetros saem e o texto da barra pode usar duas linhas
-   (nada cortado: "Citologia · Básico · 1 de 8") */
+/* (revisão de 20/11/2026, questão N14; aprovado pelo dono): de 701 a 900 px os rótulos "Total" e "Questão" voltam, para
+   os dois relógios não ficarem iguais lado a lado; até 700 px saem (o total some até 420 px) */
+@media (min-width: 701px) and (max-width: 900px) {
+  /* espaço para os rótulos: a seta de voltar fica sem a palavra (o nome continua no aria-label) e o atalho do teclado sai */
+  .q-volta span, .q-ajuda { display: none; }
+}
 @media (max-width: 900px) {
-  .q-barra .crono small, .crono-tot small { display: none; }
   .q-barq .t { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.25; text-overflow: clip; }
 }
 /* conteúdos relacionados (painel da questão): o nome inteiro, sem reticências */
