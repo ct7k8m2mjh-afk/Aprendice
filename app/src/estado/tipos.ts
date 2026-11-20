@@ -4,7 +4,8 @@ import type { ProgressoGeral } from '../logica/revisaoGeral';
 
 /** Mesmo formato do protótipo (S.q[id].tent), para a migração não perder nada. */
 export interface Tentativa {
-  letra: Letra;
+  /** null: deixada em branco no simulado (conta como erro e entra na revisão espaçada; revisão de 19/11/2026, casca 20) */
+  letra: Letra | null;
   ok: boolean;
   ts: number;
   seg: number;

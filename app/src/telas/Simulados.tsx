@@ -9,7 +9,7 @@ import { FiltroRegiaoChips, useRegiao } from '../ui/FiltroRegiao';
 import { useMateria } from '../dados/conteudo';
 import { MATERIAS_ATIVAS } from '../dados/materias';
 import { filtraRegiao } from '../logica/regiao';
-import { QTDS_CONTEUDO } from '../logica/simulados';
+import { QTDS_CONTEUDO, entraNoSimuladoConteudo } from '../logica/simulados';
 import type { MateriaId } from '../dados/tipos';
 import { REGIOES_PRATICA, deFiltro, descreveFiltro, ehFiltro, regiaoDaProva, regiaoDaQuestao, regioesDoFiltro, type FiltroRegiao } from '../logica/regiao';
 
@@ -30,7 +30,8 @@ export function Simulados() {
   const daAlvo = eds.filter((x) => alvo.has(x.catalogoId));
   const conj = so === 'alvo' ? null : regioesDoFiltro(so, rg.minhas);
   const regiaoEd = (x: IndiceProva) => { const c = provaPorId(x.catalogoId); return c ? regiaoDaProva(c) : regiaoDaQuestao({ escola: x.escola }); };
-  const daRegiao = conj ? eds.filter((x) => { const r = regiaoEd(x); return !r || conj.has(r); }) : eds;
+  // prova sem região conhecida não entra em "Minha região" nem numa região escolhida (revisão de 19/11/2026, casca 14)
+  const daRegiao = conj ? eds.filter((x) => { const r = regiaoEd(x); return !!r && conj.has(r); }) : eds;
   // nunca sem prova: região sem simulado ainda mostra todos (com aviso)
   const lista = so === 'alvo' ? (daAlvo.length ? daAlvo : eds) : daRegiao.length ? daRegiao : eds;
   const andamento = e.simulado;
@@ -155,7 +156,7 @@ function EscolhaConteudo() {
   const nav = useNavigate();
   const conta = useMemo(() => {
     const c = new Map<string, number>();
-    if (mc) for (const q of filtraRegiao(mc.banco.filter((x) => !x.pendente), rg.conj).l) c.set(q.sub, (c.get(q.sub) || 0) + 1);
+    if (mc) for (const q of filtraRegiao(mc.banco.filter(entraNoSimuladoConteudo), rg.conj).l) c.set(q.sub, (c.get(q.sub) || 0) + 1);
     return c;
   }, [mc, rg.conj]);
   const total = [...sel].reduce((a, s) => a + (conta.get(s) || 0), 0);

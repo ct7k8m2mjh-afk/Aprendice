@@ -7,6 +7,7 @@ import { atualiza, useEstado } from '../estado/loja';
 import { semana } from '../logica/estatisticas';
 import { Protecao } from './Protecao';
 import { Busca } from '../telas/Busca';
+import { destinoAtivo } from '../logica/navAtiva';
 
 export function usaTema() {
   const e = useEstado();
@@ -47,8 +48,10 @@ function ItemMateria({ m, atual }: { m: MateriaInfo; atual?: string }) {
 }
 
 function ItemNav({ para, icone, children, fim, extra }: { para: string; icone: NomeIcone; children: ReactNode; fim?: boolean; extra?: ReactNode }) {
+  const loc = useLocation();
+  const ativoExtra = para !== '/materias' && destinoAtivo(loc.pathname, loc.search) === para;
   return (
-    <NavLink to={para} end={fim} className={({ isActive }) => 'item-nav' + (isActive ? ' ativo' : '')} title={typeof children === 'string' ? children : undefined}>
+    <NavLink to={para} end={fim} className={({ isActive }) => 'item-nav' + (isActive || ativoExtra ? ' ativo' : '')} title={typeof children === 'string' ? children : undefined}>
       <Icone nome={icone} /><span className="rotulo">{children}</span>{extra}
     </NavLink>
   );
@@ -156,7 +159,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
 
       <nav className="tabs" aria-label="Navegação">
         {([['/', 'inicio', 'Início'], ['/materias', 'livro', 'Matérias'], ['/simulados', 'relogio', 'Simulados'], ['/revisao', 'repetir', 'Revisão'], ['/perfil', 'usuario', 'Perfil']] as const).map(([p, ic, t]) => (
-          <NavLink key={p} to={p} end={p === '/'} className={({ isActive }) => (isActive || (p === '/materias' && !!mAtual) ? 'ativo' : '')}>
+          <NavLink key={p} to={p} end={p === '/'} className={() => (destinoAtivo(loc.pathname, loc.search) === p ? 'ativo' : '')}>
             <span className="bolha-ic"><Icone nome={ic} /></span>{t}
           </NavLink>
         ))}

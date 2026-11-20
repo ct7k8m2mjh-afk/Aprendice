@@ -114,7 +114,7 @@ export function SimuladoConteudo() {
   return <ConfigSimulado plano={plano} migalha="Simulado por conteúdo" />;
 }
 
-function finaliza(sim: SimuladoAndamento, todas: MateriaCarregada[], prova: ProvaCompleta | null | undefined): SimuladoFeito {
+export function finaliza(sim: SimuladoAndamento, todas: MateriaCarregada[], prova: ProvaCompleta | null | undefined): SimuladoFeito {
   const ts = Date.now();
   const itens: SimuladoFeito['itens'] = [];
   const porMateria: SimuladoFeito['porMateria'] = {};
@@ -140,10 +140,14 @@ function finaliza(sim: SimuladoAndamento, todas: MateriaCarregada[], prova: Prov
   for (const [m, pm] of Object.entries(porMateria) as [MateriaId, { acertos: number; total: number }][]) {
     atualizaMateria(m, (s) => {
       const q = { ...s.q };
-      for (const it of itens.filter((x) => x.m === m && !x.p && x.letra)) {
+      // a questão em branco também entra, como erro (o resultado promete: "os erros e as questões em branco já entraram
+      // na revisão espaçada"; revisão de 19/11/2026, casca 20)
+      for (const it of itens.filter((x) => x.m === m && !x.p)) {
         const r = sim.resp[it.id];
         const eq = q[it.id] || { tent: [] };
-        q[it.id] = { ...eq, tent: [...eq.tent, { letra: r.letra, ok: it.ok, ts: r.ts || ts, seg: r.seg, conf: r.conf, ctx: 'simulado' }] };
+        q[it.id] = { ...eq, tent: [...eq.tent, r
+          ? { letra: r.letra, ok: it.ok, ts: r.ts || ts, seg: r.seg, conf: r.conf, ctx: 'simulado' }
+          : { letra: null, ok: false, ts, seg: 0, ctx: 'simulado' }] };
       }
       return { ...s, q, sims: [...s.sims, { nome: sim.titulo, acertos: pm.acertos, total: pm.total, seg: sim.usadoSeg, ts }] };
     });
@@ -247,11 +251,12 @@ export function SimuladoExec() {
           <span className="t num"><span className="lg">Questão </span><b>{sim.i + 1}</b> de {sim.itens.length} · {respondidas} <span className="lg">respondidas</span><span className="cu">resp.</span></span>
           <span className="p" aria-hidden><i style={{ width: `${((sim.i + 1) / sim.itens.length) * 100}%` }} /></span>
         </div>
-        <button className="btn sec peq folha-btn" onClick={() => mostraPainel()}><Icone nome="lista" tam={16} /><span>Folha de respostas</span></button>
+        {/* pausado: questões escondidas, e a folha e o Entregar também param (revisão de 19/11/2026, casca 22) */}
+        <button className="btn sec peq folha-btn" onClick={() => mostraPainel()} disabled={sim.pausado}><Icone nome="lista" tam={16} /><span>Folha de respostas</span></button>
         <button className={'crono num' + (restante !== null && restante < 300 ? ' alerta' : '')} onClick={() => pausa(true)} aria-label="Pausar simulado" title="Pausar (P)">
           <Icone nome="pausa" tam={15} />{restante !== null ? formataTempo(restante) : formataTempo(sim.usadoSeg)}
         </button>
-        <button className="btn peq" onClick={() => setConfirmaFim(true)}>Entregar</button>
+        <button className="btn peq" onClick={() => setConfirmaFim(true)} disabled={sim.pausado}>Entregar</button>
         <BotaoTelaCheia />
       </div>
 

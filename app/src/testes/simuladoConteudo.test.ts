@@ -41,3 +41,13 @@ describe('planoDoConteudo', () => {
     expect(p.itens.map((x) => x.id).sort()).toEqual(['a10', 'a11', 'a8', 'a9']);
   });
 });
+
+describe('simulado por conteúdo sem gabarito do Aprendice (revisão de 19/11/2026, casca 17)', () => {
+  it('a questão com gabarito do Aprendice não entra, e a descrição não promete o que não cumpre', () => {
+    const b = [q('o1', 'B01.1', 2), q('ap', 'B01.1', 3, { gabFonte: 'aprendice' }), q('rs', 'B01.1', 4, { gabFonte: 'resolucao' })];
+    const p = planoDoConteudo('bio', b, ['B01.1'], 45, nomes, { rnd: semente(3) });
+    expect(p.itens.map((x) => x.id).sort()).toEqual(['o1', 'rs']);
+    expect(p.descricao).not.toMatch(/Gabarito oficial\.$/);
+    expect(p.descricao).toContain('gabarito publicado');
+  });
+});
