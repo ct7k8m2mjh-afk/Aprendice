@@ -105,6 +105,8 @@ export function Tema() {
   const ant = idx > 0 ? mods[idx - 1] : undefined;
   const prox = idx < mods.length - 1 ? mods[idx + 1] : undefined;
   const subs = mod.subs.filter((x) => mc.porSub.get(x.id)?.length);
+  // conteúdo ainda sem questão não some: aparece no fim da lista, sem link, com "ainda sem questões" (revisão 20/11, matérias 12)
+  const semQuestao = mod.subs.filter((x) => !mc.porSub.get(x.id)?.length);
   // pedido do dono (09/11/2026): questões da região do aluno (+ ENEM); conteúdo sem nenhuma da região usa todas (reserva)
   // critério único de contagem (logica/regiao.ts: filtraTema), o mesmo da matéria, da faixa e do aviso
   const ft = filtraTema(subs.map((x) => x.id), (id) => mc.porSub.get(id) || [], rg.conj);
@@ -134,7 +136,7 @@ export function Tema() {
       <CabMateria m={m} nome={nomeMat} sub={subMateria(mods.length, mc.banco.length === 0)} titulo={false} />
       <FaixaTemas mc={mc} s={s} atual={mod.id} compacta />
       <div className="tp-topo"><Link to={`/m/${m}`} className="tp-volta"><Icone nome="esquerda" />Todos os temas</Link></div>
-      {subs.length > 0 && <div className="tp-regiao"><FiltroRegiaoChips /><AvisoRegiao f={ft} onde="neste tema" /></div>}
+      {subs.length > 0 && <div className="tp-regiao"><FiltroRegiaoChips /><AvisoRegiao f={ft} onde="neste tema" semNumero /></div>}
 
       <section className="tp-capa" aria-labelledby="tp-tit">
         <div className="tp-cab">
@@ -223,6 +225,17 @@ export function Tema() {
                     <span className="p"><span className="num">{pe.feitas}/{pe.total}</span><Barra valor={pe.total ? pe.feitas / pe.total : 0} rotulo={`Progresso em ${sub.nome}`} /></span>
                     <Icone nome="direita" className="tp-seta" />
                   </Link>
+                </li>
+              );
+            })}
+            {semQuestao.map((sub) => {
+              const frase = fraseDe(mod, sub.id);
+              return (
+                <li key={sub.id}>
+                  <div className="tp-semq">
+                    <i className="ponto-sub" aria-hidden />
+                    <span className="t"><b>{cap(sub.nome)}</b>{frase && <span>{frase}</span>}<span className="tp-outras">Ainda sem questões</span></span>
+                  </div>
                 </li>
               );
             })}

@@ -187,6 +187,8 @@ export function Materia() {
   const feitoAbc = abc.filter((id) => s.q[id]?.tent.length).length;
   const feitoComp = mc.conteudo.essencial.completar.filter((c) => s.flash[c.id]).length;
   const feitoFlash = [...mc.conteudo.flash, ...mc.conteudo.flashImg].filter((c) => s.flash[c.id]).length;
+  // quantidade de questões só nos conteúdos (CLAUDE.md, vocabulário; revisão 20/11, matérias 1): o contador de questões
+  // mostra as feitas e a barra, nunca "x de N"
   // acertos (última resposta certa): quarta linha de cada contador, como no protótipo
   const ultFlashOk = (id: string) => { const h = s.flash[id]?.hist; return !!h?.length && h[h.length - 1].v === 'a'; };
   const okAbc = abc.filter((id) => { const t = s.q[id]?.tent; return !!t?.length && t[t.length - 1].ok; }).length;
@@ -227,7 +229,7 @@ export function Materia() {
             <span className="capa-p">{tg ? 'Seu treino está salvo onde você parou. ' : ''}{descreveTreino(nAbc, nComp, nFlash)}</span>
             <span className="tg-nums">
               {([['Questões de prova', feitoAbc, nAbc, okAbc], ['Completar a frase', feitoComp, nComp, okComp], ['Flashcards', feitoFlash, nFlash, okFlash]] as [string, number, number, number][]).filter(([, , n]) => n > 0).map(([t, f, n, ok]) => (
-                <span key={t} className="tg-n"><i>{t}</i><b className="num">{f}<small> de {n}</small></b><span className="barra" aria-hidden><i style={{ width: `${n ? (f / n) * 100 : 0}%` }} /></span><small className="num">{f ? plural(ok, 'acerto', 'acertos') : '\u00a0'}</small></span>
+                <span key={t} className="tg-n"><i>{t}</i><b className="num">{f}<small>{t === 'Questões de prova' ? (f === 1 ? ' feita' : ' feitas') : ` de ${n}`}</small></b><span className="barra" aria-hidden><i style={{ width: `${n ? (f / n) * 100 : 0}%` }} /></span><small className="num">{f ? plural(ok, 'acerto', 'acertos') : '\u00a0'}</small></span>
               ))}
             </span>
             <span className="btn btn-capa"><Icone nome="alvo" /> {tg ? `Retomar (${tg.i} de ${tg.it.length})` : 'Começar treino'}</span>

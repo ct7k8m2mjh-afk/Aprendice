@@ -95,7 +95,9 @@ export function SeletorMinhaRegiao({ aoMudou, semTitulo }: { aoMudou?: () => voi
 }
 
 /** Aviso discreto quando a região tem poucas (ou nenhuma) questões aqui, com "ver de outras regiões". */
-export function AvisoRegiao({ f, onde = 'neste conteúdo', aoVerOutras }: { f: Pick<Filtrado<unknown>, 'daRegiao' | 'total' | 'reserva' | 'poucas'> & { subsReserva?: number }; onde?: string; aoVerOutras?: () => void }) {
+/** `semNumero`: no tema (e na matéria) a quantidade de questões não aparece (CLAUDE.md: "Quantidade de questões aparece só
+ *  nos conteúdos"; revisão de 20/11/2026, matérias 1): "Poucas questões … neste tema" e "Ver de outras regiões". */
+export function AvisoRegiao({ f, onde = 'neste conteúdo', aoVerOutras, semNumero }: { f: Pick<Filtrado<unknown>, 'daRegiao' | 'total' | 'reserva' | 'poucas'> & { subsReserva?: number }; onde?: string; aoVerOutras?: () => void; semNumero?: boolean }) {
   const r = useRegiao();
   if (!r.conj || (!f.reserva && !f.poucas)) return null;
   const nome = deFiltro(r.filtro, r.minhas);
@@ -104,8 +106,8 @@ export function AvisoRegiao({ f, onde = 'neste conteúdo', aoVerOutras }: { f: P
     <p className="fr-aviso" role="status">
       <span>{f.reserva
         ? <>Ainda não há questões {nome} {onde}. Mostrando as de todas as regiões.</>
-        : <>Só {f.daRegiao === 1 ? '1 questão' : `${f.daRegiao} questões`} {nome} {onde}.{f.subsReserva ? ' Nos conteúdos sem nenhuma, você pratica com as de outras regiões.' : ''}</>}</span>
-      {!f.reserva && <button className="link-sec" onClick={ver}>Ver de outras regiões ({f.total - f.daRegiao})</button>}
+        : <>{semNumero ? 'Poucas questões' : <>Só {f.daRegiao === 1 ? '1 questão' : `${f.daRegiao} questões`}</>} {nome} {onde}.{f.subsReserva ? ' Nos conteúdos sem nenhuma, você pratica com as de outras regiões.' : ''}</>}</span>
+      {!f.reserva && <button className="link-sec" onClick={ver}>Ver de outras regiões{semNumero ? '' : ` (${f.total - f.daRegiao})`}</button>}
     </p>
   );
 }
