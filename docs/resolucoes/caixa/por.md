@@ -567,3 +567,4 @@ classificar pelo autor do texto de apoio), e registro aqui que há duas leituras
 por-pend-0010 gravado: 1 resolvida, 17 continuam pendentes (Artes/Educação Física = outra matéria; obras sem fonte: O conto da mulher brasileira, Viver é prejudicial à saúde, Tribo Cara Baixa ×2).
 por-pend-0011 gravado: 24 resolvidas (vindas de geo/his), 1 pendente.
 RECLASS P474a411a (PUC-Campinas 2027, q.17) por -> ing I01.3: texto-base em inglês, irmãs 15, 16 e 18 já em ing.
+DADO P5090f245: alternativas.E -> "ironia, pois o texto verbal contradiz o texto não-verbal." ("Leia a charge. <link> Acesso em…" colado no fim)

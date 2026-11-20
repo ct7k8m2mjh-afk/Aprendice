@@ -15,3 +15,9 @@ DADO P4227aeb2: alternativas.E -> "Tsiolkovsky foi um pioneiro da astronáutica 
 fs-pend-0004 gravado: 25 resolvidas (vindas de outras matérias por reclassificação), 0 pendentes.
 DADO P51a75087: número -> 41 no print (a entrada diz questão 83; conferir no caderno oficial)
 RECLASS P933c8bac L06.5 -> L06.3
+fs-pend-0005 (em conferência) — linhas para a coordenadora:
+DADO P5a679053: alternativas.D -> "caracterização das relações de ancestralidade biológica" (legenda da foto colada)
+DADO P3df3eea4: alternativas.E -> sem o "#####" colado no fim
+ANULAR Peefb896f (PUCPR Inverno 2023, Medicina): gabarito E exige a I como certa ("as únicas desigualdades naturais são as de força física"), mas Rousseau define a desigualdade natural por idade, saúde, forças do corpo e qualidades do espírito; a IV atribui a Rousseau as bases da Revolução Americana. A resolução antiga em pucpr-2023-2/resolucoes-his.json (aprovada, ensina E) também precisa sair.
+ANULAR Pa8bd2834: gabarito exige a proposição 5 (EZLN "participou ativamente dos Fóruns Sociais Mundiais"); a Carta de Princípios do FSM excluía organizações armadas e o EZLN ficou de fora (La Jornada 03/02/2002; Bulatlat 2004).
+RECLASS? P284b35f0 S08.5 -> História (dúvida do conferente: comando pede "mundo contemporâneo e Teoria da História"; só a 5ª afirmativa toca Benjamin) — a coordenadora decide.
