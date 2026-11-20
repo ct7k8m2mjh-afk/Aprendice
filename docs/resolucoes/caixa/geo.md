@@ -447,3 +447,6 @@ DADO Pb1b726b3: alternativas.D -> "importância industrial na hierarquia urbana"
 
 DADO P7b1dac11 (UERJ 2023 q60): alternativas.D -> "hierarquização da distribuição demográfica – modernização de redes rodoviárias"; o resto colado em D ("Quando Carlos Lacerda assumiu ... Adaptado de multirio.rio.rj.gov.br.") é o texto-base da questão, que falta em texto_da_prova.
 AVISO (pendentes, 20/11 22h UTC): limite de uso atingido até 02:50 UTC. geo-pend-0005 (25 resolvidas, aguardando conferência), geo-pend-0004 e his-pend-0006 (em resolução) seguem abertos nesta sessão; retomo depois do limite.
+DADO P9b1322c7: alternativas.D -> "redimensionamento das relações espaciais e comunicacionais" (no texto do lote a letra da canção Parabolicamará está colada na alternativa D e falta no texto_da_prova; UERJ 2023, questão 57)
+GABARITO P77e99026: UECE 2025.2 1ª fase, questão 76: prova.json tem gab null e gab_preliminar B, mas a entrada do lote veio com gabarito_oficial B; resolvida com B (letra do resolvedor = B = preliminar). Falta a letra do conferente às cegas (gabarito_aprendice.letra_conferente vazio) e o gabarito definitivo da CEV não foi localizado.
+PRINT Pd4ca228f: Santa Casa 2024, questão 40: continua sem identificar as 5 projeções do Atlas Escolar do IBGE; liberar curso-objetivo.br ou atlasescolar.ibge.gov.br na rede.
