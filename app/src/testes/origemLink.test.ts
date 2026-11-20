@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { origemDoLink } from '../logica/origemLink';
+import { ehSiteDidatico, origemDoLink } from '../logica/origemLink';
 import { avisoGabarito, origemGabarito } from '../dados/tipos';
 
 // Revisão do site de 19/11/2026 (questao-correcao.md item 19): o rótulo diz de onde é o link
@@ -36,5 +36,16 @@ describe('aviso do gabarito do Aprendice', () => {
     expect(src).not.toMatch(/Publicado \(oficial ou resolução reconhecida\)/);
     expect(src).toMatch(/\['Gabarito', q\.indisponivel \? [^\]]*: origemGabarito\(q\)\]/);
     expect(origemGabarito({ gabFonte: 'aprendice' })).toBe(avisoGabarito({ gabFonte: 'aprendice' }));
+  });
+});
+
+describe('site didático não aparece na tela (revisão 20/11, dados 3)', () => {
+  it('Brasil Escola, Mundo Educação, Prepara Enem, InfoEscola e Toda Matéria', () => {
+    for (const u of ['https://vestibular.brasilescola.uol.com.br/downloads/ime.htm', 'https://mundoeducacao.uol.com.br/x', 'https://www.preparaenem.com/a', 'https://www.infoescola.com/b', 'https://www.todamateria.com.br/c'])
+      expect(ehSiteDidatico(u), u).toBe(true);
+  });
+  it('site oficial passa', () => {
+    expect(ehSiteDidatico('https://www.ime.eb.mil.br/vestibular')).toBe(false);
+    expect(ehSiteDidatico(undefined)).toBe(false);
   });
 });

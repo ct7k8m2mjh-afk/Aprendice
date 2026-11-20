@@ -10,6 +10,7 @@ import { Icone } from '../ui/Icone';
 import { useRegiao } from '../ui/FiltroRegiao';
 import { descreveFiltro, regiaoDaProva, regioesDoFiltro, type FiltroRegiao } from '../logica/regiao';
 import { leFonte } from '../logica/fonteTexto';
+import { ehSiteDidatico } from '../logica/origemLink';
 
 const INGRESSO: Record<string, string> = { vestibular_proprio: 'Vestibular próprio', enem_sisu: 'ENEM/Sisu', enem_nota: 'Nota do ENEM', seriado: 'Seriado' };
 
@@ -78,6 +79,7 @@ export function ProvaDetalhe() {
   const alvo = e.perfil?.provasAlvo.includes(p.id);
   const alterna = () => atualiza((x) => x.perfil ? ({ ...x, perfil: { ...x.perfil, provasAlvo: alvo ? x.perfil.provasAlvo.filter((y) => y !== p.id) : [...x.perfil.provasAlvo, p.id] } }) : x);
   const f = p.formato;
+  const fontesFicha = p.fontes.filter((u) => !leFonte(u).links.some((l) => ehSiteDidatico(l.url)));
   const linhas: [string, string | number | null | undefined][] = [
     ['Banca', p.banca], ['Rede', p.rede === 'publica' ? 'Pública' : p.rede === 'privada' ? 'Privada' : null],
     ['Ingresso', p.ingresso.map((x) => INGRESSO[x] || x).join(', ')], ['Fases', f?.fases], ['Questões objetivas', f?.questoes_objetivas],
@@ -99,7 +101,8 @@ export function ProvaDetalhe() {
         {!p.verificado || p.a_verificar.length ? (
           <p className="aviso-linha"><Icone nome="info" tam={16} /> <span>{p.verificado ? 'Conferido no edital, exceto: ' : 'Ainda a conferir no edital: '}{p.a_verificar.map(campoLegivel).join('; ') || 'formato da prova'}.</span></p>
         ) : null}
-        <p className="fontes">Fontes: {p.fontes.map((u, i) => { const f = leFonte(u); return f.links[0] ? <a key={i} href={f.links[0].url} target="_blank" rel="noreferrer noopener">{f.links[0].site}</a> : <span key={i}>{f.texto}</span>; })}</p>
+        {/* fonte de site didático não aparece (CLAUDE.md; revisão de 20/11/2026, dados 3) */}
+        {fontesFicha.length > 0 && <p className="fontes">Fontes: {fontesFicha.map((u, i) => { const f = leFonte(u); return f.links[0] ? <a key={i} href={f.links[0].url} target="_blank" rel="noreferrer noopener">{f.links[0].site}</a> : <span key={i}>{f.texto}</span>; })}</p>}
       </section>
       <section className="secao">
         <h2 className="sec-tit">Simulados desta prova</h2>

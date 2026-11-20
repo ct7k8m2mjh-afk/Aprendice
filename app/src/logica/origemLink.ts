@@ -24,11 +24,26 @@ function host(url: string): string {
   try { return new URL(url).hostname.replace(/^www\./, '').toLowerCase(); } catch { return ''; }
 }
 
+/** o link é só a página inicial do site ("https://www.uea.edu.br/", "https://vestibular.uemg.br") */
+function paginaInicial(url: string): boolean {
+  try { const u = new URL(url); return /^\/?(?:index\.(?:html?|php))?$/.test(u.pathname) && !u.search; } catch { return false; }
+}
+
 export function origemDoLink(url: string | undefined, origem: 'prova' | 'site' = 'prova'): OrigemLink {
   if (origem !== 'prova') return { tipo: 'lista', rotulo: 'Lista pública de exercícios' };
   const h = host(url || '');
   for (const [re, nome] of CURSINHOS) if (re.test(h)) return { tipo: 'cursinho', nome, rotulo: `PDF de cursinho (${nome}), com a prova` };
   for (const [re, nome] of TERCEIROS) if (re.test(h)) return { tipo: 'terceiros', nome, rotulo: `Cópia da prova em site de terceiros (${nome})` };
-  if (HOSPEDAGEM.test(h)) return { tipo: 'hospedado', nome: h, rotulo: `Caderno da prova, em arquivo hospedado (${h})` };
+  // o domínio técnico do armazenamento fica no registro (`nome`), não na tela do aluno (revisão de 20/11/2026, N11)
+  if (HOSPEDAGEM.test(h)) return { tipo: 'hospedado', nome: h, rotulo: 'Caderno da prova, em arquivo hospedado na internet' };
+  // link só para a página inicial da instituição: não promete o caderno (N11)
+  if (h && paginaInicial(url || '')) return { tipo: 'oficial', rotulo: 'Site da instituição (sem link direto para o caderno)' };
   return { tipo: 'oficial', rotulo: 'Caderno da prova oficial' };
+}
+
+/** Site didático (CLAUDE.md, "Questões de sites didáticos saem"; dono, 05/11/2026): nem nome nem link no site.
+ *  Usado para esconder a fonte na tela enquanto o dado não é trocado (revisão de 20/11/2026, dados 3: fichas IME e UFRR). */
+const DIDATICOS = /(^|\.)(brasilescola\.uol\.com\.br|mundoeducacao\.uol\.com\.br|preparaenem\.com|infoescola\.com|todamateria\.com\.br)$/;
+export function ehSiteDidatico(url: string | undefined): boolean {
+  return DIDATICOS.test(host(url || ''));
 }
