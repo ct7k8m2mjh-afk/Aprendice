@@ -80,7 +80,18 @@ em 11–13/11 (por-0024/27/32/44 × por-0046; por-0075/78 × por-0082; por-0084/
 REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, commit e push do registro ANTES de resolver
 (e `git pull` antes do proximo). Hoje só a fábrica trabalha em Português, sem risco.
 
-## Estado 20/11 06h10 UTC
+## Estado 20/11 22h UTC (coordenadora nova, outra conta) — vale acima das seções antigas
+- Prompt da passagem: docs/resolucoes/PROMPT-NOVA-COORDENADORA.md. As sessões da conta antiga (inclusive as 3 de pendentes
+  de 06h10 e o ambiente env_01PD36og...) não existem nesta conta; a fonte de verdade é o git.
+- Sessões de pendentes abertas às 22h02 UTC (ambiente Default da conta nova), retomando os 13 lotes abertos e depois a fila
+  "classificação: resolver na matéria nova" (224): session_01Tq253XXh44KrKH1tkSh3AZ (bio/qui/mat/fis),
+  session_01Tq253YL64uC84SwEt9PDxi (geo/his), session_01Tq253UuNCgZUQ9sTxeyRNY (por/fs/ing). 45 min sem commit = caiu; abrir
+  outra com o mesmo prompt (seção 4.1 do prompt da passagem).
+- No ar: dpl_Ho7ikkdfpS7HHZkXnFsGzFR22Kas (commit 62c4b05e, login de demonstração), 26.549 resoluções. publicacao.json corrigido.
+- Conta nova sem conector do Vercel e do Supabase e sem acesso de rede a aprendice.vercel.app: pedido ao dono.
+- Continua valendo "NÃO PUBLICAR" (abaixo) até o dono configurar o Supabase.
+
+## Estado 20/11 06h10 UTC (antigo)
 Fila normal: TODAS as matérias acabaram (falta 1 de História, incluída abaixo). Fábrica de Português parou em 19/11 21h38 (13 lotes, 654;
 as partes 2–4 cobriram o resto). Pendentes "classificação: resolver na matéria nova" (418) com 3 sessões de pendentes:
 session_01PveEKYJhKA7RfgZCSftpct (bio/qui/mat/fis), session_01PveEKaCdFfRjWqaTYysva1 (geo/his), session_01PveEKYZChYRBxQSMaSYeoU
@@ -267,6 +278,7 @@ depois `python3 ferramentas/resolucoes/painel_falta.py` e publique docs/resoluco
 `url` = o link acima, de outra conversa; read antes).
 
 ## Publicação
+ATUAL: ver "Estado 20/11 22h UTC" acima e publicacao.json (no ar: dpl_Ho7ikk..., 62c4b05e). O texto abaixo é antigo.
 Disparada 20/11 02h14 (pedido do dono): dpl_AX9c2qaAryjD2UwyHYL8SNSukrX4 (commit dd870bf8, 874 testes verdes, 26.549 local; inclui fundo, indisponível, pacotes A–D, classificação). Conferir no site e registrar. Falta ainda: privacidade do perfil (F1), F2, F3 → publicar de novo.
 Última no ar: dpl_HVBmf5cTNEmUBmpDrfzbnPijjmF8 (commit 178ab0a4, 19/11 20h33, conferido no site 20h24): 26.300 resoluções. Próxima: com o 'Questão indisponível' (depois da 2ª revisão visual) e/ou quando a fábrica de Português acabar.
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
