@@ -94,7 +94,9 @@
 @media (max-width: 700px) {
   .q-cartao { --qc: 14px; border-radius: 16px; }
   .q-meta { padding-right: 40px; }
-  .q-meta .q-fonte { display: none; }       /* a banca já aparece no pé do print */
+  /* a fonte (prova, ano, número) fica no topo também no celular (revisão de 19/11/2026, questão 14; aprovado pelo dono em
+     20/11): numa linha própria, quebrando em vez de cortar */
+  .q-meta .etq.q-fonte { display: block; flex: 0 1 auto; max-width: 100%; white-space: normal; order: 5; }
   .q-meta .etq { white-space: nowrap; min-width: 0; }
   .q-meta .etq.cor { flex: none; }
   .q-meta-acao { position: absolute; right: -4px; top: -4px; }
@@ -310,6 +312,7 @@
   .tp-seta { grid-column: 3; grid-row: 1; align-self: center; width: 16px; height: 16px; }
   .tp-viz a { flex: 1 1 100%; }
 }
+/* celular: ícone do tema menor (revisão de 19/11/2026, matérias 22; decisão do dono em 20/11: o celular reduz) */
 @media (max-width: 420px) { .tp-ic { width: 84px; height: 84px; border-radius: 20px; } .tp-ic .ic3d { width: 74px !important; height: 74px !important; } }
 
 /* ---------- matéria: capa do treino geral na largura toda (protótipo .capa.ad-tem-tg) ---------- */
@@ -355,6 +358,8 @@
 @media (max-width: 420px) { .crono-tot { display: none; } }
 /* celular: a etiqueta do conteúdo desce de linha em vez de cortar */
 @media (max-width: 700px) { .q-meta .etq.q-sub { white-space: normal; } }
+/* barra de estudo até 900 px: rótulos "Total"/"Questão" dos cronômetros saem e o texto da barra pode usar duas linhas
+   (nada cortado: "Citologia · Básico · 1 de 8") */
 /* barra de estudo até 900 px: rótulos "Total"/"Questão" dos cronômetros saem e o texto da barra pode usar duas linhas
    (nada cortado: "Citologia · Básico · 1 de 8") */
 @media (max-width: 900px) {
