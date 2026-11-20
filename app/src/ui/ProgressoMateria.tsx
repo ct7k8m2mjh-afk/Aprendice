@@ -11,7 +11,8 @@ const NIVEIS = [
   { nome: 'Intermediário', de: 4, ate: 6, tom: 'color-mix(in srgb, var(--p) 62%, var(--folha))' },
   { nome: 'Avançado', de: 7, ate: 10, tom: 'color-mix(in srgb, var(--p) 42%, var(--folha))' },
 ];
-const SEMANA = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+/** dias da semana com 3 letras: "S S D S T Q Q" era ambíguo (revisão de 20/11/2026, matérias 24 e casca 34) */
+const SEMANA = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
 
 function tempo(seg: number) {
   const h = Math.floor(seg / 3600), m = Math.round((seg % 3600) / 60);

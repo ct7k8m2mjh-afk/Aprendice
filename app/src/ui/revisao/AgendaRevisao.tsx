@@ -3,7 +3,8 @@ import { CATALOGO } from '../../dados/provas';
 import { diasEntre, fracaoIdeal, iniDia, PASSOS_Q, SAIDA, type Agenda } from '../../logica/revisao';
 import { plural } from '../comum';
 
-const SEMANA = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+/** dias da semana com 3 letras: "S S D S T Q Q" era ambíguo (revisão de 20/11/2026, matérias 24 e casca 34) */
+const SEMANA = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
 const DATA_LONGA = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
 const DATA_CURTA = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long' });
 
@@ -60,7 +61,7 @@ export function AgendaRevisao({ ag, hoje, futuras, agora }: { ag: Agenda; hoje: 
         </ol>
         {/* no celular o gráfico mostra 7 dias: a legenda conta o mesmo período */}
         <figcaption className="ag-leg">{[{ n: 14, t: total, c: 'ag-leg-14' }, { n: 7, t: total7, c: 'ag-leg-7' }].map((x) => (
-          <span key={x.n} className={x.c}>{x.t ? <>{plural(x.t, 'questão volta', 'questões voltam')} nos próximos {x.n} dias{hoje ? <>, {hoje} hoje</> : ''}.</> : `Nenhuma questão marcada para os próximos ${x.n} dias.`}</span>
+          <span key={x.n} className={x.c}>{x.t ? <>{plural(x.t, 'questão volta', 'questões voltam')} nos próximos {x.n} dias{hoje ? `, contando ${hoje >= x.t ? (x.t === 1 ? 'a de hoje' : 'as de hoje') : `${hoje} de hoje`}` : ''}.</> : `Nenhuma questão marcada para os próximos ${x.n} dias.`}</span>
         ))}</figcaption>
       </figure>
     </section>
