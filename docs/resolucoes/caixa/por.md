@@ -570,3 +570,9 @@ RECLASS P474a411a (PUC-Campinas 2027, q.17) por -> ing I01.3: texto-base em ingl
 DADO P5090f245: alternativas.E -> "ironia, pois o texto verbal contradiz o texto não-verbal." ("Leia a charge. <link> Acesso em…" colado no fim)
 DADO P19d5185f, Paf856539, Pa2441679, Pf9067e44: alternativas.E -> sem o número da questão colado no fim (Pf9067e44 também com o título da prova colado); o print está certo
 por-pend-0012 gravado: 17 resolvidas, 8 continuam pendentes (Artes = outra matéria, obras sem fonte). Obs.: as questões "outra matéria: Artes" voltam a cada lote de pendentes; sugiro tirá-las da fila (decisão do dono: "outra" não entra).
+por-pend-0013 gravado: 5 resolvidas, 1 pendente.
+RECLASS P676cfb1d por -> bio B10.5 (UFSM, bloco de Natureza; prova.json registra area Biologia; as afirmativas 2 e 3 dependem de fisiologia) — voltar com a resolução antiga de resolucoes-bio.json
+RECLASS Pba73d27d por -> geo G05.1 (motivo já registrado)
+
+## ACABOU (pendentes) — 20/11
+Sessão de pendentes por/fs/ing: lotes por-pend-0010, 0011, 0012 e 0013 gravados = 47 resolvidas. Ficam 33 pendentes em Português, nenhuma que esta sessão possa resolver: anular 13 (dono decide), outra matéria 13 (Artes/Educação Física; voltam a cada lote de pendentes, convém tirá-las da fila), obra 4 (O conto da mulher brasileira, Viver é prejudicial à saúde, Tribo Cara Baixa ×2: três buscas sem fonte que confirme), classificação 3 (P474a411a -> ing I01.3, Pba73d27d -> geo G05.1, P676cfb1d -> bio B10.5: a coordenadora reclassifica).
