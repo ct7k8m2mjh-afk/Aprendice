@@ -1,4 +1,4 @@
-# História: resoluções (gerado por lote.py em 2026-11-19)
+# História: resoluções (gerado por lote.py em 2026-11-20)
 
 Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 0.
 
@@ -90,17 +90,54 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | his-0082 | demais nível 7-10 | 30 | gravado | 26 | 2 | 2 |
 | his-0083 | demais nível 7-10 | 15 | gravado | 15 | 0 | 0 |
 | his-0084 | demais nível 7-10 | 2 | gravado | 2 | 0 | 0 |
+| his-0085 | demais nível 1-6 | 1 | gravado | 1 | 0 | 0 |
 | his-pend-0001 | pendentes fato,as | 4 | gravado | 3 | 1 | 0 |
 | his-pend-0002 | pendentes reclassificada | 2 | gravado | 1 | 1 | 0 |
 | his-pend-0003 | pendentes =reclassificada | 2 | gravado | 2 | 0 | 0 |
 | his-pend-0004 | pendentes reclassificada | 1 | gravado | 1 | 0 | 0 |
+| his-pend-0005 | pendentes todos-menos-anular | 2 | aberto |  |  |  |
+| his-pend-0006 | pendentes todos-menos-anular | 25 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
 | Questão | Prova | Conteúdo | Motivo |
 |---|---|---|---|
-| P3a2fa1cd | Fuvest 2026 1ª fase · questão 42 | H06.9 nacionalismos, unificações e revoluções de 1848 (tema H06 Revoluções) | outra matéria: Artes (história do circo; já em app/conteudo-fonte/outra-materia.json desde 13/11). Conferido no print de novo em 19/11: a questão trata da linguagem circense e do circo como arte contemporânea, não de nacionalismos ou de 1848; não se resolve. |
-| P881983dc | UECE 2020 2020.2 – 2ª fase · questão 151 | H02.4 reinos e impérios africanos (tema H02 Idade Média) | fato: tentado de novo (19/11): busca da questão resolvida (nenhum cursinho publicado achado), do texto de Macedo, História da África, pp. 132-135 (não disponível on-line) e de fontes sobre Njoya (https://en.wikipedia.org/wiki/Kingdom_of_Bamum; https://www.memoireonline.com/02/24/14488/m_Ladministration-coloniale-allemande-et-les-pouvoirs-politiques-traditionnels-Duala-et-Bamun-1884111.html; https://www.periodicoseletronicos.ufma.br/index.php/rbhr/article/download/26031/13765/86574). Gabarito A (V,V,F,V) exige a 2ª afirmativa verdadeira, mas as fontes mostram que a diplomacia de Njoya foi com os alemães e que, em dez. 1915, ele aceitou a ocupação britânica de Fumban, passando depois ao mandato francês; a 1ª (islã como resistência ao avanço cristão) também não aparece nas fontes. Sem o trecho de Macedo não dá para saber se a banca leu o livro corretamente nem para pedir anulação com prova. Falta: o texto das pp. 132-135 de Macedo (2019) ou resolução publicada da questão. |
+| P8b4fec38 | Acafe Inverno 2026 · questão 54 | H01.1 história, fontes e tempo histórico (tema H01 Antiguidade) | classificação: resolver na matéria nova (era bio B10.5; resolução antiga em resolucoes-bio.json, que fica) |
+| P3710521d | Anhembi Morumbi 2022 · questão 21 | H08.1 origens e blocos da Guerra Fria (tema H08 Guerra Fria) | classificação: resolver na matéria nova (era geo G10.5; resolução antiga em resolucoes-geo.json, que fica) |
+| Pc7005cfc | FMJ 2021 · questão 35 | H04.5 Segundo Reinado: política e café (tema H04 Independência e Império) | classificação: resolver na matéria nova (era por P11.3; resolução antiga em resolucoes-por.json, que fica) |
+| P766076a5 | Fatec 2020/1 · questão 43 | H08.8 mundo atual: Oriente Médio, terrorismo e conflitos recentes (tema H08 Guerra Fria) | classificação: resolver na matéria nova (era geo G10.5; resolução antiga em resolucoes-geo.json, que fica) |
+| Pe574f7dc | Fatec 2024/1 · questão 48 | H05.3 conflitos sociais na Primeira República (tema H05 República Brasileira) | classificação: resolver na matéria nova (era por P12.1; resolução antiga em resolucoes-por.json, que fica) |
+| Peb139c24 | Fatec 2025/2 · questão 11 | H02.1 reinos germânicos e feudalismo (tema H02 Idade Média) | classificação: resolver na matéria nova (era geo G08.5; resolução antiga em resolucoes-geo.json, que fica) |
+| Pd098232b | Fatec 2026/2 · questão 18 | H04.5 Segundo Reinado: política e café (tema H04 Independência e Império) | classificação: resolver na matéria nova (era geo G09.6; resolução antiga em resolucoes-geo.json, que fica) |
+| Pff62b980 | Fuvest 2021 · questão 15 | H05.8 ditadura militar: repressão, AI-5 e milagre econômico (tema H05 República Brasileira) | classificação: resolver na matéria nova (era geo G11.7; resolução antiga em resolucoes-geo.json, que fica) |
+| P5d5df3b3 | Fuvest 2026 · questão 45 | H02.6 Renascimento e humanismo (tema H02 Idade Média) | classificação: resolver na matéria nova (era fs L03.3; resolução antiga em resolucoes-fs.json, que fica) |
+| Pbc70c1d1 | PUCPR Medicina 2023/2 · questão 52 | H07.1 imperialismo na África e na Ásia (tema H07 Guerras Mundiais) | classificação: resolver na matéria nova (era geo G10.2; resolução antiga em resolucoes-geo.json, que fica) |
+| Pa095a040 | PUCRS 2023 · questão 67 | H05.8 ditadura militar: repressão, AI-5 e milagre econômico (tema H05 República Brasileira) | classificação: resolver na matéria nova (era geo G09.3; resolução antiga em resolucoes-geo.json, que fica) |
+| Pe227155f | UDESC 2023.2 · questão 85 | H02.3 Império Bizantino e mundo islâmico (tema H02 Idade Média) | classificação: resolver na matéria nova (era fs L02.7; resolução antiga em resolucoes-fs.json, que fica) |
+| P90f850e6 | UEG 2020/1 · questão 13 | H07.6 Segunda Guerra Mundial (tema H07 Guerras Mundiais) | classificação: resolver na matéria nova (era por P12.3; resolução antiga em resolucoes-por.json, que fica) |
+| Pcfcfd53e | UEG 2021/2 · questão 44 | H06.2 Iluminismo e despotismo esclarecido (tema H06 Revoluções) | classificação: resolver na matéria nova (era fs L07.3; resolução antiga em resolucoes-fs.json, que fica) |
+| P5b13b11f | UEMA PAES 2020 · questão 34 | H01.8 Império Romano, cristianismo e crise (tema H01 Antiguidade) | classificação: resolver na matéria nova (era fs L02.6; resolução antiga em resolucoes-fs.json, que fica) |
+| Pdeb59070 | UEMA PAES 2022 · questão 25 | H08.8 mundo atual: Oriente Médio, terrorismo e conflitos recentes (tema H08 Guerra Fria) | classificação: resolver na matéria nova (era geo G10.5; resolução antiga em resolucoes-geo.json, que fica) |
+| P520a6178 | UERR 2025 · questão 68 | H05.7 República de 1946: de Dutra a Jango (tema H05 República Brasileira) | classificação: resolver na matéria nova (era geo G11.3; resolução antiga em resolucoes-geo.json, que fica) |
+| P5fd79c35 | UFAM PSC 2023 – 3ª etapa · questão 30 | H08.8 mundo atual: Oriente Médio, terrorismo e conflitos recentes (tema H08 Guerra Fria) | classificação: resolver na matéria nova (era geo G10.6; resolução antiga em resolucoes-geo.json, que fica) |
+| P5bfb8940 | UFAM PSC 2026 – 3ª etapa · questão 21 | H03.1 povos indígenas e o contato com os europeus (tema H03 Brasil Colonial) | classificação: resolver na matéria nova (era fs S01.3; resolução antiga em resolucoes-fs.json, que fica) |
+| P401b5b96 | UFSM 2026 · questão 28 | H03.6 resistência escravizada e quilombos (tema H03 Brasil Colonial) | classificação: resolver na matéria nova (era fs S04.3; resolução antiga em resolucoes-fs.json, que fica) |
+| Pbdfa7bf1 | UFSM 2026 · questão 51 | H06.5 Era Napoleônica e Congresso de Viena (tema H06 Revoluções) | classificação: resolver na matéria nova (era por P11.3; resolução antiga em resolucoes-por.json, que fica) |
+| P9946a0f5 | UFT 2022/1 · questão 44 | H08.8 mundo atual: Oriente Médio, terrorismo e conflitos recentes (tema H08 Guerra Fria) | classificação: resolver na matéria nova (era geo G10.5; resolução antiga em resolucoes-geo.json, que fica) |
+| Pad1cae3c | UFT 2023/2 · questão 49 | H07.7 Holocausto e genocídios (tema H07 Guerras Mundiais) | classificação: resolver na matéria nova (era fs S06.5; resolução antiga em resolucoes-fs.json, que fica) |
+| Pe14b20dd | UFU 2024 · questão 82 | H05.8 ditadura militar: repressão, AI-5 e milagre econômico (tema H05 República Brasileira) | classificação: resolver na matéria nova (era fs S05.2; resolução antiga em resolucoes-fs.json, que fica) |
+| P20105305 | UFU 2026 · questão 62 | H07.5 fascismo e nazismo (tema H07 Guerras Mundiais) | classificação: resolver na matéria nova (era fs S05.2; resolução antiga em resolucoes-fs.json, que fica) |
+| Pa702d6fc | UNIRG Medicina 2024/2 · questão 44 | H04.6 imigração e trabalho livre (tema H04 Independência e Império) | classificação: resolver na matéria nova (era geo G06.3; resolução antiga em resolucoes-geo.json, que fica) |
+| P2c7a825b | UNIRG Medicina 2026/2 · questão 15 | H05.3 conflitos sociais na Primeira República (tema H05 República Brasileira) | classificação: resolver na matéria nova (era por P12.1; resolução antiga em resolucoes-por.json, que fica) |
+| P10921f4c | URCA 2023.1 · questão 80 | H03.5 economia açucareira e escravidão africana (tema H03 Brasil Colonial) | classificação: resolver na matéria nova (era geo G08.3; resolução antiga em resolucoes-geo.json, que fica) |
+| P6324195f | URCA 2023.2 · questão 87 | H08.1 origens e blocos da Guerra Fria (tema H08 Guerra Fria) | classificação: resolver na matéria nova (era geo G10.4; resolução antiga em resolucoes-geo.json, que fica) |
+| P361801c7 | URCA 2025.2 · questão 88 | H04.5 Segundo Reinado: política e café (tema H04 Independência e Império) | classificação: resolver na matéria nova (era geo G08.3; resolução antiga em resolucoes-geo.json, que fica) |
+| Pb5b4b8d3 | URCA 2026.1 · questão 78 | H04.6 imigração e trabalho livre (tema H04 Independência e Império) | classificação: resolver na matéria nova (era geo G11.2; resolução antiga em resolucoes-geo.json, que fica) |
+| Pa399fcd2 | URCA PSU out/2025 · questão 84 | H03.1 povos indígenas e o contato com os europeus (tema H03 Brasil Colonial) | classificação: resolver na matéria nova (era geo G11.6; resolução antiga em resolucoes-geo.json, que fica) |
+| Pcfc9f497 | UTFPR 2025 · questão 28 | H05.10 abertura, Diretas Já e Constituição de 1988 (tema H05 República Brasileira) | classificação: resolver na matéria nova (era fs S05.3; resolução antiga em resolucoes-fs.json, que fica) |
+| P71a582ae | Unespar 2025 · questão 43 | H06.6 Revolução Industrial e mundo do trabalho (tema H06 Revoluções) | classificação: resolver na matéria nova (era fs S03.1; resolução antiga em resolucoes-fs.json, que fica) |
+| P6395d7ee | Unicentro 2022 · questão 92 | H06.2 Iluminismo e despotismo esclarecido (tema H06 Revoluções) | classificação: resolver na matéria nova (era fs S01.6; resolução antiga em resolucoes-fs.json, que fica) |
+| P1a12c59a | Unifor 2026.1 · questão 36 | H08.6 contracultura e direitos civis nos anos 1960 (tema H08 Guerra Fria) | classificação: resolver na matéria nova (era fs S06.4; resolução antiga em resolucoes-fs.json, que fica) |
 
 ## Divergências de gabarito (o dono decide)
 
