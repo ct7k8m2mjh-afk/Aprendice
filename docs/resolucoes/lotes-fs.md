@@ -65,7 +65,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | fs-pend-0003 | pendentes =reclassificada | 1 | gravado | 1 | 0 | 0 |
 | fs-pend-0004 | pendentes classificação | 25 | gravado | 25 | 0 | 0 |
 | fs-pend-0005 | pendentes todos-menos-anular | 25 | gravado | 23 | 2 | 0 |
-| fs-pend-0006 | pendentes todos-menos-anular | 25 | aberto |  |  |  |
+| fs-pend-0006 | pendentes todos-menos-anular | 25 | gravado | 25 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 

@@ -26,3 +26,6 @@ DADO P02cbda16: texto_da_prova -> 5ª afirmativa "Sejam A, B e A ∩ B" (a entra
 DADO Pe9844354: alternativas.E -> termina em "demanda dos consumidores." (o "44" é o número da questão)
 DADO P5735c80c: alternativas.E -> "A perda da sensibilidade, de modo a nem mesmo poder perceber a ocorrência da morte." (sem "#####")
 DADO P4006840d: alternativas.A/C/D -> sem hifenização de quebra de linha ("mercado", "trabalho", "compreendidos", "extensa")
+
+## ACABOU (pendentes) — 20/11
+Sessão de pendentes por/fs/ing: lotes fs-pend-0004, 0005 e 0006 gravados = 73 resolvidas (vindas de geo/his por reclassificação). Ficam 2 pendentes, ambas "anular" (Peefb896f, Pa8bd2834: decisão do dono), e 3 marcadas como "reclassificada para outra matéria" (já movidas).
