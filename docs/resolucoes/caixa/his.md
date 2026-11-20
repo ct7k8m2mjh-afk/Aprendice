@@ -11,3 +11,4 @@ DADO Pe5aab99a: texto_da_prova/alternativas -> OCR com lixo da charge e "Questã
 DADO Pe574f7dc: alternativas.E -> termina em "...e que assolavam suas existências."; o texto sobre Canudos (tinyurl 2p392kzv) e o trecho de "Os Sertões" são o texto de apoio, antes do comando (texto_da_prova).
 DADO P2c7a825b (UNIRG 2026/2 q15): texto_da_prova -> começa por "São movimentos que ocorreram..." (o "9" inicial é o número da página).
 DADO P5d5df3b3 (Fuvest 2026 q45): alternativas.E -> "a autonomia do ser humano como construtor de sua própria trajetória de vida." (sem "#####").
+GABARITO Pad1cae3c (UFT 2023/2 q49): só gabarito provisório (D); entra com gabarito do Aprendice D (resolvedor D, especialista às cegas D).
