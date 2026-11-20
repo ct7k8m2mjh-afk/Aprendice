@@ -59,6 +59,8 @@ const PRINTS_PROVA = new Map<string, string>();
 
 /** Monta a matéria a partir do banco gravado (exportada para os testes). */
 export function monta(id: MateriaId, bancoTodo: Questao[], conteudo: MateriaConteudo, amostra?: string[]): MateriaCarregada {
+  // a banca do ENEM tem uma grafia só no site, "Inep" (revisão de 20/11/2026, casca N13; parte do banco ainda traz "INEP")
+  for (const q of bancoTodo) if (q.banca === 'INEP') q.banca = 'Inep';
   // fora do ar (pendente), de outra matéria fora das 9 (decisão do dono, 13/11/2026: só no simulado da prova inteira)
   // e anulada pelo Aprendice (dono, 13/11/2026: vale como anulada pela banca)
   const visivel = (q: Questao) => !q.pendente && !q.outraMateria && !q.anuladaAprendice;
