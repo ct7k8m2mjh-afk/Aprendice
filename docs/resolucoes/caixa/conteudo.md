@@ -51,3 +51,11 @@ depois provas-alvo de Física, ~825; Química, ~435). Abrir: `BASE_MAX=1 python3
 erradas-abre 100 mat`; rodar: `erradas-roda <lote>`; amostra: `erradas-amostra <lote>` + agentes com
 fabrica_saida/conteudo/CONFERE-ERRADAS.md; `erradas-aplica <lote>`; `erradas-grava <lote>` (git pull antes).
 Sobra do teto desta encomenda: US$ 6,74.
+
+## 2026-11-20 — AVISO — erradas (série mq, sem API)
+1º lote gravado: conteudo-erradas-mq-01 (Matemática, provas-alvo, 25 questões, 72 letras fracas). Feito por agentes do
+Claude Code (escritor → lente de fatos → lente didática → lente de fatos de novo, cada etapa um agente diferente).
+Resultado: 21 letras reescritas e gravadas em 14 questões; 49 letras sem equívoco honesto ficaram com o texto antigo;
+2 rejeitadas pela lente de fatos (origem inventada). Amostra (outro agente): 3 letras, 1 com erro (texto longo demais,
+49 palavras), consertada. Testes: converte, tsc e vitest verdes (912). Gasto de API: zero.
+Em andamento: conteudo-erradas-mq-02 (Matemática).
