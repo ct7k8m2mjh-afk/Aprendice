@@ -8,7 +8,7 @@ import { semana } from '../logica/estatisticas';
 import { Protecao } from './Protecao';
 import { Busca } from '../telas/Busca';
 
-function usaTema() {
+export function usaTema() {
   const e = useEstado();
   const pref = e.pref.tema;
   const [sistemaEscuro, setSE] = useState(() => typeof matchMedia !== 'undefined' && matchMedia('(prefers-color-scheme: dark)').matches);
@@ -27,6 +27,16 @@ function usaTema() {
 }
 
 export function defineTema(t: 'claro' | 'escuro' | 'sistema') { atualiza((e) => ({ ...e, pref: { ...e.pref, tema: t } })); }
+
+/** Dia/Noite segmentado do topo; também na entrada e nas boas-vindas (revisão de 19/11/2026, casca 2). */
+export function TemaSeg({ escuro, className = '' }: { escuro: boolean; className?: string }) {
+  return (
+    <div className={'tema-seg ' + className} role="group" aria-label="Tema">
+      <button aria-pressed={!escuro} onClick={() => defineTema('claro')} title="Tema claro" aria-label="Tema claro"><Icone nome="sol" /><span className="rotulo-t">Dia</span></button>
+      <button aria-pressed={escuro} onClick={() => defineTema('escuro')} title="Tema escuro" aria-label="Tema escuro"><Icone nome="lua" /><span className="rotulo-t">Noite</span></button>
+    </div>
+  );
+}
 
 function ItemMateria({ m, atual }: { m: MateriaInfo; atual?: string }) {
   return (
@@ -135,10 +145,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
             <Icone nome="busca" tam={20} /><span className="txt">Buscar conteúdo, questões ou simulados...</span><kbd>Ctrl K</kbd>
           </button>
           <div className="direita">
-            <div className="tema-seg" role="group" aria-label="Tema">
-              <button aria-pressed={!escuro} onClick={() => defineTema('claro')} title="Tema claro" aria-label="Tema claro"><Icone nome="sol" /><span className="rotulo-t">Dia</span></button>
-              <button aria-pressed={escuro} onClick={() => defineTema('escuro')} title="Tema escuro" aria-label="Tema escuro"><Icone nome="lua" /><span className="rotulo-t">Noite</span></button>
-            </div>
+            <TemaSeg escuro={escuro} />
             <Link to="/perfil" className="perfil-chip" aria-label={`Meu perfil (${nome})`}>
               <span className="avatar" aria-hidden><Icone nome="usuario" tam={18} /></span><span className="nome">Meu perfil</span>
             </Link>

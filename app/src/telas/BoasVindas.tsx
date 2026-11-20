@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Logo, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
@@ -8,19 +8,23 @@ import { EscolhaProvas } from './EscolhaProvas';
 import { MATERIAS_PRINCIPAIS } from '../dados/materias';
 import { IluMateria, temIlu } from '../ui/IconeMateria';
 import { Login } from './Login';
+import { TemaSeg, usaTema } from '../ui/Casca';
 
 
 /** Primeira abertura: conta de demonstração (login simulado, fica só no aparelho), provas-alvo e meta. */
 export function BoasVindas() {
   useTitulo('Boas-vindas');
   const nav = useNavigate();
+  // tema claro/escuro também antes de entrar (princípio 8; revisão de 19/11/2026, casca 2)
+  const escuro = usaTema();
   const [passo, setPasso] = useState(0);
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [provas, setProvas] = useState<string[]>(['enem']);
   const [meta, setMeta] = useState(150);
-  const emailOk = useMemo(() => !email || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email), [email]);
 
+  // cada etapa abre no topo (revisão de 19/11/2026, casca 9)
+  useEffect(() => { window.scrollTo(0, 0); }, [passo]);
   const conclui = () => {
     atualiza((e) => ({ ...e, perfil: { nome: nome.trim() || 'Estudante', email: email.trim(), provasAlvo: provas, meta, criadoEm: Date.now() } }));
     nav('/', { replace: true });
@@ -32,7 +36,7 @@ export function BoasVindas() {
     if (volta) { atualiza(() => volta); nav('/', { replace: true }); return; }
     setEmail(em); if (!nome) setNome(nomeDoEmail(em)); setPasso(1);
   };
-  if (passo === 0) return <Login aoEntrar={entra} />;
+  if (passo === 0) return <Login aoEntrar={entra} emailInicial={email} tema={<TemaSeg escuro={escuro} className="l-tema" />} />;
 
   return (
     <div className="bv">
@@ -44,24 +48,11 @@ export function BoasVindas() {
         <p className="bv-frase">Questões reais dos vestibulares, do jeito que a banca cobra.</p>
       </div>
       <div className="bv-form">
+        <TemaSeg escuro={escuro} className="bv-tema" />
         <Logo className="bv-logo-cel" />
         <ol className="bv-passos" aria-label="Etapas">
           {['Sua conta', 'Provas-alvo', 'Ritmo'].map((t, i) => <li key={t} aria-current={i === passo ? 'step' : undefined} className={i < passo ? 'feito' : ''}><span>{i + 1}</span>{t}</li>)}
         </ol>
-
-        {passo === 0 && (
-          <form className="bv-corpo" onSubmit={(e) => { e.preventDefault(); if (emailOk) setPasso(1); }}>
-            <h1>Comece a estudar pelas provas</h1>
-            <p className="miolo">Questões reais por nível, do básico ao avançado, resolução que explica o seu erro, flashcards e simulados de provas inteiras.</p>
-            <div className="campo"><label htmlFor="bv-nome">Como você quer ser chamado</label>
-              <input id="bv-nome" value={nome} onChange={(e) => setNome(e.target.value)} autoComplete="given-name" placeholder="Seu nome" autoFocus /></div>
-            <div className="campo"><label htmlFor="bv-email">E-mail <span className="fraco">(opcional)</span></label>
-              <input id="bv-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" placeholder="voce@exemplo.com" aria-invalid={!emailOk} />
-              {!emailOk ? <small style={{ color: 'var(--errado)' }}>Confira o e-mail: falta algo como “@” ou o domínio.</small>
-                : <small>Versão de demonstração: a conta e o progresso ficam só neste aparelho. Nada é enviado.</small>}</div>
-            <div className="bv-acoes"><button className="btn grande" type="submit">Continuar <Icone nome="direita" /></button></div>
-          </form>
-        )}
 
         {passo === 1 && (
           <div className="bv-corpo">

@@ -10,9 +10,10 @@
 
 /* ---------- cores (tema claro; o escuro redefine as mesmas variáveis) */
 .tela-login {
-  --l-texto: #171821; --l-texto2: #4a4b5d; --l-texto3: #595967; --l-texto4: #9b9397;
+  --l-texto: #171821; --l-texto2: #4a4b5d; --l-texto3: #595967; --l-texto4: #5e5e6b;
   --l-creme: #fcf8f5; --l-creme2: #f6f0ec; --l-luz: #fffbf8;
-  --l-painel: rgb(255 255 255 / .77); --l-painel-borda: rgb(255 255 255 / .9); --l-cartaozinho: rgb(255 255 255 / .6);
+  /* painel, botão Google e vantagens na folha creme do site, nunca branco (DESIGN.md, Superfícies; revisão de 19/11/2026, casca 3) */
+  --l-painel: #FCFAF5; --l-painel-borda: #E9E2D4; --l-cartaozinho: #FCFAF5; --l-google: #F7F2E9;
   --l-campo: rgb(249 248 248 / .85); --l-campo-ativo: #FCFAF5; --l-campo-borda: #dad8da; --l-divisor: #dcd8d8;
   --l-verde: #087a2c; --l-verde-link: #057c2b; --l-verde-claro: #e6f5df; --l-amarelo-claro: #fff0cd;
   --l-selo-a: #eff4e5; --l-selo-b: #d6f5d3; --l-selo-texto: #1a3a20;
@@ -24,17 +25,18 @@
 }
 .tela-login :where(p, h1, h2, b, span) { text-wrap: wrap;
 }
-/* login sempre claro (referência só clara; ilustração pintada sobre fundo claro) — regras escuras desativadas */
-.login-escuro-desativado .tela-login {
-  --l-texto: #edf0e9; --l-texto2: #c0c4ba; --l-texto3: #b1b5ab; --l-texto4: #7e8279;
-  --l-creme: #0f1310; --l-creme2: #0b0e0c; --l-luz: #17201a;
-  --l-painel: rgb(25 31 26 / .84); --l-painel-borda: rgb(255 255 255 / .07); --l-cartaozinho: rgb(30 37 31 / .72);
-  --l-campo: rgb(17 21 18 / .92); --l-campo-ativo: #131814; --l-campo-borda: #333a34; --l-divisor: #2d342e;
+/* tema escuro (princípio 8; revisão de 19/11/2026, casca 2): o mesmo desenho sobre o creme escuro do site (#1A1712) e a
+   folha café (#24201A) */
+[data-theme='dark'] .tela-login {
+  --l-texto: #EDEEF1; --l-texto2: #C4C1B8; --l-texto3: #AEAAA0; --l-texto4: #AEAAA0;
+  --l-creme: #1A1712; --l-creme2: #16130F; --l-luz: #241F18;
+  --l-painel: #24201A; --l-painel-borda: #36302A; --l-cartaozinho: #24201A; --l-google: #2B261F;
+  --l-campo: #1E1A15; --l-campo-ativo: #1A1712; --l-campo-borda: #4A443B; --l-divisor: #3A342C;
   --l-verde: #63d282; --l-verde-link: #6fd68c; --l-verde-claro: #1c3221; --l-amarelo-claro: #392e16;
   --l-selo-a: #1a291c; --l-selo-b: #1e3923; --l-selo-texto: #d2efd8;
   --l-faixa-a: rgb(30 51 34 / .82); --l-faixa-b: rgb(29 35 30 / .86);
   --l-sombra-painel: 0 24px 52px rgb(0 0 0 / .38), 0 2px 6px rgb(0 0 0 / .25);
-  --l-ilu-luz: .94;
+  --l-ilu-luz: .94; color-scheme: dark;
 }
 
 :where(.tela-login) *, :where(.tela-login) *::before, :where(.tela-login) *::after { box-sizing: border-box; }
@@ -92,7 +94,7 @@
 .l-painel { width: 100%; max-width: 560px; border-radius: 36px; padding: clamp(28px, 2.8vw, 51px) clamp(25px, 3vw, 48px) 30px;
   background: var(--l-painel); border: 1px solid var(--l-painel-borda); box-shadow: var(--l-sombra-painel); backdrop-filter: blur(18px); }
 .l-painel h2 { text-wrap: wrap; margin: 6px 0 8px; text-align: center; font-size: clamp(24px, 1.95vw, 31px); line-height: 1.13; letter-spacing: -.047em; font-weight: 700; }
-.l-painel-sub { margin: 0 0 28px; text-align: center; color: var(--l-texto3); font-size: 15.5px; line-height: 1.5; }
+.l-painel-sub { margin: 0 0 28px; text-align: center; color: var(--l-texto3); font-size: 15.5px; line-height: 1.5; text-wrap: balance; } /* sem palavra sozinha na 2ª linha (casca 8) */
 .l-painel label { display: block; margin-bottom: 7px; font-size: 14px; font-weight: 800; }
 .l-entrada { position: relative; margin-bottom: 20px; }
 .l-entrada > svg { position: absolute; left: 15px; top: 50%; translate: 0 -50%; width: 20px; height: 20px; color: var(--l-texto3); pointer-events: none; }
@@ -112,7 +114,7 @@
 .l-ou { display: flex; align-items: center; gap: 20px; margin: 26px 0 20px; color: var(--l-texto3); font-size: 14px; font-weight: 700; }
 .l-ou::before, .l-ou::after { content: ""; flex: 1; height: 1px; background: var(--l-divisor); }
 .l-google { display: flex; align-items: center; justify-content: center; gap: 13px; width: 100%; height: 52px; border-radius: 12px;
-  border: 1px solid var(--l-campo-borda); background: var(--l-cartaozinho); font-size: 15px; font-weight: 800; transition: background-color .18s; }
+  border: 1px solid var(--l-campo-borda); background: var(--l-google); font-size: 15px; font-weight: 800; transition: background-color .18s; }
 .l-google:hover { background: var(--l-campo-ativo); } .l-google svg { width: 23px; height: 23px; }
 .l-trocar { margin: 27px 0 26px; text-align: center; color: var(--l-texto3); font-size: 14.5px; }
 .l-trocar button { padding: 0 0 0 4px; border: 0; background: none; color: var(--l-verde-link); font-weight: 800; }
@@ -120,7 +122,7 @@
 .l-faixa { display: flex; align-items: center; gap: 13px; padding: 16px 20px; border-radius: 16px; background: linear-gradient(100deg, var(--l-faixa-a), var(--l-faixa-b));
   font-size: 14px; font-weight: 800; line-height: 1.25; letter-spacing: -.022em; }
 .l-faixa svg { flex: none; width: 28px; height: 28px; color: #0a982d; }
-.l-rodape { margin-top: 15px; text-align: center; color: var(--l-texto4); font-size: 10px; }
+.l-rodape { margin-top: 15px; text-align: center; color: var(--l-texto4); font-size: 13.5px; line-height: 1.4; } /* 4,5:1 e no tamanho secundário (casca 4) */
 .l-olho:focus-visible, .l-esqueci:focus-visible, .l-trocar button:focus-visible, .l-google:focus-visible, .l-botao:focus-visible { outline: 3px solid rgb(22 163 71 / .45); outline-offset: 2px; }
 .l-aviso { position: fixed; z-index: 40; left: 50%; bottom: 24px; max-width: calc(100vw - 30px); padding: 12px 16px; border-radius: 13px;
   background: #1e3024; color: #fff; font: 13px 'DM Sans', Arial, sans-serif; text-align: center; box-shadow: 0 10px 30px rgb(0 0 0 / .13);
@@ -156,3 +158,47 @@
 .l-barras { position: absolute; z-index: 1; right: 9%; top: -6%; width: 35%; height: 65%; display: flex; align-items: flex-end; gap: 13px; transform: rotate(-1deg); opacity: .73; }
 .l-barras i { flex: 1; height: var(--h); border-radius: 14px 14px 0 0; background: linear-gradient(90deg, #bdedb5, #57b866); box-shadow: inset 2px 2px 6px rgba(255, 255, 255, .65); }
 .l-barras::after { content: "↗"; position: absolute; right: -10px; top: -42px; font-size: 89px; line-height: 1; font-weight: 600; color: #7dcf3b; text-shadow: 0 0 17px #d9fcae; transform: rotate(14deg); }
+
+/* "Esqueceu sua senha?" só no modo Entrar; no Criar conta o espaço abaixo da senha continua o mesmo (casca 7) */
+.l-esqueci-vazio { height: 8px; }
+
+/* Dia/Noite antes de entrar (casca 2): no alto à direita da tela */
+.l-tema { position: absolute; z-index: 5; top: 16px; right: clamp(16px, 2.4vw, 32px); }
+.tela-login .tema-seg { background: var(--l-painel); border: 1px solid var(--l-painel-borda); box-shadow: 0 4px 14px rgb(70 42 24 / .08); }
+.tela-login .tema-seg button { color: var(--l-texto3); font-family: 'DM Sans', 'Familjen Grotesk', Arial, sans-serif; }
+.tela-login .tema-seg button[aria-pressed='true'] { background: color-mix(in srgb, var(--l-texto) 9%, transparent); color: var(--l-texto); box-shadow: none; }
+
+/* celular e tablet (casca 1): o formulário logo depois do logo, à vista sem rolar; a apresentação (selo, título, texto,
+   ilustração e vantagens) vem depois, com as mesmas peças. A apresentação vira "contents" para as peças entrarem na
+   ordem da grade de uma coluna. */
+@media (max-width: 930px) {
+  .l-grade { row-gap: 0; align-items: start; }
+  .l-apresenta { display: contents; }
+  .l-logo { order: 0; margin-bottom: 18px; }
+  .l-acesso { order: 1; grid-row: auto; }
+  .l-apresenta > :not(.l-logo) { order: 2; }
+  .l-apresenta > .l-logo + div { margin-top: 36px; }
+  .l-ilustracao { margin-top: 12px; }
+  .l-vantagens { margin-top: 12px; }
+}
+@media (max-width: 580px) {
+  .l-logo { width: 150px; margin-bottom: 14px; }
+  .l-painel { padding: 22px 18px 20px; }
+  .l-painel h2 { font-size: 24px; margin-top: 0; }
+  .l-painel-sub { margin-bottom: 18px; }
+  .l-entrada { margin-bottom: 14px; }
+  .l-esqueci { margin-bottom: 18px; }
+  /* textos no mínimo do sistema no celular (casca 5): texto 16px, secundário 13,5px */
+  .l-selo { font-size: 13.5px; padding: 9px 12px; }
+  .l-faixa { font-size: 13.5px; }
+  .l-lead { font-size: 16px; }
+  .l-vantagem b { font-size: 14px; white-space: normal; } .l-vantagem p { font-size: 13.5px; }
+  .l-tema { top: 22px; right: 18px; }
+}
+
+/* escuro: a ilustração pintada tem fundo claro semitransparente; ela fica num cartão creme de cantos redondos, como os
+   círculos claros dos ícones no escuro (exceção do DESIGN.md), e não como uma mancha clara solta no fundo escuro */
+[data-theme='dark'] .tela-login .l-figura { background: #F1EBDF; border-radius: 28px; padding: 10px 14px; box-sizing: border-box; filter: none; }
+[data-theme='dark'] .tela-login .l-barras { opacity: .5; }
+[data-theme='dark'] .tela-login .l-ilustracao { margin-top: 16px; margin-bottom: 8px; }
+[data-theme='dark'] .tela-login .l-figura { max-height: 380px; width: auto; max-width: 100%; }

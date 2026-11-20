@@ -28,7 +28,10 @@ export interface ProvaCatalogo {
   a_verificar: string[];
 }
 
-export const CATALOGO: ProvaCatalogo[] = (catalogoBruto as { provas: ProvaCatalogo[] }).provas;
+/** O ENEM tem um nome só no site inteiro, "ENEM" (banca "INEP"); o catálogo de pesquisa escreve "Enem"/"Inep"
+ *  (revisão de 19/11/2026, casca 13). */
+export const CATALOGO: ProvaCatalogo[] = (catalogoBruto as { provas: ProvaCatalogo[] }).provas
+  .map((p) => (p.id === 'enem' ? { ...p, prova: 'ENEM', banca: 'INEP' } : p));
 /** Regiões de prática (pedido do dono, 09/11/2026): São Paulo separado do Sudeste. Ids e regras em logica/regiao.ts. */
 export { REGIOES_PRATICA as REGIOES } from '../logica/regiao';
 

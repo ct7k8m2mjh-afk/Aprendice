@@ -9,7 +9,7 @@ Versão compacta (09/11/2026). Texto longo anterior: `docs/historico/2026-11-09-
 
 ## Regras de base
 - Sistema = protótipo `app-atual/` (`design/materia.css`, `fontes.css`, `shell.html`); ver: `PUBLICAR=1 python3 design/gera_design.py` em `app-atual/`. Sistema, não conteúdo: telas e matérias novas seguem o sistema.
-- Reproduzir referência, nunca copiar (princípio 12). Exceção: login segue a referência própria (Aprendice_Login_Pacote).
+- Reproduzir referência, nunca copiar (princípio 12). Exceção: login segue a referência própria (Aprendice_Login_Pacote), com o painel, o botão Google e as vantagens na folha creme (#FCFAF5 / #24201A, nunca branco), tema escuro e Dia/Noite no alto à direita; no celular e no tablet (≤930px) o formulário vem logo depois do logo, à vista sem rolar, e a apresentação desce (mesmas peças); textos no mínimo do sistema (16 / 13,5px). Ilustração pintada no escuro dentro de um cartão creme.
 - Conferir em 390, 768, 1280, 1440 px, claro e escuro (princípio 9).
 - Clima "mesa de estudo": fundo nunca neutro (véu da cor da matéria; creme fora das matérias, decisão do dono 19/11/2026), cartões levemente tingidos com borda 1px, sombra neutra discreta; cor da matéria só no que é da matéria; fora dela, grafite `neutro-c`. Claro é o padrão; escuro troca superfícies e clareia as cores das matérias.
 - Proibido: emoji, ícone de glifo, rótulo-chamada (kicker) acima de título, brilho/sombra colorida, cor de matéria fora do escopo `.m-<id>`, verde/vermelho/âmbar fora de certo/errado/aviso, hexadecimal de matéria direto no CSS.

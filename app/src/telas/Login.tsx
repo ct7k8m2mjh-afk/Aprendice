@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, type ReactNode } from 'react';
 import { Logo } from '../ui/comum';
 import figura from '../assets/login/figura.webp';
 import '../estilo/login.css';
@@ -6,9 +6,10 @@ import '../estilo/login.css';
 /** Tela de login, construída para reproduzir a referência do dono (Aprendice_Login_Pacote, 05/11/2026); a ilustração pintada é a do pacote do dono (uso autorizado por ele em 05/11/2026).
  *  Ainda não há servidor de contas: entrar/criar conta valida e-mail e senha e segue para as provas-alvo.
  *  A senha nunca é guardada; o progresso fica só neste aparelho. */
-export function Login({ aoEntrar }: { aoEntrar: (email: string) => void }) {
+export function Login({ aoEntrar, tema, emailInicial = '' }: { aoEntrar: (email: string) => void; tema?: ReactNode; emailInicial?: string }) {
   const [modo, setModo] = useState<'entrar' | 'criar'>('entrar');
-  const [email, setEmail] = useState('');
+  // "Voltar" das boas-vindas traz o e-mail já digitado (casca 10)
+  const [email, setEmail] = useState(emailInicial);
   const [senha, setSenha] = useState('');
   const [ver, setVer] = useState(false);
   const [aviso, setAviso] = useState('');
@@ -30,6 +31,7 @@ export function Login({ aoEntrar }: { aoEntrar: (email: string) => void }) {
     <div className="tela-login">
       <div className="l-fundo">
         <div className="l-onda-verde" aria-hidden /><div className="l-onda-canto" aria-hidden /><div className="l-onda-areia" aria-hidden /><div className="l-pontilhado cima" aria-hidden /><div className="l-pontilhado baixo" aria-hidden />
+        {tema}
         <main className="l-grade">
           <section className="l-apresenta" aria-label="Conheça o Aprendice">
             <a href="#login" className="l-logo" aria-label="Aprendice, ir para o login" data-logo-alvo><Logo /></a>
@@ -65,7 +67,8 @@ export function Login({ aoEntrar }: { aoEntrar: (email: string) => void }) {
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" /><circle cx="12" cy="12" r="3" /></svg>
                   </button>
                 </div>
-                <button className="l-esqueci" type="button" onClick={() => avisa('A recuperação de senha será ativada quando as contas tiverem servidor.')}>Esqueceu sua senha?</button>
+                {/* só no modo Entrar (revisão de 19/11/2026, casca 7) */}
+                {entrar ? <button className="l-esqueci" type="button" onClick={() => avisa('A recuperação de senha será ativada quando as contas tiverem servidor.')}>Esqueceu sua senha?</button> : <div className="l-esqueci-vazio" />}
                 <button className="l-botao" type="submit">{entrar ? 'Entrar no Aprendice' : 'Criar minha conta'} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M4 12h16m-7-7 7 7-7 7" /></svg></button>
               </form>
               <div className="l-ou">ou</div>
