@@ -87,7 +87,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | fis-pend-0001 | pendentes todos-menos-anular | 12 | gravado | 5 | 7 | 0 |
 | fis-pend-0002 | pendentes reclassificada | 3 | gravado | 3 | 0 | 0 |
 | fis-pend-0003 | pendentes todos-menos-anular | 25 | gravado | 25 | 0 | 0 |
-| fis-pend-0004 | pendentes classificação | 16 | aberto |  |  |  |
+| fis-pend-0004 | pendentes classificação | 16 | gravado | 16 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 

@@ -826,5 +826,126 @@
    "data": "2026-11-19",
    "lote": "fis-0071"
   }
+ },
+ "Pe112e71d": {
+  "n": "89",
+  "conceito": "Energia útil igual nas duas versões: tanque × densidade × rendimento da gasolina = volume de bateria × densidade × rendimento da bateria.",
+  "equivocos": {
+   "A": "F04.4:volume-sem-conferir-energia-util",
+   "B": "F04.4:volume-sem-conferir-energia-util",
+   "C": "F04.4:volume-sem-conferir-energia-util",
+   "D": "F04.4:rendimento-aplicado-ao-contrario"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Mesma autonomia quer dizer mesma energia entregue às rodas, não a mesma energia guardada. A gasolina guarda muito mais energia por litro, mas só 20% dela chega às rodas; a bateria guarda pouco por litro, mas entrega 90%. Iguale a energia útil das duas versões e isole o volume de bateria.",
+    "formulas": [
+     "energia guardada = volume × densidade de energia",
+     "energia útil = energia guardada × rendimento",
+     "útil da gasolina = útil da bateria"
+    ],
+    "simbolos": [
+     [
+      "Wh",
+      "watt-hora, unidade de energia"
+     ],
+     [
+      "densidade de energia",
+      "energia guardada em cada litro (Wh por litro)"
+     ],
+     [
+      "rendimento",
+      "fração da energia guardada que vira movimento nas rodas"
+     ],
+     [
+      "V",
+      "volume de baterias procurado, em litros"
+     ]
+    ]
+   },
+   "pista": "A autonomia depende da energia que chega às rodas. Calcule primeiro quanto o tanque de gasolina entrega de fato.",
+   "passos": [
+    {
+     "faz": "Calcule a energia guardada no tanque",
+     "conta": "E = 50 L × 9000 Wh/L → E = 450000 Wh",
+     "porque": "Cada litro de gasolina guarda cerca de 9000 Wh, segundo o texto, e o tanque tem 50 L.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o rendimento da gasolina",
+     "conta": "útil = 450000 Wh × 0,2 → útil = 90000 Wh",
+     "porque": "Só 20% da energia da gasolina chega às rodas; é essa energia que define quantos quilômetros o carro anda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a energia útil da bateria",
+     "conta": "útil = V × 690 Wh/L × 0,9 → útil = V × 621 Wh/L",
+     "porque": "Cada litro de bateria guarda 690 Wh e entrega 90% disso às rodas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale e isole o volume",
+     "conta": "V × 621 = 90000 → V = 90000/621 → V ≈ 145 L",
+     "porque": "Mesma autonomia exige a mesma energia útil; o 621 que multiplica o V passa para o outro lado dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "V ≈ 145 L",
+     "porque": "É a alternativa E: o carro elétrico precisa de quase o triplo do volume do tanque.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — aproximadamente 145 litros de baterias.",
+   "checagem": "Compare por litro: um litro de gasolina entrega 9000 × 0,2 = 1800 Wh às rodas; um litro de bateria entrega 690 × 0,9 = 621 Wh. A razão 1800/621 ≈ 2,9 diz que cada litro de gasolina vale cerca de 2,9 L de bateria, e 50 × 2,9 ≈ 145 L.",
+   "erradas": {
+    "A": "A não confere: 20 L de bateria entregam 20 × 690 × 0,9 = 12420 Wh às rodas, bem menos que os 90000 Wh úteis do tanque de gasolina.",
+    "B": "B não confere: 32 L de bateria entregam 32 × 690 × 0,9 = 19872 Wh às rodas, menos de um quarto dos 90000 Wh necessários.",
+    "C": "C não confere: 69 L de bateria entregam 69 × 690 × 0,9 = 42849 Wh às rodas, menos da metade dos 90000 Wh necessários.",
+    "D": "D sai de multiplicar pelo rendimento da bateria em vez de dividir: 90000 × 0,9/690 ≈ 117,4 L. A bateria perde 10%, então precisa de mais volume, não de menos."
+   },
+   "armadilha": "Igualar a energia guardada em vez da energia útil, ou aplicar o rendimento da bateria ao contrário, multiplicando por 0,9 em vez de dividir.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume de baterias de lítio que dá a mesma autonomia de um tanque de 50 L de gasolina.",
+    "chave": "50 × 9000 × 0,2 = 90000 Wh úteis; V = 90000/(690 × 0,9) ≈ 145 L.",
+    "cuidado": "Autonomia é energia útil: aplique os dois rendimentos, cada um do seu lado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razão por litro",
+    "ideia": "Um litro de gasolina entrega 1800 Wh úteis e um de bateria 621 Wh: 50 × 1800/621 ≈ 145 L."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "50 × 9000 × 0,2 = 90000 Wh",
+    "nota": "energia útil da gasolina"
+   },
+   {
+    "linha": "V × 690 × 0,9 = V × 621",
+    "nota": "energia útil da bateria"
+   },
+   {
+    "linha": "V × 621 = 90000",
+    "nota": "mesma autonomia"
+   },
+   {
+    "linha": "V = 90000/621 ≈ 145 L",
+    "nota": "o 621 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-20",
+   "lote": "fis-pend-0004"
+  }
  }
 }

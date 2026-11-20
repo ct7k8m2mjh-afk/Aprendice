@@ -391,3 +391,8 @@ Sessão de pendentes de Biologia: lote bio-pend-0001 (20 pendentes) gravado.
 - RECLASS Pd1fa689a B10.1 -> B06.4 (UFJF PISM3 2022 q11).
 - AUTORAL Pc481e226: o caderno da Unimontes PAES3 2020 só foi achado no pacote de download de vestibular.brasilescola.uol.com.br (o link do prova.json é a página da Coteps). O print é da prova oficial, sem logo, nome nem marca do site; a origem está em docs/provas/prints-refeitos.md. Dono decide.
 - Ficou pendente: 1 — ANULAR P50441003 (UECE 2025.2, sem gabarito definitivo: a A, preliminar mantido, chama a rodopsina de neurotransmissor e a põe nos cones).
+
+## 2026-11-20 22:44 UTC — ACABOU (pendentes) — session_01Tq253XXh44KrKH1tkSh3AZ
+Sessão de pendentes de Biologia: lotes bio-pend-0005 (retomado) e bio-pend-0006 gravados, conferidos.
+- Resolvidas: 33 (22 + 11), todas vindas de outra matéria por reclassificação, escritas no estilo de Biologia.
+- Ficaram pendentes: 17 — ANULAR 11 (decisão do dono); OUTRA 3 Educação Física (P56bf6cb4, Pd59592fa, P98fb7dec; já em outra-materia.json); 3 "classificação: é de" já reclassificadas em 13/11 e JÁ RESOLVIDAS na matéria nova, só falta tirar do registro-bio: P3c08d8ee (fis, unesp-2024-2), Pc68c4acb (qui, pucrs-2023), Pbf20fbdc (por, fatec-2023-2).

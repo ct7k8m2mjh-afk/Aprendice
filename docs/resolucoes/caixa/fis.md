@@ -450,3 +450,10 @@ Sessão de pendentes de Física: lote fis-pend-0001 (12 pendentes) gravado.
 - DADO P8de70adc (Fatec 2025-1 q26): texto_da_prova truncado; vale o print novo (95 °F).
 - Reclassificadas (prova.json corrigido): Pedc8d618 → bio B06.2, P1e7255e2 → mat M01.5, P82169a8f → qui Q09.1 (resolvidas nas matérias novas); Pb1b726b3 → geo G09.6 (só a classificação; está nos pendentes de registro-geo.json).
 - Ficaram pendentes: 3 — ANULAR Pcf680d36 (Acafe 2023 q32: faltam sen α, cos α e cos θ e o equilíbrio vertical não fecha); ANULAR P9615ec2a (UERR 2023 q44: a conta dá Δθ ≈ 252 °C, alternativa E; a oficial C só sai com 2α nos raios); ANULAR Pf4c499ee (PUC-Rio 2026 q18: vista de fora a pedra parece mais perto, II é falsa e nenhuma alternativa sobra).
+
+## 2026-11-20 22:44 UTC — ACABOU (pendentes) — session_01Tq253XXh44KrKH1tkSh3AZ
+Sessão de pendentes de Física: lotes fis-pend-0003 (retomado) e fis-pend-0004 gravados, conferidos.
+- Resolvidas: 41 (25 + 16), vindas de outra matéria, escritas no estilo de Física.
+- Ficaram pendentes: 8 — ANULAR 8 (decisão do dono).
+- DADO P429d80b7: alternativa E -> "2.500.000.000 anos" (o "Note e adote" ficou colado nela). DADO Pe173034e: "Note e adote" colado na alternativa E. DADO P6e1f0f1b: alternativa E aparece como "2 #####" (vale o print).
+- AVISO P7a724d10 (ITA 2025): resolvida com constantes consolidadas (h, c, eV); vestibular.ita.br bloqueado daqui, não deu para ver se o caderno traz tabela de constantes.

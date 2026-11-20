@@ -420,3 +420,9 @@ Sessão de pendentes de Química: lote qui-pend-0001 (11 pendentes) gravado.
 - GABARITO P1f92eb26 (IME 2024 q36): D -> E pela errata/gabarito definitivo (https://www.ime.eb.mil.br/images/arquivos/admissao/cfg/provas-anteriores/2023-2024/Gabarito_Prova_Objetiva_1_FASE.pdf; o site não abriu daqui, a letra E veio da busca e bate com o Poliedro e com a conta). gab e nota_gabarito já trocados no prova.json.
 - Reclassificadas (prova.json corrigido e resolvidas nas matérias novas): Pc3a9046b → mat M04.4; P7b93c864 → mat M13.9; Pf0174648 → fis F09.4; P904e00fe → fis F07.4; P1e229c9e → fis F08.6; P5e8f83b1 → fis F08.7.
 - Ficou pendente: 1 — ANULAR P523fcc4a (UFRR 2025: 5,00 g de sal com 1,70 g de água não dão n = 2 para NaCl; edital pós-recursos não abriu daqui).
+
+## 2026-11-20 22:44 UTC — ACABOU (pendentes) — session_01Tq253XXh44KrKH1tkSh3AZ
+Sessão de pendentes de Química: lote qui-pend-0003 (retomado) gravado, conferido.
+- Resolvidas: 21, vindas de outra matéria, escritas no estilo de Química.
+- Ficaram pendentes: 13 — ANULAR 12 (decisão do dono); 1 "classificação: é de Biologia" já reclassificada em 13/11 e JÁ RESOLVIDA em Biologia, só falta tirar do registro-qui: P7f6fa922 (uema-paes-2022).
+- DADO P729e9d1a: alternativa E -> no print é só "25" (o texto de apoio está colado nela na entrada).
