@@ -19,3 +19,17 @@ nas matérias novas, agora exige 60 cartões e 40 frases com fonte aberta e nunc
 AVISO (fora do meu escopo, é mudança visual): a tela de flashcards (app/src/ui/Cartoes.tsx) mostra frente, verso e
 frase como texto cru, sem comFracoes(); fração "a/b" num cartão sai na linha, não empilhada. Os cartões novos evitam
 fração; os antigos de Mat têm várias ("1/6", "15/16"). Corrigir pede a permissão do dono (CLAUDE.md, design).
+
+## 2026-11-20 01:00 UTC — AVISO — fabrica-conteudo
+AVISO PILOTO parte 2 ("Por que eu errei" fracos): lotes conteudo-erradas-01 a 12 gravados (todo o ENEM: 133 questões
+de 9 matérias; e as primeiras 200 das provas-alvo: 100 de Matemática e 100 de Física, lotes 11 e 12).
+Linha por questão (print + enunciado + alternativas + gabarito + resolução inteira): escritor (Sonnet) reescreve só as
+letras fracas ou devolve "manter" quando nenhum equívoco honesto leva à letra -> lente de fatos (Opus, resolve sozinha
+e refaz o raciocínio de cada letra) -> lente didática (Opus) -> lente de fatos de novo no que mudou.
+Resultado: 405 questões processadas, 243 com texto novo, 465 letras reescritas e gravadas (merge só em erradas[letra] e
+equivocos[letra] de provas/<prova>/resolucoes-<m>.json; gabarito, enunciado e outros campos intocados). Letras sem
+origem honesta ficaram com o texto antigo.
+Custo: US$ 12,98 = cerca de US$ 0,03 por questão processada (US$ 0,05 por questão com texto novo).
+Conferência do Claude Code (agentes, amostra de 20%: 51 questões, 85 letras): 2 com erro (2,4%), consertadas.
+Testes: converte, tsc e vitest verdes (839).
+Em andamento: lotes 13 a 17 (500 questões das provas-alvo de Matemática).

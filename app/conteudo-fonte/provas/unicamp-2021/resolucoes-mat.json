@@ -218,9 +218,9 @@
   "n": "43",
   "conceito": "Estimar o tempo de um crescimento que dobra a cada período usando logaritmos.",
   "equivocos": {
-   "A": "M06.5:errou-o-numero-de-duplicacoes",
-   "B": "M06.5:errou-o-numero-de-duplicacoes",
-   "D": "M06.5:errou-o-numero-de-duplicacoes"
+   "A": "M06.5:trocou-a-base-2-por-4-na-duplicacao",
+   "B": "M06.5:esqueceu-o-fator-2-ao-quadrado-no-log-de-4000",
+   "D": "M06.5:tratou-4000-como-10-a-quarta-no-log"
   },
   "resolucao": {
    "antes": {
@@ -266,9 +266,9 @@
    "resposta": "Alternativa C — o 32º dia e o 38º dia.",
    "checagem": "Sem logaritmo: 2¹² = 4096, pouco acima de 4000. Doze duplicações de 3 dias são 36 dias.",
    "erradas": {
-    "A": "Não confere: no 24º dia houve 8 duplicações, 2⁸ = 256 infectados, longe de 4 mil.",
-    "B": "Não confere: no 30º dia houve 10 duplicações, 2¹⁰ = 1024 infectados.",
-    "D": "Não confere: no 39º dia já houve 13 duplicações, 2¹³ = 8192, o dobro da marca."
+    "A": "Quem marca A troca \"dobrar\" por \"quadruplicar\" e monta 4^(t/3) = 4000. Com log 4 = 0,6, fica (t/3) × 0,6 = 3,6, logo t = 18. Dobrar pede base 2: t = 36.",
+    "B": "Quem marca B esquece o fator 4 de 4000 e usa log 4000 = 3. Então (t/3) × 0,3 = 3, logo t = 30. Mas 4000 = 2² × 10³, e log 4000 = 3,6, que dá t = 36.",
+    "D": "Quem marca D arredonda 4000 para 10^4 e usa log 4000 = 4. Então (t/3) × 0,3 = 4 dá t = 40. Mas 4000 = 2² × 10³, então log 4000 = 3,6, que dá t = 36."
    },
    "armadilha": "Esquecer de multiplicar por 3: 12 é o número de duplicações, não de dias.",
    "alerta": "",
@@ -440,7 +440,7 @@
   "equivocos": {
    "B": "M09.1:trocou-a-hipotenusa",
    "C": "M09.1:esqueceu-a-divisao-por-2",
-   "D": "M09.1:errou-a-conta"
+   "D": "M09.1:hipotenusa-errada-e-esqueceu-a-divisao-por-2"
   },
   "resolucao": {
    "antes": {
@@ -497,8 +497,8 @@
    "checagem": "Em decimal, com a = 1: q² ≈ 1,618, q ≈ 1,272; área ≈ 0,636. Pela alternativa A: √(4,472 + 2)/4 = √6,472/4 ≈ 2,544/4 ≈ 0,636.",
    "erradas": {
     "B": "Com a = 1 daria ≈ 0,393, e a área é ≈ 0,636. Sai de montar Pitágoras com a como hipotenusa (q⁴ + q² − 1 = 0, q² = (√5 − 1)/2) e manter a área a² × q/2.",
-    "C": "Com a = 1 daria √(2√5 + 2)/2 ≈ 1,272, o dobro da área: falta a divisão por 2 do triângulo.",
-    "D": "Com a = 1 daria √(2√5 − 2)/2 ≈ 0,786, e a área é cerca de 0,636."
+    "C": "Quem marca C calcula a área como produto dos catetos, a × aq = a²q, e esquece de dividir por 2. Com a = 1, sai 1,272 em vez de 0,636.",
+    "D": "Quem marca D toma a como hipotenusa: q⁴ + q² − 1 = 0 dá q² = (√5 − 1)/2. Depois mantém a e aq como catetos, esquece de dividir por 2 e chega a a²q ≈ 0,786. Mas a é o menor lado; a hipotenusa é aq²."
    },
    "armadilha": "Esquecer a divisão por 2 da área do triângulo (alternativa C dá o valor de q).",
    "alerta": "",
@@ -694,7 +694,7 @@
   "n": "40",
   "conceito": "Simplificação de fração de frações com seno e cosseno; arcos duplos.",
   "equivocos": {
-   "A": "M10.5:perdeu-uma-parcela",
+   "A": "M10.5:esqueceu-parcela-2-sen-cos",
    "C": "M10.5:trocou-o-sinal",
    "D": "M10.5:sem-origem-identificada"
   },
@@ -743,9 +743,9 @@
    "resposta": "Alternativa B — cos(2θ) + sen(2θ)",
    "checagem": "Teste θ = π/6: a expressão original dá cerca de 1,366, e cos(π/3) + sen(π/3) = 0,5 + 0,866 = 1,366.",
    "erradas": {
-    "A": "cos²θ − sen²θ perde a parcela 2 sen θ cos θ; com θ = π/6 daria 0,5, mas a expressão vale cerca de 1,366.",
-    "C": "cos 2θ − sen 2θ troca o sinal da parcela 2 sen θ cos θ; com θ = π/6 daria cerca de −0,366, e a expressão vale cerca de 1,366.",
-    "D": "1 não confere: com θ = π/6 a expressão vale cerca de 1,366, não 1."
+    "A": "Quem marca A reconhece cos²θ − sen²θ = cos 2θ, mas esquece a parcela 2 sen θ cos θ que também sobra no numerador. Ela vale sen 2θ, e o resultado é cos 2θ + sen 2θ.",
+    "C": "Quem marca C erra o sinal das parcelas sen θ cos θ no numerador e chega a cos²θ − sen²θ − 2 sen θ cos θ. Elas se somam: +2 sen θ cos θ = sen 2θ, e o resultado é cos 2θ + sen 2θ.",
+    "D": "Quem marca D vê sen²θ + cos²θ = 1 no denominador e supõe que o numerador também vira 1. Mas no numerador as parcelas sen θ cos θ se somam em vez de se cancelar. Sobra cos²θ − sen²θ + 2 sen θ cos θ = cos 2θ + sen 2θ, que não é igual a 1 para todo θ: com θ = π/6, vale cerca de 1,366."
    },
    "armadilha": "No denominador, as parcelas sen θ cos θ se cancelam; no numerador, elas se somam. Trocar isso muda o resultado.",
    "alerta": "",
@@ -1019,8 +1019,8 @@
    "resposta": "Alternativa A — a parábola com boca para cima, toda acima do eixo x",
    "checagem": "Teste um caso: a = 1 e q = 1 dá p(x) = 1 + x + x². Em x = −1/2 (vértice) vale 3/4 > 0, então nunca toca o eixo; é o desenho da figura a.",
    "erradas": {
-    "B": "B não confere: corta o eixo x duas vezes, o que exige Δ > 0, mas Δ = −3a²q² é sempre negativo.",
-    "C": "C não confere: também mostra duas raízes reais, impossíveis com Δ = −3a²q² < 0.",
+    "B": "Quem marca B confere a boca para cima, p(0) = a > 0 e o vértice à esquerda (razão q > 0). Faltou o discriminante: b² − 4ac = −3a²q², negativo. Então o gráfico não toca o eixo x.",
+    "C": "Quem marca C confere a boca para cima, p(0) = a > 0 e o vértice à direita (razão q < 0). Faltou o discriminante: b² − 4ac = −3a²q², negativo. Sem raízes reais, o gráfico não toca o eixo x.",
     "D": "D tem a boca para baixo, o que exigiria c < 0; mas c = aq² é positivo quando a > 0."
    },
    "armadilha": "O polinômio está escrito ao contrário (a + bx + cx²): o coeficiente de x² é c, e é ele que decide a concavidade.",
