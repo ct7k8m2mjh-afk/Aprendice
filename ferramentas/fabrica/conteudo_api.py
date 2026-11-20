@@ -459,8 +459,13 @@ def fila():
 
 
 def proximo_lote():
-    ns = [int(x.rsplit('-', 1)[1]) for x in glob.glob(os.path.join(SAIDA, 'conteudo-erradas-*')) if x[-2:].isdigit()]
-    return f'conteudo-erradas-{(max(ns) + 1 if ns else 1):02d}'
+    # ERRADAS_SERIE (ex.: "mat") dá a cada sessão do Claude Code a sua própria série de nomes
+    # (conteudo-erradas-mat-01, -02...), para duas sessões nunca criarem o mesmo lote.
+    serie = os.environ.get('ERRADAS_SERIE', '').strip()
+    pre = f'conteudo-erradas-{serie}-' if serie else 'conteudo-erradas-'
+    ns = [int(os.path.basename(x)[len(pre):]) for x in glob.glob(os.path.join(SAIDA, pre + '*'))
+          if os.path.basename(x)[len(pre):].isdigit()]
+    return f'{pre}{(max(ns) + 1 if ns else 1):02d}'
 
 
 def erradas_abre(n, so_materia=None):
@@ -866,6 +871,8 @@ def main():
     elif a[0] == 'erradas-fila':
         f = fila()
         print(len(f), 'questões na fila;', collections.Counter((x[0][0], x[1]) for x in f).most_common(12))
+    elif a[0] == 'erradas-prompt':  # imprime o prompt de uma lente já com o especialista da matéria (sem API)
+        print(monta(a[1], a[2]))
     elif a[0] == 'erradas-abre':
         erradas_abre(int(a[1]), a[2] if len(a) > 2 else None)
     elif a[0] == 'erradas-roda':
