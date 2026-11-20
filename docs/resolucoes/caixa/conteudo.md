@@ -33,3 +33,21 @@ Custo: US$ 12,98 = cerca de US$ 0,03 por questão processada (US$ 0,05 por quest
 Conferência do Claude Code (agentes, amostra de 20%: 51 questões, 85 letras): 2 com erro (2,4%), consertadas.
 Testes: converte, tsc e vitest verdes (839).
 Em andamento: lotes 13 a 17 (500 questões das provas-alvo de Matemática).
+
+## 2026-11-20 — FIM — fabrica-conteudo
+Último lote gravado: conteudo-erradas-17. Nenhum lote aberto. Sessão encerrada no limite de contexto combinado.
+Parte 1 — cartões criados (60 flashcards + 40 frases cada, em app/conteudo-fonte/materias/<m>.json): Física, História,
+Geografia, Inglês, Filosofia e Sociologia = 300 flashcards e 200 frases. Gasto US$ 3,63.
+Parte 2 — "Por que eu errei" reescrito (questões com texto novo / letras): Matemática 415, Física 87, Português 20,
+Química 13, Geografia 6, Biologia 6, Inglês 1, História 1, Filosofia e Sociologia 1 = 550 questões, 939 letras, em 905
+questões processadas (ENEM inteiro, 100 provas-alvo de Física e 600 provas-alvo de Matemática). As letras sem equívoco
+honesto que leve a elas ficaram com o texto antigo (a questão conta como processada e sai da fila). Gasto US$ 29,63
+(~US$ 0,03 por questão processada).
+Conferência por amostra (20%, agentes): parte 2 = 181 letras, 5 com erro (2,8%), todas consertadas; parte 1 = 1 erro em
+100 itens. Testes: converte, tsc e vitest verdes (859).
+Gasto total da sessão: US$ 33,26 (teto US$ 40). Fábrica inteira: US$ 160,25 de US$ 200.
+Continuar de: `python3 ferramentas/fabrica/conteudo_api.py erradas-fila` (próximos: provas-alvo de Matemática, ~436;
+depois provas-alvo de Física, ~825; Química, ~435). Abrir: `BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py
+erradas-abre 100 mat`; rodar: `erradas-roda <lote>`; amostra: `erradas-amostra <lote>` + agentes com
+fabrica_saida/conteudo/CONFERE-ERRADAS.md; `erradas-aplica <lote>`; `erradas-grava <lote>` (git pull antes).
+Sobra do teto desta encomenda: US$ 6,74.

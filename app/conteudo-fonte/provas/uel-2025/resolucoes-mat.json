@@ -56,10 +56,10 @@
    "resposta": "Alternativa D — f(n + 5) = 5f(n + 1) + 3f(n)",
    "checagem": "Teste com n = 1: f(6) = 8 e 5f(2) + 3f(1) = 5 + 3 = 8. Com n = 2: f(7) = 13 e 5f(3) + 3f(2) = 10 + 3 = 13. Fecha nos dois.",
    "erradas": {
-    "A": "f(n + 1) + f(n) é f(n + 2), não f(n + 5): parou no primeiro degrau. Com n = 1 dá 2, e f(6) = 8.",
-    "B": "f(n + 1) + 2f(n) não confere: com n = 1 dá 1 + 2 = 3, mas f(6) = 8.",
-    "C": "2f(n + 1) + 3f(n) não confere: com n = 1 dá 2 + 3 = 5, mas f(6) = 8.",
-    "E": "5f(n + 1) + 8f(n) troca os coeficientes de f(n + 6) = 8f(n + 1) + 5f(n), um degrau acima. Com n = 1 dá 13, mas f(6) = 8."
+    "A": "Quem marca A aplica a regra uma vez só e para em f(n + 2) = f(n + 1) + f(n). Faltam três degraus até f(n + 5). Com n = 1 dá 2, mas f(6) = 8.",
+    "B": "Quem marca B para em f(n + 3), que é 2f(n + 1) + f(n), e ainda inverte os coeficientes. Faltam dois degraus até f(n + 5). Com n = 1 dá 3, mas f(6) = 8.",
+    "C": "Quem marca C chega a f(n + 4) = 3f(n + 1) + 2f(n), mas inverte os coeficientes e ainda fica um degrau antes de f(n + 5). Com n = 1 dá 5, mas f(6) = 8.",
+    "E": "Quem marca E sobe um degrau a mais: f(n + 6) = 8f(n + 1) + 5f(n), e ainda inverte os coeficientes. Com n = 1 dá 5 + 8 = 13, mas f(6) = 8."
    },
    "armadilha": "Cada degrau tem de somar as DUAS expressões anteriores; somar só uma ou trocar os coeficientes leva às erradas.",
    "alerta": "",
@@ -355,7 +355,7 @@
   "equivocos": {
    "A": "M05.5:usou-o-valor-aproximado",
    "B": "M05.5:errou-o-ramo-da-funcao",
-   "C": "M05.5:errou-o-ramo-da-funcao",
+   "C": "M05.5:usou-o-valor-aproximado",
    "D": "M05.5:errou-a-paridade-das-aplicacoes"
   },
   "resolucao": {
@@ -408,7 +408,7 @@
    "erradas": {
     "A": "0,340 não confere: B leva fração de denominador 3 em fração de denominador 3 (2 × 1/3 = 2/3; 2 × 2/3 − 1 = 1/3), então F(1/3) só pode ser 1/3 ou 2/3.",
     "B": "1/2 não confere: só chega a 1/2 quem parte de 1/4 ou de 3/4, e o ciclo de 1/3 passa apenas por 1/3 e 2/3.",
-    "C": "1 não confere: B(x) = 1 só para x = 1/2 ou x = 1, valores que o ciclo 1/3 → 2/3 nunca atinge.",
+    "C": "Quem marca C lê F(0,333) = 0,992 como \"quase 1\" e conclui que o valor exato é 1. Mas 0,992 é só efeito da aproximação. Com 1/3 exato, B alterna entre 1/3 e 2/3 e nunca chega a 1.",
     "D": "0,668 não confere: mesmo com um número ímpar de aplicações o resultado seria 2/3 = 0,666..., não 0,668."
    },
    "armadilha": "Usar 0,333 no lugar de 1/3: a cada aplicação a pequena diferença dobra, e depois de dez vezes F(0,333) = 0,992, longe de F(1/3) = 1/3.",
@@ -461,7 +461,7 @@
   "equivocos": {
    "A": "M06.4:base-do-log-errada",
    "B": "M06.4:logaritmando-negativo",
-   "C": "M06.4:sinal-trocado-no-parenteses",
+   "C": "M06.4:trocou-j-menos-1-por-j-mais-1",
    "D": "M06.4:sinal-trocado-ao-mudar-de-lado"
   },
   "resolucao": {
@@ -530,9 +530,9 @@
    "resposta": "Alternativa E — n = logj [P/(P − C · (j − 1))], o logaritmo na base j de P/(P − C · (j − 1)).",
    "checagem": "Teste com números: C = 100, j = 1,1 e P = 20 dão n = log_1,1 (20/10) ≈ 7,27, e D(7,27) = 100 · 1,1^n − 20 · (1,1^n − 1)/0,1 = 0. Fecha.",
    "erradas": {
-    "A": "A não confere: a potência é j^n, então a base do log é j, não C. Com C = 100, j = 1,1, P = 20, A dá n ≈ 0,15 e D(0,15) ≈ 98,6 ≠ 0.",
+    "A": "Quem marca A chega certo a j^n = P/(P − C · (j − 1)), mas usa log na base C. Para tirar o n do expoente, a base do log tem de ser a base da potência: j.",
     "B": "B não confere: −P/(P − C · (j − 1)) é negativo, porque P − C · (j − 1) > 0; não existe log de número negativo.",
-    "C": "C não confere: com C = 100, j = 1,1, P = 20, o denominador P − C · (j + 1) = −190 deixa a fração negativa, sem logaritmo.",
+    "C": "Quem marca C troca j − 1 por j + 1 ao isolar j^n. O fator que multiplica C vem do denominador j − 1 do enunciado. Com j + 1, a fração fica sempre negativa (como P < C, o denominador P − C · (j + 1) é negativo), e não existe log de número negativo.",
     "D": "D sai de trocar o sinal ao mover o termo: P · j^n + C · (j − 1) · j^n = P. A fração fica menor que 1 e daria n negativo."
    },
    "armadilha": "Ao mover C · (j − 1) · j^n para o lado do P · j^n, o sinal troca: fica P − C · (j − 1), não P + C · (j − 1).",
@@ -658,7 +658,7 @@
    "erradas": {
     "A": "A marca V na 2.ª, mas o trecho diz que provar a conjectura por argumentos prováveis é \"girar num círculo\": Hume nega um fundamento lógico-racional à inferência causal.",
     "B": "B erra a 2.ª (Hume nega o fundamento racional) e a 4.ª: de A ⊂ V segue x ∉ V ⇒ x ∉ A, então a 4.ª é V, não F.",
-    "D": "D erra a 1.ª, a 2.ª, a 3.ª e a 4.ª: inverte a leitura de Hume, que não dá fundamento racional à causação nem à probabilidade, e nega a contrapositiva, que é V.",
+    "D": "Quem marca D lê Hume como racionalista, como se a razão ou a probabilidade provassem a causa. O trecho chama isso de \"girar num círculo\". Na 4.ª, A está dentro de V: quem não é vermelho não pode ser azul.",
     "E": "E marca V na 5.ª, mas P(A ∩ B)/P(B) = P(A ∩ B)/P(A) obriga P(A) = P(B); então P(B) > P(A) é F. Erra também a 1.ª, a 3.ª e a 4.ª (nega a contrapositiva, que é V)."
    },
    "armadilha": "Na 5.ª, condicionais iguais parecem sugerir eventos de pesos diferentes; com a mesma intersecção no numerador, elas forçam P(A) = P(B).",
@@ -825,7 +825,7 @@
   "conceito": "Julgar afirmativas sobre a travessia de Alcuíno: deslocamento, probabilidade de uma viagem com a cabra, distância percorrida pela cabra e raiz real de x² + L = 0.",
   "equivocos": {
    "A": "M17.1:esqueceu-a-volta-da-cabra",
-   "B": "M17.1:raiz-real-de-quadrado-negativo",
+   "B": "M17.1:esqueceu-volta-da-cabra-e-raiz-real-de-quadrado-negativo",
    "C": "M17.1:raiz-real-de-quadrado-negativo",
    "E": "M17.1:deslocamento-como-distancia"
   },
@@ -895,7 +895,7 @@
    "checagem": "Pelas travessias do homem: ele cruza 4 vezes indo e 3 voltando, 7 cruzamentos. Como o número é ímpar, ele termina na margem oposta, a uma distância L do início, e o deslocamento confirma I. Para a IV, o discriminante 0² − 4 · 1 · L = −4L é negativo.",
    "erradas": {
     "A": "A deixa de fora a III, que é verdadeira: a cabra cruza o rio na 1ª viagem, volta na 2ª e cruza de novo na 4ª, 3L.",
-    "B": "B inclui a IV, falsa: x² + L = 0 dá x² = −L, negativo porque L > 0. E deixa de fora a II e a III, verdadeiras.",
+    "B": "Quem marca B acha que x² + L = 0 tem raiz real. Mas x² = −L é negativo, pois L > 0, e nenhum quadrado real é negativo. Faltou também contar a volta da cabra na 2ª viagem: são 3 de 4 viagens (75%) e 3L.",
     "C": "C inclui a IV, falsa (x² = −L < 0) e deixa de fora a I: o homem termina na margem oposta, deslocamento L.",
     "E": "E inclui a IV, falsa, e deixa de fora a I, trocando deslocamento por distância: o homem anda 7L, mas o deslocamento é L."
    },

@@ -92,7 +92,7 @@
    "A": "M07.4:olhou-so-um-vizinho",
    "C": "M07.4:copiou-o-valor-atual",
    "D": "M07.4:aplicou-a-regra-errada",
-   "E": "M07.4:aplicou-a-regra-errada"
+   "E": "M07.4:leu-demais-casos-como-1"
   },
   "resolucao": {
    "antes": {
@@ -155,7 +155,7 @@
     "A": "0, 0, 0, ... sai de olhar só o vizinho da direita, a(n+1), em todas as posições. Para n = 2 a regra soma também a1 = 1, e a soma 1 dá vida.",
     "C": "1, 1, 0, ... sai de manter a'1 = 1 porque a1 = 1. A regra da posição 1 olha a2, que vale 0, então a'1 = 0.",
     "D": "1, 1, 0, 1, 0, ... não confere: a'4 depende de a5 + a3 = 0 + 0 = 0, logo a'4 = 0; e a'1 = 0 porque a2 = 0.",
-    "E": "1, 1, 1, 1, ... não confere: a'3 depende de a4 + a2 = 0 + 0 = 0, logo a'3 = 0. Quase todas as posições têm vizinhos nulos."
+    "E": "Quem marca E lê 'nos demais casos' como 1, mas a regra manda 0. Só a posição 2 tem vizinhos somando 1. A posição 1 tem a2 = 0, e a posição 3 tem 0 + 0 = 0: as duas dão 0."
    },
    "armadilha": "O valor da própria posição não conta: a posição 1 tem vida em t, mas morre em t + 1 porque a2 = 0.",
    "alerta": "",
@@ -212,7 +212,7 @@
    "A": "M08.1:hipotenusa-como-cateto-na-area",
    "B": "M08.1:respondeu-quadrado-da-hipotenusa",
    "C": "M08.1:raiz-errada-da-razao",
-   "D": "M08.1:nao-usou-pitagoras"
+   "D": "M08.1:confundiu-lado-unitario-com-area"
   },
   "resolucao": {
    "antes": {
@@ -278,8 +278,8 @@
    "erradas": {
     "A": "(1/2)φ sai de usar a hipotenusa como cateto: (1 · q²)/2 = φ/2. A área usa os dois catetos, 1 e q.",
     "B": "φ² sai do quadrado da hipotenusa: (q²)² = φ² ≈ 2,618. Isso é um lado ao quadrado, não a área (≈ 0,636).",
-    "C": "(1/2)⁴√φ não confere: com q = ⁴√φ ≈ 1,128, 1 + q² ≈ 2,272 e q⁴ = φ ≈ 1,618; Pitágoras falha.",
-    "D": "1 não confere: área 1 exige q = 2, lados 1, 2 e 4, mas 1 + 4 = 5 não é 16."
+    "C": "Quem marca C faz q^4 = φ e tira q = ⁴√φ. Mas Pitágoras dá 1 + q² = q^4, e a equação x² = 1 + x vale para x = q². Então q² = φ e q = √φ.",
+    "D": "Quem marca D toma a medida do menor lado, 1, como se fosse a área. Os catetos medem 1 e q = √φ, então a área é (1 · √φ)/2 ≈ 0,636."
    },
    "armadilha": "A hipotenusa é q², não q: quem a usa como cateto na área chega a φ/2.",
    "alerta": "",
@@ -531,10 +531,10 @@
    "resposta": "Alternativa A — V, V, V, F, F",
    "checagem": "Confira T1 e M2 na equação: (5/13 × 13/5)² + 0 = 1, e o ponto (0, −17/10) dá 0 + (10/17 × 17/10)² = 1. Os dois estão na curva, a 2,6 e a 1,7 de O.",
    "erradas": {
-    "B": "V, F, F, F, V não confere: marca F no item 2, mas a gravidade à altura h é GM/(R + h)², e marca V no item 5, mas a curva está a 2,6 de O em M2 e a 1,7 em (0, −17/10).",
-    "C": "F, V, V, V, F não confere: marca F no item 1, mas y = 0 dá x = ±13/5, e marca V no item 4, mas o peso m × GM/(R + h)² não é zero.",
-    "D": "F, F, F, V, V não confere: o item 1 é V (x = ±13/5) e o item 3 é V, porque T1M1 é vertical e T1M2 é horizontal.",
-    "E": "F, F, V, F, V não confere: o item 1 é V (x = ±13/5) e o item 5 é F, porque as distâncias a O variam de 1,7 a 2,6."
+    "B": "Quem marca B vê a curva como arco de circunferência e acha constante a distância até O (item 5). Mas é meia elipse: M2 fica a 13/5 = 2,6 de O, e o ponto (0, −17/10) fica a 1,7. Erra ainda os itens 2 e 3.",
+    "C": "Quem marca C erra o item 1: com y = 0, (5x/13)² = 1 dá x = ±13/5, então T1 = (−13/5, 0) e M2 = (13/5, 0). No item 4, supõe gravidade nula acima da atmosfera, mas g = GM/(R + h)² não é zero.",
+    "D": "Ao fazer y = 0, quem marca D inverte a fração: acha x = 5/13 em vez de 13/5. Isso derruba os itens 1 e 3, pois T1M1 deixa de ser vertical. Também julga a gravidade nula acima da atmosfera (itens 2 e 4) e vê a curva como circunferência (item 5).",
+    "E": "Quem marca E erra três itens. No 1, y = 0 dá x = ±13/5: é V. No 2, usa a gravidade da superfície, mas a uma altura h ela é GM/(R + h)². No 5, a curva é meia elipse: as distâncias a O vão de 1,7 a 2,6."
    },
    "armadilha": "A curva parece um arco de circunferência no desenho, mas é meia elipse: 13/5 no eixo x e 17/10 no eixo y.",
    "alerta": "A questão mistura Matemática e Física: os itens 2 e 4 são de gravitação (g = GM/(R + h)²), e a curva é uma elipse, não uma circunferência.",
@@ -588,10 +588,10 @@
   "n": "8",
   "conceito": "Aplicar uma função definida por partes conforme a paridade do número e testar afirmações.",
   "equivocos": {
-   "A": "M05.4:ignorou-que-f-so-da-inteiros",
+   "A": "M05.4:aplicou-linha-dos-impares-sem-checar-paridade",
    "C": "M05.4:nao-testou-a-linha-dos-impares",
    "D": "M05.4:confundiu-injetora",
-   "E": "M05.4:usou-a-linha-errada-da-definicao"
+   "E": "M05.4:aceitou-a-frase-do-texto-sem-calcular"
   },
   "resolucao": {
    "antes": {
@@ -651,10 +651,10 @@
    "resposta": "Alternativa B — f(2n) + f(2n + 1) = 0 para todo n natural",
    "checagem": "Teste com números: n = 1 dá f(2) + f(3) = 1 + (−1) = 0; n = 5 dá f(10) + f(11) = 5 + (−5) = 0.",
    "erradas": {
-    "A": "A não confere: 10^23 é par, então −10^23 + 1 é ímpar e (−10^23 + 1)/2 não é inteiro, mas f só devolve inteiros. A linha dos ímpares pediria n = 10^23, que é par.",
-    "C": "C não confere: n = 31 é ímpar e f(31) = (−31 + 1)/2 = −15. Esse n existe.",
-    "D": "D não confere: para ímpares, f(n) = f(m) dá (−n + 1)/2 = (−m + 1)/2, logo n = m. A afirmação diz o contrário.",
-    "E": "E não confere: f(2n) = n, então f(2n) + n = 2n; com n = 1 dá 2, não 1."
+    "A": "Quem marca A usa a fórmula dos ímpares com n = 10^23 e não percebe que 10^23 é par. Além disso, −10^23 + 1 é ímpar, então (−10^23 + 1)/2 nem é inteiro. E f só devolve inteiros.",
+    "C": "Quem marca C erra o sinal ao resolver (−n + 1)/2 = −15: escreve −n + 1 = 30, chega a n = −29 e conclui que não há natural. O correto é −n + 1 = −30, logo n = 31, ímpar.",
+    "D": "Quem marca D inverte a conclusão. Para ímpares, (−n + 1)/2 = (−m + 1)/2 leva a n = m. Ou seja, resultados iguais vêm de entradas iguais, nunca de entradas diferentes.",
+    "E": "Quem marca E aceita a frase 'unidade indispensável' como argumento e não faz a conta. Como 2n é par, f(2n) = n e f(2n) + n = 2n. Isso só dá 1 se n = 1/2, que não é natural."
    },
    "armadilha": "Escolher a linha da definição pela paridade de n, e não do número que entra: 2n + 1 é sempre ímpar, então usa (−n + 1)/2 com 2n + 1 no lugar de n.",
    "alerta": "",
@@ -704,10 +704,10 @@
   "n": "24",
   "conceito": "Multiplicar a matriz de rotação pelo vetor do ponto para achar as coordenadas do ponto girado.",
   "equivocos": {
-   "A": "M15.1:matriz-que-nao-e-rotacao",
-   "B": "M15.1:matriz-que-nao-preserva-distancia",
-   "C": "M15.1:matriz-que-nao-preserva-distancia",
-   "D": "M15.1:angulo-de-giro-errado"
+   "A": "M15.1:sinal-de-menos-fora-do-lugar-na-matriz",
+   "B": "M15.1:cos-30-igual-a-meio",
+   "C": "M15.1:cos-30-igual-a-meio-e-sinal-fora-do-lugar",
+   "D": "M15.1:trocou-seno-por-cosseno-e-perdeu-sinal"
   },
   "resolucao": {
    "antes": {
@@ -762,10 +762,10 @@
    "resposta": "Alternativa E — P' = ((√3)/2 a − 1/2 b, 1/2 a + (√3)/2 b)",
    "checagem": "Teste com P = (1, 0), sobre o eixo x: a fórmula dá P' = ((√3)/2, 1/2), que tem distância 1 até a origem e faz 30° com o eixo x, no sentido anti-horário. É o giro pedido.",
    "erradas": {
-    "A": "A não confere: com P = (0, 1) dá (1/2, −(√3)/2), um ponto a −60°; quem estava a 90° girou 150° no sentido horário, não 30° no anti-horário.",
-    "B": "B não confere: com P = (1, 0) dá (1/2, 1/2), a distância √2/2 ≈ 0,71 da origem. Rotação mantém a distância, que era 1.",
-    "C": "C não confere: com P = (1, 0) dá (1/2, 1/2), distância √2/2 ≈ 0,71, e não 1; girar não muda a distância até O.",
-    "D": "D não confere: com P = (1, 0) dá (1/2, (√3)/2), um ponto a 60° do eixo x; o giro pedido é de 30°."
+    "A": "Quem marca A passa o sinal de menos de −sen θ para o cos θ da 2ª linha. Assim (0, 1) vai para (1/2, −(√3)/2), e não para (−1/2, (√3)/2): vira um espelhamento, não um giro.",
+    "B": "Quem marca B usa cos 30° = 1/2 no lugar de (√3)/2; 1/2 é o valor de sen 30°. Os sinais estão certos, mas (1, 0) vai para (1/2, 1/2), mais perto da origem. Um giro mantém a distância até a origem.",
+    "C": "Quem marca C junta dois erros: usa cos 30° = 1/2 em vez de (√3)/2 e põe o menos no cos θ da 2ª linha, não no sen θ da 1ª. Com (1, 0), dá (1/2, 1/2), perto demais de O.",
+    "D": "Quem marca D troca os valores: usa cos = 1/2 e sen = (√3)/2, que são de 60°, e ainda perde o menos de −sen θ. Com (1, 0), dá (1/2, (√3)/2), a 60° do eixo x."
    },
    "armadilha": "Cada linha de M multiplica a coluna (a, b) termo a termo; o sinal de menos de −sen θ fica só na primeira coordenada.",
    "alerta": "",
