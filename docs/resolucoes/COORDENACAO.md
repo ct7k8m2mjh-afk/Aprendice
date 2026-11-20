@@ -91,6 +91,9 @@ REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, comm
 - Conferido no site às 22h15 UTC: com_resolucao soma 26.549 (relatorio.json). Ambiente novo da conta nova: "Aprendice"
   (env_017uFXKuGZ3YGuXrgUUTdSAd, libera aprendice.vercel.app). Faltam os conectores do Vercel e do Supabase: pedido ao dono.
 - Continua valendo "NÃO PUBLICAR" (abaixo) até o dono configurar o Supabase.
+- "Por que eu errei" fracos: dono decidiu (20/11 22h) "ignora API, faça aqui no Claude". Roteiro em
+  docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md (provas-alvo, ~1.700: mat ~436, fís ~825, quí ~435). Sessões abertas 22h13 UTC:
+  session_01Tq253ZPg9jdmFb9cbntD91 (mat → qui, série mq) e session_01Tq253VAQptS9rzESrtPqkE (fís, série fis). Caixa: conteudo.md.
 
 ## Estado 20/11 06h10 UTC (antigo)
 Fila normal: TODAS as matérias acabaram (falta 1 de História, incluída abaixo). Fábrica de Português parou em 19/11 21h38 (13 lotes, 654;
