@@ -89,7 +89,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | bio-pend-0003 | pendentes =reclassificada | 2 | gravado | 2 | 0 | 0 |
 | bio-pend-0004 | pendentes todos-menos-anular | 3 | gravado | 0 | 3 | 0 |
 | bio-pend-0005 | pendentes todos-menos-anular | 25 | gravado | 22 | 3 | 0 |
-| bio-pend-0006 | pendentes classificação | 11 | aberto |  |  |  |
+| bio-pend-0006 | pendentes classificação | 11 | gravado | 11 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
