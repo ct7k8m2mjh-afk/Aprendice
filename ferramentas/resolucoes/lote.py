@@ -560,11 +560,18 @@ def abre_pendentes(m, n, tudo, reg1):
     abertas = {i for l in tudo['lotes'].values() if l.get('estado') == 'aberto' for i in l['ids']}
     ks = [1] + sorted({k for k in range(2, partes(m) + 1)} | {int(x) for x in re.findall(
         rf'registro-{m}-p(\d+)\.json', ' '.join(os.listdir(DOCS)))} - {1})
+    # reclassificadas (19/11): a resolução antiga fica no arquivo da matéria anterior; só conta como feita a resolução
+    # gravada no arquivo DESTA matéria (resolucoes-<m>.json)
+    fp_m = set()
+    for f in glob.glob(os.path.join(PROVAS, '*', f'resolucoes-{m}.json')):
+        fp_m |= {i for i, v in ler(f).items() if v.get('aprovada')}
     cand = []
     for k in ks:
         for qid, p in registro_parte(m, k)['pendentes'].items():
             q = por_id.get(qid)
-            if (q is None or qid in feitas or qid in fp or qid in abertas or p.get('materia', m) != m
+            nova = 'matéria nova' in (p.get('motivo') or '')
+            ja = (qid in fp_m) if nova else (qid in feitas or qid in fp)
+            if (q is None or ja or qid in abertas or p.get('materia', m) != m
                     or not pede_prefixo(prefixo(p.get('motivo')), PENDENTES)):
                 continue   # fora do banco da matéria (reclassificada), já resolvida ou já em lote
             cand.append((chave(q), qid, k, p))

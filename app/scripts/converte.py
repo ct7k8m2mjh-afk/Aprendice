@@ -326,12 +326,18 @@ def provas_fonte():
                 continue
             # resoluções aprovadas pela banca (resolvedor + corretor de fatos + corretor de didática + fatos de novo)
             # resolucoes.json (lotes antigos) + resolucoes-<matéria>.json (um por matéria, sessões em paralelo)
-            res = {}
+            res, res_mat = {}, {}
             for fr in sorted(glob.glob(os.path.join(FONTE_PROVAS, pid, 'resolucoes*.json'))):
-                res.update(ler(fr))
+                d = ler(fr)
+                res.update(d)
+                mm = re.match(r'resolucoes-([a-z]+)\.json$', os.path.basename(fr))
+                if mm:
+                    res_mat[mm.group(1)] = d
             if res:
                 for q in p['questoes']:
-                    r = res.get(q['id'])
+                    # questão que mudou de matéria (19/11): vale a resolução da matéria atual, se já existir
+                    rm = res_mat.get(q.get('materia'), {}).get(q['id'])
+                    r = rm if rm and rm.get('aprovada') else res.get(q['id'])
                     if r and r.get('aprovada'):
                         q['res'] = dict(r['resolucao'])
                         for k in ('quadro', 'caminhos', 'visual'):
