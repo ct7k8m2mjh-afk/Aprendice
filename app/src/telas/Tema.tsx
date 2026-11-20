@@ -38,7 +38,7 @@ export function CartaoTeoriaView({ c, figs }: { c: CartaoTeoria; figs?: Figura[]
       {figs && figs.map((f, i) => (
         <figure key={i} className="fig-teoria">
           <img src={f.u} alt={f.t} loading="lazy" />
-          <figcaption>{f.t}<small title={f.fonte}>{legendaFigura(f.fonte)}</small></figcaption>
+          <figcaption><span className="fig-t">{comFracoes(f.t)}</span><small title={f.fonte}>{legendaFigura(f.fonte)}</small></figcaption>
         </figure>
       ))}
     </article>
@@ -146,7 +146,7 @@ export function Tema() {
             <h1 id="tp-tit">{mod.nome}</h1>
             <p className="tp-stat num">
               {todas.length
-                ? <><b>{pct(p.feitas, p.total)}</b> feito · acerto <b>{p.feitas ? pct(p.certas, p.feitas) : '—'}</b> · {plural(subs.length, 'conteúdo', 'conteúdos')}</>
+                ? <><b>{pct(p.feitas, p.total)}</b> feito{p.feitas > 0 && <> · acerto <b>{pct(p.certas, p.feitas)}</b></>} · {plural(subs.length, 'conteúdo', 'conteúdos')}</>
                 : 'Questões em preparação'}
             </p>
           </div>
@@ -163,7 +163,7 @@ export function Tema() {
         )}
         <div className="tp-acoes">
           {destino && <Link to={`/m/${m}/q/${destino}?ctx=escada`} className="btn tp-comecar"><Icone nome="raio" />{p.feitas === 0 ? 'Começar' : alvo ? 'Continuar' : 'Refazer'}</Link>}
-          {todas.length > 0 && <p className="tp-comp num">{plural(subs.length, 'conteúdo', 'conteúdos')} · do mais fácil ao mais difícil</p>}
+          {todas.length > 0 && <p className="tp-comp num">Do mais fácil ao mais difícil</p>}
           {temRev && (
             <button className="btn sec tp-teo tp-rev" aria-pressed={aba === 'revisao'} onClick={() => setQs(aba === 'revisao' ? {} : { aba: 'revisao' }, { replace: true })}>
               <Icone nome="play" />{aba === 'revisao' ? 'Ver os conteúdos' : nEss || !subsRev.length ? 'Revisão' : 'Revisão em slides'}
@@ -211,7 +211,7 @@ export function Tema() {
         </section>
       ) : (
         <section className="tp-bloco" aria-labelledby="tp-enc-tit">
-          <h2 id="tp-enc-tit" className="tp-h">O que você vai encontrar <small className="num">{plural(subs.length, 'conteúdo', 'conteúdos')}</small></h2>
+          <h2 id="tp-enc-tit" className="tp-h">O que você vai encontrar</h2>
           <ul className="tp-enc">
             {subs.map((sub) => {
               const l = qsDe(sub.id);

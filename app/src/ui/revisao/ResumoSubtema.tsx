@@ -15,7 +15,8 @@ export function ResumoSubtemaView({ m, r, compacto }: { m: MateriaId; r: ResumoS
     <article className={'rs' + (compacto ? ' compacto' : '')} aria-label={`Resumo: ${r.titulo}`}>
       <div className="rs-txt">
         <h3 className="rs-tit">{r.titulo}</h3>
-        <ul className="rs-pontos">{r.pontos.map((p, k) => <li key={k}><span className="rs-p"><TextoMat t={p} prosa={prosa} /></span></li>)}</ul>
+        {/* "a | b" nos dados (Biologia) vira dois itens: a barra é sinal técnico (revisão de 20/11/2026, matérias 6) */}
+        <ul className="rs-pontos">{r.pontos.flatMap((p) => p.split(/\s+\|\s+/)).map((p, k) => <li key={k}><span className="rs-p"><TextoMat t={p} prosa={prosa} /></span></li>)}</ul>
         {r.formula && <Formula tex={r.formula} prosa={prosa} className="rv-formula rs-formula" />}
         {r.pegadinha && <p className="es-pegadinha"><b>Pegadinha</b><TextoMat t={r.pegadinha} prosa={prosa} /></p>}
       </div>
