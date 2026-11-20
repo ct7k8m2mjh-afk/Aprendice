@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { saiDaConta } from '../estado/conta';
-import { pegaConta, sair, useConta } from '../estado/sessao';
+import { excluirConta, pegaConta, sair, useConta } from '../estado/sessao';
 import { useEffect, useState } from 'react';
 import { atualiza, useEstado } from '../estado/loja';
 import { useTitulo } from '../ui/comum';
@@ -74,7 +74,60 @@ export function Perfil() {
       <p className="fraco" style={{ fontSize: 14, marginTop: 10 }}>{pegaConta().fase === 'local'
         ? 'Sair não apaga nada: o progresso, as provas-alvo, as datas e a meta continuam salvos neste aparelho e voltam quando você entrar de novo com o mesmo e-mail.'
         : 'Sair não apaga nada: o progresso, as provas-alvo, as datas e a meta ficam guardados na sua conta e voltam quando você entrar de novo, neste ou em outro aparelho.'} <Link to="/privacidade">Privacidade</Link></p>
+
+      <ExcluirConta />
     </div>
+  );
+}
+
+const PALAVRA = 'EXCLUIR';
+
+/** Excluir minha conta (LGPD; decisão do dono, 20/11/2026): duas etapas — abrir o aviso e confirmar escrevendo a palavra. */
+function ExcluirConta() {
+  const conta = useConta();
+  const nav = useNavigate();
+  const local = conta.fase === 'local';
+  const [aberto, setAberto] = useState(false);
+  const [txt, setTxt] = useState('');
+  const [erro, setErro] = useState('');
+  const [indo, setIndo] = useState(false);
+  const pode = txt.trim().toUpperCase() === PALAVRA && !indo;
+  const fecha = () => { setAberto(false); setTxt(''); setErro(''); };
+  const exclui = async () => {
+    if (!pode) return;
+    setIndo(true); setErro('');
+    const r = await excluirConta();
+    setIndo(false);
+    if (r) { setErro(r); return; }
+    nav('/boas-vindas', { replace: true });
+  };
+  return (
+    <section className="bloco secao exclui-conta" aria-labelledby="exc-tit">
+      <h2 className="sec-tit" id="exc-tit">Excluir minha conta</h2>
+      {!aberto ? (
+        <>
+          <p className="miolo">{local
+            ? 'Apaga o perfil e todo o progresso guardados neste aparelho. Não dá para desfazer.'
+            : 'Apaga a sua conta e todos os seus dados: e-mail, perfil de estudo e progresso. Não dá para desfazer.'}</p>
+          <div><button className="btn fantasma exc-abre" onClick={() => setAberto(true)}><Icone nome="lixo" /> Excluir minha conta</button></div>
+        </>
+      ) : (
+        <form className="confirma-zera" onSubmit={(ev) => { ev.preventDefault(); void exclui(); }}>
+          <p><b>Excluir a conta para sempre?</b> {local
+            ? 'O perfil, as provas-alvo, as datas, a meta, todo o progresso e as cópias de segurança deste aparelho serão apagados.'
+            : 'A conta, o perfil, as provas-alvo, as datas, a meta e todo o progresso serão apagados da nuvem e deste aparelho. Para estudar de novo, será preciso criar outra conta.'}</p>
+          <div className="campo">
+            <label htmlFor="exc-conf">Para confirmar, escreva {PALAVRA}</label>
+            <input id="exc-conf" value={txt} onChange={(ev) => setTxt(ev.target.value)} autoComplete="off" autoCapitalize="characters" spellCheck={false} autoFocus />
+          </div>
+          {erro && <p className="exc-erro" role="alert">{erro}</p>}
+          <div className="fc-acoes">
+            <button type="button" className="btn sec" onClick={fecha}>Cancelar</button>
+            <button type="submit" className="btn perigo" disabled={!pode}>{indo ? 'Excluindo…' : 'Excluir para sempre'}</button>
+          </div>
+        </form>
+      )}
+    </section>
   );
 }
 

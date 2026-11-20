@@ -38,7 +38,7 @@ export function Privacidade() {
 
       <section className="bloco secao">
         <h2 className="sec-tit">Seus direitos</h2>
-        <p className="miolo">Você pode ver e corrigir o seu perfil em Perfil, baixar uma cópia do seu progresso em Configurações. A exclusão da conta com todos os dados será oferecida em Perfil. Os dados são tratados conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018).</p>
+        <p className="miolo">Você pode ver e corrigir o seu perfil em Perfil, baixar uma cópia do seu progresso em Configurações e excluir a sua conta, com todos os dados, em Perfil, no botão “Excluir minha conta”: a conta, o perfil e o progresso são apagados da nuvem e deste aparelho, sem volta. Os dados são tratados conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018).</p>
       </section>
 
       <div className="secao"><Link to={voltar} className="btn sec"><Icone nome="esquerda" /> Voltar</Link></div>

@@ -265,6 +265,40 @@ export async function sair(): Promise<void> {
 }
 let saindo = false;
 
+// ---------- excluir a conta (LGPD; decisão do dono, 20/11/2026) ----------
+/**
+ * Apaga a conta e todos os dados do aluno. Na nuvem, a função `public.excluir_minha_conta()` (security definer,
+ * supabase/migrations/20261120230000_excluir_conta.sql) apaga o perfil, o progresso e o usuário de quem está logado —
+ * só dele (auth.uid()), sem chave de serviço no navegador. Depois, o aparelho é limpo: progresso, cópias de segurança,
+ * cópias pendentes e o perfil guardado desta conta. Sem cliente (modo de demonstração), apaga o que está no aparelho.
+ * Devolve null quando apagou, ou a mensagem de erro (nada é apagado no aparelho se a nuvem falhar).
+ */
+export async function excluirConta(): Promise<string | null> {
+  const e = pegaEstado();
+  const email = chaveConta(conta.email || e.perfil?.email || '');
+  const semPerfilDesta = (x: Estado) => { const m = { ...(x.perfisSalvos || {}) }; if (email) delete m[email]; return m; };
+  if (conta.fase === 'local' || !nuvem()) {
+    limpaAparelho(true, { perfisSalvos: semPerfilDesta(e) });
+    return null;
+  }
+  if (conta.fase !== 'dentro' || !conta.uid) return 'Entre na sua conta para excluí-la.';
+  const uid = conta.uid;
+  const r = await cli().rpc('excluir_minha_conta').then((x) => x, (err) => ({ error: err as { message?: string } }));
+  if (r.error) return traduzErro(r.error);
+  [tEnvio, tPerfil, tRetentar].forEach((t) => t && clearTimeout(t));
+  tEnvio = tPerfil = tRetentar = null;
+  apagaPendente(uid);
+  marcaPerfilPendente(uid, null);
+  saindo = true;
+  await limitaTempo(cli().auth.signOut({ scope: 'local' }).then(() => undefined), 4000, undefined);
+  saindo = false;
+  rev = 0; ultimoEnviado = ''; ultimoPerfil = null;
+  defineAdmin(false);
+  limpaAparelho(true, { perfisSalvos: semPerfilDesta(pegaEstado()) });
+  muda({ fase: 'fora', uid: null, email: null, papel: 'aluno', sinc: 'ok', aviso: 'Sua conta e todos os seus dados foram excluídos.' });
+  return null;
+}
+
 // ---------- ações da tela de login ----------
 function urlDoSite(): string { return location.origin + location.pathname; }
 

@@ -73,9 +73,9 @@ export function salvaAgora() { if (timer) clearTimeout(timer); salvaJa(); }
 /** Sair da conta (contas de verdade, 20/11/2026): o progresso desta conta sai do aparelho (já está na nuvem, ou numa
  *  cópia pendente da própria conta) e a cópia de segurança do arquivo anterior também, para outra pessoa no mesmo
  *  aparelho não ver nada. Tema e preferências do aparelho ficam. */
-export function limpaAparelho(copiasTambem = true) {
+export function limpaAparelho(copiasTambem = true, manter: Partial<Estado> = {}) {
   const pref = estado.pref;
-  estado = { ...estadoVazio(), pref };
+  estado = { ...estadoVazio(), pref, ...manter };
   ouvintes.forEach((o) => o());
   if (timer) clearTimeout(timer);
   salvaJa();

@@ -15,6 +15,11 @@ O site tem login real (e-mail e senha) e o progresso de cada aluno fica salvo na
   aparelho não vê nada); as cópias de segurança antigas do aparelho saem junto quando tudo já está na conta. Se
   estiver sem internet, o que não foi enviado fica numa cópia só desta conta, juntada no próximo login dela.
 - Perfil mudado sem internet (ex.: data da prova) fica marcado como pendente e vence o da nuvem no próximo login.
+- **Excluir minha conta** (LGPD; aprovado pelo dono em 20/11/2026): no fim do Perfil. Duas etapas: o botão abre o aviso do
+  que será apagado e o aluno confirma escrevendo EXCLUIR. Apaga a conta (usuário do serviço de contas, sessões e
+  identidades), o perfil e o progresso na nuvem, e no aparelho o progresso, as cópias de segurança, a cópia pendente e o
+  perfil guardado desta conta. Se a nuvem falhar (sem internet), nada é apagado e o aluno vê o erro. No modo de
+  demonstração (sem nuvem), apaga o que está no aparelho; perfis de outros e-mails guardados ali ficam.
 - **Privacidade**: página `#/privacidade` (link no rodapé do login e no Perfil): o que é guardado (e-mail, perfil de
   estudo, progresso), para quê, onde, e que não há rastreamento de terceiros.
 
@@ -46,6 +51,11 @@ O site tem login real (e-mail e senha) e o progresso de cada aluno fica salvo na
   `VITE_SUPABASE_PUBLISHABLE_KEY` (Vercel: produção e prévia; local: `app/.env.local`, fora do git). Nenhuma chave
   secreta no site nem no repositório.
 
+- **Excluir a conta**: função `public.excluir_minha_conta()` (`supabase/migrations/20261120230000_excluir_conta.sql`),
+  `security definer`, que apaga só a conta de quem chama (`auth.uid()`): progresso, perfil e `auth.users` (o resto sai em
+  cascata). Só contas logadas (`authenticated`) podem executá-la; visitantes não. O site chama por RPC com a chave
+  pública; nenhuma chave de serviço no navegador.
+
 ## Administrador
 - O papel é lido do perfil na nuvem ao entrar. Com papel `admin`, o site mostra o que fica escondido do aluno:
   questões fora do ar (gabarito do Aprendice em preparação, sem link da fonte), de outra matéria (Artes, Educação
@@ -75,5 +85,7 @@ Para tornar outra pessoa administradora: no painel do Supabase, SQL Editor,
    Para alunos de verdade, configurar um SMTP próprio (Authentication → Emails → SMTP Settings; ex.: Resend, Brevo).
    Manter "Confirm email" **ligado**: é a confirmação que prova que a conta é do dono do e-mail (o papel de
    administrador só vem depois dela).
-3. Opcional: login com Google (Authentication → Providers → Google, com as credenciais do Google Cloud do dono).
-4. Opcional: proteção contra senhas vazadas (Authentication → Passwords; depende do plano).
+3. **SQL Editor**: rodar o arquivo `supabase/migrations/20261120230000_excluir_conta.sql` (cria a função de excluir a
+   conta). Sem ele, o botão "Excluir minha conta" responde "Não foi possível concluir agora" e não apaga nada.
+4. Opcional: login com Google (Authentication → Providers → Google, com as credenciais do Google Cloud do dono).
+5. Opcional: proteção contra senhas vazadas (Authentication → Passwords; depende do plano).
