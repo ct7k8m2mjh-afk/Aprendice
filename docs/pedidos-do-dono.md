@@ -17,6 +17,7 @@ Uma linha por decisão, com a data. Só a versão mais nova de cada regra; o que
 - 06/11 — A revisão complementa a teoria do site; não substitui os cartões nem altera a teoria sem o dono.
 - 06/11 — Revisão é revisão, não aula: formato essencial do Revisaí de Matemática (8–12 telas por tema; slides completos só em "Aprofundar", fechado). Especificação: `docs/revisao/FORMATO-ESSENCIAL.md`.
 - 06/11 — Química: R = 62,4 mmHg·L/(mol·K) na teoria (onde o enunciado der 62,3, a resolução segue o enunciado).
+- 19/11 — Flashcards e frases para completar não podem ter como fonte o site didático Toda Matéria (todamateria.com.br), além de Brasil Escola, Mundo Educação, Prepara Enem e InfoEscola: a fonte passa a ser livro aberto, universidade, governo, sociedade científica ou prova oficial que sustente o texto do cartão (o texto não muda).
 
 ## Design, cores e fontes
 - 03/11 — Cores das matérias bem distintas entre si, como um caderno de cada cor.
