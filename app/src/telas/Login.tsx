@@ -62,7 +62,7 @@ export function Login({ aoEntrar, tema, emailInicial = '' }: { aoEntrar: (email:
                 <label htmlFor="ent-senha">Senha</label>
                 <div className="l-entrada">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg>
-                  <input ref={refSenha} type={ver ? 'text' : 'password'} id="ent-senha" name="password" autoComplete={entrar ? 'current-password' : 'new-password'} placeholder="••••••••" value={senha} onChange={(e) => setSenha(e.target.value)} required minLength={6} />
+                  <input ref={refSenha} type={ver ? 'text' : 'password'} id="ent-senha" name="password" autoComplete={entrar ? 'current-password' : 'new-password'} placeholder="Sua senha" value={senha} onChange={(e) => setSenha(e.target.value)} required minLength={6} />
                   <button type="button" className="l-olho" onClick={() => setVer(!ver)} title={ver ? 'Ocultar senha' : 'Mostrar senha'} aria-label={ver ? 'Ocultar senha' : 'Mostrar senha'}>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" /><circle cx="12" cy="12" r="3" /></svg>
                   </button>
