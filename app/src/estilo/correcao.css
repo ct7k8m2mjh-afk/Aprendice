@@ -94,6 +94,14 @@
   font-feature-settings: 'frac' 0; font-variant-numeric: normal; }
 /* pedaço que não quebra (só quebra depois de seta, vírgula, dois-pontos, e antes de "=" numa igualdade encadeada) */
 .ra-u { white-space: nowrap; }
+/* trecho entre quebras do nível 1 (N1): fica inteiro enquanto cabe; se não cabe sozinho, quebra por dentro antes de
+   "+", "−", "×", "÷" (logica/motorConta.ts: quebrasConta) */
+.ra-seg { display: inline-block; max-width: 100%; white-space: normal; vertical-align: baseline; }
+/* conta que nem reduzida coube (letra no mínimo legível): rola por dentro, nada some */
+.ra-linha.conta.rola { overflow-x: auto; overflow-y: hidden; padding-bottom: 4px; }
+.ra-linha.conta.rola .ra-seg { max-width: none; white-space: nowrap; }
+/* palavra de texto corrido dentro da conta (N6): na letra do texto, não à mão */
+.ra-t.pal { font-family: var(--fonte); font-weight: 400; font-size: var(--fs-texto); color: var(--tinta); letter-spacing: 0; }
 .ra-t { display: inline-block; position: relative; white-space: pre; will-change: transform; }
 .ra-t .ra-st { display: inline-block; position: relative; white-space: pre; }
 .ra-esp { display: inline-block; white-space: pre; }
@@ -110,6 +118,11 @@ mark.ra-marca { padding: 0 .12em; }
 /* fração marcada: o marca-texto cobre a altura toda (numerador e denominador) */
 .ra-t.frac.ra-marca { background-image: linear-gradient(transparent 4%, var(--cad-marca) 4%, var(--cad-marca) 96%, transparent 96%); border-radius: 3px; }
 /* risco de caneta sobre o que se cancela */
+/* o que o passo cancela e a conta dos dados não escreve (N5): as linhas antes da conta, riscadas; traço da soma */
+.ra-pre { flex: 0 0 100%; min-width: 0; position: relative; }
+.ra-pre-l { opacity: .92; }
+.ra-corte { position: relative; display: inline-block; }
+.ra-soma-traco { display: block; height: 0; margin: 2px 0 4px; border-top: 1.5px solid color-mix(in srgb, var(--cad-tinta) 55%, transparent); transform-origin: 0 50%; max-width: 100%; }
 .ra-risco { position: absolute; left: -2px; right: -2px; top: 52%; height: 2px; border-radius: 2px; background: var(--cad-caneta); transform: rotate(-12deg); transform-origin: 0 50%; pointer-events: none; }
 
 @media (min-width: 900px) {
@@ -135,6 +148,8 @@ mark.ra-marca { padding: 0 .12em; }
 .nt-sup, .nt-sub { font-size: .66em; line-height: 0; position: relative; vertical-align: baseline; }
 .nt-sup { top: -.62em; }
 .nt-sub { top: .3em; }
+/* letra pequena do genótipo ("XᴬXᵃ", N9): maior e afastada da letra de baixo, para não encostar no X */
+.nt-sup.nt-letra { font-size: .74em; top: -.52em; margin: 0 .06em 0 .07em; }
 /* sinais que a Caveat não tem, desenhados no mesmo traço da caneta (ui/maoGlifos.tsx) */
 .mao-g { display: inline-block; height: 1em; vertical-align: -.16em; overflow: visible; }
 .mao-g path { fill: none; stroke: currentColor; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
@@ -205,7 +220,7 @@ mark.ra-marca { padding: 0 .12em; }
 .pn-grade > span { display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 2px 6px; min-width: 0;
   border-right: 1.5px solid color-mix(in srgb, var(--cad-tinta) 40%, transparent); border-bottom: 1.5px solid color-mix(in srgb, var(--cad-tinta) 40%, transparent);
   font-family: var(--mao); font-weight: 500; font-size: var(--fs-mao); line-height: 1.1; color: var(--cad-tinta); white-space: nowrap; }
-.pn-grade > .pn-g { color: var(--cad-leg); background: color-mix(in srgb, var(--cad-tinta) 5%, transparent); }
+.pn-grade > .pn-g { color: var(--cad-tinta); background: color-mix(in srgb, var(--cad-tinta) 5%, transparent); }
 .pn-grade > .pn-canto { background: color-mix(in srgb, var(--cad-tinta) 5%, transparent); }
 .pn-grade > .pn-alvo { background-image: linear-gradient(var(--cad-marca), var(--cad-marca)); }
 .pn-g.ra-fantasma { border: 0; background: var(--cad-papel); }
@@ -222,4 +237,6 @@ mark.ra-marca { padding: 0 .12em; }
 .cor-passos { margin: 4px 0 0; padding-left: 22px; display: grid; gap: 12px; }
 .cor-passos li::marker { color: var(--p, var(--tinta)); font-weight: 700; }
 .cor-passos .cor-expl { margin: 0 0 4px; }
+.cor-itens { list-style: none; margin: 0 0 4px; display: grid; gap: 4px; }
+.cor-itens li { margin: 0; }
 .cor-trecho { padding-left: 12px; border-left: 3px solid color-mix(in srgb, var(--p, var(--tinta)) 45%, transparent); font-style: italic; }

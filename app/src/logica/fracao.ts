@@ -90,7 +90,7 @@ function ehFracao(texto: string, ini: number, num: string, den: string): boolean
   if (soLetras(num) && soLetras(den)) {
     const tira = (x: string) => x.replace(/[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]/g, '');
     // depois de sinal, no começo, como argumento de função ("f(c/b)"), depois de "razão" ou antes de "=" ("a/g = 10/15")
-    const depoisDeSinal = /(^|[=+−\-×·÷≈<>→√]\s*\(?)\s*$/.test(antes) || /(^|[^A-Za-zÀ-ÿ])[a-zA-Z]\($/.test(antes)
+    const depoisDeSinal = /(^|[=+−\-×·÷≈<>→√]\s*[({\[]?)\s*$/.test(antes) || /(^|[^A-Za-zÀ-ÿ])[a-zA-Z]\($/.test(antes)
       || /\braz(ão|ões)\s+$/i.test(antes) || /^\s*[=≈]/.test(texto.slice(fim));
     if (!depoisDeSinal) return false;
     // no começo do texto, só letra de variável ou segmento ("a/b = c/d", "AB/CD"); "Wh/L (watt-hora...)" é unidade
@@ -131,9 +131,13 @@ export function partesFracao(texto: string): ParteFracao[] {
 function barras(texto: string): ParteFracao[] {
   const out: ParteFracao[] = [];
   let ult = 0;
+  // a barra dentro do expoente escrito ("2744^(1/3)") fica no expoente (revisão de 20/11, N12: o "^(" saía cru)
+  const expo: [number, number][] = [];
+  for (const e of texto.matchAll(/\^\([^()\n]{1,30}\)/g)) expo.push([e.index!, e.index! + e[0].length]);
   RE.lastIndex = 0;
   for (let m = RE.exec(texto); m; m = RE.exec(texto)) {
     if (m[0].length === 0) { RE.lastIndex++; continue; }
+    if (expo.some(([a, b]) => m!.index < b && m!.index + m![0].length > a)) { RE.lastIndex = m.index + 1; continue; }
     const [orig, num, den] = m;
     const nuc = nuclideo(texto, m.index, num, den);
     if (nuc) {
@@ -161,7 +165,7 @@ function barras(texto: string): ParteFracao[] {
 // porcentagem; ou número com unidade ("1 g ÷ 2^4", "90 g ÷ 18 g/mol", "108 km/h ÷ 3,6", "45° ÷ 15°")
 const EXPO = String.raw`(?:\^\([^()\n]{1,24}\)|\^[−\-+]?[0-9a-zA-Z,]+[+−]?|[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻ]+)?!?`;
 const NUM = String.raw`(?:\d{1,3}(?:[   ]\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)*)`;
-const SIMPLES = String.raw`(?:(?:log|ln|sen|cos|tg)\s?)?(?:\d{1,3}(?:[   ]\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθμΔℓ](?:_[A-Za-z0-9]+|\d(?!\d|[.,]\d))?)?[₀-₉]*` + EXPO + '%?';
+const SIMPLES = String.raw`(?:(?:log|ln|sen|cos|tg)\s?)?Σ?(?:\d{1,3}(?:[   ]\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθμΔℓ](?:_[A-Za-z0-9]+|\d(?!\d|[.,]\d))?)?[₀-₉ᵢⱼₙₐₑₒₓ]*` + EXPO + '%?';
 const UBASE = 'mmol|kmol|mol|mA|μA|µA|mV|kV|MW|GW|MJ|GJ|kN|MPa|GPa|GHz|MHz|kHz|hm|ha|mg|kg|μg|µg|g|mL|dL|L|mm|cm|dm|km|nm|m|min|s|h|kJ|J|kcal|cal|atm|kPa|Pa|K|kΩ|Ω|kWh|Wh|kW|W|N|V|A|C|Hz|eV|t|dias?|anos?|horas?|bi|mi|mil|milhão|milhões|bilhão|bilhões';
 const UNID_NOME = String.raw`(?:${UBASE})(?:[²³]|[23](?![\d,]))?(?:[·.\/](?:${UBASE})(?:[²³]|[23](?![\d,]))?){0,2}`;
 const CIENT = String.raw`${NUM}(?:\s?×\s?10(?:[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+|\^\(?[−\-]?\d+\)?))?`;
@@ -208,7 +212,9 @@ function opEsq(s: string, fim: number, amplo: boolean): number | null {
         if (p === 0) {
           // expoente entre parênteses ("3^(x + 64)"): o operando começa na base
           if (s[i - 1] === '^') { const base = /(?:\d+(?:[.,]\d+)*|[A-Za-zα-ωπ])$/.exec(s.slice(0, i - 1)); return base ? i - 1 - base[0].length : null; }
-          const c = amplo ? COEF.exec(s.slice(0, i)) : null; return c ? i - c[0].length : i;
+          const c = amplo ? COEF.exec(s.slice(0, i)) : null;
+          // somatório colado ao grupo ("Σ(xᵢ · pᵢ) / Σpᵢ", item 10 da revisão de 20/11/2026): faz parte do numerador
+          return c ? i - c[0].length : s[i - 1] === 'Σ' ? i - 1 : i;
         }
       }
     }
@@ -281,12 +287,17 @@ function divisoes(s: string): ParteFracao[] {
     if (!livre(o.ini, o.fim) || dentroDeBarra(s, o.ini)) continue;
     const amplo = o.txt.includes('÷');
     let a = opEsq(s, o.ini, amplo);
-    const b = opDir(s, o.fim, amplo, a != null && new RegExp(`^(?:${QTD}|${NUM_NOME}|${LETRA_NOME})$`, 'u').test(s.slice(a, o.ini)));
+    let b = opDir(s, o.fim, amplo, a != null && new RegExp(`^(?:${QTD}|${NUM_NOME}|${LETRA_NOME})$`, 'u').test(s.slice(a, o.ini)));
     // divisão encadeada (a ÷ b ÷ c = (a ÷ b) ÷ c): o numerador leva a divisão de antes, que empilha dentro dele
     for (let m = a == null ? null : /\s*÷\s*$/.exec(s.slice(0, a)); a != null && m; m = /\s*÷\s*$/.exec(s.slice(0, a))) {
       const a2 = opEsq(s, m.index, true);
       if (a2 == null) break;
       a = a2;
+    }
+    // grupo entre parênteses sobre uma palavra ("(novo − antigo) / antigo", item 10 da revisão de 20/11/2026)
+    if (!amplo && a != null && /^\(.*[−+×·\-].*\)$/.test(s.slice(a, o.ini)) && (b == null || /^[A-Za-zÀ-ÿ]/.test(s.slice(b)))) {
+      const w = /^[A-Za-zÀ-ÿα-ω]{2,}(?![A-Za-zÀ-ÿ0-9])/.exec(s.slice(o.fim));
+      if (w) b = o.fim + w[0].length;
     }
     if (a == null || b == null || !livre(a, b)) continue;
     const num = s.slice(a, o.ini), den = s.slice(o.fim, b);

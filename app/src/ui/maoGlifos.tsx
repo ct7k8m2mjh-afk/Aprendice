@@ -64,7 +64,7 @@ function trechoMao(s: string, chave: string): ReactNode[] {
         let j = i;
         while (j < run.length && tab[run[j]]) j++;
         const orig = run.slice(i, j), vis = [...orig].map((c) => tab[c]).join('');
-        out.push(<Fragment key={`${chave}-${m.index}-${i}`}>{tab === PEQ_SOBE ? <sup className="nt-sup" aria-hidden>{vis}</sup> : <sub className="nt-sub" aria-hidden>{vis}</sub>}<span className="sr">{orig}</span></Fragment>);
+        out.push(<Fragment key={`${chave}-${m.index}-${i}`}>{tab === PEQ_SOBE ? <sup className={'nt-sup' + (/^[A-Za-z]+$/.test(vis) ? ' nt-letra' : '')} aria-hidden>{vis}</sup> : <sub className="nt-sub" aria-hidden>{vis}</sub>}<span className="sr">{orig}</span></Fragment>);
         i = j;
       } else { out.push(glifo(ch, `${chave}-${m.index}-${i}`)); i++; }
     }

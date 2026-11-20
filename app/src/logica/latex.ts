@@ -212,7 +212,8 @@ function plano(ns: NoMat[], ok: { v: boolean }, fracao: 'barra' | 'sobre'): stri
   for (const n of ns) {
     switch (n.t) {
       case 'txt': out += n.v; break;
-      case 'esp': out += n.w >= 3 ? '   ' : n.w === 1 ? '\u2009' : ' '; break;
+      // \quad separa duas coisas ("2CO₂\quad ΔH = …"): no motor, um espaço largo (revisão de 20/11/2026, N12)
+      case 'esp': out += n.w >= 3 ? (fracao === 'barra' ? '\u2003' : '   ') : n.w === 1 ? '\u2009' : ' '; break;
       case 'sup': case 'sub': {
         const mapa = n.t === 'sup' ? SOBRESCRITO : SUBSCRITO;
         const t = plano(n.v, ok, fracao).replace(/\s+/g, '');
@@ -269,7 +270,7 @@ export function latexParaMotor(src: string, contaFracoes: (linha: string) => num
     // espaço fino entre algarismos é o separador de milhar ("1\,000" → "1 000", que o motor lê como um número)
     // e entre número e letra é produto ("10\,\Delta s" → "10Δs": o coeficiente colado, como o motor reconhece)
     const txt = plano(l, ok, 'barra').replace(/(\d)\u2009(?=\d{3}(?!\d))/g, '$1\u202F').replace(/(\d)\u2009(?=[A-Za-zΔα-ω])/g, '$1')
-      .replace(/[^\S\u202F]+/g, ' ').trim();
+      .replace(/[^\S\u202F\u2003]+/g, ' ').replace(/ *\u2003[ \u2003]*/g, '\u2003').trim();
     for (const parte of txt.split(/\s*⇒\s*/)) if (parte) out.push(parte);
   }
   if (!ok.v) return null;

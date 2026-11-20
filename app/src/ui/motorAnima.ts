@@ -126,6 +126,21 @@ export function animaPasso(passoEl: HTMLElement, folha: HTMLElement, rt: Roteiro
     const L = rt.linhas[l];
     const linhaEl = passoEl.querySelector<HTMLElement>(`[data-l="${l}"]`);
     if (!linhaEl) continue;
+    // o que se cancela e a conta dos dados não escreve (N5): as linhas de antes são escritas, os termos riscados e,
+    // na soma, o traço passa; depois vem a linha dos dados
+    const pre = linhaEl.parentElement?.querySelector<HTMLElement>(`[data-pre="${l}"]`);
+    if (pre) {
+      segue(pre, t);
+      for (const pl of pre.querySelectorAll<HTMLElement>('.ra-pre-l')) t += escreve(pl, t) + 80;
+      t += 160;
+      for (const r of pre.querySelectorAll<HTMLElement>('.ra-risco')) {
+        anima(r, [{ transform: 'rotate(-12deg) scaleX(0)' }, { transform: 'rotate(-12deg) scaleX(1)' }], { duration: 320, delay: t, easing: CURVA });
+        t += 140;
+      }
+      t += 260;
+      const traco = pre.querySelector<HTMLElement>('.ra-soma-traco');
+      if (traco) { anima(traco, [{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: 420, delay: t, easing: CURVA }); t += 480; }
+    }
     segue(linhaEl, t);
     if (L.diagrama) {
       t = animaDiagrama(linhaEl, L.diagrama.tipo, t);

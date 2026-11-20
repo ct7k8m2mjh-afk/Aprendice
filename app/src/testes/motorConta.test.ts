@@ -5,9 +5,9 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { avalia, contaTransicoes, junta, montaRoteiro, quadroNaConta, tokeniza, type Roteiro } from '../logica/motorConta';
+import { avalia, contaTransicoes, junta, montaRoteiro, quadroEquivale, quadroNaConta, tokeniza, type Roteiro } from '../logica/motorConta';
 import { cruzamento } from '../logica/punnett';
-import { ResolucaoAnimada } from '../ui/ResolucaoAnimada';
+import { ResolucaoAnimada, textoVisivel } from '../ui/ResolucaoAnimada';
 import { ResolucaoView } from '../ui/Resolucao';
 import type { Questao, Resolucao } from '../dados/tipos';
 
@@ -62,7 +62,7 @@ function confereLinhas(r: Resolucao, rt: Roteiro): string | null {
   const textos = rt.linhas.map((l) => l.texto), notas = rt.linhas.map((l) => l.nota || '').join(' ');
   for (const x of q) {
     if (textos.includes(x.linha)) continue;
-    if (!textos.some((t) => quadroNaConta(t, x.linha))) return `quadro "${x.linha}" sumiu`;
+    if (!textos.some((t) => quadroNaConta(t, x.linha) || quadroEquivale(t, x.linha))) return `quadro "${x.linha}" sumiu`;
     if (x.nota && !notas.includes(x.nota)) return `nota "${x.nota}" sumiu`;
   }
   return null;
@@ -351,7 +351,8 @@ describe.skipIf(!tem)('todas as resoluções do site', () => {
       ls.forEach((el) => {
         const c = el.cloneNode(true) as HTMLElement;
         c.querySelectorAll('[aria-hidden="true"]').forEach((x) => x.remove());
-        expect(c.textContent, id).toBe(rt.linhas[Number(el.dataset.l)].texto);
+        // (texto e processo saem com aspas curvas e ordinal certo, do mesmo tamanho; a conta à mão sai como nos dados)
+        expect(c.textContent, id).toBe(textoVisivel(rt.linhas[Number(el.dataset.l)]));
       });
     }
   });

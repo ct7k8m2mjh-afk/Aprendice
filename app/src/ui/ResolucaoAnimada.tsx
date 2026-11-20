@@ -1,8 +1,9 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
+import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { partesFracao } from '../logica/fracao';
 import { textoMao } from './maoGlifos';
 import type { Resolucao } from '../dados/tipos';
-import { diagrama, montaRoteiro, pedacoEhFormula, type LinhaRot, type Roteiro, type Tok } from '../logica/motorConta';
+import { diagrama, montaRoteiro, pedacoEhFormula, quebrasConta, tokensProsa, type LinhaRot, type PreLinhas, type Roteiro, type Tok } from '../logica/motorConta';
+import { textoCorrecao } from '../logica/aspas';
 import type { Punnett } from '../logica/punnett';
 import { animaPasso, type Controle } from './motorAnima';
 import { comFracoes, Fracao } from './Fracao';
@@ -21,6 +22,26 @@ import { Icone } from './Icone';
  * questão nem rolam a página (auditoria A3).
  */
 const VELS = [0.75, 1, 1.5, 2];
+/** menor letra da conta quando ela é reduzida para caber (N1): ainda legível no celular */
+const MAO_MIN = 16;
+/** texto exibido: aspas curvas e ordinal certo (mesmo tamanho do texto dos dados; a conta à mão fica como está) */
+const vis = (s: string) => textoCorrecao(s);
+export const textoVisivel = (L: LinhaRot) => (L.conta && !L.diagrama ? L.texto : vis(L.texto));
+/**
+ * Conta que não cabe nem quebrando nos lugares permitidos (N1): a letra diminui na proporção, até MAO_MIN; se ainda
+ * assim não couber, a linha rola por dentro (nada some). Medido a cada passo que aparece e quando a largura muda.
+ */
+function ajustaContas(folha: HTMLElement) {
+  folha.querySelectorAll<HTMLElement>('.ra-linha.conta:not(.diag)').forEach((p) => {
+    p.style.fontSize = ''; p.classList.remove('rola');
+    if (!p.offsetParent || !p.clientWidth) return;
+    const larg = p.scrollWidth;
+    if (larg <= p.clientWidth + 1) return;
+    const base = parseFloat(getComputedStyle(p).fontSize) || 24;
+    p.style.fontSize = `${Math.max(MAO_MIN, Math.floor(base * (p.clientWidth / larg) * 10) / 10)}px`;
+    if (p.scrollWidth > p.clientWidth + 1) p.classList.add('rola');
+  });
+}
 function velSalva(): number {
   try { const v = Number(localStorage.getItem('ra-vel')); return VELS.includes(v) ? v : 1; } catch { return 1; }
 }
@@ -50,6 +71,18 @@ export function ResolucaoAnimada({ r, materia }: { r: Resolucao; materia?: strin
     return m;
   }, [rt]);
   const visivel = atual < 0 ? -1 : atual;
+
+  // conta comprida: cabe na folha antes de animar (o efeito vem antes do que anima, para as medidas já serem as finais)
+  useLayoutEffect(() => {
+    const f = folha.current;
+    if (!f) return;
+    ajustaContas(f);
+    if (typeof ResizeObserver === 'undefined') return;
+    let larg = f.clientWidth;
+    const ro = new ResizeObserver(() => { if (f.clientWidth !== larg) { larg = f.clientWidth; ajustaContas(f); } });
+    ro.observe(f);
+    return () => ro.disconnect();
+  }, [atual, rt]);
 
   useLayoutEffect(() => {
     if (menos || atual < 0 || atual >= n || !folha.current) return;
@@ -198,16 +231,17 @@ export function ResolucaoAnimada({ r, materia }: { r: Resolucao; materia?: strin
             <li key={k} className="ra-passo" data-passo={k} hidden={atual < 0 || k > visivel ? true : undefined}>
               {rt.origem === 'passos' && <span className="ra-n" aria-hidden>{k + 1}</span>}
               <div className="ra-corpo">
-                {p.faz && <b className="ra-faz">{comFracoes(p.faz)}</b>}
+                {p.faz && <b className="ra-faz">{comFracoes(vis(p.faz))}</b>}
                 {p.linhas.map((l) => (
                   <div key={l} className="ra-lin">
+                    {rt.linhas[l].pre && <PreContas pre={rt.linhas[l].pre!} l={l} />}
                     <Linha L={rt.linhas[l]} l={l} riscos={riscos} ate={atual >= n ? n : visivel} />
-                    {rt.linhas[l].nota && <span className="ra-nota" data-nota={l}>{comFracoes(rt.linhas[l].nota!)}</span>}
+                    {rt.linhas[l].nota && <span className="ra-nota" data-nota={l}>{comFracoes(vis(rt.linhas[l].nota!))}</span>}
                     {rt.linhas[l].cruza && <QuadroPunnett q={rt.linhas[l].cruza!} l={l} />}
                     {rt.linhas[l].reacao && <ReacaoExtra s={rt.linhas[l].reacao!} l={l} />}
                   </div>
                 ))}
-                {p.porque && <p className="ra-porque">{comFracoes(p.porque)}</p>}
+                {p.porque && <p className="ra-porque">{comFracoes(vis(p.porque))}</p>}
               </div>
             </li>
           ))}
@@ -230,6 +264,7 @@ function mao(s: string): ReactNode {
 /** Um processo desenhado (fluxo, reação, cadeia, pares, contraste, etapas): peças com o texto dos dados, na ordem. */
 function Diagrama({ L, l, extra }: { L: LinhaRot; l: number; extra?: boolean }) {
   const dg = L.diagrama!;
+  const tv = textoVisivel(L);
   // Caveat só para conta e fórmula (item 8a): o pedaço com palavra de texto corrido fica na letra do texto
   const formula = (x: string) => pedacoEhFormula(x);
   const conteudo = (x: string) => (formula(x) ? mao(x) : comFracoes(x));
@@ -240,7 +275,7 @@ function Diagrama({ L, l, extra }: { L: LinhaRot; l: number; extra?: boolean }) 
   return (
     <p className={`ra-linha diag dg-${dg.tipo} ${L.conta ? 'conta' : 'texto'}${longo ? ' longo' : ''}`} data-l={extra ? undefined : l} data-rx={extra ? l : undefined} data-dg={dg.tipo} aria-hidden={extra ? 'true' : undefined}>
       {dg.pecas.map((p, k) => {
-        const t = L.texto.slice(p.ini, p.fim);
+        const t = tv.slice(p.ini, p.fim);
         if (p.papel === 'seta') {
           return (
             <span key={k} className="dg-seta" data-k={k}>
@@ -278,54 +313,20 @@ function QuadroPunnett({ q, l }: { q: Punnett; l: number }) {
   const [ga, gb] = q.gametas;
   return (
     <div className="ra-pn" data-pn={l} aria-hidden="true">
-      <p className="pn-pais"><span className="pn-pai" data-pai="0">{q.pais[0]}</span><span className="pn-x">×</span><span className="pn-pai" data-pai="1">{q.pais[1]}</span></p>
+      <p className="pn-pais"><span className="pn-pai" data-pai="0">{textoMao(q.pais[0])}</span><span className="pn-x">×</span><span className="pn-pai" data-pai="1">{textoMao(q.pais[1])}</span></p>
       <div className="pn-grade" style={{ gridTemplateColumns: `auto repeat(${ga.length}, minmax(0, 1fr))` }}>
         <span className="pn-canto" />
-        {ga.map((g, c) => <span key={`c${c}`} className="pn-g" data-de="0" data-c={c}>{g}</span>)}
+        {ga.map((g, c) => <span key={`c${c}`} className="pn-g" data-de="0" data-c={c}>{textoMao(g)}</span>)}
         {gb.map((g, r) => [
-          <span key={`r${r}`} className="pn-g" data-de="1" data-r={r}>{g}</span>,
+          <span key={`r${r}`} className="pn-g" data-de="1" data-r={r}>{textoMao(g)}</span>,
           ...ga.map((_, c) => {
             const v = q.casas[r][c];
-            return <span key={`${r}-${c}`} className={'pn-c' + (q.alvos.includes(v) ? ' pn-alvo' : '')} data-r={r} data-c={c}>{v}</span>;
+            return <span key={`${r}-${c}`} className={'pn-c' + (q.alvos.includes(v) ? ' pn-alvo' : '')} data-r={r} data-c={c}>{textoMao(v)}</span>;
           }),
         ])}
       </div>
     </div>
   );
-}
-
-/** quebras de linha só em lugar de conta (auditoria M3): depois de seta, vírgula, ponto e vírgula, dois-pontos e
- *  conjunção; antes de "=" só numa igualdade encadeada e nunca antes do último "=" (o resultado não fica sozinho);
- *  nunca dentro de parênteses */
-function quebras(ts: Tok[]): Set<number> {
-  const ok = new Set<number>();
-  const prox = (i: number) => { for (let j = i + 1; j < ts.length; j++) if (ts[j].k !== 'esp') return ts[j]; return undefined; };
-  const ant = (i: number) => { for (let j = i - 1; j >= 0; j--) if (ts[j].k !== 'esp') return ts[j]; return undefined; };
-  // quantos "=" há em cada trecho (entre setas e pontuação)
-  const trecho: number[] = [], total: number[] = [];
-  let prof = 0, tr = 0;
-  ts.forEach((t, i) => {
-    if (t.k === 'abre') prof++;
-    if (t.k === 'fecha') prof--;
-    trecho[i] = tr;
-    if (prof === 0 && t.k === 'rel') total[tr] = (total[tr] || 0) + 1;
-    if (prof === 0 && (t.k === 'seta' || t.k === 'pont')) tr++;
-  });
-  prof = 0;
-  const vistos: number[] = [];
-  ts.forEach((t, i) => {
-    if (t.k === 'abre') prof++;
-    if (t.k === 'fecha') prof--;
-    if (t.k === 'rel' && prof === 0) vistos[trecho[i]] = (vistos[trecho[i]] || 0) + 1;
-    if (t.k !== 'esp' || prof !== 0) return;
-    const a = ant(i), p = prox(i);
-    if (!a || !p) return;
-    const conj = (x: Tok) => x.k === 'var' && /^(e|ou|logo|então)$/.test(x.v);
-    if (a.k === 'seta' || a.k === 'pont' || conj(a) || conj(p)) ok.add(i);
-    // antes de um "=" que não é o primeiro nem o último do trecho
-    else if (p.k === 'rel' && (vistos[trecho[i]] || 0) >= 1 && (vistos[trecho[i]] || 0) + 1 < (total[trecho[i]] || 0)) ok.add(i);
-  });
-  return ok;
 }
 
 /** Uma linha da conta no estado final: cada termo num <span data-i> (fração empilhada com os termos em data-s), com
@@ -334,9 +335,10 @@ function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<stri
   if (L.diagrama) return <Diagrama L={L} l={l} />;
   if (!L.conta) {
     const [a, b] = L.marca || [0, 0];
+    const tv = textoVisivel(L);
     return (
       <p className="ra-linha texto" data-l={l}>
-        {L.marca ? <>{comFracoes(L.texto.slice(0, a))}<mark className="ra-marca">{comFracoes(L.texto.slice(a, b))}</mark>{comFracoes(L.texto.slice(b))}</> : comFracoes(L.texto)}
+        {L.marca ? <>{comFracoes(tv.slice(0, a))}<mark className="ra-marca">{comFracoes(tv.slice(a, b))}</mark>{comFracoes(tv.slice(b))}</> : comFracoes(tv)}
       </p>
     );
   }
@@ -346,19 +348,26 @@ function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<stri
   };
   const termos = (ts: Tok[], i: number, p: 'n' | 'd'): ReactNode => ts.map((t, s) => (t.k === 'esp' ? t.v
     : <span key={s} className={'ra-st' + (t.k === 'op' || t.k === 'rel' ? ' op' : '')} data-s={s}>{t.k === 'frac' ? mao(t.v) : textoMao(t.v)}{risco(i, p, s)}</span>));
-  const brk = quebras(L.toks);
-  const unidades: ReactNode[][] = [[]];
+  // quebra em dois níveis (N1): os trechos (entre seta, vírgula, "=") ficam inteiros enquanto cabem; o trecho que não
+  // cabe sozinho quebra por dentro, antes de "+", "−", "×", "÷" (cada pedaço `.ra-u` nunca quebra)
+  const brk = quebrasConta(L.toks);
+  const prosa = tokensProsa(L.toks);
+  type Pedaco = ReactNode[] | { sp: string };
+  const trechos: { sp: string; pedacos: Pedaco[] }[] = [{ sp: '', pedacos: [[]] }];
   let pos = 0;
   L.toks.forEach((t, i) => {
     const ini = pos; pos += t.v.length;
     const marca = !!L.marca && ini >= L.marca[0] && pos <= L.marca[1] ? ' ra-marca' : '';
-    const u = unidades[unidades.length - 1];
+    const tr = trechos[trechos.length - 1];
+    const u = tr.pedacos[tr.pedacos.length - 1] as ReactNode[];
     if (t.k === 'esp') {
-      if (brk.has(i)) { unidades.push([t.v]); unidades.push([]); return; }
+      const nv = brk.get(i);
+      if (nv === 1) { trechos.push({ sp: t.v, pedacos: [[]] }); return; }
+      if (nv === 2) { tr.pedacos.push({ sp: t.v }, []); return; }
       u.push(marca ? <span key={i} className="ra-esp ra-marca">{t.v}</span> : t.v);
       return;
     }
-    const cls = 'ra-t' + (t.k === 'op' || t.k === 'rel' || t.k === 'seta' ? ' op' : '') + marca;
+    const cls = 'ra-t' + (t.k === 'op' || t.k === 'rel' || t.k === 'seta' ? ' op' : '') + (prosa.has(i) ? ' pal' : '') + marca;
     if (t.k === 'frac') {
       u.push(
         <Fracao key={i} p={{ t: 'frac', n: t.n!, d: t.d!, orig: t.v, sep: t.sep, pn: t.pn, pd: t.pd }} className={cls + ' frac'} props={{ 'data-i': i }}
@@ -372,8 +381,37 @@ function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<stri
   });
   return (
     <p className="ra-linha conta" data-l={l}>
-      {unidades.map((u, k) => (u.length === 1 && typeof u[0] === 'string' ? u[0] : u.length ? <span key={k} className="ra-u">{u}</span> : null))}
+      {trechos.map((tr, k) => (
+        <Fragment key={k}>
+          {tr.sp}
+          <span className="ra-seg">
+            {tr.pedacos.map((pd, j) => (Array.isArray(pd) ? (pd.length ? <span key={j} className="ra-u">{pd}</span> : null) : pd.sp))}
+          </span>
+        </Fragment>
+      ))}
     </p>
+  );
+}
+
+/** O que o passo cancela e a conta dos dados não escreve (N5): as linhas antes da conta, com os termos riscados; na soma
+ *  de equações, o traço da soma embaixo. Desenho a mais (aria-hidden). */
+function PreContas({ pre, l }: { pre: PreLinhas; l: number }) {
+  return (
+    <div className={'ra-pre' + (pre.soma ? ' soma' : '')} data-pre={l} aria-hidden="true">
+      {pre.linhas.map((x, k) => {
+        const rs = [...x.riscos].sort((a, b) => a[0] - b[0]);
+        const out: ReactNode[] = [];
+        let u = 0;
+        rs.forEach(([a, b], j) => {
+          if (a > u) out.push(<span key={`t${j}`}>{mao(x.texto.slice(u, a))}</span>);
+          out.push(<span key={`r${j}`} className="ra-corte">{mao(x.texto.slice(a, b))}<span className="ra-risco" /></span>);
+          u = b;
+        });
+        if (u < x.texto.length) out.push(<span key="fim">{mao(x.texto.slice(u))}</span>);
+        return <p key={k} className="ra-linha conta ra-pre-l">{out}</p>;
+      })}
+      {pre.soma && <span className="ra-soma-traco" />}
+    </div>
   );
 }
 
