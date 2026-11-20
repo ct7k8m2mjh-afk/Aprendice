@@ -2,7 +2,8 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEve
 import { partesFracao } from '../logica/fracao';
 import { textoMao } from './maoGlifos';
 import type { Resolucao } from '../dados/tipos';
-import { montaRoteiro, type LinhaRot, type Roteiro, type Tok } from '../logica/motorConta';
+import { diagrama, montaRoteiro, pedacoEhFormula, type LinhaRot, type Roteiro, type Tok } from '../logica/motorConta';
+import type { Punnett } from '../logica/punnett';
 import { animaPasso, type Controle } from './motorAnima';
 import { comFracoes, Fracao } from './Fracao';
 import { Icone } from './Icone';
@@ -202,6 +203,8 @@ export function ResolucaoAnimada({ r, materia }: { r: Resolucao; materia?: strin
                   <div key={l} className="ra-lin">
                     <Linha L={rt.linhas[l]} l={l} riscos={riscos} ate={atual >= n ? n : visivel} />
                     {rt.linhas[l].nota && <span className="ra-nota" data-nota={l}>{comFracoes(rt.linhas[l].nota!)}</span>}
+                    {rt.linhas[l].cruza && <QuadroPunnett q={rt.linhas[l].cruza!} l={l} />}
+                    {rt.linhas[l].reacao && <ReacaoExtra s={rt.linhas[l].reacao!} l={l} />}
                   </div>
                 ))}
                 {p.porque && <p className="ra-porque">{comFracoes(p.porque)}</p>}
@@ -225,12 +228,17 @@ function mao(s: string): ReactNode {
 }
 
 /** Um processo desenhado (fluxo, reação, cadeia, pares, contraste, etapas): peças com o texto dos dados, na ordem. */
-function Diagrama({ L, l }: { L: LinhaRot; l: number }) {
+function Diagrama({ L, l, extra }: { L: LinhaRot; l: number; extra?: boolean }) {
   const dg = L.diagrama!;
-  const conteudo = (x: string) => (L.conta ? mao(x) : comFracoes(x));
+  // Caveat só para conta e fórmula (item 8a): o pedaço com palavra de texto corrido fica na letra do texto
+  const formula = (x: string) => pedacoEhFormula(x);
+  const conteudo = (x: string) => (formula(x) ? mao(x) : comFracoes(x));
+  const fonte = (x: string) => (formula(x) ? ' dg-mao' : ' dg-txt');
+  // processo com etapa comprida: no celular, as etapas descem uma embaixo da outra (a seta aponta para baixo)
+  const longo = (dg.tipo === 'fluxo' || dg.tipo === 'reacao') && dg.pecas.some((p) => p.papel === 'item' && p.fim - p.ini > 22);
   const chave = (a: number, b: number) => !!L.marca && a < L.marca[1] && b > L.marca[0];
   return (
-    <p className={`ra-linha diag dg-${dg.tipo} ${L.conta ? 'conta' : 'texto'}`} data-l={l} data-dg={dg.tipo}>
+    <p className={`ra-linha diag dg-${dg.tipo} ${L.conta ? 'conta' : 'texto'}${longo ? ' longo' : ''}`} data-l={extra ? undefined : l} data-rx={extra ? l : undefined} data-dg={dg.tipo} aria-hidden={extra ? 'true' : undefined}>
       {dg.pecas.map((p, k) => {
         const t = L.texto.slice(p.ini, p.fim);
         if (p.papel === 'seta') {
@@ -242,12 +250,47 @@ function Diagrama({ L, l }: { L: LinhaRot; l: number }) {
           );
         }
         if (p.papel === 'div') return <span key={k} className="dg-div" data-k={k}>{/[|;]/.test(t) ? <span className="sr">{t}</span> : t}</span>;
-        if (p.papel === 'mais' || p.papel === 'liga' || p.papel === 'vs') return <span key={k} className={`dg-${p.papel}`} data-k={k}>{conteudo(t)}</span>;
+        if (p.papel === 'mais' || p.papel === 'liga' || p.papel === 'vs') return <span key={k} className={`dg-${p.papel}`} data-k={k}>{L.conta ? mao(t) : t}</span>;
         if (!t.trim()) return <span key={k}>{t}</span>;
-        const cls = `dg-${p.papel === 'item' ? 'item' : p.papel}` + (chave(p.ini, p.fim) && p.papel !== 'rotulo' ? ' dg-chave' : '');
-        return <span key={k} className={cls} data-k={k} data-lado={p.lado}>{conteudo(t)}</span>;
+        const cls = `dg-${p.papel === 'item' ? 'item' : p.papel}` + (p.papel === 'rotulo' ? '' : fonte(t)) + (chave(p.ini, p.fim) && p.papel !== 'rotulo' ? ' dg-chave' : '');
+        // reação: o coeficiente que acerta a equação entra depois da fórmula ("2 H2O": o 2 chega por último)
+        const coef = dg.tipo === 'reacao' && p.papel === 'item' ? /^(\s*)(\d+(?:[.,]\d+)?|\d+\/\d+)(\s+)(?=[A-Z(\[])/.exec(t) : null;
+        if (coef) {
+          const resto = t.slice(coef[0].length);
+          return <span key={k} className={cls} data-k={k} data-lado={p.lado}>{coef[1]}<span className="dg-coef">{mao(coef[2])}</span>{coef[3]}{conteudo(resto)}</span>;
+        }
+        return <span key={k} className={cls} data-k={k} data-lado={p.lado}>{p.papel === 'rotulo' ? comFracoes(t) : conteudo(t)}</span>;
       })}
     </p>
+  );
+}
+
+/** A reação que o passo escreveu com palavras, em símbolos (desenho a mais, aria-hidden), com o mesmo motor da reação */
+function ReacaoExtra({ s, l }: { s: string; l: number }) {
+  const dg = diagrama(s, true);
+  if (!dg) return null;
+  return <Diagrama L={{ texto: s, toks: [], conta: true, planos: [], diagrama: dg }} l={l} extra />;
+}
+
+/** Quadro de Punnett do cruzamento (desenho a mais, aria-hidden: o texto da linha já diz o cruzamento). Os pais no
+ *  alto; os gametas nas bordas; o filho em cada casa. */
+function QuadroPunnett({ q, l }: { q: Punnett; l: number }) {
+  const [ga, gb] = q.gametas;
+  return (
+    <div className="ra-pn" data-pn={l} aria-hidden="true">
+      <p className="pn-pais"><span className="pn-pai" data-pai="0">{q.pais[0]}</span><span className="pn-x">×</span><span className="pn-pai" data-pai="1">{q.pais[1]}</span></p>
+      <div className="pn-grade" style={{ gridTemplateColumns: `auto repeat(${ga.length}, minmax(0, 1fr))` }}>
+        <span className="pn-canto" />
+        {ga.map((g, c) => <span key={`c${c}`} className="pn-g" data-de="0" data-c={c}>{g}</span>)}
+        {gb.map((g, r) => [
+          <span key={`r${r}`} className="pn-g" data-de="1" data-r={r}>{g}</span>,
+          ...ga.map((_, c) => {
+            const v = q.casas[r][c];
+            return <span key={`${r}-${c}`} className={'pn-c' + (q.alvos.includes(v) ? ' pn-alvo' : '')} data-r={r} data-c={c}>{v}</span>;
+          }),
+        ])}
+      </div>
+    </div>
   );
 }
 

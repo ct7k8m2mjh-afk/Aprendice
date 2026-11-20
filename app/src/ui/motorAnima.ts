@@ -114,7 +114,7 @@ export function animaPasso(passoEl: HTMLElement, folha: HTMLElement, rt: Roteiro
     Object.assign(g.style, {
       position: 'absolute', left: `${r.left - rf.left}px`, top: `${r.top - rf.top}px`, minWidth: `${r.width}px`, height: `${r.height}px`,
       fontFamily: cs.fontFamily, fontSize: cs.fontSize, fontWeight: cs.fontWeight, fontStyle: cs.fontStyle, letterSpacing: cs.letterSpacing,
-      lineHeight: cs.lineHeight, color: cs.color, margin: '0', pointerEvents: 'none', whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center',
+      lineHeight: cs.lineHeight, color: cs.color, margin: '0', pointerEvents: 'none', whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
     });
     camada.appendChild(g);
     fantasmas.push(g);
@@ -146,6 +146,10 @@ export function animaPasso(passoEl: HTMLElement, folha: HTMLElement, rt: Roteiro
     }
     const nota = linhaEl.parentElement?.querySelector(`[data-nota="${l}"]`);
     if (nota) { anima(nota, [{ opacity: 0, transform: 'translateY(4px)' }, { opacity: 1, transform: 'none' }], { duration: 360, delay: t, easing: CURVA }); t += 500; }
+    const rx = linhaEl.parentElement?.querySelector<HTMLElement>(`[data-rx="${l}"]`);
+    if (rx) { segue(rx, t); t = animaDiagrama(rx, 'reacao', t + 120); }
+    const pn = linhaEl.parentElement?.querySelector<HTMLElement>(`[data-pn="${l}"]`);
+    if (pn) { segue(pn, t); t = animaPunnett(pn, t); }
     t += 260;
   }
 
@@ -338,6 +342,13 @@ export function animaPasso(passoEl: HTMLElement, folha: HTMLElement, rt: Roteiro
         }
         t += 500;
       }
+      // os coeficientes acertam a equação: entram por último, de cima, na cor da caneta
+      const coefs = [...linhaEl.querySelectorAll<HTMLElement>('.dg-coef')];
+      coefs.forEach((c, j) => {
+        anima(c, [{ opacity: 0, transform: 'translateY(-14px) scale(.4)', color: caneta }, { opacity: 1, transform: 'translateY(1px) scale(1.25)', color: caneta, offset: .7 }, { opacity: 1, transform: 'none', color: caneta }], { duration: 480, delay: t + j * 200, easing: 'cubic-bezier(.2,.9,.3,1.2)' });
+        anima(c, [{ color: caneta }, {}], { duration: 900, delay: t + j * 200 + 480, fill: 'none' });
+      });
+      if (coefs.length) t += 480 + coefs.length * 200;
       return t;
     }
     if (tipo === 'contraste') {
@@ -350,13 +361,23 @@ export function animaPasso(passoEl: HTMLElement, folha: HTMLElement, rt: Roteiro
       return t + 200;
     }
     // fluxo, cadeia, pares e etapas: cada peça entra na ordem; a seta (ou a ligação) é traçada antes da peça seguinte;
-    // a etapa que entra acende
+    // a etapa que entra acende. No fluxo, um ponto corre pela seta e a etapa nova sai da anterior (o processo anda).
+    let anterior: HTMLElement | null = null;
+    let viaSeta = false;
     for (const p of pecas) {
-      if (p.classList.contains('dg-seta')) { traco(p, t); t += 380; continue; }
+      if (p.classList.contains('dg-seta')) {
+        traco(p, t);
+        if (tipo === 'fluxo' || tipo === 'pares') { ponto(p, t + 60); viaSeta = true; }
+        t += 380; continue;
+      }
       if (p.classList.contains('dg-liga')) { anima(p, [{ opacity: 0, transform: 'scaleX(0)' }, { opacity: 1, transform: 'none' }], { duration: 260, delay: t, easing: CURVA }); t += 200; continue; }
       if (p.classList.contains('dg-div') || p.classList.contains('dg-mais')) { anima(p, [{ opacity: 0 }, { opacity: 1 }], { duration: 160, delay: t }); continue; }
       if (p.classList.contains('dg-rotulo')) { surge(p, t, 'translateY(4px)'); t += 260; continue; }
-      if (p.classList.contains('dg-valor')) { surge(p, t, 'scale(.5)'); acende(p, t + 200, 800); t += 420; continue; }
+      if (p.classList.contains('dg-valor')) {
+        // o valor chega ao rótulo, vindo da direita
+        anima(p, [{ opacity: 0, transform: 'translateX(32px)' }, { opacity: 1, transform: 'translateX(-3px)', offset: .8 }, { opacity: 1, transform: 'none' }], { duration: 520, delay: t, easing: VOO });
+        acende(p, t + 360, 800); t += 560; anterior = p; continue;
+      }
       const n = (p.textContent || '').length;
       const d = tipo === 'etapas' ? Math.max(420, Math.min(1300, 200 + n * 9)) : 420;
       if (tipo === 'etapas') {
@@ -366,13 +387,100 @@ export function animaPasso(passoEl: HTMLElement, folha: HTMLElement, rt: Roteiro
         anima(p, [{ transform: 'scaleY(0)' }, { transform: 'scaleY(1)' }], { duration: 420, delay: t, easing: CURVA, pseudoElement: '::after' });
         anima(p, [{ backgroundColor: 'transparent' }, { backgroundColor: marcaCor, offset: .3 }, { backgroundColor: 'transparent' }], { duration: 1200, delay: t + d * .5, fill: 'none' });
         t += d + 260;
+      } else if (tipo === 'fluxo' && anterior && viaSeta) {
+        // a etapa seguinte sai de dentro da anterior e desliza, pela seta, até o seu lugar
+        const A = caixa(anterior), P = caixa(p);
+        const dx = A.left + A.width / 2 - (P.left + P.width / 2), dy = A.top - P.top;
+        anima(p, [
+          { opacity: 0, transform: `translate(${dx}px,${dy}px) scale(.55)` },
+          { opacity: 1, transform: `translate(${dx * .35}px,${dy * .35}px) scale(.85)`, offset: .35 },
+          { opacity: 1, transform: 'none' },
+        ], { duration: 620, delay: t - 200, easing: VOO });
+        acende(p, t + 360, 800);
+        t += 560;
       } else {
         surge(p, t);
         acende(p, t + 200, 800);
         t += d;
       }
+      anterior = p; viaSeta = false;
     }
     return t + 150;
+  }
+
+  /** um ponto corre pela seta, da etapa de antes para a seguinte */
+  function ponto(seta: HTMLElement, quando: number) {
+    const S = caixa(seta);
+    const g = document.createElement('span');
+    g.className = 'ra-ponto';
+    g.setAttribute('aria-hidden', 'true');
+    Object.assign(g.style, { left: `${S.left - rf.left}px`, top: `${S.top - rf.top + S.height / 2 - 4}px` });
+    camada.appendChild(g); fantasmas.push(g);
+    // seta deitada (etapas lado a lado) ou em pé (no celular, etapas uma embaixo da outra)
+    const pe = S.height > S.width;
+    if (pe) Object.assign(g.style, { left: `${S.left - rf.left + S.width / 2 - 4}px`, top: `${S.top - rf.top}px` });
+    const tr = (f: number) => (pe ? `translateY(${S.height * f}px)` : `translateX(${S.width * f}px)`);
+    anima(g, [{ opacity: 0, transform: tr(0) }, { opacity: 1, transform: tr(.2), offset: .15 }, { opacity: 1, transform: tr(.85), offset: .85 }, { opacity: 0, transform: tr(1) }], { duration: 520, delay: quando, easing: 'linear' });
+  }
+
+  /** quadro de Punnett montando: os pais entram, os gametas se separam e vão para as bordas, cada casa recebe um
+   *  gameta de cada pai (os dois voam até ela) e o filho aparece; as casas citadas no passo acendem */
+  function animaPunnett(pn: HTMLElement, t0: number): number {
+    let t = t0 + 120;
+    const pais = [...pn.querySelectorAll<HTMLElement>('.pn-pai')];
+    const grade = pn.querySelector<HTMLElement>('.pn-grade');
+    const pr = new Map<string, DOMRect>();
+    pais.forEach((p) => pr.set(p.dataset.pai || '', caixa(p)));
+    anima(pn, [{ opacity: 0 }, { opacity: 1 }], { duration: 200, delay: t });
+    pais.forEach((p, j) => surge(p, t + j * 160));
+    pn.querySelectorAll<HTMLElement>('.pn-x').forEach((x) => surge(x, t + 80, 'scale(.3) rotate(-30deg)'));
+    t += 520;
+    if (grade) anima(grade, [{ opacity: 0, clipPath: 'inset(0 100% 100% 0)' }, { opacity: 1, clipPath: 'inset(0 0 0 0)' }], { duration: 420, delay: t, easing: CURVA });
+    t += 300;
+    // gametas: saem do genótipo de cada pai e vão para a borda (colunas: o da esquerda; linhas: o da direita)
+    const gs = [...pn.querySelectorAll<HTMLElement>('.pn-g')];
+    const gr = new Map<HTMLElement, DOMRect>();
+    gs.forEach((g) => gr.set(g, caixa(g)));
+    gs.forEach((g, j) => {
+      const P = pr.get(g.dataset.de || '0'), G = gr.get(g)!;
+      if (!P) { surge(g, t + j * 110); return; }
+      const dx = P.left + P.width / 2 - (G.left + G.width / 2), dy = P.top + P.height / 2 - (G.top + G.height / 2);
+      anima(g, [
+        { opacity: 0, transform: `translate(${dx}px,${dy}px) scale(.7)`, color: caneta, ...halo(true) },
+        { opacity: 1, transform: `translate(${dx}px,${dy}px) scale(.9)`, color: caneta, offset: .12, ...halo(true) },
+        { opacity: 1, transform: 'none', color: caneta, offset: .96, ...halo(true) },
+        { opacity: 1, transform: 'none', ...halo(false) },
+      ], { duration: 720, delay: t + j * 110, easing: VOO });
+    });
+    t += 720 + gs.length * 110;
+    // cada casa: um gameta de cima e um do lado voam até ela; o filho aparece
+    const cs = [...pn.querySelectorAll<HTMLElement>('.pn-c')];
+    const cr = new Map<HTMLElement, DOMRect>();
+    cs.forEach((c) => cr.set(c, caixa(c)));
+    const passoCasa = cs.length > 4 ? 120 : 260;
+    cs.forEach((c, j) => {
+      const C = cr.get(c)!;
+      const q = t + j * passoCasa;
+      for (const sel of [`.pn-g[data-c="${c.dataset.c}"]`, `.pn-g[data-r="${c.dataset.r}"]`]) {
+        const h = pn.querySelector<HTMLElement>(sel);
+        if (!h) continue;
+        const H = gr.get(h)!;
+        const g = fantasma(h, null, H);
+        const gx = C.left + C.width / 2 - (H.left + H.width / 2), gy = C.top + C.height / 2 - (H.top + H.height / 2);
+        anima(g, [
+          { opacity: 0, transform: 'none', ...halo(true) },
+          { opacity: 1, transform: 'none', offset: .1, ...halo(true) },
+          { opacity: 1, transform: `translate(${gx}px,${gy}px) scale(.85)`, offset: .8, ...halo(true) },
+          { opacity: 0, transform: `translate(${gx}px,${gy}px) scale(.6)`, ...halo(true) },
+        ], { duration: 560, delay: q, easing: VOO });
+      }
+      anima(c, [{ opacity: 0, transform: 'scale(.5)' }, { opacity: 0, transform: 'scale(.5)', offset: .55 }, { opacity: 1, transform: 'scale(1.15)', offset: .8 }, { opacity: 1, transform: 'none' }], { duration: 760, delay: q, easing: CURVA });
+    });
+    t += 760 + cs.length * passoCasa;
+    const alvos = cs.filter((c) => c.classList.contains('pn-alvo'));
+    alvos.forEach((c, j) => anima(c, [{ transform: 'none' }, { transform: 'scale(1.12)', offset: .4 }, { transform: 'none' }], { duration: 600, delay: t + j * 120, easing: CURVA }));
+    if (alvos.length) t += 600 + alvos.length * 120;
+    return t;
   }
 
   // a explicação do passo aparece depois da conta

@@ -176,6 +176,40 @@ mark.ra-marca { padding: 0 .12em; }
 .dg-etapas .dg-item.dg-chave { background-image: none; }
 .dg-contraste .dg-item[data-lado='0'] { border-color: color-mix(in srgb, var(--cad-tinta) 45%, transparent); }
 .dg-contraste .dg-item[data-lado='1'] { border-color: color-mix(in srgb, var(--cad-caneta) 45%, transparent); }
+/* Caveat só para conta e fórmula (revisão 19/11, item 8a): no processo desenhado, o pedaço com texto corrido fica em
+   Familjen; o pedaço que é fórmula, genótipo ou conta vai à mão */
+.ra-linha.diag .dg-txt { font-family: var(--fonte); font-weight: 400; font-size: var(--fs-texto); line-height: 1.45; color: var(--tinta); }
+.ra-linha.diag .dg-mao { font-family: var(--mao); font-weight: 500; font-size: var(--fs-mao); line-height: 1.25; color: var(--cad-tinta); }
+.ra-linha.diag .dg-mao.dg-item, .ra-linha.diag .dg-mao.dg-valor { padding-block: 1px; }
+/* coeficiente que acerta a equação: chega por último, à mão */
+.dg-coef { display: inline-block; font-family: var(--mao); font-weight: 600; color: var(--cad-tinta); }
+/* ponto que corre pela seta do fluxo */
+.ra-ponto { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: var(--cad-caneta); pointer-events: none; z-index: 3; }
+/* etapa do processo: encolhe até a maior palavra, nunca parte a palavra */
+.ra-linha.diag > .dg-item, .ra-linha.diag > .dg-valor { flex: 0 1 auto; min-width: min-content; }
+/* reação escrita com palavras, desenhada em símbolos embaixo da frase */
+.ra-lin > .ra-linha.diag[data-rx] { flex: 0 0 100%; }
+@media (max-width: 480px) {
+  .ra-linha.diag.longo { flex-direction: column; align-items: flex-start; gap: 2px; }
+  .ra-linha.diag.longo > .dg-seta { width: 22px; height: 30px; justify-content: center; margin: 0 0 0 10px; }
+  .ra-linha.diag.longo > .dg-seta svg { transform: rotate(90deg); }
+  .ra-linha.diag.longo > .dg-item { min-width: 0; }
+}
+/* quadro de Punnett montado pelo motor (cruzamento em Biologia) */
+.ra-pn { flex: 0 0 100%; margin: 6px 0 4px; }
+.ra-pn .pn-grade { max-width: 360px; }
+.pn-pais { display: flex; align-items: baseline; gap: 10px; margin: 0 0 6px; font-family: var(--mao); font-weight: 500; font-size: var(--fs-mao); line-height: 1.2; color: var(--cad-tinta); }
+.pn-pai { display: inline-block; }
+.pn-x { color: var(--cad-caneta); display: inline-block; }
+.pn-grade { display: grid; border-top: 1.5px solid color-mix(in srgb, var(--cad-tinta) 40%, transparent); border-left: 1.5px solid color-mix(in srgb, var(--cad-tinta) 40%, transparent); }
+.pn-grade > span { display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 2px 6px; min-width: 0;
+  border-right: 1.5px solid color-mix(in srgb, var(--cad-tinta) 40%, transparent); border-bottom: 1.5px solid color-mix(in srgb, var(--cad-tinta) 40%, transparent);
+  font-family: var(--mao); font-weight: 500; font-size: var(--fs-mao); line-height: 1.1; color: var(--cad-tinta); white-space: nowrap; }
+.pn-grade > .pn-g { color: var(--cad-leg); background: color-mix(in srgb, var(--cad-tinta) 5%, transparent); }
+.pn-grade > .pn-canto { background: color-mix(in srgb, var(--cad-tinta) 5%, transparent); }
+.pn-grade > .pn-alvo { background-image: linear-gradient(var(--cad-marca), var(--cad-marca)); }
+.pn-g.ra-fantasma { border: 0; background: var(--cad-papel); }
+@media (max-width: 480px) { .pn-grade > span { min-height: 36px; padding: 2px 3px; font-size: var(--fs-mao); } }
 @media (max-width: 480px) {
   .ra-bt .rot { display: none; }
   .ra-bt:first-child { padding: 0; width: 36px; }
