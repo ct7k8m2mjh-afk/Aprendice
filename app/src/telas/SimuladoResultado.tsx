@@ -27,7 +27,7 @@ export function SimuladoResultado() {
   const qAberta = qqAberta?.q;
   useEffect(() => { if (itAberto?.m && !itAberto.p && qAberta) carregaResolucoes(itAberto.m, qAberta.sub).then((r) => setRes((o) => ({ ...o, ...r }))); }, [itAberto, qAberta]);
 
-  if (!f) return <div className="conteudo vazio"><h3>Resultado não encontrado</h3><Link className="btn sec" to="/simulados">Simulados</Link></div>;
+  if (!f) return <div className="conteudo vazio"><h3>Resultado não encontrado</h3><p>Este simulado não está no seu histórico neste aparelho. Os que você entregou ficam na aba Histórico.</p><Link className="btn sec" to="/simulados?aba=historico">Ver o histórico</Link></div>;
   if (!todas) return <div className="conteudo"><Carregando /></div>;
   const pct = f.total ? f.acertos / f.total : 0;
   const lista = f.itens.map((x, i) => ({ ...x, n: i + 1 })).filter((x) => filtro === 'todas' || !x.ok);

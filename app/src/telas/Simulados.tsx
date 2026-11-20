@@ -47,6 +47,7 @@ export function Simulados() {
     <div className="conteudo">
       <div className="titulo-pag"><div><h1>Simulados</h1><p className="sub">{aba === 'conteudo'
         ? 'Só questões reais de prova dos conteúdos que você escolher, com cronômetro e resultado no fim.'
+        : aba === 'historico' ? 'Os simulados que você já entregou, com o resultado e a correção de cada um.'
         : 'Provas inteiras, com todas as matérias, no tempo oficial. Escolha a instituição e o ano.'}</p></div></div>
 
       {andamento && (
@@ -58,7 +59,7 @@ export function Simulados() {
       )}
 
       <div className="abas" role="group" aria-label="Seções">
-        <button aria-pressed={aba === 'prova'} onClick={() => setQs({}, { replace: true })}>Provas <small>{eds.length}</small></button>
+        <button aria-pressed={aba === 'prova'} onClick={() => setQs({}, { replace: true })}>Provas <small>{lista.length}</small></button>
         <button aria-pressed={aba === 'conteudo'} onClick={() => setQs({ aba: 'conteudo' }, { replace: true })}>Por conteúdo</button>
         <button aria-pressed={aba === 'historico'} onClick={() => setQs({ aba: 'historico' }, { replace: true })}>Histórico <small>{feitos.length}</small></button>
       </div>

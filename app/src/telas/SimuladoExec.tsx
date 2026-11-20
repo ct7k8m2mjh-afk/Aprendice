@@ -5,7 +5,7 @@ import { nomeMateria } from '../dados/materias';
 import { comoQuestao, urlPrintProva, useProvaCompleta, type ProvaCompleta } from '../dados/provasCompletas';
 import { atualiza, atualizaMateria, useEstado } from '../estado/loja';
 import { planoDaProva, planoDoConteudo, type PlanoSimulado } from '../logica/simulados';
-import { filtraRegiao } from '../logica/regiao';
+import { deFiltro, filtraRegiao } from '../logica/regiao';
 import { useRegiao } from '../ui/FiltroRegiao';
 import { Carregando, formataTempo, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
@@ -104,6 +104,19 @@ export function SimuladoConteudo() {
   useTitulo(plano?.titulo || 'Simulado por conteúdo');
   if (!m || !subs.length) return <div className="conteudo vazio"><h3>Escolha os conteúdos</h3><p>Monte o simulado escolhendo a matéria e os conteúdos.</p><Link className="btn sec" to="/simulados?aba=conteudo">Simulado por conteúdo</Link></div>;
   if (!plano) return <div className="conteudo"><Carregando /></div>;
+  // conteúdo que não existe (endereço digitado ou antigo): nada de código cru no título (revisão de 20/11/2026, casca N16)
+  const conhecidos = mc ? new Set(mc.conteudo.modulos.flatMap((x) => x.subs.map((y) => y.id))) : new Set<string>();
+  if (!subs.some((x) => conhecidos.has(x))) return (
+    <div className="conteudo estreito vazio">
+      <h3>Conteúdo não encontrado</h3>
+      <p>Este endereço não corresponde a nenhum conteúdo. Escolha a matéria e os conteúdos de novo.</p>
+      <Link className="btn sec" to="/simulados?aba=conteudo">Simulado por conteúdo</Link>
+    </div>
+  );
+  // pediu mais do que há: diz quantas vieram e como ter mais (revisão de 20/11/2026, casca 18)
+  const faltou = plano.itens.length < n
+    ? `Você pediu ${n} questões; ${plano.itens.length === 1 ? 'estes conteúdos têm 1' : `estes conteúdos têm ${plano.itens.length}`} ${rg.conj ? `${deFiltro(rg.filtro, rg.minhas)}. Para ter mais, escolha mais conteúdos ou “Todas as regiões” no filtro.` : 'por enquanto. Para ter mais, escolha mais conteúdos.'}`
+    : undefined;
   if (!plano.itens.length) return (
     <div className="conteudo estreito vazio">
       <h3>{plano.titulo}</h3>
@@ -111,7 +124,7 @@ export function SimuladoConteudo() {
       <Link className="btn sec" to="/simulados?aba=conteudo">Escolher outros conteúdos</Link>
     </div>
   );
-  return <ConfigSimulado plano={plano} migalha="Simulado por conteúdo" />;
+  return <ConfigSimulado plano={plano} migalha="Simulado por conteúdo" nota={faltou} />;
 }
 
 export function finaliza(sim: SimuladoAndamento, todas: MateriaCarregada[], prova: ProvaCompleta | null | undefined): SimuladoFeito {

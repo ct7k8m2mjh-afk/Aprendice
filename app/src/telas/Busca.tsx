@@ -9,7 +9,7 @@ import { norm } from '../logica/correcao';
 import { ordenaBusca } from '../logica/busca';
 import { IcTema } from '../ui/IconeTema';
 import { useRegiao } from '../ui/FiltroRegiao';
-import { filtraRegiao } from '../logica/regiao';
+import { deFiltro, filtraRegiao } from '../logica/regiao';
 import type { MateriaId } from '../dados/tipos';
 
 interface Resultado { grupo: string; titulo: string; det: string; ir: string; m?: MateriaId; ic?: string }
@@ -39,8 +39,10 @@ export function Busca({ aoFechar }: { aoFechar: () => void }) {
       for (const mod of mc.conteudo.modulos) {
         r.push({ grupo: 'Temas', titulo: mod.nome, det: nomeMateria(mc.id), ir: `/m/${mc.id}/tema/${mod.id}`, m: mc.id, ic: mod.id });
         for (const s of mod.subs) {
-          const n = filtraRegiao(mc.porSub.get(s.id) || [], rg.conj).l.length;
-          if (n) r.push({ grupo: 'Conteúdos', titulo: s.nome.charAt(0).toUpperCase() + s.nome.slice(1), det: `${nomeMateria(mc.id)} · ${mod.nome} · ${n} ${n === 1 ? 'questão' : 'questões'}`, ir: `/m/${mc.id}/escada/${s.id}`, m: mc.id, ic: s.id });
+          const fr = filtraRegiao(mc.porSub.get(s.id) || [], rg.conj), n = fr.l.length;
+          // a contagem diz de onde são as questões quando segue o filtro de região (revisão de 20/11/2026, casca 29)
+          const onde = rg.conj ? ` ${fr.reserva ? 'de outras regiões' : deFiltro(rg.filtro, rg.minhas)}` : '';
+          if (n) r.push({ grupo: 'Conteúdos', titulo: s.nome.charAt(0).toUpperCase() + s.nome.slice(1), det: `${nomeMateria(mc.id)} · ${mod.nome} · ${n} ${n === 1 ? 'questão' : 'questões'}${onde}`, ir: `/m/${mc.id}/escada/${s.id}`, m: mc.id, ic: s.id });
         }
       }
       for (const c of mc.conteudo.flash) r.push({ grupo: 'Cartões', titulo: c.frente, det: `Flashcard · ${nomeMateria(mc.id)}`, ir: `/m/${mc.id}/flashcards?c=${c.id}`, m: mc.id });
@@ -48,7 +50,7 @@ export function Busca({ aoFechar }: { aoFechar: () => void }) {
     for (const e of provasCompletas || []) r.push({ grupo: 'Simulados', titulo: e.titulo, det: `Prova completa · ${e.questoes} questões`, ir: `/simulados/prova/${encodeURIComponent(e.id)}` });
     for (const p of CATALOGO) r.push({ grupo: 'Provas e faculdades', titulo: `${p.prova} · ${p.sigla || p.instituicao}`, det: [p.cidade, p.uf].filter(Boolean).join(' · ') || p.regiao, ir: `/provas/${p.id}` });
     return r;
-  }, [todas, provasCompletas, rg.conj]);
+  }, [todas, provasCompletas, rg.conj, rg.filtro, rg.minhas]);
 
   const lista = useMemo(() => {
     const q = norm(t);
