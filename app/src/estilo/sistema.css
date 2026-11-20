@@ -526,8 +526,11 @@
 @media (max-width: 700px) {
   .sc-sub { grid-template-columns: auto auto minmax(0, 1fr); padding: 12px 2px; }
   .sc-sub-n { grid-column: 3; }
-  .sc-barra { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); padding: 16px; }
-  .sc-barra .btn { width: 100%; justify-content: center; margin-left: 0; }
+  /* barra mais baixa no celular (revisão de 20/11/2026, casca 19: 164px sobre a lista): resumo e botão na mesma linha */
+  .sc-barra { bottom: calc(76px + env(safe-area-inset-bottom, 0px)); padding: 12px 16px; gap: 10px 12px; }
+  .sc-barra .sc-qtd { flex: 1 1 100%; }
+  .sc-barra .sc-resumo { flex: 1 1 0; min-width: 0; }
+  .sc-barra .btn { flex: none; margin-left: auto; padding-inline: 16px; }
   .sc-conteudo .chip, .sc-tema .sim-grupo-cab .link-sec { min-height: 40px; }
   .sc-tema .sim-grupo-cab .link-sec { display: inline-flex; align-items: center; }
 }
