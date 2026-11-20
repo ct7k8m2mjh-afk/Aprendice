@@ -24,3 +24,5 @@ RECLASS? P284b35f0 S08.5 -> História (dúvida do conferente: comando pede "mund
 DADO P84e51787: alternativas.C -> "previsão das demandas do mercado para múltiplos setores." ; alternativas.E -> "melhoria da qualidade dos processos produtivos." (sem "l. os. res." colado)
 DADO P02cbda16: texto_da_prova -> 5ª afirmativa "Sejam A, B e A ∩ B" (a entrada traz "A T B")
 DADO Pe9844354: alternativas.E -> termina em "demanda dos consumidores." (o "44" é o número da questão)
+DADO P5735c80c: alternativas.E -> "A perda da sensibilidade, de modo a nem mesmo poder perceber a ocorrência da morte." (sem "#####")
+DADO P4006840d: alternativas.A/C/D -> sem hifenização de quebra de linha ("mercado", "trabalho", "compreendidos", "extensa")
