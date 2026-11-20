@@ -47,3 +47,28 @@ export function perdeDestaque(tr: Transcricao | undefined): boolean {
   const tudo = [...tr.enun.map((p) => p.t), ...Object.values(tr.alts || {})].join('\n');
   return /\b(sublinhad|grifad)/i.test(tudo) && !/__[^_\n][^_\n]*__/.test(tudo);
 }
+
+/**
+ * Prosa e versos no mesmo parágrafo (revisão de 20/11/2026, N13): o bloco de versos em negrito ou itálico que começa e
+ * termina em linha própria ("…Chico Buarque.\n**Procurando bem\n…\nSó a bailarina que não tem**\nNeste trecho…") vira
+ * um bloco separado, como na prova. O texto não muda: só é repartido nas quebras em volta do bloco.
+ */
+export function blocosDoParagrafo(t: string): string[] {
+  if (!t.includes('\n') || !/\*\*|~~/.test(t)) return [t];
+  const ls = t.split('\n');
+  const out: string[] = [];
+  let atual: string[] = [], neg = false, ita = false;
+  for (let i = 0; i < ls.length; i++) {
+    const l = ls[i];
+    const abre = !neg && !ita && /^\s*(\*\*|~~)/.test(l);
+    if (abre && atual.length) { out.push(atual.join('\n')); atual = []; }
+    const antes = neg || ita;
+    for (const mk of l.match(/\*\*|~~/g) || []) { if (mk === '**') neg = !neg; else ita = !ita; }
+    atual.push(l);
+    // o bloco marcado (de várias linhas) fecha no fim desta linha: o que vem depois é outro bloco
+    const fecha = (antes || abre) && !neg && !ita && /(\*\*|~~)\s*$/.test(l) && (antes || atual.length > 1);
+    if (fecha && i < ls.length - 1) { out.push(atual.join('\n')); atual = []; }
+  }
+  if (atual.length) out.push(atual.join('\n'));
+  return out.filter((x) => x.trim());
+}

@@ -5,10 +5,11 @@ import { Icone } from './Icone';
 import { MATERIAS_ANIMADAS } from '../dados/revisao';
 import { ResolucaoAnimada } from './ResolucaoAnimada';
 import { comFracoes } from './Fracao';
-import { aspasCurvas } from '../logica/aspas';
+import { textoCorrecao } from '../logica/aspas';
+import { itensDaConta } from '../logica/motorConta';
 
-/** texto da correção: aspas curvas e frações empilhadas (o texto dos dados não muda) */
-const txt = (s: string) => comFracoes(aspasCurvas(s));
+/** texto da correção: aspas curvas, ordinal certo e frações empilhadas (o texto dos dados não muda) */
+const txt = (s: string) => comFracoes(textoCorrecao(s));
 import { materiaDoCodigo } from '../logica/fracao';
 import { materiaDaArea } from '../dados/provasCompletas';
 
@@ -23,7 +24,7 @@ import { materiaDaArea } from '../dados/provasCompletas';
 // a regra das matérias animadas mora num lugar só (dados/revisao.ts, decisão do dono 09/11/2026)
 const ANIMADAS = MATERIAS_ANIMADAS;
 
-function ResolucaoTexto({ r }: { r: Resolucao }) {
+function ResolucaoTexto({ r, materia }: { r: Resolucao; materia?: string }) {
   const passos = (r.passos || []).filter((p) => p.faz || p.conta || p.porque);
   if (!passos.length) return null;
   return (
@@ -33,13 +34,21 @@ function ResolucaoTexto({ r }: { r: Resolucao }) {
         {passos.map((p, i) => (
           <li key={i}>
             {p.faz && <p className="cor-expl"><b>{txt(p.faz)}</b></p>}
-            {p.conta && <p className="cor-expl cor-trecho">{txt(p.conta)}</p>}
+            {p.conta && <Trecho conta={p.conta} materia={materia} />}
             {p.porque && <p className="cor-expl">{txt(p.porque)}</p>}
           </li>
         ))}
       </ol>
     </div>
   );
+}
+
+/** O trecho do passo (revisão de 20/11, N3): os itens separados nos dados por " | " (ou em lista com ";") ficam um por
+ *  linha, como na resolução animada; o separador nunca aparece cru. */
+function Trecho({ conta, materia }: { conta: string; materia?: string }) {
+  const itens = itensDaConta(conta, materia);
+  if (itens.length <= 1) return <p className="cor-expl cor-trecho">{txt(itens[0] ?? conta)}</p>;
+  return <ul className="cor-expl cor-trecho cor-itens">{itens.map((x, k) => <li key={k}>{txt(x)}</li>)}</ul>;
 }
 
 export function ResolucaoView({ q, r, marcada, materia, origem, semFonte }: { q: Questao; r: Resolucao | null | undefined; marcada: Letra | null;
@@ -96,7 +105,7 @@ export function ResolucaoView({ q, r, marcada, materia, origem, semFonte }: { q:
           {/* 3. Resolução animada (um motor só para todas: logica/motorConta.ts) */}
           {((r.passos && r.passos.length > 0) || (r.quadro && r.quadro.length > 0)) && (ANIMADAS.has(mat || '')
             ? <ResolucaoAnimada r={r} materia={mat} />
-            : <ResolucaoTexto r={r} />)}
+            : <ResolucaoTexto r={r} materia={mat} />)}
           {/* 4. Por que as outras estão erradas: fechado, abre ao clicar */}
           {outras.length > 0 && (
             <details className="cor-outras">

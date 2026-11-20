@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { Letra, MateriaId, Questao } from '../dados/tipos';
 import { avisoGabarito, numeroQuestao, origemGabarito } from '../dados/tipos';
 import { origemDoLink } from '../logica/origemLink';
-import { juntaQuebrasDoPdf, perdeDestaque } from '../logica/transcricao';
+import { blocosDoParagrafo, juntaQuebrasDoPdf, perdeDestaque } from '../logica/transcricao';
 import { materiaDoCodigo } from '../logica/fracao';
 import { urlPrint } from '../dados/conteudo';
 import { Icone } from './Icone';
@@ -59,12 +59,13 @@ function EnunciadoTexto({ q }: { q: Questao }) {
   const mat = materiaDoCodigo(q.modulo) || materiaDoCodigo(q.sub);
   return (
     <div className="q-transcricao">
-      {tr.enun.map((p, i) => (
-        <p key={i} className={'tr-' + p.a}>
-          {i === 0 && <b className="tr-fonte">({q.escola} {q.ano}) </b>}
-          <TextoBanca t={juntaQuebrasDoPdf(p.t, mat)} />
+      {/* o bloco de versos dentro do parágrafo sai como bloco próprio, como na prova (N13) */}
+      {tr.enun.flatMap((p, i) => blocosDoParagrafo(juntaQuebrasDoPdf(p.t, mat)).map((b, j) => (
+        <p key={`${i}-${j}`} className={'tr-' + p.a}>
+          {i === 0 && j === 0 && <b className="tr-fonte">({q.escola} {q.ano}) </b>}
+          <TextoBanca t={b} />
         </p>
-      ))}
+      )))}
     </div>
   );
 }
@@ -187,7 +188,7 @@ export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao }: {
           </button>
           <div className="q-print-pe">
             <button className="q-amplia" onClick={() => setLupa(true)}><Icone nome="lupa" tam={14} /> Ampliar</button>
-            <a className="q-print-fonte" href={q.url} target="_blank" rel="noreferrer noopener" title="Abrir a fonte original">{q.escola} <Icone nome="externo" tam={13} /></a>
+            <a className="q-print-fonte" href={q.url} target="_blank" rel="noreferrer noopener" title="Abrir a fonte original"><span className="q-pf-t">{q.escola}</span> <Icone nome="externo" tam={13} /></a>
           </div>
         </div>
       ) : (

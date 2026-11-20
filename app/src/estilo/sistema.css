@@ -109,7 +109,9 @@
 .q-print-pe { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 7px 10px 8px; border-top: 1px dashed #DAD5C8; background: #FBFAF7; font-weight: 600; font-size: 13px; letter-spacing: .02em; color: #5F5B50; }
 .q-print .q-amplia { position: static; opacity: 1; display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border: 1px solid #DAD5C8; border-radius: 999px; background: #F1EEE6; color: #3E3A31; font: inherit; }
 .q-print .q-amplia:hover { background: #E9E5DA; }
-.q-print-fonte { display: inline-flex; align-items: center; gap: 5px; min-width: 0; color: inherit; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.q-print-fonte { display: inline-flex; align-items: center; gap: 5px; min-width: 0; color: inherit; text-decoration: none; white-space: nowrap; }
+/* o nome corta com reticências por dentro; o link fica sem "overflow" para a área de toque de 44 px não ser cortada (N8) */
+.q-print-fonte .q-pf-t { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .q-print-fonte:hover { color: #3E3A31; text-decoration: underline; }
 .q-ver-txt { align-self: flex-start; margin-left: max(0px, (100% - var(--q-pw, 100%)) / 2); }
 .q-enun > .q-transcricao { margin-top: 14px; }
@@ -173,8 +175,8 @@
   .q-resp.com-texto .q-bolhas::before { display: block; }
   .q-resp.q-indisp .q-bolhas { display: block; } /* indisponível: o rótulo fica, em cima da linha */
   .q-resp.q-indisp .q-bolhas::before { display: block; margin: 0 0 4px; }
-  .q-resp .certeza { order: -1; flex: 1 1 100%; justify-content: space-between; overflow: hidden; }
-  .q-resp .certeza .chip { flex: 1; padding: 0 6px; }
+  .q-resp .certeza { order: -1; flex: 1 1 100%; justify-content: space-between; }
+  .q-resp .certeza .chip { flex: 1; min-width: 0; padding: 0 6px; }
   .q-resp .q-acoes .btn-conf { flex: 1 1 auto; min-width: 0; }
 }
 @media (max-width: 420px) { .q-resp .certeza > span { display: none; } }
@@ -546,6 +548,11 @@
   .q-resp .certeza .chip::before, .q-dica::before, .ra-bt::before, .ra-link::before, .q-orig::before {
     content: ''; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%); }
   .q-rel-g a { min-height: 44px; }
+  /* revisão de 20/11/2026, N8: a área dos chips de certeza fica por cima da linha de baixo; o pé do print tem a altura do
+     toque (o link da fonte não cai fora do quadro); Pausar e Tela cheia com 44 px entre os centros */
+  .q-resp .certeza .chip::before { z-index: 1; }
+  .q-print-pe { min-height: 44px; padding-top: 4px; padding-bottom: 4px; }
+  .q-pausa + .q-tela { margin-left: 2px; }
   .q-abas button { min-height: 44px; }
 }
 /* etiqueta da fonte: texto corrido (o "gap" da etiqueta somava ao espaço entre o nome e o " · ", item 16 da revisão de 19/11/2026) */
