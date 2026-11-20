@@ -84,7 +84,7 @@ export function Revisao() {
         <button aria-pressed={aba === 'marcadas'} onClick={() => setQs({ aba: 'marcadas' }, { replace: true })}>Marcadas <small>{totMarc}</small></button>
         <button aria-pressed={aba === 'conteudos'} onClick={() => setQs({ aba: 'conteudos' }, { replace: true })}>Conteúdos <small>{totCont}</small></button>
         <button aria-pressed={aba === 'dominio'} onClick={() => setQs({ aba: 'dominio' }, { replace: true })}>Domínio</button>
-        <button aria-pressed={aba === 'geral'} onClick={() => setQs({ aba: 'geral' }, { replace: true })}>Revisão geral</button>
+        <button className="ab-geral" aria-pressed={aba === 'geral'} onClick={() => setQs({ aba: 'geral' }, { replace: true })}>Revisão geral</button>
       </div>
 
       {aba === 'geral' && (

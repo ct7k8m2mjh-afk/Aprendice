@@ -274,10 +274,17 @@ span.fm:not(.fm-bloco) .fm-linha + .fm-linha { margin-left: 1em; }
 .rv-notas .nota kbd { top: 50%; transform: translateY(-50%); }
 /* correção sem resolução publicada */
 .rv-sr-p { margin-top: 12px; color: var(--lapis); }
-/* tela Revisão: as 4 abas cabem no celular (2 × 2) */
-@media (max-width: 520px) {
-  .abas.abas-rev { display: grid; grid-template-columns: 1fr 1fr; overflow: visible; }
-  .abas.abas-rev button { text-align: left; padding: 10px 8px; }
+/* tela Revisão no celular (revisão de 19/11/2026, casca 33): as abas numa linha só, rolando por dentro (não em 3 linhas);
+   a aba "Revisão geral" sai enquanto o destaque do topo, que abre a mesma coisa, está na tela (não aparece duas vezes);
+   na linha da questão o título vem em cima, inteiro, e a etiqueta embaixo, do tamanho do texto */
+@media (max-width: 700px) {
+  .abas.abas-rev { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(-1 * var(--pag-x, 16px)); padding-inline: var(--pag-x, 16px); }
+  .abas.abas-rev button { flex: none; white-space: nowrap; }
+  .abas.abas-rev .ab-geral:not([aria-pressed='true']) { display: none; }
+  .linha-lista:has(> .etq:first-child) { display: grid; grid-template-columns: minmax(0, 1fr) 20px; column-gap: 12px; row-gap: 6px; }
+  .linha-lista > .etq:first-child { grid-row: 2; grid-column: 1; justify-self: start; min-width: 0; }
+  .linha-lista:has(> .etq:first-child) > span:nth-child(2) { grid-row: 1; grid-column: 1; }
+  .linha-lista:has(> .etq:first-child) > .ic:last-child { grid-row: 1 / span 2; grid-column: 2; align-self: center; }
 }
 .rv-linha-cont .det b { font-weight: 600; }
 .rv-cont-hoje { color: var(--aviso); }
