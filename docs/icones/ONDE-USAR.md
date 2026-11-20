@@ -25,7 +25,7 @@ Visual (ver `exemplo-faixa-de-temas.png`, só o visual, não a ordem): o objeto 
 |---|---|---|
 | Faixa de temas no topo da matéria (rolagem lateral) — lugar principal | `telas/Materia.tsx` `FaixaTemas`, `.ft-ic` | 112 px |
 | Faixa compacta dentro do tema e da escada | `FaixaTemas compacta` em `Tema.tsx` e `Escada.tsx` | 76 px |
-| Cabeçalho da página do tema | `telas/Tema.tsx` `.tp-ic` | 100 px |
+| Cabeçalho da página do tema | `telas/Tema.tsx` `.tp-ic` | 100 px; 74 px no celular até 420 px (decisão do dono, 20/11/2026) |
 | Lista de temas por área na página da matéria | `telas/Materia.tsx` `.area-tema` | 72 px |
 | Filtro de temas nos flashcards | `telas/Flashcards.tsx` `.fl-tema` | 36 px |
 
