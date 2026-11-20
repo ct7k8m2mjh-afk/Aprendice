@@ -1429,5 +1429,126 @@
    "data": "2026-11-19",
    "lote": "mat-p2-0007"
   }
+ },
+ "Pd5bfbd6b": {
+  "n": "6",
+  "conceito": "Calcular a energia de cada alimento somando proteínas e carboidratos e multiplicando por 4 kcal/g.",
+  "equivocos": {
+   "A": "M14.2:olhou-so-a-proteina",
+   "B": "M14.2:leu-a-linha-errada",
+   "D": "M14.2:somou-errado",
+   "E": "M14.2:olhou-so-o-carboidrato"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O comando manda considerar só proteínas e carboidratos, que valem 4 kcal por grama cada. Então a energia de cada item é a soma dos dois em gramas vezes 4. Como o fator 4 é o mesmo para todos, vence o item com a maior soma.",
+    "formulas": [
+     "energia (kcal) = (proteínas + carboidratos) × 4 kcal/g"
+    ],
+    "simbolos": [
+     [
+      "kcal",
+      "quilocaloria, unidade de energia dos alimentos"
+     ],
+     [
+      "kcal/g",
+      "quilocalorias em cada grama do nutriente"
+     ]
+    ]
+   },
+   "pista": "Some as duas colunas que o comando manda considerar, linha por linha, antes de multiplicar.",
+   "passos": [
+    {
+     "faz": "Separe o que o comando manda usar",
+     "conta": "E = (proteínas + carboidratos) × 4",
+     "porque": "Proteínas e carboidratos têm o mesmo valor, 4 kcal/g, então podem ser somados antes de multiplicar.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some proteínas e carboidratos do iogurte",
+     "conta": "E = (30 + 10) × 4 → E = 40 × 4",
+     "porque": "O iogurte grego tem 30 g de proteína e 10 g de carboidrato.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta em energia",
+     "conta": "E = 40 × 4 → E = 160",
+     "porque": "São 160 kcal vindas de proteínas e carboidratos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a energia dos ovos, o segundo maior",
+     "conta": "E = (30 + 4) × 4 → E = 136",
+     "porque": "Os ovos empatam em proteína com o iogurte, mas têm só 4 g de carboidrato.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com o iogurte",
+     "conta": "136 < 160",
+     "porque": "O iogurte supera os ovos; os outros itens somam menos ainda.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "maior energia: iogurte → alternativa C",
+     "porque": "O iogurte grego é o item mais energético pelo critério do comando.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — Iogurte",
+   "checagem": "Sem multiplicar por 4, compare só as somas em gramas: iogurte 40, ovos 34, granola 23, suco 22,5 e abacate 11. Como todos levam o mesmo fator 4, a ordem é a mesma.",
+   "erradas": {
+    "A": "Ovos não confere: (30 + 4) × 4 = 136 kcal, menos que 160. A proteína empata com a do iogurte, mas o carboidrato é só 4 g.",
+    "B": "Abacate não confere: (2 + 9) × 4 = 44 kcal, a menor energia da tabela pelo critério do comando.",
+    "D": "Granola não confere: (3 + 20) × 4 = 92 kcal, bem abaixo dos 160 kcal do iogurte.",
+    "E": "Suco sai de olhar só os carboidratos, em que ele tem o maior valor (21 g). Com a proteína: (1,5 + 21) × 4 = 90 kcal."
+   },
+   "armadilha": "Olhar uma coluna só (proteína empata ovos e iogurte; carboidrato dá o suco) em vez de somar as duas.",
+   "alerta": "O comando manda considerar proteínas e carboidratos. Se os lipídios também entrassem (9 kcal/g), os ovos passariam: 136 + 17 × 9 = 289 kcal contra 160 + 14 × 9 = 286 kcal do iogurte. O gabarito oficial segue o comando, que limita a conta a proteínas e carboidratos.",
+   "essencial": {
+    "pede": "O item mais energético considerando proteínas e carboidratos (4 kcal/g).",
+    "chave": "Some proteínas e carboidratos e multiplique por 4: iogurte (30 + 10) × 4 = 160 kcal.",
+    "cuidado": "Use as duas colunas pedidas, não uma só."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "somas em gramas",
+    "ideia": "Como o fator 4 kcal/g é o mesmo, basta achar a maior soma proteína + carboidrato: iogurte, com 40 g."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "E = (30 + 10) × 4",
+    "nota": "iogurte: proteínas mais carboidratos"
+   },
+   {
+    "linha": "E = 40 × 4",
+    "nota": "soma em gramas"
+   },
+   {
+    "linha": "E = 160 kcal",
+    "nota": "energia do iogurte"
+   },
+   {
+    "linha": "ovos: (30 + 4) × 4 = 136 kcal",
+    "nota": "o segundo maior"
+   },
+   {
+    "linha": "160 > 136 → iogurte",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-20",
+   "lote": "mat-pend-0005"
+  }
  }
 }

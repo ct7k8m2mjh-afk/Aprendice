@@ -92,7 +92,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | mat-pend-0002 | pendentes reclassificada | 2 | gravado | 2 | 0 | 0 |
 | mat-pend-0003 | pendentes =reclassificada | 1 | gravado | 1 | 0 | 0 |
 | mat-pend-0004 | pendentes todos-menos-anular | 25 | gravado | 25 | 0 | 0 |
-| mat-pend-0005 | pendentes classificação | 12 | aberto |  |  |  |
+| mat-pend-0005 | pendentes classificação | 12 | gravado | 12 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
