@@ -58,7 +58,7 @@ function Rotas() {
         <Route path="/m/:m/essencial/:tema" element={<RevisaoEssencial />} />
         <Route path="/m/:m/geral" element={<RevisaoGeralTela />} />
         <Route path="/m/:m/geral/:parte" element={<RevisaoGeralTela />} />
-        <Route path="/m/:m/flashcards" element={<Flashcards />} />
+        <Route path="/m/:m/flashcards" element={<NovaPorVisita><Flashcards /></NovaPorVisita>} />
         <Route path="/m/:m/flashcards/sessao" element={<NovaPorVisita><Flashcards sessao /></NovaPorVisita>} />
         <Route path="/simulados" element={<Simulados />} />
         <Route path="/simulados/prova/:chave" element={<SimuladoNovo />} />
