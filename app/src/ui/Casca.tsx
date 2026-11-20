@@ -7,7 +7,7 @@ import { atualiza, useEstado } from '../estado/loja';
 import { semana } from '../logica/estatisticas';
 import { Protecao } from './Protecao';
 import { Busca } from '../telas/Busca';
-import { destinoAtivo } from '../logica/navAtiva';
+import { destinoAba, destinoAtivo, materiaAtivaNoMenu } from '../logica/navAtiva';
 
 export function usaTema() {
   const e = useEstado();
@@ -40,8 +40,11 @@ export function TemaSeg({ escuro, className = '' }: { escuro: boolean; className
 }
 
 function ItemMateria({ m, atual }: { m: MateriaInfo; atual?: string }) {
+  const loc = useLocation();
+  // um destino ativo só: na sessão de revisão (/m/<m>/q/…?ctx=revisao) a matéria não fica marcada junto com "Revisão"
+  const ativa = destinoAtivo(loc.pathname, loc.search) === '/materias' && (materiaAtivaNoMenu(loc.pathname, loc.search, m.id) || atual === m.id);
   return (
-    <NavLink to={`/m/${m.id}`} className={({ isActive }) => `item-nav mat m-${m.id}` + (isActive || atual === m.id ? ' ativo' : '')} title={m.nome}>
+    <NavLink to={`/m/${m.id}`} className={() => `item-nav mat m-${m.id}` + (ativa ? ' ativo' : '')} title={m.nome}>
       <Icone nome={`m_${m.id}` as NomeIcone} className="ic-mat" /><span className="rotulo">{m.nome}</span>
     </NavLink>
   );
@@ -159,7 +162,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
 
       <nav className="tabs" aria-label="Navegação">
         {([['/', 'inicio', 'Início'], ['/materias', 'livro', 'Matérias'], ['/simulados', 'relogio', 'Simulados'], ['/revisao', 'repetir', 'Revisão'], ['/perfil', 'usuario', 'Perfil']] as const).map(([p, ic, t]) => (
-          <NavLink key={p} to={p} end={p === '/'} className={() => (destinoAtivo(loc.pathname, loc.search) === p ? 'ativo' : '')}>
+          <NavLink key={p} to={p} end={p === '/'} className={() => (destinoAba(loc.pathname, loc.search) === p ? 'ativo' : '')}>
             <span className="bolha-ic"><Icone nome={ic} /></span>{t}
           </NavLink>
         ))}

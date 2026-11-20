@@ -14,3 +14,16 @@ export function destinoAtivo(pathname: string, search = ''): Destino {
   for (const d of ['/perfil', '/hoje', '/desempenho', '/provas', '/config'] as const) if (pathname === d || pathname.startsWith(d + '/')) return d;
   return null;
 }
+
+/** Abas do celular (5 destinos): Configurações se abre pelo Perfil, então "Perfil" fica ativo em /config (revisão de
+ *  20/11/2026, casca N6); Hoje, Desempenho e Provas não têm aba e nenhuma fica ativa. */
+export function destinoAba(pathname: string, search = ''): Destino {
+  const d = destinoAtivo(pathname, search);
+  return d === '/config' ? '/perfil' : d;
+}
+
+/** Matéria marcada no menu lateral: só quando o destino ativo é a matéria (na sessão de revisão, que abre a questão
+ *  dentro da matéria, o ativo é só "Revisão"; revisão de 20/11/2026, casca N4). */
+export function materiaAtivaNoMenu(pathname: string, search: string, m: string): boolean {
+  return destinoAtivo(pathname, search) === '/materias' && (pathname === `/m/${m}` || pathname.startsWith(`/m/${m}/`));
+}
