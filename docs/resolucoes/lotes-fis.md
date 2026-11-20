@@ -1,4 +1,4 @@
-# Física: resoluções (gerado por lote.py em 2026-11-19)
+# Física: resoluções (gerado por lote.py em 2026-11-20)
 
 Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 0.
 
@@ -86,6 +86,8 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | fis-0078 | provas-alvo nível 1-6 | 8 | gravado | 8 | 0 | 0 |
 | fis-pend-0001 | pendentes todos-menos-anular | 12 | gravado | 5 | 7 | 0 |
 | fis-pend-0002 | pendentes reclassificada | 3 | gravado | 3 | 0 | 0 |
+| fis-pend-0003 | pendentes todos-menos-anular | 25 | gravado | 25 | 0 | 0 |
+| fis-pend-0004 | pendentes classificação | 16 | aberto |  |  |  |
 
 ## Pendentes (falta de certeza absoluta)
 
