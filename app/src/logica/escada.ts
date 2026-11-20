@@ -16,3 +16,9 @@ export function textoDegrau(q: Pick<Questao, 'escola' | 'ano' | 'n' | 'nq' | 'co
   if (respondida && q.conceito) return { titulo: q.conceito, apoio: fonte };
   return { titulo: fonte, apoio: '' };
 }
+
+/** Revisão > Marcadas (revisão de 20/11/2026, dados 4): a mesma regra do degrau. O `conceito` (até 80 letras) só
+ *  aparece em questão que o aluno já respondeu; marcada sem responder mostra só a matéria e a fonte. */
+export function conceitoMarcada(q: Pick<Questao, 'conceito'>, respondida: boolean): string {
+  return respondida && q.conceito ? q.conceito.slice(0, 80) : '';
+}

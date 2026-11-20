@@ -11,6 +11,7 @@ import { Icone, type NomeIcone } from '../ui/Icone';
 import { estadoMateriaVazio } from '../estado/tipos';
 import { revisoesVencidas } from '../logica/cicloRevisao';
 import { numeroQuestao } from '../dados/tipos';
+import { conceitoMarcada } from '../logica/escada';
 import { FiltroRegiaoChips, defineFiltroRegiao, useRegiao } from '../ui/FiltroRegiao';
 import { deFiltro, filtraRegiao } from '../logica/regiao';
 import { CartoesGeral } from './RevisaoGeral';
@@ -165,7 +166,7 @@ export function Revisao() {
             return (
               <Link key={q.id} to={`/m/${mc.id}/q/${q.id}?ctx=escada`} className={`linha-lista m-${mc.id}`}>
                 <span className="mini"><Icone nome="marcador" /></span>
-                <span><span className="tit" style={{ fontSize: 15 }}>{q.escola} {q.ano}{q.n ? ` · questão ${numeroQuestao(q)}` : ''}</span><br /><span className="det">{nomeMateria(mc.id)} · {q.conceito.slice(0, 80)}{f ? ` · revisão ${emDias(f.vence)}` : ''}</span></span>
+                <span><span className="tit" style={{ fontSize: 15 }}>{q.escola} {q.ano}{q.n ? ` · questão ${numeroQuestao(q)}` : ''}</span><br /><span className="det">{[nomeMateria(mc.id), conceitoMarcada(q, !!s.q[q.id]?.tent.length), f ? `revisão ${emDias(f.vence)}` : ''].filter(Boolean).join(' · ')}</span></span>
                 <Icone nome="direita" />
               </Link>
             );
