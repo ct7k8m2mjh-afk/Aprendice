@@ -68,7 +68,7 @@ export function Perfil() {
           <Icone nome="sair" /> Sair da conta
         </button>
       </section>
-      <p className="fraco" style={{ fontSize: 14, marginTop: 10 }}>Sair não apaga nada: o progresso, as provas-alvo, as datas e a meta continuam salvos neste aparelho e voltam quando você entrar de novo.</p>
+      <p className="fraco" style={{ fontSize: 14, marginTop: 10 }}>Sair não apaga nada: o progresso, as provas-alvo, as datas e a meta continuam salvos neste aparelho e voltam quando você entrar de novo com o mesmo e-mail.</p>
     </div>
   );
 }

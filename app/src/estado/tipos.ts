@@ -163,6 +163,9 @@ export interface Estado {
   /** perfil guardado ao sair da conta (revisão de 19/11/2026, casca 38): nome, provas-alvo, datas e meta voltam ao entrar
    *  de novo. Opcional: estados antigos não têm, e nada muda para eles */
   perfilSalvo?: Perfil | null;
+  /** perfis guardados por conta (chave = e-mail em minúsculas; revisão de 20/11/2026, casca N5): só voltam para o mesmo
+   *  e-mail. Substitui `perfilSalvo` (lido uma vez e movido para cá). Opcional: estados antigos não têm */
+  perfisSalvos?: Record<string, Perfil>;
 }
 
 export function estadoMateriaVazio(): EstadoMateria {
