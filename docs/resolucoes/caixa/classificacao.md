@@ -52,7 +52,7 @@ matéria (Bio, Quí, Mat, Por, Fís; His, Geo, Ing e FS num commit só, porque o
 e as quatro já estavam gravadas nos mesmos `prova.json`). converte + tsc + vitest verdes antes de cada commit (839 testes).
 
 - **Mudaram 6.590 questões (26%)**, 428 delas de matéria. Ficaram 19.207. Sugestão de conteúdo novo: 470 questões.
-- **Gasto total: US$ 46,22** (teto US$ 60): triagem US$ 7,97, conferência US$ 22,17, desempate US$ 11,48, agrupamento das
+- **Gasto total: US$ 46,22** (teto US$ 60): triagem US$ 7,97, conferência US$ 22,17, desempate US$ 11,31, agrupamento das
   sugestões US$ 0,30, piloto e testes US$ 4,47. Registrado em `fabrica_saida/gastos.csv`.
 - Conferência minha no todo: amostra de 30 mudanças de subtema e 30 de matéria, agentes com o print: 1 erro em cada (3%),
   corrigidos em `docs/resolucoes/classificacao/ajustes-conferencia.json`.
