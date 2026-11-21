@@ -33,7 +33,7 @@ corrigidos: o "amanhã" ficava errado ao reabrir o resultado pelo histórico, e 
 chute.
 
 Testes: `npx tsc --noEmit -p .` sem erros. `npx vitest run` com 922 de 922 passando, depois de gerar de novo os dados
-com `scripts/converte.py`; o resultado da última rodada está no fim.
+com `scripts/converte.py`. A última rodada, depois da correção do resultado do simulado, deu 41 arquivos e 922 testes, todos passando.
 
 ## O que a direção de arte NÃO pôde ver renderizado
 Não foi possível aprovar nesta sessão o comando que sobe o site, por isso a direção de arte foi encerrada antes de
