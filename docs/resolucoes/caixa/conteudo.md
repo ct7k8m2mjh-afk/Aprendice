@@ -409,3 +409,17 @@ química usada desde a Primeira Guerra). Amostra mq-21: 8 letras, 0 erro.
 Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
 Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 qui` (próximo
 lote: conteudo-erradas-mq-22; na fila: 366 de Química provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+## 2026-11-21 — FIM — erradas (série fis, sem API, 9ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-fis-20, fis-21 e fis-22 (Física, provas-alvo UPE SSA3 2020–2024 e UECE
+2023–2026, 75 questões, 192 letras fracas). Nenhum lote aberto. Sessão encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 77 letras reescritas e gravadas em 44 questões (fis-20: 20 em 11; fis-21: 26 em 17; fis-22: 31 em 16). As
+demais letras não têm equívoco honesto que chegue exatamente à alternativa e ficaram com o texto antigo.
+fis-21: fatos 25 ok e 1 corrigida (notação); didática melhorou 3, 2ª passagem 3 ok; amostra 7 letras, 0 erro.
+fis-22: fatos 30 ok e 1 corrigida (Pb95cc84a C: o trecho de −2L até 0 é o que o aluno ignora); didática melhorou 4;
+2ª passagem corrigiu Pd2b4ad62 A ("a mina passaria do centro da Terra", não "fora da Terra"); amostra 5 letras, 0 erro.
+Conflitos em erradas-feitas.json (fis-21 e fis-22) resolvidos por união, no formato da fábrica, sem perder nada.
+Testes: converte, tsc e vitest 922/922 verdes nos três lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
+lote: conteudo-erradas-fis-23; na fila: 281 de Física provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
