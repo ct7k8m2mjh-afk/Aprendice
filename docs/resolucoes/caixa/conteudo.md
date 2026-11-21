@@ -487,3 +487,9 @@ verdes. Gasto de API: zero. Em paralelo com a série fis; já aberto conteudo-er
 conteudo-erradas-fis-25 gravado (Física, provas-alvo UECE 2020.2 e UEA 2027): 44 letras reescritas em 18 questões; 29
 mantidas por falta de equívoco honesto. Fatos 46 ok; didática melhorou 12, reconferidas (12 ok); amostra 12 letras, 0
 erro. Converte, tsc e vitest 922/922 verdes. Gasto de API: zero. Seguindo com fis-26.
+## 2026-11-21 — AVISO — erradas (série mq, sem API, 12ª sessão)
+Lote conteudo-erradas-mq-26 (Química, provas-alvo FMABC 2020–2025, Einstein 2020 e 2021-2 Enf., São Camilo 2025-2)
+gravado: 38 letras em 18 questões (20 mantidas pelo escritor por falta de equívoco honesto). Fatos 35 ok e 4 corrigidas
+(Pbc10b7e2 B, P888a9cce A, P87e5e1d0 E, Pfefbb29c C); didática melhorou 6, reconferidas (4 ok, 2 corrigidas:
+P87e5e1d0 E, P47e2632b A). Amostra: 8 letras, 0 erro. converte, tsc e vitest 922/922 verdes. Gasto de API: zero.
+Segue o mq-27.
