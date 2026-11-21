@@ -220,4 +220,23 @@ mq-10 2 letras, 0 erro.
 Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
 Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 mat` (próximo
 lote: conteudo-erradas-mq-11; na fila: 196 de Matemática provas-alvo, depois Química provas-alvo), seguindo
+
+## 2026-11-21 — FIM — erradas (série fis, sem API, 5ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-fis-10 e fis-11 (Física, provas-alvo Santa Casa 2020–2026 e Einstein
+2024–2026, 50 questões, 147 letras fracas). Nenhum lote aberto. Sessão encerrada perto do limite de contexto combinado
+(40%); no meio do fis-11 a conta bateu o limite de 5 horas (09h08 UTC) e o trabalho foi retomado após a renovação.
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 77 letras reescritas e gravadas em 38 questões (fis-10: 35 em 18; fis-11: 42 em 20). As demais 70 letras não
+têm equívoco honesto que leve a elas e ficaram com o texto antigo; nenhuma rejeitada. Lente de fatos corrigiu 2 no fis-11
+(1ª passagem); 2ª passagem corrigiu 1 no fis-10 e 7 no fis-11 (6 só encurtadas para até 35 palavras; 1 fato: no esquema
+da Santa Casa P3eb66148 A, I1 e I2 estão em fios diferentes, não "no mesmo fio"). Didática melhorou 9 + 14.
+Atenção de processo: o escritor da p02 do fis-11 regravou os textos depois que a entrada da lente foi gerada; a lente foi
+parada e refeita sobre a versão final. Conferido também o fis-10: 2 letras com diferença, ambas cobertas (uma só trocou
+"dá" por "fica"; a outra foi reescrita pela didática e reconferida pela 2ª lente). Gerar entrada de lente só depois do
+aviso de término do escritor.
+Amostra (20%): fis-10 11 letras, 2 só acima de ~35 palavras (encurtadas); fis-11 7 letras, 0 erro.
+Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
+lote: conteudo-erradas-fis-12; fila de Física provas-alvo pela `erradas-fila`), seguindo
 docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
