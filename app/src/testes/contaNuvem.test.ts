@@ -197,8 +197,8 @@ describe('entrar, enviar e sair (estado/sessao.ts, sem rede)', () => {
 
   it('mensagens do serviço de contas em português', () => {
     expect(traduzErro({ code: 'invalid_credentials' })).toBe('E-mail ou senha incorretos.');
-    expect(traduzErro({ message: 'Email not confirmed' })).toMatch(/Confirme/);
-    expect(traduzErro({ message: 'Failed to fetch' })).toMatch(/Sem conexão/);
+    expect(traduzErro({ message: 'Email not confirmed' })).toMatch(/abra o link que enviamos/);
+    expect(traduzErro({ message: 'Failed to fetch' })).toMatch(/Sem internet/);
   });
 });
 
