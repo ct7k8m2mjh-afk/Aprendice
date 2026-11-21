@@ -168,3 +168,16 @@ Lote conteudo-erradas-fis-08 gravado (Física, provas-alvo Famerp 2022–2025, 2
 reescritas em 18 questões; 30 mantidas (sem equívoco honesto que leve a elas); nenhuma rejeitada. Lente de fatos
 corrigiu 2; didática melhorou 6, todas reconferidas ok. Amostra: 11 letras, 0 erro. Testes: converte, tsc e vitest
 922/922 verdes. Gasto de API: zero.
+
+## 2026-11-21 — FIM — erradas (série mq, sem API, 3ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-mq-07 e mq-08 (Matemática, provas-alvo UECE, 50 questões, 123 letras
+fracas). Nenhum lote aberto. Sessão encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 27 letras reescritas e gravadas em 19 questões (mq-07: 13 em 9; mq-08: 14 em 10). As demais 96 letras não
+têm equívoco honesto que leve a elas e ficaram com o texto antigo; nenhuma rejeitada. Lente de fatos corrigiu 1 (mq-07);
+didática melhorou 16, todas reconferidas ok. Amostra (20%): mq-07 4 letras, 0 erro; mq-08 5 letras, 0 erro.
+Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 mat` (próximo
+lote: conteudo-erradas-mq-09; na fila: Matemática provas-alvo, depois Química provas-alvo), seguindo
+docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
