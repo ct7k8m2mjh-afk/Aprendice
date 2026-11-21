@@ -260,12 +260,15 @@ a.chip, a.chip:hover { text-decoration: none; }
    questão (sistema.css): o desenho não muda; uma área invisível centrada em cada controle pequeno recebe o toque. */
 @media (pointer: coarse), (max-width: 700px) {
   .chip, .fr-trocar, .fr-aviso .link-sec, .link-sec, .migalhas a, .btn.peq, .sanfona, .tema-seg button, .crono, .folha-btn,
-  .l-esqueci, .l-trocar button, .tp-volta, .in-personalizar { position: relative; }
+  .l-esqueci, .l-trocar button, .tp-volta, .in-personalizar, .in-link { position: relative; }
   .chip::before, .fr-trocar::before, .fr-aviso .link-sec::before, .link-sec::before, .migalhas a::before, .btn.peq::before,
   .sanfona::before, .tema-seg button::before, .crono::before, .folha-btn::before, .l-esqueci::before, .l-trocar button::before,
-  .l-olho::before, .ft-seta::before, .tp-volta::before, .in-personalizar::before {
+  .l-olho::before, .ft-seta::before, .tp-volta::before, .in-personalizar::before, .in-link::before {
     content: ''; position: absolute; left: 50%; top: 50%; width: max(100%, 44px); height: max(100%, 44px); transform: translate(-50%, -50%); }
   /* abas (Revisão, Simulados e as outras): a fileira rola por dentro e cortaria a área invisível; a aba ganha 44px de
      altura (revisão de 20/11/2026, casca N3) */
   .abas button { min-height: 44px; }
+  /* Fechar da busca: não encolhe (40 px) e ganha a área invisível de 44 px (revisão de 21/11/2026, casca N4) */
+  .janela .cab .btn-ic { flex: none; position: relative; }
+  .janela .cab .btn-ic::before { content: ''; position: absolute; inset: -2px; }
 }
