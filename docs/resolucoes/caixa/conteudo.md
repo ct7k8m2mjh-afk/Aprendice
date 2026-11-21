@@ -549,3 +549,14 @@ Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero
 ## 2026-11-21 — ACABOU (provas-alvo de Física)
 `erradas-fila` não mostra mais Física na faixa 1 (provas-alvo): todas as questões de Física das provas-alvo já têm
 lote (séries fis e fb). Próximo passo da série, se o dono quiser: faixa 2 (866 de Física), com BASE_MAX=2.
+## 2026-11-21 — FIM — erradas (série fb, sem API, 2ª sessão paralela de Física)
+Lotes gravados nesta sessão: conteudo-erradas-fb-04, fb-05 e fb-06 (Física, provas-alvo UDESC e ACAFE).
+Nenhum lote aberto. Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente
+didática, lente de fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 75 letras reescritas e gravadas em 42 questões (fb-04: 36 em 19; fb-05: 30 em 19; fb-06: 9 em 4); 56
+letras mantidas por falta de equívoco honesto; nenhuma rejeitada. fb-05: fatos corrigiu 4, didática melhorou 12
+(reconferidas ok); amostra 7 letras, 0 erro. fb-06: fatos 9 ok, didática melhorou 1 (reconferida ok); amostra 3 letras,
+1 consertada (P3f068c50 C: "só convergente forma imagem real" vale só para objeto real).
+Testes: converte, tsc e vitest 922/922 verdes nos três lotes. Gasto de API: zero.
+ACABOU (provas-alvo de Física, série fb): `erradas-fila` não mostra mais Física na faixa 1. Continuar de: faixa 2 de
+Física (`BASE_MAX=2`), se o dono quiser, seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
