@@ -83,3 +83,19 @@ equívoco honesto ficaram com o texto antigo; nenhuma rejeitada. Lente de fatos 
 Amostra (outro agente): 5 letras, 1 com erro (texto longo, 43 palavras), consertada; nenhum erro de fato.
 Testes: converte, tsc e vitest verdes (916). Gasto de API: zero.
 Em andamento: conteudo-erradas-fis-02 (Física).
+
+## 2026-11-21 — FIM — erradas (série fis, sem API)
+Lotes gravados: conteudo-erradas-fis-01, fis-02 e fis-03 (Física, provas-alvo, 75 questões, 211 letras fracas).
+Nenhum lote aberto. Sessão encerrada no limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa desde o fis-03 (regra nova do dono).
+Resultado: 66 letras reescritas e gravadas em 34 questões (fis-01: 27 em 12, Unesp; fis-02: 23 em 11, Unesp, ENEM,
+Fuvest, UERJ; fis-03: 16 em 11, UERJ). As demais letras não têm equívoco honesto que leve a elas e ficaram com o texto
+antigo; nenhuma rejeitada. Lentes de fatos corrigiram 12 textos (origem trocada por equívoco plausível, frase ambígua,
+"esquece os 800 g" que não leva à letra, campo da Terra esquecido, textos longos).
+Amostra (20%): 10 letras, 2 com erro (1 texto longo; 1 sem dizer de onde vinha o 7 s), consertados; nenhum erro de fato.
+Testes: converte e tsc verdes; vitest 915 de 916 no fis-03 — a falha é contaNuvem.test.ts (mensagem de login
+"Confirme…" mudada em outra frente, sem relação com resoluções); fis-01 e fis-02 com 916 verdes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
+lote: conteudo-erradas-fis-04; fila de Física provas-alvo pela `erradas-fila`), seguindo
+docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
