@@ -566,3 +566,9 @@ Lote conteudo-erradas-qb-01 gravado: 37 letras reescritas em 18 questões de Qu�
 equívoco honesto que chegue exatamente ao valor). Fatos: 34 ok e 2 corrigidas; didática melhorou 8, todas reconferidas
 (8 ok) pela 2ª lente de fatos; amostra 8 letras, 0 erro. Testes: converte, tsc e vitest 922/922 verdes. Gasto de API:
 zero. Feito por agentes do Claude Code, uma etapa por agente, em paralelo com a série mq. Seguindo com qb-02.
+## 2026-11-21 — AVISO — erradas (série mq, sem API, 13ª sessão)
+Lote conteudo-erradas-mq-28 (Química, provas-alvo UPE SSA3 2023–2026) gravado: 50 letras em 20 questões; 16 letras
+mantidas pelo escritor por falta de equívoco honesto. Fatos 48 ok e 2 corrigidas (P99d3dad2 C, ignorar o OH fenólico;
+P0fda747a A, em 5000 anos ainda sobram 55%); didática melhorou 13, reconferidas (12 ok, 1 corrigida: Pf7476984 B,
+"carbono espiro da lactona"). Amostra: 13 letras, 0 erro. converte, tsc e vitest 922/922 verdes. Gasto de API: zero.
+A 2ª lente de fatos parou uma vez no limite de uso de 5 horas e foi refeita por outro agente. Segue o mq-29.
