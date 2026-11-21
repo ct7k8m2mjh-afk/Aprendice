@@ -48,7 +48,7 @@ function EscudoTri({ esc, aoComecar }: { esc: Escudo; aoComecar: () => void }) {
         <span className="hj-esc-ic" aria-hidden><Icone nome="escudo" tam={22} /></span>
         <div className="hj-esc-txt">
           <h2 id="hj-esc-tit">Escudo TRI</h2>
-          <p>No ENEM, quem erra a fácil e acerta a difícil ganha menos pontos que quem acerta as duas fáceis: a TRI confere a coerência das respostas. Garanta primeiro as questões fáceis (nível 1 a {FACIL_MAX}) dos conteúdos que o ENEM cobra.</p>
+          <p>No ENEM, a TRI confere a coerência: errar a fácil e acertar a difícil vale menos pontos que o contrário. Garanta primeiro as fáceis (dificuldade 1 a {FACIL_MAX}) dos conteúdos que o ENEM cobra.</p>
         </div>
         {esc.erradas > 0 && <button className="btn sec hj-esc-btn" onClick={aoComecar}>{`Revisar as fáceis (${esc.sessao.length})`}</button>}
       </div>
@@ -71,7 +71,7 @@ function EscudoTri({ esc, aoComecar }: { esc: Escudo; aoComecar: () => void }) {
         </ul>
       ) : (
         <p className="hj-esc-vazio">{esc.feitas
-          ? 'Nenhuma fácil errada agora. Continue: cada fácil que você acerta em dias diferentes protege a sua nota.'
+          ? 'Nenhuma fácil errada agora. Com 3 fáceis feitas e nenhuma errada, o conteúdo conta como básico garantido.'
           : 'Você ainda não respondeu questões fáceis dos conteúdos do ENEM. Elas aparecem aqui assim que você começar.'}</p>
       )}
     </section>
@@ -146,15 +146,15 @@ export function Hoje() {
   return (
     <div className="conteudo hj">
       <div className="titulo-pag"><div><h1>Hoje</h1>
-        <p className="sub">O que estudar hoje, na ordem que mais rende: primeiro o que mais cai nas suas provas, onde você mais erra e o que está para esquecer.</p></div></div>
+        <p className="sub">O que estudar hoje, pelo que mais cai nas suas provas, pelo que você mais erra e pelo que está para esquecer.</p></div></div>
       <div className="rv-regiao"><FiltroRegiaoChips /></div>
 
       <section className="bloco hj-sessao" aria-labelledby="hj-ses-tit">
         <div className="hj-ses-txt">
-          <h2 id="hj-ses-tit" className="num">{n ? <>{plural(n, 'questão', 'questões')} · cerca de {minutosDe(n, plano.segPorQuestao)} min</> : 'Nada pendente agora'}</h2>
+          <h2 id="hj-ses-tit" className="num">{n ? <>{plural(n, 'questão', 'questões')} · cerca de {minutosDe(n, plano.segPorQuestao)} min</> : 'Revisão em dia'}</h2>
           <p>{n
             ? <>De {plural(plano.nItensSessao, 'conteúdo', 'conteúdos')}, {plano.enem && esc?.erradas ? 'começando pelas fáceis erradas do Escudo TRI, ' : ''}com o seu tempo médio de {plural(Math.round(plano.segPorQuestao / 6) / 10, 'minuto', 'minutos')} por questão.</>
-            : 'Você não tem questões para revisar nem conteúdos pendentes na sua região. Escolha uma matéria para avançar.'}</p>
+            : 'Nenhuma questão volta hoje e não há conteúdo pendente na sua região. Escolha uma matéria para avançar.'}</p>
           <div className="hj-tempo" role="group" aria-label="Tempo de estudo hoje">
             <span className="hj-tempo-rot">Tempo de hoje</span>
             <div className="chips">{TEMPOS.map((t) => <button key={t} className="chip" aria-pressed={minutos === t} onClick={() => defineMin(t)}>{t} min</button>)}</div>
@@ -179,7 +179,7 @@ export function Hoje() {
         <p>Cada conteúdo recebe três notas, todas tiradas das suas respostas e do banco de questões reais: <b>peso</b> — {provasPeso.length
           ? <>quanto ele cai {provasPeso.length === 1 ? 'na sua prova-alvo' : 'nas suas provas-alvo'} ({nomesProvas}), pela parte das questões dessa{provasPeso.length === 1 ? '' : 's'} prova{provasPeso.length === 1 ? '' : 's'} no banco</>
           : <>quanto ele cai nas provas do banco{alvos.length ? ' (as suas provas-alvo ainda têm poucas questões no banco)' : ''}</>}; <b>fraqueza</b> — o que você errou, esqueceu ou ainda não firmou; <b>risco de esquecer</b> — quanto a lembrança já caiu desde a última vez, pela agenda da revisão.
-          {' '}O tempo usa a sua mediana por questão.{!alvos.length && <> <Link to="/perfil" className="hj-link">Escolha suas provas-alvo</Link> para a ordem seguir o que elas cobram.</>}</p>
+          {' '}O tempo usa o seu tempo típico por questão.{!alvos.length && <> <Link to="/perfil" className="hj-link">Escolha suas provas-alvo</Link> para a ordem seguir o que elas cobram.</>}</p>
       </section>
     </div>
   );
