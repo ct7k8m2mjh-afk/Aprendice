@@ -263,3 +263,20 @@ Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero
 com a série mq; resolvido por união (nenhuma entrada perdida).
 Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
 lote: conteudo-erradas-fis-14; na fila: 506 de Física provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+## 2026-11-21 — FIM — erradas (série mq, sem API, 5ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-mq-11, mq-12 e mq-13 (Matemática, provas-alvo UEA 2020–2027 e UDESC
+2026.1, 75 questões, 220 letras fracas). Nenhum lote aberto. Sessão encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 56 letras reescritas e gravadas em 42 questões (mq-11: 18 em 14; mq-12: 22 em 14; mq-13: 16 em 13). As
+demais 163 letras não têm equívoco honesto que leve a elas e ficaram com o texto antigo; nenhuma rejeitada. Lente de
+fatos corrigiu 2 na 1ª passagem (mq-12 Pf82e747e D: o empréstimo foi quitado de uma vez, sem "parcela mensal"; mq-13
+P80292b83 A: origem do 92 = 86 + 5 + 1) e 1 na 2ª (mq-12 Pf82e747e D: o empréstimo é que vale 2.500). Didática melhorou
+9 + 9 + 8, todas reconferidas. Fora por filtro de texto fraco: mq-13 P6c6ce9da E (fecha em "dá 3"); no mq-12, "dá a
+Marcos o mesmo bônus" é o verbo dar, não resultado, e entrou.
+Amostra (20%): mq-11 3 letras, mq-12 5, mq-13 5; 0 erro.
+Conflito em erradas-feitas.json com a série fis (mq-12): resolvido por união, sem perder nada.
+Testes: converte, tsc e vitest 922/922 verdes nos três lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 mat` (próximo
+lote: conteudo-erradas-mq-14; na fila: 121 de Matemática provas-alvo, depois Química provas-alvo), seguindo
+docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
