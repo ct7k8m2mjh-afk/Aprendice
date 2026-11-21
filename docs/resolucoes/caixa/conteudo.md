@@ -162,3 +162,9 @@ em 9 questões; 50 mantidas (sem equívoco honesto que leve a elas); nenhuma rej
 "a/b" por "÷"; o organizador voltou para "a/b"). Amostra: 4 letras, 0 erro. Testes: converte, tsc e vitest 922/922
 verdes. Gasto de API: zero.
 Nota: o 1º escritor da parte 1 marcou tudo "manter" sem abrir os prints; foi descartado e refeito por um agente novo.
+
+## 2026-11-21 — AVISO — erradas (série fis, sem API, 4ª sessão)
+Lote conteudo-erradas-fis-08 gravado (Física, provas-alvo Famerp 2022–2025, 25 questões, 82 letras fracas): 52 letras
+reescritas em 18 questões; 30 mantidas (sem equívoco honesto que leve a elas); nenhuma rejeitada. Lente de fatos
+corrigiu 2; didática melhorou 6, todas reconferidas ok. Amostra: 11 letras, 0 erro. Testes: converte, tsc e vitest
+922/922 verdes. Gasto de API: zero.
