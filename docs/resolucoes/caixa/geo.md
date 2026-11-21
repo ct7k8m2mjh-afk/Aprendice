@@ -458,3 +458,4 @@ ACABOU (pendentes) — Geografia, 20-21/11/2026. Lotes gravados nesta sessão: g
 ANULAR (9, decisão do dono), entre elas Pe436860e (UFRR 2025 q49: A e C incorretas; área da Suframa ≈ 2,15 milhões km², a C diz > 8,5 milhões; conferir Edital 97/24-CPV).
 PRINT Pd4ca228f (Santa Casa 2024 q40): legenda das 5 projeções do Atlas Escolar do IBGE; liberar atlasescolar.ibge.gov.br ou curso-objetivo.br na rede.
 RECLASS P1da9dba8, Pd1aeb2d4, Pfc161343: marcadas "reclassificada para outra matéria"; já saíram de geo (resolver na matéria de destino).
+INDISPONÍVEL (21/11): as 9 'anular' de geo estão em app/conteudo-fonte/indisponiveis.json (8 já estavam; Pe436860e entrou hoje, sem errata achada; total 67).
