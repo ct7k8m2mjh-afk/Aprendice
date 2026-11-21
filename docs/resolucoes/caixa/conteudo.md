@@ -240,3 +240,9 @@ Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero
 Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
 lote: conteudo-erradas-fis-12; fila de Física provas-alvo pela `erradas-fila`), seguindo
 docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+
+## 2026-11-21 — AVISO — erradas (série mq, sem API, 5ª sessão)
+Lote conteudo-erradas-mq-11 gravado (Matemática, provas-alvo UEA, 25 questões, 75 letras fracas): 18 letras reescritas em
+14 questões; 57 mantidas (sem equívoco honesto que leve a elas); nenhuma rejeitada. Lente de fatos: 18 ok; didática
+melhorou 9, todas reconferidas ok na 2ª passagem. Amostra: 3 letras, 0 erro. Testes: converte, tsc e vitest 922/922
+verdes. Gasto de API: zero. Em andamento: conteudo-erradas-mq-12.
