@@ -281,3 +281,10 @@ Testes: converte, tsc e vitest 922/922 verdes nos três lotes. Gasto de API: zer
 Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 mat` (próximo
 lote: conteudo-erradas-mq-14; na fila: 121 de Matemática provas-alvo, depois Química provas-alvo), seguindo
 docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+
+## 2026-11-21 — AVISO — erradas (série fis, sem API, 7ª sessão)
+Lote conteudo-erradas-fis-14 gravado (Física, provas-alvo, 25 questões, 69 letras fracas): 15 letras reescritas em 8
+questões; 54 mantidas (sem equívoco honesto que leve a elas); nenhuma rejeitada. Lente de fatos: 13 ok, 2 corrigidas;
+didática melhorou 5; 2ª passagem corrigiu 2 (Pe95e05cc A; Pdb7908b8 B). Duas letras só trocaram
+"dá" por sinônimo (Pe76fb676 B, Paecdb161 D), conferidas junto com a amostra. Amostra: 3 letras, 0 erro. Testes:
+converte, tsc e vitest 922/922 verdes. Gasto de API: zero. Em andamento: conteudo-erradas-fis-15.
