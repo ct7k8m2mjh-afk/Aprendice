@@ -353,3 +353,9 @@ letras reescritas em 11 questões; 52 mantidas (sem equívoco honesto que leve a
 fatos: 25 ok, 1 corrigida (Pcd956824 A: "no prisma", o enunciado não diz que é vidro); didática melhorou 12, todas
 reconferidas (2ª passagem: 10 ok, 2 só encurtadas). Amostra: 5 letras, 0 erro. Testes: converte, tsc e vitest 922/922
 verdes. Gasto de API: zero. Em andamento: conteudo-erradas-fis-19.
+
+## 2026-11-21 — ACABOU (provas-alvo de Matemática)
+`erradas-fila` não mostra mais Matemática na faixa 1. Últimos lotes: conteudo-erradas-mq-17 (27 letras em 20
+questões, Acafe 2023–2025; fatos rejeitou 1 por equívoco inventado; amostra 4 letras, 0 erro) e mq-18 (29 letras em 17
+questões, Acafe 2021–2023; amostra 6 letras, 1 consertada: P5e621c84 D passou a explicar o item II). converte, tsc e
+vitest 922/922 verdes nos dois. Gasto de API: zero. A série mq segue em Química (lote mq-19 aberto).
