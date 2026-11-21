@@ -1,0 +1,604 @@
+{
+ "P6768a8fb": {
+  "n": "42",
+  "conceito": "Distância entre dois móveis em MUV: escrever d(t) = xB − xA e achar o mínimo da parábola pelo vértice.",
+  "equivocos": {
+   "A": "F02.1:valor-abaixo-do-minimo",
+   "C": "F02.1:valor-que-nao-e-minimo",
+   "D": "F02.1:distancia-inicial",
+   "E": "F02.1:valor-que-nao-e-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A distância entre as partículas em cada instante é a diferença entre as posições. Subtraindo as duas equações, sobra uma função do 2º grau em t, uma parábola com concavidade para cima. O menor valor fica no vértice.",
+    "formulas": [
+     "d(t) = xB − xA",
+     "vértice: t = −b/(2a)"
+    ],
+    "simbolos": [
+     [
+      "xA, xB",
+      "posições das partículas, em metros"
+     ],
+     [
+      "d(t)",
+      "distância entre elas no instante t"
+     ]
+    ]
+   },
+   "pista": "Escreva a diferença entre as duas posições como uma única função de t.",
+   "passos": [
+    {
+     "faz": "Subtraia as posições",
+     "conta": "d = (3 + 2t + 3t²) − (−2 + 6t + t²) = 5 − 4t + 2t²",
+     "porque": "A distância é a diferença das posições.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o instante do mínimo",
+     "conta": "t = −(−4)/(2 × 2) = 1 s",
+     "porque": "O coeficiente de t² é positivo: a parábola tem mínimo no vértice.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a distância mínima",
+     "conta": "d(1) = 5 − 4 + 2 = 3 m",
+     "porque": "Substitua o instante do vértice.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "d mínima = 3 m",
+     "porque": "É a alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 3 m.",
+   "checagem": "Complete o quadrado: 2t² − 4t + 5 = 2(t − 1)² + 3. O termo 2(t − 1)² nunca é negativo, então a distância nunca fica abaixo de 3 m. Como d nunca é negativa, B nunca alcança A.",
+   "erradas": {
+    "A": "Não confere: 2t² − 4t + 5 = 2 não tem solução real (discriminante 16 − 24 < 0); a distância nunca chega a 2 m.",
+    "C": "4 m acontece (em t ≈ 0,29 s e t ≈ 1,71 s), mas não é o mínimo: em t = 1 s a distância é 3 m.",
+    "D": "5 m é a distância em t = 0, a inicial: parou antes de procurar o mínimo.",
+    "E": "6 m acontece depois (em t ≈ 2,22 s), quando as partículas já voltaram a se afastar; não é o mínimo."
+   },
+   "armadilha": "Tomar a distância inicial (5 m) como a menor, sem perceber que as partículas se aproximam antes de se afastar.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A menor distância entre as partículas.",
+    "chave": "d = 2t² − 4t + 5; vértice em t = 1 s; d = 3 m.",
+    "cuidado": "A mínima está no vértice, não em t = 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas velocidades",
+    "ideia": "vA = 6 + 2t e vB = 2 + 6t ficam iguais em t = 1 s: aí a distância para de cair; d(1) = 3 m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "d = (3 + 2t + 3t²) − (−2 + 6t + t²)",
+    "nota": "diferença"
+   },
+   {
+    "linha": "d = 2t² − 4t + 5",
+    "nota": "simplificando"
+   },
+   {
+    "linha": "t = 4/4 = 1",
+    "nota": "s, vértice"
+   },
+   {
+    "linha": "d(1) = 2 − 4 + 5 = 3",
+    "nota": "m"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0044"
+  }
+ },
+ "P454c5af0": {
+  "n": "39",
+  "conceito": "Combinar potência, calor sensível e dilatação linear para achar quanto uma barra aquecida cresce.",
+  "equivocos": {
+   "A": "F08.2:conta-errada",
+   "C": "F08.2:usou-gama-no-lugar-de-alfa",
+   "D": "F08.2:conta-errada",
+   "E": "F08.2:conta-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A fonte entrega energia (P × Δt), que aquece a barra (Q = m c Δθ), e o aquecimento faz a barra crescer (ΔL = L₀ α Δθ). O comprimento da barra não é dado, mas ele se cancela: a massa é λ × L₀, e o L₀ aparece em cima e embaixo.",
+    "formulas": [
+     "Q = P × Δt",
+     "Q = m × c × Δθ, com m = λ × L₀",
+     "ΔL = L₀ × α × Δθ"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "potência útil da fonte (200 W = 200 J/s)"
+     ],
+     [
+      "λ",
+      "densidade linear: massa por metro de barra (400 g/m)"
+     ],
+     [
+      "c",
+      "calor específico (0,92 J/g·°C)"
+     ],
+     [
+      "α",
+      "coeficiente de dilatação linear"
+     ],
+     [
+      "L₀",
+      "comprimento inicial da barra"
+     ]
+    ]
+   },
+   "pista": "Chame o comprimento de L₀ e escreva a massa como 400 × L₀: ele vai sumir da conta.",
+   "passos": [
+    {
+     "faz": "Calcule a energia recebida",
+     "conta": "Q = 200 × 120 = 24000 J",
+     "porque": "2 min = 120 s, e 1 W = 1 J/s.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a variação de temperatura",
+     "conta": "Δθ = Q/(m × c) = 24000/(400 × L₀ × 0,92)",
+     "porque": "A massa da barra é a densidade linear vezes o comprimento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leve Δθ para a dilatação",
+     "conta": "ΔL = L₀ × α × 24000/(400 × L₀ × 0,92) → ΔL = α × 24000/(400 × 0,92)",
+     "porque": "O L₀ de cima cancela com o de baixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a conta",
+     "conta": "ΔL = (23 × 10⁻⁶ × 24000)/368 = 0,552/368 = 1,5 × 10⁻³ m = 0,15 cm",
+     "porque": "g com g e °C com °C se cancelam; sobra metro, pela unidade de λ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a variação",
+     "conta": "0,15 cm",
+     "porque": "É a alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 0,15 cm.",
+   "checagem": "Teste com uma barra de 1 m: massa 400 g, Δθ = 24000/(400 × 0,92) ≈ 65 °C, e ΔL = 1 × 23 × 10⁻⁶ × 65 ≈ 1,5 × 10⁻³ m = 0,15 cm. Com 2 m, Δθ cai pela metade e o resultado é o mesmo.",
+   "erradas": {
+    "A": "Não confere: 0,8 cm exigiria Q = ΔL × λ × c/α = 128000 J, mas a fonte entrega só 24000 J em 2 min.",
+    "C": "Sai de usar o coeficiente volumétrico (3α) no lugar do linear: 3 × 0,15 = 0,45 cm.",
+    "D": "Não confere: 1,2 cm exigiria Q = 192000 J, oito vezes os 24000 J entregues.",
+    "E": "Não confere: 1,4 cm exigiria Q = 224000 J, bem mais que os 24000 J entregues."
+   },
+   "armadilha": "Achar que falta o comprimento da barra: ele se cancela porque a massa é proporcional a ele.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quanto a barra cresce após 2 min recebendo 200 W.",
+    "chave": "ΔL = α × P × Δt/(λ × c) = 23 × 10⁻⁶ × 24000/368 = 1,5 × 10⁻³ m.",
+    "cuidado": "Minuto em segundo e coeficiente linear (não 3α)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "barra de 1 m",
+    "ideia": "Suponha L₀ = 1 m: m = 400 g, Δθ ≈ 65 °C e ΔL ≈ 0,15 cm; qualquer comprimento dá o mesmo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Q = 200 × 120 = 24000 J",
+    "nota": "energia da fonte"
+   },
+   {
+    "linha": "Δθ = 24000/(400 × L₀ × 0,92)",
+    "nota": "Q = m c Δθ"
+   },
+   {
+    "linha": "ΔL = L₀ × α × 24000/(400 × L₀ × 0,92)",
+    "nota": "dilatação"
+   },
+   {
+    "linha": "ΔL = (23 × 10⁻⁶ × 24000)/368",
+    "nota": "cancela L₀"
+   },
+   {
+    "linha": "ΔL = 1,5 × 10⁻³ m = 0,15 cm",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0057"
+  }
+ },
+ "Pb6f57afa": {
+  "n": "40",
+  "conceito": "Lupa (lente convergente com imagem virtual ampliada) e carga de bateria: Q = i · Δt, com mAh convertido em coulomb.",
+  "equivocos": {
+   "A": "F11.4:mah-convertido-errado-em-coulomb",
+   "B": "F09.5:sinal-da-imagem-virtual-trocado",
+   "C": "F11.4:tempo-de-recarga-pela-carga",
+   "D": "F09.5:sinal-da-imagem-virtual-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São duas físicas numa questão só. Na lupa, o objeto fica a 5 cm da lente e a imagem é virtual, direita e 4 vezes maior, então fica do mesmo lado do objeto, a 20 cm; com p e p′ sai a distância focal e a vergência. Na bateria, mAh é unidade de carga (corrente × tempo): 1 Ah é 1 A durante 3 600 s.",
+    "formulas": [
+     "A = −p′/p",
+     "1/f = 1/p + 1/p′; V = 1/f, com f em metro",
+     "Q = i × Δt; 1 Ah = 3 600 C"
+    ],
+    "simbolos": [
+     [
+      "p",
+      "distância do objeto à lente"
+     ],
+     [
+      "p′",
+      "distância da imagem à lente (negativa para imagem virtual)"
+     ],
+     [
+      "A",
+      "aumento linear: tamanho da imagem ÷ tamanho do objeto"
+     ],
+     [
+      "V",
+      "vergência, em dioptria (di) = 1/metro"
+     ],
+     [
+      "mAh",
+      "miliampère-hora: 0,001 A durante 1 h, unidade de carga"
+     ],
+     [
+      "C",
+      "coulomb, unidade de carga no SI"
+     ]
+    ]
+   },
+   "pista": "Na lupa, a imagem ampliada é virtual: decida o sinal de p′ antes de usar a equação dos pontos conjugados.",
+   "passos": [
+    {
+     "faz": "Ache a posição da imagem na lupa",
+     "conta": "A = −p′/p → 4 = −p′/5 → p′ = −20 cm",
+     "porque": "A imagem da lupa é direita (A positivo) e virtual (p′ negativo), do mesmo lado do objeto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule f e a vergência (afirmativa I)",
+     "conta": "1/f = 1/5 − 1/20 = 3/20 → f = 20/3 cm = 0,2/3 m → V = 3/0,2 = 15 di",
+     "porque": "A vergência usa f em metro; 20/3 cm é 0,2/3 m, e o inverso disso é 15 di. A afirmativa I está correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o tempo de recarga (afirmativa II)",
+     "conta": "Δt = Q/i → Δt = 8/4 = 2 h",
+     "porque": "8 000 mAh = 8 Ah; dividindo a carga pela corrente sai o tempo, já em hora. A afirmativa II está correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta a carga para coulomb (afirmativa III)",
+     "conta": "Q = 8 A × 3 600 s → Q = 28 800 C",
+     "porque": "1 h = 3 600 s, então 8 Ah = 28 800 C, muito longe de 3,2 C. A afirmativa III é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Junte as corretas",
+     "conta": "I correta | II correta | III falsa → I e II",
+     "porque": "Só a alternativa com exatamente I e II serve.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — apenas as afirmativas I e II.",
+   "checagem": "Lupa: com f = 20/3 cm e p = 5 cm, 1/p′ = 3/20 − 1/5 = −1/20, p′ = −20 cm e A = 20/5 = 4, como diz o texto. Bateria: 4 A × 7 200 s = 28 800 C, que é a mesma carga de 8 Ah.",
+   "erradas": {
+    "A": "Inclui a III, que é falsa: 8 000 mAh = 8 A × 3 600 s = 28 800 C, não 3,2 C. E deixa de fora a II, que é correta (8 Ah divididos por 4 A dão 2 h).",
+    "B": "Inclui a III, falsa (a carga é 28 800 C), e exclui a I, correta: 1/f = 1/5 − 1/20 dá f = 20/3 cm e V = 15 di.",
+    "C": "Esquece a II, que é correta: 8 Ah divididos por 4 A dão 2 h de recarga.",
+    "D": "Esquece a I, que é correta: com p = 5 cm e p′ = −20 cm, f = 20/3 cm ≈ 0,067 m e V = 15 di."
+   },
+   "armadilha": "Usar p′ = +20 cm na lupa: com sinal positivo, 1/f = 1/5 + 1/20 dá V = 25 di e a afirmativa I parece falsa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Julgar a vergência de uma lupa (p = 5 cm, aumento 4) e o tempo e a carga de uma bateria de 8 000 mAh carregada com 4 A.",
+    "chave": "p′ = −20 cm → V = 15 di; 8 Ah ÷ 4 A = 2 h; 8 Ah = 28 800 C.",
+    "cuidado": "Imagem virtual tem p′ negativo, f vai em metro na vergência, e 1 Ah vale 3 600 C."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "aumento pela focal",
+    "ideia": "Na lupa, A = f/(f − p): 4 = f/(f − 5) dá f = 20/3 cm e V = 15 di sem passar por p′."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4 = −p′/5 → p′ = −20 cm",
+    "nota": "imagem virtual"
+   },
+   {
+    "linha": "1/f = 1/5 − 1/20 = 3/20 → f = 20/3 cm",
+    "nota": "pontos conjugados"
+   },
+   {
+    "linha": "V = 1/(0,2/3 m) = 3/0,2 = 15 di",
+    "nota": "I correta"
+   },
+   {
+    "linha": "Δt = 8/4 = 2 h",
+    "nota": "II correta"
+   },
+   {
+    "linha": "Q = 8 A × 3 600 s = 28 800 C",
+    "nota": "III falsa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
+ },
+ "Pcd46f33b": {
+  "n": "38",
+  "conceito": "Capacitor carregado em circuito de corrente contínua: não passa corrente por ele, e sua tensão é a do trecho em paralelo (Q = C · U).",
+  "equivocos": {
+   "A": "F11.9:usou-a-tensao-do-resistor-errado",
+   "B": "F11.9:tensao-do-capacitor-mal-identificada",
+   "C": "F11.9:trocou-micro-por-mili",
+   "E": "F11.9:usou-a-tensao-total-da-bateria"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com o capacitor completamente carregado, não passa corrente pelo ramo dele: o circuito funciona como se o capacitor não existisse. Pela figura, o capacitor liga o canto de baixo à esquerda ao nó de cima, à direita de R1; logo ele fica em paralelo com o conjunto R2 e R3. A carga sai da tensão desse conjunto.",
+    "formulas": [
+     "Paralelo de dois: R = (R2 × R3)/(R2 + R3)",
+     "U = R × i",
+     "Q = C × U"
+    ],
+    "simbolos": [
+     [
+      "d.d.p.",
+      "diferença de potencial, a tensão"
+     ],
+     [
+      "μF",
+      "microfarad, 10⁻⁶ F"
+     ],
+     [
+      "μC",
+      "microcoulomb, 10⁻⁶ C"
+     ],
+     [
+      "Ω",
+      "ohm, unidade de resistência"
+     ]
+    ]
+   },
+   "pista": "Tire o capacitor carregado do caminho da corrente e veja entre quais pontos do circuito ele está ligado.",
+   "passos": [
+    {
+     "faz": "Reduza R2 e R3 em paralelo",
+     "conta": "R23 = (6 × 12)/(6 + 12) → R23 = 72/18 → R23 = 4 Ω",
+     "porque": "R2 e R3 ligam os mesmos dois fios (o nó de cima e o fio de baixo), então estão em paralelo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a corrente da bateria",
+     "conta": "R_eq = 2 + 4 = 6 Ω → i = 12/6 → i = 2 A",
+     "porque": "Sem corrente no ramo do capacitor, a corrente passa por R1 e depois pelo paralelo, que ficam em série.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a tensão no capacitor",
+     "conta": "U_C = R23 × i → U_C = 4 × 2 → U_C = 8 V",
+     "porque": "O capacitor está ligado entre os mesmos pontos que o paralelo R2 e R3, então tem a mesma tensão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a carga",
+     "conta": "Q = 4 μF × 8 V → Q = 32 μC",
+     "porque": "Com C em microfarad e U em volt, a carga sai em microcoulomb; é a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 32 μC.",
+   "checagem": "Some as tensões em volta: R1 recebe 2 × 2 = 4 V e o paralelo recebe 8 V, que dão os 12 V da bateria. A corrente se divide em 8/6 ≈ 1,33 A em R2 e 8/12 ≈ 0,67 A em R3, somando os 2 A.",
+   "erradas": {
+    "A": "Sai de usar a tensão em R1: 2 Ω × 2 A = 4 V, e 4 μF × 4 V = 16 μC. O capacitor está em paralelo com R2 e R3, não com R1.",
+    "B": "Não confere: 18 μC exigiria 4,5 V no capacitor, e nenhum trecho do circuito tem essa tensão (R1 tem 4 V e o paralelo, 8 V).",
+    "C": "Não confere: com C em μF e U em volt, a carga sai em μC; um valor em mC seria mil vezes maior do que o circuito permite (o máximo, com 12 V, é 48 μC).",
+    "E": "Sai de usar a tensão inteira da bateria, 4 μF × 12 V = 48 μC, e ainda trocar micro por mili. O capacitor só recebe os 8 V do paralelo."
+   },
+   "armadilha": "Achar que o capacitor recebe os 12 V da bateria ou a tensão de R1; pela figura, ele está em paralelo com R2 e R3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A carga do capacitor de 4 μF completamente carregado no circuito.",
+    "chave": "Sem corrente no capacitor: R_eq = 2 + 4 = 6 Ω, i = 2 A, U_C = 8 V, Q = 4 × 8 = 32 μC.",
+    "cuidado": "Identificar na figura entre quais pontos o capacitor está ligado e manter o prefixo micro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "divisor de tensão",
+    "ideia": "Os 12 V se dividem na proporção 2 : 4 entre R1 e o paralelo, então o paralelo fica com 4/6 de 12 V = 8 V e Q = 4 × 8 = 32 μC."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R23 = (6 × 12)/(6 + 12) = 4 Ω",
+    "nota": "R2 e R3 em paralelo"
+   },
+   {
+    "linha": "R_eq = 2 + 4 = 6 Ω",
+    "nota": "R1 em série com o paralelo"
+   },
+   {
+    "linha": "i = 12/6 = 2 A",
+    "nota": "corrente da bateria"
+   },
+   {
+    "linha": "U_C = 4 × 2 = 8 V",
+    "nota": "tensão do paralelo = tensão do capacitor"
+   },
+   {
+    "linha": "Q = 4 μF × 8 V = 32 μC",
+    "nota": "carga armazenada"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0066"
+  }
+ },
+ "Pbc777b2d": {
+  "n": "41",
+  "conceito": "Conservação da energia na rampa sem atrito, componente horizontal constante no voo e força centrípeta no ponto mais baixo da curva.",
+  "equivocos": {
+   "B": "F02.5:velocidade-minima-errada-no-topo",
+   "C": "F02.5:velocidade-minima-errada-no-topo",
+   "D": "F02.5:normal-igual-ao-peso-na-curva",
+   "E": "F02.5:usou-altura-total-em-vez-do-desnivel"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sem atrito, a energia mecânica se conserva: a esfera ganha velocidade pela altura que desce, de 45 cm até 25 cm. No ar, a componente horizontal da velocidade não muda e a vertical se anula no topo, por isso a velocidade mínima é a horizontal. No fundo da curva, a resultante aponta para o centro, para cima: a normal precisa superar o peso.",
+    "formulas": [
+     "m·g·Δh = m·V²/2 → V = √(2·g·Δh)",
+     "velocidade mínima no ar = V·cosθ",
+     "N − P = m·v²/r (no ponto mais baixo)"
+    ],
+    "simbolos": [
+     [
+      "Δh",
+      "desnível entre o ponto de partida e o ponto de saída"
+     ],
+     [
+      "N",
+      "força normal da rampa"
+     ],
+     [
+      "P",
+      "peso da esfera"
+     ],
+     [
+      "r",
+      "raio da semicircunferência"
+     ]
+    ]
+   },
+   "pista": "Para I, a altura que conta é o desnível entre o ponto de partida e o ponto em que a esfera deixa a rampa, não a altura inicial inteira.",
+   "passos": [
+    {
+     "faz": "Calcule V pela energia (I)",
+     "conta": "Δh = 45 − 25 = 20 cm = 0,20 m → V = √(2·10·0,20) = √4 = 2 m/s",
+     "porque": "Sem atrito, a energia potencial perdida no desnível vira energia cinética; a massa cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a velocidade mínima no ar (II)",
+     "conta": "Vmín = V·cos 60° = 2·0,5 = 1 m/s",
+     "porque": "No topo da parábola sobra só a componente horizontal, que é constante; 1 m/s, não 0,8 m/s. II é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Analise a normal no fundo (III)",
+     "conta": "N − P = m·v²/r → N = P + m·v²/r > P",
+     "porque": "No ponto mais baixo a esfera faz curva com centro acima dela; a resultante centrípeta para cima exige N maior que P. III é verdadeira.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "I verdadeira | II falsa | III verdadeira → A",
+     "porque": "Estão corretas apenas I e III.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — I e III.",
+   "checagem": "Pela energia do voo em II: no topo a esfera ainda tem altura acima de 25 cm, então a velocidade lá tem de ser menor que 2 m/s; 1 m/s (só a horizontal) é coerente. E se a velocidade mínima fosse 0,8 m/s, cos θ seria 0,8/2 = 0,4, o que não corresponde a 60° (cos 60° = 0,5).",
+   "erradas": {
+    "B": "Inclui II, que é falsa: Vmín = 2·cos 60° = 1 m/s, não 0,8 m/s.",
+    "C": "Inclui II (falsa, Vmín = 1 m/s) e exclui I, que é verdadeira: √(2·10·0,20) = 2 m/s.",
+    "D": "Exclui III: sai de achar que, no fundo, a normal equilibra o peso (N = P), esquecendo a resultante centrípeta N − P = m·v²/r.",
+    "E": "Exclui I: sai de usar a altura inteira de 45 cm, √(2·10·0,45) = 3 m/s; a esfera deixa a rampa a 25 cm, e o desnível é 20 cm."
+   },
+   "armadilha": "Usar os 45 cm inteiros na energia: a esfera sai da rampa a 25 cm do solo, e só o desnível de 20 cm vira velocidade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmações sobre velocidade de saída, velocidade mínima no voo e normal no fundo da rampa estão corretas.",
+    "chave": "V = √(2·10·0,20) = 2 m/s; Vmín = V·cos 60° = 1 m/s; no fundo N = P + m·v²/r.",
+    "cuidado": "Use o desnível (45 − 25 = 20 cm) e lembre que no topo do voo sobra a componente horizontal."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação por III",
+    "ideia": "No fundo da curva N = P + m·v²/r > P, então III entra; só A, C e E têm III, e I (2 m/s) decide pela A."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Δh = 45 − 25 = 20 cm = 0,20 m",
+    "nota": "desnível até a saída"
+   },
+   {
+    "linha": "V = √(2·10·0,20) = √4 = 2 m/s",
+    "nota": "energia potencial vira cinética: I verdadeira"
+   },
+   {
+    "linha": "Vmín = 2·cos 60° = 2·0,5 = 1 m/s",
+    "nota": "só a horizontal no topo: II falsa"
+   },
+   {
+    "linha": "N = P + m·v²/r > P",
+    "nota": "resultante centrípeta para cima: III verdadeira"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0072"
+  }
+ }
+}

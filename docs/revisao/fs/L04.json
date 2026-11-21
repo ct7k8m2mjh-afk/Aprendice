@@ -1,0 +1,910 @@
+{
+ "id": "L04",
+ "nome": "Lógica",
+ "resumo": "Lógica estuda a forma dos argumentos: quando a conclusão decorre das premissas. Aristóteles a fundou com o silogismo; Frege e Russell a transformaram numa linguagem simbólica, com proposições e conectivos. A banca cobra a diferença entre validade e verdade, o reconhecimento de dedução e indução em exemplos (cisnes, peru) e falácias em situações do dia a dia.",
+ "formulas": [
+  "\\text{argumento: premissas} \\Rightarrow \\text{conclusão}",
+  "\\begin{gathered} \\text{válido: impossível premissas V} \\\\ \\text{com conclusão F} \\end{gathered}",
+  "\\text{silogismo: Todo M é P; S é M} \\ \\therefore\\ \\text{S é P}",
+  "\\begin{gathered} \\text{dedução: conclusão necessária} \\\\ \\text{indução: conclusão provável} \\end{gathered}",
+  "\\neg p \\quad p \\wedge q \\quad p \\vee q \\quad p \\rightarrow q \\quad p \\leftrightarrow q",
+  "p \\rightarrow q \\text{ é F só quando } p = \\text{V} \\text{ e } q = \\text{F}",
+  "\\text{modus ponens: } p \\rightarrow q,\\ p \\ \\therefore\\ q",
+  "\\text{modus tollens: } p \\rightarrow q,\\ \\neg q \\ \\therefore\\ \\neg p",
+  "\\neg (p \\wedge q) \\equiv \\neg p \\vee \\neg q \\qquad \\neg (p \\vee q) \\equiv \\neg p \\wedge \\neg q",
+  "\\neg (p \\rightarrow q) \\equiv p \\wedge \\neg q",
+  "\\text{linhas da tabela-verdade} = 2^n"
+ ],
+ "erro": "Confundir validade com verdade: um argumento pode ser válido com premissas falsas e inválido com tudo verdadeiro. Validade é da forma (a conclusão decorre?); verdade é de cada proposição (bate com o mundo?).",
+ "cartoes": [
+  {
+   "sub": "L04.1",
+   "titulo": "Proposições, argumentos e validade",
+   "oque": "Proposição é uma sentença declarativa que pode ser verdadeira ou falsa, afirmativa ou negativa. Argumento é um conjunto de proposições em que as premissas sustentam uma conclusão; ele é válido quando é impossível ter premissas verdadeiras e conclusão falsa.",
+   "identificar": "Pistas: ‘logo’, ‘portanto’, ‘pois’ separam premissa e conclusão; ‘pode ser julgada verdadeira ou falsa’ indica proposição; ‘a conclusão decorre das premissas’ fala de validade, não de verdade.",
+   "exemplo": "‘Todo peixe voa; o tubarão é peixe; logo, o tubarão voa’ é válido, mas tem 1 premissa falsa. ‘Todo gato é mamífero; o cachorro é mamífero; logo, o cachorro é gato’ tem 2 premissas verdadeiras e é inválido.",
+   "caderno": [
+    "proposição: declarativa, V ou F; pode ser negativa",
+    "fora: pergunta, ordem, exclamação",
+    "argumento: premissas → conclusão",
+    "válido: impossível premissas V com conclusão F",
+    "validade é da forma; verdade é de cada proposição"
+   ],
+   "cuidado": "Conclusão verdadeira não prova que o argumento é válido, e premissa falsa não prova que ele é inválido."
+  },
+  {
+   "sub": "L04.2",
+   "titulo": "Dedução, indução e silogismo",
+   "oque": "Na dedução, se as premissas são verdadeiras, a conclusão é necessariamente verdadeira. Na indução, parte-se de casos observados para uma lei geral, e a conclusão é só provável.",
+   "identificar": "Pistas: ‘todos os casos observados’, ‘até hoje sempre’, ‘a partir de muitos exemplos’ indicam indução; ‘necessariamente’, ‘decorre das premissas’, ‘termo médio’ indicam dedução e silogismo.",
+   "exemplo": "Depois de ver 500 cisnes brancos, alguém conclui que todos são brancos: indução, derrubada por 1 cisne negro. ‘Todo homem é mortal; Sócrates é homem; logo, Sócrates é mortal’: silogismo dedutivo.",
+   "caderno": [
+    "silogismo: Todo M é P; S é M; logo, S é P",
+    "premissa maior: contém o termo maior P (predicado da conclusão)",
+    "termo médio M: está nas duas premissas e some na conclusão",
+    "indução amplia, mas não garante (Hume, Popper)"
+   ],
+   "cuidado": "A premissa maior não é a que vem primeiro: é a que contém o predicado da conclusão."
+  },
+  {
+   "sub": "L04.3",
+   "titulo": "Falácias",
+   "oque": "Falácia é um argumento com erro que, mesmo assim, pode parecer convincente. Pode ser formal, quando a forma é inválida, ou informal, quando o erro está no conteúdo: ataque à pessoa, distorção da tese, apelo sem prova.",
+   "identificar": "Pistas: atacar quem fala (ad hominem), rebater uma versão distorcida (espantalho), ‘todo mundo acha’ (apelo à maioria), ‘veio depois, então causou’ (post hoc), só duas saídas (falso dilema).",
+   "exemplo": "‘O técnico novo chegou e o time perdeu 3 jogos; logo, ele causou as derrotas’ é post hoc. ‘Vi 2 turistas grosseiros; todo turista é grosseiro’ é generalização apressada.",
+   "caderno": [
+    "formal: erro de forma (afirmar o consequente)",
+    "ad hominem: ataca a pessoa, não a tese",
+    "espantalho: distorce a tese para derrubá-la",
+    "autoridade: falácia se é de outra área ou toma o lugar da prova",
+    "petição de princípio: supõe o que quer provar"
+   ],
+   "cuidado": "Nem todo apelo a especialista é falácia: citar quem domina o assunto é um bom apoio."
+  },
+  {
+   "sub": "L04.4",
+   "titulo": "Conectivos lógicos e tabela-verdade",
+   "oque": "Conectivos ligam proposições simples em compostas: não, e, ou, se... então, se e somente se. A tabela-verdade testa todas as combinações de V e F e mostra quando a composta é verdadeira.",
+   "identificar": "Pistas: ‘negação de’, ‘é equivalente a’, ‘se... então’, ‘ou’, ‘condição necessária ou suficiente’, pedido do valor lógico de uma frase composta.",
+   "exemplo": "Com p = V e q = F, a frase p → q é F e a frase p ∨ q é V. Com 3 proposições, a tabela tem 8 linhas.",
+   "caderno": [
+    "$p \\wedge q$: V só se as duas são V",
+    "$p \\vee q$: F só se as duas são F",
+    "$p \\rightarrow q$: F só com p V e q F",
+    "negação de ‘se p, então q’: ‘p e não q’",
+    "linhas da tabela: $2^n$"
+   ],
+   "cuidado": "Negar ‘todo aluno estudou’ é dizer ‘algum aluno não estudou’, e não ‘nenhum aluno estudou’."
+  }
+ ],
+ "slides": {
+  "L04.1": [
+   {
+    "tipo": "abertura",
+    "titulo": "O raciocínio por trás do VAR",
+    "texto": "Ao rever um lance, o árbitro de vídeo argumenta: parte de uma regra e de um fato e chega a uma decisão. A lógica estuda quando essa passagem é bem feita.",
+    "destaque": "Lógica estuda quando a conclusão decorre das premissas.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Campo de futebol visto de cima, com a linha do gol em destaque. À direita, três cartões vazios empilhados: 'Regra', 'Fato', 'Decisão'. Destaques em amarelo-ouro #E8B616 com texto escuro.",
+     "movimento": [
+      "1. A bola rola e cruza inteira a linha do gol; a linha pisca em amarelo-ouro #E8B616.",
+      "2. Acende o cartão 'Regra: é gol quando a bola cruza inteira a linha, dentro do gol'.",
+      "3. Acende o cartão 'Fato: a bola cruzou inteira a linha'.",
+      "4. Duas setas saem dos cartões e convergem no terceiro: 'Decisão: foi gol'.",
+      "5. Os rótulos mudam: 'Regra' e 'Fato' viram 'premissas'; 'Decisão' vira 'conclusão'."
+     ],
+     "alt": "Lance de gol analisado em três cartões: regra e fato levam à decisão. Regra e fato são as premissas; a decisão é a conclusão."
+    },
+    "fonte": "FIL-L1-F1-C05 p. 51 (lógica formal e validade); Regras do Jogo, Regra 10 (The FA: a bola inteira passa a linha, entre as traves e sob o travessão)"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Proposição: pode ser V ou F",
+    "texto": "Proposição é uma sentença declarativa que pode ser julgada verdadeira ou falsa, afirmativa ('Abelhas são insetos') ou negativa ('Abelhas não são aves'). Para Frege, frase mal construída ou sem sentido não tem valor de verdade.",
+    "destaque": "Proposição tem valor de verdade: verdadeira ou falsa.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Um funil com três filtros empilhados, rotulados de cima para baixo: '1. bem construída', '2. tem sentido', '3. é declarativa'. No alto, sete frases em cartões cinza esperam a vez.",
+     "movimento": [
+      "1. 'Abelhas insetos as são' cai e fica presa no filtro 1 (sintaxe quebrada).",
+      "2. 'Que horas são?', 'Feche a porta!' e 'Que lindo!' passam pelos filtros 1 e 2 e ficam presas no filtro 3.",
+      "3. 'Abelhas são insetos.' atravessa os três filtros e ganha o selo V em amarelo-ouro #E8B616.",
+      "4. 'Abelhas não são aves.' atravessa e ganha V; 'Abelhas são aves.' atravessa e ganha F.",
+      "5. Legenda final embaixo do funil: 'proposições: as três que saíram com V ou F'."
+     ],
+     "alt": "Funil com três filtros de Frege. Frases mal construídas, perguntas, ordens e exclamações ficam presas; as declarativas saem com valor verdadeiro ou falso, inclusive a negativa."
+    },
+    "fonte": "FIL-L1-F1-C12 p. 147"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Argumento: premissas sustentam a conclusão",
+    "texto": "Argumento é um conjunto de proposições em que algumas, as premissas, dão apoio a outra, a conclusão. Palavras como 'logo' e 'portanto' anunciam a conclusão; 'pois' e 'porque' anunciam premissas.",
+    "destaque": "Ache primeiro a conclusão; o resto é o apoio.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "A frase 'O ferro conduz eletricidade, pois é um metal, e todo metal conduz eletricidade.' aparece inteira no alto. Embaixo, uma plataforma vazia apoiada em duas colunas vazias.",
+     "movimento": [
+      "1. A palavra 'pois' acende em amarelo-ouro #E8B616.",
+      "2. 'é um metal' desce e vira a coluna da esquerda: 'premissa 1'.",
+      "3. 'todo metal conduz eletricidade' desce e vira a coluna da direita: 'premissa 2'.",
+      "4. 'O ferro conduz eletricidade' desce por último e pousa sobre as colunas: 'conclusão'.",
+      "5. Uma coluna é retirada por um instante e a plataforma balança: sem apoio, a conclusão fica sem sustentação."
+     ],
+     "alt": "Frase sobre o ferro desmontada: duas premissas viram colunas e a conclusão é a plataforma apoiada nelas."
+    },
+    "fonte": "FIL-L1-F1-C05 p. 51; IEP, 'Validity and Soundness' (iep.utm.edu/val-snd)"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Aristóteles e a lógica formal",
+    "texto": "Aristóteles é considerado o fundador da lógica formal, que estuda o raciocínio e diz quando uma conclusão decorre corretamente das premissas. Seus escritos de lógica formam o Órganon, palavra grega que significa instrumento.",
+    "destaque": "Lógica: as regras do discurso coerente.",
+    "visual": {
+     "tipo": "foto",
+     "descricao": "Detalhe de A Escola de Atenas, de Rafael: Platão aponta para o alto e Aristóteles estende a mão com a palma para baixo. Depois a foto sobe para o alto da tela e três etiquetas entram embaixo dela, uma por vez, em sequência (nunca ao lado da foto no celular).",
+     "movimento": [
+      "1. A foto aparece inteira por 2 s; um contorno amarelo-ouro #E8B616 envolve Aristóteles, à direita.",
+      "2. A foto encolhe e sobe para o alto da tela; embaixo entra a etiqueta 'fundador da lógica formal'.",
+      "3. Embaixo da primeira, entra a etiqueta 'Órganon: instrumento do pensamento'.",
+      "4. Por último, entra a etiqueta 'validade: a conclusão decorre das premissas?'."
+     ],
+     "foto": {
+      "url": "https://commons.wikimedia.org/wiki/File:Sanzio_01_Plato_Aristotle.jpg",
+      "arquivo": "File:Sanzio 01 Plato Aristotle.jpg",
+      "autor": "Rafael (Raffaello Sanzio), detalhe de A Escola de Atenas, 1509",
+      "licenca": "domínio público (PD-Art, PD-old-100-expired)",
+      "por_que": "Aristóteles, à direita, é o fundador da lógica formal; a imagem é a mesma do livro e liga o conteúdo ao autor."
+     },
+     "alt": "Detalhe do afresco A Escola de Atenas com Platão e Aristóteles; Aristóteles é destacado como fundador da lógica formal."
+    },
+    "fonte": "FIL-L1-F1-C05 p. 51; Revisando 9 (Unesp 2025) e Complementares 7 (Uece 2024); Britannica, 'History of logic: Aristotle' (Órganon = ferramenta; Refutações sofísticas entre os seis tratados)"
+   },
+   {
+    "tipo": "grafico",
+    "titulo": "Validade e verdade: quatro casos",
+    "texto": "Válido é o argumento em que é impossível ter premissas verdadeiras e conclusão falsa. Validade depende da forma; verdade depende do mundo. Por isso existe argumento válido com conclusão falsa e inválido com tudo verdadeiro.",
+    "destaque": "Válido e com premissas verdadeiras: conclusão garantida.",
+    "visual": {
+     "tipo": "esquema",
+     "descricao": "Quadro 2 × 2. Colunas: 'válido' e 'inválido'. Linhas: 'conclusão verdadeira' e 'conclusão falsa'. Cada casa recebe um argumento curto com marcas V e F ao lado de cada frase.",
+     "movimento": [
+      "1. Casa 1 (válido, conclusão V): 'Todo gato é mamífero. Mimi é gata. Logo, Mimi é mamífera.' Tudo V; selo amarelo-ouro #E8B616 'conclusão garantida'.",
+      "2. Casa 2 (válido, conclusão F): 'Todo peixe voa. O tubarão é peixe. Logo, o tubarão voa.' A primeira premissa ganha F e a conclusão ganha F, mas a forma é a mesma da casa 1.",
+      "3. Casa 3 (inválido, conclusão F): 'Todo gato é mamífero. O cachorro é mamífero. Logo, o cachorro é gato.' Premissas V, conclusão F.",
+      "4. Casa 4 (inválido, conclusão V): 'Todo leão é felino. Todo leão é mamífero. Logo, todo felino é mamífero.' Tudo V, mas uma seta tracejada mostra que a conclusão não decorre das premissas.",
+      "5. As casas 1 e 2 se sobrepõem e mostram o mesmo esqueleto: 'Todo M é P; S é M; logo, S é P'."
+     ],
+     "alt": "Quadro com quatro argumentos: válido com premissas verdadeiras, válido com premissa falsa, inválido com premissas verdadeiras e conclusão falsa, inválido com tudo verdadeiro."
+    },
+    "fonte": "IEP, 'Validity and Soundness' (iep.utm.edu/val-snd); FIL-L1-F1-C05 p. 51"
+   },
+   {
+    "tipo": "exemplo",
+    "titulo": "A aranha é inseto?",
+    "texto": "Questão: 'Todo inseto adulto tem seis patas. A aranha adulta tem oito patas. Logo, a aranha adulta não é inseto.' Avalie o argumento quanto à validade e à verdade das premissas.",
+    "destaque": "Primeiro a forma, depois o conteúdo.",
+    "passos": [
+     {
+      "faz": "Separe premissas e conclusão",
+      "conta": "\\begin{gathered} \\text{‘Logo’ anuncia a conclusão:} \\\\ \\text{a aranha adulta não é inseto} \\end{gathered}",
+      "mov": "A palavra 'logo' acende em amarelo-ouro e a última frase desce para a linha da conclusão."
+     },
+     {
+      "faz": "Teste a forma",
+      "conta": "\\begin{gathered} \\text{todo inseto adulto tem seis patas;} \\\\ \\text{a aranha adulta não tem seis} \\\\ \\Rightarrow \\text{não pode ser inseto} \\end{gathered}",
+      "mov": "O círculo 'insetos adultos' entra dentro do círculo 'seis patas'; o ponto 'aranha adulta' cai fora do círculo maior e, portanto, fora do menor."
+     },
+     {
+      "faz": "Decida a validade",
+      "conta": "\\begin{gathered} \\text{premissas V com conclusão F:} \\\\ \\text{impossível aqui} \\Rightarrow \\text{válido} \\end{gathered}",
+      "mov": "O selo 'válido' pousa sobre o esquema de círculos."
+     },
+     {
+      "faz": "Confira as premissas",
+      "conta": "\\begin{gathered} \\text{insetos adultos: seis patas;} \\\\ \\text{aranhas adultas: oito} \\Rightarrow \\text{premissas V} \\end{gathered}",
+      "mov": "Duas marcas V acendem ao lado das premissas."
+     },
+     {
+      "faz": "Elimine as armadilhas",
+      "conta": "\\begin{gathered} \\text{risca: ‘válido porque a conclusão é V’} \\\\ \\text{(validade vem da forma)} \\\\ \\text{risca: ‘inválido: a conclusão é negativa’} \\\\ \\text{(conclusão negativa também pode decorrer)} \\end{gathered}",
+      "mov": "As duas alternativas entram uma de cada vez e são riscadas; o motivo aparece em cinza embaixo de cada uma."
+     },
+     {
+      "faz": "Conclua",
+      "conta": "\\begin{gathered} \\text{válido} + \\text{premissas V} \\\\ \\Rightarrow \\text{conclusão garantida} \\end{gathered}",
+      "mov": "A alternativa 'válido, com premissas verdadeiras' ganha moldura amarelo-ouro."
+     }
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Diagrama de círculos: um círculo grande 'tem seis patas' e, dentro dele, um círculo menor 'insetos adultos'. Um ponto rotulado 'aranha adulta (oito patas)' espera fora da tela.",
+     "movimento": [
+      "1. O círculo grande se desenha; o menor nasce dentro dele (premissa 1).",
+      "2. O ponto 'aranha' entra e para fora do círculo grande (premissa 2).",
+      "3. O círculo 'insetos adultos' pisca em amarelo-ouro #E8B616: o ponto não tem como estar dentro dele.",
+      "4. Surge a conclusão 'a aranha adulta não é inseto' com os selos 'válido' e 'premissas V'."
+     ],
+     "alt": "Diagrama de círculos: insetos adultos estão dentro do grupo com seis patas; a aranha adulta está fora desse grupo, logo fora do grupo dos insetos."
+    },
+    "fonte": "FIL-L1-F1-C05 p. 51; IEP, 'Validity and Soundness' (iep.utm.edu/val-snd)"
+   },
+   {
+    "tipo": "pegadinha",
+    "titulo": "Conclusão verdadeira não prova validade",
+    "texto": "Armadilha: 'conclusão verdadeira, então argumento válido'. Falso. 'Todo leão é felino; todo leão é mamífero; logo, todo felino é mamífero' tem tudo verdadeiro, mas a mesma forma, com outros termos, dá premissas V e conclusão F.",
+    "destaque": "Teste: mesma forma, outros termos. Premissas V e conclusão F? Inválido.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "No alto, o esqueleto 'Todo M é S; todo M é P; logo, todo S é P'. Embaixo, dois quadros em sequência (um sobre o outro no celular), cada um com três frases e marcas V ou F ao lado.",
+     "movimento": [
+      "1. Primeiro quadro: M vira 'leão', S vira 'felino', P vira 'mamífero'. As três frases ganham V.",
+      "2. Aparece o rótulo cinza 'tudo verdadeiro... então é válido?'.",
+      "3. Segundo quadro: as letras recebem outros termos. M vira 'cão', S vira 'vertebrado', P vira 'mamífero'.",
+      "4. As premissas 'Todo cão é vertebrado' e 'Todo cão é mamífero' ganham V.",
+      "5. A conclusão 'todo vertebrado é mamífero' ganha F; um peixe entra como contraexemplo, com o contorno amarelo-ouro #E8B616.",
+      "6. O esqueleto do alto recebe o selo 'inválido', e o primeiro quadro também."
+     ],
+     "alt": "A mesma forma de argumento com dois conteúdos: com leão, felino e mamífero tudo é verdadeiro; com cão, vertebrado e mamífero as premissas são verdadeiras e a conclusão é falsa, porque o peixe é vertebrado. Logo, a forma é inválida."
+    },
+    "fonte": "IEP, 'Validity and Soundness' (iep.utm.edu/val-snd); FIL-L1-F1-C05 p. 51; método do contraexemplo (mesma forma, outros termos)"
+   },
+   {
+    "tipo": "na_prova",
+    "titulo": "Como cai na prova",
+    "texto": "Uece 2024 pede o conceito: lógica são as regras do discurso coerente. Unesp 2025 liga o Órganon ao conhecimento dedutivo. UEM 2011 julga afirmações sobre validade, premissas e conclusão. O difícil é separar validade de verdade.",
+    "destaque": "Pergunte sempre: a conclusão decorre, ou só é verdadeira?",
+    "fonte": "FIL-L1-F1-C05 (O que as provas cobram); UEM, Vestibular de Verão 2011, Prova 3, Filosofia, gabarito 2, questão 03 (no gabarito 4 é a questão 06; prova oficial em vestibular.uem.br)"
+   },
+   {
+    "tipo": "fixe",
+    "titulo": "Para levar",
+    "texto": "Proposição: sentença declarativa, verdadeira ou falsa, afirmativa ou negativa.\nArgumento: premissas que sustentam uma conclusão.\nVálido: impossível ter premissas verdadeiras e conclusão falsa.",
+    "fonte": "FIL-L1-F1-C12 p. 147; FIL-L1-F1-C05 p. 51; IEP, 'Validity and Soundness' (iep.utm.edu/val-snd)"
+   }
+  ],
+  "L04.2": [
+   {
+    "tipo": "abertura",
+    "titulo": "O peru que confiava nos fatos",
+    "texto": "Um peru recebe comida às 9h todos os dias. Depois de muitos dias, conclui: 'sempre serei alimentado às 9h'. Na véspera do Natal, a comida não vem. Muitos casos iguais não garantem o próximo.",
+    "destaque": "Muitos casos iguais não provam que o próximo será igual.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Um calendário de parede e um relógio marcando 9h. À frente, um peru desenhado em traço simples e uma tigela. Um contador no canto: 'dias observados'.",
+     "movimento": [
+      "1. O calendário vira uma folha; o relógio bate 9h e a tigela se enche; o contador sobe para 1.",
+      "2. A cena se repete cada vez mais rápido: 10, 50, 100 dias; um balão do peru engrossa: 'sempre às 9h'.",
+      "3. A folha seguinte do calendário mostra '24 de dezembro', em amarelo-ouro #E8B616.",
+      "4. O relógio bate 9h e a tigela fica vazia; a tela escurece suavemente, sem mostrar o animal, e fica só um ponto de interrogação."
+     ],
+     "alt": "Peru alimentado às 9h por cem dias conclui que sempre será alimentado; na véspera do Natal a tigela fica vazia."
+    },
+    "fonte": "FIL-L1-F1-C12 p. 156–157 (Propostos 2, Enem PPL 2024) e Avisos"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Dedução: a conclusão é necessária",
+    "texto": "Na dedução, se as premissas forem verdadeiras, a conclusão é necessariamente verdadeira: ela só torna explícito o que as premissas já continham. Muitas vezes vai de uma verdade geral para um caso particular.",
+    "destaque": "Dedução válida: premissas verdadeiras garantem a conclusão.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Uma escada de três degraus. No topo, o cartão 'Todo metal conduz eletricidade' (geral); no meio, 'O cobre é metal'; embaixo, um espaço vazio 'caso particular'.",
+     "movimento": [
+      "1. Uma bola amarelo-ouro #E8B616 parte do cartão do topo.",
+      "2. Ela desce ao degrau do meio e encosta no cartão 'O cobre é metal'.",
+      "3. Chega ao degrau de baixo e faz surgir 'O cobre conduz eletricidade'.",
+      "4. Um cadeado se fecha ao lado da conclusão: 'necessária'."
+     ],
+     "alt": "Bola desce de uma verdade geral até um caso particular, passando pela premissa sobre o cobre; a conclusão aparece com um cadeado de necessária."
+    },
+    "fonte": "FIL-L1-F1-C08 p. 92; FIL-L1-F1-C05 (Revisando 9, Unesp 2025)"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Indução: dos casos à lei geral",
+    "texto": "Na indução, partimos de um número finito de casos observados e afirmamos que o resultado vale para todos. A conclusão amplia o que sabemos, mas é só provável. Bacon a defendeu como método da nova ciência.",
+    "destaque": "Indução amplia o conhecimento, mas não dá certeza.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "A mesma escada, agora percorrida de baixo para cima. Embaixo, muitas bolinhas pequenas rotuladas 'caso observado'; no topo, o cartão vazio 'lei geral'.",
+     "movimento": [
+      "1. Bolinhas entram uma a uma no degrau de baixo; um contador sobe: 1, 2, 3, ..., 200.",
+      "2. Elas sobem juntas degrau por degrau e se fundem numa bola maior.",
+      "3. No topo surge a lei 'todo metal dilata quando aquecido' com a etiqueta amarelo-ouro #E8B616 'provável'.",
+      "4. Do lado direito, uma fila infinita de casos ainda não observados aparece pontilhada."
+     ],
+     "alt": "Muitos casos observados sobem a escada e formam uma lei geral marcada como provável; ao lado, casos ainda não observados."
+    },
+    "fonte": "FIL-L1-F1-C09 p. 107; FIL-L1-F1-C08 p. 92"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Hume e Popper: o limite da indução",
+    "texto": "Hume mostrou que a indução não tem fundamento racional: esperar que o futuro repita o passado é hábito. Popper tirou a lição para a ciência: mil cisnes brancos não provam que todos são brancos; um cisne negro refuta.",
+    "destaque": "Mil confirmações não provam; uma refutação derruba.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Uma fileira de cisnes brancos desfila da esquerda para a direita. No alto, a frase 'Todos os cisnes são brancos' e um contador. Um selo 'provada' espera, apagado, ao lado da frase.",
+     "movimento": [
+      "1. Os cisnes passam; o contador sobe 1, 10, 100, 1 000; a frase fica mais grossa, mas o selo 'provada' nunca acende.",
+      "2. Entra um cisne negro; o contador para.",
+      "3. A frase racha ao meio e fica cinza; a etiqueta amarelo-ouro #E8B616 'refutada' cola nela.",
+      "4. Legenda: Hume, 'a indução se apoia no hábito'; Popper, 'basta um caso contrário'."
+     ],
+     "alt": "Mil cisnes brancos não tornam provada a frase todos os cisnes são brancos; um cisne negro a refuta."
+    },
+    "fonte": "FIL-L1-F1-C09 p. 107; FIL-L1-F1-C12 p. 152"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Silogismo: três termos, duas premissas",
+    "texto": "Para Aristóteles, silogismo é o argumento em que, postas certas premissas, a conclusão decorre delas necessariamente. Tem três termos: o maior, predicado da conclusão; o menor, sujeito da conclusão; e o médio, que liga os dois.",
+    "destaque": "O termo médio aparece nas duas premissas e some na conclusão.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Três fichas coloridas: 'homem' (termo médio, amarelo-ouro #E8B616), 'mortal' (termo maior, cinza escuro) e 'Sócrates' (termo menor, cinza claro). Três linhas vazias para premissa maior, premissa menor e conclusão.",
+     "movimento": [
+      "1. 'homem' e 'mortal' entram na primeira linha: 'Todo homem é mortal'.",
+      "2. 'Sócrates' e uma cópia de 'homem' entram na segunda linha: 'Sócrates é homem'.",
+      "3. As duas fichas 'homem' pulsam juntas, mostrando a ligação.",
+      "4. Na terceira linha, 'homem' some e só 'Sócrates' e 'mortal' descem: 'Sócrates é mortal'."
+     ],
+     "alt": "Os três termos do silogismo: homem aparece nas duas premissas e desaparece; Sócrates e mortal formam a conclusão."
+    },
+    "fonte": "FIL-L1-F1-C05 (Revisando 9, Unesp 2025); FIL-L1-F1-C12 p. 146"
+   },
+   {
+    "tipo": "formula",
+    "titulo": "A forma do silogismo clássico",
+    "texto": "Com letras no lugar das palavras, a forma é válida em qualquer assunto. A premissa maior tem o termo maior; a menor, o menor.",
+    "destaque": "'Todo homem é mortal' é a premissa maior.",
+    "formula": "\\begin{gathered} \\text{Todo M é P (premissa maior)} \\\\ \\text{S é M (premissa menor)} \\\\ \\therefore\\ \\text{S é P (conclusão)} \\end{gathered}",
+    "legenda": [
+     "P: termo maior (mortal)",
+     "S: termo menor (Sócrates)",
+     "M: termo médio (homem)"
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "À esquerda, a forma com letras; à direita, três linhas vazias para o exemplo.",
+     "movimento": [
+      "1. 'Todo M é P' se escreve; ao lado surge 'Todo homem é mortal'; M e 'homem' piscam juntos em amarelo-ouro #E8B616.",
+      "2. 'S é M' se escreve; ao lado surge 'Sócrates é homem'.",
+      "3. As letras M das duas linhas deslizam uma até a outra e se apagam.",
+      "4. Sobram S e P, que descem para 'S é P'; ao lado, 'Sócrates é mortal'."
+     ],
+     "alt": "Forma do silogismo com letras ao lado do exemplo de Sócrates; o termo médio se apaga e sobra a conclusão."
+    },
+    "fonte": "FIL-L1-F1-C12 p. 146 (com os rótulos de premissa corrigidos)"
+   },
+   {
+    "tipo": "exemplo",
+    "titulo": "Os sapos da lagoa",
+    "texto": "Questão: 'Uma bióloga examinou 300 sapos de uma lagoa e todos tinham toxina na pele. Concluiu que todos os sapos da lagoa têm toxina.' Que raciocínio ela usou e o que ele garante?",
+    "destaque": "Do particular para o geral: indução, conclusão provável.",
+    "passos": [
+     {
+      "faz": "Leia o caminho do raciocínio",
+      "conta": "\\begin{gathered} \\text{de 300 casos observados} \\\\ \\Rightarrow \\text{todos os sapos da lagoa} \\end{gathered}",
+      "mov": "O número 300 acende e uma seta sobe de 'casos' para 'todos'."
+     },
+     {
+      "faz": "Ache a palavra-chave",
+      "conta": "\\begin{gathered} \\text{‘examinou’ e ‘todos tinham’:} \\\\ \\text{observação de casos particulares} \\end{gathered}",
+      "mov": "As expressões 'examinou' e 'todos tinham' ficam amarelo-ouro."
+     },
+     {
+      "faz": "Ligue ao conceito",
+      "conta": "\\begin{gathered} \\text{casos particulares} \\Rightarrow \\text{regra geral} \\\\ =\\; \\text{indução} \\end{gathered}",
+      "mov": "Uma seta liga o trecho ao cartão 'indução'."
+     },
+     {
+      "faz": "Elimine as armadilhas",
+      "conta": "\\begin{gathered} \\text{risca: ‘dedução, conclusão necessária’} \\\\ \\text{(vai além dos 300 examinados)} \\\\ \\text{risca: ‘prova que todos têm toxina’} \\\\ \\text{(casos observados não garantem)} \\end{gathered}",
+      "mov": "As duas alternativas entram uma de cada vez e são riscadas; o motivo aparece em cinza embaixo de cada uma."
+     },
+     {
+      "faz": "Conclua",
+      "conta": "\\begin{gathered} \\text{indução: conclusão provável;} \\\\ \\text{o sapo 301 pode não ter toxina} \\end{gathered}",
+      "mov": "Um sapo cinza com '?' entra na lagoa ao lado do selo 'provável'."
+     }
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Uma lagoa vista de cima com sapos verdes; uma prancheta com contador 'examinados' ao lado.",
+     "movimento": [
+      "1. Cada sapo examinado ganha um pontinho amarelo-ouro #E8B616 'toxina'; o contador vai a 300.",
+      "2. Surge a frase 'todos os sapos da lagoa têm toxina'.",
+      "3. Um sapo novo, cinza e com '?', sai da água.",
+      "4. A frase recebe a etiqueta 'indução: provável'."
+     ],
+     "alt": "Trezentos sapos examinados com toxina levam à conclusão geral; um sapo ainda não examinado mostra que ela é só provável."
+    },
+    "fonte": "FIL-L1-F1-C09 p. 107; FIL-L1-F1-C08 p. 92"
+   },
+   {
+    "tipo": "pegadinha",
+    "titulo": "Premissa maior não é a primeira",
+    "texto": "Na prova, as premissas podem vir em qualquer ordem. Quem chama de maior a primeira erra: a maior é a que contém o termo maior, o predicado da conclusão. Em 'Sócrates é mortal', é a premissa com 'mortal'.",
+    "destaque": "Maior: tem o predicado da conclusão. Menor: tem o sujeito.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Duas premissas empilhadas: 'Sócrates é homem' em cima e 'Todo homem é mortal' embaixo; a conclusão 'Sócrates é mortal' fica abaixo delas.",
+     "movimento": [
+      "1. Na conclusão, a palavra 'mortal' acende em amarelo-ouro #E8B616.",
+      "2. Uma linha liga 'mortal' à premissa de baixo, que ganha o rótulo 'maior', mesmo estando em segundo lugar.",
+      "3. 'Sócrates' acende na conclusão e liga-se à premissa de cima: rótulo 'menor'.",
+      "4. As premissas trocam de lugar; os rótulos 'maior' e 'menor' vão junto com elas."
+     ],
+     "alt": "Mesmo em segundo lugar, Todo homem é mortal continua sendo a premissa maior, porque contém o predicado da conclusão."
+    },
+    "fonte": "FIL-L1-F1-C12 p. 146 (Avisos da ficha: rótulos trocados no livro)"
+   },
+   {
+    "tipo": "na_prova",
+    "titulo": "Como cai na prova",
+    "texto": "Enem 2024 (cisnes) e Enem PPL 2024 (peru) pedem para reconhecer a indução num exemplo. Unesp 2025 cobra o silogismo e o conhecimento dedutivo no Órganon. UEM 2011 mistura validade, dedução e indução em afirmações.",
+    "destaque": "Casos observados levando a 'todos': é indução.",
+    "fonte": "FIL-L1-F1-C12 e FIL-L1-F1-C05 (O que as provas cobram); UEM, Vestibular de Verão 2011, Prova 3, Filosofia, gabarito 2, questão 03 (no gabarito 4 é a questão 06; prova oficial em vestibular.uem.br)"
+   },
+   {
+    "tipo": "fixe",
+    "titulo": "Para levar",
+    "texto": "Dedução: premissas verdadeiras garantem a conclusão.\nIndução: de casos observados para todos; conclusão só provável.\nSilogismo: Todo M é P; S é M; logo, S é P. A maior tem o predicado da conclusão.",
+    "fonte": "FIL-L1-F1-C08 p. 92; FIL-L1-F1-C09 p. 107; FIL-L1-F1-C12 p. 146"
+   }
+  ],
+  "L04.3": [
+   {
+    "tipo": "abertura",
+    "titulo": "Quem fala ou o que se fala?",
+    "texto": "Num debate, uma estudante defende passe livre no ônibus para alunos. A resposta vem: 'Você nem trabalha, não pode opinar'. A proposta não foi discutida; a pessoa foi atacada. Parece forte, mas é erro de raciocínio.",
+    "destaque": "Falácia: parece um bom argumento, mas não é.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Tela de conversa em grupo. À esquerda, o balão da estudante com a proposta; à direita, o balão de resposta. Um alvo flutua entre os dois.",
+     "movimento": [
+      "1. O balão 'Passe livre para alunos reduz a evasão escolar' aparece; a palavra 'proposta' surge acima dele.",
+      "2. O balão de resposta 'Você nem trabalha, não pode opinar' aparece.",
+      "3. Uma seta sai da resposta, passa longe do balão da proposta e acerta a foto de perfil da estudante.",
+      "4. A proposta fica com um contorno amarelo-ouro #E8B616 e a etiqueta 'sem resposta'."
+     ],
+     "alt": "Numa conversa, a resposta ataca a autora da proposta e deixa a proposta sem resposta."
+    },
+    "fonte": "New World Encyclopedia, 'Fallacies' (ad hominem); Dowden, Logical Reasoning, 8.11 Glossário (LibreTexts)"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Persuadir não é provar",
+    "texto": "Falácia é um argumento com erro que, mesmo assim, pode convencer. Sócrates criticava os sofistas por ensinar a persuadir sem buscar a verdade. Aristóteles catalogou esses truques nas Refutações sofísticas, parte do Órganon.",
+    "destaque": "Falácia convence pela aparência, não pela justificativa.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Uma balança de dois pratos: 'parece convincente' e 'justifica a conclusão'. Fichas com frases de efeito esperam ao lado.",
+     "movimento": [
+      "1. Fichas como 'todo mundo sabe' e 'ele é suspeito' caem no prato 'parece convincente', que desce.",
+      "2. O prato 'justifica a conclusão' continua vazio e alto.",
+      "3. Uma lupa amarelo-ouro #E8B616 passa sobre as fichas e revela a etiqueta 'sem prova'.",
+      "4. Legenda: 'persuadir não é provar'."
+     ],
+     "alt": "Balança: frases de efeito pesam no prato do que parece convincente, enquanto o prato da justificativa fica vazio."
+    },
+    "fonte": "New World Encyclopedia, 'Fallacies' (erro que pode ser psicologicamente persuasivo; Refutações sofísticas); Britannica, 'History of logic: Aristotle' (Refutações sofísticas no Órganon); FIL-L1-F1-C03 (sofistas)"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Falácia formal e falácia informal",
+    "texto": "A falácia formal erra na forma: usa uma regra de inferência inválida, como afirmar o consequente ('se chove, molha; molhou, logo choveu'). A informal erra no conteúdo: ataca a pessoa, distorce a tese, apela à emoção ou usa provas fracas.",
+    "destaque": "Formal: a forma falha. Informal: o conteúdo falha.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Duas bandejas lado a lado: 'formal' e 'informal'. Quatro cartões de argumento caem do alto, um por vez.",
+     "movimento": [
+      "1. 'Se chove, a rua molha. A rua molhou. Logo, choveu.' cai na bandeja 'formal'; o trecho 'A rua molhou. Logo, choveu' fica amarelo-ouro #E8B616 e ganha a etiqueta 'afirmar o consequente'.",
+      "2. 'Ele é chato, então a ideia dele é ruim.' cai em 'informal' com a etiqueta 'ataque à pessoa'.",
+      "3. 'Todo mundo compra, então é bom.' cai em 'informal' com a etiqueta 'apelo à maioria'.",
+      "4. As bandejas recebem os títulos finais: 'erro de forma' e 'erro de conteúdo'."
+     ],
+     "alt": "Cartões de argumentos separados em duas bandejas: erro de forma, como afirmar o consequente, e erro de conteúdo, como ataque à pessoa e apelo à maioria."
+    },
+    "fonte": "New World Encyclopedia, 'Fallacies' (falácia formal = regra de inferência inválida); The Fallacy Files, 'Informal Fallacy' (forma × conteúdo); Assadian et al., Introduction to Philosophy: Logic, cap. 4 (LibreTexts)"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Ataque à pessoa e espantalho",
+    "texto": "Ad hominem: ataca quem argumenta, apontando algo irrelevante sobre a pessoa, em vez do argumento. Espantalho: atribui ao outro uma versão mais fraca da tese e derruba essa versão. Nos dois casos, a tese original fica sem resposta.",
+    "destaque": "Derrubar a pessoa ou uma caricatura não refuta a tese.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "À esquerda, uma tese escrita num cartaz firme. À direita, um boneco de palha segurando um cartaz deformado.",
+     "movimento": [
+      "1. O cartaz da esquerda diz 'reduzir o açúcar da merenda'; ele fica com borda amarelo-ouro #E8B616.",
+      "2. Uma mão desenha ao lado o boneco de palha com o cartaz 'proibir todo doce para sempre'.",
+      "3. O boneco é derrubado; aparece 'vitória!' em cinza.",
+      "4. A câmera volta ao cartaz original, intacto, com a etiqueta 'ainda sem resposta'."
+     ],
+     "alt": "Um boneco de palha com uma versão exagerada da tese é derrubado, mas a tese original continua de pé e sem resposta."
+    },
+    "fonte": "Dowden, Logical Reasoning, 8.11 Glossário (ad hominem: característica irrelevante de quem argumenta; espantalho: posição fácil de refutar atribuída ao outro); Assadian et al., cap. 4 (LibreTexts); New World Encyclopedia, 'Fallacies'"
+   },
+   {
+    "tipo": "grafico",
+    "titulo": "Mapa rápido das falácias",
+    "texto": "Cada falácia deixa uma pista. Apelo à maioria: 'todo mundo faz'. Autoridade de outra área. Generalização apressada: poucos casos. Post hoc: veio depois, logo causou. Falso dilema: só duas saídas. Petição de princípio: supõe o que quer provar.",
+    "destaque": "Ache a pista e você acha o nome da falácia.",
+    "visual": {
+     "tipo": "esquema",
+     "descricao": "Tabela de duas colunas, 'falácia' e 'pista no texto', com seis linhas que entram uma por vez, cada uma com um ícone simples.",
+     "movimento": [
+      "1. Linha 'apelo à maioria' com ícone de multidão: pista 'todo mundo acha'.",
+      "2. Linha 'apelo à autoridade' com ícone de crachá trocado: pista 'famoso fora da área'.",
+      "3. Linha 'generalização apressada' com dois pontinhos virando uma nuvem: pista 'poucos casos'.",
+      "4. Linha 'post hoc' com relógio: pista 'veio depois, então foi causa'.",
+      "5. Linha 'falso dilema' com duas portas, e uma terceira porta escondida que se acende: pista 'ou isso ou aquilo'.",
+      "6. Linha 'petição de princípio' com seta em círculo: pista 'a conclusão está na premissa'. Cada pista acende em amarelo-ouro #E8B616 ao entrar."
+     ],
+     "alt": "Tabela com seis falácias informais e a pista de cada uma no texto."
+    },
+    "fonte": "New World Encyclopedia, 'Fallacies' (bandwagon, autoridade, generalização apressada, post hoc, petição de princípio); Dowden, Logical Reasoning, 8.11 Glossário (falso dilema)"
+   },
+   {
+    "tipo": "exemplo",
+    "titulo": "A proposta distorcida",
+    "texto": "Questão: uma vereadora propõe reduzir a velocidade máxima numa avenida com muitos acidentes. Um adversário responde: 'Ela quer proibir os carros na cidade'. Que falácia ele comete? (A) ad hominem (B) post hoc (C) espantalho",
+    "destaque": "Compare a tese dita com a tese atacada.",
+    "passos": [
+     {
+      "faz": "Leia a tese original",
+      "conta": "\\text{reduzir a velocidade máxima numa avenida}",
+      "mov": "A frase da vereadora acende em amarelo-ouro."
+     },
+     {
+      "faz": "Compare com a tese atacada",
+      "conta": "\\begin{gathered} \\text{proibir os carros na cidade:} \\\\ \\text{tese muito mais extrema} \\end{gathered}",
+      "mov": "Uma segunda frase, maior e torta, surge ao lado; uma seta mostra a deformação."
+     },
+     {
+      "faz": "Ligue ao conceito",
+      "conta": "\\begin{gathered} \\text{distorcer a tese para derrubá-la} \\\\ =\\; \\text{espantalho} \\end{gathered}",
+      "mov": "Um boneco de palha aparece com o rótulo 'espantalho'."
+     },
+     {
+      "faz": "Elimine as armadilhas",
+      "conta": "\\begin{gathered} \\text{risca: ad hominem} \\\\ \\text{(ninguém atacou a vereadora)} \\\\ \\text{risca: post hoc} \\\\ \\text{(não há antes e depois)} \\end{gathered}",
+      "mov": "As alternativas A e B são riscadas uma de cada vez; o motivo aparece em cinza embaixo de cada uma."
+     },
+     {
+      "faz": "Conclua",
+      "conta": "\\text{(C) falácia do espantalho}",
+      "mov": "A alternativa C ganha moldura amarelo-ouro e o selo 'espantalho'."
+     }
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Uma avenida com placa de velocidade máxima. Ao lado, dois balões de fala: o da vereadora e o do adversário.",
+     "movimento": [
+      "1. A placa troca de 60 para 50 km/h; o balão da vereadora mostra 'reduzir a velocidade'.",
+      "2. O balão do adversário infla e mostra 'proibir os carros'; a avenida vazia aparece em cinza, como imagem exagerada.",
+      "3. Uma régua amarelo-ouro #E8B616 compara os dois balões: a distância entre eles é a distorção.",
+      "4. O rótulo 'espantalho' cola no balão do adversário."
+     ],
+     "alt": "Proposta de reduzir a velocidade de uma avenida comparada com a versão distorcida de proibir os carros: falácia do espantalho."
+    },
+    "fonte": "Dowden, Logical Reasoning, 8.11 Glossário (espantalho); Assadian et al., cap. 4 (LibreTexts)"
+   },
+   {
+    "tipo": "pegadinha",
+    "titulo": "Citar especialista nem sempre é falácia",
+    "texto": "Apelo à autoridade é falácia quando a autoridade não é especialista no assunto ou quando a citação toma o lugar da prova. Citar uma infectologista sobre vacinas é razoável; citar um cantor famoso sobre vacinas, não.",
+    "destaque": "O erro está na autoridade fora da área, não em citar alguém.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Dois crachás lado a lado: 'infectologista' e 'cantor famoso'. Acima deles, o tema em discussão: 'vacinas'.",
+     "movimento": [
+      "1. O tema 'vacinas' desce até o crachá 'infectologista' e encaixa; o crachá fica amarelo-ouro #E8B616: 'autoridade da área'.",
+      "2. O mesmo tema desce até o crachá 'cantor famoso' e não encaixa; o crachá fica cinza: 'fora da área'.",
+      "3. Legenda: 'apelo à autoridade falacioso = autoridade de outra área ou citação no lugar da prova'."
+     ],
+     "alt": "O tema vacinas encaixa no crachá da infectologista e não no do cantor: só o segundo caso é apelo falacioso à autoridade."
+    },
+    "fonte": "Assadian et al., Introduction to Philosophy: Logic, cap. 4 (LibreTexts): autoridade sem competência no assunto, e opinião que não dispensa apoio independente; Dowden, 8.11 Glossário; New World Encyclopedia, 'Fallacies'"
+   },
+   {
+    "tipo": "na_prova",
+    "titulo": "Como cai na prova",
+    "texto": "O Enem PPL 2023 deu a frase 'as propostas dele não devem ser levadas a sério, pois foi visto bêbado' e perguntou por que é falácia: ataca a pessoa e desconsidera as ideias. A UEM 2012 julgou inferências pela forma.",
+    "destaque": "Pergunte: a tese original foi respondida?",
+    "fonte": "Enem 2023, 2ª aplicação (PPL), 1º dia, caderno 1 azul, questão 87, gabarito B (prova e gabarito do Inep, cópia em arquivos.qconcursos.com); UEM, Vestibular de Verão 2012, Prova 3, Filosofia, gabarito 1, questão 01 (prova oficial em vestibular.uem.br)"
+   },
+   {
+    "tipo": "fixe",
+    "titulo": "Para levar",
+    "texto": "Falácia: argumento com erro que pode convencer.\nFormal: erro de forma. Informal: ataque à pessoa, distorção, apelo sem prova.\nPista-mestra: a tese original ficou sem resposta?",
+    "fonte": "New World Encyclopedia, 'Fallacies'; Dowden, Logical Reasoning, 8.11 Glossário (LibreTexts)"
+   }
+  ],
+  "L04.4": [
+   {
+    "tipo": "abertura",
+    "titulo": "A promessa do 'se'",
+    "texto": "'Se fizer sol, vou à praia.' Choveu e você foi à praia mesmo assim: mentiu? Não. A promessa só é quebrada quando faz sol e você não vai. A lógica calcula isso com conectivos e tabelas.",
+    "destaque": "'Se... então' só é falso quando a primeira parte acontece e a segunda não.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Quatro quadrinhos em fila, cada um com o céu (sol ou chuva) e um boneco (na praia ou em casa). Abaixo de cada quadrinho, um espaço para 'promessa cumprida?'.",
+     "movimento": [
+      "1. Sol e boneco na praia: aparece 'cumprida'.",
+      "2. Sol e boneco em casa: o quadrinho pisca em amarelo-ouro #E8B616 e aparece 'quebrada'.",
+      "3. Chuva e boneco na praia: aparece 'não quebrada', com nota 'a promessa não falava de chuva'.",
+      "4. Chuva e boneco em casa: aparece 'não quebrada'.",
+      "5. Os quatro resultados se alinham como uma coluna V, F, V, V."
+     ],
+     "alt": "Quatro situações da promessa se fizer sol, vou à praia: só sol com o boneco em casa quebra a promessa."
+    },
+    "fonte": "van Cleave, Introduction to Logic and Critical Thinking, 2.07 (LibreTexts)"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Proposições simples e compostas",
+    "texto": "Proposição simples afirma um fato só: 'O livro é azul'. Unida a outra por um conectivo, vira composta: 'O livro é azul e pertence a Sócrates'. Para Russell, palavras como 'e', 'ou' e 'não' não nomeiam coisas do mundo.",
+    "destaque": "Conectivo liga proposições; não é um objeto do mundo.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Uma maquete de quarteirões vista de cima. Cada quarteirão traz uma frase simples: 'O livro é azul', 'O livro pertence a Sócrates'.",
+     "movimento": [
+      "1. Os dois quarteirões acendem, um de cada vez: cada um é um fato simples.",
+      "2. Uma ponte amarelo-ouro #E8B616 rotulada 'e' surge entre eles; a frase composta aparece em cima da ponte.",
+      "3. A ponte troca de rótulo para 'ou' e depois para 'não'; o terreno embaixo da ponte continua vazio.",
+      "4. Legenda: 'o conectivo liga frases; no mundo não há uma coisa chamada e'."
+     ],
+     "alt": "Maquete em que dois fatos simples são ligados por uma ponte chamada e; a ponte não corresponde a nenhum objeto no terreno."
+    },
+    "fonte": "FIL-L1-F1-C12 p. 148"
+   },
+   {
+    "tipo": "formula",
+    "titulo": "Os cinco conectivos",
+    "texto": "Cada conectivo tem um símbolo e uma regra de verdade. Com eles, o valor de qualquer frase composta pode ser calculado a partir dos valores das partes.",
+    "destaque": "O 'ou' (∨) da lógica é inclusivo: vale também com as duas verdadeiras.",
+    "formula": "\\neg p\\quad p\\wedge q\\quad p\\vee q\\quad p\\rightarrow q\\quad p\\leftrightarrow q",
+    "legenda": [
+     "¬p: negação (não p)",
+     "p ∧ q: conjunção (p e q)",
+     "p ∨ q: disjunção (p ou q)",
+     "p → q: condicional (se p, então q)",
+     "p ↔ q: bicondicional (p se e somente se q)"
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Cinco peças em fila, cada uma com um símbolo grande e a palavra em português embaixo.",
+     "movimento": [
+      "1. A peça ¬ acende em amarelo-ouro #E8B616 e mostra 'não'.",
+      "2. As peças ∧ e ∨ acendem juntas: 'e' e 'ou'.",
+      "3. A peça → acende com 'se..., então...'; um p entra à esquerda e um q à direita.",
+      "4. A peça ↔ acende com 'se e somente se'; as setas apontam para os dois lados."
+     ],
+     "alt": "Cinco peças com os conectivos: negação, conjunção, disjunção, condicional e bicondicional."
+    },
+    "fonte": "van Cleave, Introduction to Logic and Critical Thinking, 2.07 (LibreTexts); tabelas conferidas em Python"
+   },
+   {
+    "tipo": "grafico",
+    "titulo": "Tabela-verdade de 'e' e 'ou'",
+    "texto": "Duas proposições geram quatro linhas de V e F. A conjunção (e) só é V com as duas V; a disjunção (ou) só é F com as duas F. Com n proposições, são 2 elevado a n linhas.",
+    "destaque": "'p ou não p' é sempre V: tautologia, não informa nada.",
+    "formula": "\\begin{array}{cc|cc}p&q&p\\wedge q&p\\vee q \\\\ \\hline \\text{V}&\\text{V}&\\text{V}&\\text{V} \\\\ \\text{V}&\\text{F}&\\text{F}&\\text{V} \\\\ \\text{F}&\\text{V}&\\text{F}&\\text{V} \\\\ \\text{F}&\\text{F}&\\text{F}&\\text{F}\\end{array}",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Analogia com circuitos de chaves. Dois circuitos simples, um embaixo do outro: pilha, lâmpada e duas chaves, p e q. Chave fechada = V; lâmpada acesa = V. No de cima, as chaves estão em série ('e'); no de baixo, em paralelo ('ou').",
+     "movimento": [
+      "1. Série: as chaves passam pelas quatro combinações (fechada e fechada, fechada e aberta, aberta e fechada, aberta e aberta).",
+      "2. A lâmpada da série acende só na primeira combinação; a linha V V da coluna p ∧ q acende em amarelo-ouro #E8B616 junto.",
+      "3. Paralelo: as mesmas quatro combinações; a lâmpada só apaga quando as duas chaves estão abertas, e a linha F F da coluna p ∨ q fica cinza escuro.",
+      "4. Entra uma terceira chave, r; um contador de combinações passa de 4 para 8, com 2³ = 8 ao lado."
+     ],
+     "alt": "Circuito em série acende só com as duas chaves fechadas, como p e q; circuito em paralelo acende com pelo menos uma fechada, como p ou q. Com três chaves, são oito combinações."
+    },
+    "fonte": "van Cleave, Introduction to Logic and Critical Thinking, 2.07 (LibreTexts); tabelas conferidas em Python; analogia série = 'e', paralelo = 'ou': Epp, Discrete Mathematics with Applications, seção 2.4 (Cengage)"
+   },
+   {
+    "tipo": "grafico",
+    "titulo": "Condicional e bicondicional",
+    "texto": "Em 'se p, então q', p é o antecedente e q, o consequente. A condicional só é falsa com p V e q F. A bicondicional é verdadeira quando p e q têm o mesmo valor.",
+    "destaque": "Condicional falsa: antecedente V e consequente F.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Duas lâmpadas, p e q, à esquerda, e dois mostradores à direita, '→' e '↔', que exibem V ou F. As lâmpadas passam pelas quatro linhas da tabela: VV, VF, FV, FF.",
+     "movimento": [
+      "1. p acesa e q acesa: os dois mostradores marcam V; a linha V V da tabela acende em amarelo-ouro #E8B616.",
+      "2. p acesa e q apagada: o mostrador '→' vira F e pisca em amarelo-ouro #E8B616; um balão liga a cena à praia: 'fez sol e não fui'.",
+      "3. p apagada e q acesa: '→' volta a V e '↔' marca F, porque os valores ficaram diferentes.",
+      "4. p apagada e q apagada: os dois marcam V; as linhas V V e F F ganham a etiqueta 'mesmo valor' na coluna ↔."
+     ],
+     "alt": "Duas lâmpadas passam pelas quatro combinações: a condicional só marca falso com p acesa e q apagada; a bicondicional marca verdadeiro quando as duas estão iguais."
+    },
+    "fonte": "van Cleave, Introduction to Logic and Critical Thinking, 2.07 (LibreTexts); tabelas conferidas em Python",
+    "formula": "\\begin{array}{cc|cc}p&q&p\\rightarrow q&p\\leftrightarrow q \\\\ \\hline \\text{V}&\\text{V}&\\text{V}&\\text{V} \\\\ \\text{V}&\\text{F}&\\text{F}&\\text{F} \\\\ \\text{F}&\\text{V}&\\text{V}&\\text{F} \\\\ \\text{F}&\\text{F}&\\text{V}&\\text{V}\\end{array}"
+   },
+   {
+    "tipo": "conceito",
+    "titulo": "Formas válidas e falácias formais",
+    "texto": "Modus ponens: se p, então q; p; logo, q. Modus tollens: se p, então q; não q; logo, não p. As duas são válidas. Afirmar o consequente e negar o antecedente são falácias formais.",
+    "destaque": "Chão molhado não prova que choveu: o irrigador também molha.",
+    "formula": "\\begin{gathered} \\text{MP: } p \\rightarrow q,\\ p \\ \\therefore\\ q \\\\ \\text{MT: } p \\rightarrow q,\\ \\neg q \\ \\therefore\\ \\neg p \\end{gathered}",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Regra no alto: 'Se chove, o chão molha'. Embaixo, quatro cartões de conclusão e uma cena de quintal com nuvem, chão e um irrigador desligado.",
+     "movimento": [
+      "1. Chove; o chão molha; o cartão 'logo, o chão molhou' ganha selo amarelo-ouro #E8B616 'válido (modus ponens)'.",
+      "2. O chão aparece seco; o cartão 'logo, não choveu' ganha 'válido (modus tollens)'.",
+      "3. O chão está molhado, mas o irrigador liga; o cartão 'logo, choveu' é riscado: 'afirmar o consequente'.",
+      "4. Não chove, mas o irrigador molha o chão; o cartão 'logo, o chão não molhou' é riscado: 'negar o antecedente'."
+     ],
+     "alt": "Regra se chove, o chão molha: duas conclusões válidas e duas falácias formais, mostradas com a chuva e um irrigador."
+    },
+    "fonte": "New World Encyclopedia, 'Fallacies' (afirmar o consequente, negar o antecedente); validade das quatro formas conferida em Python"
+   },
+   {
+    "tipo": "exemplo",
+    "titulo": "Negar uma condicional",
+    "texto": "Questão: a negação de 'Se eu estudo, então passo' é: (A) Se não estudo, então não passo. (B) Não estudo e passo. (C) Estudo e não passo.",
+    "destaque": "Negar 'se p, então q' é dizer 'p e não q'.",
+    "passos": [
+     {
+      "faz": "Traduza para símbolos",
+      "conta": "p: \\text{estudo} \\qquad q: \\text{passo} \\qquad p \\rightarrow q",
+      "mov": "As duas partes da frase se destacam e viram as letras p e q."
+     },
+     {
+      "faz": "Lembre quando ela é falsa",
+      "conta": "p \\rightarrow q \\text{ é F só se } p = \\text{V} \\text{ e } q = \\text{F}",
+      "mov": "Na tabela, só a linha V F acende em amarelo-ouro."
+     },
+     {
+      "faz": "Escreva a negação",
+      "conta": "\\neg (p \\rightarrow q) \\equiv p \\wedge \\neg q",
+      "mov": "A seta → se transforma em ∧ e um ¬ desliza para a frente de q."
+     },
+     {
+      "faz": "Elimine as armadilhas",
+      "conta": "\\begin{gathered} \\text{risca A: } \\neg p \\rightarrow \\neg q \\\\ \\text{(outra condicional, não a negação)} \\\\ \\text{risca B: } \\neg p \\wedge q \\\\ \\text{(linha F V, onde } p \\rightarrow q \\text{ é V)} \\end{gathered}",
+      "mov": "As alternativas A e B são riscadas uma de cada vez; na tabela, a linha F V acende em cinza quando B cai."
+     },
+     {
+      "faz": "Conclua",
+      "conta": "\\text{(C) Estudo e não passo.}",
+      "mov": "As letras voltam a ser palavras e a alternativa C ganha moldura amarelo-ouro."
+     }
+    ],
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "A frase 'Se eu estudo, então passo' no alto; embaixo, uma mini tabela da condicional com as quatro linhas.",
+     "movimento": [
+      "1. 'estudo' vira p e 'passo' vira q.",
+      "2. A linha V F da tabela pisca em amarelo-ouro #E8B616: é o único caso em que a frase é falsa.",
+      "3. Essa linha se descola da tabela e vira a frase 'estudo e não passo'.",
+      "4. As alternativas A e B passam por baixo e são riscadas; C fica com a moldura."
+     ],
+     "alt": "A negação de se eu estudo, então passo sai da única linha em que a condicional é falsa: estudo e não passo."
+    },
+    "fonte": "van Cleave, Introduction to Logic and Critical Thinking, 2.07 (LibreTexts); equivalência conferida em Python"
+   },
+   {
+    "tipo": "pegadinha",
+    "titulo": "Negar 'todo' não é 'nenhum'",
+    "texto": "A negação de 'Todo aluno estudou' é 'Algum aluno não estudou': basta um que não estudou para a frase original ser falsa. 'Nenhum aluno estudou' diz demais e não é a negação.",
+    "destaque": "Negação de 'todo': 'algum não'. Negação de 'algum': 'nenhum'.",
+    "visual": {
+     "tipo": "animacao",
+     "descricao": "Uma sala com 30 carteiras e alunos; cada aluno tem um livro aberto ou fechado. No alto, a frase 'Todo aluno estudou'.",
+     "movimento": [
+      "1. Todos os livros aparecem abertos: a frase fica V.",
+      "2. Um único livro se fecha e esse aluno fica amarelo-ouro #E8B616; a frase vira F.",
+      "3. Aparece a negação certa: 'Algum aluno não estudou', apontando para esse aluno.",
+      "4. Surge 'Nenhum aluno estudou'; a sala mostra 29 livros abertos e a frase é riscada: diz demais."
+     ],
+     "alt": "Basta um aluno que não estudou para negar todo aluno estudou; nenhum aluno estudou é forte demais e não é a negação."
+    },
+    "fonte": "Morris e Morris, Proofs and Concepts, 4.03 Negations (LibreTexts)"
+   },
+   {
+    "tipo": "na_prova",
+    "titulo": "Como cai na prova",
+    "texto": "A UEM 2012 pediu para julgar inferências pela forma, incluindo uma com disjunção. A UEM 2019 considerou correto que 'choverá ou não choverá amanhã' não é científico: é tautologia, impossível de refutar. No difícil, monte a negação.",
+    "destaque": "Monte a tabela quando a frase composta confundir.",
+    "fonte": "UEM, Vestibular de Verão 2012, Prova 3, Filosofia, gabarito 1, questão 01 (prova oficial em vestibular.uem.br); FIL-L1-F1-C12 (Avisos: UEM 2019, item 16)"
+   },
+   {
+    "tipo": "fixe",
+    "titulo": "Para levar",
+    "texto": "'e': V só com as duas V. 'ou': F só com as duas F.\n'se p, então q': F só quando p é V e q é F.\nNegação de 'se p, então q': 'p e não q'.",
+    "fonte": "van Cleave, Introduction to Logic and Critical Thinking, 2.07 (LibreTexts); tabelas conferidas em Python"
+   }
+  ]
+ },
+ "fontes": [
+  {
+   "chave": "FIL-L1-F1-C05",
+   "paginas": "51; exercícios 54–56 e 59–60"
+  },
+  {
+   "chave": "FIL-L1-F1-C08",
+   "paginas": "92"
+  },
+  {
+   "chave": "FIL-L1-F1-C09",
+   "paginas": "107"
+  },
+  {
+   "chave": "FIL-L1-F1-C12",
+   "paginas": "146–148, 152; exercícios 155–159"
+  },
+  {
+   "chave": "FIL-L1-F1-C03",
+   "paginas": "seção sobre os sofistas (só o contraste persuasão × verdade)"
+  },
+  {
+   "chave": "externa",
+   "paginas": "IEP, 'Validity and Soundness' (iep.utm.edu/val-snd)"
+  },
+  {
+   "chave": "externa",
+   "paginas": "New World Encyclopedia, 'Fallacies' (newworldencyclopedia.org/entry/Fallacies)"
+  },
+  {
+   "chave": "externa",
+   "paginas": "Dowden, Logical Reasoning, 8.11 Glossário (LibreTexts)"
+  },
+  {
+   "chave": "externa",
+   "paginas": "van Cleave, Introduction to Logic and Critical Thinking, 2.07 (LibreTexts)"
+  },
+  {
+   "chave": "externa",
+   "paginas": "Morris e Morris, Proofs and Concepts, 4.03 Negations (LibreTexts)"
+  },
+  {
+   "chave": "externa",
+   "paginas": "Wikipedia, 'Sophistical Refutations' (parte do Órganon)"
+  },
+  {
+   "chave": "externa",
+   "paginas": "The Fallacy Files, 'Informal Fallacy' (fallacyfiles.org/inforfal.html)"
+  },
+  {
+   "chave": "externa",
+   "paginas": "Assadian et al., Introduction to Philosophy: Logic, cap. 4 Informal Fallacies (LibreTexts)"
+  },
+  {
+   "chave": "externa",
+   "paginas": "Britannica, 'History of logic: Aristotle' (Órganon)"
+  },
+  {
+   "chave": "externa",
+   "paginas": "The FA, Laws of the Game, Law 10 (gol)"
+  },
+  {
+   "chave": "externa",
+   "paginas": "Epp, Discrete Mathematics with Applications, seção 2.4 'Application: Digital Logic Circuits' (Cengage): chaves em série = ∧, em paralelo = ∨ (fechada/acesa = V)"
+  },
+  {
+   "chave": "prova",
+   "paginas": "UEM, Vestibular de Verão 2011, Prova 3, Filosofia, gabarito 2, questão 03; UEM, Vestibular de Verão 2012, Prova 3, Filosofia, gabarito 1, questão 01 (vestibular.uem.br)"
+  },
+  {
+   "chave": "prova",
+   "paginas": "Enem 2023, 2ª aplicação (PPL), 1º dia, caderno 1 azul, questão 87, gabarito B (prova e gabarito do Inep; cópia em arquivos.qconcursos.com)"
+  }
+ ],
+ "pendencias": [
+  "L04.3 (falácias) escrito sem base nos livros: as fichas não trazem falácias. Definições conferidas pela lente A em New World Encyclopedia ('Fallacies'), Dowden (Logical Reasoning, 8.11 Glossário), Assadian et al. (Introduction to Philosophy: Logic, cap. 4) e The Fallacy Files (forma × conteúdo).",
+  "L04.3: Enem PPL 2023 (2ª aplicação, caderno 1 azul, q. 87) conferido pela lente A: enunciado na prova e gabarito B no gabarito do Inep (cópias em arquivos.qconcursos.com; o download direto em download.inep.gov.br falhou por certificado).",
+  "L04.4 (conectivos e tabela-verdade): só proposição simples × composta (Russell) e a tautologia (UEM 2019) vêm das fichas; tabelas, modus ponens/tollens, falácias formais e negações vêm de van Cleave (LibreTexts, 2.07), New World Encyclopedia e Morris e Morris (LibreTexts, 4.03). Tabelas, equivalências e validade das quatro formas conferidas em Python pela lente A.",
+  "L04.1: as palavras indicadoras ('logo', 'portanto' × 'pois', 'porque') foram conferidas em van Cleave (LibreTexts, 1.02); 'Órganon' = ferramenta/instrumento, na Britannica ('History of logic: Aristotle').",
+  "UEM 2011 é o Vestibular de Verão 2011 (gabarito 2, q. 03; no gabarito 4 é a q. 06) e UEM 2012 é o Vestibular de Verão 2012 (gabarito 1, q. 01). Os slides não citam letra nem soma dessas questões; os gabaritos não foram lidos.",
+  "Os exemplos (aranha, sapos, vereadora, passe livre, promessa da praia) são novos, criados para a revisão, não questões de prova.",
+  "Exemplo do L04.4 usa LaTeX simbólico em `passos[].conta`; nos outros exemplos, `conta` está em \\text{} com \\begin{gathered}."
+ ]
+}

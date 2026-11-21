@@ -1,0 +1,942 @@
+{
+ "P8375d611": {
+  "n": "35",
+  "conceito": "Equação exponencial para achar m e cálculo da função num ponto negativo.",
+  "equivocos": {
+   "A": "M06.2:valor-de-m-errado",
+   "B": "M06.2:valor-de-m-errado",
+   "C": "M06.2:valor-de-m-errado",
+   "D": "M06.2:valor-de-m-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro use f(m) = 729 para descobrir m: 729 é potência de 3. Depois calcule f no ponto −m/2. Repare que o 2 do expoente de f cancela com o 2 do denominador.",
+    "formulas": [
+     "f(x) = 3^(2x)",
+     "729 = 3^6",
+     "3^(−n) = 1/3^n"
+    ],
+    "simbolos": [
+     [
+      "f(m)",
+      "o valor da função quando x = m"
+     ]
+    ]
+   },
+   "pista": "Escreva 729 como potência de 3 para achar m.",
+   "passos": [
+    {
+     "faz": "Monte a equação de m",
+     "conta": "3^(2m) = 729 = 3^6",
+     "porque": "f(m) = 3^(2m), e 729 = 3^6.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Iguale os expoentes",
+     "conta": "2m = 6 → m = 6/2 → m = 3",
+     "porque": "Bases iguais, expoentes iguais; o 2 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule f(−m/2)",
+     "conta": "f(−3/2) = 3^(2 × (−3/2)) = 3^(−3)",
+     "porque": "O 2 do expoente cancela o 2 do denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva como fração",
+     "conta": "3^(−3) = 1/27 → alternativa E",
+     "porque": "Expoente negativo vira o inverso.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 1/27",
+   "checagem": "Por outro caminho: f(−m/2) = 3^(−m) e f(m) = 3^(2m) = (3^m)^2 = 729, então 3^m = 27 e 3^(−m) = 1/27.",
+   "erradas": {
+    "A": "1/3 não confere: 3^(−m) = 1/3 exigiria m = 1, e f(1) = 9, não 729.",
+    "B": "1/9 não confere: 3^(−m) = 1/9 exigiria m = 2, e f(2) = 81, não 729.",
+    "C": "1/81 não confere: 3^(−m) = 1/81 exigiria m = 4, e f(4) = 6561, não 729.",
+    "D": "1/243 não confere: 3^(−m) = 1/243 exigiria m = 5, e f(5) = 59049, não 729."
+   },
+   "armadilha": "f(m) tem expoente 2m: 3^(2m) = 3^6 dá m = 3, e não m = 6.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de f(−m/2), sabendo que f(m) = 729 e f(x) = 3^(2x).",
+    "chave": "3^(2m) = 3^6 dá m = 3; f(−3/2) = 3^(−3) = 1/27.",
+    "cuidado": "Não esqueça o 2 do expoente de f, nem na hora de achar m nem no cálculo final."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "atalho",
+    "ideia": "f(−m/2) = 3^(−m) e f(m) = (3^m)^2 = 729, logo 3^m = 27 e a resposta é 1/27."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3^(2m) = 3^6",
+    "nota": "f(m) = 729"
+   },
+   {
+    "linha": "2m = 6",
+    "nota": "bases iguais"
+   },
+   {
+    "linha": "m = 6/2",
+    "nota": "o 2 vai dividindo"
+   },
+   {
+    "linha": "m = 3",
+    "nota": "divide"
+   },
+   {
+    "linha": "f(−3/2) = 3^(−3)",
+    "nota": "2 × (−3/2) = −3"
+   },
+   {
+    "linha": "3^(−3) = 1/27",
+    "nota": "inverso"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "P57bc64e5": {
+  "n": "32",
+  "conceito": "Mudança de base em cadeia, equação logarítmica e determinante 3 × 3.",
+  "equivocos": {
+   "B": "M06.4:x-errado-no-determinante",
+   "C": "M06.4:x-errado-no-determinante",
+   "D": "M06.4:sinal-trocado-no-determinante",
+   "E": "M06.4:sinal-trocado-no-determinante"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O lado direito parece assustador, mas a cadeia de mudança de base encolhe: log₅ 3 · log₇ 5 · log₉ 7 = log₉ 3 = 1/2. O último fator é log 9 na base 10, e metade de log 9 é log 3. Com isso a equação vira log de um quociente igual a log 3, e o x sai de uma equação do 1.º grau. Só então entra o determinante.",
+    "formulas": [
+     "logₐ b · log_c a = log_c b",
+     "log A − log B = log (A/B)",
+     "determinante 3 × 3 pela regra de Sarrus"
+    ],
+    "simbolos": [
+     [
+      "log",
+      "logaritmo na base 10"
+     ],
+     [
+      "log₅",
+      "logaritmo na base 5"
+     ],
+     [
+      "Sarrus",
+      "regra para o determinante 3 × 3: produtos das diagonais descendo menos os subindo"
+     ]
+    ]
+   },
+   "pista": "Encadeie os logs do lado direito: o 5 e o 7 aparecem em cima e embaixo.",
+   "passos": [
+    {
+     "faz": "Encurte a cadeia de logaritmos",
+     "conta": "log₅ 3 · log₇ 5 · log₉ 7 = log₉ 3 = 1/2",
+     "porque": "Cada base repete o logaritmando do fator seguinte e se cancela; 9 = 3², então log₉ 3 = 1/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Termine o lado direito",
+     "conta": "1/2 × log 9 = log 9^(1/2) = log 3",
+     "porque": "Um meio vezes log 9 é o log da raiz de 9.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a equação logarítmica",
+     "conta": "(5x + 3)/(x + 2) = 3 → 5x + 3 = 3 × (x + 2) → 5x − 3x = 6 − 3 → x = 3/2",
+     "porque": "Log do quociente igual a log 3 dá o quociente igual a 3; multiplicação cruzada e cada termo troca de lado. x = 1,5 deixa 5x + 3 e x + 2 positivos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o determinante",
+     "conta": "x·2·9 + 1·1·2x + x·3·0 − (x·2·2x + 1·3·9 + x·1·0) = 20x − 4x² − 27",
+     "porque": "Sarrus: soma as diagonais descendo e subtrai as subindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua x = 3/2",
+     "conta": "20 × 1,5 − 4 × 2,25 − 27 = 30 − 9 − 27 = −6",
+     "porque": "Com o x da equação, o determinante fica −6.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — −6",
+   "checagem": "Por Laplace na 2.ª coluna, com x = 1,5: −1 × (3 × 9 − 1 × 3) + 2 × (1,5 × 9 − 1,5 × 3) = −24 + 18 = −6. Fecha.",
+   "erradas": {
+    "B": "−18 não confere: 20x − 4x² − 27 = −18 só para x = 1/2 ou x = 9/2; aí (5x + 3)/(x + 2) vale 2,2 ou ≈ 3,92, nunca 3.",
+    "C": "−38 não confere: 20x − 4x² − 27 = −38 só para x = 11/2 ou x = −1/2; aí (5x + 3)/(x + 2) vale ≈ 4,07 ou 1/3, nunca 3.",
+    "D": "38 não confere: 20x − 4x² − 27 tem valor máximo −2 (em x = 2,5), então nunca é positivo.",
+    "E": "66 não confere: pelo mesmo motivo, 20x − 4x² − 27 nunca passa de −2."
+   },
+   "armadilha": "Não perceber que a cadeia log₅ 3 · log₇ 5 · log₉ 7 se reduz a 1/2 e que o último fator é log 9 na base 10.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor do determinante para o x da equação.",
+    "chave": "A cadeia vale log₉ 3 = 1/2; vezes log 9 dá log 3; então (5x + 3)/(x + 2) = 3 e x = 3/2.",
+    "cuidado": "Na regra de Sarrus, confira o sinal de cada diagonal."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "propriedade log_a b = 1/log_b a",
+    "ideia": "Escreva cada fator como quociente de logs na base 10: (log 3/log 5)(log 5/log 7)(log 7/log 9)(log 9) = log 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "log₅ 3 · log₇ 5 · log₉ 7 · log 9 = log 3",
+    "nota": "cadeia de mudança de base"
+   },
+   {
+    "linha": "log ((5x + 3)/(x + 2)) = log 3",
+    "nota": "diferença de logs"
+   },
+   {
+    "linha": "(5x + 3)/(x + 2) = 3/1",
+    "nota": "logs iguais, logaritmandos iguais"
+   },
+   {
+    "linha": "5x + 3 = 3 × (x + 2)",
+    "nota": "multiplicação cruzada"
+   },
+   {
+    "linha": "5x − 3x = 6 − 3",
+    "nota": "termos trocam de lado e de sinal"
+   },
+   {
+    "linha": "2x = 3",
+    "nota": "simplifica"
+   },
+   {
+    "linha": "x = 3/2",
+    "nota": "o 2 vai dividindo"
+   },
+   {
+    "linha": "det = 20x − 4x² − 27 = 30 − 9 − 27 = −6",
+    "nota": "Sarrus com x = 1,5"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
+ },
+ "P78598ee8": {
+  "n": "33",
+  "conceito": "Contar números de quatro algarismos distintos maiores que 2600, separando em casos pelo primeiro algarismo.",
+  "equivocos": {
+   "A": "M13.1:esqueceu-um-caso",
+   "C": "M13.1:ignorou-a-restricao",
+   "D": "M13.1:contagem-acima-do-total",
+   "E": "M13.1:fatorial-de-todos-os-elementos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A condição \"maior que 2600\" não é a mesma para todo número: ela decide tudo pelo primeiro algarismo. Começando por 3, 4, 5, 6 ou 7, qualquer número já passa de 2600. Começando por 2, o segundo algarismo precisa ser 6 ou 7. Conte os dois casos separados e some.",
+    "formulas": [
+     "casos que não se misturam: some as contagens",
+     "em cada caso: multiplique as escolhas de cada casa (princípio multiplicativo)"
+    ],
+    "simbolos": [
+     [
+      "algarismos distintos",
+      "nenhum algarismo se repete no número"
+     ],
+     [
+      "princípio multiplicativo",
+      "escolhas feitas em sequência se multiplicam"
+     ]
+    ]
+   },
+   "pista": "Antes de multiplicar, olhe o primeiro algarismo: com quais ele já garante passar de 2600, e com qual ainda depende do segundo?",
+   "passos": [
+    {
+     "faz": "Separe os casos pelo primeiro algarismo",
+     "conta": "1º algarismo ∈ {3, 4, 5, 6, 7} | 1º algarismo = 2 (2º algarismo ∈ {6, 7})",
+     "porque": "Com 1 na frente o número fica abaixo de 2000, então o 1 não serve. Com 2 na frente, só passa de 2600 se o segundo for 6 ou 7, porque não há 0 entre os algarismos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte o caso que começa por 3 a 7",
+     "conta": "5 × 6 × 5 × 4 → 600",
+     "porque": "5 escolhas para a 1ª casa; sobram 6 algarismos para a 2ª, 5 para a 3ª e 4 para a 4ª, porque nenhum pode repetir.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte o caso que começa por 2",
+     "conta": "1 × 2 × 5 × 4 → 40",
+     "porque": "O 2 está fixo e a 2ª casa só aceita 6 ou 7. Usados dois algarismos, sobram 5 para a 3ª casa e 4 para a 4ª.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois casos",
+     "conta": "600 + 40 = 640 → alternativa B",
+     "porque": "Os casos não têm número em comum (começam por algarismos diferentes), então o total é a soma.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 640 números",
+   "checagem": "Pelo complemento: com os 7 algarismos há 7 × 6 × 5 × 4 = 840 números de algarismos distintos. Ficam de fora os que começam por 1 (1 × 6 × 5 × 4 = 120) e os que começam por 2 com 2º algarismo 1, 3, 4 ou 5 (1 × 4 × 5 × 4 = 80): 840 − 120 − 80 = 640. Fecha.",
+   "erradas": {
+    "A": "40 sai de contar só o caso que começa por 2: 1 × 2 × 5 × 4 = 40. Faltaram os 600 números que começam por 3, 4, 5, 6 ou 7.",
+    "C": "840 sai de ignorar a condição \"maior que 2600\": 7 × 6 × 5 × 4 = 840 é o total de números de quatro algarismos distintos com esses sete algarismos.",
+    "D": "1134 não confere: com os sete algarismos só existem 7 × 6 × 5 × 4 = 840 números de quatro algarismos distintos, então nenhuma parte deles pode passar de 840.",
+    "E": "5040 sai de 7! = 5040, que ordena os sete algarismos todos. O número tem só quatro casas; e 5040 passa até do total possível, 840."
+   },
+   "armadilha": "Começando por 2, nem todo número passa de 2600: o segundo algarismo tem de ser 6 ou 7.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos números de quatro algarismos distintos, feitos com 1 a 7, são maiores que 2600.",
+    "chave": "Separar pelo primeiro algarismo: 5 × 6 × 5 × 4 = 600 (de 3 a 7) mais 1 × 2 × 5 × 4 = 40 (começando por 2).",
+    "cuidado": "Não esquecer o caso do 2 nem tratá-lo como se todo número com 2 na frente servisse."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complemento",
+    "ideia": "Tire do total 840 os 120 que começam por 1 e os 80 que começam por 21, 23, 24 ou 25: 840 − 120 − 80 = 640."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1º de 3 a 7: 5 × 6 × 5 × 4",
+    "nota": "cinco escolhas na frente, depois sem repetir"
+   },
+   {
+    "linha": "= 600",
+    "nota": "números que já passam de 2600"
+   },
+   {
+    "linha": "1º = 2, 2º ∈ {6, 7}: 1 × 2 × 5 × 4",
+    "nota": "o 2 fixo, a 2ª casa só aceita 6 ou 7"
+   },
+   {
+    "linha": "= 40",
+    "nota": "números que começam por 26 ou 27"
+   },
+   {
+    "linha": "600 + 40 = 640",
+    "nota": "casos separados se somam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
+ },
+ "P60e7c1b0": {
+  "n": "30",
+  "conceito": "Probabilidade com anagramas de MATEMATICA: chance de a primeira e a última letra serem vogais.",
+  "equivocos": {
+   "B": "M13.4:contou-errado-os-casos-favoraveis",
+   "C": "M13.4:contou-errado-os-casos-favoraveis",
+   "D": "M13.4:esqueceu-vogais-diferentes-de-a",
+   "E": "M13.4:nao-tirou-a-letra-ja-usada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "MATEMATICA tem 10 letras: A três vezes, E uma, I uma, ou seja, 5 vogais; e 5 consoantes (M duas vezes, T duas, C uma). Num anagrama sorteado, cada letra tem a mesma chance de cair em cada posição. Então basta olhar as duas pontas: a chance de a primeira ser vogal e, dado isso, a de a última também ser.",
+    "formulas": [
+     "P(1ª vogal e última vogal) = P(1ª vogal) × P(última vogal | 1ª vogal)"
+    ],
+    "simbolos": [
+     [
+      "P(A | B)",
+      "probabilidade de A sabendo que B já aconteceu"
+     ],
+     [
+      "anagrama",
+      "reordenação de todas as letras da palavra"
+     ]
+    ]
+   },
+   "pista": "Conte as vogais de MATEMATICA, com repetição, e pense só na primeira e na última posição.",
+   "passos": [
+    {
+     "faz": "Conte vogais e letras",
+     "conta": "M, A, T, E, M, A, T, I, C, A → 10 letras | vogais: A, A, A, E, I = 5",
+     "porque": "Cada A conta como uma vogal: são 5 vogais em 10 letras.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a chance da primeira",
+     "conta": "P(1ª vogal) = 5/10 = 1/2",
+     "porque": "Das 10 letras, 5 são vogais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chance da última",
+     "conta": "P(última vogal | 1ª vogal) = 4/9",
+     "porque": "Uma vogal já foi para a frente: sobram 4 vogais entre as 9 letras restantes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as duas",
+     "conta": "1/2 × 4/9 = 4/18 = 2/9",
+     "porque": "A primeira e a última precisam ser vogais ao mesmo tempo: multiplica-se.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "2/9 → alternativa A",
+     "porque": "É a fração de A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2/9",
+   "checagem": "Conte os anagramas. Total: 10!/(3! · 2! · 2!) = 151200. Favoráveis: os pares de vogais nas pontas (A…A, A…E, E…A, A…I, I…A, E…I, I…E) somam 33600 anagramas. E 33600/151200 = 2/9.",
+   "erradas": {
+    "B": "13/90 não confere: os pares de vogais nas pontas pesam A…A 6/90, A com E ou I nas duas ordens 12/90 e E com I 2/90, total 20/90 = 2/9.",
+    "C": "2/45 não confere: só começar e terminar com A já tem chance 3/10 × 2/9 = 1/15, maior que 2/45; com E e I, a chance só cresce.",
+    "D": "1/15 sai de contar só o A como vogal: 3/10 × 2/9 = 6/90 = 1/15. E e I também são vogais.",
+    "E": "1/5 sai de manter 10 letras no segundo sorteio: 5/10 × 4/10 = 20/100 = 1/5. Com uma letra já na frente, sobram 9."
+   },
+   "armadilha": "Esquecer que a vogal da frente sai do grupo: a última vogal se escolhe entre 9 letras, não 10.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de um anagrama de MATEMATICA começar e terminar com vogal.",
+    "chave": "5 vogais em 10 letras: 5/10 × 4/9 = 2/9.",
+    "cuidado": "Conte os três A como vogais e tire uma letra do total depois de fixar a primeira."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem de anagramas",
+    "ideia": "Favoráveis ÷ total: 33600/151200 = 2/9."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(1ª vogal) = 5/10 = 1/2",
+    "nota": "5 vogais em 10 letras"
+   },
+   {
+    "linha": "P(última vogal) = 4/9",
+    "nota": "sobram 4 vogais em 9 letras"
+   },
+   {
+    "linha": "1/2 × 4/9 = 4/18 = 2/9",
+    "nota": "multiplica e simplifica"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
+ },
+ "P1462c228": {
+  "n": "31",
+  "conceito": "Calcular um determinante 3×3 com uma linha quase toda nula e estudar a função obtida (valores e crescimento).",
+  "equivocos": {
+   "A": "M15.2:funcao-crescente-sem-estudar-derivada",
+   "B": "M15.2:decrescente-no-intervalo-todo",
+   "C": "M15.2:esqueceu-de-testar-iv-e-v",
+   "E": "M15.2:errou-substituicao-f4"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A primeira linha de M tem dois zeros, então o determinante sai pela regra de Laplace nessa linha: só sobra o termo de −x + 2 vezes um determinante 2×2. Com f(x) em mãos, III e IV são só substituição. Para crescer ou decrescer, olhe a derivada (ou o gráfico da cúbica).",
+    "formulas": [
+     "det M = (−x + 2) · [(−x)·x − x·(−6)] (Laplace na 1ª linha)",
+     "f crescente onde f'(x) > 0"
+    ],
+    "simbolos": [
+     [
+      "Laplace",
+      "abrir o determinante por uma linha: cada elemento vezes o seu menor, com sinal"
+     ],
+     [
+      "f'(x)",
+      "derivada: diz se a função sobe (positiva) ou desce (negativa)"
+     ]
+    ]
+   },
+   "pista": "Comece pela linha que tem dois zeros: ela reduz o 3×3 a um único 2×2.",
+   "passos": [
+    {
+     "faz": "Abra o determinante pela 1ª linha",
+     "conta": "det M = (−x + 2) · (−x·x − x·(−6)) → f(x) = (−x + 2)(−x² + 6x)",
+     "porque": "Os dois zeros da 1ª linha anulam os outros termos; sobra o elemento −x + 2 vezes o menor 2×2 da direita.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Expanda o produto",
+     "conta": "(−x + 2)(−x² + 6x) → x³ − 6x² − 2x² + 12x → f(x) = x³ − 8x² + 12x",
+     "porque": "Multiplicar termo a termo deixa a cúbica pronta para substituir e derivar; fatorada, f(x) = x(x − 2)(x − 6).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste III e IV",
+     "conta": "f(1) = 1 − 8 + 12 = 5 | f(4) = 64 − 128 + 48 = −16",
+     "porque": "Substituição direta: as duas afirmações são verdadeiras.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Estude o crescimento",
+     "conta": "f'(x) = 3x² − 16x + 12 = 0 → x = (16 ± √112)/6 → x ≈ 0,90 ou x ≈ 4,43",
+     "porque": "f sobe em [0; 0,90], desce em [0,90; 4,43] e sobe a partir de 4,43. Logo I é falsa, II é falsa (no começo de [0, 6] ela sobe) e V é verdadeira (5 > 4,43).",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Junte as verdadeiras",
+     "conta": "III, IV e V verdadeiras → alternativa D",
+     "porque": "É a única alternativa com exatamente essas três.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — Somente as afirmações III, IV e V são verdadeiras.",
+   "checagem": "Pela forma fatorada f(x) = x(x − 2)(x − 6): f(0) = 0, f(2) = 0 e f(6) = 0, mas f(1) = 5 > 0. Se f subisse de 0 até 1 e voltasse a 0 em 2, ela não pode ser decrescente em todo [0, 6] nem crescente sempre.",
+   "erradas": {
+    "A": "A inclui I e II, que se contradizem: I diz crescente sempre, II diz decrescente em [0, 6]; e f(0) = 0 < f(1) = 5 derruba as duas.",
+    "B": "B inclui II, mas f(0) = 0 e f(1) = 5: a função sobe no começo de [0, 6], então não é decrescente nesse intervalo.",
+    "C": "C deixa de fora IV e V, que são verdadeiras (f(4) = −16 e f' > 0 para x ≥ 5), e inclui II, que é falsa.",
+    "E": "E esquece IV: f(4) = 64 − 128 + 48 = −16, verdadeira."
+   },
+   "armadilha": "Achar que, porque f(0) = f(2) = f(6) = 0 e f é negativa entre 2 e 6, ela desce em todo [0, 6]: no começo ela sobe até x ≈ 0,90.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmações sobre f(x) = det M são verdadeiras.",
+    "chave": "Laplace pela linha com dois zeros dá f(x) = x³ − 8x² + 12x; a derivada mostra onde sobe e onde desce.",
+    "cuidado": "Teste o começo do intervalo [0, 6]: f(0) = 0 e f(1) = 5, logo não é decrescente ali."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sinal da derivada sem fórmula",
+    "ideia": "f(0) = 0, f(1) = 5, f(2) = 0, f(4) = −16, f(5) = −15, f(6) = 0, f(7) = 35: a tabela já mostra sobe, desce, sobe."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(x) = (−x + 2) · (−x·x − x·(−6))",
+    "nota": "Laplace na 1ª linha"
+   },
+   {
+    "linha": "f(x) = (−x + 2)(−x² + 6x)",
+    "nota": "menor 2×2 calculado"
+   },
+   {
+    "linha": "f(x) = x³ − 8x² + 12x",
+    "nota": "produto expandido"
+   },
+   {
+    "linha": "f(1) = 5 | f(4) = −16",
+    "nota": "III e IV verdadeiras"
+   },
+   {
+    "linha": "f'(x) = 3x² − 16x + 12 = 0 → x ≈ 0,90 ou x ≈ 4,43",
+    "nota": "sobe, desce e volta a subir: V verdadeira"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
+ },
+ "Pa730a175": {
+  "n": "34",
+  "conceito": "Julgar afirmações sobre equações algébricas: fatoração, raízes conjugadas com Girard, grau mínimo e raiz real de cúbica.",
+  "equivocos": {
+   "A": "M16.2:esqueceu-a-raiz-conjugada",
+   "B": "M16.2:esqueceu-a-raiz-conjugada",
+   "D": "M16.2:esqueceu-a-raiz-conjugada",
+   "E": "M16.2:esqueceu-a-raiz-conjugada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada afirmação usa uma ideia: I pede fatoração por agrupamento; II usa que a conjugada também é raiz e as relações de Girard; III lembra que, com coeficientes reais, raiz complexa vem com a conjugada; IV diz que toda cúbica real tem raiz real.",
+    "formulas": [
+     "coeficientes reais: se z é raiz, z̄ também é",
+     "x³ + mx² + nx + m = 0: soma = −m | produto = −m"
+    ],
+    "simbolos": [
+     [
+      "Girard",
+      "relações entre os coeficientes e as raízes de um polinômio"
+     ],
+     [
+      "s",
+      "soma das raízes"
+     ],
+     [
+      "z̄",
+      "conjugado de z"
+     ],
+     [
+      "grau",
+      "maior expoente do polinômio, igual ao número de raízes contadas com multiplicidade"
+     ]
+    ]
+   },
+   "pista": "Teste primeiro a III: conte quantas raízes a equação precisa ter de fato, com as conjugadas.",
+   "passos": [
+    {
+     "faz": "Fatore a equação da I",
+     "conta": "x³ + 5x² − 5x − 25 = x²(x + 5) − 5(x + 5) = (x + 5)(x² − 5) → x = −5",
+     "porque": "−5 é inteiro negativo, portanto racional negativo: I é correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use Girard na II",
+     "conta": "raízes 3 + 2i, 3 − 2i, r: soma 6 + r = −m | produto 13r = −m → 6 + r = 13r → r = 6/12 = 1/2",
+     "porque": "Coeficientes reais trazem a conjugada; (3 + 2i)(3 − 2i) = 9 + 4 = 13. Soma e produto valem os dois −m: iguale. II é correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as raízes da III",
+     "conta": "−5, 2, −1 − i, 3i + conjugadas −1 + i, −3i → 6 raízes",
+     "porque": "Com coeficientes reais, as duas raízes complexas trazem as conjugadas: o grau mínimo é 6, não 4. III é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Avalie a IV",
+     "conta": "grau 3 (ímpar) e coeficientes reais → ao menos uma raiz real",
+     "porque": "As raízes não reais vêm em pares; de três raízes, pelo menos uma sobra real. IV é correta.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Junte as corretas",
+     "conta": "I, II e IV corretas → alternativa C",
+     "porque": "Só a III é falsa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — I, II e IV",
+   "checagem": "Na II, com r = 1/2: m = −13/2; a soma dá 3 + 3 + 1/2 = 13/2 = −m. Confere. Na III, só a alternativa C não contém a III; as outras quatro caem juntas.",
+   "erradas": {
+    "A": "III e IV deixa de fora I e II, que são corretas (−5 é raiz da I e 1/2 sai de Girard na II), e inclui a III, falsa: o grau mínimo é 6.",
+    "B": "II, III e IV inclui a III, falsa (com as conjugadas −1 + i e −3i são 6 raízes), e deixa de fora a I, correta: x = −5 é raiz.",
+    "D": "II e III inclui a III, falsa (grau mínimo 6), e deixa de fora I e IV, corretas.",
+    "E": "Todas inclui a III, que esquece as conjugadas de −1 − i e de 3i: o grau mínimo é 6, não 4."
+   },
+   "armadilha": "Na III, contar só as quatro raízes dadas e esquecer que, com coeficientes reais, cada raiz complexa traz a sua conjugada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das quatro afirmações sobre equações algébricas são corretas.",
+    "chave": "Conjugadas também são raízes: isso dá r = 1/2 na II e grau mínimo 6 na III.",
+    "cuidado": "Com coeficientes reais, raiz não real nunca aparece sozinha."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "basta ver que a III é falsa (6 raízes): só a alternativa C não a contém"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x + 5)(x² − 5) = 0 → x = −5",
+    "nota": "I correta"
+   },
+   {
+    "linha": "6 + r = −m | 13r = −m → r = 1/2",
+    "nota": "II correta (Girard)"
+   },
+   {
+    "linha": "−5, 2, −1 ± i, ±3i → grau 6",
+    "nota": "III falsa"
+   },
+   {
+    "linha": "grau 3 com coeficientes reais → raiz real",
+    "nota": "IV correta: alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
+ },
+ "P6a5a84ee": {
+  "n": "37",
+  "conceito": "Resto da divisão de um polinômio por outro de grau 2 usando os valores nas raízes do divisor, e cálculo de determinante 2 × 2.",
+  "equivocos": {
+   "B": "M16.1:resto-pelos-valores-nas-raizes",
+   "C": "M16.1:resto-pelos-valores-nas-raizes",
+   "D": "M15.2:determinante-com-ordem-trocada",
+   "E": "M16.1:grau-do-resto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O divisor x² − x tem grau 2, então o resto tem grau no máximo 1: R(x) = ax + b. Nas raízes do divisor (0 e 1), P e R valem o mesmo. Depois é só calcular os determinantes das alternativas e ver qual dá esse resto.",
+    "formulas": [
+     "P(x) = D(x)·Q(x) + R(x), com grau de R menor que o de D",
+     "|p q; r s| = p·s − q·r"
+    ],
+    "simbolos": [
+     [
+      "R(x)",
+      "resto da divisão"
+     ],
+     [
+      "Q(x)",
+      "quociente"
+     ],
+     [
+      "|p q; r s|",
+      "determinante 2 × 2: diagonal principal menos diagonal secundária"
+     ]
+    ]
+   },
+   "pista": "Ache as raízes do divisor e calcule P nelas.",
+   "passos": [
+    {
+     "faz": "Escreva a forma do resto",
+     "conta": "D(x) = x² − x = x(x − 1) → R(x) = ax + b",
+     "porque": "Resto tem grau menor que o do divisor, que é 2.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use x = 0",
+     "conta": "P(0) = 0 − 0 + 1 = 1 → R(0) = b = 1",
+     "porque": "Em x = 0 o divisor zera, então P(0) = R(0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use x = 1",
+     "conta": "P(1) = 1 − 2 + 1 = 0 → a + 1 = 0 → a = −1 → R(x) = −x + 1",
+     "porque": "Em x = 1 o divisor também zera; o 1 passa subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o determinante da A",
+     "conta": "|x −1; 1 −1| = x·(−1) − (−1)·1 = −x + 1",
+     "porque": "Diagonal principal menos secundária; é o resto encontrado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "R(x) = −x + 1 → alternativa A",
+     "porque": "Só a A dá exatamente −x + 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — o determinante |x −1; 1 −1|, que vale 1 − x",
+   "checagem": "Faça a divisão longa: x⁴ − 2x² + 1 = (x² − x)(x² + x − 1) + (1 − x). Expanda: (x² − x)(x² + x − 1) = x⁴ − 2x² + x; somando 1 − x volta x⁴ − 2x² + 1.",
+   "erradas": {
+    "B": "B não confere: |2 −3; −x 1| = 2·1 − (−3)(−x) = 2 − 3x, e R(1) daria −1, mas P(1) = 0.",
+    "C": "C não confere: |−2 3; −x −1| = (−2)(−1) − 3(−x) = 2 + 3x, e R(0) daria 2, mas P(0) = 1.",
+    "D": "D sai do resto com o sinal trocado: |x 1; 1 1| = x − 1, o oposto de 1 − x; em x = 0 daria −1, mas P(0) = 1.",
+    "E": "E não confere: |−x 1; 1 x| = −x² − 1 tem grau 2, e o resto da divisão por um polinômio de grau 2 tem grau no máximo 1."
+   },
+   "armadilha": "Trocar a ordem da subtração no determinante (secundária menos principal) e chegar a x − 1 no lugar de 1 − x.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O resto da divisão de x⁴ − 2x² + 1 por x² − x, escrito como determinante.",
+    "chave": "Resto ax + b com P(0) = b = 1 e P(1) = a + b = 0: R(x) = 1 − x.",
+    "cuidado": "Determinante 2 × 2 é principal menos secundária."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "divisão longa",
+    "ideia": "x⁴ − 2x² + 1 = (x² − x)(x² + x − 1) + (1 − x)"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R(x) = ax + b",
+    "nota": "resto de grau no máximo 1"
+   },
+   {
+    "linha": "P(0) = 1 → b = 1",
+    "nota": "x = 0 zera o divisor"
+   },
+   {
+    "linha": "P(1) = 0 → a + 1 = 0 → a = −1",
+    "nota": "x = 1 zera o divisor"
+   },
+   {
+    "linha": "R(x) = −x + 1",
+    "nota": "resto"
+   },
+   {
+    "linha": "|x −1; 1 −1| = −x + 1",
+    "nota": "determinante da alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
+ },
+ "P04511c00": {
+  "n": "29",
+  "conceito": "Achar quatro algarismos em PA a partir de duas equações e calcular uma expressão com eles.",
+  "equivocos": {
+   "A": "M17.1:expressao-errada",
+   "B": "M17.1:erro-de-calculo-na-expressao",
+   "C": "M17.1:erro-de-calculo-na-expressao",
+   "E": "M17.1:erro-na-substituicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se X, Y, Z e W estão em PA de razão r, todos se escrevem com X e r: Y = X + r, Z = X + 2r, W = X + 3r. Assim as condições I e II viram duas equações com duas incógnitas. A condição III não é necessária para achar os números; ela serve para conferir.",
+    "formulas": [
+     "PA: Y = X + r, Z = X + 2r, W = X + 3r"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais a razão"
+     ],
+     [
+      "r",
+      "razão da PA"
+     ],
+     [
+      "WZY",
+      "número de três algarismos W, Z e Y, nessa ordem"
+     ]
+    ]
+   },
+   "pista": "Escreva Z e W em função de X e da razão antes de usar as condições.",
+   "passos": [
+    {
+     "faz": "Use a condição II para achar a razão",
+     "conta": "Z − X = 4 → (X + 2r) − X = 4 → 2r = 4 → r = 2",
+     "porque": "Z está duas razões à frente de X, então a diferença é 2r.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a condição I para achar X",
+     "conta": "X + W = 12 → X + (X + 3·2) = 12 → 2X + 6 = 12 → 2X = 6 → X = 3",
+     "porque": "W é X mais três razões. O 6 passa subtraindo e o 2 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva os quatro algarismos",
+     "conta": "X = 3 | Y = 5 | Z = 7 | W = 9",
+     "porque": "Basta somar a razão 2 a cada termo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a expressão pedida",
+     "conta": "Z + 2W − Y = 7 + 2·9 − 5 → 7 + 18 − 5 = 20",
+     "porque": "Substitua e faça primeiro a multiplicação.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "Z + 2W − Y = 20 → alternativa D",
+     "porque": "O valor pedido é o da expressão, não o número N.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 20",
+   "checagem": "Teste a condição III, que não foi usada: WZY − YZW = 975 − 579 = 396. Bate com o enunciado.",
+   "erradas": {
+    "A": "A não confere: com X = 3, Y = 5, Z = 7 e W = 9, a expressão vale 7 + 18 − 5 = 20, não 6.",
+    "B": "B não confere: com X = 3, Y = 5, Z = 7, W = 9 (confirmados pela III: 975 − 579 = 396), Z + 2W − Y = 7 + 18 − 5 = 20, não 8.",
+    "C": "C não confere: com X = 3, Y = 5, Z = 7, W = 9 (confirmados pela III: 975 − 579 = 396), Z + 2W − Y = 7 + 18 − 5 = 20, não 14.",
+    "E": "E não confere: 22 exigiria Z + 2W − Y = 22, mas com os algarismos 3, 5, 7 e 9 dá 20; III confirma esses algarismos."
+   },
+   "armadilha": "Ler a condição II como a razão: Z − X é DUAS razões (2r = 4), então r = 2, e não 4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de Z + 2W − Y para os algarismos de N.",
+    "chave": "Escreva tudo em X e r: II dá r = 2 e I dá X = 3; os algarismos são 3, 5, 7 e 9.",
+    "cuidado": "Z − X vale 2r, não r; use III só para conferir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela III",
+    "ideia": "975 − 579 = 396 confirma a PA 3, 5, 7, 9; dá para testar os pares com X + W = 12 direto"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Z − X = 2r = 4",
+    "nota": "condição II"
+   },
+   {
+    "linha": "r = 2",
+    "nota": "o 2 passa dividindo"
+   },
+   {
+    "linha": "2X + 6 = 12",
+    "nota": "condição I com W = X + 6"
+   },
+   {
+    "linha": "2X = 6 → X = 3",
+    "nota": "o 6 passa subtraindo"
+   },
+   {
+    "linha": "N = 3579",
+    "nota": "algarismos 3, 5, 7, 9"
+   },
+   {
+    "linha": "7 + 2·9 − 5 = 20",
+    "nota": "expressão pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0073"
+  }
+ }
+}

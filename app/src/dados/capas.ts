@@ -1,0 +1,6 @@
+// Gerado por scripts/capas.py a partir de docs/capas/<matéria>/ (comando 32 do dono).
+// Caixa ocupada pelos objetos na capa de referência (2172 x 724, 3:1), em frações: esquerda, topo, direita, base.
+export const CAIXA_CAPA: Record<string, readonly [number, number, number, number]> = {"bio": [0.6618, 0.0197, 0.9586, 0.9507], "fis": [0.5612, 0.1815, 0.9592, 0.8738], "fs": [0.5487, 0.0355, 0.952, 0.9191], "geo": [0.5803, 0.0256, 0.9908, 0.9901], "his": [0.6375, 0.0296, 0.9539, 0.9408], "ing": [0.5809, 0.0592, 0.9842, 0.9546], "mat": [0.5842, 0.0335, 0.9526, 0.9132], "por": [0.552, 0.0848, 0.9704, 0.9014], "qui": [0.5914, 0.0651, 0.9586, 0.9172]};
+// Arte do cartão "Treino geral de <matéria>" (docs/capas/treino-geral/<m>/): matérias que têm a arte, com
+// largura e altura do WebP (capas/tg-<m>-claro.webp e tg-<m>-escuro.webp). Matéria fora daqui: arte da matéria.
+export const ARTE_TREINO: Record<string, readonly [number, number]> = {"bio": [680, 586], "fis": [680, 534], "fs": [680, 503], "geo": [680, 488], "his": [680, 509], "ing": [680, 467], "mat": [680, 681], "por": [680, 529], "qui": [680, 519]};

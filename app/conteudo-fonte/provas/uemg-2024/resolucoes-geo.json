@@ -1,0 +1,552 @@
+{
+ "Pf6a0fc35": {
+  "n": "31",
+  "conceito": "Encadear três viagens com duração e diferença de fuso (Rio −3, Berlim +1, Nova Iorque −5), contando os dias de permanência.",
+  "equivocos": {
+   "A": "G01.3:esqueceu-o-fuso-positivo-de-berlim",
+   "B": "G01.3:diferenca-de-fuso-errada",
+   "C": "G01.3:so-somou-a-duracao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São três viagens, e cada uma tem as duas contas de sempre: a duração soma; o fuso soma indo para leste e subtrai indo para oeste. Pela faixa do mapa, Rio de Janeiro e São Paulo estão no fuso −3, Berlim no +1 e Nova Iorque no −5. Os dias contam a partir do dia de chegada, como o enunciado manda.",
+    "formulas": [
+     "chegada = partida + viagem ± diferença de fuso",
+     "Rio → Berlim: 3 + 1 = 4 h (leste, soma)",
+     "Berlim → Nova Iorque: 1 + 5 = 6 h (oeste, subtrai)",
+     "Nova Iorque → São Paulo: 5 − 3 = 2 h (leste, soma)"
+    ],
+    "simbolos": [
+     [
+      "UTC",
+      "hora de Greenwich; à esquerda dela no mapa os fusos estão atrasados, à direita adiantados"
+     ],
+     [
+      "fuso horário",
+      "faixa em que vale a mesma hora oficial"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra em que dia ele chega a Berlim; só então conte os três dias e siga para a próxima viagem.",
+   "passos": [
+    {
+     "faz": "Localize os fusos no mapa",
+     "conta": "Rio/São Paulo: 3 a oeste (−3) | Berlim: 1 a leste (+1) | Nova Iorque: 5 a oeste (−5)",
+     "porque": "As setas do mapa marcam a faixa de cada cidade; à esquerda do UTC os fusos são atrasados.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a chegada a Berlim",
+     "conta": "terça 10h + 12h = 22h (Rio) → 22h + 4h = 26h → quarta, 2h (Berlim)",
+     "porque": "Berlim está 4 h à frente do Rio. A chegada é na quarta, e esse é o 1º dia de permanência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chegada a Nova Iorque",
+     "conta": "quarta, quinta, sexta → sai sexta 10h | 10h + 10h = 20h (Berlim) → 20h − 6h = 14h de sexta",
+     "porque": "No 3º dia (sexta) ele parte. Nova Iorque está 6 h atrás de Berlim (+1 até −5).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chegada a São Paulo",
+     "conta": "sexta, sábado, domingo, segunda → sai segunda 10h | 10h + 9h = 19h (NY) → 19h + 2h = 21h de segunda",
+     "porque": "No 4º dia (segunda) ele parte. São Paulo está 2 h à frente de Nova Iorque.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "14h de sexta e 21h de segunda = alternativa D",
+     "porque": "Os dois horários batem só na D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — às 14h de sexta-feira em Nova Iorque e às 21h de segunda-feira em São Paulo.",
+   "checagem": "Refaça a última chegada por UTC: segunda 10h em Nova Iorque (−5) = 15h UTC; mais 9 h = 24h UTC, ou seja, 0h de terça; São Paulo (−3): 0h − 3h = 21h de segunda.",
+   "erradas": {
+    "A": "A erra as duas: 15h sai de descontar só 5 h (o número do fuso de Nova Iorque), 20h − 5h, esquecendo o +1 de Berlim; e 18h de segunda não confere, pois a hora em São Paulo é 19h + 2h = 21h.",
+    "B": "B acerta Nova Iorque (14h), mas 20h de segunda supõe só 1 h entre Nova Iorque (−5) e São Paulo (−3), que estão separadas por 2 h.",
+    "C": "C erra as duas: 15h sai de 20h − 5h, esquecendo o +1 de Berlim; e 19h é só a soma do voo (10h + 9h), a hora de Nova Iorque, sem o fuso."
+   },
+   "armadilha": "Calcular a diferença Berlim–Nova Iorque só com o número 5, esquecendo que Berlim está 1 h à frente de Greenwich: são 6 h.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As horas locais de desembarque em Nova Iorque e em São Paulo.",
+    "chave": "Cada trecho: partida + viagem ± fuso; Berlim–NY = 6 h, NY–SP = 2 h.",
+    "cuidado": "Fusos em lados opostos de Greenwich se somam (+1 e −5 dão 6 h)."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0044"
+  }
+ },
+ "P48542c09": {
+  "n": "35",
+  "conceito": "Julgar afirmações sobre tipos de rocha e estruturas geológicas do mundo e do Brasil.",
+  "equivocos": {
+   "A": "G02.3:trocou-ignea-e-metamorfica",
+   "B": "G02.3:achou-que-o-brasil-tem-dobramentos-modernos",
+   "D": "G02.3:trocou-ignea-e-metamorfica"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Três tipos de rocha: ígneas (magmáticas) vêm do resfriamento do magma; metamórficas vêm da transformação de outras rochas por pressão e temperatura; sedimentares vêm da acumulação de sedimentos. As estruturas geológicas são três: escudos cristalinos, bacias sedimentares e dobramentos modernos. O Brasil fica no interior da placa Sul-Americana e não tem dobramentos modernos.",
+    "formulas": [
+     "ígnea = magma resfriado; metamórfica = rocha transformada por pressão e temperatura",
+     "sedimentar = sedimentos acumulados (de vários tipos e ambientes)",
+     "Brasil = escudos cristalinos + bacias sedimentares; sem dobramentos modernos"
+    ],
+    "simbolos": [
+     [
+      "escudo cristalino",
+      "área de rochas ígneas e metamórficas muito antigas"
+     ],
+     [
+      "bacia sedimentar",
+      "depressão preenchida por camadas de sedimentos"
+     ],
+     [
+      "dobramento moderno",
+      "cadeia montanhosa recente, formada pelo choque de placas (Andes, Himalaia)"
+     ]
+    ]
+   },
+   "pista": "Na primeira afirmação, confira se a definição de cada rocha está ligada ao nome certo.",
+   "passos": [
+    {
+     "faz": "Julgue a primeira afirmação",
+     "conta": "\"rochas ígneas (resultantes da alteração de outras rochas devido à pressão e temperatura)\"",
+     "porque": "Falsa: as definições de ígnea e metamórfica estão trocadas, e sedimentos não são \"de um tipo exclusivo\" nem só da água.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Julgue a segunda afirmação",
+     "conta": "\"Dobramentos Modernos (como a Cordilheira do Himalaia), Escudos Cristalinos [...] e Bacias Sedimentares (como a Bacia do Parnaíba)\"",
+     "porque": "Verdadeira: são as três grandes estruturas, e os exemplos estão certos.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Julgue a terceira afirmação",
+     "conta": "\"No Brasil é possível encontrar Dobramentos Modernos\"",
+     "porque": "Falsa: o Brasil está longe das bordas de placas e só tem escudos cristalinos e bacias sedimentares. A própria justificativa da frase não cita dobramento nenhum.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "F – V – F = alternativa C",
+     "porque": "A sequência bate só com a C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — F – V – F.",
+   "checagem": "Pense nas montanhas mais altas do Brasil, como o Pico da Neblina: são antigas e muito desgastadas, de escudo cristalino, sem a altitude de cadeias jovens como os Andes. Isso confirma a terceira como falsa.",
+   "erradas": {
+    "A": "A marca a primeira como verdadeira, mas ela troca as definições de ígnea e metamórfica; e marca a segunda como falsa, embora ela esteja certa.",
+    "B": "B acerta as duas primeiras, mas aceita dobramentos modernos no Brasil, que não existem: o país só tem escudos e bacias.",
+    "D": "D erra as três: aceita as rochas trocadas, recusa as estruturas corretas e aceita dobramentos modernos no Brasil."
+   },
+   "armadilha": "Ler a primeira afirmação pelos nomes certos das rochas e não notar que as definições estão trocadas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Julgar três afirmações sobre rochas e estruturas geológicas.",
+    "chave": "Ígnea vem do magma, metamórfica da transformação; o Brasil não tem dobramentos modernos.",
+    "cuidado": "Confira se a definição está ao lado do nome certo."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0045"
+  }
+ },
+ "Pe1a92a56": {
+  "n": "33",
+  "conceito": "Reconhecer efeitos da globalização sobre a produção (automação) e sobre o trabalho (desemprego).",
+  "equivocos": {
+   "A": "G10.1:achou-que-a-globalizacao-ampliou-direitos",
+   "C": "G10.1:inverteu-o-sentido-dos-fluxos",
+   "D": "G10.1:confundiu-setor-primario-com-terciario"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Milton Santos critica a globalização atual e imagina \"um outro tipo\", mais solidário. O trecho dá a pista do lado ruim: o processo competitivo \"todos os dias reduz a mão de obra\". A questão pede duas consequências, na ordem: uma para o setor produtivo e outra para o mundo do trabalho. Na globalização, a produção incorpora robôs, informática e automação, e isso diminui os postos de trabalho.",
+    "formulas": [
+     "setor produtivo: automação, robótica, informatização",
+     "mundo do trabalho: menos postos, desemprego estrutural, flexibilização",
+     "\"respectivamente\": 1ª parte = produção; 2ª = trabalho"
+    ],
+    "simbolos": [
+     [
+      "globalização",
+      "integração mundial dos mercados, da produção e das informações, apoiada na técnica"
+     ],
+     [
+      "automação",
+      "uso de máquinas e sistemas que fazem sozinhos tarefas antes feitas por pessoas"
+     ],
+     [
+      "desemprego estrutural",
+      "perda de vagas causada pela mudança técnica, que não volta com o crescimento econômico"
+     ],
+     [
+      "setor primário",
+      "agricultura, pecuária, extrativismo"
+     ],
+     [
+      "setor terciário",
+      "comércio e serviços"
+     ]
+    ]
+   },
+   "pista": "Releia a última frase sobre o processo competitivo e veja o que ele faz com a mão de obra.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"uma consequência para o setor produtivo e outra para o mundo do trabalho\"",
+     "porque": "São duas partes, nessa ordem. A alternativa certa tem de acertar as duas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache a pista no texto",
+     "conta": "\"o processo competitivo, que todos os dias reduz a mão de obra\"",
+     "porque": "Milton Santos aponta que a competição da globalização corta trabalhadores, o que indica desemprego.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ligue ao processo técnico",
+     "conta": "competição global → automação da produção → menos trabalhadores por fábrica → desemprego",
+     "porque": "As empresas investem em técnica para baixar custos e competir; a máquina substitui parte do trabalho humano.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine as que invertem o processo",
+     "conta": "A: legislação \"ampliada\" | C: fluxos \"restritos\" e sindicatos \"ampliados\" | D: serviços no setor \"primário\"",
+     "porque": "A globalização amplia os fluxos e flexibiliza o trabalho; e serviços pertencem ao setor terciário.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "produção: automatização | trabalho: desemprego → B",
+     "porque": "A B acerta as duas partes, na ordem pedida, e bate com o \"reduz a mão de obra\" do texto.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — automatização da produção fabril e aumento do desemprego.",
+   "checagem": "Leia o trecho pelo avesso: o \"mundo solidário\" de Milton Santos \"produzirá muitos empregos\". Se o mundo desejado cria empregos, o atual os corta, como diz a B.",
+   "erradas": {
+    "A": "Inverte: a globalização vem acompanhada de flexibilização das leis trabalhistas, não de uma legislação ampliada e unificada; e os incentivos regionais (guerra fiscal) seguem existindo.",
+    "C": "Inverte as duas partes: a globalização amplia os fluxos de mercadorias, e o trabalho flexível e terceirizado enfraquece os sindicatos.",
+    "D": "Não confere: serviços são o setor terciário, não o primário; e o texto fala em redução da mão de obra, não da jornada."
+   },
+   "armadilha": "Escolher a parte esperançosa do texto (um mundo com mais emprego) como se descrevesse a globalização atual.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Uma consequência da globalização para a produção e outra para o trabalho.",
+    "chave": "Competição global leva à automação, que reduz a mão de obra e aumenta o desemprego.",
+    "cuidado": "Separe a crítica de Milton Santos (o mundo atual) do mundo que ele deseja."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0052"
+  }
+ },
+ "P3df148dd": {
+  "n": "32",
+  "conceito": "Gestão sustentável de recursos minerais e energéticos: equilíbrio entre exploração, eficiência, renováveis e reciclagem.",
+  "equivocos": {
+   "A": "G09.4:ignorou-custo-ambiental",
+   "B": "G09.4:renovavel-resolve-tudo",
+   "D": "G09.4:otimismo-tecnologico"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Desenvolvimento sustentável é atender às necessidades de hoje sem comprometer as gerações futuras. Para recursos minerais e energéticos, isso significa explorar com responsabilidade, gastar menos com tecnologia mais eficiente, ampliar as fontes renováveis e reciclar. Alternativas com palavras absolutas (\"a qualquer custo\", \"elimina completamente\", \"quaisquer problemas\") costumam estar erradas.",
+    "formulas": [
+     "sustentável = exploração responsável + eficiência + renováveis + reciclagem",
+     "palavra absoluta → desconfie"
+    ],
+    "simbolos": [
+     [
+      "recurso não renovável",
+      "recurso que não se repõe na escala humana, como petróleo e minérios"
+     ],
+     [
+      "eficiência energética",
+      "fazer o mesmo trabalho gastando menos energia"
+     ],
+     [
+      "reciclagem",
+      "reaproveitar material já usado, reduzindo nova extração"
+     ]
+    ]
+   },
+   "pista": "Procure as palavras absolutas nas alternativas e veja qual delas descreve um equilíbrio.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "Comando: \"qual das seguintes afirmações é correta [...] considerando desenvolvimento e sustentabilidade ambiental?\"",
+     "porque": "A resposta precisa conciliar as duas coisas: atender à demanda e proteger o ambiente.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Elimine as que ignoram o ambiente",
+     "conta": "A: \"a qualquer custo\" | D: \"encontrarão formas de resolver quaisquer problemas ambientais\"",
+     "porque": "A despreza as consequências ambientais; D adia o problema apostando numa solução futura garantida. Nenhuma é sustentável.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Elimine a que exagera",
+     "conta": "B: \"elimina completamente a necessidade\" | \"suprimento inesgotável de recursos\"",
+     "porque": "Painéis solares e turbinas eólicas também usam minerais; as renováveis não eliminam a mineração nem tornam os recursos inesgotáveis.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "C: exploração responsável + tecnologia eficiente + renováveis + conservação e reciclagem",
+     "porque": "É a única que descreve equilíbrio, que é o sentido de desenvolvimento sustentável.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a gestão sustentável equilibra exploração responsável, tecnologia eficiente, fontes renováveis, conservação e reciclagem.",
+   "checagem": "Conte as palavras absolutas: A, B e D têm cada uma pelo menos uma (\"a qualquer custo\", \"completamente\", \"quaisquer\"); C é a única sem absolutos e com várias medidas combinadas.",
+   "erradas": {
+    "A": "A não confere: maximizar a exploração \"a qualquer custo\" contraria a sustentabilidade, que exige levar em conta as consequências ambientais.",
+    "B": "B não confere: a transição para renováveis reduz, mas não elimina, a exploração de recursos não renováveis; equipamentos solares e eólicos dependem de minerais.",
+    "D": "D não confere: confiar que a tecnologia resolverá quaisquer danos futuros não é gestão sustentável; é adiar o problema."
+   },
+   "armadilha": "Achar que as renováveis resolvem tudo sozinhas (B), quando a sustentabilidade exige um conjunto de medidas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A afirmação correta sobre gestão sustentável de recursos minerais e energéticos.",
+    "chave": "Sustentabilidade é equilíbrio: exploração responsável, eficiência, renováveis e reciclagem.",
+    "cuidado": "Desconfie de \"a qualquer custo\", \"completamente\" e \"quaisquer\"."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-p2-0001"
+  }
+ },
+ "P340eb7b9": {
+  "n": "36",
+  "conceito": "Entender a origem da separação entre China e Taiwan, em 1949, e o status internacional da ilha.",
+  "equivocos": {
+   "B": "G10.4:taiwan-reconhecida-por-todos",
+   "C": "G10.4:taiwan-sem-peso-economico",
+   "D": "G10.4:separacao-china-taiwan-datada-em-1919"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A separação vem da guerra civil chinesa entre nacionalistas e comunistas. Em 1949 os comunistas venceram e proclamaram a República Popular da China em Pequim; os nacionalistas derrotados se refugiaram em Taiwan e mantiveram lá o governo da República da China. Desde então Pequim considera a ilha uma província sua, e poucos países reconhecem Taiwan como Estado.",
+    "formulas": [
+     "1949: fim da guerra civil → República Popular da China (Pequim) × governo nacionalista em Taiwan",
+     "Pequim trata Taiwan como parte do seu território"
+    ],
+    "simbolos": [
+     [
+      "guerra civil chinesa",
+      "conflito entre nacionalistas e comunistas pelo controle da China, vencido pelos comunistas em 1949"
+     ],
+     [
+      "Kuomintang",
+      "partido nacionalista chinês que levou o governo para Taiwan"
+     ],
+     [
+      "dinastia Qing",
+      "última dinastia imperial da China, derrubada em 1911–1912"
+     ],
+     [
+      "Estado soberano",
+      "país reconhecido como independente pelos outros"
+     ]
+    ]
+   },
+   "pista": "Antes de olhar os detalhes, situe a data: a separação aconteceu depois de qual guerra mundial?",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"A respeito do conflito entre China e Taiwan, assinale a alternativa correta.\"",
+     "porque": "Procure a única alternativa com origem, data e situação atual corretas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Situe a origem da separação",
+     "conta": "1949: comunistas vencem a guerra civil; nacionalistas levam o governo para Taiwan",
+     "porque": "A separação é de 1949, depois da Segunda Guerra, e nasce da guerra civil. Pequim nunca aceitou a perda da ilha.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine as que erram data ou status",
+     "conta": "B: poucos países reconhecem Taiwan | C: Taiwan pesa muito na economia | D: Qing caiu em 1911–1912, separação em 1949",
+     "porque": "Na ONU, a China é representada por Pequim, e só uma minoria de países reconhece Taiwan. A ilha é grande produtora de chips. E a D erra a guerra e a data.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "governo separado após a guerra civil de 1949, ilha reivindicada pela China = alternativa A",
+     "porque": "É a única que acerta a data, a causa e a posição de Pequim.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — Taiwan formou um governo separado da China em 1949, depois da Segunda Guerra e de uma guerra civil, mas a China ainda a considera parte do seu território.",
+   "checagem": "Confira pelo trecho de apoio: as \"operações militares conjuntas ao redor da ilha\" feitas por Pequim só fazem sentido porque a China reivindica Taiwan, como diz a alternativa A.",
+   "erradas": {
+    "B": "B não confere: desde 1971 a China na ONU é representada por Pequim, e só uma pequena minoria de países reconhece Taiwan como Estado.",
+    "C": "C não confere: Taiwan é uma economia industrial forte, grande produtora mundial de semicondutores, muito ligada à China pelo comércio.",
+    "D": "D erra a data e a causa: a dinastia Qing caiu em 1911–1912, e a separação veio em 1949, com o fim da guerra civil, depois da Segunda Guerra."
+   },
+   "armadilha": "Trocar a guerra e a data: a separação é de 1949, depois da Segunda Guerra, não do fim da Primeira.",
+   "alerta": "Taiwan nunca declarou independência formal e mantém o nome oficial República da China; o \"governo independente\" da alternativa A deve ser lido como governo separado do de Pequim, que é a leitura da banca.",
+   "essencial": {
+    "pede": "A afirmação correta sobre o conflito China × Taiwan.",
+    "chave": "Em 1949 os nacionalistas derrotados na guerra civil foram para Taiwan; Pequim reivindica a ilha.",
+    "cuidado": "Separação de 1949, após a Segunda Guerra; poucos países reconhecem Taiwan."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-p2-0003"
+  }
+ },
+ "P49381679": {
+  "n": "34",
+  "conceito": "Interpretar o conceito de espaço geográfico de Milton Santos como natureza transformada pela ação humana.",
+  "equivocos": {
+   "B": "G13.1:confundiu-espaco-com-funcao-industrial",
+   "C": "G13.1:extrapolou-para-politica",
+   "D": "G13.1:extrapolou-para-economia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para Milton Santos, no trecho citado, o espaço geográfico é um conjunto de sistemas de objetos e sistemas de ações. O trecho mostra a natureza selvagem sendo substituída, ao longo da história, por objetos fabricados, técnicos e cibernéticos. Ou seja: o espaço é a natureza transformada pelo trabalho humano. As erradas puxam para economia ou política, que o trecho não trata.",
+    "formulas": [
+     "espaço geográfico = sistemas de objetos + sistemas de ações",
+     "natureza selvagem → objetos fabricados → objetos técnicos → objetos cibernéticos"
+    ],
+    "simbolos": [
+     [
+      "sistema de objetos",
+      "as coisas que existem no espaço, naturais ou feitas pelo ser humano"
+     ],
+     [
+      "sistema de ações",
+      "o que as pessoas fazem, o trabalho e as decisões que transformam o espaço"
+     ],
+     [
+      "objeto técnico",
+      "objeto produzido com técnica, como máquinas e infraestruturas"
+     ],
+     [
+      "cibernético",
+      "ligado à informática e ao controle automático"
+     ]
+    ]
+   },
+   "pista": "Siga, no trecho, o que acontece com a natureza ao longo da história.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"considerando o texto, o conceito de espaço geográfico está relacionado a\"",
+     "porque": "A resposta tem de sair do trecho de Milton Santos, não de outra discussão sobre economia.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize a transformação descrita",
+     "conta": "\"objetos naturais, que ao longo da história vão sendo substituídos por objetos fabricados\"",
+     "porque": "O trecho descreve a natureza sendo trocada por objetos feitos pelo ser humano, cada vez mais técnicos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ligue objetos a ações",
+     "conta": "\"sistemas de objetos e sistemas de ações\"",
+     "porque": "Os objetos fabricados vêm das ações humanas de produção. Juntos, eles fazem do espaço a natureza transformada pelo trabalho.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine as que fogem do trecho",
+     "conta": "B: produtos de baixo valor agregado | C: papel menor do Estado | D: sistema liberal de produção",
+     "porque": "Nenhuma aparece no trecho. B ainda contraria o texto: a indústria transforma bens primários em produtos de maior, não menor, valor agregado.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "natureza transformada pela produção humana = alternativa A",
+     "porque": "Só a A resume a ideia do trecho.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — um processo de transformação da natureza decorrente das atividades de produção realizadas pelos seres humanos.",
+   "checagem": "Leia o final do trecho: a natureza artificial tende \"a funcionar como uma máquina\". Natureza que vira máquina é natureza transformada pela técnica humana, a mesma ideia da A.",
+   "erradas": {
+    "B": "B não está no trecho e erra o conceito: transformar bens primários em produtos industriais aumenta o valor agregado, não o reduz.",
+    "C": "C fala do papel do Estado, tema que o trecho não aborda; Milton Santos ali trata de objetos e ações que transformam a natureza.",
+    "D": "D fala de sistema liberal de produção, um modelo econômico que o trecho não menciona."
+   },
+   "armadilha": "Escolher uma alternativa sobre economia ou política só porque o autor é crítico do capitalismo, em vez de ler o que o trecho diz.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A que se relaciona o espaço geográfico no trecho de Milton Santos.",
+    "chave": "O espaço é a natureza transformada pela ação humana, por meio de objetos técnicos cada vez mais complexos.",
+    "cuidado": "Fique no trecho; Estado e liberalismo não aparecem nele."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-p2-0005"
+  }
+ }
+}

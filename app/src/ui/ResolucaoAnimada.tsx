@@ -1,0 +1,418 @@
+import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
+import { partesFracao } from '../logica/fracao';
+import { textoMao } from './maoGlifos';
+import type { Resolucao } from '../dados/tipos';
+import { diagrama, montaRoteiro, pedacoEhFormula, quebrasConta, tokensProsa, type LinhaRot, type PreLinhas, type Roteiro, type Tok } from '../logica/motorConta';
+import { textoCorrecao } from '../logica/aspas';
+import type { Punnett } from '../logica/punnett';
+import { animaPasso, type Controle } from './motorAnima';
+import { comFracoes, Fracao } from './Fracao';
+import { Icone } from './Icone';
+
+/**
+ * RESOLUÇÃO ANIMADA (comando 20): um único motor para todas as resoluções, a partir de `res.passos` (ou `res.quadro`).
+ * A conta é escrita à mão, passo a passo; em cada passagem os termos se movem na tela (logica/motorConta.ts diz de onde
+ * cada termo vem; ui/motorAnima.ts anima). Texto (Biologia, Química, Português): cada passo entra em sequência, com o
+ * marca-texto no termo-chave.
+ *
+ * O que está no DOM é sempre o estado final de cada passo, igual ao texto dos dados (testado em motorConta.test.ts);
+ * a animação só move, revela e risca por cima. Com "reduzir movimento", mostra direto o estado final.
+ * Controles: tocar/pausar, passo anterior/próximo, velocidade (0,75× a 2×), ver tudo, recomeçar. Teclado: espaço toca e
+ * pausa, ← e → mudam de passo; enquanto a resolução toca (ou o foco está nela), essas teclas são dela: não mudam de
+ * questão nem rolam a página (auditoria A3).
+ */
+const VELS = [0.75, 1, 1.5, 2];
+/** menor letra da conta quando ela é reduzida para caber (N1): ainda legível no celular */
+const MAO_MIN = 16;
+/** texto exibido: aspas curvas e ordinal certo (mesmo tamanho do texto dos dados; a conta à mão fica como está) */
+const vis = (s: string) => textoCorrecao(s);
+export const textoVisivel = (L: LinhaRot) => (L.conta && !L.diagrama ? L.texto : vis(L.texto));
+/**
+ * Conta que não cabe nem quebrando nos lugares permitidos (N1): a letra diminui na proporção, até MAO_MIN; se ainda
+ * assim não couber, a linha rola por dentro (nada some). Medido a cada passo que aparece e quando a largura muda.
+ */
+function ajustaContas(folha: HTMLElement) {
+  folha.querySelectorAll<HTMLElement>('.ra-linha.conta:not(.diag)').forEach((p) => {
+    p.style.fontSize = ''; p.classList.remove('rola');
+    if (!p.offsetParent || !p.clientWidth) return;
+    const larg = p.scrollWidth;
+    if (larg <= p.clientWidth + 1) return;
+    const base = parseFloat(getComputedStyle(p).fontSize) || 24;
+    p.style.fontSize = `${Math.max(MAO_MIN, Math.floor(base * (p.clientWidth / larg) * 10) / 10)}px`;
+    if (p.scrollWidth > p.clientWidth + 1) p.classList.add('rola');
+  });
+}
+function velSalva(): number {
+  try { const v = Number(localStorage.getItem('ra-vel')); return VELS.includes(v) ? v : 1; } catch { return 1; }
+}
+export function ResolucaoAnimada({ r, materia }: { r: Resolucao; materia?: string }) {
+  const rt = useMemo(() => montaRoteiro(r, materia), [r, materia]);
+  const n = rt.passos.length;
+  const menos = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // atual: -1 = ainda não começou; 0..n-1 = passo em cena; n = tudo à vista (fim)
+  const [atual, setAtual] = useState(menos ? n : -1);
+  const [tocando, setTocando] = useState(false);
+  const [rodada, setRodada] = useState(0);
+  const [animando, setAnimando] = useState(false);
+  const [vel, setVel] = useState(velSalva);
+  const folha = useRef<HTMLDivElement>(null);
+  const secao = useRef<HTMLElement>(null);
+  const ctl = useRef<Controle | null>(null);
+  const tocandoRef = useRef(tocando);
+  tocandoRef.current = tocando;
+
+  // nova resolução (outra questão): volta ao começo
+  useEffect(() => { setAtual(menos ? n : -1); setTocando(false); }, [rt]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // riscos: (linha, termo, parte, subtermo) → passo em que o termo é riscado
+  const riscos = useMemo(() => {
+    const m = new Map<string, number>();
+    rt.passos.forEach((p, k) => p.linhas.forEach((l) => rt.linhas[l].planos.forEach((pl) => pl.riscos.forEach((x) => m.set(`${x.l}:${x.i}:${x.p || ''}:${x.s ?? ''}`, k)))));
+    return m;
+  }, [rt]);
+  const visivel = atual < 0 ? -1 : atual;
+
+  // conta comprida: cabe na folha antes de animar (o efeito vem antes do que anima, para as medidas já serem as finais)
+  useLayoutEffect(() => {
+    const f = folha.current;
+    if (!f) return;
+    ajustaContas(f);
+    if (typeof ResizeObserver === 'undefined') return;
+    let larg = f.clientWidth;
+    const ro = new ResizeObserver(() => { if (f.clientWidth !== larg) { larg = f.clientWidth; ajustaContas(f); } });
+    ro.observe(f);
+    return () => ro.disconnect();
+  }, [atual, rt]);
+
+  useLayoutEffect(() => {
+    if (menos || atual < 0 || atual >= n || !folha.current) return;
+    const el = folha.current.querySelector<HTMLElement>(`[data-passo="${atual}"]`);
+    if (!el) return;
+    const c = animaPasso(el, folha.current, rt, atual, vel);
+    ctl.current = c;
+    setAnimando(true);
+    if (!tocandoRef.current) c.pausa();
+    let vivo = true;
+    c.fim.then((ok) => {
+      if (!vivo) return;
+      setAnimando(false);
+      if (ok && tocandoRef.current) {
+        if (atual + 1 >= n) { setTocando(false); setAtual(n); } else setAtual(atual + 1);
+      } else if (ok && atual + 1 >= n) setAtual(n);
+    });
+    return () => { vivo = false; c.cancela(); if (ctl.current === c) ctl.current = null; };
+  }, [atual, rodada, rt, n, menos]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    const c = ctl.current;
+    if (!c) return;
+    if (tocando) c.toca(); else c.pausa();
+  }, [tocando]);
+  useEffect(() => { ctl.current?.velocidade(vel); }, [vel]);
+
+  const comeca = () => { setTocando(true); setAtual(0); setRodada((x) => x + 1); };
+  const vaiPara = (k: number) => {
+    const alvo = Math.max(0, Math.min(n - 1, k));
+    setAtual(alvo); setRodada((x) => x + 1);
+    if (!tocando) setTocando(true);
+  };
+  const alterna = () => {
+    if (atual < 0 || atual >= n) return comeca();
+    if (!animando) { vaiPara(atual + 1 >= n ? 0 : atual + 1); return; }
+    setTocando((x) => !x);
+  };
+  const anterior = () => { if (atual > 0) vaiPara(atual >= n ? n - 1 : atual - 1); };
+  const proximo = () => { if (atual >= 0 && atual < n - 1) vaiPara(atual + 1); };
+  const tudo = () => { ctl.current?.cancela(); setTocando(false); setAtual(n); };
+  const trocaVel = () => {
+    const v = VELS[(VELS.indexOf(vel) + 1) % VELS.length];
+    setVel(v);
+    try { localStorage.setItem('ra-vel', String(v)); } catch { /* sem armazenamento */ }
+  };
+
+  // teclado: enquanto a resolução toca (de 0 ao último passo) ou o foco está nela, ←, → e espaço são dela
+  const ativa = atual >= 0 && atual < n;
+  const acoes = useRef({ alterna, anterior, proximo });
+  acoes.current = { alterna, anterior, proximo };
+  useEffect(() => {
+    const f = (e: globalThis.KeyboardEvent) => {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      const alvo = e.target as HTMLElement | null;
+      if (alvo && (alvo.tagName === 'INPUT' || alvo.tagName === 'TEXTAREA' || alvo.isContentEditable)) return;
+      const dentro = !!(alvo && secao.current?.contains(alvo));
+      if (!ativa && !dentro) return;
+      // fora da resolução, com outra coisa focada (um botão da tela), o espaço é desse botão
+      if (e.key === ' ' && !dentro && alvo && alvo !== document.body && alvo.tagName === 'BUTTON') return;
+      const k = e.key;
+      if (k !== 'ArrowLeft' && k !== 'ArrowRight' && k !== ' ' && !(k === 'Enter' && dentro)) return;
+      e.stopImmediatePropagation();
+      if (k === 'Enter') return; // Enter num botão da resolução aciona o botão, não a próxima questão
+      if (k === ' ' && dentro && alvo?.tagName === 'BUTTON') return; // espaço num botão: o próprio botão
+      e.preventDefault();
+      if (k === ' ') acoes.current.alterna();
+      else if (k === 'ArrowRight') acoes.current.proximo();
+      else acoes.current.anterior();
+    };
+    window.addEventListener('keydown', f, true);
+    return () => window.removeEventListener('keydown', f, true);
+  }, [ativa]);
+  // barra de controles sempre à vista enquanto toca (auditoria A2): o painel da questão corta o "sticky" (overflow),
+  // então a barra é presa por conta própria logo abaixo do que estiver fixo no alto (topo do site, barra da questão)
+  const ctlRef = useRef<HTMLDivElement>(null);
+  const lugar = useRef<HTMLDivElement>(null);
+  const mostraBarra = !menos && atual >= 0;
+  useEffect(() => {
+    if (!mostraBarra) return;
+    const bar = ctlRef.current, ph = lugar.current, sec = secao.current;
+    if (!bar || !ph || !sec) return;
+    let rolador: HTMLElement | null = sec.parentElement;
+    while (rolador && !(/(auto|scroll)/.test(getComputedStyle(rolador).overflowY) && rolador.scrollHeight > rolador.clientHeight + 1)) rolador = rolador.parentElement;
+    const ajusta = () => {
+      let limite = rolador ? rolador.getBoundingClientRect().top : 0;
+      for (const sel of ['.topo', '.q-barra']) {
+        const e = document.querySelector<HTMLElement>(sel);
+        if (!e) continue;
+        const r = e.getBoundingClientRect();
+        if (r.height && r.bottom > limite && r.top < limite + 140 && getComputedStyle(e).position !== 'static') limite = Math.max(limite, r.bottom);
+      }
+      limite += 6;
+      const p = ph.getBoundingClientRect(), f = folha.current?.getBoundingClientRect();
+      const h = bar.offsetHeight;
+      const prende = p.top < limite && !!f && f.bottom > limite + h + 12;
+      if (prende) {
+        ph.style.height = `${h}px`;
+        Object.assign(bar.style, { position: 'fixed', top: `${limite}px`, left: `${p.left}px`, width: `${p.width}px` });
+        bar.classList.add('presa');
+      } else {
+        ph.style.height = '0px';
+        Object.assign(bar.style, { position: '', top: '', left: '', width: '' });
+        bar.classList.remove('presa');
+      }
+    };
+    ajusta();
+    window.addEventListener('scroll', ajusta, true);
+    window.addEventListener('resize', ajusta);
+    return () => { window.removeEventListener('scroll', ajusta, true); window.removeEventListener('resize', ajusta); Object.assign(bar.style, { position: '', top: '', left: '', width: '' }); };
+  }, [mostraBarra, n]);
+  // o foco nunca cai no corpo da página enquanto a resolução está ativa (botão que fica inativo segura o foco)
+  const segura = (e: KeyboardEvent<HTMLElement>) => { if (e.key === 'Enter') e.stopPropagation(); };
+
+  if (!n) return null;
+  const rotPasso = atual < 0 ? `${n} ${n === 1 ? 'passo' : 'passos'}` : atual >= n ? `${n} de ${n} passos` : `Passo ${atual + 1} de ${n}`;
+  const conta = rt.linhas.some((l) => l.conta);
+  const rotVel = `${String(vel).replace('.', ',')}×`;
+
+  return (
+    <section className="ra" aria-labelledby="ra-tit" ref={secao} onKeyDown={segura}>
+      <h3 id="ra-tit" className="cor-tit">Resolução animada</h3>
+      {!menos && (atual < 0 ? (
+        <div className="ra-assistir">
+          <button type="button" className="btn" onClick={comeca}><Icone nome="play" tam={18} />Assistir resolução</button>
+          <span className="ra-ass-txt">{rotPasso}{conta ? ', escritos à mão na sua frente' : ', um de cada vez'}</span>
+          <button type="button" className="ra-link" onClick={tudo}>Ver sem animação</button>
+        </div>
+      ) : (
+        <><div ref={lugar} aria-hidden className="ra-ctl-lugar" />
+        <div className="ra-ctl" ref={ctlRef} role="toolbar" aria-label="Controles da resolução animada">
+          <button type="button" className="ra-bt" onClick={alterna} aria-label={tocando && animando ? 'Pausar' : atual >= n ? 'Assistir de novo' : 'Tocar'}>
+            <Icone nome={tocando && animando ? 'pausa' : 'play'} tam={15} /><span className="rot">{tocando && animando ? 'Pausar' : atual >= n ? 'De novo' : 'Tocar'}</span>
+          </button>
+          <button type="button" className="ra-bt ic" onClick={anterior} aria-disabled={atual <= 0} aria-label="Passo anterior" title="Passo anterior (←)"><Icone nome="esquerda" tam={17} /></button>
+          <button type="button" className="ra-bt ic" onClick={proximo} aria-disabled={atual < 0 || atual >= n - 1} aria-label="Próximo passo" title="Próximo passo (→)"><Icone nome="direita" tam={17} /></button>
+          <button type="button" className="ra-bt vel" onClick={trocaVel} aria-label={`Velocidade da escrita: ${rotVel}`} title="Velocidade da escrita">{rotVel}</button>
+          <span className="ra-pp" aria-live="polite"><span className="longo">{rotPasso}</span><span className="curto" aria-hidden>{atual >= n ? `${n} de ${n}` : `${atual + 1} de ${n}`}</span></span>
+          {atual < n && <button type="button" className="ra-bt ic" onClick={tudo} aria-label="Ver o quadro final" title="Ver o quadro final"><Icone nome="lista" tam={16} /></button>}
+          <button type="button" className="ra-bt ic" onClick={comeca} aria-label="Recomeçar" title="Recomeçar"><Icone nome="repetir" tam={16} /></button>
+        </div></>
+      ))}
+      <div className={'ra-folha' + (atual < 0 ? ' espera' : '')} ref={folha}>
+        <ol className={'ra-passos de-' + rt.origem}>
+          {rt.passos.map((p, k) => (
+            <li key={k} className="ra-passo" data-passo={k} hidden={atual < 0 || k > visivel ? true : undefined}>
+              {rt.origem === 'passos' && <span className="ra-n" aria-hidden>{k + 1}</span>}
+              <div className="ra-corpo">
+                {p.faz && <b className="ra-faz">{comFracoes(vis(p.faz))}</b>}
+                {p.linhas.map((l) => (
+                  <div key={l} className="ra-lin">
+                    {rt.linhas[l].pre && <PreContas pre={rt.linhas[l].pre!} l={l} />}
+                    <Linha L={rt.linhas[l]} l={l} riscos={riscos} ate={atual >= n ? n : visivel} />
+                    {rt.linhas[l].nota && <span className="ra-nota" data-nota={l}>{comFracoes(vis(rt.linhas[l].nota!))}</span>}
+                    {rt.linhas[l].cruza && <QuadroPunnett q={rt.linhas[l].cruza!} l={l} />}
+                    {rt.linhas[l].reacao && <ReacaoExtra s={rt.linhas[l].reacao!} l={l} />}
+                  </div>
+                ))}
+                {p.porque && <p className="ra-porque">{comFracoes(vis(p.porque))}</p>}
+              </div>
+            </li>
+          ))}
+        </ol>
+        <div className="ra-fantasmas" aria-hidden />
+      </div>
+    </section>
+  );
+}
+
+/** texto da conta na letra à mão, com fração empilhada (também aninhada), expoente, índice e sinais desenhados */
+function mao(s: string): ReactNode {
+  const ps = partesFracao(s);
+  if (ps.length === 1 && ps[0].t === 'txt') return textoMao(s);
+  return ps.map((p, i) => (p.t === 'txt' ? <span key={i}>{textoMao(p.v)}</span>
+    : p.t === 'nuc' ? <span key={i}>{comFracoes(p.orig)}</span>
+      : <Fracao key={i} p={p} n={mao(p.n)} d={mao(p.d)} />));
+}
+
+/** Um processo desenhado (fluxo, reação, cadeia, pares, contraste, etapas): peças com o texto dos dados, na ordem. */
+function Diagrama({ L, l, extra }: { L: LinhaRot; l: number; extra?: boolean }) {
+  const dg = L.diagrama!;
+  const tv = textoVisivel(L);
+  // Caveat só para conta e fórmula (item 8a): o pedaço com palavra de texto corrido fica na letra do texto
+  const formula = (x: string) => pedacoEhFormula(x);
+  const conteudo = (x: string) => (formula(x) ? mao(x) : comFracoes(x));
+  const fonte = (x: string) => (formula(x) ? ' dg-mao' : ' dg-txt');
+  // processo com etapa comprida: no celular, as etapas descem uma embaixo da outra (a seta aponta para baixo)
+  const longo = (dg.tipo === 'fluxo' || dg.tipo === 'reacao') && dg.pecas.some((p) => p.papel === 'item' && p.fim - p.ini > 22);
+  const chave = (a: number, b: number) => !!L.marca && a < L.marca[1] && b > L.marca[0];
+  return (
+    <p className={`ra-linha diag dg-${dg.tipo} ${L.conta ? 'conta' : 'texto'}${longo ? ' longo' : ''}`} data-l={extra ? undefined : l} data-rx={extra ? l : undefined} data-dg={dg.tipo} aria-hidden={extra ? 'true' : undefined}>
+      {dg.pecas.map((p, k) => {
+        const t = tv.slice(p.ini, p.fim);
+        if (p.papel === 'seta') {
+          return (
+            <span key={k} className="dg-seta" data-k={k}>
+              <svg viewBox="0 0 40 16" aria-hidden focusable="false"><path className="dg-traco" d="M2 8 Q20 7 36 8 M29 2 Q34 6 37 8 Q34 10 29 14" /></svg>
+              <span className="sr">{t}</span>
+            </span>
+          );
+        }
+        if (p.papel === 'div') return <span key={k} className="dg-div" data-k={k}>{/[|;]/.test(t) ? <span className="sr">{t}</span> : t}</span>;
+        if (p.papel === 'mais' || p.papel === 'liga' || p.papel === 'vs') return <span key={k} className={`dg-${p.papel}`} data-k={k}>{L.conta ? mao(t) : t}</span>;
+        if (!t.trim()) return <span key={k}>{t}</span>;
+        const cls = `dg-${p.papel === 'item' ? 'item' : p.papel}` + (p.papel === 'rotulo' ? '' : fonte(t)) + (chave(p.ini, p.fim) && p.papel !== 'rotulo' ? ' dg-chave' : '');
+        // reação: o coeficiente que acerta a equação entra depois da fórmula ("2 H2O": o 2 chega por último)
+        const coef = dg.tipo === 'reacao' && p.papel === 'item' ? /^(\s*)(\d+(?:[.,]\d+)?|\d+\/\d+)(\s+)(?=[A-Z(\[])/.exec(t) : null;
+        if (coef) {
+          const resto = t.slice(coef[0].length);
+          return <span key={k} className={cls} data-k={k} data-lado={p.lado}>{coef[1]}<span className="dg-coef">{mao(coef[2])}</span>{coef[3]}{conteudo(resto)}</span>;
+        }
+        return <span key={k} className={cls} data-k={k} data-lado={p.lado}>{p.papel === 'rotulo' ? comFracoes(t) : conteudo(t)}</span>;
+      })}
+    </p>
+  );
+}
+
+/** A reação que o passo escreveu com palavras, em símbolos (desenho a mais, aria-hidden), com o mesmo motor da reação */
+function ReacaoExtra({ s, l }: { s: string; l: number }) {
+  const dg = diagrama(s, true);
+  if (!dg) return null;
+  return <Diagrama L={{ texto: s, toks: [], conta: true, planos: [], diagrama: dg }} l={l} extra />;
+}
+
+/** Quadro de Punnett do cruzamento (desenho a mais, aria-hidden: o texto da linha já diz o cruzamento). Os pais no
+ *  alto; os gametas nas bordas; o filho em cada casa. */
+function QuadroPunnett({ q, l }: { q: Punnett; l: number }) {
+  const [ga, gb] = q.gametas;
+  return (
+    <div className="ra-pn" data-pn={l} aria-hidden="true">
+      <p className="pn-pais"><span className="pn-pai" data-pai="0">{textoMao(q.pais[0])}</span><span className="pn-x">×</span><span className="pn-pai" data-pai="1">{textoMao(q.pais[1])}</span></p>
+      <div className="pn-grade" style={{ gridTemplateColumns: `auto repeat(${ga.length}, minmax(0, 1fr))` }}>
+        <span className="pn-canto" />
+        {ga.map((g, c) => <span key={`c${c}`} className="pn-g" data-de="0" data-c={c}>{textoMao(g)}</span>)}
+        {gb.map((g, r) => [
+          <span key={`r${r}`} className="pn-g" data-de="1" data-r={r}>{textoMao(g)}</span>,
+          ...ga.map((_, c) => {
+            const v = q.casas[r][c];
+            return <span key={`${r}-${c}`} className={'pn-c' + (q.alvos.includes(v) ? ' pn-alvo' : '')} data-r={r} data-c={c}>{textoMao(v)}</span>;
+          }),
+        ])}
+      </div>
+    </div>
+  );
+}
+
+/** Uma linha da conta no estado final: cada termo num <span data-i> (fração empilhada com os termos em data-s), com
+ *  riscos e marca-texto; os pedaços entre quebras permitidas ficam juntos (sem quebrar no meio). */
+function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<string, number>; ate: number }) {
+  if (L.diagrama) return <Diagrama L={L} l={l} />;
+  if (!L.conta) {
+    const [a, b] = L.marca || [0, 0];
+    const tv = textoVisivel(L);
+    return (
+      <p className="ra-linha texto" data-l={l}>
+        {L.marca ? <>{comFracoes(tv.slice(0, a))}<mark className="ra-marca">{comFracoes(tv.slice(a, b))}</mark>{comFracoes(tv.slice(b))}</> : comFracoes(tv)}
+      </p>
+    );
+  }
+  const risco = (i: number, p?: 'n' | 'd', s?: number) => {
+    const k = riscos.get(`${l}:${i}:${p || ''}:${s ?? ''}`);
+    return k != null && k <= ate ? <span className="ra-risco" aria-hidden /> : null;
+  };
+  const termos = (ts: Tok[], i: number, p: 'n' | 'd'): ReactNode => ts.map((t, s) => (t.k === 'esp' ? t.v
+    : <span key={s} className={'ra-st' + (t.k === 'op' || t.k === 'rel' ? ' op' : '')} data-s={s}>{t.k === 'frac' ? mao(t.v) : textoMao(t.v)}{risco(i, p, s)}</span>));
+  // quebra em dois níveis (N1): os trechos (entre seta, vírgula, "=") ficam inteiros enquanto cabem; o trecho que não
+  // cabe sozinho quebra por dentro, antes de "+", "−", "×", "÷" (cada pedaço `.ra-u` nunca quebra)
+  const brk = quebrasConta(L.toks);
+  const prosa = tokensProsa(L.toks);
+  type Pedaco = ReactNode[] | { sp: string };
+  const trechos: { sp: string; pedacos: Pedaco[] }[] = [{ sp: '', pedacos: [[]] }];
+  let pos = 0;
+  L.toks.forEach((t, i) => {
+    const ini = pos; pos += t.v.length;
+    const marca = !!L.marca && ini >= L.marca[0] && pos <= L.marca[1] ? ' ra-marca' : '';
+    const tr = trechos[trechos.length - 1];
+    const u = tr.pedacos[tr.pedacos.length - 1] as ReactNode[];
+    if (t.k === 'esp') {
+      const nv = brk.get(i);
+      if (nv === 1) { trechos.push({ sp: t.v, pedacos: [[]] }); return; }
+      if (nv === 2) { tr.pedacos.push({ sp: t.v }, []); return; }
+      u.push(marca ? <span key={i} className="ra-esp ra-marca">{t.v}</span> : t.v);
+      return;
+    }
+    const cls = 'ra-t' + (t.k === 'op' || t.k === 'rel' || t.k === 'seta' ? ' op' : '') + (prosa.has(i) ? ' pal' : '') + marca;
+    if (t.k === 'frac') {
+      u.push(
+        <Fracao key={i} p={{ t: 'frac', n: t.n!, d: t.d!, orig: t.v, sep: t.sep, pn: t.pn, pd: t.pd }} className={cls + ' frac'} props={{ 'data-i': i }}
+          n={<>{termos(t.nt!, i, 'n')}{risco(i, 'n')}</>} d={<>{termos(t.dt!, i, 'd')}{risco(i, 'd')}</>} />,
+      );
+    } else if (t.k === 'nuc') {
+      u.push(<span key={i} className={cls} data-i={i}>{comFracoes(t.v)}</span>);
+    } else {
+      u.push(<span key={i} className={cls + (t.cola ? ' cola' : '')} data-i={i}>{textoMao(t.v)}{risco(i)}</span>);
+    }
+  });
+  return (
+    <p className="ra-linha conta" data-l={l}>
+      {trechos.map((tr, k) => (
+        <Fragment key={k}>
+          {tr.sp}
+          <span className="ra-seg">
+            {tr.pedacos.map((pd, j) => (Array.isArray(pd) ? (pd.length ? <span key={j} className="ra-u">{pd}</span> : null) : pd.sp))}
+          </span>
+        </Fragment>
+      ))}
+    </p>
+  );
+}
+
+/** O que o passo cancela e a conta dos dados não escreve (N5): as linhas antes da conta, com os termos riscados; na soma
+ *  de equações, o traço da soma embaixo. Desenho a mais (aria-hidden). */
+function PreContas({ pre, l }: { pre: PreLinhas; l: number }) {
+  return (
+    <div className={'ra-pre' + (pre.soma ? ' soma' : '')} data-pre={l} aria-hidden="true">
+      {pre.linhas.map((x, k) => {
+        const rs = [...x.riscos].sort((a, b) => a[0] - b[0]);
+        const out: ReactNode[] = [];
+        let u = 0;
+        rs.forEach(([a, b], j) => {
+          if (a > u) out.push(<span key={`t${j}`}>{mao(x.texto.slice(u, a))}</span>);
+          out.push(<span key={`r${j}`} className="ra-corte">{mao(x.texto.slice(a, b))}<span className="ra-risco" /></span>);
+          u = b;
+        });
+        if (u < x.texto.length) out.push(<span key="fim">{mao(x.texto.slice(u))}</span>);
+        return <p key={k} className="ra-linha conta ra-pre-l">{out}</p>;
+      })}
+      {pre.soma && <span className="ra-soma-traco" />}
+    </div>
+  );
+}
+
+export type { Roteiro };

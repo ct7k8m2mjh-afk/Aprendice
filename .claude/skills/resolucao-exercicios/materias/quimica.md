@@ -27,6 +27,9 @@ Códigos e nomes do `nomesub` de `app-atual/qui/dados.json`. Marcas: **[muito co
 - Q03.3 reações inorgânicas e balanceamento por tentativa **[cobrado]**
 - Q03.4 número de oxidação, oxirredução e balanceamento por oxirredução **[muito cobrado]** (agente oxidante/redutor em contexto biológico e industrial)
 - Q03.5 substância pura e mistura, alotropia e processos de separação de misturas **[muito cobrado no ENEM]**
+- Q03.6 vidrarias e técnicas de laboratório (conteúdo novo, 20/11/2026)
+- Q03.7 fenômenos físicos e químicos (conteúdo novo, 20/11/2026)
+- Q03.8 mudanças de estado e diagrama de fases (conteúdo novo, 20/11/2026)
 
 **Q04 — Cálculos químicos**
 - Q04.1 massa atômica, massa molar, mol e constante de Avogadro **[cobrado]**
@@ -52,6 +55,7 @@ Códigos e nomes do `nomesub` de `app-atual/qui/dados.json`. Marcas: **[muito co
 - Q07.1 entalpia, reação exotérmica e endotérmica, diagrama de energia **[muito cobrado]**
 - Q07.2 lei de Hess e entalpia de formação **[muito cobrado]**
 - Q07.3 energia de ligação, poder calorífico e combustíveis **[cobrado]**
+- Q07.4 entropia, energia livre e espontaneidade (conteúdo novo, 20/11/2026)
 
 **Q08 — Cinética e equilíbrio**
 - Q08.1 velocidade de reação e fatores que a alteram **[cobrado]**

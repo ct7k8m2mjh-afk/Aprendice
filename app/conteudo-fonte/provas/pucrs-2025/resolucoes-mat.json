@@ -1,0 +1,1048 @@
+{
+ "P8ab50075": {
+  "n": "20",
+  "conceito": "Juros compostos com amortizações de metade da dívida.",
+  "equivocos": {
+   "A": "M03.3:sem-origem-identificada",
+   "B": "M03.3:sem-origem-identificada",
+   "D": "M03.3:esqueceu-os-juros"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A cada mês, a dívida cresce 1% (multiplica por 1,01) e depois é paga metade dela (multiplica por 0,5).",
+    "formulas": [
+     "dívida = X · (1,01 · 0,5)²"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quanto se deve logo antes do primeiro pagamento?",
+   "passos": [
+    {
+     "faz": "1.º mês",
+     "conta": "X · 1,01 · 0,5 = 0,505X",
+     "porque": "Juros e metade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "2.º mês",
+     "conta": "0,505X · 1,01 · 0,5 = 0,255025X",
+     "porque": "De novo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Porcentagem",
+     "conta": "25,5025% → alternativa C",
+     "porque": "De X.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 25,5025%",
+   "checagem": "Com X = 10 000: 10 100 → paga 5 050; resta 5 050 → 5 100,50 → paga 2 550,25; resta 2 550,25 = 25,5025% de 10 000. Confere.",
+   "erradas": {
+    "A": "25,6% exigiria juros de 2,4% em dois meses (0,256 ÷ 0,25 = 1,024), mas 1,01² = 1,0201.",
+    "B": "25,525% exigiria fator 0,25525; (1,01 · 0,5)² = 0,255025.",
+    "D": "25% esquece os juros (0,5 · 0,5)."
+   },
+   "armadilha": "Esquecer os juros e fazer só 1/2 · 1/2 = 25%.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Percentual devido.",
+    "chave": "(1,01 · 0,5)² = 0,255025.",
+    "cuidado": "Juros antes de cada pagamento."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fatores",
+    "ideia": "Juros: 1,01² = 1,0201; pagamentos: 0,5² = 0,25. 1,0201 · 0,25 = 0,255025."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,505X",
+    "nota": "1.º mês"
+   },
+   {
+    "linha": "0,255025X",
+    "nota": "2.º mês"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0049"
+  }
+ },
+ "Pb6e3c98a": {
+  "n": "13",
+  "conceito": "Montar um sistema de inequações a partir de 'no mínimo' e 'disponível'.",
+  "equivocos": {
+   "A": "M04.4:sinais-invertidos-e-escala",
+   "B": "M04.4:escala-esquecida",
+   "C": "M04.4:sinais-invertidos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os coeficientes do sistema estão multiplicados por 10: margarina 0,5; 0,6; 0,4 viram 5, 6, 4, e leite 0,4; 0,5; 0,6 L viram 4, 5, 6. Então os lados direitos também vão multiplicados por 10. 'No mínimo' é ≥; 'disponível' é ≤.",
+    "formulas": [
+     "mínimo → ≥",
+     "disponível (máximo) → ≤"
+    ],
+    "simbolos": [
+     [
+      "x, y, z",
+      "kg de farinha de cada confeiteiro"
+     ]
+    ]
+   },
+   "pista": "Escreva a condição da margarina com os coeficientes 0,5; 0,6; 0,4 e compare com 5x + 6y + 4z.",
+   "passos": [
+    {
+     "faz": "Margarina",
+     "conta": "0,5x + 0,6y + 0,4z ≥ 7 → 5x + 6y + 4z ≥ 70",
+     "porque": "Tabletes por kg de farinha; no mínimo 7; multiplique por 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leite",
+     "conta": "0,4x + 0,5y + 0,6z ≤ 8 → 4x + 5y + 6z ≤ 80",
+     "porque": "Litros por kg; só há 8 L; multiplique por 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Farinha",
+     "conta": "x + y + z ≤ 14",
+     "porque": "Só há 14 kg.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "≥ 70, ≤ 80, ≤ 14 → alternativa D",
+     "porque": "De cima para baixo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — ≥ 70, ≤ 80, ≤ 14",
+   "checagem": "Exemplo: x = y = z = 4 (12 kg) dá margarina 0,5 · 4 + 0,6 · 4 + 0,4 · 4 = 6 tabletes; na forma do sistema, 20 + 24 + 16 = 60 = 10 · 6. O fator 10 confirma os lados direitos 70 e 80.",
+   "erradas": {
+    "A": "≤ 7, ≥ 8, ≥ 14 inverte os sinais e esquece o fator 10 dos coeficientes.",
+    "B": "≥ 7, ≤ 8, ≤ 14 tem os sinais certos, mas não multiplica 7 e 8 por 10, como foi feito com os coeficientes.",
+    "C": "≤ 70, ≥ 80, ≥ 14 multiplica por 10, mas inverte os sinais: 'no mínimo' é ≥ e 'disponível' é ≤."
+   },
+   "armadilha": "Copiar 7 e 8 sem perceber que os coeficientes 5, 6, 4 e 4, 5, 6 já estão multiplicados por 10.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Completar os lados direitos do sistema.",
+    "chave": "Margarina ≥ 70, leite ≤ 80, farinha ≤ 14 (tudo na escala ×10, menos a farinha).",
+    "cuidado": "Mínimo é ≥; disponível é ≤; multiplique os dois lados por 10."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dividir por 10",
+    "ideia": "Divida 5x + 6y + 4z por 10 e veja 0,5x + 0,6y + 0,4z: tem de ser ≥ 7, logo 5x + 6y + 4z ≥ 70."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,5x + 0,6y + 0,4z ≥ 7",
+    "nota": "margarina, no mínimo 7"
+   },
+   {
+    "linha": "10 · 7 = 70",
+    "nota": "multiplica tudo por 10: 5x + 6y + 4z ≥ 70"
+   },
+   {
+    "linha": "0,4x + 0,5y + 0,6z ≤ 8",
+    "nota": "leite, até 8 L"
+   },
+   {
+    "linha": "10 · 8 = 80",
+    "nota": "multiplica por 10: 4x + 5y + 6z ≤ 80"
+   },
+   {
+    "linha": "x + y + z ≤ 14",
+    "nota": "farinha disponível"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0051"
+  }
+ },
+ "P77e8b288": {
+  "n": "17",
+  "conceito": "Contar interseções entre parábolas e a curva do cosseno, comparando faixas de valores.",
+  "equivocos": {
+   "B": "M05.3:esqueceu-o-ponto-de-tangencia",
+   "C": "M05.3:inverteu-a-ordem",
+   "D": "M05.3:inverteu-a-ordem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O cosseno fica sempre entre −1 e 1. A parábola x² + 1 nunca fica abaixo de 1 e só vale 1 em x = 0. A parábola x² − 1 começa em −1 e sobe, cruzando a faixa do cosseno de um lado e do outro.",
+    "formulas": [
+     "−1 ≤ cos x ≤ 1",
+     "x² ≥ 0"
+    ],
+    "simbolos": [
+     [
+      "h(x) = cos x",
+      "curva que oscila entre −1 e 1"
+     ],
+     [
+      "ponto de interseção",
+      "ponto em que dois gráficos têm o mesmo y"
+     ]
+    ]
+   },
+   "pista": "Compare os valores de cada parábola em x = 0 com cos 0 = 1.",
+   "passos": [
+    {
+     "faz": "Compare g com h",
+     "conta": "g(x) = x² + 1 ≥ 1 ≥ cos x",
+     "porque": "g nunca fica abaixo de 1, e o cosseno nunca passa de 1.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ache onde g e h se tocam",
+     "conta": "igualdade só se x² = 0 e cos x = 1 → x = 0 → 1 ponto",
+     "porque": "Fora de x = 0, g(x) > 1 ≥ cos x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare f com h",
+     "conta": "f(0) = −1 < cos 0 = 1 | f(2) = 3 > cos 2",
+     "porque": "Em x = 0, f está abaixo; em x = 2, acima. Entre eles, cruza uma vez.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conte pela simetria",
+     "conta": "f e h são pares → um ponto com x > 0 e outro com x < 0 → 2 pontos",
+     "porque": "Para |x| ≥ √2, f(x) ≥ 1 ≥ cos x; o único cruzamento de cada lado fica antes disso, onde f sobe e cos x desce.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2 e 1",
+   "checagem": "Esboce: o cosseno é uma onda entre −1 e 1. A parábola x² + 1 tem vértice em (0, 1), bem no pico do cosseno, e se afasta para cima. A parábola x² − 1 tem vértice em (0, −1) e sobe atravessando a onda uma vez de cada lado.",
+   "erradas": {
+    "B": "Esquece o ponto de contato (0, 1): em x = 0, g(0) = 1 = cos 0, e os gráficos se tocam ali.",
+    "C": "Troca as ordens: a pergunta pede primeiro f com h (2 pontos) e depois g com h (1 ponto).",
+    "D": "Troca as ordens e erra a contagem: f e h se cruzam em 2 pontos, e g e h se tocam em 1."
+   },
+   "armadilha": "Achar que, se a parábola só encosta no cosseno sem cruzar, não há interseção: o ponto (0, 1) conta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos pontos comuns têm f e h, e g e h.",
+    "chave": "x² + 1 ≥ 1 ≥ cos x, igualdade só em x = 0; x² − 1 cruza o cosseno uma vez de cada lado.",
+    "cuidado": "Ponto de tangência também é interseção."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "esboço dos gráficos",
+    "ideia": "Desenhe a onda do cosseno e as duas parábolas de vértice (0, −1) e (0, 1)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² + 1 ≥ 1 ≥ cos x",
+    "nota": "g e h: só x = 0"
+   },
+   {
+    "linha": "f(0) = −1 < 1 = cos 0",
+    "nota": "f abaixo em 0"
+   },
+   {
+    "linha": "f(2) = 3 > cos 2",
+    "nota": "f acima em 2"
+   },
+   {
+    "linha": "2 pontos (simetria) e 1 ponto",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0055"
+  }
+ },
+ "Pc93d5da5": {
+  "n": "14",
+  "conceito": "Comparar dois crescimentos exponenciais de bases diferentes por meio de uma inequação exponencial.",
+  "equivocos": {
+   "A": "M06.2:inequacao-mal-resolvida",
+   "C": "M06.2:ignorou-igualdade",
+   "D": "M06.2:nao-pegou-o-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A começa com 729 e dobra por semana; B começa com 64 e triplica. Depois de n semanas, A = 729 × 2^n e B = 64 × 3^n. A pergunta é o menor n com B ≥ A. Repare que 729 = 3^6 e 64 = 2^6: isso faz tudo virar uma potência de 3/2.",
+    "formulas": [
+     "A(n) = 729 × 2^n",
+     "B(n) = 64 × 3^n",
+     "729/64 = 3^6/2^6 = (3/2)^6"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número de semanas"
+     ]
+    ]
+   },
+   "pista": "Escreva as duas populações depois de n semanas e monte a desigualdade B ≥ A.",
+   "passos": [
+    {
+     "faz": "Monte as duas funções",
+     "conta": "A(n) = 729 × 2^n | B(n) = 64 × 3^n",
+     "porque": "Dobrar a cada semana é multiplicar por 2 a cada semana; triplicar, por 3.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva a condição",
+     "conta": "64 × 3^n ≥ 729 × 2^n → 3^n/2^n ≥ 729/64",
+     "porque": "Dividir os dois lados por números positivos (64 e 2^n) não muda o sentido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reconheça a mesma base",
+     "conta": "(3/2)^n ≥ (3/2)^6",
+     "porque": "729 = 3^6 e 64 = 2^6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os expoentes",
+     "conta": "n ≥ 6",
+     "porque": "A base 3/2 é maior que 1, então a potência cresce com o expoente e o sentido se mantém.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Responda o menor tempo",
+     "conta": "n = 6 semanas → alternativa B",
+     "porque": "O primeiro n que satisfaz é 6; nessa semana as duas populações empatam, e o enunciado aceita igual.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 6 semanas",
+   "checagem": "Conte direto: com 5 semanas, A = 729 × 32 = 23328 e B = 64 × 243 = 15552 (B ainda menor). Com 6 semanas, A = 729 × 64 = 46656 e B = 64 × 729 = 46656 (empate).",
+   "erradas": {
+    "A": "5 não confere: com 5 semanas B = 15552 e A = 23328, B ainda é menor.",
+    "C": "7 é uma semana depois do necessário: desde a 6.ª semana B já é igual a A, e o enunciado aceita maior ou igual.",
+    "D": "8 é duas semanas depois do necessário: desde a 6.ª semana B já é igual a A."
+   },
+   "armadilha": "O enunciado pede maior ou igual: o empate na 6.ª semana já conta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor número de semanas para B alcançar ou passar A.",
+    "chave": "64 × 3^n ≥ 729 × 2^n dá (3/2)^n ≥ (3/2)^6, n ≥ 6.",
+    "cuidado": "Perceba 729 = 3^6 e 64 = 2^6, e aceite o empate."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela semanal",
+    "ideia": "Liste A e B semana a semana: a 6.ª é a primeira em que B alcança A (46656 = 46656)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "64 × 3^n ≥ 729 × 2^n",
+    "nota": "condição B ≥ A"
+   },
+   {
+    "linha": "3^n/2^n ≥ 729/64",
+    "nota": "divide por 64 e por 2^n"
+   },
+   {
+    "linha": "(3/2)^n ≥ (3/2)^6",
+    "nota": "729 = 3^6, 64 = 2^6"
+   },
+   {
+    "linha": "n ≥ 6",
+    "nota": "base maior que 1"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "P97a57de0": {
+  "n": "11",
+  "conceito": "Triângulo retângulo com ângulos de 30° e 60°: catetos pela hipotenusa e tempo de cada trecho por distância ÷ velocidade.",
+  "equivocos": {
+   "A": "M10.3:tempo-de-s-errado",
+   "B": "M10.3:tempo-de-s-errado",
+   "D": "M10.3:tempo-de-s-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ângulo de 30° em A e de 60° em B fazem o terceiro ângulo, em O, valer 90°: AB = 25 km é a hipotenusa. Os catetos saem de seno e cosseno de 30°. Depois é física de sala: tempo = distância ÷ velocidade, trecho por trecho. A frase pede duas coisas: se S chegou antes ou depois de V e o tempo de S.",
+    "formulas": [
+     "ângulo em O = 180° − 30° − 60°",
+     "AO = AB · cos 30° | OB = AB · sen 30°",
+     "tempo = distância ÷ velocidade"
+    ],
+    "simbolos": [
+     [
+      "cos 30°",
+      "√3/2, que a prova manda usar como 1,7/2"
+     ],
+     [
+      "sen 30°",
+      "1/2"
+     ],
+     [
+      "hipotenusa",
+      "lado oposto ao ângulo reto"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro o ângulo em O: ele diz qual lado é a hipotenusa.",
+   "passos": [
+    {
+     "faz": "Ache o ângulo em O",
+     "conta": "180° − 30° − 60° → 90°",
+     "porque": "Com o ângulo reto em O, AB = 25 km é a hipotenusa, e AO e OB são catetos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os dois trechos de S",
+     "conta": "AO = 25 · 1,7/2 → AO = 21,25 km | OB = 25 · 1/2 → OB = 12,5 km",
+     "porque": "AO é adjacente ao ângulo de 30° (cosseno); OB é oposto a ele (seno). A prova manda usar √3 = 1,7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o tempo de S",
+     "conta": "21,25/34 + 12,5/20 = 0,625 + 0,625 → 1,25 h = 1h15min",
+     "porque": "Cada trecho tem a sua velocidade, então o tempo é calculado trecho por trecho e somado. 0,25 h = 15 min.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o tempo de V",
+     "conta": "25/25 → 1 h",
+     "porque": "V vai em linha reta de A a B, 25 km a 25 km/h.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare e complete a frase",
+     "conta": "1h15min > 1 h → depois, no tempo de 1h15min → alternativa C",
+     "porque": "S levou mais tempo que V, então chegou depois; o tempo de S é 1h15min.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — depois; 1h15min",
+   "checagem": "Confira em minutos, por proporção: a 34 km/h, S anda 17 km em 30 min, e 21,25 km é 17 km mais um quarto disso (21,25/17 = 1,25), então leva 30 × 1,25 = 37,5 min; a 20 km/h, cada km leva 3 min, e 12,5 km levam 12,5 × 3 = 37,5 min. Total 75 min = 1h15min, contra 60 min de V: S chega depois.",
+   "erradas": {
+    "A": "antes, 45min não confere: S leva 37,5 min no primeiro trecho e 37,5 min no segundo, 75 min no total, mais que os 60 min de V.",
+    "B": "antes, 50min não confere: os dois trechos de S somam 0,625 h + 0,625 h = 1,25 h, mais que a 1 h de V; S não chega antes.",
+    "D": "depois, 1h25min não confere: 1h25min = 85 min, e os trechos de S dão 21,25/34 + 12,5/20 = 1,25 h = 75 min."
+   },
+   "armadilha": "A velocidade muda no ponto O: o tempo de S é a soma dos tempos de cada trecho, cada um com a sua velocidade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Se S chegou antes ou depois de V e o tempo do percurso de S.",
+    "chave": "Triângulo retângulo em O: AO = 21,25 km e OB = 12,5 km; tempo de S = 21,25/34 + 12,5/20 = 1,25 h, contra 1 h de V.",
+    "cuidado": "Calcule o tempo de cada trecho separado; não use uma velocidade só para o percurso todo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lei dos senos",
+    "ideia": "Com o ângulo de 90° em O, AO = 25 · sen 60°/sen 90° e OB = 25 · sen 30°/sen 90° dão os mesmos 21,25 km e 12,5 km."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Ô = 180° − 30° − 60° = 90°",
+    "nota": "triângulo retângulo em O"
+   },
+   {
+    "linha": "AO = 25 · 1,7/2 = 21,25 km",
+    "nota": "cateto adjacente ao 30°"
+   },
+   {
+    "linha": "OB = 25 · 1/2 = 12,5 km",
+    "nota": "cateto oposto ao 30°"
+   },
+   {
+    "linha": "tS = 21,25/34 + 12,5/20 = 0,625 + 0,625 = 1,25 h",
+    "nota": "tempo de S, trecho por trecho"
+   },
+   {
+    "linha": "tV = 25/25 = 1 h → S chega depois, em 1h15min",
+    "nota": "comparação"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ },
+ "Pd955699a": {
+  "n": "15",
+  "conceito": "Pirâmide regular: apótema da face e semelhança de triângulos para contar peças e achar a altura de cada uma.",
+  "equivocos": {
+   "A": "M11.3:contou-uma-face-so",
+   "B": "M11.3:contou-uma-face-so",
+   "D": "M11.3:apotema-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada face lateral é um triângulo isósceles de base 40 m; a altura dele é o apótema da pirâmide. Os triângulos de vidro têm base 1 m e são semelhantes à face, então a razão de semelhança é 1/40: a altura de cada um é 1/40 do apótema, e a área é (1/40)² da face. O padrão de 4 triângulos mostra que a face se divide sem sobra em triângulos iguais.",
+    "formulas": [
+     "apótema da pirâmide: (apótema)² = h² + (metade do lado)²",
+     "semelhança: comprimentos na razão k, áreas na razão k²"
+    ],
+    "simbolos": [
+     [
+      "apótema da pirâmide",
+      "altura de uma face lateral, do vértice ao meio da aresta da base"
+     ],
+     [
+      "k",
+      "razão de semelhança entre o triângulo de vidro e a face"
+     ]
+    ]
+   },
+   "pista": "Antes de contar triângulos, ache a altura de uma face lateral da pirâmide.",
+   "passos": [
+    {
+     "faz": "Ache o apótema da pirâmide",
+     "conta": "ap² = 20² + 20² → ap = √800 = 20√2 m",
+     "porque": "O triângulo retângulo tem a altura da pirâmide (20 m) e metade do lado da base (20 m) como catetos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a altura de cada triângulo",
+     "conta": "k = 1/40 → altura = (20√2)/40 = √2/2 m",
+     "porque": "Base 1 m contra base 40 m: todas as medidas lineares ficam divididas por 40.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os triângulos de uma face",
+     "conta": "(40/1)² = 1 600 triângulos",
+     "porque": "Áreas escalam com o quadrado: a face tem 40² = 1 600 vezes a área de cada triângulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as quatro faces",
+     "conta": "4 × 1 600 = 6 400 triângulos",
+     "porque": "A superfície lateral tem quatro faces iguais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 6400 triângulos de altura √2/2 m",
+   "checagem": "Pelas áreas: a face tem 40 × 20√2 ÷ 2 = 400√2 m² e cada triângulo tem 1 × (√2/2) ÷ 2 = √2/4 m²; 400√2 ÷ (√2/4) = 1 600 por face, 6 400 nas quatro.",
+   "erradas": {
+    "A": "1 600 sai de contar só uma face: a pirâmide tem quatro faces laterais, 4 × 1 600 = 6 400. A altura √2/2 está certa.",
+    "B": "1 600 conta só uma face, e √5/4 não confere: a altura do triângulo tem de ser 1/40 do apótema, 20√2/40 = √2/2 ≈ 0,71, e √5/4 ≈ 0,56.",
+    "D": "6 400 está certo, mas √5/4 não confere: a altura é 1/40 do apótema de 20√2 m, ou seja, √2/2 ≈ 0,71 m, não 0,56 m."
+   },
+   "armadilha": "Contar só uma face (1 600) em vez das quatro, ou usar a altura da pirâmide (20 m) como altura da face.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de triângulos de vidro e a altura de cada um.",
+    "chave": "Apótema 20√2; razão 1/40 dá altura √2/2 e 40² = 1 600 triângulos por face; 4 faces dão 6 400.",
+    "cuidado": "A altura da face é o apótema, não a altura da pirâmide, e a superfície lateral tem quatro faces."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas áreas",
+    "ideia": "Área da face 400√2 m² dividida pela área de um triângulo, √2/4 m², dá 1 600 por face."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ap = √(20² + 20²) = 20√2",
+    "nota": "apótema da pirâmide"
+   },
+   {
+    "linha": "(20√2)/40 = √2/2",
+    "nota": "altura do triângulo de vidro"
+   },
+   {
+    "linha": "(40/1)² = 1 600",
+    "nota": "triângulos por face"
+   },
+   {
+    "linha": "4 × 1 600 = 6 400",
+    "nota": "quatro faces"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0064"
+  }
+ },
+ "P4f1923d8": {
+  "n": "16",
+  "conceito": "Probabilidade de uma partida, sorteada entre todos os pares de equipes, juntar uma equipe do Sul e uma do Sudeste.",
+  "equivocos": {
+   "A": "M13.4:esqueceu-a-outra-ordem",
+   "C": "M13.4:ordem-so-no-numerador",
+   "D": "M13.4:incluiu-pares-da-mesma-regiao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Uma partida é um par de equipes, sem ordem (A contra B é o mesmo jogo que B contra A). O espaço amostral são todos os pares possíveis entre as 20 equipes; os favoráveis são os pares com uma equipe do Sul e uma do Sudeste.",
+    "formulas": [
+     "pares possíveis = C(20, 2) = (20 · 19)/2",
+     "pares favoráveis = 5 · 10",
+     "probabilidade = favoráveis ÷ possíveis"
+    ],
+    "simbolos": [
+     [
+      "C(20, 2)",
+      "número de pares de equipes, sem importar a ordem"
+     ]
+    ]
+   },
+   "pista": "Conte as partidas possíveis como pares sem ordem e conte os favoráveis do mesmo jeito.",
+   "passos": [
+    {
+     "faz": "Conte as partidas possíveis",
+     "conta": "C(20, 2) = (20 · 19)/2 = 190",
+     "porque": "Cada partida é um par de equipes e a ordem não importa, por isso se divide por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as partidas Sul × Sudeste",
+     "conta": "5 · 10 = 50",
+     "porque": "Escolha uma das 5 equipes do Sul e uma das 10 do Sudeste. Cada escolha é uma partida diferente, já sem ordem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "50/190 = 5/19",
+     "porque": "50 e 190 têm o fator 10 em comum.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "5/19 → alternativa B",
+     "porque": "É a chance de a partida reunir uma equipe do Sul e uma do Sudeste.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 5/19",
+   "checagem": "Faça com ordem: a 1ª equipe é do Sul e a 2ª do Sudeste (5/20 · 10/19) ou o contrário (10/20 · 5/19); somando, 50/380 + 50/380 = 100/380 = 5/19. Mesmo resultado.",
+   "erradas": {
+    "A": "5/38 sai de contar só uma ordem: 5/20 · 10/19 = 50/380 = 5/38. Esquece o caso em que a equipe do Sudeste vem primeiro.",
+    "C": "10/19 sai de contar com ordem só os favoráveis: 2 · 50 = 100 sobre os 190 pares sem ordem. Numerador e denominador têm de ser contados do mesmo jeito.",
+    "D": "21/38 sai de contar todos os pares com as duas equipes do Sul ou do Sudeste: C(15, 2)/C(20, 2) = 105/190 = 21/38. Isso inclui Sul × Sul e Sudeste × Sudeste."
+   },
+   "armadilha": "A ordem não importa numa partida: contar os favoráveis com ordem e o total sem ordem (ou o contrário) dobra ou corta pela metade a resposta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de uma partida ser entre uma equipe do Sul e uma do Sudeste.",
+    "chave": "50 pares Sul × Sudeste entre 190 pares possíveis: 5/19.",
+    "cuidado": "Conte numerador e denominador do mesmo jeito: os dois sem ordem, ou os dois com ordem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sorteio com ordem",
+    "ideia": "5/20 · 10/19 + 10/20 · 5/19 = 100/380 = 5/19."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(20, 2) = (20 · 19)/2 = 190",
+    "nota": "partidas possíveis"
+   },
+   {
+    "linha": "5 · 10 = 50",
+    "nota": "partidas Sul × Sudeste"
+   },
+   {
+    "linha": "50/190 = 5/19",
+    "nota": "simplificar por 10"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
+ },
+ "P4c89b8a8": {
+  "n": "12",
+  "conceito": "Produto de matriz por vetor e uso do resultado em distância, posição em relação a círculo e área de triângulo.",
+  "equivocos": {
+   "A": "M15.1:esqueceu-a-afirmacao-iii",
+   "B": "M15.1:arredondou-raiz-de-21-para-4",
+   "D": "M15.1:arredondou-raiz-de-21-para-4"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro faça o produto: cada linha da matriz vezes a coluna (3, 2, 0) dá um dos números x, y e z. Com eles, cada afirmação vira uma conta de geometria analítica: distância entre pontos, comparação da distância ao centro com o raio e área de um triângulo de lados horizontais e verticais.",
+    "formulas": [
+     "linha × coluna: soma dos produtos termo a termo",
+     "d = √((Δx)² + (Δy)² + (Δz)²)",
+     "interior do círculo: distância ao centro < raio",
+     "área do triângulo retângulo = (cateto × cateto)/2"
+    ],
+    "simbolos": [
+     [
+      "Δx",
+      "diferença entre as coordenadas x"
+     ],
+     [
+      "√",
+      "raiz quadrada"
+     ],
+     [
+      "interior",
+      "pontos cuja distância ao centro é menor que o raio"
+     ]
+    ]
+   },
+   "pista": "Calcule x, y e z com o produto antes de olhar as afirmações; todas dependem só deles.",
+   "passos": [
+    {
+     "faz": "Faça o produto da matriz pela coluna",
+     "conta": "x = −3 + 2 + 0 = −1 | y = 3 − 2 + 0 = 1 | z = 0 + 2 + 0 = 2",
+     "porque": "Linha 1 (−1, 1, 0), linha 2 (1, −1, 1) e linha 3 (0, 1, 0), cada uma vezes (3, 2, 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmação I",
+     "conta": "d = √((3 + 1)² + (2 − 1)² + (0 − 2)²) → √(16 + 1 + 4) → √21 ≈ 4,58",
+     "porque": "√21 não é 4 (4 seria √16). A I é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmação II",
+     "conta": "centro (2, 3), ponto (−1, 1): d = √(3² + 2²) → √13 ≈ 3,61 < 4",
+     "porque": "O centro é (z, z + 1) = (2, 3). A distância ao centro é menor que o raio 4, então o ponto está no interior: II verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmação III",
+     "conta": "(−1, 1), (−1, 2), (1, 2): catetos 1 e 2 → área = (1 × 2)/2 → 1",
+     "porque": "De (−1, 1) a (−1, 2) o lado é vertical; de (−1, 2) a (1, 2) é horizontal; o ângulo reto fica em (−1, 2). III verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "I falsa | II e III verdadeiras → alternativa C",
+     "porque": "Só a C reúne exatamente II e III.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — II e III, apenas",
+   "checagem": "Na III, pela fórmula do determinante dos vértices: |(−1)(2 − 2) + (−1)(2 − 1) + 1(1 − 2)|/2 = |0 − 1 − 1|/2 = 1. Área 1, como antes.",
+   "erradas": {
+    "A": "Não confere: deixa de fora a III, que é verdadeira (catetos 1 e 2 em (−1, 2), área (1 × 2)/2 = 1).",
+    "B": "Não confere: inclui a I, mas a distância é √21 ≈ 4,58, não 4; e deixa de fora a II.",
+    "D": "Não confere: a I é falsa, pois √(16 + 1 + 4) = √21 ≠ 4."
+   },
+   "armadilha": "Errar um sinal no produto (por exemplo, x = 3 − 2 = 1) muda os três pontos e todas as afirmações.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das três afirmações sobre x, y e z são corretas.",
+    "chave": "(x, y, z) = (−1, 1, 2); d = √21 (I falsa), √13 < 4 (II certa), catetos 1 e 2 dão área 1 (III certa).",
+    "cuidado": "Faça o produto linha por coluna com atenção aos sinais e compare distância com raio, não com diâmetro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Decidida só a I (√21 ≠ 4), sobram A e C; a III com área 1 decide pela C."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x = (−1)(3) + 1 × 2 + 0 × 0 = −1",
+    "nota": "linha 1 × coluna"
+   },
+   {
+    "linha": "y = 1 × 3 + (−1)(2) + 1 × 0 = 1",
+    "nota": "linha 2 × coluna"
+   },
+   {
+    "linha": "z = 0 × 3 + 1 × 2 + 0 × 0 = 2",
+    "nota": "linha 3 × coluna"
+   },
+   {
+    "linha": "I: √(16 + 1 + 4) = √21 ≠ 4",
+    "nota": "falsa"
+   },
+   {
+    "linha": "II: √(9 + 4) = √13 < 4",
+    "nota": "verdadeira"
+   },
+   {
+    "linha": "III: (1 × 2)/2 = 1",
+    "nota": "verdadeira"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
+ },
+ "P9708de6f": {
+  "n": "19",
+  "conceito": "Montar elementos de matriz pela lei de formação aᵢⱼ = log₃(i · j) e operar com propriedades de logaritmo.",
+  "equivocos": {
+   "B": "M15.1:parou-num-elemento",
+   "C": "M15.1:parou-num-elemento",
+   "D": "M15.1:log-de-quociente-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada letra da matriz ocupa uma posição (linha i, coluna j), e o seu valor é log₃(i · j). Localize a posição de x, y e z. Depois, junte tudo num logaritmo só: soma vira produto e subtração vira divisão.",
+    "formulas": [
+     "aᵢⱼ = log₃(i · j)",
+     "log m + log n − log p = log((m · n)/p)",
+     "log₃ 3 = 1"
+    ],
+    "simbolos": [
+     [
+      "aᵢⱼ",
+      "elemento da linha i e coluna j"
+     ],
+     [
+      "log₃",
+      "logaritmo na base três"
+     ]
+    ]
+   },
+   "pista": "Escreva a posição (i, j) de x, de y e de z antes de calcular qualquer logaritmo.",
+   "passos": [
+    {
+     "faz": "Localize x, y e z",
+     "conta": "x = a₁₂ ; y = a₂₂ ; z = a₂₃",
+     "porque": "x está na linha 1, coluna 2; y no centro; z na linha 2, coluna 3. A matriz é simétrica, por isso x e z se repetem.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique a lei de formação",
+     "conta": "x = log₃(1 · 2) = log₃ 2 ; y = log₃(2 · 2) = log₃ 4 ; z = log₃(2 · 3) = log₃ 6",
+     "porque": "Cada elemento é o log na base 3 do produto linha × coluna.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte num logaritmo só",
+     "conta": "log₃ 2 + log₃ 6 − log₃ 4 = log₃((2 · 6)/4) = log₃ 3",
+     "porque": "Soma de logs de mesma base vira log do produto; subtração vira log da divisão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "log₃ 3 = 1 → alternativa A",
+     "porque": "3 elevado a 1 dá 3.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — x + z − y = 1",
+   "checagem": "Confira a lei nos elementos dados: a₁₁ = log₃ 1 = 0, a₁₃ = log₃ 3 = 1 e a₃₃ = log₃ 9 = 2, exatamente os números escritos na matriz. Em decimal: 0,631 + 1,631 − 1,262 = 1,000.",
+   "erradas": {
+    "B": "B sai de parar em y = log₃ 4 e dar o valor de y, sem fazer x + z − y.",
+    "C": "C sai de parar em x = log₃ 2 e dar o valor de x, sem fazer x + z − y.",
+    "D": "D não confere: dar 0 exigiria (x · z)/y = 1, mas (2 · 6)/4 = 3, e log₃ 3 = 1."
+   },
+   "armadilha": "Trocar a ordem linha e coluna não muda nada aqui (a matriz é simétrica); o erro comum é não juntar os logaritmos e parar num deles.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de x + z − y.",
+    "chave": "x = log₃ 2, y = log₃ 4, z = log₃ 6; somando e subtraindo, log₃((2 · 6)/4) = log₃ 3 = 1.",
+    "cuidado": "Soma de logs vira produto e subtração vira divisão, na mesma base."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "decimais",
+    "ideia": "log₃ 2 ≈ 0,631, log₃ 6 ≈ 1,631 e log₃ 4 ≈ 1,262; então x + z − y ≈ 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x = log₃ 2 ; y = log₃ 4 ; z = log₃ 6",
+    "nota": "aᵢⱼ = log₃(i · j)"
+   },
+   {
+    "linha": "x + z − y = log₃((2 · 6)/4)",
+    "nota": "propriedades do log"
+   },
+   {
+    "linha": "log₃ 3 = 1",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P72f1ad80": {
+  "n": "18",
+  "conceito": "Usar a divisibilidade por vários polinômios para achar todas as raízes de um polinômio de grau 4.",
+  "equivocos": {
+   "A": "M16.1:sinal-da-raiz-trocado",
+   "B": "M16.1:raiz-comum-contada-duas-vezes",
+   "C": "M16.1:raiz-comum-contada-duas-vezes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ser divisível por um polinômio quer dizer ter todas as raízes dele. Fatore os três polinômios de grau 2: aparecem raízes repetidas entre eles. As raízes diferentes são quatro, exatamente o grau de p(x), então são todas as raízes de p(x).",
+    "formulas": [
+     "x² + Sx + P = (x + m)(x + n), com m + n = S e m · n = P",
+     "p divisível por (x + m) → x = −m é raiz de p"
+    ],
+    "simbolos": [
+     [
+      "p(x)",
+      "polinômio de grau 4"
+     ],
+     [
+      "p1, p2, p3",
+      "os três polinômios de grau 2 que dividem p(x)"
+     ]
+    ]
+   },
+   "pista": "Fatore cada polinômio de grau 2 e liste as raízes sem repetir.",
+   "passos": [
+    {
+     "faz": "Fatore os três polinômios",
+     "conta": "x² + 7x + 12 = (x + 3)(x + 4) | x² + 6x + 8 = (x + 2)(x + 4) | x² + 4x + 3 = (x + 1)(x + 3)",
+     "porque": "Em cada um, procure dois números com a soma igual ao coeficiente de x e o produto igual ao termo independente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Liste as raízes sem repetir",
+     "conta": "{−3, −4} ∪ {−2, −4} ∪ {−1, −3} → {−1, −2, −3, −4}",
+     "porque": "O −3 e o −4 aparecem duas vezes, mas cada um é uma raiz só. Sobram quatro raízes diferentes.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use o grau de p(x)",
+     "conta": "p(x) = k(x + 1)(x + 2)(x + 3)(x + 4)",
+     "porque": "Grau 4 comporta exatamente quatro raízes, e as quatro já estão garantidas. O k é uma constante que não muda as raízes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as raízes",
+     "conta": "(−1) + (−2) + (−3) + (−4) → −10",
+     "porque": "As raízes são os números que zeram cada fator, todos negativos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue a soma à alternativa",
+     "conta": "−10 → alternativa D",
+     "porque": "A questão pede a soma das raízes de p(x).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — −10",
+   "checagem": "Expanda (x + 1)(x + 2)(x + 3)(x + 4) = x⁴ + 10x³ + 35x² + 50x + 24. Por Girard, a soma das raízes é −10/1 = −10. Fecha.",
+   "erradas": {
+    "A": "10 sai de trocar o sinal das raízes: tomar 1, 2, 3 e 4 em vez de −1, −2, −3 e −4.",
+    "B": "17 sai de somar as raízes das três quadráticas com repetição e trocar o sinal: 7 + 6 + 4 = 17.",
+    "C": "−17 sai de somar as raízes das três quadráticas contando −3 e −4 duas vezes: (−7) + (−6) + (−4) = −17. Mas p(x) tem só quatro raízes."
+   },
+   "armadilha": "As três quadráticas têm raízes em comum: contar −3 e −4 duas vezes dá seis raízes para um polinômio de grau 4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma das raízes do polinômio de grau 4 divisível por p1, p2 e p3.",
+    "chave": "As raízes sem repetição são −1, −2, −3 e −4, e a soma é −10.",
+    "cuidado": "Não conte duas vezes as raízes comuns, e lembre que (x + 3) zera em x = −3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Girard",
+    "ideia": "Expandindo k(x + 1)(x + 2)(x + 3)(x + 4) = k(x⁴ + 10x³ + …), a soma é −(10k)/k = −10."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p1 = (x + 3)(x + 4) | p2 = (x + 2)(x + 4) | p3 = (x + 1)(x + 3) → raízes: −1, −2, −3, −4",
+    "nota": "fatorar e listar sem repetir"
+   },
+   {
+    "linha": "p(x) = k(x + 1)(x + 2)(x + 3)(x + 4)",
+    "nota": "grau 4"
+   },
+   {
+    "linha": "−1 − 2 − 3 − 4 = −10",
+    "nota": "somar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ }
+}

@@ -1,0 +1,670 @@
+{
+ "Pea3f4175": {
+  "n": "14",
+  "conceito": "MUV em duas etapas: com aceleração positiva (mesmo reduzida), a velocidade continua aumentando e a distância da 2ª etapa é maior.",
+  "equivocos": {
+   "A": "F02.2:distancia-nao-fecha",
+   "B": "F02.2:aceleracao-menor-como-freio",
+   "C": "F02.2:esqueceu-velocidade-inicial"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Reduzir a aceleração pela metade não é frear: a aceleração continua positiva, então a velocidade continua crescendo. Na segunda etapa, o carro já começa com v₁ e ainda acelera, por isso anda mais no mesmo tempo t.",
+    "formulas": [
+     "v = v₀ + a · t",
+     "d = v₀ · t + a · t²/2"
+    ],
+    "simbolos": [
+     [
+      "a",
+      "aceleração"
+     ],
+     [
+      "v₀",
+      "velocidade inicial"
+     ],
+     [
+      "v",
+      "velocidade final"
+     ],
+     [
+      "Δs",
+      "deslocamento"
+     ],
+     [
+      "t",
+      "duração de cada etapa"
+     ]
+    ]
+   },
+   "pista": "Na segunda etapa, a aceleração é negativa ou só menor?",
+   "passos": [
+    {
+     "faz": "Calcule v₁",
+     "conta": "v₁ = 0 + a · t = a · t",
+     "porque": "Parte do repouso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule v₂",
+     "conta": "v₂ = a · t + (a/2) · t = 1,5 · a · t",
+     "porque": "A aceleração a/2 ainda é positiva: v₂ > v₁.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule d₁ e d₂",
+     "conta": "d₁ = a · t²/2 = 0,5 · a · t² | d₂ = a · t · t + (a/2) · t²/2 = 1,25 · a · t²",
+     "porque": "Na 2ª etapa já começa com velocidade v₁.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare",
+     "conta": "v₂ > v₁ e d₂ > d₁",
+     "porque": "1,5 > 1 e 1,25 > 0,5.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "v₁ < v₂ e d₁ < d₂",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — v₁ < v₂ e d₁ < d₂.",
+   "checagem": "Com números, a = 2 m/s² e t = 1 s: v₁ = 2 m/s, d₁ = 1 m; depois, com 1 m/s², v₂ = 3 m/s e d₂ = 2 + 0,5 = 2,5 m. Tudo maior na 2ª etapa.",
+   "erradas": {
+    "A": "Não confere: mesmo que a/2 fosse freio, o carro começa a 2ª etapa com v₁ e anda pelo menos 0,75 · a · t², mais que d₁ = 0,5 · a · t²; d₁ > d₂ é impossível.",
+    "B": "Sai de tratar a/2 como frenagem: aí v₂ = 0,5 · a · t < v₁; mas a aceleração continua positiva, então v₂ = 1,5 · a · t > v₁.",
+    "C": "d₂ não é menor que d₁: na 2ª etapa o carro já começa com v₁ e anda 1,25 · a · t², contra 0,5 · a · t² na 1ª."
+   },
+   "armadilha": "Confundir aceleração menor com desaceleração: o carro continua ganhando velocidade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As comparações entre as velocidades e as distâncias das duas etapas.",
+    "chave": "v₂ = 1,5 · a · t > v₁ = a · t; d₂ = 1,25 · a · t² > d₁ = 0,5 · a · t².",
+    "cuidado": "Aceleração menor, mas positiva, ainda aumenta a velocidade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "gráfico v × t",
+    "ideia": "A reta sobe nas duas etapas (menos inclinada na 2ª); a área sob a 2ª etapa é maior que o triângulo da 1ª."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "v₁ = a · t",
+    "nota": "1ª etapa"
+   },
+   {
+    "linha": "v₂ = a · t + (a/2) · t = 1,5 · a · t",
+    "nota": "2ª etapa"
+   },
+   {
+    "linha": "d₁ = 0,5 · a · t²",
+    "nota": "1ª etapa"
+   },
+   {
+    "linha": "d₂ = a · t² + 0,25 · a · t² = 1,25 · a · t²",
+    "nota": "2ª etapa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0045"
+  }
+ },
+ "P624f8b49": {
+  "n": "13",
+  "conceito": "Decidir se o bloco desliza comparando a força aplicada com o atrito estático máximo; parado, o atrito iguala a força aplicada.",
+  "equivocos": {
+   "A": "F03.3:parado-sem-atrito",
+   "B": "F03.3:usou-atrito-cinetico-parado",
+   "D": "F03.3:usou-atrito-maximo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Antes de usar qualquer coeficiente, descubra se o bloco se move. O atrito estático não tem valor fixo: ele cresce junto com a força aplicada até um teto, μe × N. Se a força não passa desse teto, o bloco fica parado e o atrito vale exatamente a força aplicada.",
+    "formulas": [
+     "N = P = m × g (mesa horizontal, força horizontal)",
+     "atrito estático máximo = μe × N",
+     "parado: atrito = força aplicada"
+    ],
+    "simbolos": [
+     [
+      "μe",
+      "coeficiente de atrito estático, vale enquanto não há deslizamento"
+     ],
+     [
+      "μc",
+      "coeficiente de atrito cinético, vale só com o bloco deslizando"
+     ],
+     [
+      "N",
+      "força normal, que a mesa faz no bloco"
+     ]
+    ]
+   },
+   "pista": "Calcule o maior atrito estático possível e compare com os 3,5 N aplicados.",
+   "passos": [
+    {
+     "faz": "Calcule a normal",
+     "conta": "N = m × g = 2,0 × 10 = 20 N",
+     "porque": "Mesa horizontal e força horizontal: só o peso aperta o bloco contra a mesa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o atrito estático máximo",
+     "conta": "Fat,máx = μe × N = 0,20 × 20 = 4,0 N",
+     "porque": "É o maior valor que o atrito consegue atingir sem o bloco deslizar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com a força aplicada",
+     "conta": "F = 3,5 N < 4,0 N → o bloco não desliza",
+     "porque": "A força não vence o teto do atrito estático, então o bloco continua em repouso.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Iguale atrito e força",
+     "conta": "repouso: Fat = F = 3,5 N → alternativa C",
+     "porque": "Parado, a resultante é zero: o atrito só equilibra a força aplicada, sem passar dela.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3,5 N",
+   "checagem": "Se o atrito fosse 4,0 N com o bloco parado, a resultante seria 4,0 − 3,5 = 0,5 N para trás e o bloco sairia andando para trás sozinho, o que é absurdo. Só 3,5 N deixa a resultante nula.",
+   "erradas": {
+    "A": "Sai de achar que bloco parado não tem atrito. Sem atrito, os 3,5 N acelerariam o bloco; é o atrito estático de 3,5 N que o mantém parado.",
+    "B": "Sai de usar o cinético: 0,15 × 20 = 3,0 N. Esse coeficiente só vale com o bloco deslizando, e ele está parado.",
+    "D": "Sai de usar o teto do atrito estático: 0,20 × 20 = 4,0 N. Esse é o valor máximo possível, não o que atua quando a força é só 3,5 N."
+   },
+   "armadilha": "Usar μe × N como se fosse o atrito que atua: esse é só o teto; parado, o atrito iguala a força aplicada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O atrito sobre um bloco de 2,0 kg empurrado com 3,5 N, com μe = 0,20 e μc = 0,15.",
+    "chave": "Fat,máx = 0,20 × 20 = 4,0 N > 3,5 N: o bloco fica parado e Fat = 3,5 N.",
+    "cuidado": "Primeiro descubra se desliza; μe × N é o limite, não o valor do atrito."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "resultante nula",
+    "ideia": "O bloco não desliza (3,5 N < 4,0 N); parado, resultante zero exige atrito igual e oposto à força: 3,5 N."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "N = 2,0 × 10 = 20 N",
+    "nota": "normal = peso"
+   },
+   {
+    "linha": "Fat,máx = 0,20 × 20 = 4,0 N",
+    "nota": "teto do atrito estático"
+   },
+   {
+    "linha": "3,5 N < 4,0 N",
+    "nota": "não desliza"
+   },
+   {
+    "linha": "Fat = F = 3,5 N",
+    "nota": "atrito equilibra a força"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0049"
+  }
+ },
+ "P44398371": {
+  "n": "17",
+  "conceito": "Mistura de águas: calor cedido pela quente = calor recebido pela fria; massas inversamente proporcionais às variações.",
+  "equivocos": {
+   "A": "F08.4:media-simples-sem-pesar-massas",
+   "C": "F08.4:razao-nao-fecha",
+   "D": "F08.4:razao-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Num recipiente isolado, todo o calor que a água quente perde vai para a fria. Como as duas são água, o calor específico é o mesmo e cancela. Sobra uma proporção: cada massa vezes a sua variação de temperatura. Quem varia menos tem mais massa.",
+    "formulas": [
+     "calor cedido = calor recebido",
+     "m₁ · c · (Tf − T₁) = m₂ · c · (T₂ − Tf)"
+    ],
+    "simbolos": [
+     [
+      "m₁",
+      "massa da água fria, a 20 °C"
+     ],
+     [
+      "m₂",
+      "massa da água quente, a 80 °C"
+     ],
+     [
+      "c",
+      "calor específico da água (cancela)"
+     ],
+     [
+      "Tf",
+      "temperatura final, 40 °C"
+     ]
+    ]
+   },
+   "pista": "Calcule quanto cada porção de água variou de temperatura até os 40 °C.",
+   "passos": [
+    {
+     "faz": "Ache as variações",
+     "conta": "fria: 40 − 20 = 20 °C | quente: 80 − 40 = 40 °C",
+     "porque": "A temperatura final está mais perto da fria, sinal de que há mais água fria.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Iguale os calores",
+     "conta": "m₁ · c · 20 = m₂ · c · 40 → m₁ · 20 = m₂ · 40",
+     "porque": "Recipiente isolado: o calor cedido pela quente é o recebido pela fria; c é o mesmo e cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a razão",
+     "conta": "m₁ · 20 = m₂ · 40 → m₁/m₂ = 40/20 = 2",
+     "porque": "O 20 que multiplica m₁ passa dividindo, e m₂ passa dividindo para o lado de m₁.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "m₁/m₂ = 2 → alternativa B",
+     "porque": "Há o dobro de água fria.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — m₁/m₂ = 2.",
+   "checagem": "Substitua m₁ = 2 e m₂ = 1: média ponderada (2 × 20 + 1 × 80)/3 = 120/3 = 40 °C, a temperatura medida.",
+   "erradas": {
+    "A": "Com massas iguais a final seria a média, (20 + 80)/2 = 50 °C, não 40 °C.",
+    "C": "Com m₁/m₂ = 3, a final seria (3 × 20 + 80)/4 = 35 °C, não 40 °C.",
+    "D": "Com m₁/m₂ = 4, a final seria (4 × 20 + 80)/5 = 32 °C, não 40 °C."
+   },
+   "armadilha": "Inverter a proporção: a massa maior é a da água que variou MENOS de temperatura.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão entre as massas de água fria e quente que, misturadas, ficam a 40 °C.",
+    "chave": "m₁ · 20 = m₂ · 40 → m₁/m₂ = 2.",
+    "cuidado": "Cada massa vai com a sua própria variação: fria 20 °C, quente 40 °C."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média ponderada",
+    "ideia": "40 = (m₁ · 20 + m₂ · 80)/(m₁ + m₂) → 20 m₁ = 40 m₂ → m₁/m₂ = 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "fria: 40 − 20 = 20 °C | quente: 80 − 40 = 40 °C",
+    "nota": "variações"
+   },
+   {
+    "linha": "m₁ · 20 = m₂ · 40",
+    "nota": "cedido = recebido, c cancela"
+   },
+   {
+    "linha": "m₁/m₂ = 40/20 = 2",
+    "nota": "alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0058"
+  }
+ },
+ "P2b8fb4e5": {
+  "n": "18",
+  "conceito": "Com a velocidade fixa, v = λ·f: frequência maior dá comprimento de onda menor e som mais agudo.",
+  "equivocos": {
+   "A": "F10.5:lambda-cresce-com-f",
+   "B": "F10.5:agudo-por-lambda-maior",
+   "C": "F10.5:frequencias-invertidas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A questão diz que as duas ondas sonoras têm a mesma velocidade. Com v fixa, v = λ·f faz λ e f andarem em sentidos opostos: quem tem frequência maior tem comprimento de onda menor. E a altura do som (agudo ou grave) é dada pela frequência: frequência maior, som mais agudo.",
+    "formulas": [
+     "v = λ × f, logo λ = v ÷ f",
+     "f maior → som mais agudo"
+    ],
+    "simbolos": [
+     [
+      "λ",
+      "comprimento de onda (lambda)"
+     ],
+     [
+      "f",
+      "frequência, em hertz (Hz)"
+     ],
+     [
+      "v",
+      "velocidade de propagação da onda"
+     ],
+     [
+      "agudo / grave",
+      "altura do som: agudo é frequência alta, grave é frequência baixa"
+     ]
+    ]
+   },
+   "pista": "Com a velocidade igual para as duas, escreva λ em função de f e compare as frequências dadas.",
+   "passos": [
+    {
+     "faz": "Compare as frequências",
+     "conta": "f5 = 110 Hz > f6 = 82 Hz",
+     "porque": "A quinta corda vibra mais vezes por segundo.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Compare os comprimentos de onda",
+     "conta": "λ = v/f → λ5/λ6 = f6/f5 = 82/110 ≈ 0,75 → λ5 < λ6",
+     "porque": "Com o mesmo v, o comprimento de onda é inversamente proporcional à frequência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Classifique a altura",
+     "conta": "f5 > f6 → som da corda 5 mais agudo",
+     "porque": "Altura do som é frequência: maior frequência, som mais agudo.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "λ5 < λ6 e corda 5 mais aguda → alternativa D",
+     "porque": "Só D junta as duas comparações certas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — λ5 < λ6, e o som da corda 5 é mais agudo que o da corda 6.",
+   "checagem": "Com números: tomando v = 340 m/s no ar, λ5 = 340 ÷ 110 ≈ 3,1 m e λ6 = 340 ÷ 82 ≈ 4,1 m. De fato λ5 < λ6. E no violão a sexta corda é a mais grossa e a mais grave.",
+   "erradas": {
+    "A": "Acerta o agudo e erra o λ: sai de achar que λ cresce com f. Com v fixa, λ = v/f, e a frequência maior dá λ menor.",
+    "B": "Acerta o λ e erra a altura: sai de ligar som agudo a λ maior. Agudo é frequência alta, e f5 = 110 Hz é a maior.",
+    "C": "Inverte as duas: λ5 > λ6 e corda 5 mais grave valeriam se f5 fosse menor que f6, mas 110 Hz > 82 Hz."
+   },
+   "armadilha": "Achar que λ e f crescem juntos: com a velocidade fixa, um sobe e o outro desce.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A comparação dos comprimentos de onda e da altura dos sons de duas cordas do violão.",
+    "chave": "v fixa: λ = v/f; f5 > f6 dá λ5 < λ6 e som 5 mais agudo.",
+    "cuidado": "Agudo e grave dependem da frequência, não da intensidade nem do comprimento de onda crescendo junto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "proporção",
+    "ideia": "Com v igual, f e λ são inversos: quem vibra mais rápido (corda 5) tem onda mais curta e som mais agudo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "v = λ·f → λ = v/f",
+    "nota": "isolar λ"
+   },
+   {
+    "linha": "λ5/λ6 = (v/f5)/(v/f6) = f6/f5",
+    "nota": "o v cancela"
+   },
+   {
+    "linha": "λ5/λ6 = 82/110 ≈ 0,75 → λ5 < λ6",
+    "nota": "substituir"
+   },
+   {
+    "linha": "f5 > f6 → corda 5 mais aguda",
+    "nota": "altura = frequência"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0062"
+  }
+ },
+ "P623c7213": {
+  "n": "16",
+  "conceito": "Campo elétrico nulo entre duas cargas de mesmo sinal: a carga mais próxima do ponto é a menor, na razão do quadrado das distâncias.",
+  "equivocos": {
+   "A": "F11.2:inverteu-razao",
+   "C": "F11.2:esqueceu-quadrado-da-distancia",
+   "D": "F11.2:esqueceu-quadrado-da-distancia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No ponto P os dois campos têm o mesmo módulo e sentidos opostos, por isso se anulam (o que, entre as cargas, exige cargas de mesmo sinal). O campo de uma carga cai com o quadrado da distância, então a carga que está mais perto de P precisa ser menor. Iguale os módulos e isole a razão.",
+    "formulas": [
+     "E = k·|Q|/d²",
+     "campo nulo: k·|Q|/d² = k·|Q'|/d'²"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "módulo do campo elétrico"
+     ],
+     [
+      "k",
+      "constante eletrostática; aparece dos dois lados e se cancela"
+     ],
+     [
+      "D",
+      "distância entre as duas cargas"
+     ]
+    ]
+   },
+   "pista": "Iguale os dois campos em P; o k se cancela e sobram as cargas e os quadrados das distâncias.",
+   "passos": [
+    {
+     "faz": "Iguale os campos em P",
+     "conta": "k·|Q|/(D/3)² = k·|Q'|/(2D/3)²",
+     "porque": "Para o campo resultante ser nulo, os dois campos em P precisam ter o mesmo módulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Cancele k e eleve as distâncias",
+     "conta": "9|Q|/D² = 9|Q'|/(4D²)",
+     "porque": "(D/3)² = D²/9, e dividir por D²/9 é multiplicar por 9/D²; (2D/3)² = 4D²/9, que vira 9/(4D²).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole Q",
+     "conta": "|Q| = |Q'|/4",
+     "porque": "Cortando 9/D² dos dois lados, sobra Q de um lado e Q' dividido por 4 do outro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira o sentido da razão",
+     "conta": "Q mais perto de P → Q menor",
+     "porque": "A carga mais próxima produz o mesmo campo com menos carga, por isso Q é a quarta parte de Q'.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — Q = Q'/4.",
+   "checagem": "Teste com números: Q = 1 e Q' = 4, D = 3. Em P: 1/1² = 1 e 4/2² = 1. Os campos são iguais e se anulam.",
+   "erradas": {
+    "A": "Inverte a razão: Q = 4Q' poria a carga maior mais perto de P, e o campo dela venceria. A carga mais próxima tem de ser a menor.",
+    "C": "Sai de esquecer o quadrado e ainda inverter: com as distâncias 1 e 2 sem elevar, a razão seria 2, e posta ao contrário dá Q = 2Q'.",
+    "D": "Sai de esquecer o quadrado da distância: |Q|/(D/3) = |Q'|/(2D/3) dá Q = Q'/2. O campo cai com d², então a razão é 1/4."
+   },
+   "armadilha": "Esquecer de elevar a distância ao quadrado: a razão das distâncias é 1 para 2, mas a das cargas é 1 para 4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A relação entre Q e Q' para o campo ser nulo a D/3 de Q.",
+    "chave": "|Q|/(D/3)² = |Q'|/(2D/3)², logo Q = Q'/4.",
+    "cuidado": "Elevar as distâncias ao quadrado e lembrar que a carga mais próxima é a menor."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "proporção",
+    "ideia": "A distância de Q' é o dobro da de Q; como E cai com d², Q' precisa ser 2² = 4 vezes maior."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "k·Q/(D/3)² = k·Q'/(2D/3)²",
+    "nota": "campos iguais em P"
+   },
+   {
+    "linha": "9Q/D² = 9Q'/(4D²)",
+    "nota": "k cancela; distâncias ao quadrado"
+   },
+   {
+    "linha": "Q = Q'/4",
+    "nota": "9/D² cancela dos dois lados"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0063"
+  }
+ },
+ "P82322ec8": {
+  "n": "15",
+  "conceito": "Colisão em linha: conservação da quantidade de movimento para achar a velocidade de A e comparação das energias cinéticas antes e depois.",
+  "equivocos": {
+   "B": "F05.3:sinal-da-velocidade-trocado",
+   "C": "F05.3:energia-sem-massa",
+   "D": "F05.3:sinal-da-velocidade-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em toda colisão a quantidade de movimento do sistema se conserva. Com ela se acha a velocidade de A depois do choque. Depois, compare a energia cinética total antes e depois: se forem iguais, ΔEc = 0 (colisão elástica). Repare que energia tem a massa na fórmula: uma resposta só com v² não pode ser energia.",
+    "formulas": [
+     "Q antes = Q depois: m × v = m × vA + 2m × vB",
+     "Ec = (m × v²)/2",
+     "ΔEc = Ec depois − Ec antes"
+    ],
+    "simbolos": [
+     [
+      "vA, vB",
+      "velocidades de A e de B depois do choque"
+     ],
+     [
+      "Ec",
+      "energia cinética"
+     ],
+     [
+      "ΔEc",
+      "variação da energia cinética do sistema"
+     ]
+    ]
+   },
+   "pista": "Use primeiro a grandeza que sempre se conserva numa colisão; só depois olhe a energia.",
+   "passos": [
+    {
+     "faz": "Escreva a conservação da quantidade de movimento",
+     "conta": "m × v + 2m × 0 = m × vA + 2m × (2/3) v → v = vA + (4/3) v",
+     "porque": "B estava parada; a massa m aparece em todos os termos e cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole vA",
+     "conta": "vA = v − (4/3) v → vA = −(1/3) v",
+     "porque": "O termo (4/3) v passa para o outro lado subtraindo. O sinal negativo indica que A volta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a energia antes e depois",
+     "conta": "Ec antes = (m v²)/2 | Ec depois = (m (v/3)²)/2 + (2m (2v/3)²)/2 = (m v²)/2 × (1/9 + 8/9) = (m v²)/2",
+     "porque": "Some as energias das duas partículas depois do choque.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "ΔEc = (m v²)/2 − (m v²)/2 = 0",
+     "porque": "Não houve perda de energia: a colisão é elástica. A volta com v/3: alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — vA = −(1/3) v e ΔEc = 0.",
+   "checagem": "Pelo coeficiente de restituição: velocidade de afastamento = vB − vA = (2/3) v + (1/3) v = v, igual à de aproximação v. Então e = 1, colisão elástica, e ΔEc = 0.",
+   "erradas": {
+    "B": "vA = +(1/3) v não confere: m × (1/3) v + 2m × (2/3) v = (5/3) m v, maior que a quantidade de movimento inicial m v.",
+    "C": "Acerta vA, mas ΔEc = +(8/9) v² não tem massa, logo não é energia; e a soma das energias depois dá exatamente (m v²)/2, igual à de antes.",
+    "D": "vA = +(1/3) v viola a quantidade de movimento (daria (5/3) m v), e −(8/9) v² não tem a massa que toda energia tem."
+   },
+   "armadilha": "Achar que toda colisão perde energia: aqui as contas mostram que a energia total depois é igual à de antes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A velocidade de A depois do choque e a variação da energia cinética do sistema.",
+    "chave": "m v = m vA + 2m (2/3) v dá vA = −(1/3) v; as energias antes e depois dão (m v²)/2.",
+    "cuidado": "Manter o sinal de vA e lembrar que energia sempre traz a massa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "restituição",
+    "ideia": "Afastamento vB − vA = v, igual à aproximação: e = 1, choque elástico, ΔEc = 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m v = m vA + 2m × (2/3) v",
+    "nota": "quantidade de movimento"
+   },
+   {
+    "linha": "v = vA + (4/3) v",
+    "nota": "a massa m cancela"
+   },
+   {
+    "linha": "vA = −(1/3) v",
+    "nota": "(4/3) v passa subtraindo"
+   },
+   {
+    "linha": "Ec depois = (m v²)/2 × (1/9 + 8/9) = (m v²)/2",
+    "nota": "soma das energias"
+   },
+   {
+    "linha": "ΔEc = 0",
+    "nota": "depois menos antes"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0073"
+  }
+ }
+}

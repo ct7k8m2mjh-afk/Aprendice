@@ -1,0 +1,579 @@
+{
+ "Pce5a3ab2": {
+  "n": "22",
+  "conceito": "Variação percentual de uma carteira: média ponderada das variações.",
+  "equivocos": {
+   "A": "M03.2:ignorou-os-pesos",
+   "B": "M03.2:so-as-perdas",
+   "C": "M03.2:sem-origem-identificada",
+   "D": "M03.2:trocou-o-sinal"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada parte do capital varia com sua taxa. A variação total é a soma de (peso · variação): 35% · (+15%) + 25% · (−10%) + 40% · (−5%).",
+    "formulas": [
+     "variação total = Σ peso · variação"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quanto cada aplicação contribui para a variação, em pontos percentuais?",
+   "passos": [
+    {
+     "faz": "Ações A",
+     "conta": "0,35 · 15% = +5,25 p.p.",
+     "porque": "Valorização.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ações B",
+     "conta": "0,25 · (−10%) = −2,5 p.p.",
+     "porque": "Desvalorização.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Cripto",
+     "conta": "0,40 · (−5%) = −2 p.p.",
+     "porque": "Desvalorização.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Total",
+     "conta": "5,25 − 2,5 − 2 = +0,75% → alternativa E",
+     "porque": "Aumentou 0,75%.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — aumentou 0,75%.",
+   "checagem": "Com capital de 1 000: A vira 350 · 1,15 = 402,50; B vira 250 · 0,9 = 225; cripto vira 400 · 0,95 = 380. Soma 1 007,50: +0,75%. Confere.",
+   "erradas": {
+    "A": "O capital mudou: 1 000 vira 1 007,50.",
+    "B": "4,50% é só a soma das perdas (2,5 + 2 p.p.), sem o ganho de 5,25 p.p. de A.",
+    "C": "Com capital de 1 000, uma alta de 4,50% daria 1 045; as contas dão 1 007,50.",
+    "D": "O sinal está trocado: o resultado é +0,75%, não −0,75%."
+   },
+   "armadilha": "Somar as variações sem os pesos (15 − 10 − 5 = 0) e concluir que nada mudou.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Variação do capital.",
+    "chave": "+5,25 − 2,5 − 2 = +0,75%.",
+    "cuidado": "Pese cada variação pela fatia do capital."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "compensação",
+    "ideia": "As perdas somam 2,5 + 2 = 4,5 p.p. Para empatar, A (35% do capital) teria de subir 4,5 ÷ 0,35 ≈ 12,86%. Subiu 15%: sobram (15 − 12,86) · 0,35 ≈ 0,75 p.p. de ganho."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "+5,25",
+    "nota": "A"
+   },
+   {
+    "linha": "−2,5",
+    "nota": "B"
+   },
+   {
+    "linha": "−2",
+    "nota": "cripto"
+   },
+   {
+    "linha": "+0,75%",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0049"
+  }
+ },
+ "P1088e958": {
+  "n": "20",
+  "conceito": "Usar o termo geral do binômio de Newton e a contagem de anagramas para montar uma equação em a.",
+  "equivocos": {
+   "A": "M13.3:valor-sem-base",
+   "B": "M13.3:expoente-trocado",
+   "C": "M13.3:valor-sem-base",
+   "E": "M13.3:valor-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No desenvolvimento de (x + a)⁶, o termo com x² usa x duas vezes e a quatro vezes: C(6, 2) x² a⁴. O lado direito vem da contagem: TERMO tem 5 letras diferentes, então 5! anagramas. A equação compara o coeficiente com o dobro disso. Atenção: o a aparece com expoente 4, não 2.",
+    "formulas": [
+     "termo de (x + a)ⁿ com xᵏ: C(n, k) xᵏ aⁿ⁻ᵏ",
+     "anagramas de palavra com n letras diferentes: n!"
+    ],
+    "simbolos": [
+     [
+      "C(6, 2)",
+      "número binomial 6! / (2! 4!) = 15"
+     ],
+     [
+      "anagrama",
+      "reordenação das letras de uma palavra"
+     ],
+     [
+      "a ∈ ℝ",
+      "a é um número real"
+     ]
+    ]
+   },
+   "pista": "Escreva o termo em x² do binômio com cuidado no expoente de a.",
+   "passos": [
+    {
+     "faz": "Escreva o coeficiente de x²",
+     "conta": "C(6, 2) x² a⁶⁻² → 15 a⁴",
+     "porque": "Para ter x², o x é escolhido 2 vezes entre os 6 fatores; os outros 4 dão a⁴.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os anagramas e dobre",
+     "conta": "5! = 120 → 2 × 120 = 240",
+     "porque": "As 5 letras de TERMO são todas diferentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a equação",
+     "conta": "15 a⁴ = 240 → a⁴ = 240/15 → a⁴ = 16",
+     "porque": "O 15 que multiplica passa para o outro lado dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a raiz quarta",
+     "conta": "a⁴ = 16 → a² = 4 → a = ± 2",
+     "porque": "a² = −4 não tem solução real; de a² = 4 saem 2 e −2, porque o expoente par apaga o sinal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "a = ± 2 → alternativa D",
+     "porque": "Os dois valores reais satisfazem a condição.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a = ± 2",
+   "checagem": "Substitua: com a = 2, o termo em x² é 15 × 2⁴ = 15 × 16 = 240 = 2 × 120; com a = −2, (−2)⁴ = 16 dá o mesmo.",
+   "erradas": {
+    "A": "± 5 não confere: 15 × 5⁴ = 9 375, bem longe de 240.",
+    "B": "± 4 sai de escrever a² no lugar de a⁴: 15 a² = 240 → a² = 16 → a = ± 4. O termo em x² de (x + a)⁶ tem a⁴.",
+    "C": "± 3 não confere: 15 × 3⁴ = 15 × 81 = 1 215, não 240.",
+    "E": "± 1 não confere: 15 × 1⁴ = 15, não 240."
+   },
+   "armadilha": "No termo em x² de (x + a)⁶, o a vem com expoente 4: quem escreve a² chega a ± 4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os valores reais de a para os quais o coeficiente de x² em (x + a)⁶ é 2 × (anagramas de TERMO).",
+    "chave": "15 a⁴ = 2 × 5! = 240, logo a⁴ = 16 e a = ± 2.",
+    "cuidado": "O expoente de a é 6 − 2 = 4."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar as alternativas",
+    "ideia": "Calcule 15 × a⁴ para cada valor: só a = 2 dá 15 × 16 = 240."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(6, 2) a⁴ = 15 a⁴",
+    "nota": "coeficiente de x²"
+   },
+   {
+    "linha": "15 a⁴ = 2 × 120 = 240",
+    "nota": "dobro dos anagramas"
+   },
+   {
+    "linha": "a⁴ = 240/15 = 16",
+    "nota": "o 15 passa dividindo"
+   },
+   {
+    "linha": "a = ± 2",
+    "nota": "raiz quarta real de 16"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
+ },
+ "Pb16be995": {
+  "n": "21",
+  "conceito": "Matriz inversa: se A é a inversa de B, então A·B = I, e cada elemento do produto vira uma equação.",
+  "equivocos": {
+   "A": "M15.1:relacao-sem-testar-valores",
+   "B": "M15.1:relacao-sem-testar-valores",
+   "D": "M15.1:relacao-sem-testar-valores",
+   "E": "M15.1:relacao-sem-testar-valores"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dizer que A é a inversa de B é dizer que A·B dá a matriz identidade I. Você não precisa calcular inversa nenhuma: basta multiplicar linhas de A por colunas de B e igualar a 1 (na diagonal) ou a 0 (fora dela). A primeira linha de A já entrega a, b e c.",
+    "formulas": [
+     "A·B = I (A é a inversa de B)",
+     "elemento (i, j) de A·B = linha i de A × coluna j de B"
+    ],
+    "simbolos": [
+     [
+      "I",
+      "matriz identidade: 1 na diagonal principal e 0 no resto"
+     ],
+     [
+      "inversa",
+      "matriz que, multiplicada pela outra, dá I"
+     ],
+     [
+      "a, b, c ∈ ℝ",
+      "a, b e c são números reais"
+     ]
+    ]
+   },
+   "pista": "Escreva A·B = I e use só a primeira linha de A, multiplicando-a por cada coluna de B.",
+   "passos": [
+    {
+     "faz": "Use a primeira coluna de B",
+     "conta": "(−1)(a − 2) + (−1)·0 + 2·1 = 1 → −a + 4 = 1 → −a = −3 → a = 3",
+     "porque": "O elemento (1, 1) de A·B está na diagonal da identidade, então vale 1. O 4 passa subtraindo (1 − 4 = −3) e, trocando o sinal dos dois lados, a = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a segunda coluna de B",
+     "conta": "(−1)·1 + (−1)·b + 2·0 = 0 → −1 − b = 0 → b = −1",
+     "porque": "O elemento (1, 2) está fora da diagonal, então vale 0. O −1 passa somando e o sinal de b se inverte.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a terceira coluna de B",
+     "conta": "(−1)·0 + (−1)·2 + 2c = 0 → 2c = 2 → c = 1",
+     "porque": "O elemento (1, 3) também é 0. O −2 passa somando e o 2 que multiplica c vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a relação de cada alternativa",
+     "conta": "bc = (−1)·1 = −1 | C: −1/(a − 2) = −1/(3 − 2) = −1",
+     "porque": "Com a = 3, b = −1 e c = 1, só a alternativa C dá o mesmo valor dos dois lados.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "bc = −1 = −1/(a − 2) → alternativa C",
+     "porque": "A relação verdadeira é a da letra C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — bc = −1/(a − 2)",
+   "checagem": "Com a = 3, b = −1 e c = 1, B = (1  1  0 / 0  −1  2 / 1  0  1). Faça as outras linhas do produto: a 2.ª linha de A, (2, 1, −2), dá 2 − 2 = 0, 2 − 1 = 1 e 2 − 2 = 0; a 3.ª, (1, 1, −1), dá 1 − 1 = 0, 1 − 1 = 0 e 2 − 1 = 1. Sai a identidade inteira.",
+   "erradas": {
+    "A": "A não confere: −(2b + a)/2 = −(−2 + 3)/2 = −1/2, mas bc = −1.",
+    "B": "B não confere: 1/(ac) = 1/(3·1) = 1/3, mas bc = −1.",
+    "D": "D não confere: 2bc = −2, mas 1/(a − 1) = 1/2.",
+    "E": "E não confere: (1 − ba)/2 = (1 + 3)/2 = 2, mas bc = −1."
+   },
+   "armadilha": "Tentar calcular a inversa de A pela fórmula; basta usar A·B = I, e a primeira linha de A já dá as três incógnitas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual relação entre a, b e c é verdadeira sabendo que A é a inversa de B.",
+    "chave": "A·B = I: a 1.ª linha de A vezes as colunas de B dá a = 3, b = −1 e c = 1, logo bc = −1 = −1/(a − 2).",
+    "cuidado": "Na diagonal o produto vale 1; fora dela, 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "B·A = I",
+    "ideia": "Também vale B·A = I: a 1.ª coluna de A com a 3.ª linha de B dá −1 + c = 0, c = 1, e o resto sai igual."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "−a + 4 = 1",
+    "nota": "linha 1 × coluna 1 = 1"
+   },
+   {
+    "linha": "−a = −3",
+    "nota": "o 4 passa subtraindo"
+   },
+   {
+    "linha": "a = 3",
+    "nota": "troca o sinal dos dois lados"
+   },
+   {
+    "linha": "−1 − b = 0 → b = −1",
+    "nota": "linha 1 × coluna 2 = 0"
+   },
+   {
+    "linha": "−2 + 2c = 0 → c = 1",
+    "nota": "linha 1 × coluna 3 = 0"
+   },
+   {
+    "linha": "bc = −1 = −1/(3 − 2)",
+    "nota": "confere com a alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
+ },
+ "Pdc0be22e": {
+  "n": "19",
+  "conceito": "Perímetro do floco de Koch: a cada iteração o perímetro é multiplicado por 4/3, formando uma PG.",
+  "equivocos": {
+   "A": "M07.4:expoente-do-denominador",
+   "C": "M07.4:valor-que-nao-fecha",
+   "D": "M07.4:valor-que-nao-fecha",
+   "E": "M07.4:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em cada iteração, todo segmento vira 4 segmentos com 1/3 do comprimento. Então o número de lados é multiplicado por 4 e o tamanho de cada lado é dividido por 3: o perímetro é multiplicado por 4/3. O perímetro forma uma progressão geométrica que começa em 3 cm.",
+    "formulas": [
+     "P(n) = 3 · (4/3)ⁿ",
+     "aᵐ = aⁿ ⇒ m = n (mesma base)"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número da iteração (o triângulo é n = 0)"
+     ],
+     [
+      "P(n)",
+      "perímetro da figura na iteração n, em cm"
+     ],
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes a mesma razão"
+     ]
+    ]
+   },
+   "pista": "Veja o que acontece com um lado só: em quantos pedaços ele vira e de que tamanho.",
+   "passos": [
+    {
+     "faz": "Descubra o fator por iteração",
+     "conta": "1 lado → 4 lados de 1/3 → fator 4 · 1/3 = 4/3",
+     "porque": "O segmento do meio sai, mas entram dois do mesmo tamanho: ficam 4 pedaços de um terço.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva o perímetro na iteração n",
+     "conta": "P(0) = 3 · 1 = 3 → P(n) = 3 · (4/3)ⁿ",
+     "porque": "O triângulo inicial tem 3 lados de 1 cm, e cada iteração multiplica por 4/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale ao perímetro dado",
+     "conta": "3 · (4/3)ⁿ = 256/27 → (4/3)ⁿ = 256/81",
+     "porque": "O 3 que multiplica passa dividindo: 256/27 ÷ 3 = 256/81.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva como potência de 4/3",
+     "conta": "256/81 = 4⁴/3⁴ = (4/3)⁴ → n = 4",
+     "porque": "256 = 4⁴ e 81 = 3⁴; com a mesma base, os expoentes são iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "iteração 4 → alternativa B",
+     "porque": "A questão pede o número da iteração, que é o expoente n.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — iteração 4",
+   "checagem": "Conte lados e tamanho: na iteração 4 há 3 · 4⁴ = 768 lados de 1/3⁴ = 1/81 cm; 768/81 = 256/27 cm. Fecha.",
+   "erradas": {
+    "A": "3 sai de tirar o expoente do 27 = 3³; mas na iteração 3 o perímetro é 3 · (4/3)³ = 64/9 cm, e não 256/27.",
+    "C": "5 não confere: P(5) = 3 · (4/3)⁵ = 1024/81 cm, maior que 256/27 = 768/81.",
+    "D": "6 não confere: P(6) = 3 · (4/3)⁶ = 4096/243 cm, e 256/27 = 2304/243.",
+    "E": "7 não confere: P(7) = 3 · (4/3)⁷ = 16384/729 cm ≈ 22,47 cm, mais que o dobro de 256/27 ≈ 9,48 cm."
+   },
+   "armadilha": "O 27 do denominador é 3³, mas o expoente certo sai de 256/81 = (4/3)⁴, depois de dividir pelo 3 inicial.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A iteração em que o perímetro vale 256/27 cm.",
+    "chave": "P(n) = 3 · (4/3)ⁿ; (4/3)ⁿ = 256/81 = (4/3)⁴.",
+    "cuidado": "Divida pelo perímetro inicial 3 antes de comparar as potências."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela de iterações",
+    "ideia": "Multiplique por 4/3 em sequência: 3 → 4 → 16/3 → 64/9 → 256/27; o quinto termo é a iteração 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "fator = 4 · 1/3 = 4/3",
+    "nota": "cada lado vira 4 de um terço"
+   },
+   {
+    "linha": "P(n) = 3 · (4/3)ⁿ",
+    "nota": "PG que começa em 3 cm"
+   },
+   {
+    "linha": "3 · (4/3)ⁿ = 256/27",
+    "nota": "perímetro dado"
+   },
+   {
+    "linha": "(4/3)ⁿ = 256/81",
+    "nota": "o 3 passa dividindo"
+   },
+   {
+    "linha": "(4/3)ⁿ = (4/3)⁴ → n = 4",
+    "nota": "mesma base, mesmo expoente"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "Pc2bd8b58": {
+  "n": "23",
+  "conceito": "Usar o modelo logarítmico de estimativa populacional com P1 = 16 · P0 para achar quando a população dobra.",
+  "equivocos": {
+   "B": "M06.5:tratou-o-crescimento-como-linear",
+   "C": "M06.5:tratou-o-crescimento-como-linear",
+   "D": "M06.5:tratou-o-crescimento-como-linear",
+   "E": "M06.5:tratou-o-crescimento-como-linear"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O modelo é uma igualdade de logaritmos: substitua Pn = 2 · P0 e P1/P0 = 16 e o log(P0) dos dois lados se cancela. Escrevendo 16 como 2⁴, tudo vira múltiplo de log 2, que também se cancela. N é o tempo entre as pesquisas, de 2004 a 2024.",
+    "formulas": [
+     "log(Pn) = log(P0) + (n/N) · log(P1/P0)",
+     "log(2 · P0) = log 2 + log(P0)",
+     "log 16 = log 2⁴ = 4 · log 2"
+    ],
+    "simbolos": [
+     [
+      "P0",
+      "população no ano base, 2004"
+     ],
+     [
+      "P1",
+      "população na outra pesquisa, 2024"
+     ],
+     [
+      "Pn",
+      "população estimada n anos depois do ano base"
+     ],
+     [
+      "N",
+      "tempo entre as duas pesquisas, em anos"
+     ]
+    ]
+   },
+   "pista": "Troque Pn por 2 · P0 e separe o logaritmo do produto.",
+   "passos": [
+    {
+     "faz": "Leia os dados do modelo",
+     "conta": "N = 2024 − 2004 = 20 | P1/P0 = 16 | Pn = 2 · P0",
+     "porque": "A população de 2024 é 16 vezes a de 2004, e se quer a estimativa igual ao dobro da de 2004.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Substitua e cancele log(P0)",
+     "conta": "log 2 + log(P0) = log(P0) + (n/20) · log 16 → log 2 = (n/20) · log 16",
+     "porque": "O log(P0) aparece dos dois lados e sai: o resultado não depende do tamanho da população.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva 16 como potência de 2",
+     "conta": "log 2 = (n/20) · 4 · log 2 → 1 = (4n)/20",
+     "porque": "Com log 16 = 4 · log 2, divide-se tudo por log 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole n",
+     "conta": "1 = n/5 → n = 5",
+     "porque": "O 5 que divide passa multiplicando: a população dobra 5 anos após o ano base.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some ao ano base e marque",
+     "conta": "2004 + 5 → 2009 → alternativa A",
+     "porque": "n conta anos a partir de 2004, então o ano pedido é 2009.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2009",
+   "checagem": "Pelo crescimento: o modelo equivale a Pn = P0 · 16^(n/20). Em 20 anos multiplica por 16 = 2⁴, ou seja, dobra 4 vezes; cada dobra leva 20/4 = 5 anos, e 2004 + 5 = 2009.",
+   "erradas": {
+    "B": "2012 não confere: com n = 8, Pn = 16^(8/20) · P0 ≈ 3,03 · P0, mais que o dobro.",
+    "C": "2014 é a metade do intervalo, mas com n = 10, Pn = 16^(1/2) · P0 = 4 · P0, o quádruplo, não o dobro.",
+    "D": "2016 não confere: com n = 12, Pn = 16^(12/20) · P0 ≈ 5,28 · P0.",
+    "E": "2020 não confere: com n = 16, Pn = 16^(16/20) · P0 ≈ 9,19 · P0."
+   },
+   "armadilha": "O crescimento é exponencial: o dobro não chega na metade do tempo, e sim depois de um quarto dele, porque 16 = 2⁴.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Em que ano a estimativa da população é o dobro da de 2004.",
+    "chave": "log 2 = (n/20) · 4 · log 2 dá n = 5; 2004 + 5 = 2009.",
+    "cuidado": "Some n ao ano base e não trate o crescimento como linear."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dobras",
+    "ideia": "16 = 2⁴: a população dobra 4 vezes em 20 anos, uma a cada 5 anos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "log(2P0) = log(P0) + (n/20) · log 16",
+    "nota": "substitui os dados"
+   },
+   {
+    "linha": "log 2 = (n/20) · 4 · log 2",
+    "nota": "cancela log(P0); 16 = 2⁴"
+   },
+   {
+    "linha": "1 = n/5 → n = 5",
+    "nota": "divide por log 2"
+   },
+   {
+    "linha": "2004 + 5 = 2009",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ }
+}

@@ -4,6 +4,8 @@ Destilado de 50 anotações de vídeos de resolução, de 29 canais (cerca de 40
 
 ## Subtemas que caem
 
+**Ids oficiais: `ferramentas/fabrica/agentes/TAXONOMIA.md` (06/11/2026).** Os códigos desta seção são a proposta antiga, anterior aos temas do site, e não coincidem com os ids em uso; para classificar questão, use sempre os ids da TAXONOMIA. A lista abaixo continua valendo como guia do que mais cai e dos roteiros.
+
 **Esta taxonomia é uma PROPOSTA.** Geografia ainda não existe no app; os códigos seguem o formato de `nomesub` das outras matérias (módulo `G01`, conteúdo `G01.1`) e só valem depois de aprovados pelo dono e conferidos contra o raio-x das provas. Marca: **(+)** = muito cobrado em ENEM e vestibulares de Medicina.
 
 **G01 Cartografia**

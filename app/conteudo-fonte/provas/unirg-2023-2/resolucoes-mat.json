@@ -1,0 +1,501 @@
+{
+ "P91af952f": {
+  "n": "39",
+  "conceito": "Estimativa de raiz e contagem de inteiros num intervalo aberto.",
+  "equivocos": {
+   "A": "M01.2:sem-origem-identificada",
+   "B": "M01.2:esqueceu-o-mais-um",
+   "D": "M01.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O intervalo vai de 50 − √50 a 50 + √50, sem incluir as pontas. Estime √50 entre dois inteiros e conte os inteiros que cabem.",
+    "formulas": [
+     "a² < n < b² → a < √n < b"
+    ],
+    "simbolos": []
+   },
+   "pista": "Entre que inteiros fica √50? Com isso, entre que números fica cada ponta?",
+   "passos": [
+    {
+     "faz": "Estimar √50",
+     "conta": "7² = 49 < 50 < 64 = 8² → 7 < √50 < 8 (≈ 7,07)",
+     "porque": "50 está logo acima de 49.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Pontas",
+     "conta": "50 − √50 ≈ 42,93; 50 + √50 ≈ 57,07",
+     "porque": "Nenhuma ponta é inteira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Inteiros",
+     "conta": "43, 44, ..., 57",
+     "porque": "Do primeiro inteiro depois de 42,93 ao último antes de 57,07.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Contar",
+     "conta": "57 − 43 + 1 = 15 → alternativa C",
+     "porque": "Total de inteiros.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 15.",
+   "checagem": "O intervalo é simétrico em torno de 50: há o próprio 50 e, de cada lado, os inteiros a distância 1, 2, ..., 7 (pois 7 < √50 e 8 > √50). São 1 + 2 · 7 = 15. Confere.",
+   "erradas": {
+    "A": "13 seria 1 + 2 · 6: contaria só até distância 6 de cada lado.",
+    "B": "14 = 2 · 7: contou os inteiros de cada lado e esqueceu o próprio 50.",
+    "D": "16 inclui também o 42 ou o 58, que estão fora do intervalo."
+   },
+   "armadilha": "Fazer 57 − 43 = 14 e esquecer de somar 1 ao contar os inteiros de 43 a 57.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos inteiros.",
+    "chave": "7 < √50 < 8 → inteiros de 43 a 57.",
+    "cuidado": "Contar de a até b dá b − a + 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria",
+    "ideia": "Os inteiros n do intervalo satisfazem |n − 50| < √50, isto é, (n − 50)² < 50: n − 50 vai de −7 a 7, que são 15 valores."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "√50 ≈ 7,07",
+    "nota": "estimativa"
+   },
+   {
+    "linha": "]42,93; 57,07[",
+    "nota": "intervalo"
+   },
+   {
+    "linha": "43 a 57: 15",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ },
+ "P50d6d1a6": {
+  "n": "42",
+  "conceito": "Posição de um termo de PA pelo termo geral.",
+  "equivocos": {
+   "A": "M07.1:posicao-errada",
+   "B": "M07.1:posicao-errada",
+   "C": "M07.1:esqueceu-o-mais-um"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada figura tem 4 ícones a mais que a anterior, começando com 5: é uma PA de razão 4. Você conhece o valor do termo (445) e quer a posição n.",
+    "formulas": [
+     "aₙ = a₁ + (n − 1) × r"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais um número fixo"
+     ],
+     [
+      "r",
+      "razão da PA: o número que se soma de um termo para o seguinte"
+     ],
+     [
+      "n",
+      "posição da figura na sequência"
+     ]
+    ]
+   },
+   "pista": "Escreva o termo geral com 445 no lugar de aₙ.",
+   "passos": [
+    {
+     "faz": "Monte a equação",
+     "conta": "5 + (n − 1) × 4 = 445",
+     "porque": "Primeira figura com 5 ícones e 4 a mais por figura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe o 5",
+     "conta": "(n − 1) × 4 = 445 − 5 → (n − 1) × 4 = 440",
+     "porque": "O 5 que soma passa subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida por 4",
+     "conta": "n − 1 = 440/4 → n − 1 = 110",
+     "porque": "O 4 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some 1",
+     "conta": "n = 110 + 1 = 111",
+     "porque": "110 saltos depois da 1.ª figura é a 111.ª.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 111.º termo",
+   "checagem": "Substitua: 5 + 110 × 4 = 5 + 440 = 445.",
+   "erradas": {
+    "A": "A não confere: o 100.º termo tem 5 + 99 × 4 = 401 ícones.",
+    "B": "B não confere: o 101.º termo tem 5 + 100 × 4 = 405 ícones.",
+    "C": "C sai de esquecer o − 1: 5 + 4n = 445 dá n = 110; mas o 110.º termo tem 5 + 109 × 4 = 441 ícones."
+   },
+   "armadilha": "440/4 = 110 é o número de saltos; a posição é um a mais.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual figura tem 445 ícones.",
+    "chave": "5 + (n − 1) × 4 = 445 dá n − 1 = 110.",
+    "cuidado": "Some o 1 no fim: n = 111."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem direta",
+    "ideia": "Tirando o ícone central de cada figura, sobram múltiplos de 4: 445 − 1 = 444 = 4 × 111, braços de 111 ícones na figura 111."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "5 + (n − 1) × 4 = 445",
+    "nota": "termo geral"
+   },
+   {
+    "linha": "(n − 1) × 4 = 445 − 5",
+    "nota": "o 5 passa subtraindo"
+   },
+   {
+    "linha": "(n − 1) × 4 = 440",
+    "nota": "subtrai"
+   },
+   {
+    "linha": "n − 1 = 440/4",
+    "nota": "o 4 passa dividindo"
+   },
+   {
+    "linha": "n − 1 = 110",
+    "nota": "saltos"
+   },
+   {
+    "linha": "n = 110 + 1 = 111",
+    "nota": "posição"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0059"
+  }
+ },
+ "P9309f62e": {
+  "n": "38",
+  "conceito": "Mediana de triângulo: liga o vértice ao ponto médio do lado oposto; reta por dois pontos.",
+  "equivocos": {
+   "A": "M12.2:reta-nao-passa-pelos-pontos",
+   "C": "M12.2:reta-nao-passa-pelos-pontos",
+   "D": "M12.2:reta-nao-passa-pelos-pontos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A mediana AM liga o vértice A ao ponto médio M do lado oposto, BC. Ache M pela média das coordenadas de B e C e depois a reta que passa por A e M.",
+    "formulas": [
+     "ponto médio: M = ((x_B + x_C)/2, (y_B + y_C)/2)"
+    ],
+    "simbolos": [
+     [
+      "mediana",
+      "segmento que liga um vértice ao ponto médio do lado oposto"
+     ],
+     [
+      "M",
+      "ponto médio do lado BC"
+     ]
+    ]
+   },
+   "pista": "Qual é o lado oposto ao vértice A? É nele que fica M.",
+   "passos": [
+    {
+     "faz": "Ache o ponto médio de BC",
+     "conta": "M = ((4 + 2)/2, (0 + 2)/2) → M = (6/2, 2/2) → M = (3, 1)",
+     "porque": "O ponto médio é a média das coordenadas de B(4, 0) e C(2, 2).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare A e M",
+     "conta": "A = (−1, 1) e M = (3, 1) → mesma ordenada y = 1",
+     "porque": "Os dois pontos têm y = 1, então a reta é horizontal.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Escreva a reta",
+     "conta": "m = (1 − 1)/(3 − (−1)) → m = 0/4 → m = 0 → y = 1",
+     "porque": "Inclinação zero: a reta é y = constante, e a constante é 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "y = 1 → alternativa B",
+     "porque": "É a reta que contém a mediana AM.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — y = 1",
+   "checagem": "Substitua: em A(−1, 1) e em M(3, 1), y vale 1. E M está mesmo no meio de BC: de B(4, 0) até M(3, 1) e de M até C(2, 2) o deslocamento é o mesmo, (−1, +1).",
+   "erradas": {
+    "A": "x = 1 não confere: é uma reta vertical, mas A tem x = −1 e M tem x = 3; ela não passa por nenhum dos dois.",
+    "C": "x + y = 1 não confere: em A dá −1 + 1 = 0 e em M dá 3 + 1 = 4, não 1.",
+    "D": "x − y = 1 não confere: em A dá −1 − 1 = −2 e em M dá 3 − 1 = 2, não 1."
+   },
+   "armadilha": "Tomar o ponto médio do lado errado: a mediana que sai de A vai ao meio de BC, o lado oposto a A.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A equação da reta que contém a mediana AM.",
+    "chave": "M = (3, 1), ponto médio de BC; A e M têm y = 1, logo a reta é y = 1.",
+    "cuidado": "M é o ponto médio do lado oposto ao vértice A."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste nas alternativas",
+    "ideia": "Substitua A(−1, 1) e M(3, 1) em cada equação; só y = 1 vale para os dois."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "M = ((4 + 2)/2, (0 + 2)/2) = (3, 1)",
+    "nota": "ponto médio de BC"
+   },
+   {
+    "linha": "m = (1 − 1)/(3 + 1) = 0/4 = 0",
+    "nota": "inclinação de A até M"
+   },
+   {
+    "linha": "y = 1",
+    "nota": "reta horizontal por A e M"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
+ },
+ "Pa4bf8f35": {
+  "n": "37",
+  "conceito": "Contar ordens de retirada com restrição de ordem dentro de cada dedo (permutação com repetição).",
+  "equivocos": {
+   "A": "M13.2:contou-so-as-repeticoes",
+   "B": "M13.2:conta-sem-origem",
+   "C": "M13.2:conta-sem-origem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Num dedo, só dá para tirar primeiro o anel de cima (o mais perto da ponta); depois o seguinte, e assim por diante. Então a ordem dentro de cada dedo é fixa, e o que varia é como as retiradas dos dedos se intercalam. Pela figura, os 7 anéis estão em três dedos: um dedo com 3 anéis e dois dedos com 2 anéis cada.",
+    "formulas": [
+     "sequências com grupos de ordem fixa: n!/(a! · b! · c!)"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "fatorial de n: produto de n por todos os naturais menores até 1"
+     ]
+    ]
+   },
+   "pista": "Antes de contar, olhe a figura: quantos anéis há em cada dedo, e qual anel de cada dedo pode sair primeiro?",
+   "passos": [
+    {
+     "faz": "Leia a figura",
+     "conta": "dedo 1: 3 anéis | dedo 2: 2 | dedo 3: 2 → 7 anéis",
+     "porque": "Cada anel é distinto, mas num mesmo dedo eles saem em ordem obrigatória, da ponta para a base.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Traduza em palavra com letras repetidas",
+     "conta": "retirada = sequência de 7 dedos → 1 1 1 2 2 3 3",
+     "porque": "Cada retirada se identifica pelo dedo; dentro do dedo, o anel que sai é sempre o de cima.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Permute com repetição",
+     "conta": "7!/(3! · 2! · 2!) → 5040/(6 · 2 · 2) → 5040/24 → 210",
+     "porque": "As trocas entre retiradas do mesmo dedo não geram ordem nova, porque a ordem no dedo é fixa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "210 modos → alternativa D",
+     "porque": "É o total de ordens de retirada possíveis.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 210 modos",
+   "checagem": "Por escolhas de posições: das 7 retiradas, escolha as 3 do dedo com 3 anéis, C(7, 3) = 35; das 4 restantes, as 2 de outro dedo, C(4, 2) = 6; as do último dedo ficam determinadas. 35 × 6 = 210.",
+   "erradas": {
+    "A": "24 sai de contar as ordens dentro dos dedos, 3! · 2! · 2! = 24, que é justamente o que não pode variar.",
+    "B": "96 não confere: o total é 7!/(3! · 2! · 2!) = 210, e 96 × 24 = 2 304 não é 7! = 5 040.",
+    "C": "120 não confere: 120 × 24 = 2 880, diferente de 7! = 5 040; o total certo é 210."
+   },
+   "armadilha": "Tratar os 7 anéis como livres (7!) ou esquecer que, num mesmo dedo, o anel de baixo só sai depois do de cima.",
+   "alerta": "O enunciado não diz com palavras que os anéis de um dedo saem na ordem da ponta para a base; a resposta 210 vem da figura, com 3, 2 e 2 anéis por dedo.",
+   "essencial": {
+    "pede": "De quantos modos ela retira os 7 anéis, um de cada vez.",
+    "chave": "Ordem fixa dentro de cada dedo (3, 2 e 2 anéis): 7!/(3! · 2! · 2!) = 210.",
+    "cuidado": "Leia na figura quantos anéis há em cada dedo antes de contar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "combinações",
+    "ideia": "C(7, 3) × C(4, 2) = 35 × 6 = 210: posições das retiradas do dedo com 3 anéis, depois das de um dedo com 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "dedos com 3, 2 e 2 anéis",
+    "nota": "ler a figura"
+   },
+   {
+    "linha": "7!/(3! · 2! · 2!)",
+    "nota": "ordem fixa em cada dedo"
+   },
+   {
+    "linha": "5040/24 = 210",
+    "nota": "dividir"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
+ },
+ "P80c5143b": {
+  "n": "40",
+  "conceito": "Probabilidade com dois dados: contar os pares ordenados de soma 7 entre os 36 resultados.",
+  "equivocos": {
+   "B": "M13.4:contagem-de-favoraveis-errada",
+   "C": "M13.4:evento-trocado-por-outro",
+   "D": "M13.4:contagem-de-favoraveis-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dois dados formam 6 × 6 = 36 resultados igualmente prováveis, e a ordem conta: (1, 6) e (6, 1) são diferentes. A informação sobre as faces opostas somarem 7 descreve como o dado é fabricado e não entra na conta: o que importa são as faces voltadas para cima. Para a soma 7, qualquer valor do 1.º dado tem um único par no 2.º.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "dois dados: 6 × 6 = 36 pares ordenados"
+    ],
+    "simbolos": [
+     [
+      "par ordenado (a, b)",
+      "a é o resultado do 1.º dado e b o do 2.º"
+     ],
+     [
+      "faces opostas",
+      "faces que ficam de lados contrários do dado; não influem no resultado de um lançamento"
+     ]
+    ]
+   },
+   "pista": "Fixe o resultado do primeiro dado. Quantos valores do segundo completam a soma 7?",
+   "passos": [
+    {
+     "faz": "Conte os resultados possíveis",
+     "conta": "6 × 6 → 36",
+     "porque": "Cada dado tem 6 faces igualmente prováveis, e cada face do 1.º combina com cada face do 2.º.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Liste os pares de soma 7",
+     "conta": "(1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1) → 6",
+     "porque": "Para cada valor do 1.º dado, o 2.º tem de ser 7 menos esse valor, e esse número sempre está entre 1 e 6.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "6/36 → 1/6",
+     "porque": "São 6 favoráveis entre 36; dividindo os dois por 6, sobra 1/6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1/6 → alternativa A",
+     "porque": "A fração simplificada é a da alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1/6",
+   "checagem": "Pelo 2.º dado: seja qual for o 1.º resultado, só uma das 6 faces do 2.º dado completa 7, então a chance é 1 em 6, sem precisar listar os 36 casos.",
+   "erradas": {
+    "B": "2/6 não confere: corresponderia a 12 pares de 36, e a soma 7 tem só 6, um para cada valor do 1.º dado.",
+    "C": "3/6 não confere: 3/6 = 18/36 é a chance de a soma ser ímpar (qualquer soma ímpar), e a soma 7 é só um desses casos, com 6 pares.",
+    "D": "4/6 não confere: seriam 24 pares de 36 com soma 7, quatro vezes os 6 que existem."
+   },
+   "armadilha": "A regra das faces opostas somarem 7 é informação de enfeite: o que conta é a soma das faces de cima, com 6 pares em 36.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de a soma de dois dados ser 7.",
+    "chave": "6 pares ordenados em 36: 1/6.",
+    "cuidado": "Não use a regra das faces opostas, que não muda o resultado do lançamento."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fixar o 1.º dado",
+    "ideia": "qualquer que seja o 1.º, só uma face do 2.º completa 7: 1 em 6"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6 × 6 = 36",
+    "nota": "resultados possíveis"
+   },
+   {
+    "linha": "1 + 6, 2 + 5, 3 + 4, 4 + 3, 5 + 2, 6 + 1 → 6 pares",
+    "nota": "soma 7"
+   },
+   {
+    "linha": "6/36 = 1/6",
+    "nota": "favoráveis sobre possíveis"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
+ }
+}

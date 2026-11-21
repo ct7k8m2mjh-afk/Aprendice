@@ -1,0 +1,1413 @@
+{
+ "Pc79dc928": {
+  "n": "17",
+  "conceito": "Combinações de 2 elementos: pares sem ordem.",
+  "equivocos": {
+   "A": "M03.1:sem-origem-identificada",
+   "B": "M03.1:dois-grupos-fixos",
+   "D": "M03.1:sem-origem-identificada",
+   "E": "M03.1:contou-ordem-e-repeticao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Um par sem ordem de ações distintas é uma combinação de 50 elementos tomados 2 a 2: escolha a primeira (50 jeitos) e a segunda (49), e divida por 2 porque (A, B) e (B, A) são o mesmo par.",
+    "formulas": [
+     "C(n, 2) = n(n − 1)/2"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quantos pares ordenados existem? Cada par sem ordem aparece quantas vezes nessa contagem?",
+   "passos": [
+    {
+     "faz": "Pares ordenados",
+     "conta": "50 · 49 = 2 450",
+     "porque": "Primeira e segunda ação.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Sem ordem",
+     "conta": "2 450 ÷ 2 = 1 225 → alternativa C",
+     "porque": "Cada par contado duas vezes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1225",
+   "checagem": "Teste num caso pequeno: com 4 ações (A, B, C, D) os pares são AB, AC, AD, BC, BD, CD = 6 = 4 · 3/2. A mesma regra com 50 ações dá 50 · 49/2 = 1 225. Confere.",
+   "erradas": {
+    "A": "50 é só o número de ações.",
+    "B": "625 = 25 · 25: separou as ações em dois grupos fixos de 25 (compra e venda) e contou só os pares entre os grupos.",
+    "D": "Cada ação forma par com as outras 49. Para dar 1 750 pares, cada ação teria de estar em 1 750 · 2/50 = 70 pares, mais que as 49 possíveis.",
+    "E": "2 500 = 50 · 50: permitiu a mesma ação duas vezes e contou a ordem."
+   },
+   "armadilha": "Fazer 50 · 50 ou 50 · 49 sem dividir por 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Número de pares.",
+    "chave": "C(50, 2) = 1 225.",
+    "cuidado": "Ordem não importa: divida por 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma de 1 a 49",
+    "ideia": "A 1.ª ação forma 49 pares, a 2.ª forma mais 48 novos, ..., a 49.ª forma 1: total 49 · 50/2 = 1 225."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "50 · 49 = 2 450",
+    "nota": "ordenados"
+   },
+   {
+    "linha": "2 450/2 = 1 225",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0048"
+  }
+ },
+ "Pa505efb7": {
+  "n": "16",
+  "conceito": "Inequação-quociente: quadro de sinais com os zeros do numerador e do denominador.",
+  "equivocos": {
+   "A": "M05.1:quadro-de-sinais-errado",
+   "B": "M05.1:sinal-invertido",
+   "C": "M05.1:fronteira-incluida",
+   "D": "M05.1:sinal-invertido"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "f é positiva quando numerador e denominador têm o mesmo sinal. Os pontos críticos são x = 4 (numerador zero) e x = −3 e x = 5 (denominador zero). Nenhum deles entra: em 4 f vale 0, e em −3 e 5 f não existe.",
+    "formulas": [
+     "(x − 4)/((x − 5)(x + 3)) > 0",
+     "pontos críticos: −3, 4, 5"
+    ],
+    "simbolos": [
+     [
+      "quadro de sinais",
+      "tabela com o sinal de cada fator em cada intervalo"
+     ]
+    ]
+   },
+   "pista": "Fatore o denominador e marque os três pontos críticos na reta.",
+   "passos": [
+    {
+     "faz": "Fatore o denominador",
+     "conta": "x² − 2x − 15 = (x − 5)(x + 3)",
+     "porque": "Soma 2 e produto −15: raízes 5 e −3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o quadro de sinais",
+     "conta": "x < −3: − | −3 < x < 4: + | 4 < x < 5: − | x > 5: +",
+     "porque": "Teste x = −4, 0, 4,5 e 6 na fração.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Exclua os pontos críticos",
+     "conta": "x = 4 dá 0; x = −3 e x = 5 zeram o denominador",
+     "porque": "\"Apenas valores positivos\" exige f > 0.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Junte os intervalos",
+     "conta": "−3 < x < 4 ou x > 5 → alternativa E",
+     "porque": "Onde o quadro deu +.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — {x ∈ ℝ; −3 < x < 4 ou x > 5}",
+   "checagem": "Teste x = 0: (−4)/(−15) = 4/15 > 0; x = 6: 2/9 > 0; x = 4,5: 0,5/(−3,75) < 0; x = −4: (−8)/9 < 0.",
+   "erradas": {
+    "A": "Inclui x = −3, que zera o denominador, e x entre 4 e 5, onde f é negativa (em 4,5 vale −2/15).",
+    "B": "Inverte o sinal: em x = −4 f vale −8/9 e em 4,5 vale −2/15, ambos negativos; e ainda inclui −3 e 5.",
+    "C": "Inclui −3 (denominador zero) e 4 (f = 0, que não é positivo).",
+    "D": "É exatamente a região onde f é negativa: sinal invertido."
+   },
+   "armadilha": "Pontos onde o denominador zera nunca entram, e f = 0 não é positivo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Onde (x − 4)/(x² − 2x − 15) é positiva.",
+    "chave": "Críticos −3, 4, 5; sinais −, +, −, +: positiva em −3 < x < 4 ou x > 5.",
+    "cuidado": "Intervalos abertos em todos os pontos críticos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de pontos",
+    "ideia": "Teste x = 0 (positivo) e x = 4,5 (negativo): só E contém 0 e exclui 4,5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² − 2x − 15 = (x − 5)(x + 3)",
+    "nota": "fatoração"
+   },
+   {
+    "linha": "(x − 4)/((x − 5)(x + 3)) > 0",
+    "nota": "inequação"
+   },
+   {
+    "linha": "(0 − 4)/((0 − 5)(0 + 3)) = 4/15",
+    "nota": "teste em x = 0: positivo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
+ },
+ "Peadcea0c": {
+  "n": "25",
+  "conceito": "Montar a função lucro (receita − custo) e usar duas condições para achar dois parâmetros.",
+  "equivocos": {
+   "A": "M05.2:respondeu-um-parametro",
+   "B": "M05.2:valor-sem-calculo",
+   "C": "M05.2:respondeu-um-parametro",
+   "E": "M05.2:valor-sem-calculo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Lucro é receita menos custo: L(x) = R(x) − C(x). As duas informações viram duas equações: ponto de equilíbrio em 10 unidades significa L(10) = 0, e lucro de R$ 80,00 com 20 unidades significa L(20) = 80.",
+    "formulas": [
+     "L(x) = R(x) − C(x)",
+     "L(10) = 0 | L(20) = 80"
+    ],
+    "simbolos": [
+     [
+      "R(x)",
+      "receita com x unidades"
+     ],
+     [
+      "C(x)",
+      "custo de x unidades"
+     ],
+     [
+      "L(x)",
+      "lucro (ou prejuízo, se negativo)"
+     ],
+     [
+      "ponto de equilíbrio",
+      "quantidade em que o lucro é zero"
+     ]
+    ]
+   },
+   "pista": "Monte L(x) primeiro e só depois substitua x = 10 e x = 20.",
+   "passos": [
+    {
+     "faz": "Monte o lucro",
+     "conta": "L(x) = (a/10)x² + 2x + b − ax − 6b = (a/10)x² + (2 − a)x − 5b",
+     "porque": "Os termos em b se juntam: b − 6b = −5b.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o equilíbrio",
+     "conta": "L(10) = 10a + 20 − 10a − 5b = 0 → 20 − 5b = 0 → b = 4",
+     "porque": "Os termos em a se cancelam e sobra só o b.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o lucro de 80",
+     "conta": "L(20) = 40a + 40 − 20a − 5 · 4 = 80 → 20a + 20 = 80 → a = 3",
+     "porque": "Com b = 4 já conhecido, sobra uma equação só em a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some",
+     "conta": "a + b = 3 + 4 = 7",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 7",
+   "checagem": "Volte às funções: com a = 3 e b = 4, R(20) = 120 + 40 + 4 = 164 e C(20) = 60 + 24 = 84; o lucro é 164 − 84 = 80. E R(10) = 30 + 20 + 4 = 54 = C(10) = 30 + 24.",
+   "erradas": {
+    "A": "Sai de responder só o a = 3, sem somar o b.",
+    "B": "Não confere: com b = 4 seria a = 1, e L(20) = 20 · 1 + 20 = 40, não 80.",
+    "C": "Sai de responder só o b = 4, sem somar o a.",
+    "E": "Não confere: com b = 4 seria a = 4, e L(20) = 20 · 4 + 20 = 100, não 80."
+   },
+   "armadilha": "Parar no primeiro parâmetro encontrado (b = 4 ou a = 3) e esquecer que a pergunta é a soma.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de a + b.",
+    "chave": "L(10) = 0 dá b = 4; L(20) = 80 dá a = 3.",
+    "cuidado": "Monte L = R − C com cuidado nos sinais do custo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "checar alternativas",
+    "ideia": "b = 4 sai de L(10) = 0; teste a = 7 − 4 = 3 em L(20) = 20a + 20 = 80."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "L(x) = (a/10)x² + (2 − a)x − 5b",
+    "nota": "receita − custo"
+   },
+   {
+    "linha": "L(10) = 20 − 5b = 0 → b = 4",
+    "nota": "equilíbrio"
+   },
+   {
+    "linha": "L(20) = 20a + 20 = 80 → a = 3",
+    "nota": "lucro de 80"
+   },
+   {
+    "linha": "a + b = 7",
+    "nota": "soma"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0054"
+  }
+ },
+ "Pc1715399": {
+  "n": "18",
+  "conceito": "Reconhecer o gráfico de |cos x + sen x|: valores não negativos, máximo √2.",
+  "equivocos": {
+   "B": "M10.5:ignorou-o-modulo",
+   "C": "M10.5:ignorou-o-modulo",
+   "D": "M10.5:ignorou-o-modulo",
+   "E": "M10.5:maximo-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "cos x + sen x oscila entre −√2 e √2 (cerca de −1,41 e 1,41). O módulo rebate a parte negativa para cima: o gráfico fica todo acima do eixo x, com máximo √2 e zeros onde cos x = −sen x.",
+    "formulas": [
+     "cos x + sen x = √2 · sen(x + π/4)",
+     "|·| ≥ 0"
+    ],
+    "simbolos": [
+     [
+      "√2",
+      "cerca de 1,41: o maior valor de cos x + sen x"
+     ],
+     [
+      "|·|",
+      "módulo: nunca negativo"
+     ]
+    ]
+   },
+   "pista": "Calcule f(0) e o maior valor possível; depois procure o esboço que bate.",
+   "passos": [
+    {
+     "faz": "Calcule um ponto",
+     "conta": "f(0) = |1 + 0| = 1",
+     "porque": "O gráfico passa por (0, 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o máximo",
+     "conta": "x = π/4: |√2/2 + √2/2| = √2 ≈ 1,41",
+     "porque": "Esse é o maior valor de f.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache os zeros",
+     "conta": "cos x = −sen x → x = −π/4, 3π/4, −5π/4, 7π/4",
+     "porque": "Entre zeros vizinhos a distância é π.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine os esboços",
+     "conta": "B, C e D têm valores negativos | E tem máximo 1",
+     "porque": "O módulo não deixa nada abaixo do eixo, e o máximo é 1,41.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "esboço A",
+     "porque": "Não negativo, máximo perto de 1,41 e f(0) = 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — o esboço só com valores não negativos, máximo perto de 1,41 e f(0) = 1.",
+   "checagem": "Confira as pontas: f(2π) = |1 + 0| = 1 e f(−2π) = 1, como no esboço A, que começa e termina na altura 1.",
+   "erradas": {
+    "B": "É o gráfico de cos x: tem valores negativos e máximo 1; o módulo não deixa f ficar abaixo de zero.",
+    "C": "É o gráfico de cos x + sen x sem o módulo: desce até −1,41.",
+    "D": "É o gráfico de sen x: f(0) seria 0, mas f(0) = 1, e há valores negativos.",
+    "E": "Tem máximo 1 e f(0) = 0, mas f(π/4) = √2 ≈ 1,41 e f(0) = 1."
+   },
+   "armadilha": "Esquecer que cos x + sen x passa de 1: o máximo é √2, não 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O esboço de f(x) = |cos x + sen x| em [−2π, 2π].",
+    "chave": "Não negativo, máximo √2 em x = π/4, f(0) = 1.",
+    "cuidado": "Calcule o valor em x = π/4 para ver o máximo √2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "forma de seno",
+    "ideia": "cos x + sen x = √2 · sen(x + π/4); com o módulo, arcos de altura √2 a cada π."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(0) = |1 + 0| = 1",
+    "nota": "ponto"
+   },
+   {
+    "linha": "f(π/4) = |√2/2 + √2/2| = √2",
+    "nota": "máximo"
+   },
+   {
+    "linha": "zeros: x = −π/4 + kπ",
+    "nota": "cos x = −sen x"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
+ },
+ "P3d21b94a": {
+  "n": "24",
+  "conceito": "Probabilidade geométrica: área da união de duas regiões dividida pela área do retângulo.",
+  "equivocos": {
+   "A": "M12.5:area-favoravel-errada",
+   "C": "M12.5:area-favoravel-errada",
+   "D": "M12.5:area-favoravel-errada",
+   "E": "M12.5:area-favoravel-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Probabilidade geométrica é área favorável sobre área total. A região favorável é a UNIÃO do triângulo ABC com o retângulo ECDF. As duas se sobrepõem num pequeno triângulo no canto de cima à direita, que não pode ser contado duas vezes.",
+    "formulas": [
+     "P = área favorável/área total",
+     "área(T ∪ R) = área(T) + área(R) − área(T ∩ R)",
+     "reta AC: y = x/2"
+    ],
+    "simbolos": [
+     [
+      "∪",
+      "união: pontos que estão em uma região ou na outra"
+     ],
+     [
+      "∩",
+      "interseção: pontos que estão nas duas"
+     ],
+     [
+      "AC",
+      "diagonal de A(0, 0) a C(40, 20)"
+     ]
+    ]
+   },
+   "pista": "Desenhe a sobreposição: onde o triângulo ABC entra no retângulo ECDF?",
+   "passos": [
+    {
+     "faz": "Calcule as áreas básicas",
+     "conta": "ABCD: 40 · 20 = 800 | ABC: 40 · 20/2 = 400 | ECDF: 10 · 20 = 200",
+     "porque": "Leia na figura: B(0, 20), C(40, 20), E(30, 20), F(30, 0), D(40, 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a sobreposição",
+     "conta": "reta AC: y = x/2 → em x = 30, y = 15 | triângulo E(30, 20), C(40, 20), (30, 15) → 10 · 5/2 → 25",
+     "porque": "Entre x = 30 e x = 40, o triângulo ABC é o pedaço acima da diagonal AC; dentro de ECDF ele forma um triângulo de base EC = 10 e altura 20 − 15 = 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some sem contar duas vezes",
+     "conta": "400 + 200 − 25 → 575",
+     "porque": "A parte comum entrou no triângulo e no retângulo; tira-se uma vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pela área total",
+     "conta": "575/800 → 0,71875 → ≈ 72%",
+     "porque": "Probabilidade é a fração da área favorável.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "≈ 72% → alternativa B",
+     "porque": "A questão pede o valor aproximado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — aproximadamente 72%",
+   "checagem": "Pelo complemento: a região desfavorável é o triângulo ACD (400) menos a parte dele dentro de ECDF, um trapézio de bases 15 e 20 e largura 10, (15 + 20)/2 · 10 = 175. Sobra 225, e 1 − 225/800 = 0,71875.",
+   "erradas": {
+    "A": "65% não confere: exigiria região favorável de 0,65 · 800 = 520, mas a união mede 400 + 200 − 25 = 575.",
+    "C": "77% não confere: exigiria 0,77 · 800 = 616, mais que 575; nem somando sem tirar a sobreposição (600 = 75%) se chega lá.",
+    "D": "80% não confere: exigiria 0,8 · 800 = 640, mais que 575 e até mais que a soma bruta 600.",
+    "E": "63% não confere: exigiria 0,63 · 800 = 504, bem menos que 575, a área da união."
+   },
+   "armadilha": "A sobreposição: o triângulo ABC entra um pouco no retângulo ECDF, e essa parte (25) só pode ser contada uma vez.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de um ponto do retângulo cair no triângulo ABC ou no retângulo ECDF.",
+    "chave": "União = 400 + 200 − 25 = 575; 575/800 ≈ 72%.",
+    "cuidado": "Desconte a parte comum, o triângulo acima da diagonal entre x = 30 e x = 40."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complemento",
+    "ideia": "Desfavorável = 400 − 175 = 225; 1 − 225/800 ≈ 72%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "800, 400, 200",
+    "nota": "retângulo, triângulo ABC e ECDF"
+   },
+   {
+    "linha": "x = 30 → y = 30/2 = 15",
+    "nota": "onde AC cruza EF"
+   },
+   {
+    "linha": "10 · 5/2 = 25",
+    "nota": "triângulo comum"
+   },
+   {
+    "linha": "400 + 200 − 25 = 575",
+    "nota": "união"
+   },
+   {
+    "linha": "575/800 ≈ 0,72",
+    "nota": "probabilidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
+ },
+ "P83d1a291": {
+  "n": "21",
+  "conceito": "Princípio da inclusão-exclusão com três conjuntos: quem não está em nenhum.",
+  "equivocos": {
+   "A": "M13.6:valor-sem-base",
+   "B": "M13.6:valor-sem-base",
+   "C": "M13.6:regiao-errada-do-diagrama",
+   "D": "M13.6:regiao-errada-do-diagrama"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Somar os três grupos conta duas vezes quem gosta de dois candidatos e três vezes quem gosta dos três. Tirar as três duplas corrige os de dois, mas apaga de vez quem gosta dos três, que precisa voltar. O que sobra de 1000 depois da união é quem não gosta de nenhum.",
+    "formulas": [
+     "n(A ∪ B ∪ C) = n(A) + n(B) + n(C) − n(A ∩ B) − n(B ∩ C) − n(A ∩ C) + n(A ∩ B ∩ C)",
+     "nenhum = total − n(A ∪ B ∪ C)"
+    ],
+    "simbolos": [
+     [
+      "A ∪ B ∪ C",
+      "quem gosta de pelo menos um candidato"
+     ],
+     [
+      "A ∩ B",
+      "quem gosta de A e de B (pode gostar também de C)"
+     ],
+     [
+      "A ∩ B ∩ C",
+      "quem gosta dos três"
+     ]
+    ]
+   },
+   "pista": "Some os três grupos e pergunte quantas vezes quem gosta dos três foi contado em cada etapa.",
+   "passos": [
+    {
+     "faz": "Some os três grupos",
+     "conta": "460 + 360 + 280 → 1100",
+     "porque": "Passa de 1000 porque quem gosta de mais de um candidato aparece em mais de um grupo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire as três duplas",
+     "conta": "1100 − (200 + 160 + 180) → 1100 − 540 → 560",
+     "porque": "Cada dupla foi contada a mais na soma; tirando, quem gosta de exatamente dois passa a contar uma vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Devolva quem gosta dos três",
+     "conta": "560 + 100 → 660",
+     "porque": "Os 100 entraram três vezes na soma e saíram três vezes nas duplas; precisam voltar uma vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a união do total",
+     "conta": "1000 − 660 → 340",
+     "porque": "Fora da união fica quem não gosta de nenhum candidato.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "340 → alternativa E",
+     "porque": "É o número pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 340",
+   "checagem": "Feche o diagrama a partir do centro: só A e B 200 − 100 = 100, só B e C 60, só A e C 80; só A 460 − 100 − 80 − 100 = 180, só B 360 − 100 − 60 − 100 = 100, só C 280 − 60 − 80 − 100 = 40. As sete regiões somam 660, e 1000 − 660 = 340.",
+   "erradas": {
+    "A": "420 não confere: daria 1000 − 420 = 580 pessoas gostando de algum candidato, mas as sete regiões do diagrama somam 660.",
+    "B": "480 não confere: daria 1000 − 480 = 520 pessoas gostando de algum candidato, mas as sete regiões do diagrama somam 660.",
+    "C": "240 é quem gosta de exatamente dois candidatos: (200 − 100) + (160 − 100) + (180 − 100) = 100 + 60 + 80. Não é quem não gosta de nenhum.",
+    "D": "100 é quem gosta dos três candidatos, dado do enunciado; a pergunta é a região de fora."
+   },
+   "armadilha": "Ao tirar as três duplas, quem gosta dos três some da conta e precisa ser somado de volta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas pessoas não gostam de nenhum dos três candidatos.",
+    "chave": "União 1100 − 540 + 100 = 660; nenhum 1000 − 660 = 340.",
+    "cuidado": "Depois de subtrair as duplas, some de novo os 100 que gostam dos três."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula do complemento direto",
+    "ideia": "nenhum = 1000 − 1100 + 540 − 100 = 340"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "460 + 360 + 280 = 1100",
+    "nota": "soma dos grupos"
+   },
+   {
+    "linha": "1100 − 540 = 560",
+    "nota": "tirar as duplas"
+   },
+   {
+    "linha": "560 + 100 = 660",
+    "nota": "devolver o trio"
+   },
+   {
+    "linha": "1000 − 660 = 340",
+    "nota": "não gostam de nenhum"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
+ },
+ "P08162844": {
+  "n": "23",
+  "conceito": "Variação percentual de cada linha de uma tabela e o pior caso para uma afirmação do tipo \"em todas\".",
+  "equivocos": {
+   "B": "M03.1:nao-olhou-o-pior-caso",
+   "C": "M03.1:nao-olhou-o-pior-caso",
+   "D": "M14.2:aumento-no-lugar-de-queda",
+   "E": "M14.2:leitura-errada-da-tabela"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Em todas as modalidades\" obriga a afirmação a valer para cada linha da tabela; basta uma linha falhar para a alternativa cair. Todos os números de 2024 são menores que os de 2021, então houve queda. A pergunta vira: qual é a MENOR queda percentual? É ela que decide o \"pelo menos\".",
+    "formulas": [
+     "queda % = (valor de 2021 − valor de 2024)/(valor de 2021) × 100"
+    ],
+    "simbolos": [
+     [
+      "pelo menos 50%",
+      "50% ou mais"
+     ]
+    ]
+   },
+   "pista": "Procure a linha em que a queda foi mais fraca: é ela que limita o \"pelo menos\".",
+   "passos": [
+    {
+     "faz": "Veja se todas as linhas caíram",
+     "conta": "13797 → 5656 | 1892 → 755 | 1110 → 453 | 991 → 487 | 283 → 23",
+     "porque": "Em todas as modalidades o número de 2024 é menor que o de 2021. Aumento (D) e estabilidade (E) já estão fora.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a queda de cada modalidade",
+     "conta": "8141/13797 ≈ 59,0% | 1137/1892 ≈ 60,1% | 657/1110 ≈ 59,2% | 504/991 ≈ 50,9% | 260/283 ≈ 91,9%",
+     "porque": "A queda percentual é quanto diminuiu dividido pelo valor de 2021.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a menor queda",
+     "conta": "roubo em residência: (991 − 487)/991 = 504/991 ≈ 50,9%",
+     "porque": "A afirmação tem de valer para todas; a menor queda, 50,9%, é o máximo que se pode garantir.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue ao \"pelo menos\"",
+     "conta": "50,9% ≥ 50% e 50,9% < 60% → alternativa A",
+     "porque": "Todas caíram pelo menos 50%, mas a residência não chega a 60%, o que derruba B e C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — houve diminuição de pelo menos 50% dos registros em todas as modalidades",
+   "checagem": "Pela metade: 50% de 991 é 495,5, e 2024 teve 487, menos que isso; logo a residência caiu mais de 50%. Já 40% de 991 é 396,4, e 487 fica acima, logo não caiu 60%.",
+   "erradas": {
+    "B": "B sai de olhar só roubo de veículo (−60,1%) ou de carga (−91,9%). Roubo em residência caiu 504/991 ≈ 50,9%, menos de 60%.",
+    "C": "C sai de olhar só roubo de carga (−91,9%). Quatro modalidades caíram entre 50% e 61%, abaixo de 70%.",
+    "D": "D não confere: todos os números de 2024 são menores que os de 2021, então não houve aumento em nenhuma modalidade.",
+    "E": "E não confere: roubo a transeunte caiu de 13797 para 5656 registros; não há estabilidade em nenhuma linha."
+   },
+   "armadilha": "\"Em todas\" exige o pior caso: quem calcula só a linha maior (transeunte, 59%) ou a de carga (92%) erra o limite.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O que vale para todas as modalidades de 2021 a 2024.",
+    "chave": "A menor queda é a de roubo em residência: 504/991 ≈ 50,9%.",
+    "cuidado": "Com \"em todas\" e \"pelo menos\", decida pela linha que caiu menos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela metade",
+    "ideia": "Compare 2024 com a metade de 2021 em cada linha: todos ficam abaixo da metade (487 < 495,5 é o caso mais apertado)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "991 − 487 = 504",
+    "nota": "queda de roubo em residência"
+   },
+   {
+    "linha": "504/991 ≈ 0,509 = 50,9%",
+    "nota": "a menor queda da tabela"
+   },
+   {
+    "linha": "1137/1892 ≈ 60,1% | 8141/13797 ≈ 59,0%",
+    "nota": "as outras ficam acima de 50%"
+   },
+   {
+    "linha": "50% ≤ 50,9% < 60%",
+    "nota": "vale \"pelo menos 50%\", não vale 60%"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
+ },
+ "P45077197": {
+  "n": "26",
+  "conceito": "Reconhecer pelo gráfico o tipo de função (exponencial crescente) que aproxima os dados.",
+  "equivocos": {
+   "B": "M06.1:parabola-no-lugar-de-exponencial",
+   "C": "M06.1:reta-no-lugar-de-curva",
+   "D": "M06.1:log-no-lugar-de-exponencial",
+   "E": "M06.1:funcao-periodica-no-lugar-de-crescente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Olhe duas coisas no gráfico: onde a curva corta o eixo y e como ela sobe. Ela começa acima de zero em x = 0 e sobe cada vez mais rápido, sem limite e sem oscilar. Essa é a marca da exponencial com base maior que 1: a cada unidade de x, o valor de y é multiplicado pelo mesmo número.",
+    "formulas": [
+     "y = k·cˣ → em x = 0, y = k·c⁰ = k",
+     "x aumenta 1 → y fica multiplicado por c"
+    ],
+    "simbolos": [
+     [
+      "k, c",
+      "constantes reais positivas"
+     ],
+     [
+      "ℝ+*",
+      "números reais positivos, sem o zero"
+     ],
+     [
+      "cˣ",
+      "c elevado a x"
+     ],
+     [
+      "log_k",
+      "logaritmo na base k"
+     ]
+    ]
+   },
+   "pista": "Teste cada função no ponto x = 0 e compare com o lugar onde a curva começa.",
+   "passos": [
+    {
+     "faz": "Descreva a curva do gráfico",
+     "conta": "x = 0 → y > 0 | y sobe cada vez mais rápido",
+     "porque": "A curva parte de um valor positivo no eixo y e fica mais íngreme à medida que x cresce.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Descarte reta, seno e logaritmo",
+     "conta": "y = kx + c: reta | sen(kcx): entre −1 e 1 | log_k(cx): sem valor em x = 0",
+     "porque": "A reta sobe sempre no mesmo ritmo; o seno oscila e é limitado; o logaritmo nem existe em x = 0 e sobe cada vez mais devagar.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste x = 0 nas duas que sobram",
+     "conta": "kc·0² → 0 | k·c⁰ → k > 0",
+     "porque": "A parábola kcx² passa pela origem, mas a curva do gráfico começa acima de zero. A exponencial começa em y = k, positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua pelo tipo de crescimento",
+     "conta": "y = k·cˣ, com c > 1 → alternativa A",
+     "porque": "Só a exponencial começa acima de zero e cresce cada vez mais rápido, como os pontos e a curva do gráfico.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — y = k·cˣ, para x ≥ 0",
+   "checagem": "Pelo crescimento: na curva, de x = 0 a x = 1 y quase não muda, e de x = 4 a x = 5 dá um salto grande. Isso é multiplicar pelo mesmo fator a cada passo, comportamento da exponencial.",
+   "erradas": {
+    "B": "B não confere: y = kcx² dá y = 0 em x = 0, e a curva do gráfico corta o eixo y acima de zero.",
+    "C": "C não confere: y = kx + c é uma reta, sobe sempre no mesmo ritmo; a curva do gráfico fica cada vez mais íngreme.",
+    "D": "D não confere: log_k(cx) não existe em x = 0 e, quando cresce, cresce cada vez mais devagar, o contrário do gráfico.",
+    "E": "E não confere: sen(kcx) fica sempre entre −1 e 1 e oscila; a curva do gráfico só sobe."
+   },
+   "armadilha": "Confundir parábola com exponencial porque as duas sobem curvando: a parábola kcx² passa pela origem, e a curva do gráfico não passa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A função que descreve a curva do gráfico de dispersão.",
+    "chave": "Começa em y = k > 0 e cresce cada vez mais rápido: exponencial y = k·cˣ.",
+    "cuidado": "Teste o ponto x = 0 para separar a exponencial da parábola."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razões sucessivas",
+    "ideia": "Ler y em x = 1, 2, 3, 4, 5 e ver que cada valor é quase o anterior vezes o mesmo número: crescimento exponencial."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x = 0: y = k·c⁰ = k > 0",
+    "nota": "exponencial começa acima de zero, como a curva"
+   },
+   {
+    "linha": "x = 0: y = kc·0² = 0",
+    "nota": "a parábola passa pela origem: não serve"
+   },
+   {
+    "linha": "x → x + 1: y → y·c",
+    "nota": "a cada unidade, y multiplica por c"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
+ },
+ "Pf94184e3": {
+  "n": "14",
+  "conceito": "Divisão proporcional da despesa por pessoa-dia.",
+  "equivocos": {
+   "A": "M02.5:erro-no-total-de-pessoas-dia",
+   "B": "M02.5:erro-no-total-de-pessoas-dia",
+   "C": "M02.5:dividiu-igualmente-por-pessoa",
+   "E": "M02.5:erro-no-total-de-pessoas-dia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A despesa é proporcional ao número de pessoas por dia, então a unidade de custo é a pessoa-dia: uma pessoa passando um dia. Conte quantas pessoas-dia o grupo somou, divida a despesa total por esse número e você tem o custo de um dia de uma pessoa. A diferença entre quem ficou 15 e quem ficou 5 dias é o custo de 10 dias.",
+    "formulas": [
+     "custo por pessoa-dia = despesa total ÷ total de pessoas-dia"
+    ],
+    "simbolos": [
+     [
+      "pessoa-dia",
+      "uma pessoa hospedada durante um dia"
+     ]
+    ]
+   },
+   "pista": "Descubra quantas pessoas ficaram 15 dias e conte o total de pessoas-dia do grupo.",
+   "passos": [
+    {
+     "faz": "Separe os dois grupos",
+     "conta": "15 amigos: 10 ficaram 5 dias | 15 − 10 = 5 ficaram 15 dias",
+     "porque": "O \"restante\" do grupo de 15 são 5 pessoas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte as pessoas-dia",
+     "conta": "10 · 5 + 5 · 15 = 50 + 75 = 125 pessoas-dia",
+     "porque": "Cada pessoa-dia gera a mesma despesa, então é isso que se conta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o custo de uma pessoa-dia",
+     "conta": "15000/125 = 120 reais",
+     "porque": "A despesa total se reparte igualmente entre as 125 pessoas-dia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a diferença",
+     "conta": "15 · 120 − 5 · 120 = 1800 − 600 = 1200 reais",
+     "porque": "Quem ficou 15 dias pagou 1 800 reais e quem ficou 5 pagou 600; a diferença são 10 dias de 120 reais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "R$ 1.200,00 → alternativa D",
+     "porque": "É a diferença pedida entre os dois valores pagos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — R$ 1.200,00",
+   "checagem": "Reconstrua o total: 10 pessoas × 600 + 5 pessoas × 1 800 = 6 000 + 9 000 = 15 000 reais, a despesa do grupo. Fecha.",
+   "erradas": {
+    "A": "R$ 500,00 não confere: seria 50 reais por dia (500 ÷ 10), e 125 × 50 = 6 250, longe dos 15 000.",
+    "B": "R$ 700,00 não confere: seria 70 reais por dia, e 125 × 70 = 8 750, não 15 000.",
+    "C": "R$ 1.000,00 não confere como diferença: seria 100 reais por dia e 125 × 100 = 12 500. 1 000 é a parte de cada um se os 15 000 fossem divididos igualmente por 15 pessoas.",
+    "E": "R$ 1.500,00 não confere: seria 150 reais por dia, e 125 × 150 = 18 750, acima dos 15 000."
+   },
+   "armadilha": "Dividir a despesa pelas 15 pessoas, sem levar em conta que quem ficou mais dias gera mais gasto.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A diferença entre o que pagou quem ficou 15 dias e quem ficou 5 dias.",
+    "chave": "125 pessoas-dia; 15000/125 = 120 reais por dia; diferença de 10 dias = 1 200 reais.",
+    "cuidado": "O restante do grupo são 5 pessoas; conte pessoas-dia, não pessoas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "constante de proporção",
+    "ideia": "Quem fica 5 dias paga k e quem fica 15 paga 3k: 10k + 5·3k = 25k = 15 000, k = 600, e a diferença é 2k = 1 200."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10 · 5 + 5 · 15 = 125",
+    "nota": "pessoas-dia do grupo"
+   },
+   {
+    "linha": "15000/125 = 120",
+    "nota": "custo de uma pessoa-dia"
+   },
+   {
+    "linha": "15 · 120 = 1800 ; 5 · 120 = 600",
+    "nota": "valor de cada um"
+   },
+   {
+    "linha": "1800 − 600 = 1200",
+    "nota": "diferença pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
+ },
+ "P723fe1ab": {
+  "n": "19",
+  "conceito": "Soma e diferença de duas PAs: recuperar cada PA pelo termo geral e calcular a₃ + b₈.",
+  "equivocos": {
+   "A": "M07.1:valor-que-nao-fecha",
+   "B": "M07.1:usou-termo-da-soma",
+   "C": "M07.1:esqueceu-uma-parcela",
+   "E": "M07.1:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Você conhece aₙ + bₙ e aₙ − bₙ para todo n, porque essas duas sequências também são PAs. Escreva o termo geral de cada uma e resolva como um sistema: somando, sai 2aₙ; subtraindo, sai 2bₙ. Depois é só trocar n por 3 em a e por 8 em b.",
+    "formulas": [
+     "termo geral da PA: primeiro termo + (n − 1) · razão",
+     "a = (S + D)/2 e b = (S − D)/2"
+    ],
+    "simbolos": [
+     [
+      "aₙ, bₙ",
+      "termos de ordem n das duas PAs"
+     ],
+     [
+      "S",
+      "a soma aₙ + bₙ"
+     ],
+     [
+      "D",
+      "a diferença aₙ − bₙ"
+     ]
+    ]
+   },
+   "pista": "Escreva aₙ + bₙ e aₙ − bₙ como expressões em n e trate as duas como um sistema.",
+   "passos": [
+    {
+     "faz": "Escreva os termos gerais das sequências dadas",
+     "conta": "aₙ + bₙ = 0 + (n − 1) · 7 = 7n − 7 | aₙ − bₙ = −4 + (n − 1) · (−3) = −3n − 1",
+     "porque": "A primeira tem razão 7 e começa em 0; a segunda tem razão −3 e começa em −4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as equações para achar aₙ",
+     "conta": "2aₙ = (7n − 7) + (−3n − 1) → aₙ = (4n − 8)/2 = 2n − 4",
+     "porque": "Somando, o bₙ se cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia para achar bₙ",
+     "conta": "2bₙ = (7n − 7) − (−3n − 1) → bₙ = (10n − 6)/2 = 5n − 3",
+     "porque": "Subtraindo, o aₙ se cancela; cuidado com o sinal do −1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a₃ e b₈ e some",
+     "conta": "a₃ = 2 · 3 − 4 = 2 | b₈ = 5 · 8 − 3 = 37 → 2 + 37 = 39",
+     "porque": "Cada termo usa o próprio índice: 3 em a, 8 em b.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "a₃ + b₈ = 39 → alternativa D",
+     "porque": "É o valor pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a₃ + b₈ = 39.",
+   "checagem": "Confira nos primeiros termos: a = (−2, 0, 2, 4, …) e b = (2, 7, 12, 17, …). Somas: 0, 7, 14, 21; diferenças: −4, −7, −10, −13. Batem com o enunciado.",
+   "erradas": {
+    "A": "11 não confere: com aₙ = 2n − 4 e bₙ = 5n − 3, nenhuma troca de índices dá 11 (a₈ + b₃ = 12 + 12 = 24).",
+    "B": "21 não confere: 21 é a₄ + b₄, o quarto termo da sequência das somas, e não a₃ + b₈.",
+    "C": "37 sai de esquecer a₃: b₈ = 5 · 8 − 3 = 37 sozinho. Falta somar a₃ = 2.",
+    "E": "55 não confere: nem a₈ + b₈ = 49 chega a 55."
+   },
+   "armadilha": "Sinal na subtração: (7n − 7) − (−3n − 1) = 10n − 6, não 10n − 8.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de a₃ + b₈, sabendo as sequências das somas e das diferenças.",
+    "chave": "Somar e subtrair os termos gerais de aₙ + bₙ e aₙ − bₙ isola aₙ = 2n − 4 e bₙ = 5n − 3.",
+    "cuidado": "Use o índice certo em cada PA e cuide do sinal ao subtrair."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelos primeiros termos",
+    "ideia": "a₁ = (0 − 4)/2 = −2 e b₁ = (0 + 4)/2 = 2; razões (7 − 3)/2 = 2 e (7 + 3)/2 = 5; a₃ = 2, b₈ = 37."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "aₙ + bₙ = 7n − 7",
+    "nota": "PA 0, 7, 14, …"
+   },
+   {
+    "linha": "aₙ − bₙ = −3n − 1",
+    "nota": "PA −4, −7, −10, …"
+   },
+   {
+    "linha": "aₙ = (4n − 8)/2 = 2n − 4",
+    "nota": "soma as duas"
+   },
+   {
+    "linha": "bₙ = (10n − 6)/2 = 5n − 3",
+    "nota": "subtrai as duas"
+   },
+   {
+    "linha": "a₃ + b₈ = 2 + 37 = 39",
+    "nota": "substitui os índices"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "P9e33892e": {
+  "n": "20",
+  "conceito": "Distância entre dois pontos do plano cartesiano, convertida para quilômetros pela escala do mapa.",
+  "equivocos": {
+   "A": "M12.1:so-a-distancia-horizontal",
+   "B": "M12.1:distancia-que-nao-fecha-pitagoras",
+   "D": "M12.1:distancia-que-nao-fecha-pitagoras",
+   "E": "M12.1:distancia-que-nao-fecha-pitagoras"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois pontos têm coordenadas lidas na figura: A(−1, 1) e B(3, 4). A distância em linha reta é a hipotenusa do triângulo retângulo com catetos Δx e Δy. Só no fim multiplique pela escala: cada unidade do plano vale 200 km.",
+    "formulas": [
+     "d = √((Δx)² + (Δy)²)",
+     "distância real = distância em unidades × 200 km"
+    ],
+    "simbolos": [
+     [
+      "Δx",
+      "diferença entre as abscissas (x) dos dois pontos"
+     ],
+     [
+      "Δy",
+      "diferença entre as ordenadas (y) dos dois pontos"
+     ],
+     [
+      "d",
+      "distância em unidades do plano"
+     ]
+    ]
+   },
+   "pista": "Leia as coordenadas dos dois pontos e calcule quanto se anda na horizontal e na vertical de A até B.",
+   "passos": [
+    {
+     "faz": "Leia as coordenadas",
+     "conta": "A(−1, 1) | B(3, 4)",
+     "porque": "Os pares estão escritos ao lado de cada ponto na figura.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule as variações",
+     "conta": "Δx = 3 − (−1) = 4 | Δy = 4 − 1 = 3",
+     "porque": "Subtrair um número negativo é somar: de −1 até 3 são 4 unidades.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique Pitágoras",
+     "conta": "d = √(4² + 3²) → d = √(16 + 9) = √25 = 5",
+     "porque": "O segmento AB é a hipotenusa do triângulo com catetos horizontal e vertical.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta pela escala",
+     "conta": "5 unidades × 200 km = 1000 km → alternativa C",
+     "porque": "Cada unidade do plano corresponde a 200 km no mapa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1000 km",
+   "checagem": "Pela régua da escala: o traço de 200 km na figura ocupa uma unidade do eixo. O triângulo 3-4-5 é a terna pitagórica clássica, e 5 × 200 = 1000 km.",
+   "erradas": {
+    "A": "800 km sai de usar só a distância horizontal: Δx = 4 unidades × 200 = 800 km. Faltou a subida de 3 unidades.",
+    "B": "900 km não confere: daria 900/200 = 4,5 unidades, e 4,5² = 20,25 ≠ 4² + 3² = 25.",
+    "D": "1100 km não confere: daria 5,5 unidades, e 5,5² = 30,25 ≠ 25.",
+    "E": "1200 km não confere: daria 6 unidades, e 6² = 36 ≠ 25."
+   },
+   "armadilha": "A abscissa de A é negativa: Δx = 3 − (−1) = 4, e não 3 − 1 = 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A distância real, em km, entre A(−1, 1) e B(3, 4).",
+    "chave": "Δx = 4 e Δy = 3 dão d = 5 unidades; 5 × 200 = 1000 km.",
+    "cuidado": "Cuidado com o sinal de −1 e só converta pela escala no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "converter antes",
+    "ideia": "Em km, os catetos são 800 e 600; √(800² + 600²) = √1000000 = 1000 km."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Δx = 3 − (−1) = 4",
+    "nota": "menos com menos vira mais"
+   },
+   {
+    "linha": "Δy = 4 − 1 = 3",
+    "nota": "variação vertical"
+   },
+   {
+    "linha": "d = √(16 + 9) = √25 = 5",
+    "nota": "Pitágoras"
+   },
+   {
+    "linha": "5 × 200 = 1000 km",
+    "nota": "escala do mapa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "P2cf20ea8": {
+  "n": "22",
+  "conceito": "Usar a propriedade do termo médio de uma progressão aritmética para achar o diâmetro do meio e calcular o volume de um cilindro.",
+  "equivocos": {
+   "A": "M11.5:volume-incompativel-com-o-raio",
+   "B": "M11.5:calculou-metade-do-volume",
+   "D": "M11.5:volume-incompativel-com-o-raio",
+   "E": "M11.5:usou-diametro-como-raio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em uma PA de três termos, o termo do meio é a média dos três: basta dividir a soma por 3. Não é preciso descobrir d1 nem d3. Pela figura, cada cilindro atravessa o paralelepípedo inteiro, então a altura do cilindro é o comprimento de 20 cm. Cuidado: a fórmula do volume usa o RAIO, metade do diâmetro.",
+    "formulas": [
+     "PA de 3 termos: d2 = (d1 + d2 + d3)/3",
+     "V = π · r² · h, com r = d/2"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais uma razão fixa"
+     ],
+     [
+      "d1, d2, d3",
+      "diâmetros dos três cilindros"
+     ],
+     [
+      "r",
+      "raio, metade do diâmetro"
+     ],
+     [
+      "h",
+      "altura (comprimento) do cilindro"
+     ]
+    ]
+   },
+   "pista": "Você não precisa da razão da PA: o termo do meio sai direto da soma.",
+   "passos": [
+    {
+     "faz": "Ache o diâmetro do meio",
+     "conta": "d1 + d2 + d3 = 18 → 3 · d2 = 18 → d2 = 18/3 = 6 cm",
+     "porque": "Numa PA, d1 = d2 − razão e d3 = d2 + razão; a razão some na soma e sobra 3 · d2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe o diâmetro para raio",
+     "conta": "r = 6/2 → r = 3 cm",
+     "porque": "A fórmula do volume usa o raio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia a altura do cilindro",
+     "conta": "h = 20 cm",
+     "porque": "Na figura, os cilindros atravessam o paralelepípedo no sentido do lado de 20 cm; os 18 cm são a altura da caixa, onde os três diâmetros se empilham.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o volume",
+     "conta": "V = π · 3² · 20 → V = π · 9 · 20 = 180π cm³",
+     "porque": "Área da base circular vezes o comprimento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à letra",
+     "conta": "V = 180π cm³ → alternativa C",
+     "porque": "É o volume do cilindro de diâmetro d2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 180π cm³.",
+   "checagem": "Os 18 cm da altura da caixa são exatamente d1 + d2 + d3 empilhados na figura, o que confirma que a soma dada é a da altura. Qualquer PA serve, por exemplo 2, 6 e 10: o termo do meio é sempre 6.",
+   "erradas": {
+    "A": "10π cm³ não confere: com h = 20 cm, daria r² = 10/20 = 0,5, raio de cerca de 0,7 cm, incompatível com d2 = 6 cm.",
+    "B": "90π cm³ não confere com π · r² · h: daria r² = 90/20 = 4,5, mas o raio é 3 e r² = 9. É a metade do volume correto.",
+    "D": "540π cm³ não confere: daria r² = 540/20 = 27, raio de cerca de 5,2 cm, maior que a metade dos 6 cm do diâmetro.",
+    "E": "720π cm³ sai de usar o diâmetro no lugar do raio: π · 6² · 20 = 720π."
+   },
+   "armadilha": "A fórmula pede o raio; usar o diâmetro de 6 cm quadruplica o volume.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume do cilindro de diâmetro d2.",
+    "chave": "Numa PA de três termos, o do meio é a soma dividida por 3: d2 = 6 cm.",
+    "cuidado": "Divida o diâmetro por 2 antes de elevar ao quadrado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "PA genérica",
+    "ideia": "Escreva 6 − k, 6 e 6 + k: a soma é 18 para qualquer k, e o volume só depende do 6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3 · d2 = 18 → d2 = 6 cm",
+    "nota": "termo médio da PA"
+   },
+   {
+    "linha": "r = 6/2 = 3 cm",
+    "nota": "raio"
+   },
+   {
+    "linha": "V = π · 3² · 20",
+    "nota": "base vezes comprimento"
+   },
+   {
+    "linha": "V = 180π cm³",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ },
+ "Pa73d472d": {
+  "n": "31",
+  "conceito": "Ler um gráfico de barras de porcentagem e comparar grupos.",
+  "equivocos": {
+   "A": "M14.2:atribuiu-valor-ao-grupo-errado",
+   "B": "M14.2:inverteu-a-comparacao",
+   "C": "M14.2:atribuiu-valor-ao-grupo-errado",
+   "D": "M14.2:viu-diferenca-onde-ha-empate"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O gráfico mostra a porcentagem de cada grupo que falhou ao citar uma frase da própria redação. Leia a altura de cada barra pelas linhas de grade de 10 em 10 e compare: as alternativas trocam os grupos e as porcentagens de lugar.",
+    "formulas": [
+     "porcentagem que falhou = altura da barra no eixo vertical"
+    ],
+    "simbolos": [
+     [
+      "LLM",
+      "grandes modelos de linguagem; aqui, o grupo que usou o ChatGPT"
+     ],
+     [
+      "ferramenta de busca",
+      "o grupo que usou o Google"
+     ]
+    ]
+   },
+   "pista": "Leia as três barras pela grade antes de olhar as alternativas.",
+   "passos": [
+    {
+     "faz": "Leia a barra do grupo LLM",
+     "conta": "LLM: entre 80 % e 90 % → cerca de 83 %",
+     "porque": "A barra preta passa da linha de 80 e fica abaixo da de 90.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia as barras de busca e de cérebro",
+     "conta": "busca ≈ 11 % e cérebro ≈ 11 %",
+     "porque": "As duas barras cinzentas têm a mesma altura, pouco acima da linha de 10.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Compare ChatGPT e Google",
+     "conta": "83 − 11 = 72 pontos percentuais",
+     "porque": "O grupo do ChatGPT falhou muito mais: a diferença é de cerca de 72 pontos.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "LLM acima de 80 % e busca perto de 10 % → alternativa E",
+     "porque": "É exatamente o que a E diz.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — mais de 80 % do grupo do ChatGPT não conseguiu citar uma frase do próprio texto, contra cerca de 10 % do grupo do Google",
+   "checagem": "Os grupos têm 18 pessoas cada. 15 de 18 dá 15/18 ≈ 83,3 % e 2 de 18 dá 2/18 ≈ 11,1 %: as alturas lidas no gráfico correspondem a números inteiros de pessoas.",
+   "erradas": {
+    "A": "Não confere: busca e cérebro de fato se parecem (≈ 11 % cada), mas ficam muito abaixo de 80 %. Quem passa de 80 % é o grupo LLM.",
+    "B": "Inverte o gráfico: o grupo que usou só o cérebro falhou ≈ 11 %, contra ≈ 83 % do grupo do ChatGPT.",
+    "C": "Acerta os mais de 80 % do ChatGPT, mas o grupo do Google ficou em ≈ 11 %, nada semelhante.",
+    "D": "Não confere: as barras de busca e de cérebro têm a mesma altura (≈ 11 %); o grupo do Google não teve dificuldade maior."
+   },
+   "armadilha": "Trocar os grupos: os mais de 80 % são só do grupo que usou o ChatGPT.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O que o gráfico mostra sobre a falha em citar a própria redação em cada grupo.",
+    "chave": "LLM ≈ 83 %, busca ≈ 11 % e cérebro ≈ 11 %.",
+    "cuidado": "Confira a qual barra cada número pertence antes de aceitar a comparação."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Só uma barra passa de 80 %, a do ChatGPT, e as outras duas são iguais: isso derruba A, B, C e D de uma vez."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "LLM ≈ 83 %",
+    "nota": "barra preta, entre 80 e 90"
+   },
+   {
+    "linha": "busca ≈ 11 %",
+    "nota": "barra cinza, pouco acima de 10"
+   },
+   {
+    "linha": "83 − 11 = 72 pontos",
+    "nota": "diferença entre ChatGPT e Google"
+   },
+   {
+    "linha": "LLM > 80 % e busca ≈ 10 % → E",
+    "nota": "alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-20",
+   "lote": "mat-pend-0005"
+  }
+ }
+}

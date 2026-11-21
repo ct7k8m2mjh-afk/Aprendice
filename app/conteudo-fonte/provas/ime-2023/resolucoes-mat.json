@@ -1,0 +1,1745 @@
+{
+ "P2077456f": {
+  "n": "15",
+  "conceito": "Cubos perfeitos de quatro algarismos e palíndromos.",
+  "equivocos": {
+   "B": "M01.4:sem-origem-identificada",
+   "C": "M01.4:sem-origem-identificada",
+   "D": "M01.4:sem-origem-identificada",
+   "E": "M01.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os cubos de quatro algarismos vão de 10³ = 1 000 a 21³ = 9 261 (22³ = 10 648 já tem cinco). Basta listar esses 12 cubos e ver qual se lê igual de trás para frente.",
+    "formulas": [
+     "10³ = 1 000",
+     "21³ = 9 261",
+     "22³ = 10 648"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quais inteiros têm cubo entre 1 000 e 9 999? Liste os cubos.",
+   "passos": [
+    {
+     "faz": "Limites",
+     "conta": "10³ = 1 000 e 21³ = 9 261 < 9 999 < 22³",
+     "porque": "Bases de 10 a 21.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Listar",
+     "conta": "1000, 1331, 1728, 2197, 2744, 3375, 4096, 4913, 5832, 6859, 8000, 9261",
+     "porque": "Cubos de 10 a 21.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Palíndromo",
+     "conta": "1331 = 11³",
+     "porque": "Único que se lê igual nos dois sentidos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Soma dos algarismos",
+     "conta": "1 + 3 + 3 + 1 = 8 → alternativa A",
+     "porque": "Pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 8",
+   "checagem": "Em abba, o primeiro algarismo é igual ao último. Entre os 12 cubos, só 1 331 tem o primeiro igual ao último (1 000 começa por 1 e termina em 0; 9 261 começa por 9 e termina em 1; nos outros também não coincidem), e os do meio, 3 e 3, também são iguais. Soma 1 + 3 + 3 + 1 = 8. Confere.",
+   "erradas": {
+    "B": "10 não é a soma dos algarismos de nenhum cubo palíndromo; 1 331 é o único.",
+    "C": "12 não sai de 1 331 (1 + 3 + 3 + 1 = 8).",
+    "D": "14 não é a soma dos algarismos de nenhum cubo de quatro algarismos; 14 é a base de 2 744 = 14³, cuja soma é 17, e 2 744 não é palíndromo.",
+    "E": "16 não sai de 1 331."
+   },
+   "armadilha": "Achar que não há cubo palíndromo e chutar; 11³ = 1 331 é palíndromo, como as potências de 11 pequenas (121, 1 331).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Soma dos algarismos.",
+    "chave": "Único cubo palíndromo de 4 algarismos: 1 331 = 11³.",
+    "cuidado": "Palíndromo de 4 algarismos é múltiplo de 11."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "múltiplo de 11",
+    "ideia": "Todo palíndromo abba vale 1001a + 110b = 11(91a + 10b), múltiplo de 11. Se é cubo, a base é múltipla de 11; entre 10 e 21 só há o 11: 11³ = 1 331, soma 8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10³ a 21³",
+    "nota": "cubos com 4 algarismos"
+   },
+   {
+    "linha": "1331 = 11³",
+    "nota": "palíndromo"
+   },
+   {
+    "linha": "1 + 3 + 3 + 1 = 8",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ },
+ "P34f73afb": {
+  "n": "11",
+  "conceito": "Movimento relativo de ponteiros trocados: achar o primeiro instante em que as duas posições voltam a coincidir com as corretas.",
+  "equivocos": {
+   "A": "M04.5:intervalo-antes-da-coincidencia",
+   "C": "M04.5:intervalo-errado",
+   "D": "M04.5:segunda-coincidencia",
+   "E": "M04.5:intervalo-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com os ponteiros trocados, o ponteiro curto gira 360° por hora e o longo gira 30° por hora. O relógio marca a hora certa quando cada ponteiro está onde deveria estar. Basta exigir que o ponteiro curto (que deveria andar 30° por hora) esteja na mesma posição em que estaria se andasse certo, a menos de voltas inteiras.",
+    "formulas": [
+     "ângulo do ponteiro = ângulo inicial + velocidade · tempo",
+     "mesma posição: diferença de ângulos = 360° · k"
+    ],
+    "simbolos": [
+     [
+      "t",
+      "tempo decorrido desde as 4 h, em horas"
+     ],
+     [
+      "k",
+      "número inteiro de voltas"
+     ]
+    ]
+   },
+   "pista": "Escreva onde o ponteiro curto está de fato e onde ele deveria estar depois de t horas.",
+   "passos": [
+    {
+     "faz": "Anote as velocidades trocadas",
+     "conta": "curto: 360°/h | longo: 30°/h",
+     "porque": "O curto ganhou a velocidade do ponteiro dos minutos, e o longo, a do ponteiro das horas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Iguale a posição real e a correta",
+     "conta": "120 + 360t = 120 + 30t + 360k",
+     "porque": "Às 4 h o curto aponta para o 4 (120°). Para a hora estar certa, ele deve estar onde estaria andando a 30°/h, a menos de voltas completas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole t",
+     "conta": "330t = 360k → t = 12k/11",
+     "porque": "Tire 120 e 30t dos dois lados (360 − 30 = 330) e divida por 330: 360/330 = 12/11.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tome a primeira vez",
+     "conta": "k = 1 → t = 12/11 h ≈ 1 h 05 min 27 s",
+     "porque": "k = 0 é o próprio instante das 4 h; a primeira vez seguinte é k = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some às 4 h",
+     "conta": "4 h + 1 h 05 min ≈ 5 h 05 min → alternativa B",
+     "porque": "5 h 05 min está entre 5 h e 5 h 30 min.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 5h ⩽ t < 5h30min",
+   "checagem": "Teste em t = 12/11 h: o curto andou 360 · 12/11 ≈ 392,7°, ou seja, uma volta mais 32,7°, e o correto seria 30 · 12/11 ≈ 32,7°. Fecha.",
+   "erradas": {
+    "A": "4h30min a 5h não confere: em t = 0,5 h o curto andou 180° e deveria ter andado 15°; a primeira coincidência só vem em 12/11 h, depois das 5 h.",
+    "C": "5h30min a 6h não confere: a coincidência acontece antes, às 4 h + 12/11 h ≈ 5 h 05 min.",
+    "D": "6h a 6h30min não confere: esse intervalo contém a segunda coincidência (k = 2, t = 24/11 h ≈ 2 h 11 min, às 6 h 11 min), não a primeira.",
+    "E": "6h30min a 7h10min não confere: a primeira vez é em 12/11 h ≈ 1 h 05 min depois das 4 h, bem antes das 6 h 30 min."
+   },
+   "armadilha": "A primeira vez é k = 1: a diferença de velocidade, 330° por hora, precisa completar só uma volta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O intervalo que contém o primeiro horário em que o relógio trocado marca a hora certa.",
+    "chave": "330t = 360 dá t = 12/11 h ≈ 1 h 05 min; somado às 4 h, cerca de 5 h 05 min.",
+    "cuidado": "A coincidência depende da diferença de velocidades (330°/h), não da soma."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "encontro de ponteiros",
+    "ideia": "É como dois ponteiros num relógio normal: a diferença de velocidades, 330°/h, precisa fechar uma volta de 360°, o que leva 360/330 = 12/11 h."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "120 + 360t = 120 + 30t + 360",
+    "nota": "posição real = posição correta + 1 volta"
+   },
+   {
+    "linha": "330t = 360",
+    "nota": "tira 120 e 30t dos dois lados"
+   },
+   {
+    "linha": "t = 360/330 = 12/11",
+    "nota": "divide por 330"
+   },
+   {
+    "linha": "12/11 · 60 = 65,45",
+    "nota": "em minutos: cerca de 1 h 05 min"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
+ },
+ "P24753958": {
+  "n": "13",
+  "conceito": "Equação exponencial com bases diferentes reduzida, por fatoração, a uma equação do 2º grau numa razão de potências.",
+  "equivocos": {
+   "B": "M06.2:parou-na-variavel-auxiliar",
+   "C": "M06.2:solucao-nao-confere",
+   "D": "M06.2:solucao-nao-confere",
+   "E": "M06.2:solucao-nao-confere"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As quatro bases são produtos de 2 e 3: 144 = 2^4 × 3^2, 324 = 2^2 × 3^4, 64 = 2^6 e 729 = 3^6. Chamando p = 4^x e q = 9^x, o numerador vira pq(p + q) e o denominador vira p^3 + q^3 = (p + q)(p^2 − pq + q^2). O fator (p + q) cancela e sobra uma equação na razão t = p/q.",
+    "formulas": [
+     "p^3 + q^3 = (p + q)(p^2 − pq + q^2)",
+     "t = p/q = (4/9)^x = (2/3)^(2x)"
+    ],
+    "simbolos": [
+     [
+      "p",
+      "4^x, que é 2^(2x)"
+     ],
+     [
+      "q",
+      "9^x, que é 3^(2x)"
+     ],
+     [
+      "t",
+      "a razão p/q, sempre positiva"
+     ]
+    ]
+   },
+   "pista": "Escreva cada base como produto de potências de 2 e de 3 e procure um fator comum.",
+   "passos": [
+    {
+     "faz": "Reescreva com p = 4^x e q = 9^x",
+     "conta": "144^x = p^2 × q | 324^x = p × q^2 | 64^x = p^3 | 729^x = q^3",
+     "porque": "144 = 16 × 9 e 324 = 4 × 81; 64 = 4^3 e 729 = 9^3.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Fatore e cancele p + q",
+     "conta": "pq(p + q)/((p + q)(p^2 − pq + q^2)) = 6/7 → pq/(p^2 − pq + q^2) = 6/7",
+     "porque": "Soma de cubos tem o fator p + q, que também está no numerador; p + q > 0, então pode cancelar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida por q^2 e use t = p/q",
+     "conta": "t/(t^2 − t + 1) = 6/7 → 7t = 6(t^2 − t + 1) → 6t^2 − 13t + 6 = 0",
+     "porque": "Multiplicação cruzada e tudo para um lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva em t e volte para x",
+     "conta": "t = 3/2 ou t = 2/3 | (2/3)^(2x) = 3/2 → x = −1/2 | (2/3)^(2x) = 2/3 → x = 1/2",
+     "porque": "Δ = 169 − 144 = 25, raízes (13 ± 5)/12. Como 3/2 = (2/3)^(−1), 2x = −1; e 2x = 1 na outra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os módulos",
+     "conta": "|−1/2| + |1/2| = 1 → alternativa A",
+     "porque": "A pergunta é a soma dos módulos das soluções reais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1",
+   "checagem": "Teste x = 1/2: (12 + 18)/(8 + 27) = 30/35 = 6/7. Teste x = −1/2: (1/12 + 1/18)/(1/8 + 1/27) = (5/36)/(35/216) = 6/7. Os dois fecham.",
+   "erradas": {
+    "B": "2 sai de parar em 2x = ±1 e somar os módulos de 2x: 1 + 1 = 2. A incógnita é x, então cada módulo vale 1/2.",
+    "C": "3 não confere: as únicas soluções reais são 1/2 e −1/2, e a soma dos módulos é 1.",
+    "D": "8 não confere: as únicas soluções reais são 1/2 e −1/2, e a soma dos módulos é 1.",
+    "E": "9 não confere: as únicas soluções reais são 1/2 e −1/2, e a soma dos módulos é 1."
+   },
+   "armadilha": "Depois de achar t, ainda falta voltar para x: (2/3)^(2x) tem o 2 no expoente.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos módulos das soluções reais de (144^x + 324^x)/(64^x + 729^x) = 6/7.",
+    "chave": "Com p = 4^x e q = 9^x, cancela p + q e sai 6t^2 − 13t + 6 = 0; x = ±1/2.",
+    "cuidado": "Volte de t para x lembrando que t = (2/3)^(2x)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria",
+    "ideia": "Trocar x por −x troca t por 1/t, e a equação t/(t^2 − t + 1) não muda; as soluções vêm aos pares ±x, e x = 1/2 se acha testando."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "pq(p + q)/(p^3 + q^3) = 6/7",
+    "nota": "p = 4^x, q = 9^x"
+   },
+   {
+    "linha": "pq/(p^2 − pq + q^2) = 6/7",
+    "nota": "cancela p + q"
+   },
+   {
+    "linha": "t/(t^2 − t + 1) = 6/7",
+    "nota": "divide por q^2"
+   },
+   {
+    "linha": "7 × t = 6 × (t^2 − t + 1)",
+    "nota": "multiplicação cruzada"
+   },
+   {
+    "linha": "6t^2 − 13t + 6 = 0",
+    "nota": "tudo para um lado"
+   },
+   {
+    "linha": "t = 3/2 ou t = 2/3",
+    "nota": "Δ = 25"
+   },
+   {
+    "linha": "x = −1/2 ou x = 1/2",
+    "nota": "(2/3)^(2x) = t"
+   },
+   {
+    "linha": "1/2 + 1/2 = 1",
+    "nota": "soma dos módulos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "Pcc9787ed": {
+  "n": "8",
+  "conceito": "Paridade de uma função logarítmica: comparar f(−x) com f(x) usando o produto conjugado.",
+  "equivocos": {
+   "A": "M06.3:paridade-trocada",
+   "C": "M06.3:esqueceu-x-negativo",
+   "D": "M06.3:numero-de-raizes-errado",
+   "E": "M06.3:esqueceu-raiz-zero"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para saber se f é par ou ímpar, calcule f(−x). O truque é o produto (√(x^2 + 1) − x)(√(x^2 + 1) + x) = x^2 + 1 − x^2 = 1: os dois fatores são inversos, e log do inverso é o oposto do log.",
+    "formulas": [
+     "par: f(−x) = f(x); ímpar: f(−x) = −f(x)",
+     "(√(x^2 + 1) − x)(√(x^2 + 1) + x) = 1",
+     "log (1/A) = −log A"
+    ],
+    "simbolos": [
+     [
+      "função par",
+      "gráfico simétrico em relação ao eixo y"
+     ],
+     [
+      "função ímpar",
+      "gráfico simétrico em relação à origem"
+     ]
+    ]
+   },
+   "pista": "Calcule f(−x) e multiplique o que fica dentro do log pelo seu conjugado.",
+   "passos": [
+    {
+     "faz": "Escreva f(−x)",
+     "conta": "f(−x) = log (√(x^2 + 1) − x)",
+     "porque": "Trocar x por −x muda o sinal do primeiro termo; x^2 não muda.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use o produto conjugado",
+     "conta": "(√(x^2 + 1) − x)(√(x^2 + 1) + x) = x^2 + 1 − x^2 = 1",
+     "porque": "Produto da soma pela diferença.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reescreva f(−x)",
+     "conta": "f(−x) = log (1/(x + √(x^2 + 1))) = −log (x + √(x^2 + 1)) = −f(x)",
+     "porque": "Se o produto é 1, um fator é o inverso do outro; log do inverso é o oposto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine as outras",
+     "conta": "f(0) = log 1 = 0 | f(−1) ≈ −0,383 ≠ f(1) ≈ 0,383",
+     "porque": "Isso derruba \"par\" e \"não tem raiz\"; f é crescente, então tem só uma raiz.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "f(−x) = −f(x) → f é ímpar → alternativa B",
+     "porque": "É a definição de função ímpar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — f(x) é uma função ímpar.",
+   "checagem": "Numericamente: f(2) = log (2 + √5) ≈ 0,627 e f(−2) = log (√5 − 2) ≈ −0,627. Valores opostos, como numa função ímpar.",
+   "erradas": {
+    "A": "Não confere: f(1) = log (1 + √2) ≈ 0,383 e f(−1) = log (√2 − 1) ≈ −0,383; são opostos, não iguais.",
+    "C": "Não confere: para x = −1, f(−2) ≈ −0,627 é menor que f(−1) ≈ −0,383, e não maior.",
+    "D": "Não confere: f é crescente, então tem uma raiz só, x = 0.",
+    "E": "Não confere: f(0) = log (0 + 1) = log 1 = 0, então x = 0 é raiz."
+   },
+   "armadilha": "x + √(x^2 + 1) e √(x^2 + 1) − x são inversos: é isso que faz f(−x) = −f(x).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual propriedade vale para f(x) = log(x + √(x^2 + 1)).",
+    "chave": "(√(x^2 + 1) − x)(√(x^2 + 1) + x) = 1, logo f(−x) = −f(x): f é ímpar.",
+    "cuidado": "Teste x negativo também ao julgar afirmações do tipo \"para todo x\"."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma",
+    "ideia": "f(x) + f(−x) = log [(x + √(x^2 + 1))(√(x^2 + 1) − x)] = log 1 = 0, logo f(−x) = −f(x)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(−x) = log (√(x^2 + 1) − x)",
+    "nota": "troca x por −x"
+   },
+   {
+    "linha": "(√(x^2 + 1) − x)(√(x^2 + 1) + x) = 1",
+    "nota": "conjugado"
+   },
+   {
+    "linha": "f(−x) = log (1/(x + √(x^2 + 1)))",
+    "nota": "inverso"
+   },
+   {
+    "linha": "f(−x) = −f(x)",
+    "nota": "log do inverso: f é ímpar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "Pb66b6ca6": {
+  "n": "12",
+  "conceito": "Ângulos com incentro e ex-incentro: BÎC = 90° + Â/2 e AĜC = B̂/2.",
+  "equivocos": {
+   "A": "M09.5:angulo-do-ex-incentro-errado",
+   "B": "M09.5:angulo-do-ex-incentro-errado",
+   "D": "M09.5:angulo-do-ex-incentro-errado",
+   "E": "M09.5:angulo-do-ex-incentro-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O incentro I é o encontro das bissetrizes internas; o ex-incentro G relativo a BC é o encontro da bissetriz interna de A com as bissetrizes externas de B e C. Escreva cada ângulo pedido em função de Â, B̂ e Ĉ, some e use Â + B̂ + Ĉ = 180°.",
+    "formulas": [
+     "no triângulo BIC: BÎC = 180° − B̂/2 − Ĉ/2 = 90° + Â/2",
+     "no triângulo AGC: AĜC = 180° − Â/2 − (Ĉ + (180° − Ĉ)/2) = B̂/2"
+    ],
+    "simbolos": [
+     [
+      "I",
+      "incentro: encontro das bissetrizes internas"
+     ],
+     [
+      "G",
+      "ex-incentro relativo a BC: fica do outro lado de BC, na bissetriz interna de A e nas bissetrizes externas de B e C"
+     ],
+     [
+      "Â, B̂, Ĉ",
+      "ângulos internos do triângulo ABC"
+     ]
+    ]
+   },
+   "pista": "Escreva BÎC e AĜC só com os ângulos do triângulo, usando que G está na bissetriz de A e na bissetriz externa de C.",
+   "passos": [
+    {
+     "faz": "Calcule BÎC",
+     "conta": "BÎC = 180° − B̂/2 − Ĉ/2 → BÎC = 90° + Â/2",
+     "porque": "No triângulo BIC, os ângulos em B e C são metades de B̂ e Ĉ; e B̂/2 + Ĉ/2 = 90° − Â/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule AĜC",
+     "conta": "AĜC = 180° − Â/2 − (90° + Ĉ/2) → AĜC = B̂/2",
+     "porque": "Em AGC, o ângulo em A é Â/2 (bissetriz interna) e o ângulo em C é Ĉ mais metade do externo, Ĉ + (180° − Ĉ)/2 = 90° + Ĉ/2. Sobra 90° − (Â + Ĉ)/2 = B̂/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e iguale a 155°",
+     "conta": "90° + Â/2 + B̂/2 = 155° → (Â + B̂)/2 = 65° → Â + B̂ = 130°",
+     "porque": "A soma é dada no enunciado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache Ĉ pela soma dos ângulos",
+     "conta": "Ĉ = 180° − 130° → Ĉ = 50°",
+     "porque": "Os ângulos internos somam 180°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "AĈB = 50° → alternativa C",
+     "porque": "AĈB é o ângulo Ĉ do triângulo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 50°",
+   "checagem": "Num triângulo com Â = 70°, B̂ = 60° e Ĉ = 50°: BÎC = 90° + 35° = 125° e AĜC = 60° ÷ 2 = 30°; soma 155°.",
+   "erradas": {
+    "A": "30° não confere: a soma vale 180° − Ĉ/2, e com Ĉ = 30° daria 165°, não 155°.",
+    "B": "45° não confere: 180° − 45° ÷ 2 = 157,5°, não 155°.",
+    "D": "60° não confere: 180° − 60° ÷ 2 = 150°, não 155°.",
+    "E": "90° não confere: 180° − 90° ÷ 2 = 135°, não 155°."
+   },
+   "armadilha": "Confundir AĜC com BĜC: o ângulo pedido tem vértice em G entre A e C, e vale B̂/2, não 90° − Â/2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O ângulo Ĉ, sabendo que BÎC + AĜC = 155°.",
+    "chave": "BÎC = 90° + Â/2 e AĜC = B̂/2; a soma é 180° − Ĉ/2 = 155°, logo Ĉ = 50°.",
+    "cuidado": "No ex-incentro, o ângulo em C do triângulo AGC é Ĉ mais metade do ângulo externo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula pronta",
+    "ideia": "BÎC + AĜC = 90° + Â/2 + B̂/2 = 180° − Ĉ/2; igualando a 155°, Ĉ = 50°."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "BÎC = 180° − B̂/2 − Ĉ/2 = 90° + Â/2",
+    "nota": "triângulo BIC"
+   },
+   {
+    "linha": "AĜC = 180° − Â/2 − (90° + Ĉ/2) = B̂/2",
+    "nota": "triângulo AGC"
+   },
+   {
+    "linha": "90° + Â/2 + B̂/2 = 155°",
+    "nota": "somou e igualou"
+   },
+   {
+    "linha": "Â + B̂ = 130°",
+    "nota": "isolou a soma"
+   },
+   {
+    "linha": "Ĉ = 180° − 130° = 50°",
+    "nota": "soma dos ângulos internos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ },
+ "Pe05c7e01": {
+  "n": "4",
+  "conceito": "Equação com arco tangente: tangente da soma, equação do 2.º grau e descarte da raiz estranha.",
+  "equivocos": {
+   "A": "M10.4:nao-testou-raiz-estranha",
+   "B": "M10.4:sinal-das-raizes-errado",
+   "C": "M10.4:sinal-das-raizes-errado",
+   "E": "M10.4:descartou-a-raiz-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Aplicar a tangente aos dois lados transforma a equação numa equação do 2.º grau, mas essa operação pode criar soluções falsas: dois arcos diferentes por π têm a mesma tangente. Por isso cada raiz tem de ser testada na equação original. A soma arctg(z) + arctg(z + 1) cresce com z, então só pode haver uma solução.",
+    "formulas": [
+     "tg(a + b) = (tg a + tg b)/(1 − tg a · tg b)",
+     "arctg(x) está entre −π/2 e π/2 e tem o sinal de x"
+    ],
+    "simbolos": [
+     [
+      "arctg(x)",
+      "arco tangente de x: o ângulo entre −π/2 e π/2 cuja tangente é x"
+     ],
+     [
+      "raiz estranha",
+      "solução da equação transformada que não satisfaz a original"
+     ]
+    ]
+   },
+   "pista": "Tome a tangente dos dois lados e use a fórmula da tangente da soma; depois teste o sinal de cada raiz.",
+   "passos": [
+    {
+     "faz": "Tire a tangente dos dois lados",
+     "conta": "(z + (z + 1))/(1 − z(z + 1)) = 4/3",
+     "porque": "tg(arctg z) = z e tg(arctg(z + 1)) = z + 1; a tangente da soma junta os dois.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique cruzado e organize",
+     "conta": "3(2z + 1) = 4(1 − z² − z) → 6z + 3 = 4 − 4z² − 4z → 4z² + 10z − 1 = 0",
+     "porque": "O 3 e o denominador trocam de lado multiplicando; depois tudo vai para o 1.º membro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a equação do 2.º grau",
+     "conta": "z = (−10 ± √116)/8 → z = (−5 ± √29)/4 → z ≈ 0,096 ou z ≈ −2,596",
+     "porque": "Δ = 100 + 16 = 116 = 4 · 29, e o 2 da raiz simplifica com o 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a raiz negativa",
+     "conta": "z ≈ −2,596: arctg(−2,596) + arctg(−1,596) < 0 | arctg(4/3) > 0",
+     "porque": "Com z e z + 1 negativos, os dois arcos são negativos e a soma também; o lado direito é positivo. A raiz é estranha.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "única solução: z = (−5 + √29)/4 ≈ 0,096 > 0 → alternativa D",
+     "porque": "A raiz positiva satisfaz a equação original, e a negativa caiu.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — uma única solução real, positiva",
+   "checagem": "A função arctg(z) + arctg(z + 1) é crescente. Em z = 0 ela vale 0 + π/4 ≈ 0,785, menor que arctg(4/3) ≈ 0,927; em z = 1 vale π/4 + arctg 2 ≈ 1,89, maior. Então existe exatamente uma solução, entre 0 e 1.",
+   "erradas": {
+    "A": "Sai de aceitar as duas raízes de 4z² + 10z − 1 = 0 sem testar. A negativa, z ≈ −2,596, dá soma de arcos ≈ −2,21, que difere de arctg(4/3) por π.",
+    "B": "Não confere: o produto das raízes de 4z² + 10z − 1 = 0 é −1/4, negativo, então elas têm sinais opostos; não podem ser duas positivas.",
+    "C": "Não confere: pelo mesmo produto −1/4, as raízes têm sinais opostos; não podem ser duas negativas.",
+    "E": "Sai de ficar com a raiz errada: a negativa é justamente a estranha, porque soma dois arcos negativos e não chega a arctg(4/3) > 0."
+   },
+   "armadilha": "Tirar a tangente dos dois lados cria uma raiz falsa; sem testar no original, parece haver duas soluções.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas soluções reais tem arctg(z) + arctg(z + 1) = arctg(4/3), e de que sinal.",
+    "chave": "Tangente da soma dá 4z² + 10z − 1 = 0; das raízes (−5 ± √29)/4, só a positiva satisfaz a original.",
+    "cuidado": "Teste cada raiz na equação com arcos: arcos negativos não somam um valor positivo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "monotonia",
+    "ideia": "O lado esquerdo cresce com z e passa de 0,785 para 1,89 entre z = 0 e z = 1: uma única solução, positiva."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(2z + 1)/(1 − z(z + 1)) = 4/3",
+    "nota": "tangente da soma"
+   },
+   {
+    "linha": "3(2z + 1) = 4(1 − z² − z)",
+    "nota": "multiplicação cruzada"
+   },
+   {
+    "linha": "4z² + 10z − 1 = 0",
+    "nota": "tudo para o 1.º membro"
+   },
+   {
+    "linha": "z = (−5 ± √29)/4",
+    "nota": "Bhaskara, Δ = 116"
+   },
+   {
+    "linha": "z ≈ −2,596: soma de arcos < 0",
+    "nota": "raiz estranha, cai"
+   },
+   {
+    "linha": "z ≈ 0,096 > 0",
+    "nota": "única solução"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ },
+ "P96ed217b": {
+  "n": "6",
+  "conceito": "Distância de um vértice ao plano da face oposta pelo volume do tetraedro calculado de dois jeitos.",
+  "equivocos": {
+   "B": "M11.3:aresta-no-lugar-da-distancia",
+   "C": "M11.3:distancia-a-reta",
+   "D": "M11.3:aresta-no-lugar-da-distancia",
+   "E": "M11.3:aresta-no-lugar-da-distancia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "CD é perpendicular a DA e a DB, logo é perpendicular ao plano ABD: é a altura do tetraedro sobre a face ABD. Com isso o volume sai fácil. A distância de D ao plano ABC é a altura sobre a outra face, ABC: iguale os dois cálculos do mesmo volume.",
+    "formulas": [
+     "V = (1/3) · área da base · altura",
+     "área do triângulo = (1/2) · a · b · sen θ",
+     "d = 3V/área(ABC)"
+    ],
+    "simbolos": [
+     [
+      "d",
+      "distância de D ao plano ABC"
+     ],
+     [
+      "AD̂B",
+      "ângulo no vértice D entre DA e DB"
+     ],
+     [
+      "V",
+      "volume do tetraedro"
+     ]
+    ]
+   },
+   "pista": "Calcule o volume usando ABD como base e CD como altura.",
+   "passos": [
+    {
+     "faz": "Calcule a área da face ABD",
+     "conta": "(1/2) · 4 · 4 · sen 60° → 8 · √3/2 → 4√3",
+     "porque": "Dois lados de 4 cm com ângulo de π/3 = 60° entre eles. Como AD = BD e o ângulo é 60°, ABD é equilátero e AB = 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o volume com altura CD",
+     "conta": "V = (1/3) · 4√3 · 3 → V = 4√3",
+     "porque": "CD é perpendicular a DA e DB, então é perpendicular ao plano ABD e serve de altura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área da face ABC",
+     "conta": "CA = CB = √(3² + 4²) = 5 | AB = 4 → altura = √(5² − 2²) = √21 → área = (1/2) · 4 · √21 = 2√21",
+     "porque": "CDA e CDB são retângulos em D, então CA = CB = 5; o triângulo isósceles 5, 5, 4 tem altura √21 sobre a base AB.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale o volume com base ABC",
+     "conta": "(1/3) · 2√21 · d = 4√3 → d = 12√3/(2√21) → d = 6/√7 = 6√7/7",
+     "porque": "O mesmo volume com a face ABC como base tem altura d; o 2√21/3 passa dividindo, e √3/√21 = 1/√7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "d = (6/7)√7 cm → alternativa A",
+     "porque": "É a distância pedida, cerca de 2,27 cm.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — (6/7)√7 cm",
+   "checagem": "Com coordenadas D = (0, 0, 0), A = (4, 0, 0), B = (2, 2√3, 0), C = (0, 0, 3), o plano ABC fica a 6√7/7 ≈ 2,268 cm da origem. Também faz sentido: d é menor que CD = 3 e que a distância de D a AB, 2√3 ≈ 3,46.",
+   "erradas": {
+    "B": "3 é a medida de CD, a distância de D ao ponto C, não ao plano ABC. A distância a um plano é menor que a distância a qualquer ponto dele: 2,27 < 3.",
+    "C": "2√3 sai da altura do triângulo equilátero ABD: 4 · √3/2 = 2√3, que é a distância de D à reta AB, não ao plano ABC.",
+    "D": "4 é a medida de AD (ou BD), distância de D ao ponto A, não ao plano ABC.",
+    "E": "5 é a medida de CA (e CB), uma aresta da face ABC, e não toca D. A distância de D ao plano tem de ser menor que DC = 3."
+   },
+   "armadilha": "Confundir a distância ao plano com uma aresta que sai de D: a perpendicular ao plano é sempre menor que essas arestas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A distância do vértice D ao plano da face ABC.",
+    "chave": "V = (1/3) · 4√3 · 3 = 4√3; com área(ABC) = 2√21, d = 3V/área = 6√7/7.",
+    "cuidado": "CD é perpendicular ao plano ABD; a face ABC é isósceles 5, 5, 4."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "geometria analítica",
+    "ideia": "Com D na origem, A = (4, 0, 0), B = (2, 2√3, 0) e C = (0, 0, 3), a distância da origem ao plano ABC dá 6√7/7."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "área(ABD) = (1/2) · 4 · 4 · √3/2 = 4√3",
+    "nota": "ângulo de 60° em D"
+   },
+   {
+    "linha": "V = (1/3) · 4√3 · 3 = 4√3",
+    "nota": "CD é a altura"
+   },
+   {
+    "linha": "CA = CB = √(9 + 16) = 5",
+    "nota": "Pitágoras nos ângulos retos em D"
+   },
+   {
+    "linha": "área(ABC) = (1/2) · 4 · √21 = 2√21",
+    "nota": "altura do isósceles √(25 − 4)"
+   },
+   {
+    "linha": "d = 3 · 4√3/(2√21) = 6/√7 = 6√7/7",
+    "nota": "mesmo volume, base ABC"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0064"
+  }
+ },
+ "P433fc42f": {
+  "n": "10",
+  "conceito": "Resolver um sistema com parâmetro α e reconhecer o lugar geométrico: x fica constante e só y varia.",
+  "equivocos": {
+   "A": "M12.2:trocou-vertical-por-horizontal",
+   "C": "M12.2:nao-viu-x-constante",
+   "D": "M12.2:associou-seno-cosseno-a-elipse",
+   "E": "M12.2:nao-viu-x-constante"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A pergunta é que figura os pontos P desenham quando α varia. O caminho é resolver o sistema e olhar o que depende de α. Como cossec α = 1/sen α e cotg α = cos α/sen α, multiplicar as duas equações por sen α (que não é zero, porque α ≠ kπ) tira as frações. Se uma coordenada sair constante e a outra variar dentro de um intervalo, os pontos formam um segmento.",
+    "formulas": [
+     "cossec α = 1/(sen α)",
+     "cotg α = (cos α)/(sen α)",
+     "sen² α + cos² α = 1"
+    ],
+    "simbolos": [
+     [
+      "cossec α",
+      "cossecante: o inverso do seno"
+     ],
+     [
+      "cotg α",
+      "cotangente: cosseno dividido pelo seno"
+     ],
+     [
+      "kπ",
+      "múltiplos de π, onde o seno vale zero"
+     ],
+     [
+      "lugar geométrico",
+      "o conjunto de todos os pontos que cumprem a condição"
+     ]
+    ]
+   },
+   "pista": "Multiplique cada equação por sen α para trocar cossec e cotg por números e cossenos.",
+   "passos": [
+    {
+     "faz": "Multiplique as equações por sen α",
+     "conta": "4 · x/(sen α) − 6 · (cos α)/(sen α) · y = 4 sen α → 4x − 6 cos α · y = 4 sen² α ; 12 · y/(sen α) − 8 · (cos α)/(sen α) · x = 0 → 12y − 8 cos α · x = 0",
+     "porque": "Com sen α ≠ 0, multiplicar por sen α não muda as soluções e elimina os denominadores.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole y na segunda equação",
+     "conta": "12y = 8 cos α · x → y = (8 cos α · x)/12 → y = (2 cos α · x)/3",
+     "porque": "A segunda equação não tem termo independente, então y sai direto em função de x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua na primeira e ache x",
+     "conta": "4x − 6 cos α · (2 cos α · x)/3 = 4 sen² α → 4x − 4 cos² α · x = 4 sen² α → 4x(1 − cos² α) = 4 sen² α → 4x · sen² α = 4 sen² α → x = 1",
+     "porque": "1 − cos² α é sen² α. Os dois lados têm 4 sen² α, que não é zero, e ele se cancela: x vale 1 para todo α.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte em y e veja o que varia",
+     "conta": "x = 1 → y = (2 cos α)/3 ; −1 < cos α < 1 → −2/3 < y < 2/3",
+     "porque": "cos α não chega a ±1, porque nesses ângulos o seno seria zero. Então y percorre um intervalo limitado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Identifique a figura",
+     "conta": "x = 1 fixo, y entre −2/3 e 2/3 → segmento da reta vertical x = 1 → alternativa B",
+     "porque": "Todos os pontos têm a mesma abscissa e ordenadas num intervalo: é um pedaço da reta vertical x = 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — segmento de reta vertical (x = 1, com y entre −2/3 e 2/3)",
+   "checagem": "Teste α = π/2: sen = 1, cos = 0, cossec = 1, cotg = 0. O sistema vira 4x = 4 e 12y = 0, ou seja, P = (1, 0). Com α = π/3, y = (2 · 1/2)/3 = 1/3 e x continua 1. Os pontos mudam só na vertical.",
+   "erradas": {
+    "A": "Reta horizontal não confere: seria y constante, mas y = (2 cos α)/3 muda com α (0 em π/2, 1/3 em π/3); o que fica constante é x = 1.",
+    "C": "Reta inclinada não confere: x = 1 para todo α, então nenhum ponto sai da reta vertical x = 1.",
+    "D": "Elipse não confere: ela exigiria x e y variando juntos com seno e cosseno; aqui o fator sen² α se cancela e x fica preso em 1.",
+    "E": "Parábola não confere: não há relação do tipo y = ax² + bx + c entre as coordenadas, porque x não varia."
+   },
+   "armadilha": "Ver seno e cosseno no sistema e apostar em elipse: depois de multiplicar por sen α, o sen² α se cancela e x fica fixo em 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A figura formada pelos pontos P(x, y) quando α varia.",
+    "chave": "Multiplicando por sen α: y = (2 cos α)/3 e 4x sen² α = 4 sen² α, logo x = 1 e só y varia.",
+    "cuidado": "Use sen α ≠ 0 para poder dividir, e lembre que cos α não chega a ±1: por isso é segmento, não reta inteira."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "casos particulares",
+    "ideia": "Teste α = π/2 (P = (1, 0)) e α = π/3 (P = (1, 1/3)): x se repete e y muda, então só pode ser reta vertical."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4x − 6 cos α · y = 4 sen² α",
+    "nota": "1ª equação vezes sen α"
+   },
+   {
+    "linha": "12y − 8 cos α · x = 0 → y = (2 cos α · x)/3",
+    "nota": "2ª equação vezes sen α, isolando y"
+   },
+   {
+    "linha": "4x − 4 cos² α · x = 4 sen² α",
+    "nota": "substituir y na 1ª"
+   },
+   {
+    "linha": "4x · sen² α = 4 sen² α → x = 1",
+    "nota": "1 − cos² α = sen² α; cancelar"
+   },
+   {
+    "linha": "y = (2 cos α)/3, com −2/3 < y < 2/3",
+    "nota": "segmento vertical em x = 1"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
+ },
+ "Pea2e077e": {
+  "n": "9",
+  "conceito": "Probabilidade geométrica com contagem: num polígono regular de 2n lados, um quadrilátero inscrito é retângulo exatamente quando suas diagonais são dois diâmetros.",
+  "equivocos": {
+   "B": "M13.4:contou-com-um-elemento-fixo",
+   "C": "M13.4:contagem-sem-base",
+   "D": "M13.4:contagem-sem-base",
+   "E": "M13.4:contagem-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os vértices de um polígono regular estão numa circunferência. Um quadrilátero inscrito é retângulo se, e só se, as duas diagonais são diâmetros (diagonais iguais que se cortam ao meio, no centro). Com 2n vértices, os vértices formam n pares opostos, ou seja, n diâmetros. Então contar retângulos é escolher 2 desses n diâmetros.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "C(n, p) = n! ÷ (p! · (n − p)!)"
+    ],
+    "simbolos": [
+     [
+      "C(n, p)",
+      "número de grupos de p elementos escolhidos entre n, sem ordem"
+     ],
+     [
+      "diâmetro",
+      "corda que passa pelo centro; liga dois vértices opostos do polígono"
+     ],
+     [
+      "n ∈ N",
+      "n é número natural"
+     ]
+    ]
+   },
+   "pista": "Pense no que as diagonais de um retângulo inscrito numa circunferência têm de especial.",
+   "passos": [
+    {
+     "faz": "Conte os quadriláteros possíveis",
+     "conta": "4 vértices entre 2n → C(2n, 4)",
+     "porque": "Escolher 4 vértices ao acaso é escolher um grupo sem ordem; cada grupo forma um único quadrilátero convexo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reconheça o retângulo pelas diagonais",
+     "conta": "retângulo inscrito ⇔ as 2 diagonais são diâmetros",
+     "porque": "Num retângulo as diagonais são iguais e se cortam ao meio; inscrito, esse ponto é o centro, então cada diagonal é um diâmetro. Dois diâmetros quaisquer também formam um retângulo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os diâmetros e escolha 2",
+     "conta": "2n vértices → n pares opostos → C(n, 2) retângulos",
+     "porque": "Como 2n é par, cada vértice tem um oposto; são n diâmetros, e cada par deles dá um retângulo diferente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a probabilidade",
+     "conta": "P = C(n, 2)/C(2n, 4) → alternativa A",
+     "porque": "Favoráveis sobre possíveis, exatamente como aparece na alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — C(n, 2)/C(2n, 4)",
+   "checagem": "Teste no hexágono (n = 3): os retângulos são 3 (pares de diâmetros entre 3), e os quadriláteros são C(6, 4) = 15, P = 3/15 = 1/5. A fórmula dá C(3, 2)/C(6, 4) = 3/15 = 1/5. Fecha.",
+   "erradas": {
+    "B": "(n − 1)/C(2n, 4) sai de fixar um diâmetro e contar só as n − 1 escolhas do segundo; no hexágono daria 2/15, mas são 3 retângulos.",
+    "C": "C(n + 2, 4)/C(2n, 4) não confere: no hexágono daria C(5, 4)/15 = 5/15, e o hexágono tem só 3 retângulos.",
+    "D": "C(2n, 2)/(6 · C(2n, 4)) não confere: no hexágono o numerador C(6, 2)/6 = 15/6 = 2,5 não é número inteiro de retângulos.",
+    "E": "(n² + 2n + 4)/(12 · C(2n, 4)) não confere: no hexágono o numerador (9 + 6 + 4)/12 = 19/12 não é número inteiro de retângulos."
+   },
+   "armadilha": "Com n = 2 (quadrado) todas as alternativas dão 1; só um caso maior, como o hexágono, separa a fórmula certa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de 4 vértices sorteados de um 2n-ágono regular formarem um retângulo.",
+    "chave": "Retângulo inscrito = 2 diâmetros; há n diâmetros, então C(n, 2) sobre C(2n, 4).",
+    "cuidado": "Teste as alternativas com n = 3, não com n = 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "no hexágono (n = 3) conte à mão 3 retângulos em 15 quadriláteros e veja que só a A dá 3/15"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "possíveis: C(2n, 4)",
+    "nota": "4 vértices quaisquer"
+   },
+   {
+    "linha": "diâmetros: 2n/2 = n",
+    "nota": "pares de vértices opostos"
+   },
+   {
+    "linha": "favoráveis: C(n, 2)",
+    "nota": "2 diâmetros formam 1 retângulo"
+   },
+   {
+    "linha": "P = C(n, 2)/C(2n, 4)",
+    "nota": "favoráveis sobre possíveis"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
+ },
+ "Pa1a1b644": {
+  "n": "1",
+  "conceito": "Equação matricial com transposta e inversa: isolar X e inverter uma matriz 2 × 2.",
+  "equivocos": {
+   "A": "M15.1:usou-o-determinante-errado",
+   "C": "M15.1:esqueceu-a-transposta",
+   "D": "M15.1:errou-a-adjunta",
+   "E": "M15.1:errou-a-adjunta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Isole X antes de fazer qualquer conta: multiplique os dois lados por A à direita para sumir com a inversa. Depois use que a transposta do produto inverte a ordem dos fatores. Por fim, inverta a matriz 2 × 2 pela regra da adjunta.",
+    "formulas": [
+     "X^T A^(−1) = B → X^T = B A",
+     "(B A)^T = A^T B^T",
+     "inversa 2 × 2 = (1/det) × (d  −b ; −c  a)"
+    ],
+    "simbolos": [
+     [
+      "X^T",
+      "transposta de X: linhas viram colunas"
+     ],
+     [
+      "A^(−1)",
+      "inversa de A"
+     ],
+     [
+      "det",
+      "determinante"
+     ],
+     [
+      "adjunta",
+      "matriz com a diagonal principal trocada de lugar e a secundária com sinal trocado"
+     ]
+    ]
+   },
+   "pista": "Multiplique os dois lados de X^T A^(−1) = B por A, do lado direito.",
+   "passos": [
+    {
+     "faz": "Isole X^T",
+     "conta": "X^T A^(−1) A = B A → X^T = B A",
+     "porque": "A^(−1) A é a identidade. A multiplicação foi pelo lado direito nos dois membros, porque matriz não comuta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule B A",
+     "conta": "(3 6 ; 2 1) × (2 3 ; 1 5) → (6 + 6  9 + 30 ; 4 + 1  6 + 5) → (12 39 ; 5 11)",
+     "porque": "Cada termo é linha de B vezes coluna de A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Transponha para achar X",
+     "conta": "X = (12 39 ; 5 11)^T → (12 5 ; 39 11)",
+     "porque": "Linhas viram colunas: a 1ª linha (12, 39) vira a 1ª coluna.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Inverta X",
+     "conta": "det X = 12 × 11 − 5 × 39 → 132 − 195 → −63 ; X^(−1) = −1/63 × (11 −5 ; −39 12)",
+     "porque": "Na adjunta, 12 e 11 trocam de lugar, e 5 e 39 trocam de sinal; tudo dividido por −63.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "−1/63 × (11 −5 ; −39 12) → alternativa B",
+     "porque": "É exatamente a matriz da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — X^(−1) = −1/63 × (11  −5 ; −39  12)",
+   "checagem": "Multiplique X pela resposta: (12 5 ; 39 11) × (11 −5 ; −39 12) = (132 − 195  −60 + 60 ; 429 − 429  −195 + 132) = (−63 0 ; 0 −63); vezes −1/63 dá a identidade.",
+   "erradas": {
+    "A": "Não confere: usa 1/7, que é 1/det A, mas det X = −63; e X × A = (−51/7 −5/7 ; 39/7 −74/7), que não é a identidade.",
+    "C": "Sai de esquecer a transposta e usar B A = (12 39 ; 5 11), só trocando o sinal da secundária sem trocar 12 e 11 de lugar: −1/63 × (12 −39 ; −5 11).",
+    "D": "Sai de trocar o sinal da diagonal principal de X em vez de trocá-la de lugar e mudar o sinal da secundária: −1/63 × (−12 5 ; 39 −11).",
+    "E": "Não confere: X × E dá, na 1ª linha e 1ª coluna, −107/63 em vez de 1."
+   },
+   "armadilha": "Multiplicar por A do lado errado ou esquecer que X^T = B A ainda precisa ser transposta para virar X.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A inversa de X, sabendo que X^T A^(−1) = B.",
+    "chave": "X^T = B A = (12 39 ; 5 11), X = (12 5 ; 39 11), det = −63, X^(−1) = −1/63 × (11 −5 ; −39 12).",
+    "cuidado": "Multiplicação de matrizes não comuta: mantenha o lado; e transponha antes de inverter."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "inversa da transposta",
+    "ideia": "X^(−1) = ((B A)^(−1))^T: inverta B A = (12 39 ; 5 11), dá −1/63 × (11 −39 ; −5 12), e transponha."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "X^T A^(−1) = B",
+    "nota": "dado"
+   },
+   {
+    "linha": "X^T = B A",
+    "nota": "multiplica por A à direita"
+   },
+   {
+    "linha": "B A = (12 39 ; 5 11)",
+    "nota": "linha de B vezes coluna de A"
+   },
+   {
+    "linha": "X = (12 5 ; 39 11)",
+    "nota": "transpõe"
+   },
+   {
+    "linha": "det X = 132 − 195 = −63",
+    "nota": "diagonal principal menos secundária"
+   },
+   {
+    "linha": "X^(−1) = −1/63 × (11 −5 ; −39 12)",
+    "nota": "adjunta dividida pelo determinante"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
+ },
+ "P5acc6467": {
+  "n": "7",
+  "conceito": "Equação com determinante 3 × 3: desenvolver por Sarrus, achar as raízes inteiras e somar os inversos.",
+  "equivocos": {
+   "A": "M15.2:somou-raizes-em-vez-de-inversos",
+   "B": "M15.2:sinal-errado-em-girard",
+   "C": "M15.2:produto-de-duas-raizes",
+   "D": "M15.2:erro-na-soma-de-fracoes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Desenvolva o determinante: sai um polinômio de 3º grau em x. Teste raízes inteiras pequenas (divisores do termo independente), fatore e some 1/x de cada raiz. Também se pode somar os inversos direto pelas relações de Girard.",
+    "formulas": [
+     "det = (soma dos produtos da principal) − (soma dos produtos da secundária)",
+     "1/r1 + 1/r2 + 1/r3 = (r1r2 + r1r3 + r2r3)/(r1r2r3)"
+    ],
+    "simbolos": [
+     [
+      "Sarrus",
+      "regra prática para o determinante 3 × 3"
+     ],
+     [
+      "Girard",
+      "relações entre coeficientes e raízes de um polinômio"
+     ]
+    ]
+   },
+   "pista": "Desenvolva o determinante e procure uma raiz entre os divisores de 30.",
+   "passos": [
+    {
+     "faz": "Desenvolva por Sarrus",
+     "conta": "principal: x³ + 12 + 18 | secundária: 6x + 9x + 4x → x³ + 30 − 19x = 0 → x³ − 19x + 30 = 0",
+     "porque": "Principal: x·x·x, 2·3·2, 3·2·3; secundária: 3·x·2, x·3·3, 2·2·x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache uma raiz e fatore",
+     "conta": "x = 2: 8 − 38 + 30 = 0 → x³ − 19x + 30 = (x − 2)(x² + 2x − 15)",
+     "porque": "Um divisor de 30 que zera o polinômio dá um fator; a divisão por (x − 2) deixa um 2º grau.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva o 2º grau",
+     "conta": "x² + 2x − 15 = 0 → (x − 3)(x + 5) = 0 → x = 3 ou x = −5",
+     "porque": "Soma −2 e produto −15: as raízes são 3 e −5. As três raízes, 2, 3 e −5, são inteiras.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os inversos",
+     "conta": "1/2 + 1/3 − 1/5 = (15 + 10 − 6)/30 = 19/30 → alternativa E",
+     "porque": "Com mínimo múltiplo comum 30, os numeradores ficam 15, 10 e −6.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 19/30",
+   "checagem": "Por Girard em x³ + 0x² − 19x + 30: soma dos produtos dois a dois = −19 e produto = −30; (−19)/(−30) = 19/30. Bate com a conta direta.",
+   "erradas": {
+    "A": "0 sai de somar as raízes em vez dos inversos: 2 + 3 + (−5) = 0.",
+    "B": "−19/30 sai de errar o sinal do produto das raízes em Girard: −19 dividido por +30.",
+    "C": "−15 é o produto das raízes do fator x² + 2x − 15, isto é, 3·(−5); não é soma de inversos.",
+    "D": "15 não confere: a soma dos inversos de 2, 3 e −5 é 19/30, menor que 1."
+   },
+   "armadilha": "Responder a soma das raízes (0) em vez da soma dos inversos pedida no comando.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos inversos das soluções inteiras.",
+    "chave": "x³ − 19x + 30 = (x − 2)(x − 3)(x + 5).",
+    "cuidado": "O pedido é 1/x, não x; cuidado com o sinal do 1/(−5)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Girard",
+    "ideia": "Sem achar as raízes: (r1r2 + r1r3 + r2r3)/(r1r2r3) = (−19)/(−30) = 19/30 (as três raízes já são inteiras)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x³ + 12 + 18 − (6x + 9x + 4x) = 0",
+    "nota": "Sarrus"
+   },
+   {
+    "linha": "x³ − 19x + 30 = 0",
+    "nota": "juntar termos"
+   },
+   {
+    "linha": "(x − 2)(x² + 2x − 15) = 0",
+    "nota": "raiz x = 2"
+   },
+   {
+    "linha": "(x − 2)(x − 3)(x + 5) = 0",
+    "nota": "fatorar"
+   },
+   {
+    "linha": "1/2 + 1/3 − 1/5 = 19/30",
+    "nota": "somar inversos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
+ },
+ "Pff8f9b9b": {
+  "n": "2",
+  "conceito": "Desigualdades funcionais que se encaixam e forçam f(x + 1) = f(x) + 1, o que dá f nos inteiros a partir de f(1).",
+  "equivocos": {
+   "A": "M05.1:erro-de-um-na-contagem-de-passos",
+   "C": "M05.1:usou-f-de-x-em-vez-de-f-de-x-menos-1",
+   "D": "M05.1:parou-em-f-sem-calcular-g",
+   "E": "M05.1:parou-em-f-sem-calcular-g"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A segunda desigualdade, aplicada sete vezes seguidas, dá um teto para f(x + 7); a primeira dá um piso igual. Teto e piso iguais forçam a igualdade f(x + 7) = f(x) + 7. Com ela, a segunda desigualdade não pode ser estrita, e fica f(x + 1) = f(x) + 1. A partir de f(1) = 1, cada passo de 1 em x soma 1 em f.",
+    "formulas": [
+     "a ≤ b e a ≥ b ⇒ a = b",
+     "f(x + 1) = f(x) + 1 ⇒ f(1 + n) = f(1) + n, para n natural"
+    ],
+    "simbolos": [
+     [
+      "f(x + 7)",
+      "valor de f num ponto 7 unidades à frente de x"
+     ],
+     [
+      "g(x)",
+      "a função f(x − 1) − x + 2"
+     ]
+    ]
+   },
+   "pista": "Encadeie f(x + 1) ≤ f(x) + 1 sete vezes e compare com a primeira desigualdade.",
+   "passos": [
+    {
+     "faz": "Encadeie a 2ª desigualdade sete vezes",
+     "conta": "f(x + 7) ≤ f(x + 6) + 1 ≤ f(x + 5) + 2 ≤ … ≤ f(x) + 7",
+     "porque": "Cada passo de 1 em x soma no máximo 1 em f; em sete passos, no máximo 7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com a 1ª desigualdade",
+     "conta": "f(x + 7) ≥ f(x) + 7 e f(x + 7) ≤ f(x) + 7 → f(x + 7) = f(x) + 7",
+     "porque": "Piso e teto iguais forçam a igualdade, para todo x real.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Mostre que cada passo soma exatamente 1",
+     "conta": "f(x) + 7 = f(x + 7) ≤ f(x + 1) + 6 → f(x) + 1 ≤ f(x + 1) → f(x + 1) = f(x) + 1",
+     "porque": "Da 2ª desigualdade, de x + 1 até x + 7 são seis passos, então f(x + 7) ≤ f(x + 1) + 6. O 6 passa subtraindo, e com f(x + 1) ≤ f(x) + 1 vale a igualdade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule f(2022) a partir de f(1)",
+     "conta": "f(2022) = f(1) + (2022 − 1) → f(2022) = 1 + 2021 = 2022",
+     "porque": "De 1 até 2022 são 2021 passos de 1, e cada um soma 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua em g(2023)",
+     "conta": "g(2023) = f(2023 − 1) − 2023 + 2 → g(2023) = 2022 − 2023 + 2 = 1 → alternativa B",
+     "porque": "g usa f em x − 1, isto é, f(2022), e não f(2023).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1",
+   "checagem": "Por outro caminho: f(x + 1) = f(x) + 1 faz g(x + 1) = f(x) − (x + 1) + 2 = f(x − 1) + 1 − x − 1 + 2 = g(x), logo g é constante nos inteiros. Então g(2023) = g(2) = f(1) − 2 + 2 = 1.",
+   "erradas": {
+    "A": "0 sai de contar um passo a menos: f(2022) = 1 + 2020 = 2021, e g = 2021 − 2023 + 2 = 0. De 1 a 2022 são 2021 passos.",
+    "C": "2 sai de usar f(2023) no lugar de f(2022): f(2023) = 2023, e 2023 − 2023 + 2 = 2. A definição de g pede f(x − 1).",
+    "D": "2022 sai de parar em f(2022) = 2022, sem terminar a conta de g, que ainda subtrai 2023 e soma 2.",
+    "E": "2023 sai de responder f(2023) = 2023, o valor de f e não o de g, que é f(2022) − 2023 + 2."
+   },
+   "armadilha": "As desigualdades parecem dar só limites, mas juntas forçam f(x + 1) = f(x) + 1; depois, g pede f(x − 1), não f(x).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de g(2023) = f(2022) − 2023 + 2, sabendo f(1) = 1 e as duas desigualdades.",
+    "chave": "Encadeando, f(x + 7) = f(x) + 7 e daí f(x + 1) = f(x) + 1; f(2022) = 2022 e g(2023) = 1.",
+    "cuidado": "Use f(2022), não f(2023), e conte 2021 passos de 1 até 2022."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "f(x) = x cumpre f(1) = 1 e as duas desigualdades (com igualdade); então g(x) = x − 1 − x + 2 = 1 para todo x."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(x + 7) ≤ f(x) + 7",
+    "nota": "2ª desigualdade sete vezes"
+   },
+   {
+    "linha": "f(x + 7) = f(x) + 7",
+    "nota": "com a 1ª: piso igual ao teto"
+   },
+   {
+    "linha": "f(x) + 1 ≤ f(x + 1) → f(x + 1) = f(x) + 1",
+    "nota": "o 6 passa subtraindo"
+   },
+   {
+    "linha": "f(2022) = 1 + 2021 = 2022",
+    "nota": "2021 passos a partir de f(1)"
+   },
+   {
+    "linha": "g(2023) = 2022 − 2023 + 2 = 1",
+    "nota": "substitui em g"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
+ },
+ "P146f445c": {
+  "n": "14",
+  "conceito": "Equação do 2º grau em x e y que representa um par de retas: o discriminante em x precisa ser um quadrado perfeito em y.",
+  "equivocos": {
+   "A": "M12.2:nao-exigiu-quadrado-perfeito",
+   "C": "M12.2:nao-exigiu-quadrado-perfeito",
+   "D": "M12.2:nao-exigiu-quadrado-perfeito",
+   "E": "M12.2:nao-exigiu-quadrado-perfeito"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se a equação é o produto de duas retas, ela se fatora em dois fatores de 1º grau. Olhe-a como equação do 2º grau em x: para dar x como expressão de 1º grau em y, a raiz do discriminante tem de ser exata, ou seja, o discriminante (que é um polinômio em y) deve ser um quadrado perfeito. Um trinômio é quadrado perfeito quando o discriminante dele é zero.",
+    "formulas": [
+     "em x: 2x² + (cy − 3)x + (6y² − 4y − 2) = 0",
+     "Δ_x = (cy − 3)² − 4 · 2 · (6y² − 4y − 2)",
+     "Δ_x quadrado perfeito em y ⇔ discriminante de Δ_x = 0"
+    ],
+    "simbolos": [
+     [
+      "Δ_x",
+      "discriminante da equação vista como equação do 2º grau em x"
+     ],
+     [
+      "retas concorrentes",
+      "duas retas que se cruzam num único ponto"
+     ]
+    ]
+   },
+   "pista": "Trate y como número e resolva a equação em x. O que precisa acontecer com o discriminante para x sair de 1º grau em y?",
+   "passos": [
+    {
+     "faz": "Calcule o discriminante em x",
+     "conta": "Δ_x = (cy − 3)² − 8(6y² − 4y − 2) → Δ_x = (c² − 48)y² + (32 − 6c)y + 25",
+     "porque": "Agrupando os termos com x: a = 2, b = cy − 3 e o termo independente de x é 6y² − 4y − 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Exija quadrado perfeito",
+     "conta": "(32 − 6c)² − 4 · 25 · (c² − 48) = 0 → −64c² − 384c + 5824 = 0 → c² + 6c − 91 = 0",
+     "porque": "Só assim √Δ_x é um polinômio de 1º grau em y e x = (−b ± √Δ_x)/4 dá duas retas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a equação em c",
+     "conta": "c² + 6c − 91 = 0 → (c − 7)(c + 13) = 0 → c = 7 ou c = −13",
+     "porque": "Produto −91 e soma −6: os números são 7 e −13.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira e escolha o positivo",
+     "conta": "c = 7: Δ_x = y² − 10y + 25 = (y − 5)² → (x + 2y − 2)(2x + 3y + 1) = 0 → alternativa B",
+     "porque": "As retas têm coeficientes angulares −1/2 e −2/3, diferentes: são concorrentes. A questão pede o valor positivo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — c = 7.",
+   "checagem": "Multiplique (x + 2y − 2)(2x + 3y + 1): 2x² + 3xy + x + 4xy + 6y² + 2y − 4x − 6y − 2 = 2x² + 7xy − 3x + 6y² − 4y − 2. É a equação com c = 7.",
+   "erradas": {
+    "A": "6 não confere: com c = 6, Δ_x = −12y² − 4y + 25, cujo discriminante é 1216 ≠ 0; não é quadrado perfeito e a equação não se fatora em retas.",
+    "C": "8 não confere: com c = 8, Δ_x = 16y² − 16y + 25, cujo discriminante é −1344 ≠ 0; não é quadrado perfeito.",
+    "D": "9 não confere: com c = 9, Δ_x = 33y² − 22y + 25, cujo discriminante é −2816 ≠ 0; não é quadrado perfeito.",
+    "E": "10 não confere: com c = 10, Δ_x = 52y² − 28y + 25, cujo discriminante é −4416 ≠ 0; não é quadrado perfeito."
+   },
+   "armadilha": "Exigir só c² − 48 > 0 (cônica do tipo hipérbole) não basta: 8, 9 e 10 cumprem isso, mas a equação só vira duas retas se o discriminante em x for quadrado perfeito.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor positivo de c para que a equação represente duas retas concorrentes.",
+    "chave": "Δ_x = (c² − 48)y² + (32 − 6c)y + 25 deve ser quadrado perfeito: c² + 6c − 91 = 0, c = 7.",
+    "cuidado": "Confira fatorando: c = 7 dá (x + 2y − 2)(2x + 3y + 1) = 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "determinante",
+    "ideia": "Cônica degenerada: o determinante da matriz [[2, c/2, −3/2], [c/2, 6, −2], [−3/2, −2, −2]] é zero, o que dá 2c² + 12c − 182 = 0, ou seja, c = 7 ou c = −13."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Δ_x = (cy − 3)² − 8(6y² − 4y − 2)",
+    "nota": "discriminante em x"
+   },
+   {
+    "linha": "Δ_x = (c² − 48)y² + (32 − 6c)y + 25",
+    "nota": "agrupa por potências de y"
+   },
+   {
+    "linha": "(32 − 6c)² − 100(c² − 48) = 0",
+    "nota": "quadrado perfeito em y"
+   },
+   {
+    "linha": "c² + 6c − 91 = 0 → c = 7 ou c = −13",
+    "nota": "divide por −64 e fatora"
+   },
+   {
+    "linha": "c = 7: (x + 2y − 2)(2x + 3y + 1) = 0",
+    "nota": "as duas retas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "P0925a34c": {
+  "n": "5",
+  "conceito": "Probabilidade com combinações: os 5 termos que sobram de uma PG formam PG quando as suas posições formam uma PA.",
+  "equivocos": {
+   "A": "M13.4:contagem-de-casos-errada",
+   "B": "M13.4:esqueceu-caso-consecutivo",
+   "C": "M13.4:esqueceu-caso-salto-2",
+   "E": "M13.4:contagem-de-casos-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escreva os termos como a, aq, aq², ..., aq⁹. Cinco deles, a·qⁱ, ficam em PG exatamente quando os expoentes i, em ordem, crescem de um mesmo salto, ou seja, formam uma PA. Remover 5 ao acaso é o mesmo que escolher os 5 que ficam: C(10, 5) casos igualmente prováveis.",
+    "formulas": [
+     "a·qⁱ⁺ᵈ ÷ a·qⁱ = qᵈ: salto constante d nas posições → razão constante qᵈ",
+     "casos possíveis: C(10, 5)"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes uma razão fixa"
+     ],
+     [
+      "q",
+      "razão da PG, aqui maior que 1"
+     ],
+     [
+      "C(10, 5)",
+      "modos de escolher 5 entre 10"
+     ]
+    ]
+   },
+   "pista": "Troque os números pelos expoentes 0 a 9 e pergunte que conjuntos de 5 expoentes dão razão constante.",
+   "passos": [
+    {
+     "faz": "Conte os casos possíveis",
+     "conta": "C(10, 5) = (10 · 9 · 8 · 7 · 6)/(5 · 4 · 3 · 2 · 1) = 252",
+     "porque": "Escolher os 5 removidos ou os 5 que ficam dá a mesma contagem, e todos os conjuntos são igualmente prováveis.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Traduza PG em posições",
+     "conta": "a·qⁱ¹, ..., a·qⁱ⁵ em PG ⇔ i₂ − i₁ = i₃ − i₂ = ... = d",
+     "porque": "A razão entre dois termos seguidos é q elevado à diferença de posições; com q > 1, ela só fica constante se o salto for o mesmo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte as PAs de 5 posições em 0 a 9",
+     "conta": "salto 1: 0-4, 1-5, ..., 5-9 → 6 | salto 2: 0-8, 1-9 → 2 | salto 3: precisa de 12 > 9 → 0 ; total 8",
+     "porque": "Com salto d, o último índice é o primeiro mais 4d, que não pode passar de 9.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "8/252 = 2/63",
+     "porque": "Favoráveis sobre possíveis; dividindo por 4, fica 2/63.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "2/63 → alternativa D",
+     "porque": "É a probabilidade de os 5 restantes formarem PG.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 2/63",
+   "checagem": "Fórmula das PAs: com salto d, há 10 − 4d escolhas do primeiro termo; d = 1 dá 6 e d = 2 dá 2, total 8; e 8/252 = 2/63. Fecha.",
+   "erradas": {
+    "A": "1/252 não confere: só os blocos de 5 termos seguidos já são 6 casos favoráveis (0-4 até 5-9).",
+    "B": "1/126 = 2/252 sai de contar só os 2 casos de salto 2 e esquecer os 6 blocos seguidos.",
+    "C": "3/126 = 6/252 sai de contar só os 6 blocos de termos seguidos e esquecer os 2 de salto 2.",
+    "E": "3/63 = 12/252 não confere: com 10 termos só existem saltos 1 (6 casos) e 2 (2 casos), total 8, não 12."
+   },
+   "armadilha": "Contar só os 5 termos consecutivos: termos alternados (salto 2) também formam PG, de razão q².",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de os 5 números restantes de uma PG de 10 termos formarem PG.",
+    "chave": "Restantes em PG ⇔ posições em PA: 6 (salto 1) + 2 (salto 2) = 8 casos sobre C(10, 5) = 252.",
+    "cuidado": "Não esqueça o salto 2; salto 3 já não cabe."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula das PAs",
+    "ideia": "Com salto d há 10 − 4d inícios possíveis: 6 + 2 = 8 favoráveis; 8/252 = 2/63."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(10, 5) = 252",
+    "nota": "conjuntos que ficam"
+   },
+   {
+    "linha": "salto 1: 6 | salto 2: 2",
+    "nota": "posições em PA"
+   },
+   {
+    "linha": "6 + 2 = 8",
+    "nota": "favoráveis"
+   },
+   {
+    "linha": "8/252 = 2/63",
+    "nota": "simplifica por 4"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "Pabe3156a": {
+  "n": "3",
+  "conceito": "Ver A como losango |x| + |y| ≤ r e B como quadrado de centro (a, b) e meio-lado c, e exigir que o vértice mais afastado do quadrado fique dentro do losango.",
+  "equivocos": {
+   "A": "M16.2:usou-o-centro-no-lugar-do-vertice",
+   "B": "M16.2:confundiu-norma-da-soma-com-distancia",
+   "C": "M16.2:condicao-insuficiente",
+   "E": "M16.2:nao-tomou-o-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Desenhe os dois conjuntos no plano. |x| + |y| ≤ r é um losango (quadrado girado) com centro na origem. max{|x − a|, |y − b|} ≤ c é um quadrado de lados paralelos aos eixos, centro (a, b) e lado 2c. O quadrado cabe no losango quando os quatro vértices cabem, porque o losango é convexo. Com a e b positivos, o vértice que mais sobe em |x| + |y| é o de cima à direita.",
+    "formulas": [
+     "max{|x − a|, |y − b|} ≤ c ⇔ a − c ≤ x ≤ a + c e b − c ≤ y ≤ b + c",
+     "ponto (x, y) está em A ⇔ |x| + |y| ≤ r"
+    ],
+    "simbolos": [
+     [
+      "max{x1, x2}",
+      "o maior dos dois números"
+     ],
+     [
+      "B ⊂ A",
+      "todo ponto de B também está em A"
+     ],
+     [
+      "convexo",
+      "o segmento entre dois pontos da figura fica dentro dela"
+     ],
+     [
+      "(a, b)",
+      "centro do quadrado B"
+     ]
+    ]
+   },
+   "pista": "Faça o desenho: que figura é cada conjunto? Depois pense em qual ponto de B fica mais longe da origem no sentido de |x| + |y|.",
+   "passos": [
+    {
+     "faz": "Identifique as duas figuras",
+     "conta": "A: |x| + |y| ≤ r (losango) | B: a − c ≤ x ≤ a + c e b − c ≤ y ≤ b + c (quadrado)",
+     "porque": "O máximo das duas distâncias não passar de c obriga x e y a ficarem, cada um, a no máximo c do centro: isso é um quadrado de lado 2c.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o vértice crítico de B",
+     "conta": "vértices (a ± c, b ± c) → maior |x| + |y| em (a + c, b + c)",
+     "porque": "Com a, b e c positivos, |a + c| ≥ |a − c| e |b + c| ≥ |b − c|; o vértice de cima à direita tem a maior soma. Como o losango é convexo, se os vértices cabem, o quadrado inteiro cabe.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Exija que esse vértice esteja em A",
+     "conta": "(a + c) + (b + c) ≤ r → a + b + 2c ≤ r",
+     "porque": "Esse é o pior ponto; se ele obedece |x| + |y| ≤ r, todos os outros pontos de B também obedecem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tome o menor r e marque",
+     "conta": "r mínimo = a + b + 2c → alternativa D",
+     "porque": "Qualquer r menor deixa o vértice (a + c, b + c) fora do losango; com r = a + b + 2c ele fica na borda e B ⊂ A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a + b + 2c.",
+   "checagem": "Caso numérico: a = 1, b = 2, c = 0,5. O quadrado vai de x = 0,5 a 1,5 e de y = 1,5 a 2,5; o maior |x| + |y| é 1,5 + 2,5 = 4, e a + b + 2c = 1 + 2 + 1 = 4. Bate.",
+   "erradas": {
+    "A": "A sai de somar c uma vez só: o vértice anda c em x e c em y. Com a = 1, b = 2, c = 0,5, A dá 3,5 e o vértice soma 4.",
+    "B": "B não confere: com a = b = 1 e c = 10, (a + b)√2 + c ≈ 12,83, mas o vértice (11, 11) soma 22, e B não caberia em A.",
+    "C": "C não confere: com a = b = 1 e c = 10, 2(a + b) + c = 14, menor que os 22 do vértice (11, 11); B ficaria fora de A.",
+    "E": "E não é o menor: 2(a + b + c) passa de a + b + 2c em a + b, que é positivo. Funciona, mas sobra folga."
+   },
+   "armadilha": "O pedido é o MENOR r: valores maiores que a + b + 2c também fazem B caber, mas não são mínimos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor r para que o quadrado B caiba no losango A.",
+    "chave": "Basta o vértice mais afastado, (a + c, b + c), estar em A: a + b + 2c ≤ r.",
+    "cuidado": "O vértice soma c em x e c em y; usar o centro mais c só uma vez deixa o canto de fora."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas desigualdades",
+    "ideia": "Em B, |x| ≤ a + c e |y| ≤ b + c, logo |x| + |y| ≤ a + b + 2c, com igualdade no vértice (a + c, b + c): r mínimo = a + b + 2c."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "B: a − c ≤ x ≤ a + c  e  b − c ≤ y ≤ b + c",
+    "nota": "o max vira um quadrado"
+   },
+   {
+    "linha": "vértice crítico: (a + c, b + c)",
+    "nota": "maior |x| + |y|"
+   },
+   {
+    "linha": "(a + c) + (b + c) ≤ r",
+    "nota": "o vértice tem de estar no losango"
+   },
+   {
+    "linha": "r ≥ a + b + 2c → r mínimo = a + b + 2c",
+    "nota": "juntar os termos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ }
+}

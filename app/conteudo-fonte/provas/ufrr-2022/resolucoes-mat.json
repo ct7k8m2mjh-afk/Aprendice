@@ -1,0 +1,849 @@
+{
+ "Pcd475c7a": {
+  "n": "14",
+  "conceito": "Algarismo das unidades de uma soma de fatoriais.",
+  "equivocos": {
+   "A": "M01.4:sem-origem-identificada",
+   "B": "M01.4:sem-origem-identificada",
+   "D": "M01.4:esqueceu-uma-parcela",
+   "E": "M01.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A partir de 5!, todo fatorial tem os fatores 2 e 5, logo termina em 0. Só 1!, 2!, 3! e 4! mexem no algarismo das unidades.",
+    "formulas": [
+     "n! termina em 0 para n ≥ 5"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "1 · 2 · ... · n"
+     ]
+    ]
+   },
+   "pista": "O que 5!, 6!, 7! ... têm em comum no último algarismo?",
+   "passos": [
+    {
+     "faz": "Fatoriais pequenos",
+     "conta": "1! + 2! + 3! + 4! = 1 + 2 + 6 + 24 = 33",
+     "porque": "Os únicos que não terminam em 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Demais",
+     "conta": "5! = 120, 6! = 720, ... terminam em 0",
+     "porque": "Têm o fator 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Unidade",
+     "conta": "33 + (múltiplo de 10) → termina em 3 → alternativa C",
+     "porque": "Algarismo das unidades.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3",
+   "checagem": "Some as unidades até 7!: 1 + 2 + 6 + 24 + 120 + 720 + 5040 = 5913, termina em 3; cada fatorial seguinte só acrescenta zeros nas unidades. Confere.",
+   "erradas": {
+    "A": "2 não é a unidade de 33 + múltiplos de 10.",
+    "B": "6 é a unidade de 3!, não da soma.",
+    "D": "7 sairia somando só 1! + 2! + 4! (27), esquecendo o 3!.",
+    "E": "5 não sai: a soma dos quatro primeiros é 33."
+   },
+   "armadilha": "Achar que é preciso calcular fatoriais grandes; do 5! em diante, todos terminam em 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Algarismo das unidades.",
+    "chave": "Só 1! + 2! + 3! + 4! = 33 conta.",
+    "cuidado": "n ≥ 5: n! termina em 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "resto por 10",
+    "ideia": "Trabalhe com o resto na divisão por 10: 1! ≡ 1, 2! ≡ 2, 3! ≡ 6, 4! ≡ 4 e n! ≡ 0 para n ≥ 5. Soma ≡ 1 + 2 + 6 + 4 = 13 ≡ 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 + 2 + 6 + 24 = 33",
+    "nota": "parte que conta"
+   },
+   {
+    "linha": "n ≥ 5: termina em 0",
+    "nota": "resto"
+   },
+   {
+    "linha": "3",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ },
+ "P0ddf730e": {
+  "n": "12",
+  "conceito": "Soma de áreas de retângulos sob uma parábola: montar a equação em m.",
+  "equivocos": {
+   "A": "M05.2:valor-sem-calculo",
+   "B": "M04.1:inverteu-a-divisao",
+   "C": "M05.2:valor-sem-calculo",
+   "D": "M05.2:valor-sem-calculo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os três retângulos têm base 2 (de 1 a 3, de 3 a 5, de 5 a 7). Pela figura, a altura de cada um é o valor de f na ponta esquerda da base: f(1), f(3) e f(5). A soma das áreas vira uma equação do 1º grau em m.",
+    "formulas": [
+     "área = base × altura",
+     "f(x) = mx² + 1/3"
+    ],
+    "simbolos": [
+     [
+      "m",
+      "coeficiente de x², o valor procurado"
+     ],
+     [
+      "f(1), f(3), f(5)",
+      "alturas dos três retângulos"
+     ]
+    ]
+   },
+   "pista": "Leia na figura de que ponto a curva toca cada retângulo: isso define a altura.",
+   "passos": [
+    {
+     "faz": "Leia bases e alturas",
+     "conta": "bases: 2, 2, 2 | alturas: f(1), f(3), f(5)",
+     "porque": "Cada retângulo encosta na curva pelo canto superior esquerdo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule as alturas",
+     "conta": "f(1) = m + 1/3 | f(3) = 9m + 1/3 | f(5) = 25m + 1/3",
+     "porque": "Basta trocar x por 1, 3 e 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a soma das áreas",
+     "conta": "2 · (m + 9m + 25m + 3 · 1/3) = 12 → 2 · (35m + 1) = 12",
+     "porque": "As três parcelas 1/3 somam 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva",
+     "conta": "35m + 1 = 6 → 35m = 5 → m = 5/35 = 1/7",
+     "porque": "O 2 passou dividindo e o 1 passou subtraindo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 1/7",
+   "checagem": "Substitua m = 1/7: alturas 1/7 + 1/3 = 10/21, 9/7 + 1/3 = 34/21 e 25/7 + 1/3 = 82/21. Soma: 126/21 = 6; vezes a base 2, área 12.",
+   "erradas": {
+    "A": "Não confere: com m = 1/8, a área seria 2 · (35/8 + 1) = 10,75, não 12.",
+    "B": "Sai de inverter a fração no último passo: 35m = 5 virou m = 35/5 = 7.",
+    "C": "Não confere: com m = 8, a área seria 2 · (280 + 1) = 562.",
+    "D": "Não confere: com m = 7/8, a área seria 2 · (245/8 + 1) = 63,25."
+   },
+   "armadilha": "Inverter a fração ao isolar m: 35m = 5 dá m = 5/35, e não 35/5.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de m para que os três retângulos somem área 12.",
+    "chave": "Base 2 e alturas f(1), f(3), f(5): 2(35m + 1) = 12.",
+    "cuidado": "Isole m dividindo 5 por 35, nessa ordem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Calcule 2(35m + 1) para cada m: só m = 1/7 dá 12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2 · (f(1) + f(3) + f(5)) = 12",
+    "nota": "base 2"
+   },
+   {
+    "linha": "2 · (35m + 1) = 12",
+    "nota": "soma das alturas"
+   },
+   {
+    "linha": "35m + 1 = 6 → 35m = 5",
+    "nota": "isola"
+   },
+   {
+    "linha": "m = 5/35 = 1/7",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0054"
+  }
+ },
+ "P5d2d8625": {
+  "n": "18",
+  "conceito": "Achar P a partir de P(x − 1) e calcular P(x + 1).",
+  "equivocos": {
+   "A": "M05.5:trocou-px-por-px1",
+   "B": "M05.5:trocou-px-por-px1",
+   "D": "M05.5:valor-sem-calculo",
+   "E": "M05.5:valor-sem-calculo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "P(x − 1) = x² − 1 diz o valor de P no número x − 1. Chame t = x − 1; então x = t + 1 e P(t) = (t + 1)² − 1. Com a fórmula de P em mãos, calcule P(x + 1).",
+    "formulas": [
+     "t = x − 1 → x = t + 1"
+    ],
+    "simbolos": [
+     [
+      "P(x − 1)",
+      "valor de P no número x − 1"
+     ]
+    ]
+   },
+   "pista": "Troque x − 1 por uma letra nova e escreva x em função dela.",
+   "passos": [
+    {
+     "faz": "Troque a variável",
+     "conta": "t = x − 1 → x = t + 1 → P(t) = (t + 1)² − 1 = t² + 2t",
+     "porque": "Agora P está escrito com a própria variável.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule P(x + 1)",
+     "conta": "P(x + 1) = (x + 1)² + 2(x + 1) = x² + 2x + 1 + 2x + 2 = x² + 4x + 3",
+     "porque": "Troque t por x + 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare",
+     "conta": "P(x) = x² + 2x e P(x + 1) = x² + 4x + 3 → alternativa C",
+     "porque": "A e D erram P(x); B e E erram P(x + 1).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — P(x + 1) = x² + 4x + 3",
+   "checagem": "Teste x = 1: P(x + 1) = P(2). Pela fórmula original, P(2) vem de x − 1 = 2, x = 3: 9 − 1 = 8. E a C dá 1 + 4 + 3 = 8.",
+   "erradas": {
+    "A": "Sai de dar a expressão de P(x + 1) como se fosse P(x). P(x) = x² + 2x: em x = 0, P(0) = 0, e a A dá 3.",
+    "B": "Sai de dar P(x) = x² + 2x como se fosse P(x + 1). Em x = 0, P(1) = 3, e a B dá 0.",
+    "D": "Não confere: P(1) deve ser 3 (x = 2 em x² − 1), e a D dá 1 + 1 = 2.",
+    "E": "Não confere: em x = 0, P(1) = 3, e a E dá 1."
+   },
+   "armadilha": "Confundir P(x) com P(x + 1): as duas fórmulas aparecem nas alternativas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Uma expressão correta para P.",
+    "chave": "P(t) = t² + 2t; P(x + 1) = x² + 4x + 3.",
+    "cuidado": "Troque a variável antes de substituir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "direto",
+    "ideia": "P(x + 1) = P((x + 2) − 1) = (x + 2)² − 1 = x² + 4x + 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "t = x − 1 → P(t) = (t + 1)² − 1 = t² + 2t",
+    "nota": "fórmula de P"
+   },
+   {
+    "linha": "P(x + 1) = (x + 1)² + 2(x + 1)",
+    "nota": "substitui"
+   },
+   {
+    "linha": "= x² + 4x + 3",
+    "nota": "expande"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
+ },
+ "P64b28218": {
+  "n": "11",
+  "conceito": "Crescimento exponencial na base e resolvido com logaritmo natural.",
+  "equivocos": {
+   "A": "M06.4:conta-errada-no-expoente",
+   "B": "M06.4:conta-errada-no-expoente",
+   "C": "M06.4:esqueceu-t-menos-1",
+   "E": "M06.4:conta-errada-no-expoente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Isole a potência de e antes de aplicar o log: o 2 que multiplica sai dividindo. O valor ln 8 = 2,25 dado pela banca é o atalho: e^algo = 8 quer dizer algo = 2,25. Por fim, cuidado: o expoente tem t − 1, não t.",
+    "formulas": [
+     "I(t) = I₁ · e^(r(t − 1))",
+     "eᵃ = b ⇔ a = ln b"
+    ],
+    "simbolos": [
+     [
+      "I₁",
+      "infectados no 1.º dia"
+     ],
+     [
+      "r",
+      "taxa de crescimento"
+     ],
+     [
+      "e",
+      "número de Euler"
+     ],
+     [
+      "ln",
+      "logaritmo na base e (o log_e do enunciado)"
+     ]
+    ]
+   },
+   "pista": "Divida por 2 primeiro e veja que número sobra do lado direito.",
+   "passos": [
+    {
+     "faz": "Substitua os dados",
+     "conta": "16 = 2 · e^(0,25(t − 1))",
+     "porque": "I(t) = 16, I₁ = 2 e r = 0,25.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Isole a potência de e",
+     "conta": "2 · e^(0,25(t − 1)) = 16 → e^(0,25(t − 1)) = 16/2 = 8",
+     "porque": "O 2 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o logaritmo natural",
+     "conta": "0,25(t − 1) = ln 8 = 2,25 → t − 1 = 2,25/0,25 = 9",
+     "porque": "e^a = 8 quer dizer a = ln 8; o 0,25 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o dia",
+     "conta": "t − 1 = 9 → t = 9 + 1 = 10 → 10.º dia",
+     "porque": "O 1 atravessa o igual trocando de sinal.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 10.º dia de infecção",
+   "checagem": "Por dobras: e^(0,25(t − 1)) = 8 = 2³. Se ln 8 = 2,25, então ln 2 = 0,75 e o número dobra a cada 0,75/0,25 = 3 dias. De 2 para 16 são 3 dobras: 9 dias depois do dia 1, ou seja, dia 10.",
+   "erradas": {
+    "A": "7.º dia não confere: com ln 8 = 2,25, o número dobra a cada 3 dias; do dia 1 ao 7 são 6 dias, 2 dobras: 2 → 8 infectados, não 16.",
+    "B": "8.º dia não confere: do dia 1 ao 8 são 7 dias, pouco mais de 2 dobras (7/3): cerca de 10 infectados, ainda menos que 16.",
+    "C": "9.º dia sai de usar t em vez de t − 1: 0,25t = 2,25 → t = 9.",
+    "E": "11.º dia não confere: do dia 1 ao 11 são 10 dias, mais de 3 dobras (10/3): cerca de 20 infectados, já acima de 16."
+   },
+   "armadilha": "Esquecer o '− 1' do expoente (o 1.º dia é t = 1) e responder 9.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O dia em que havia 16 infectados.",
+    "chave": "e^(0,25(t − 1)) = 8, logo 0,25(t − 1) = 2,25 e t = 10.",
+    "cuidado": "O expoente é t − 1; some 1 no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dobras",
+    "ideia": "ln 8 = 3 ln 2 = 2,25 dá dobra a cada 3 dias: 2 → 4 → 8 → 16 em 9 dias, no dia 10."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2 · e^(0,25(t − 1)) = 16",
+    "nota": "modelo com os dados"
+   },
+   {
+    "linha": "e^(0,25(t − 1)) = 16/2",
+    "nota": "o 2 vai dividindo"
+   },
+   {
+    "linha": "e^(0,25(t − 1)) = 8",
+    "nota": "divide"
+   },
+   {
+    "linha": "0,25(t − 1) = 2,25",
+    "nota": "ln 8 = 2,25"
+   },
+   {
+    "linha": "t − 1 = 2,25/0,25",
+    "nota": "o 0,25 vai dividindo"
+   },
+   {
+    "linha": "t − 1 = 9",
+    "nota": "divide"
+   },
+   {
+    "linha": "t = 9 + 1",
+    "nota": "o 1 troca de lado e de sinal"
+   },
+   {
+    "linha": "t = 10",
+    "nota": "10.º dia"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
+ },
+ "Pf56cf876": {
+  "n": "17",
+  "conceito": "Achar o centro de uma circunferência e usá-lo como foco de uma parábola de vértice na origem.",
+  "equivocos": {
+   "A": "M12.4:parametro-da-parabola-trocado",
+   "B": "M12.4:eixo-da-parabola-trocado",
+   "C": "M12.4:parametro-da-parabola-trocado",
+   "D": "M12.4:eixo-da-parabola-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Complete o quadrado em y para achar o centro da circunferência: ele é o foco da parábola. Com vértice (0, 0) e foco (0, f) no eixo y, a parábola é x² = 4f·y, em que f é a distância do vértice ao foco.",
+    "formulas": [
+     "vértice (0, 0) e foco (0, f): x² = 4f·y"
+    ],
+    "simbolos": [
+     [
+      "f",
+      "distância do vértice ao foco"
+     ]
+    ]
+   },
+   "pista": "Escreva y² − 4y como um quadrado perfeito menos uma constante.",
+   "passos": [
+    {
+     "faz": "Ache o centro da circunferência",
+     "conta": "x² + y² − 4y = 0 → x² + (y − 2)² = 4",
+     "porque": "Somando 4 dos dois lados: centro (0, 2), raio 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tome o foco e a distância ao vértice",
+     "conta": "foco (0, 2) | vértice (0, 0) → f = 2",
+     "porque": "O foco está no eixo y, acima do vértice: a parábola abre para cima, com eixo vertical.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a equação",
+     "conta": "x² = 4f·y → x² = 4·2·y = 8y",
+     "porque": "Parábola de vértice na origem e foco (0, f).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "x² = 8y → alternativa E",
+     "porque": "É a equação da alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — x² = 8y",
+   "checagem": "A diretriz é y = −2. O ponto (4, 2) está na parábola (16 = 8·2) e dista 2 − (−2) = 4 da diretriz e √(4² + 0²) = 4 do foco (0, 2): iguais, como exige a definição.",
+   "erradas": {
+    "A": "x² = 4y sai de usar x² = 2p·y com p = 2 (vértice–foco); nessa fórmula p é a distância do foco à diretriz, 4, o que dá 8y. x² = 4y tem foco (0, 1).",
+    "B": "y² = 8x tem o f certo, mas o foco em (2, 0), no eixo x; o foco é (0, 2).",
+    "C": "x² = 16y sai de usar 4p com p = 4 (distância foco–diretriz) no lugar de f = 2; o foco seria (0, 4).",
+    "D": "y² = 4x não confere: tem foco (1, 0), no eixo x e a distância 1 do vértice."
+   },
+   "armadilha": "Na fórmula x² = 4f·y, f é a distância do vértice ao foco (2), não a do foco à diretriz (4).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A equação da parábola de vértice (0, 0) cujo foco é o centro de x² + y² − 4y = 0.",
+    "chave": "Centro (0, 2) = foco; f = 2; x² = 4·2·y = 8y.",
+    "cuidado": "Foco no eixo y dá x² = ...y; não troque os eixos nem o parâmetro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "definição da parábola",
+    "ideia": "Foco (0, 2) e diretriz y = −2: x² + (y − 2)² = (y + 2)² dá x² = 8y."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² + (y − 2)² = 4",
+    "nota": "centro (0, 2) = foco"
+   },
+   {
+    "linha": "f = 2",
+    "nota": "distância do vértice ao foco"
+   },
+   {
+    "linha": "x² = 4·2·y = 8y",
+    "nota": "parábola de eixo vertical"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
+ },
+ "P7cc48e4b": {
+  "n": "10",
+  "conceito": "Achar a interseção das duas vacinas pela união e tirar dela a parte só COVID-19.",
+  "equivocos": {
+   "B": "M13.6:valor-sem-teste-de-consistencia",
+   "C": "M13.6:usou-a-regiao-de-fora",
+   "D": "M13.6:esqueceu-de-tirar-nenhuma",
+   "E": "M13.6:conjunto-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se 20% não tomaram nenhuma, 80% tomaram pelo menos uma: essa é a união. A soma 45% + 64% passa de 80% porque conta duas vezes quem tomou as duas; a sobra é a interseção. Tirando a interseção dos 45%, fica quem tomou só a da COVID-19.",
+    "formulas": [
+     "união = COVID + H1N1 − as duas",
+     "só COVID = COVID − as duas"
+    ],
+    "simbolos": [
+     [
+      "união",
+      "quem tomou pelo menos uma das vacinas"
+     ],
+     [
+      "interseção",
+      "quem tomou as duas vacinas"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra a porcentagem que tomou pelo menos uma vacina; só depois compare com 45% + 64%.",
+   "passos": [
+    {
+     "faz": "Ache a porcentagem da união",
+     "conta": "100% − 20% = 80%",
+     "porque": "Quem não tomou nenhuma fica fora da união; o resto tomou pelo menos uma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache quem tomou as duas",
+     "conta": "45% + 64% − x = 80% → x = 109% − 80% = 29%",
+     "porque": "Somar as duas vacinas conta duas vezes quem tomou ambas; o excesso sobre a união é a interseção.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe só a da COVID-19",
+     "conta": "45% − 29% = 16%",
+     "porque": "Dos 45% imunizados contra a COVID-19, 29% também tomaram a da H1N1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta para habitantes",
+     "conta": "16% de 650 mil = 0,16 × 650 mil = 104 mil",
+     "porque": "A pergunta é em habitantes, não em porcentagem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "104 mil habitantes → alternativa A",
+     "porque": "É a população imunizada apenas contra a COVID-19.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 104 mil habitantes",
+   "checagem": "Some as quatro regiões: só COVID 16%, as duas 29%, só H1N1 64% − 29% = 35% e nenhuma 20%. 16 + 29 + 35 + 20 = 100%: fecha a população inteira.",
+   "erradas": {
+    "B": "286 mil não confere: é 44% de 650 mil; com 44% só de COVID-19, as duas seriam 45% − 44% = 1%, só H1N1 63%, e 44 + 1 + 63 + 20 = 128%, mais que a população.",
+    "C": "130 mil sai de usar os 20% que não tomaram nenhuma: 0,20 × 650 mil = 130 mil. Esse é o grupo de fora, não o da COVID-19.",
+    "D": "234 mil sai de 100% − 64% = 36%, quem não tomou a da H1N1: 0,36 × 650 mil = 234 mil. Faltou tirar os 20% que não tomaram nenhuma.",
+    "E": "416 mil sai de usar os 64% da H1N1: 0,64 × 650 mil = 416 mil. A pergunta é sobre a vacina da COVID-19."
+   },
+   "armadilha": "Os 45% da COVID-19 incluem quem também tomou a da H1N1; \"apenas\" exige tirar a interseção.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A população imunizada só com a vacina da COVID-19.",
+    "chave": "União 80% = 45% + 64% − x dá x = 29%; só COVID = 16% de 650 mil = 104 mil.",
+    "cuidado": "Tire a interseção dos 45% antes de converter em habitantes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo complementar",
+    "ideia": "Quem não tomou a da H1N1 é 36%; tirando os 20% sem nenhuma, sobram 16% só com a da COVID-19: 0,16 × 650 mil = 104 mil."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "união = 100% − 20% = 80%",
+    "nota": "quem tomou pelo menos uma"
+   },
+   {
+    "linha": "45% + 64% − x = 80% → x = 29%",
+    "nota": "a interseção é o excesso"
+   },
+   {
+    "linha": "só COVID = 45% − 29% = 16%",
+    "nota": "tirar a interseção"
+   },
+   {
+    "linha": "0,16 × 650 = 104 mil",
+    "nota": "converter em habitantes"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
+ },
+ "Pa2bed03b": {
+  "n": "16",
+  "conceito": "Potência alta de complexo de módulo 1 pela forma trigonométrica (De Moivre).",
+  "equivocos": {
+   "A": "M16.2:errou-a-reducao-do-angulo",
+   "B": "M16.2:confundiu-com-raiz-cubica-da-unidade",
+   "C": "M16.2:errou-a-reducao-do-angulo",
+   "D": "M16.2:modulo-diferente-de-1"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "1/2 + (√3/2)i tem módulo 1 e ângulo 60°. Elevar à 15ª potência é multiplicar o ângulo por 15 e descontar as voltas completas.",
+    "formulas": [
+     "(cos θ + i·sen θ)^n = cos(nθ) + i·sen(nθ)"
+    ],
+    "simbolos": [
+     [
+      "θ",
+      "ângulo com o eixo real"
+     ],
+     [
+      "volta",
+      "360°: não muda o ponto"
+     ]
+    ]
+   },
+   "pista": "Escreva o número com módulo e ângulo antes de pensar no expoente 15.",
+   "passos": [
+    {
+     "faz": "Ache módulo e ângulo",
+     "conta": "|u| = √(1/4 + 3/4) = 1 | cos θ = 1/2, sen θ = √3/2 → θ = 60°",
+     "porque": "É o ponto do círculo unitário a 60°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique o ângulo por 15",
+     "conta": "15 · 60° = 900° → 900° − 2·360° = 180°",
+     "porque": "Cada 360° é uma volta inteira e pode ser descontada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia o ponto de 180°",
+     "conta": "cos 180° + i·sen 180° = −1 + 0i = −1",
+     "porque": "180° é o ponto (−1, 0). Alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — −1",
+   "checagem": "Pelo cubo: u³ = cos 180° + i·sen 180° = −1, e u^15 = (u³)^5 = (−1)^5 = −1.",
+   "erradas": {
+    "B": "1 sai de achar que u³ = 1 (como a raiz cúbica da unidade de 120°); aqui u³ = −1, e (−1)^5 = −1.",
+    "A": "i não confere: precisaria de ângulo 90°, mas 900° cai em 180°.",
+    "C": "−i não confere: precisaria de ângulo 270°, mas 900° cai em 180°.",
+    "D": "1 − i não confere: tem módulo √2, e toda potência de u tem módulo 1."
+   },
+   "armadilha": "Confundir u (60°) com a raiz cúbica da unidade (120°), cujo cubo é 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de (1/2 + (√3/2)i)^15.",
+    "chave": "Ângulo 60° × 15 = 900°, que é 180° depois de duas voltas.",
+    "cuidado": "u³ = −1, não 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo cubo",
+    "ideia": "u³ = −1 (ângulo 180°), então u^15 = (u³)^5 = (−1)^5 = −1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "u = cos 60° + i·sen 60°",
+    "nota": "forma trigonométrica"
+   },
+   {
+    "linha": "u^15 → ângulo 15 · 60° = 900°",
+    "nota": "De Moivre"
+   },
+   {
+    "linha": "900° − 720° = 180°",
+    "nota": "tirar duas voltas"
+   },
+   {
+    "linha": "cos 180° + i·sen 180° = −1",
+    "nota": "ler o ponto"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
+ },
+ "P4196ada5": {
+  "n": "15",
+  "conceito": "Equação trigonométrica com sen⁴ x + cos⁴ x, reduzida ao arco duplo e resolvida num intervalo dado.",
+  "equivocos": {
+   "A": "M10.4:nao-dividiu-o-arco-por-2",
+   "B": "M10.4:perdeu-uma-solucao-do-intervalo",
+   "C": "M10.4:esqueceu-a-raiz-negativa",
+   "E": "M10.4:so-raiz-positiva-sem-dividir"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "sen⁴ x + cos⁴ x é o quadrado de uma soma menos o termo do meio: (sen² x + cos² x)² − 2 sen² x cos² x. Como sen² x + cos² x = 1, sobra 1 − 2 sen² x cos² x, e o produto sen x cos x é metade de sen 2x. A equação vira uma condição sobre sen 2x. O cuidado está no intervalo: se x vai de 0 a π, o arco 2x vai de 0 a 2π, e isso dobra o número de soluções.",
+    "formulas": [
+     "sen² x + cos² x = 1",
+     "sen 2x = 2 sen x cos x",
+     "sen⁴ x + cos⁴ x = 1 − 2 sen² x cos² x = 1 − (sen² 2x)/2"
+    ],
+    "simbolos": [
+     [
+      "sen⁴ x",
+      "(sen x)⁴, o seno de x elevado à quarta"
+     ],
+     [
+      "[0, π]",
+      "intervalo de 0 a π, com os extremos incluídos"
+     ],
+     [
+      "arco duplo",
+      "o arco 2x"
+     ]
+    ]
+   },
+   "pista": "Escreva sen⁴ x + cos⁴ x a partir de (sen² x + cos² x)², que vale 1.",
+   "passos": [
+    {
+     "faz": "Reescreva a soma das quartas potências",
+     "conta": "sen⁴ x + cos⁴ x = (sen² x + cos² x)² − 2 sen² x cos² x → 1 − 2 sen² x cos² x",
+     "porque": "O quadrado da soma tem o termo do meio 2 sen² x cos² x; tirando-o, sobram só as quartas potências. E sen² x + cos² x vale 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque o produto pelo arco duplo",
+     "conta": "2 sen² x cos² x = ((2 sen x cos x)²)/2 → (sen² 2x)/2",
+     "porque": "2 sen x cos x é sen 2x; elevando ao quadrado aparece 4 sen² x cos² x, por isso se divide por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para sen 2x",
+     "conta": "1 − (sen² 2x)/2 = 7/8 → sen² 2x = 1/4 → sen 2x = ±1/2",
+     "porque": "O 1 passa subtraindo (1 − 7/8 = 1/8), o 2 do denominador passa multiplicando (2 · 1/8 = 1/4) e a raiz quadrada dá os dois sinais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache 2x em [0, 2π]",
+     "conta": "sen 2x = 1/2 → 2x = π/6 ou 5π/6 | sen 2x = −1/2 → 2x = 7π/6 ou 11π/6",
+     "porque": "Como x está em [0, π], o arco 2x percorre uma volta inteira, e cada valor de seno aparece duas vezes nela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida por 2 e marque a alternativa",
+     "conta": "x = π/12, 5π/12, 7π/12, 11π/12 → alternativa D",
+     "porque": "Os quatro valores de x estão entre 0 e π, então todos entram no conjunto solução.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — {π/12, 5π/12, 7π/12, 11π/12}",
+   "checagem": "Teste x = π/12 direto: sen(π/12) ≈ 0,2588 e cos(π/12) ≈ 0,9659; as quartas potências são ≈ 0,0045 e ≈ 0,8705, que somam ≈ 0,875 = 7/8. Pela simetria x ↔ π/2 − x (troca seno e cosseno) e x ↔ π − x (só muda sinais), os outros três também valem.",
+   "erradas": {
+    "A": "{π/6, 5π/6, 7π/6, 11π/6} sai de parar nos valores de 2x e esquecer de dividir por 2. Além disso, 7π/6 e 11π/6 passam de π e nem estão no intervalo.",
+    "B": "{5π/12, 7π/12, 11π/12} não confere: falta π/12, que está em [0, π] e satisfaz a equação, pois sen(2 · π/12) = sen(π/6) = 1/2.",
+    "C": "{π/12, 5π/12} sai de tomar só sen 2x = +1/2 e esquecer a raiz negativa sen 2x = −1/2, que dá 7π/12 e 11π/12.",
+    "E": "{π/6, 5π/6} sai de usar só sen 2x = +1/2 e não dividir por 2. Teste: em x = π/6, sen⁴ x + cos⁴ x = 1/16 + 9/16 = 5/8, não 7/8."
+   },
+   "armadilha": "De sen² 2x = 1/4 saem dois sinais, e com x em [0, π] o arco 2x dá uma volta inteira: são quatro soluções, não duas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os valores de x em [0, π] com sen⁴ x + cos⁴ x = 7/8.",
+    "chave": "sen⁴ x + cos⁴ x = 1 − (sen² 2x)/2, que leva a sen 2x = ±1/2.",
+    "cuidado": "Considere os dois sinais, procure 2x em [0, 2π] e só no fim divida por 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "arco quádruplo",
+    "ideia": "Com sen² 2x = (1 − cos 4x)/2, a equação vira cos 4x = 1/2, e 4x em [0, 4π] dá π/3, 5π/3, 7π/3, 11π/3, isto é, os mesmos quatro valores de x."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "sen⁴ x + cos⁴ x = 1 − 2 sen² x cos² x",
+    "nota": "quadrado da soma menos o termo do meio"
+   },
+   {
+    "linha": "1 − (sen² 2x)/2 = 7/8",
+    "nota": "2 sen x cos x = sen 2x"
+   },
+   {
+    "linha": "sen² 2x = 2 · (1 − 7/8) = 1/4",
+    "nota": "isolar sen² 2x"
+   },
+   {
+    "linha": "sen 2x = ±1/2 → 2x = π/6, 5π/6, 7π/6, 11π/6",
+    "nota": "dois sinais, uma volta inteira"
+   },
+   {
+    "linha": "x = π/12, 5π/12, 7π/12, 11π/12",
+    "nota": "dividir por 2: alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ }
+}

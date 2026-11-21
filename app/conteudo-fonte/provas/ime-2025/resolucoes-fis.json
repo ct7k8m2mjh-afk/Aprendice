@@ -1,0 +1,2026 @@
+{
+ "Pe130f65d": {
+  "n": "29",
+  "conceito": "Condução em regime estacionário por duas camadas em série; a energia que atravessa em 1 h funde gelo (Q = m·L).",
+  "equivocos": {
+   "A": "F08.5:tempo-ou-fluxo-errado",
+   "B": "F08.5:conversao-g-para-kg",
+   "C": "F08.5:resistencia-em-serie-errada",
+   "E": "F08.5:resistencia-em-serie-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O calor sai da chama e atravessa a parede e depois o isolante, uma camada atrás da outra: é condução em série, e as resistências térmicas somam. A diferença de temperatura que empurra o calor é a das faces extremas, 295 °C − 45 °C. O fluxo vezes uma hora dá a energia, e essa energia dividida pelo calor latente dá a massa de gelo.",
+    "formulas": [
+     "R = L/k (por metro quadrado); em série R_total = R₁ + R₂",
+     "Φ = ΔT × A/R_total",
+     "E = Φ × Δt; m = E/L_f"
+    ],
+    "simbolos": [
+     [
+      "Φ",
+      "fluxo de calor, em W (J por segundo)"
+     ],
+     [
+      "R",
+      "resistência térmica por m² da camada, em m²·°C/W"
+     ],
+     [
+      "k",
+      "condutividade térmica"
+     ],
+     [
+      "L",
+      "espessura da camada"
+     ],
+     [
+      "L_f",
+      "calor latente de fusão do gelo"
+     ],
+     [
+      "A",
+      "área da parede"
+     ]
+    ]
+   },
+   "pista": "Antes de calcular o fluxo, some as resistências da parede e do isolante: o calor tem de passar pelas duas.",
+   "passos": [
+    {
+     "faz": "Calcule a resistência de cada camada",
+     "conta": "parede: 0,15 m/3 = 0,05 | isolante: 0,004 m/0,02 = 0,2 (m²·°C/W)",
+     "porque": "Espessuras em metro, porque a condutividade está em W/(m·°C). O isolante fino resiste quatro vezes mais que a parede grossa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as resistências em série",
+     "conta": "R_total = 0,05 + 0,2 = 0,25 m²·°C/W",
+     "porque": "O mesmo calor atravessa as duas camadas, uma depois da outra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o fluxo pela parede inteira",
+     "conta": "Φ = (295 − 45)/0,25 × (2 × 0,84) = 1 000 × 1,68 = 1 680 W",
+     "porque": "ΔT entre as faces extremas dividido pela resistência dá o fluxo por m²; vezes a área dá o fluxo total.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para energia em uma hora",
+     "conta": "E = 1 680 W × 3 600 s = 6 048 000 J",
+     "porque": "Watt é joule por segundo, e uma hora tem 3 600 s.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo calor latente",
+     "conta": "m = 6 048 000 J/336 J/g = 18 000 g = 18 kg",
+     "porque": "Q = m·L_f; o J cancela e sobra grama, que vira quilo dividindo por 1 000.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 18 kg de gelo.",
+   "checagem": "Confira pela temperatura da junção: o fluxo por m² é 1 000 W/m², então a queda na parede é 1 000 × 0,05 = 50 °C e no isolante 1 000 × 0,2 = 200 °C. 295 − 50 − 200 = 45 °C, exatamente a temperatura dada na face livre.",
+   "erradas": {
+    "A": "1,5 kg não confere: com o fluxo de 1 680 W, fundir só 1,5 kg (504 000 J) levaria 300 s, ou seja, 5 minutos, não uma hora.",
+    "B": "Sai da conta certa com a vírgula deslocada: 18 000 g lidos como 1,8 kg. 18 000 g ÷ 1 000 = 18 kg.",
+    "C": "15 kg não confere: daria 5 040 000 J, um fluxo de 1 400 W, que pede R_total = 0,3, e a soma das camadas é 0,05 + 0,2 = 0,25.",
+    "E": "20 kg não confere: exigiria 6 720 000 J em uma hora, fluxo de 1 867 W, maior do que as duas camadas em série deixam passar (1 680 W)."
+   },
+   "armadilha": "Calcular o fluxo só pelo isolante (ou só pela parede): o calor atravessa as duas camadas, e as resistências somam.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A massa de gelo fundida em 1 h pela energia que atravessa parede e isolante.",
+    "chave": "R = 0,05 + 0,2 = 0,25; Φ = 250/0,25 × 1,68 = 1 680 W; E = 6 048 kJ; m = 18 kg.",
+    "cuidado": "Espessuras em metro, resistências somadas em série e 1 h = 3 600 s."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "só pelo isolante com a temperatura da junção",
+    "ideia": "Se a junção está a 245 °C, o isolante conduz 0,02 × 200/0,004 = 1 000 W/m², o mesmo fluxo, e o resto da conta segue igual."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R = 0,15/3 + 0,004/0,02 = 0,05 + 0,2 = 0,25",
+    "nota": "camadas em série"
+   },
+   {
+    "linha": "Φ = (295 − 45)/0,25 × 1,68 = 1 000 × 1,68 = 1 680 W",
+    "nota": "ΔT ÷ R × área"
+   },
+   {
+    "linha": "E = 1 680 × 3 600 = 6 048 000 J",
+    "nota": "1 h = 3 600 s"
+   },
+   {
+    "linha": "m = 6 048 000/336 = 18 000 g = 18 kg",
+    "nota": "Q = m·L"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0058"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [
+    {
+     "url": "https://www.ime.eb.mil.br/",
+     "letra": "D",
+     "nota": "gabarito preliminar do IME (no pacote); definitivo não acessível daqui e nenhuma resolução publicada achada na busca de 13/11/2026"
+    }
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0058"
+  }
+ },
+ "P008531fb": {
+  "n": "19",
+  "conceito": "Energia fornecida a uma bateria com tensão constante: E = V × carga, com a carga dada pela área sob o gráfico I × t.",
+  "equivocos": {
+   "A": "F11.6:conta-de-energia-acima-do-maximo",
+   "C": "F11.6:esqueceu-trecho-da-rampa",
+   "D": "F11.6:conta-de-energia-abaixo-do-minimo",
+   "E": "F11.6:wh-lido-como-kj"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Potência elétrica é V × I, e a energia é a potência acumulada no tempo. Como a tensão fica constante em 6 V durante as 5 h, a energia é 6 V vezes a carga entregue, e a carga é a área sob o gráfico I × t: um retângulo de 0 a 3 h e um triângulo de 3 h a 5 h. O trabalho real está na conversão final: V × A × h dá Wh, e 1 Wh = 3 600 J.",
+    "formulas": [
+     "E = V × Q (V constante)",
+     "Q = área sob I × t",
+     "1 Wh = 3 600 J = 3,6 kJ"
+    ],
+    "simbolos": [
+     [
+      "V",
+      "tensão, em volt (V)"
+     ],
+     [
+      "I",
+      "corrente, em ampère (A)"
+     ],
+     [
+      "Q",
+      "carga entregue, em ampère-hora (A·h)"
+     ],
+     [
+      "E",
+      "energia, em watt-hora (Wh) ou joule (J)"
+     ],
+     [
+      "Wh",
+      "watt-hora: energia de 1 W durante 1 hora, igual a 3 600 J"
+     ]
+    ]
+   },
+   "pista": "Com a tensão constante, o que falta é a carga: olhe a área sob o gráfico da corrente, em dois pedaços.",
+   "passos": [
+    {
+     "faz": "Leia os dois gráficos",
+     "conta": "I: 2 A de 0 a 3 h, cai linearmente até 0 em 5 h | V: 6 V de 0 a 5 h",
+     "porque": "A tensão é constante, então só a corrente muda ao longo da carga.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a carga pela área sob I × t",
+     "conta": "Q = 2 × 3 + (2 × 2)/2 → Q = 6 + 2 → Q = 8 A·h",
+     "porque": "Retângulo de 3 h por 2 A mais o triângulo de base 2 h e altura 2 A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pela tensão",
+     "conta": "E = 6 V × 8 A·h → E = 48 Wh",
+     "porque": "Com V constante, a energia é V vezes a carga; volt vezes ampère-hora dá watt-hora.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta para kJ",
+     "conta": "E = 48 × 3,6 kJ → E = 172,8 kJ",
+     "porque": "1 Wh = 1 W × 3 600 s = 3 600 J = 3,6 kJ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "172,8 kJ",
+     "porque": "É a energia fornecida pelo carregador em 5 h: alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 172,8 kJ.",
+   "checagem": "Por limites: se a corrente ficasse em 2 A as 5 h, seriam 6 × 2 × 5 = 60 Wh = 216 kJ (teto); só as 3 primeiras horas dão 6 × 2 × 3 = 36 Wh = 129,6 kJ (piso). A resposta tem de ficar entre 129,6 e 216 kJ, e só 172,8 kJ está nesse intervalo.",
+   "erradas": {
+    "A": "Não confere: 345,6 kJ passa do teto de 216 kJ, que seria a energia com 2 A durante as 5 h inteiras (6 × 2 × 5 = 60 Wh).",
+    "C": "Sai de contar só o retângulo das 3 primeiras horas: 6 × 2 × 3 = 36 Wh = 129,6 kJ. Faltou o triângulo de 3 h a 5 h, em que ainda passa corrente.",
+    "D": "Não confere: 86,4 kJ é menos que só as 3 primeiras horas já dão (129,6 kJ), e a energia total não pode ser menor que a de uma parte.",
+    "E": "Não confere: 36,0 kJ é menos que o piso de 129,6 kJ das 3 primeiras horas. 36 é o valor em Wh dessas 3 horas, não em kJ."
+   },
+   "armadilha": "A corrente não fica em 2 A o tempo todo: de 3 h a 5 h ela cai até zero, e essa parte entra como triângulo (metade de base × altura), não como retângulo nem como zero.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A energia, em kJ, que o carregador fornece em 5 h com V = 6 V constante e a corrente do gráfico.",
+    "chave": "Q = 2 × 3 + (2 × 2)/2 = 8 A·h; E = 6 × 8 = 48 Wh = 48 × 3,6 kJ = 172,8 kJ.",
+    "cuidado": "Somar o triângulo da rampa e converter Wh em kJ multiplicando por 3,6."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "área sob P × t",
+    "ideia": "P = 6 × I vale 12 W até 3 h e cai a 0 em 5 h: área = 12 × 3 + (12 × 2)/2 = 48 Wh = 172,8 kJ."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Q = 2 × 3 + (2 × 2)/2",
+    "nota": "área sob I × t: retângulo + triângulo"
+   },
+   {
+    "linha": "Q = 6 + 2 = 8 A·h",
+    "nota": "carga entregue em 5 h"
+   },
+   {
+    "linha": "E = 6 × 8 = 48 Wh",
+    "nota": "V constante: E = V × Q"
+   },
+   {
+    "linha": "E = 48 × 3,6 = 172,8 kJ",
+    "nota": "1 Wh = 3,6 kJ"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Gabarito final da prova objetiva do IME, vestibular 2024-2025 (cópia no Estratégia Militares)",
+    "url": "https://militares.estrategia.com/portal/wp-content/uploads/2024/10/Gabarito_Final.pdf"
+   },
+   {
+    "nome": "Estratégia Militares: gabarito IME 2024/2025, correção da 1ª fase",
+    "url": "https://militares.estrategia.com/portal/eventos/gabarito-ime-2024-2025-correcao-primeira-fase/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [
+    {
+     "url": "https://militares.estrategia.com/portal/wp-content/uploads/2024/10/Gabarito_Final.pdf",
+     "letra": "B"
+    },
+    {
+     "url": "https://militares.estrategia.com/portal/eventos/gabarito-ime-2024-2025-correcao-primeira-fase/",
+     "letra": "B"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
+ },
+ "P7ee5ebb6": {
+  "n": "25",
+  "conceito": "Composição relativística de velocidades em duas etapas (nave, foguete, projétil), lida no gráfico ou calculada.",
+  "equivocos": {
+   "A": "F01.4:soma-classica-de-velocidades",
+   "B": "F01.4:resultado-abaixo-da-velocidade-do-foguete",
+   "C": "F01.4:parou-na-velocidade-do-foguete",
+   "E": "F01.4:soma-classica-sem-o-projetil"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Velocidades próximas da luz não se somam como na física clássica: 0,5c + 0,3c + 0,1c daria 0,9c, e o resultado real é menor. Faça a composição em duas etapas: primeiro Y em relação ao referencial inercial, depois Z. O gráfico da prova faz exatamente isso: escolha a curva da velocidade do referencial em movimento, entre no eixo vertical com a velocidade relativa e leia no eixo horizontal a velocidade em relação ao inercial.",
+    "formulas": [
+     "u = (v + u')/(1 + v · u'/c²)"
+    ],
+    "simbolos": [
+     [
+      "v",
+      "velocidade do referencial em movimento (a nave, depois o foguete) em relação ao inercial"
+     ],
+     [
+      "u'",
+      "velocidade do objeto em relação ao referencial em movimento"
+     ],
+     [
+      "u",
+      "velocidade do objeto em relação ao referencial inercial"
+     ],
+     [
+      "c",
+      "velocidade da luz"
+     ]
+    ]
+   },
+   "pista": "Não some as três velocidades. Descubra primeiro a velocidade de Y em relação ao referencial inercial; ela vira o novo referencial em movimento para Z.",
+   "passos": [
+    {
+     "faz": "Componha a velocidade de Y",
+     "conta": "u_Y = (0,5c + 0,3c)/(1 + 0,5 · 0,3) → u_Y = 0,8c/1,15 → u_Y ≈ 0,696c",
+     "porque": "Y sai de X a 0,3c, e X anda a 0,5c. No gráfico: na curva de 0,5c, a altura 0,3c fica sobre cerca de 0,7c no eixo horizontal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use Y como novo referencial em movimento",
+     "conta": "v = 0,696c | u' = 0,1c",
+     "porque": "Z é lançado de Y; agora a velocidade do referencial em movimento é a de Y, cerca de 0,7c, e a relativa é 0,1c.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Componha a velocidade de Z",
+     "conta": "u_Z = (0,696c + 0,1c)/(1 + 0,696 · 0,1) → u_Z = 0,796c/1,0696 → u_Z ≈ 0,744c",
+     "porque": "No gráfico: na curva de 0,7c, a altura 0,1c fica sobre cerca de 0,75c no eixo horizontal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "u_Z ≈ 0,744c → aproximadamente 0,75c",
+     "porque": "O valor fica abaixo da soma clássica 0,9c e acima de 0,7c, como deve ser: Z anda para a frente em relação a Y.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — aproximadamente 0,75c.",
+   "checagem": "Faça a composição na outra ordem: primeiro Z em relação a X, (0,3c + 0,1c)/(1 + 0,03) ≈ 0,388c; depois com X, (0,5c + 0,388c)/(1 + 0,5 · 0,388) ≈ 0,744c. Dá o mesmo 0,744c, que arredonda para 0,75c.",
+   "erradas": {
+    "A": "Sai da soma clássica 0,5c + 0,3c + 0,1c = 0,9c, que ignora a composição relativística.",
+    "B": "Não confere: 0,65c é menor que a velocidade do próprio foguete Y (≈ 0,696c), e Z é lançado para a frente em relação a Y.",
+    "C": "Sai de parar na primeira etapa: 0,8c/1,15 ≈ 0,70c é a velocidade de Y, não a de Z.",
+    "E": "Sai da soma clássica só das duas primeiras velocidades, 0,5c + 0,3c = 0,8c, sem compor nem incluir Z."
+   },
+   "armadilha": "Somar as velocidades como na física clássica, ou parar na velocidade do foguete Y.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A velocidade do projétil Z em relação ao referencial inercial.",
+    "chave": "Duas composições: 0,8c/1,15 ≈ 0,696c para Y e 0,796c/1,0696 ≈ 0,744c ≈ 0,75c para Z.",
+    "cuidado": "Na segunda etapa, o referencial em movimento é o foguete Y (≈ 0,7c), não a nave X."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "leitura do gráfico",
+    "ideia": "Na curva de 0,5c, a altura 0,3c cai em cerca de 0,7c; na curva de 0,7c, a altura 0,1c cai em cerca de 0,75c."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "u_Y = (0,5c + 0,3c)/(1 + 0,15)",
+    "nota": "Y em relação ao inercial"
+   },
+   {
+    "linha": "u_Y = 0,8c/1,15 ≈ 0,696c",
+    "nota": "no gráfico: curva 0,5c, altura 0,3c"
+   },
+   {
+    "linha": "u_Z = (0,696c + 0,1c)/(1 + 0,0696)",
+    "nota": "Y vira o referencial em movimento"
+   },
+   {
+    "linha": "u_Z = 0,796c/1,0696 ≈ 0,744c",
+    "nota": "no gráfico: curva 0,7c, altura 0,1c"
+   },
+   {
+    "linha": "u_Z ≈ 0,75c",
+    "nota": "alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Busca por resolução publicada da questão (nada localizado)",
+    "url": "https://projetoagathaedu.com.br/prova-completa/resolucao-ime/fisica-2025.php"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0072"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [
+    {
+     "url": "https://projetoagathaedu.com.br/prova-completa/resolucao-ime/fisica-2025.php",
+     "letra": null,
+     "nota": "página de resolução do IME 2025 respondeu 403; não deu para ler. Buscas na web pelo enunciado (nave X 0,5c, foguete Y 0,3c, projétil Z 0,1c) não acharam resolução nem gabarito publicado"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0072"
+  }
+ },
+ "P0de0270a": {
+  "n": "27",
+  "conceito": "Passar para o referencial do trapézio e exigir que a velocidade relativa do objeto o leve acima do canto superior antes de cruzar a face inclinada.",
+  "equivocos": {
+   "B": "F02.7:mediu-beta-a-partir-da-vertical",
+   "C": "F02.7:tirou-o-alfa-de-sen-beta-menos-alfa",
+   "D": "F02.7:trocou-o-sinal-no-seno-da-diferenca",
+   "E": "F02.7:so-anulou-a-velocidade-relativa-horizontal"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No referencial do trapézio ele fica parado e o objeto se move em linha reta com a velocidade relativa (v·cos α − u, v·sen α). O objeto escapa se, ao chegar à altura L, já estiver à direita do canto de cima da face inclinada. Essa desigualdade dá o v mínimo.",
+    "formulas": [
+     "velocidade relativa: (v·cos α − u ; v·sen α)",
+     "tempo para subir L: t = L/(v·sen α)",
+     "canto de cima da face: x = L·cos β/sen β",
+     "sen(β − α) = sen β·cos α − cos β·sen α"
+    ],
+    "simbolos": [
+     [
+      "u",
+      "velocidade do trapézio, para a direita"
+     ],
+     [
+      "v",
+      "velocidade do objeto, inclinada de α"
+     ],
+     [
+      "h",
+      "distância do vértice de baixo da face inclinada até P"
+     ],
+     [
+      "L",
+      "altura do trapézio"
+     ],
+     [
+      "β",
+      "inclinação da face do trapézio com o chão"
+     ]
+    ]
+   },
+   "pista": "Pare o trapézio: descreva o movimento do objeto visto de dentro dele e veja o que precisa acontecer quando o objeto atinge a altura L.",
+   "passos": [
+    {
+     "faz": "Passe para o referencial do trapézio",
+     "conta": "v_rel = (v·cos α − u ; v·sen α) | início: (h ; 0)",
+     "porque": "Com o trapézio parado, a face inclinada é um segmento fixo que sai do vértice (0 ; 0) com inclinação β até a altura L.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache onde o objeto chega à altura L",
+     "conta": "t = L/(v·sen α) → x = h + (v·cos α − u)·L/(v·sen α)",
+     "porque": "A trajetória relativa é reta; acima de L não existe trapézio, então só importa onde ela cruza essa altura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a condição de escapar",
+     "conta": "h + (v·cos α − u)·L/(v·sen α) ≥ L·cos β/sen β",
+     "porque": "O objeto precisa passar à direita do canto de cima da face, que fica em x = L/tg β.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Isole v",
+     "conta": "v·h·sen α/L + v·cos α − u ≥ v·sen α·cos β/sen β → v·(cos α − sen α·cos β/sen β + h·sen α/L) ≥ u",
+     "porque": "Multiplique tudo por v·sen α/L (positivo) e junte os termos com v.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique o parêntese",
+     "conta": "cos α − sen α·cos β/sen β → (sen β·cos α − cos β·sen α)/sen β → sen(β − α)/sen β",
+     "porque": "O numerador é o seno da diferença.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva o mínimo e conclua",
+     "conta": "v_min = u/(sen(β − α)/sen β + h·sen α/L) → alternativa A",
+     "porque": "É a expressão da alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — v mínimo = u/(sen(β − α)/sen β + h·sen α/L).",
+   "checagem": "Caso extremo h = 0: v_min = u·sen β/sen(β − α), que é a lei dos senos no triângulo de velocidades com a velocidade relativa saindo exatamente na direção β. Com h muito grande, v_min ≈ u·L/(h·sen α): o tempo de subir L, L/(v·sen α), fica igual ao tempo de o trapézio andar h, h/u.",
+   "erradas": {
+    "B": "Lembra o termo certo com β medido da vertical, cos(α + β)/cos β. Com α = 20°, β = 50°, h = 2L, dá ≈ 0,63u, abaixo do mínimo exato ≈ 0,75u.",
+    "C": "Lembra o termo certo com sen β no lugar de sen(β − α), sem o α. Com h = 0 dá v = u, e a velocidade relativa horizontal u·cos α − u fica negativa: o objeto é atingido.",
+    "D": "Não confere: com h = 0 dá u·sen β/sen(β + α), menor que o mínimo u·sen β/sen(β − α); com α = 20°, β = 50°, ≈ 0,82u contra ≈ 1,53u.",
+    "E": "Não confere: com h = 0 dá u/cos α, que só zera a velocidade relativa horizontal; o objeto sobe na vertical a partir do vértice e a face, inclinada para a direita (β < π/2), o alcança."
+   },
+   "armadilha": "Pensar só em correr mais que o trapézio na horizontal (v·cos α > u): o objeto também sobe, e basta passar acima do canto da face inclinada antes de ser alcançado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor v para o objeto não ser atingido pela face inclinada do trapézio.",
+    "chave": "No referencial do trapézio, ao atingir a altura L o objeto deve estar à direita do canto: v·(sen(β − α)/sen β + h·sen α/L) ≥ u.",
+    "cuidado": "Use a velocidade relativa (subtraia u da componente horizontal) e o canto de cima em x = L/tg β."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação por caso extremo",
+    "ideia": "Com h = 0 a velocidade relativa tem de sair na direção β, e a lei dos senos dá u·sen β/sen(β − α); só a alternativa A reduz a isso."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "v_rel = (v·cos α − u ; v·sen α)",
+    "nota": "referencial do trapézio"
+   },
+   {
+    "linha": "x = h + (v·cos α − u)·L/(v·sen α)",
+    "nota": "posição ao chegar à altura L"
+   },
+   {
+    "linha": "x ≥ L·cos β/sen β",
+    "nota": "passar à direita do canto"
+   },
+   {
+    "linha": "v·(cos α − sen α·cos β/sen β + h·sen α/L) ≥ u",
+    "nota": "multiplicar por v·sen α/L"
+   },
+   {
+    "linha": "cos α − sen α·cos β/sen β = sen(β − α)/sen β",
+    "nota": "seno da diferença"
+   },
+   {
+    "linha": "v_min = u/(sen(β − α)/sen β + h·sen α/L)",
+    "nota": "isolar v"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "IME, Concurso de Admissão 2024/2025, 1ª fase, questão 27",
+    "url": "https://www.ime.eb.mil.br/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0072"
+  },
+  "gabarito_aprendice": {
+   "letra": "A",
+   "letra_conferente": "A",
+   "preliminar": "A",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "fis-0072"
+  }
+ },
+ "P5e3c2b4d": {
+  "n": "23",
+  "conceito": "Rampa de massa desprezível em equilíbrio: a única carga é a normal do objeto, perpendicular à rampa; momentos em A dão B e o equilíbrio de forças dá A.",
+  "equivocos": {
+   "A": "F03.6:modulo-da-reacao-mal-calculado",
+   "C": "F03.6:modulo-da-reacao-mal-calculado",
+   "D": "F03.6:modulo-da-reacao-mal-calculado",
+   "E": "F03.6:normal-dividida-igualmente-entre-apoios"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sem atrito, o objeto só empurra a rampa com a normal, N = mg·cos α, perpendicular à rampa. A rampa não tem massa, então está sempre em equilíbrio mesmo com o objeto acelerando. Como N é perpendicular à rampa e age no meio dela, o braço em relação a A é a metade do comprimento da rampa, L/(2cos α).",
+    "formulas": [
+     "N = mg·cos α",
+     "momento em A: B·L = N·(L/(2cos α))",
+     "A = −(N + B), em vetores"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "ângulo da rampa com a horizontal"
+     ],
+     [
+      "L",
+      "comprimento horizontal da rampa"
+     ],
+     [
+      "N",
+      "força normal entre objeto e rampa"
+     ],
+     [
+      "B",
+      "reação vertical do apoio B"
+     ]
+    ]
+   },
+   "pista": "Ache primeiro a reação em B pelos momentos em A; ela é vertical e o braço é L.",
+   "passos": [
+    {
+     "faz": "Escreva a força do objeto na rampa",
+     "conta": "N = mg·cos α → componentes: horizontal mg·cos α·sen α | vertical mg·cos²α para baixo",
+     "porque": "Sem atrito só há normal; perpendicular à rampa e apontando para dentro dela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Momentos em relação a A",
+     "conta": "B·L = mg·cos α × L/(2cos α) → B = mg/2",
+     "porque": "A normal é perpendicular à rampa, então o braço é a meia-rampa L/(2cos α); o cos α cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Equilíbrio horizontal e vertical",
+     "conta": "Ax = mg·cos α·sen α | Ay = mg·cos²α − mg/2",
+     "porque": "B só é vertical, então A segura toda a componente horizontal; na vertical, A completa o que B não segura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o módulo",
+     "conta": "|A|² = (mg)²·[cos²α·sen²α + (cos²α − 1/2)²] → |A|² = (mg)²·(1/4) → |A| = mg/2",
+     "porque": "Expandindo: cos²α·sen²α + cos⁴α − cos²α + 1/4 = cos²α(sen²α + cos²α) − cos²α + 1/4 = 1/4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "|A| = (1/2)·mg → alternativa B",
+     "porque": "O módulo não depende de α.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — (1/2)·mg",
+   "checagem": "Caso extremo: com α = 0 a rampa é horizontal, o objeto no meio aperta com mg, e cada apoio segura mg/2. Com α = 60°: Ax ≈ 0,433mg e Ay = −0,25mg, e √(0,433² + 0,25²) = 0,5. Mesmo resultado.",
+   "erradas": {
+    "A": "Não confere: em α = 60° daria ≈ 0,683mg, mas as componentes de A dão √(0,433² + 0,25²)·mg = 0,5mg.",
+    "C": "Não confere: em α = 60° daria ≈ 0,198mg, e o módulo certo é 0,5mg para todo α.",
+    "D": "Não confere: em α = 60° daria ≈ 0,165mg, e o módulo certo é 0,5mg para todo α.",
+    "E": "Sai de dividir a normal igualmente entre os apoios: N/2 = (1/2)·mg·cos α. Mas B só aceita força vertical, e a reação em A fica com toda a componente horizontal."
+   },
+   "armadilha": "Achar que cada apoio segura metade da normal; como B só reage na vertical, A recebe outra parcela e o módulo vira mg/2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O módulo da reação em A quando o objeto passa pelo meio da rampa sem atrito.",
+    "chave": "Momentos em A dão B = mg/2; as componentes Ax = mg·cos α·sen α e Ay = mg(cos²α − 1/2) somam módulo mg/2.",
+    "cuidado": "A força do objeto na rampa é só a normal mg·cos α, perpendicular à rampa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ângulo duplo",
+    "ideia": "Com ângulo duplo, N + B = (mg/2)·(sen 2α, −cos 2α), um vetor de módulo mg/2; A é o oposto dele."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "N = mg·cos α",
+    "nota": "normal do objeto na rampa, sem atrito"
+   },
+   {
+    "linha": "B·L = mg·cos α·L/(2cos α) → B = mg/2",
+    "nota": "momentos em A"
+   },
+   {
+    "linha": "Ax = mg·cos α·sen α | Ay = mg·cos²α − mg/2",
+    "nota": "equilíbrio de forças"
+   },
+   {
+    "linha": "|A|² = (mg)²·[cos²α·sen²α + (cos²α − 1/2)²]",
+    "nota": "Pitágoras nas componentes"
+   },
+   {
+    "linha": "|A|² = (mg)²/4 → |A| = mg/2",
+    "nota": "a expressão entre colchetes vale 1/4"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Estratégia Vestibulares — gabarito IME 2025 (1ª fase, questão 23: B)",
+    "url": "https://vestibulares.estrategia.com/portal/enem-e-vestibulares/vestibulares/gabarito-ime-primeira-fase-vestibular"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0073"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [
+    {
+     "url": "https://vestibulares.estrategia.com/portal/enem-e-vestibulares/vestibulares/gabarito-ime-primeira-fase-vestibular",
+     "letra": "B"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0073"
+  }
+ },
+ "Pc5f97dfa": {
+  "n": "16",
+  "conceito": "Conservação da energia com engrenagens: a relação de velocidades entre as partículas define quem desce e a massa efetiva do sistema.",
+  "equivocos": {
+   "B": "F04.3:sentido-do-movimento-trocado",
+   "C": "F04.3:somou-as-energias-potenciais",
+   "D": "F04.3:relacao-de-engrenagens-errada",
+   "E": "F04.3:relacao-de-engrenagens-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro, ligue a velocidade das duas partículas pelas engrenagens: discos engrenados têm a mesma velocidade de borda, e discos concêntricos têm a mesma velocidade angular. Depois, veja quem desce: o sistema anda no sentido em que a energia potencial diminui. Por fim, iguale a energia potencial perdida à cinética ganha (discos sem massa).",
+    "formulas": [
+     "engrenados: ω1 × R1 = ω2 × R2",
+     "concêntricos: mesma ω",
+     "perda de energia potencial = energia cinética ganha ; u² = 2 a s"
+    ],
+    "simbolos": [
+     [
+      "ω",
+      "velocidade angular do disco"
+     ],
+     [
+      "u",
+      "velocidade da partícula 2m"
+     ],
+     [
+      "s",
+      "deslocamento da partícula 2m"
+     ]
+    ]
+   },
+   "pista": "Compare a velocidade da borda do disco A com a da borda do disco E antes de pensar em energia.",
+   "passos": [
+    {
+     "faz": "Ligue as velocidades pelas engrenagens",
+     "conta": "ωB = ωA × r/(2r) = ωA/2 = ωC → ωD = ωC × r/(3r) = ωA/6 = ωE",
+     "porque": "A-B e C-D são engrenados (mesma velocidade de borda); B-C e D-E são concêntricos (mesma ω).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare as velocidades das partículas",
+     "conta": "v_m = ωA × r ; v_2m = ωE × r = ωA r/6 → v_m = 6 × v_2m",
+     "porque": "Cada fio anda com a velocidade da borda do seu disco, os dois de raio r.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descubra quem desce",
+     "conta": "se 2m desce s, m sobe 6s: ΔU = −2mgs + 6mgs = +4mgs (impossível) → 2m sobe s, m desce 6s: ΔU = −4mgs",
+     "porque": "Pelos sentidos de giro (A horário → B, C anti-horário → D, E horário), quando m sobe, 2m desce, e vice-versa. O sistema só parte do repouso no sentido que perde energia potencial.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Iguale as energias",
+     "conta": "4mgs = m(6u)²/2 + 2m u²/2 = 19 m u² e u² = 2as → 4mgs = 38 m a s",
+     "porque": "A energia potencial perdida vira cinética das duas partículas; os discos não têm massa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a aceleração",
+     "conta": "a = 4g/38 = 2g/19, para cima (2m sobe, enrolando o fio)",
+     "porque": "O s e o m cancelam; a partícula maior sobe porque a menor, mesmo mais leve, desce 6 vezes mais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2/19 g, de baixo para cima (enrolando o fio).",
+   "checagem": "Por torques equivalentes: a força efetiva no lado de 2m é 6 × mg − 2mg = 4mg (o peso de m vale 6 vezes mais pela redução das engrenagens), e a massa efetiva é 2m + 36m = 38m: a = 4mg/(38m) = 2g/19, com 2m subindo.",
+   "erradas": {
+    "B": "Tem o módulo certo, mas o sentido trocado: se 2m descesse s, m subiria 6s e a energia potencial aumentaria em 4mgs, o que não acontece a partir do repouso.",
+    "C": "Sai de somar as energias potenciais (2mgs + 6mgs = 8mgs): 8mgs = 38 m a s → a = 4g/19. Uma sobe enquanto a outra desce: o saldo é 6mgs − 2mgs = 4mgs.",
+    "D": "Não confere: 4/11 g exigiria outra relação de velocidades; com v_m = 6 v_2m a massa efetiva é 38m e o resultado é 2/19 g.",
+    "E": "Não confere: o sentido está certo, mas 4/11 g não sai da relação 6 entre as velocidades; a conta dá 4mg/(38m) = 2g/19."
+   },
+   "armadilha": "Achar que a partícula mais pesada (2m) desce: pela redução das engrenagens, a menor desce 6 vezes mais e vence, puxando 2m para cima.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Módulo e sentido da aceleração da partícula 2m presa ao trem de engrenagens.",
+    "chave": "v_m = 6 v_2m; 4mgs = 19 m u² com u² = 2as → a = 2g/19, 2m sobe.",
+    "cuidado": "Decidir o sentido pela energia potencial: quem desce é quem faz o sistema perder energia."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "massa e força efetivas",
+    "ideia": "Refira tudo à partícula 2m: força 6mg − 2mg = 4mg e massa 36m + 2m = 38m, logo a = 2g/19."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ωB = ωA/2 = ωC ; ωD = ωE = ωA/6",
+    "nota": "engrenados: mesma velocidade de borda"
+   },
+   {
+    "linha": "v_m = 6 × v_2m",
+    "nota": "bordas de raio r em A e E"
+   },
+   {
+    "linha": "ΔU = −6mgs + 2mgs = −4mgs",
+    "nota": "m desce 6s, 2m sobe s"
+   },
+   {
+    "linha": "4mgs = m(6u)²/2 + 2m u²/2 = 19 m u²",
+    "nota": "energia cinética das partículas"
+   },
+   {
+    "linha": "4mgs = 19 m × 2as → a = 4g/38 = 2g/19",
+    "nota": "u² = 2as; o s e o m cancelam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0073"
+  },
+  "gabarito_aprendice": {
+   "letra": "A",
+   "letra_conferente": "A",
+   "preliminar": "A",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "fis-0073"
+  }
+ },
+ "P0729a463": {
+  "n": "26",
+  "conceito": "Órbita elíptica com o planeta num foco: a energia potencial é máxima no afastamento máximo (A + C) e mínima na menor distância (A − C).",
+  "equivocos": {
+   "A": "F06.3:somou-as-energias-em-vez-de-subtrair",
+   "B": "F06.3:perdeu-o-fator-2",
+   "C": "F06.3:fatorou-errado-a-diferenca-de-quadrados",
+   "E": "F06.3:expressao-falha-no-caso-circular"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As equações descrevem uma elipse centrada na origem, de semieixos A (em x) e B (em y). O planeta está em (C, 0), com C = √(A² − B²): é um foco da elipse. A energia potencial −GMm/r é menor (mais negativa) onde o satélite está mais perto e maior onde está mais longe.",
+    "formulas": [
+     "U = −G·M·m/r",
+     "distâncias ao foco: r_min = A − C e r_máx = A + C",
+     "(A − C)·(A + C) = A² − C² = B²"
+    ],
+    "simbolos": [
+     [
+      "U",
+      "energia potencial gravitacional"
+     ],
+     [
+      "A, B",
+      "semieixos da elipse em x e em y"
+     ],
+     [
+      "C",
+      "distância do centro da elipse ao foco, onde está o planeta"
+     ],
+     [
+      "r",
+      "distância entre satélite e centro do planeta"
+     ]
+    ]
+   },
+   "pista": "Descubra os pontos da elipse mais perto e mais longe de (C, 0).",
+   "passos": [
+    {
+     "faz": "Reconheça a elipse e o foco",
+     "conta": "x²/A² + y²/B² = 1 | planeta em (C, 0), C = √(A² − B²)",
+     "porque": "Elevando x/A = cos(ωt) e y/B = sen(ωt) ao quadrado e somando, sai a elipse; o ponto (C, 0) é o seu foco.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache as distâncias extremas",
+     "conta": "r_min = A − C (em x = A) | r_máx = A + C (em x = −A)",
+     "porque": "Os extremos do eixo maior são o ponto mais próximo e o mais distante do foco.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia as energias",
+     "conta": "ΔU = −GMm/(A + C) − (−GMm/(A − C)) → ΔU = GMm·(1/(A − C) − 1/(A + C)) → ΔU = GMm·2C/(A² − C²)",
+     "porque": "A maior energia é a do ponto mais distante (menos negativa); o mínimo comum das frações é (A − C)(A + C).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque A² − C² por B² e marque",
+     "conta": "A² − C² = B² → ΔU = 2CGmM/B²",
+     "porque": "Pela definição de C, A² − C² = B². É a expressão da alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 2 CGmM/B².",
+   "checagem": "Com A = 5, B = 3 e C = 4: 1/(5 − 4) − 1/(5 + 4) = 1 − 1/9 = 8/9, e 2·4/3² = 8/9. Bate. Caso extremo: órbita circular (A = B, C = 0) dá diferença zero, como deve ser.",
+   "erradas": {
+    "A": "Sai de somar em vez de subtrair: GMm·(1/(A − C) + 1/(A + C)) = 2AGmM/B². A diferença das energias pede a subtração.",
+    "B": "Não confere: é a metade da diferença certa; com A = 5, B = 3 e C = 4 daria 4/9, e a conta direta dá 8/9.",
+    "C": "Não confere: o produto (A − C)(A + C) vale B², não A²; com A = 5, B = 3, C = 4 daria 8/25 em vez de 8/9.",
+    "E": "Não confere: com A = 5, B = 3 e C = 4 daria 5/16, e a conta direta dá 8/9; no caso circular (C = 0) ela nem existe, quando a diferença tem de ser zero."
+   },
+   "armadilha": "Pôr o planeta no centro da elipse: ele está no foco (C, 0), e é isso que torna as distâncias A − C e A + C diferentes.",
+   "alerta": "O enunciado chama de 'modelo unidimensional' um movimento descrito por x(t) e y(t), que é plano; isso não muda a conta.",
+   "essencial": {
+    "pede": "A diferença entre a maior e a menor energia potencial do satélite na órbita elíptica.",
+    "chave": "ΔU = GMm·(1/(A − C) − 1/(A + C)) = 2CGmM/B², usando A² − C² = B².",
+    "cuidado": "O planeta está no foco: as distâncias extremas são A − C e A + C."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "números",
+    "ideia": "Escolha A = 5, B = 3, C = 4: ΔU/(GMm) = 1 − 1/9 = 8/9, e só a D dá 2·4/9 = 8/9."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "r_min = A − C | r_máx = A + C",
+    "nota": "extremos do eixo maior"
+   },
+   {
+    "linha": "ΔU = GMm·(1/(A − C) − 1/(A + C))",
+    "nota": "maior menos menor"
+   },
+   {
+    "linha": "ΔU = GMm·2C/(A² − C²)",
+    "nota": "mínimo comum"
+   },
+   {
+    "linha": "ΔU = 2CGmM/B²",
+    "nota": "A² − C² = B²: alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  }
+ },
+ "P5d71170c": {
+  "n": "18",
+  "conceito": "Manômetro de mercúrio com gás preso: Stevin dá a pressão do gás e a lei de Boyle (temperatura constante) liga as duas situações.",
+  "equivocos": {
+   "A": "F07.2:coluna-inicial-tomada-como-50-cm",
+   "B": "F07.2:valor-que-nao-satisfaz-boyle",
+   "C": "F07.2:valor-que-nao-satisfaz-boyle",
+   "E": "F07.2:gas-comprimido-tratado-a-pressao-atmosferica"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O gás está preso no ramo fechado, e o mercúrio separa esse gás do ar. Em cada figura, a pressão do gás é a atmosférica mais o desnível de mercúrio entre os dois ramos, em cmHg. Como a temperatura não muda, pressão × comprimento da coluna de gás fica constante (o tubo tem seção constante, então o comprimento faz o papel do volume). As graduações lidas na régua, e não os números soltos, dão os comprimentos.",
+    "formulas": [
+     "p_gás = p_atm + desnível de Hg (em cmHg), quando o ramo aberto está mais alto",
+     "Boyle: p₁ · L₁ = p₂ · L₂ (T constante)"
+    ],
+    "simbolos": [
+     [
+      "cmHg",
+      "centímetro de mercúrio: pressão de uma coluna de 1 cm de mercúrio"
+     ],
+     [
+      "p_atm",
+      "pressão atmosférica, 70 cmHg segundo o enunciado"
+     ],
+     [
+      "L",
+      "comprimento da coluna de gás, lido na graduação"
+     ],
+     [
+      "Boyle",
+      "lei de Boyle: em temperatura constante, p · V é constante"
+     ]
+    ]
+   },
+   "pista": "Comece pela Figura 1: leia onde o gás começa e termina e o desnível entre os dois ramos de mercúrio.",
+   "passos": [
+    {
+     "faz": "Ache a pressão inicial do gás",
+     "conta": "desnível: 7 − 5 = 2 cm → p₁ = 70 + 2 = 72 cmHg",
+     "porque": "O mercúrio do ramo aberto está 2 cm acima do mercúrio do lado do gás; por Stevin, o gás aguenta a atmosfera mais essa coluna.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia os comprimentos da coluna de gás",
+     "conta": "L₁ = 50 − 5 = 45 cm | L₂ = 50 − 10 = 40 cm",
+     "porque": "O gás vai da graduação 50 (topo fechado) até o mercúrio: 5 na Figura 1 e 10 na Figura 2.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique Boyle",
+     "conta": "72 · 45 = p₂ · 40 → p₂ = (72 · 45)/40 → p₂ = 81 cmHg",
+     "porque": "A temperatura ficou constante e não houve vazamento: o produto pressão × volume se conserva, e o volume é proporcional ao comprimento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte a Stevin para achar x",
+     "conta": "81 = 70 + (x − 10) → x − 10 = 11 → x = 21 cm",
+     "porque": "Na Figura 2 o desnível de mercúrio é x − 10, e ele precisa equilibrar a diferença entre a pressão do gás e a atmosférica.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "x = 21 cm → alternativa D",
+     "porque": "É o único valor que satisfaz Boyle e Stevin ao mesmo tempo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — x = 21 cm",
+   "checagem": "Substitua de volta: com x = 21, o desnível é 11 cm e p₂ = 81 cmHg; 81 × 40 = 3 240 e 72 × 45 = 3 240. O produto p·L fecha igual nas duas figuras.",
+   "erradas": {
+    "A": "Sai de usar 50 cm (a graduação do topo) como coluna inicial de gás e 40 cm como final: 72 · 50/40 = 90 cmHg, desnível 20 cm, x = 30.",
+    "B": "Não confere: com x = 15 o desnível é 5 cm, p₂ = 75 cmHg, e 75 × 40 = 3 000, diferente de 72 × 45 = 3 240.",
+    "C": "Não confere: com x = 42 o desnível é 32 cm, p₂ = 102 cmHg, e 102 × 40 = 4 080, muito acima de 3 240.",
+    "E": "x = 10 deixaria os dois ramos no mesmo nível, com o gás em 70 cmHg; mas o gás foi comprimido de 45 para 40 cm, então sua pressão subiu acima de 72 cmHg."
+   },
+   "armadilha": "Tomar a graduação do topo (50) como comprimento da coluna de gás: o gás começa na graduação 5 (Figura 1) e 10 (Figura 2), então L₁ = 45 cm e L₂ = 40 cm.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A graduação x do mercúrio no ramo aberto depois de se acrescentar mercúrio ao manômetro.",
+    "chave": "p₁ = 72 cmHg com L₁ = 45 cm; Boyle dá p₂ = 81 cmHg com L₂ = 40 cm; Stevin: 81 = 70 + (x − 10), x = 21.",
+    "cuidado": "Ler os comprimentos pela graduação (50 − 5 e 50 − 10) e somar o desnível à pressão atmosférica."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Para cada x, calcule p₂ = 70 + (x − 10) e veja qual faz p₂ × 40 = 72 × 45 = 3 240: só x = 21."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p₁ = 70 + (7 − 5) = 72 cmHg",
+    "nota": "Stevin na Figura 1"
+   },
+   {
+    "linha": "72 · 45 = p₂ · 40",
+    "nota": "Boyle com L₁ = 45 e L₂ = 40"
+   },
+   {
+    "linha": "p₂ = (72 · 45)/40 = 81 cmHg",
+    "nota": "o 40 passa dividindo"
+   },
+   {
+    "linha": "81 = 70 + (x − 10)",
+    "nota": "Stevin na Figura 2"
+   },
+   {
+    "linha": "x = 21 cm",
+    "nota": "o 70 passa subtraindo e o −10 passa somando"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  }
+ },
+ "Pd59979ac": {
+  "n": "20",
+  "conceito": "Flutuação de um prisma de seção triangular com o vértice para baixo: a parte submersa é um prisma triangular semelhante, de volume proporcional a h², e sua água deslocada iguala a massa das chapas e da carga.",
+  "equivocos": {
+   "B": "F07.4:empuxo-maior-que-peso",
+   "C": "F07.4:empuxo-maior-que-peso",
+   "D": "F07.4:empuxo-maior-que-peso",
+   "E": "F07.4:empuxo-maior-que-peso"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A estrutura flutua: massa total = massa de água deslocada. A massa das chapas é a área × 8 kg/m²; a chapa de cima não pesa. A carga cúbica tem massa 240 × (0,5L)³. A parte submersa é um triângulo equilátero menor, de altura h, estendido pelo comprimento 6L. O dado 6/(5√3) ≈ 0,68 é exatamente o coeficiente desse volume quando L = 0,2 m.",
+    "formulas": [
+     "m = σ × área (chapas) e m = ρ × V (carga)",
+     "triângulo equilátero de altura h: lado = 2h/√3, área = h²/√3",
+     "V_sub = 6L × h²/√3",
+     "ρ_água × V_sub = m_total"
+    ],
+    "simbolos": [
+     [
+      "σ",
+      "massa específica superficial das chapas: 8 kg por m²"
+     ],
+     [
+      "h",
+      "profundidade do vértice abaixo da linha d'água"
+     ],
+     [
+      "V_sub",
+      "volume submerso"
+     ]
+    ]
+   },
+   "pista": "Trabalhe em metros (L = 0,2 m) e escreva a área do triângulo submerso só em função da altura h.",
+   "passos": [
+    {
+     "faz": "Calcule a massa das chapas",
+     "conta": "área = 2 × 6L × L + 2 × (√3/4) L² → área = 12 × 0,04 + (1,7/2) × 0,04 = 0,48 + 0,034 = 0,514 m² | m = 8 × 0,514 = 4,112 kg",
+     "porque": "São duas chapas retangulares 6L × L e duas triangulares de lado L; a superior tem massa desprezível.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a massa da carga",
+     "conta": "m_c = 240 × (0,5 × 0,2)³ = 240 × 0,001 = 0,24 kg",
+     "porque": "A carga é um cubo de aresta 0,1 m; massa é densidade vezes volume.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva o volume submerso",
+     "conta": "área do triângulo = (1/2) × (2h/√3) × h = h²/√3 → V_sub = 6 × 0,2 × h²/√3 = (6/(5√3)) h² ≈ 0,68 h²",
+     "porque": "A parte submersa é um triângulo equilátero menor, semelhante à seção; altura h dá lado 2h/√3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale à massa total e isole h",
+     "conta": "1000 × 0,68 h² = 4,112 + 0,24 → 680 h² = 4,352 → h² = 4,352/680 = 0,0064 → h = 0,08 m",
+     "porque": "Flutuando, empuxo = peso; o 680 que multiplica h² passa dividindo, e a raiz de 0,0064 é 0,08.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta e conclua",
+     "conta": "0,08 m = 8 cm",
+     "porque": "A pergunta pede centímetros: é a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — h ≈ 8 cm.",
+   "checagem": "Substitua h = 0,08 m: 680 × 0,08² = 680 × 0,0064 = 4,352 kg de água deslocada, igual à massa total. Com √3 exato em tudo (sem o 0,68), h ≈ 7,9 cm, que também arredonda para 8.",
+   "erradas": {
+    "B": "10 não confere: 680 × 0,10² = 6,8 kg de água deslocada, bem mais que os 4,35 kg da estrutura.",
+    "C": "12 não confere: 680 × 0,12² ≈ 9,8 kg deslocados, mais que o dobro da massa da estrutura.",
+    "D": "14 não confere: 680 × 0,14² ≈ 13,3 kg deslocados, cerca de três vezes a massa da estrutura.",
+    "E": "16 não confere: 680 × 0,16² ≈ 17,4 kg deslocados, quatro vezes a massa da estrutura."
+   },
+   "armadilha": "Tratar a parte submersa como retângulo (largura fixa L): no prisma com vértice para baixo, a largura molhada cresce com h, e o volume é proporcional a h², não a h.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A profundidade h que a estrutura afunda na água.",
+    "chave": "1000 × (6/(5√3)) h² = 4,112 + 0,24 → h² = 0,0064 m² → h = 8 cm.",
+    "cuidado": "Área do triângulo submerso = h²/√3, com L em metros e só quatro chapas com massa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "semelhança",
+    "ideia": "O volume submerso é o do prisma inteiro (6L × (√3/4)L² ≈ 0,0204 m³, ou 20,4 kg de água) vezes (h/H)², com H = (√3/2) × 0,2 ≈ 0,17 m: 20,4 × (h/0,17)² = 4,352 dá h ≈ 7,9 cm ≈ 8 cm."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m_chapas = 8 × (0,48 + 0,034) = 4,112 kg",
+    "nota": "duas retangulares + duas triangulares"
+   },
+   {
+    "linha": "m_carga = 240 × 0,1³ = 0,24 kg",
+    "nota": "cubo de 0,1 m"
+   },
+   {
+    "linha": "V_sub = 6L × h²/√3 = 0,68 h²",
+    "nota": "triângulo submerso de altura h"
+   },
+   {
+    "linha": "680 h² = 4,352",
+    "nota": "empuxo = peso"
+   },
+   {
+    "linha": "h² = 4,352/680 = 0,0064 → h = 0,08 m",
+    "nota": "o 680 passa dividindo; raiz"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Estratégia Militares — gabarito/correção da 1ª fase do IME 2024/2025, questão 20: A",
+    "url": "https://militares.estrategia.com/portal/eventos/gabarito-ime-2024-2025-correcao-primeira-fase/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  },
+  "gabarito_aprendice": {
+   "letra": "A",
+   "letra_conferente": "A",
+   "preliminar": "A",
+   "fontes_web": [
+    {
+     "url": "https://militares.estrategia.com/portal/eventos/gabarito-ime-2024-2025-correcao-primeira-fase/",
+     "letra": "A"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0074"
+  }
+ },
+ "P4cea0727": {
+  "n": "28",
+  "conceito": "Objeto muito distante: a imagem fica no foco; variar n muda f, e a aproximação (1 − x)⁻¹ ≈ 1 + x dá a variação da posição da imagem.",
+  "equivocos": {
+   "A": "F09.5:usou-n-no-lugar-de-n-menos-1",
+   "B": "F09.5:sinal-da-variacao-trocado",
+   "D": "F09.5:denominador-n-ao-quadrado-menos-1",
+   "E": "F09.5:denominador-n-ao-quadrado-menos-1"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com o objeto muito distante, os raios chegam paralelos e a imagem se forma no foco: a posição da imagem é i = f. Logo a variação pedida é a variação da distância focal. Como f é proporcional a 1/(n − 1), aumentar n aumenta a vergência e encurta f: o sinal de Δi tem de ser negativo para Δn > 0.",
+    "formulas": [
+     "f = k/(n − 1) (k: constante da geometria da lente)",
+     "objeto no infinito: i = f",
+     "(1 − x)⁻¹ ≈ 1 + x, para |x| ≪ 1"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "índice de refração do material da lente"
+     ],
+     [
+      "Δn",
+      "variação ínfima do índice"
+     ],
+     [
+      "i",
+      "posição da imagem, medida a partir da lente"
+     ],
+     [
+      "Δi",
+      "variação da posição da imagem"
+     ],
+     [
+      "k",
+      "constante que depende só dos raios de curvatura"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra onde fica a imagem de um objeto muito distante; depois escreva o novo f com n + Δn.",
+   "passos": [
+    {
+     "faz": "Localize a imagem",
+     "conta": "objeto no infinito → i = f = k/(n − 1)",
+     "porque": "Raios paralelos ao eixo convergem no foco da lente convergente.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva o novo foco",
+     "conta": "f' = k/(n + Δn − 1) → f' = k/[(n − 1)(1 + Δn/(n − 1))] → f' = f · (1 + Δn/(n − 1))⁻¹",
+     "porque": "Pôr (n − 1) em evidência isola f e deixa um fator perto de 1, pronto para a aproximação dada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a aproximação",
+     "conta": "(1 + Δn/(n − 1))⁻¹ ≈ 1 − Δn/(n − 1) → f' ≈ f − fΔn/(n − 1)",
+     "porque": "É a observação do enunciado com x = −Δn/(n − 1), que é muito pequeno porque Δn é ínfimo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule Δi",
+     "conta": "Δi = f' − f → Δi ≈ −fΔn/(n − 1)",
+     "porque": "A imagem continua no foco, então a variação da imagem é a variação do foco.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "Δi ≈ −fΔn/(n − 1) → alternativa C",
+     "porque": "Sinal negativo: com n maior, a lente converge mais e a imagem se aproxima dela.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — Δi ≈ −fΔn/(n − 1).",
+   "checagem": "Teste com números: n = 1,5, f = 10 cm e Δn = 0,001. Exato: f' = 10 · 0,5/0,501 ≈ 9,98004 cm, Δi ≈ −0,01996 cm. Pela fórmula: −10 · 0,001/0,5 = −0,02 cm. Bate.",
+   "erradas": {
+    "A": "Não confere: o denominador seria n, mas f depende de (n − 1); além disso o sinal positivo diz que a imagem se afasta, e ela se aproxima quando n cresce.",
+    "B": "Sinal trocado: o módulo está certo, mas com n maior a vergência aumenta, f diminui e a imagem se aproxima da lente; Δi é negativo.",
+    "D": "Não confere: (n² − 1) apareceria se f dependesse de 1/(n² − 1); o enunciado diz que f é proporcional a (n − 1)⁻¹. No teste n = 1,5, f = 10 cm, Δn = 0,001, D dá −0,008 cm, e o certo é −0,02 cm.",
+    "E": "Não confere: tem o denominador (n² − 1), que não vem de f ∝ (n − 1)⁻¹, e o sinal positivo, que contradiz a imagem se aproximando."
+   },
+   "armadilha": "Esquecer o sinal: aumentar n encurta a distância focal, então Δi é negativo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A variação da posição da imagem de um objeto distante quando n passa a n + Δn.",
+    "chave": "Imagem no foco; f' = f(1 + Δn/(n − 1))⁻¹ ≈ f(1 − Δn/(n − 1)), logo Δi ≈ −fΔn/(n − 1).",
+    "cuidado": "Usar (n − 1), não n, e conferir o sinal: n maior, foco mais curto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "derivada",
+    "ideia": "df/dn = −k/(n − 1)² = −f/(n − 1), logo Δi = Δf ≈ −fΔn/(n − 1)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i = f = k/(n − 1)",
+    "nota": "objeto no infinito: imagem no foco"
+   },
+   {
+    "linha": "f' = k/(n − 1 + Δn)",
+    "nota": "troca n por n + Δn"
+   },
+   {
+    "linha": "f' = f · (1 + Δn/(n − 1))⁻¹",
+    "nota": "(n − 1) em evidência"
+   },
+   {
+    "linha": "f' ≈ f · (1 − Δn/(n − 1))",
+    "nota": "(1 − x)⁻¹ ≈ 1 + x, com x = −Δn/(n − 1)"
+   },
+   {
+    "linha": "Δi = f' − f ≈ −fΔn/(n − 1)",
+    "nota": "a imagem acompanha o foco"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
+ },
+ "Pa0db8474": {
+  "n": "24",
+  "conceito": "Caminho óptico num meio de índice variável (integral de n dx) e condição de interferência destrutiva com atraso de meio comprimento de onda.",
+  "equivocos": {
+   "A": "F10.3:valor-nao-confere-com-o-atraso",
+   "B": "F10.3:valor-nao-confere-com-o-atraso",
+   "C": "F10.3:valor-nao-confere-com-o-atraso",
+   "D": "F10.3:sinal-trocado-na-raiz"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O feixe que cruza o bloco percorre o mesmo L que o outro, mas com caminho óptico maior: como n muda com x, o caminho óptico é a soma de n·dx ao longo do bloco (uma integral). A interferência é destrutiva quando o atraso vale meio comprimento de onda, e o menor L corresponde exatamente a λ/2.",
+    "formulas": [
+     "caminho óptico = ∫₀ᴸ n(x) dx",
+     "atraso = ∫₀ᴸ n(x) dx − L",
+     "destrutiva (menor L): atraso = λ/2"
+    ],
+    "simbolos": [
+     [
+      "n(x)",
+      "índice de refração no ponto x do bloco"
+     ],
+     [
+      "∫",
+      "integral: soma de n·dx de x = 0 a x = L"
+     ],
+     [
+      "L",
+      "comprimento do bloco"
+     ],
+     [
+      "λ",
+      "comprimento de onda no vácuo"
+     ]
+    ]
+   },
+   "pista": "Escreva o caminho óptico como a integral de n(x) e tire a raiz de 2L para fora.",
+   "passos": [
+    {
+     "faz": "Monte o caminho óptico no bloco",
+     "conta": "∫₀ᴸ √(2L/(L + x)) dx → √(2L) · ∫₀ᴸ (L + x)^(−1/2) dx",
+     "porque": "O 2L é constante para a integral, então sai da raiz.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Integre",
+     "conta": "√(2L) · 2 · (√(2L) − √L) → 4L − 2√2 · L → L · (4 − 2√2)",
+     "porque": "A primitiva de (L + x)^(−1/2) é 2√(L + x), avaliada de x = 0 (√L) a x = L (√(2L)).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte o caminho do outro feixe",
+     "conta": "atraso = L · (4 − 2√2) − L → atraso = L · (3 − 2√2)",
+     "porque": "O feixe de cima anda L no vácuo, com caminho óptico L.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha a destrutiva de menor L",
+     "conta": "L · (3 − 2√2) = λ/2 → L = λ/(2 · (3 − 2√2))",
+     "porque": "Destrutiva pede atraso de (k + 1/2)·λ; o menor L vem de k = 0.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — L = λ/(2(3 − 2√2)).",
+   "checagem": "Com λ = 1, L = 1/(2 · 0,1716) ≈ 2,914; a integral numérica de √(2L/(L + x)) de 0 a L dá ≈ 3,414, e 3,414 − 2,914 = 0,500 = λ/2. Ainda: n vai de √2 ≈ 1,41 a 1, então o índice médio ≈ 1,17 está entre os dois, como deve.",
+   "erradas": {
+    "A": "Não confere: com L = λ/(2(2 + 3√2)) ≈ 0,080λ, o atraso L · (3 − 2√2) ≈ 0,014λ, longe de λ/2.",
+    "B": "Não confere: com L = λ/(3(2√2 − 2)) ≈ 0,402λ, o atraso L · (3 − 2√2) ≈ 0,069λ, não λ/2.",
+    "C": "Não confere: com L = λ/(3(2 − √2)) ≈ 0,569λ, o atraso L · (3 − 2√2) ≈ 0,098λ, não λ/2.",
+    "D": "Não confere: tem o sinal trocado no denominador; L = λ/(2(3 + 2√2)) ≈ 0,086λ dá atraso L · (3 − 2√2) ≈ 0,015λ, não λ/2."
+   },
+   "armadilha": "Esquecer de descontar o caminho L do feixe que vai pelo vácuo: a interferência depende do atraso L · (3 − 2√2), não do caminho óptico inteiro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor comprimento L do bloco para interferência destrutiva.",
+    "chave": "Caminho óptico ∫ n dx = L · (4 − 2√2); atraso L · (3 − 2√2) = λ/2.",
+    "cuidado": "Integrar n(x) em vez de usar um índice fixo e subtrair o caminho do outro feixe."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo tempo",
+    "ideia": "Atraso de tempo = (1/c)·(∫ n dx − L); destrutiva quando ele vale meio período, λ/(2c): dá a mesma equação L·(3 − 2√2) = λ/2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "∫₀ᴸ √(2L/(L + x)) dx = √(2L) · 2 · (√(2L) − √L)",
+    "nota": "primitiva 2√(L + x)"
+   },
+   {
+    "linha": "= L · (4 − 2√2)",
+    "nota": "caminho óptico no bloco"
+   },
+   {
+    "linha": "atraso = L · (4 − 2√2) − L = L · (3 − 2√2)",
+    "nota": "desconta o feixe livre"
+   },
+   {
+    "linha": "L · (3 − 2√2) = λ/2 → L = λ/(2(3 − 2√2))",
+    "nota": "destrutiva, menor L"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  },
+  "gabarito_aprendice": {
+   "letra": "E",
+   "letra_conferente": "E",
+   "preliminar": "E",
+   "fontes_web": [
+    {
+     "url": "https://militares.estrategia.com/public/questoes/Dois-feixes-luz-fase91fe65d63c",
+     "letra": null
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
+ },
+ "P5fb1646c": {
+  "n": "21",
+  "conceito": "Doppler com fonte em lançamento oblíquo: a frequência percebida depende da componente da velocidade da fonte na direção do observador (aproxima: maior; afasta: menor; perpendicular: igual).",
+  "equivocos": {
+   "B": "F10.7:mesma-altura-mesma-frequencia",
+   "C": "F10.7:frequencia-maxima-no-topo",
+   "D": "F10.7:afastamento-aumenta-frequencia",
+   "E": "F10.7:mesma-altura-mesma-frequencia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com a fonte bem mais lenta que o som, o que muda a frequência é a componente da velocidade da fonte na linha que a liga ao observador. Aproximando, a frequência sobe; afastando, cai; com a velocidade perpendicular a essa linha, não há Doppler. No lançamento oblíquo, a componente horizontal da velocidade é constante, e a vertical muda de sentido no topo.",
+    "formulas": [
+     "fonte lenta: f ≈ ff · (1 + v_r/c), v_r = componente da velocidade na direção do observador",
+     "lançamento: vx constante, vy = 0 no ponto mais alto"
+    ],
+    "simbolos": [
+     [
+      "ff",
+      "frequência emitida pela fonte"
+     ],
+     [
+      "v_r",
+      "componente da velocidade da fonte apontando para o observador (positiva quando aproxima)"
+     ],
+     [
+      "c",
+      "velocidade do som"
+     ],
+     [
+      "vx, vy",
+      "componentes horizontal e vertical da velocidade da fonte"
+     ]
+    ]
+   },
+   "pista": "Em cada ponto, decomponha a velocidade da fonte na direção do observador o.",
+   "passos": [
+    {
+     "faz": "Analise o ponto 3",
+     "conta": "no topo: v horizontal | linha 3 → o vertical → v_r = 0 → f3 = ff",
+     "porque": "No ponto mais alto só resta vx, perpendicular à linha que desce até o observador, logo não há aproximação nem afastamento.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Compare os pontos 1 e 2",
+     "conta": "ponto 1: linha 1 → o horizontal → v_r = vx | ponto 2: v_r = vx · cos α − vy · sen α < vx",
+     "porque": "Em 1, a linha até o observador é horizontal e toda a vx aproxima. Em 2, a linha desce (ângulo α com a horizontal) e a vy para cima afasta um pouco: a aproximação é menor, mas ainda positiva na trajetória da figura.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Compare os pontos 4 e 5 por simetria",
+     "conta": "ponto 4: v_r = −(vx · cos α − vy · sen α) | ponto 5: v_r = −vx",
+     "porque": "A descida é o espelho da subida: as mesmas componentes passam a afastar a fonte, e o afastamento é máximo em 5.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ordene as frequências e marque",
+     "conta": "v_r: 1 > 2 > 3 = 0 > 4 > 5 → f1 ≥ f2 ≥ f3 = ff ≥ f4 ≥ f5",
+     "porque": "Quanto maior a aproximação, maior a frequência; o ponto 3 é a fronteira em que f = ff.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — f1 ≥ f2 ≥ f3 = ff ≥ f4 ≥ f5.",
+   "checagem": "Teste qualitativo: a fonte chega ao observador pela esquerda e vai embora pela direita, como uma sirene que passa. Antes de passar, frequências acima de ff; na passagem (ponto 3), ff; depois, abaixo de ff. Só a alternativa A tem essa forma.",
+   "erradas": {
+    "B": "Põe f1 = f5, mas em 1 a fonte se aproxima com vx e em 5 se afasta com vx: f1 > ff > f5. A simetria das alturas não iguala as frequências.",
+    "C": "Põe f1 = f5 e f3 como a maior, mas em 3 não há aproximação (f3 = ff), enquanto em 1 a fonte se aproxima: f1 > f3.",
+    "D": "Põe f5 ≥ ff, mas em 5 a fonte se afasta do observador com vx, então f5 < ff.",
+    "E": "Põe f2 = f4, mas em 2 a fonte se aproxima e em 4 se afasta com a mesma componente: f2 > ff > f4."
+   },
+   "armadilha": "Achar que pontos de mesma altura (1 e 5, 2 e 4) dão a mesma frequência: a altura é igual, mas um lado aproxima e o outro afasta.",
+   "alerta": "A ordem f2 ≥ f3 e f3 ≥ f4 vale para a trajetória da figura, em que a parábola é mais larga que alta: ali a fonte ainda se aproxima do observador no ponto 2.",
+   "essencial": {
+    "pede": "A ordem das frequências percebidas em cinco pontos de um lançamento oblíquo, com o observador sob o topo.",
+    "chave": "Só conta a componente da velocidade na direção do observador: aproxima em 1 e 2, perpendicular em 3, afasta em 4 e 5.",
+    "cuidado": "Mesma altura não é mesma frequência: subida aproxima, descida afasta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sirene que passa",
+    "ideia": "A fonte passa pelo observador como uma sirene: antes da passagem, acima de ff; na passagem (ponto 3), ff; depois, abaixo de ff."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f ≈ ff · (1 + v_r/c)",
+    "nota": "fonte lenta"
+   },
+   {
+    "linha": "ponto 1: v_r = vx; ponto 2: v_r = vx · cos α − vy · sen α",
+    "nota": "aproxima, cada vez menos"
+   },
+   {
+    "linha": "ponto 3: v_r = 0 → f3 = ff",
+    "nota": "velocidade perpendicular à linha"
+   },
+   {
+    "linha": "pontos 4 e 5: v_r < 0, mais negativo em 5",
+    "nota": "afasta"
+   },
+   {
+    "linha": "f1 ≥ f2 ≥ f3 = ff ≥ f4 ≥ f5",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  },
+  "gabarito_aprendice": {
+   "letra": "A",
+   "letra_conferente": "A",
+   "preliminar": "A",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "fis-0075"
+  }
+ },
+ "P877ce3aa": {
+  "n": "17",
+  "conceito": "Equilíbrio de uma carga sob três forças de Coulomb: soma vetorial das forças e tração que as equilibra.",
+  "equivocos": {
+   "A": "F11.2:somou-modulos-de-vetores",
+   "B": "F11.2:esqueceu-a-raiz",
+   "D": "F11.2:so-uma-componente",
+   "E": "F11.2:modulo-menor-que-componente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A partícula pendurada é a +q do canto inferior direito; as outras três estão fixas. Sobre ela agem três forças elétricas e a tração. A questão não dá a massa e nenhuma alternativa tem m·g, então o peso fica de fora: a tração equilibra só a resultante elétrica. Chame F₀ = kq²/L², a força entre duas cargas q a distância L.",
+    "formulas": [
+     "F = k·q·q/d²",
+     "F₀ = kq²/L²",
+     "T = |F resultante|"
+    ],
+    "simbolos": [
+     [
+      "k",
+      "constante elétrica do meio"
+     ],
+     [
+      "L",
+      "lado do quadrado"
+     ],
+     [
+      "F₀",
+      "força entre duas cargas q separadas por L"
+     ],
+     [
+      "T",
+      "tração no fio"
+     ]
+    ]
+   },
+   "pista": "Ponha eixos na partícula pendurada e escreva cada força como componentes x e y antes de somar.",
+   "passos": [
+    {
+     "faz": "Liste as três forças na partícula",
+     "conta": "+q de cima: F₀ para baixo | −q à esquerda: F₀ para a esquerda | +q na diagonal: F₀/2 para fora, a 45°",
+     "porque": "Cargas iguais se repelem e opostas se atraem; a diagonal mede L√2, então a força dela é kq²/(2L²) = F₀/2.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some as componentes horizontais",
+     "conta": "Fx = −F₀ + (F₀/2)·(√2/2) → Fx = −F₀·(1 − √2/4) ≈ −0,646 F₀",
+     "porque": "A atração da −q puxa para a esquerda e a parte horizontal da repulsão diagonal empurra para a direita.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as componentes verticais",
+     "conta": "Fy = −F₀ − (F₀/2)·(√2/2) → Fy = −F₀·(1 + √2/4) ≈ −1,354 F₀",
+     "porque": "A repulsão da carga de cima e a parte vertical da diagonal apontam ambas para baixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o módulo da resultante",
+     "conta": "F² = F₀²·[(1 − √2/4)² + (1 + √2/4)²] → F² = F₀²·(2 + 2·(1/8)) = (9/4)·F₀² → F = (3/2)·F₀",
+     "porque": "Na soma dos quadrados, os termos cruzados ±√2/2 se cancelam e sobra 2 + 1/4 = 9/4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale a tração à resultante",
+     "conta": "T = (3/2)·kq²/L²",
+     "porque": "A partícula está em equilíbrio: o fio puxa com força oposta e de mesmo módulo que a resultante elétrica.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a tração no fio é (3/2)·kq²/L².",
+   "checagem": "Direção: a tração tem componentes 0,646 F₀ para a direita e 1,354 F₀ para cima, ou seja, aponta para cima e para a direita, como o fio da figura. Unidade: kq²/L² é força (N), e o fator 1,5 fica entre 1,354 (só a vertical) e a soma dos módulos 2,5, como deve.",
+   "erradas": {
+    "A": "2 sai de somar os módulos das duas forças dos vizinhos de lado (F₀ + F₀) como se tivessem a mesma direção, esquecendo a diagonal; elas são perpendiculares.",
+    "B": "9/4 é F²/F₀², o quadrado da resultante: faltou tirar a raiz, √(9/4) = 3/2.",
+    "D": "(4 + √2)/4 = 1 + √2/4 é só a componente vertical da resultante; faltou compor com a horizontal 1 − √2/4.",
+    "E": "(2 + √2)/4 ≈ 0,854 não confere: é menor que a componente vertical sozinha, 1,354 F₀, e o módulo de um vetor nunca é menor que uma de suas componentes."
+   },
+   "armadilha": "Parar numa componente ou somar módulos: as forças têm direções diferentes e precisam ser compostas.",
+   "alerta": "A questão não dá a massa da partícula; como nenhuma alternativa tem m·g, o peso é tratado como desprezível e a tração equilibra só as forças elétricas.",
+   "essencial": {
+    "pede": "A tração no fio que segura a carga pendurada em equilíbrio.",
+    "chave": "Fx = −F₀(1 − √2/4), Fy = −F₀(1 + √2/4), F² = (9/4)F₀², T = (3/2)·kq²/L².",
+    "cuidado": "A força da diagonal usa distância L√2 (vale F₀/2) e entra decomposta a 45°."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "forças de lado primeiro",
+    "ideia": "Os dois vizinhos dão F₀√2 a 45° (para baixo e para a esquerda); a diagonal F₀/2 faz 90° com isso, então T = √(2F₀² + F₀²/4) = (3/2)F₀."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "F₀ = kq²/L²; diagonal: kq²/(2L²) = F₀/2",
+    "nota": "módulos das forças"
+   },
+   {
+    "linha": "Fx = −F₀ + (F₀/2)(√2/2) = −F₀(1 − √2/4)",
+    "nota": "soma horizontal"
+   },
+   {
+    "linha": "Fy = −F₀ − (F₀/2)(√2/2) = −F₀(1 + √2/4)",
+    "nota": "soma vertical"
+   },
+   {
+    "linha": "F² = F₀²(2 + 1/4) = (9/4)F₀²",
+    "nota": "cruzados se cancelam"
+   },
+   {
+    "linha": "T = F = (3/2)·kq²/L²",
+    "nota": "tração equilibra"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  }
+ },
+ "Pb9b4cfe3": {
+  "n": "30",
+  "conceito": "Condições físicas do campo de uma distribuição volumétrica esférica: campo nulo no centro e contínuo na superfície sem carga superficial.",
+  "equivocos": {
+   "A": "F11.2:campo-nao-nulo-no-centro",
+   "B": "F11.2:campo-nao-nulo-no-centro",
+   "D": "F11.2:sinal-trocado-ao-isolar",
+   "E": "F11.2:raiz-fora-da-condicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Duas condições físicas amarram a função. No centro, por simetria, o campo radial tem de ser nulo. Na superfície r = R, como a carga é só volumétrica (não há camada de carga na superfície), o campo não pode saltar: o valor de dentro tem de bater com o de fora, que é 0. A primeira condição dá R, e com R se acha A.",
+    "formulas": [
+     "E(0) = 0 (simetria no centro)",
+     "E(R) de dentro = E(R) de fora = 0 (sem carga superficial)"
+    ],
+    "simbolos": [
+     [
+      "E(r)",
+      "campo radial a uma distância r do centro"
+     ],
+     [
+      "R",
+      "raio da esfera"
+     ],
+     [
+      "A",
+      "constante a determinar"
+     ]
+    ]
+   },
+   "pista": "Comece pela superfície: cos(3π/2) zera o termo com A, e o que sobra decide o raio.",
+   "passos": [
+    {
+     "faz": "Imponha campo contínuo na superfície",
+     "conta": "E(R) = A·cos(3π/2) + (2 − R)²/R − 1 = 0 → (2 − R)²/R − 1 = 0",
+     "porque": "Sem carga na superfície, o campo de dentro em r = R precisa igualar o de fora, que é zero; cos(3π/2) = 0 elimina o A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para o raio",
+     "conta": "(2 − R)² = R → R² − 5R + 4 = 0 → R = 1 m ou R = 4 m",
+     "porque": "A observação R < 3 m descarta R = 4 m, então R = 1 m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha campo nulo no centro",
+     "conta": "E(0) = A·cos 0 + (2 − 0)²/R − 1 = 0 → A + 4/R − 1 = 0",
+     "porque": "No centro todas as direções radiais são equivalentes; um campo radial não nulo ali não teria direção definida.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua R = 1 m",
+     "conta": "A + 4/1 − 1 = 0 → A = −3 V/m",
+     "porque": "Com o raio fixado pela superfície, sobra uma equação de primeiro grau em A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — A = −3 V/m.",
+   "checagem": "Com A = −3 e R = 1: E(0) = −3 + 4 − 1 = 0 e E(1) = −3·cos(3π/2) + 1 − 1 = 0. As duas condições fecham, e E = 0 fora da esfera é compatível com carga total nula.",
+   "erradas": {
+    "A": "−2 não confere: com R = 1 m, E(0) = −2 + 4 − 1 = 1 V/m, campo não nulo no centro.",
+    "B": "2 não confere: E(0) = 2 + 4 − 1 = 5 V/m, campo não nulo no centro.",
+    "D": "3 sai do sinal trocado ao isolar A: de A + 4 − 1 = 0 escreveu A = 4 − 1 = 3; o certo é A = 1 − 4 = −3.",
+    "E": "0 sai de usar a raiz R = 4 m: A = 1 − 4/4 = 0; mas a observação exige R < 3 m."
+   },
+   "armadilha": "Esquecer que o campo tem de ser contínuo na superfície; é essa condição que fixa R = 1 m antes de achar A.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de A que torna o campo fisicamente possível.",
+    "chave": "E(R) = 0 dá R = 1 m (R < 3 m); E(0) = 0 dá A = 1 − 4/R = −3.",
+    "cuidado": "Descartar R = 4 m pela observação e não trocar o sinal ao isolar A."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ordem inversa",
+    "ideia": "Escreva A = 1 − 4/R pelo centro e só depois use a superfície para fixar R = 1 m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "E(R) = 0 + (2 − R)²/R − 1 = 0",
+    "nota": "continuidade na superfície"
+   },
+   {
+    "linha": "R² − 5R + 4 = 0 → R = 1 m",
+    "nota": "R < 3 m descarta 4"
+   },
+   {
+    "linha": "E(0) = A + 4/R − 1 = 0",
+    "nota": "campo nulo no centro"
+   },
+   {
+    "linha": "A = 1 − 4 = −3 V/m",
+    "nota": "isolar A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "fis-0076"
+  }
+ },
+ "P68243a65": {
+  "n": "22",
+  "conceito": "Movimento helicoidal de elétron em campo magnético: só a componente da velocidade perpendicular a B curva a trajetória, e o maior afastamento é o diâmetro 2r, com r = m·v⊥/(e·B).",
+  "equivocos": {
+   "A": "F12.2:expressao-sem-unidade-de-comprimento",
+   "B": "F12.2:velocidade-paralela-no-raio",
+   "C": "F12.2:raio-no-lugar-do-diametro",
+   "D": "F12.2:uma-mola-so-e-raio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O campo aponta no eixo x. A velocidade de disparo (−v, 0, 0) é paralela ao campo e não sofre força: ela só faz o elétron avançar ao longo de x. Quem curva o elétron é a componente em y, herdada da oscilação do canhão, e ela gera um círculo no plano yz. Como o elétron parte com velocidade em y e a força aponta em z, o centro do círculo fica a uma distância r em z, e o ponto mais afastado está a 2r. A maior componente em y é a velocidade máxima do canhão no MHS.",
+    "formulas": [
+     "r = m·v⊥/(e·B)",
+     "v_máx do MHS = A·ω, com ω = √(k_eq/M)",
+     "molas em paralelo: k_eq = k + k = 2k"
+    ],
+    "simbolos": [
+     [
+      "v⊥",
+      "componente da velocidade perpendicular ao campo"
+     ],
+     [
+      "ω",
+      "frequência angular da oscilação do canhão"
+     ],
+     [
+      "k_eq",
+      "constante elástica equivalente das duas molas"
+     ],
+     [
+      "MHS",
+      "movimento harmônico simples, a oscilação do canhão nas molas"
+     ]
+    ]
+   },
+   "pista": "Separe a velocidade do elétron em duas partes: a paralela ao campo e a perpendicular. Só uma delas entra no raio.",
+   "passos": [
+    {
+     "faz": "Separe as componentes da velocidade",
+     "conta": "paralela a B: (−v, 0, 0) → sem força | perpendicular a B: v_y do canhão → círculo no plano yz",
+     "porque": "A força magnética é q·v×B; a parte da velocidade paralela ao campo dá produto vetorial nulo e não curva nada.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache a maior velocidade do canhão",
+     "conta": "k_eq = 2k → ω = √(2k/M) → v_y,máx = A·√(2k/M)",
+     "porque": "As duas molas estão lado a lado, em paralelo, então somam as constantes; no MHS a velocidade máxima é A·ω, no centro da oscilação.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o maior raio",
+     "conta": "r = m·v_y,máx/(e·B) = m·A·√(2k/M)/(e·B)",
+     "porque": "A força magnética e·v⊥·B faz o papel de centrípeta, m·v⊥²/r; como m << M, o recuo do canhão no disparo é desprezível.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe do raio ao maior z",
+     "conta": "z_máx = 2r = 2m·A·√(2k/M)/(e·B)",
+     "porque": "O elétron parte do círculo com velocidade em y, então o centro fica a r de distância em z e o ponto mais afastado está a um diâmetro do início. Os elétrons disparados com v_y de um dos sinais curvam para +z.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 2mA·√(2k/M)/(eB).",
+   "checagem": "Pelas unidades: A·√(k/M) é velocidade (m·s⁻¹), e m·v/(e·B) dá metro, porque e·B tem unidade kg/s; logo 2mA√(2k/M)/(eB) é um comprimento, como deve ser. Caso extremo: se o canhão não oscilasse (A = 0), o elétron andaria em linha reta ao longo de x e z ficaria 0, o que a expressão também dá.",
+   "erradas": {
+    "A": "Não confere pelas unidades: mA·√(2kA²/M + v²)/(eB) tem um A a mais fora da raiz e dá metro ao quadrado, não metro.",
+    "B": "Sai de usar a velocidade total do elétron, incluindo o v paralelo ao campo, com uma mola só e o raio: m·√((A·√(k/M))² + v²)/(eB). O v paralelo não curva, as molas somam 2k e o maior z é 2r.",
+    "C": "Sai de parar no raio: mA·√(2k/M)/(eB) é r. O elétron parte de um ponto do círculo, então o maior afastamento em z é o diâmetro, 2r.",
+    "D": "Sai de usar uma mola só (ω = √(k/M)) e ainda parar no raio: mA·√(k/M)/(eB). As molas em paralelo dão 2k, e o maior z é 2r."
+   },
+   "armadilha": "Pôr a velocidade de disparo v no raio: ela é paralela ao campo e não curva o elétron; o raio depende só da velocidade em y que vem da oscilação.",
+   "alerta": "No texto da prova, o sinal de menos aparece como um acento (˘): o campo é (−B, 0, 0), a velocidade de disparo é (−v, 0, 0) e a carga do elétron é −e. Os sinais não mudam o módulo do maior z.",
+   "essencial": {
+    "pede": "A maior coordenada z alcançada por um elétron disparado pelo canhão que oscila.",
+    "chave": "Só v_y curva: v_y,máx = A·√(2k/M), r = m·v_y,máx/(eB) e z_máx = 2r.",
+    "cuidado": "Somar as molas em paralelo (2k), ignorar o v paralelo a B e usar o diâmetro, não o raio."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "energia do oscilador",
+    "ideia": "A energia do par de molas, (1/2)·(2k)·A², vira toda cinética no centro, (1/2)·M·v_y², o que dá de novo v_y,máx = A·√(2k/M); daí z_máx = 2m·v_y,máx/(eB)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "v paralela a B → F = 0",
+    "nota": "só v_y curva"
+   },
+   {
+    "linha": "k_eq = k + k = 2k → ω = √(2k/M)",
+    "nota": "molas em paralelo"
+   },
+   {
+    "linha": "v_y,máx = A·ω = A·√(2k/M)",
+    "nota": "velocidade máxima do MHS"
+   },
+   {
+    "linha": "r = m·v_y,máx/(e·B) = m·A·√(2k/M)/(e·B)",
+    "nota": "força magnética como centrípeta"
+   },
+   {
+    "linha": "z_máx = 2r = 2m·A·√(2k/M)/(e·B)",
+    "nota": "diâmetro do círculo"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "IME, Concurso de Admissão 2024/2025, prova objetiva, 22ª questão",
+    "url": "https://www.ime.eb.mil.br/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  },
+  "gabarito_aprendice": {
+   "letra": "E",
+   "letra_conferente": "E",
+   "preliminar": "E",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "fis-0077"
+  }
+ }
+}

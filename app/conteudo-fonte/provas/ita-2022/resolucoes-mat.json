@@ -1,0 +1,1789 @@
+{
+ "Pb98ae589": {
+  "n": "41",
+  "conceito": "Propriedades do logaritmo: juntar parcelas na mesma base e reconhecer uma potência.",
+  "equivocos": {
+   "A": "M06.3:valor-nao-confere",
+   "C": "M06.3:valor-nao-confere",
+   "D": "M06.3:valor-nao-confere",
+   "E": "M06.3:valor-nao-confere"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As duas primeiras parcelas já estão na base 120. A terceira está na base 14400 = 120^2, e trocar a base por seu quadrado divide o logaritmo por 2. Com tudo na base 120, os coeficientes viram expoentes e as somas viram produto.",
+    "formulas": [
+     "n × log_b a = log_b (a^n)",
+     "log_(b^2) a = (1/2) × log_b a",
+     "log_b A + log_b B = log_b (A × B)"
+    ],
+    "simbolos": [
+     [
+      "log_120",
+      "logaritmo na base 120"
+     ]
+    ]
+   },
+   "pista": "Repare que 14400 = 120^2.",
+   "passos": [
+    {
+     "faz": "Passe a terceira parcela para a base 120",
+     "conta": "2 log_14400 125 = 2 × (1/2) log_120 125 = log_120 125",
+     "porque": "14400 = 120^2, e log na base b^2 é metade do log na base b.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Suba os coeficientes para os expoentes",
+     "conta": "9 log_120 2 + 3 log_120 3 = log_120 (2^9 × 3^3) = log_120 13824",
+     "porque": "2^9 = 512 e 3^3 = 27; 512 × 27 = 13824.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte tudo num log só",
+     "conta": "x = log_120 (13824 × 125) = log_120 1728000",
+     "porque": "Soma de logs na mesma base é log do produto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reconheça a potência",
+     "conta": "1728000 = 120^3 → x = 3",
+     "porque": "120^3 = 1728000; também 2^9 × 3^3 × 5^3 = (2^3 × 3 × 5)^3 = 120^3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "x = 3 → alternativa B",
+     "porque": "É o valor de x.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — x = 3",
+   "checagem": "Fatore em primos: 120 = 2^3 × 3 × 5, então 120^3 = 2^9 × 3^3 × 5^3. Os expoentes 9, 3 e 3 são exatamente os coeficientes 9 e 3 e o 125 = 5^3 da questão.",
+   "erradas": {
+    "A": "x = 2 não confere: 120^2 = 14400, bem menor que 1728000.",
+    "C": "x = 4 não confere: 120^4 = 207360000, muito maior que 1728000.",
+    "D": "x = 5 não confere: 120^5 = 24883200000, muito maior que 1728000.",
+    "E": "x = 6 não confere: 120^6 é cerca de 3 × 10^12, muito maior que 1728000."
+   },
+   "armadilha": "A base 14400 é 120^2: ao passar para a base 120, o logaritmo cai pela metade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de x = 9 log_120 2 + 3 log_120 3 + 2 log_14400 125.",
+    "chave": "Tudo na base 120: log_120 (2^9 × 3^3 × 5^3) = log_120 120^3 = 3.",
+    "cuidado": "Ao trocar a base pelo seu quadrado, divida o log por 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fatoração",
+    "ideia": "120^3 = 2^9 × 3^3 × 5^3, e esses são exatamente os fatores que aparecem nos logaritmos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2 log_14400 125 = log_120 125",
+    "nota": "14400 = 120^2"
+   },
+   {
+    "linha": "x = log_120 (2^9 × 3^3 × 5^3)",
+    "nota": "coeficientes viram expoentes"
+   },
+   {
+    "linha": "x = log_120 1728000",
+    "nota": "13824 × 125"
+   },
+   {
+    "linha": "x = log_120 120^3 = 3",
+    "nota": "120^3 = 1728000"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "P733e79f7": {
+  "n": "42",
+  "conceito": "Mediatriz de um segmento e Pitágoras duas vezes para achar a distância de um ponto a uma reta.",
+  "equivocos": {
+   "A": "M09.4:distancia-errada-a-reta",
+   "B": "M09.4:distancia-errada-a-reta",
+   "C": "M09.4:distancia-errada-a-reta",
+   "D": "M09.4:distancia-errada-a-reta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ponto equidistante de A e C está na mediatriz de AC, a reta perpendicular a AC pelo ponto médio M. Então a distância de O à reta r é o segmento OM. Falta só AC, que sai de Pitágoras no triângulo ABC, e depois OM sai de Pitágoras no triângulo AMO.",
+    "formulas": [
+     "Pitágoras: hipotenusa² = cateto² + cateto²",
+     "O equidistante de A e C ⇒ O está na mediatriz de AC"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "a reta que passa por A e C"
+     ],
+     [
+      "M",
+      "ponto médio de AC"
+     ],
+     [
+      "mediatriz",
+      "reta perpendicular a um segmento pelo seu ponto médio"
+     ],
+     [
+      "m(AO)",
+      "medida do segmento AO"
+     ]
+    ]
+   },
+   "pista": "Pergunte onde ficam todos os pontos que estão à mesma distância de A e de C.",
+   "passos": [
+    {
+     "faz": "Calcule a hipotenusa AC",
+     "conta": "AC² = 10² + 24² → AC² = 676 → AC = 26",
+     "porque": "O triângulo é retângulo em B, então AC é a hipotenusa e AB, BC são os catetos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Localize o pé da perpendicular",
+     "conta": "O na mediatriz de AC → pé em M, com AM = 26/2 = 13",
+     "porque": "Como OA = OC, O está na mediatriz de AC, que cruza r em ângulo reto no ponto médio M. Logo a distância de O a r é OM.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique Pitágoras no triângulo AMO",
+     "conta": "OM² = 85² − 13² → OM² = 7225 − 169 = 7056 → OM = 84",
+     "porque": "AMO é retângulo em M, com hipotenusa AO = 85 e cateto AM = 13.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "OM = 84 → alternativa E",
+     "porque": "A distância pedida é OM. O dado de O estar do mesmo lado que B só fixa a posição de O; não muda a distância.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 84",
+   "checagem": "13, 84, 85 é uma terna pitagórica conhecida: 13² + 84² = 169 + 7056 = 7225 = 85². E 10, 24, 26 é o dobro da terna 5, 12, 13. As duas contas fecham.",
+   "erradas": {
+    "A": "64 não confere: 64² + 13² = 4265, e não 85² = 7225.",
+    "B": "66 não confere: 66² + 13² = 4525, longe de 7225.",
+    "C": "74 não confere: 74² + 13² = 5645, e não 7225.",
+    "D": "76 não confere: 76² + 13² = 5945, e não 7225."
+   },
+   "armadilha": "Usar o AC inteiro (26) como cateto no triângulo com O; o pé da perpendicular é o ponto médio, então o cateto é 13.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A distância de O, equidistante de A e C, à reta AC.",
+    "chave": "O está na mediatriz de AC: AC = 26, AM = 13 e OM = √(85² − 13²) = 84.",
+    "cuidado": "Use a metade de AC, pois a perpendicular cai no ponto médio."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "terna pitagórica",
+    "ideia": "Reconheça 5, 12, 13 (×2) para AC = 26 e 13, 84, 85 para OM = 84, sem calcular raiz."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "AC² = 10² + 24² = 100 + 576 = 676",
+    "nota": "Pitágoras em ABC"
+   },
+   {
+    "linha": "AC = 26 → AM = 26/2 = 13",
+    "nota": "O na mediatriz: pé no ponto médio"
+   },
+   {
+    "linha": "OM² = 85² − 13² = 7225 − 169",
+    "nota": "Pitágoras em AMO"
+   },
+   {
+    "linha": "OM² = 7056 → OM = 84",
+    "nota": "raiz quadrada"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ },
+ "P59cc1373": {
+  "n": "53",
+  "conceito": "Desigualdade com cossenos de ângulos de um triângulo: redução ao 1.º quadrante por suplementos e monotonia do cosseno.",
+  "equivocos": {
+   "A": "M10.4:nao-testou-contraexemplo",
+   "B": "M10.4:nao-testou-contraexemplo",
+   "D": "M10.4:nao-testou-contraexemplo",
+   "E": "M10.4:nao-reduziu-a-desigualdade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Num triângulo α + β + θ = 180°, então cada arco da desigualdade pode ser reescrito como 180° menos ou mais alguma coisa: β + θ = 180° − α e α + 2β = 180° + (β − θ). Isso troca os dois cossenos por −cos α e −cos(β − θ). Como o cosseno decresce de 0° a 180°, comparar cossenos vira comparar ângulos.",
+    "formulas": [
+     "α + β + θ = 180°",
+     "cos(180° − x) = −cos x e cos(180° + x) = −cos x",
+     "cos é decrescente em [0°, 180°] e cos(−x) = cos x"
+    ],
+    "simbolos": [
+     [
+      "α, β, θ",
+      "ângulos internos do triângulo"
+     ],
+     [
+      "acutângulo",
+      "triângulo com os três ângulos agudos (escrito actuângulo na prova)"
+     ],
+     [
+      "obtusângulo",
+      "triângulo com um ângulo maior que 90°"
+     ],
+     [
+      "|β − θ|",
+      "valor absoluto da diferença entre β e θ"
+     ]
+    ]
+   },
+   "pista": "Use α + β + θ = 180° para reescrever β + θ e α + 2β como 180° mais ou menos um ângulo.",
+   "passos": [
+    {
+     "faz": "Reescreva o 1.º cosseno",
+     "conta": "cos(β + θ) = cos(180° − α) → cos(β + θ) = −cos α",
+     "porque": "β + θ é o que falta para α completar 180°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reescreva o 2.º cosseno",
+     "conta": "α + 2β = 180° + (β − θ) → cos(α + 2β) = −cos(β − θ)",
+     "porque": "α + 2β = (α + β + θ) + β − θ; somar 180° troca o sinal do cosseno.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque cossenos por ângulos",
+     "conta": "−cos α ≤ −cos(β − θ) → cos α ≥ cos|β − θ| → α ≤ |β − θ|",
+     "porque": "Multiplicar por −1 inverte o sinal; α e |β − θ| estão entre 0° e 180°, onde o cosseno decresce, e cosseno maior significa ângulo menor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a conclusão sobre o maior ângulo",
+     "conta": "β ≥ θ: α + θ ≤ β → 180° − β ≤ β → β ≥ 90°",
+     "porque": "Se θ ≥ β, a mesma conta dá θ ≥ 90°. Em qualquer caso, há um ângulo de 90° ou mais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "ângulo ≥ 90° → não é acutângulo → alternativa C",
+     "porque": "Um triângulo com ângulo reto ou obtuso não pode ter os três ângulos agudos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — o triângulo não é acutângulo",
+   "checagem": "Teste o equilátero, que é acutângulo: cos(120°) = −0,5 e cos(180°) = −1, e −0,5 ≤ −1 é falso. Já o triângulo 45°, 90°, 45° dá cos 135° = cos 225° ≈ −0,707: vale com igualdade.",
+   "erradas": {
+    "A": "Não se garante: α = 30°, β = 120°, θ = 30° é isósceles e satisfaz, pois cos 150° ≈ −0,866 ≤ cos 270° = 0.",
+    "B": "Não se garante: α = 45°, β = 90°, θ = 45° é retângulo e satisfaz com igualdade, cos 135° = cos 225° ≈ −0,707.",
+    "D": "Não se garante: o triângulo 30°, 120°, 30° é obtusângulo e satisfaz a desigualdade.",
+    "E": "Não confere: a desigualdade obriga β ≥ 90° ou θ ≥ 90°, então garante que o triângulo não é acutângulo."
+   },
+   "armadilha": "Ao multiplicar −cos α ≤ −cos(β − θ) por −1, o sinal da desigualdade inverte; e cosseno maior corresponde a ângulo menor.",
+   "alerta": "A prova escreve \"actuângulo\" e \"isóceles\"; as formas corretas são acutângulo e isósceles. Isso não muda a questão.",
+   "essencial": {
+    "pede": "O que se garante sobre o triângulo se cos(β + θ) ≤ cos(α + 2β).",
+    "chave": "Com α + β + θ = 180°, a desigualdade vira α ≤ |β − θ|, que obriga β ou θ a medir pelo menos 90°.",
+    "cuidado": "Inverta o sinal ao multiplicar por −1 e lembre que o cosseno decresce em [0°, 180°]."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de casos",
+    "ideia": "O equilátero falha (−0,5 ≤ −1 é falso), enquanto um retângulo e um obtusângulo isósceles passam; só C resiste."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "cos(β + θ) = −cos α",
+    "nota": "β + θ = 180° − α"
+   },
+   {
+    "linha": "cos(α + 2β) = −cos(β − θ)",
+    "nota": "α + 2β = 180° + β − θ"
+   },
+   {
+    "linha": "−cos α ≤ −cos(β − θ) → cos α ≥ cos(β − θ)",
+    "nota": "multiplicou por −1"
+   },
+   {
+    "linha": "α ≤ |β − θ|",
+    "nota": "cosseno decrescente"
+   },
+   {
+    "linha": "α + θ ≤ β → β ≥ 90°",
+    "nota": "trocou α + θ por 180° − β"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ },
+ "P345e64d7": {
+  "n": "50",
+  "conceito": "Geometria de posição: julgar três afirmações (reta e planos paralelos, planos equidistantes de dois pontos, ponto equidistante de quatro pontos) por contraexemplo.",
+  "equivocos": {
+   "B": "M11.5:esqueceu-caso-particular",
+   "C": "M11.5:esqueceu-caso-particular",
+   "D": "M11.5:esqueceu-caso-particular",
+   "E": "M11.5:esqueceu-caso-particular"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para derrubar uma afirmação geral basta um contraexemplo. Em I, pense numa reta deitada dentro de α. Em II, um plano é equidistante de P e Q quando é paralelo à reta PQ (ou a contém) ou quando passa pelo ponto médio de PQ. Em III, lembre que pontos alinhados ou num mesmo plano podem não estar numa mesma esfera.",
+    "formulas": [
+     "plano equidistante de P e Q: paralelo a PQ, contém PQ ou passa pelo ponto médio M de PQ",
+     "ponto equidistante de A, B, C, D: centro de uma esfera que passa pelos quatro"
+    ],
+    "simbolos": [
+     [
+      "r ∩ α ≠ ∅",
+      "a reta r tem ponto em comum com o plano α"
+     ],
+     [
+      "∅",
+      "conjunto vazio"
+     ],
+     [
+      "M",
+      "ponto médio do segmento PQ"
+     ]
+    ]
+   },
+   "pista": "Para cada afirmação, tente construir uma figura em que ela falha; comece pela reta contida em α.",
+   "passos": [
+    {
+     "faz": "Julgue a I",
+     "conta": "r ⊂ α → r ∩ α = r ≠ ∅ e r ∩ β = ∅",
+     "porque": "Se r está dentro de α e β é paralelo a α e distinto dele, r nunca encontra β. I é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Julgue a II",
+     "conta": "r = eixo x | P = (0, 0, 1) | Q = (0, 0, 3) → só o plano y = 0",
+     "porque": "Os planos por r são a·y + b·z = 0; as distâncias a P e a Q ficam proporcionais a |b| e |3b|, iguais só com b = 0. Há um único plano, não infinitos: II é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Julgue a III",
+     "conta": "A, B, C, D alinhados → nenhum ponto equidistante",
+     "porque": "Não existe ponto equidistante de três pontos alinhados (não há circunferência por eles). III é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "I falsa | II falsa | III falsa",
+     "porque": "Nenhuma afirmação é verdadeira: alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — nenhuma das afirmações é verdadeira",
+   "checagem": "Outro contraexemplo para III: quatro pontos sobre a mesma circunferência têm infinitos pontos equidistantes (toda a reta perpendicular ao plano pelo centro), e não um único. A afirmação falha nos dois sentidos.",
+   "erradas": {
+    "B": "I é falsa: se r está contida em α, ela encontra α em todos os pontos, mas não toca β, que é paralelo e distinto.",
+    "C": "II é falsa: com r no eixo x, P = (0, 0, 1) e Q = (0, 0, 3), só o plano y = 0 contém r e fica equidistante de P e Q.",
+    "D": "III é falsa: se os quatro pontos estão alinhados, nenhum ponto é equidistante deles; se estão numa circunferência, há infinitos.",
+    "E": "As três têm contraexemplo: r contida em α (I), um único plano no caso do eixo x (II) e pontos alinhados (III)."
+   },
+   "armadilha": "Aceitar a I pensando só na reta que atravessa α, esquecendo a reta contida em α.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das três afirmações de geometria de posição são verdadeiras.",
+    "chave": "Cada uma tem contraexemplo: reta contida em α, plano único no eixo x, pontos alinhados.",
+    "cuidado": "Afirmação geral só é verdadeira se valer em todos os casos; procure o caso especial."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "II pela regra dos planos equidistantes",
+    "ideia": "Entre os planos que contêm r, no máximo um passa por M e no máximo um é paralelo a PQ (salvo casos especiais), então em geral não são infinitos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I: r ⊂ α → r ∩ β = ∅",
+    "nota": "falsa"
+   },
+   {
+    "linha": "II: a·y + b·z = 0 → |b| = |3b| → b = 0",
+    "nota": "falsa: um plano só"
+   },
+   {
+    "linha": "III: pontos alinhados → nenhum equidistante",
+    "nota": "falsa"
+   },
+   {
+    "linha": "nenhuma verdadeira → A",
+    "nota": "conclusão"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0064"
+  }
+ },
+ "P75cd0a82": {
+  "n": "55",
+  "conceito": "Combinar lei dos senos (com o raio circunscrito) e lei dos cossenos, separando os casos de ângulo agudo e obtuso.",
+  "equivocos": {
+   "A": "M10.3:valor-que-nao-satisfaz-a-lei-dos-cossenos",
+   "B": "M10.3:esqueceu-o-2-de-2r",
+   "D": "M10.3:valor-que-nao-satisfaz-a-lei-dos-cossenos",
+   "E": "M10.3:valor-que-nao-satisfaz-a-lei-dos-cossenos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O raio R = 5 entra pela lei dos senos: BC/sen A = 2R dá o seno do ângulo A. Mas o seno não decide se A é agudo ou obtuso, e cada caso gera um triângulo diferente. Resolva os dois pela lei dos cossenos e use a condição de B agudo para descartar um deles.",
+    "formulas": [
+     "lei dos senos: BC/sen A = 2R",
+     "lei dos cossenos: BC² = AB² + AC² − 2 · AB · AC · cos A",
+     "B agudo ⇔ AC² < AB² + BC²"
+    ],
+    "simbolos": [
+     [
+      "R",
+      "raio da circunferência circunscrita ao triângulo"
+     ],
+     [
+      "Â, B̂",
+      "ângulos com vértice em A e em B"
+     ],
+     [
+      "x",
+      "medida de AC, a incógnita"
+     ],
+     [
+      "inscritível",
+      "os três vértices ficam sobre uma mesma circunferência"
+     ]
+    ]
+   },
+   "pista": "Comece pelo lado BC e pelo seu ângulo oposto: R dá o seno desse ângulo, mas não o sinal do cosseno.",
+   "passos": [
+    {
+     "faz": "Lei dos senos com o raio",
+     "conta": "6/sen A = 2 · 5 → sen A = 6/10 = 3/5 → cos A = ±4/5",
+     "porque": "BC é oposto a A. O cosseno pode ser positivo (A agudo) ou negativo (A obtuso): os dois servem para o seno.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Caso A agudo: lei dos cossenos",
+     "conta": "36 = 20 + x² − 2 · 2√5 · x · (4/5) → x² − (16√5/5)x − 16 = 0 → x = 4√5",
+     "porque": "A raiz negativa da equação não serve como comprimento; sobra x = 4√5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste B no caso agudo",
+     "conta": "x² = 80 > AB² + BC² = 20 + 36 = 56 → B obtuso",
+     "porque": "Se o lado oposto a B ao quadrado passa da soma dos outros dois ao quadrado, B é obtuso; o enunciado diz que é agudo.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Caso A obtuso: lei dos cossenos",
+     "conta": "36 = 20 + x² + 2 · 2√5 · x · (4/5) → x² + (16√5/5)x − 16 = 0 → x = (−16√5/5 + 24√5/5)/2 = 4√5/5",
+     "porque": "Δ = 256/5 + 64 = 576/5, e √Δ = 24√5/5. A raiz positiva é 4√5/5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confirme B agudo e conclua",
+     "conta": "x² = 16/5 < 56 → B agudo → AC = 4√5/5 → alternativa C",
+     "porque": "Agora a condição do enunciado vale, e esse é o único triângulo possível.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — m(AC) = 4√5/5",
+   "checagem": "Volte pela lei dos senos: com AC = 4√5/5, a lei dos cossenos dá cos B = (20 + 36 − 16/5)/(24√5) = 11√5/25, então sen B = 2√5/25 e AC/sen B = (4√5/5)/(2√5/25) = 10 = 2R. Fecha com R = 5.",
+   "erradas": {
+    "A": "√5/5 não confere: em x² + (16√5/5)x = 16, dá 1/5 + 16/5 = 17/5 = 3,4, e não 16.",
+    "B": "2√5/5 sai de esquecer o 2 de 2R: AC = R · sen B = 5 · 2√5/25. Na equação dá 4/5 + 32/5 = 7,2, e não 16.",
+    "D": "8√5/5 não confere: em x² + (16√5/5)x = 16, dá 64/5 + 128/5 = 38,4, e não 16.",
+    "E": "14√5/5 não confere: em x² + (16√5/5)x = 16, dá 196/5 + 224/5 = 84, e não 16."
+   },
+   "armadilha": "sen A = 3/5 vale para A agudo e para A obtuso; o caso agudo dá AC = 4√5, que não está nas alternativas, e só o dado de B agudo decide.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A medida de AC num triângulo com AB = 2√5, BC = 6, R = 5 e B agudo.",
+    "chave": "BC = 2R · sen A dá sen A = 3/5; o caso A agudo deixa B obtuso, e com cos A = −4/5 a lei dos cossenos dá AC = 4√5/5.",
+    "cuidado": "Teste os dois sinais do cosseno e descarte o que contraria B agudo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "seno da soma",
+    "ideia": "sen C = 2√5/10 = √5/5 e sen A = 3/5; com A obtuso, sen B = sen(A + C) = (3/5)(2√5/5) − (4/5)(√5/5) = 2√5/25 e AC = 2R · sen B = 10 · 2√5/25 = 4√5/5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6/sen A = 10 → sen A = 3/5",
+    "nota": "lei dos senos com 2R = 10"
+   },
+   {
+    "linha": "cos A = ±4/5",
+    "nota": "dois casos possíveis"
+   },
+   {
+    "linha": "A agudo: x = 4√5 → x² = 80 > 56",
+    "nota": "B obtuso: descartado"
+   },
+   {
+    "linha": "A obtuso: x² + (16√5/5)x − 16 = 0",
+    "nota": "lei dos cossenos com cos A = −4/5"
+   },
+   {
+    "linha": "x = (−16√5/5 + 24√5/5)/2 = 4√5/5",
+    "nota": "raiz positiva"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "Pb3ca7386": {
+  "n": "47",
+  "conceito": "Condição para tan(x − r), tan x e tan(x + r) formarem PA, usando a tangente da soma e da diferença.",
+  "equivocos": {
+   "A": "M10.4:ignorou-pa-constante",
+   "B": "M10.4:dividiu-por-tan-x",
+   "C": "M10.4:condicao-de-pa-inventada",
+   "E": "M10.4:generalizou-um-caso-particular"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Três números estão em PA quando o do meio é a média dos outros dois: tan(x − r) + tan(x + r) = 2 tan x. Escreva as duas tangentes pelas fórmulas da soma e da diferença, com t = tan x e u = tan r. Não divida por t sem antes olhar o caso t = 0: é ele que decide a questão.",
+    "formulas": [
+     "a, b, c em PA ⇔ a + c = 2b",
+     "tan(x ± r) = (tan x ± tan r)/(1 ∓ tan x · tan r)"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: a diferença entre termos vizinhos é constante"
+     ],
+     [
+      "t",
+      "tan x"
+     ],
+     [
+      "u",
+      "tan r"
+     ]
+    ]
+   },
+   "pista": "Escreva a condição de PA e some as duas frações; depois desconfie de qualquer divisão por tan x.",
+   "passos": [
+    {
+     "faz": "Escreva a condição de PA",
+     "conta": "tan(x − r) + tan(x + r) = 2 tan x",
+     "porque": "Numa PA, o termo do meio é a média aritmética dos vizinhos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some as duas tangentes",
+     "conta": "(t − u)/(1 + tu) + (t + u)/(1 − tu) → (2t + 2tu²)/(1 − t²u²) → (2t(1 + u²))/(1 − t²u²)",
+     "porque": "No denominador comum, os termos com u e com t²u se cancelam entre as duas frações.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale a 2t e fatore",
+     "conta": "(2t(1 + u²))/(1 − t²u²) = 2t → 2t[(1 + u²) − (1 − t²u²)] = 0 → 2t · u²(1 + t²) = 0",
+     "porque": "Multiplique pelo denominador e ponha 2t em evidência, sem cancelar t.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia os dois casos",
+     "conta": "t = 0 → x = 0, qualquer r | u = 0 → r = 0, qualquer x",
+     "porque": "1 + t² nunca é zero. Com x = 0, a sequência é −tan r, 0, tan r: PA para todo r em [0, π/2).",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "x = 0 e 0 ≤ r < π/2 → PA para infinitos valores de r",
+     "porque": "O enunciado permite x = 0 com qualquer r em [0, π/2). Isso é a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — pode determinar uma PA para infinitos valores distintos de r",
+   "checagem": "Teste numérico: x = 0 e r = 1 rad (permitido, pois 1 < π/2) dão tan(−1) ≈ −1,557, 0 e tan 1 ≈ 1,557, uma PA de razão 1,557. Com r = 0,5 rad o mesmo acontece: já são dois valores de r diferentes de 0.",
+   "erradas": {
+    "A": "A não confere: r = 0 dá a sequência constante tan x, tan x, tan x, que é PA de razão zero; e x = 0 dá PA para qualquer r.",
+    "B": "B sai de dividir por tan x sem olhar o caso tan x = 0: sobra só u²(1 + t²) = 0, isto é, r = 0. Com x = 0, qualquer r serve.",
+    "C": "C não confere: com x = π/6 e r = √3/3, tan(x − r) + tan(x + r) ≈ 1,916, enquanto 2 tan x ≈ 1,155. Não é PA.",
+    "E": "E não confere: com x = π/6 e r = π/6 os termos são 0, √3/3 ≈ 0,577 e √3 ≈ 1,732; as diferenças 0,577 e 1,155 não são iguais."
+   },
+   "armadilha": "Dividir por tan x apaga o caso x = 0, que é justamente o que dá infinitos valores de r.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quando tan(x − r), tan x e tan(x + r) formam PA.",
+    "chave": "A condição de PA vira 2 tan x · tan² r · (1 + tan² x) = 0: ou r = 0, ou x = 0 com qualquer r em [0, π/2).",
+    "cuidado": "Ponha tan x em evidência em vez de cancelar; o caso tan x = 0 é o que importa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria",
+    "ideia": "Para x = 0, tan(−r) = −tan r: os termos −tan r, 0, tan r são simétricos em torno de 0 e formam PA para qualquer r, o que já derruba A, B, C; E cai com um contraexemplo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "tan(x − r) + tan(x + r) = 2 tan x",
+    "nota": "condição de PA"
+   },
+   {
+    "linha": "(2t(1 + u²))/(1 − t²u²) = 2t",
+    "nota": "soma das frações, t = tan x e u = tan r"
+   },
+   {
+    "linha": "2t · u²(1 + t²) = 0",
+    "nota": "multiplica pelo denominador e põe 2t em evidência"
+   },
+   {
+    "linha": "t = 0 ou u = 0",
+    "nota": "1 + t² nunca zera"
+   },
+   {
+    "linha": "x = 0: −tan r, 0, tan r",
+    "nota": "PA para todo r em [0, π/2)"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "P7428ceb2": {
+  "n": "54",
+  "conceito": "Reduzir equação trigonométrica a uma cúbica em cos² x e contar as soluções no intervalo.",
+  "equivocos": {
+   "A": "M10.4:esqueceu-o-mais-ou-menos",
+   "B": "M10.4:contagem-impar-de-solucoes",
+   "D": "M10.4:contagem-impar-de-solucoes",
+   "E": "M10.4:aceitou-cosseno-quadrado-negativo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Tudo na equação depende só de cos² x: chame c = cos² x, com 0 ≤ c ≤ 1. Como cos(2x) = 2c − 1, a equação vira uma cúbica em c. Ache as raízes de c que ficam entre 0 e 1 e conte quantos x de [0, 2π[ dão cada uma.",
+    "formulas": [
+     "cos(2x) = 2 cos² x − 1",
+     "cos⁶ x = (cos² x)³",
+     "0 ≤ cos² x ≤ 1"
+    ],
+    "simbolos": [
+     [
+      "c",
+      "cos² x"
+     ],
+     [
+      "[0, 2π[",
+      "de 0 (incluído) até 2π (excluído)"
+     ]
+    ]
+   },
+   "pista": "Escreva tudo em função de cos² x; o cos²(2x) também cabe nessa troca.",
+   "passos": [
+    {
+     "faz": "Troque tudo por c = cos² x",
+     "conta": "cos²(2x) = (2c − 1)² → (2c − 1)² = 3 − c³ − 5c",
+     "porque": "cos(2x) = 2c − 1 e cos⁶ x = c³.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a cúbica",
+     "conta": "4c² − 4c + 1 = 3 − c³ − 5c → c³ + 4c² + c − 2 = 0",
+     "porque": "Desenvolva o quadrado e passe tudo para a esquerda: −c³ vira +c³, −5c vira +5c e o 3 vira −3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore pela raiz c = −1",
+     "conta": "(−1)³ + 4 − 1 − 2 = 0 → (c + 1)(c² + 3c − 2) = 0",
+     "porque": "Testar ±1 e ±2 (divisores de 2) acha c = −1; a divisão dá o fator do 2º grau.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fique só com c entre 0 e 1",
+     "conta": "c = −1 (não serve) | c = (−3 ± √17)/2 → c = (√17 − 3)/2 ≈ 0,562",
+     "porque": "cos² x não é negativo, então c = −1 e c = (−3 − √17)/2 caem. Só (√17 − 3)/2 está entre 0 e 1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conte os x",
+     "conta": "cos x = ±√0,562 ≈ ±0,749 → 2 arcos para + e 2 para − → 4 soluções",
+     "porque": "Como 0 < 0,749 < 1, cada valor de cos x aparece em dois arcos de [0, 2π[. São 4: alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 4 soluções",
+   "checagem": "Pela paridade: se x é solução, 2π − x também é, e x ≠ 2π − x, pois em x = 0 ou π o cos² vale 1 ≠ 0,562. As soluções vêm em pares, o número é par. Pela calculadora: x ≈ 0,724; 2,418; 3,865 e 5,559 rad satisfazem a equação.",
+   "erradas": {
+    "A": "A sai de esquecer o ± na raiz: cos x = +0,749 dá só 2 arcos (x ≈ 0,724 e 5,559). O valor cos x = −0,749 dá outros 2.",
+    "B": "B não confere: as soluções vêm em pares (x e 2π − x são distintos, pois cos² x ≈ 0,562 ≠ 1), então o total é par.",
+    "D": "D não confere: o total é par, porque cada solução x tem a parceira 2π − x, distinta dela; 5 é ímpar.",
+    "E": "E não confere: 6 soluções exigiriam outro valor de c entre 0 e 1, mas as outras raízes da cúbica, −1 e (−3 − √17)/2 ≈ −3,56, são negativas."
+   },
+   "armadilha": "Depois de achar cos² x, a raiz dá cos x = ± √c: quem pega só o sinal + conta metade das soluções.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas soluções reais distintas a equação tem em [0, 2π[.",
+    "chave": "Com c = cos² x a equação vira (c + 1)(c² + 3c − 2) = 0; só c = (√17 − 3)/2 serve, e cos x = ±√c dá 4 arcos.",
+    "cuidado": "Descarte as raízes de c fora de [0, 1] e não esqueça o ± ao voltar para cos x."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ciclo trigonométrico",
+    "ideia": "cos x = 0,749 e cos x = −0,749 são duas retas verticais no ciclo; cada uma corta a circunferência em 2 pontos, total 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(2c − 1)² = 3 − c³ − 5c",
+    "nota": "c = cos² x e cos 2x = 2c − 1"
+   },
+   {
+    "linha": "c³ + 4c² + c − 2 = 0",
+    "nota": "tudo para a esquerda"
+   },
+   {
+    "linha": "(c + 1)(c² + 3c − 2) = 0",
+    "nota": "c = −1 é raiz"
+   },
+   {
+    "linha": "c = (√17 − 3)/2 ≈ 0,562",
+    "nota": "única raiz em [0, 1]"
+   },
+   {
+    "linha": "cos x = ±0,749 → 4 soluções",
+    "nota": "dois arcos para cada sinal"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "P90014aad": {
+  "n": "49",
+  "conceito": "Raio da esfera circunscrita a uma pirâmide hexagonal regular inscrita num cubo.",
+  "equivocos": {
+   "A": "M11.3:raio-menor-que-o-da-base",
+   "B": "M11.3:raio-menor-que-o-da-base",
+   "C": "M11.3:raio-menor-que-o-da-base",
+   "E": "M11.3:raio-menor-que-o-da-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os seis pontos médios formam um hexágono regular num plano perpendicular à diagonal do cubo que sai de V, passando pelo centro do cubo. O centro da esfera circunscrita fica sobre o eixo da pirâmide, a uma distância R do vértice V e também R de cada vértice do hexágono. Isso dá uma equação com Pitágoras.",
+    "formulas": [
+     "distância de V ao plano x + y + z = d: d/√3",
+     "(altura − R)² + (raio do hexágono)² = R²"
+    ],
+    "simbolos": [
+     [
+      "l",
+      "aresta do cubo"
+     ],
+     [
+      "V",
+      "vértice da pirâmide, posto na origem"
+     ],
+     [
+      "h",
+      "altura da pirâmide: distância de V ao plano do hexágono"
+     ],
+     [
+      "ρ",
+      "raio do hexágono: distância do centro do hexágono a cada vértice dele"
+     ],
+     [
+      "R",
+      "raio da esfera circunscrita"
+     ]
+    ]
+   },
+   "pista": "Ponha V na origem e o vértice oposto em (l, l, l); descubra em que plano estão os seis pontos médios.",
+   "passos": [
+    {
+     "faz": "Localize o hexágono",
+     "conta": "V = (0, 0, 0) | pontos médios: (l, l/2, 0), (l, 0, l/2), (l/2, l, 0), (0, l, l/2), (l/2, 0, l), (0, l/2, l) | todos com x + y + z = 3l/2",
+     "porque": "As seis arestas que não tocam V nem (l, l, l) têm uma coordenada 0 e outra l; o ponto médio soma 3l/2. O centro do hexágono é o centro do cubo, (l/2, l/2, l/2).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a altura e o raio do hexágono",
+     "conta": "h = (3l/2)/√3 → l√3/2 | ρ² = (l/2)² + 0² + (l/2)² → l²/2",
+     "porque": "A altura é a distância da origem ao plano x + y + z = 3l/2. O raio é a distância do centro (l/2, l/2, l/2) ao ponto (l, l/2, 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a equação do centro da esfera",
+     "conta": "(h − R)² + ρ² = R² → h² − 2hR + ρ² = 0 → R = (h² + ρ²)/(2h)",
+     "porque": "O centro está no eixo, a R de V; até um vértice do hexágono a distância também é R, com cateto h − R no eixo e cateto ρ no plano.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua os valores",
+     "conta": "R = (3l²/4 + l²/2)/(2 · l√3/2) → (5l²/4)/(l√3) → 5l/(4√3) → 5l√3/12",
+     "porque": "3l²/4 + 2l²/4 = 5l²/4; racionalizando 5/(4√3) = 5√3/12.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "R = 5l√3/12 → alternativa D",
+     "porque": "O valor coincide com o da alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 5l√3/12.",
+   "checagem": "Teste de tamanho: a esfera passa pelos vértices do hexágono, então R ≥ ρ = l√2/2 ≈ 0,707l; 5l√3/12 ≈ 0,722l passa. E o centro fica a R ≈ 0,722l de V, antes do plano do hexágono (h ≈ 0,866l), dentro da pirâmide, como deve ser numa pirâmide alta.",
+   "erradas": {
+    "A": "l√2/12 ≈ 0,118l não confere: a esfera passa pelos vértices do hexágono, então R ≥ ρ ≈ 0,707l.",
+    "B": "l√3/12 ≈ 0,144l não confere: é menor que ρ ≈ 0,707l, raio do próprio hexágono da base.",
+    "C": "5l√2/12 ≈ 0,589l não confere: também é menor que ρ ≈ 0,707l, então a esfera não alcançaria os vértices da base.",
+    "E": "l√3/6 ≈ 0,289l não confere: é menor que ρ ≈ 0,707l."
+   },
+   "armadilha": "Supor que o centro da esfera coincide com o centro do hexágono ou do cubo; ele fica no eixo, mais perto de V.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O raio da esfera que passa por V e pelos seis vértices do hexágono.",
+    "chave": "h = l√3/2, ρ² = l²/2 e R = (h² + ρ²)/(2h) = 5l√3/12.",
+    "cuidado": "O centro da esfera está sobre o eixo da pirâmide, a R de V e a R de cada vértice da base."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas do centro",
+    "ideia": "O centro é (t, t, t); igualando a distância a V e a (l, l/2, 0): 3t² = (t − l)² + (t − l/2)² + t², que dá t = 5l/12 e R = t√3 = 5l√3/12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "h = (3l/2)/√3 = l√3/2",
+    "nota": "altura da pirâmide"
+   },
+   {
+    "linha": "ρ² = (l/2)² + (l/2)² = l²/2",
+    "nota": "raio do hexágono"
+   },
+   {
+    "linha": "(h − R)² + ρ² = R² → R = (h² + ρ²)/(2h)",
+    "nota": "Pitágoras no eixo"
+   },
+   {
+    "linha": "R = (5l²/4)/(l√3)",
+    "nota": "substitui"
+   },
+   {
+    "linha": "R = 5l√3/12",
+    "nota": "racionaliza"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "O cubo aparece com V num canto; os seis pontos médios se acendem e formam o hexágono; a pirâmide com vértice V se desenha; o eixo VO aparece e o centro da esfera desliza até ficar a R de V e de um vértice do hexágono; a esfera se fecha."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ },
+ "P18a8dc68": {
+  "n": "48",
+  "conceito": "Completar quadrados numa equação com parâmetro, achar a condição de hipérbole e o lugar do centro (3b, b).",
+  "equivocos": {
+   "A": "M12.4:testou-so-alguns-valores-do-parametro",
+   "B": "M12.4:testou-so-alguns-valores-do-parametro",
+   "D": "M12.4:testou-so-alguns-valores-do-parametro",
+   "E": "M12.4:nao-achou-o-centro"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Completando quadrados em x e em y, a equação vira uma diferença de dois quadrados igual a 1, com o fator (1 − b²) na frente do termo em y. Ela só é hipérbole se esse fator for positivo, ou seja, b² < 1. O centro é (3b, b), e a alternativa certa é a desigualdade que vale para todo b com b² < 1.",
+    "formulas": [
+     "x² − 6bx = (x − 3b)² − 9b²",
+     "y² − 2by = (y − b)² − b²",
+     "(x − h)² − k(y − m)² = 1 com k > 0: hipérbole de centro (h, m)"
+    ],
+    "simbolos": [
+     [
+      "b",
+      "parâmetro real da equação"
+     ],
+     [
+      "C",
+      "centro da hipérbole"
+     ],
+     [
+      "ℝ²",
+      "o plano, conjunto dos pares (x, y)"
+     ],
+     [
+      "b²",
+      "b ao quadrado; b² < 1 quer dizer −1 < b < 1"
+     ]
+    ]
+   },
+   "pista": "Complete quadrados em x e em y e veja que número sobra do lado direito.",
+   "passos": [
+    {
+     "faz": "Complete os quadrados",
+     "conta": "(x − 3b)² − 9b² − (1 − b²)[(y − b)² − b²] + b⁴ + 8b² − 1 = 0",
+     "porque": "x² − 6bx vira (x − 3b)² − 9b²; y² − 2by vira (y − b)² − b².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as constantes",
+     "conta": "−9b² + b² − b⁴ + b⁴ + 8b² − 1 = −1 → (x − 3b)² − (1 − b²)(y − b)² = 1",
+     "porque": "−(1 − b²) · (−b²) dá + b² − b⁴; o b⁴ e os b² se cancelam, e sobra só −1, que passa para a direita como 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha a condição de hipérbole",
+     "conta": "1 − b² > 0 → b² < 1 ; centro C = (3b, b)",
+     "porque": "Com 1 − b² negativo a curva é elipse; com 1 − b² = 0 vira as duas retas x = 3b ± 1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste C nas alternativas",
+     "conta": "C: (3b)²/9 − b²/2 = b² − b²/2 = b²/2 < 1/2 < 1",
+     "porque": "Com b² < 1, b²/2 fica abaixo de 1/2, sempre menor que 1.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "b²/2 < 1 para todo b com b² < 1 → alternativa C",
+     "porque": "É a única desigualdade garantida para qualquer valor de b que faz hipérbole.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — o centro C está no conjunto x²/9 − y²/2 < 1",
+   "checagem": "Teste dois valores de b: com b = 0, a equação vira x² − y² = 1, hipérbole de centro (0, 0), e 0 − 0 < 1; com b = 0,9, centro (2,7; 0,9) e 2,7²/9 − 0,9²/2 = 0,81 − 0,405 = 0,405 < 1. Fecha.",
+   "erradas": {
+    "A": "A não confere para b perto de 1: com b = 0,99, (3b)²/9 + b²/12 = 13b²/12 ≈ 1,06, que não é menor que 1.",
+    "B": "B não confere: com b = 0 (x² − y² = 1, hipérbole), o centro é (0, 0) e 0 + 0 > 1 é falso.",
+    "D": "D não confere: com b = 0, o centro é (0, 0) e 3 · 0 − 2 · 0 > 1 é falso.",
+    "E": "E não confere: a alternativa C vale para todo b com b² < 1, pois b²/2 < 1."
+   },
+   "armadilha": "A alternativa tem de valer para todo b que faz hipérbole (b² < 1), e não só para alguns; teste b = 0 e b perto de 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual conjunto contém o centro C da hipérbole, para todo b permitido.",
+    "chave": "Completando quadrados: (x − 3b)² − (1 − b²)(y − b)² = 1, hipérbole se b² < 1, centro (3b, b).",
+    "cuidado": "Teste cada desigualdade nos extremos: b = 0 e b perto de ±1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "translação",
+    "ideia": "Trocando X = x − 3b e Y = y − b, a equação vira X² − (1 − b²)Y² = 1, hipérbole centrada na origem nova, que é (3b, b)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x − 3b)² − 9b² − (1 − b²)[(y − b)² − b²] + b⁴ + 8b² − 1 = 0",
+    "nota": "completar quadrados"
+   },
+   {
+    "linha": "(x − 3b)² − (1 − b²)(y − b)² = 1",
+    "nota": "constantes somam −1"
+   },
+   {
+    "linha": "1 − b² > 0 → b² < 1 ; C = (3b, b)",
+    "nota": "condição e centro"
+   },
+   {
+    "linha": "(3b)²/9 − b²/2 = b²/2 < 1",
+    "nota": "teste da alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ },
+ "Pccdeb7eb": {
+  "n": "52",
+  "conceito": "Probabilidade por contagem: pares de retas por vértices de um cubo que se cruzam num vértice.",
+  "equivocos": {
+   "B": "M13.9:contagem-dos-favoraveis-errada",
+   "C": "M13.9:contagem-dos-favoraveis-errada",
+   "D": "M13.9:contagem-dos-favoraveis-errada",
+   "E": "M13.9:incluiu-a-propria-reta-no-total"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Num cubo não há três vértices alinhados, então cada par de vértices define uma reta diferente. O espaço amostral são os pares dessas retas. Duas retas distintas se cruzam num vértice quando passam pelo mesmo vértice, e duas retas distintas têm no máximo um ponto em comum: conte vértice por vértice sem medo de contar duas vezes.",
+    "formulas": [
+     "número de retas = C(8, 2)",
+     "probabilidade = pares favoráveis/pares possíveis",
+     "C(n, 2) = (n · (n − 1))/2"
+    ],
+    "simbolos": [
+     [
+      "C(n, 2)",
+      "número de modos de escolher 2 elementos entre n, sem importar a ordem"
+     ],
+     [
+      "A",
+      "conjunto das retas que passam por dois vértices do cubo"
+     ]
+    ]
+   },
+   "pista": "Primeiro conte quantas retas existem; depois, quantas passam por um mesmo vértice.",
+   "passos": [
+    {
+     "faz": "Conte as retas",
+     "conta": "C(8, 2) = (8 · 7)/2 → 28 retas",
+     "porque": "Cada par de vértices dá uma reta, e nenhuma reta do cubo passa por três vértices.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os pares de retas",
+     "conta": "C(28, 2) = (28 · 27)/2 → 378 pares",
+     "porque": "Escolhem-se duas retas distintas sem ordem: esse é o espaço amostral.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os pares que se cruzam num vértice",
+     "conta": "por vértice: C(7, 2) = 21 → 8 × 21 = 168 pares",
+     "porque": "Por cada vértice passam 7 retas (uma para cada outro vértice). Duas retas distintas só se cruzam num ponto, então nenhum par é contado em dois vértices.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "168/378 → 4/9 → alternativa A",
+     "porque": "Dividindo os dois por 42, a probabilidade fica 4/9.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 4/9",
+   "checagem": "Fixe a primeira reta: sobram 27 retas, e as que a encontram num vértice passam por uma das suas duas pontas, 6 por ponta. São 12 de 27, ou seja, 4/9, o mesmo valor.",
+   "erradas": {
+    "B": "1/2 não confere: fixada uma reta, seriam 13,5 das 27 restantes a encontrá-la num vértice, mas são exatamente 6 + 6 = 12.",
+    "C": "2/3 não confere: seriam 18 das 27 retas restantes; pelas duas pontas passam só 12 outras retas.",
+    "D": "1/14 não confere: daria 378/14 = 27 pares favoráveis, mas só um vértice já tem 21 pares e são 8 vértices.",
+    "E": "3/7 sai de 12/28: contou as 12 retas pelas pontas sobre as 28 retas, incluindo a própria reta fixada; as outras são 27."
+   },
+   "armadilha": "A segunda reta é escolhida entre as 27 restantes, e duas retas distintas nunca se cruzam em dois vértices.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de duas retas por vértices do cubo se cruzarem num vértice.",
+    "chave": "168 pares favoráveis (8 vértices × C(7, 2)) em 378 pares possíveis: 4/9.",
+    "cuidado": "Não divida por 28 depois de fixar uma reta: a outra sai das 27 que sobram."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fixar uma reta",
+    "ideia": "Das 27 outras retas, 6 + 6 = 12 passam por suas pontas: 12/27 = 4/9."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(8, 2) = 28",
+    "nota": "retas"
+   },
+   {
+    "linha": "C(28, 2) = 378",
+    "nota": "pares de retas"
+   },
+   {
+    "linha": "8 · C(7, 2) = 8 · 21 = 168",
+    "nota": "pares que se cruzam num vértice"
+   },
+   {
+    "linha": "168/378 = 4/9",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "Pd6b419ef": {
+  "n": "46",
+  "conceito": "Testar afirmações sobre produto, comutatividade e determinante de matrizes, derrubando as falsas com contraexemplo.",
+  "equivocos": {
+   "A": "M15.1:inversivel-implica-comutar",
+   "B": "M15.1:produto-nulo-comuta",
+   "C": "M15.2:sinal-sem-expoente-n",
+   "D": "M15.2:sinal-sem-expoente-n"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Afirmação geral sobre matrizes cai com um único contraexemplo, e matrizes 2 × 2 bastam. Na III, aplique determinante dos dois lados: det(Aᵀ) = det(A) e det(kA) = kⁿ det(A) numa matriz n × n. O sinal depende de n ser par ou ímpar.",
+    "formulas": [
+     "det(Aᵀ) = det(A)",
+     "det(−M) = (−1)ⁿ det(M)",
+     "det(A²) = (det A)²"
+    ],
+    "simbolos": [
+     [
+      "Mₙ(ℝ)",
+      "matrizes n × n de números reais"
+     ],
+     [
+      "Aᵀ",
+      "transposta de A"
+     ],
+     [
+      "inversível",
+      "matriz com determinante diferente de 0"
+     ],
+     [
+      "0",
+      "matriz nula, só zeros"
+     ]
+    ]
+   },
+   "pista": "Para cada afirmação, tente montar um contraexemplo 2 × 2 simples, com muitos zeros e uns.",
+   "passos": [
+    {
+     "faz": "Teste I com duas inversíveis",
+     "conta": "(1 1; 0 1)(1 0; 1 1) = (2 1; 1 1) ; (1 0; 1 1)(1 1; 0 1) = (1 1; 1 2)",
+     "porque": "As duas matrizes têm determinante 1, logo são inversíveis, e mesmo assim AB ≠ BA. I é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste II com matrizes de zeros e uns",
+     "conta": "A = (1 0; 0 0), B = (0 0; 1 0) → AB = (0 0; 0 0) ; BA = (0 0; 1 0)",
+     "porque": "AB = 0 não obriga BA = 0, porque a ordem do produto muda tudo. II é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Aplique determinante na III",
+     "conta": "det(Aᵀ) = det(−A²) → det A = (−1)ⁿ (det A)² → det A = (−1)ⁿ",
+     "porque": "Como A é inversível, det A ≠ 0 e dá para dividir por det A. O resultado depende de n.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache um contraexemplo para III com n = 2",
+     "conta": "A = (1/2   √3/2; −√3/2   1/2) → Aᵀ = −A² e det A = 1/4 + 3/4 = 1",
+     "porque": "É uma rotação de 120° com o sinal trocado; a conta confirma Aᵀ = −A², e o determinante é 1, não −1. III é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "I, II e III falsas → nenhuma afirmação → alternativa E",
+     "porque": "As três caem com contraexemplos 2 × 2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — nenhuma das afirmações é verdadeira",
+   "checagem": "Em III, com n ímpar a regra dá det A = −1 (A = −I de ordem 3 cumpre Aᵀ = −A²), mas com n par dá +1. Como a afirmação vale para todo n ≥ 2, basta o caso n = 2 para derrubá-la.",
+   "erradas": {
+    "A": "A não confere: I cai com (1 1; 0 1) e (1 0; 1 1), ambas de determinante 1 e com AB ≠ BA.",
+    "B": "B não confere: II cai com A = (1 0; 0 0) e B = (0 0; 1 0), em que AB = 0 mas BA = (0 0; 1 0).",
+    "C": "C sai de fazer III só com n ímpar: det A = (−1)ⁿ dá −1 quando n é ímpar, mas dá +1 quando n é par.",
+    "D": "D junta dois erros: I cai com duas inversíveis que não comutam, e III só vale para n ímpar (com n = 2, det A = 1)."
+   },
+   "armadilha": "Tratar det(−A²) como −det(A²), esquecendo que o sinal sai elevado a n: (−1)ⁿ.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das três afirmações sobre matrizes n × n são verdadeiras.",
+    "chave": "Contraexemplos 2 × 2 derrubam I e II; em III, det A = (−1)ⁿ, que é +1 para n par.",
+    "cuidado": "det(kA) = kⁿ det(A): o fator sai elevado à ordem da matriz."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "só o sinal em III",
+    "ideia": "Tomando determinante, det A = (−1)ⁿ (det A)², logo det A = (−1)ⁿ: para n par dá 1, então III não vale para todo n."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(1 1; 0 1)(1 0; 1 1) = (2 1; 1 1) ≠ (1 1; 1 2)",
+    "nota": "I falsa"
+   },
+   {
+    "linha": "(1 0; 0 0)(0 0; 1 0) = 0, mas (0 0; 1 0)(1 0; 0 0) ≠ 0",
+    "nota": "II falsa"
+   },
+   {
+    "linha": "det A = (−1)ⁿ (det A)² → det A = (−1)ⁿ",
+    "nota": "determinante dos dois lados"
+   },
+   {
+    "linha": "n = 2 → det A = 1 ≠ −1",
+    "nota": "III falsa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P1e9413bb": {
+  "n": "43",
+  "conceito": "Sistemas equivalentes: resolver os dois sistemas em função de m e igualar as soluções, verificando quando cada sistema tem solução.",
+  "equivocos": {
+   "A": "M15.3:nao-resolveu-os-sistemas",
+   "B": "M15.3:nao-testou-se-s1-tem-solucao",
+   "D": "M15.3:nao-descartou-m-que-anula-o-det",
+   "E": "M15.3:confundiu-equivalencia-com-indeterminacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dois sistemas são equivalentes quando têm o mesmo conjunto de soluções. S₂ tem determinante −700, que nunca zera, então sempre tem uma única solução. Resolva os dois em função de m, iguale as soluções e confira se, no valor encontrado, S₁ também tem solução (o determinante de S₁ zera em m = ±2).",
+    "formulas": [
+     "equivalentes ⇔ mesmo conjunto de soluções",
+     "det dos coeficientes ≠ 0 ⇔ solução única"
+    ],
+    "simbolos": [
+     [
+      "S₁, S₂",
+      "os dois sistemas lineares"
+     ],
+     [
+      "m",
+      "parâmetro real"
+     ],
+     [
+      "(x, y, z)",
+      "solução do sistema"
+     ]
+    ]
+   },
+   "pista": "Em S₂, isole y na 2ª equação e leve para a 3ª: os termos com mz se cancelam.",
+   "passos": [
+    {
+     "faz": "Resolva S₂",
+     "conta": "−5y + 5z = 14 → y = z − 14/5 | 5m(z − 14/5) + (14 − 5m)z = 14m² − 56 → 14z − 14m = 14m² − 56 → z = m² + m − 4 | 10x + z = m² + m − 1 → x = 3/10",
+     "porque": "Substituindo y na 3ª equação, os termos 5mz se cancelam e sobra 14z. Por isso S₂ tem sempre uma única solução, para todo m.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva S₁",
+     "conta": "L3 − 3·L1: (12x − 3y + z) − 3(4x − y) = 8 − 6 → z = 2 | y = 4x − 2 → −16x + m²(4x − 2) + 2 = −10 → x = (m² − 6)/(2(m² − 4))",
+     "porque": "Subtrair o triplo da 1ª equação da 3ª elimina x e y e entrega z = 2. Para m = ±2 a última equação vira 0 · x = número diferente de zero: S₁ sem solução.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale os valores de z",
+     "conta": "m² + m − 4 = 2 → m² + m − 6 = 0 → (m + 3)(m − 2) = 0 → m = −3 ou m = 2",
+     "porque": "Para os sistemas terem a mesma solução, o z de S₂ precisa valer 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine m = 2 e confira m = −3",
+     "conta": "m = 2: S₁ impossível | m = −3: x = (9 − 6)/(2 · 5) = 3/10, y = 4 · (3/10) − 2 = −4/5 e em S₂ y = 2 − 14/5 = −4/5",
+     "porque": "Com m = 2, S₁ não tem solução e S₂ tem uma, então não são equivalentes. Com m = −3, os dois têm a mesma solução (3/10, −4/5, 2).",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "único valor: m = −3 < 0 → alternativa C",
+     "porque": "Existe exatamente um m, e ele é negativo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — existe exatamente um m < 0 (m = −3) tal que S₁ é equivalente a S₂.",
+   "checagem": "Substitua (3/10, −4/5, 2) com m = −3 em S₁: 4 · 0,3 + 0,8 = 2; −4,8 + 9 · (−0,8) + 2 = −10; 3,6 + 2,4 + 2 = 8. Em S₂: 3 + 2 = 5 = 9 − 3 − 1; 4 + 10 = 14; −15 · (−0,8) + 29 · 2 = 70 = 14 · 9 − 56. Todas fecham.",
+   "erradas": {
+    "A": "A não confere: com m = −3, os dois sistemas têm a mesma solução única (3/10, −4/5, 2).",
+    "B": "B sai de aceitar a raiz m = 2 da equação m² + m − 6 = 0 sem testar S₁: com m = 2, o determinante de S₁ é 4(m − 2)(m + 2) = 0 e S₁ fica impossível.",
+    "D": "D sai de contar as duas raízes, m = 2 e m = −3, sem descartar m = 2, em que S₁ não tem solução.",
+    "E": "E não confere: S₂ tem sempre solução única, e igualar as soluções dá uma equação de 2º grau em m, com no máximo duas raízes, não infinitas."
+   },
+   "armadilha": "A equação m² + m − 6 = 0 dá dois valores, mas em m = 2 o sistema S₁ é impossível e não pode ser equivalente a S₂.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos valores de m (e de que sinal) tornam S₁ e S₂ equivalentes.",
+    "chave": "S₂ dá sempre x = 3/10 e z = m² + m − 4; S₁ dá z = 2; igualando, m = −3 ou m = 2.",
+    "cuidado": "Teste cada m: em m = 2 o sistema S₁ é impossível."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela solução de S₂",
+    "ideia": "Substitua a solução de S₂ (x = 3/10, z = m² + m − 4) em S₁: a 3ª equação de S₁ força z = 2, o que dá m = −3 ou 2, e a 2ª só fecha em m = −3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "14z − 14m = 14m² − 56 → z = m² + m − 4",
+    "nota": "S₂: y = z − 14/5 na 3ª equação"
+   },
+   {
+    "linha": "10x + z = m² + m − 1 → x = 3/10",
+    "nota": "S₂: 1ª equação"
+   },
+   {
+    "linha": "L3 − 3·L1 → z = 2",
+    "nota": "S₁: elimina x e y"
+   },
+   {
+    "linha": "m² + m − 4 = 2 → (m + 3)(m − 2) = 0",
+    "nota": "iguala os z"
+   },
+   {
+    "linha": "m = 2: det S₁ = 4(m − 2)(m + 2) = 0 → só m = −3",
+    "nota": "descarta m = 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P8037c760": {
+  "n": "45",
+  "conceito": "Usar a raiz conjugada para fatorar um polinômio real de grau 4 e calcular a área do quadrilátero formado pelas raízes no plano complexo.",
+  "equivocos": {
+   "A": "M16.1:area-sem-montar-a-figura",
+   "B": "M16.1:area-so-do-retangulo-interno",
+   "C": "M16.1:area-sem-montar-a-figura",
+   "E": "M16.1:area-sem-montar-a-figura"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O polinômio tem coeficientes reais, então, se i é raiz, o conjugado −i também é. Isso dá o fator z² + 1; dividindo, sobra um fator de grau 2 com as outras duas raízes. Marcadas no plano, as quatro raízes formam um trapézio com dois lados verticais.",
+    "formulas": [
+     "coeficientes reais: se z é raiz, o conjugado também é",
+     "z = (−b ± √Δ)/(2a), com √(−16) = 4i",
+     "área do trapézio = ((B + b)/2) · h"
+    ],
+    "simbolos": [
+     [
+      "i",
+      "unidade imaginária, i² = −1"
+     ],
+     [
+      "conjugado",
+      "o número com a parte imaginária de sinal trocado: o de 3 + 2i é 3 − 2i"
+     ],
+     [
+      "Δ",
+      "discriminante b² − 4ac"
+     ],
+     [
+      "B, b, h",
+      "base maior, base menor e altura do trapézio"
+     ]
+    ]
+   },
+   "pista": "Se i é raiz e os coeficientes são reais, que outra raiz vem junto? Use as duas para tirar um fator de grau 2.",
+   "passos": [
+    {
+     "faz": "Use a raiz conjugada",
+     "conta": "raízes i e −i → fator (z − i)(z + i) = z² + 1",
+     "porque": "Coeficientes reais obrigam as raízes não reais a virem em pares conjugados.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Divida p(z) por z² + 1",
+     "conta": "z⁴ − 6z³ + 14z² − 6z + 13 → (z² + 1)(z² − 6z + 13)",
+     "porque": "Conferindo: z⁴ − 6z³ + 13z² + z² − 6z + 13 devolve o polinômio original.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva o fator de grau 2",
+     "conta": "Δ = 36 − 52 = −16 → z = (6 ± 4i)/2 → z = 3 ± 2i",
+     "porque": "A raiz de −16 é 4i; dividindo 6 ± 4i por 2, as outras raízes são 3 + 2i e 3 − 2i.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque os vértices no plano",
+     "conta": "i, −i, 3 + 2i, 3 − 2i → (0, 1), (0, −1), (3, 2), (3, −2)",
+     "porque": "Parte real no eixo horizontal, parte imaginária no vertical. Os pares ficam nas retas verticais x = 0 e x = 3: é um trapézio de bases verticais.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a área do trapézio",
+     "conta": "b = 2 | B = 4 | h = 3 → ((4 + 2)/2) · 3 = 9",
+     "porque": "A base menor vai de −1 a 1, a maior de −2 a 2, e a distância entre as retas x = 0 e x = 3 é a altura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue a área à alternativa",
+     "conta": "área = 9 → alternativa D",
+     "porque": "A questão pede a área do quadrilátero, e ela vale 9.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 9",
+   "checagem": "Pela fórmula do polígono (shoelace) com os vértices em ordem, (0, −1), (3, −2), (3, 2), (0, 1): a soma dos produtos cruzados é 3 + 12 + 3 + 0 = 18, e metade dá 9. Fecha.",
+   "erradas": {
+    "A": "4 não confere: o trapézio contém o retângulo de vértices (0, ±1) e (3, ±1), de área 2 · 3 = 6. A área tem de passar de 6.",
+    "B": "6 não confere: 6 é só o retângulo 2 × 3 dentro do trapézio; faltam os dois triângulos acima e abaixo dele, de área 1,5 cada.",
+    "C": "8 não confere: com bases 2 e 4, área 8 pediria altura 8/3 ≈ 2,67, mas a distância entre x = 0 e x = 3 é 3.",
+    "E": "10 não confere: com bases 2 e 4, área 10 pediria altura 10/3 ≈ 3,33, mas a distância entre x = 0 e x = 3 é 3."
+   },
+   "armadilha": "Sem usar que −i também é raiz, não há como fatorar p(z): a dica p(i) = 0 vale por duas raízes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do quadrilátero cujos vértices são as quatro raízes de p(z).",
+    "chave": "p(z) = (z² + 1)(z² − 6z + 13), raízes ±i e 3 ± 2i: trapézio de bases 2 e 4 e altura 3, área 9.",
+    "cuidado": "Leia cada raiz como ponto (parte real, parte imaginária) antes de medir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dois triângulos",
+    "ideia": "Divida pela diagonal de (0, 1) a (3, −2): triângulos de área 3 e 6, total 9."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i e −i → z² + 1",
+    "nota": "raiz conjugada"
+   },
+   {
+    "linha": "p(z) = (z² + 1)(z² − 6z + 13)",
+    "nota": "dividir p por z² + 1"
+   },
+   {
+    "linha": "Δ = 36 − 52 = −16",
+    "nota": "fator de grau 2"
+   },
+   {
+    "linha": "z = (6 ± 4i)/2 = 3 ± 2i",
+    "nota": "as outras raízes"
+   },
+   {
+    "linha": "((4 + 2)/2) · 3 = 9",
+    "nota": "trapézio de bases 2 e 4"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P21fdf9e7": {
+  "n": "44",
+  "conceito": "Quando informações sobre soma, diferença, produto ou quociente de dois complexos garantem que os dois são reais.",
+  "equivocos": {
+   "B": "M16.2:produto-e-quociente-reais-nao-forcam-real",
+   "C": "M16.2:esqueceu-o-par-conjugado",
+   "D": "M16.2:produto-e-quociente-reais-nao-forcam-real",
+   "E": "M16.2:esqueceu-o-par-conjugado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada afirmação diz: se duas combinações de z1 e z2 são reais, então z1 e z2 são reais. Para ser sempre verdadeira, tem de valer em todos os casos; para cair, basta um contraexemplo. Soma e diferença reais devolvem z1 e z2 por uma média. Já produto e quociente reais, ou soma e produto reais, aceitam pares de números não reais.",
+    "formulas": [
+     "z1 = ((z1 + z2) + (z1 − z2))/2 e z2 = ((z1 + z2) − (z1 − z2))/2",
+     "z1 e z2 são raízes de t² − (z1 + z2)t + z1 · z2 = 0",
+     "i² = −1"
+    ],
+    "simbolos": [
+     [
+      "ℂ",
+      "conjunto dos números complexos"
+     ],
+     [
+      "ℝ",
+      "conjunto dos números reais"
+     ],
+     [
+      "∈",
+      "pertence a"
+     ],
+     [
+      "i",
+      "unidade imaginária, com i² = −1"
+     ],
+     [
+      "contraexemplo",
+      "um caso em que as hipóteses valem e a conclusão não"
+     ]
+    ]
+   },
+   "pista": "Na afirmação I, tente recuperar z1 e z2 a partir da soma e da diferença. Nas outras, procure um par de números não reais que cumpra as hipóteses.",
+   "passos": [
+    {
+     "faz": "Recupere z1 e z2 na afirmação I",
+     "conta": "s = z1 + z2 ∈ ℝ | d = z1 − z2 ∈ ℝ → z1 = (s + d)/2 ∈ ℝ | z2 = (s − d)/2 ∈ ℝ",
+     "porque": "Somando e subtraindo as duas igualdades, cada número vira uma média de reais, e média de reais é real. Vale em qualquer caso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a afirmação II com z1 = z2 = i",
+     "conta": "i · i = i² = −1 ∈ ℝ | i/i = 1 ∈ ℝ → mas i ∉ ℝ",
+     "porque": "As duas hipóteses valem e a conclusão falha. Um contraexemplo basta para a afirmação não ser sempre verdadeira.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste a afirmação III com i e −i",
+     "conta": "i + (−i) = 0 ∈ ℝ | i · (−i) = −i² = 1 ∈ ℝ → mas i ∉ ℝ",
+     "porque": "Um par de conjugados tem soma e produto reais: são as raízes de t² + 1 = 0, que não tem raiz real.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Junte os resultados",
+     "conta": "I verdadeira | II falsa | III falsa → apenas I → alternativa A",
+     "porque": "Só a afirmação I vale em todos os casos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — apenas a afirmação I é sempre verdadeira",
+   "checagem": "Pela forma algébrica: com z1 = a + bi e z2 = c + di, soma real dá b + d = 0 e diferença real dá b − d = 0, logo b = d = 0, e I se confirma. Em III, z1 e z2 são raízes de t² − St + P = 0 com S e P reais; quando S² − 4P < 0, as raízes são complexas conjugadas, como em t² + 1 = 0.",
+   "erradas": {
+    "B": "I e II não confere: II é falsa, porque z1 = z2 = i tem produto −1 e quociente 1, ambos reais, e i não é real.",
+    "C": "apenas I e III não confere: III é falsa, porque z1 = i e z2 = −i têm soma 0 e produto 1, ambos reais, e não são reais.",
+    "D": "apenas II não confere: II cai com z1 = z2 = i, e a afirmação I, que vale sempre pela média (s + d)/2, ficou de fora.",
+    "E": "apenas III não confere: III cai com o par i e −i, e a afirmação I, que vale sempre, ficou de fora."
+   },
+   "armadilha": "Soma e produto reais não forçam números reais: um par de conjugados, como i e −i, também tem soma e produto reais.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das três implicações valem para todos os z1, z2 complexos com z2 ≠ 0.",
+    "chave": "Soma e diferença reais dão z1 e z2 por média; para II e III há contraexemplos com i.",
+    "cuidado": "Sempre verdadeira exige prova geral; um único contraexemplo derruba a afirmação."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "forma algébrica",
+    "ideia": "Escreva z1 = a + bi e z2 = c + di: em I, b + d = 0 e b − d = 0 dão b = d = 0; em II e III, os exemplos com i mostram que b pode ser diferente de 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I: z1 = (s + d)/2 e z2 = (s − d)/2",
+    "nota": "média de reais é real"
+   },
+   {
+    "linha": "II: z1 = z2 = i → i · i = −1 e i/i = 1",
+    "nota": "hipóteses valem, i não é real"
+   },
+   {
+    "linha": "III: i + (−i) = 0 e i · (−i) = 1",
+    "nota": "par conjugado derruba"
+   },
+   {
+    "linha": "só I é sempre verdadeira",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0081"
+  }
+ },
+ "Pa37c6cc9": {
+  "n": "51",
+  "conceito": "Saber que o número de algarismos binários só aumenta de k para k + 1 quando k + 1 é potência de 2, e contar esses casos de 1 a 100.",
+  "equivocos": {
+   "A": "M17.2:contou-potencias-de-2-a-menos",
+   "B": "M17.2:contou-potencias-de-2-a-menos",
+   "D": "M17.2:contou-potencias-de-2-a-mais",
+   "E": "M17.2:contou-potencias-de-2-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em binário, o número de algarismos só cresce quando se chega a uma potência de 2: 7 = (111)₂ tem 3 algarismos e 8 = (1000)₂ tem 4. Então k e k + 1 têm tamanhos diferentes exatamente quando k + 1 é potência de 2. A questão vira contar potências de 2 entre 2 e 101.",
+    "formulas": [
+     "N tem m algarismos binários quando 2^(m − 1) ≤ N < 2^m",
+     "probabilidade = casos favoráveis/casos possíveis"
+    ],
+    "simbolos": [
+     [
+      "(abc)₂",
+      "número escrito na base 2"
+     ],
+     [
+      "2^m",
+      "potência de 2: 2 multiplicado m vezes"
+     ],
+     [
+      "k",
+      "inteiro sorteado de 1 a 100 (100 casos possíveis)"
+     ]
+    ]
+   },
+   "pista": "Teste alguns números pequenos em binário (1, 2, 3, 4, 7, 8) e veja em que momento aparece um algarismo a mais.",
+   "passos": [
+    {
+     "faz": "Veja quando nasce um algarismo novo",
+     "conta": "7 = (111)₂ → 8 = (1000)₂ | 8 = (1000)₂ → 9 = (1001)₂",
+     "porque": "Somar 1 a um número só de uns, (11…1)₂, dá uma potência de 2 com um algarismo a mais; nos outros casos o tamanho não muda.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Traduza a condição para k + 1",
+     "conta": "tamanhos diferentes ⇔ k + 1 = 2^m",
+     "porque": "O tamanho muda ao passar de 2^m − 1 para 2^m, e só aí.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Liste as potências de 2 entre 2 e 101",
+     "conta": "k + 1 ∈ {2, 4, 8, 16, 32, 64} → k ∈ {1, 3, 7, 15, 31, 63}",
+     "porque": "Como 1 ≤ k ≤ 100, k + 1 vai de 2 a 101; a próxima potência, 128, passa de 101.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a probabilidade",
+     "conta": "P = 6/100 → P = 6%",
+     "porque": "São 6 casos favoráveis entre os 100 valores possíveis de k.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à letra",
+     "conta": "6% → alternativa C",
+     "porque": "6% é o valor da alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a probabilidade é 6%.",
+   "checagem": "Conte por faixas de tamanho: de 1 a 100 os números têm 1 algarismo (1), 2 (2 e 3), 3 (4 a 7), 4 (8 a 15), 5 (16 a 31), 6 (32 a 63) e 7 (64 a 100). O tamanho muda na saída de cada faixa até a de 6 algarismos: são 6 mudanças, e o 100 → 101 fica dentro da faixa de 7.",
+   "erradas": {
+    "A": "A não confere: k = 1, 3, 7, 15, 31 e 63 já são 6 casos em que k e k + 1 mudam de tamanho, não 2.",
+    "B": "B não confere: as potências de 2 entre 2 e 101 são seis (2, 4, 8, 16, 32, 64), o que dá 6/100, não 4/100.",
+    "D": "D não confere: para 8 casos seria preciso k + 1 chegar a 256; com k ≤ 100, a maior potência possível é 64.",
+    "E": "E não confere: há só 6 valores de k (1, 3, 7, 15, 31, 63) entre 100; 10% exigiria 10 casos."
+   },
+   "armadilha": "Contar potências de 2 em k em vez de em k + 1 (seriam 7: 1, 2, 4, …, 64, e 7% nem é alternativa).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de k e k + 1 terem número diferente de algarismos binários.",
+    "chave": "Isso acontece só quando k + 1 é potência de 2.",
+    "cuidado": "Conte as potências de 2 em k + 1, de 2 a 101: são 6."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "faixas de tamanho",
+    "ideia": "De 1 a 101 há 7 faixas de tamanho (1 a 7 algarismos); cada troca de faixa dentro do intervalo é um caso: 6 trocas em 100."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "7 = (111)₂ → 8 = (1000)₂",
+    "nota": "o tamanho muda numa potência de 2"
+   },
+   {
+    "linha": "k + 1 = 2, 4, 8, 16, 32, 64",
+    "nota": "potências de 2 entre 2 e 101"
+   },
+   {
+    "linha": "k = 1, 3, 7, 15, 31, 63 → 6 casos",
+    "nota": "casos favoráveis"
+   },
+   {
+    "linha": "P = 6/100 = 6%",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0081"
+  }
+ }
+}

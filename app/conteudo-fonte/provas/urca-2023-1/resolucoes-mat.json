@@ -1,0 +1,1490 @@
+{
+ "Pb189b604": {
+  "n": "21",
+  "conceito": "Restos da divisão por 4 se repetem em ciclo.",
+  "equivocos": {
+   "A": "M01.4:sem-origem-identificada",
+   "B": "M01.4:sem-origem-identificada",
+   "C": "M01.4:sem-origem-identificada",
+   "E": "M01.4:contou-ciclo-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os restos da divisão por 4 seguem o ciclo 0, 1, 2, 3, 0, 1, 2, 3, ... Conte quantos ciclos completos há de 4 a 99 e multiplique pela soma de um ciclo.",
+    "formulas": [
+     "restos por 4: 0, 1, 2, 3",
+     "soma de um ciclo = 6"
+    ],
+    "simbolos": [
+     [
+      "r(a, b)",
+      "resto de a ÷ b"
+     ]
+    ]
+   },
+   "pista": "Quantos números há de 4 a 99? Eles formam ciclos completos?",
+   "passos": [
+    {
+     "faz": "Quantidade",
+     "conta": "99 − 4 + 1 = 96 números",
+     "porque": "De 4 a 99.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ciclos",
+     "conta": "96 ÷ 4 = 24 ciclos completos",
+     "porque": "4 começa com resto 0 e 99 termina com resto 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Soma",
+     "conta": "24 · (0 + 1 + 2 + 3) = 24 · 6 = 144 → alternativa D",
+     "porque": "Soma dos restos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 144",
+   "checagem": "Conte por resto: de 4 a 99 há 24 números com cada resto (múltiplos de 4: 4, 8, ..., 96 são 24; os de resto 1: 5, 9, ..., 97 são 24; etc.). Soma = 24 · 0 + 24 · 1 + 24 · 2 + 24 · 3 = 0 + 24 + 48 + 72 = 144. Confere.",
+   "erradas": {
+    "A": "88 não corresponde a nenhuma contagem de ciclos (88/6 não é inteiro).",
+    "B": "98 não sai: a soma é múltipla de 6 (24 ciclos de 6).",
+    "C": "120 seria 20 ciclos de soma 6; de 4 a 99 há 24 ciclos.",
+    "E": "150 seria 25 ciclos: contou um ciclo a mais (de 0 a 99)."
+   },
+   "armadilha": "Contar os números errado (de 4 a 99 são 96, não 95 ou 100) e errar o número de ciclos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Soma dos restos.",
+    "chave": "96 números = 24 ciclos de soma 6.",
+    "cuidado": "De a até b há b − a + 1 números."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "subtrair o quociente",
+    "ideia": "r(n, 4) = n − 4 · ⌊n/4⌋. Soma de n de 4 a 99 = (4 + 99) · 96/2 = 4 944. Soma de 4⌊n/4⌋: para cada k de 1 a 24, quatro números têm ⌊n/4⌋ = k: 4 · 4 · (1 + ... + 24) = 16 · 300 = 4 800. Diferença: 144."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "96 números",
+    "nota": "4 a 99"
+   },
+   {
+    "linha": "24 ciclos",
+    "nota": "de 0, 1, 2, 3"
+   },
+   {
+    "linha": "24 · 6 = 144",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  }
+ },
+ "P8c30187e": {
+  "n": "17",
+  "conceito": "Propriedades das desigualdades: multiplicar por número entre 0 e 1 e por número negativo.",
+  "equivocos": {
+   "A": "M04.4:valor-que-nao-fecha",
+   "B": "M04.4:valor-que-nao-fecha",
+   "D": "M04.4:esqueceu-o-sinal-negativo",
+   "E": "M04.4:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Multiplicar um positivo por um número entre 0 e 1 diminui o positivo. Como 0 < b < 1, ab fica entre 0 e a. Multiplicar por −1 inverte tudo: −ab fica entre −a e 0.",
+    "formulas": [
+     "0 < b < 1 e a > 0 ⇒ 0 < ab < a",
+     "multiplicar por −1 inverte a desigualdade"
+    ],
+    "simbolos": [
+     [
+      "[−a, 0]",
+      "intervalo de −a até 0"
+     ]
+    ]
+   },
+   "pista": "Compare ab com a primeiro, sem o sinal de menos.",
+   "passos": [
+    {
+     "faz": "Multiplique b < 1 por a",
+     "conta": "0 < b < 1 → 0 < ab < a",
+     "porque": "a é positivo, então o sentido se mantém.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique por −1",
+     "conta": "0 < ab < a → −a < −ab < 0",
+     "porque": "Multiplicar por negativo inverte as desigualdades.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o intervalo",
+     "conta": "−ab ∈ [−a, 0] → alternativa C",
+     "porque": "Está entre −a e 0.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — −a · b ∈ [−a, 0]",
+   "checagem": "Exemplo: a = 0,2 e b = 0,5 dão −ab = −0,1, que está entre −0,2 e 0.",
+   "erradas": {
+    "A": "[−1, −b] não confere: ab < b, então −ab > −b; no exemplo, −0,1 > −0,5.",
+    "B": "[−b, −a] não confere: −ab > −a, porque ab < a; no exemplo, −0,1 > −0,2.",
+    "D": "[0, a] sai de esquecer o sinal de menos: ab está entre 0 e a, mas −ab é negativo.",
+    "E": "[a, b] não confere: −ab é negativo e a, b são positivos."
+   },
+   "armadilha": "Esquecer que multiplicar por −1 inverte a desigualdade, ou que ab < a quando b < 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Em que intervalo está −ab, com 0 < a < b < 1.",
+    "chave": "0 < ab < a; trocando o sinal, −a < −ab < 0.",
+    "cuidado": "Ao multiplicar por −1, inverta os sinais."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "exemplo numérico",
+    "ideia": "Com a = 0,2 e b = 0,5, −ab = −0,1: só o intervalo [−0,2; 0] o contém."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0 < b < 1 → 0 < ab < a",
+    "nota": "multiplica por a > 0"
+   },
+   {
+    "linha": "−a < −ab < 0",
+    "nota": "multiplica por −1 e inverte"
+   },
+   {
+    "linha": "−0,2 · 0,5 = −0,1",
+    "nota": "exemplo: a = 0,2 e b = 0,5"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0052"
+  }
+ },
+ "P7da3920b": {
+  "n": "16",
+  "conceito": "Composição de funções afins: igualar f∘g e g∘f coeficiente a coeficiente.",
+  "equivocos": {
+   "A": "M05.1:divisao-invertida",
+   "C": "M05.1:valor-que-nao-fecha",
+   "D": "M05.1:valor-que-nao-fecha",
+   "E": "M05.1:termo-esquecido-na-composta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "f∘g significa aplicar g primeiro e depois f. Faça as duas composições, compare: os termos em x já são iguais (16x), então os termos independentes também precisam ser.",
+    "formulas": [
+     "(f∘g)(x) = f(g(x))",
+     "(g∘f)(x) = g(f(x))"
+    ],
+    "simbolos": [
+     [
+      "f∘g",
+      "composta: aplica g e depois f"
+     ],
+     [
+      "k",
+      "constante a determinar"
+     ]
+    ]
+   },
+   "pista": "Calcule f(2x + k) e g(8x + 5) por extenso.",
+   "passos": [
+    {
+     "faz": "Calcule f∘g",
+     "conta": "f(2x + k) = 8(2x + k) + 5 = 16x + 8k + 5",
+     "porque": "Troque x por g(x) na lei de f.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule g∘f",
+     "conta": "g(8x + 5) = 2(8x + 5) + k = 16x + 10 + k",
+     "porque": "Troque x por f(x) na lei de g.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale os termos independentes",
+     "conta": "8k + 5 = 10 + k → 7k = 5 → k = 5/7",
+     "porque": "Os termos em x já são iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "k = 5/7 → alternativa B",
+     "porque": "Valor pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 5/7",
+   "checagem": "Com k = 5/7: 8 · 5/7 + 5 = 40/7 + 35/7 = 75/7 e 10 + 5/7 = 75/7. Iguais.",
+   "erradas": {
+    "A": "7/5 sai de inverter a divisão final: de 7k = 5 escrever k = 7/5.",
+    "C": "7/8 não confere: 8 · 7/8 + 5 = 12, mas 10 + 7/8 = 10,875.",
+    "D": "8/7 não confere: 8 · 8/7 + 5 = 99/7, mas 10 + 8/7 = 78/7.",
+    "E": "10/7 sai de esquecer o + 5 de f∘g: 8k = 10 + k dá 7k = 10."
+   },
+   "armadilha": "Na composta, o k de g é multiplicado por 8 em f∘g, mas aparece sozinho em g∘f.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de k para que f∘g = g∘f.",
+    "chave": "16x + 8k + 5 = 16x + 10 + k dá 7k = 5, k = 5/7.",
+    "cuidado": "Distribua o 8 sobre o k e não perca o + 5."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar alternativas",
+    "ideia": "Teste cada k em 8k + 5 = 10 + k: só 5/7 iguala os dois lados."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "8(2x + k) + 5 = 2(8x + 5) + k",
+    "nota": "f∘g = g∘f"
+   },
+   {
+    "linha": "16x + 8k + 5 = 16x + 10 + k",
+    "nota": "distributiva"
+   },
+   {
+    "linha": "8k − k = 10 − 5",
+    "nota": "k para a esquerda, 5 para a direita"
+   },
+   {
+    "linha": "7k = 5",
+    "nota": "simplifica"
+   },
+   {
+    "linha": "k = 5/7",
+    "nota": "o 7 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
+ },
+ "Pc2b30c10": {
+  "n": "30",
+  "conceito": "Área do círculo a partir do diâmetro e porcentagem dessa área.",
+  "equivocos": {
+   "B": "M08.3:porcentagem-errada-da-area",
+   "C": "M08.3:porcentagem-errada-da-area",
+   "D": "M08.3:porcentagem-errada-da-area",
+   "E": "M08.3:porcentagem-errada-da-area"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O enunciado dá o diâmetro, e a fórmula da área usa o raio: o primeiro trabalho é dividir 15 por 2. Depois é área inteira e, por fim, 60 % dela.",
+    "formulas": [
+     "r = diâmetro ÷ 2",
+     "área = π × r²",
+     "60 % de A = 0,6 × A"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "raio, metade do diâmetro"
+     ],
+     [
+      "π",
+      "pi, que fica indicado nas alternativas"
+     ]
+    ]
+   },
+   "pista": "Antes de usar a fórmula, transforme o diâmetro em raio e escreva o raio como fração.",
+   "passos": [
+    {
+     "faz": "Ache o raio",
+     "conta": "r = 15/2",
+     "porque": "A fórmula da área pede o raio, que é metade do diâmetro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área do círculo",
+     "conta": "π · (15/2)² = (225π)/4",
+     "porque": "Elevar a fração ao quadrado é elevar em cima e embaixo: 15² = 225 e 2² = 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tome 60 % da área",
+     "conta": "(3/5) · (225π)/4 = (675π)/20 = (135π)/4",
+     "porque": "60 % é 3/5; 225 ÷ 5 = 45 e 45 × 3 = 135.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "(135π)/4 → alternativa A",
+     "porque": "É exatamente 60 % da área do círculo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 135π/4",
+   "checagem": "Pelo complemento: 40 % da área é 0,4 × 225 = 90, então (90π)/4; somando, 135 + 90 = 225, a área inteira (225π)/4.",
+   "erradas": {
+    "B": "121π/4 não confere: 121 de 225 é cerca de 53,8 % da área, não 60 %.",
+    "C": "115π/4 não confere: 115 de 225 é cerca de 51,1 % da área, não 60 %.",
+    "D": "109π/4 não confere: 109 de 225 é cerca de 48,4 % da área, não 60 %.",
+    "E": "105π/4 não confere: 105 de 225 é cerca de 46,7 % da área, não 60 %."
+   },
+   "armadilha": "Usar o diâmetro 15 como raio, o que dá uma área 4 vezes maior.",
+   "alerta": "",
+   "essencial": {
+    "pede": "60 % da área de um círculo de diâmetro 15.",
+    "chave": "r = 15/2, área (225π)/4, e 3/5 disso é (135π)/4.",
+    "cuidado": "Divida o diâmetro por 2 antes de elevar ao quadrado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "decimal",
+    "ideia": "Raio 7,5: área 56,25π e 0,6 × 56,25 = 33,75 = 135/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "r = 15/2",
+    "nota": "metade do diâmetro"
+   },
+   {
+    "linha": "π · (15/2)² = (225π)/4",
+    "nota": "área do círculo"
+   },
+   {
+    "linha": "(3/5) · (225π)/4 = (135π)/4",
+    "nota": "60 % da área"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
+ },
+ "Paa4279f1": {
+  "n": "22",
+  "conceito": "Pitágoras com lados em função de x gera equação do 2º grau; descarta-se a raiz negativa.",
+  "equivocos": {
+   "A": "M09.1:respondeu-x",
+   "C": "M09.1:valor-sem-conta",
+   "D": "M09.1:valor-sem-conta",
+   "E": "M09.1:valor-sem-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escreva Pitágoras com as expressões dos lados e resolva a equação do 2º grau que aparece. Uma das raízes é negativa e não serve como medida. A expressão pedida simplifica: x² − 1 = (x − 1)(x + 1).",
+    "formulas": [
+     "(5x)² = (3x)² + (3x + 2)²",
+     "x² − 1 = (x − 1)(x + 1)",
+     "x = (−b ± √Δ)/(2a), Δ = b² − 4ac"
+    ],
+    "simbolos": [
+     [
+      "Δ",
+      "discriminante da equação do 2º grau"
+     ],
+     [
+      "x",
+      "número desconhecido que define os lados"
+     ]
+    ]
+   },
+   "pista": "Monte Pitágoras e, antes de calcular a fração do fim, veja se ela simplifica.",
+   "passos": [
+    {
+     "faz": "Monte Pitágoras",
+     "conta": "25x² = 9x² + (9x² + 12x + 4)",
+     "porque": "A hipotenusa ao quadrado é a soma dos quadrados dos catetos; (3x + 2)² = 9x² + 12x + 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Arrume a equação",
+     "conta": "25x² = 18x² + 12x + 4 → 7x² − 12x − 4 = 0",
+     "porque": "Passe tudo para um lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva por Bhaskara",
+     "conta": "Δ = 144 + 112 = 256 → x = (12 ± 16)/14 → x = 2 ou x = −2/7",
+     "porque": "Como 3x é lado, x tem de ser positivo: fica x = 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique a expressão",
+     "conta": "(x² − 1)/(x − 1) = x + 1 = 2 + 1 = 3",
+     "porque": "x² − 1 = (x − 1)(x + 1), e x − 1 = 1 não é zero.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "3 → alternativa B",
+     "porque": "É o valor da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 3",
+   "checagem": "Com x = 2 os lados são 6, 8 e 10: 6² + 8² = 36 + 64 = 100 = 10². E (4 − 1)/(2 − 1) = 3. Fecha.",
+   "erradas": {
+    "A": "2 é o valor de x; faltou calcular a expressão pedida, que vale x + 1.",
+    "C": "5 não confere: x + 1 = 5 exigiria x = 4, e (5 · 4)² = 400 ≠ 12² + 14² = 340.",
+    "D": "7 não confere: x + 1 = 7 exigiria x = 6, e 30² = 900 ≠ 18² + 20² = 724.",
+    "E": "9 não confere: x + 1 = 9 exigiria x = 8, e 40² = 1600 ≠ 24² + 26² = 1252."
+   },
+   "armadilha": "Parar em x = 2 e esquecer que a pergunta é o valor da expressão.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de (x² − 1)/(x − 1) no triângulo de lados 3x, 3x + 2 e 5x.",
+    "chave": "Pitágoras dá 7x² − 12x − 4 = 0, x = 2; a expressão é x + 1 = 3.",
+    "cuidado": "Descartar a raiz negativa e voltar à expressão pedida."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "A expressão é x + 1; teste x = 1, 2, 4, 6, 8 em Pitágoras: só x = 2 dá 6, 8, 10."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "25x² = 9x² + 9x² + 12x + 4",
+    "nota": "Pitágoras"
+   },
+   {
+    "linha": "7x² − 12x − 4 = 0",
+    "nota": "tudo de um lado"
+   },
+   {
+    "linha": "x = (12 ± 16)/14 → x = 2",
+    "nota": "raiz positiva"
+   },
+   {
+    "linha": "(x² − 1)/(x − 1) = x + 1 = 3",
+    "nota": "fatoração"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
+ },
+ "Pdde3119a": {
+  "n": "27",
+  "conceito": "Calcular expressão com valores notáveis de seno, cosseno e tangente, inclusive de arco negativo.",
+  "equivocos": {
+   "A": "M10.4:sinal-de-tan-negativo",
+   "C": "M10.4:valor-notavel-trocado",
+   "D": "M10.4:valor-notavel-trocado-soma",
+   "E": "M10.4:raiz-de-2-indevida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "É uma conta com valores notáveis: troque cada função pelo valor de 30°, 45° ou 60°. O único cuidado é tan(−45°): a tangente é ímpar, então tan(−45°) = −tan 45° = −1. Depois de trocar, compare numerador e denominador.",
+    "formulas": [
+     "cos 60° = sin 30° = 1/2",
+     "sin 60° = √3/2 ; tan 60° = √3 ; tan 45° = 1",
+     "tan(−θ) = −tan θ"
+    ],
+    "simbolos": [
+     [
+      "sin",
+      "seno, com a abreviação em inglês usada na prova"
+     ],
+     [
+      "tan",
+      "tangente"
+     ]
+    ]
+   },
+   "pista": "Comece pelo tan(−45°): o sinal dele decide o resto da conta.",
+   "passos": [
+    {
+     "faz": "Troque os valores do numerador",
+     "conta": "cos 60° − 4·tan(−45°) + (1/2)·tan 60° → 1/2 − 4·(−1) + (1/2)·√3 → 1/2 + 4 + √3/2",
+     "porque": "tan(−45°) = −1, e −4·(−1) = +4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Troque os valores do denominador",
+     "conta": "sin 60° + 4·tan 45° + sin 30° → √3/2 + 4·1 + 1/2 → √3/2 + 4 + 1/2",
+     "porque": "sin 60° = √3/2, tan 45° = 1, sin 30° = 1/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os dois",
+     "conta": "X = (1/2 + 4 + √3/2)/(√3/2 + 4 + 1/2) → X = 1",
+     "porque": "As parcelas são as mesmas em outra ordem; um número não nulo dividido por ele mesmo dá 1.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "X = 1 → alternativa B",
+     "porque": "É o valor da letra B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1",
+   "checagem": "Em decimais: numerador 0,5 + 4 + 0,866 = 5,366; denominador 0,866 + 4 + 0,5 = 5,366. O quociente é 1. Fecha.",
+   "erradas": {
+    "A": "A não confere: numerador e denominador são positivos, então X > 0. Mesmo errando o sinal de tan(−45°), sai X ≈ −0,49, não −1.",
+    "C": "C não confere: √2 − √3 ≈ −0,32 é negativo, e X é quociente de dois positivos; além disso nenhum valor da conta tem √2.",
+    "D": "D não confere: √2 + √3 ≈ 3,15, e numerador e denominador são iguais, logo X = 1.",
+    "E": "E não confere: √3 − √2 ≈ 0,32, e os valores usados na conta (cos 60°, sin 60°, sin 30°, tan 45° = 1, tan 60° = √3) não têm √2; numerador e denominador são iguais, então X = 1."
+   },
+   "armadilha": "Esquecer que tan(−45°) = −1: o −4·tan(−45°) vira +4, e é isso que iguala numerador e denominador.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor numérico de X.",
+    "chave": "Com os valores notáveis, numerador e denominador valem 1/2 + 4 + √3/2; logo X = 1.",
+    "cuidado": "Tangente de arco negativo troca de sinal: tan(−45°) = −1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "decimais",
+    "ideia": "Troque tudo por decimais (0,5; 0,866; 1) e veja que numerador e denominador dão 5,366."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "cos 60° − 4·tan(−45°) + (1/2)·tan 60° = 1/2 + 4 + √3/2",
+    "nota": "tan(−45°) = −1"
+   },
+   {
+    "linha": "sin 60° + 4·tan 45° + sin 30° = √3/2 + 4 + 1/2",
+    "nota": "valores notáveis"
+   },
+   {
+    "linha": "X = (1/2 + 4 + √3/2)/(√3/2 + 4 + 1/2) = 1",
+    "nota": "numerador igual ao denominador"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ },
+ "P003ae600": {
+  "n": "25",
+  "conceito": "Achar os vértices de um triângulo a partir dos pontos médios dos lados e comparar os lados.",
+  "equivocos": {
+   "A": "M12.1:comparou-lados-sem-calcular",
+   "B": "M12.1:supos-triangulo-regular",
+   "C": "M12.1:inverteu-maior-e-menor",
+   "D": "M12.1:nao-reconstruiu-os-vertices"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada ponto médio é a média das coordenadas de dois vértices. Somando dois pontos médios e tirando o terceiro, sobra um vértice: por exemplo, M + P − N = A. Com os três vértices, calcule os três lados e compare.",
+    "formulas": [
+     "ponto médio de XY = ((x₁ + x₂)/2, (y₁ + y₂)/2)",
+     "A = M + P − N; B = M + N − P; C = N + P − M",
+     "d² = (Δx)² + (Δy)²"
+    ],
+    "simbolos": [
+     [
+      "ponto médio",
+      "ponto que divide o segmento em duas partes iguais"
+     ],
+     [
+      "Δx, Δy",
+      "diferença entre as abscissas e entre as ordenadas dos dois pontos"
+     ],
+     [
+      "d",
+      "distância entre dois pontos"
+     ]
+    ]
+   },
+   "pista": "Escreva cada ponto médio como a média de dois vértices. Que combinação de M, N e P isola o vértice A?",
+   "passos": [
+    {
+     "faz": "Ache os três vértices",
+     "conta": "A = M + P − N = (3 + 4 − 5, 1 + 0 − 1) → A = (2, 0)\nB = M + N − P = (3 + 5 − 4, 1 + 1 − 0) → B = (4, 2)\nC = N + P − M = (5 + 4 − 3, 1 + 0 − 1) → C = (6, 0)",
+     "porque": "M é a média de A e B, P a de A e C, N a de B e C. Em M + P o vértice A aparece duas vezes; tirando N, sobra só A. O mesmo vale para B e C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o lado AC",
+     "conta": "AC² = (6 − 2)² + (0 − 0)² = 16 → AC = 4",
+     "porque": "A e C estão na mesma altura (y = 0), então o lado é só a diferença das abscissas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os lados AB e BC",
+     "conta": "AB² = (4 − 2)² + (2 − 0)² = 8 → AB = 2√2\nBC² = (6 − 4)² + (0 − 2)² = 8 → BC = 2√2",
+     "porque": "Os dois lados que saem de B têm a mesma medida: o triângulo é isósceles de base AC.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare e conclua",
+     "conta": "AC = 4 > AB = BC = 2√2 ≈ 2,83 → maior lado: AC",
+     "porque": "Compare os quadrados: 16 > 8. O maior lado é AC, alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — o maior lado é AC (mede 4; AB e BC medem 2√2).",
+   "checagem": "Pelo teorema da base média, cada lado de ABC mede o dobro do segmento que liga os pontos médios dos outros dois lados: AC = 2·MN = 2·2 = 4 e AB = 2·NP = 2·√2. Fecha com os vértices.",
+   "erradas": {
+    "A": "AB = 2√2 ≈ 2,83, menor que AC = 4. AB empata com BC; não é o maior lado.",
+    "B": "Os lados medem 2√2, 2√2 e 4: dois iguais e um diferente. O triângulo é isósceles, não equilátero.",
+    "C": "AC = 4 é o maior lado, não o menor. Os menores são AB e BC, ambos com 2√2.",
+    "D": "O triângulo existe: A = (2, 0), B = (4, 2) e C = (6, 0) não estão alinhados, pois B está fora da reta y = 0 que contém A e C."
+   },
+   "armadilha": "M, N e P são pontos médios, não vértices: comparar as distâncias entre eles troca os lados de lugar (MN é paralelo a AC, não a AB).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre os lados do triângulo ABC é correta.",
+    "chave": "Cada vértice sai de somar dois pontos médios e subtrair o terceiro.",
+    "cuidado": "Calcule com os vértices, não com os pontos médios."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "base média",
+    "ideia": "Cada lado de ABC é o dobro do segmento entre os pontos médios dos outros dois: AC = 2·MN = 4, AB = 2·NP = 2√2, BC = 2·MP = 2√2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A = M + P − N → A = (2, 0)",
+    "nota": "vértice A"
+   },
+   {
+    "linha": "B = M + N − P → B = (4, 2)",
+    "nota": "vértice B"
+   },
+   {
+    "linha": "C = N + P − M → C = (6, 0)",
+    "nota": "vértice C"
+   },
+   {
+    "linha": "AC² = 4² + 0² = 16 → AC = 4",
+    "nota": "lado AC"
+   },
+   {
+    "linha": "AB² = 2² + 2² = 8 → AB = 2√2",
+    "nota": "AB; BC dá o mesmo"
+   },
+   {
+    "linha": "16 > 8 → maior lado: AC",
+    "nota": "conclusão"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0064"
+  }
+ },
+ "Pa43a6aaa": {
+  "n": "26",
+  "conceito": "Equações x = b e y = a no plano: reta vertical e reta horizontal, perpendiculares, que se cruzam em (b, a).",
+  "equivocos": {
+   "A": "M12.3:confundiu-vertical-com-paralela",
+   "B": "M12.3:trocou-ordem-das-coordenadas",
+   "D": "M12.3:equacao-como-ponto",
+   "E": "M12.3:distancia-a-origem-sempre-igual"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No plano cartesiano, cada equação de 1º grau é uma reta, não um ponto. x = b junta todos os pontos de abscissa b (reta vertical); y = a junta todos os de ordenada a (reta horizontal). Vertical e horizontal sempre se cruzam em ângulo reto.",
+    "formulas": [
+     "x = k: reta vertical",
+     "y = k: reta horizontal"
+    ],
+    "simbolos": [
+     [
+      "abscissa",
+      "a coordenada x do ponto"
+     ],
+     [
+      "ordenada",
+      "a coordenada y do ponto"
+     ]
+    ]
+   },
+   "pista": "Isole x na primeira equação e y na segunda e pergunte: que pontos do plano satisfazem cada uma?",
+   "passos": [
+    {
+     "faz": "Isole x na primeira equação",
+     "conta": "x − b = 0 → x = b",
+     "porque": "O b passa para o outro lado somando: todos os pontos com abscissa b, qualquer que seja y, formam uma reta vertical.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole y na segunda equação",
+     "conta": "y − a = 0 → y = a",
+     "porque": "O a passa somando: todos os pontos com ordenada a formam uma reta horizontal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o ponto comum",
+     "conta": "x = b | y = a → (b, a)",
+     "porque": "O cruzamento tem a abscissa da vertical e a ordenada da horizontal: primeiro o b, depois o a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "vertical × horizontal → perpendiculares em (b, a)",
+     "porque": "Reta vertical e reta horizontal formam 90°, e o encontro é (b, a).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — duas retas perpendiculares que se intersectam em (b, a)",
+   "checagem": "Substitua (b, a): b − b = 0 e a − a = 0. As duas equações se cumprem, então (b, a) está nas duas retas.",
+   "erradas": {
+    "A": "A não confere: x = b é vertical e y = a é horizontal; retas paralelas teriam a mesma direção.",
+    "B": "B sai de trocar a ordem das coordenadas: o ponto escrito é (x, y) = (b, a), e (a, b) só serviria se a = b.",
+    "D": "D sai de tratar cada equação como um ponto sobre o eixo x; no plano, x = b e y = a são retas inteiras.",
+    "E": "E não confere: a distância da origem a x = b é |b| e a y = a é |a|; só são iguais quando |a| = |b|, não sempre."
+   },
+   "armadilha": "Escrever o encontro como (a, b): a ordem é (x, y), e x vale b.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O que as equações x − b = 0 e y − a = 0 representam no plano.",
+    "chave": "x = b é vertical, y = a é horizontal; cruzam-se em (b, a).",
+    "cuidado": "O ponto é (x, y) = (b, a), não (a, b)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "desenho",
+    "ideia": "Marque x = b (vertical) e y = a (horizontal) num esboço: o cruzamento em ângulo reto aparece em (b, a)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x − b = 0 → x = b",
+    "nota": "b passa somando: reta vertical"
+   },
+   {
+    "linha": "y − a = 0 → y = a",
+    "nota": "a passa somando: reta horizontal"
+   },
+   {
+    "linha": "encontro: (b, a)",
+    "nota": "x = b e y = a ao mesmo tempo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
+ },
+ "Padcb5319": {
+  "n": "18",
+  "conceito": "Contagem de números pares de algarismos distintos com o zero no conjunto, separando o caso em que o zero é o último algarismo.",
+  "equivocos": {
+   "A": "M13.1:ignorou-restricoes",
+   "C": "M13.1:contou-com-repeticao",
+   "D": "M13.1:dividiu-sem-motivo",
+   "E": "M13.1:esqueceu-um-caso"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Duas restrições disputam o mesmo algarismo: o último tem de ser par e o primeiro não pode ser zero. Como o zero é par, separe em dois casos: o número termina em 0 ou termina em outro par (4, 6 ou 8). Em cada caso preencha primeiro as posições com restrição.",
+    "formulas": [
+     "princípio multiplicativo: opções de cada posição se multiplicam",
+     "casos que não se misturam se somam"
+    ],
+    "simbolos": [
+     [
+      "algarismos distintos",
+      "nenhum algarismo se repete no número"
+     ],
+     [
+      "número par",
+      "termina em 0, 2, 4, 6 ou 8"
+     ]
+    ]
+   },
+   "pista": "Pergunte primeiro: o número termina em 0 ou em outro algarismo par? Cada resposta muda as opções do primeiro algarismo.",
+   "passos": [
+    {
+     "faz": "Separe os pares do conjunto",
+     "conta": "A = {0, 3, 4, 6, 7, 8, 9} → pares: 0, 4, 6, 8",
+     "porque": "O último algarismo só pode ser um desses quatro, e o zero exige um tratamento à parte por causa da primeira posição.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os que terminam em 0",
+     "conta": "último: 1 | 1º: 6 | 2º: 5 | 3º: 4 → 6 × 5 × 4 = 120",
+     "porque": "Com o zero já no fim, os 6 algarismos restantes podem abrir o número; depois sobram 5 e 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os que terminam em 4, 6 ou 8",
+     "conta": "último: 3 | 1º: 5 | 2º: 5 | 3º: 4 → 3 × 5 × 5 × 4 = 300",
+     "porque": "O primeiro não pode ser zero nem o par já usado: 7 − 2 = 5 opções. O zero volta a valer no 2º lugar, que tem 5 opções, e o 3º tem 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois casos",
+     "conta": "120 + 300 = 420 → alternativa B",
+     "porque": "Os casos não se sobrepõem (o último algarismo é diferente), então somam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 420",
+   "checagem": "Conte o total de números de quatro algarismos distintos e tire os ímpares: total 6 × 6 × 5 × 4 = 720; ímpares (terminam em 3, 7 ou 9): 3 × 5 × 5 × 4 = 300; 720 − 300 = 420. Fecha.",
+   "erradas": {
+    "A": "840 sai de ignorar paridade e zero na frente: 7 × 6 × 5 × 4 = 840 sequências de quatro algarismos distintos quaisquer.",
+    "C": "343 não confere: 343 = 7 × 7 × 7, conta de três posições com repetição, e a questão pede quatro algarismos distintos.",
+    "D": "210 não confere: só os que terminam em 4, 6 ou 8 já são 3 × 5 × 5 × 4 = 300, mais que 210.",
+    "E": "120 sai de contar só os números que terminam em 0 (6 × 5 × 4) e esquecer os que terminam em 4, 6 ou 8."
+   },
+   "armadilha": "O zero é par e também não pode abrir o número: sem separar o caso do zero no fim, a contagem da 1ª posição sai errada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos pares de quatro algarismos distintos se formam com {0, 3, 4, 6, 7, 8, 9}.",
+    "chave": "Termina em 0: 120; termina em 4, 6 ou 8: 300; total 420.",
+    "cuidado": "Separe o caso do zero no fim, porque ele muda as opções da primeira posição."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "total de números de 4 algarismos distintos (720) menos os ímpares (300) = 420"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "termina em 0: 6 × 5 × 4 = 120",
+    "nota": "zero fixo no fim"
+   },
+   {
+    "linha": "termina em 4, 6 ou 8: 3 × 5 × 5 × 4 = 300",
+    "nota": "primeiro sem zero e sem o par usado"
+   },
+   {
+    "linha": "120 + 300 = 420",
+    "nota": "soma dos dois casos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
+ },
+ "Pced1f550": {
+  "n": "20",
+  "conceito": "Arranjo: escolher e ordenar os quatro primeiros colocados entre 12 nadadores.",
+  "equivocos": {
+   "A": "M13.2:erro-de-multiplicacao",
+   "B": "M13.2:erro-de-multiplicacao",
+   "D": "M13.2:erro-de-multiplicacao",
+   "E": "M13.2:opcoes-a-mais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na classificação a ordem importa: Ana em 1º e Bia em 2º é diferente de Bia em 1º e Ana em 2º. Então preencha os quatro lugares um de cada vez, e cada nadador colocado sai das opções do lugar seguinte.",
+    "formulas": [
+     "princípio multiplicativo: 1º lugar × 2º × 3º × 4º",
+     "arranjo de n tomados p a p: n × (n − 1) × ... (p fatores)"
+    ],
+    "simbolos": [
+     [
+      "arranjo",
+      "escolha de elementos em que a ordem conta"
+     ]
+    ]
+   },
+   "pista": "Quantos nadadores podem ficar em 1º? E, depois disso, quantos sobram para o 2º?",
+   "passos": [
+    {
+     "faz": "Veja se a ordem importa",
+     "conta": "1º, 2º, 3º e 4º são posições diferentes → a ordem conta",
+     "porque": "Trocar dois nadadores de lugar gera outra classificação; por isso não se divide por nada.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Preencha os quatro lugares",
+     "conta": "1º: 12 | 2º: 11 | 3º: 10 | 4º: 9 → 12 × 11 × 10 × 9",
+     "porque": "Cada nadador classificado não pode ocupar outro lugar, então as opções caem de um em um.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a multiplicação",
+     "conta": "12 × 11 = 132 → 132 × 10 = 1320 → 1320 × 9 = 11880",
+     "porque": "Multiplicar aos poucos evita erro de conta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "11880 → alternativa C",
+     "porque": "São 11880 classificações possíveis.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 11880",
+   "checagem": "Escolha primeiro o grupo dos quatro (combinação: 12 × 11 × 10 × 9 ÷ 24 = 495) e depois ordene os quatro (4 × 3 × 2 × 1 = 24): 495 × 24 = 11880. Fecha.",
+   "erradas": {
+    "A": "11080 não confere: não é múltiplo de 9 (1 + 1 + 0 + 8 + 0 = 10), e a contagem tem o fator 9.",
+    "B": "11300 não confere: não é múltiplo de 9 (1 + 1 + 3 = 5), e toda contagem do 1º ao 4º lugar termina em × 9.",
+    "D": "12200 não confere: também não é múltiplo de 9 (1 + 2 + 2 = 5), e a contagem dos quatro lugares tem o fator 9.",
+    "E": "17280 não confere: não é múltiplo de 11 (17280 ÷ 11 ≈ 1570,9), e a contagem tem o fator 11."
+   },
+   "armadilha": "Achar que é combinação e dividir por 24: aqui os lugares são diferentes, então a ordem conta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de classificações possíveis do 1º ao 4º lugar entre 12 nadadores.",
+    "chave": "Arranjo: 12 × 11 × 10 × 9 = 11880.",
+    "cuidado": "Lugares diferentes: a ordem importa e não se divide pelas permutações."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "combinação e depois ordem",
+    "ideia": "escolher os 4 (495 grupos) e ordenar cada grupo (24 jeitos): 495 × 24 = 11880"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "12 × 11 × 10 × 9",
+    "nota": "uma escolha por lugar"
+   },
+   {
+    "linha": "132 × 10 × 9",
+    "nota": "12 × 11 = 132"
+   },
+   {
+    "linha": "1320 × 9 = 11880",
+    "nota": "fecha o produto"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
+ },
+ "Pdc7fbbaa": {
+  "n": "28",
+  "conceito": "Decidir se uma equação do 2.º grau tem raízes reais pelo sinal do discriminante.",
+  "equivocos": {
+   "A": "M04.2:sinal-das-raizes-sem-checar-delta",
+   "B": "M04.2:ignorou-produto-das-raizes",
+   "C": "M04.2:ignorou-soma-das-raizes",
+   "E": "M04.2:supos-delta-zero"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Não é preciso saber o valor de cos 1°: basta saber que todo cosseno fica entre −1 e 1. O que decide se há raízes reais é o sinal do discriminante Δ = b² − 4ac. Com a = 1, b = −cos 1° e c = 1, o termo 4ac = 4 já é maior que qualquer cos².",
+    "formulas": [
+     "Δ = b² − 4ac",
+     "Δ < 0: nenhuma raiz real"
+    ],
+    "simbolos": [
+     [
+      "Δ",
+      "discriminante, b² − 4ac"
+     ],
+     [
+      "cos 1°",
+      "cosseno do ângulo de 1 grau, um número entre −1 e 1"
+     ]
+    ]
+   },
+   "pista": "Monte b² − 4ac e lembre qual é o maior valor que um cosseno pode ter.",
+   "passos": [
+    {
+     "faz": "Leia os coeficientes",
+     "conta": "x² − (cos 1°)·x + 1 = 0 → a = 1 | b = −cos 1° | c = 1",
+     "porque": "Com os três coeficientes você monta o discriminante.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte o discriminante",
+     "conta": "Δ = (−cos 1°)² − 4·1·1 → Δ = cos² 1° − 4",
+     "porque": "O sinal de Δ diz quantas raízes reais a equação tem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com zero",
+     "conta": "cos² 1° ≤ 1 → cos² 1° − 4 ≤ 1 − 4 = −3 < 0",
+     "porque": "Como o cosseno nunca passa de 1, o quadrado dele também não; tirar 4 deixa o número negativo.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "Δ < 0 → nenhuma raiz real → alternativa D",
+     "porque": "Discriminante negativo: as duas raízes são complexas não reais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a equação não possui raízes reais",
+   "checagem": "Com cos 1° ≈ 0,99985, Δ ≈ 0,9997 − 4 ≈ −3,0003, negativo. Outro jeito: x² − (cos 1°)x + 1 = (x − (cos 1°)/2)² + 1 − (cos² 1°)/4, e 1 − (cos² 1°)/4 > 0, então o lado esquerdo nunca é zero.",
+   "erradas": {
+    "A": "A sai de usar só soma e produto: soma = cos 1° > 0 e produto = 1 > 0 sugerem duas positivas, mas isso só vale se houver raízes reais, e Δ < 0.",
+    "B": "B não confere: o produto das raízes é c/a = 1 > 0, então raízes reais teriam o mesmo sinal; além disso Δ < 0, não há raiz real.",
+    "C": "C não confere: a soma das raízes é cos 1° > 0, impossível para duas negativas; e Δ < 0.",
+    "E": "E não confere: raiz única exige Δ = 0, isto é, cos² 1° = 4, impossível porque cos² 1° ≤ 1."
+   },
+   "armadilha": "Analisar o sinal das raízes pela soma e pelo produto sem antes conferir que Δ é negativo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O que se pode afirmar sobre as raízes de x² − (cos 1°)x + 1 = 0.",
+    "chave": "Δ = cos² 1° − 4 < 0 porque cos² 1° ≤ 1.",
+    "cuidado": "Soma e produto só dizem o sinal de raízes que existem nos reais."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "completar quadrado",
+    "ideia": "(x − (cos 1°)/2)² + 1 − (cos² 1°)/4 é sempre positivo, logo nunca vale zero."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Δ = b² − 4ac",
+    "nota": "fórmula do discriminante"
+   },
+   {
+    "linha": "Δ = cos² 1° − 4",
+    "nota": "a = 1, b = −cos 1°, c = 1"
+   },
+   {
+    "linha": "cos² 1° ≤ 1",
+    "nota": "cosseno entre −1 e 1"
+   },
+   {
+    "linha": "Δ ≤ 1 − 4 = −3 < 0",
+    "nota": "sem raízes reais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
+ },
+ "Pc6d9a1b4": {
+  "n": "23",
+  "conceito": "Reconhecer que os comprimentos sucessivos dos intervalos formam uma PG de razão 1/2 e somar a PG infinita.",
+  "equivocos": {
+   "B": "M07.3:soma-comecando-no-termo-errado",
+   "C": "M07.3:termo-no-lugar-da-soma",
+   "D": "M07.3:termo-no-lugar-da-soma",
+   "E": "M07.3:termo-no-lugar-da-soma"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada ponto é o meio do intervalo anterior começando em 0, então cada comprimento é a metade do anterior. Os comprimentos li formam uma PG de razão 1/2, e a soma pedida é a soma infinita dessa PG.",
+    "formulas": [
+     "soma da PG infinita (−1 < q < 1) = a1/(1 − q)",
+     "ponto médio de [0, a] = a/2"
+    ],
+    "simbolos": [
+     [
+      "xi",
+      "ponto i da sequência, dentro de [0, 1]"
+     ],
+     [
+      "li",
+      "comprimento do intervalo [0, xi], igual a xi"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ],
+     [
+      "a1",
+      "primeiro termo da PG"
+     ]
+    ]
+   },
+   "pista": "Escreva x1, x2, x3 como números e veja o que acontece de um para o outro.",
+   "passos": [
+    {
+     "faz": "Calcule os primeiros pontos",
+     "conta": "x1 = 1/2 | x2 = 1/4 | x3 = 1/8 | x4 = 1/16",
+     "porque": "O meio de [0, a] é a/2, então cada ponto é a metade do anterior.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue cada comprimento ao ponto",
+     "conta": "li = xi − 0 = xi → l1 = 1/2, l2 = 1/4, l3 = 1/8",
+     "porque": "O intervalo [0, xi] começa em 0, então seu comprimento é o próprio xi.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some a PG infinita",
+     "conta": "a1 = 1/2 | q = 1/2 → (1/2)/(1 − 1/2) = (1/2)/(1/2) = 1",
+     "porque": "A razão 1/2 está entre −1 e 1, então a soma infinita existe; dividir 1/2 por 1/2 dá 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "l1 + l2 + ... = 1 → alternativa A",
+     "porque": "A pergunta é a soma de todos os comprimentos, e não um comprimento só.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — a soma é 1.",
+   "checagem": "Pense no segmento [0, 1]: l1 = 1/2 ocupa metade dele, l2 = 1/4 metade do que faltava, l3 = 1/8 metade do resto, e assim por diante; o que falta para 1 cai à metade a cada passo e tende a zero, então a soma tende a 1.",
+   "erradas": {
+    "B": "1/2 sai de parar no primeiro comprimento, l1 = 1/2, ou de somar a partir de l2: 1/4 + 1/8 + ... = 1/2. A soma pedida começa em l1.",
+    "C": "1/4 não confere: 1/4 é só l2, e a soma já passa de l1 = 1/2 sozinho.",
+    "D": "1/8 não confere: 1/8 é só l3, e a soma já passa de l1 = 1/2 sozinho.",
+    "E": "1/16 não confere: 1/16 é só l4, e a soma já passa de l1 = 1/2 sozinho."
+   },
+   "armadilha": "Confundir um termo da sequência com a soma infinita: a soma começa em l1 = 1/2 e soma todas as metades seguintes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma infinita dos comprimentos l1 + l2 + l3 + ...",
+    "chave": "li = 1/2^i forma uma PG de razão 1/2; a soma é (1/2)/(1 − 1/2) = 1.",
+    "cuidado": "O primeiro termo é 1/2, não 1: o primeiro ponto já é o meio de [0, 1]."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "o que falta",
+    "ideia": "Depois de n termos falta 1/2^n para chegar a 1; esse resto vai a zero, então a soma é 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x1 = 1/2 → x2 = 1/4 → x3 = 1/8",
+    "nota": "cada ponto é metade do anterior"
+   },
+   {
+    "linha": "li = xi",
+    "nota": "o intervalo começa em 0"
+   },
+   {
+    "linha": "S = (1/2)/(1 − 1/2)",
+    "nota": "PG infinita, a1 = 1/2 e q = 1/2"
+   },
+   {
+    "linha": "S = (1/2)/(1/2) = 1",
+    "nota": "o 1/2 se cancela"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "Pfa469ab0": {
+  "n": "24",
+  "conceito": "Espaço amostral de pares ordenados com reposição e simetria entre os eventos maior e menor.",
+  "equivocos": {
+   "B": "M13.4:probabilidades-somam-mais-de-1",
+   "C": "M13.4:empate-contado-como-maior",
+   "D": "M13.4:ignorou-simetria",
+   "E": "M13.4:probabilidades-somam-mais-de-1"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com reposição, cada sorteio tem 101 resultados e a dupla ordenada tem 101 · 101 = 101² resultados igualmente prováveis. Primeiro conte os empates, que são o caso mais fácil. Os pares restantes se dividem meio a meio entre segunda maior e segunda menor, porque trocar a ordem das bolas transforma um caso no outro.",
+    "formulas": [
+     "probabilidade = (casos favoráveis)/(casos possíveis)",
+     "P1 + P2 + P3 = 1",
+     "por simetria, P1 = P2"
+    ],
+    "simbolos": [
+     [
+      "101²",
+      "101 · 101 = 10 201 pares ordenados (primeira, segunda)"
+     ],
+     [
+      "P1, P2, P3",
+      "chances de a segunda ser maior, menor ou igual à primeira"
+     ],
+     [
+      "com reposição",
+      "a primeira bola volta à urna antes do segundo sorteio"
+     ]
+    ]
+   },
+   "pista": "Conte primeiro os pares em que as duas bolas têm o mesmo número; o resto se divide por simetria.",
+   "passos": [
+    {
+     "faz": "Conte os resultados possíveis",
+     "conta": "101 · 101 → 101² = 10 201 pares ordenados",
+     "porque": "A bola volta para a urna, então o segundo sorteio também tem 101 opções.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a chance de empate",
+     "conta": "P3 = 101/101² → P3 = 1/101",
+     "porque": "Há um par igual para cada número de 0 a 100: (0, 0), (1, 1), ..., (100, 100). Simplificando por 101, sai 1/101.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida o resto ao meio",
+     "conta": "(101² − 101)/2 = (10 201 − 101)/2 → 5050 pares",
+     "porque": "Para cada par com a segunda maior, trocar a ordem dá um par com a segunda menor, e vice-versa. Por isso os dois grupos têm o mesmo tamanho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue os três valores à alternativa",
+     "conta": "P1 = P2 = 5050/101² | P3 = 1/101 → alternativa A",
+     "porque": "É exatamente o trio que aparece na alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — P1 = P2 = 5050/101² e P3 = 1/101",
+   "checagem": "Some: 5050 + 5050 + 101 = 10 201 = 101², então P1 + P2 + P3 = 1. Pela soma 0 + 1 + ... + 100 = 5050 também se chega aos pares com a segunda maior: se a primeira é k, a segunda pode ser um dos 100 − k números acima.",
+   "erradas": {
+    "B": "B não confere: 5050 + 5149 + 2 · 101 = 10 401, mais que 101² = 10 201, então as três chances somariam mais de 1. Além disso, P1 e P2 têm de ser iguais.",
+    "C": "C sai de contar os empates junto: 5151 = 5050 + 101 são os pares com a segunda maior ou igual. Com P3 = 2/101 a soma dá 10 504, mais que 10 201.",
+    "D": "D não confere: há só 101 empates em 10 201 pares, então P3 = 1/101, e P1 e P2 têm de ser iguais por simetria.",
+    "E": "E não confere: 50/101 = 5050/101², então as três chances seriam iguais e somariam 15 150/10 201, mais que 1."
+   },
+   "armadilha": "Os empates não entram em maior nem em menor: tire os 101 pares iguais antes de dividir ao meio.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As chances de a segunda bola ser maior, menor ou igual à primeira, com reposição.",
+    "chave": "101 empates em 101² pares; os 10 100 restantes se dividem igualmente: 5050 para cada lado.",
+    "cuidado": "Confira que as três chances somam 1 e que maior e menor saem iguais."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma direta",
+    "ideia": "Se a primeira é k, há 100 − k segundas maiores; somando de k = 0 a 100: 100 + 99 + ... + 0 = 5050."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "total = 101 · 101 = 10 201",
+    "nota": "pares ordenados com reposição"
+   },
+   {
+    "linha": "P3 = 101/10 201 = 1/101",
+    "nota": "101 empates; simplifica por 101"
+   },
+   {
+    "linha": "10 201 − 101 = 10 100",
+    "nota": "pares sem empate"
+   },
+   {
+    "linha": "10 100/2 = 5050",
+    "nota": "metade para cada lado"
+   },
+   {
+    "linha": "P1 = P2 = 5050/101²",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P3e1c51b1": {
+  "n": "19",
+  "conceito": "Montar A − x·Id, calcular o determinante 2 × 2 e avaliar o polinômio característico em dois pontos.",
+  "equivocos": {
+   "B": "M15.2:somou-os-valores-de-x",
+   "C": "M15.2:errou-o-determinante-2x2",
+   "D": "M15.2:errou-o-determinante-2x2",
+   "E": "M15.2:errou-o-determinante-2x2"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Subtrair x · Id de A só tira x da diagonal principal; os outros elementos ficam iguais. O determinante 2 × 2 vira um polinômio de 2º grau em x. Depois é só substituir −1 e 6.",
+    "formulas": [
+     "A − x · Id = (4 − x  5; 2  1 − x)",
+     "det (p q; r s) = ps − qr"
+    ],
+    "simbolos": [
+     [
+      "Id",
+      "matriz identidade: 1 na diagonal e 0 fora"
+     ],
+     [
+      "det",
+      "determinante"
+     ],
+     [
+      "f(−1)",
+      "valor de f quando x = −1"
+     ]
+    ]
+   },
+   "pista": "Escreva a matriz A − x · Id com cuidado: o x entra só em duas posições.",
+   "passos": [
+    {
+     "faz": "Monte A − x · Id",
+     "conta": "(4 5; 2 1) − (x 0; 0 x) = (4 − x  5; 2  1 − x)",
+     "porque": "x · Id tem x só na diagonal, então só a diagonal de A muda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o determinante",
+     "conta": "f(x) = (4 − x)(1 − x) − 5 · 2 = x² − 5x + 4 − 10 = x² − 5x − 6",
+     "porque": "Diagonal principal menos diagonal secundária; depois expanda e junte os termos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule f(−1) e f(6)",
+     "conta": "f(−1) = 1 + 5 − 6 = 0 | f(6) = 36 − 30 − 6 = 0",
+     "porque": "Substitua cada valor no polinômio. Os dois dão zero: −1 e 6 são as raízes de f.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e marque",
+     "conta": "f(−1) + f(6) = 0 + 0 = 0 → alternativa A",
+     "porque": "A pergunta é a soma dos valores de f, não a soma dos números −1 e 6.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — f(−1) + f(6) = 0.",
+   "checagem": "Pela forma fatorada: x² − 5x − 6 = (x + 1)(x − 6), que zera em −1 e em 6. Direto na matriz: com x = 6, A − 6 · Id = (−2 5; 2 −5), cujas linhas são opostas, logo o determinante é 0.",
+   "erradas": {
+    "B": "5 sai de somar os próprios números −1 + 6 = 5 (que é a soma das raízes de f), em vez de somar os valores f(−1) e f(6), que são 0.",
+    "C": "8 não confere: f(−1) = 5 · 2 − 10 = 0 e f(6) = (−2)(−5) − 10 = 0; a soma é 0.",
+    "D": "10 não confere: os dois valores de f são zero, porque −1 e 6 são raízes de x² − 5x − 6.",
+    "E": "12 não confere: f(−1) = 0 e f(6) = 0, então nenhuma soma positiva é possível."
+   },
+   "armadilha": "Os valores pedidos são as raízes do polinômio: quem soma os números −1 e 6 encontra 5 em vez de 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "f(−1) + f(6), com f(x) = det(A − x · Id).",
+    "chave": "f(x) = (4 − x)(1 − x) − 10 = x² − 5x − 6 = (x + 1)(x − 6).",
+    "cuidado": "Subtraia x só da diagonal e some os valores de f, não os de x."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fatorar",
+    "ideia": "x² − 5x − 6 tem soma das raízes 5 e produto −6: raízes −1 e 6, então f(−1) = f(6) = 0 sem substituir."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A − x · Id = (4 − x  5; 2  1 − x)",
+    "nota": "x sai só da diagonal"
+   },
+   {
+    "linha": "f(x) = (4 − x)(1 − x) − 10 = x² − 5x − 6",
+    "nota": "principal − secundária"
+   },
+   {
+    "linha": "f(−1) = 1 + 5 − 6 = 0",
+    "nota": "substitui x = −1"
+   },
+   {
+    "linha": "f(6) = 36 − 30 − 6 = 0",
+    "nota": "substitui x = 6"
+   },
+   {
+    "linha": "0 + 0 = 0",
+    "nota": "soma pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ }
+}

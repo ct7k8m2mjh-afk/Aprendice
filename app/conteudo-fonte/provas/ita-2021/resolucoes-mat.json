@@ -1,0 +1,1822 @@
+{
+ "P18afea2d": {
+  "n": "42",
+  "conceito": "Inequação exponencial com base variável: separar os casos base > 1, base = 1 e 0 < base < 1.",
+  "equivocos": {
+   "A": "M04.4:ignorou-inversao-com-base-menor-que-1",
+   "B": "M04.4:esqueceu-um-caso",
+   "C": "M04.4:esqueceu-um-caso",
+   "E": "M04.4:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A base x² + x + 1 é sempre positiva, mas pode ser maior, igual ou menor que 1. Se a base é maior que 1, potência ≤ 1 pede expoente ≤ 0; se é menor que 1, pede expoente ≥ 0; se é 1, qualquer expoente serve.",
+    "formulas": [
+     "b > 1: bᵉ ≤ 1 ⇔ e ≤ 0",
+     "0 < b < 1: bᵉ ≤ 1 ⇔ e ≥ 0",
+     "b = 1: bᵉ = 1"
+    ],
+    "simbolos": [
+     [
+      "b",
+      "base x² + x + 1"
+     ],
+     [
+      "e",
+      "expoente 2x² − x − 1 = (2x + 1)(x − 1)"
+     ]
+    ]
+   },
+   "pista": "Descubra para quais x a base passa de 1: x² + x + 1 > 1 equivale a x² + x > 0.",
+   "passos": [
+    {
+     "faz": "Classifique a base",
+     "conta": "b > 1 ⇔ x < −1 ou x > 0 | b = 1 ⇔ x = −1 ou x = 0 | b < 1 ⇔ −1 < x < 0",
+     "porque": "x² + x + 1 − 1 = x(x + 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Estude o expoente",
+     "conta": "e = (2x + 1)(x − 1) ≤ 0 ⇔ −1/2 ≤ x ≤ 1",
+     "porque": "Raízes −1/2 e 1, parábola para cima.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Caso b > 1: e ≤ 0",
+     "conta": "(x < −1 ou x > 0) e −1/2 ≤ x ≤ 1 → 0 < x ≤ 1",
+     "porque": "Com x < −1 o expoente é positivo; não serve.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Caso b < 1: e ≥ 0",
+     "conta": "−1 < x < 0 e (x ≤ −1/2 ou x ≥ 1) → −1 < x ≤ −1/2",
+     "porque": "Base menor que 1 inverte o sentido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte com b = 1 e conclua",
+     "conta": "S = [−1, −1/2] ∪ [0, 1] → alternativa D",
+     "porque": "x = −1 e x = 0 dão 1 ≤ 1 e fecham os intervalos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — S = [−1, −1/2] ∪ [0, 1]",
+   "checagem": "Teste pontos: x = 0,5 dá 1,75⁻¹ ≈ 0,57 ≤ 1 (serve); x = −0,75 dá 0,8125^0,875 ≈ 0,83 (serve); x = −0,25 dá 0,8125^(−0,625) ≈ 1,14 (não serve).",
+   "erradas": {
+    "A": "[−1, 1] não confere: x = −0,25 está nele, mas dá base 0,8125 e expoente −0,625, potência ≈ 1,14 > 1.",
+    "B": "[−1, −1/2] sai de fazer só o caso da base menor que 1 e esquecer o caso b > 1, que dá (0, 1]; x = 0,5 serve e ficou de fora.",
+    "C": "[0, 1] sai de fazer só o caso da base maior que 1 (com x = 0) e esquecer o caso b < 1; x = −0,75 serve e ficou de fora.",
+    "E": "conjunto vazio não confere: x = 0 dá 1⁻¹ = 1 ≤ 1."
+   },
+   "armadilha": "Tratar a base como se fosse sempre maior que 1 e perder o trecho −1 < x < 0, onde a desigualdade inverte.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O conjunto solução de (x² + x + 1)^(2x² − x − 1) ≤ 1.",
+    "chave": "Base > 1 pede expoente ≤ 0; base < 1 pede expoente ≥ 0; base = 1 sempre serve.",
+    "cuidado": "Separe os casos pela base e junte no fim."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "logaritmo",
+    "ideia": "Aplicando ln: (2x² − x − 1) · ln(x² + x + 1) ≤ 0; os dois fatores têm de ter sinais opostos ou um deles zero, o que dá o mesmo conjunto."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² + x + 1 > 1 ⇔ x(x + 1) > 0",
+    "nota": "quando a base passa de 1"
+   },
+   {
+    "linha": "2x² − x − 1 = (2x + 1)(x − 1)",
+    "nota": "fatora o expoente"
+   },
+   {
+    "linha": "(1 + 3)/4 = 1",
+    "nota": "raiz maior do expoente"
+   },
+   {
+    "linha": "(1 − 3)/4 = −1/2",
+    "nota": "raiz menor do expoente"
+   },
+   {
+    "linha": "(2x + 1)(x − 1) ≤ 0 ⇔ −1/2 ≤ x ≤ 1",
+    "nota": "expoente ≤ 0"
+   },
+   {
+    "linha": "S = [−1, −1/2] ∪ [0, 1]",
+    "nota": "junta os casos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0052"
+  }
+ },
+ "P9997ec7e": {
+  "n": "50",
+  "conceito": "Propriedades das diagonais de quadriláteros: o que garante losango, paralelogramo e retângulo.",
+  "equivocos": {
+   "A": "M08.2:diagonais-perpendiculares-garantem-losango",
+   "B": "M08.2:esqueceu-circunscrito-retangulo",
+   "C": "M08.2:esqueceu-areas-iguais-paralelogramo",
+   "D": "M08.2:diagonais-perpendiculares-garantem-losango"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada afirmação diz: se as diagonais têm tal propriedade, então o quadrilátero é de tal tipo. Para derrubar uma afirmação basta um contraexemplo; para aceitar, é preciso provar. Chame de O o encontro das diagonais e use os quatro pedaços OA, OB, OC e OD.",
+    "formulas": [
+     "área de um triângulo = (1/2) × lado × lado × seno do ângulo entre eles",
+     "diagonais que se cortam ao meio ⇒ paralelogramo",
+     "paralelogramo com diagonais iguais ⇒ retângulo"
+    ],
+    "simbolos": [
+     [
+      "O",
+      "ponto de encontro das diagonais AC e BD"
+     ],
+     [
+      "ortogonal",
+      "que forma ângulo de 90°"
+     ],
+     [
+      "losango",
+      "quadrilátero com os quatro lados iguais"
+     ],
+     [
+      "paralelogramo",
+      "quadrilátero com lados opostos paralelos"
+     ],
+     [
+      "sen θ",
+      "seno do ângulo θ entre as diagonais"
+     ]
+    ]
+   },
+   "pista": "Na afirmação I, tente desenhar diagonais iguais e perpendiculares que não se cortam ao meio.",
+   "passos": [
+    {
+     "faz": "Teste a I com um contraexemplo",
+     "conta": "OA = 1 | OC = 3 | OB = OD = 2 → AC = BD = 4",
+     "porque": "Com diagonais perpendiculares de 4 cada, cortando-se fora do meio de AC, AB² = 1 + 4 = 5 e BC² = 9 + 4 = 13: lados diferentes, então não é losango. A I é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Escreva as quatro áreas na II",
+     "conta": "OA·OB = OB·OC = OC·OD = OD·OA",
+     "porque": "Cada triângulo tem área (1/2)·(dois pedaços de diagonal)·sen θ, com o mesmo sen θ (ângulos opostos pelo vértice ou suplementares). Áreas iguais dão esses produtos iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a conclusão da II",
+     "conta": "OA·OB = OB·OC → OA = OC | OB·OC = OC·OD → OB = OD",
+     "porque": "As diagonais se cortam ao meio, e quadrilátero com diagonais que se cortam ao meio é paralelogramo. A II é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Analise a III",
+     "conta": "OA = OB = OC = OD = R → AC = BD = 2R",
+     "porque": "O centro do círculo está à mesma distância R dos quatro vértices. Então O é o meio das duas diagonais (paralelogramo) e as diagonais são iguais: paralelogramo com diagonais iguais é retângulo. A III é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os resultados",
+     "conta": "I falsa | II verdadeira | III verdadeira → alternativa E",
+     "porque": "Apenas II e III são verdadeiras.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — apenas II e III são verdadeiras",
+   "checagem": "Confira a II pelas alturas: os triângulos AOB e COB têm a mesma altura em relação a AC (a distância de B à reta AC); áreas iguais exigem bases iguais, OA = OC. E a III num caso concreto: no retângulo de lados 3 e 4, a diagonal mede 5 e o encontro das diagonais fica a 2,5 de cada vértice, centro do círculo de raio 2,5.",
+   "erradas": {
+    "A": "Apenas I não confere: a I é falsa (diagonais iguais e perpendiculares com OA = 1 e OC = 3 dão lados √5 e √13), e a II e a III são verdadeiras.",
+    "B": "Apenas II não confere: falta a III, que vale porque O equidistante dos quatro vértices faz as diagonais se cortarem ao meio e terem o mesmo tamanho.",
+    "C": "Apenas III não confere: falta a II, que vale porque áreas iguais forçam OA = OC e OB = OD.",
+    "D": "I e II não confere: a I é falsa; diagonais iguais e perpendiculares não precisam se cortar ao meio, e sem isso o quadrilátero pode ter lados diferentes."
+   },
+   "armadilha": "Achar que diagonais iguais e perpendiculares bastam para o losango: falta elas se cortarem ao meio.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das três implicações sobre diagonais de um quadrilátero convexo são verdadeiras.",
+    "chave": "Áreas iguais forçam OA = OC e OB = OD (paralelogramo); O equidistante dos vértices dá diagonais iguais que se cortam ao meio (retângulo).",
+    "cuidado": "Para cair uma afirmação basta um contraexemplo: diagonais iguais e perpendiculares fora do meio não dão losango."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Achado o contraexemplo da I, restam B, C e E; provar a II e a III já leva à E."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I: OA = 1, OC = 3, OB = OD = 2",
+    "nota": "diagonais de 4, perpendiculares"
+   },
+   {
+    "linha": "AB² = 1 + 4 = 5 | BC² = 9 + 4 = 13",
+    "nota": "lados diferentes: I falsa"
+   },
+   {
+    "linha": "OA·OB = OB·OC → OA = OC",
+    "nota": "II: áreas iguais"
+   },
+   {
+    "linha": "OB·OC = OC·OD → OB = OD",
+    "nota": "diagonais se cortam ao meio: paralelogramo"
+   },
+   {
+    "linha": "OA = OB = OC = OD = R",
+    "nota": "III: O é centro do círculo"
+   },
+   {
+    "linha": "AC = BD = 2R → retângulo",
+    "nota": "paralelogramo de diagonais iguais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
+ },
+ "Pe2db4f84": {
+  "n": "53",
+  "conceito": "Contar soluções inteiras de uma equação com restrição de mínimo e igualdade entre variáveis, caso a caso.",
+  "equivocos": {
+   "A": "M13.3:ignorou-a-ordem",
+   "C": "M13.3:contou-duas-vezes",
+   "D": "M13.3:valor-sem-base",
+   "E": "M13.3:valor-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Chame de k a quantidade comum de B e D. Então A + C + 2k = 48, com A, C e k pelo menos 3. Para cada k fixo, o problema vira: de quantas formas A + C dá um certo total, com A e C pelo menos 3? A e C são tigelas diferentes, então (A, C) = (3, 5) e (5, 3) são distribuições diferentes.",
+    "formulas": [
+     "A + C = 48 − 2k, com A ≥ 3 e C ≥ 3",
+     "pares (A, C) com A + C = S e A, C ≥ 3: S − 5",
+     "soma de ímpares: 1 + 3 + ... + (2n − 1) = n²"
+    ],
+    "simbolos": [
+     [
+      "k",
+      "número de balas que B e D têm, o mesmo nas duas"
+     ],
+     [
+      "S",
+      "o que sobra para A e C juntas"
+     ]
+    ]
+   },
+   "pista": "Fixe a quantidade comum de B e D e conte, para ela, os jeitos de dividir o resto entre A e C.",
+   "passos": [
+    {
+     "faz": "Monte a equação com B = D = k",
+     "conta": "A + k + C + k = 48 → A + C = 48 − 2k",
+     "porque": "Trocar B e D por k deixa só A, C e k; a soma de A e C é o que sobra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache os valores possíveis de k",
+     "conta": "48 − 2k ≥ 6 → 2k ≤ 42 → k ≤ 21 | k de 3 a 21",
+     "porque": "A e C precisam de pelo menos 3 cada, então juntas precisam de 6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os pares (A, C) para cada k",
+     "conta": "A de 3 até 48 − 2k − 3 → 48 − 2k − 5 = 43 − 2k pares",
+     "porque": "A pode ir de 3 até deixar 3 para C; o número de valores é o último menos o primeiro mais 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some todos os casos",
+     "conta": "k = 3: 37 | k = 4: 35 | ... | k = 21: 1 → 37 + 35 + ... + 1 = 19² = 361",
+     "porque": "São os 19 ímpares de 1 a 37, e a soma dos n primeiros ímpares é n².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "361 distribuições → alternativa B",
+     "porque": "Cada k dá distribuições diferentes, e os casos não se repetem, então somam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 361 maneiras",
+   "checagem": "Por mudança de variável: dando 3 balas a cada tigela de início, sobram 48 − 12 = 36 para distribuir com B = D = m ≥ 0: a + c + 2m = 36. Para m de 0 a 18, a + c = 36 − 2m tem 37 − 2m soluções; a soma 37 + 35 + ... + 1 = 361 confirma (a contagem direta por programa também dá 361).",
+   "erradas": {
+    "A": "190 sai de tratar A e C como iguais, contando só pares com A ≤ C: para cada k são 22 − k pares, e 19 + 18 + ... + 1 = 190. Mas as tigelas A e C são diferentes.",
+    "C": "722 não confere: é o dobro de 361; como B = D, trocar o conteúdo de B e D não cria distribuição nova, e nada mais justifica dobrar.",
+    "D": "1083 não confere: a soma tem 19 parcelas (k de 3 a 21) e a maior delas é 37, então o total é no máximo 19 · 37 = 703, e 1083 passa desse limite.",
+    "E": "1444 não confere: é 4 × 361 = 38²; a maior parcela é 37 (k = 3) e são só 19 parcelas, cuja soma é 361."
+   },
+   "armadilha": "(A, C) = (3, 39) e (39, 3) são distribuições diferentes: as tigelas têm nome.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas distribuições de 48 balas em A, B, C, D, com pelo menos 3 em cada e B = D.",
+    "chave": "Fixe B = D = k (3 a 21); A + C = 48 − 2k dá 43 − 2k pares; soma 37 + 35 + ... + 1 = 361.",
+    "cuidado": "Conte (A, C) com ordem e respeite o mínimo de 3 em cada tigela."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tirar o mínimo antes",
+    "ideia": "Dê 3 balas a cada tigela: sobram 36, com a + c + 2m = 36 e m de 0 a 18; a soma 37 + 35 + ... + 1 dá 361."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A + C + 2k = 48",
+    "nota": "B e D valem k"
+   },
+   {
+    "linha": "A + C = 48 − 2k",
+    "nota": "o 2k passa subtraindo"
+   },
+   {
+    "linha": "pares (A, C): 43 − 2k",
+    "nota": "A vai de 3 a 45 − 2k"
+   },
+   {
+    "linha": "37 + 35 + ... + 1 = 19² = 361",
+    "nota": "soma dos 19 primeiros ímpares"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
+ },
+ "P02582d92": {
+  "n": "41",
+  "conceito": "Propriedades de matrizes simétricas e antissimétricas: comutação e determinante de antissimétrica de ordem ímpar.",
+  "equivocos": {
+   "A": "M15.2:nao-viu-det-de-antissimetrica-impar",
+   "B": "M15.1:supos-que-matrizes-comutam",
+   "C": "M15.1:supos-que-matrizes-comutam",
+   "E": "M15.1:supos-que-matrizes-comutam"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Matriz não comuta em geral: AB e BA podem ser diferentes. Por isso a I, a II e a III caem com um contraexemplo cada. A IV é a propriedade-chave: uma antissimétrica de ordem ímpar tem determinante zero, porque det(−B) = −det B quando a ordem é ímpar.",
+    "formulas": [
+     "simétrica: A^T = A ; antissimétrica: B^T = −B",
+     "det(B^T) = det B",
+     "det(k B) = k^n × det B (n = ordem)",
+     "det(A B) = det A × det B"
+    ],
+    "simbolos": [
+     [
+      "A^T",
+      "transposta de A"
+     ],
+     [
+      "simétrica",
+      "igual à própria transposta"
+     ],
+     [
+      "antissimétrica",
+      "transposta igual à oposta: B^T = −B"
+     ],
+     [
+      "comutar",
+      "AB = BA"
+     ],
+     [
+      "n",
+      "ordem da matriz (número de linhas)"
+     ]
+    ]
+   },
+   "pista": "Para a IV, compare det(B^T) com det(−B) lembrando que a ordem é ímpar.",
+   "passos": [
+    {
+     "faz": "Teste a afirmação I",
+     "conta": "(A + B)^2 = A^2 + AB + BA + B^2",
+     "porque": "Só vira A^2 + 2AB + B^2 se AB = BA. Com A = diag(1, 2, 3) e B = (0 1 0 ; −1 0 0 ; 0 0 0), AB tem −2 onde BA tem −1: I é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste II e III",
+     "conta": "A S ≠ S A ; B1 B2 ≠ B2 B1",
+     "porque": "Com S = (0 1 0 ; 1 0 0 ; 0 0 0), simétrica, AS tem 1 onde SA tem 2. Com B1 = (0 1 0 ; −1 0 0 ; 0 0 0) e B2 = (0 0 1 ; 0 0 0 ; −1 0 0), B1B2 ≠ B2B1. Ambas falsas.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Prove a IV",
+     "conta": "det B = det(B^T) = det(−B) = (−1)^n det B → det B = −det B → det B = 0",
+     "porque": "n ímpar faz (−1)^n = −1. Um número igual ao próprio oposto é zero.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Feche o determinante do produto",
+     "conta": "det(A B) = det A × det B → det A × 0 → 0",
+     "porque": "O determinante do produto é o produto dos determinantes; basta um fator nulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "só IV verdadeira → alternativa D",
+     "porque": "I, II e III caíram por contraexemplo; IV vale para qualquer A e qualquer B antissimétrica de ordem ímpar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — apenas IV",
+   "checagem": "Caso concreto de ordem 3: B = (0 2 −1 ; −2 0 3 ; 1 −3 0) é antissimétrica e o seu determinante dá 0, como a IV prevê.",
+   "erradas": {
+    "A": "Não confere: a IV é sempre verdadeira, pois det B = det(B^T) = det(−B) = −det B força det B = 0 e, com isso, det(AB) = 0.",
+    "B": "Não confere: a I exige AB = BA; com A = diag(1, 2, 3) e B = (0 1 0 ; −1 0 0 ; 0 0 0), AB ≠ BA. Além disso, deixa de fora a IV.",
+    "C": "Não confere: B1 = (0 1 0 ; −1 0 0 ; 0 0 0) e B2 = (0 0 1 ; 0 0 0 ; −1 0 0) são antissimétricas e B1B2 ≠ B2B1.",
+    "E": "Não confere: a II falha com A = diag(1, 2, 3) e S = (0 1 0 ; 1 0 0 ; 0 0 0), simétricas, pois AS ≠ SA."
+   },
+   "armadilha": "Aplicar o produto notável (A + B)^2 = A^2 + 2AB + B^2 como se matrizes comutassem.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmações valem para A simétrica e B antissimétrica de ordem ímpar.",
+    "chave": "det(−B) = −det B em ordem ímpar e det B^T = det B dão det B = 0, logo det(AB) = 0.",
+    "cuidado": "Matriz não comuta em geral: o produto notável e as afirmações de comutação precisam de contraexemplo, não de intuição."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelas alternativas",
+    "ideia": "Basta provar a IV e derrubar a II com um contraexemplo: só a D tem a IV sem a II."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "B^T = −B",
+    "nota": "definição de antissimétrica"
+   },
+   {
+    "linha": "det B = det(B^T) = det(−B)",
+    "nota": "transpor não muda o determinante"
+   },
+   {
+    "linha": "det(−B) = (−1)^n det B = −det B",
+    "nota": "n ímpar"
+   },
+   {
+    "linha": "det B = −det B → det B = 0",
+    "nota": "número igual ao oposto"
+   },
+   {
+    "linha": "det(AB) = det A × 0 = 0",
+    "nota": "IV verdadeira"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
+ },
+ "Pd6e06d7a": {
+  "n": "46",
+  "conceito": "Contar as intersecções de uma reta pela origem com gráficos de exponenciais e logaritmo, usando a tangência como valor de corte.",
+  "equivocos": {
+   "A": "M06.1:nao-viu-trecho-com-um-ponto",
+   "C": "M06.1:esqueceu-ponto-comum-de-g-e-h",
+   "D": "M06.1:nao-viu-trecho-com-tres-pontos",
+   "E": "M06.1:esqueceu-ponto-comum-de-g-e-h"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Conte as intersecções da reta y = kx com cada curva separadamente e depois some. A quantidade muda nos valores de k em que a reta fica tangente à curva: antes da tangência há um número de pontos, depois outro. Cuidado extra: se a reta passa pelo ponto em que duas curvas se cruzam, esse ponto conta uma vez só para S.",
+    "formulas": [
+     "tangência: as duas funções e as duas inclinações iguais",
+     "(2^x)' = 2^x·ln 2",
+     "log₂x / x é máximo em x = e"
+    ],
+    "simbolos": [
+     [
+      "S",
+      "união dos três gráficos, para x > 0"
+     ],
+     [
+      "n",
+      "número de pontos comuns entre a reta e S"
+     ],
+     [
+      "k",
+      "inclinação da reta y = kx"
+     ],
+     [
+      "ln",
+      "logaritmo natural, base e ≈ 2,718"
+     ],
+     [
+      "k₀, k₁, k_p",
+      "valores de k em que n muda"
+     ]
+    ]
+   },
+   "pista": "Trate uma curva de cada vez e procure o k em que a reta passa a tocar a curva em um ponto só.",
+   "passos": [
+    {
+     "faz": "Conte os pontos com g(x) = 2^(−x)",
+     "conta": "2^(−x) = kx → 1 ponto para todo k > 0",
+     "porque": "Para x > 0, g desce de 1 para perto de 0 e kx sobe a partir de 0. Uma desce e a outra sobe: elas se cruzam uma única vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a tangência com f(x) = 2^x",
+     "conta": "2^x = kx e 2^x·ln 2 = k → x = 1/ln 2 → k₀ = e·ln 2 ≈ 1,88",
+     "porque": "Dividindo as duas igualdades sai x·ln 2 = 1. Com 2^(1/ln 2) = e, a reta tangente tem k₀ ≈ 1,88. Abaixo dele a reta não toca f (0 pontos), em k₀ toca 1 vez, acima corta 2 vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a tangência com h(x) = log₂x",
+     "conta": "log₂x = kx → k = (log₂x)/x → máximo em x = e → k₁ = 1/(e·ln 2) ≈ 0,53",
+     "porque": "A reta corta h quando k é um valor de (log₂x)/x. Esse quociente sobe até x = e e depois cai, com máximo 1/(e·ln 2). Logo: 2 pontos se k < k₁, 1 ponto em k₁, nenhum acima.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte o ponto comum de g e h",
+     "conta": "2^(−x) = log₂x → x ≈ 1,32 ; y ≈ 0,40 → k_p = 0,40/1,32 ≈ 0,30",
+     "porque": "g e h se cruzam num ponto P. Para a reta que passa por P, o ponto da g e um dos pontos da h são o mesmo: n = 1 + 2 − 1 = 2, e k_p ≈ 0,30 < k₁.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a tabela de n e ligue à alternativa",
+     "conta": "n = 2 em k ≈ 0,30 ; k₁ ≈ 0,53 ; k₀ ≈ 1,88 → alternativa B",
+     "porque": "Somando: n = 3 para k < k₁ (fora k_p), n = 2 em k₁, n = 1 entre k₁ e k₀, n = 2 em k₀ e n = 3 acima de k₀. Há três valores com n = 2, ou seja, pelo menos três.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — n = 2 para pelo menos três valores distintos de k.",
+   "checagem": "Teste valores avulsos: k = 1 dá só o ponto da g (2^x = x e log₂x = x não têm solução), n = 1; k = 3 dá 2 pontos com f (x ≈ 0,46 e x ≈ 3,31) e 1 com g, n = 3. Bate com a tabela.",
+   "erradas": {
+    "A": "n ≠ 1 para todo k não confere: com k = 1 a reta só encontra a g (2^x = x e log₂x = x não têm solução), então n = 1.",
+    "C": "Exatamente dois valores sai de contar só as duas tangências (k₁ ≈ 0,53 e k₀ ≈ 1,88) e esquecer k_p ≈ 0,30, a reta que passa pelo cruzamento de g e h.",
+    "D": "n ≠ 3 para todo k não confere: com k = 3 a reta corta f em x ≈ 0,46 e x ≈ 3,31 e corta g uma vez, então n = 3.",
+    "E": "Dois intervalos sai de esquecer k_p: o conjunto com n = 3 é (0; k_p) ∪ (k_p; k₁) ∪ (k₀; +∞), três intervalos disjuntos."
+   },
+   "armadilha": "Esquecer que a reta pode passar pelo ponto em que g e h se cruzam, onde dois pontos viram um só.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Uma afirmação correta sobre o número n de intersecções de y = kx com os três gráficos.",
+    "chave": "Uma intersecção com g sempre; tangências em k₀ = e·ln 2 (com f) e k₁ = 1/(e·ln 2) (com h); e o k da reta pelo cruzamento de g e h.",
+    "cuidado": "Ponto comum a duas curvas conta uma vez só em S."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "esboço dos gráficos",
+    "ideia": "desenhe 2^x, 2^(−x) e log₂x e gire a reta pela origem de k pequeno a k grande, anotando quando ela ganha ou perde pontos"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2^(−x) = kx → 1 ponto",
+    "nota": "g: sempre uma vez"
+   },
+   {
+    "linha": "2^x = kx e 2^x·ln 2 = k → k₀ = e·ln 2 ≈ 1,88",
+    "nota": "tangência com f"
+   },
+   {
+    "linha": "k = (log₂x)/x → k₁ = 1/(e·ln 2) ≈ 0,53",
+    "nota": "tangência com h"
+   },
+   {
+    "linha": "k_p = 0,40/1,32 ≈ 0,30 → n = 1 + 2 − 1 = 2",
+    "nota": "reta pelo cruzamento de g e h"
+   },
+   {
+    "linha": "n = 2 em k_p, k₁ e k₀",
+    "nota": "três valores"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
+ },
+ "Pa3738b21": {
+  "n": "47",
+  "conceito": "Equação exponencial com bases diferentes resolvida por logaritmo e localização da raiz num intervalo sem calculadora.",
+  "equivocos": {
+   "A": "M06.4:raiz-menor-que-1-impossivel",
+   "B": "M06.4:sinal-trocado-ao-isolar-x",
+   "D": "M06.4:comparacao-de-potencias-invertida",
+   "E": "M06.4:comparacao-de-potencias-invertida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As bases 7 e 59 não viram a mesma potência, então o caminho é aplicar logaritmo dos dois lados: o expoente desce e a equação vira do 1º grau em x. A questão não pede o valor exato, só o intervalo. Para decidir sem calculadora, compare potências inteiras de 7 e de 59 nos extremos do intervalo.",
+    "formulas": [
+     "log (aⁿ) = n · log a",
+     "log a > log b ⇔ a > b (base maior que 1)"
+    ],
+    "simbolos": [
+     [
+      "log",
+      "logaritmo; aqui pode ser em qualquer base maior que 1, porque a conta só compara"
+     ],
+     [
+      "t",
+      "o quociente log 7 ÷ log 59, um número entre 0 e 1"
+     ]
+    ]
+   },
+   "pista": "Tire o logaritmo dos dois lados e isole x. Depois, para testar um extremo do intervalo, troque a desigualdade em x por uma comparação entre potências de 7 e de 59.",
+   "passos": [
+    {
+     "faz": "Aplique logaritmo dos dois lados",
+     "conta": "7ˣ = 59⁽ˣ⁻¹⁾ → x · log 7 = (x − 1) · log 59",
+     "porque": "O logaritmo de uma potência traz o expoente para a frente; assim o x sai do expoente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole x",
+     "conta": "x · log 7 = x · log 59 − log 59 → x · (log 59 − log 7) = log 59 → x = (log 59)/(log 59 − log 7)",
+     "porque": "Os termos com x vão para um lado; o x · log 7 passa subtraindo e o log 59 passa somando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida tudo por log 59",
+     "conta": "x = 1/(1 − t), com t = (log 7)/(log 59) e 0 < t < 1",
+     "porque": "Como 1 < 7 < 59, log 7 é positivo e menor que log 59. Escrever x em função de t deixa cada teste de intervalo virar uma comparação simples.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste os extremos da alternativa C",
+     "conta": "x > 4/3 ⇔ t > 1/4 ⇔ 7⁴ > 59: 2401 > 59 | x ≤ 5/2 ⇔ t ≤ 3/5 ⇔ 7⁵ ≤ 59³: 16807 ≤ 205379",
+     "porque": "x = 1/(1 − t) cresce com t. Então x > 4/3 equivale a 1 − t < 3/4, e x ≤ 5/2 equivale a 1 − t ≥ 2/5. Multiplicando por log 59, cada uma vira potência contra potência.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue ao intervalo",
+     "conta": "4/3 < x ≤ 5/2 → alternativa C",
+     "porque": "As duas comparações são verdadeiras, então a raiz está no intervalo da C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a solução pertence ao intervalo (4/3, 5/2].",
+   "checagem": "Teste o sinal de 7ˣ − 59⁽ˣ⁻¹⁾ em dois pontos. Em x = 4/3, eleve ao cubo: 7⁴ = 2401 contra 59¹ = 59, o lado esquerdo ganha. Em x = 2: 7² = 49 contra 59, o direito ganha. A troca acontece entre 4/3 e 2, dentro de C. Com log 7 ≈ 0,845 e log 59 ≈ 1,771, x ≈ 1,91.",
+   "erradas": {
+    "A": "(0, 2/5] não confere: x = 1/(1 − t) com 0 < t < 1 é sempre maior que 1.",
+    "B": "(2/5, 4/3] não confere: exigiria x ≤ 4/3, isto é, 7⁴ ≤ 59, mas 7⁴ = 2401.",
+    "D": "(5/2, 10/3] não confere: exigiria x > 5/2, isto é, 7⁵ > 59³, mas 16807 < 205379.",
+    "E": "(10/3, 4] não confere: exigiria x > 10/3, isto é, 7¹⁰ > 59⁷, mas 7¹⁰ ≈ 2,8 · 10⁸ e 59⁷ ≈ 2,5 · 10¹²."
+   },
+   "armadilha": "Errar o sinal ao passar os termos com x, ou tentar calcular a raiz com logaritmos de cabeça em vez de comparar potências inteiras.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O intervalo que contém a raiz de 7ˣ = 59⁽ˣ⁻¹⁾.",
+    "chave": "Com logaritmo, x = 1/(1 − t), t = log 7 ÷ log 59; cada extremo vira uma comparação entre potências de 7 e de 59.",
+    "cuidado": "Ao multiplicar ou dividir a desigualdade, confira o sinal: log 59 e 1 − t são positivos, então nada se inverte."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "troca de sinal",
+    "ideia": "f(x) = 7ˣ − 59⁽ˣ⁻¹⁾ é positiva em x = 4/3 (7⁴ > 59) e negativa em x = 2 (49 < 59); a raiz única está entre 4/3 e 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "7ˣ = 59⁽ˣ⁻¹⁾",
+    "nota": "a equação"
+   },
+   {
+    "linha": "x · log 7 = (x − 1) · log 59",
+    "nota": "logaritmo dos dois lados"
+   },
+   {
+    "linha": "x · (log 59 − log 7) = log 59",
+    "nota": "termos com x de um lado"
+   },
+   {
+    "linha": "x = 1/(1 − t), t = (log 7)/(log 59)",
+    "nota": "divide por log 59"
+   },
+   {
+    "linha": "7⁴ = 2401 > 59 → x > 4/3",
+    "nota": "extremo esquerdo"
+   },
+   {
+    "linha": "7⁵ = 16807 ≤ 59³ = 205379 → x ≤ 5/2",
+    "nota": "extremo direito"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "P17c82bb3": {
+  "n": "45",
+  "conceito": "Com dois ângulos e um lado, achar os outros lados pela lei dos senos e o raio inscrito por área = r · semiperímetro.",
+  "equivocos": {
+   "A": "M10.2:dividiu-pelo-perimetro-inteiro",
+   "B": "M10.2:raio-inscrito-sem-a-area",
+   "C": "M10.2:raio-inscrito-sem-a-area",
+   "E": "M10.2:raio-inscrito-sem-a-area"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com um lado e os cossenos de dois ângulos, o triângulo está determinado. Os senos saem de sen² + cos² = 1, o terceiro ângulo sai de C = 180° − A − B, e a lei dos senos dá os outros dois lados. O raio inscrito vem da área: área = r · p, com p o semiperímetro.",
+    "formulas": [
+     "sen² x + cos² x = 1",
+     "sen C = sen(A + B) = sen A · cos B + cos A · sen B",
+     "lei dos senos: a/sen A = b/sen B = c/sen C",
+     "área = r · p (p = semiperímetro)"
+    ],
+    "simbolos": [
+     [
+      "Â, B̂, Ĉ",
+      "ângulos BAC, ABC e ACB"
+     ],
+     [
+      "a, b, c",
+      "lados BC, AC e AB, opostos a A, B e C"
+     ],
+     [
+      "p",
+      "semiperímetro, metade do perímetro"
+     ],
+     [
+      "r",
+      "raio da circunferência inscrita"
+     ]
+    ]
+   },
+   "pista": "Comece pelos senos dos dois ângulos dados; o terceiro ângulo é que liga tudo ao lado AB.",
+   "passos": [
+    {
+     "faz": "Ache os senos dos ângulos dados",
+     "conta": "cos A = 3/5 → sen A = 4/5 | cos B = 5/13 → sen B = 12/13",
+     "porque": "sen² + cos² = 1, com seno positivo porque ângulo de triângulo fica entre 0° e 180°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule sen C pelo seno da soma",
+     "conta": "sen C = (4/5)(5/13) + (3/5)(12/13) → sen C = 20/65 + 36/65 = 56/65",
+     "porque": "C = 180° − (A + B), e o seno de um ângulo é igual ao do seu suplemento: sen C = sen(A + B).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a lei dos senos com AB = 14",
+     "conta": "14/(56/65) = 65/4 → a = (65/4)(4/5) = 13 | b = (65/4)(12/13) = 15",
+     "porque": "AB é oposto a C; o quociente 65/4 vale para os três lados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule área e semiperímetro",
+     "conta": "p = (13 + 14 + 15)/2 = 21 → área = √(21 · 8 · 7 · 6) = 84",
+     "porque": "Fórmula de Heron com p − a = 8, p − b = 6 e p − c = 7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole o raio inscrito",
+     "conta": "84 = r · 21 → r = 84/21 = 4 → alternativa D",
+     "porque": "A área do triângulo é a soma de três triângulos de altura r com bases nos lados.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — o raio inscrito mede 4",
+   "checagem": "Pela altura relativa a AB: h = AC · sen A = 15 · 4/5 = 12, então área = (14 · 12)/2 = 84, o mesmo valor de Heron. E r = 84/21 = 4.",
+   "erradas": {
+    "A": "2 sai de dividir a área pelo perímetro inteiro: 84/42 = 2. A fórmula usa o semiperímetro, 21.",
+    "B": "2√2 não confere: r · p = 2√2 · 21 ≈ 59,4, e a área do triângulo 13-14-15 é 84.",
+    "C": "3 não confere: r · p = 3 · 21 = 63, e a área do triângulo é 84.",
+    "E": "4√2 não confere: r · p = 4√2 · 21 ≈ 118,8, bem acima da área 84."
+   },
+   "armadilha": "Área = r · p usa o semiperímetro; com o perímetro inteiro o raio sai pela metade, e 2 está nas alternativas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O raio da circunferência inscrita num triângulo com AB = 14, cos A = 3/5 e cos B = 5/13.",
+    "chave": "Senos 4/5 e 12/13, sen C = 56/65, lados 13, 14 e 15; área 84 = r · 21.",
+    "cuidado": "Use sen C = sen(A + B) e divida a área pelo semiperímetro, não pelo perímetro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "altura sobre AB",
+    "ideia": "Com h a altura de C, AH = h · 3/4 e HB = h · 5/12 somam 14h/12 = 14, logo h = 12, AC = 15, BC = 13 e r = 84/21 = 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "sen A = 4/5 | sen B = 12/13",
+    "nota": "sen² + cos² = 1"
+   },
+   {
+    "linha": "sen C = 20/65 + 36/65 = 56/65",
+    "nota": "seno da soma"
+   },
+   {
+    "linha": "2R = 14/(56/65) = 65/4",
+    "nota": "lei dos senos com AB"
+   },
+   {
+    "linha": "a = 13 | b = 15",
+    "nota": "lados opostos a A e B"
+   },
+   {
+    "linha": "84 = r · 21 → r = 4",
+    "nota": "área dividida pelo semiperímetro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "P7c99fa0e": {
+  "n": "51",
+  "conceito": "Geometria de posição: ângulo entre reta e plano, perpendicularidade reta-plano, pontos equidistantes de três retas e distância de pontos a um plano.",
+  "equivocos": {
+   "B": "M11.5:esqueceu-que-angulo-reta-plano-e-minimo",
+   "C": "M11.5:esqueceu-pontos-fora-do-plano",
+   "D": "M11.5:supos-pontos-em-lados-opostos",
+   "E": "M11.5:esqueceu-retas-concorrentes-na-perpendicularidade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O ângulo entre uma reta e um plano é o MENOR ângulo que a reta forma com as retas do plano: com qualquer outra reta do plano o ângulo é maior ou igual. Reta perpendicular a plano exige duas retas CONCORRENTES do plano. No espaço, os pontos equidistantes de três retas de um plano formam retas inteiras, não um ponto só.",
+    "formulas": [
+     "ângulo(r, α) = menor ângulo entre r e as retas de α",
+     "r ⊥ α ⇔ r ⊥ duas retas concorrentes de α"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "plano"
+     ],
+     [
+      "r, s, t",
+      "retas"
+     ],
+     [
+      "PQ",
+      "segmento de extremos P e Q"
+     ],
+     [
+      "concorrentes",
+      "retas que se cortam num ponto"
+     ],
+     [
+      "incentro",
+      "ponto do plano do triângulo equidistante dos três lados"
+     ]
+    ]
+   },
+   "pista": "Para cada afirmação, procure o caso que a quebra: retas paralelas, pontos do mesmo lado do plano, pontos fora do plano do triângulo.",
+   "passos": [
+    {
+     "faz": "Compare 30° com o ângulo mínimo",
+     "conta": "ângulo(r, α) = 45° → ângulo(r, s) ≥ 45° → 30° < 45°: impossível",
+     "porque": "45° já é o menor ângulo entre r e as retas de α; nenhuma reta do plano faz 30° com r. I é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Derrube a II com retas paralelas",
+     "conta": "s ∥ t em α e r ⊥ s → r pode estar contida em α",
+     "porque": "Se s e t são paralelas, uma reta de α perpendicular às duas não é perpendicular a α. A regra exige s e t concorrentes. II é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conte os pontos equidistantes na III",
+     "conta": "incentro I → reta por I perpendicular ao plano: infinitos pontos",
+     "porque": "Todo ponto da perpendicular ao plano pelo incentro está à mesma distância das três retas; no próprio plano ainda há os três ex-incentros. Não é único. III é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ponha P e Q do mesmo lado na IV",
+     "conta": "P e Q a 3 do plano, mesmo lado → ponto médio a 3 do plano → fora de α",
+     "porque": "A afirmação só vale se P e Q estiverem em lados opostos. IV é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o resultado à letra",
+     "conta": "I, II, III e IV falsas → nenhuma",
+     "porque": "Cada afirmação tem um contraexemplo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — nenhuma das afirmações é verdadeira.",
+   "checagem": "Confira a I com vetores: r com direção (1, 0, 1) faz 45° com o plano z = 0; uma reta do plano com direção (cos θ, sen θ, 0) forma com r ângulo de cosseno |cos θ|/√2 ≤ 1/√2, isto é, ângulo de 45° a 90°. Nunca 30°.",
+   "erradas": {
+    "B": "B aceita a I e a II; a I pede 30°, menor que o ângulo mínimo de 45°, e a II falha com s e t paralelas.",
+    "C": "C aceita a I e a III; a III falha porque toda a perpendicular ao plano pelo incentro é equidistante das três retas.",
+    "D": "D aceita a III e a IV; a IV falha com P e Q do mesmo lado do plano, que dá ponto médio fora de α.",
+    "E": "E aceita II, III e IV, as três com contraexemplo: retas paralelas, a perpendicular pelo incentro e pontos do mesmo lado."
+   },
+   "armadilha": "A II e a III parecem regras de livro, mas a II esquece que s e t precisam ser concorrentes e a III esquece que o espaço tem pontos fora do plano do triângulo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das quatro afirmações de geometria de posição são verdadeiras.",
+    "chave": "Ângulo reta-plano é o mínimo; perpendicular a plano exige retas concorrentes; no espaço os equidistantes formam retas.",
+    "cuidado": "Procure sempre o contraexemplo antes de aceitar uma afirmação geral."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "um contraexemplo por item",
+    "ideia": "I: 30° < 45°; II: s ∥ t; III: a perpendicular pelo incentro; IV: P e Q do mesmo lado."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I: ângulo mínimo 45° → 30° impossível",
+    "nota": "falsa"
+   },
+   {
+    "linha": "II: s ∥ t → r pode estar em α",
+    "nota": "falsa: falta serem concorrentes"
+   },
+   {
+    "linha": "III: perpendicular pelo incentro → infinitos pontos",
+    "nota": "falsa: não é único"
+   },
+   {
+    "linha": "IV: P, Q do mesmo lado → médio fora de α",
+    "nota": "falsa"
+   },
+   {
+    "linha": "nenhuma",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ },
+ "Pfecae415": {
+  "n": "43",
+  "conceito": "Triângulo isósceles inscrito: o vértice oposto à base está na mediatriz da base, que passa pelo centro da circunferência.",
+  "equivocos": {
+   "A": "M12.4:valor-que-nao-fecha",
+   "B": "M12.4:valor-que-nao-fecha",
+   "C": "M12.4:valor-que-nao-fecha",
+   "D": "M12.4:vertice-no-quadrante-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Num triângulo isósceles de base PQ, o vértice R fica na mediatriz de PQ. Numa circunferência, a mediatriz de qualquer corda passa pelo centro. Então R está na reta que liga O ao ponto médio M de PQ, a uma distância do centro igual ao raio. Há dois pontos assim; o 1º quadrante escolhe um.",
+    "formulas": [
+     "raio = distância de O a Q",
+     "M = ponto médio de PQ",
+     "área = (base · altura)/2"
+    ],
+    "simbolos": [
+     [
+      "O",
+      "centro da circunferência, (5, 0)"
+     ],
+     [
+      "M",
+      "ponto médio da base PQ"
+     ],
+     [
+      "mediatriz",
+      "reta perpendicular a PQ pelo seu ponto médio"
+     ],
+     [
+      "OM",
+      "distância do centro ao ponto médio"
+     ]
+    ]
+   },
+   "pista": "Ache o raio e o ponto médio de PQ; o vértice R está na reta que passa por O e por esse ponto médio.",
+   "passos": [
+    {
+     "faz": "Ache o raio e o ponto médio",
+     "conta": "r = OQ = 8 − 5 = 3 ; M = ((4 + 8)/2, (2√2 + 0)/2) = (6, √2)",
+     "porque": "P também está a 3 de O: (4 − 5)² + (2√2)² = 1 + 8 = 9. O ponto médio M fixa a mediatriz.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Meça OM e a base PQ",
+     "conta": "OM = √(1² + (√2)²) = √3 ; PQ = √(4² + (2√2)²) = √24 = 2√6",
+     "porque": "OM é a distância do centro à corda; PQ é a base do triângulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o R do 1º quadrante",
+     "conta": "R = O ± 3 · (1, √2)/√3 → (5 + √3, √6) ou (5 − √3, −√6)",
+     "porque": "Andando de O na direção de M, sobe-se; o outro ponto tem y = −√6, no 4º quadrante. Fica R = (5 + √3, √6), do mesmo lado de M.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Calcule altura e área",
+     "conta": "altura = RM = 3 − √3 → área = (2√6 · (3 − √3))/2 = √6(3 − √3)",
+     "porque": "R e M estão do mesmo lado de O na mesma reta, então RM = OR − OM = 3 − √3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "√6(3 − √3) → alternativa E",
+     "porque": "É a área do triângulo com o vértice R no 1º quadrante.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — a área do triângulo PQR é √6(3 − √3)",
+   "checagem": "Pelo determinante com P(4, 2√2), Q(8, 0), R(5 + √3, √6): a área dá 3√6 − 3√2 ≈ 3,11, e √6(3 − √3) = 3√6 − √18 = 3√6 − 3√2 ≈ 3,11. Fecha.",
+   "erradas": {
+    "A": "A não confere: com base 2√6, a altura seria √2(3 − √3)/√6 ≈ 0,73, mas RM = 3 − √3 ≈ 1,27.",
+    "B": "B não confere: com base 2√6, a altura seria √3(3 + √3)/√6 ≈ 3,35, e não 3 − √3 ≈ 1,27; nem o R do 4º quadrante serve, pois dá altura 3 + √3 ≈ 4,73.",
+    "C": "C não confere: com base 2√6, a altura seria √3(3 − √3)/√6 ≈ 0,90, e não 3 − √3 ≈ 1,27.",
+    "D": "D sai de usar o outro ponto da mediatriz, (5 − √3, −√6), que está no 4º quadrante: altura 3 + √3 e área √6(3 + √3)."
+   },
+   "armadilha": "Há dois pontos da mediatriz sobre a circunferência; só o que está no 1º quadrante, do lado de M, vale, com altura 3 − √3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do triângulo isósceles PQR com R no 1º quadrante.",
+    "chave": "R está na reta OM, a 3 de O: altura RM = 3 − √3 e base 2√6, área √6(3 − √3).",
+    "cuidado": "Escolha o R do 1º quadrante: o outro dá altura 3 + √3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "determinante",
+    "ideia": "Com R = (5 + √3, √6), a área por determinante é 3√6 − 3√2, que é √6(3 − √3)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "r = 3 ; M = (6, √2)",
+    "nota": "raio e ponto médio"
+   },
+   {
+    "linha": "OM = √3 ; PQ = 2√6",
+    "nota": "distâncias"
+   },
+   {
+    "linha": "RM = 3 − √3",
+    "nota": "R do lado de M"
+   },
+   {
+    "linha": "(2√6 · (3 − √3))/2 = √6(3 − √3)",
+    "nota": "área"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ },
+ "Pd4d9e0ab": {
+  "n": "44",
+  "conceito": "Completar quadrados para achar a elipse e a circunferência que passa pelos vértices do retângulo que a envolve.",
+  "equivocos": {
+   "A": "M12.4:raio-igual-ao-semieixo",
+   "B": "M12.4:trocou-coordenadas-do-centro",
+   "C": "M12.4:sinal-do-centro-trocado",
+   "E": "M12.4:trocou-coordenadas-do-centro"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Completando quadrados, a curva vira uma elipse de centro (−2, −3), com semieixo 2 na horizontal e 3 na vertical. O retângulo de lados paralelos aos eixos que a envolve vai de x = −4 a x = 0 e de y = −6 a y = 0, e tem (0, 0) como vértice. A circunferência que passa pelos vértices tem o mesmo centro e raio igual à metade da diagonal.",
+    "formulas": [
+     "9(x + 2)² = 9x² + 36x + 36 ; 4(y + 3)² = 4y² + 24y + 36",
+     "raio² = (meia largura)² + (meia altura)²"
+    ],
+    "simbolos": [
+     [
+      "completar quadrados",
+      "reescrever x² + 4x como (x + 2)² − 4"
+     ],
+     [
+      "semieixo",
+      "distância do centro da elipse até a borda, em cada direção"
+     ],
+     [
+      "circunscrita",
+      "que passa por todos os vértices do retângulo"
+     ]
+    ]
+   },
+   "pista": "Complete quadrados em x e em y para achar o centro e os semieixos da curva.",
+   "passos": [
+    {
+     "faz": "Complete quadrados",
+     "conta": "9(x + 2)² − 36 + 4(y + 3)² − 36 + 36 = 0 → 9(x + 2)² + 4(y + 3)² = 36",
+     "porque": "9x² + 36x vira 9(x + 2)² − 36, e 4y² + 24y vira 4(y + 3)² − 36.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida por 36",
+     "conta": "9(x + 2)² + 4(y + 3)² = 36 → (x + 2)²/4 + (y + 3)²/9 = 1",
+     "porque": "Agora se lê: centro (−2, −3), semieixo 2 em x e 3 em y.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o retângulo envolvente",
+     "conta": "x de −2 − 2 a −2 + 2 → [−4, 0] ; y de −3 − 3 a −3 + 3 → [−6, 0]",
+     "porque": "O retângulo de lados paralelos aos eixos encosta na elipse nos quatro extremos; o vértice (0, 0) confirma que é ele.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o raio",
+     "conta": "raio² = 2² + 3² → raio² = 13",
+     "porque": "O centro do retângulo é o centro da elipse, e o raio vai até um vértice, como (0, 0): (0 + 2)² + (0 + 3)² = 13.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "(x + 2)² + (y + 3)² = 13 → alternativa D",
+     "porque": "Centro (−2, −3) e raio² 13.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — (x + 2)² + (y + 3)² = 13",
+   "checagem": "Teste os outros vértices do retângulo na equação: (−4, −6) dá (−2)² + (−3)² = 13, (−4, 0) dá 4 + 9 = 13 e (0, −6) dá 4 + 9 = 13. Os quatro vértices estão na circunferência.",
+   "erradas": {
+    "A": "A sai de usar como raio o semieixo maior, 3: raio² = 9. Mas o vértice (0, 0) dá (0 + 2)² + (0 + 3)² = 13, e não 9.",
+    "B": "B sai de trocar as coordenadas do centro e usar raio² = 9; (0, 0) dá 9 + 4 = 13, não 9, e o centro certo é (−2, −3).",
+    "C": "C sai de errar o sinal ao completar quadrados: centro (2, 3). Ela passa por (0, 0), mas não pelo vértice (−4, −6): 36 + 81 ≠ 13.",
+    "E": "E sai de trocar x com y no centro: (−3, −2). Passa por (0, 0), mas não por (−4, −6): 1 + 16 = 17 ≠ 13."
+   },
+   "armadilha": "Completar quadrados dá (x + 2)², que corresponde ao centro em x = −2; trocar o sinal ou as coordenadas leva a circunferências que até passam por (0, 0).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A circunferência que passa pelos vértices do retângulo que envolve a elipse.",
+    "chave": "9(x + 2)² + 4(y + 3)² = 36: centro (−2, −3), semieixos 2 e 3, raio² = 4 + 9 = 13.",
+    "cuidado": "Confira o centro com sinal certo e use a metade da diagonal como raio."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "círculo diretor",
+    "ideia": "Todo retângulo circunscrito a uma elipse tem os vértices no círculo de mesmo centro e raio² = 2² + 3² = 13; (0, 0) confirma: 4 + 9 = 13."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "9(x + 2)² + 4(y + 3)² = 36",
+    "nota": "completar quadrados"
+   },
+   {
+    "linha": "(x + 2)²/4 + (y + 3)²/9 = 1",
+    "nota": "centro (−2, −3), semieixos 2 e 3"
+   },
+   {
+    "linha": "raio² = 2² + 3² = 13",
+    "nota": "metade da diagonal ao quadrado"
+   },
+   {
+    "linha": "(x + 2)² + (y + 3)² = 13",
+    "nota": "circunferência"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ },
+ "P5cdfcc31": {
+  "n": "52",
+  "conceito": "Probabilidade por contagem: arestas do dodecaedro (casos favoráveis) sobre pares de vértices (casos possíveis).",
+  "equivocos": {
+   "A": "M13.4:pares-com-repeticao",
+   "C": "M13.4:ordem-so-no-denominador",
+   "D": "M13.4:contagem-de-arestas-errada",
+   "E": "M13.4:contagem-de-arestas-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dois vértices pertencem a uma mesma aresta exatamente quando são as duas pontas de uma aresta. Então os casos favoráveis são as arestas e os casos possíveis são os pares de vértices sem ordem. O trabalho real é contar arestas e vértices a partir das 12 faces pentagonais, lembrando que cada aresta é compartilhada por 2 faces e cada vértice por 3.",
+    "formulas": [
+     "arestas = (faces · lados por face)/2",
+     "vértices = (faces · vértices por face)/3 (3 faces em cada vértice)",
+     "probabilidade = (casos favoráveis)/(casos possíveis)",
+     "pares sem ordem: C(n, 2) = (n · (n − 1))/2"
+    ],
+    "simbolos": [
+     [
+      "dodecaedro regular",
+      "poliedro de 12 faces pentagonais iguais, com 3 faces em cada vértice"
+     ],
+     [
+      "C(n, 2)",
+      "número de modos de escolher 2 entre n, sem ordem"
+     ],
+     [
+      "V, A, F",
+      "número de vértices, arestas e faces"
+     ]
+    ]
+   },
+   "pista": "Conte as arestas e os vértices pelas faces, tomando cuidado com o que cada face divide com as vizinhas.",
+   "passos": [
+    {
+     "faz": "Conte as arestas pelas faces",
+     "conta": "A = (12 · 5)/2 → A = 30",
+     "porque": "Cada pentágono tem 5 lados, mas cada aresta é lado de duas faces vizinhas, então a soma 60 conta cada aresta duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os vértices pelas faces",
+     "conta": "V = (12 · 5)/3 → V = 20",
+     "porque": "No dodecaedro regular, 3 pentágonos se encontram em cada vértice. Euler confirma: V − A + F = 20 − 30 + 12 = 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os pares de vértices",
+     "conta": "C(20, 2) = (20 · 19)/2 → 190",
+     "porque": "A escolha é de 2 vértices distintos e a ordem não importa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "30/190 → 3/19 → alternativa B",
+     "porque": "Cada aresta corresponde a um único par de vértices vizinhos. Dividindo numerador e denominador por 10, sai 3/19.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 3/19",
+   "checagem": "Olhe de um vértice só: escolhido o primeiro, sobram 19 para o segundo, e só 3 deles são vizinhos (3 arestas saem de cada vértice). A chance é 3/19, a mesma.",
+   "erradas": {
+    "A": "15/100 sai de contar os pares como 20²/2 = 200, sem tirar o vértice repetido: 30/200 = 15/100. O certo é (20 · 19)/2 = 190.",
+    "C": "15/190 sai de dividir as 30 arestas pelos pares com ordem, 20 · 19 = 380: 30/380 = 15/190. Ou se conta ordem em cima e embaixo, ou em nenhum.",
+    "D": "5/12 não confere: 5/12 de 190 pares dá 79,17, que não é número inteiro de pares favoráveis.",
+    "E": "2/5 não confere: 2/5 de 190 pares são 76 pares, mas o dodecaedro tem só 30 arestas."
+   },
+   "armadilha": "Na contagem pelas faces, cada aresta aparece duas vezes e cada vértice três: sem dividir, os números de arestas e vértices saem errados.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de dois vértices sorteados do dodecaedro serem as pontas de uma aresta.",
+    "chave": "30 arestas sobre C(20, 2) = 190 pares: 30/190 = 3/19.",
+    "cuidado": "Divida 12 · 5 por 2 para arestas e por 3 para vértices, e conte os pares sem ordem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "um vértice fixo",
+    "ideia": "Fixe o primeiro vértice: dos 19 restantes, 3 são vizinhos dele, logo P = 3/19."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A = (12 · 5)/2 = 30",
+    "nota": "cada aresta em 2 faces"
+   },
+   {
+    "linha": "V = (12 · 5)/3 = 20",
+    "nota": "cada vértice em 3 faces"
+   },
+   {
+    "linha": "C(20, 2) = (20 · 19)/2 = 190",
+    "nota": "pares de vértices"
+   },
+   {
+    "linha": "30/190 = 3/19",
+    "nota": "simplifica por 10: alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P363f15d5": {
+  "n": "49",
+  "conceito": "Contar triângulos de lados inteiros em PA com perímetro dado, usando a desigualdade triangular.",
+  "equivocos": {
+   "A": "M13.9:excluiu-casos-validos",
+   "C": "M13.9:ignorou-desigualdade-triangular",
+   "D": "M13.9:ignorou-desigualdade-triangular",
+   "E": "M13.9:ignorou-desigualdade-triangular"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Lados em PA se escrevem a − r, a e a + r: assim a soma fica 3a e o termo do meio sai do perímetro na hora. Depois, cada razão inteira r dá um triângulo diferente, desde que o maior lado seja menor que a soma dos outros dois. Contar triângulos é contar os valores de r que passam nesse teste.",
+    "formulas": [
+     "lados: a − r, a, a + r (r > 0)",
+     "desigualdade triangular: maior lado < soma dos outros dois"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais a razão r"
+     ],
+     [
+      "r",
+      "razão da PA, aqui um inteiro positivo"
+     ],
+     [
+      "não congruentes",
+      "triângulos com lados diferentes, que não se sobrepõem"
+     ]
+    ]
+   },
+   "pista": "Escreva os três lados com o termo do meio como centro e use o perímetro.",
+   "passos": [
+    {
+     "faz": "Escreva os lados pelo termo do meio",
+     "conta": "(a − r) + a + (a + r) = 87 → 3a = 87 → a = 29",
+     "porque": "O − r e o + r se cancelam na soma, então o lado do meio é fixo: 29.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique a desigualdade triangular",
+     "conta": "29 + r < (29 − r) + 29 → 2r < 29 → r < 14,5",
+     "porque": "Só o maior lado, 29 + r, pode falhar o teste; os outros dois casos valem sempre com r > 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Liste as razões possíveis",
+     "conta": "r inteiro, 0 < r < 14,5 → r = 1, 2, ..., 14",
+     "porque": "A razão não pode ser nula e precisa ser inteira; com r < 14,5, o menor lado 29 − r também fica positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte e marque",
+     "conta": "14 valores de r → 14 triângulos → alternativa B",
+     "porque": "Cada r gera lados diferentes, então são 14 triângulos não congruentes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 14 triângulos",
+   "checagem": "Teste as pontas: r = 14 dá 15, 29 e 43, com 15 + 29 = 44 > 43, triângulo válido; r = 15 dá 14, 29 e 44, com 14 + 29 = 43 < 44, não fecha.",
+   "erradas": {
+    "A": "12 não confere: deixaria de fora razões válidas, como r = 14 (lados 15, 29, 43, com 15 + 29 = 44 > 43).",
+    "C": "16 não confere: exigiria r = 15 ou 16, mas r = 15 dá 14 + 29 = 43 < 44 e não forma triângulo.",
+    "D": "18 não confere: precisaria de r até 18, e já r = 15 falha a desigualdade triangular.",
+    "E": "20 não confere: precisaria de r até 20; com r = 20, os lados 9, 29, 49 têm 9 + 29 = 38 < 49."
+   },
+   "armadilha": "O limite de r vem da desigualdade triangular (r < 14,5), não só de o menor lado ser positivo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos triângulos de perímetro 87 têm lados inteiros em PA de razão não nula.",
+    "chave": "Lado do meio 29; desigualdade 29 + r < 58 − r dá r < 14,5, logo r de 1 a 14.",
+    "cuidado": "Teste o maior lado contra a soma dos outros dois; r = 0 não vale."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lista direta",
+    "ideia": "Os lados (29 − r, 29, 29 + r) valem de (28, 29, 30) até (15, 29, 43): 14 ternos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3a = 87 → a = 29",
+    "nota": "lado do meio"
+   },
+   {
+    "linha": "29 + r < 58 − r → 2r < 29",
+    "nota": "desigualdade triangular"
+   },
+   {
+    "linha": "r < 14,5 → r = 1, ..., 14",
+    "nota": "razões inteiras positivas"
+   },
+   {
+    "linha": "14 triângulos",
+    "nota": "alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P5303d68f": {
+  "n": "48",
+  "conceito": "Descobrir uma matriz 2 × 2 a partir de dois produtos conhecidos e calcular o seu traço.",
+  "equivocos": {
+   "B": "M15.1:traco-do-produto",
+   "C": "M15.1:parou-em-x",
+   "D": "M15.1:traco-do-produto",
+   "E": "M15.1:traco-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Multiplicar A por uma matriz é aplicar A em cada coluna dela. Subtraindo as duas igualdades, aparece uma matriz com as duas colunas iguais, e isso entrega x na hora. Depois, cada coluna vira um sistema pequeno para os elementos de A. O traço é a soma da diagonal principal.",
+    "formulas": [
+     "A(R − P) = AR − AP",
+     "A · (u, v) = (a·u + b·v, c·u + d·v)",
+     "tr(A) = a + d"
+    ],
+    "simbolos": [
+     [
+      "A = (a b; c d)",
+      "os quatro elementos desconhecidos de A, linha por linha"
+     ],
+     [
+      "tr(A)",
+      "traço: soma da diagonal principal, a + d"
+     ],
+     [
+      "(u, v)",
+      "coluna com os números u em cima e v embaixo"
+     ]
+    ]
+   },
+   "pista": "Subtraia a primeira igualdade da segunda e olhe as colunas da matriz que aparece à esquerda.",
+   "passos": [
+    {
+     "faz": "Subtraia as duas igualdades",
+     "conta": "A(2 3; 4 5) − A(1 2; 3 4) = A(1 1; 1 1) → (x − 1   3 − x; 1   1)",
+     "porque": "A matriz (1 1; 1 1) tem colunas iguais, então A vezes ela também tem colunas iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale as colunas e ache x",
+     "conta": "x − 1 = 3 − x → 2x = 4 → x = 2 ; e A · (1, 1) = (1, 1)",
+     "porque": "As duas colunas do resultado são A · (1, 1); a segunda linha já mostra que essa coluna é (1, 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a primeira linha de A",
+     "conta": "a + b = 1 e a + 3b = 1 → 2b = 0 → b = 0, a = 1",
+     "porque": "A 1ª coluna de A(1 2; 3 4) é A · (1, 3), cujo número de cima é 1. Junte com a + b = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a segunda linha de A",
+     "conta": "c + d = 1 e 2c + 4d = 0 → c = −2d → −d = 1 → d = −1, c = 2",
+     "porque": "A 2ª coluna de A(1 2; 3 4) é A · (2, 4) = (x, 0); o 0 de baixo dá 2c + 4d = 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a diagonal",
+     "conta": "tr(A) = a + d = 1 + (−1) = 0 → alternativa A",
+     "porque": "O traço é só a + d; os elementos fora da diagonal não entram.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — o traço de A é 0",
+   "checagem": "Com A = (1 0; 2 −1): A(1 2; 3 4) = (1 2; −1 0), que é (1 x; y 0) com x = 2 e y = −1; e A(2 3; 4 5) = (2 3; 0 1), que é (x 3; y + 1 1) com x = 2 e y + 1 = 0. Fecha.",
+   "erradas": {
+    "B": "B sai de somar a diagonal do produto A(1 2; 3 4) = (1 2; −1 0), que dá 1 + 0 = 1, e não a diagonal de A.",
+    "C": "C sai de parar em x = 2 e dar x como resposta; o pedido é o traço de A, a + d = 1 − 1 = 0.",
+    "D": "D sai de somar a diagonal do produto A(2 3; 4 5) = (2 3; 0 1), que dá 2 + 1 = 3, e não a diagonal de A.",
+    "E": "E não confere: com A = (1 0; 2 −1), a diagonal é 1 e −1; nenhuma conta com esses dois números dá 4."
+   },
+   "armadilha": "Somar a diagonal de um dos produtos dados (1 ou 3) em vez da diagonal da própria matriz A.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O traço da matriz A.",
+    "chave": "A(R − P) = A(1 1; 1 1) tem colunas iguais: x = 2 e A · (1, 1) = (1, 1); daí A = (1 0; 2 −1).",
+    "cuidado": "O traço é de A, não das matrizes que aparecem nos produtos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela inversa",
+    "ideia": "A = (1 x; y 0) · (1 2; 3 4)⁻¹ e A = (x 3; y + 1 1) · (2 3; 4 5)⁻¹; igualando as duas saem x = 2, y = −1 e A = (1 0; 2 −1)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A(1 1; 1 1) = (x − 1   3 − x; 1   1)",
+    "nota": "subtrair as igualdades"
+   },
+   {
+    "linha": "x − 1 = 3 − x → x = 2",
+    "nota": "colunas iguais"
+   },
+   {
+    "linha": "a + b = 1, a + 3b = 1 → a = 1, b = 0",
+    "nota": "1ª linha de A"
+   },
+   {
+    "linha": "c + d = 1, 2c + 4d = 0 → c = 2, d = −1",
+    "nota": "2ª linha de A"
+   },
+   {
+    "linha": "tr(A) = 1 + (−1) = 0",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P4e1e9f6e": {
+  "n": "55",
+  "conceito": "Usar que, com coeficientes inteiros, a − b divide p(a) − p(b).",
+  "equivocos": {
+   "A": "M16.1:propriedade-a-menos-b-ignorada",
+   "B": "M16.1:propriedade-a-menos-b-ignorada",
+   "D": "M16.1:propriedade-a-menos-b-ignorada",
+   "E": "M16.1:propriedade-a-menos-b-ignorada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com coeficientes inteiros, p(a) − p(b) é sempre múltiplo de a − b, porque cada termo aⁿ − bⁿ tem o fator a − b. Aqui 51 − 3 = 48, então 391 − p(3) é múltiplo de 48. Isso fixa o resto de p(3) na divisão por 48, e a faixa 0 ≤ p(3) < 12 deixa um só valor.",
+    "formulas": [
+     "coeficientes inteiros: (a − b) divide p(a) − p(b)",
+     "aⁿ − bⁿ = (a − b)(aⁿ⁻¹ + … + bⁿ⁻¹)"
+    ],
+    "simbolos": [
+     [
+      "p(51), p(3)",
+      "valores do polinômio em x = 51 e em x = 3"
+     ],
+     [
+      "múltiplo de 48",
+      "número da forma 48 · m, com m inteiro"
+     ]
+    ]
+   },
+   "pista": "Compare p(51) com p(3): a diferença 51 − 3 tem um papel especial quando os coeficientes são inteiros.",
+   "passos": [
+    {
+     "faz": "Aplique a propriedade da diferença",
+     "conta": "(51 − 3) divide p(51) − p(3) → 48 divide 391 − p(3)",
+     "porque": "Cada termo c·(51ⁿ − 3ⁿ) é múltiplo de 51 − 3 e c é inteiro, então a soma também é.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Divida 391 por 48",
+     "conta": "391 = 48 · 8 + 7",
+     "porque": "48 · 8 = 384 e 391 − 384 = 7. O resto de 391 na divisão por 48 é 7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o resto que p(3) precisa ter",
+     "conta": "391 − p(3) = 48m → p(3) = 391 − 48m → p(3) = 7 + 48(8 − m)",
+     "porque": "Tirar um múltiplo de 48 não muda o resto: p(3) também deixa resto 7 na divisão por 48.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a faixa dada",
+     "conta": "0 ≤ p(3) < 12 → p(3) = 7",
+     "porque": "Os números com resto 7 na divisão por 48 são …, −41, 7, 55, …; só o 7 está entre 0 e 12.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 7",
+   "checagem": "Um exemplo confirma que 7 é possível: p(x) = 8x − 17 tem coeficientes inteiros, p(51) = 408 − 17 = 391 e p(3) = 24 − 17 = 7.",
+   "erradas": {
+    "A": "5 não confere: 391 − 5 = 386, e 386 = 48 · 8 + 2, resto 2: não é múltiplo de 48.",
+    "B": "6 não confere: 391 − 6 = 385, e 385 não é múltiplo de 48 (48 · 8 = 384).",
+    "D": "8 não confere: 391 − 8 = 383, que deixa resto 47 na divisão por 48.",
+    "E": "9 não confere: 391 − 9 = 382, que deixa resto 46 na divisão por 48."
+   },
+   "armadilha": "Não dá para achar o polinômio: a questão se resolve só pela divisibilidade de p(51) − p(3) por 51 − 3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de p(3), sabendo p(51) = 391 e 0 ≤ p(3) < 12.",
+    "chave": "48 divide 391 − p(3); 391 deixa resto 7 por 48, logo p(3) = 7.",
+    "cuidado": "A propriedade só vale porque os coeficientes são inteiros."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Só 391 − 7 = 384 = 48 · 8 é múltiplo de 48; 386, 385, 383 e 382 não são."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "51 − 3 = 48 → 48 divide 391 − p(3)",
+    "nota": "coeficientes inteiros"
+   },
+   {
+    "linha": "391 = 48 · 8 + 7",
+    "nota": "resto 7"
+   },
+   {
+    "linha": "p(3) = 7 + 48k",
+    "nota": "mesmo resto"
+   },
+   {
+    "linha": "0 ≤ p(3) < 12 → p(3) = 7",
+    "nota": "único na faixa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P4a4aaf61": {
+  "n": "54",
+  "conceito": "Triângulo equilátero no plano complexo: um lado é o outro girado de 60°, o que vira multiplicar por cos 60° ± i sen 60°.",
+  "equivocos": {
+   "A": "M16.2:triangulo-degenerado",
+   "B": "M16.2:modulo-calculado-errado",
+   "C": "M16.2:modulo-calculado-errado",
+   "D": "M16.2:modulo-calculado-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os vértices são 4, z + 2 e z², e dois lados que saem do vértice 4 se ligam por uma fatoração: z² − 4 = (z − 2)(z + 2). Num triângulo equilátero, um lado que sai de um vértice é o outro lado girado de 60°, com o mesmo tamanho. Em números complexos, girar 60° sem mudar o tamanho é multiplicar por cos 60° ± i sen 60°. Por isso z + 2 tem de ser exatamente esse número.",
+    "formulas": [
+     "vetor de P até Q = Q − P",
+     "girar 60° sem mudar o tamanho: multiplicar por cos 60° ± i sen 60° = 1/2 ± (√3/2)i",
+     "|a + bi| = √(a² + b²)"
+    ],
+    "simbolos": [
+     [
+      "ℂ",
+      "conjunto dos números complexos"
+     ],
+     [
+      "z",
+      "número complexo da forma a + bi"
+     ],
+     [
+      "i",
+      "unidade imaginária, com i² = −1"
+     ],
+     [
+      "|w|",
+      "módulo de w: distância do ponto w à origem; |P − Q| é a distância entre P e Q"
+     ]
+    ]
+   },
+   "pista": "Escreva como diferenças os dois lados que saem do vértice 4 e fatore o que envolve z².",
+   "passos": [
+    {
+     "faz": "Escreva os lados que saem do vértice 4",
+     "conta": "(z + 2) − 4 → z − 2 | z² − 4 → (z − 2)(z + 2)",
+     "porque": "O lado entre dois vértices é a diferença entre eles. A fatoração mostra que o segundo vetor é o primeiro multiplicado por z + 2.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Imponha o giro de 60°",
+     "conta": "((z − 2)(z + 2))/(z − 2) = z + 2 → z + 2 = 1/2 ± (√3/2)i",
+     "porque": "Os dois lados que saem de 4 têm o mesmo tamanho e formam 60°, então a razão entre eles é cos 60° ± i sen 60°. Pode dividir por z − 2 porque z = 2 faria os três pontos coincidirem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole z",
+     "conta": "z + 2 = 1/2 ± (√3/2)i → z = −3/2 ± (√3/2)i",
+     "porque": "O 2 passa para o outro lado subtraindo: 1/2 − 2 = −3/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o lado |z − 2|",
+     "conta": "z − 2 = −7/2 ± (√3/2)i → |z − 2| = √(49/4 + 3/4) = √(52/4) = √13",
+     "porque": "O lado é a distância de 4 até z + 2, que é o módulo de z − 2. Os dois sinais dão o mesmo módulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o lado à alternativa",
+     "conta": "lado = √13 → alternativa E",
+     "porque": "A pergunta é o comprimento do lado, e não o valor de z.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — o lado mede √13",
+   "checagem": "Substitua z = −3/2 + (√3/2)i nos três lados. Com z + 2 = 1/2 + (√3/2)i e z² = 3/2 − (3√3/2)i: |(z + 2) − 4|² = 49/4 + 3/4 = 13; |z² − (z + 2)|² = 1² + (2√3)² = 13; |z² − 4|² = 25/4 + 27/4 = 13. Os três lados ao quadrado valem 13. Fecha.",
+   "erradas": {
+    "A": "3 não confere: pelo passo 2, |z + 2| = 1; lado 3 exigiria |z − 2| = 3, o que só ocorre em z = −1, e aí z + 2 = 1 e z² = 1 coincidem: não há triângulo.",
+    "B": "√10 não confere: daria lado ao quadrado igual a 10, mas com z = −3/2 ± (√3/2)i os três lados ao quadrado valem 13.",
+    "C": "√11 não confere: no triângulo de vértices −2, 2 e z, a lei dos cossenos dá |z − 2|² = 4² + 1² − 2 · 4 · 1 · cos 60° = 13, não 11.",
+    "D": "2√3 não confere: (2√3)² = 12, uma unidade a menos que (7/2)² + (√3/2)² = 49/4 + 3/4 = 13."
+   },
+   "armadilha": "Depois de achar z + 2 = 1/2 ± (√3/2)i, o lado não é |z + 2| = 1: o lado é a distância de 4 até z + 2, ou seja, |z − 2|.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O comprimento do lado do triângulo equilátero de vértices 4, z + 2 e z².",
+    "chave": "z² − 4 = (z − 2)(z + 2), e o giro de 60° obriga z + 2 = 1/2 ± (√3/2)i; o lado é |z − 2| = √13.",
+    "cuidado": "Responda o lado |z − 2|, e não o módulo de z + 2 nem o próprio z."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "condição algébrica",
+    "ideia": "a, b, c formam triângulo equilátero quando a² + b² + c² = ab + bc + ca; com a = 4, b = z + 2 e c = z² sai o mesmo z = −3/2 ± (√3/2)i."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "lados a partir de 4: z − 2 e z² − 4",
+    "nota": "diferenças entre vértices"
+   },
+   {
+    "linha": "z² − 4 = (z − 2)(z + 2)",
+    "nota": "fatorar a diferença de quadrados"
+   },
+   {
+    "linha": "z + 2 = 1/2 ± (√3/2)i",
+    "nota": "a razão entre os lados é o giro de 60°"
+   },
+   {
+    "linha": "z = −3/2 ± (√3/2)i",
+    "nota": "o 2 passa subtraindo"
+   },
+   {
+    "linha": "|z − 2|² = 49/4 + 3/4 = 13",
+    "nota": "módulo ao quadrado"
+   },
+   {
+    "linha": "lado = √13",
+    "nota": "alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0081"
+  }
+ }
+}

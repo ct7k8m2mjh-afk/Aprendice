@@ -1,0 +1,687 @@
+{
+ "Pd430b5a2": {
+  "n": "53",
+  "conceito": "Média aritmética e mediana de uma lista de 19 valores lidos numa tabela.",
+  "equivocos": {
+   "A": "M14.1:media-incompativel-com-a-soma",
+   "C": "M14.1:mediana-sem-ordenar",
+   "D": "M14.1:media-incompativel-com-a-soma",
+   "E": "M14.1:mediana-sem-ordenar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Média é a soma de todas as medalhas dividida pelo número de edições da tabela. Mediana é o valor do meio da lista ORDENADA: com 19 valores, é o 10º. A tabela está em ordem de ano, não de quantidade, então ordenar é obrigatório.",
+    "formulas": [
+     "média = (soma dos valores)/(quantidade de valores)",
+     "mediana (n ímpar) = valor de posição (n + 1)/2 na lista ordenada"
+    ],
+    "simbolos": [
+     [
+      "mediana",
+      "valor que fica no meio da lista ordenada"
+     ]
+    ]
+   },
+   "pista": "Conte quantas edições há no quadro antes de dividir, e ordene as medalhas antes de procurar o meio.",
+   "passos": [
+    {
+     "faz": "Some e conte",
+     "conta": "3 + 1 + 3 + 1 + 2 + 1 + 3 + 2 + 2 + 4 + 8 + 6 + 3 + 15 + 12 + 10 + 17 + 17 + 19 = 129 | edições: 19",
+     "porque": "A média usa todas as edições do quadro, de Antuérpia ao Rio de Janeiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a média",
+     "conta": "129/19 ≈ 6,789 → 6,79",
+     "porque": "Divide-se a soma pelo número de edições; 6,789 arredonda para 6,79.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ordene e ache o 10º",
+     "conta": "1, 1, 1, 2, 2, 2, 3, 3, 3, [3], 4, 6, 8, 10, 12, 15, 17, 17, 19 → mediana = 3",
+     "porque": "Com 19 valores, a posição central é (19 + 1)/2 = 10: nove valores de cada lado.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ligue o par à alternativa",
+     "conta": "média ≈ 6,79 | mediana = 3 → alternativa B",
+     "porque": "A ordem pedida é média e depois mediana.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — média de cerca de 6,79 medalhas e mediana 3",
+   "checagem": "Teste cada média multiplicando por 19: 6,79 × 19 ≈ 129, a soma exata do quadro; já 5,86 × 19 ≈ 111, 7,34 × 19 ≈ 139, 8,25 × 19 ≈ 157 e 9,32 × 19 ≈ 177 não fecham.",
+   "erradas": {
+    "A": "5,86 não confere: 5,86 × 19 ≈ 111,3, abaixo da soma 129. A mediana 3 está certa.",
+    "C": "A mediana 4 sai de não ordenar: o 10º valor da tabela, na ordem dos anos, é o 4 de Moscou (1980). E 7,34 × 19 ≈ 139,5, não 129.",
+    "D": "8,25 não confere: 8,25 × 19 ≈ 156,8, acima da soma 129. A mediana 3 está certa.",
+    "E": "A mediana 4 sai de pegar o 10º valor sem ordenar (Moscou, 1980). E 9,32 × 19 ≈ 177, longe da soma 129."
+   },
+   "armadilha": "O quadro está em ordem de ano: o 10º valor sem ordenar é 4, mas na lista ordenada é 3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A média aproximada e a mediana das medalhas nas 19 edições do quadro.",
+    "chave": "Média 129/19 ≈ 6,79; mediana é o 10º valor ordenado, 3.",
+    "cuidado": "Ordene antes da mediana e divida a soma por 19, o número de linhas do quadro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem por valor",
+    "ideia": "há 3 uns, 3 dois e 4 três: os 10 primeiros valores ordenados terminam no 3, então a mediana é 3"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "soma = 129",
+    "nota": "somar as 19 edições"
+   },
+   {
+    "linha": "129/19 ≈ 6,79",
+    "nota": "média"
+   },
+   {
+    "linha": "ordenados: 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, ...",
+    "nota": "ordenar"
+   },
+   {
+    "linha": "posição (19 + 1)/2 = 10 → 3",
+    "nota": "mediana"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
+ },
+ "Pcb853758": {
+  "n": "51",
+  "conceito": "Relações de Girard numa equação do 3º grau: soma e produto das raízes a partir dos coeficientes.",
+  "equivocos": {
+   "B": "M16.1:soma-errada-e-sinal-do-produto",
+   "C": "M16.1:produto-errado",
+   "D": "M16.1:soma-errada",
+   "E": "M16.1:sinal-do-produto-no-grau-impar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os valores de x que tornam a equação verdadeira são as raízes. Não é preciso achá-las: Girard dá a soma e o produto direto dos coeficientes. Em ax³ + bx² + cx + d = 0, a soma é −b/a e o produto é −d/a.",
+    "formulas": [
+     "soma das raízes = −b/a",
+     "produto das raízes = −d/a"
+    ],
+    "simbolos": [
+     [
+      "a, b, c, d",
+      "coeficientes de x³, x², x e o termo independente"
+     ],
+     [
+      "Girard",
+      "relações entre coeficientes e raízes"
+     ]
+    ]
+   },
+   "pista": "Identifique a, b e d na equação e lembre o sinal de cada relação no 3º grau.",
+   "passos": [
+    {
+     "faz": "Leia os coeficientes",
+     "conta": "4x³ − 36x² + 5x + 2 = 0 → a = 4 | b = −36 | d = 2",
+     "porque": "São os únicos que entram na soma e no produto.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a soma",
+     "conta": "−b/a = −(−36)/4 → 36/4 → 9",
+     "porque": "No 3º grau, a soma das raízes é −b/a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o produto",
+     "conta": "−d/a = −2/4 → −1/2",
+     "porque": "Com grau ímpar o produto leva o sinal de menos: −d/a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "soma 9 | produto −1/2 → alternativa A",
+     "porque": "A ordem pedida é soma e depois produto.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 9 e −1/2",
+   "checagem": "As raízes aproximadas são 8,852; 0,323 e −0,175: somam 9,000 e o produto dá cerca de −0,500.",
+   "erradas": {
+    "B": "8 e 1/2 não confere: a soma é 36/4 = 9, e o produto tem sinal negativo.",
+    "C": "9 e 3/2 não confere: a soma está certa, mas o produto é −2/4 = −1/2, não 3/2.",
+    "D": "8 e −1/2 não confere: o produto está certo, mas a soma é 36/4 = 9, não 8.",
+    "E": "9 e 1/2 sai de usar d/a para o produto, como no 2º grau: 2/4 = 1/2. No 3º grau o produto é −d/a."
+   },
+   "armadilha": "No 3º grau o produto das raízes é −d/a, não d/a como no 2º grau.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma e o produto das raízes de 4x³ − 36x² + 5x + 2 = 0.",
+    "chave": "Girard: soma −b/a = 9 e produto −d/a = −1/2.",
+    "cuidado": "No grau 3, o produto leva o sinal de menos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dividir por a",
+    "ideia": "Divida tudo por 4: x³ − 9x² + (5/4)x + 1/2 = 0; a soma é o oposto de −9 e o produto é o oposto de 1/2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "soma = −(−36)/4 = 36/4 = 9",
+    "nota": "−b/a"
+   },
+   {
+    "linha": "produto = −2/4 = −1/2",
+    "nota": "−d/a, sinal de grau ímpar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
+ },
+ "P8389ddd3": {
+  "n": "54",
+  "conceito": "Terceiro vértice de triângulo equilátero: parte do ponto médio de AB, na direção perpendicular, a uma distância igual à altura.",
+  "equivocos": {
+   "A": "M12.1:misturou-sinais-dos-dois-vertices",
+   "B": "M12.1:misturou-sinais-dos-dois-vertices",
+   "C": "M12.1:sinal-trocado-na-coordenada",
+   "E": "M12.1:sinal-trocado-na-coordenada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No triângulo equilátero, o vértice C fica sobre a mediatriz de AB, a uma distância do ponto médio igual à altura, ℓ√3/2. Há dois pontos assim, um de cada lado de AB; o enunciado escolhe o do primeiro quadrante. Um vetor perpendicular a (5, 2) é (−2, 5): troca as coordenadas e muda um sinal.",
+    "formulas": [
+     "ponto médio: M = ((x_A + x_B)/2, (y_A + y_B)/2)",
+     "altura do equilátero: h = (ℓ√3)/2",
+     "C = M ± (√3/2) · (−2, 5)"
+    ],
+    "simbolos": [
+     [
+      "M",
+      "ponto médio do lado AB"
+     ],
+     [
+      "ℓ",
+      "medida do lado do triângulo"
+     ],
+     [
+      "vetor AB",
+      "deslocamento de A até B: (8 − 3, 4 − 2) = (5, 2)"
+     ],
+     [
+      "mediatriz",
+      "reta perpendicular a AB que passa pelo ponto médio"
+     ]
+    ]
+   },
+   "pista": "Ache o meio de AB e uma direção perpendicular a AB; C está nessa direção.",
+   "passos": [
+    {
+     "faz": "Calcule o ponto médio de AB",
+     "conta": "M = ((3 + 8)/2, (2 + 4)/2) → M = (11/2, 3)",
+     "porque": "C fica na mediatriz de AB, que passa pelo meio do lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o vetor perpendicular a AB",
+     "conta": "AB = (5, 2) → perpendicular: (−2, 5), de módulo √29",
+     "porque": "(5, 2) · (−2, 5) = −10 + 10 = 0. Ele tem o mesmo tamanho de AB, ℓ = √(25 + 4) = √29.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ande a altura nessa direção",
+     "conta": "h = (√29 · √3)/2 → C = M ± (√3/2) · (−2, 5) → C = (11/2 ∓ √3, 3 ± (5√3)/2)",
+     "porque": "O vetor (−2, 5) mede √29 = ℓ; multiplicado por √3/2, mede exatamente a altura ℓ√3/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o vértice do primeiro quadrante",
+     "conta": "sinal +: C = ((11 − 2√3)/2, (6 + 5√3)/2) ≈ (3,77; 7,33) → alternativa D",
+     "porque": "Com o outro sinal, a ordenada vale (6 − 5√3)/2 ≈ −1,33, negativa, fora do primeiro quadrante.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — C = ((11 − 2√3)/2, (6 + 5√3)/2).",
+   "checagem": "Distâncias de C ≈ (3,768; 7,330): até A(3, 2), √(0,768² + 5,330²) ≈ 5,385; até B(8, 4), √(4,232² + 3,330²) ≈ 5,385; e AB = √29 ≈ 5,385. Os três lados iguais.",
+   "erradas": {
+    "A": "A não confere: o ponto ≈ (7,23; 7,33) dista 6,81 de A e 3,42 de B, então não é equilátero. Ele junta o x do vértice de baixo com o y do vértice de cima.",
+    "B": "B não confere: a ordenada (6 − 5√3)/2 ≈ −1,33 é negativa, e o ponto dista 3,42 de A e 6,81 de B, então nem é vértice do equilátero.",
+    "C": "C não confere: a abscissa (−11 − 2√3)/2 ≈ −7,23 é negativa (segundo quadrante), e o ponto dista 11,54 de A.",
+    "E": "E não confere: o ponto ≈ (3,77; 1,33) dista só 1,02 de A, muito menos que o lado √29 ≈ 5,39."
+   },
+   "armadilha": "Há dois vértices possíveis, um de cada lado de AB; as alternativas misturam os sinais dos dois, e só a combinação certa dá lados iguais.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As coordenadas do vértice C, no primeiro quadrante, do triângulo equilátero de lado AB.",
+    "chave": "C = M ± (√3/2)·(−2, 5), com M = (11/2, 3); o sinal + põe C no primeiro quadrante.",
+    "cuidado": "Os dois sinais têm de vir do mesmo vértice: confira as distâncias até A e B."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar as alternativas",
+    "ideia": "Calcule a distância de cada ponto até A e até B: só D dá √29 ≈ 5,39 nas duas."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "M = ((3 + 8)/2, (2 + 4)/2) = (11/2, 3)",
+    "nota": "ponto médio de AB"
+   },
+   {
+    "linha": "AB = (5, 2) → (−2, 5) ⊥ AB, |(−2, 5)| = √29",
+    "nota": "direção perpendicular, com o tamanho do lado"
+   },
+   {
+    "linha": "C = (11/2, 3) + (√3/2) · (−2, 5)",
+    "nota": "anda a altura ℓ√3/2"
+   },
+   {
+    "linha": "C = ((11 − 2√3)/2, (6 + 5√3)/2)",
+    "nota": "vértice do primeiro quadrante"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "Pee69505a": {
+  "n": "49",
+  "conceito": "Retas paralelas a uma reta dada e tangentes a uma circunferência: distância do centro à reta igual ao raio.",
+  "equivocos": {
+   "A": "M12.4:errou-a-distancia-do-centro-a-reta",
+   "B": "M12.4:usou-a-paralela-pela-origem",
+   "D": "M12.4:errou-a-distancia-do-centro-a-reta",
+   "E": "M12.4:trocou-sinal-ao-resolver-o-modulo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Toda reta paralela a 4x + 3y − 12 = 0 tem a forma 4x + 3y + c = 0; só o c muda. Ela é tangente à circunferência quando a distância do centro até ela é igual ao raio. Então o trabalho é achar centro e raio e resolver uma equação com módulo, que dá dois valores de c.",
+    "formulas": [
+     "paralela a ax + by + k = 0: ax + by + c = 0",
+     "distância de (x₀, y₀) à reta: |ax₀ + by₀ + c| / √(a² + b²)",
+     "tangente: distância do centro = raio"
+    ],
+    "simbolos": [
+     [
+      "c",
+      "termo independente da reta, o único que muda entre retas paralelas"
+     ],
+     [
+      "|  |",
+      "módulo: o valor sem sinal"
+     ],
+     [
+      "tangente",
+      "reta que toca a circunferência em um só ponto"
+     ]
+    ]
+   },
+   "pista": "Complete quadrados na equação da circunferência para ler o centro e o raio.",
+   "passos": [
+    {
+     "faz": "Ache centro e raio de C",
+     "conta": "x² − 4x + y² − 2y = 11 → (x − 2)² + (y − 1)² = 11 + 4 + 1 = 16",
+     "porque": "Completando quadrados, o centro é (2, 1) e o raio é √16 = 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a forma das paralelas",
+     "conta": "4x + 3y − 12 = 0 → 4x + 3y + c = 0",
+     "porque": "Paralelas mantêm os coeficientes de x e de y, que dão a inclinação.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Iguale a distância do centro ao raio",
+     "conta": "|4·2 + 3·1 + c| / √(16 + 9) = 4 → |11 + c| / 5 = 4 → |11 + c| = 20",
+     "porque": "Tangência quer dizer que a reta fica exatamente a um raio do centro. O 5 que divide passa multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva o módulo nos dois casos",
+     "conta": "11 + c = 20 → c = 9 | 11 + c = −20 → c = −31",
+     "porque": "Há uma tangente de cada lado da circunferência, uma para cada sinal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva as duas retas",
+     "conta": "4x + 3y + 9 = 0 e 4x + 3y − 31 = 0",
+     "porque": "É o par da alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — s₁: 4x + 3y + 9 = 0 e s₂: 4x + 3y − 31 = 0.",
+   "checagem": "As duas tangentes paralelas ficam a um diâmetro uma da outra: |9 − (−31)| / 5 = 40/5 = 8 = 2 × 4. Fecha com o raio 4.",
+   "erradas": {
+    "A": "A acerta s₁, mas 4x + 3y − 10 = 0 não é tangente: |11 − 10| / 5 = 0,2, bem menor que o raio 4; essa reta corta a circunferência.",
+    "B": "B não confere: dá a mesma reta duas vezes, e 4x + 3y = 0 está a |11| / 5 = 2,2 do centro, menos que o raio 4, então corta a circunferência.",
+    "D": "D acerta 4x + 3y − 31 = 0, mas 4x + 3y − 10 = 0 fica a 0,2 do centro, não a 4; não é tangente.",
+    "E": "E acerta 4x + 3y − 31 = 0, mas 4x + 3y − 9 = 0 fica a |11 − 9| / 5 = 0,4 do centro; o sinal do 9 está trocado."
+   },
+   "armadilha": "O módulo dá dois valores de c, e trocar o sinal de um deles (−9 em vez de +9) leva a uma reta que corta a circunferência.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As duas retas paralelas a 4x + 3y − 12 = 0 tangentes à circunferência.",
+    "chave": "Centro (2, 1), raio 4; |11 + c| / 5 = 4 dá c = 9 ou c = −31.",
+    "cuidado": "Resolva o módulo nos dois sinais e confira o sinal de cada c."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Calcule |11 + c| / 5 para cada reta das alternativas e fique com o par em que as duas dão 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x − 2)² + (y − 1)² = 16",
+    "nota": "centro (2, 1), raio 4"
+   },
+   {
+    "linha": "|8 + 3 + c| / 5 = 4",
+    "nota": "distância do centro = raio"
+   },
+   {
+    "linha": "|11 + c| = 20",
+    "nota": "o 5 passa multiplicando"
+   },
+   {
+    "linha": "c = 9 ou c = −31",
+    "nota": "os dois sinais do módulo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "P984fdc3e": {
+  "n": "50",
+  "conceito": "Conferir equações de parábola, elipse e hipérbole: vértice e foco, centro por completamento de quadrados e focos por c² = a² + b².",
+  "equivocos": {
+   "A": "M12.4:usou-c2-da-elipse-na-hiperbole",
+   "B": "M12.4:errou-centro-ao-completar-quadrados",
+   "C": "M12.4:usou-2p-no-lugar-de-4p",
+   "D": "M12.4:errou-parabola-e-centro-da-elipse"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São três contas independentes, uma por cônica; cada afirmativa só é verdadeira se a conta fechar exatamente. Na parábola, a distância do vértice ao foco é p e a equação reduzida usa 4p. Na elipse, o centro sai de completar quadrados, sem esquecer de pôr o coeficiente em evidência. Na hipérbole, o foco usa c² = a² + b² (soma, não diferença como na elipse).",
+    "formulas": [
+     "parábola de eixo horizontal: (y − k)² = 4p(x − h)",
+     "centro de Ax² + By² + Dx + Ey + F = 0: x = −D/(2A), y = −E/(2B)",
+     "hipérbole x²/a² − y²/b² = 1: c² = a² + b²"
+    ],
+    "simbolos": [
+     [
+      "V",
+      "vértice da parábola"
+     ],
+     [
+      "F",
+      "foco"
+     ],
+     [
+      "p",
+      "distância do vértice ao foco"
+     ],
+     [
+      "C",
+      "centro da elipse"
+     ],
+     [
+      "a, b",
+      "semieixos da cônica"
+     ],
+     [
+      "c",
+      "distância do centro a cada foco"
+     ]
+    ]
+   },
+   "pista": "Na parábola, veja para que lado o foco está em relação ao vértice: isso diz qual variável fica ao quadrado.",
+   "passos": [
+    {
+     "faz": "Monte a parábola pelo vértice e foco",
+     "conta": "V(−3, −1), F(−1, −1) → p = 2 → (y + 1)² = 8(x + 3)",
+     "porque": "Vértice e foco têm o mesmo y, então o eixo é horizontal e o y fica ao quadrado. O foco está 2 unidades à direita, logo 4p = 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Expanda e compare com a afirmativa I",
+     "conta": "y² + 2y + 1 = 8x + 24 → y² − 8x + 2y − 23 = 0",
+     "porque": "Passando 8x + 24 para o lado esquerdo, sobra exatamente a equação da afirmativa I: ela é verdadeira.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ache o centro da elipse da afirmativa II",
+     "conta": "4(x² − 4x) + 3(y² + 3y) + 8 = 0 → x = 4/2 = 2 ; y = −3/2",
+     "porque": "Com o coeficiente em evidência, cada parêntese vira um quadrado perfeito centrado em x = 2 e y = −3/2. É o ponto C(2, −3/2): II é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reduza a hipérbole e calcule c",
+     "conta": "8x² − 4y² = 32 → x²/4 − y²/8 = 1 → c² = 4 + 8 = 12 → c = 2√3",
+     "porque": "Dividindo tudo por 32 aparecem a² = 4 e b² = 8. Na hipérbole c² é a soma, e os focos ficam no eixo x em (±2√3, 0): III é verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as três conclusões",
+     "conta": "I: V ; II: V ; III: V → alternativa E",
+     "porque": "As três contas fecharam com o que as afirmativas dizem, então todas são verdadeiras.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — Todas as afirmativas são verdadeiras.",
+   "checagem": "Teste a definição da parábola num ponto: x = −1 dá y² + 2y − 15 = 0, y = 3. O ponto (−1, 3) está a 4 do foco (−1, −1) e a 4 da diretriz x = −5. Fecha.",
+   "erradas": {
+    "A": "A sai de usar na hipérbole a relação da elipse, c² = a² − b² = 8 − 4 = 4, c = 2, e descartar III. Na hipérbole c² = a² + b² = 12.",
+    "B": "B exige II falsa, mas II não confere como falsa: 4(x − 2)² + 3(y + 3/2)² = 59/4, centro (2, −3/2), exatamente o ponto dado.",
+    "C": "C sai de usar 2p em vez de 4p na parábola: (y + 1)² = 4(x + 3) dá y² − 4x + 2y − 11 = 0 e I parece falsa. Com p = 2, o fator é 4p = 8.",
+    "D": "D exige I e II falsas, e as duas não conferem como falsas: a parábola expandida dá y² − 8x + 2y − 23 = 0 e o centro da elipse é (2, −3/2)."
+   },
+   "armadilha": "Na hipérbole a relação é c² = a² + b²; usar a da elipse (diferença) dá c = 2 e faz descartar III.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das três afirmativas sobre parábola, elipse e hipérbole são verdadeiras.",
+    "chave": "(y + 1)² = 8(x + 3) expandida dá a equação I; completar quadrados dá o centro (2, −3/2); c² = 4 + 8 = 12 dá os focos (±2√3, 0).",
+    "cuidado": "Ponha o coeficiente em evidência antes de completar quadrados e use c² = a² + b² na hipérbole."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "centro pela derivada",
+    "ideia": "Na elipse, o centro zera as derivadas parciais: 8x − 16 = 0 e 6y + 9 = 0 dão x = 2 e y = −3/2 sem completar quadrados."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(y + 1)² = 4·2·(x + 3)",
+    "nota": "parábola: p = 2, eixo horizontal"
+   },
+   {
+    "linha": "y² + 2y + 1 = 8x + 24",
+    "nota": "expandir os dois lados"
+   },
+   {
+    "linha": "y² − 8x + 2y − 23 = 0",
+    "nota": "8x + 24 passa para a esquerda: I verdadeira"
+   },
+   {
+    "linha": "4(x − 2)² + 3(y + 3/2)² = 59/4",
+    "nota": "completar quadrados: centro (2, −3/2), II verdadeira"
+   },
+   {
+    "linha": "x²/4 − y²/8 = 1",
+    "nota": "dividir 8x² − 4y² = 32 por 32"
+   },
+   {
+    "linha": "c² = 4 + 8 = 12 → c = 2√3",
+    "nota": "focos (±2√3, 0): III verdadeira"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "Pb3d2b26a": {
+  "n": "52",
+  "conceito": "Usar o teorema do resto para achar um coeficiente desconhecido a partir do resto da divisão por x + 2.",
+  "equivocos": {
+   "A": "M16.1:esqueceu-o-termo-em-k",
+   "B": "M16.1:errou-a-conta-de-p-em-menos-2",
+   "C": "M16.1:errou-a-conta-de-p-em-menos-2",
+   "D": "M16.1:errou-a-conta-de-p-em-menos-2"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O resto da divisão de P(x) por x + 2 é P(−2), sem precisar dividir. Substituindo x = −2, o k aparece numa equação de 1º grau. O cuidado está nos sinais: potências ímpares de −2 dão negativo, e o termo −kx vira +2k.",
+    "formulas": [
+     "resto de P(x) ÷ (x − a) = P(a)",
+     "x + 2 = x − (−2) → a = −2"
+    ],
+    "simbolos": [
+     [
+      "P(x)",
+      "3x⁵ + x⁴ − 2x³ − kx + 7"
+     ],
+     [
+      "k",
+      "coeficiente a descobrir"
+     ]
+    ]
+   },
+   "pista": "Descubra o valor de x que zera o divisor x + 2 e substitua esse valor em P(x).",
+   "passos": [
+    {
+     "faz": "Ache o valor que zera o divisor",
+     "conta": "x + 2 = 0 → x = −2",
+     "porque": "Pelo teorema do resto, o resto é P(−2).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule cada potência de −2",
+     "conta": "(−2)⁵ = −32 ; (−2)⁴ = 16 ; (−2)³ = −8",
+     "porque": "Expoente ímpar mantém o sinal negativo; expoente par deixa positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua em P(x)",
+     "conta": "P(−2) = 3·(−32) + 16 − 2·(−8) − k·(−2) + 7 = −96 + 16 + 16 + 2k + 7 = 2k − 57",
+     "porque": "O −kx com x = −2 vira +2k.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale ao resto dado",
+     "conta": "2k − 57 = −43 → 2k = −43 + 57 = 14 → k = 14/2 = 7",
+     "porque": "O −57 passa para o outro lado somando, e o 2 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque o valor de k",
+     "conta": "k = 7 → alternativa E",
+     "porque": "É o único valor que dá resto −43.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 7",
+   "checagem": "Com k = 7, P(−2) = −96 + 16 + 16 + 14 + 7 = −43, o resto pedido. Fecha.",
+   "erradas": {
+    "A": "A não confere: com k = 0, P(−2) = −57, e não −43.",
+    "B": "B não confere: com k = 4, P(−2) = 8 − 57 = −49, e não −43.",
+    "C": "C não confere: com k = 5, P(−2) = 10 − 57 = −47, e não −43.",
+    "D": "D não confere: com k = 6, P(−2) = 12 − 57 = −45, e não −43."
+   },
+   "armadilha": "O divisor é x + 2: substitua x = −2, e não x = 2, e cuide do sinal de −k·(−2) = +2k.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de k para que o resto de P(x) por x + 2 seja −43.",
+    "chave": "P(−2) = 2k − 57 = −43, logo k = 7.",
+    "cuidado": "Use x = −2 e acompanhe os sinais das potências ímpares."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Briot-Ruffini",
+    "ideia": "Divida os coeficientes 3, 1, −2, 0, −k, 7 por x + 2 com a = −2: o último número sai 2k − 57; igualando a −43, k = 7."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x + 2 = 0 → x = −2",
+    "nota": "raiz do divisor"
+   },
+   {
+    "linha": "−96 + 16 + 16 + 2k + 7 = −43",
+    "nota": "P(−2) igual ao resto"
+   },
+   {
+    "linha": "2k − 57 = −43",
+    "nota": "juntar os números"
+   },
+   {
+    "linha": "2k = 14",
+    "nota": "o −57 passa somando"
+   },
+   {
+    "linha": "k = 14/2 = 7",
+    "nota": "o 2 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ }
+}

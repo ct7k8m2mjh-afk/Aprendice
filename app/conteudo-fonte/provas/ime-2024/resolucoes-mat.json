@@ -1,0 +1,1933 @@
+{
+ "P1ba3ca09": {
+  "n": "1",
+  "conceito": "Regiões de um diagrama de Venn com três conjuntos e minimização.",
+  "equivocos": {
+   "B": "M01.5:nao-minimizou",
+   "C": "M01.5:nao-minimizou",
+   "D": "M01.5:nao-minimizou",
+   "E": "M01.5:nao-minimizou"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Divida A ∪ B ∪ C nas 7 regiões do diagrama: só A (a), só B (b), só C (c), só A e B (x), só A e C (y), só B e C (z) e os três (w). Traduza cada condição em equação nessas letras, ache o menor número de elementos possível e use os menores inteiros positivos.",
+    "formulas": [
+     "|A| = a + x + y + w",
+     "|A ∩ B| = x + w"
+    ],
+    "simbolos": [
+     [
+      "a, b, c",
+      "elementos de um só conjunto"
+     ],
+     [
+      "x, y, z",
+      "elementos de exatamente dois"
+     ],
+     [
+      "w",
+      "elementos dos três"
+     ]
+    ]
+   },
+   "pista": "A segunda condição compara \"só A\" com \"B e C sem A\". Escreva as duas regiões com as letras.",
+   "passos": [
+    {
+     "faz": "2ª condição",
+     "conta": "|A ∩ (B ∪ C)ᶜ| = a; |Aᶜ ∩ B ∩ C| = z → a = z",
+     "porque": "Só A = só B e C.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "3ª condição",
+     "conta": "x + w < y + w < z + w → x < y < z",
+     "porque": "Tira o w dos três.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Mesma cardinalidade",
+     "conta": "|A| = |B|: a + y = b + z → b = y; |A| = |C|: a + x = c + z → c = x",
+     "porque": "Usando a = z.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Mínimo",
+     "conta": "x = 0, y = 1, z = 2, w = 0 → a = 2, b = 1, c = 0: 6 elementos",
+     "porque": "Total = 2(x + y + z) + w.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Menor soma",
+     "conta": "1 + 2 + 3 + 4 + 5 + 6 = 21 → alternativa A",
+     "porque": "Seis inteiros positivos distintos, os menores.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 21",
+   "checagem": "Monte um exemplo: A = {1, 2, 3} (1 e 2 só em A, 3 em A e C), B = {4, 5, 6} (4 só em B, 5 e 6 em B e C), C = {3, 5, 6}. |A| = |B| = |C| = 3; só A = {1, 2} e B ∩ C sem A = {5, 6}: 2 = 2; |A ∩ B| = 0 < |A ∩ C| = 1 < |B ∩ C| = 2. A união é {1, ..., 6}, soma 21. E não dá com menos: x < y < z obriga y ≥ 1 e z ≥ 2, e o total é 2(x + y + z) + w ≥ 2(0 + 1 + 2) = 6 elementos; 6 inteiros positivos distintos somam no mínimo 1 + … + 6 = 21. Confere.",
+   "erradas": {
+    "B": "36 = 1 + ... + 8: usa 8 elementos, mas 6 bastam.",
+    "C": "45 = 1 + ... + 9: usa 9 elementos, mais que o mínimo 6.",
+    "D": "55 = 1 + ... + 10: 10 elementos, longe do mínimo.",
+    "E": "78 = 1 + … + 12: é o que sai começando com x = 1, y = 2, z = 3, que dá 2(1 + 2 + 3) = 12 elementos; mas x = |A ∩ B| sem C pode ser 0."
+   },
+   "armadilha": "Achar que as interseções não podem ser vazias e começar com x = 1, o que aumenta o total.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Menor soma dos elementos da união.",
+    "chave": "a = z, b = y, c = x, x < y < z: mínimo de 6 elementos.",
+    "cuidado": "x = |A ∩ B| sem C pode ser 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "cota inferior pela contagem",
+    "ideia": "|B ∩ C| ≥ 2 (é maior que outras duas cardinalidades distintas, a menor ≥ 0). O conjunto só A tem a = z ≥ 2 elementos, e A, B, C juntos têm 2(x + y + z) + w ≥ 2 · 3 = 6 elementos. Com 6 elementos distintos positivos, a soma é pelo menos 21, e o exemplo atinge."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "|A ∩ (B ∪ C)ᶜ| = a; |Aᶜ ∩ B ∩ C| = z → a = z",
+    "nota": "2ª condição"
+   },
+   {
+    "linha": "x + w < y + w < z + w → x < y < z",
+    "nota": "3ª condição"
+   },
+   {
+    "linha": "|A| = |B|: a + y = b + z → b = y; |A| = |C|: a + x = c + z → c = x",
+    "nota": "Mesma cardinalidade"
+   },
+   {
+    "linha": "x = 0, y = 1, z = 2, w = 0 → a = 2, b = 1, c = 0: 6 elementos",
+    "nota": "Mínimo"
+   },
+   {
+    "linha": "1 + 2 + 3 + 4 + 5 + 6 = 21",
+    "nota": "Menor soma"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0045"
+  },
+  "gabarito_aprendice": {
+   "letra": "A",
+   "letra_conferente": "A",
+   "preliminar": "A",
+   "fontes_web": [],
+   "data": "2026-11-12",
+   "lote": "mat-0045"
+  }
+ },
+ "Pda42d8a1": {
+  "n": "2",
+  "conceito": "Inequação quociente: fatorar, cancelar fatores comuns guardando as restrições e estudar o sinal.",
+  "equivocos": {
+   "B": "M04.4:contagem-errada",
+   "C": "M04.4:incluiu-extremo-com-desigualdade-estrita",
+   "D": "M04.4:contagem-errada",
+   "E": "M04.4:contagem-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Antes de estudar sinal, fatore: x⁹ − 1 = (x³ − 1)(x⁶ + x³ + 1) e x⁶ − 1 = (x³ − 1)(x + 1)(x² − x + 1). Quase tudo cancela, mas os valores que zeram o denominador original (x = 1 e x = −1) continuam proibidos. Sobra (x − 3)(x − 7) < 0.",
+    "formulas": [
+     "a³ − b³ = (a − b)(a² + ab + b²)",
+     "x⁶ − 1 = (x³ − 1)(x³ + 1)",
+     "x³ + 1 = (x + 1)(x² − x + 1)"
+    ],
+    "simbolos": [
+     [
+      "x² − x + 1",
+      "sempre positivo (Δ = −3 < 0)"
+     ],
+     [
+      "x⁶ + x³ + 1",
+      "sempre positivo: em t = x³, t² + t + 1 tem Δ = −3 < 0"
+     ]
+    ]
+   },
+   "pista": "Fatore x⁹ − 1 e x⁶ − 1 pela diferença de cubos e procure o que se repete em cima e embaixo.",
+   "passos": [
+    {
+     "faz": "Fatore numerador e denominador",
+     "conta": "x⁹ − 1 = (x³ − 1)(x⁶ + x³ + 1) | x⁶ − 1 = (x³ − 1)(x + 1)(x² − x + 1) | x² − 10x + 21 = (x − 3)(x − 7)",
+     "porque": "Diferença de cubos com a = x³ e soma de cubos em x³ + 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Cancele e guarde as restrições",
+     "conta": "fração = (x − 3)(x − 7), com x ≠ 1 e x ≠ −1",
+     "porque": "(x + 1), (x³ − 1), (x² − x + 1) e (x⁶ + x³ + 1) aparecem em cima e embaixo; os que zeram em x = ±1 deixam esses pontos fora do domínio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Estude o sinal",
+     "conta": "(x − 3)(x − 7) < 0 → 3 < x < 7",
+     "porque": "Parábola com raízes 3 e 7 e concavidade para cima: negativa entre as raízes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os inteiros",
+     "conta": "4, 5, 6 → 3 soluções; x = ±1 já estão fora do intervalo",
+     "porque": "Os extremos 3 e 7 zeram a expressão, e a desigualdade é estrita.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 3 soluções inteiras",
+   "checagem": "Teste direto: x = 5 dá (2)(−2) = −4 < 0 no simplificado e, na fração original, o mesmo sinal; x = 3 dá zero (não serve) e x = 0 dá (−3)(−7) = 21 > 0.",
+   "erradas": {
+    "B": "4 não confere: os únicos inteiros que deixam a fração negativa são 4, 5 e 6; x = 3 e x = 7 a anulam e x = ±1 anulam o denominador.",
+    "C": "5 sai de usar ≤ em vez de <: incluindo 3 e 7, que zeram a fração, ficam 3, 4, 5, 6 e 7.",
+    "D": "6 não confere: fora de 3 < x < 7 o produto (x − 3)(x − 7) é positivo ou zero, então não há mais inteiros além de 4, 5 e 6.",
+    "E": "7 não confere: pelo mesmo estudo de sinal, só 4, 5 e 6 satisfazem; nem ±1 entram, pois zeram o denominador."
+   },
+   "armadilha": "Contar 3 e 7, que zeram a expressão, numa desigualdade estrita.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos inteiros tornam a fração negativa.",
+    "chave": "Fatorando, a fração vira (x − 3)(x − 7) com x ≠ ±1; negativa só em 3 < x < 7: 4, 5 e 6.",
+    "cuidado": "Ao cancelar, guarde x ≠ ±1 e não conte os extremos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de valores",
+    "ideia": "Calcule o sinal da fração original em x = 2, 3, ..., 8: só 4, 5 e 6 dão negativo; fora disso todos os fatores restantes são positivos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x⁹ − 1 = (x³ − 1)(x⁶ + x³ + 1)",
+    "nota": "diferença de cubos"
+   },
+   {
+    "linha": "x⁶ − 1 = (x³ − 1)(x + 1)(x² − x + 1)",
+    "nota": "fatora o denominador"
+   },
+   {
+    "linha": "x² − 10x + 21 = (x − 3)(x − 7)",
+    "nota": "raízes 3 e 7"
+   },
+   {
+    "linha": "(x − 3)(x − 7) < 0",
+    "nota": "sobra após cancelar, x ≠ ±1"
+   },
+   {
+    "linha": "3 < x < 7",
+    "nota": "entre as raízes"
+   },
+   {
+    "linha": "6 − 4 + 1 = 3",
+    "nota": "inteiros de 4 a 6"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0052"
+  },
+  "gabarito_aprendice": {
+   "letra": "A",
+   "letra_conferente": "A",
+   "preliminar": "A",
+   "fontes_web": [],
+   "data": "2026-11-13",
+   "lote": "mat-0052"
+  }
+ },
+ "P7e0163c0": {
+  "n": "8",
+  "conceito": "Inequação exponencial de base entre 0 e 1: escrever tudo na base 0,3 e inverter o sentido ao comparar expoentes.",
+  "equivocos": {
+   "A": "M06.2:intervalo-nao-confere",
+   "C": "M06.2:intervalo-nao-confere",
+   "D": "M06.2:intervalo-nao-confere",
+   "E": "M06.2:nao-inverteu-desigualdade-base-menor-que-1"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O lado direito parece complicado, mas x^2 − (x + 1)(x − 1) = x^2 − (x^2 − 1) = 1. À esquerda, 0,09 = 0,3^2 e 1/√0,3 = 0,3^(−1/2): tudo vira potência de 0,3. Como 0,3 está entre 0 e 1, a potência diminui quando o expoente aumenta, então o sentido da desigualdade se inverte ao comparar os expoentes.",
+    "formulas": [
+     "(x + 1)(x − 1) = x^2 − 1",
+     "0,09 = 0,3^2 e 1/√0,3 = 0,3^(−1/2)",
+     "base entre 0 e 1: 0,3^p < 0,3^q ⇔ p > q"
+    ],
+    "simbolos": [
+     [
+      "base entre 0 e 1",
+      "potência decrescente: expoente maior dá valor menor"
+     ]
+    ]
+   },
+   "pista": "Simplifique primeiro o lado direito; depois escreva o lado esquerdo numa base só.",
+   "passos": [
+    {
+     "faz": "Simplifique o lado direito",
+     "conta": "x^2 − (x + 1)(x − 1) = x^2 − x^2 + 1 = 1",
+     "porque": "Produto da soma pela diferença: (x + 1)(x − 1) = x^2 − 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva o lado esquerdo na base 0,3",
+     "conta": "0,3^(2(4 + x)) × [0,3^(−x^2/2)]^2 = 0,3^(8 + 2x − x^2)",
+     "porque": "0,09 = 0,3^2; (1/√0,3)^(x^2) = 0,3^(−x^2/2), e elevar ao quadrado dobra o expoente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os expoentes invertendo o sinal",
+     "conta": "0,3^(8 + 2x − x^2) < 0,3^0 → 8 + 2x − x^2 > 0",
+     "porque": "1 = 0,3^0; com base menor que 1, a potência menor vem do expoente maior.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a inequação do 2º grau",
+     "conta": "x^2 − 2x − 8 < 0 → (x − 4)(x + 2) < 0 → −2 < x < 4",
+     "porque": "Raízes −2 e 4; a parábola x^2 − 2x − 8 é negativa entre as raízes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o intervalo",
+     "conta": "(−2, 4) → alternativa B",
+     "porque": "É o intervalo das soluções.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — (−2, 4)",
+   "checagem": "Teste x = 0, dentro do intervalo: 0,09^4 × 1 ≈ 0,0000656 < 1, vale. Teste x = 5, fora: o expoente vira 8 + 10 − 25 = −7 e 0,3^(−7) ≈ 4573 > 1, não vale.",
+   "erradas": {
+    "A": "(−∞, 4) ∪ (8, ∞) não confere: x = 10 está nele, mas o expoente vira 8 + 20 − 100 = −72 e 0,3^(−72) é muito maior que 1.",
+    "C": "(4, 8) não confere: em x = 5 o expoente é −7 e 0,3^(−7) > 1, então a desigualdade falha.",
+    "D": "(−∞, ∞) não confere: em x = 5 a desigualdade falha, porque 0,3^(−7) > 1.",
+    "E": "(−∞, −2) ∪ (4, ∞) sai de não inverter o sinal: 8 + 2x − x^2 < 0 dá exatamente x < −2 ou x > 4."
+   },
+   "armadilha": "Base 0,3 é menor que 1: ao passar para os expoentes, o sentido da desigualdade se inverte.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os valores de x que satisfazem a inequação exponencial de base 0,3.",
+    "chave": "Lado direito = 1 = 0,3^0; expoente 8 + 2x − x^2 > 0 dá −2 < x < 4.",
+    "cuidado": "Inverta o sinal ao comparar expoentes de base entre 0 e 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "logaritmo",
+    "ideia": "Aplicar log nos dois lados dá (8 + 2x − x^2) × log 0,3 < 0; como log 0,3 < 0, o parêntese tem de ser positivo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x^2 − (x + 1)(x − 1) = 1",
+    "nota": "lado direito"
+   },
+   {
+    "linha": "0,3^(8 + 2x − x^2) < 0,3^0",
+    "nota": "tudo na base 0,3"
+   },
+   {
+    "linha": "8 + 2x − x^2 > 0",
+    "nota": "base < 1: inverte"
+   },
+   {
+    "linha": "x^2 − 2x − 8 < 0",
+    "nota": "multiplica por −1 e inverte"
+   },
+   {
+    "linha": "(x − 4)(x + 2) < 0",
+    "nota": "fatora"
+   },
+   {
+    "linha": "−2 < x < 4",
+    "nota": "entre as raízes"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "P3589710e": {
+  "n": "13",
+  "conceito": "Ângulo de visão máximo: diferença de dois ângulos com tangente, otimizada pela distância do observador.",
+  "equivocos": {
+   "B": "M10.1:esqueceu-de-subtrair-angulo-da-base",
+   "C": "M10.1:errou-otimizacao",
+   "D": "M10.1:errou-otimizacao",
+   "E": "M10.1:errou-otimizacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O observador vê a barra sob o ângulo AOB, que é a diferença entre o ângulo até o topo da barra e o ângulo até a base dela (que está no alto do muro). Perto do muro o ângulo fica pequeno; longe, também. O máximo acontece quando a distância d até o muro é a média geométrica das duas alturas: d² = a × b. Esse fato vem da tangente da diferença de ângulos.",
+    "formulas": [
+     "tg(x − y) = (tg x − tg y)/(1 + tg x · tg y)",
+     "ângulo máximo quando d = √(a · b), com a e b as alturas das pontas",
+     "tg 60° = √3 ; tg 30° = √3/3"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "comprimento da barra"
+     ],
+     [
+      "d",
+      "distância do observador ao pé do muro"
+     ],
+     [
+      "a, b",
+      "alturas da ponta de baixo (L/2) e da ponta de cima (3L/2) da barra"
+     ],
+     [
+      "média geométrica",
+      "raiz do produto de dois números"
+     ]
+    ]
+   },
+   "pista": "Escreva as alturas das duas pontas da barra e veja o ângulo AOB como diferença de dois ângulos de elevação.",
+   "passos": [
+    {
+     "faz": "Ache as alturas das pontas",
+     "conta": "ponta de baixo: a = L/2 | ponta de cima: b = L/2 + L = 3L/2",
+     "porque": "A barra vertical de comprimento L fica apoiada no alto do muro de altura L/2.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva a tangente do ângulo AOB",
+     "conta": "tg AOB = (b/d − a/d)/(1 + ab/d²) → tg AOB = (b − a)d/(d² + ab)",
+     "porque": "O ângulo AOB é a diferença entre os ângulos de elevação das duas pontas, cujas tangentes são b/d e a/d.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a distância do máximo",
+     "conta": "d² = ab → d² = (L/2)(3L/2) = 3L²/4 → d = (L√3)/2",
+     "porque": "A fração d/(d² + ab) é máxima quando d² = ab (desigualdade entre médias: d² + ab ≥ 2d√(ab)); maior tangente, maior ângulo, pois o ângulo é agudo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os dois ângulos nessa distância",
+     "conta": "tg(topo) = (3L/2)/((L√3)/2) = √3 → 60° ; tg(base) = (L/2)/((L√3)/2) = √3/3 → 30°",
+     "porque": "Com d achado, cada ponta tem um ângulo de elevação notável.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia e marque",
+     "conta": "AOB = 60° − 30° = 30° → alternativa A",
+     "porque": "O ângulo sob o qual se vê a barra é a diferença entre o ângulo do topo e o da base.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 30°",
+   "checagem": "Pela circunferência: o ângulo máximo ocorre quando a circunferência que passa por A e B tangencia o chão. A potência do ponto no pé do muro dá d² = (L/2)(3L/2), o mesmo d.",
+   "erradas": {
+    "B": "60° sai de parar no ângulo de elevação do topo: tg = √3, 60°. Falta subtrair os 30° da base da barra.",
+    "C": "75° não confere: tg AOB = (b − a)d/(d² + ab) vale no máximo (L)/(2√(3L²/4)) = √3/3, que é tg 30°, e tg 75° ≈ 3,73.",
+    "D": "15° não confere: é menor que o ângulo de 30° que o observador já obtém em d = (L√3)/2, então não é o máximo.",
+    "E": "45° não confere: tg 45° = 1, maior que o valor máximo √3/3 da tangente de AOB."
+   },
+   "armadilha": "Esquecer que a barra começa no alto do muro (altura L/2) e não no chão: o ângulo AOB é uma diferença de dois ângulos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O maior ângulo sob o qual o observador no chão vê a barra.",
+    "chave": "Pontas em L/2 e 3L/2; máximo em d² = (L/2)(3L/2), onde os ângulos de elevação são 60° e 30°.",
+    "cuidado": "AOB é a diferença entre os ângulos do topo e da base da barra."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "circunferência tangente",
+    "ideia": "O ângulo máximo vem da circunferência por A e B tangente ao chão; a potência do pé do muro dá d² = (L/2)(3L/2)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a = L/2 ; b = 3L/2",
+    "nota": "alturas das pontas"
+   },
+   {
+    "linha": "tg AOB = (b − a)d/(d² + ab)",
+    "nota": "tangente da diferença"
+   },
+   {
+    "linha": "d² = ab = 3L²/4 → d = (L√3)/2",
+    "nota": "distância do máximo"
+   },
+   {
+    "linha": "tg topo = √3 → 60° ; tg base = √3/3 → 30°",
+    "nota": "ângulos notáveis"
+   },
+   {
+    "linha": "AOB = 60° − 30° = 30°",
+    "nota": "diferença"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  },
+  "gabarito_aprendice": {
+   "letra": "A",
+   "letra_conferente": "A",
+   "preliminar": "A",
+   "fontes_web": [],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ },
+ "P4c6abf15": {
+  "n": "12",
+  "conceito": "Tangente interior comum de duas circunferências tangentes por fora: é a reta perpendicular à linha dos centros no ponto de contato.",
+  "equivocos": {
+   "A": "M12.4:inclinacao-errada",
+   "B": "M12.4:inclinacao-errada",
+   "D": "M12.4:sinal-trocado",
+   "E": "M12.4:inclinacao-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Duas circunferências tangentes por fora se tocam num único ponto T, sobre o segmento que liga os centros. A tangente interior comum passa por T e é perpendicular a esse segmento. Os centros são (0, 0) e (6, 6), na reta y = x; logo a tangente tem a forma x + y = c.",
+    "formulas": [
+     "tangentes exteriores: d = R + r",
+     "reta perpendicular a y = x: x + y = c"
+    ],
+    "simbolos": [
+     [
+      "R",
+      "raio da circunferência de centro na origem"
+     ],
+     [
+      "T",
+      "ponto de tangência"
+     ],
+     [
+      "d",
+      "distância entre os centros"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra o raio da circunferência da origem usando a distância entre os centros.",
+   "passos": [
+    {
+     "faz": "Ache o raio da circunferência da origem",
+     "conta": "d = √(6² + 6²) = 6√2 → R + 6 = 6√2 → R = 6√2 − 6 = 6(√2 − 1)",
+     "porque": "Tangentes por fora: a distância entre centros é a soma dos raios; o 6 passa subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o ponto de contato T",
+     "conta": "T = (R/√2, R/√2) → T = (6(√2 − 1)/√2, 6(√2 − 1)/√2)",
+     "porque": "T está a R da origem sobre a reta y = x; cada coordenada é R dividido por √2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a tangente por T",
+     "conta": "x + y = 2R/√2 → x + y = R√2 → x + y = 6(√2 − 1)√2 → x + y = 12 − 6√2",
+     "porque": "A reta é perpendicular a y = x, então tem inclinação −1: x + y = c, e c sai de T.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Passe para a forma das alternativas",
+     "conta": "x + y − 12 + 6√2 = 0 → x + y + 6(√2 − 2) = 0",
+     "porque": "6√2 − 12 = 6(√2 − 2): coloca o 6 em evidência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "y + x + 6(√2 − 2) = 0 → alternativa C",
+     "porque": "É a única com inclinação −1 e o sinal certo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — y + x + 6(√2 − 2) = 0",
+   "checagem": "Distância da origem à reta: (12 − 6√2)/√2 = 6√2 − 6 = R. Distância de (6, 6): |12 − 12 + 6√2|/√2 = 6. A reta toca as duas circunferências.",
+   "erradas": {
+    "A": "A não confere: inclinação −2; a tangente interior é perpendicular a y = x e tem inclinação −1.",
+    "B": "B não confere: inclinação −1/2; a tangente interior tem inclinação −1.",
+    "D": "D sai de errar o sinal de c: x + y = 6√2 − 12 (negativo) toca a circunferência da origem do lado oposto, a cerca de 10,97 de (6, 6), e não a 6.",
+    "E": "E não confere: inclinação −1/2; a tangente interior tem inclinação −1."
+   },
+   "armadilha": "Acertar a inclinação e errar o sinal: c = 12 − 6√2 é positivo, porque T fica no 1º quadrante.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A equação da tangente interior comum.",
+    "chave": "R = 6(√2 − 1); tangente em T, perpendicular a y = x: x + y = 12 − 6√2.",
+    "cuidado": "T está no 1º quadrante, então c é positivo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "distância de ponto a reta",
+    "ideia": "Teste x + y = c: a distância de (6, 6) tem de ser 6 e a da origem R; |12 − c|/√2 = 6 com c entre 0 e 12 dá c = 12 − 6√2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "d = √(6² + 6²) = 6√2",
+    "nota": "distância entre os centros"
+   },
+   {
+    "linha": "R = 6√2 − 6 = 6(√2 − 1)",
+    "nota": "R + 6 = 6√2, o 6 passa subtraindo"
+   },
+   {
+    "linha": "x + y = c",
+    "nota": "perpendicular a y = x"
+   },
+   {
+    "linha": "c = R√2 = 12 − 6√2",
+    "nota": "T = (R/√2, R/√2)"
+   },
+   {
+    "linha": "x + y + 6(√2 − 2) = 0",
+    "nota": "12 − 6√2 passa para a esquerda"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Estratégia Militares, questão IME 2024 com resolução",
+    "url": "https://militares.estrategia.com/public/questoes/Considere-duas3633c09347"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [
+    {
+     "url": "https://militares.estrategia.com/public/questoes/Considere-duas3633c09347",
+     "letra": "C"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
+ },
+ "Pae5b5dc2": {
+  "n": "10",
+  "conceito": "Probabilidade com duas variáveis independentes: comparar o dodecaedro com a soma de dois dados, condicionando em cada valor da soma.",
+  "equivocos": {
+   "A": "M13.4:contagem-sem-base",
+   "B": "M13.4:contagem-sem-base",
+   "C": "M13.4:contagem-sem-base",
+   "E": "M13.4:contagem-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os três dados são independentes, então há 36 × 12 = 432 resultados igualmente prováveis. Fixe a soma S dos dois cúbicos: o dodecaedro vence quando mostra um número de S + 1 até 12, que são 12 − S faces. Basta somar essas faces, pesadas pelo número de jeitos de cada soma. \"Maior\" exclui o empate.",
+    "formulas": [
+     "P = favoráveis/possíveis",
+     "para soma S: faces do dodecaedro que vencem = 12 − S"
+    ],
+    "simbolos": [
+     [
+      "S",
+      "soma dos dois dados cúbicos, de 2 a 12"
+     ],
+     [
+      "dodecaedro",
+      "dado de 12 faces, numeradas de 1 a 12"
+     ]
+    ]
+   },
+   "pista": "Fixe primeiro a soma dos dois cúbicos e pergunte quantas faces do dodecaedro ganham dela.",
+   "passos": [
+    {
+     "faz": "Conte os resultados possíveis",
+     "conta": "6 · 6 · 12 → 432 resultados",
+     "porque": "Cada dado é independente e todas as faces são equiprováveis, então os resultados se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Liste os jeitos de cada soma",
+     "conta": "S: 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 | jeitos: 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1",
+     "porque": "Dos 36 pares de faces, a soma 7 sai de 6 jeitos e cada passo para longe do 7 tira um jeito.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some as faces vencedoras",
+     "conta": "1·10 + 2·9 + 3·8 + 4·7 + 5·6 + 6·5 + 5·4 + 4·3 + 3·2 + 2·1 + 1·0 → 180",
+     "porque": "Para cada soma S, o dodecaedro ganha com 12 − S faces; multiplicando pelos jeitos da soma e somando, saem todos os casos favoráveis.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "180/432 → 5/12",
+     "porque": "Favoráveis sobre possíveis; dividindo por 36 a fração fica irredutível.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 5/12",
+   "checagem": "Atalho pela média: a fração de faces vencedoras é (12 − S)/12, e a média de S é 7. A média de (12 − S)/12 é (12 − 7)/12 = 5/12, o mesmo valor.",
+   "erradas": {
+    "A": "2/3 ≈ 0,667 não confere: com soma 7 ou mais (21/36), o dodecaedro precisa de 8 ou mais (5/12 no máximo); mesmo vencendo sempre na soma até 6: 15/36 + 21/36 · 5/12 = 95/144 ≈ 0,660.",
+    "B": "1/6 ≈ 0,167 não confere: a probabilidade é pelo menos a chance de a soma dar até 6 (15/36) e o dodecaedro dar 7 ou mais (1/2), caso em que ele sempre vence: 15/36 · 1/2 = 15/72 ≈ 0,208, maior que 1/6.",
+    "C": "7/36 ≈ 0,194 não confere: a probabilidade é pelo menos a chance de a soma dar até 6 (15/36) e o dodecaedro dar 7 ou mais (1/2), caso em que ele sempre vence: 15/36 · 1/2 = 15/72 ≈ 0,208, maior que 7/36.",
+    "E": "3/16 ≈ 0,1875 não confere: a probabilidade é pelo menos a chance de a soma dar até 6 (15/36) e o dodecaedro dar 7 ou mais (1/2), caso em que ele sempre vence: 15/36 · 1/2 = 15/72 ≈ 0,208, maior que 3/16."
+   },
+   "armadilha": "\"Maior\" exclui o empate: contando as faces de S até 12 (12 − S + 1 por soma) sai 216/432 = 1/2, que não é a resposta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de o dodecaedro superar a soma de dois dados comuns.",
+    "chave": "Para cada soma S, 12 − S faces vencem; somando com os pesos 1, 2, ..., 6, ..., 1 sai 180 de 432 = 5/12.",
+    "cuidado": "Não conte o empate como vitória."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média da soma",
+    "ideia": "a média de S é 7, então a fração média de faces vencedoras é (12 − 7)/12 = 5/12"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "6 · 6 · 12 = 432",
+    "nota": "resultados possíveis"
+   },
+   {
+    "linha": "Σ jeitos(S) · (12 − S) = 180",
+    "nota": "faces vencedoras para cada soma"
+   },
+   {
+    "linha": "180/432 = 5/12",
+    "nota": "simplificar por 36"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Estratégia Vestibulares (questão do IME 2024 com gabarito D)",
+    "url": "https://vestibulares.estrategia.com/portal/atualidades-e-dicas/5-questoes-sobre-probabilidade-que-ja-cairam-no-enem-e-vestibulares/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [
+    {
+     "url": "https://vestibulares.estrategia.com/portal/atualidades-e-dicas/5-questoes-sobre-probabilidade-que-ja-cairam-no-enem-e-vestibulares/",
+     "letra": "D"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
+ },
+ "P76c1f1a5": {
+  "n": "4",
+  "conceito": "Fatorar um polinômio por agrupamento e analisar a multiplicidade da raiz −2.",
+  "equivocos": {
+   "A": "M16.1:nao-ajustou-o-parametro",
+   "C": "M16.1:soma-de-cubos-como-cubo",
+   "D": "M16.1:multiplicidade-sem-teste",
+   "E": "M16.1:ignorou-a-raiz-1"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Agrupe os termos com b e os sem b: os dois grupos têm o mesmo fator x² + x − 2. Assim g(x) = (x² + x − 2)(x³ + b) = (x + 2)(x − 1)(x³ + b). Um fator (x + 2) já existe; para ganhar outro, x³ + b precisa zerar em −2, e o que sobrar não pode ter −2 de novo.",
+    "formulas": [
+     "x² + x − 2 = (x + 2)(x − 1)",
+     "x³ + 8 = (x + 2)(x² − 2x + 4)"
+    ],
+    "simbolos": [
+     [
+      "(x + 2)^k",
+      "o fator x + 2 repetido k vezes"
+     ],
+     [
+      "multiplicidade",
+      "quantas vezes −2 é raiz de g"
+     ]
+    ]
+   },
+   "pista": "Separe os termos que têm b dos que não têm e procure um fator comum.",
+   "passos": [
+    {
+     "faz": "Fatore por agrupamento",
+     "conta": "x³(x² + x − 2) + b(x² + x − 2) → (x² + x − 2)(x³ + b)",
+     "porque": "x⁵ + x⁴ − 2x³ = x³(x² + x − 2) e bx² + bx − 2b = b(x² + x − 2).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore o 2º grau",
+     "conta": "x² + x − 2 → (x + 2)(x − 1)",
+     "porque": "Raízes −2 e 1: já há um fator (x + 2) para qualquer b.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça x³ + b zerar em −2",
+     "conta": "(−2)³ + b = 0 → b = 8 → x³ + 8 = (x + 2)(x² − 2x + 4)",
+     "porque": "É o único inteiro b que dá mais um fator (x + 2).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste um terceiro fator",
+     "conta": "x² − 2x + 4 em x = −2 → 4 + 4 + 4 = 12 ≠ 0",
+     "porque": "Nem x − 1 nem x² − 2x + 4 zeram em −2, então não há (x + 2)³.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "g(x) = (x + 2)²(x − 1)(x² − 2x + 4) → k = 2",
+     "porque": "O maior expoente possível é 2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — k = 2",
+   "checagem": "Pelas derivadas: com b = 8, g(−2) = 0 e g'(−2) = 0, mas g''(−2) = −72 ≠ 0, então −2 é raiz dupla e não tripla. Para outros b, g(−2) = 0 mas g'(−2) ≠ 0.",
+   "erradas": {
+    "A": "A sai de ver só o fator (x + 2) de x² + x − 2 e não escolher b = 8, que dá o segundo fator.",
+    "C": "C sai de confundir x³ + 8 com (x + 2)³: na verdade x³ + 8 = (x + 2)(x² − 2x + 4), um fator só.",
+    "D": "D não confere: (x + 2)⁴ exigiria (x + 2)³ dividindo x³ + b, mas x³ + b tem raízes distintas para b ≠ 0 e, com b = 8, sobra x² − 2x + 4, que vale 12 em −2.",
+    "E": "E não confere: (x + 2)⁵ seria o próprio g, mas g(1) = 0 para qualquer b, e 1 não é raiz de (x + 2)⁵."
+   },
+   "armadilha": "x³ + 8 é soma de cubos, não (x + 2)³: ele dá só mais um fator (x + 2).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O maior k com (x + 2)^k dividindo g para algum b inteiro.",
+    "chave": "g = (x + 2)(x − 1)(x³ + b); com b = 8 sai mais um (x + 2) e nada além.",
+    "cuidado": "Fatore a soma de cubos corretamente e teste se o fator restante zera em −2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "derivadas",
+    "ideia": "−2 é raiz de multiplicidade k ⇔ g e as derivadas até a ordem k − 1 zeram em −2; com b = 8, g''(−2) = −72 ≠ 0, logo k = 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "g = x³(x² + x − 2) + b(x² + x − 2)",
+    "nota": "agrupamento"
+   },
+   {
+    "linha": "g = (x + 2)(x − 1)(x³ + b)",
+    "nota": "fator comum e 2º grau fatorado"
+   },
+   {
+    "linha": "b = 8: x³ + 8 = (x + 2)(x² − 2x + 4)",
+    "nota": "soma de cubos"
+   },
+   {
+    "linha": "x² − 2x + 4 em −2 = 12 ≠ 0",
+    "nota": "sem terceiro fator"
+   },
+   {
+    "linha": "g = (x + 2)²(x − 1)(x² − 2x + 4)",
+    "nota": "k = 2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
+ },
+ "Pd2fe7a55": {
+  "n": "5",
+  "conceito": "Função por partes: achar o maior raio α em torno de x = 1 em que f fica a menos de 1 do valor 1.",
+  "equivocos": {
+   "A": "M05.4:comprimento-em-vez-de-raio",
+   "B": "M05.4:analisou-so-um-lado",
+   "C": "M05.4:limite-de-x-em-vez-de-distancia",
+   "E": "M05.4:nao-testou-o-raio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "|f(x) − 1| < 1 é o mesmo que 0 < f(x) < 2. Para x > 1, a fração simplifica: (x⁴ − x³)/(x − 1) = x³. Analise cada lado de x = 1 separadamente; o α é o menor dos dois raios, porque o intervalo em volta de 1 tem o mesmo raio dos dois lados. O ponto x = 1 fica de fora (0 < |x − 1|).",
+    "formulas": [
+     "|f − 1| < 1 ⇔ 0 < f < 2",
+     "(x⁴ − x³)/(x − 1) = x³(x − 1)/(x − 1) = x³"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "raio do intervalo em volta de x = 1"
+     ],
+     [
+      "∛2",
+      "raiz cúbica de 2, cerca de 1,26"
+     ],
+     [
+      "⇒",
+      "implica: se vale a esquerda, vale a direita"
+     ]
+    ]
+   },
+   "pista": "Troque |f(x) − 1| < 1 por uma dupla desigualdade e simplifique a fração do caso x > 1.",
+   "passos": [
+    {
+     "faz": "Reescreva a condição",
+     "conta": "|f(x) − 1| < 1 → −1 < f(x) − 1 < 1 → 0 < f(x) < 2",
+     "porque": "Tirar o módulo dá uma dupla desigualdade; o 1 passa somando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Analise x > 1",
+     "conta": "(x⁴ − x³)/(x − 1) = x³ → x³ < 2 → x < ∛2 → α ≤ ∛2 − 1",
+     "porque": "Para x um pouco maior que 1, x³ > 1 > 0; o limite é x³ < 2. A distância de 1 até ∛2 é ∛2 − 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Analise x < 1",
+     "conta": "−2x + 3 < 2 → x > 1/2 → α ≤ 1 − 1/2 = 1/2",
+     "porque": "Para x < 1, −2x + 3 > 1 > 0; o limite é ficar abaixo de 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fique com o menor raio",
+     "conta": "∛2 − 1 ≈ 0,26 < 1/2 → α = ∛2 − 1",
+     "porque": "O intervalo tem o mesmo raio dos dois lados de 1; o lado direito é o mais apertado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — −1 + ∛2",
+   "checagem": "Com α = ∛2 − 1, x vai de 2 − ∛2 ≈ 0,74 a ∛2 ≈ 1,26: à esquerda, f(0,74) = 1,52 < 2; à direita, x³ < 2. Com α um pouco maior, um x logo acima de ∛2 dá x³ > 2 e falha.",
+   "erradas": {
+    "A": "∛2 − 1/2 ≈ 0,76 sai de medir o comprimento do intervalo (1/2, ∛2) em vez do raio em volta de 1; com ele, x = 1,7 dá f = 4,9 e |f − 1| > 1.",
+    "B": "1/2 é o raio do lado esquerdo só; à direita, x = 1,4 está a menos de 1/2 de 1 e dá f = 2,744 > 2.",
+    "C": "∛2 é o limite de x, não a distância até 1: com α ≈ 1,26, x = 2 dá f = 8.",
+    "E": "1 não confere: x = 1,9 está a menos de 1 de 1 e dá f = 6,859, longe de 1."
+   },
+   "armadilha": "Esquecer de simplificar (x⁴ − x³)/(x − 1) = x³ ou responder o limite de x (∛2) em vez da distância até 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O maior raio α em volta de 1 que mantém f entre 0 e 2.",
+    "chave": "À direita, x³ < 2 dá raio ∛2 − 1; à esquerda, raio 1/2; vale o menor.",
+    "cuidado": "α é distância até 1, e o valor f(1) = 2 não entra porque x = 1 está excluído."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Ordene os candidatos: o lado direito exige x < ∛2 ≈ 1,26, então qualquer α > 0,26 deixa entrar um x com x³ > 2; só ∛2 − 1 serve."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "|f − 1| < 1 → 0 < f < 2",
+    "nota": "tirar o módulo"
+   },
+   {
+    "linha": "(x⁴ − x³)/(x − 1) = x³",
+    "nota": "x³ em evidência e cancela x − 1"
+   },
+   {
+    "linha": "x³ < 2 → x < ∛2",
+    "nota": "lado direito"
+   },
+   {
+    "linha": "−2x + 3 < 2 → x > 1/2",
+    "nota": "lado esquerdo"
+   },
+   {
+    "linha": "α = mín(∛2 − 1, 1/2) = ∛2 − 1",
+    "nota": "o raio mais apertado"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "Desenha a reta −2x + 3 à esquerda de 1 e a curva x³ à direita, a faixa 0 < y < 2 e marca os cortes em x = 1/2 e x = ∛2; destaca o intervalo simétrico de raio ∛2 − 1."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
+ },
+ "P369ac62b": {
+  "n": "7",
+  "conceito": "Termo geral de uma PA aplicado às posições da diagonal de uma matriz 100 × 100 e soma desses termos (traço).",
+  "equivocos": {
+   "A": "M07.1:somou-o-ultimo-termo",
+   "C": "M07.1:soma-da-pa-errada",
+   "D": "M07.1:soma-da-pa-errada",
+   "E": "M07.1:soma-da-pa-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O traço é a soma da diagonal principal: a₁,₁ + a₂,₂ + … + a₁₀₀,₁₀₀. Como a matriz é lida linha a linha, o elemento aᵢ,ⱼ ocupa a posição 100(i − 1) + j na PA. Ache a posição de cada elemento da diagonal: elas formam outra PA, e os valores também.",
+    "formulas": [
+     "aₖ = a₁ + (k − 1) · r",
+     "soma de uma PA = (primeiro + último) · (número de termos)/2"
+    ],
+    "simbolos": [
+     [
+      "aᵢ,ⱼ",
+      "elemento da linha i e coluna j"
+     ],
+     [
+      "traço",
+      "soma dos elementos da diagonal principal (i = j)"
+     ],
+     [
+      "k",
+      "posição do elemento na PA"
+     ],
+     [
+      "r",
+      "razão da PA, 5"
+     ]
+    ]
+   },
+   "pista": "Descubra em que posição da PA está aᵢ,ᵢ. De uma diagonal para a seguinte, quantas posições você anda?",
+   "passos": [
+    {
+     "faz": "Ache a posição de aᵢ,ᵢ na PA",
+     "conta": "aᵢ,ⱼ está na posição k = 100(i − 1) + j → aᵢ,ᵢ: k = 101i − 100",
+     "porque": "Antes da linha i há i − 1 linhas completas de 100 termos; dentro da linha, a coluna j acrescenta j.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva o valor de aᵢ,ᵢ",
+     "conta": "aᵢ,ᵢ = 10 + (101i − 101) · 5 → aᵢ,ᵢ = 10 + 505(i − 1)",
+     "porque": "Termo geral com a₁ = 10 e r = 5. A diagonal vira uma PA de razão 505, de 10 até 10 + 505 · 99 = 50005.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os 100 termos da diagonal",
+     "conta": "n = (10 + 50005) · 100/2 → n = 50015 · 50 = 2500750",
+     "porque": "Soma de PA: média do primeiro com o último, vezes o número de termos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os algarismos de n",
+     "conta": "2 + 5 + 0 + 0 + 7 + 5 + 0 = 19 → alternativa B",
+     "porque": "A pergunta não é o traço, e sim a soma dos seus algarismos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a soma dos algarismos do traço é 19.",
+   "checagem": "Separe o traço em duas partes: 100 parcelas de 10 dão 1000, e 505 · (0 + 1 + … + 99) = 505 · 4950 = 2499750. Total 1000 + 2499750 = 2500750, o mesmo n.",
+   "erradas": {
+    "A": "10 sai de somar os algarismos do último elemento, a₁₀₀,₁₀₀ = 10 + 5 · 9999 = 50005, em vez do traço: 5 + 0 + 0 + 0 + 5 = 10. O traço é 2500750, cujos algarismos somam 19.",
+    "C": "23 não confere: os algarismos de 2500750 somam 19, não 23.",
+    "D": "28 não confere: os algarismos de 2500750 somam 19, não 28.",
+    "E": "32 não confere: os algarismos de 2500750 somam 19, não 32."
+   },
+   "armadilha": "Achar que a diagonal anda 100 posições por linha: de aᵢ,ᵢ para aᵢ₊₁,ᵢ₊₁ são 101 posições (uma linha inteira mais uma coluna).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos algarismos do traço de uma matriz 100 × 100 preenchida linha a linha por uma PA (a₁ = 10, r = 5).",
+    "chave": "aᵢ,ᵢ = 10 + 505(i − 1) é outra PA; sua soma dá 2500750.",
+    "cuidado": "Entre dois elementos da diagonal há 101 posições, não 100."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "separar as parcelas",
+    "ideia": "Traço = 100 · 10 + 505 · (0 + 1 + … + 99) = 1000 + 505 · 4950 = 2500750."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "k = 100(i − 1) + i = 101i − 100",
+    "nota": "posição de aᵢ,ᵢ"
+   },
+   {
+    "linha": "aᵢ,ᵢ = 10 + 505(i − 1)",
+    "nota": "termo geral com r = 5"
+   },
+   {
+    "linha": "a₁₀₀,₁₀₀ = 10 + 505 · 99 = 50005",
+    "nota": "último da diagonal"
+   },
+   {
+    "linha": "n = (10 + 50005) · 100/2 = 2500750",
+    "nota": "soma da PA da diagonal"
+   },
+   {
+    "linha": "2 + 5 + 0 + 0 + 7 + 5 + 0 = 19",
+    "nota": "soma dos algarismos"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  },
+  "gabarito_aprendice": {
+   "letra": "B",
+   "letra_conferente": "B",
+   "preliminar": "B",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "P38d0f2f7": {
+  "n": "14",
+  "conceito": "Área da projeção ortogonal: a figura projetada tem área igual à original vezes o cosseno do ângulo entre os planos.",
+  "equivocos": {
+   "A": "M09.3:projecao-preserva-area",
+   "B": "M09.3:projecao-maior-que-a-original",
+   "D": "M09.3:tangente-no-lugar-do-cosseno",
+   "E": "M09.3:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As retas por A, B, C e D são perpendiculares a α. Então A é a projeção ortogonal de A′ sobre α, e ABCD é a projeção ortogonal de A′B′C′D′. Projetar uma figura plana num plano que forma ângulo θ com o dela multiplica a área por cos θ. O formato de trapézio e a diagonal paralela a r não mudam essa razão.",
+    "formulas": [
+     "área da projeção = área da figura · cos θ",
+     "cos 30° = √3/2"
+    ],
+    "simbolos": [
+     [
+      "α, β",
+      "os dois planos"
+     ],
+     [
+      "r",
+      "reta em que α e β se cortam"
+     ],
+     [
+      "diedro",
+      "ângulo entre dois planos, aqui π/6 = 30°"
+     ],
+     [
+      "A′",
+      "ponto de β que está sobre a perpendicular a α por A"
+     ]
+    ]
+   },
+   "pista": "Descubra qual das duas figuras é a sombra da outra: as retas são perpendiculares a qual plano?",
+   "passos": [
+    {
+     "faz": "Identifique quem é a projeção",
+     "conta": "AA′ ⊥ α → ABCD = projeção ortogonal de A′B′C′D′ sobre α",
+     "porque": "Cada segmento AA′ é perpendicular a α, que é exatamente como se projeta um ponto de β sobre α.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique o fator do cosseno",
+     "conta": "área(ABCD) = área(A′B′C′D′) · cos(π/6)",
+     "porque": "A projeção encolhe só a direção perpendicular a r pelo fator cos θ; a direção paralela a r não muda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a razão",
+     "conta": "área(ABCD)/área(A′B′C′D′) = cos 30° = √3/2",
+     "porque": "A área de A′B′C′D′ passa dividindo e sobra o cosseno do diedro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "√3/2 → alternativa C",
+     "porque": "A razão pedida é ABCD sobre A′B′C′D′, a projeção sobre a original, e por isso fica menor que 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — √3/2",
+   "checagem": "Use a diagonal AC, paralela a r: ela não encolhe, então A′C′ = AC. A altura de B (e de D) até AC é medida na direção perpendicular a r, que em β fica 1/cos 30° vez maior. Os triângulos ABC e ADC têm, cada um, área multiplicada por cos 30° ao passar de β para α: a razão é √3/2 de novo.",
+   "erradas": {
+    "A": "1 sai de achar que levar a figura de um plano para o outro preserva a área; isso só vale se os planos forem paralelos, e aqui o diedro é 30°.",
+    "B": "3/2 não confere: ABCD é a projeção, e uma projeção nunca tem área maior que a figura original; a razão tem de ser menor que 1.",
+    "D": "√3/3 sai de usar a tangente no lugar do cosseno: tg 30° = √3/3. O fator de área da projeção é cos 30° = √3/2.",
+    "E": "1/3 não confere: a razão é o cosseno do diedro, e cos 30° = √3/2 ≈ 0,87, não 1/3."
+   },
+   "armadilha": "O trapézio e a diagonal paralela a r são dados que não pesam: o fator de área da projeção é cos θ para qualquer figura plana.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão entre a área de ABCD e a de A′B′C′D′.",
+    "chave": "ABCD é a projeção ortogonal de A′B′C′D′ sobre α; a área é multiplicada por cos 30°.",
+    "cuidado": "Veja quem projeta sobre quem: a razão é cos 30°, não o inverso."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "retângulo de teste",
+    "ideia": "Pegue em β um retângulo com um lado paralelo a r (que não encolhe) e o outro perpendicular (que vira ele · cos 30°): a área cai pelo fator √3/2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "AA′ ⊥ α → ABCD = projeção de A′B′C′D′",
+    "nota": "quem é a sombra"
+   },
+   {
+    "linha": "área(ABCD) = área(A′B′C′D′) · cos(π/6)",
+    "nota": "fator da projeção"
+   },
+   {
+    "linha": "área(ABCD)/área(A′B′C′D′) = cos 30° = √3/2",
+    "nota": "a área da original passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "P82295c8b": {
+  "n": "11",
+  "conceito": "Somar arcos tangentes com a fórmula da tangente da soma até isolar o último arco.",
+  "equivocos": {
+   "A": "M10.4:somou-as-tangentes",
+   "B": "M10.4:somou-as-tangentes",
+   "C": "M10.4:somou-as-tangentes",
+   "E": "M10.4:errou-a-tangente-da-diferenca"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Somar arcos cuja tangente se conhece é trabalho da fórmula tg(a + b). Junte os três primeiros arcos um de cada vez; o que falta para chegar a π/4 é arctg(1/n). Como tg(π/4) = 1, a última conta é a tangente de uma diferença. Os três primeiros arcos são positivos e menores que π/4, e a soma deles também fica abaixo de π/2, então a fórmula vale em cada etapa.",
+    "formulas": [
+     "tg(a + b) = (tg a + tg b)/(1 − tg a · tg b)",
+     "tg(a − b) = (tg a − tg b)/(1 + tg a · tg b)",
+     "tg(π/4) = 1"
+    ],
+    "simbolos": [
+     [
+      "arctg(t)",
+      "o arco entre −π/2 e π/2 cuja tangente é t"
+     ],
+     [
+      "n ∈ ℕ",
+      "n é um número natural"
+     ]
+    ]
+   },
+   "pista": "Junte só os dois primeiros arcos com a fórmula da tangente da soma e veja que fração aparece.",
+   "passos": [
+    {
+     "faz": "Some os dois primeiros arcos",
+     "conta": "tg(a + b) = (1/3 + 1/4)/(1 − 1/12) → (7/12)/(11/12) → 7/11",
+     "porque": "Com tg a = 1/3 e tg b = 1/4, o produto é 1/12. Os 12 do denominador se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte o terceiro arco",
+     "conta": "(7/11 + 1/5)/(1 − 7/55) → (46/55)/(48/55) → 46/48 = 23/24",
+     "porque": "Agora a soma parcial tem tangente 7/11 e entra o arco de tangente 1/5. O 55 se cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole o arco que falta",
+     "conta": "arctg(1/n) = π/4 − θ, com tg θ = 23/24",
+     "porque": "θ é a soma dos três primeiros arcos. O que falta para π/4 é exatamente arctg(1/n).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use a tangente da diferença",
+     "conta": "1/n = (1 − 23/24)/(1 + 23/24) → (1/24)/(47/24) → 1/47",
+     "porque": "tg(π/4) = 1. O 24 se cancela e sobra 1/47.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia n e ligue à alternativa",
+     "conta": "1/n = 1/47 → n = 47",
+     "porque": "Duas frações de numerador 1 iguais têm denominadores iguais: n = 47, alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — n = 47",
+   "checagem": "Pela calculadora: arctg(1/3) + arctg(1/4) + arctg(1/5) ≈ 0,32175 + 0,24498 + 0,19740 = 0,76413 rad, e arctg(1/47) ≈ 0,02127 rad. A soma dá 0,78540 rad, que é π/4 ≈ 0,78540.",
+   "erradas": {
+    "A": "A não confere: com n = 10, a tangente da soma dos quatro arcos é (23/24 + 1/10)/(1 − 23/240) = 254/217, maior que 1. A soma passa de π/4.",
+    "B": "B não confere: com n = 6, a tangente da soma dá (23/24 + 1/6)/(1 − 23/144) = 162/121, diferente de 1 = tg(π/4).",
+    "C": "C não confere: com n = 7, a tangente da soma dá (23/24 + 1/7)/(1 − 23/168) = 37/29, diferente de 1.",
+    "E": "E não confere: com n = 52, a tangente da soma dá (23/24 + 1/52)/(1 − 23/1248) = 244/245, menor que 1. A soma fica abaixo de π/4."
+   },
+   "armadilha": "Arcos não se somam pelas tangentes: 1/3 + 1/4 + 1/5 + 1/n = 1 dá n = 60/13, que nem é natural; é preciso a fórmula tg(a + b).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O natural n que fecha a soma de quatro arcos tangentes em π/4.",
+    "chave": "Pela tangente da soma, os três primeiros arcos somam um arco de tangente 23/24; o que falta para π/4 tem tangente (1 − 23/24)/(1 + 23/24) = 1/47.",
+    "cuidado": "Some arco por arco com a fórmula, nunca as tangentes diretamente."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "números complexos",
+    "ideia": "O argumento de (3 + i)(4 + i)(5 + i)(n + i) deve ser π/4: (3 + i)(4 + i)(5 + i) = 48 + 46i, e (48 + 46i)(n + i) tem partes real e imaginária iguais só se 48n − 46 = 46n + 48, isto é, n = 47."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "tg(a + b) = (1/3 + 1/4)/(1 − 1/12) = 7/11",
+    "nota": "dois primeiros arcos"
+   },
+   {
+    "linha": "tg(θ) = (7/11 + 1/5)/(1 − 7/55) = 23/24",
+    "nota": "entra o terceiro arco"
+   },
+   {
+    "linha": "arctg(1/n) = π/4 − θ",
+    "nota": "o que falta para π/4"
+   },
+   {
+    "linha": "1/n = (1 − 23/24)/(1 + 23/24) = 1/47",
+    "nota": "tangente da diferença, tg(π/4) = 1"
+   },
+   {
+    "linha": "n = 47",
+    "nota": "denominadores iguais"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Estratégia Militares: gabarito preliminar dos professores, IME 1ª fase de 24/09/2023 (q11: D)",
+    "url": "https://militares.estrategia.com/portal/eventos/gabaritos/gabarito-ime-correcao-ao-vivo-2/"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  },
+  "gabarito_aprendice": {
+   "letra": "D",
+   "letra_conferente": "D",
+   "preliminar": "D",
+   "fontes_web": [
+    {
+     "url": "https://militares.estrategia.com/portal/eventos/gabaritos/gabarito-ime-correcao-ao-vivo-2/",
+     "letra": "D"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "Pa184265b": {
+  "n": "15",
+  "conceito": "Probabilidade total: condicionar no degrau da bola preta e somar as chances de a branca parar abaixo dele.",
+  "equivocos": {
+   "A": "M13.5:formula-sem-teste-de-caso",
+   "B": "M13.5:formula-sem-teste-de-caso",
+   "C": "M13.5:incluiu-o-proprio-degrau",
+   "D": "M13.5:incluiu-o-proprio-degrau"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Lançada do degrau i, a bola para em um dos i degraus mais baixos (de 0 a i − 1), todos com a mesma chance 1/i. A preta, lançada do degrau m, para em 0, 1, ..., m − 1, cada um com chance 1/m. A ideia que resolve é fixar onde a preta parou: se ela parou no degrau k, a branca precisa parar em 0, 1, ..., k − 1, que são k dos n degraus possíveis dela. Depois some sobre todos os k.",
+    "formulas": [
+     "P(evento) = soma de P(preta em k) · P(branca abaixo de k)",
+     "0 + 1 + 2 + ... + (m − 1) = (m · (m − 1))/2"
+    ],
+    "simbolos": [
+     [
+      "m",
+      "degrau de onde se lança a bola preta"
+     ],
+     [
+      "n",
+      "degrau de onde se lança a bola branca, com n > m"
+     ],
+     [
+      "k",
+      "degrau em que a bola preta parou, de 0 a m − 1"
+     ],
+     [
+      "1/i",
+      "chance de a bola lançada do degrau i parar em cada degrau mais baixo"
+     ]
+    ]
+   },
+   "pista": "Fixe primeiro o degrau em que a bola preta parou e pergunte quantos degraus abaixo dele a branca pode alcançar.",
+   "passos": [
+    {
+     "faz": "Descreva onde cada bola pode parar",
+     "conta": "preta: 0 a m − 1, cada um 1/m | branca: 0 a n − 1, cada um 1/n",
+     "porque": "Pelo exemplo do enunciado, do degrau 3 a bola para em 2, 1 ou 0: são os i degraus abaixo, cada um com 1/i.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Fixe o degrau da preta",
+     "conta": "preta em k → branca em 0 a k − 1 → k/n",
+     "porque": "Como n > m > k, todos os degraus abaixo de k estão ao alcance da branca, e cada um vale 1/n.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some sobre todos os degraus da preta",
+     "conta": "(1/m) · (0 + 1 + ... + (m − 1))/n → (1/m) · (m(m − 1))/(2n)",
+     "porque": "Cada degrau k da preta tem chance 1/m, e as bolas são independentes; os casos não se sobrepõem, então se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique",
+     "conta": "(m(m − 1))/(2mn) → (m − 1)/(2n)",
+     "porque": "O m do numerador cancela com o m do denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "(m − 1)/(2n) → alternativa E",
+     "porque": "É a chance pedida de a branca parar mais baixo que a preta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — (m − 1)/(2n)",
+   "checagem": "Teste m = 3 e n = 4: a preta para em 0, 1 ou 2 (1/3 cada) e a branca abaixo dela tem chance 0, 1/4 e 2/4. Média: (0 + 1/4 + 2/4)/3 = 1/4, e (3 − 1)/(2 · 4) = 1/4. Fecha. Com m = 1 a preta sempre para no 0 e a fórmula dá 0, como deve.",
+   "erradas": {
+    "A": "A não confere: com m = 3 e n = 4, (m − 1)²/(2n) = 4/8 = 1/2, mas a chance correta, contando os casos, é 1/4.",
+    "B": "B não confere: com m = 2 e n = 3, (m² − 1)/(2n) = 3/6 = 1/2, mas a preta para em 0 ou 1 e a chance correta é (1/2) · (1/3) = 1/6.",
+    "C": "C não confere: com m = 1 a preta sempre para no degrau 0 e a branca não tem como ficar abaixo, então a chance é 0; m/(2n) daria 1/(2n).",
+    "D": "D não confere: com m = 1 a chance tem de ser 0, pois a preta para no degrau 0; m²/(2n) daria 1/(2n)."
+   },
+   "armadilha": "A bola lançada do degrau m não pode parar no próprio degrau m: os resultados vão de 0 a m − 1, e é isso que leva ao fator m − 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de a bola branca, lançada de n, parar abaixo da preta, lançada de m.",
+    "chave": "Fixe a preta em k (chance 1/m); a branca fica abaixo com chance k/n; somando, (m − 1)/(2n).",
+    "cuidado": "Os degraus possíveis vão de 0 a i − 1; teste a fórmula com m = 1, que deve dar 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "casos pequenos",
+    "ideia": "Testando m = 1 (chance 0) e m = 3, n = 4 (chance 1/4), só a alternativa E acerta os dois."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P = soma de (1/m) · (k/n), k = 0 a m − 1",
+    "nota": "fixa o degrau da preta"
+   },
+   {
+    "linha": "= (1/(mn)) · (0 + 1 + ... + (m − 1))",
+    "nota": "põe 1/(mn) em evidência"
+   },
+   {
+    "linha": "= (1/(mn)) · (m(m − 1))/2",
+    "nota": "soma dos m primeiros naturais"
+   },
+   {
+    "linha": "= (m − 1)/(2n)",
+    "nota": "o m se cancela: alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  },
+  "gabarito_aprendice": {
+   "letra": "E",
+   "letra_conferente": "E",
+   "preliminar": "E",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "Pda9df7a9": {
+  "n": "6",
+  "conceito": "Usar que, numa matriz ortogonal, as linhas têm comprimento 1 e são perpendiculares duas a duas, para testar se existem a, b e c.",
+  "equivocos": {
+   "A": "M15.1:so-normas-sem-ortogonalidade",
+   "B": "M15.1:so-normas-sem-ortogonalidade",
+   "C": "M15.1:so-normas-sem-ortogonalidade",
+   "D": "M15.1:so-normas-sem-ortogonalidade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "M × Mᵀ = I quer dizer que o produto de cada linha por ela mesma dá 1 e o produto de duas linhas diferentes dá 0. Não precisa multiplicar a matriz inteira: basta escolher as linhas que dão as equações mais simples. Se duas exigências se contradizem, não existe solução.",
+    "formulas": [
+     "linha i · linha i = 1",
+     "linha i · linha j = 0 (i ≠ j)"
+    ],
+    "simbolos": [
+     [
+      "Mᵀ",
+      "matriz transposta: as linhas de M viram colunas"
+     ],
+     [
+      "I",
+      "matriz identidade: 1 na diagonal, 0 fora dela"
+     ],
+     [
+      "linha i · linha j",
+      "produto escalar: multiplique termo a termo e some"
+     ],
+     [
+      "∅",
+      "conjunto vazio: nenhum valor serve"
+     ]
+    ]
+   },
+   "pista": "Antes de procurar a, b e c, multiplique a 1ª linha pela 3ª: é a conta mais curta da matriz.",
+   "passos": [
+    {
+     "faz": "Traduza a condição de ortogonalidade",
+     "conta": "M × Mᵀ = I → cada linha · ela mesma = 1 ; linhas diferentes · entre si = 0",
+     "porque": "O termo (i, j) de M × Mᵀ é o produto da linha i pela linha j. Diagonal 1, resto 0.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Multiplique a 1ª linha pela 3ª",
+     "conta": "(0, 0, 1, 0) · (b, 1/4, 2b, 0) = 0 → 2b = 0 → b = 0",
+     "porque": "A 1ª linha só tem o 1 na 3ª coluna, então o produto é só o 2b. Para dar 0, b tem de ser 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o comprimento da 3ª linha",
+     "conta": "b² + (1/4)² + (2b)² = 1 → 5b² + 1/16 = 1 → b² = 15/80 = 3/16",
+     "porque": "A 3ª linha precisa ter comprimento 1. Isso obriga b² = 3/16, ou seja, b ≠ 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare as duas exigências",
+     "conta": "b = 0 e b² = 3/16 → 0 = 3/16 → impossível",
+     "porque": "Nenhum valor de b cumpre as duas ao mesmo tempo, quaisquer que sejam a e c.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "nenhum (a, b, c) serve → S = ∅ → alternativa E",
+     "porque": "A matriz nunca é ortogonal, então o conjunto solução é vazio.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — não existem a, b e c que tornem a matriz ortogonal: S = ∅",
+   "checagem": "Outro par de linhas leva ao mesmo beco: a 4ª linha com comprimento 1 dá c²/4 + 3/4 = 1, c = ±1; mas a 2ª linha · 4ª linha = (√3/2)(c/2) = √3c/4 tem de ser 0, o que pede c = 0. Contradição de novo.",
+   "erradas": {
+    "A": "A não confere: com b = −√3/2, a 1ª linha · 3ª linha = 2b = −√3 ≠ 0. Além disso, c = 1 dá 2ª linha · 4ª linha = √3/4 ≠ 0.",
+    "B": "B não confere: com b = √3/2, a 1ª linha · 3ª linha = 2b = √3 ≠ 0; e c = 1 deixa 2ª linha · 4ª linha = √3/4 ≠ 0.",
+    "C": "C não confere: b = √3/2 dá 1ª linha · 3ª linha = √3 ≠ 0; c = −1 dá 2ª linha · 4ª linha = −√3/4 ≠ 0.",
+    "D": "D não confere: b = √3/2 dá 1ª linha · 3ª linha = √3 ≠ 0, e c = −1 dá 2ª linha · 4ª linha = −√3/4 ≠ 0."
+   },
+   "armadilha": "Achar a e c só pelos comprimentos das linhas (a = ±1/2, c = ±1) e esquecer que linhas diferentes também precisam dar produto 0.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os valores de a, b e c que tornam a matriz ortogonal.",
+    "chave": "1ª linha · 3ª linha = 2b = 0 obriga b = 0, mas o comprimento da 3ª linha pede b² = 3/16: impossível.",
+    "cuidado": "Confira também os produtos entre linhas diferentes, não só os comprimentos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela 4ª coluna",
+    "ideia": "2ª linha · 4ª linha = √3c/4 = 0 pede c = 0, mas o comprimento da 4ª linha pede c² = 1: também impossível, S = ∅."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(0, 0, 1, 0) · (b, 1/4, 2b, 0) = 2b = 0 → b = 0",
+    "nota": "1ª linha · 3ª linha"
+   },
+   {
+    "linha": "b² + 1/16 + 4b² = 1 → b² = 3/16",
+    "nota": "comprimento da 3ª linha"
+   },
+   {
+    "linha": "b = 0 e b² = 3/16 → impossível",
+    "nota": "contradição"
+   },
+   {
+    "linha": "S = ∅",
+    "nota": "alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  },
+  "gabarito_aprendice": {
+   "letra": "E",
+   "letra_conferente": "E",
+   "preliminar": "E",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "Pc4bcdc47": {
+  "n": "3",
+  "conceito": "Calcular um determinante 3 × 3 com números complexos e igualar a um complexo na forma trigonométrica.",
+  "equivocos": {
+   "A": "M15.2:parte-real-nao-fecha",
+   "B": "M15.2:confundiu-alfa-com-parte-real",
+   "C": "M15.2:parte-real-nao-fecha",
+   "D": "M15.2:potencia-de-i-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Passe o lado esquerdo para a forma a + bi usando cis θ = cos θ + i sen θ. Calcule o determinante desenvolvendo pela 1ª linha, que tem um zero. Dois complexos são iguais quando as partes reais são iguais e as imaginárias também; α, que é real, sai da parte real.",
+    "formulas": [
+     "cis θ = cos θ + i · sen θ",
+     "i² = −1 ; i⁵ = i⁴ · i = i",
+     "det pela 1ª linha: a₁₁ · C₁₁ + a₁₂ · C₁₂ + a₁₃ · C₁₃"
+    ],
+    "simbolos": [
+     [
+      "i",
+      "unidade imaginária, i² = −1"
+     ],
+     [
+      "cis θ",
+      "cos θ + i · sen θ"
+     ],
+     [
+      "Cᵢⱼ",
+      "cofator: (−1)^(i + j) vezes o determinante 2 × 2 que sobra ao tirar linha i e coluna j"
+     ],
+     [
+      "α",
+      "número real procurado"
+     ]
+    ]
+   },
+   "pista": "Antes do determinante, simplifique i⁵ e escreva os dois cis na forma a + bi.",
+   "passos": [
+    {
+     "faz": "Escreva o lado esquerdo na forma a + bi",
+     "conta": "cis(7π/6) − 2cis(−7π/6) = (−√3/2 − i/2) − 2(−√3/2 + i/2) → √3/2 − 3i/2",
+     "porque": "7π/6 está no 3º quadrante: cosseno −√3/2, seno −1/2. Em −7π/6 o cosseno é o mesmo e o seno troca de sinal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique a 3ª linha",
+     "conta": "i⁵ = i⁴ · i = 1 · i → i",
+     "porque": "Como i⁴ = 1, a 3ª linha fica (i, √3, −i/2).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o 1º termo do determinante",
+     "conta": "−√3 · [(−√3)(−i/2) − α√3] = −√3 · [√3i/2 − √3α] → 3α − 3i/2",
+     "porque": "Desenvolva pela 1ª linha; o terceiro termo some porque a₁₃ = 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o 2º termo do determinante",
+     "conta": "−(−i) · [(√3/2)(−i/2) − α · i] = i · [−√3i/4 − αi] → √3/4 + α",
+     "porque": "O cofator de a₁₂ leva o sinal de menos; i · i = −1 troca os sinais dentro do colchete.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale as partes reais",
+     "conta": "3α + α + √3/4 = √3/2 → 4α = √3/4 → α = √3/16",
+     "porque": "Determinante: 4α + √3/4 − 3i/2. A parte imaginária −3/2 já bate dos dois lados; a real dá α.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "α = √3/16 → alternativa E",
+     "porque": "As duas partes conferem com o mesmo α.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — α = √3/16",
+   "checagem": "Com α = √3/16, o determinante vale 4 · √3/16 + √3/4 − 3i/2 = √3/4 + √3/4 − 3i/2 = √3/2 − 3i/2, exatamente o lado esquerdo. As partes imaginárias batem sem depender de α, o que confirma as contas.",
+   "erradas": {
+    "A": "A não confere: α = 3 dá parte real 4 · 3 + √3/4 = 12 + √3/4, longe de √3/2 ≈ 0,87.",
+    "B": "B sai de confundir α com a parte real do lado esquerdo, √3/2; substituindo, a parte real do determinante seria 2√3 + √3/4 = 9√3/4.",
+    "C": "C não confere: α = √3/4 dá parte real 4 · √3/4 + √3/4 = 5√3/4, e não √3/2.",
+    "D": "D sai de usar i⁵ = −i: o determinante vira 2α + √3/4 − 3i/2, e 2α = √3/4 dá α = √3/8."
+   },
+   "armadilha": "Errar a potência i⁵, que vale i (e não −i), porque i⁴ = 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número real α que faz a igualdade valer.",
+    "chave": "Lado esquerdo √3/2 − 3i/2; determinante 4α + √3/4 − 3i/2; partes reais: 4α = √3/4.",
+    "cuidado": "i⁵ = i e o cofator de a₁₂ leva sinal de menos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Sarrus",
+    "ideia": "Pela regra de Sarrus os seis produtos somam 4α + √3/4 − 3i/2; igualando a √3/2 − 3i/2, α = √3/16."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "cis(7π/6) − 2cis(−7π/6) = √3/2 − 3i/2",
+    "nota": "forma a + bi"
+   },
+   {
+    "linha": "i⁵ = i",
+    "nota": "i⁴ = 1"
+   },
+   {
+    "linha": "det = (3α − 3i/2) + (√3/4 + α) = 4α + √3/4 − 3i/2",
+    "nota": "1ª linha"
+   },
+   {
+    "linha": "4α + √3/4 = √3/2 → α = √3/16",
+    "nota": "partes reais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  },
+  "gabarito_aprendice": {
+   "letra": "E",
+   "letra_conferente": "E",
+   "preliminar": "E",
+   "fontes_web": [],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "Pe658dba9": {
+  "n": "9",
+  "conceito": "Potências de i e propriedades do logaritmo: o fator i^(2n − 2) cancela o expoente alternado, e a soma de logaritmos telescópica vira um só logaritmo.",
+  "equivocos": {
+   "A": "M16.2:telescopica-mal-fechada",
+   "B": "M16.2:ultimo-termo-errado",
+   "D": "M16.2:confundiu-numero-de-termos",
+   "E": "M16.2:telescopica-mal-fechada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O i é só um disfarce: i^(2n − 2) = (i²)^(n − 1) = (−1)^(n − 1). O expoente dentro do ln também é (−1)^(n − 1), e ele desce multiplicando. Os dois sinais se multiplicam e dão sempre 1. Sobra uma soma de logaritmos que se cancela em cadeia.",
+    "formulas": [
+     "i² = −1 ⇒ i^(2n − 2) = (−1)^(n − 1)",
+     "ln(xᵏ) = k · ln x",
+     "ln a + ln b = ln(a · b)",
+     "e^(−ln x) = 1/x"
+    ],
+    "simbolos": [
+     [
+      "i",
+      "unidade imaginária, i² = −1"
+     ],
+     [
+      "Σ",
+      "soma dos termos de n = 1 até n = 1000"
+     ],
+     [
+      "ln",
+      "logaritmo na base e"
+     ],
+     [
+      "e",
+      "número de Euler, cerca de 2,718"
+     ]
+    ]
+   },
+   "pista": "Escreva i^(2n − 2) como uma potência de i² e compare com o expoente dentro do ln.",
+   "passos": [
+    {
+     "faz": "Simplifique o fator com i",
+     "conta": "i^(2n − 2) = (i²)^(n − 1) → (−1)^(n − 1)",
+     "porque": "Expoente par permite agrupar i²; e i² = −1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desça o expoente do ln",
+     "conta": "(−1)^(n − 1) · (−1)^(n − 1) · ln((n + 1)/(n + 2)) → ((−1)²)^(n − 1) · ln((n + 1)/(n + 2)) → ln((n + 1)/(n + 2))",
+     "porque": "ln(xᵏ) = k · ln x; o mesmo sinal aparece duas vezes e o produto é sempre 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte a soma num só ln",
+     "conta": "A = ln(2/3) + ln(3/4) + … + ln(1001/1002) → ln(2/1002) → ln(1/501)",
+     "porque": "Soma de ln é ln do produto, e no produto cada numerador cancela com o denominador anterior: sobram 2 em cima e 1002 embaixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule e elevado a −A",
+     "conta": "e^(−A) = e^(−ln(1/501)) → e^(ln 501) → 501",
+     "porque": "−ln(1/501) = ln 501, e e elevado a ln x devolve x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "e^(−A) = 501 → alternativa C",
+     "porque": "É o valor da alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — e^(−A) = 501.",
+   "checagem": "Faça o mesmo com poucos termos: até n = 2, A = ln(2/3) + ln(3/4) = ln(1/2), e e^(−A) = 2 = (2 + 2)/2. A regra é (N + 2)/2; para N = 1000 dá 1002/2 = 501. Somando os 1000 termos no computador também sai 501.",
+   "erradas": {
+    "A": "250 não confere: o produto que sobra é 2/1002, então e^(−A) = 1002/2 = 501 ≠ 250.",
+    "B": "500 não confere: o último termo é n = 1000, com denominador n + 2 = 1002; o produto telescópico deixa 1002/2 = 501.",
+    "D": "1000 não confere: e^(−A) = 1002/2 = 501; 1000 é só o número de parcelas da soma.",
+    "E": "1001 não confere: o produto telescópico deixa 2 em cima e 1002 embaixo, logo e^(−A) = 1002/2 = 501; 1001 é só o último numerador, n + 1 com n = 1000."
+   },
+   "armadilha": "Achar que o i torna A complexo ou que os sinais se alternam: os dois fatores (−1)^(n − 1) se multiplicam e dão sempre 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de e^(−A) para a soma A dada.",
+    "chave": "i^(2n − 2) = (−1)^(n − 1) cancela o expoente do ln; a soma telescópica dá A = ln(2/1002).",
+    "cuidado": "Confira o primeiro e o último fator que sobram no produto telescópico: 2 e 1002."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "produto direto",
+    "ideia": "e^(−A) é o produto de (n + 2)/(n + 1) de n = 1 a 1000, que telescopa para 1002/2 = 501."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "i^(2n − 2) = (−1)^(n − 1)",
+    "nota": "potência de i²"
+   },
+   {
+    "linha": "(−1)^(n − 1) · (−1)^(n − 1) = 1",
+    "nota": "o expoente desce do ln"
+   },
+   {
+    "linha": "A = ln(2/3) + ln(3/4) + … + ln(1001/1002)",
+    "nota": "cada termo é ln((n + 1)/(n + 2))"
+   },
+   {
+    "linha": "A = ln(2/1002) = ln(1/501)",
+    "nota": "produto telescópico"
+   },
+   {
+    "linha": "e^(−A) = 501",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  },
+  "gabarito_aprendice": {
+   "letra": "C",
+   "letra_conferente": "C",
+   "preliminar": "C",
+   "fontes_web": [
+    {
+     "url": "https://militares.estrategia.com/portal/eventos/gabaritos/gabarito-ime-correcao-ao-vivo-2/",
+     "letra": "C"
+    }
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ }
+}

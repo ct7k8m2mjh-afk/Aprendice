@@ -1,0 +1,668 @@
+{
+ "Paeb8cca5": {
+  "n": "54",
+  "conceito": "Pontos alinhados: a inclinação entre quaisquer dois deles é a mesma.",
+  "equivocos": {
+   "A": "M12.2:sinal-trocado",
+   "B": "M12.2:inclinacao-errada",
+   "C": "M12.2:inclinacao-errada",
+   "E": "M12.2:inclinacao-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Três pontos estão numa mesma reta quando a inclinação entre o 1º e o 2º é igual à inclinação entre o 2º e o 3º. O terceiro ponto tem abscissa A/2: descubra primeiro essa abscissa e só no fim volte para A.",
+    "formulas": [
+     "m = Δy/Δx",
+     "alinhados: m₁₂ = m₂₃"
+    ],
+    "simbolos": [
+     [
+      "m₁₂",
+      "inclinação entre o 1º e o 2º ponto"
+     ],
+     [
+      "A/2",
+      "a abscissa do 3º ponto, metade de A"
+     ]
+    ]
+   },
+   "pista": "Chame a abscissa do terceiro ponto de x e só converta para A no final.",
+   "passos": [
+    {
+     "faz": "Calcule a inclinação dos dois pontos conhecidos",
+     "conta": "m = (4 − 2)/(3 − (−3)) → m = 2/6 → m = 1/3",
+     "porque": "Entre (−3, 2) e (3, 4), y sobe 2 enquanto x anda 6.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha a mesma inclinação até o 3º ponto",
+     "conta": "(5 − 4)/(x − 3) = 1/3 → x − 3 = 3 → x = 6",
+     "porque": "De (3, 4) para (x, 5), y sobe 1; com inclinação 1/3, x precisa andar 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte para A",
+     "conta": "A/2 = 6 → A = 6 · 2 → A = 12",
+     "porque": "A abscissa do ponto é A/2, então A é o dobro dela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "A = 12 → alternativa D",
+     "porque": "O ponto é (6, 5).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 12",
+   "checagem": "Do 1º ao 3º ponto: (5 − 2)/(6 − (−3)) = 3/9 = 1/3, a mesma inclinação. Os três pontos estão alinhados.",
+   "erradas": {
+    "A": "−12 não confere: o ponto seria (−6, 5) e a inclinação desde (−3, 2) seria 3/(−3) = −1, não 1/3.",
+    "B": "−8 não confere: o ponto seria (−4, 5) e a inclinação desde (−3, 2) seria 3/(−1) = −3, não 1/3.",
+    "C": "8 não confere: o ponto seria (4, 5) e a inclinação desde (3, 4) seria 1/1 = 1, não 1/3.",
+    "E": "14 não confere: o ponto seria (7, 5) e a inclinação desde (3, 4) seria 1/4, não 1/3."
+   },
+   "armadilha": "Parar na abscissa 6: a pergunta é A, e a abscissa vale A/2, então A = 12.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de A que alinha (−3, 2), (3, 4) e (A/2, 5).",
+    "chave": "Inclinação 1/3; subir 1 em y exige andar 3 em x: abscissa 6 = A/2, logo A = 12.",
+    "cuidado": "A abscissa é A/2, não A: dobre no final."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "determinante",
+    "ideia": "Det das linhas (−3, 2, 1), (3, 4, 1), (x, 5, 1) igual a zero dá 2x − 12 = 0, x = 6 e A = 12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m = (4 − 2)/(3 + 3) = 2/6 = 1/3",
+    "nota": "inclinação conhecida"
+   },
+   {
+    "linha": "(5 − 4)/(x − 3) = 1/3 → x − 3 = 3",
+    "nota": "mesma inclinação; multiplicar cruzado"
+   },
+   {
+    "linha": "x = 6",
+    "nota": "o 3 passa somando"
+   },
+   {
+    "linha": "A/2 = 6 → A = 12",
+    "nota": "o 2 que divide passa multiplicando"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
+ },
+ "P98bd6c77": {
+  "n": "51",
+  "conceito": "Posição relativa de duas circunferências: comparar a distância entre centros com a soma e a diferença dos raios.",
+  "equivocos": {
+   "A": "M12.4:centros-nao-conferidos",
+   "B": "M12.4:comparou-so-com-a-soma",
+   "D": "M12.4:raio-errado-ao-completar-quadrado",
+   "E": "M12.4:comparou-so-com-a-diferenca"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ache centro e raio das duas e a distância d entre os centros. Se |r1 − r2| < d < r1 + r2, elas se cortam em dois pontos (secantes).",
+    "formulas": [
+     "d > r1 + r2: exteriores; d = r1 + r2: tangentes exteriores",
+     "|r1 − r2| < d < r1 + r2: secantes; d = |r1 − r2|: tangentes interiores"
+    ],
+    "simbolos": [
+     [
+      "d",
+      "distância entre os centros"
+     ],
+     [
+      "r1, r2",
+      "raios"
+     ]
+    ]
+   },
+   "pista": "Complete o quadrado em x na segunda equação para achar o centro e o raio dela.",
+   "passos": [
+    {
+     "faz": "Leia a primeira",
+     "conta": "x² + y² = 1 → centro (0, 0) | r1 = 1",
+     "porque": "Forma reduzida com centro na origem.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Complete o quadrado na segunda",
+     "conta": "x² − 8x + y² = −6 → (x − 4)² + y² = −6 + 16 = 10",
+     "porque": "Somando 16 dos dois lados: centro (4, 0) e r2 = √10 ≈ 3,16.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare d com os raios",
+     "conta": "d = 4 | r1 + r2 = 1 + √10 ≈ 4,16 | r2 − r1 = √10 − 1 ≈ 2,16",
+     "porque": "Os centros ficam no eixo x, a 4 unidades. 2,16 < 4 < 4,16.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "|r1 − r2| < d < r1 + r2 → secantes → alternativa C",
+     "porque": "Essa faixa é exatamente a das circunferências que se cortam em dois pontos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — secantes",
+   "checagem": "Subtraia as equações: x² + y² − (x² − 8x + y²) = 1 − (−6) → 8x = 7 → x = 7/8; então y² = 1 − 49/64 = 15/64 > 0, dois valores de y: dois pontos comuns.",
+   "erradas": {
+    "A": "Concêntricas não confere: os centros são (0, 0) e (4, 0), diferentes.",
+    "B": "Exteriores não confere: exigiria d > r1 + r2, mas 4 < 1 + √10 ≈ 4,16.",
+    "D": "Tangentes exteriormente não confere: exigiria d = r1 + r2 ≈ 4,16, e d = 4.",
+    "E": "Tangentes interiormente não confere: exigiria d = r2 − r1 ≈ 2,16, e d = 4."
+   },
+   "armadilha": "O −6 do lado direito não é o raio: só depois de somar 16 aparece r² = 10.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A posição relativa das circunferências x² + y² = 1 e x² − 8x + y² = −6.",
+    "chave": "Centros a 4 de distância; raios 1 e √10; √10 − 1 < 4 < √10 + 1.",
+    "cuidado": "Compare d com a soma e com a diferença dos raios, não com um só."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sistema",
+    "ideia": "Subtrair as equações dá x = 7/8 e y² = 15/64 > 0: dois pontos de interseção."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x − 4)² + y² = −6 + 16 = 10",
+    "nota": "centro (4, 0), r2 = √10"
+   },
+   {
+    "linha": "d = 4, r1 + r2 ≈ 4,16, r2 − r1 ≈ 2,16",
+    "nota": "comparar com os raios"
+   },
+   {
+    "linha": "2,16 < 4 < 4,16 → secantes",
+    "nota": "dois pontos comuns"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
+ },
+ "Pc8bf8e5a": {
+  "n": "52",
+  "conceito": "Achar os parâmetros de uma elipse substituindo na equação os pontos por onde ela passa.",
+  "equivocos": {
+   "B": "M12.4:nao-testou-o-ponto-na-equacao",
+   "C": "M12.4:nao-testou-o-ponto-na-equacao",
+   "D": "M12.4:nao-testou-o-ponto-na-equacao",
+   "E": "M12.4:somou-eixos-em-vez-de-semieixos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ponto que está na curva satisfaz a equação. Comece pelo ponto que tem y = 0: ele zera um termo e entrega a² sozinho. Depois o outro ponto dá b². Aqui os dois saem iguais, então a curva é, na verdade, uma circunferência de raio 2√2.",
+    "formulas": [
+     "x²/a² + y²/b² = 1",
+     "ponto (x0, y0) na curva → x0²/a² + y0²/b² = 1"
+    ],
+    "simbolos": [
+     [
+      "a, b",
+      "semieixos da elipse (positivos)"
+     ],
+     [
+      "√",
+      "raiz quadrada"
+     ]
+    ]
+   },
+   "pista": "Substitua primeiro o ponto que tem uma coordenada zero.",
+   "passos": [
+    {
+     "faz": "Substitua o ponto (2√2, 0)",
+     "conta": "(2√2)²/a² + 0/b² = 1 → 8/a² = 1 → a² = 8 → a = 2√2",
+     "porque": "Com y = 0, o termo de b some. O a² que divide passa multiplicando; como a > 0, a = √8 = 2√2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua o ponto (2, 2)",
+     "conta": "4/8 + 4/b² = 1 → 4/b² = 1 − 1/2 = 1/2",
+     "porque": "Já se sabe a² = 8; o 4/8 = 1/2 passa para o outro lado subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole b",
+     "conta": "4/b² = 1/2 → b² = 8 → b = 2√2",
+     "porque": "Multiplicando em cruz: b² = 4 · 2 = 8. Como b > 0, b = 2√2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a e b",
+     "conta": "a + b = 2√2 + 2√2 = 4√2 → alternativa A",
+     "porque": "É o que a questão pede: a soma dos semieixos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — a + b = 4√2.",
+   "checagem": "Com a² = b² = 8, a equação vira x² + y² = 8, circunferência de raio 2√2. Os dois pontos estão a essa distância da origem: √(4 + 4) = √8 e √(8 + 0) = √8.",
+   "erradas": {
+    "B": "5√2 não confere: como a = 2√2 é obrigatório, sobraria b = 3√2, b² = 18, e o ponto (2, 2) daria 4/8 + 4/18 ≈ 0,72, não 1.",
+    "C": "6√2 não confere: daria b = 4√2, b² = 32, e (2, 2) daria 4/8 + 4/32 = 0,625, não 1.",
+    "D": "7√2 não confere: daria b = 5√2, b² = 50, e (2, 2) daria 4/8 + 4/50 = 0,58, não 1.",
+    "E": "8√2 sai de somar os eixos inteiros, 2a + 2b = 4√2 + 4√2, em vez dos semieixos a + b."
+   },
+   "armadilha": "A pergunta é a + b, os semieixos, e não a soma dos eixos 2a + 2b.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma a + b da elipse que passa por (2, 2) e (2√2, 0).",
+    "chave": "O ponto com y = 0 dá a² = 8; o outro dá b² = 8.",
+    "cuidado": "Substitua primeiro o ponto que zera um termo e some semieixos, não eixos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "distância à origem",
+    "ideia": "Os dois pontos estão a √8 da origem: se a curva for a circunferência x² + y² = 8, a = b = 2√2 e a + b = 4√2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "8/a² = 1 → a² = 8",
+    "nota": "ponto (2√2, 0)"
+   },
+   {
+    "linha": "a = 2√2",
+    "nota": "a > 0"
+   },
+   {
+    "linha": "4/8 + 4/b² = 1 → 4/b² = 1/2",
+    "nota": "ponto (2, 2)"
+   },
+   {
+    "linha": "b² = 8 → b = 2√2",
+    "nota": "multiplicação cruzada"
+   },
+   {
+    "linha": "a + b = 4√2",
+    "nota": "soma pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ },
+ "Pb619616a": {
+  "n": "53",
+  "conceito": "Mediana e média de uma distribuição de frequências: posição central pela frequência acumulada e média ponderada.",
+  "equivocos": {
+   "A": "M14.1:mediana-sem-frequencia-acumulada",
+   "C": "M14.1:mediana-sem-frequencia-acumulada",
+   "D": "M14.1:media-sem-ponderar-pelas-frequencias",
+   "E": "M14.1:mediana-sem-frequencia-acumulada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na tabela de frequências, cada valor aparece fi vezes: são 44 dados ao todo. A mediana é o valor que fica no meio da lista ordenada; com 44 dados, é a média do 22.º com o 23.º, achados pela frequência acumulada. A média é ponderada pelas frequências.",
+    "formulas": [
+     "n = soma das frequências",
+     "média = (soma de Xi × fi)/n",
+     "mediana com n par: média do termo n/2 com o termo n/2 + 1"
+    ],
+    "simbolos": [
+     [
+      "Xi",
+      "cada valor da tabela"
+     ],
+     [
+      "fi",
+      "quantas vezes o valor aparece"
+     ],
+     [
+      "frequência acumulada",
+      "quantos dados há até aquele valor, somando as frequências"
+     ]
+    ]
+   },
+   "pista": "Some as frequências antes de tudo: o total diz qual posição é a do meio.",
+   "passos": [
+    {
+     "faz": "Conte os dados",
+     "conta": "n = 6 + 15 + 19 + 4 → n = 44",
+     "porque": "Com 44 dados, os termos centrais são o 22.º e o 23.º.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a mediana pela acumulada",
+     "conta": "acumulada: 6 | 21 | 40 | 44 → 22.º e 23.º = 15 → mediana 15",
+     "porque": "Até o 11 há 21 dados; do 22.º ao 40.º todos valem 15, então os dois centrais são 15.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some valor × frequência",
+     "conta": "7·6 + 11·15 + 15·19 + 19·4 = 42 + 165 + 285 + 76 → 568",
+     "porque": "Cada valor conta tantas vezes quanto a sua frequência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo número de dados",
+     "conta": "568/44 ≈ 12,91",
+     "porque": "A média é (soma)/44 = 568/44: o denominador são os 44 dados, não os 4 valores da tabela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "mediana 15 | média ≈ 12,91 → alternativa B",
+     "porque": "A ordem pedida é mediana e depois média.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — mediana 15 e média aproximada 12,91",
+   "checagem": "Reconstrua o total: 44 × 12,91 ≈ 568,0, que bate com 42 + 165 + 285 + 76. E a média abaixo da mediana é coerente: 21 dados (7 e 11) puxam para baixo, contra só 4 dados de 19.",
+   "erradas": {
+    "A": "A não confere: a mediana é 15, não 14; e 44 × 13,76 = 605,44, longe do total 568.",
+    "C": "C não confere: a mediana é 15, e 44 × 14,80 = 651,2, não 568.",
+    "D": "D acerta a mediana 15, mas 44 × 14,85 = 653,4 não é o total 568; a média é 12,91.",
+    "E": "E não confere: o 22.º e o 23.º dados valem 15, então a mediana é 15, não 16; e 44 × 14,90 = 655,6, não 568."
+   },
+   "armadilha": "A mediana se acha pela posição na lista de 44 dados, e a média divide por 44, não por 4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A mediana e a média da distribuição de frequências.",
+    "chave": "44 dados: o 22.º e o 23.º valem 15; média = 568/44 ≈ 12,91.",
+    "cuidado": "Use a frequência acumulada para a mediana e pondere a média pelas frequências."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem pelo meio",
+    "ideia": "Os 21 primeiros dados valem 7 ou 11; os 19 seguintes, 15: o meio (22.º e 23.º) cai no 15."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "n = 6 + 15 + 19 + 4 = 44",
+    "nota": "total de dados"
+   },
+   {
+    "linha": "acumulada 6, 21, 40, 44 → mediana 15",
+    "nota": "22.º e 23.º termos"
+   },
+   {
+    "linha": "42 + 165 + 285 + 76 = 568",
+    "nota": "soma ponderada"
+   },
+   {
+    "linha": "568/44 ≈ 12,91",
+    "nota": "média: alternativa B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P6d8409ed": {
+  "n": "49",
+  "conceito": "Achar coeficientes de um polinômio divisível por (x − 2)(x − 3) usando que 2 e 3 são raízes.",
+  "equivocos": {
+   "B": "M16.1:par-sem-testar-nas-raizes",
+   "C": "M16.1:par-sem-testar-nas-raizes",
+   "D": "M16.1:par-sem-testar-nas-raizes",
+   "E": "M16.1:par-sem-testar-nas-raizes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Divisível por (x − 2)(x − 3) quer dizer que 2 e 3 são raízes: P(2) = 0 e P(3) = 0. Isso dá duas equações com α e β. Subtraindo uma da outra, o β some e o α sai direto.",
+    "formulas": [
+     "P divisível por (x − a) ⟺ P(a) = 0",
+     "subtrair equações elimina a incógnita de mesmo coeficiente"
+    ],
+    "simbolos": [
+     [
+      "α, β",
+      "coeficientes desconhecidos de P(x)"
+     ],
+     [
+      "P(2), P(3)",
+      "valores de P em x = 2 e x = 3"
+     ]
+    ]
+   },
+   "pista": "Substitua x = 2 e x = 3 em P(x) e iguale cada resultado a zero.",
+   "passos": [
+    {
+     "faz": "Use x = 2 como raiz",
+     "conta": "−3 · 8 + α · 4 + β = 0 → 4α + β = 24",
+     "porque": "P(2) = 0 porque (x − 2) divide P. O −24 passa para o outro lado somando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use x = 3 como raiz",
+     "conta": "−3 · 27 + α · 9 + β = 0 → 9α + β = 81",
+     "porque": "P(3) = 0 porque (x − 3) divide P. O −81 passa somando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia para eliminar β",
+     "conta": "(9α + β) − (4α + β) = 81 − 24 → 5α = 57 → α = 57/5",
+     "porque": "O β das duas se cancela. O 5 que multiplica α passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache β",
+     "conta": "β = 24 − 4 · 57/5 → β = (120 − 228)/5 → β = −108/5",
+     "porque": "Da 1ª equação, β = 24 − 4α. 24 vira 120/5 para subtrair frações de mesmo denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o par à alternativa",
+     "conta": "α = 57/5 e β = −108/5 → alternativa A",
+     "porque": "A ordem pedida é α e depois β.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — α = 57/5 e β = −108/5",
+   "checagem": "Confira em x = 3: −81 + 9 · 57/5 − 108/5 = (−405 + 513 − 108)/5 = 0/5 = 0. Fecha, e em x = 2 também: (−120 + 228 − 108)/5 = 0.",
+   "erradas": {
+    "B": "B não confere: com α = 66/5 e β = −110/5, P(2) = −24 + 264/5 − 22 = 34/5, e não 0.",
+    "C": "C não confere: com α = 78/7 e β = −112/7, P(2) = −24 + 312/7 − 16 = 32/7, e não 0.",
+    "D": "D não confere: com α = 85/8 e β = −116/7, P(2) = −24 + 85/2 − 116/7 = 27/14, e não 0.",
+    "E": "E não confere: com α = 92/9 e β = −118/9, P(2) = −24 + 368/9 − 118/9 = 34/9, e não 0."
+   },
+   "armadilha": "Divisível pelo produto quer dizer que 2 e 3 zeram P ao mesmo tempo: uma equação só não basta para duas incógnitas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os valores de α e β para P(x) ser divisível por (x − 2)(x − 3).",
+    "chave": "P(2) = 0 e P(3) = 0 dão 4α + β = 24 e 9α + β = 81, logo α = 57/5 e β = −108/5.",
+    "cuidado": "Calcule 2³ = 8 e 3³ = 27 com o −3 na frente: −24 e −81."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "divisão pelo produto",
+    "ideia": "P(x) = (x² − 5x + 6)(−3x + c); o termo em x, −5c − 18, tem de ser 0, logo c = −18/5, α = c + 15 = 57/5 e β = 6c = −108/5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4α + β = 24",
+    "nota": "P(2) = 0"
+   },
+   {
+    "linha": "9α + β = 81",
+    "nota": "P(3) = 0"
+   },
+   {
+    "linha": "5α = 57 → α = 57/5",
+    "nota": "subtrair: β some"
+   },
+   {
+    "linha": "β = 24 − 228/5 = −108/5",
+    "nota": "voltar na 1ª"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P491d83e0": {
+  "n": "50",
+  "conceito": "Simplificar um quociente de complexos e escrever o resultado na forma trigonométrica.",
+  "equivocos": {
+   "A": "M16.2:sinal-do-cosseno-trocado",
+   "B": "M16.2:inverteu-a-fracao",
+   "C": "M16.2:usou-o-conjugado",
+   "D": "M16.2:modulo-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Simplifique z antes de pensar em ângulo. O quadrado (1 − i)² dá um número imaginário puro, e a divisão por 1 + i se faz multiplicando em cima e embaixo pelo conjugado 1 − i. Com z = a + bi em mãos, o módulo é √(a² + b²) e o argumento é o ângulo do ponto (a, b). A forma trigonométrica correta tem sempre o módulo positivo e + i sen.",
+    "formulas": [
+     "(a − b)² = a² − 2ab + b², com i² = −1",
+     "dividir por 1 + i: multiplicar em cima e embaixo por 1 − i",
+     "z = |z| · (cos θ + i sen θ)"
+    ],
+    "simbolos": [
+     [
+      "i",
+      "unidade imaginária, com i² = −1"
+     ],
+     [
+      "|z|",
+      "módulo de z: distância do ponto à origem"
+     ],
+     [
+      "θ",
+      "argumento: ângulo do ponto z medido a partir do eixo real positivo"
+     ],
+     [
+      "conjugado",
+      "o mesmo número com o sinal da parte imaginária trocado"
+     ]
+    ]
+   },
+   "pista": "Desenvolva o quadrado do numerador primeiro e só depois cuide da divisão.",
+   "passos": [
+    {
+     "faz": "Desenvolva o numerador",
+     "conta": "(1 − i)² = 1 − 2i + i² → −2i",
+     "porque": "i² = −1 cancela o 1, e sobra só a parte imaginária.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida multiplicando pelo conjugado",
+     "conta": "(−2i)/(1 + i) → ((−2i)(1 − i))/((1 + i)(1 − i)) → (−2i − 2)/2 → −1 − i",
+     "porque": "(1 + i)(1 − i) = 1 − i² = 2 deixa o denominador real; em cima, −2i · (−i) = 2i² = −2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o módulo e o argumento",
+     "conta": "|z| = √((−1)² + (−1)²) = √2 | ponto (−1, −1) no 3º quadrante → θ = 5π/4",
+     "porque": "O ponto está 45° abaixo do eixo real negativo: π + π/4 = 5π/4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a forma trigonométrica",
+     "conta": "z = √2 · (cos 5π/4 + i sen 5π/4) → alternativa E",
+     "porque": "Módulo √2 na frente e o mesmo ângulo no cosseno e no seno, com + i sen.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — z = √2 · (cos 5π/4 + i sen 5π/4)",
+   "checagem": "Volte da alternativa E para a forma algébrica: cos 5π/4 = sen 5π/4 = −√2/2, então √2 · (−√2/2 − (√2/2)i) = −1 − i. Multiplicando por 1 + i: (−1 − i)(1 + i) = −1 − 2i − i² = −2i, que é (1 − i)². Fecha.",
+   "erradas": {
+    "A": "não confere: √2 · (−cos 5π/4 + i sen 5π/4) = √2 · (√2/2 − (√2/2)i) = 1 − i, ponto do 4º quadrante; z = −1 − i está no 3º.",
+    "B": "sai de inverter a fração: (1 + i)/(1 − i)² = (1 + i)/(−2i) = (−1 + i)/2, que é exatamente (1/√2) · (cos 5π/4 − i sen 5π/4).",
+    "C": "não confere: √2 · (cos 5π/4 − i sen 5π/4) = −1 + i, o conjugado de z; o sinal da parte imaginária está trocado.",
+    "D": "não confere: (1/√2) · (cos 5π/4 + i sen 5π/4) = (−1 − i)/2, a metade de z; o módulo certo é |1 − i|²/|1 + i| = 2/√2 = √2."
+   },
+   "armadilha": "As alternativas brincam com o sinal: na forma trigonométrica o sinal de dentro é sempre + i sen, e o quadrante de −1 − i já está no ângulo 5π/4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A forma trigonométrica de z = ((1 − i)²)/(1 + i).",
+    "chave": "(1 − i)² = −2i e dividir por 1 + i dá z = −1 − i, com módulo √2 e argumento 5π/4.",
+    "cuidado": "Não inverta a fração e mantenha + i sen: o sinal do quadrante fica no ângulo, não na fórmula."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "módulos e argumentos",
+    "ideia": "|z| = |1 − i|²/|1 + i| = 2/√2 = √2 e arg z = 2 · (−π/4) − π/4 = −3π/4, que é o mesmo ângulo que 5π/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(1 − i)² = 1 − 2i + i² = −2i",
+    "nota": "i² = −1"
+   },
+   {
+    "linha": "z = ((−2i)(1 − i))/((1 + i)(1 − i))",
+    "nota": "multiplicar pelo conjugado"
+   },
+   {
+    "linha": "z = (−2 − 2i)/2 = −1 − i",
+    "nota": "denominador real igual a 2"
+   },
+   {
+    "linha": "|z| = √2 | θ = 5π/4",
+    "nota": "3º quadrante"
+   },
+   {
+    "linha": "z = √2 · (cos 5π/4 + i sen 5π/4)",
+    "nota": "alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0081"
+  }
+ }
+}

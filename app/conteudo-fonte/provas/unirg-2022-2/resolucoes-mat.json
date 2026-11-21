@@ -1,0 +1,620 @@
+{
+ "P10d0c5cf": {
+  "n": "39",
+  "conceito": "Cálculo de logaritmos simples pela definição e pela propriedade da potência.",
+  "equivocos": {
+   "A": "M06.3:soma-nao-confere",
+   "B": "M06.3:esqueceu-expoente-do-logaritmando",
+   "C": "M06.3:log-decimal-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada dígito é um logaritmo que dá um número inteiro. Pergunte a que potência se eleva a base para chegar ao número. log sem base escrita é na base 10.",
+    "formulas": [
+     "log_b N = k ⇔ b^k = N",
+     "log_b (b^n) = n",
+     "log sem base = base 10"
+    ],
+    "simbolos": [
+     [
+      "log_b N",
+      "o expoente que leva b até N"
+     ]
+    ]
+   },
+   "pista": "Para cada dígito, pergunte: a base elevada a quanto dá o número?",
+   "passos": [
+    {
+     "faz": "1º e 2º dígitos",
+     "conta": "log₂ 8 = 3 (2^3 = 8) | log 100 = 2 (10^2 = 100)",
+     "porque": "log sem base escrita é na base 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "3º dígito",
+     "conta": "log₇ 7^4 = 4",
+     "porque": "A base 7 elevada a 4 dá 7^4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "4º dígito",
+     "conta": "log₃ 9^2 = log₃ 81 = 4 (3^4 = 81)",
+     "porque": "9^2 = 81 = 3^4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dígitos",
+     "conta": "3 + 2 + 4 + 4 = 13 → alternativa D",
+     "porque": "A pergunta é a soma dos dígitos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 13",
+   "checagem": "Pelo 4º dígito por outro caminho: log₃ 9^2 = 2 × log₃ 9 = 2 × 2 = 4, o mesmo valor.",
+   "erradas": {
+    "A": "10 sai de errar dois dígitos ao mesmo tempo: tomar log 100 = 1 e log₃ 9² = 2, o que dá 3 + 1 + 4 + 2 = 10; o certo é log 100 = 2 e log₃ 81 = 4, e a soma é 13.",
+    "B": "11 sai de esquecer o quadrado no 4º dígito: log₃ 9 = 2, e a soma fica 3 + 2 + 4 + 2 = 11.",
+    "C": "12 sai de tomar log 100 = 1: a soma fica 3 + 1 + 4 + 4 = 12; mas 10^2 = 100, então log 100 = 2."
+   },
+   "armadilha": "No 4º dígito o 9 está ao quadrado: log₃ 9^2 = 4, não 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma de quatro logaritmos que formam os dígitos de uma senha.",
+    "chave": "3 + 2 + 4 + 4 = 13.",
+    "cuidado": "log sem base é base 10, e o expoente do logaritmando conta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "propriedade da potência",
+    "ideia": "log₇ 7^4 = 4 × log₇ 7 = 4 e log₃ 9^2 = 2 × log₃ 9 = 4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "log₂ 8 = 3",
+    "nota": "2^3 = 8"
+   },
+   {
+    "linha": "log 100 = 2",
+    "nota": "10^2 = 100"
+   },
+   {
+    "linha": "log₇ 7^4 = 4",
+    "nota": "base e potência iguais"
+   },
+   {
+    "linha": "log₃ 9^2 = log₃ 81 = 4",
+    "nota": "3^4 = 81"
+   },
+   {
+    "linha": "3 + 2 + 4 + 4 = 13",
+    "nota": "soma"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "Pf1cf03de": {
+  "n": "41",
+  "conceito": "Montar uma PG com termo inicial e razão dados e contar quais números da lista sobram.",
+  "equivocos": {
+   "A": "M07.2:contagem-errada-dos-termos",
+   "B": "M07.2:contagem-errada-dos-termos",
+   "C": "M07.2:ignorou-o-termo-inicial"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A PG pedida começa em 4 e dobra a cada termo: 4, 8, 16, 32, ... Só podem ficar na lista os números que aparecem nessa PG, na ordem. O que se pede é quantos números saem, não quantos ficam.",
+    "formulas": [
+     "PG de razão 2: cada termo é o dobro do anterior",
+     "removidos = total de termos − termos que ficam"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes a razão"
+     ],
+     [
+      "razão",
+      "número que multiplica um termo para dar o seguinte"
+     ]
+    ]
+   },
+   "pista": "Escreva a PG que começa em 4 com razão 2 e procure cada termo dela na lista.",
+   "passos": [
+    {
+     "faz": "Escreva a PG pedida",
+     "conta": "4 → 8 → 16 → 32",
+     "porque": "Termo inicial 4 e razão 2: cada termo é o dobro do anterior.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Procure os termos na lista",
+     "conta": "2, 4, 6, 8, 10, 12, 14, 15, 16, 17, 18 → ficam 4, 8, 16",
+     "porque": "O 32 não está na lista, então a PG para no 16. Os outros números não pertencem a ela.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os removidos",
+     "conta": "11 − 3 = 8",
+     "porque": "A lista tem 11 números e só 3 ficam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte ao comando",
+     "conta": "8 termos removidos → alternativa D",
+     "porque": "A pergunta é quantos devem ser removidos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 8",
+   "checagem": "Liste os que saem: 2, 6, 10, 12, 14, 15, 17, 18. São 8 números, e o que sobra, 4, 8, 16, tem razão 8 ÷ 4 = 16 ÷ 8 = 2.",
+   "erradas": {
+    "A": "5 não confere: removendo 5 dos 11 números sobrariam 6, mas só 3 números da lista (4, 8, 16) estão na PG de termo inicial 4 e razão 2.",
+    "B": "6 não confere: sobrariam 5 números, e a PG precisaria de 4, 8, 16, 32, 64; 32 e 64 não estão na lista.",
+    "C": "7 sai de ignorar o termo inicial 4 e manter também o 2: ficariam 2, 4, 8, 16 e sairiam 11 − 4 = 7. Mas a PG tem de começar em 4."
+   },
+   "armadilha": "O termo inicial é 4, então o 2 também sai, mesmo formando PG de razão 2 com os outros.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos números retirar para sobrar a PG de razão 2 que começa em 4.",
+    "chave": "Ficam só 4, 8 e 16; saem 11 − 3 = 8.",
+    "cuidado": "Respeite o termo inicial 4 e responda os removidos, não os que ficam."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "riscar",
+    "ideia": "Risque da lista tudo o que não é 4, 8 ou 16 e conte os riscados: 8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4, 8, 16, 32, ...",
+    "nota": "PG de razão 2 começando em 4"
+   },
+   {
+    "linha": "na lista: 4, 8, 16",
+    "nota": "32 não aparece"
+   },
+   {
+    "linha": "11 − 3 = 8",
+    "nota": "removidos"
+   },
+   {
+    "linha": "8 → D",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
+ },
+ "Pb7d4137e": {
+  "n": "38",
+  "conceito": "Volume do balde cilíndrico em litros e o número mínimo de baldes para passar de 60 L.",
+  "equivocos": {
+   "A": "M11.2:baldes-insuficientes",
+   "C": "M11.2:passou-da-capacidade",
+   "D": "M11.2:passou-da-capacidade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Calcule o volume de um balde em cm³ e passe para litros (1 L = 1 000 cm³). Depois procure o menor número de baldes que ultrapassa 60 L. Como o resultado da divisão não é inteiro, arredonde para cima.",
+    "formulas": [
+     "V = π · r² · h",
+     "1 L = 1 000 cm³"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "raio do balde, 10 cm na figura"
+     ],
+     [
+      "h",
+      "altura do balde, 30 cm"
+     ],
+     [
+      "π",
+      "use 3, como manda a prova"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra quantos litros cabem em um balde.",
+   "passos": [
+    {
+     "faz": "Leia os dados da figura",
+     "conta": "r = 10 cm | h = 30 cm",
+     "porque": "A figura marca 10 cm do centro até a borda (raio) e 30 cm de altura.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o volume do balde",
+     "conta": "V = 3 · 10² · 30 → V = 3 · 100 · 30 → V = 9 000 cm³",
+     "porque": "Área da base vezes a altura, com π = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta para litros",
+     "conta": "9000/1000 → 9 L",
+     "porque": "Cada litro tem 1 000 cm³.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida o mínimo pelo balde",
+     "conta": "60/9 → 6,67 → 7 baldes",
+     "porque": "6 baldes dão 54 L, abaixo de 60; com 7 são 63 L, acima do mínimo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "7 baldes → alternativa B",
+     "porque": "63 L passa do mínimo de 60 L e não excede os 80 L.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 7 baldes",
+   "checagem": "Confira a faixa: 7 · 9 = 63 L, entre 60 e 80 L; com 6 baldes seriam 54 L, menos que o mínimo.",
+   "erradas": {
+    "A": "5 baldes não confere: 5 · 9 = 45 L, abaixo do mínimo de 60 L.",
+    "C": "10 baldes não confere: 10 · 9 = 90 L, além dos 80 L que a máquina comporta.",
+    "D": "15 baldes não confere: 15 · 9 = 135 L, muito além dos 80 L da máquina."
+   },
+   "armadilha": "60/9 dá 6,67; arredondar para baixo (6 baldes = 54 L) não chega ao mínimo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor número de baldes para passar de 60 L.",
+    "chave": "Balde: 3 · 100 · 30 = 9 000 cm³ = 9 L; 60/9 ≈ 6,67 → 7 baldes (63 L).",
+    "cuidado": "Converta cm³ em L e arredonde para cima."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tentativa",
+    "ideia": "Some de 9 em 9 litros: 54 L com 6 baldes ainda não basta, 63 L com 7 já passa de 60 L."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V = 3 · 10² · 30",
+    "nota": "fórmula do cilindro"
+   },
+   {
+    "linha": "V = 3 · 100 · 30 = 9 000 cm³",
+    "nota": "eleva o raio e multiplica"
+   },
+   {
+    "linha": "9 000 cm³ = 9 L",
+    "nota": "divide por 1 000"
+   },
+   {
+    "linha": "60/9 ≈ 6,67 → 7",
+    "nota": "arredonda para cima"
+   },
+   {
+    "linha": "7 · 9 = 63 L > 60 L",
+    "nota": "confere o mínimo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ },
+ "P498ac8d3": {
+  "n": "37",
+  "conceito": "Comparação de distâncias à origem no plano cartesiano.",
+  "equivocos": {
+   "A": "M12.1:sinal-negativo-reduz-distancia",
+   "B": "M12.1:sinal-negativo-reduz-distancia",
+   "C": "M12.1:sinal-negativo-reduz-distancia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A Universidade está na origem, então a distância de cada casa é √(x² + y²). Para comparar, não é preciso tirar a raiz: o maior x² + y² é a maior distância.",
+    "formulas": [
+     "d até a origem = √(x² + y²)"
+    ],
+    "simbolos": [
+     [
+      "U(0, 0)",
+      "a Universidade, na origem do plano"
+     ],
+     [
+      "d²",
+      "quadrado da distância, que basta para comparar"
+     ]
+    ]
+   },
+   "pista": "Compare x² + y² de cada casa; o sinal negativo some ao elevar ao quadrado.",
+   "passos": [
+    {
+     "faz": "Calcule d² de cada casa",
+     "conta": "F: 3² + 2² = 13 | L: 1² + 4² = 17 | B: 2² + (−3)² = 13 | M: (−3)² + (−4)² = 25",
+     "porque": "Com a Universidade na origem, os catetos são as próprias coordenadas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare",
+     "conta": "25 > 17 > 13 = 13 → Maria",
+     "porque": "O maior quadrado corresponde à maior distância: Maria está a √25 = 5.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "Maria, a 5 unidades → alternativa D",
+     "porque": "É quem mora mais longe da Universidade.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — Maria",
+   "checagem": "Maria está em (−3, −4), triângulo 3, 4, 5: distância exata 5. Luciana fica a √17 ≈ 4,12, menos que 5.",
+   "erradas": {
+    "A": "Fábio não confere: está a √13 ≈ 3,61, menos que os 5 de Maria.",
+    "B": "Luciana não confere: está a √17 ≈ 4,12, a segunda mais distante, mas abaixo de Maria.",
+    "C": "Bia não confere: está a √13 ≈ 3,61, a mesma distância de Fábio, menor que a de Maria."
+   },
+   "armadilha": "Tratar coordenadas negativas como distâncias menores: (−3)² = 9 e (−4)² = 16 entram positivos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quem mora mais distante da Universidade, na origem.",
+    "chave": "d² = x² + y²: 13, 17, 13 e 25; Maria, com 25, está a 5.",
+    "cuidado": "O quadrado de um número negativo é positivo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "maior coordenada",
+    "ideia": "Maria tem as maiores coordenadas em módulo nos dois eixos (3 e 4); nenhuma outra casa supera as duas ao mesmo tempo, mas é preciso conferir Luciana: 17 < 25."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "F: 9 + 4 = 13 | B: 4 + 9 = 13",
+    "nota": "Fábio e Bia"
+   },
+   {
+    "linha": "L: 1 + 16 = 17",
+    "nota": "Luciana"
+   },
+   {
+    "linha": "M: 9 + 16 = 25 → d = √25 = 5",
+    "nota": "Maria, a maior"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0064"
+  }
+ },
+ "P0e681b34": {
+  "n": "42",
+  "conceito": "Contar sequências com elementos repetidos (permutação com repetição) numa situação de placar.",
+  "equivocos": {
+   "B": "M13.2:conta-sem-origem",
+   "C": "M13.2:placar-trocado",
+   "D": "M13.2:conta-sem-origem"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os gols formam uma sequência de 6 marcações: 4 do Goiás (G) e 2 do Iporá (I). Os gols de um mesmo time não se distinguem na ordenação, então o problema é contar os anagramas de GGGGII. Equivale a escolher quais 2 das 6 posições são do Iporá.",
+    "formulas": [
+     "permutação com repetição: n!/(a! · b!)",
+     "C(n, p) = n!/(p! · (n − p)!)"
+    ],
+    "simbolos": [
+     [
+      "G, I",
+      "gol do Goiás e gol do Iporá"
+     ],
+     [
+      "C(n, p)",
+      "combinação: número de modos de escolher p posições entre n, sem ordem"
+     ]
+    ]
+   },
+   "pista": "Escreva a partida como uma palavra de 6 letras com G e I.",
+   "passos": [
+    {
+     "faz": "Traduza o placar em sequência",
+     "conta": "4 a 2 → GGGGII → 6 gols",
+     "porque": "Cada ordenação dos gols é uma arrumação diferente dessas 6 letras.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Permute com repetição",
+     "conta": "6!/(4! · 2!) → 720/(24 · 2) → 720/48 → 15",
+     "porque": "Os 4 G são iguais entre si e os 2 I também: divide-se pelas trocas internas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "15 ordenações → alternativa A",
+     "porque": "A pergunta é o total de ordens possíveis dos gols.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 15 ordenações",
+   "checagem": "Pelas posições do Iporá: escolher 2 das 6 posições dá C(6, 2) = (6 × 5)/2 = 15; dá para listar começando por (1º, 2º), (1º, 3º)... e chegar a 15 pares.",
+   "erradas": {
+    "B": "18 não confere: o número de modos de escolher as posições dos gols do Iporá é C(6, 2) = 15, e nenhum C(6, p) vale 18 (os valores são 1, 6, 15 e 20).",
+    "C": "20 não confere: 20 = C(6, 3) seria a contagem para um placar de 3 a 3; com 4 a 2 é C(6, 2) = 15.",
+    "D": "26 não confere: nenhuma escolha de posições entre 6 vale 26; o total é 6!/(4! · 2!) = 15."
+   },
+   "armadilha": "Tratar os gols de um mesmo time como distintos: as trocas entre gols do mesmo time não mudam a ordenação.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas ordens possíveis têm os 6 gols de um 4 a 2.",
+    "chave": "Anagramas de GGGGII: 6!/(4! · 2!) = 15.",
+    "cuidado": "Divida pelas repetições: os gols do mesmo time são iguais na contagem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "combinação",
+    "ideia": "Escolha as 2 posições dos gols do Iporá entre 6: C(6, 2) = 15."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "GGGGII",
+    "nota": "placar 4 a 2 em sequência"
+   },
+   {
+    "linha": "6!/(4! · 2!) = 720/48",
+    "nota": "permutação com repetição"
+   },
+   {
+    "linha": "720/48 = 15",
+    "nota": "dividir"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
+ },
+ "P23293a81": {
+  "n": "40",
+  "conceito": "Lei de formação de matriz: calcular elementos pela regra de i e j em cada caso.",
+  "equivocos": {
+   "B": "M15.1:regra-errada-na-diagonal",
+   "C": "M15.1:trocou-i-e-j",
+   "D": "M15.1:ordem-dos-elementos-trocada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em a_ij, i é a linha e j é a coluna. A regra muda conforme o elemento está na diagonal (i = j) ou fora dela (i ≠ j). A senha pede três elementos numa ordem fixa: a12, a22 e a21.",
+    "formulas": [
+     "a_ij = i + 2j, se i = j",
+     "a_ij = 3i − j, se i ≠ j"
+    ],
+    "simbolos": [
+     [
+      "a_ij",
+      "elemento da linha i e da coluna j"
+     ],
+     [
+      "i = j",
+      "elemento da diagonal principal"
+     ]
+    ]
+   },
+   "pista": "Para cada elemento, decida primeiro se i é igual a j; só depois escolha a fórmula.",
+   "passos": [
+    {
+     "faz": "Calcule a12",
+     "conta": "i = 1, j = 2 (i ≠ j) → 3·1 − 2 = 1",
+     "porque": "Linha 1, coluna 2: fora da diagonal, vale a regra 3i − j.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a22",
+     "conta": "i = 2, j = 2 (i = j) → 2 + 2·2 = 6",
+     "porque": "Linha 2, coluna 2: na diagonal, vale i + 2j.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a21",
+     "conta": "i = 2, j = 1 (i ≠ j) → 3·2 − 1 = 5",
+     "porque": "Linha 2, coluna 1: fora da diagonal de novo, 3i − j.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte na ordem pedida",
+     "conta": "a12 a22 a21 → 1 6 5 → senha 165 → alternativa A",
+     "porque": "A senha segue a ordem a12, a22, a21.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 165",
+   "checagem": "Monte a matriz inteira: a11 = 1 + 2 = 3, a12 = 1, a21 = 5, a22 = 6, ou seja, A = (3  1 / 5  6). Lendo a12, a22, a21 nela: 1, 6, 5.",
+   "erradas": {
+    "B": "B não confere: põe 8 no lugar de a22, mas a22 está na diagonal e vale 2 + 2·2 = 6.",
+    "C": "C não confere: põe 8 como último dígito, mas a21 = 3·2 − 1 = 5.",
+    "D": "D sai de ler os elementos na ordem a22, a21, a12 (6, 5, 1); a senha pedida é a12, a22, a21."
+   },
+   "armadilha": "Trocar i e j ou a ordem dos elementos: a12 é linha 1 e coluna 2, e a senha é a12, a22, a21, nessa ordem.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A senha formada por a12, a22 e a21.",
+    "chave": "a12 = 3·1 − 2 = 1, a22 = 2 + 4 = 6, a21 = 6 − 1 = 5: 165.",
+    "cuidado": "Escolha a fórmula pelo caso i = j ou i ≠ j, e respeite a ordem pedida."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "matriz inteira",
+    "ideia": "Escreva A = (3  1 / 5  6) e leia as posições pedidas: 1, 6, 5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a12 = 3·1 − 2 = 1",
+    "nota": "i ≠ j: 3i − j"
+   },
+   {
+    "linha": "a22 = 2 + 2·2 = 6",
+    "nota": "i = j: i + 2j"
+   },
+   {
+    "linha": "a21 = 3·2 − 1 = 5",
+    "nota": "i ≠ j: 3i − j"
+   },
+   {
+    "linha": "senha: 1 6 5",
+    "nota": "ordem a12, a22, a21"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
+ }
+}

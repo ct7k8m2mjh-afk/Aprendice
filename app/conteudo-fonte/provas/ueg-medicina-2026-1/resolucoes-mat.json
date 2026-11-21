@@ -1,0 +1,586 @@
+{
+ "Pce33706d": {
+  "n": "19",
+  "conceito": "Somar duas PAs com a mesma quantidade de termos e simplificar a razão entre as somas.",
+  "equivocos": {
+   "A": "M07.3:nao-calculou-as-somas",
+   "B": "M07.3:contou-termos-errado",
+   "D": "M07.3:contou-termos-errado",
+   "E": "M07.3:contou-termos-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Soma de PA é número de termos vezes a média do primeiro com o último. As duas somas têm x − 1 termos: no numerador de 1 a x − 1, no denominador de x + 1 a 2x − 1. Como o número de termos é o mesmo, ele se cancela e a razão fica só entre as médias.",
+    "formulas": [
+     "soma da PA = (primeiro + último) × (número de termos)/2",
+     "número de termos de a até b, de 1 em 1 = b − a + 1"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "número natural da expressão; x ≥ 2 para o numerador ter termos"
+     ],
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais um valor fixo"
+     ]
+    ]
+   },
+   "pista": "Conte quantos termos tem cada soma antes de usar qualquer fórmula.",
+   "passos": [
+    {
+     "faz": "Conte os termos de cada soma",
+     "conta": "numerador: (x − 1) − 1 + 1 = x − 1 | denominador: (2x − 1) − (x + 1) + 1 = x − 1",
+     "porque": "As duas somas vão de 1 em 1. Contar os termos primeiro mostra que eles são iguais, o que vai simplificar tudo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some o numerador",
+     "conta": "1 + 2 + … + (x − 1) = ((1 + x − 1)(x − 1))/2 = (x(x − 1))/2",
+     "porque": "Primeiro mais último dá x; vezes x − 1 termos; dividido por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some o denominador",
+     "conta": "(x + 1) + … + (2x − 1) = ((x + 1 + 2x − 1)(x − 1))/2 = (3x(x − 1))/2",
+     "porque": "Primeiro mais último dá 3x; o número de termos é o mesmo x − 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e cancele",
+     "conta": "((x(x − 1))/2)/((3x(x − 1))/2) = x/(3x) = 1/3",
+     "porque": "O fator (x − 1)/2 aparece em cima e embaixo e se cancela; sobra x/(3x), e o x também cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "1/3 → C",
+     "porque": "A razão não depende de x: vale 1/3 para qualquer x ≥ 2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1/3",
+   "checagem": "Teste com x = 3: numerador 1 + 2 = 3, denominador 4 + 5 = 9, e 3/9 = 1/3. Com x = 5: 1 + 2 + 3 + 4 = 10 e 6 + 7 + 8 + 9 = 30, de novo 1/3.",
+   "erradas": {
+    "A": "1 não confere: com x = 3, a expressão vale (1 + 2)/(4 + 5) = 3/9 = 1/3, e não 1.",
+    "B": "1/2 não confere: com x = 2, a expressão vale 1/3, e não 1/2.",
+    "D": "1/4 não confere: com x = 5, a expressão vale 10/30 = 1/3, e não 1/4.",
+    "E": "1/5 não confere: com x = 3, a expressão vale 3/9 = 1/3, e não 1/5."
+   },
+   "armadilha": "As duas somas têm o mesmo número de termos, x − 1; quem conta x termos no denominador não consegue cancelar.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor da razão entre a soma de 1 a x − 1 e a soma de x + 1 a 2x − 1.",
+    "chave": "Mesma quantidade de termos nas duas: a razão é a das médias, x/2 contra 3x/2, ou seja 1/3.",
+    "cuidado": "Conte os termos com cuidado (último − primeiro + 1) antes de aplicar a fórmula."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "Como a resposta não depende de x, basta x = 2: 1/(3) = 1/3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 + … + (x − 1) = (x(x − 1))/2",
+    "nota": "x − 1 termos, média x/2"
+   },
+   {
+    "linha": "(x + 1) + … + (2x − 1) = (3x(x − 1))/2",
+    "nota": "x − 1 termos, média 3x/2"
+   },
+   {
+    "linha": "((x(x − 1))/2)/((3x(x − 1))/2)",
+    "nota": "monta a razão"
+   },
+   {
+    "linha": "= x/(3x) = 1/3",
+    "nota": "cancela (x − 1)/2 e depois x"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0060"
+  }
+ },
+ "P41465d9b": {
+  "n": "23",
+  "conceito": "Achar a probabilidade de infecção por pelo menos um vírus pelo complementar e substituí-la, com t = 1, no modelo dado.",
+  "equivocos": {
+   "A": "M06.1:expoente-negativo-lido-como-subtracao",
+   "B": "M06.1:usou-t-zero",
+   "D": "M13.6:valor-sem-teste-de-limite",
+   "E": "M13.6:valor-sem-teste-de-limite"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Pelo menos um dos vírus\" é o contrário de \"nenhum dos vírus\", e o enunciado já dá quantos não foram infectados. Assim β sai direto, sem precisar da intersecção. Depois é só substituir β e t = 1 (primeiro semestre) na fórmula.",
+    "formulas": [
+     "β = 1 − P(nenhum vírus)",
+     "P(t) = 100/(3⁻ᵗ + 2/β)",
+     "3⁻¹ = 1/3"
+    ],
+    "simbolos": [
+     [
+      "β",
+      "probabilidade de uma pessoa do grupo ter tido pelo menos um dos vírus"
+     ],
+     [
+      "t",
+      "número do semestre; o primeiro é t = 1"
+     ],
+     [
+      "3⁻ᵗ",
+      "potência de expoente negativo: 3⁻¹ = 1/3"
+     ]
+    ]
+   },
+   "pista": "Para achar β, olhe primeiro quem não teve vírus nenhum.",
+   "passos": [
+    {
+     "faz": "Ache β pelo complementar",
+     "conta": "30 − 10 = 20 infectados → β = 20/30 = 2/3",
+     "porque": "Quem não está entre os 10 sem vírus teve pelo menos um. Não é 15 + 20, porque há pessoas com os dois vírus.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule 2/β",
+     "conta": "2/β = 2 ÷ 2/3 = 2 · 3/2 = 3",
+     "porque": "Dividir por uma fração é multiplicar pelo inverso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua t = 1 no denominador",
+     "conta": "3⁻¹ + 3 = 1/3 + 3 = 10/3",
+     "porque": "O primeiro semestre é t = 1, e 3⁻¹ = 1/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule P(1)",
+     "conta": "P(1) = 100/(10/3) = 100 · 3/10 = 30",
+     "porque": "Dividir 100 por 10/3 é multiplicar por 3/10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "P(1) = 30 → alternativa C",
+     "porque": "São 30 pessoas infectadas no primeiro semestre no novo local.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 30",
+   "checagem": "Pela intersecção: 15 + 20 − n(A ∩ B) = 20 dá n(A ∩ B) = 15, número possível (não passa de 15 nem de 20), então os 20 infectados e β = 2/3 são coerentes. E com β = 2/3 o denominador é sempre maior que 3, logo P < 100/3 ≈ 33,3; o 30 respeita isso.",
+   "erradas": {
+    "A": "20 sai de ler 3⁻ᵗ como 3 − t: 100/(3 − 1 + 3) = 100/5 = 20. O t está no expoente, com sinal negativo: 3⁻¹ = 1/3.",
+    "B": "25 sai de usar t = 0: 100/(3⁰ + 3) = 100/4 = 25. O primeiro semestre é t = 1.",
+    "D": "35 não confere: com β = 2/3 o denominador é 3⁻ᵗ + 3, sempre maior que 3, então P(t) < 100/3 ≈ 33,3 em qualquer semestre.",
+    "E": "40 não confere: com β = 2/3 o denominador 3⁻ᵗ + 3 é sempre maior que 3, então P(t) fica abaixo de 100/3 ≈ 33,3; 40 é impossível."
+   },
+   "armadilha": "β vem do complementar dos 10 sem vírus; somar 15 + 20 conta duas vezes quem teve os dois vírus.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor do modelo P(t) no primeiro semestre (t = 1).",
+    "chave": "β = 20/30 = 2/3, então 2/β = 3 e P(1) = 100/(1/3 + 3) = 30.",
+    "cuidado": "Use t = 1 (não 0) e lembre que 3⁻¹ = 1/3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "intersecção",
+    "ideia": "15 + 20 − x = 20 dá x = 15 pessoas com os dois vírus; infectados = 20, β = 2/3, e P(1) = 30."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "β = (30 − 10)/30 = 20/30 = 2/3",
+    "nota": "complementar de nenhum vírus"
+   },
+   {
+    "linha": "2/β = 2 · 3/2 = 3",
+    "nota": "dividir pela fração"
+   },
+   {
+    "linha": "3⁻¹ + 3 = 1/3 + 3 = 10/3",
+    "nota": "t = 1 no denominador"
+   },
+   {
+    "linha": "P(1) = 100/(10/3) = 100 · 3/10 = 30",
+    "nota": "inverter e multiplicar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
+ },
+ "Pb8682fd2": {
+  "n": "22",
+  "conceito": "Usar um retângulo auxiliar e a tangente de θ num triângulo retângulo para achar um segmento paralelo a um lado do terreno.",
+  "equivocos": {
+   "A": "M10.1:tangente-que-nao-fecha",
+   "C": "M10.1:tangente-que-nao-fecha",
+   "D": "M10.1:tangente-que-nao-fecha",
+   "E": "M10.1:tangente-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "DP é paralelo ao lado de 20 m e os dois são perpendiculares ao lado de cima. Trace por D a perpendicular ao lado de 20 m: ela forma com P e o canto de cima um retângulo, então mede 10 m. Sobra um triângulo retângulo pequeno com o ângulo θ, onde a razão entre os catetos é a tangente de θ.",
+    "formulas": [
+     "tg θ = sen θ/cos θ = cateto oposto/cateto adjacente",
+     "em retângulo, lados opostos são iguais"
+    ],
+    "simbolos": [
+     [
+      "θ",
+      "ângulo entre o lado de 20 m e o lado de baixo do terreno"
+     ],
+     [
+      "O",
+      "vértice do ângulo θ"
+     ],
+     [
+      "T",
+      "canto de cima do lado de 20 m"
+     ],
+     [
+      "Q",
+      "pé da perpendicular traçada de D até o lado de 20 m"
+     ]
+    ]
+   },
+   "pista": "Trace por D um segmento perpendicular ao lado de 20 m e veja que figura aparece entre esse segmento, DP e o lado de cima.",
+   "passos": [
+    {
+     "faz": "Monte o retângulo auxiliar",
+     "conta": "DQ ⊥ OT → QTPD é retângulo → DQ = TP = 10 m e DP = QT",
+     "porque": "DP e OT são paralelos e ambos perpendiculares a TP; com DQ perpendicular a OT, os quatro ângulos são retos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache OQ no triângulo OQD",
+     "conta": "tg θ = 0,9/0,4 = 9/4 → OQ = DQ/tg θ = 10 · 4/9 = 40/9 ≈ 4,44 m",
+     "porque": "No triângulo OQD, reto em Q, DQ é o cateto oposto a θ e OQ o adjacente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia do lado de 20 m",
+     "conta": "DP = QT = 20 − 40/9 → DP = 140/9 ≈ 15,56 m",
+     "porque": "Q divide OT em OQ e QT; QT é igual a DP pelo retângulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "DP ≈ 15,6 m → alternativa B",
+     "porque": "O enunciado pede o valor aproximado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — DP mede aproximadamente 15,6 m",
+   "checagem": "Por alturas: o canto T está a 20 · 0,9 = 18 m acima do lado de baixo, e descer 10 m pelo lado de cima tira 10 · 0,4 = 4 m, então P fica a 14 m de altura. Como DP faz o ângulo θ com o chão, DP = 14/0,9 ≈ 15,56 m.",
+   "erradas": {
+    "A": "14,7 m não confere: daria OQ = 20 − 14,7 = 5,3 m e tg θ = 10/5,3 ≈ 1,89, mas tg θ = 0,9/0,4 = 2,25.",
+    "C": "16,5 m não confere: daria OQ = 3,5 m e tg θ = 10/3,5 ≈ 2,86, e não 2,25.",
+    "D": "16,9 m não confere: daria OQ = 3,1 m e tg θ = 10/3,1 ≈ 3,23, e não 2,25.",
+    "E": "17,8 m não confere: daria OQ = 2,2 m e tg θ = 10/2,2 ≈ 4,55, e não 2,25."
+   },
+   "armadilha": "DP não é o lado de 20 m: ele é mais curto porque D fica à direita do vértice de θ, e a diferença sai do triângulo pequeno com cateto de 10 m.",
+   "alerta": "A prova dá sen θ = 0,9 e cos θ = 0,4, valores aproximados (0,9² + 0,4² = 0,97, não 1); por isso o enunciado pede o valor aproximado.",
+   "essencial": {
+    "pede": "A distância DP, paralela ao lado de 20 m, com TP = 10 m, sen θ = 0,9 e cos θ = 0,4.",
+    "chave": "Retângulo QTPD dá DQ = 10; no triângulo OQD, OQ = 10/tg θ = 40/9, e DP = 20 − 40/9 ≈ 15,6.",
+    "cuidado": "Ponha os 10 m no cateto oposto a θ, não no adjacente."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas",
+    "ideia": "Com O na origem, T = 20(0,4; 0,9) = (8; 18) e P = T + 10(0,9; −0,4) = (17; 14); DP = 14/0,9 ≈ 15,6 m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "DQ = TP = 10",
+    "nota": "retângulo QTPD"
+   },
+   {
+    "linha": "tg θ = 0,9/0,4 = 9/4",
+    "nota": "seno dividido por cosseno"
+   },
+   {
+    "linha": "OQ = 10 · 4/9 = 40/9 ≈ 4,44",
+    "nota": "cateto adjacente = oposto ÷ tg θ"
+   },
+   {
+    "linha": "DP = 20 − 40/9 = 140/9 ≈ 15,56",
+    "nota": "QT = DP"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "P3daf793f": {
+  "n": "21",
+  "conceito": "Arcos no mostrador de 12 posições: cada posição vale 30°, e cada giro parte da posição em que o ponteiro parou.",
+  "equivocos": {
+   "A": "M10.4:so-a-posicao-final",
+   "B": "M10.4:inverteu-o-sentido-de-giro",
+   "C": "M10.4:valor-que-nao-fecha",
+   "E": "M10.4:contagem-de-marcas-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O mostrador tem 12 marcas numa volta de 360°, então cada marca corresponde a 30°. Na figura os números crescem no sentido horário (0, 1, 2, ... no sentido dos ponteiros do relógio). Girar no sentido anti-horário, portanto, faz o número diminuir; girar no horário faz o número aumentar. Cada giro começa onde o anterior terminou, e a questão soma as três posições em que o ponteiro para.",
+    "formulas": [
+     "ângulo entre marcas vizinhas = 360° ÷ 12 = 30°",
+     "número de marcas percorridas = ângulo ÷ 30°",
+     "anti-horário: posição diminui; horário: posição aumenta (contando módulo 12)"
+    ],
+    "simbolos": [
+     [
+      "anti-horário",
+      "sentido contrário ao dos ponteiros do relógio"
+     ],
+     [
+      "módulo 12",
+      "depois do 11 vem o 0 de novo, e antes do 0 vem o 11"
+     ]
+    ]
+   },
+   "pista": "Descubra quantos graus vale o espaço entre duas marcas e observe na figura para que lado os números crescem.",
+   "passos": [
+    {
+     "faz": "Ache o valor de cada marca",
+     "conta": "360° ÷ 12 = 30° por marca",
+     "porque": "São 12 marcas igualmente espaçadas numa volta inteira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Gire +120° a partir do 0",
+     "conta": "120° ÷ 30° = 4 marcas → 0 − 4 = −4 → posição 8",
+     "porque": "Anti-horário anda contra a numeração. Quatro marcas para trás a partir do 0 passam por 11, 10, 9 e param no 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Gire −45° a partir do 8",
+     "conta": "45° ÷ 30° = 1,5 marca → 8 + 1,5 → posição 9,5",
+     "porque": "O giro horário anda a favor da numeração. Uma marca e meia leva o ponteiro ao meio do caminho entre 9 e 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Gire +75° a partir do 9,5",
+     "conta": "75° ÷ 30° = 2,5 marcas → 9,5 − 2,5 → posição 7",
+     "porque": "De novo anti-horário, contra a numeração, partindo de onde o ponteiro parou.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as três posições",
+     "conta": "8 + 9,5 + 7 = 24,5 → alternativa D",
+     "porque": "A pergunta é a soma dos valores das posições do ponteiro em cada etapa da senha.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 24,5",
+   "checagem": "Some os ângulos com sinal: +120° − 45° + 75° = +150° anti-horário no total, ou seja, 5 marcas contra a numeração: 0 − 5 = −5, posição 7. Bate com a última parada.",
+   "erradas": {
+    "A": "7 sai de responder só a posição final do ponteiro, sem somar as paradas 8 e 9,5 que vêm antes.",
+    "B": "11,5 sai de inverter os sentidos (anti-horário aumentando o número): as paradas viram 4, 2,5 e 5, e 4 + 2,5 + 5 = 11,5.",
+    "C": "15 não confere: as paradas pela senha são 8, 9,5 e 7, que somam 24,5; com os sentidos trocados, 4 + 2,5 + 5 = 11,5. Nenhuma leitura dá 15.",
+    "E": "26 não confere: pela senha as paradas são 8, 9,5 e 7 (soma 24,5); trocando os sentidos ficam 4, 2,5 e 5 (soma 11,5). Nenhuma dessas leituras chega a 26."
+   },
+   "armadilha": "Na figura os números crescem no sentido horário, então o giro anti-horário (sinal +) faz a posição diminuir.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma dos valores das três posições do ponteiro ao seguir a senha +120°, −45°, +75° a partir do 0.",
+    "chave": "Cada marca vale 30°; as paradas são 8, 9,5 e 7, que somam 24,5.",
+    "cuidado": "Cada giro parte da posição anterior, e o sentido anti-horário anda contra a numeração."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em graus",
+    "ideia": "Marque cada parada como ângulo horário a partir do 0: 240°, 285° e 210°; dividindo por 30° saem 8, 9,5 e 7."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "360° ÷ 12 = 30°",
+    "nota": "valor de cada marca"
+   },
+   {
+    "linha": "0 − 120°/30° = 0 − 4 → 8",
+    "nota": "anti-horário: 4 marcas para trás"
+   },
+   {
+    "linha": "8 + 45°/30° = 8 + 1,5 → 9,5",
+    "nota": "horário: 1,5 marca para frente"
+   },
+   {
+    "linha": "9,5 − 75°/30° = 9,5 − 2,5 → 7",
+    "nota": "anti-horário: 2,5 marcas para trás"
+   },
+   {
+    "linha": "8 + 9,5 + 7 = 24,5",
+    "nota": "soma das paradas, alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0078"
+  }
+ },
+ "Pe56e85ad": {
+  "n": "20",
+  "conceito": "Volume que sai de um cilindro quando o nível baixa, repartido entre dois cubos na razão das vazões.",
+  "equivocos": {
+   "B": "M11.2:valor-sem-conta-que-feche",
+   "C": "M11.2:dividiu-igualmente-ignorando-vazoes",
+   "D": "M11.2:valor-sem-conta-que-feche",
+   "E": "M11.2:trocou-os-reservatorios"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O líquido que entra nos cubos é exatamente o que sai do cilindro. Quando o nível do cilindro desce, o volume que saiu é a área da base vezes a queda de altura. Esse volume se divide entre os cubos na razão das vazões: a válvula 1 manda o triplo da 2, então o cubo II recebe 3 de cada 4 partes.",
+    "formulas": [
+     "volume que sai do cilindro = π · r² · (queda da altura)",
+     "altura no cubo = volume recebido ÷ área da base do cubo"
+    ],
+    "simbolos": [
+     [
+      "H",
+      "altura inicial do líquido no cilindro I"
+     ],
+     [
+      "r",
+      "raio da base do cilindro, 6 m na figura"
+     ],
+     [
+      "vazão",
+      "volume que passa pela válvula por unidade de tempo"
+     ]
+    ]
+   },
+   "pista": "Calcule primeiro quanto líquido saiu do cilindro; só depois reparta entre os cubos.",
+   "passos": [
+    {
+     "faz": "Leia os dados da figura",
+     "conta": "r (cilindro): 6 m | aresta dos cubos: 3 m | queda do nível: 1/π m",
+     "porque": "O raio e as arestas estão na figura; a queda do nível está no enunciado.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o volume que saiu do cilindro",
+     "conta": "π · 6² · 1/π → 36π/π → 36 m³",
+     "porque": "O volume que saiu é um cilindro de raio 6 m e altura igual à queda do nível. O π da base cancela com o π da altura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reparta na razão das vazões",
+     "conta": "V(II) + V(III) = 36 e V(II) = 3 · V(III) → 4 · V(III) = 36 → V(III) = 9 m³ e V(II) = 27 m³",
+     "porque": "As válvulas ficam abertas pelo mesmo tempo, então o volume que cada cubo recebe é proporcional à vazão: 3 partes para II e 1 para III.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo chão do cubo II",
+     "conta": "27/(3 · 3) → 27/9 → 3 m",
+     "porque": "No cubo a altura do líquido é o volume dividido pela área da base, 3 m × 3 m = 9 m².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "altura em II = 3 m → alternativa A",
+     "porque": "A pergunta é a altura no reservatório II, e não no III. Os 3 m coincidem com a aresta: o cubo II fica cheio, sem transbordar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 3,0 m: o cubo II fica cheio.",
+   "checagem": "Confira pelo outro cubo: III recebe 9 m³ e sobe 9 ÷ 9 = 1 m. Somando o que está nos cubos, 27 + 9 = 36 m³, e 36 ÷ (36π) = 1/π m de queda no cilindro, como o enunciado diz.",
+   "erradas": {
+    "B": "2,5 m não confere: daria 2,5 × 9 = 22,5 m³ em II e 7,5 m³ em III, total 30 m³, que corresponde a uma queda de 30 ÷ (36π) = 5/(6π) m, e não 1/π.",
+    "C": "2,0 m sai de dividir os 36 m³ igualmente entre os cubos: 18 ÷ 9 = 2. A válvula 1 tem o triplo da vazão, então II recebe 27 m³.",
+    "D": "1,5 m não confere: daria 13,5 m³ em II e 4,5 m³ em III, total 18 m³, que corresponde a uma queda de 1/(2π) m, metade da dada.",
+    "E": "1,0 m é a altura no cubo III (9 ÷ 9 = 1). Trocou os reservatórios: o triplo da vazão vai para o II."
+   },
+   "armadilha": "Repartir o volume em partes iguais ou responder a altura do cubo III, que recebe só um quarto do líquido.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A altura do líquido no cubo II quando o nível do cilindro baixa 1/π m.",
+    "chave": "Sai 36π · 1/π = 36 m³; II recebe 3/4 disso, 27 m³, e sobe 27 ÷ 9 = 3 m.",
+    "cuidado": "Reparta na razão 3 : 1 das vazões e divida pela base do cubo certo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "proporção direta",
+    "ideia": "II recebe 3/4 do volume: 3/4 · 36 = 27 m³, exatamente a capacidade do cubo de aresta 3 (3³ = 27), logo fica cheio: 3 m."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V = π · 6² · 1/π",
+    "nota": "volume que sai do cilindro"
+   },
+   {
+    "linha": "V = 36 m³",
+    "nota": "o π cancela"
+   },
+   {
+    "linha": "V(II) = 3 · V(III) → 4 · V(III) = 36",
+    "nota": "razão das vazões"
+   },
+   {
+    "linha": "V(III) = 9 m³ | V(II) = 27 m³",
+    "nota": "divide por 4"
+   },
+   {
+    "linha": "altura em II = 27/9 = 3 m",
+    "nota": "volume dividido pela área da base"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "O nível do cilindro desce 1/π m; uma fatia de 36 m³ se destaca e escorre pelo cano; 3 de 4 partes descem pela válvula 1 e enchem o cubo II até o topo; 1 parte desce pela válvula 2 e enche 1 m do cubo III."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ }
+}

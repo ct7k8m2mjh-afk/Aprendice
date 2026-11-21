@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Bancada 3D</title>
+<style>html,body{margin:0;background:#fff}#v{width:100vw;height:100vh}canvas{position:fixed;inset:0;width:100vw;height:100vh}</style></head>
+<body><div id="v"></div><canvas id="c"></canvas>
+<script type="module">
+// Bancada de comparação: renderiza UMA cena (?c=chave) ocupando a tela, sobre fundo branco (como as referências).
+// ?ativo=1 liga a animação; ?t=segundos congela o tempo da animação para a foto.
+import { criarPalco } from './src/ui/icones3d/cenas3d.js';
+const q = new URLSearchParams(location.search);
+const p = await criarPalco(document.getElementById('c'), { claro: true });
+const v = p.montar(document.getElementById('v'), q.get('c') || 'celula');
+if (q.get('ativo')) v.ativo = true;
+window.__pronto = true;
+</script></body></html>
