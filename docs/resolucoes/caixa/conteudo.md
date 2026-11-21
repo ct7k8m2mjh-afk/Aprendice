@@ -130,3 +130,10 @@ Nota: o escritor da parte 1 do mq-04 travou (pedido com número da parte faltand
 Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 mat` (próximo
 lote: conteudo-erradas-mq-07; na fila: Matemática provas-alvo ~300, depois Química provas-alvo ~438), seguindo
 docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+
+## 2026-11-21 — AVISO — erradas (série fis, sem API, 3ª sessão)
+Lote conteudo-erradas-fis-06 gravado (Física, provas-alvo UEL 2020–2024 e UFU 2023–2026, 25 questões, 66 letras
+fracas): 48 letras reescritas em 18 questões; 18 mantidas (sem equívoco honesto que leve a elas); nenhuma rejeitada.
+Lente de fatos corrigiu 5 (lei zero x 2ª lei; 4 só por "não confere"/"dá X"); didática melhorou 15, todas reconferidas
+ok. Amostra: 11 letras, 0 erro. Testes: converte, tsc e vitest 922/922 verdes. Gasto de API: zero.
+Nota da lente: UEL (Pd64fa892, tubo de Pitot) — gabarito oficial E (Pascal) é discutível (Pitot usa Bernoulli); vale o oficial.
