@@ -6,9 +6,9 @@ Redator publicitário, 20/11/2026; atualizado em 21/11/2026 com o código até o
 código (`{n}`, `${...}`, `plural(...)`). "texto novo" é a proposta; "manter" quando o atual já serve; "(rec.)" marca a
 opção recomendada quando há duas. "veredito" fica em branco: é do revisor de marca. Nada foi alterado no código.
 
-**Veredito do revisor de marca (21/11/2026).** 129 `ok`, 16 `refazer` (motivo e forma sugerida na própria coluna),
-761 `manter`. Conferido contra o código em `app/src`. Nada com `refazer` vai ao site antes de nova revisão.
-**Refeitos pelo redator (21/11/2026):** os 16 `refazer` e mais 4 itens unificados com o RETENCAO.md (T121, T209, T405, T544) estão com `refeito — aguarda revisor`.
+**Veredito do revisor de marca (21/11/2026, 2ª rodada).** 146 `ok`, 0 `refazer`, 760 `manter` (os 16 `refazer` da 1ª rodada foram
+refeitos pelo redator e aprovados, com mais 4 itens unificados com o RETENCAO.md). Conferido contra o código em `app/src`. Nada com `refazer` vai ao site antes de nova revisão.
+**Refeitos pelo redator (21/11/2026):** os 16 `refazer` e mais 4 itens unificados com o RETENCAO.md (T121, T209, T405, T544) ficaram com `refeito — aguarda revisor`; o revisor de marca conferiu todos em 21/11/2026 (todos `ok`).
 
 **Restrições seguidas.** Botões, abas e chips: no máximo +20% de caracteres. Atalhos de teclado, nomes de matérias e de
 instituições, vocabulário do `CLAUDE.md` e conteúdo de estudo não mudam. Itens que dependem de mudar lógica (texto
@@ -65,7 +65,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T25 | ui/Casca.tsx:131 | item do menu | `Provas e faculdades` | manter | | manter |
 | T26 | ui/Casca.tsx:134 | title da meta | `Meta da semana` | manter | | manter |
 | T27 | ui/Casca.tsx:136 | meta: números | `{sem.semana} de {meta}` | manter | | manter |
-| T28 | ui/Casca.tsx:136 | meta: rótulo | `meta da semana` | `feitas na semana` | Diz o que se conta. | refeito — aguarda revisor |
+| T28 | ui/Casca.tsx:136 | meta: rótulo | `meta da semana` | `feitas na semana` | Diz o que se conta. | ok |
 | T29 | ui/Casca.tsx:136 | meta: linha | `hoje {sem.hoje} · ontem {sem.ontem}` | manter | | manter |
 | T30 | ui/Casca.tsx:138 | item do menu | `Configurações` | manter | | manter |
 | T31 | ui/Casca.tsx:148 | botão mostrar barra (aria/title) | `Mostrar a barra lateral` / `Mostrar a barra` | manter | | manter |
@@ -190,7 +190,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | # | arquivo:linha | onde aparece | texto atual | texto novo | por quê | veredito |
 |---|---|---|---|---|---|---|
 | T120 | telas/Inicio.tsx:227 | título da aba | `Início` | manter | | manter |
-| T121 | telas/Inicio.tsx:238 | título | `Vamos avançar nos estudos?` | manter (com prioridade definida no RETENCAO.md 2.1/2.6: o `p` do cabeçalho mostra, nesta ordem, a linha de primeira visita, a de volta depois de 3 dias, ou T122) | Pergunta mais concreta; mesmo tamanho. | refeito — aguarda revisor |
+| T121 | telas/Inicio.tsx:238 | título | `Vamos avançar nos estudos?` | manter (com prioridade definida no RETENCAO.md 2.1/2.6: o `p` do cabeçalho mostra, nesta ordem, a linha de primeira visita, a de volta depois de 3 dias, ou T122) | Pergunta mais concreta; mesmo tamanho. | ok |
 | T122 | telas/Inicio.tsx:239 | subtítulo | `Escolha uma matéria ou misture seus conhecimentos.` | `Escolha uma matéria ou treine todas juntas.` | "Misture seus conhecimentos" não diz o que acontece. | ok |
 | T123 | telas/Inicio.tsx:56 | seção | `Suas matérias` | manter | | manter |
 | T124 | telas/Inicio.tsx:58 | seta (aria) | `Matérias anteriores` | manter | | manter |
@@ -220,7 +220,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T148 | telas/Inicio.tsx:188 | número | `plural(dias, 'dia de constância', 'dias de constância')` | `plural(dias, 'dia seguido', 'dias seguidos')` | Conta dias seguidos com resposta (logica/inicio.ts); "constância" é vago. | ok |
 | T149 | telas/Inicio.tsx:190 | destaque | `Seu destaque: {nome} · {pct}% de acerto` | manter | | manter |
 | T150 | telas/Inicio.tsx:204 | seção | `Hora de revisar` | manter | | manter |
-| T151 | telas/Inicio.tsx:205 | subtítulo | `Transforme seus erros em aprendizado.` | `Seus erros dizem o que revisar.` | Tira o clichê. | ok |
+| T151 | telas/Inicio.tsx:205 | subtítulo | `Transforme seus erros em aprendizado.` | `Seus erros dizem o que revisar.` | Tira o clichê. | ok (vale até a implementação de RETENCAO.md 2.2 "Entrada do dia pelo Início", que troca este parágrafo pela frase com número) |
 | T152 | telas/Inicio.tsx:207 | chamada | `Comece pelas matérias que precisam de atenção` | `Comece pelas de menor acerto` | É o critério real (ordem por acerto). | ok |
 | T153 | telas/Inicio.tsx:212 | linha | `{pct}% de acerto` | manter | | manter |
 | T154 | telas/Inicio.tsx:213 | link (aria) | `Revisar ${nome}` | manter | | manter |
@@ -230,7 +230,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T158 | telas/Inicio.tsx:221 | pé | `Uma nova chance de fixar o conteúdo.` | `Cada erro volta no dia certo.` | Frase genérica → como a revisão funciona. | ok |
 | T159 | telas/Inicio.tsx:250 | aria-label | `Atalhos` | manter | | manter |
 | T160 | telas/Inicio.tsx:253 | atalho | `Flashcards` / `Revise conceitos em poucos minutos` | `Flashcards` / `Pergunta curta, resposta em uma frase` | "Poucos minutos" é número vago; o formato é o que diferencia. | ok |
-| T161 | telas/Inicio.tsx:258 | atalho | `Simulados` / `Pratique no ritmo da prova` | `Simulados` / `Prova inteira ou por conteúdo` | Concreto (SimuladoExec usa o tempo da prova). | refeito — aguarda revisor |
+| T161 | telas/Inicio.tsx:258 | atalho | `Simulados` / `Pratique no ritmo da prova` | `Simulados` / `Prova inteira ou por conteúdo` | Concreto (SimuladoExec usa o tempo da prova). | ok |
 
 ## 8. Hoje e sessão do dia (telas/Hoje.tsx)
 
@@ -238,7 +238,7 @@ condicional) estão marcados "(precisa de condição no código)".
 |---|---|---|---|---|---|---|
 | T162 | telas/Hoje.tsx:120 | título da aba | `Hoje` | manter | | manter |
 | T163 | telas/Hoje.tsx:148 | título | `Hoje` | manter | | manter |
-| T164 | telas/Hoje.tsx:149 | subtítulo | `O que estudar hoje, na ordem que mais rende: primeiro o que mais cai nas suas provas, onde você mais erra e o que está para esquecer.` | `O que estudar hoje, pelo que mais cai nas suas provas, pelo que você mais erra e pelo que está para esquecer.` | "Que mais rende" é promessa vaga; a ordem já se explica. | refeito — aguarda revisor |
+| T164 | telas/Hoje.tsx:149 | subtítulo | `O que estudar hoje, na ordem que mais rende: primeiro o que mais cai nas suas provas, onde você mais erra e o que está para esquecer.` | `O que estudar hoje, pelo que mais cai nas suas provas, pelo que você mais erra e pelo que está para esquecer.` | "Que mais rende" é promessa vaga; a ordem já se explica. | ok |
 | T165 | telas/Hoje.tsx:154 | título da sessão | `{plural(n, 'questão', 'questões')} · cerca de {minutosDe(...)} min` | manter | | manter |
 | T166 | telas/Hoje.tsx:154 | sessão vazia | `Nada pendente agora` | `Revisão em dia` | Reconhece o trabalho; vazio sem cobrança. | ok |
 | T167 | telas/Hoje.tsx:156 | linha da sessão | `De {plural(...'conteúdo','conteúdos')}, {...'começando pelas fáceis erradas do Escudo TRI, '}com o seu tempo médio de {plural(..., 'minuto', 'minutos')} por questão.` | manter | Verdadeiro e específico. | manter |
@@ -260,7 +260,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T183 | telas/Hoje.tsx:66 | etiqueta | `Acertou a difícil e errou a fácil` | manter | | manter |
 | T184 | telas/Hoje.tsx:67 | contagem | `{erradas} errada(s) de {faceis} fácil feita / fáceis feitas` | manter | | manter |
 | T185 | telas/Hoje.tsx:70 | mais | `e mais {plural(..., 'conteúdo', 'conteúdos')}` | manter | | manter |
-| T186 | telas/Hoje.tsx:74 | Escudo vazio (já fez) | `Nenhuma fácil errada agora. Continue: cada fácil que você acerta em dias diferentes protege a sua nota.` | `Nenhuma fácil errada agora. Com 3 fáceis feitas e nenhuma errada, o conteúdo conta como básico garantido.` | "Protege a sua nota" é promessa de resultado; o critério real é o "básico garantido". | refeito — aguarda revisor |
+| T186 | telas/Hoje.tsx:74 | Escudo vazio (já fez) | `Nenhuma fácil errada agora. Continue: cada fácil que você acerta em dias diferentes protege a sua nota.` | `Nenhuma fácil errada agora. Com 3 fáceis feitas e nenhuma errada, o conteúdo conta como básico garantido.` | "Protege a sua nota" é promessa de resultado; o critério real é o "básico garantido". | ok |
 | T187 | telas/Hoje.tsx:75 | Escudo vazio (não fez) | `Você ainda não respondeu questões fáceis dos conteúdos do ENEM. Elas aparecem aqui assim que você começar.` | manter | | manter |
 | T188 | telas/Hoje.tsx:86 | lista, título | `A ordem de hoje` | manter | | manter |
 | T189 | telas/Hoje.tsx:87 | lista, texto | `Os {plural(..., 'primeiro conteúdo cabe', 'primeiros conteúdos cabem')} nos {plano.minutos} minutos. Toque num conteúdo para estudar só ele.` | manter | | manter |
@@ -283,7 +283,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T206 | telas/Hoje.tsx:202 | dica da barra | `${rotulo}: a sessão fica salva se você sair` | manter | | manter |
 | T207 | telas/Hoje.tsx:212 | fim, título | `Escudo TRI revisado` / `Sessão de hoje concluída` | manter | | manter |
 | T208 | telas/Hoje.tsx:213 | fim, placar | `{ok} de {n} questão certa / questões certas, em {k} matérias.` | manter | | manter |
-| T209 | telas/Hoje.tsx:217 | fim, próximo passo | `{n} questão errada volta / questões erradas voltam amanhã na revisão. Cada resposta já conta na agenda e no domínio de cada conteúdo.` | última linha: `Amanhã, 1 questão volta na revisão.` / `Amanhã, {a} questões voltam na revisão.` / `Nenhuma questão volta amanhã.` (precisa de condição no código; a mesma frase do RETENCAO.md 2.3) | Unificado com o RETENCAO.md: número real e data, com os casos 0 e 1. | refeito — aguarda revisor |
+| T209 | telas/Hoje.tsx:217 | fim, próximo passo | `{n} questão errada volta / questões erradas voltam amanhã na revisão. Cada resposta já conta na agenda e no domínio de cada conteúdo.` | última linha: `Amanhã, 1 questão volta na revisão.` / `Amanhã, {a} questões voltam na revisão.` / `Nenhuma questão volta amanhã.` (precisa de condição no código; a mesma frase do RETENCAO.md 2.3) | Unificado com o RETENCAO.md: número real e data, com os casos 0 e 1. | ok |
 | T210 | telas/Hoje.tsx:218 | botão | `Voltar para Hoje` | manter | | manter |
 
 ## 9. Matérias e página da matéria (telas/Materia.tsx)
@@ -314,7 +314,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T232 | telas/Materia.tsx:204 | aria-label | `Revisão de ${info.nome}` | manter | | manter |
 | T233 | telas/Materia.tsx:308 | capa do treino (h2 na matéria, h1 na tela do treino) | `Treino geral de {info.nome}` | manter | | manter |
 | T234 | telas/Materia.tsx:309 | capa, retomada | `Seu treino está salvo onde você parou. ` | manter | | manter |
-| T235 | telas/Materia.tsx:311 | contadores | `Questões de prova` · `Completar a frase` · `Flashcards` | `Questões de prova` · `Frases a completar` · `Flashcards` | Mesmo nome do Treino geral (`descreveTreino`) e do CLAUDE.md ("frases para completar"). | refeito — aguarda revisor |
+| T235 | telas/Materia.tsx:311 | contadores | `Questões de prova` · `Completar a frase` · `Flashcards` | `Questões de prova` · `Frases a completar` · `Flashcards` | Mesmo nome do Treino geral (`descreveTreino`) e do CLAUDE.md ("frases para completar"). | ok |
 | T236 | telas/Materia.tsx:312 | contadores | ` feita` / ` feitas` / ` de ${n}` / `plural(ok, 'acerto', 'acertos')` | manter | | manter |
 | T237 | telas/Materia.tsx:304 | botão da capa | `Retomar (${tg.i + 1} de ${tg.it.length})` / `Começar treino` | manter | | manter |
 | T238 | telas/Materia.tsx:318 | composição | `${plural(nRq, 'questão', 'questões')} por rodada` / `${porRodada} itens por rodada: …` | manter | | manter |
@@ -345,7 +345,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T257 | telas/Tema.tsx:172 | botão | `Ver os conteúdos` / `Revisão` / `Revisão em slides` | manter | | manter |
 | T258 | telas/Tema.tsx:177 | botão | `Teoria em cartões · ${n}` | manter | | manter |
 | T259 | telas/Tema.tsx:187 | seção | `Revisão essencial` | manter | | manter |
-| T260 | telas/Tema.tsx:188 | texto | `Só o que todo aluno precisa saber e o que mais cai: o termômetro, o mapa mental do tema, {n telas} de conteúdo, uma questão resolvida e a conexão com outras matérias.` | `O que todo aluno precisa saber: o que mais cai no tema, o mapa mental, {n telas} de conteúdo, uma Questão Aprendice resolvida e a conexão com outras matérias.` | "Termômetro" é nome interno (a tela se chama "O que mais cai"); a questão é Questão Aprendice (princípio 1). | refeito — aguarda revisor |
+| T260 | telas/Tema.tsx:188 | texto | `Só o que todo aluno precisa saber e o que mais cai: o termômetro, o mapa mental do tema, {n telas} de conteúdo, uma questão resolvida e a conexão com outras matérias.` | `O que todo aluno precisa saber: o que mais cai no tema, o mapa mental, {n telas} de conteúdo, uma Questão Aprendice resolvida e a conexão com outras matérias.` | "Termômetro" é nome interno (a tela se chama "O que mais cai"); a questão é Questão Aprendice (princípio 1). | ok |
 | T261 | telas/Tema.tsx:189 | botão | `Começar a revisão` | manter | | manter |
 | T262 | telas/Tema.tsx:194 | seção | `Resumo de cada conteúdo` | manter | | manter |
 | T263 | telas/Tema.tsx:199 | sanfona | `Aprofundar: revisão completa em slides` | manter | | manter |
@@ -428,7 +428,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T330 | telas/Questao.tsx:232,303 | teoria vazia | `A teoria deste conteúdo está em preparação.` | manter | | manter |
 | T331 | telas/Questao.tsx:237-238,308-309 | relacionados | `Conteúdos relacionados` | manter | | manter |
 | T332 | telas/Questao.tsx:294 | indisponível (aria) | `Questão indisponível` | manter | | manter |
-| T333 | telas/Questao.tsx:294 | indisponível | `Gabarito oficial com erro e sem correção da banca. Só para consulta.` | `Erro no gabarito oficial, sem errata da banca. Só para consulta.` | Diz quem achou o erro (como a aba Fonte); sem parecer acusação vaga. | refeito — aguarda revisor |
+| T333 | telas/Questao.tsx:294 | indisponível | `Gabarito oficial com erro e sem correção da banca. Só para consulta.` | `Erro no gabarito oficial, sem errata da banca. Só para consulta.` | Diz quem achou o erro (como a aba Fonte); sem parecer acusação vaga. | ok |
 | T334 | telas/Questao.tsx:294 | oculta (só administrador) | `Oculta para o aluno: ${q.pendente \|\| 'fora do ar'}.` | manter | | manter |
 | T335 | telas/Questao.tsx:297 | aria-label | `Teoria e fonte` | manter | | manter |
 
@@ -524,11 +524,11 @@ condicional) estão marcados "(precisa de condição no código)".
 |---|---|---|---|---|---|---|
 | T399 | telas/TreinoMisto.tsx:34 | título da aba | `Treino geral` | manter | | manter |
 | T400 | telas/TreinoMisto.tsx:53 | vazio, título | `Sem questões para sortear agora` | manter | | manter |
-| T401 | telas/TreinoMisto.tsx:54 | vazio, texto | `As questões de prova entram com as provas completas.` | manter | Dá uma saída real (o sorteio segue o filtro de região). | refeito — aguarda revisor |
+| T401 | telas/TreinoMisto.tsx:54 | vazio, texto | `As questões de prova entram com as provas completas.` | manter | Dá uma saída real (o sorteio segue o filtro de região). | ok |
 | T402 | telas/TreinoMisto.tsx:54,73 | botão | `Voltar ao início` | manter | | manter |
 | T403 | telas/TreinoMisto.tsx:64 | fim, título | `Treino concluído` | manter | | manter |
 | T404 | telas/TreinoMisto.tsx:65 | fim, placar | `{ok} de {n} questão certa / questões certas, em {k} matérias.` | manter | | manter |
-| T405 | telas/TreinoMisto.tsx:71 | fim, próximo passo | `Cada resposta já conta no progresso da matéria da questão. Erros e chutes entram na revisão espaçada.` | `Cada resposta conta no progresso da matéria.` + `1 erro volta amanhã na revisão.` / `{e} erros voltam amanhã na revisão.` / `Nenhum erro nesta rodada.` (precisa de condição no código; a mesma frase do RETENCAO.md 2.3) | Unificado com o RETENCAO.md; dá a data e trata 0 e 1. | refeito — aguarda revisor |
+| T405 | telas/TreinoMisto.tsx:71 | fim, próximo passo | `Cada resposta já conta no progresso da matéria da questão. Erros e chutes entram na revisão espaçada.` | `Cada resposta conta no progresso da matéria.` + `1 erro volta amanhã na revisão.` / `{e} erros voltam amanhã na revisão.` / `Nenhum erro nesta rodada.` (precisa de condição no código; a mesma frase do RETENCAO.md 2.3) | Unificado com o RETENCAO.md; dá a data e trata 0 e 1. | ok |
 | T406 | telas/TreinoMisto.tsx:73,81 | botão | `Nova rodada` | manter | | manter |
 | T407 | telas/TreinoMisto.tsx:79 | dica da barra | `Treino geral de todas as matérias. O treino fica salvo se você sair` | manter | | manter |
 | T408 | telas/TreinoMisto.tsx:99 | voltar (aria) | `Voltar (${rotulo.toLowerCase()} fica salvo)` | `Voltar (fica salvo)` | "Sessão de hoje fica salvo" sai com concordância errada; o title já usa esta forma. | ok |
@@ -697,7 +697,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T541 | telas/SimuladoResultado.tsx:37 | migalhas | `Simulados` / `Resultado` | manter | | manter |
 | T542 | telas/SimuladoResultado.tsx:42 | placar | `{a} de {t} certas · {tempo} · {data}` | manter | | manter |
 | T543 | telas/SimuladoResultado.tsx:43 | nota (prova completa) | `Toque em uma questão para ver o print e o gabarito oficial. A resolução comentada entra depois da revisão.` | `Toque numa questão para ver o print e o gabarito. A resolução comentada entra quando for revisada pela banca do Aprendice.` | Neutro quanto à origem do gabarito (dúvida 2); "depois da revisão" confundia com a Revisão do aluno. | ok |
-| T544 | telas/SimuladoResultado.tsx:43 | nota (banco) | `Os erros e as questões em branco já entraram na revisão espaçada.` | `1 questão volta amanhã na revisão (erro ou em branco).` / `{n} questões voltam amanhã na revisão, entre erros e em branco.` / `Nenhuma questão volta para a revisão.` (precisa de condição no código; a mesma frase do RETENCAO.md 2.3) | Unificado com o RETENCAO.md; trata 0 e 1. | refeito — aguarda revisor |
+| T544 | telas/SimuladoResultado.tsx:43 | nota (banco) | `Os erros e as questões em branco já entraram na revisão espaçada.` | `1 questão volta amanhã na revisão (erro ou em branco).` / `{n} questões voltam amanhã na revisão, entre erros e em branco.` / `Nenhuma questão volta para a revisão.` (precisa de condição no código; a mesma frase do RETENCAO.md 2.3) | Unificado com o RETENCAO.md; trata 0 e 1. | ok |
 | T545 | telas/SimuladoResultado.tsx:47 | seção | `Por conteúdo` / `Por área da prova` / `Por matéria` | manter | | manter |
 | T905 | telas/SimuladoResultado.tsx:54 | por área/matéria | `{p.acertos} de {p.total}` | manter | | manter |
 | T546 | telas/SimuladoResultado.tsx:60 | seção | `Questões` | manter | | manter |
@@ -725,7 +725,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T563 | telas/Revisao.tsx:109 | botão | `Ver de outras regiões` | manter | | manter |
 | T564 | telas/Revisao.tsx:113 | vazio | `Nada para revisar hoje` / `Quando você errar, chutar ou usar uma pista, a questão aparece aqui no dia certo.` / `Voltar ao início` | `Nada para revisar hoje` / `Quando você errar, chutar ou usar a dica, a questão aparece aqui no dia certo.` / manter | "Dica". | ok |
 | T565 | telas/Revisao.tsx:119 | botão | `Revisar ${venc.length}` | manter | | manter |
-| T566 | telas/Revisao.tsx:124 | etiqueta | `Errou com certeza` / `${etapa} de ${SAIDA} acertos` / `Vencida` | `Errou com certeza` / manter / `Hoje` | "Vencida" soa como atraso. | refeito — aguarda revisor |
+| T566 | telas/Revisao.tsx:124 | etiqueta | `Errou com certeza` / `${etapa} de ${SAIDA} acertos` / `Vencida` | `Errou com certeza` / manter / `Hoje` | "Vencida" soa como atraso. | ok |
 | T567 | telas/Revisao.tsx:125 | linha | `{escola} {ano} · questão {n}` | manter | | manter |
 | T568 | telas/Revisao.tsx:130 | mais | `e mais {n}` | manter | | manter |
 | T569 | telas/Revisao.tsx:131 | próximos dias | `Próximos 7 dias: {n questões}` | manter | | manter |
@@ -766,7 +766,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | # | arquivo:linha | onde aparece | texto atual | texto novo | por quê | veredito |
 |---|---|---|---|---|---|---|
 | T591 | telas/RevisaoSlides.tsx:50 | título da aba | `Revisão · ${cap(nomeSub)}` | manter | | manter |
-| T592 | telas/RevisaoSlides.tsx:93-95 | em preparação | `Revisão em preparação` / `A revisão em slides deste conteúdo ainda está passando pelas lentes da banca.` / `Voltar ao tema` | `Revisão em preparação` / `Os slides deste conteúdo ainda estão sendo conferidos pela banca do Aprendice.` / manter | "Lentes" é jargão. | refeito — aguarda revisor |
+| T592 | telas/RevisaoSlides.tsx:93-95 | em preparação | `Revisão em preparação` / `A revisão em slides deste conteúdo ainda está passando pelas lentes da banca.` / `Voltar ao tema` | `Revisão em preparação` / `Os slides deste conteúdo ainda estão sendo conferidos pela banca do Aprendice.` / manter | "Lentes" é jargão. | ok |
 | T593 | telas/RevisaoSlides.tsx:133 | voltar | `Voltar` / `Voltar (Esc)` | manter | | manter |
 | T594 | telas/RevisaoSlides.tsx:136 | barra | `Revisão` | manter | | manter |
 | T595 | logica/cicloRevisao.ts:19 + RevisaoSlides.tsx:168 | 5 tempos | `Pergunta primeiro` · `Ver acontecer` (`Rever os pontos` sem animação) · `Lembrar sem olhar` · `Aplicar` · `Voltar` | manter | Nomes do Método. | manter |
@@ -781,7 +781,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T604 | telas/RevisaoSlides.tsx:208 | botão | `Revisar de novo` / `Começar a revisão` | manter | | manter |
 | T605 | telas/RevisaoSlides.tsx:209 | duração | `{n slides} · cerca de {min} min` | manter | | manter |
 | T606 | telas/RevisaoSlides.tsx:260 | sem questões, título | `Sem questões para começar` / `Sem questão nova agora` | manter | | manter |
-| T607 | telas/RevisaoSlides.tsx:261 | sem questões, texto | `Este conteúdo ainda não tem questões de prova no site. A revisão segue pelos slides.` / `As questões deste conteúdo já apareceram no começo. Aplique na próxima revisão.` | manter / `Este conteúdo só tem a questão que apareceu no começo.` | "Aplique na próxima" soa como ordem sem meio; diz o que acontece. | refeito — aguarda revisor |
+| T607 | telas/RevisaoSlides.tsx:261 | sem questões, texto | `Este conteúdo ainda não tem questões de prova no site. A revisão segue pelos slides.` / `As questões deste conteúdo já apareceram no começo. Aplique na próxima revisão.` | manter / `Este conteúdo só tem a questão que apareceu no começo.` | "Aplique na próxima" soa como ordem sem meio; diz o que acontece. | ok |
 | T608 | telas/RevisaoSlides.tsx:262 | botão | `Continuar` | manter | | manter |
 | T609 | telas/RevisaoSlides.tsx:270 | fase, título | `Antes de rever, tente responder` / `Agora aplique numa questão nova` | manter | | manter |
 | T610 | telas/RevisaoSlides.tsx:272-273 | fase, texto | `Ainda sem explicação: o esforço de tentar prepara o que vem depois. Marque também a sua certeza.` / `Questão real diferente das do começo, do mesmo conteúdo. Depois de responder, a correção aparece aqui embaixo.` | manter | | manter |
@@ -851,7 +851,7 @@ condicional) estão marcados "(precisa de condição no código)".
 |---|---|---|---|---|---|---|
 | T665 | telas/RevisaoEssencial.tsx:34 | etiquetas | `O que mais cai` · `Mapa mental` · `Conteúdo` · `Questão Aprendice` · `Conexão` | manter | | manter |
 | T666 | telas/RevisaoEssencial.tsx:47 | título da aba | `Revisão essencial · ${tema}` | manter | | manter |
-| T667 | telas/RevisaoEssencial.tsx:72-74 | em preparação | `Revisão essencial em preparação` / `A revisão essencial deste tema ainda está passando pelas lentes da banca.` / `Voltar ao tema` | manter / `A revisão essencial deste tema ainda está sendo conferida pela banca do Aprendice.` / manter | "Lentes". | refeito — aguarda revisor |
+| T667 | telas/RevisaoEssencial.tsx:72-74 | em preparação | `Revisão essencial em preparação` / `A revisão essencial deste tema ainda está passando pelas lentes da banca.` / `Voltar ao tema` | manter / `A revisão essencial deste tema ainda está sendo conferida pela banca do Aprendice.` / manter | "Lentes". | ok |
 | T668 | telas/RevisaoEssencial.tsx:84 | voltar | `Voltar` / `Voltar (Esc)` | manter | | manter |
 | T669 | telas/RevisaoEssencial.tsx:87 | barra | `Revisão essencial` | manter | | manter |
 | T670 | telas/RevisaoEssencial.tsx:98 | posição | `{i} de {n}` | manter | | manter |
@@ -986,7 +986,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T774 | telas/Provas.tsx:66 | rodapé | `Dados do ciclo 2027 levantados de fontes oficiais (editais e sites das bancas) em 01/11/2026. Itens ainda não conferidos no edital aparecem marcados em cada prova.` | manter | | manter |
 | T775 | telas/Provas.tsx:15 | ingresso | `Vestibular próprio` · `ENEM/Sisu` · `Nota do ENEM` · `Seriado` | manter | | manter |
 | T776 | telas/Provas.tsx:75 | título da aba | `Prova` | manter | | manter |
-| T777 | telas/Provas.tsx:78 | não encontrada | `Prova não encontrada` / `Catálogo` | manter | Botão com verbo. | refeito — aguarda revisor |
+| T777 | telas/Provas.tsx:78 | não encontrada | `Prova não encontrada` / `Catálogo` | manter | Botão com verbo. | ok |
 | T778 | telas/Provas.tsx:91 | migalhas | `Provas e faculdades` | manter | | manter |
 | T779 | telas/Provas.tsx:94 | botão | `Prova-alvo` / `Adicionar às provas-alvo` | manter | | manter |
 | T780 | telas/Provas.tsx:84-87 | ficha | `Banca` · `Rede` · `Ingresso` · `Fases` · `Questões objetivas` · `Discursivas` · `Duração` · `Dias de prova` · `Matérias` | manter | | manter |
@@ -1061,12 +1061,12 @@ condicional) estão marcados "(precisa de condição no código)".
 | T828 | telas/Config.tsx:82 | seção | `Atalhos de teclado` | manter | | manter |
 | T829 | telas/Config.tsx:84-91 | atalhos | `escolher alternativa` · `riscar alternativa` · `confirmar / próxima` · `pista` · `pausar o cronômetro` · `flashcard: errei, quase, acertei` · `buscar` · `sair da questão ou fechar` | trocar só `pista` por `dica` | Tecla H não muda; o nome sim (botão "Dica"). | ok |
 | T830 | telas/Config.tsx:96 | seção | `Privacidade` | manter | | manter |
-| T831 | telas/Config.tsx:97 | texto | `Sem servidor nesta versão: nenhum dado pessoal é enviado a ninguém. Sem anúncios, sem rastreamento, fontes hospedadas no próprio site. Quando houver contas na nuvem, você poderá baixar e apagar seus dados a qualquer momento (LGPD).` | sem conta: manter · com conta: `Seu e-mail, perfil de estudo e progresso ficam na sua conta; cada conta só lê os próprios dados. Sem anúncios, sem rastreamento, fontes hospedadas no próprio site. Detalhes em Privacidade.` (precisa de condição no código) | Com o login de verdade, "sem servidor" fica falso (estado/sessao.ts; telas/Privacidade.tsx). | refeito — aguarda revisor |
+| T831 | telas/Config.tsx:97 | texto | `Sem servidor nesta versão: nenhum dado pessoal é enviado a ninguém. Sem anúncios, sem rastreamento, fontes hospedadas no próprio site. Quando houver contas na nuvem, você poderá baixar e apagar seus dados a qualquer momento (LGPD).` | sem conta: manter · com conta: `Seu e-mail, perfil de estudo e progresso ficam na sua conta; cada conta só lê os próprios dados. Sem anúncios, sem rastreamento, fontes hospedadas no próprio site. Detalhes em Privacidade.` (precisa de condição no código) | Com o login de verdade, "sem servidor" fica falso (estado/sessao.ts; telas/Privacidade.tsx). | ok |
 | T832 | telas/Config.tsx:101 | seção | `Créditos e fontes` | manter | | manter |
 | T833 | telas/Config.tsx:103 | crédito | `Questões: cadernos oficiais das provas; cada questão traz o link da fonte e a origem do gabarito: …` | manter | | manter |
 | T834 | telas/Config.tsx:104-108 | créditos | `Ilustrações de flashcards: …` · `Logos de simulados: …` · `Ícones de interface: …` · `Catálogo de provas: …` | manter | | manter |
 | T835 | telas/Config.tsx:109 | rodapé | `Aprendice · versão de demonstração: o progresso fica salvo neste aparelho` | sem conta: `Aprendice · progresso salvo neste aparelho` · com conta: `Aprendice · progresso salvo na sua conta e neste aparelho` (precisa de condição no código) | Falso com login de verdade; "demonstração" não descreve mais o site. | ok (condição em `conta.fase`, já prevista no item) |
-| T836 | estado/migracao.ts:122 | erro de importação | `O arquivo não é um JSON válido.` | `Este não é um arquivo de progresso do Aprendice.` | "JSON" é termo técnico. | refeito — aguarda revisor |
+| T836 | estado/migracao.ts:122 | erro de importação | `O arquivo não é um JSON válido.` | `Este não é um arquivo de progresso do Aprendice.` | "JSON" é termo técnico. | ok |
 | T837 | estado/migracao.ts:124 | erro de importação | `Arquivo vazio ou em formato desconhecido.` | manter | | manter |
 | T838 | estado/migracao.ts:154 | erro de importação | `Não reconheci de qual matéria é este arquivo.` | `Não foi possível saber de qual matéria é este arquivo.` | Sem primeira pessoa. | ok |
 | T839 | estado/migracao.ts:165 | erro de importação | `Não encontrei progresso do APRENDICE neste arquivo.` | `Este arquivo não tem progresso do Aprendice.` | Sem primeira pessoa; nome com grafia do site. | ok |
@@ -1111,7 +1111,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T863 | dados/materias.ts:68 | descrição Português | `Interpretação, gramática, literatura e linguagens.` | manter | | manter |
 | T864 | dados/materias.ts:71 | descrição Física | `Cinemática, dinâmica, energia, termologia, óptica, ondas e eletricidade.` | manter | | manter |
 | T865 | dados/materias.ts:74 | descrição Geografia | `Cartografia, natureza, população, espaço urbano e agrário, energia e geopolítica.` | manter | | manter |
-| T866 | dados/materias.ts:77 | descrição História | `Brasil, Geral, América e o mundo contemporâneo.` | `História do Brasil, Geral e da América, e o mundo contemporâneo.` | "Brasil, Geral, América" lido solto não faz sentido. | refeito — aguarda revisor |
+| T866 | dados/materias.ts:77 | descrição História | `Brasil, Geral, América e o mundo contemporâneo.` | `História do Brasil, Geral e da América, e o mundo contemporâneo.` | "Brasil, Geral, América" lido solto não faz sentido. | ok |
 | T867 | dados/materias.ts:80 | descrição Filosofia e Sociologia | `Filosofia, dos pré-socráticos ao existencialismo, e Sociologia: cultura, trabalho, desigualdade, poder e indústria cultural.` | manter | | manter |
 | T868 | dados/materias.ts:83 | descrição Inglês | `Leitura e interpretação de textos em inglês.` | manter | | manter |
 | T869 | dados/tipos.ts:78 | origem do gabarito | `Gabarito do Aprendice: a banca não publicou gabarito oficial` | manter | Texto exigido pelo princípio 2. | manter |
