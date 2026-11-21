@@ -493,3 +493,16 @@ gravado: 38 letras em 18 questões (20 mantidas pelo escritor por falta de equí
 (Pbc10b7e2 B, P888a9cce A, P87e5e1d0 E, Pfefbb29c C); didática melhorou 6, reconferidas (4 ok, 2 corrigidas:
 P87e5e1d0 E, P47e2632b A). Amostra: 8 letras, 0 erro. converte, tsc e vitest 922/922 verdes. Gasto de API: zero.
 Segue o mq-27.
+## 2026-11-21 — FIM — erradas (série fis, sem API, 11ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-fis-25 e fis-26 (Física, provas-alvo UECE 2020.2, UEA 2020, 2021 e 2027,
+UDESC 2026). Nenhum lote aberto. Sessão encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 83 letras reescritas e gravadas em 34 questões (fis-25: 44 em 18; fis-26: 39 em 16). As demais letras não
+têm equívoco honesto que chegue exatamente à alternativa e ficaram com o texto antigo.
+fis-26: fatos 38 ok e 1 corrigida (P0e0d8a86 A); didática melhorou 21, reconferidas (21 ok); amostra 8 letras, 0 erro.
+O pacote UDESC 2026 (p05, 11 letras) teve dois escritores independentes e nenhum achou equívoco que chegasse exatamente
+às alternativas: todas mantidas.
+Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
+lote: conteudo-erradas-fis-27; na fila: 106 de Física provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
