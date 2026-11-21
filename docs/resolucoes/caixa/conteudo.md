@@ -315,3 +315,19 @@ letras reescritas em 11 questões; 40 mantidas (sem equívoco honesto que leve a
 melhorou 8; 2ª passagem corrigiu 1 (P18859593 C: a parábola não tem raízes reais). Fora por filtro: P18859593 C (43
 palavras) e P3a847a9c A ("dá 8"). Amostra: 2 letras, 1 consertada (Pc22ec9ed E: função h(t), não A(t)). Testes:
 converte, tsc e vitest 922/922 verdes. Gasto de API: zero. Em andamento: conteudo-erradas-mq-15.
+
+## 2026-11-21 — FIM — erradas (série mq, sem API, 6ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-mq-14 e mq-15 (Matemática, provas-alvo UDESC 2023.2–2026.2, 50
+questões, 122 letras fracas). Nenhum lote aberto. Sessão encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 38 letras reescritas e gravadas em 27 questões (mq-14: 18 em 11; mq-15: 20 em 16). 80 letras sem equívoco
+honesto ficaram com o texto antigo. mq-15: lente de fatos 18 ok, 4 corrigidas (P399efb93 A e P5e651adc C completadas
+até o valor da alternativa); P05ee8563 B e D ficaram de fora porque a área errada (8,5 e 11) não tem origem
+identificada — a alternativa não é explicada inteira. Didática melhorou 10, todas reconferidas (10 ok).
+Amostra: mq-14 2 letras (1 consertada: nome da função h(t)), mq-15 5 letras, 0 erro.
+Conflito em erradas-feitas.json e na caixa com a série fis (mq-14): resolvido por união, sem perder nada.
+Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 mat` (próximo
+lote: conteudo-erradas-mq-16; na fila: 71 de Matemática provas-alvo, depois Química provas-alvo), seguindo
+docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
