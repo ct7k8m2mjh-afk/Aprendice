@@ -483,3 +483,7 @@ mantidas por falta de equívoco honesto; 1 letra fora por texto fraco (Pfd05f890
 (Pb8401cba B: linhas de campo saem do norte e chegam ao sul só fora do ímã) + 1 de notação (P4348e01d C); didática
 melhorou 13, todas reconferidas ok pela 2ª lente de fatos; amostra 8 letras, 0 erro. Converte, tsc e vitest 922/922
 verdes. Gasto de API: zero. Em paralelo com a série fis; já aberto conteudo-erradas-fb-02.
+## 2026-11-21 — AVISO — erradas (série fis, sem API, 11ª sessão)
+conteudo-erradas-fis-25 gravado (Física, provas-alvo UECE 2020.2 e UEA 2027): 44 letras reescritas em 18 questões; 29
+mantidas por falta de equívoco honesto. Fatos 46 ok; didática melhorou 12, reconferidas (12 ok); amostra 12 letras, 0
+erro. Converte, tsc e vitest 922/922 verdes. Gasto de API: zero. Seguindo com fis-26.
