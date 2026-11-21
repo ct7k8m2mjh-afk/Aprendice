@@ -99,3 +99,20 @@ Testes: converte e tsc verdes; vitest 915 de 916 no fis-03 — a falha é contaN
 Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
 lote: conteudo-erradas-fis-04; fila de Física provas-alvo pela `erradas-fila`), seguindo
 docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+
+## 2026-11-21 — FIM — erradas (série fis, sem API, 2ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-fis-04 e fis-05 (Física, provas-alvo UERJ, UFPR e UEL, 50 questões,
+119 letras fracas). Nenhum lote aberto. Sessão encerrada no limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 49 letras reescritas e gravadas em 32 questões (fis-04: 14 em 11, UERJ 2021 e UFPR 2024–2026; fis-05: 35 em
+21, UFPR 2020–2023 e UEL 2024/2026). As demais letras não têm equívoco honesto que leve a elas e ficaram com o texto
+antigo; nenhuma rejeitada. Lente de fatos corrigiu 2 (trabalho do peso não depende do atrito; trovão não é onda
+"esférica"); lente didática melhorou 17 (todas reconferidas, ok). Um texto barrado pelo filtro só por "dá 12,5 m" teve
+a redação trocada para "chegando a 12,5 m" e entrou na amostra.
+Amostra (20%): fis-04 2 letras, 1 com erro (tamanho, 41 palavras), consertada; fis-05 7 letras, nenhum erro.
+Aviso: UFPR 2022 q25 (P34628cf3) — a camada de texto perdeu o µ (o print mostra 1,6 µC).
+Testes: converte e tsc verdes; vitest 922 de 922 nos dois lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
+lote: conteudo-erradas-fis-06; fila de Física provas-alvo pela `erradas-fila`), seguindo
+docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
