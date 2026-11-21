@@ -591,3 +591,18 @@ lotes. Gasto de API: zero. Continuar de: nada na série qb (faixa 1 de Química 
 ## 2026-11-21 — ACABOU (provas-alvo de Química, série qb)
 `erradas-fila` não mostra mais Química na faixa 1 (provas-alvo): todas as questões de Química das provas-alvo já têm
 lote (séries mq, qb e qc). Próximo passo, se o dono quiser: faixa 2 (885 de Química), com BASE_MAX=2.
+## 2026-11-21 — FIM — erradas (série mq, sem API, 13ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-mq-28 (UPE SSA3 2023–2026) e mq-29 (UDESC 2025.1, 2026.1 e 2026.2; UEA
+SIS 2020 e 2021, UEA 2021 Biológicas), Química, provas-alvo. Nenhum lote aberto. Sessão encerrada perto do limite de
+contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 117 letras reescritas e gravadas em 42 questões (mq-28: 50 em 20; mq-29: 67 em 22); 23 letras mantidas por
+falta de equívoco honesto. mq-29: fatos 61 ok e 6 corrigidas (Pb97db6b5 B e D, seta 2 no CH3 e cunhas; Pf16a299c A,
+só triglicerídeos; Pae01c789 A; P81313611 D, carbono quiral é o CH ligado ao CH3; P043fe767 D); didática melhorou 12,
+reconferidas (12 ok); amostra 11 letras, 0 erro.
+Pendência fora do escopo das erradas: Pb97db6b5 (UDESC) — o passo 1 da resolução e o texto antigo tratam a seta 2
+como carbono do anel, mas no print ela aponta o CH3 (os dois são sp³; o gabarito não muda).
+Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 qui` (próximo
+lote: conteudo-erradas-mq-30), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
