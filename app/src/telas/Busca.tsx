@@ -45,7 +45,7 @@ export function Busca({ aoFechar }: { aoFechar: () => void }) {
           if (n) r.push({ grupo: 'Conteúdos', titulo: s.nome.charAt(0).toUpperCase() + s.nome.slice(1), det: `${nomeMateria(mc.id)} · ${mod.nome} · ${n} ${n === 1 ? 'questão' : 'questões'}${onde}`, ir: `/m/${mc.id}/escada/${s.id}`, m: mc.id, ic: s.id });
         }
       }
-      for (const c of mc.conteudo.flash) r.push({ grupo: 'Cartões', titulo: c.frente, det: `Flashcard · ${nomeMateria(mc.id)}`, ir: `/m/${mc.id}/flashcards?c=${c.id}`, m: mc.id });
+      for (const c of mc.conteudo.flash) r.push({ grupo: 'Flashcards', titulo: c.frente, det: `Flashcard · ${nomeMateria(mc.id)}`, ir: `/m/${mc.id}/flashcards?c=${c.id}`, m: mc.id });
     }
     for (const e of provasCompletas || []) r.push({ grupo: 'Simulados', titulo: e.titulo, det: `Prova completa · ${e.questoes} questões`, ir: `/simulados/prova/${encodeURIComponent(e.id)}` });
     for (const p of CATALOGO) r.push({ grupo: 'Provas e faculdades', titulo: `${p.prova} · ${p.sigla || p.instituicao}`, det: [p.cidade, p.uf].filter(Boolean).join(' · ') || p.regiao, ir: `/provas/${p.id}` });
@@ -79,14 +79,14 @@ export function Busca({ aoFechar }: { aoFechar: () => void }) {
           <button className="btn-ic" onClick={aoFechar} aria-label="Fechar"><Icone nome="fechar" /></button>
         </div>
         <div className="corpo" style={{ padding: '6px 10px 12px' }}>
-          {!lista.length && <p className="vazio">Nada encontrado para “{t}”.</p>}
+          {!lista.length && <p className="vazio">Nada encontrado para “{t}”. Tente parte da palavra.</p>}
           {lista.map((r, i) => {
             const g = r.grupo !== grupoAnt ? (grupoAnt = r.grupo) : null;
             return (
               <div key={r.grupo + r.ir + i}>
                 {g && <div className="busca-grupo">{g}</div>}
                 <button className={'busca-item' + (i === sel ? ' sel' : '') + (r.m ? ' m-' + r.m : '')} onMouseEnter={() => setSel(i)} onClick={() => vai(r)}>
-                  {r.m && r.ic ? (r.ic.includes('.') ? <span className="mini-ic mini-ponto" aria-hidden><i className="ponto-sub" aria-hidden /></span> : <IcTema m={r.m} tema={r.ic} tam={32} />) : <span className="mini-ic"><Icone nome={r.grupo === 'Simulados' ? 'relogio' : r.grupo === 'Matérias' ? 'livro' : r.grupo === 'Cartões' ? 'cartas' : 'predio'} /></span>}
+                  {r.m && r.ic ? (r.ic.includes('.') ? <span className="mini-ic mini-ponto" aria-hidden><i className="ponto-sub" aria-hidden /></span> : <IcTema m={r.m} tema={r.ic} tam={32} />) : <span className="mini-ic"><Icone nome={r.grupo === 'Simulados' ? 'relogio' : r.grupo === 'Matérias' ? 'livro' : r.grupo === 'Flashcards' ? 'cartas' : 'predio'} /></span>}
                   <span><span className="tit">{r.titulo}</span><span className="det">{r.det}</span></span>
                 </button>
               </div>

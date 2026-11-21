@@ -19,7 +19,7 @@ export function raiz(palavra: string): string {
 const raizes = (t: string) => norm(t).split(' ').filter(Boolean).map(raiz);
 
 /** Ordem fixa dos tipos quando a relevância empata; os flashcards vêm sempre depois de matérias, temas e conteúdos. */
-const PESO: Record<string, number> = { 'Matérias': 0, 'Temas': 1, 'Conteúdos': 2, 'Simulados': 3, 'Provas e faculdades': 4, 'Cartões': 5 };
+const PESO: Record<string, number> = { 'Matérias': 0, 'Temas': 1, 'Conteúdos': 2, 'Simulados': 3, 'Provas e faculdades': 4, 'Flashcards': 5 };
 
 export interface ItemBusca { grupo: string; titulo: string; det: string }
 
@@ -31,7 +31,7 @@ export function notaBusca(x: ItemBusca, consulta: string): number | null {
   const casa = (l: string[], p: string) => l.some((w) => w.startsWith(p));
   if (!q.every((p) => casa(tit, p) || casa(det, p))) return null;
   const s = tit[0]?.startsWith(q[0]) ? 0 : q.every((p) => casa(tit, p)) ? 1 : 2;
-  const cartao = x.grupo === 'Cartões' ? 1 : 0;
+  const cartao = x.grupo === 'Flashcards' ? 1 : 0;
   return cartao * 100 + s * 10 + (PESO[x.grupo] ?? 6);
 }
 

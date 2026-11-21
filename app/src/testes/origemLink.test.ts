@@ -10,7 +10,7 @@ describe('origem do link da questão', () => {
     expect(origemDoLink('https://storage.acafe.org.br/x.pdf').tipo).toBe('oficial');
   });
   it('PDF de cursinho e cópia em site de terceiros', () => {
-    expect(origemDoLink('https://www.curso-objetivo.br/vestibular/resolucao-comentada/alberteinstein/2019/a.pdf')).toEqual({ tipo: 'cursinho', nome: 'Objetivo', rotulo: 'PDF de cursinho (Objetivo), com a prova' });
+    expect(origemDoLink('https://www.curso-objetivo.br/vestibular/resolucao-comentada/alberteinstein/2019/a.pdf')).toEqual({ tipo: 'cursinho', nome: 'Objetivo', rotulo: 'PDF de resolução publicada, com a prova' });
     expect(origemDoLink('https://vestibulares.estrategia.com/public/questoes/x/').nome).toBe('Estratégia');
     expect(origemDoLink('https://arquivos.qconcursos.com/prova/arquivo_prova/1/p.pdf').tipo).toBe('terceiros');
     expect(origemDoLink('https://storage.googleapis.com/b/p.pdf').tipo).toBe('hospedado');

@@ -74,7 +74,7 @@ export const MATERIAS: MateriaInfo[] = [
     { c: '#0F6E7A', ink: BRANCO }, 'Cartografia, natureza, população, espaço urbano e agrário, energia e geopolítica.'),
   mat('his', 'História', 'His', false,
     { principal: '#75451D', textoClaro: '#75451D', textoEscuro: '#B77B4C', fundoClaro: '#FFF0E6', fundoEscuro: '#472302', sobrePrincipal: '#FFFFFF' },
-    { c: '#75451D', ink: BRANCO }, 'Brasil, Geral, América e o mundo contemporâneo.'),
+    { c: '#75451D', ink: BRANCO }, 'História do Brasil, Geral e da América, e o mundo contemporâneo.'),
   mat('fs', 'Filosofia e Sociologia', 'Fil e Soc', false,
     { principal: '#E8B616', textoClaro: '#8C6C02', textoEscuro: '#E8B616', fundoClaro: '#FFF3D5', fundoEscuro: '#3B2B00', sobrePrincipal: '#17181C' },
     { c: '#E8B616', ink: '#17181C' }, 'Filosofia, dos pré-socráticos ao existencialismo, e Sociologia: cultura, trabalho, desigualdade, poder e indústria cultural.'),

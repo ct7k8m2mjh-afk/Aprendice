@@ -9,12 +9,12 @@ describe('busca: singular e plural, relevância (revisão de 19/11/2026, casca 2
   });
   it('"função" acha o tema no plural e põe conteúdos e temas antes dos cartões', () => {
     const itens = [
-      { grupo: 'Cartões', titulo: 'Função do ribossomo?', det: 'Flashcard · Biologia' },
+      { grupo: 'Flashcards', titulo: 'Função do ribossomo?', det: 'Flashcard · Biologia' },
       { grupo: 'Temas', titulo: 'Funções afim e quadrática', det: 'Matemática' },
       { grupo: 'Conteúdos', titulo: 'Função exponencial', det: 'Matemática · Funções' },
-      { grupo: 'Cartões', titulo: 'O que é ATP?', det: 'Flashcard · Biologia' },
+      { grupo: 'Flashcards', titulo: 'O que é ATP?', det: 'Flashcard · Biologia' },
     ];
     const r = ordenaBusca(itens, 'função').map((x) => x.grupo + ':' + x.titulo);
-    expect(r).toEqual(['Temas:Funções afim e quadrática', 'Conteúdos:Função exponencial', 'Cartões:Função do ribossomo?']);
+    expect(r).toEqual(['Temas:Funções afim e quadrática', 'Conteúdos:Função exponencial', 'Flashcards:Função do ribossomo?']);
   });
 });

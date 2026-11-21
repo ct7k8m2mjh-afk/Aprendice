@@ -32,8 +32,8 @@ function paginaInicial(url: string): boolean {
 export function origemDoLink(url: string | undefined, origem: 'prova' | 'site' = 'prova'): OrigemLink {
   if (origem !== 'prova') return { tipo: 'lista', rotulo: 'Lista pública de exercícios' };
   const h = host(url || '');
-  for (const [re, nome] of CURSINHOS) if (re.test(h)) return { tipo: 'cursinho', nome, rotulo: `PDF de cursinho (${nome}), com a prova` };
-  for (const [re, nome] of TERCEIROS) if (re.test(h)) return { tipo: 'terceiros', nome, rotulo: `Cópia da prova em site de terceiros (${nome})` };
+  for (const [re, nome] of CURSINHOS) if (re.test(h)) return { tipo: 'cursinho', nome, rotulo: 'PDF de resolução publicada, com a prova' };
+  for (const [re, nome] of TERCEIROS) if (re.test(h)) return { tipo: 'terceiros', nome, rotulo: 'Cópia da prova em site de terceiros' };
   // o domínio técnico do armazenamento fica no registro (`nome`), não na tela do aluno (revisão de 20/11/2026, N11)
   if (HOSPEDAGEM.test(h)) return { tipo: 'hospedado', nome: h, rotulo: 'Caderno da prova, em arquivo hospedado na internet' };
   // link só para a página inicial da instituição: não promete o caderno (N11)
