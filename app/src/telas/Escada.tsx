@@ -60,7 +60,7 @@ export function Escada() {
   // modo administrador: o que o aluno não vê (vazio para o aluno)
   const ocultas = mc.ocultasPorSub?.get(sub) || [];
   if (!l.length) return (
-    <div className="conteudo vazio"><h3>{cap(conteudo.nome)}</h3><p>Este conteúdo está sem questões no momento. Questões novas estão em preparação.</p><Link className="btn sec" to={`/m/${m}/tema/${mod.id}`}>Voltar ao tema</Link>
+    <div className="conteudo vazio"><h3>{cap(conteudo.nome)}</h3><p>Este conteúdo ainda não tem questões. Elas estão em preparação.</p><Link className="btn sec" to={`/m/${m}/tema/${mod.id}`}>Voltar ao tema</Link>
       {ocultas.length > 0 && <ol className="degraus">{ocultas.map((q) => <DegrauOculto key={q.id} m={m} q={q} />)}</ol>}
     </div>
   );
@@ -91,7 +91,7 @@ export function Escada() {
       <div className="escada-acao folha">
         <div style={{ flex: 1 }}>
           <b>Treine sua evolução</b>
-          <p className="fraco" style={{ fontSize: 14, margin: '2px 0 8px' }}>Do mais fácil ao mais difícil, para você subir de nível com base.</p>
+          <p className="fraco" style={{ fontSize: 14, margin: '2px 0 8px' }}>Do mais fácil ao mais difícil: você vê em que nível trava.</p>
           <span className="num fraco" style={{ fontSize: 14 }}>{p.feitas} de {p.total} feitas · {p.certas} certas</span>
           <Barra valor={p.feitas / p.total} rotulo="Progresso no conteúdo" />
         </div>
@@ -168,7 +168,7 @@ export function Escada() {
                 const f = filaDe(s.q[q.id], ag);
                 // o conceito só depois de responder (não entrega a resposta antes; logica/escada.ts)
                 const tx = textoDegrau(q, !!ult);
-                const apoio = [tx.apoio, f ? `revisar ${emDias(f.vence)}` : ''].filter(Boolean).join(' · ');
+                const apoio = [tx.apoio, f ? `volta ${emDias(f.vence)}` : ''].filter(Boolean).join(' · ');
                 return (
                   <li key={q.id}>
                     <Link to={`/m/${m}/q/${q.id}?ctx=escada`} className={'degrau' + (ult ? (ult.ok ? ' ok' : ' err') : '') + (q.id === prox?.id ? ' prox' : '')}>

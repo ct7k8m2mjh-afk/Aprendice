@@ -193,7 +193,7 @@ export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao }: {
         </div>
       ) : (
         <div className="q-texto" aria-label="Texto da questão">
-          <p className="aviso-previa"><Icone nome="info" tam={15} /> Nesta prévia o print original não está incluído; o site completo mostra o print fiel da prova.</p>
+          <p className="aviso-previa"><Icone nome="info" tam={15} /> O print desta questão não está disponível aqui. O texto abaixo é o da prova.</p>
           <p style={{ whiteSpace: 'pre-line' }}>{q.enun}</p>
         </div>
       )}
@@ -248,7 +248,7 @@ export function FonteQuestao({ q }: { q: Questao }) {
     // de onde é o link: caderno oficial ou cópia de cursinho (revisão de 19/11/2026, item 19)
     ['Origem', origemDoLink(q.url, q.origem).rotulo],
     // questão indisponível (dono, 19/11/2026); gabarito do Aprendice (princípio 2): o mesmo texto da correção
-    ['Gabarito', q.indisponivel ? 'Indisponível: a banca do Aprendice encontrou erro no gabarito oficial, e a banca da prova não publicou errata. A questão fica só para consulta: sem resposta nem correção, fora dos treinos, simulados e revisões' : origemGabarito(q)],
+    ['Gabarito', q.indisponivel ? 'Indisponível: a banca do Aprendice encontrou erro no gabarito oficial, e a banca da prova não publicou errata. A questão fica só para consulta: sem resposta nem correção, fora dos treinos, simulados e revisões.' : origemGabarito(q)],
   ];
   return (
     <div className="q-fonte-aba">

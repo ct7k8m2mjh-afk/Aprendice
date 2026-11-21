@@ -79,7 +79,7 @@ export function ResolucaoView({ q, r, marcada, materia, origem, semFonte }: { q:
         </div>
       </header>
 
-      {!r && <p className="miolo">A resolução comentada desta questão está em revisão e entra quando passar por todas as lentes.</p>}
+      {!r && <p className="miolo">A resolução comentada desta questão ainda está em revisão pela banca do Aprendice. O gabarito acima já vale.</p>}
       {r && (
         <>
           {/* 1. Por que eu errei: o que faltou no raciocínio de quem marcou esta letra (só quando errou) */}

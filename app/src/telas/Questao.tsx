@@ -220,7 +220,7 @@ export function QuestaoTela() {
               ) : (
                 <>
                   {anteriores > 0 && (
-                    <p className="q-antes fraco"><Icone nome="repetir" tam={15} /> Você já respondeu esta questão {anteriores === 1 ? 'uma vez' : `${anteriores} vezes`}{f ? `; revisão ${emDias(f.vence)}` : ''}.</p>
+                    <p className="q-antes fraco"><Icone nome="repetir" tam={15} /> Você já respondeu esta questão {anteriores === 1 ? 'uma vez' : `${anteriores} vezes`}{f ? `; ela volta ${emDias(f.vence)}` : ''}.</p>
                   )}
                   <div className="q-trava"><Icone nome="lampada" /><div><b>A resolução abre quando você confirmar</b><p>Marque uma alternativa e confirme. Se travar, peça uma dica: ela mostra o caminho sem entregar a resposta.</p></div></div>
                   {pista && textoPista && <div className="pista"><Icone nome="lampada" tam={18} /><p>{textoPista}</p></div>}
@@ -291,7 +291,7 @@ function QuestaoIndisponivel({ m, q, mc, mod, sub, ctx, aoVoltar, etq }: { m: Ma
             acao={<button className={'q-marca' + (eq?.rev ? ' marcado' : '')} onClick={() => alternaMarcada(m, q.id)} aria-pressed={!!eq?.rev} aria-label="Revisar depois" title="Revisar depois"><Icone nome="marcador" /></button>} />
           {/* o pé da questão normal ("Sua resposta" + letras), com o rótulo "Questão indisponível" e uma linha no lugar das letras */}
           <div className={'q-resp q-indisp' + (q.transcricao || !urlPrint(m, q.id) ? ' com-texto' : '')}>
-            <div className="q-bolhas" role="status" aria-label={q.indisponivel ? 'Questão indisponível' : ETIQUETA_OCULTO}><p className="q-indisp-txt">{q.indisponivel ? 'Gabarito oficial com erro e sem correção da banca. Só para consulta.' : `Oculta para o aluno: ${q.pendente || 'fora do ar'}.`}</p></div>
+            <div className="q-bolhas" role="status" aria-label={q.indisponivel ? 'Questão indisponível' : ETIQUETA_OCULTO}><p className="q-indisp-txt">{q.indisponivel ? 'Erro no gabarito oficial, sem errata da banca. Só para consulta.' : `Oculta para o aluno: ${q.pendente || 'fora do ar'}.`}</p></div>
           </div>
         </article>
         <aside className="folha q-lado" id="q-lado" aria-label="Teoria e fonte">

@@ -56,7 +56,7 @@ export function TeoriaModulo({ m, mod }: { m: MateriaId; mod: Modulo }) {
         {mod.formulas.length > 0 && (<><h3>No caderno</h3><ul className="caderno">{mod.formulas.map((f, i) => ehLatex(f)
           ? (contaEhTexto('1 + 1', m) ? <li key={i} className="texto"><Formula tex={f} prosa /></li> : <li key={i}><Formula tex={f} bloco={false} /></li>)
           : <li key={i} className={contaEhTexto(f, m) ? 'texto' : undefined}>{comFracoes(f)}</li>)}</ul></>)}
-        {mod.erro && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Erro que mais derruba: </b>{comFracoes(mod.erro)}</span></p>}
+        {mod.erro && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>O erro mais comum: </b>{comFracoes(mod.erro)}</span></p>}
       </section>
       <div className="grade g2" style={{ marginTop: 16 }}>
         {figurasPorCartao(mod.cartoes, figs).map((fs, i) => <CartaoTeoriaView key={i} c={mod.cartoes[i]} figs={fs} />)}
@@ -185,7 +185,7 @@ export function Tema() {
           {nEss > 0 && (
             <section className="tp-bloco es-chamada" aria-labelledby="tp-ess-tit">
               <h2 id="tp-ess-tit" className="tp-h">Revisão essencial</h2>
-              <p className="miolo tp-rev-p">Só o que todo aluno precisa saber e o que mais cai: o termômetro, o mapa mental do tema, {plural(nEss, 'tela', 'telas')} de conteúdo, uma questão resolvida e a conexão com outras matérias.</p>
+              <p className="miolo tp-rev-p">O que todo aluno precisa saber: o que mais cai no tema, o mapa mental, {plural(nEss, 'tela', 'telas')} de conteúdo, uma Questão Aprendice resolvida e a conexão com outras matérias.</p>
               <Link className="btn tp-comecar" to={`/m/${m}/essencial/${mod.id}`}><Icone nome="play" />Começar a revisão</Link>
             </section>
           )}
@@ -209,7 +209,7 @@ export function Tema() {
       ) : !subs.length ? (
         <section className="tp-bloco preparo">
           <h2 className="tp-h">Questões em preparação</h2>
-          <p className="miolo">As questões de {mod.nome.toLowerCase()} entram com as provas completas: print fiel da prova, fonte (prova, ano, número, link) e gabarito oficial. Cada uma recebe o seu nível: básico, intermediário ou avançado.</p>
+          <p className="miolo">As questões de {mod.nome.toLowerCase()} entram com as provas completas, cada uma com a fonte (prova, ano, número, link), o gabarito e o seu nível: básico, intermediário ou avançado.</p>
           <div className="preparo-acoes"><Link to="/simulados" className="btn sec">Ver simulados</Link></div>
           {subsOcultos.length > 0 && <ul className="tp-enc">{subsOcultos.map((sub) => <SubOculto key={sub.id} m={m} sub={sub} frase={fraseDe(mod, sub.id)} n={mc.ocultasPorSub!.get(sub.id)!.length} />)}</ul>}
         </section>
