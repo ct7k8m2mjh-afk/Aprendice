@@ -359,3 +359,20 @@ verdes. Gasto de API: zero. Em andamento: conteudo-erradas-fis-19.
 questões, Acafe 2023–2025; fatos rejeitou 1 por equívoco inventado; amostra 4 letras, 0 erro) e mq-18 (29 letras em 17
 questões, Acafe 2021–2023; amostra 6 letras, 1 consertada: P5e621c84 D passou a explicar o item II). converte, tsc e
 vitest 922/922 verdes nos dois. Gasto de API: zero. A série mq segue em Química (lote mq-19 aberto).
+
+## 2026-11-21 — FIM — erradas (série fis, sem API, 8ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-fis-17, fis-18 e fis-19 (Física, provas-alvo PUC-Campinas, Mackenzie e
+UPE SSA3, 75 questões, 220 letras fracas). Nenhum lote aberto. Sessão encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 67 letras reescritas e gravadas em 32 questões (fis-17: 22 em 12; fis-18: 26 em 11; fis-19: 19 em 9). As
+demais letras não têm equívoco honesto que leve a elas e ficaram com o texto antigo.
+fis-19: lente de fatos 20 ok, 4 corrigidas (Pfdbbadb7 E: energia cinética não se conserva; P696c5c2f D: carga "de
+módulo 3 vezes maior"); didática melhorou 15 e deu 1 alerta; 2ª passagem rejeitou 3 cuja conta só chega PERTO da
+alternativa (Pfdbbadb7 E ≈ 54 m/s contra 50; P3e7482a6 A ≈ 0,067 s contra 0,064; P18de5213 C ≈ 3488 m contra 3480) e
+corrigiu P63a2f5b6 A (6,0 N é só o acréscimo da força; equívoco renomeado). Fora por filtro: Pe6f6cf41 C (55 palavras).
+Amostra: 5 letras, 0 erro.
+Conflito em erradas-feitas.json com a série mq (fis-18): resolvido por união, sem perder nada.
+Testes: converte, tsc e vitest 922/922 verdes nos três lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
+lote: conteudo-erradas-fis-20; na fila: 356 de Física provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
