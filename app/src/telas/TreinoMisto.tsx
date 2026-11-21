@@ -58,6 +58,7 @@ export function TreinoMisto() {
   if (ses.i >= ses.it.length) {
     const r = resultadoMisto(ses);
     const ok = r.reduce((a, x) => a + x.ok, 0), n = r.reduce((a, x) => a + x.n, 0);
+    const er = Object.values(ses.res).filter((v) => v === 'e').length;
     return (
       <div className="conteudo estreito">
         <div className="resultado-fl folha tm-fim">
@@ -68,7 +69,7 @@ export function TreinoMisto() {
               <li key={x.m} className={`m-${x.m}`}><i className="ponto" aria-hidden /><span>{nomeMateria(x.m)}</span><b className="num">{x.ok} de {x.n}</b></li>
             ))}
           </ul>
-          <p className="miolo">Cada resposta já conta no progresso da matéria da questão. Erros e chutes entram na revisão espaçada.</p>
+          <p className="miolo">Cada resposta conta no progresso da matéria. {er === 0 ? 'Nenhum erro nesta rodada.' : er === 1 ? '1 erro volta amanhã na revisão.' : `${er.toLocaleString('pt-BR')} erros voltam amanhã na revisão.`}</p>
           <div className="tm-regiao"><FiltroRegiaoChips compacto /></div>
           <div className="fc-acoes"><button className="btn sec" onClick={encerrar}>Voltar ao início</button><button className="btn" onClick={recomecar}>Nova rodada</button></div>
         </div>
