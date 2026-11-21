@@ -104,10 +104,9 @@ REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, comm
 ## REGRA DO DONO (21/11/2026): NO MÁXIMO 4 SESSÕES AO MESMO TEMPO
 "Termina a tarefa ou matéria e liga a próxima." Motivo: em 20/11 às 22h51 oito sessões juntas estouraram o limite de 5 h da
 conta. Peça a cada sessão no máximo 3 agentes em paralelo. Fila (21/11 04h35 UTC):
-- 21/11 07h00 UTC — RODANDO (3): erradas mat→qui (session_01Tq253VTRm1LJn4ApYvF6sn, em mq-06); erradas fís 3ª sessão
-  (…YMxvnX4zYXT6PQaZz, começa em fis-06; as anteriores fizeram fis-01 a fis-05, 115 textos); marketing
-  (…ZLvhTYPTJzzEKVyyv, fechando o relatório; não pode subir servidor — a coordenadora conferiu 390 claro e 1280 escuro:
-  entrada, Início, Hoje, Simulados, Perfil, ok).
+- 21/11 07h50 UTC — RODANDO (2): erradas fís 4ª sessão (session_01Tq253WAgUTiuKLR1ZgQ5wb, começa em fis-08); erradas
+  mat→qui (…WKzK9DnBgUvYaiGka, começa em mq-07). Feito até aqui: fís fis-01 a fis-07 (206 textos), mat mq-01 a mq-06
+  (113 textos). Marketing ACABOU (147 textos + 13 mensagens de retenção; docs/marketing/RELATORIO.md), arquivada.
 - ESPERANDO VAGA: nada. Próximos candidatos: 4.4 revisão final (depois das contas no ar).
 - ACABARAM (arquivadas): pendentes das 9 matérias (ACABOU; his ficou com 2 pendentes); telas das decisões do dono (FIM;
   conferido pela coordenadora em 390/1280, claro/escuro: Perfil com Excluir minha conta, capa do Treino geral, página
