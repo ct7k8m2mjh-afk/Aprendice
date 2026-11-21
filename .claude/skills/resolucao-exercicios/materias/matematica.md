@@ -72,6 +72,7 @@ Códigos e nomes de `app-atual/mat/dados.json` (`nomesub`). Marcas: **[muito cob
 - M09.3 semelhança de triângulos **[muito cobrado]** (sombra, rampa, figura dentro de figura)
 - M09.4 relações métricas no triângulo retângulo
 - M09.5 ângulos e propriedades
+- M09.6 transformações geométricas: reflexão, rotação, translação e homotetia (conteúdo novo, 20/11/2026)
 
 **M10 Trigonometria**
 - M10.1 razões trigonométricas no triângulo retângulo **[muito cobrado]**
@@ -86,6 +87,8 @@ Códigos e nomes de `app-atual/mat/dados.json` (`nomesub`). Marcas: **[muito cob
 - M11.3 pirâmides e cones **[cobrado]**
 - M11.4 esfera
 - M11.5 troncos, sólidos compostos e densidade/volume **[cobrado]**
+- M11.7 geometria de posição: pontos, retas e planos no espaço (conteúdo novo, 20/11/2026)
+- M11.8 poliedros e relação de Euler (conteúdo novo, 20/11/2026)
 - (novo) planificação, vistas e projeção ortogonal **[cobrado no ENEM]**
 
 **M12 Geometria analítica**
@@ -94,6 +97,7 @@ Códigos e nomes de `app-atual/mat/dados.json` (`nomesub`). Marcas: **[muito cob
 - M12.3 posição relativa e paralelismo
 - M12.4 circunferência no plano cartesiano **[cobrado]**
 - M12.5 áreas por coordenadas
+- M12.6 cônicas: elipse, hipérbole e parábola (conteúdo novo, 20/11/2026)
 - (novo) transformações no plano (simetria, rotação, translação, plano cartesiano em mapa)
 
 **M13 Combinatória e probabilidade**

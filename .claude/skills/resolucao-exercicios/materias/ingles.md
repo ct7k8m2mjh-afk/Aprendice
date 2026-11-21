@@ -35,6 +35,7 @@ Perfil das provas, segundo os vídeos:
 - I03.3 phrasal verbs **[cobrado]**
 - I03.4 expressões idiomáticas e termos culturais [cobrado]
 - I03.5 formação de palavras: prefixos e sufixos (aparece)
+- I03.10 tipos de frase: simples, composta e complexa (conteúdo novo, 20/11/2026)
 
 ### I04 Coesão e articulação
 - I04.1 referência: a que se refere it, they, this, which, that **[muito cobrado]**
