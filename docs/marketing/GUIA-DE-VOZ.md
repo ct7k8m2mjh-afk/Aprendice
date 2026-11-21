@@ -59,3 +59,22 @@ grupo de flashcards, "!!!", emoji, CAIXA ALTA para gritar, nome de cursinho ou s
 | 8 | Matéria sem questões | "…o gabarito oficial e o nível de dificuldade. Nenhuma questão é criada ou redigitada." | "…o gabarito e o nível de dificuldade." | Hoje há Questões Aprendice, transcrição e gabarito do Aprendice: a frase ficou falsa. |
 | 9 | Revisão vazia | "Quando você errar, chutar ou usar uma pista, a questão aparece aqui no dia certo." | "Quando você errar, chutar ou usar a dica, a questão aparece aqui no dia certo." | Um nome só para a mesma coisa (botão "Dica"). |
 | 10 | Configurações, rodapé | "Aprendice · versão de demonstração: o progresso fica salvo neste aparelho" | com conta: "Aprendice · progresso salvo na sua conta e neste aparelho" · sem conta: "Aprendice · progresso salvo neste aparelho" | Com login de verdade, a frase fixa ficou falsa. |
+
+## Revisão do revisor
+Revisor de marca, 21/11/2026. Conferido contra o `CLAUDE.md` (vocabulário fixo, princípios 1, 2, 8 e 10, "A correção da
+questão", "Como o site ensina") e contra o código em `app/src`.
+
+**Erros objetivos corrigidos neste arquivo:** nenhum. Vocabulário, faixas de dificuldade (1–3, 4–6, 7–10), aviso do
+Gabarito do Aprendice, regra da quantidade de questões só no conteúdo, proibição de emoji, de promessa e de nome de
+cursinho estão de acordo com o `CLAUDE.md`. Os exemplos antes → depois conferem com o código (ex.: a meta semanal só
+aparece no menu lateral, `ui/Casca.tsx:136`; "2 questões estão em branco e contam como erro" é o texto de
+`telas/SimuladoExec.tsx:330`).
+
+**Pontos para a régua que apareceram na revisão de `TEXTOS.md` e `RETENCAO.md` (não são erro do guia; ficam como
+lembrete ao redator):**
+- Botões, chips, abas, etiquetas e contadores: o limite de +20% de caracteres vale também para rótulos curtos (ex.:
+  `Vencida` → `Volta hoje` passou do limite).
+- Evitar a mesma palavra duas vezes na frase ("a revisão … ainda está em revisão").
+- Mensagem com número precisa da variante com zero e da variante com 1.
+- Depois de responder, a correção tem só os 4 blocos do `CLAUDE.md`: linha nova nesse painel é decisão do dono.
+- Um texto, uma versão: quando `TEXTOS.md` e `RETENCAO.md` propõem frases diferentes para o mesmo elemento, vale uma só.
