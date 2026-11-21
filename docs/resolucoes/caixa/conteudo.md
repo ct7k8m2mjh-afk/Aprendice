@@ -376,3 +376,15 @@ Conflito em erradas-feitas.json com a série mq (fis-18): resolvido por união, 
 Testes: converte, tsc e vitest 922/922 verdes nos três lotes. Gasto de API: zero.
 Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
 lote: conteudo-erradas-fis-20; na fila: 356 de Física provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+## 2026-11-21 — FIM — erradas (série mq, sem API, 7ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-mq-16, mq-17 e mq-18 (Matemática, provas-alvo UDESC e Acafe; com eles
+ACABOU a faixa 1 de Matemática) e mq-19 (Química, provas-alvo ENEM 2022/2024/2025 e Fuvest 2020–2027). Nenhum lote
+aberto. Sessão encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 121 letras reescritas e gravadas em 71 questões (mq-16: 19 em 13; mq-17: 27 em 20; mq-18: 29 em 17; mq-19:
+46 em 21). mq-19: fatos 45 ok e 5 corrigidas (HNO2 em P22a54283 D; frase sobre esquema que não está no print tirada de
+Pd096fa40 D), didática melhorou 7, todas reconferidas (7 ok). Amostra mq-19: 5 letras, 0 erro.
+Testes: converte, tsc e vitest 922/922 verdes em todos os lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 qui` (próximo
+lote: conteudo-erradas-mq-20; na fila: ~413 de Química provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
