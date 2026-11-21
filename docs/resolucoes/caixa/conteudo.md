@@ -560,3 +560,9 @@ letras mantidas por falta de equívoco honesto; nenhuma rejeitada. fb-05: fatos 
 Testes: converte, tsc e vitest 922/922 verdes nos três lotes. Gasto de API: zero.
 ACABOU (provas-alvo de Física, série fb): `erradas-fila` não mostra mais Física na faixa 1. Continuar de: faixa 2 de
 Física (`BASE_MAX=2`), se o dono quiser, seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+## 2026-11-21 — AVISO — erradas (série qb, Química, sem API)
+Lote conteudo-erradas-qb-01 gravado: 37 letras reescritas em 18 questões de Química das provas-alvo (Mackenzie 2022-2,
+2026-1, 2026-2, 2026-3, 2027-1; PUC-Campinas 2022 e 2023; FMABC e outras); 21 letras ficaram com o texto antigo (sem
+equívoco honesto que chegue exatamente ao valor). Fatos: 34 ok e 2 corrigidas; didática melhorou 8, todas reconferidas
+(8 ok) pela 2ª lente de fatos; amostra 8 letras, 0 erro. Testes: converte, tsc e vitest 922/922 verdes. Gasto de API:
+zero. Feito por agentes do Claude Code, uma etapa por agente, em paralelo com a série mq. Seguindo com qb-02.
