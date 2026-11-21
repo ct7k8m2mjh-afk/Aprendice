@@ -308,3 +308,10 @@ Processo: um `git pull --rebase --autostash` ficou preso (rebase sem head-name) 
 Testes: converte, tsc e vitest 922/922 verdes (fis-14; fis-15 e fis-16 juntos). Gasto de API: zero.
 Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
 lote: conteudo-erradas-fis-17), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+## 2026-11-21 — AVISO — erradas (série mq, sem API, 6ª sessão)
+Lote conteudo-erradas-mq-14 gravado (Matemática, provas-alvo UDESC 2025.1–2026.2, 25 questões, 60 letras fracas): 18
+letras reescritas em 11 questões; 40 mantidas (sem equívoco honesto que leve a elas); nenhuma rejeitada. Lente de fatos:
+19 ok, 1 corrigida (P169b8d2e B: linha nula não é o único jeito de zerar o determinante; a questão pede det M²); didática
+melhorou 8; 2ª passagem corrigiu 1 (P18859593 C: a parábola não tem raízes reais). Fora por filtro: P18859593 C (43
+palavras) e P3a847a9c A ("dá 8"). Amostra: 2 letras, 1 consertada (Pc22ec9ed E: função h(t), não A(t)). Testes:
+converte, tsc e vitest 922/922 verdes. Gasto de API: zero. Em andamento: conteudo-erradas-mq-15.
