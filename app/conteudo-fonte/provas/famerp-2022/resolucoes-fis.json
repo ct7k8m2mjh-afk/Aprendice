@@ -3,10 +3,10 @@
   "n": "61",
   "conceito": "Taquímetro: a taxa por hora é o número de vezes que o tempo medido cabe em uma hora: 3600 ÷ Δt; com Δt = 45 s, dá 80.",
   "equivocos": {
-   "B": "F02.1:expressao-invertida",
-   "C": "F02.1:multiplicou-em-vez-de-dividir",
-   "D": "F02.1:multiplicou-em-vez-de-dividir",
-   "E": "F02.1:minuto-por-hora"
+   "B": "F02.1:converteu-tempo-em-vez-de-calcular-taxa",
+   "C": "F02.1:multiplicou-por-3600-na-conversao",
+   "D": "F02.1:usou-60-e-multiplicou-pelo-tempo",
+   "E": "F02.1:taxa-por-minuto-em-vez-de-por-hora"
   },
   "resolucao": {
    "antes": {
@@ -59,10 +59,10 @@
    "resposta": "Alternativa A: a taxa, por hora, é 3600 ÷ Δt; com Δt = 45 s, resulta 80.",
    "checagem": "Pelo carro: 1 km em 45 s; em 3600 s, percorre 3600 ÷ 45 = 80 km, isto é, 80 km/h.",
    "erradas": {
-    "B": "Δt ÷ 3600 com Δt = 45 dá 0,0125, e não 80.",
-    "C": "3600 × Δt com Δt = 45 dá 162 000, e não 80.",
-    "D": "Δt × 60 com Δt = 45 dá 2 700, e não 80.",
-    "E": "60 ÷ Δt com Δt = 45 dá cerca de 1,33: é a taxa por minuto, não por hora."
+    "B": "Quem marca B converte o tempo para horas: 45 s = 45/3600 h = 0,0125 h. Isso é a duração, não a taxa. A taxa por hora é o inverso: quantas vezes Δt cabe em 3600 s.",
+    "C": "Quem marca C multiplica por 3600 achando que assim converte segundos em horas: 3600 × 45 = 162 000. Para passar de segundos a horas se divide, e a taxa é 3600/Δt.",
+    "D": "Quem marca D usa o 60 da conversão minuto-segundo e multiplica: 45 × 60 = 2 700. A taxa é inversa ao tempo (Δt no denominador) e a hora tem 3600 s, não 60.",
+    "E": "Quem marca E monta a taxa certa, com Δt no denominador, mas usa 60 s (um minuto): 60/45 ≈ 1,33 por minuto. A escala marca a taxa por hora, então o numerador é 3600 s."
    },
    "armadilha": "Usar 60 no lugar de 3600: o tempo está em segundos e a taxa é por hora.",
    "alerta": "",
@@ -347,8 +347,8 @@
   "conceito": "Obter o trabalho pela área de um gráfico força × elongação e convertê-lo em energia cinética.",
   "equivocos": {
    "A": "F04.2:errou-a-area",
-   "C": "F04.2:tratou-forca-como-constante",
-   "D": "F04.2:errou-a-area",
+   "C": "F04.1:tratou-forca-variavel-como-constante",
+   "D": "F04.1:esqueceu-trecho-da-area-do-grafico",
    "E": "F04.2:errou-a-area"
   },
   "resolucao": {
@@ -402,8 +402,8 @@
    "checagem": "De volta: (18 × 10⁻³ × 100²)/2 = (18 × 10⁻³ × 10 000)/2 = 90 J, a área do gráfico. Pela fórmula do trapézio: ((0,7 + 0,2) × 200)/2 = 90 J.",
    "erradas": {
     "A": "50 m/s não confere: daria (0,018 × 2500)/2 = 22,5 J, e a área é 90 J.",
-    "C": "125 m/s é o que dá ao tratar a força como constante: 200 × 0,7 = 140 J e v = √(280/0,018) ≈ 125 m/s; nos trechos inclinados a área é de triângulo.",
-    "D": "75 m/s não confere: daria (0,018 × 5625)/2 ≈ 50,6 J, e a área é 90 J.",
+    "C": "Quem marca C trata a força como constante e igual a 200 N em toda a elongação: 200 × 0,7 = 140 J, e v = √(280/0,018) ≈ 125 m/s. Nos trechos inclinados a área é de triângulo.",
+    "D": "Quem marca D soma só os dois triângulos, 40 J + 10 J = 50 J, e esquece o retângulo do patamar de 200 N (0,2 × 200 = 40 J). Com 50 J, v = √(100/0,018) ≈ 75 m/s.",
     "E": "25 m/s não confere: daria (0,018 × 625)/2 ≈ 5,6 J, e a área é 90 J."
    },
    "armadilha": "Calcular o trabalho como 200 N × 0,7 m = 140 J, tratando a força como constante: nos trechos inclinados a área é de triângulo.",
@@ -589,7 +589,7 @@
   "conceito": "Aplicar o princípio de Arquimedes a um corpo em equilíbrio em um copo cheio.",
   "equivocos": {
    "A": "F07.4:errou-a-conta",
-   "B": "F07.4:errou-a-conta",
+   "B": "F07.4:achou-que-flutuar-exige-empuxo-maior-que-peso",
    "D": "F07.4:confundiu-fracao-de-volume-com-fracao-de-massa",
    "E": "F07.4:errou-a-conta"
   },
@@ -642,7 +642,7 @@
    "checagem": "Com números: um objeto de 200 g, de densidade 0,5 g/cm³, tem 400 cm³ e flutua com metade do volume dentro da água. Desloca 200 cm³ de água, que têm 200 g: a mesma massa do objeto.",
    "erradas": {
     "A": "mₒ/4 não equilibra: a água deslocada daria um empuxo de só um quarto do peso do objeto, e ele continuaria afundando.",
-    "B": "2mₒ daria um empuxo igual ao dobro do peso: o objeto subiria, não ficaria em equilíbrio.",
+    "B": "Quem marca B pensa que, para flutuar, o empuxo precisa ser maior que o peso. No equilíbrio, o empuxo só iguala o peso: a água derramada pesa o mesmo que o objeto, mₒ.",
     "D": "mₒ/2 confunde massa com volume: o volume deslocado pode ser só uma parte do volume do objeto, mas a massa de água deslocada é igual à dele.",
     "E": "4mₒ daria um empuxo quatro vezes maior que o peso: não há equilíbrio."
    },
@@ -694,10 +694,10 @@
   "n": "67",
   "conceito": "Cobertor como isolante térmico: mantém o corpo aquecido sem fornecer calor, dificultando a perda de calor.",
   "equivocos": {
-   "A": "F08.5:cobertor-muda-capacidade-termica",
-   "B": "F08.5:cobertor-muda-capacidade-termica",
-   "C": "F08.5:cobertor-muda-calor-especifico",
-   "D": "F08.5:cobertor-como-fonte-de-calor"
+   "A": "F08.5:atribuiu-efeito-a-capacidade-termica",
+   "B": "F08.5:viu-contradicao-em-aquecer-sem-dar-calor",
+   "C": "F08.5:achou-que-cobertor-muda-calor-especifico",
+   "D": "F08.5:tratou-isolante-como-fonte-de-calor"
   },
   "resolucao": {
    "antes": {
@@ -751,10 +751,10 @@
    "resposta": "Alternativa E — correto, pois cobertores e lençóis são isolantes térmicos que dificultam a perda de calor do corpo para o ambiente.",
    "checagem": "Um cobertor sobre uma pedra fria não a esquenta: ela continua fria. O cobertor só mantém aquecido o que já produz calor, como o corpo.",
    "erradas": {
-    "A": "Não confere: o cobertor não muda a capacidade térmica do corpo, que depende da massa e do material do próprio corpo.",
-    "B": "Não confere: o trecho está correto, e o cobertor não altera a capacidade térmica do corpo.",
-    "C": "Não confere: o calor específico é do material do corpo e não muda com o cobertor; e o trecho está correto.",
-    "D": "Não confere: o cobertor não é fonte de calor; ele não aquece uma pedra fria embrulhada."
+    "A": "Quem marca A acerta que o trecho está correto, mas atribui o efeito a um aumento da capacidade térmica do corpo. O cobertor não muda a massa nem o material do corpo: só isola.",
+    "B": "Quem marca B lê \"aquece sem dar calor\" como contradição e põe a culpa na capacidade térmica do corpo. O trecho está correto: o cobertor não fornece calor, só dificulta a perda dele.",
+    "C": "Quem marca C acha que o cobertor muda o calor específico do corpo. Calor específico é propriedade do material do corpo e não muda; o cobertor isola, e o trecho está correto.",
+    "D": "Quem marca D sente o cobertor quente e conclui que ele fornece calor. O cobertor não tem fonte de energia: só segura o calor que o próprio corpo produz, como diz \"sem me dar calor\"."
    },
    "armadilha": "Achar que o cobertor é fonte de calor: ele é isolante e mantém o calor que o corpo produz.",
    "alerta": "",
@@ -800,10 +800,10 @@
   "n": "68",
   "conceito": "Espelho frontal: espelho côncavo com a fonte além do foco, para concentrar a luz num ponto do paciente.",
   "equivocos": {
-   "B": "F09.3:convexo-converge",
-   "C": "F09.3:fonte-dentro-do-foco",
-   "D": "F09.3:plano-concentra-luz",
-   "E": "F09.3:convexo-converge"
+   "B": "F09.3:confundiu-espelho-convexo-com-lente-convergente",
+   "C": "F09.3:fonte-entre-foco-e-espelho",
+   "D": "F09.3:ignorou-que-o-espelho-converge",
+   "E": "F09.3:confundiu-espelho-convexo-com-lente-convergente"
   },
   "resolucao": {
    "antes": {
@@ -847,10 +847,10 @@
    "resposta": "Alternativa A — côncavo, com a fonte de luz a uma distância maior que a distância focal.",
    "checagem": "Com a equação 1/f = 1/p + 1/p′: p maior que f dá p′ positivo (imagem real, luz concentrada na frente); p menor que f dá p′ negativo (imagem virtual, luz espalhada).",
    "erradas": {
-    "B": "Não confere: espelho convexo nunca faz a luz convergir; os raios refletidos sempre divergem.",
-    "C": "Não confere: com a fonte entre o foco e o espelho côncavo, os raios refletidos divergem e não se concentram no paciente.",
-    "D": "Não confere: espelho plano não concentra a luz; ele só reflete sem convergir.",
-    "E": "Não confere: espelho convexo não converge a luz, em nenhuma posição da fonte."
+    "B": "Quem marca B associa \"convexo\" a lente convergente. Em espelho é o contrário: o convexo sempre espalha os raios refletidos. Quem converge a luz é o espelho côncavo.",
+    "C": "Quem marca C acerta o côncavo, mas põe a fonte entre o foco e o espelho, como no espelho de aumento. Ali os raios refletidos divergem; para convergir no paciente, a fonte fica além do foco.",
+    "D": "Quem marca D pensa só em refletir a luz para o paciente, como um espelho comum. O plano não converge raios, e o texto diz que o espelho converge a luz: por isso é côncavo.",
+    "E": "Quem marca E acerta a posição da fonte, mas associa \"convexo\" a lente convergente. Espelho convexo diverge a luz em qualquer posição da fonte; quem converge é o côncavo."
    },
    "armadilha": "Colocar a fonte entre o foco e o espelho côncavo: aí os raios divergem.",
    "alerta": "",
@@ -897,7 +897,7 @@
   "conceito": "Comprimento de onda do ultrassom: λ = v/f, com kHz convertido.",
   "equivocos": {
    "A": "F10.1:relacao-invertida",
-   "C": "F10.1:potencia-de-dez-errada",
+   "C": "F10.1:inverteu-formula-e-esqueceu-potencia",
    "D": "F10.1:prefixo-nao-convertido",
    "E": "F10.1:potencia-de-dez-errada"
   },
@@ -943,7 +943,7 @@
    "checagem": "De volta: 3,7 × 10⁻² m × 4 × 10⁴ Hz = 14,8 × 10² = 1480 m/s.",
    "erradas": {
     "A": "Sai de inverter a divisão: f/v = (4 × 10⁴)/1480 ≈ 27 = 2,7 × 10¹.",
-    "C": "Não confere: 2,7 × 10⁻³ m × 4 × 10⁴ Hz ≈ 108 m/s, não 1480 m/s.",
+    "C": "Quem marca C inverte a fórmula e divide f por v. E ainda usa f = 4, esquecendo que 40 kHz = 4 × 10⁴ Hz: 4/1480 ≈ 2,7 × 10⁻³. O certo é velocidade/frequência, v/f.",
     "D": "Sai de usar f = 4, esquecendo o 10⁴ de 40 kHz: 1480/4 = 370 = 3,7 × 10².",
     "E": "Não confere: 2,7 × 10³ m vezes 4 × 10⁴ Hz daria cerca de 10⁸ m/s."
    },
