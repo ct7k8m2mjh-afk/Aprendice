@@ -572,3 +572,9 @@ mantidas pelo escritor por falta de equívoco honesto. Fatos 48 ok e 2 corrigida
 P0fda747a A, em 5000 anos ainda sobram 55%); didática melhorou 13, reconferidas (12 ok, 1 corrigida: Pf7476984 B,
 "carbono espiro da lactona"). Amostra: 13 letras, 0 erro. converte, tsc e vitest 922/922 verdes. Gasto de API: zero.
 A 2ª lente de fatos parou uma vez no limite de uso de 5 horas e foi refeita por outro agente. Segue o mq-29.
+## 2026-11-21 — AVISO — erradas (série qc, Química, sem API)
+Lote conteudo-erradas-qc-01 gravado: 44 letras reescritas em 19 questões de Química das provas-alvo (UECE 2022-1 a
+2026-1); 12 letras ficaram com o texto antigo (sem equívoco honesto que chegue exatamente ao valor). Fatos: 45 ok e 1
+corrigida; didática melhorou 5, todas reconferidas (5 ok) pela 2ª lente de fatos; amostra 10 letras, 0 erro. Testes:
+converte, tsc e vitest 922/922 verdes. Gasto de API: zero. Feito por agentes do Claude Code, uma etapa por agente, em
+paralelo com as séries mq e qb. Seguindo com qc-02.
