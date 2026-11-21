@@ -30,7 +30,7 @@ export function Perfil() {
     <div className="conteudo estreito">
       <div className="titulo-pag perfil-cab">
         <span className="avatar grande" aria-hidden>{(p.nome || 'E').charAt(0).toUpperCase()}</span>
-        <div><h1>{p.nome}</h1><p className="sub">{!naNuvem ? 'Os dados ficam só neste aparelho' : conta.papel === 'admin' ? 'Administrador · o que é oculto para o aluno aparece com etiqueta' : conta.sinc === 'ok' ? 'Progresso salvo na sua conta' : 'Progresso salvo neste aparelho · envio para a conta quando houver internet'}</p></div>
+        <div><h1>{p.nome}</h1><p className="sub">{!naNuvem ? 'Os dados ficam só neste aparelho' : conta.papel === 'admin' ? 'Administrador · o que é oculto para o aluno aparece com etiqueta' : conta.sinc === 'ok' ? 'Progresso salvo na sua conta' : 'Progresso salvo neste aparelho · vai para a sua conta quando a internet voltar'}</p></div>
       </div>
 
       <section className="bloco">
@@ -44,7 +44,7 @@ export function Perfil() {
 
       <section className="bloco secao">
         <h2 className="sec-tit">Provas-alvo</h2>
-        <p className="miolo" style={{ marginBottom: 14 }}>O início, os simulados sugeridos e o simulado “Minhas provas-alvo” seguem esta lista.</p>
+        <p className="miolo" style={{ marginBottom: 14 }}>A tela Hoje, a região das suas questões e o filtro “Minhas provas-alvo” dos simulados seguem esta lista.</p>
         <EscolhaProvas valor={p.provasAlvo} aoMudar={(v) => muda({ provasAlvo: v })} />
       </section>
 
@@ -108,14 +108,14 @@ function ExcluirConta() {
         <>
           <p className="miolo">{local
             ? 'Apaga o perfil e todo o progresso guardados neste aparelho. Não dá para desfazer.'
-            : 'Apaga a sua conta e todos os seus dados: e-mail, perfil de estudo e progresso. Não dá para desfazer.'}</p>
+            : 'Apaga a sua conta e todos os seus dados, na nuvem e neste aparelho: e-mail, perfil de estudo e progresso. Não dá para desfazer.'}</p>
           <div><button className="btn fantasma exc-abre" onClick={() => setAberto(true)}><Icone nome="lixo" /> Excluir minha conta</button></div>
         </>
       ) : (
         <form className="confirma-zera" onSubmit={(ev) => { ev.preventDefault(); void exclui(); }}>
-          <p><b>Excluir a conta para sempre?</b> {local
+          <p><b>Excluir sua conta?</b> {local
             ? 'O perfil, as provas-alvo, as datas, a meta, todo o progresso e as cópias de segurança deste aparelho serão apagados.'
-            : 'A conta, o perfil, as provas-alvo, as datas, a meta e todo o progresso serão apagados da nuvem e deste aparelho. Para estudar de novo, será preciso criar outra conta.'}</p>
+            : 'A conta, o perfil, as provas-alvo, as datas, a meta e todo o progresso serão apagados da nuvem e deste aparelho. Para estudar de novo, será preciso criar outra conta. Se quiser guardar uma cópia, baixe o progresso em Configurações antes.'}</p>
           <div className="campo">
             <label htmlFor="exc-conf">Para confirmar, escreva {PALAVRA}</label>
             <input id="exc-conf" value={txt} onChange={(ev) => setTxt(ev.target.value)} autoComplete="off" autoCapitalize="characters" spellCheck={false} autoFocus />
@@ -123,7 +123,7 @@ function ExcluirConta() {
           {erro && <p className="exc-erro" role="alert">{erro}</p>}
           <div className="fc-acoes">
             <button type="button" className="btn sec" onClick={fecha}>Cancelar</button>
-            <button type="submit" className="btn perigo" disabled={!pode}>{indo ? 'Excluindo…' : 'Excluir para sempre'}</button>
+            <button type="submit" className="btn perigo" disabled={!pode}>{indo ? 'Excluindo…' : 'Excluir conta'}</button>
           </div>
         </form>
       )}
