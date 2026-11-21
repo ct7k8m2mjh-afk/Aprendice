@@ -62,7 +62,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
       <section className="bloco preparo">
         <span className="preparo-ic" aria-hidden><Icone nome="cartas" tam={28} /></span>
         <h2>Flashcards de {info.nome} em preparação</h2>
-        <p className="miolo">Os cartões desta matéria estão sendo escritos e conferidos pela banca de especialistas. Eles entram no site só depois de passar por todas as revisões.</p>
+        <p className="miolo">Os cartões desta matéria estão sendo escritos e conferidos pela banca do Aprendice. Só entram depois de revisados.</p>
         <div className="preparo-acoes"><Link to={`/m/${m}`} className="btn sec">Voltar para {info.nome}</Link></div>
       </section>
     </div>
@@ -72,7 +72,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
     const l = ativos.map((c) => est.flash[c.id]).filter((x) => x?.hist?.length).map((x) => x!.vence);
     return l.length ? Math.min(...l) : null;
   };
-  const voltaTxt = (est: typeof s) => { const v = proxVence(est); return v ? `O próximo cartão que você já viu volta ${emDias(v)}.` : 'Não há cartões ativos agora.'; };
+  const voltaTxt = (est: typeof s) => { const v = proxVence(est); return v ? `O próximo cartão que você já viu volta ${emDias(v)}.` : 'Nenhum cartão disponível agora.'; };
 
   if (!sessao) {
     // lista (sistema do protótipo): cabeçalho da matéria, capa lavada com os números e Começar, folha "Área" e folha "Tema"
@@ -140,7 +140,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
             })}
           </div>
         </section>
-        <p className="fraco fl-nota">Intervalos de revisão: 1, 3, 7, 16, 35 e 80 dias. “Quase” volta amanhã; “Errei” volta hoje.{ocultos ? ` ${plural(ocultos, 'cartão tirado', 'cartões tirados')} por “Não curti”.` : ''}</p>
+        <p className="fraco fl-nota">Acertei: volta em 1, 3, 7, 16, 35 e 80 dias, mais cedo se a prova estiver perto. Quase: amanhã. Errei: hoje.{ocultos ? ` ${plural(ocultos, 'cartão tirado', 'cartões tirados')} por “Não”.` : ''}</p>
       </div>
     );
   }

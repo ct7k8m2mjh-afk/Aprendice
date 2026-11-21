@@ -96,7 +96,7 @@ export function RodadaQuestoes({ ses, rotulo, dica, ctx, voltar, aoAvancar, topo
   return (
     <div className={`questao-tela m-${it.m}`}>
       <div className="q-barra">
-        <button className="q-volta" onClick={() => nav(voltar)} aria-label={`Voltar (${rotulo.toLowerCase()} fica salvo)`} title="Voltar (fica salvo)"><Icone nome="esquerda" /><span>Voltar</span></button>
+        <button className="q-volta" onClick={() => nav(voltar)} aria-label="Voltar (fica salvo)" title="Voltar (fica salvo)"><Icone nome="esquerda" /><span>Voltar</span></button>
         <div className="q-barq">
           <span className="g" aria-hidden><Icone nome={`m_${it.m}` as NomeIcone} /></span>
           <span className="n">{info?.nome}</span>

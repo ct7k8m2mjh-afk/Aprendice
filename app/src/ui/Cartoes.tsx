@@ -136,7 +136,7 @@ function FlashcardCartao({ m, c, todos, aoNotar, usarIA = true, tema, conteudo }
               <b>{rotuloVer(cor.veredito)}</b>
               <p>{cor.comentario}</p>
               {cor.faltou.length > 0 && cor.veredito !== 'certo' && <p className="fraco">Faltou: {cor.faltou.join('; ')}</p>}
-              <small className="fraco">{origem === 'ia-simulada' ? 'Correção por IA (simulada nesta versão, feita no aparelho)' : 'Correção local'}: é uma sugestão, quem decide é você.</small>
+              <small className="fraco">{origem === 'ia-simulada' ? 'Correção automática, feita no aparelho' : 'Correção automática'}: é uma sugestão; quem decide é você.</small>
             </div>
           )}
           <div className="fc-modelo"><span className="fraco">Resposta-modelo</span><p>{comFracoes(c.verso)}</p></div>
