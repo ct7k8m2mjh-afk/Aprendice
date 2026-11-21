@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { urlArteTreinoGeral, useTodasMaterias, type MateriaCarregada } from '../dados/conteudo';
 import { MATERIAS_ATIVAS, materia as infoMateria } from '../dados/materias';
 import { atualiza, useEstado } from '../estado/loja';
-import { agendaDe } from '../logica/revisao';
+import { agendaDe, diasEntre } from '../logica/revisao';
+import { minutosDe, planoHoje, TEMPO_PADRAO } from '../logica/hoje';
 import { materiaDeHoje, progressoEscada, questoesVencidas, resumoMateria, atividadeRecente } from '../logica/estatisticas';
-import { desempenhoPeriodo, destaque, diasDeConstancia } from '../logica/inicio';
+import { desempenhoPeriodo, destaque, diasDeConstancia, ultimoEstudo } from '../logica/inicio';
 import { RODADA_PADRAO, RODADAS } from '../logica/treinoMisto';
 import { Barra, Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
@@ -193,7 +194,7 @@ function Desempenho({ e }: { e: Estado }) {
 }
 
 /** Hora de revisar: as matérias de menor acerto (com pelo menos uma questão feita). */
-function HoraDeRevisar({ todas, e }: { todas: MateriaCarregada[]; e: Estado }) {
+function HoraDeRevisar({ todas, e, totVenc }: { todas: MateriaCarregada[]; e: Estado; totVenc: number }) {
   const lista = todas
     .map((mc) => { const s = e.materias[mc.id] || VAZIA; const ag = agendaDe(e); const r = resumoMateria(mc, s, Date.now(), ag); return { mc, r, venc: r.feitas ? questoesVencidas(mc, s, Date.now(), ag) : [] }; })
     .filter((x) => x.r.feitas > 0)
@@ -202,7 +203,7 @@ function HoraDeRevisar({ todas, e }: { todas: MateriaCarregada[]; e: Estado }) {
   return (
     <section className="in-revisar" aria-labelledby="in-rev-tit">
       <h2 id="in-rev-tit" className="in-sec-tit">Hora de revisar</h2>
-      <p className="in-sec-sub">Seus erros dizem o que revisar.</p>
+      <p className="in-sec-sub">{totVenc === 0 ? 'Nenhuma questão volta hoje.' : totVenc === 1 ? '1 questão volta hoje na revisão.' : `${totVenc.toLocaleString('pt-BR')} questões voltam hoje na revisão.`}</p>
       {lista.length ? (<>
         <p className="in-rev-chamada">Comece pelas de menor acerto</p>
         <ul className="in-rev-lista">
@@ -232,11 +233,23 @@ export function Inicio() {
   // atalho dos flashcards: a última matéria, se ela já tem cartões; senão a primeira que tem (revisão de 19/11/2026, item 6)
   const temFlash = (id: MateriaId) => { const mc = todas.find((x) => x.id === id); return !mc || mc.conteudo.flash.length + mc.conteudo.flashImg.length > 0; };
   const comFlash: MateriaId = temFlash(ultima) ? ultima : todas.find((x) => x.conteudo.flash.length + x.conteudo.flashImg.length > 0)?.id || 'bio';
+  // retenção (docs/marketing/RETENCAO.md 2.1, 2.2 e 2.6): primeira visita > volta depois de 3 dias > texto fixo
+  const agora = Date.now(), ag = agendaDe(e, agora);
+  const totVenc = todas.reduce((a, mc) => a + questoesVencidas(mc, e.materias[mc.id] || VAZIA, agora, ag).length, 0);
+  const pl = !atividadeRecente(e, 1).length ? planoHoje(todas, e.materias, { provasAlvo: e.perfil?.provasAlvo || [], conj: regiaoDoEstado(e).conj, ag, agora, minutos: e.pref.minutosHoje || TEMPO_PADRAO }) : null;
+  const u = ultimoEstudo(e);
+  let cabSub = 'Escolha uma matéria ou treine todas juntas.';
+  if (pl?.sessao.length) {
+    const pv = pl.pesos.provas, onde = !pv.length ? 'nas provas do banco' : pv.length === 1 && pv[0] === 'enem' ? 'no ENEM' : 'nas suas provas';
+    cabSub = `Para começar, a tela Hoje separou ${plural(pl.sessao.length, 'questão', 'questões')}, cerca de ${minutosDe(pl.sessao.length, pl.segPorQuestao)} min, pelo que mais cai ${onde}.`;
+  } else if (u > 0 && diasEntre(u, agora) >= 3) {
+    cabSub = 'Bom ter você aqui. ' + (totVenc === 0 ? 'Escolha por onde recomeçar.' : totVenc === 1 ? '1 questão volta hoje na revisão.' : `${totVenc.toLocaleString('pt-BR')} questões voltam hoje na revisão.`);
+  }
   return (
     <div className="conteudo inicio-novo">
       <header className="in-cab">
         <h1>Vamos avançar nos estudos?</h1>
-        <p>Escolha uma matéria ou treine todas juntas.</p>
+        <p>{cabSub}</p>
       </header>
       <SuasMaterias todas={todas} e={e} />
       <div className="in-destaques">
@@ -245,7 +258,7 @@ export function Inicio() {
       </div>
       <div className="in-duo">
         <Desempenho e={e} />
-        <HoraDeRevisar todas={todas} e={e} />
+        <HoraDeRevisar todas={todas} e={e} totVenc={totVenc} />
       </div>
       <nav className="in-atalhos" aria-label="Atalhos">
         <Link to={`/m/${comFlash}/flashcards`} className="in-atalho">

@@ -25,15 +25,29 @@ export function desempenhoPeriodo(e: Estado, dias: number | null, agora = Date.n
   return out;
 }
 
-/** Dias seguidos com pelo menos uma resposta, contando até hoje (ou até ontem, se hoje ainda não houve estudo). */
+/** Dias seguidos com pelo menos uma resposta (questão ou flashcard), contando até hoje (ou até ontem, se hoje ainda
+ *  não houve estudo). Flashcards contam desde 21/11/2026 (docs/marketing/RETENCAO.md 2.5). */
 export function diasDeConstancia(e: Estado, agora = Date.now()): number {
   const dias = new Set<number>();
-  for (const s of Object.values(e.materias)) if (s) for (const eq of Object.values(s.q)) for (const t of eq.tent) if (t.ts <= agora) dias.add(iniDia(t.ts));
+  for (const s of Object.values(e.materias)) if (s) {
+    for (const eq of Object.values(s.q)) for (const t of eq.tent) if (t.ts <= agora) dias.add(iniDia(t.ts));
+    for (const f of Object.values(s.flash)) for (const h of f.hist || []) if (h.ts <= agora) dias.add(iniDia(h.ts));
+  }
   let d = iniDia(agora);
   if (!dias.has(d)) d = iniDia(d - DIA / 2);
   let n = 0;
   while (dias.has(d)) { n++; d = iniDia(d - DIA / 2); }
   return n;
+}
+
+/** Momento do último estudo: a resposta mais recente a uma questão ou a um flashcard (0 = nunca estudou). */
+export function ultimoEstudo(e: Estado): number {
+  let u = 0;
+  for (const s of Object.values(e.materias)) if (s) {
+    for (const eq of Object.values(s.q)) for (const t of eq.tent) u = Math.max(u, t.ts);
+    for (const f of Object.values(s.flash)) for (const h of f.hist || []) u = Math.max(u, h.ts);
+  }
+  return u;
 }
 
 /** Matéria de maior acerto no período (com pelo menos `minimo` questões; se nenhuma chega lá, a de maior acerto). */
