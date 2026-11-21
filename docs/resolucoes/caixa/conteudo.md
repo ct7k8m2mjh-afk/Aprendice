@@ -464,3 +464,16 @@ estava errado e foi reescrito; "Fᴺ cresce com N" só vale se F > 1 N, corrigid
 Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
 Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
 lote: conteudo-erradas-fis-25; na fila: 231 de Física provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+## 2026-11-21 — FIM — erradas (série mq, sem API, 11ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-mq-24 e mq-25 (Química, provas-alvo Famerp, UFU, Einstein e Santa Casa).
+Nenhum lote aberto. Sessão encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 82 letras reescritas e gravadas em 41 questões (mq-24: 44 em 22; mq-25: 38 em 19); 28 letras mantidas por
+falta de equívoco honesto. mq-25: fatos 38 ok e 1 corrigida (Pe797c258 A, grafia "contra íon" do print); didática
+melhorou 8, reconferidas (7 ok, 1 corrigida: Pd0273c8e A, a C=O da propanona recebe ponte de hidrogênio da água);
+amostra 10 letras, 0 erro.
+Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
+Dica: em conflito no erradas-feitas.json, unir as duas versões (dict) e salvar ordenado com indent=0.
+Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 qui` (próximo
+lote: conteudo-erradas-mq-26; na fila: 266 de Química provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
