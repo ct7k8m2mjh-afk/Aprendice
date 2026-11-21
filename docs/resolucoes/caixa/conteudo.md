@@ -338,3 +338,11 @@ letras reescritas em 12 questões; 43 mantidas (sem equívoco honesto que leve a
 fatos: 20 ok, 2 corrigidas (Pf9c381f6 C: texto ambíguo; Pcda1d771 E: tirado "daria"); didática melhorou 14, todas
 reconferidas (2ª passagem: 12 ok, 2 só encurtadas). Amostra: 4 letras, 0 erro. Testes: converte, tsc e vitest 922/922
 verdes. Gasto de API: zero. Em andamento: conteudo-erradas-fis-18.
+
+## 2026-11-21 — AVISO — erradas (série mq, sem API, 7ª sessão)
+conteudo-erradas-mq-16 gravado (Matemática, provas-alvo UDESC 2020.1/2023.2 e Acafe 2026): 19 letras reescritas em 13
+questões, de 58 fracas (39 sem equívoco honesto ficaram com o texto antigo). Fatos 18 ok e 1 corrigida; didática
+melhorou 5, todas reconferidas (4 ok, 1 corrigida: Pe9b8d75f B). 3 textos tinham "dá <número>" descrevendo conta
+certa; só o verbo foi trocado e o conferente da amostra confirmou os 3 contra o print. Amostra: 4 letras, 0 erro.
+Conflito em erradas-feitas.json resolvido por união. converte, tsc e vitest 922/922 verdes. Gasto de API: zero.
+Lote conteudo-erradas-mq-17 aberto (25 questões, 45 letras fracas), em andamento.
