@@ -263,6 +263,7 @@ Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero
 com a série mq; resolvido por união (nenhuma entrada perdida).
 Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
 lote: conteudo-erradas-fis-14; na fila: 506 de Física provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+
 ## 2026-11-21 — FIM — erradas (série mq, sem API, 5ª sessão)
 Lotes gravados nesta sessão: conteudo-erradas-mq-11, mq-12 e mq-13 (Matemática, provas-alvo UEA 2020–2027 e UDESC
 2026.1, 75 questões, 220 letras fracas). Nenhum lote aberto. Sessão encerrada perto do limite de contexto combinado (40%).
