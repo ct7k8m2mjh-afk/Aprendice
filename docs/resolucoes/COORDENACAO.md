@@ -101,6 +101,17 @@ REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, comm
   relatório docs/revisao-site/2026-11-20/decisoes-do-dono-telas.md) e session_01Tq253ZZrpookBgGHXXqZHc (conteúdo;
   relatório docs/resolucoes/decisoes-do-dono-conteudo.md). Arquivar sessões da conta antiga: só o dono.
 
+## REGRA DO DONO (21/11/2026): NO MÁXIMO 4 SESSÕES AO MESMO TEMPO
+"Termina a tarefa ou matéria e liga a próxima." Motivo: em 20/11 às 22h51 oito sessões juntas estouraram o limite de 5 h da
+conta. Peça a cada sessão no máximo 3 agentes em paralelo. Fila (21/11 04h35 UTC):
+- RODANDO: pendentes geo (session_01Tq253YL64uC84SwEt9PDxi); telas (…Y5RX4sCDxee8CTceS, falta a conferência);
+  conteúdo (…ZZrpookBgGHXXqZHc, faltam fontes dos 23 flashcards e subtemas; 66 indisponíveis feitos);
+  erradas mat→qui (…ZPg9jdmFb9cbntD91). Retomadas com send_message.
+- ESPERANDO VAGA, nesta ordem: erradas fís (…VAQptS9rzESrtPqkE, parada no lote fis-02: retomar com send_message);
+  equipe de marketing (…ZLvhTYPTJzzEKVyyv, mal começou: retomar com send_message).
+- ACABARAM e arquivadas: pendentes bio/qui/mat/fis, por/fs/ing (ACABOU em todas); his ACABOU.
+- Feito pela coordenadora: folha de caderno quadriculado (37102cff2).
+
 ## Estado 20/11 06h10 UTC (antigo)
 Fila normal: TODAS as matérias acabaram (falta 1 de História, incluída abaixo). Fábrica de Português parou em 19/11 21h38 (13 lotes, 654;
 as partes 2–4 cobriram o resto). Pendentes "classificação: resolver na matéria nova" (418) com 3 sessões de pendentes:
