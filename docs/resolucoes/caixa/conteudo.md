@@ -518,3 +518,16 @@ encurtadas (P18faf3bf A, B, E passavam de 35 palavras; fatos corretos).
 Testes: converte, tsc e vitest 922/922 verdes nos três lotes. Gasto de API: zero.
 Continuar de: `ERRADAS_SERIE=fb BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
 lote: conteudo-erradas-fb-04; na fila: 106 de Física provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+## 2026-11-21 — FIM — erradas (série mq, sem API, 12ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-mq-26 e mq-27 (Química, provas-alvo FMABC, Einstein, São Camilo,
+PUC-Campinas e PUC-SP). Nenhum lote aberto. Sessão encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 65 letras reescritas e gravadas em 35 questões (mq-26: 38 em 18; mq-27: 27 em 17); 41 letras mantidas por
+falta de equívoco honesto. mq-27: fatos 25 ok e 2 corrigidas (P5c8e9709 C, PET e PVC afundam; Pbd8d4997 A, o enunciado
+não cita zinco); didática melhorou 5, reconferidas (4 ok, 1 corrigida: P46cc7103 E, mostra 1,0 × 10^-5 mol × 40 g/mol);
+amostra 5 letras, 0 erro. Código de equívoco de P436dfd87 B acertado para Q08.6.
+Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
+Dica: o converte pode esperar vários minutos pela trava de outra sessão; rode os testes em segundo plano com timeout longo.
+Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 qui` (próximo
+lote: conteudo-erradas-mq-28; na fila: 216 de Química provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
