@@ -137,3 +137,20 @@ fracas): 48 letras reescritas em 18 questões; 18 mantidas (sem equívoco honest
 Lente de fatos corrigiu 5 (lei zero x 2ª lei; 4 só por "não confere"/"dá X"); didática melhorou 15, todas reconferidas
 ok. Amostra: 11 letras, 0 erro. Testes: converte, tsc e vitest 922/922 verdes. Gasto de API: zero.
 Nota da lente: UEL (Pd64fa892, tubo de Pitot) — gabarito oficial E (Pascal) é discutível (Pitot usa Bernoulli); vale o oficial.
+
+## 2026-11-21 — FIM — erradas (série fis, sem API, 3ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-fis-06 e fis-07 (Física, provas-alvo UEL 2020–2024, UFU 2020–2026 e
+Famerp 2025–2026, 50 questões, 127 letras fracas). Nenhum lote aberto. Sessão encerrada perto do limite de contexto
+combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 91 letras reescritas e gravadas em 38 questões (fis-06: 48 em 18; fis-07: 43 em 20). As demais 36 letras não
+têm equívoco honesto que leve a elas e ficaram com o texto antigo; nenhuma rejeitada. Lente de fatos corrigiu 8 (lei
+zero x 2ª lei; luz chamada de onda mecânica; reação da normal no contato pneu–solo; "soma das densidades" x soma das
+variações; 4 só por "não confere"/"dá X"); didática melhorou 24, todas reconferidas.
+Amostra (20%): fis-06 11 letras, 0 erro; fis-07 9 letras, 1 erro (Famerp 2026 q68, letra D: equívoco descrito não
+levava à D), consertado.
+Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
+lote: conteudo-erradas-fis-08; fila de Física provas-alvo pela `erradas-fila`), seguindo
+docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
