@@ -199,3 +199,9 @@ Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero
 Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
 lote: conteudo-erradas-fis-10; fila de Física provas-alvo pela `erradas-fila`), seguindo
 docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+
+## 2026-11-21 — AVISO — erradas (série fis, sem API, 5ª sessão)
+Lote conteudo-erradas-fis-10 gravado (Física, provas-alvo Santa Casa 2022–2026, 25 questões, 76 letras fracas): 35 letras
+reescritas em 18 questões; 41 mantidas (sem equívoco honesto que leve a elas); nenhuma rejeitada. Lente de fatos: 35 ok;
+didática melhorou 9, reconferidas (8 ok, 1 corrigida). Amostra: 11 letras, 2 só acima de ~35 palavras, encurtadas.
+Testes: converte, tsc e vitest 922/922 verdes. Gasto de API: zero.
