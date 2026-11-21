@@ -331,3 +331,10 @@ Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero
 Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 mat` (próximo
 lote: conteudo-erradas-mq-16; na fila: 71 de Matemática provas-alvo, depois Química provas-alvo), seguindo
 docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+
+## 2026-11-21 — AVISO — erradas (série fis, sem API, 8ª sessão)
+Lote conteudo-erradas-fis-17 gravado (Física, provas-alvo PUC-Campinas 2022–2027, 25 questões, 65 letras fracas): 22
+letras reescritas em 12 questões; 43 mantidas (sem equívoco honesto que leve a elas); nenhuma rejeitada. Lente de
+fatos: 20 ok, 2 corrigidas (Pf9c381f6 C: texto ambíguo; Pcda1d771 E: tirado "daria"); didática melhorou 14, todas
+reconferidas (2ª passagem: 12 ok, 2 só encurtadas). Amostra: 4 letras, 0 erro. Testes: converte, tsc e vitest 922/922
+verdes. Gasto de API: zero. Em andamento: conteudo-erradas-fis-18.
