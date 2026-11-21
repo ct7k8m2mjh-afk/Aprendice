@@ -32,7 +32,7 @@ export function defineTema(t: 'claro' | 'escuro' | 'sistema') { atualiza((e) => 
 /** Dia/Noite segmentado do topo; também na entrada e nas boas-vindas (revisão de 19/11/2026, casca 2). */
 export function TemaSeg({ escuro, className = '' }: { escuro: boolean; className?: string }) {
   return (
-    <div className={'tema-seg ' + className} role="group" aria-label="Tema">
+    <div className={'tema-seg ' + className} role="group" aria-label="Tema claro ou escuro">
       <button aria-pressed={!escuro} onClick={() => defineTema('claro')} title="Tema claro" aria-label="Tema claro"><Icone nome="sol" /><span className="rotulo-t">Dia</span></button>
       <button aria-pressed={escuro} onClick={() => defineTema('escuro')} title="Tema escuro" aria-label="Tema escuro"><Icone nome="lua" /><span className="rotulo-t">Noite</span></button>
     </div>
@@ -101,7 +101,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
       <a href="#principal" className="sr">Pular para o conteúdo</a>
       <aside className="lado" aria-label="Menu principal">
         <div className="marca">
-          <Link to="/" aria-label="Início" data-logo-alvo><Logo /></Link>
+          <Link to="/" aria-label="Aprendice, ir ao início" data-logo-alvo><Logo /></Link>
           <button className="btn-ic" style={{ border: 0, background: 'none' }} onClick={() => atualiza((x) => ({ ...x, pref: { ...x.pref, menuFechado: !fechado } }))}
             aria-label={fechado ? 'Abrir menu' : 'Recolher menu'} title={fechado ? 'Abrir menu' : 'Recolher menu'}>
             <Icone nome={fechado ? 'direita' : 'esquerda'} />
@@ -133,7 +133,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
         <div className="rodape">
           <div className="meta-lado" title="Meta da semana">
             <Anel valor={sem.semana / meta}>{Math.min(100, Math.round((sem.semana / meta) * 100))}%</Anel>
-            <div><b className="num">{sem.semana} de {meta}</b><small>meta da semana</small><small className="num">hoje {sem.hoje} · ontem {sem.ontem}</small></div>
+            <div><b className="num">{sem.semana} de {meta}</b><small>feitas na semana</small><small className="num">hoje {sem.hoje} · ontem {sem.ontem}</small></div>
           </div>
           <ItemNav para="/config" icone="config">Configurações</ItemNav>
         </div>
@@ -146,9 +146,9 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
       <div className="principal">
         <header className={'topo' + (rolou ? ' rolou' : '')}>
           <button className="btn-ic abre-trilho" onClick={() => poeOculto(false)} aria-label="Mostrar a barra lateral" title="Mostrar a barra"><Icone nome="direita" /></button>
-          <Link to="/" className="logo-cel" aria-label="Início"><Logo /></Link>
+          <Link to="/" className="logo-cel" aria-label="Aprendice, ir ao início"><Logo /></Link>
           <button className="busca-btn" onClick={() => setBusca(true)} aria-label="Buscar matérias, temas, conteúdos, flashcards e provas" aria-keyshortcuts="Control+K">
-            <Icone nome="busca" tam={20} /><span className="txt">Buscar conteúdos, flashcards e provas...</span><kbd>Ctrl K</kbd>
+            <Icone nome="busca" tam={20} /><span className="txt">Buscar conteúdos, flashcards e provas…</span><kbd>Ctrl K</kbd>
           </button>
           <div className="direita">
             <TemaSeg escuro={escuro} />
@@ -160,7 +160,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
         <main id="principal" className="conteudo-wrap"><Protecao chave={loc.pathname} texto="Esta tela não abriu.">{children}</Protecao></main>
       </div>
 
-      <nav className="tabs" aria-label="Navegação">
+      <nav className="tabs" aria-label="Navegação principal">
         {([['/', 'inicio', 'Início'], ['/materias', 'livro', 'Matérias'], ['/simulados', 'relogio', 'Simulados'], ['/revisao', 'repetir', 'Revisão'], ['/perfil', 'usuario', 'Perfil']] as const).map(([p, ic, t]) => (
           <NavLink key={p} to={p} end={p === '/'} className={() => (destinoAba(loc.pathname, loc.search) === p ? 'ativo' : '')}>
             <span className="bolha-ic"><Icone nome={ic} /></span>{t}
