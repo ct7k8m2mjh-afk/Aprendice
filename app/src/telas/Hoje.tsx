@@ -2,10 +2,11 @@ import { useMemo } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useTodasMaterias, type MateriaCarregada } from '../dados/conteudo';
 import { nomeMateria } from '../dados/materias';
-import { atualiza, useEstado } from '../estado/loja';
-import type { Estado, SessaoHoje } from '../estado/tipos';
+import { atualiza, pegaEstado, useEstado } from '../estado/loja';
+import { estadoMateriaVazio, type Estado, type SessaoHoje } from '../estado/tipos';
 import { escudoTri, minutosDe, planoHoje, TEMPOS, TEMPO_PADRAO, FACIL_MAX, type Escudo, type ItemHoje, type PlanoHoje } from '../logica/hoje';
-import { agendaDe, iniDia } from '../logica/revisao';
+import { agendaDe, DIA, diaDaData, diasEntre, emNDias, iniDia, memoriaDe } from '../logica/revisao';
+import { questoesVencidas } from '../logica/estatisticas';
 import { chaveMisto, resultadoMisto } from '../logica/treinoMisto';
 import { juntaE } from '../logica/regiao';
 import { Carregando, plural, useTitulo } from '../ui/comum';
@@ -14,6 +15,7 @@ import { nomeProva } from '../ui/revisao/AgendaRevisao';
 import { FiltroRegiaoChips, useRegiao } from '../ui/FiltroRegiao';
 import { RodadaQuestoes } from './TreinoMisto';
 
+const DATA_DIA_MES = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long' });
 const cap = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
 const pct = (x: number) => (x * 100).toLocaleString('pt-BR', { maximumFractionDigits: x * 100 < 1 ? 2 : 1 }) + '%';
 
@@ -142,18 +144,26 @@ export function Hoje() {
   const n = plano.sessao.length;
   const vai = (tipo: SessaoHoje['tipo'], it: SessaoHoje['it']) => { comeca(tipo, it); nav('/hoje/sessao'); };
   const defineMin = (m: number) => atualiza((x) => ({ ...x, pref: { ...x.pref, minutosHoje: m } }));
+  // retenção (docs/marketing/RETENCAO.md 2.2, 2.6 e 2.7): data da prova, o que volta hoje e o que não cabe na sessão
+  const hojeProva = alvos.find((id) => diaDaData(e.perfil?.datasProva?.[id]) === dia);
+  const falta = ag.prova ? diasEntre(agora, ag.prova) : null;
+  const linhaProva = hojeProva ? ` Hoje é dia de ${nomeProva(hojeProva)}. Boa prova.`
+    : ag.prova && falta !== null ? (falta === 1 ? ` ${nomeProva(ag.provaId)} é amanhã.`
+      : ` ${nomeProva(ag.provaId)} em ${DATA_DIA_MES.format(ag.prova)}: faltam ${plural(falta, 'dia', 'dias')}.${falta <= 3 ? ' Nenhuma revisão fica marcada para depois da véspera.' : ''}`) : '';
+  const v = plano.sessao.filter((x) => { const m = memoriaDe(e.materias[x.m]?.q[x.id], ag); return !!m && m.fila && m.vence <= agora; }).length;
+  const venc = plano.itens.reduce((a, it) => a + it.vencidas + it.faceisErradas, 0);
 
   return (
     <div className="conteudo hj">
       <div className="titulo-pag"><div><h1>Hoje</h1>
-        <p className="sub">O que estudar hoje, pelo que mais cai nas suas provas, pelo que você mais erra e pelo que está para esquecer.</p></div></div>
+        <p className="sub">O que estudar hoje, pelo que mais cai nas suas provas, pelo que você mais erra e pelo que está para esquecer.{linhaProva}</p></div></div>
       <div className="rv-regiao"><FiltroRegiaoChips /></div>
 
       <section className="bloco hj-sessao" aria-labelledby="hj-ses-tit">
         <div className="hj-ses-txt">
           <h2 id="hj-ses-tit" className="num">{n ? <>{plural(n, 'questão', 'questões')} · cerca de {minutosDe(n, plano.segPorQuestao)} min</> : 'Revisão em dia'}</h2>
           <p>{n
-            ? <>De {plural(plano.nItensSessao, 'conteúdo', 'conteúdos')}, {plano.enem && esc?.erradas ? 'começando pelas fáceis erradas do Escudo TRI, ' : ''}com o seu tempo médio de {plural(Math.round(plano.segPorQuestao / 6) / 10, 'minuto', 'minutos')} por questão.</>
+            ? <>De {plural(plano.nItensSessao, 'conteúdo', 'conteúdos')}, {plano.enem && esc?.erradas ? 'começando pelas fáceis erradas do Escudo TRI, ' : ''}com o seu tempo médio de {plural(Math.round(plano.segPorQuestao / 6) / 10, 'minuto', 'minutos')} por questão.{v > 0 ? (v === 1 ? ' Destas, 1 volta hoje na revisão.' : ` Destas, ${v.toLocaleString('pt-BR')} voltam hoje na revisão.`) : ''}{venc > n ? ` Nem todas as ${venc.toLocaleString('pt-BR')} questões que voltam hoje cabem no tempo escolhido; as outras ficam para os próximos dias.` : ''}</>
             : 'Nenhuma questão volta hoje e não há conteúdo pendente na sua região. Escolha uma matéria para avançar.'}</p>
           <div className="hj-tempo" role="group" aria-label="Tempo de estudo hoje">
             <span className="hj-tempo-rot">Tempo de hoje</span>
@@ -179,7 +189,7 @@ export function Hoje() {
         <p>Cada conteúdo recebe três notas, todas tiradas das suas respostas e do banco de questões reais: <b>peso</b> — {provasPeso.length
           ? <>quanto ele cai {provasPeso.length === 1 ? 'na sua prova-alvo' : 'nas suas provas-alvo'} ({nomesProvas}), pela parte das questões dessa{provasPeso.length === 1 ? '' : 's'} prova{provasPeso.length === 1 ? '' : 's'} no banco</>
           : <>quanto ele cai nas provas do banco{alvos.length ? ' (as suas provas-alvo ainda têm poucas questões no banco)' : ''}</>}; <b>fraqueza</b> — o que você errou, esqueceu ou ainda não firmou; <b>risco de esquecer</b> — quanto a lembrança já caiu desde a última vez, pela agenda da revisão.
-          {' '}O tempo usa o seu tempo típico por questão.{!alvos.length && <> <Link to="/perfil" className="hj-link">Escolha suas provas-alvo</Link> para a ordem seguir o que elas cobram.</>}</p>
+          {' '}O tempo usa o seu tempo típico por questão.{!alvos.length && <> <Link to="/perfil" className="hj-link">Escolha suas provas-alvo</Link> para a ordem seguir o que elas cobram.</>}{alvos.length > 0 && !ag.prova && <> <Link to="/perfil#datas-prova" className="hj-link">Informe a data da sua prova</Link> e a revisão passa a contar a partir dela.</>}</p>
       </section>
     </div>
   );
@@ -202,10 +212,14 @@ export function SessaoHojeTela() {
   return <RodadaQuestoes ses={ses} rotulo={rotulo} dica={`${rotulo}: a sessão fica salva se você sair`} ctx={ses.tipo === 'escudo' ? 'escudo' : 'hoje'} voltar="/hoje" aoAvancar={avanca} todas={todas} />;
 }
 
-function FimSessao({ ses, aoVoltar }: { ses: SessaoHoje; todas: MateriaCarregada[]; aoVoltar: () => void }) {
+function FimSessao({ ses, todas, aoVoltar }: { ses: SessaoHoje; todas: MateriaCarregada[]; aoVoltar: () => void }) {
   const r = resultadoMisto(ses);
   const ok = r.reduce((a, x) => a + x.ok, 0), n = r.reduce((a, x) => a + x.n, 0);
-  const erros = ses.it.filter((x) => ses.res[chaveMisto(x)] === 'e').length;
+  // o que melhorou e o que volta amanhã (docs/marketing/RETENCAO.md 2.3; TEXTOS.md T209)
+  const e = pegaEstado();
+  const viraram = ses.it.filter((x) => { const t = e.materias[x.m]?.q[x.id]?.tent || []; return ses.res[chaveMisto(x)] === 'a' && t.length > 1 && t[t.length - 1].ok && t.slice(0, -1).some((y) => !y.ok); }).length;
+  const ag = agendaDe(e), ate = emNDias(Date.now(), 1) + DIA - 1;
+  const amanha = todas.reduce((a, mc) => a + questoesVencidas(mc, e.materias[mc.id] || estadoMateriaVazio(), ate, ag).length, 0);
   return (
     <div className="conteudo estreito">
       <div className="resultado-fl folha tm-fim">
@@ -214,7 +228,7 @@ function FimSessao({ ses, aoVoltar }: { ses: SessaoHoje; todas: MateriaCarregada
         {r.length > 0 && <ul className="tm-mats">
           {r.map((x) => <li key={x.m} className={`m-${x.m}`}><i className="ponto" aria-hidden /><span>{nomeMateria(x.m)}</span><b className="num">{x.ok} de {x.n}</b></li>)}
         </ul>}
-        <p className="miolo">{erros ? `${plural(erros, 'questão errada volta', 'questões erradas voltam')} amanhã na revisão. ` : ''}Cada resposta já conta na agenda e no domínio de cada conteúdo.</p>
+        <p className="miolo">{viraram === 1 ? '1 questão que você tinha errado agora está certa. ' : viraram > 1 ? `${viraram.toLocaleString('pt-BR')} questões que você tinha errado agora estão certas. ` : ''}{amanha === 0 ? 'Nenhuma questão volta amanhã.' : amanha === 1 ? 'Amanhã, 1 questão volta na revisão.' : `Amanhã, ${amanha.toLocaleString('pt-BR')} questões voltam na revisão.`}</p>
         <div className="fc-acoes"><button className="btn" onClick={aoVoltar}>Voltar para Hoje</button></div>
       </div>
     </div>
