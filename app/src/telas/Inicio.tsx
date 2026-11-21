@@ -92,7 +92,7 @@ function CartaoTreino({ e }: { e: Estado }) {
     <section className="in-treino" aria-labelledby="in-treino-tit">
       <div className="in-dest-txt">
         <h2 id="in-treino-tit">Treino geral</h2>
-        <p className="in-dest-sub">Questões aleatórias de todas as matérias.</p>
+        <p className="in-dest-sub">Questões reais de prova, de todas as matérias, misturadas.</p>
         <p className="in-dest-info num">{emAndamento ? `Rodada em andamento: ${ses!.i} de ${ses!.it.length} questões` : `${n} questões por rodada`}</p>
         <div className="in-dest-acoes">
           <Link to="/treino-geral" className="btn grande in-btn-treino"><Icone nome="misturar" tam={20} />{emAndamento ? 'Retomar treino' : 'Começar treino'}</Link>
@@ -104,7 +104,7 @@ function CartaoTreino({ e }: { e: Estado }) {
             <div className="in-rodada-ops">
               {RODADAS.map((k) => <button key={k} type="button" className="chip" aria-pressed={k === n} onClick={() => escolhe(k)}>{k}</button>)}
             </div>
-            <small>As questões vêm de todas as matérias, sorteadas e misturadas.</small>
+            <small>Trocar o tamanho começa uma rodada nova.</small>
           </div>
         )}
       </div>
@@ -130,10 +130,10 @@ function CartaoContinue({ todas, e }: { todas: MateriaCarregada[]; e: Estado }) 
           <p className="in-cont-prog num"><span>{parou.prog.feitas} de {plural(parou.prog.total, 'questão', 'questões')}</span>
             <small><span className="in-ponto" aria-hidden>•</span>{falta ? `Faltam ${falta} para concluir` : 'Conteúdo concluído'}</small></p>
           <Barra valor={parou.prog.feitas / Math.max(1, parou.prog.total)} rotulo="Progresso no conteúdo" />
-          <Link to={`/m/${parou.m}/q/${parou.prox.id}?ctx=escada`} className="btn grande">Continuar estudo <Icone nome="seta" /></Link>
+          <Link to={`/m/${parou.m}/q/${parou.prox.id}?ctx=escada`} className="btn grande">Continuar <Icone nome="seta" /></Link>
         </>) : (<>
           <p className="in-dest-sub">{info.descricao}</p>
-          <Link to={`/m/${m}`} className="btn grande">Começar estudo <Icone nome="seta" /></Link>
+          <Link to={`/m/${m}`} className="btn grande">Começar <Icone nome="seta" /></Link>
         </>)}
       </div>
       <IluMateria m={m} className="in-cont-arte" />
@@ -181,11 +181,11 @@ function Desempenho({ e }: { e: Estado }) {
             })}
           </ul>
         </div>
-        <figcaption>Questões resolvidas por matéria</figcaption>
+        <figcaption>Acerto e questões resolvidas por matéria</figcaption>
       </figure>
       <div className="in-desemp-nums">
         <span><Icone nome="camadas" tam={22} /><b className="num">{plural(total, 'questão resolvida', 'questões resolvidas')}</b></span>
-        <span><Icone nome="calendario" tam={22} /><b className="num">{plural(dias, 'dia de constância', 'dias de constância')}</b></span>
+        <span><Icone nome="calendario" tam={22} /><b className="num">{plural(dias, 'dia seguido', 'dias seguidos')}</b></span>
       </div>
       {dest && <p className="in-destaque num"><i aria-hidden />Seu destaque: {infoMateria(dest.m)?.nome} · {pctInt(dest.acertos, dest.resolvidas)}% de acerto</p>}
     </section>
@@ -202,9 +202,9 @@ function HoraDeRevisar({ todas, e }: { todas: MateriaCarregada[]; e: Estado }) {
   return (
     <section className="in-revisar" aria-labelledby="in-rev-tit">
       <h2 id="in-rev-tit" className="in-sec-tit">Hora de revisar</h2>
-      <p className="in-sec-sub">Transforme seus erros em aprendizado.</p>
+      <p className="in-sec-sub">Seus erros dizem o que revisar.</p>
       {lista.length ? (<>
-        <p className="in-rev-chamada">Comece pelas matérias que precisam de atenção</p>
+        <p className="in-rev-chamada">Comece pelas de menor acerto</p>
         <ul className="in-rev-lista">
           {lista.map(({ mc, r, venc }) => (
             <li key={mc.id} className={`m-${mc.id}`}>
@@ -215,10 +215,10 @@ function HoraDeRevisar({ todas, e }: { todas: MateriaCarregada[]; e: Estado }) {
           ))}
         </ul>
       </>) : (
-        <p className="in-rev-chamada">Quando você responder às primeiras questões, as matérias que pedem atenção aparecem aqui.</p>
+        <p className="in-rev-chamada">Responda às primeiras questões e as matérias de menor acerto aparecem aqui.</p>
       )}
       <Link to="/revisao" className="btn grande in-btn-revisar">Revisar meus erros <Icone nome="seta" /></Link>
-      <p className="in-rev-pe">Uma nova chance de fixar o conteúdo.</p>
+      <p className="in-rev-pe">Cada erro volta no dia certo.</p>
     </section>
   );
 }
@@ -236,7 +236,7 @@ export function Inicio() {
     <div className="conteudo inicio-novo">
       <header className="in-cab">
         <h1>Vamos avançar nos estudos?</h1>
-        <p>Escolha uma matéria ou misture seus conhecimentos.</p>
+        <p>Escolha uma matéria ou treine todas juntas.</p>
       </header>
       <SuasMaterias todas={todas} e={e} />
       <div className="in-destaques">
@@ -250,12 +250,12 @@ export function Inicio() {
       <nav className="in-atalhos" aria-label="Atalhos">
         <Link to={`/m/${comFlash}/flashcards`} className="in-atalho">
           <span className="in-at-ic" aria-hidden><Icone nome="cartas" tam={30} /></span>
-          <span className="in-at-txt"><b>Flashcards</b><small>Revise conceitos em poucos minutos</small></span>
+          <span className="in-at-txt"><b>Flashcards</b><small>Pergunta curta, resposta em uma frase</small></span>
           <Icone nome="seta" tam={24} className="in-at-seta" />
         </Link>
         <Link to="/simulados" className="in-atalho">
           <span className="in-at-ic" aria-hidden><Icone nome="relogio" tam={30} /></span>
-          <span className="in-at-txt"><b>Simulados</b><small>Pratique no ritmo da prova</small></span>
+          <span className="in-at-txt"><b>Simulados</b><small>Prova inteira ou por conteúdo</small></span>
           <Icone nome="seta" tam={24} className="in-at-seta" />
         </Link>
       </nav>
