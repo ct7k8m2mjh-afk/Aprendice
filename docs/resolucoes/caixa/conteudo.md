@@ -441,3 +441,8 @@ Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero
 Dica: pedir aos agentes que evitem "dá"/"daria" em qualquer sentido (o filtro do final.json barra "dá X" até como verbo).
 Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 qui` (próximo
 lote: conteudo-erradas-mq-24; na fila: 316 de Química provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+## 2026-11-21 — AVISO — erradas (série fis, sem API, 10ª sessão)
+Lote conteudo-erradas-fis-23 (Física, provas-alvo UECE 2022.1 1ª e 2ª fase, 2023.1 e 2023.2) gravado: 20 letras em 13
+questões (29 das 49 letras fracas mantidas pelo escritor por falta de equívoco honesto que chegue à alternativa).
+Fatos 20 ok; didática melhorou 3, reconferidas (3 ok). Amostra: 4 letras, 2 enxugadas (P2edc455f A e C, só tamanho).
+converte, tsc e vitest 922/922 verdes. Gasto de API: zero.
