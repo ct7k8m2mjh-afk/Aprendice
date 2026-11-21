@@ -397,3 +397,15 @@ Lote conteudo-erradas-mq-20 (Química, provas-alvo Unesp/Unicamp) gravado: 45 le
 de equívoco honesto). Fatos 44 ok e 1 corrigida (P41ff8a18 B, frase forte demais); didática melhorou 8, todas
 reconferidas (8 ok). Amostra: 10 letras, 0 erro. converte, tsc e vitest 922/922 verdes. Conflito em erradas-feitas.json
 resolvido por união. Gasto de API: zero. Segue o mq-21 (na fila: 391 de Química provas-alvo).
+## 2026-11-21 — FIM — erradas (série mq, sem API, 8ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-mq-20 e mq-21 (Química, provas-alvo Unesp/Unicamp e outras). Nenhum lote
+aberto. Sessão encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 84 letras reescritas e gravadas em 42 questões (mq-20: 45 em 22; mq-21: 39 em 20); 24 letras mantidas por
+falta de equívoco honesto. mq-21: fatos 37 ok e 2 corrigidas (P74ebdbf5 D, "ácido da maçã" ambíguo; P673a1e9a E,
+contagem de elétrons), didática melhorou 12, reconferidas (11 ok, 1 corrigida: P4ebd1bab D, gás mostarda é arma
+química usada desde a Primeira Guerra). Amostra mq-21: 8 letras, 0 erro.
+Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 qui` (próximo
+lote: conteudo-erradas-mq-22; na fila: 366 de Química provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
