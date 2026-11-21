@@ -246,3 +246,20 @@ Lote conteudo-erradas-mq-11 gravado (Matemática, provas-alvo UEA, 25 questões,
 14 questões; 57 mantidas (sem equívoco honesto que leve a elas); nenhuma rejeitada. Lente de fatos: 18 ok; didática
 melhorou 9, todas reconferidas ok na 2ª passagem. Amostra: 3 letras, 0 erro. Testes: converte, tsc e vitest 922/922
 verdes. Gasto de API: zero. Em andamento: conteudo-erradas-mq-12.
+
+## 2026-11-21 — FIM — erradas (série fis, sem API, 6ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-fis-12 e fis-13 (Física, provas-alvo, 50 questões, 149 letras fracas).
+Nenhum lote aberto. Sessão encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa. Entradas de cada lente geradas só depois do aviso
+de término da etapa anterior.
+Resultado: 41 letras reescritas e gravadas em 21 questões (fis-12: 30 em 13; fis-13: 11 em 8). As demais 108 letras não
+têm equívoco honesto que leve a elas e ficaram com o texto antigo; nenhuma rejeitada. Lente de fatos corrigiu 2 no
+fis-12 e 1 no fis-13 (notação M²); didática melhorou 9 + 7; 2ª passagem corrigiu 1 no fis-12 (Pd9c57f27 E: "chega ao
+fundo 2,5 m à frente") e 3 no fis-13 (só encurtadas para até 35 palavras).
+Amostra (20%): fis-12 5 letras, 1 erro consertado (P2b6fd58e E: a origem real é parar no coeficiente aparente 2γV e não
+dividir por 2); fis-13 2 letras, 0 erro.
+Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero. Em erradas-feitas.json houve conflito
+com a série mq; resolvido por união (nenhuma entrada perdida).
+Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
+lote: conteudo-erradas-fis-14; na fila: 506 de Física provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
