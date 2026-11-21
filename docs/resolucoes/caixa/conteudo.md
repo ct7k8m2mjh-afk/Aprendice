@@ -423,3 +423,9 @@ Conflitos em erradas-feitas.json (fis-21 e fis-22) resolvidos por união, no for
 Testes: converte, tsc e vitest 922/922 verdes nos três lotes. Gasto de API: zero.
 Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
 lote: conteudo-erradas-fis-23; na fila: 281 de Física provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+## 2026-11-21 — AVISO — erradas (série mq, sem API, 10ª sessão)
+Lote conteudo-erradas-mq-22 (Química, provas-alvo UERJ 2021 e UFPR 2021–2026) gravado: 51 letras em 22 questões (9
+mantidas pelo escritor por falta de equívoco honesto; 2 deixadas de fora pelo filtro de palavras: P55d8c765 C e
+P3c5710b7 B). Fatos 52 ok e 1 corrigida; didática melhorou 8, reconferidas (7 ok, 1 corrigida). Amostra: 14 letras, 1
+consertada (Pc9596a25 C: o N da guanidina tende a receber H⁺). converte, tsc e vitest 922/922 verdes. Gasto de API: zero.
+Segue o mq-23 (na fila: 341 de Química provas-alvo).
