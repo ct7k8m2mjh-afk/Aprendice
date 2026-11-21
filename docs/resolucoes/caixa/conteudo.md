@@ -606,3 +606,13 @@ como carbono do anel, mas no print ela aponta o CH3 (os dois são sp³; o gabari
 Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
 Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 qui` (próximo
 lote: conteudo-erradas-mq-30), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+## 2026-11-21 — FIM — erradas (série qc, Química, sem API)
+Lotes conteudo-erradas-qc-02 e qc-03 gravados. qc-02: 37 letras reescritas em 19 questões (UEA 2026, UEA SIS3 2027,
+UECE 2020-2 a 2022-2); fatos 39 ok; didática melhorou 8, reconferidas (8 ok) pela 2ª lente de fatos; amostra 10 letras,
+2 com erro (P575e59ed A e E: o conserto não explicava de onde sai o 140/142) — as duas foram descartadas e ficaram
+com o texto antigo. qc-03: 34 letras reescritas em 19 questões (ACAFE 2026, UDESC 2020-1 a 2025-2); 20 mantidas por
+falta de equívoco honesto; fatos 33 ok e 1 corrigida; didática melhorou 7, reconferidas (7 ok); amostra 8 letras, 0 erro.
+Total da série qc: 115 letras reescritas e gravadas em 57 questões (qc-01: 44; qc-02: 37; qc-03: 34). Testes: converte,
+tsc e vitest 922/922 verdes nos três lotes. Gasto de API: zero. Feito por agentes do Claude Code, uma etapa por agente.
+ACABOU (provas-alvo de Química, série qc): `erradas-fila` não mostra mais Química na faixa 1. Continuar de: faixa 2 de
+Química (`BASE_MAX=2`, 885 questões), se o dono quiser, seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
