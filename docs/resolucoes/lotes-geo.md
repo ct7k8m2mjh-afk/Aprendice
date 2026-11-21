@@ -1,4 +1,4 @@
-# Geografia (parte 1): resoluções (gerado por lote.py em 2026-11-20)
+# Geografia (parte 1): resoluções (gerado por lote.py em 2026-11-21)
 
 Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 0.
 
@@ -74,7 +74,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | geo-pend-0005 | pendentes todos-menos-anular | 25 | gravado | 25 | 0 | 0 |
 | geo-pend-0006 | pendentes todos-menos-anular | 25 | gravado | 24 | 1 | 0 |
 | geo-pend-0007 | pendentes todos-menos-anular | 25 | gravado | 23 | 2 | 0 |
-| geo-pend-0008 | pendentes todos-menos-anular | 23 | aberto |  |  |  |
+| geo-pend-0008 | pendentes todos-menos-anular | 23 | gravado | 23 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 

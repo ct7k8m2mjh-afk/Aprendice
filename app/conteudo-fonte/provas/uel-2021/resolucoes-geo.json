@@ -319,5 +319,89 @@
    "data": "2026-11-20",
    "lote": "geo-pend-0005"
   }
+ },
+ "Pea9b6cc5": {
+  "n": "26",
+  "conceito": "Achar a escala de um mapa dividindo a distância real pela medida no mapa, na mesma unidade.",
+  "equivocos": {
+   "A": "G01.2:zeros-na-conversao-km-cm",
+   "B": "G01.2:escala-sem-conta",
+   "C": "G01.2:escala-sem-conta",
+   "E": "G01.2:usou-so-um-trecho"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escala é a razão entre a medida no mapa e a medida real, as duas na mesma unidade. Aqui a fronteira vem desenhada em quatro trechos, e o total real (9.000 km) vale para a fronteira inteira. Então some todos os trechos, converta os quilômetros em centímetros e divida.",
+    "formulas": [
+     "denominador = distância real ÷ distância no mapa (mesma unidade)",
+     "1 km = 100.000 cm"
+    ],
+    "simbolos": [
+     [
+      "escala 1:N",
+      "1 cm no mapa vale N cm no terreno"
+     ],
+     [
+      "denominador",
+      "o N da escala; quanto maior, menos detalhe"
+     ]
+    ]
+   },
+   "pista": "Os 9.000 km são da fronteira inteira. Olhe quantos trechos a figura mede antes de dividir.",
+   "passos": [
+    {
+     "faz": "Some os trechos da figura",
+     "conta": "2 cm + 6 cm + 3 cm + 4 cm = 15 cm",
+     "porque": "A fronteira tem o trecho do Alasca (2 cm) e três trechos ao sul do Canadá; os 9.000 km correspondem aos quatro juntos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta a distância real para cm",
+     "conta": "9.000 km × 100.000 = 900.000.000 cm",
+     "porque": "Escala só compara medidas na mesma unidade, e o mapa está em centímetros.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida o real pelo mapa",
+     "conta": "900.000.000 cm ÷ 15 cm = 60.000.000",
+     "porque": "É quantos centímetros reais cabem em 1 cm do mapa: esse é o denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "escala 1:60.000.000 = D",
+     "porque": "O resultado bate exatamente com a D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1:60.000.000.",
+   "checagem": "Volte da escala para a distância: 15 cm × 60.000.000 = 900.000.000 cm = 9.000 km, o valor do enunciado.",
+   "erradas": {
+    "A": "A sai de converter km em cm multiplicando só por 100: 9.000 × 100 = 900.000 cm; 900.000 ÷ 15 = 60.000.",
+    "B": "B não confere: 15 cm × 250.000 = 3.750.000 cm = 37,5 km, muito menos que 9.000 km.",
+    "C": "C não confere: 15 cm × 15.000.000 = 225.000.000 cm = 2.250 km, um quarto da fronteira.",
+    "E": "E sai de usar só o trecho de 6 cm: 900.000.000 ÷ 6 = 150.000.000."
+   },
+   "armadilha": "Usar só um trecho da fronteira ou errar os zeros na conversão de km para cm.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A escala do mapa a partir dos trechos medidos e da extensão real da fronteira.",
+    "chave": "Some os trechos (15 cm) e divida 900.000.000 cm por 15.",
+    "cuidado": "1 km = 100.000 cm; e os 9.000 km valem para a soma de todos os trechos."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-21",
+   "lote": "geo-pend-0008"
+  }
  }
 }
