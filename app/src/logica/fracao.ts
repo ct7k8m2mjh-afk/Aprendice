@@ -32,7 +32,37 @@ const Z_DO_SIMBOLO = new Map(ELEMENTOS.map((s, i) => [s, i + 1]));
 const GRUPO = String.raw`\((?:[^()\n]|\([^()\n]*\)){1,60}\)`;
 const MILHAR = String.raw`\d{1,3}(?:[ \u00a0\u202f]\d{3})+(?:,\d+)?`;
 const TERMO = String.raw`(?:\d+(?:,\d+)?|√\d*|ln|log|sen|cos|tg|[A-Za-zα-ω])?${GRUPO}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦ])?(?:_[A-Za-z0-9]+|[₀-₉]+|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-z])[A-Za-z])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
-const RE = new RegExp(`(${TERMO})/(${TERMO})`, 'g');
+// (revisão de 21/11/2026, N1) função com argumento ("sen θ/g", "BC/tg 30°", "log x/log 2") e produto de variáveis
+// ("nRT/V", "GMm/r²", "4π²R²/T²", "vA/vB", "FX/mX"); o produto só vale com maiúscula, letra grega, índice ou expoente e
+// sem ser unidade, sigla ou genótipo (validado em `produtoValido`)
+const FUNCAO = String.raw`(?:\d+(?:,\d+)?)?(?:sen|cos|tg|tan|log|ln)[²³]?\s?(?:\d+(?:,\d+)?°|\d*[a-zA-Zα-ωθ][²³]?|\d+(?:,\d+)?)(?![\d,A-Za-zÀ-ÿ])`;
+const PRODUTO = String.raw`(?:\d+(?:,\d+)?)?(?:[a-zA-Zα-ωπθΦ](?:_[A-Za-z0-9]+|[₀-₉]+)?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*){2,4}`;
+const RE = new RegExp(`(${FUNCAO}|${PRODUTO}|${TERMO})/(${FUNCAO}|${PRODUTO}|${TERMO})`, 'g');
+const RE_TERMO = new RegExp(`^(?:${TERMO})$`);
+const RE_FUNCAO = new RegExp(`^(?:${FUNCAO})$`);
+// nomes de unidade com mais de uma letra ("kJ", "mL", "mmHg"): nunca são produto de variáveis
+const UNIDADES_NOME = new Set(('mmol kmol mol mA μA µA mV kV MW GW MJ GJ kN MPa GPa GHz MHz kHz hm ha mg kg μg µg mL dL mm cm dm km nm '
+  + 'min kJ kcal cal atm kPa Pa kΩ kWh Wh kW Hz eV mmHg kgf ppm erg rad cd lm lx Gcal').split(' '));
+function produtoValido(x: string): boolean {
+  if (RE_TERMO.test(x) || RE_FUNCAO.test(x)) return true;
+  const letras = x.replace(/^\d+(?:,\d+)?/, '').replace(/_[A-Za-z0-9]+|[₀-₉²³⁴⁵⁶⁷⁸⁹¹⁰]/g, '');
+  if (/^(?:sen|cos|tg|tan|log|ln)/.test(letras)) return false;
+  if (/^[A-Z]{3,}$/.test(letras)) return false; // sigla ("VIP/VOP", "HIV/AIDS")
+  if (/^[A-Z][a-zà-ÿ]{2,}$/.test(letras)) return false; // palavra ("Nilo/Mar", "1000/Sec")
+  // fórmula química ("AgCl/Ag", "H₂O/CO₂", "HAc"): só símbolos de elemento, dois ou mais
+  const simb = x.replace(/^\d+(?:,\d+)?/, '').replace(/[₀-₉\d²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺]/g, '').match(/[A-Z][a-z]?|./g) || [];
+  if (simb.length >= 2 && simb.every((e) => Z_DO_SIMBOLO.has(e))) return false;
+  return /[A-Zα-ωπθΦ₀-₉²³⁴⁵⁶⁷⁸⁹¹⁰_]/.test(x.replace(/^\d+(?:,\d+)?/, ''));
+}
+/** par de unidades com um nome de mais de uma letra ("kJ/mol", "mL/min", "kg/m³", "Ω·mm²/m"); "mA/mB" e "dL/dS"
+ *  são variáveis com índice */
+function parDeUnidades(num: string, den: string): boolean {
+  const l = (x: string) => x.replace(/[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]/g, '');
+  const unid = (x: string) => UNIDADES_NOME.has(l(x)) || UNIDADE.has(l(x)) || /^(?:mol|s|g|m|L|h|t|K|J|N|W|V|A|C)$/.test(l(x));
+  // nome de unidade embaixo é taxa ("R$ 0,30/kWh"); em cima, com unidade, número ou grupo embaixo ("mL/(min · kg)")
+  return UNIDADES_NOME.has(l(den)) || (UNIDADES_NOME.has(l(num)) && (unid(den) || /^[\d(]/.test(den)))
+    || (/^\(/.test(num) && UNIDADES_NOME.has(l(den.replace(/^\(|\)$/g, ''))));
+}
 const LETRA = /[A-Za-zÀ-ÿα-ωπθ]/;
 const ANTES_PROIBIDO = /[A-Za-zÀ-ÿ0-9.,/_\\-]/; // colado a uma palavra, número, data ou link
 const DEPOIS_PROIBIDO = /[A-Za-zÀ-ÿ0-9/_(]/;
@@ -52,6 +82,9 @@ function ehFracao(texto: string, ini: number, num: string, den: string): boolean
   // termo vazio por dentro (só "√" ou só expoente) não conta
   const temValor = (x: string) => /[0-9a-zA-Zα-ωπθΦ]/.test(x);
   if (!temValor(num) || !temValor(den)) return false;
+  if (!produtoValido(num) || !produtoValido(den) || parDeUnidades(num, den)) return false;
+  // genótipo com as mesmas letras em cima e embaixo ("Ab/aB", "AB/ab", "RS/rs")
+  if (/^[A-Za-z]{2,4}$/.test(num) && num.length === den.length && num !== den && num.toLowerCase() === den.toLowerCase()) return false;
   const antes = texto.slice(0, ini);
   const fim = ini + num.length + 1 + den.length;
   const charAntes = antes.slice(-1);
@@ -80,7 +113,8 @@ function ehFracao(texto: string, ini: number, num: string, den: string): boolean
   const letraDen = !den.startsWith('(') && LETRA.test(den);
   if (letraNum || letraDen) {
     // depois de um número com espaço é unidade ("10 m/s", "3 L/h", "1,2 × 10³ J/(kg °C)")
-    if (/[\d²³⁴⁵⁶⁷⁸⁹¹⁰]\s+$/.test(antes)) return false;
+    // ("V0 sen θ/g": o algarismo colado à letra é índice, não número)
+    if (/(?:^|[^A-Za-zα-ωÀ-ÿ\d_.,])\d+(?:[.,]\d+)*[²³⁴⁵⁶⁷⁸⁹¹⁰]*\s+$/.test(antes)) return false;
   }
   // só letras dos dois lados ("a/b", "m/V", "A/a", "g/L", "L/(mol·K)"): fração só depois de um sinal de conta ou no começo;
   // depois de palavra é par de genes ("o par A/a") ou unidade ("concentração (g/L)", "R em J/(mol·K)")
@@ -91,18 +125,26 @@ function ehFracao(texto: string, ini: number, num: string, den: string): boolean
     const tira = (x: string) => x.replace(/[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]/g, '');
     // depois de sinal, no começo, como argumento de função ("f(c/b)"), depois de "razão" ou antes de "=" ("a/g = 10/15")
     const depoisDeSinal = /(^|[=+−\-×·÷≈<>→√]\s*[({\[]?)\s*$/.test(antes) || /(^|[^A-Za-zÀ-ÿ])[a-zA-Z]\($/.test(antes)
-      || /\braz(ão|ões)\s+$/i.test(antes) || /^\s*[=≈]/.test(texto.slice(fim));
+      || /\braz(ão|ões)\s+$/i.test(antes) || /^\s*[=≈]/.test(texto.slice(fim))
+      // produto escrito com espaço, com uma variável logo depois de um sinal ("N = m v²/R", "t = 2V0 sen θ/g")
+      || /(?:^|[=+−×·→(]\s*)\d*(?![aeoAEOé]\s)[A-Za-zα-ω][0-9₀-₉]?[²³]?\s+$/.test(antes);
     if (!depoisDeSinal) return false;
     // no começo do texto, só letra de variável ou segmento ("a/b = c/d", "AB/CD"); "Wh/L (watt-hora...)" é unidade
     // e "Mg/Fe" é par de metais
     const simples = (x: string) => /^(?:[a-zα-ωπθ]|[A-Z]{1,2})$/.test(tira(x));
-    if (!antes.trim() && !(simples(num) && simples(den)) && !/^\s*[=≈]/.test(texto.slice(fim))) return false;
-    // letras de alternativa ("A/B")
-    if (/^[A-E]$/.test(num) && /^[A-E]$/.test(den)) return false;
+    // (antes de uma comparação ou seta também é conta: "FX/mX < FY/mY", "ΔV/Δt → litros")
+    if (!antes.trim() && !(simples(num) && simples(den)) && !/^\s*[=≈<>→]/.test(texto.slice(fim))) return false;
+    // letras de alternativa ("A/B"); antes de "=" é razão ("B/A = 2")
+    if (/^[A-E]$/.test(num) && /^[A-E]$/.test(den) && !/^\s*[=≈]/.test(texto.slice(fim))) return false;
     // produto de unidades: "atm·L/K", "atm · L/(mol·K)"
-    if (/[A-Za-zÀ-ÿ]{2,}\s*·\s*$/.test(antes)) return false;
-    // dois símbolos de unidade ("m/s²", "g/L") só depois de "=": "d = m/V"
-    if (UNIDADE.has(tira(num)) && UNIDADE.has(tira(den)) && !/(=\s*|√\s*\()$/.test(antes)) return false;
+    // (só quando o fator antes do "·" é nome de unidade: "fA·RA/RB" é produto de variáveis)
+    const fatorAntes = /([A-Za-zÀ-ÿ]{2,})\s*·\s*$/.exec(antes);
+    if (fatorAntes && (UNIDADES_NOME.has(fatorAntes[1]) || !/[A-Z]/.test(fatorAntes[1]))) return false;
+    // dois símbolos de unidade ("m/s²", "g/L") só depois de "=" ("d = m/V") ou depois de "·"/"×" com uma variável ou um
+    // número antes ("4π² · L/g", "m × g/K"; revisão de 21/11/2026, N1); "10 N · m/s" continua unidade
+    const fatorDeConta = /(?:^|[\s=(+−\-→≈])(?:[\d,.]*\d[²³⁴⁵⁶⁷⁸⁹¹⁰]*|\d*(?:[a-zα-ωπθ]|[A-Z](?=[²³⁴⁵⁶⁷⁸⁹¹⁰]))[²³⁴⁵⁶⁷⁸⁹¹⁰]*(?:\d*[a-zα-ωπθ][²³⁴⁵⁶⁷⁸⁹¹⁰]*)*|\d*[A-Z])\s*[·×]\s*$/.exec(antes);
+    const unidadeAntes = fatorDeConta && /\d\s+[A-Za-zµμΩ]{1,3}[²³]?\s*[·×]\s*$/.test(antes);
+    if (UNIDADE.has(tira(num)) && UNIDADE.has(tira(den)) && !/(=\s*|√\s*\()$/.test(antes) && !(fatorDeConta && !unidadeAntes)) return false;
   }
   return true;
 }

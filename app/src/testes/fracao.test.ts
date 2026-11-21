@@ -315,3 +315,25 @@ describe('fração sempre empilhada: "÷", milhar com espaço e parênteses (rev
       expect(junta(s)).toBe(s);
   });
 });
+
+describe('letra/letra depois de "·" e "×", função e produto de variáveis (revisão de 21/11/2026, N1)', () => {
+  it('empilha a fração entre nomes depois de um sinal de produto', () => {
+    expect(fr('T = 2π√(L/g) → T² = 4π² · L/g → L = g · T²/(4π²)')).toEqual(['L|g', 'L|g', 'T²|4π²']);
+    expect(fr('x = m × g/K')).toEqual(['g|K']);
+    expect(fr('P = nRT/V')).toEqual(['nRT|V']);
+    expect(fr('GMm/r² = mv²/r')).toEqual(['GMm|r²', 'mv²|r']);
+    expect(fr('fB = fA·RA/RB')).toEqual(['RA|RB']);
+    expect(fr('μe = sen θ/cos θ = tg θ')).toEqual(['sen θ|cos θ']);
+    expect(fr('(log x/log 2) × (log x/log 3)')).toEqual(['log x|log 2', 'log x|log 3']);
+    expect(fr('AB = BC/tg 30° = √3')).toEqual(['BC|tg 30°']);
+    expect(fr('NA = m v²/R')).toEqual(['v²|R']);
+    expect(fr('FX/mX < FY/mY')).toEqual(['FX|mX', 'FY|mY']);
+    expect(fr('mA/mB = sen 30°')).toEqual(['mA|mB']);
+  });
+  it('unidade, sigla, genótipo, par de metais e palavra continuam na linha', () => {
+    for (const s of ['J = kg · m²/s²', '10 N · m/s', '0,05 atm · L/K', 'kg·m/s² · kg·m²/s', 'F1 = Ab/aB (trans)', 'pólio → VIP/VOP',
+      'RS/rs × RS/rs', 'Mênfis → Nilo/Mar Vermelho', 'Remove rate: 1000/Sec', 'R$ 0,30/kWh', '(mL/min) ÷ kg = mL/(min · kg)',
+      '+0,80 V × AgCl/Ag: +0,22 V', 'em kJ/mol', '25 mL/min', 'mata e/ou consome'])
+      expect(fr(s).filter((x) => !x.includes('÷')), s).toEqual(s.startsWith('(mL') ? ['mL/min|kg'] : []);
+  });
+});

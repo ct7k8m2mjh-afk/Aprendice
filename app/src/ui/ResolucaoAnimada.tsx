@@ -352,8 +352,10 @@ function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<stri
   // cabe sozinho quebra por dentro, antes de "+", "−", "×", "÷" (cada pedaço `.ra-u` nunca quebra)
   const brk = quebrasConta(L.toks);
   const prosa = tokensProsa(L.toks);
-  type Pedaco = ReactNode[] | { sp: string };
-  const trechos: { sp: string; pedacos: Pedaco[] }[] = [{ sp: '', pedacos: [[]] }];
+  // o espaço de quebra dentro do marca-texto também leva a marca (revisão de 21/11, N1: a marca caía em pedaços soltos)
+  type Pedaco = ReactNode[] | { sp: string; marca?: boolean };
+  const trechos: { sp: string; marca?: boolean; pedacos: Pedaco[] }[] = [{ sp: '', pedacos: [[]] }];
+  const esp = (sp: string, marca?: boolean) => (marca && sp ? <span className="ra-esp ra-marca">{sp}</span> : sp);
   let pos = 0;
   L.toks.forEach((t, i) => {
     const ini = pos; pos += t.v.length;
@@ -362,8 +364,8 @@ function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<stri
     const u = tr.pedacos[tr.pedacos.length - 1] as ReactNode[];
     if (t.k === 'esp') {
       const nv = brk.get(i);
-      if (nv === 1) { trechos.push({ sp: t.v, pedacos: [[]] }); return; }
-      if (nv === 2) { tr.pedacos.push({ sp: t.v }, []); return; }
+      if (nv === 1) { trechos.push({ sp: t.v, marca: !!marca, pedacos: [[]] }); return; }
+      if (nv === 2) { tr.pedacos.push({ sp: t.v, marca: !!marca }, []); return; }
       u.push(marca ? <span key={i} className="ra-esp ra-marca">{t.v}</span> : t.v);
       return;
     }
@@ -383,9 +385,9 @@ function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<stri
     <p className="ra-linha conta" data-l={l}>
       {trechos.map((tr, k) => (
         <Fragment key={k}>
-          {tr.sp}
+          {esp(tr.sp, tr.marca)}
           <span className="ra-seg">
-            {tr.pedacos.map((pd, j) => (Array.isArray(pd) ? (pd.length ? <span key={j} className="ra-u">{pd}</span> : null) : pd.sp))}
+            {tr.pedacos.map((pd, j) => (Array.isArray(pd) ? (pd.length ? <span key={j} className="ra-u">{pd}</span> : null) : <Fragment key={j}>{esp(pd.sp, pd.marca)}</Fragment>))}
           </span>
         </Fragment>
       ))}
