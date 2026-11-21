@@ -116,3 +116,17 @@ Testes: converte e tsc verdes; vitest 922 de 922 nos dois lotes. Gasto de API: z
 Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
 lote: conteudo-erradas-fis-06; fila de Física provas-alvo pela `erradas-fila`), seguindo
 docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+
+## 2026-11-21 — FIM — erradas (série mq, sem API, 2ª sessão)
+Lotes gravados: conteudo-erradas-mq-04, mq-05 e mq-06 (Matemática, provas-alvo, 75 questões, 176 letras fracas).
+Nenhum lote aberto. Sessão encerrada no limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo.
+Resultado: 56 letras reescritas e gravadas em 37 questões (mq-04: 25 em 12; mq-05: 12 em 10; mq-06: 19 em 15). As demais
+letras não têm equívoco honesto que leve a elas e ficaram com o texto antigo; 1 rejeitada pela lente de fatos (mq-05).
+Amostra (20%): 9 letras, 1 com erro (mq-06, Pded737a1 C: fração escrita na linha "c · h ÷ H"), consertada; nenhum erro
+de fato. Testes: converte, tsc e vitest verdes (922). Gasto de API: zero.
+Nota: o escritor da parte 1 do mq-04 travou (pedido com número da parte faltando) e foi refeito por um agente novo.
+Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 mat` (próximo
+lote: conteudo-erradas-mq-07; na fila: Matemática provas-alvo ~300, depois Química provas-alvo ~438), seguindo
+docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
