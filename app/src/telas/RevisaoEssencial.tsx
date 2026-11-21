@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent as TeclaReact } from 'react';
 import { useMateria } from '../dados/conteudo';
 import { materia as infoMateria } from '../dados/materias';
 import { MATERIAS_ANIMADAS, useIndiceRevisao, useTemaRevisao, type Essencial, type TelaEssencial, type TemaRevisao } from '../dados/revisao';
@@ -187,14 +187,39 @@ const LETRAS = ['A', 'B', 'C', 'D', 'E'];
  * da questão de prova, nos 4 blocos e nesta ordem (revisão de 19/11/2026, item 20): Por que eu errei · Resposta correta +
  * a pegadinha · Resolução (animada em Bio, Quí, Mat e Fís) · Por que as outras estão erradas (fechado).
  */
-function QuestaoResolvida({ m, e }: { m: MateriaId; e: Essencial }) {
+export function QuestaoResolvida({ m, e }: { m: MateriaId; e: Essencial }) {
   const q = e.questao_resolvida!;
   const [esc, setEsc] = useState<string | null>(null);
   const [ver, setVer] = useState(false);
+  const grupo = useRef<HTMLDivElement>(null);
   const prosa = contaEhTexto('1 + 1', m);
   const res = useMemo(() => (q.passos?.length ? passosParaMotor(q.passos, prosa) : null), [q, prosa]);
   const alts = q.alternativas.map((a, k) => { const r = /^([A-E])\)\s*/.exec(a); return { l: r ? r[1] : LETRAS[k], t: r ? a.slice(r[0].length) : a }; });
   const enun = q.enunciado.replace(/^Questão Aprendice\.\s*/, '');
+  // responder pelo teclado, como na questão de prova (princípio 6; revisão de 21/11, N2): A–E (ou 1–5) marca, Enter confere
+  useEffect(() => {
+    if (ver) return;
+    const f = (ev: KeyboardEvent) => {
+      const alvo = ev.target as HTMLElement | null;
+      if (alvo && (alvo.tagName === 'INPUT' || alvo.tagName === 'TEXTAREA') || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+      const k = ev.key.toUpperCase();
+      const l = ({ 1: 'A', 2: 'B', 3: 'C', 4: 'D', 5: 'E' } as Record<string, string>)[k] || k;
+      if (/^[A-E]$/.test(l) && alts.some((x) => x.l === l)) { ev.preventDefault(); setEsc(l); return; }
+      // Enter num outro botão (Voltar, "Ver a resolução sem responder") faz o que o botão faz
+      if (ev.key === 'Enter' && esc && !(alvo?.closest('button') && !alvo.closest('.es-alts'))) { ev.preventDefault(); setVer(true); }
+    };
+    addEventListener('keydown', f);
+    return () => removeEventListener('keydown', f);
+  });
+  // setas dentro do grupo de alternativas: anda entre as opções e marca (o foco acompanha), sem trocar de cartão
+  const setas = (ev: TeclaReact<HTMLButtonElement>, k: number) => {
+    const d = ev.key === 'ArrowDown' || ev.key === 'ArrowRight' ? 1 : ev.key === 'ArrowUp' || ev.key === 'ArrowLeft' ? -1 : 0;
+    if (!d) return;
+    ev.preventDefault(); ev.stopPropagation();
+    const n = (k + d + alts.length) % alts.length;
+    setEsc(alts[n].l);
+    grupo.current?.querySelectorAll<HTMLButtonElement>('button[role="radio"]')[n]?.focus();
+  };
   // a correção da questão de prova, com os campos que a Questão Aprendice tem (logica/questaoAprendice.ts)
   const correcao = useMemo(() => {
     const arm = separaArmadilhas(q.por_que_erram, q.gabarito);
@@ -215,9 +240,10 @@ function QuestaoResolvida({ m, e }: { m: MateriaId; e: Essencial }) {
       <h2 id="es-tit" className="rv-tit">Questão Aprendice</h2>
       <p className="es-qa">Criada pelo Aprendice no estilo das provas. Não é questão de vestibular.</p>
       <p className="rv-texto">{textoRev(enun)}</p>
-      <div className="es-alts" role="radiogroup" aria-label="Alternativas">
-        {alts.map(({ l, t }) => (
+      <div className="es-alts" role="radiogroup" aria-label="Alternativas" ref={grupo}>
+        {alts.map(({ l, t }, k) => (
           <button key={l} type="button" role="radio" aria-checked={esc === l} disabled={ver}
+            tabIndex={esc === l || (!esc && k === 0) ? 0 : -1} onKeyDown={(ev) => setas(ev, k)}
             className={'es-alt' + (esc === l ? ' sel' : '') + (ver && l === q.gabarito ? ' certa' : '') + (ver && esc === l && l !== q.gabarito ? ' errada' : '')}
             onClick={() => setEsc(l)}>
             <span className="alt-l">{l}</span><span>{textoRev(t)}</span>
