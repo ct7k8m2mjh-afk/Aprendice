@@ -205,3 +205,19 @@ Lote conteudo-erradas-fis-10 gravado (Física, provas-alvo Santa Casa 2022–202
 reescritas em 18 questões; 41 mantidas (sem equívoco honesto que leve a elas); nenhuma rejeitada. Lente de fatos: 35 ok;
 didática melhorou 9, reconferidas (8 ok, 1 corrigida). Amostra: 11 letras, 2 só acima de ~35 palavras, encurtadas.
 Testes: converte, tsc e vitest 922/922 verdes. Gasto de API: zero.
+
+## 2026-11-21 — FIM — erradas (série mq, sem API, 4ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-mq-09 (UECE 2020.2 2ª fase e UEA 2027) e mq-10 (UEA 2026, UEA 2027
+Exatas e UEA SIS 3 2027) — Matemática, provas-alvo, 50 questões, 137 letras fracas. Nenhum lote aberto. Sessão
+encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 29 letras reescritas e gravadas em 20 questões (mq-09: 16 em 10; mq-10: 13 em 10). As demais 108 letras não
+têm equívoco honesto que leve a elas e ficaram com o texto antigo; nenhuma rejeitada. Lente de fatos corrigiu 2 (mq-09
+Pe629d1ff A: faltava a raiz x = 1; mq-10 P406fcc32 C: origem do 58 = 50 + 8); didática melhorou 18 (potência e log
+em notação certa, textos mais curtos), todas reconferidas ok na 2ª passagem. Amostra (20%): mq-09 4 letras, 0 erro;
+mq-10 2 letras, 0 erro.
+Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 mat` (próximo
+lote: conteudo-erradas-mq-11; na fila: 196 de Matemática provas-alvo, depois Química provas-alvo), seguindo
+docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
