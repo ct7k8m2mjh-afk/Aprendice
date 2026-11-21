@@ -158,7 +158,7 @@ export function Treino() {
               <div key={t}><b className="num">{x.ok} de {x.n}</b><span>{t}</span></div>
             ))}
           </div>
-          <p className="miolo">Erros e chutes entram na revisão espaçada automaticamente.</p>
+          <p className="miolo">Erros e chutes voltam na revisão: as questões amanhã, os flashcards e frases no dia marcado.</p>
           <div className="tm-regiao"><FiltroRegiaoChips compacto /></div>
           <div className="fc-acoes"><button className="btn sec" onClick={encerrar}>Voltar a {info.nome}</button><button className="btn" onClick={recomecar}>Novo treino</button></div>
         </div>
@@ -187,7 +187,7 @@ export function Treino() {
         {it.k === 'q' && mc.porId.get(it.id) && <QuestaoInline mc={mc} q={mc.porId.get(it.id)!} aoTerminar={(ok) => avanca(it.id, ok ? 'a' : 'e')} />}
         {it.k === 'f' && (() => { const c = todos.find((x) => x.id === it.id); const md = c && mc.conteudo.modulos.find((x) => x.id === c.mod); return c ? <FlashcardView m={m} c={c} todos={todos} tema={md?.nome} conteudo={cap(md?.subs.find((x) => x.id === c.sub)?.nome || '') || undefined} aoNotar={(n, o) => { notaFlash(m, c.id, n, o); avanca(c.id, n); }} /> : null; })()}
         {it.k === 'c' && (() => { const c = mc.conteudo.essencial.completar.find((x) => x.id === it.id); return c ? <CompletarView m={m} c={c} aoNotar={(n, o) => { notaFlash(m, c.id, n, o); avanca(c.id, n); }} /> : null; })()}
-        {((it.k === 'q' && !mc.porId.get(it.id))) && <div className="vazio"><p>Item indisponível.</p><button className="btn sec" onClick={() => avanca(it.id, 'q')}>Pular</button></div>}
+        {((it.k === 'q' && !mc.porId.get(it.id))) && <div className="vazio"><p>Este item não está disponível.</p><button className="btn sec" onClick={() => avanca(it.id, 'q')}>Pular</button></div>}
       </div>
       <p className="fraco" style={{ textAlign: 'center', fontSize: 13, marginTop: 8 }}><Link to={`/m/${m}`}>Voltar a {info.nome}</Link></p>
     </div>

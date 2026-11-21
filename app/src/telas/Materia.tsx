@@ -24,7 +24,7 @@ export function ListaMaterias() {
   useTitulo('Matérias');
   return (
     <div className="conteudo">
-      <div className="titulo-pag"><div><h1>Matérias</h1><p className="sub">Todas as matérias do vestibular.</p></div></div>
+      <div className="titulo-pag"><div><h1>Matérias</h1><p className="sub">Todas as matérias do ENEM e do vestibular.</p></div></div>
       <div className="grade g2">
         {MATERIAS.map((m) => (
           <Link key={m.id} to={`/m/${m.id}`} className={`linha-mat m-${m.id}` + (m.ativa ? '' : ' inativa')}>
@@ -110,7 +110,7 @@ export function FaixaTemas({ mc, s, atual, compacta = false }: { mc: MateriaCarr
     mede();
   }, [atual]);
   return (
-    <nav className={'faixa-temas' + (compacta ? ' compacta' : '') + (bordas.e ? ' fe' : '') + (bordas.d ? ' fd' : '')} aria-label="Temas">
+    <nav className={'faixa-temas' + (compacta ? ' compacta' : '') + (bordas.e ? ' fe' : '') + (bordas.d ? ' fd' : '')} aria-label="Faixa de temas">
       {bordas.e && <button className="ft-seta esq" onClick={() => anda(-1)} aria-label="Temas anteriores"><Icone nome="esquerda" /></button>}
       <div className="ft-rolo" ref={rolo} onScroll={mede}>
         {mc.conteudo.modulos.map((mod) => {
@@ -145,12 +145,12 @@ function EmPreparacao({ m }: { m: MateriaId }) {
         <span className="preparo-ic" aria-hidden><Icone nome="camadas" tam={28} /></span>
         <h2>Questões em preparação</h2>
         <p className="miolo">
-          {`As questões de ${info.nome} chegam com a importação das provas completas: cada uma com o print fiel da prova, a fonte (prova, ano, número, link) e o gabarito oficial. Nenhuma questão é criada ou redigitada.`}
+          {`As questões de ${info.nome} chegam com as provas completas: cada uma com a fonte (prova, ano, número, link) e o gabarito.`}
         </p>
         <ol className="preparo-passos">
           <li><b>Provas completas</b><span>ENEM e vestibulares de todas as regiões, baixados da fonte oficial.</span></li>
-          <li><b>Gabarito publicado</b><span>Sem gabarito oficial ou resolução reconhecida, a questão não entra.</span></li>
-          <li><b>Resolução revisada</b><span>Revisão em lentes: fatos contra a fonte, depois utilidade e estilo de prova.</span></li>
+          <li><b>Gabarito conferido</b><span>Oficial quando a banca publica; sem ele, o gabarito do Aprendice, com aviso.</span></li>
+          <li><b>Resolução revisada</b><span>Conferida contra a fonte e revisada pela banca do Aprendice.</span></li>
         </ol>
         <div className="preparo-acoes">
           <Link to="/provas" className="btn sec">Ver o catálogo de provas</Link>
@@ -196,7 +196,7 @@ export function Materia() {
         <section className="bloco preparo">
           <span className="preparo-ic" aria-hidden><Icone nome="camadas" tam={28} /></span>
           <h2>Questões de {info.nome} em preparação</h2>
-          <p className="miolo">Os temas já estão aqui. As questões entram com as provas completas: cada uma com o print fiel da prova, a fonte (prova, ano, número, link), o gabarito oficial e o nível de dificuldade. Nenhuma questão é criada ou redigitada.</p>
+          <p className="miolo">Os temas já estão aqui. As questões entram com as provas completas: cada uma com a fonte (prova, ano, número, link), o gabarito e o nível de dificuldade.</p>
           <div className="preparo-acoes"><Link to="/simulados" className="btn sec">Ver simulados</Link></div>
         </section>
       )}
@@ -229,7 +229,7 @@ export function Materia() {
             </Link>
           )}
           <Link to="/revisao" className="atalho">
-            <Icone nome="repetir" /><span><b>Revisão dos erros</b><small>{r.vencidas ? plural(r.vencidas, 'questão vencida', 'questões vencidas') : 'Nada vencido hoje'}</small></span><Icone nome="direita" className="at-seta" />
+            <Icone nome="repetir" /><span><b>Revisão dos erros</b><small>{r.vencidas ? plural(r.vencidas, 'volta hoje', 'voltam hoje') : 'Nada volta hoje'}</small></span><Icone nome="direita" className="at-seta" />
           </Link>
           <Link to="/simulados" className="atalho">
             <Icone nome="relogio" /><span><b>Simulados</b><small>Provas completas, por ano</small></span><Icone nome="direita" className="at-seta" />
@@ -308,7 +308,7 @@ export function CapaTreinoGeral({ mc, s, conj, aoComecar }: { mc: MateriaCarrega
             {aoComecar ? <h1>Treino geral de {info.nome}</h1> : <h2>Treino geral de {info.nome}</h2>}
             <span className="capa-p">{tg && tg.i > 0 && tg.i < tg.it.length ? 'Seu treino está salvo onde você parou. ' : ''}{descreveTreino(nAbc, nComp, nFlash)}</span>
             <span className="tg-nums">
-              {([['Questões de prova', feitoAbc, nAbc, okAbc], ['Completar a frase', feitoComp, nComp, okComp], ['Flashcards', feitoFlash, nFlash, okFlash]] as [string, number, number, number][]).filter(([, , n]) => n > 0).map(([t, f, n, ok]) => (
+              {([['Questões de prova', feitoAbc, nAbc, okAbc], ['Frases a completar', feitoComp, nComp, okComp], ['Flashcards', feitoFlash, nFlash, okFlash]] as [string, number, number, number][]).filter(([, , n]) => n > 0).map(([t, f, n, ok]) => (
                 <span key={t} className="tg-n"><i>{t}</i><b className="num">{f}<small>{t === 'Questões de prova' ? (f === 1 ? ' feita' : ' feitas') : ` de ${n}`}</small></b><span className="barra" aria-hidden><i style={{ width: `${n ? (f / n) * 100 : 0}%` }} /></span><small className="num">{f ? plural(ok, 'acerto', 'acertos') : '\u00a0'}</small></span>
               ))}
             </span>
