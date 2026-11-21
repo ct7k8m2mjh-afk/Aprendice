@@ -531,3 +531,9 @@ Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero
 Dica: o converte pode esperar vários minutos pela trava de outra sessão; rode os testes em segundo plano com timeout longo.
 Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 qui` (próximo
 lote: conteudo-erradas-mq-28; na fila: 216 de Química provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+## 2026-11-21 — AVISO — erradas (série fis, sem API, 12ª sessão)
+conteudo-erradas-fis-27 gravado (Física, provas-alvo UDESC 2025-1, 2025-2 e 2026-2): 18 letras reescritas em 14
+questões; 31 mantidas pelo escritor por falta de equívoco honesto; 3 fora por texto com "dá X" (P4f2d2ccd A e D,
+Pa3dbc722 E). Fatos 20 ok e 1 corrigida (só o código de equívoco de P11eeab1b B); didática melhorou 10, reconferidas
+(10 ok) — e 3 questões que a 1ª lente viu sem o print voltaram à 2ª lente com print (ok). Amostra 3 letras, 0 erro.
+Converte, tsc e vitest 922/922 verdes. Gasto de API: zero. Seguindo com fis-28.
