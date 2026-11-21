@@ -97,7 +97,7 @@ export function Config() {
         <h2 className="sec-tit">Privacidade</h2>
         <p className="miolo">{comConta
           ? 'Seu e-mail, perfil de estudo e progresso ficam na sua conta; cada conta só lê os próprios dados. Sem anúncios, sem rastreamento, fontes hospedadas no próprio site. Detalhes em Privacidade.'
-          : 'Sem servidor nesta versão: nenhum dado pessoal é enviado a ninguém. Sem anúncios, sem rastreamento, fontes hospedadas no próprio site. Quando houver contas na nuvem, você poderá baixar e apagar seus dados a qualquer momento (LGPD).'}</p>
+          : 'Sem servidor nesta versão: nenhum dado pessoal é enviado a ninguém. Sem anúncios, sem rastreamento, fontes hospedadas no próprio site. Você pode baixar seu progresso aqui e apagar tudo em Perfil, no botão “Excluir minha conta”. Detalhes em Privacidade.'}</p>
       </section>
 
       <section className="bloco secao">
