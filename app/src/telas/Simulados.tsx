@@ -46,7 +46,7 @@ export function Simulados() {
   return (
     <div className="conteudo">
       <div className="titulo-pag"><div><h1>Simulados</h1><p className="sub">{aba === 'conteudo'
-        ? 'Só questões reais de prova dos conteúdos que você escolher, com cronômetro e resultado no fim.'
+        ? 'Questões reais de prova dos conteúdos que você escolher, da mais fácil à mais difícil, com cronômetro e resultado por conteúdo.'
         : aba === 'historico' ? 'Os simulados que você já entregou, com o resultado e a correção de cada um.'
         : 'Provas inteiras, com todas as matérias, no tempo oficial. Escolha a instituição e o ano.'}</p></div></div>
 
@@ -58,7 +58,7 @@ export function Simulados() {
         </Link>
       )}
 
-      <div className="abas" role="group" aria-label="Seções">
+      <div className="abas" role="group" aria-label="Seções dos simulados">
         <button aria-pressed={aba === 'prova'} onClick={() => setQs({}, { replace: true })}>Provas <small>{lista.length}</small></button>
         <button aria-pressed={aba === 'conteudo'} onClick={() => setQs({ aba: 'conteudo' }, { replace: true })}>Por conteúdo</button>
         <button aria-pressed={aba === 'historico'} onClick={() => setQs({ aba: 'historico' }, { replace: true })}>Histórico <small>{feitos.length}</small></button>
@@ -109,8 +109,8 @@ export function Simulados() {
           )}
           {!eds.length && (
             <div className="vazio" style={{ paddingTop: 12 }}>
-              <h3>As provas completas estão chegando</h3>
-              <p>Cada simulado é uma prova inteira, com todas as matérias, do jeito que caiu. Se esta lista não carregou, verifique a conexão e abra a página de novo.</p>
+              <h3>Nenhuma prova completa carregou</h3>
+              <p>Confira a conexão e abra a página de novo. Cada simulado é uma prova inteira, do jeito que caiu.</p>
             </div>
           )}
           <section className="bloco sim-folha secao" aria-labelledby="sim-prep">

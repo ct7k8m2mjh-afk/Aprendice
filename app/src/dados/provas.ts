@@ -97,9 +97,9 @@ export function nomeEdicao(e: Pick<Edicao, 'escola' | 'ano' | 'fase'>): string {
 export const PROVAS_EM_PREPARO: { catalogoId: string; titulo: string; motivo: string }[] = [
   { catalogoId: 'unb', titulo: 'UnB PAS 3 2020 a 2026', motivo: 'Formato de certo ou errado: o simulado está sendo adaptado para esse tipo de item.' },
   { catalogoId: 'uem', titulo: 'UEM 2020 a 2026', motivo: 'Questões de somatória: o simulado está sendo adaptado para esse tipo de resposta.' },
-  { catalogoId: 'saocamilo', titulo: 'São Camilo 2020 a 2026 (outros semestres)', motivo: 'As provas estão sendo conferidas questão por questão e entram em breve.' },
-  { catalogoId: 'santacasa', titulo: 'Santa Casa 2020 a 2026', motivo: 'As provas estão sendo conferidas questão por questão e entram em breve.' },
-  { catalogoId: 'einstein', titulo: 'Einstein 2020 a 2026', motivo: 'As provas estão sendo conferidas questão por questão e entram em breve.' },
+  { catalogoId: 'saocamilo', titulo: 'São Camilo 2020 a 2026 (outros semestres)', motivo: 'As provas estão sendo conferidas questão por questão.' },
+  { catalogoId: 'santacasa', titulo: 'Santa Casa 2020 a 2026', motivo: 'As provas estão sendo conferidas questão por questão.' },
+  { catalogoId: 'einstein', titulo: 'Einstein 2020 a 2026', motivo: 'As provas estão sendo conferidas questão por questão.' },
 ];
 
 /** Escolas do banco que têm catálogo de vestibular (podem ser provas-alvo com questões). */

@@ -77,7 +77,7 @@ function ConfigSimulado({ plano, nota, migalha }: { plano: PlanoSimulado; nota?:
         <label className="sc-tempo"><input type="checkbox" checked={cronometrado} onChange={(ev) => setCron(ev.target.checked)} />
           <span><b>Cronometrado</b><small className="num">{formataTempo(plano.itens.length * plano.segPorQuestao)} no total ({(Math.round(plano.segPorQuestao / 6) / 10).toLocaleString('pt-BR')} min por questão). Dá para pausar.</small></span></label>
         <button className="btn grande" onClick={inicia} disabled={!!e.simulado && e.simulado.sid !== plano.sid}>Começar simulado <Icone nome="direita" /></button>
-        {e.simulado && <p className="fraco" style={{ fontSize: 14 }}>Você tem um simulado em andamento ({e.simulado.titulo}). <Link to="/simulado/agora">Retome</Link> ou encerre-o antes de começar outro.</p>}
+        {e.simulado && <p className="fraco" style={{ fontSize: 14 }}>Você tem um simulado em andamento ({e.simulado.titulo}). <Link to="/simulado/agora">Retome</Link> ou entregue-o antes de começar outro.</p>}
       </div>
     </div>
   );

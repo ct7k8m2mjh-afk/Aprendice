@@ -26,7 +26,7 @@ export function planoDaProva(p: ProvaCompleta): PlanoSimulado {
   return {
     sid: 'prova:' + p.id,
     titulo: p.titulo,
-    descricao: 'Prova completa, na ordem original, com todas as matérias. Gabarito oficial.',
+    descricao: 'Prova completa, na ordem original, com todas as matérias.',
     itens: p.questoes.map((q) => ({ id: q.id, p: p.id, a: q.area, m: materiaAtual(q.materia) || materiaDaArea(q.area) })),
     segPorQuestao: tempoPorQuestao(p),
   };
