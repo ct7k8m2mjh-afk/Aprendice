@@ -104,12 +104,14 @@ REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, comm
 ## REGRA DO DONO (21/11/2026): NO MÁXIMO 4 SESSÕES AO MESMO TEMPO
 "Termina a tarefa ou matéria e liga a próxima." Motivo: em 20/11 às 22h51 oito sessões juntas estouraram o limite de 5 h da
 conta. Peça a cada sessão no máximo 3 agentes em paralelo. Fila (21/11 04h35 UTC):
-- RODANDO: pendentes geo (session_01Tq253YL64uC84SwEt9PDxi); telas (…Y5RX4sCDxee8CTceS, falta a conferência);
-  conteúdo (…ZZrpookBgGHXXqZHc, faltam fontes dos 23 flashcards e subtemas; 66 indisponíveis feitos);
-  erradas mat→qui (…ZPg9jdmFb9cbntD91). Retomadas com send_message.
-- ESPERANDO VAGA, nesta ordem: erradas fís (…VAQptS9rzESrtPqkE, parada no lote fis-02: retomar com send_message);
-  equipe de marketing (…ZLvhTYPTJzzEKVyyv, mal começou: retomar com send_message).
-- ACABARAM e arquivadas: pendentes bio/qui/mat/fis, por/fs/ing (ACABOU em todas); his ACABOU.
+- 21/11 05h25 UTC — RODANDO (4): erradas fís (session_01Tq253VAQptS9rzESrtPqkE, retomada); marketing
+  (…ZLvhTYPTJzzEKVyyv, retomada); erradas mat resto → qui (…VTRm1LJn4ApYvF6sn, nova, série mq); geo
+  (…YL64uC84SwEt9PDxi: 9 "anular" de Geografia → indisponíveis, depois encerra).
+- ESPERANDO VAGA: nada. Próximos candidatos: 4.4 revisão final (depois das contas no ar).
+- ACABARAM (arquivadas): pendentes das 9 matérias (ACABOU; his ficou com 2 pendentes); telas das decisões do dono (FIM;
+  conferido pela coordenadora em 390/1280, claro/escuro: Perfil com Excluir minha conta, capa do Treino geral, página
+  não encontrada, Revisão, questão); conteúdo das decisões do dono (FIM: 23 fontes, 25 subtemas e 266 questões movidas,
+  66 indisponíveis); erradas mq-01 a mq-03.
 - Feito pela coordenadora: folha de caderno quadriculado (37102cff2).
 
 ## Estado 20/11 06h10 UTC (antigo)
