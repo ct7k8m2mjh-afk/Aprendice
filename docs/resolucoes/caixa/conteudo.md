@@ -477,3 +477,9 @@ Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero
 Dica: em conflito no erradas-feitas.json, unir as duas versões (dict) e salvar ordenado com indent=0.
 Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 qui` (próximo
 lote: conteudo-erradas-mq-26; na fila: 266 de Química provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+## 2026-11-21 — AVISO — erradas (série fb, sem API, sessão paralela de Física)
+Lote conteudo-erradas-fb-01 gravado (Física, provas-alvo UECE): 36 letras reescritas em 16 questões; 21 letras
+mantidas por falta de equívoco honesto; 1 letra fora por texto fraco (Pfd05f890 A). Lentes: fatos 36 ok e 1 corrigida
+(Pb8401cba B: linhas de campo saem do norte e chegam ao sul só fora do ímã) + 1 de notação (P4348e01d C); didática
+melhorou 13, todas reconferidas ok pela 2ª lente de fatos; amostra 8 letras, 0 erro. Converte, tsc e vitest 922/922
+verdes. Gasto de API: zero. Em paralelo com a série fis; já aberto conteudo-erradas-fb-02.
