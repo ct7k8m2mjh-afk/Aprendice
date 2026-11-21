@@ -446,3 +446,8 @@ Lote conteudo-erradas-fis-23 (Física, provas-alvo UECE 2022.1 1ª e 2ª fase, 2
 questões (29 das 49 letras fracas mantidas pelo escritor por falta de equívoco honesto que chegue à alternativa).
 Fatos 20 ok; didática melhorou 3, reconferidas (3 ok). Amostra: 4 letras, 2 enxugadas (P2edc455f A e C, só tamanho).
 converte, tsc e vitest 922/922 verdes. Gasto de API: zero.
+## 2026-11-21 — AVISO — erradas (série mq, sem API, 11ª sessão)
+Lote conteudo-erradas-mq-24 (Química, provas-alvo Famerp 2023–2026 e UFU 2020–2024) gravado: 44 letras em 22 questões
+(11 mantidas pelo escritor por falta de equívoco honesto). Fatos 43 ok e 1 corrigida (P6a94d2ef D: a ligação mais
+curta é C–H); didática melhorou 8, reconferidas (7 ok, 1 corrigida: Pcec4dea1 C, 30 mL = 0,03 L). Amostra: 8 letras, 0
+erro. converte, tsc e vitest 922/922 verdes. Gasto de API: zero. Segue o mq-25 (na fila: 291 de Química provas-alvo).
