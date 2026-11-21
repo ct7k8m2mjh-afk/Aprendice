@@ -54,7 +54,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T18 | ui/Casca.tsx:117-118 | item que abre o grupo | `Outras matérias` | manter | | |
 | T19 | ui/Casca.tsx:124 | grupo do menu | `Estudo` | manter | | |
 | T20 | ui/Casca.tsx:126 | item do menu | `Hoje` | manter | | |
-| T21 | ui/Casca.tsx:127 | item do menu (leva a /materias) | `Questões` | `Matérias` | A tela aberta se chama "Matérias" e a aba do celular também; um nome só. Dúvida: o dono pode preferir "Questões" como porta de prática. | |
+| T21 | ui/Casca.tsx:127 | item do menu (leva a /materias) | `Questões` | manter | A aba do celular diz "Matérias" para a mesma tela; unificar é decisão de produto do dono, não de texto (dúvida 7). | |
 | T22 | ui/Casca.tsx:128 | item do menu | `Simulados` | manter | | |
 | T23 | ui/Casca.tsx:129 | item do menu | `Revisão` | manter | | |
 | T24 | ui/Casca.tsx:130 | item do menu | `Desempenho` | manter | | |
@@ -680,7 +680,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T533 | telas/SimuladoExec.tsx:330 | confirmação, texto | `Todas as questões estão respondidas.` / `{n questão está/questões estão} em branco e conta(m) como erro.` + ` Você marcou {n} para revisar.` | manter | | |
 | T534 | telas/SimuladoExec.tsx:332 | botão | `Voltar à prova` | manter | | |
 | T535 | telas/SimuladoExec.tsx:333 | botão | `Entregar e ver resultado` | manter | | |
-| T536 | logica/simulados.ts:29 | descrição (prova) | `Prova completa, na ordem original, com todas as matérias. Gabarito oficial.` | manter | (Dúvida de fato: ver fim do documento.) | |
+| T536 | logica/simulados.ts:29 | descrição (prova) | `Prova completa, na ordem original, com todas as matérias. Gabarito oficial.` | `Prova completa, na ordem original, com todas as matérias.` | Neutro: há manifestos de prova com gabarito preliminar em fabrica_saida/ingestao e o índice não diz a origem por prova (dúvida 2); a origem do gabarito continua visível em cada questão. | |
 | T537 | logica/simulados.ts:70 | título (por conteúdo) | `Simulado de ${nome}` / `Simulado de ${matéria}: ${n} conteúdos` | manter | | |
 | T538 | logica/simulados.ts:71 | descrição (por conteúdo) | `Questões reais de prova deste conteúdo / dos conteúdos escolhidos, da mais fácil à mais difícil. Só questões com gabarito publicado (oficial ou de resolução reconhecida).` | manter | Verdadeiro (entraNoSimuladoConteudo). | |
 
@@ -692,7 +692,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T540 | telas/SimuladoResultado.tsx:30 | não encontrado | `Resultado não encontrado` / `Este simulado não está no seu histórico neste aparelho. Os que você entregou ficam na aba Histórico.` / `Ver o histórico` | `Resultado não encontrado` / `Este simulado não está no seu histórico. Os que você entregou ficam na aba Histórico.` / manter | Com conta, o histórico não é só "deste aparelho". | |
 | T541 | telas/SimuladoResultado.tsx:37 | migalhas | `Simulados` / `Resultado` | manter | | |
 | T542 | telas/SimuladoResultado.tsx:42 | placar | `{a} de {t} certas · {tempo} · {data}` | manter | | |
-| T543 | telas/SimuladoResultado.tsx:43 | nota (prova completa) | `Toque em uma questão para ver o print e o gabarito oficial. A resolução comentada entra depois da revisão.` | `Toque numa questão para ver o print e o gabarito oficial. A resolução comentada entra quando for revisada pela banca do Aprendice.` | "Depois da revisão" confunde com a Revisão do aluno. | |
+| T543 | telas/SimuladoResultado.tsx:43 | nota (prova completa) | `Toque em uma questão para ver o print e o gabarito oficial. A resolução comentada entra depois da revisão.` | `Toque numa questão para ver o print e o gabarito. A resolução comentada entra quando for revisada pela banca do Aprendice.` | Neutro quanto à origem do gabarito (dúvida 2); "depois da revisão" confundia com a Revisão do aluno. | |
 | T544 | telas/SimuladoResultado.tsx:43 | nota (banco) | `Os erros e as questões em branco já entraram na revisão espaçada.` | `Os erros e as questões em branco voltam amanhã na revisão.` | Dá a data. | |
 | T545 | telas/SimuladoResultado.tsx:47 | seção | `Por conteúdo` / `Por área da prova` / `Por matéria` | manter | | |
 | T905 | telas/SimuladoResultado.tsx:54 | por área/matéria | `{p.acertos} de {p.total}` | manter | | |
@@ -916,7 +916,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T723 | telas/Desempenho.tsx:63 | número | `questões feitas` | manter | | |
 | T724 | telas/Desempenho.tsx:64 | número | `de acerto nas tentativas` | manter | | |
 | T725 | telas/Desempenho.tsx:65 | número | `por questão, em média` | manter | | |
-| T726 | telas/Desempenho.tsx:66 | número | `de estudo no total · {n} questões nesta semana` | `nas questões, no total · {n} questões nesta semana` | O tempo somado é só das questões (tempoTotal), não de todo o estudo. (Dúvida de fato: ver fim.) | |
+| T726 | telas/Desempenho.tsx:66 | número | `de estudo no total · {n} questões nesta semana` | `de tempo registrado · {n} questões nesta semana` | `tempoTotal` usa o maior entre as sessões gravadas (só as vindas do protótipo) e a soma do tempo das respostas: "de estudo" promete mais do que mede. | |
 | T727 | telas/Desempenho.tsx:70 | seção | `Por matéria` | manter | | |
 | T728 | telas/Desempenho.tsx:75 | barra (aria) | `Acerto em ${matéria}` | manter | | |
 | T729 | telas/Desempenho.tsx:77,91,103,114 | contagem | `feita` / `feitas` | manter | | |
@@ -1049,7 +1049,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T820 | telas/Config.tsx:62 | botão | `Importar progresso` | manter | | |
 | T821 | telas/Config.tsx:65 | nota | `Aceita o arquivo do APRENDICE e os arquivos “Baixar meu progresso” do protótipo (uma matéria por arquivo).` + ` Progresso do protótipo trazido automaticamente deste navegador: {n} matéria(s).` | `Aceita o arquivo do Aprendice e os arquivos “Baixar meu progresso” do protótipo (uma matéria por arquivo).` + manter | "APRENDICE" em caixa alta destoa do nome no resto. | |
 | T822 | telas/Config.tsx:67 | botão | `Zerar progresso` | manter | | |
-| T823 | telas/Config.tsx:69 | confirmação | `Zerar todo o progresso?` + ` Uma cópia de segurança fica guardada neste aparelho, mas as estatísticas recomeçam do zero.` | manter (dúvida: ver fim) | | |
+| T823 | telas/Config.tsx:69 | confirmação | `Zerar todo o progresso?` + ` Uma cópia de segurança fica guardada neste aparelho, mas as estatísticas recomeçam do zero.` | sem conta: manter · com conta: ` As estatísticas recomeçam do zero, também na sua conta. Uma cópia de segurança fica guardada neste aparelho.` (precisa de condição no código) | Conferido: `zera()` guarda a cópia só no aparelho (`aprendice.v1.zerado.*`) e, com conta, o zero vai para a nuvem (docs/contas.md). | |
 | T824 | telas/Config.tsx:70 | botões | `Cancelar` / `Zerar` | manter | | |
 | T825 | telas/Config.tsx:70 | aviso | `Progresso zerado. A cópia de segurança ficou guardada.` | manter | | |
 | T826 | telas/Config.tsx:77 | seção | `Correção dos flashcards` | manter | | |
@@ -1078,7 +1078,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | T844 | telas/Privacidade.tsx:24 | item | `Perfil de estudo: o nome que você escolheu, as provas-alvo, as datas das provas e a meta de questões por semana.` | manter | | |
 | T845 | telas/Privacidade.tsx:25 | item | `Progresso: as respostas que você deu (letra, acerto, tempo, certeza), a revisão espaçada, os flashcards, os simulados feitos e as preferências de estudo.` | manter | | |
 | T846 | telas/Privacidade.tsx:30-31 | seção e texto | `Para quê` / `Só para o site funcionar para você: …` | manter | | |
-| T847 | telas/Privacidade.tsx:35-36 | seção e texto | `Onde fica` / `Neste aparelho, para o site funcionar sem internet, e na nuvem, no serviço de contas Supabase (servidor em São Paulo). …` | manter (dúvida: ver fim) | | |
+| T847 | telas/Privacidade.tsx:35-36 | seção e texto | `Onde fica` / `Neste aparelho, para o site funcionar sem internet, e na nuvem, no serviço de contas Supabase (servidor em São Paulo). …` | manter | Conferido em docs/contas.md: projeto em São Paulo (`sa-east-1`). | |
 | T848 | telas/Privacidade.tsx:41 | seção e texto | `Seus direitos` / `Você pode ver e corrigir o seu perfil em Perfil, baixar uma cópia do seu progresso em Configurações e excluir a sua conta, com todos os dados, em Perfil, no botão “Excluir minha conta”: a conta, o perfil e o progresso são apagados da nuvem e deste aparelho, sem volta. Os dados são tratados conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018).` | manter | Texto novo já verdadeiro (confere com a migração excluir_conta). | |
 | T849 | telas/Privacidade.tsx:44 | botão | `Voltar` | manter | | |
 
@@ -1134,7 +1134,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | Seção | Itens | Com proposta de mudança |
 |---|---|---|
 | 0. Página | 8 | 1 |
-| 1. Casca | 36 | 7 |
+| 1. Casca | 36 | 6 |
 | 2. Peças comuns | 7 | 0 |
 | 3. Login | 41 | 19 |
 | 4. Contas (mensagens) | 12 | 3 |
@@ -1155,7 +1155,7 @@ condicional) estão marcados "(precisa de condição no código)".
 | 19. Cartões | 25 | 1 |
 | 20. Correção do flashcard | 5 | 1 |
 | 21. Simulados | 32 | 5 |
-| 22. Simulado (config. e execução) | 40 | 1 |
+| 22. Simulado (config. e execução) | 40 | 2 |
 | 23. Resultado do simulado | 12 | 3 |
 | 24. Revisão | 25 | 8 |
 | 25. Agenda | 7 | 1 |
@@ -1169,17 +1169,17 @@ condicional) estão marcados "(precisa de condição no código)".
 | 33. Filtro de região | 14 | 0 |
 | 34. Provas | 20 | 2 |
 | 35. Perfil | 36 | 6 |
-| 36. Configurações | 29 | 9 |
+| 36. Configurações | 29 | 10 |
 | 37. Privacidade | 10 | 0 |
 | 38. Busca | 10 | 2 |
 | 39. Dados (rótulos) | 25 | 3 |
-| **Total** | **906** | **143** |
+| **Total** | **906** | **144** |
 
-## Dúvidas de fato que não consegui confirmar no código
-1. **Contas na nuvem no site publicado.** O código usa as contas de verdade só se `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY` estiverem definidas no build (Vercel); não há `.env` no repositório. Se não estiverem, o site publicado roda em modo local e T831/T835 continuam verdadeiros só nesse modo. As propostas usam a condição `conta.fase` que já existe.
-2. **"Gabarito oficial" nas provas completas** (T536, T543): o índice de provas completas não tem campo de origem do gabarito; não deu para confirmar se alguma prova usa gabarito preliminar ou do Aprendice.
-3. **Tempo total no Desempenho** (T726): `tempoTotal(e)` não foi aberto linha a linha; a proposta supõe que soma só o tempo das questões, como em `ProgressoMateria`. Conferir antes de aplicar.
-4. **Cópia de segurança ao zerar** (T823): `zera()` em `estado/loja.ts` guarda o estado anterior em `aprendice.v1.anterior`; com conta na nuvem, não confirmei se a cópia também vai para a conta ou se o zero é enviado por cima.
-5. **Nome de cursinho na origem do link** (T873, T874): resolvido com proposta: o texto ao aluno deixa de citar o nome ("PDF de resolução publicada, com a prova"; "Cópia da prova em site de terceiros"); o nome continua no campo `nome` de `origemDoLink`, como registro interno (princípio 10).
-6. **Supabase "servidor em São Paulo"** (T847): a região do projeto não está no código; não deu para conferir.
-7. **Item de menu "Questões" × aba "Matérias"** (T21): levam à mesma tela; a troca é sugestão, pode haver motivo de produto.
+## Dúvidas de fato (conferidas em 21/11/2026)
+1. **Contas na nuvem no site publicado** — confirmado pela documentação, não pelo código: `docs/contas.md` registra `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY` na Vercel (produção e prévia); não há `vercel.json` nem `.env` de exemplo no repositório. Logo, no site publicado os textos fixos de T831 e T835 ("sem servidor", "versão de demonstração") estão falsos hoje: prioridade na aplicação. As propostas usam a condição `conta.fase`, que vale nos dois modos.
+2. **"Gabarito oficial" nas provas completas** — não confirmado: o índice não traz a origem do gabarito, e há manifestos que citam gabarito preliminar (`fabrica_saida/ingestao/*/manifesto.json`). T536 e T543 passaram a texto neutro, sem "oficial".
+3. **Tempo total no Desempenho** — conferido: `tempoTotal` (logica/estatisticas.ts:108) devolve o maior entre o tempo das sessões gravadas (só as migradas do protótipo) e a soma do tempo das respostas. T726 passou a "de tempo registrado".
+4. **Cópia de segurança ao zerar** — conferido: `zera()` (estado/loja.ts:103) grava a cópia só no aparelho; com conta, o zero também vai para a nuvem (docs/contas.md). T823 ganhou a versão com conta.
+5. **Nome de cursinho na origem do link** (T873, T874): resolvido com proposta: o texto ao aluno deixa de citar o nome; o nome continua no campo `nome` de `origemDoLink`, como registro interno (princípio 10).
+6. **Supabase em São Paulo** — confirmado em `docs/contas.md` (`sa-east-1`). T847: manter.
+7. **Item de menu "Questões" × aba "Matérias"** — não é fato de código, é escolha de produto. T21 voltou a "manter"; fica como sugestão ao dono.
