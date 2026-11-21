@@ -41,7 +41,8 @@ function Rotas() {
   useEffect(() => { if (!estudo) defineTelaCheia(false); }, [estudo]);
   // contas de verdade (20/11/2026): a privacidade abre sem conta; sem sessão (ou sem perfil de estudo), as boas-vindas
   const conta = useConta();
-  if (loc.pathname === '/privacidade' && (conta.fase !== 'dentro' || !e.perfil)) return <Privacidade />;
+  // no modo de demonstração (fase 'local') quem já tem perfil está dentro: a privacidade abre na casca (revisão de 21/11, casca N1)
+  if (loc.pathname === '/privacidade' && ((conta.fase !== 'dentro' && conta.fase !== 'local') || !e.perfil)) return <Privacidade />;
   if (conta.fase === 'carregando') return null;
   if (conta.fase === 'fora' || conta.fase === 'nova-senha') return loc.pathname === '/boas-vindas' ? <BoasVindas /> : <Navigate to="/boas-vindas" replace />;
   if (e.perfil && loc.pathname === '/boas-vindas' && conta.fase === 'dentro') return <Navigate to="/" replace />;
