@@ -451,3 +451,16 @@ Lote conteudo-erradas-mq-24 (Química, provas-alvo Famerp 2023–2026 e UFU 2020
 (11 mantidas pelo escritor por falta de equívoco honesto). Fatos 43 ok e 1 corrigida (P6a94d2ef D: a ligação mais
 curta é C–H); didática melhorou 8, reconferidas (7 ok, 1 corrigida: Pcec4dea1 C, 30 mL = 0,03 L). Amostra: 8 letras, 0
 erro. converte, tsc e vitest 922/922 verdes. Gasto de API: zero. Segue o mq-25 (na fila: 291 de Química provas-alvo).
+## 2026-11-21 — FIM — erradas (série fis, sem API, 10ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-fis-23 e fis-24 (Física, provas-alvo UECE 2021–2023, 50 questões, 100
+letras fracas). Nenhum lote aberto. Sessão encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 46 letras reescritas e gravadas em 28 questões (fis-23: 20 em 13; fis-24: 26 em 15). As demais letras não
+têm equívoco honesto que chegue exatamente à alternativa e ficaram com o texto antigo.
+fis-24: fatos 26 ok, 1 corrigida (P5422f5fb D: no print a alternativa é F elevado a N, não N × F; o texto antigo
+estava errado e foi reescrito; "Fᴺ cresce com N" só vale se F > 1 N, corrigido); didática melhorou 3, reconferidas
+(3 ok); amostra 4 letras, 0 erro.
+Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
+lote: conteudo-erradas-fis-25; na fila: 231 de Física provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
