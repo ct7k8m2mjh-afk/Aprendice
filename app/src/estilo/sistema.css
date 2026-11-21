@@ -367,14 +367,14 @@
   .q-volta span, .q-ajuda { display: none; }
   /* rótulo em cima do tempo: o relógio fica estreito e sobra espaço para o nome do tema (revisão de 21/11/2026) */
   .q-barra .crono, .crono-tot { flex-direction: column; justify-content: center; gap: 1px; height: 38px; padding: 0 9px; line-height: 1.05; }
-  .q-barra .crono small, .crono-tot small { font-size: 10.5px; }
-  .q-barq .t { font-size: 14px; }
 }
 /* nome do tema longo ("Sistema nervoso, hormônios, imunidade e reprodução"): duas linhas também acima de 900 px, sem
    reticências (DESIGN.md: nada cortado; revisão de 21/11/2026) */
 /* até 1240 px o nome da matéria sai da barra (o ícone na cor dela continua e a tela já está na cor da matéria): o espaço
    vai para o nome do tema */
 @media (min-width: 701px) and (max-width: 1240px) { .q-barq .n { display: none; } }
+/* até 900 px o texto da barra usa --fs-info (14 px), para o nome de tema longo caber em duas linhas */
+@media (max-width: 900px) { .q-barq .t { font-size: var(--fs-info); } }
 @media (min-width: 901px) {
   .q-barq .t { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.25; text-overflow: clip; }
 }
@@ -587,4 +587,9 @@
   .casca:not(.menu-fechado) .lado:has(#outras-materias:not([hidden])) .item-nav { padding-top: 7px; padding-bottom: 7px; }
   .casca:not(.menu-fechado) .lado:has(#outras-materias:not([hidden])) .marca { padding-bottom: 12px; }
   .casca:not(.menu-fechado) .lado:has(#outras-materias:not([hidden])) .grupo { padding-top: 10px; }
+}
+/* celular: nome de tema longo ("Sistema nervoso, hormônios, imunidade e reprodução · Intermediário · 16 de 22") usa até
+   três linhas mais juntas, em vez de cortar; a barra só cresce quando precisa (revisão independente de 21/11/2026) */
+@media (max-width: 700px) {
+  .q-barq .t { -webkit-line-clamp: 3; line-clamp: 3; line-height: 1.15; }
 }
