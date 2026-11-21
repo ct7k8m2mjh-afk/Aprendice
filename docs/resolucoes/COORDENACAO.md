@@ -104,9 +104,10 @@ REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, comm
 ## REGRA DO DONO (21/11/2026): NO MÁXIMO 4 SESSÕES AO MESMO TEMPO
 "Termina a tarefa ou matéria e liga a próxima." Motivo: em 20/11 às 22h51 oito sessões juntas estouraram o limite de 5 h da
 conta. Peça a cada sessão no máximo 3 agentes em paralelo. Fila (21/11 04h35 UTC):
-- 21/11 05h25 UTC — RODANDO (4): erradas fís (session_01Tq253VAQptS9rzESrtPqkE, retomada); marketing
-  (…ZLvhTYPTJzzEKVyyv, retomada); erradas mat resto → qui (…VTRm1LJn4ApYvF6sn, nova, série mq); geo
-  (…YL64uC84SwEt9PDxi: 9 "anular" de Geografia → indisponíveis, depois encerra).
+- 21/11 06h15 UTC — RODANDO (3): marketing (session_01Tq253ZLvhTYPTJzzEKVyyv; ~150 textos aplicados às 06h08,
+  amostra conferida pela coordenadora em 390 px: entrada, início, Hoje, matéria, revisão — ok); erradas mat→qui
+  (…VTRm1LJn4ApYvF6sn; estava parada esperando um agente travado, cutucada às 06h09); erradas fís continuação
+  (…YLHV4apz1hEmfwXme, nova; a anterior fez fis-01 a fis-03, 66 textos). Geo arquivada (67 indisponíveis no total).
 - ESPERANDO VAGA: nada. Próximos candidatos: 4.4 revisão final (depois das contas no ar).
 - ACABARAM (arquivadas): pendentes das 9 matérias (ACABOU; his ficou com 2 pendentes); telas das decisões do dono (FIM;
   conferido pela coordenadora em 390/1280, claro/escuro: Perfil com Excluir minha conta, capa do Treino geral, página
