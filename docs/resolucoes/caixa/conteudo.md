@@ -578,3 +578,16 @@ Lote conteudo-erradas-qc-01 gravado: 44 letras reescritas em 19 questões de Qu�
 corrigida; didática melhorou 5, todas reconferidas (5 ok) pela 2ª lente de fatos; amostra 10 letras, 0 erro. Testes:
 converte, tsc e vitest 922/922 verdes. Gasto de API: zero. Feito por agentes do Claude Code, uma etapa por agente, em
 paralelo com as séries mq e qb. Seguindo com qc-02.
+## 2026-11-21 — FIM — erradas (série qb, Química, sem API)
+Lotes gravados nesta sessão: conteudo-erradas-qb-01, qb-02 e qb-03 (Química, provas-alvo: Mackenzie, PUC-Campinas, UPE
+SSA3 e outras). Nenhum lote aberto. Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de
+fatos, lente didática, lente de fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 144 letras reescritas e gravadas em 60 questões (qb-01: 37 em 18; qb-02: 57 em 23; qb-03: 50 em 19). As
+demais letras não têm equívoco honesto que chegue exatamente à alternativa inteira e ficaram com o texto antigo.
+qb-02: 7 letras rejeitadas pela lente de fatos (o equívoco explicava só parte dos valores da alternativa); amostra 13
+letras, 2 consertadas. qb-03: amostra 13 letras, 0 erro. Dica: no brief do escritor exigir que o equívoco leve a TODOS
+os valores da alternativa (no qb-03, com esse aviso, 0 rejeição). Testes: converte, tsc e vitest 922/922 verdes nos três
+lotes. Gasto de API: zero. Continuar de: nada na série qb (faixa 1 de Química acabou).
+## 2026-11-21 — ACABOU (provas-alvo de Química, série qb)
+`erradas-fila` não mostra mais Química na faixa 1 (provas-alvo): todas as questões de Química das provas-alvo já têm
+lote (séries mq, qb e qc). Próximo passo, se o dono quiser: faixa 2 (885 de Química), com BASE_MAX=2.
