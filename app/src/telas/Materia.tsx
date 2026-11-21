@@ -305,7 +305,7 @@ export function CapaTreinoGeral({ mc, s, conj, aoComecar }: { mc: MateriaCarrega
   const miolo = (
     <>
           <span className="capa-txt">
-            <h2>Treino geral de {info.nome}</h2>
+            {aoComecar ? <h1>Treino geral de {info.nome}</h1> : <h2>Treino geral de {info.nome}</h2>}
             <span className="capa-p">{tg && tg.i > 0 && tg.i < tg.it.length ? 'Seu treino está salvo onde você parou. ' : ''}{descreveTreino(nAbc, nComp, nFlash)}</span>
             <span className="tg-nums">
               {([['Questões de prova', feitoAbc, nAbc, okAbc], ['Completar a frase', feitoComp, nComp, okComp], ['Flashcards', feitoFlash, nFlash, okFlash]] as [string, number, number, number][]).filter(([, , n]) => n > 0).map(([t, f, n, ok]) => (

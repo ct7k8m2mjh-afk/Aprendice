@@ -16,7 +16,7 @@ import { notaFlash } from './Flashcards';
 import type { Letra, MateriaId, Questao } from '../dados/tipos';
 import { estadoMateriaVazio, type SessaoTreino } from '../estado/tipos';
 import { FiltroRegiaoChips, regiaoDoEstado, useRegiao } from '../ui/FiltroRegiao';
-import { CapaTreinoGeral } from './Materia';
+import { CabMateria, CapaTreinoGeral, subMateria } from './Materia';
 import { questoesTreinoGeral } from '../logica/regiao';
 
 function embaralha<T>(l: T[]): T[] { const a = [...l]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
@@ -136,7 +136,8 @@ export function Treino() {
     const comecar = () => { if (ses.i >= ses.it.length) recomecar(); setBusca({ comecar: '1' }, { replace: true }); };
     return (
       <div className={`conteudo m-${m} tg-tela`}>
-        <div className="tp-topo"><Link to={`/m/${m}`} className="tp-volta"><Icone nome="esquerda" />{info.nome}</Link></div>
+        <CabMateria m={m} nome={info.nome} titulo={false} sub={subMateria(mc.conteudo.modulos.length, mc.banco.length === 0)} />
+        <div className="tp-topo"><Link to={`/m/${m}`} className="tp-volta"><Icone nome="esquerda" />Todos os temas</Link></div>
         <CapaTreinoGeral mc={mc} s={e.materias[m] || estadoMateriaVazio()} conj={rg.conj} aoComecar={comecar} />
       </div>
     );

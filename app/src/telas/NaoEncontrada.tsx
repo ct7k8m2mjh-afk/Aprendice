@@ -8,7 +8,7 @@ export function NaoEncontrada() {
   useTitulo('Página não encontrada');
   return (
     <div className="conteudo vazio nao-encontrada">
-      <h3>Página não encontrada</h3>
+      <h1 className="ne-tit">Página não encontrada</h1>
       <p>O endereço pode estar incompleto ou a página pode ter mudado de lugar. O seu progresso continua salvo.</p>
       <div className="ne-acoes">
         <Link to="/" className="btn"><Icone nome="inicio" /> Ir para o início</Link>
