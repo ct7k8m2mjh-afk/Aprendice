@@ -453,3 +453,8 @@ PRINT Pd4ca228f: Santa Casa 2024, questão 40: continua sem identificar as 5 pro
 GABARITO P8468a4fb (URCA 2027.1, PSU 2026.2/2027.1, q60): só gabarito preliminar (B); resolvida em geo com B. Em bio já tem gabarito_aprendice B/B (lote bio-0065); conferir se a versão geo precisa do mesmo registro ou trocar pelo definitivo quando sair.
 ANULAR Pe436860e: UFRR 2025 Prova Integral, questão 49 (pede a INCORRETA): A e C são incorretas (C diz área "superior a 8,5 milhões de km²"; a área de benefícios da Suframa é ~27% do Brasil, ≈2,2–2,3 milhões de km²). Só há o gabarito preliminar (A); conferir no Edital 97/24-CPV (editais.ufrr.br, bloqueado daqui) se a banca anulou; se não anulou, decidir anulação pelo Aprendice.
 GABARITO P8468a4fb (URCA 2027.1 q60): gabarito do Aprendice B registrado em geo (resolvedor B, conferente às cegas B, preliminar B). ANULAR Pe436860e: conferente confirmou (Suframa: Amazônia Ocidental ≈ 2,15 milhões km²; a C diz > 8,5 milhões).
+
+ACABOU (pendentes) — Geografia, 20-21/11/2026. Lotes gravados nesta sessão: geo-pend-0004, geo-pend-0005, geo-pend-0006, geo-pend-0007, geo-pend-0008. Resolvidas: 96 (1 + 25 + 24 + 23 + 23). Ficaram na lista de pendentes de geo 13, nenhuma resolvível aqui:
+ANULAR (9, decisão do dono), entre elas Pe436860e (UFRR 2025 q49: A e C incorretas; área da Suframa ≈ 2,15 milhões km², a C diz > 8,5 milhões; conferir Edital 97/24-CPV).
+PRINT Pd4ca228f (Santa Casa 2024 q40): legenda das 5 projeções do Atlas Escolar do IBGE; liberar atlasescolar.ibge.gov.br ou curso-objetivo.br na rede.
+RECLASS P1da9dba8, Pd1aeb2d4, Pfc161343: marcadas "reclassificada para outra matéria"; já saíram de geo (resolver na matéria de destino).
