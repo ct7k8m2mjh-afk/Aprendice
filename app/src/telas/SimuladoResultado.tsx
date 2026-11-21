@@ -30,6 +30,7 @@ export function SimuladoResultado() {
   if (!f) return <div className="conteudo vazio"><h3>Resultado não encontrado</h3><p>Este simulado não está no seu histórico. Os que você entregou ficam na aba Histórico.</p><Link className="btn sec" to="/simulados?aba=historico">Ver o histórico</Link></div>;
   if (!todas) return <div className="conteudo"><Carregando /></div>;
   const pct = f.total ? f.acertos / f.total : 0;
+  const nRev = f.itens.filter((x) => !x.ok).length;
   const lista = f.itens.map((x, i) => ({ ...x, n: i + 1 })).filter((x) => filtro === 'todas' || !x.ok);
 
   return (
@@ -40,7 +41,7 @@ export function SimuladoResultado() {
         <div>
           <h1>{f.titulo}</h1>
           <p className="miolo num">{f.acertos} de {f.total} certas · {formataTempo(f.seg)} · {new Date(f.ts).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' })}</p>
-          <p className="fraco" style={{ fontSize: 14, marginTop: 6 }}>{f.itens[0]?.p ? 'Toque numa questão para ver o print e o gabarito. A resolução comentada entra quando for revisada pela banca do Aprendice.' : 'Os erros e as questões em branco já entraram na revisão espaçada.'}</p>
+          <p className="fraco" style={{ fontSize: 14, marginTop: 6 }}>{f.itens[0]?.p ? 'Toque numa questão para ver o print e o gabarito. A resolução comentada entra quando for revisada pela banca do Aprendice.' : (nRev === 0 ? 'Nenhuma questão volta para a revisão.' : nRev === 1 ? '1 questão volta amanhã na revisão (erro ou em branco).' : `${nRev.toLocaleString('pt-BR')} questões voltam amanhã na revisão, entre erros e em branco.`)}</p>
         </div>
       </div>
       <section className="secao">
