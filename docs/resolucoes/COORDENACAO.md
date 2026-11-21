@@ -104,10 +104,11 @@ REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, comm
 ## REGRA DO DONO (21/11/2026): NO MÁXIMO 4 SESSÕES AO MESMO TEMPO
 "Termina a tarefa ou matéria e liga a próxima." Motivo: em 20/11 às 22h51 oito sessões juntas estouraram o limite de 5 h da
 conta. Peça a cada sessão no máximo 3 agentes em paralelo. Fila (21/11 04h35 UTC):
-- 21/11 13h55 UTC — RODANDO (2), só "Por que eu errei" sem API: fís 8ª sessão (session_01Tq253UwF492i9C1CSyeLFc, fis-18/19;
-  ~545 textos em Física até aqui) e mat→qui (…Z1Xu1VQKypf98tehK; Matemática das provas-alvo terminou em mq-18, ~300
-  textos; Química começou em mq-19). Cada sessão faz 2–3 lotes e encerra a 40% do contexto: a coordenadora abre a
-  seguinte (prompts de 13h01 como modelo). Limite de 5 h da conta bateu às 09h08 com só 2 sessões: retomar após renovar.
+- 21/11 21h35 UTC — "POR QUE EU ERREI" DAS PROVAS-ALVO CONCLUÍDO (faixa 1 vazia em Matemática, Física e Química).
+  Sem API (Claude Code, 20–21/11): 2.073 letras reescritas em 1.067 questões (Física 995 em 495; Química 740 em 339;
+  Matemática 338 em 233). Pela API (19–20/11): 939 letras em 550 questões. Total: 3.012 letras em 1.617 questões.
+  Todas as sessões arquivadas. Próximo passo depende do dono (faixa 2: Física ~866, Química ~885 e demais matérias;
+  ou revisão final 4.4 / Questões Aprendice). Nenhuma sessão aberta.
 - ESPERANDO VAGA: nada. Próximos candidatos: 4.4 revisão final (depois das contas no ar).
 - ACABARAM (arquivadas): pendentes das 9 matérias (ACABOU; his ficou com 2 pendentes); telas das decisões do dono (FIM;
   conferido pela coordenadora em 390/1280, claro/escuro: Perfil com Excluir minha conta, capa do Treino geral, página
