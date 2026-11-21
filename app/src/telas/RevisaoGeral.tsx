@@ -141,18 +141,18 @@ export function RevisaoGeralTela() {
                 onChange={(e) => muda({ q: e.target.value, ...(aberto ? { t: null } : {}) })} onKeyDown={teclaBusca} />
               {q && <button type="button" className="rg-limpa" onClick={() => { muda({ q: '' }); buscaRef.current?.focus(); }} aria-label="Limpar a busca"><Icone nome="fechar" /></button>}
             </div>
-            <small id="rg-q-ajuda">Pelo nome, pelo subtema ou pelo jeito que você lembra; acento e maiúscula não importam. Enter abre o primeiro resultado.</small>
+            <small id="rg-q-ajuda">Pelo nome, pelo conteúdo ou do jeito que você lembra; acento e maiúscula não importam. Enter abre o primeiro resultado.</small>
           </div>
         )}
       </section>
 
       {n === 0 ? (
-        <section className="tp-bloco vazio"><h3>Revisão geral em preparação</h3><p>Os tópicos desta matéria ainda estão passando pelas lentes da banca.</p></section>
+        <section className="tp-bloco vazio"><h3>Revisão geral em preparação</h3><p>Os tópicos desta matéria ainda estão em revisão pela banca do Aprendice.</p></section>
       ) : (
         <div className={'rg-grade' + (topico ? ' aberto' : '')}>
           <section className="tp-bloco rg-indice" aria-labelledby="rg-ind-tit">
             <h2 className="tp-h" id="rg-ind-tit">{q.trim() ? 'Resultado da busca' : 'Tópicos por capítulo'} <small className="num">{plural(lista.length, 'tópico', 'tópicos')}</small></h2>
-            <div className="chips rg-filtros" role="group" aria-label="Mostrar">
+            <div className="chips rg-filtros" role="group" aria-label="Mostrar tópicos">
               {FILTROS.map(([f, rot]) => <button key={f} type="button" className="chip" aria-pressed={filtro === f} onClick={() => muda({ f })}>{rot}</button>)}
             </div>
             <p className="sr" role="status" aria-live="polite">{q.trim() ? (lista.length ? `${plural(lista.length, 'tópico encontrado', 'tópicos encontrados')}` : 'Nenhum tópico encontrado') : ''}</p>
@@ -227,7 +227,7 @@ function TopicoView({ m, t, pos, n, nomeSub, tituloRef, lido, marc, onLido, onMa
       </header>
       <h2 id="rg-tit" className="rg-tit" ref={tituloRef} tabIndex={-1}>{t.titulo}</h2>
       {subs.length > 0 && (
-        <ul className="rg-subs" aria-label="Subtemas deste tópico">
+        <ul className="rg-subs" aria-label="Conteúdos deste tópico">
           {subs.map((x) => <li key={x}><Link to={`/m/${m}/escada/${x}`}><i className="ponto-sub" aria-hidden />{cap(nomeSub(x)!)}</Link></li>)}
         </ul>
       )}

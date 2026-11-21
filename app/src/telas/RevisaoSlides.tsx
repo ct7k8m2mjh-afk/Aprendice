@@ -91,7 +91,7 @@ export function RevisaoSlides() {
     return (
       <div className={`conteudo vazio m-${m}`}>
         <h3>Revisão em preparação</h3>
-        <p>A revisão em slides deste conteúdo ainda está passando pelas lentes da banca.</p>
+        <p>Os slides deste conteúdo ainda estão sendo conferidos pela banca do Aprendice.</p>
         <Link className="btn sec" to={mod ? `/m/${m}/tema/${mod.id}` : `/m/${m}`}>Voltar ao tema</Link>
       </div>
     );
@@ -258,7 +258,7 @@ function FaseQuestoes({ m, fase, and, porId, sub, temRes, aoResponder, aoIr, aoF
     return (
       <section className="tp-bloco rv-sem">
         <h2 className="tp-h">{fase === 0 ? 'Sem questões para começar' : 'Sem questão nova agora'}</h2>
-        <p className="miolo">{fase === 0 ? 'Este conteúdo ainda não tem questões de prova no site. A revisão segue pelos slides.' : 'As questões deste conteúdo já apareceram no começo. Aplique na próxima revisão.'}</p>
+        <p className="miolo">{fase === 0 ? 'Este conteúdo ainda não tem questões de prova no site. A revisão segue pelos slides.' : 'Este conteúdo só tem a questão que apareceu no começo.'}</p>
         <button className="btn" onClick={aoFim}>Continuar <Icone nome="direita" /></button>
       </section>
     );
@@ -295,7 +295,7 @@ function FaseQuestoes({ m, fase, and, porId, sub, temRes, aoResponder, aoIr, aoF
             <div>
               <h3>{feita.ok ? 'Você acertou' : `Você marcou ${feita.letra}. A resposta é ${q.gab}.`}</h3>
               <p className="miolo">{feita.ok
-                ? (feita.conf === 'chute' ? 'Acertou no chute: para o site, ainda não é sabido. Os slides mostram o porquê.' : 'Os slides vão mostrar o porquê, passo a passo.')
+                ? (feita.conf === 'chute' ? 'Acertou no chute: ainda não conta como sabido. Os slides mostram o porquê.' : 'Os slides vão mostrar o porquê, passo a passo.')
                 : feita.conf === 'certeza' ? 'Errou com certeza: este é o erro que mais vale corrigir. Os slides marcados mostram onde.' : 'Os slides a seguir mostram o que faltou. No fim, a questão fica na lista para você rever.'}</p>
             </div>
           </aside>
@@ -425,7 +425,7 @@ function Fim({ m, resumos, temRes, rev, temaId, mcBanco, aoRefazer }: { m: Mater
               <Icone nome="direita" />
             </Link></li>
           ))}</ul>
-          <p className="fraco">Elas também entram na sua revisão espaçada de questões.</p>
+          <p className="fraco">Elas também voltam na revisão de questões, a partir de amanhã.</p>
         </div>
       )}
       <div className="tp-acoes">

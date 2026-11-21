@@ -63,7 +63,7 @@ export function Revisao() {
         <section className="bloco rv-geral-dest" aria-labelledby="rv-gd-tit">
           <div className="rv-gd-txt">
             <h2 id="rv-gd-tit">Revisão geral</h2>
-            <p>Todo o conteúdo de cada matéria em tópicos curtos, com o essencial, a pegadinha da banca e busca. É o que você precisa saber para responder as questões das provas.</p>
+            <p>Todo o conteúdo de cada matéria em tópicos curtos: o essencial, a pegadinha da banca e busca. A base para responder as questões das provas.</p>
           </div>
           <div className="rv-gd-acao">
             <button type="button" className="btn grande" onClick={() => { setQs({ aba: 'geral' }, { replace: true }); window.scrollTo({ top: 0 }); }}>Abrir a revisão geral <Icone nome="direita" /></button>
@@ -84,10 +84,10 @@ export function Revisao() {
           ? 'A matéria inteira em tópicos curtos, com busca: o essencial, a pegadinha da banca e a imagem de cada tópico. Filosofia e Sociologia em duas listas.'
           : aba === 'dominio'
           ? 'O que você domina, está aprendendo ou esqueceu, pelos acertos em dias diferentes, cada um na data marcada.'
-          : `Errou, chutou ou pediu pista: a questão volta no dia certo. Sai da revisão depois de ${SAIDA} acertos em dias diferentes, cada um na data marcada.`}</p></div>
+          : `Errou, chutou ou usou a dica: a questão volta no dia certo. Sai da revisão depois de ${SAIDA} acertos em dias diferentes, cada um na data marcada.`}</p></div>
         <Link to="/hoje" className="btn sec peq rv-hoje"><Icone nome="calendario" />O que estudar hoje</Link></div>
       {!cel && destaque}
-      <div className="abas abas-rev" role="group" aria-label="Seções">
+      <div className="abas abas-rev" role="group" aria-label="Seções da revisão">
         <button aria-pressed={aba === 'questoes'} onClick={() => setQs({}, { replace: true })}>Questões <small>{totVenc}</small></button>
         <button aria-pressed={aba === 'flash'} onClick={() => setQs({ aba: 'flash' }, { replace: true })}>Flashcards <small>{totFlash}</small></button>
         <button aria-pressed={aba === 'marcadas'} onClick={() => setQs({ aba: 'marcadas' }, { replace: true })}>Marcadas <small>{totMarc}</small></button>
@@ -105,12 +105,12 @@ export function Revisao() {
       {aba === 'dominio' && <PainelDominio todas={todas} e={e} ag={ag} agora={agora} />}
 
       {aba === 'questoes' && <div className="rv-regiao"><FiltroRegiaoChips />{totOutras > 0 && (
-        <p className="fr-aviso" role="status"><span>{plural(totOutras, 'questão', 'questões')} de fora {deFiltro(rg.filtro, rg.minhas)} também {totOutras === 1 ? 'vence' : 'vencem'} hoje.</span>
+        <p className="fr-aviso" role="status"><span>{plural(totOutras, 'questão', 'questões')} de fora {deFiltro(rg.filtro, rg.minhas)} também {totOutras === 1 ? 'volta' : 'voltam'} hoje.</span>
           <button className="link-sec" onClick={() => defineFiltroRegiao('todas')}>Ver de outras regiões</button></p>
       )}</div>}
 
       {aba === 'questoes' && (totVenc === 0 && !porMat.some((x) => x.prox.length) ? (
-        <div className="vazio"><h3>Nada para revisar hoje</h3><p>Quando você errar, chutar ou usar uma pista, a questão aparece aqui no dia certo.</p><Link to="/" className="btn sec">Voltar ao início</Link></div>
+        <div className="vazio"><h3>Nada para revisar hoje</h3><p>Quando você errar, chutar ou usar a dica, a questão aparece aqui no dia certo.</p><Link to="/" className="btn sec">Voltar ao início</Link></div>
       ) : (
         <div className="grade g2 rv-mats">
           {porMat.filter((x) => x.venc.length || x.prox.length).map(({ mc, venc, prox, s }) => (
@@ -121,7 +121,7 @@ export function Revisao() {
                 const f = filaDe(s.q[q.id], ag);
                 return (
                   <Link key={q.id} to={`/m/${mc.id}/q/${q.id}?ctx=revisao`} className="linha-lista">
-                    <span className={'etq ' + (f?.certeza ? 'err' : 'aviso')}>{f?.certeza ? 'Errou com certeza' : f && f.etapa > 0 ? `${f.etapa} de ${SAIDA} acertos` : 'Vencida'}</span>
+                    <span className={'etq ' + (f?.certeza ? 'err' : 'aviso')}>{f?.certeza ? 'Errou com certeza' : f && f.etapa > 0 ? `${f.etapa} de ${SAIDA} acertos` : 'Hoje'}</span>
                     <span><span className="tit" style={{ fontSize: 15 }}>{q.escola} {q.ano}{q.n ? ` · questão ${numeroQuestao(q)}` : ''}</span><br /><span className="det">{mc.conteudo.modulos.find((x) => x.id === q.modulo)?.nome}</span></span>
                     <Icone nome="direita" />
                   </Link>
@@ -143,7 +143,7 @@ export function Revisao() {
             return (
               <Link key={m.id} to={`/m/${m.id}/flashcards`} className={`cartao-obj m-${m.id}`}>
                 <span className="mini"><Icone nome="cartas" /></span>
-                <span><b>{m.nome}</b><small>{x.r.flashVencidos ? plural(x.r.flashVencidos, 'cartão para hoje', 'cartões para hoje') : 'Nada vencido'} · {x.r.flashNovos} novos</small></span>
+                <span><b>{m.nome}</b><small>{x.r.flashVencidos ? plural(x.r.flashVencidos, 'cartão para hoje', 'cartões para hoje') : 'Nada para hoje'} · {x.r.flashNovos} novos</small></span>
                 <Icone nome="direita" />
               </Link>
             );
@@ -174,7 +174,7 @@ export function Revisao() {
             return (
               <Link key={q.id} to={`/m/${mc.id}/q/${q.id}?ctx=escada`} className={`linha-lista m-${mc.id}`}>
                 <span className="mini"><Icone nome="marcador" /></span>
-                <span><span className="tit" style={{ fontSize: 15 }}>{q.escola} {q.ano}{q.n ? ` · questão ${numeroQuestao(q)}` : ''}</span><br /><span className="det">{[nomeMateria(mc.id), conceitoMarcada(q, !!s.q[q.id]?.tent.length), f ? `revisão ${emDias(f.vence)}` : ''].filter(Boolean).join(' · ')}</span></span>
+                <span><span className="tit" style={{ fontSize: 15 }}>{q.escola} {q.ano}{q.n ? ` · questão ${numeroQuestao(q)}` : ''}</span><br /><span className="det">{[nomeMateria(mc.id), conceitoMarcada(q, !!s.q[q.id]?.tent.length), f ? `volta ${emDias(f.vence)}` : ''].filter(Boolean).join(' · ')}</span></span>
                 <Icone nome="direita" />
               </Link>
             );

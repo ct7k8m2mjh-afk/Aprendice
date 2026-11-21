@@ -70,7 +70,7 @@ export function RevisaoEssencial() {
     return (
       <div className={`conteudo vazio m-${m}`}>
         <h3>Revisão essencial em preparação</h3>
-        <p>A revisão essencial deste tema ainda está passando pelas lentes da banca.</p>
+        <p>A revisão essencial deste tema ainda está sendo conferida pela banca do Aprendice.</p>
         <Link className="btn sec" to={mod ? `/m/${m}/tema/${mod.id}` : `/m/${m}`}>Voltar ao tema</Link>
       </div>
     );
@@ -114,7 +114,7 @@ export function RevisaoEssencial() {
         )}
       </article>
 
-      <nav className="rv-nav" aria-label="Telas">
+      <nav className="rv-nav" aria-label="Telas da revisão">
         <button className="btn sec" onClick={() => vai(i - 1)} disabled={i === 0}><Icone nome="esquerda" /> <span>Anterior</span></button>
         <div className="rv-pontos" aria-hidden>{itens.map((_, j) => <i key={j} className={j < i ? 'feito' : j === i ? 'atual' : ''} />)}</div>
         {i + 1 < n
@@ -212,8 +212,8 @@ function QuestaoResolvida({ m, e }: { m: MateriaId; e: Essencial }) {
   }, [q, res]);
   return (
     <>
-      <h2 id="es-tit" className="rv-tit">Questão resolvida</h2>
-      <p className="es-qa">Questão nova, no estilo das provas, escrita para esta revisão.</p>
+      <h2 id="es-tit" className="rv-tit">Questão Aprendice</h2>
+      <p className="es-qa">Criada pelo Aprendice no estilo das provas. Não é questão de vestibular.</p>
       <p className="rv-texto">{textoRev(enun)}</p>
       <div className="es-alts" role="radiogroup" aria-label="Alternativas">
         {alts.map(({ l, t }) => (
@@ -232,7 +232,7 @@ function QuestaoResolvida({ m, e }: { m: MateriaId; e: Essencial }) {
       ) : (
         <div className="es-res">
           <ResolucaoView q={correcao.qq} r={correcao.r} marcada={(esc as Letra) || null} materia={m} semFonte
-            origem={<p className="fraco">Questão Aprendice: gabarito da banca do Aprendice, conferido pela lente de fatos.</p>} />
+            origem={<p className="fraco">Questão Aprendice: gabarito da banca do Aprendice, conferido de forma independente.</p>} />
           {!res && q.passos?.length ? (
             <ol className="rv-passos es-passos-txt">{q.passos.map((p, k) => <li key={k}><span className="rv-passo-n num" aria-hidden>{k + 1}</span><div><b>{p.faz}</b><Formula tex={p.conta} prosa={prosa} /></div></li>)}</ol>
           ) : null}
@@ -252,13 +252,13 @@ export function EssencialMateria() {
   const temas = mc.conteudo.modulos.filter((x) => ind.temas[x.id]?.essencial);
   return (
     <div className={`conteudo m-${m}`}>
-      <div className="titulo-pag"><div><h1>Revisão essencial de {infoMateria(m)?.nome}</h1><p className="sub">Por tema: o que mais cai, o mapa mental, uma tela por conteúdo, uma questão resolvida e a conexão com outras matérias.</p></div></div>
-      {!temas.length ? <div className="vazio"><h3>Em preparação</h3><p>A revisão essencial chega tema a tema, depois de passar pelas lentes da banca.</p></div> : (
+      <div className="titulo-pag"><div><h1>Revisão essencial de {infoMateria(m)?.nome}</h1><p className="sub">Por tema: o que mais cai, o mapa mental, uma tela por conteúdo, uma Questão Aprendice e a conexão com outras matérias.</p></div></div>
+      {!temas.length ? <div className="vazio"><h3>Em preparação</h3><p>A revisão essencial chega tema a tema, depois de revisada pela banca do Aprendice.</p></div> : (
         <ul className="tp-enc es-lista">
           {temas.map((t) => (
             <li key={t.id}><Link to={`/m/${m}/essencial/${t.id}`}>
               <i className="ponto-sub" aria-hidden />
-              <span className="t"><b>{t.nome}</b><span>{plural(ind.temas[t.id].essencial!, 'tela de conteúdo', 'telas de conteúdo')}, mapa mental e questão resolvida</span></span>
+              <span className="t"><b>{t.nome}</b><span>{plural(ind.temas[t.id].essencial!, 'tela de conteúdo', 'telas de conteúdo')}, mapa mental e Questão Aprendice</span></span>
               <span className="p" />
               <Icone nome="direita" className="tp-seta" />
             </Link></li>
