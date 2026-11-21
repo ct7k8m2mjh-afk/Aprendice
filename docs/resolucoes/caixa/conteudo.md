@@ -346,3 +346,10 @@ melhorou 5, todas reconferidas (4 ok, 1 corrigida: Pe9b8d75f B). 3 textos tinham
 certa; só o verbo foi trocado e o conferente da amostra confirmou os 3 contra o print. Amostra: 4 letras, 0 erro.
 Conflito em erradas-feitas.json resolvido por união. converte, tsc e vitest 922/922 verdes. Gasto de API: zero.
 Lote conteudo-erradas-mq-17 aberto (25 questões, 45 letras fracas), em andamento.
+
+## 2026-11-21 — AVISO — erradas (série fis, sem API, 8ª sessão)
+Lote conteudo-erradas-fis-18 gravado (Física, provas-alvo Mackenzie 2026–2027, 25 questões, 78 letras fracas): 26
+letras reescritas em 11 questões; 52 mantidas (sem equívoco honesto que leve a elas); nenhuma rejeitada. Lente de
+fatos: 25 ok, 1 corrigida (Pcd956824 A: "no prisma", o enunciado não diz que é vidro); didática melhorou 12, todas
+reconferidas (2ª passagem: 10 ok, 2 só encurtadas). Amostra: 5 letras, 0 erro. Testes: converte, tsc e vitest 922/922
+verdes. Gasto de API: zero. Em andamento: conteudo-erradas-fis-19.
