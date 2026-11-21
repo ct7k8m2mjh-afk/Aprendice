@@ -388,3 +388,7 @@ Pd096fa40 D), didática melhorou 7, todas reconferidas (7 ok). Amostra mq-19: 5 
 Testes: converte, tsc e vitest 922/922 verdes em todos os lotes. Gasto de API: zero.
 Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 qui` (próximo
 lote: conteudo-erradas-mq-20; na fila: ~413 de Química provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+## 2026-11-21 — AVISO — erradas (série fis, sem API, 9ª sessão)
+conteudo-erradas-fis-20 gravado: 20 letras reescritas em 11 questões (UPE SSA3 2021–2024). Fatos 19 ok e 1 corrigida
+(Paca5f8e2 A: óculos polarizados filtram a luz que a reflexão já polarizou); didática melhorou 8, 2ª passagem 8 ok.
+Amostra: 4 letras, 2 encurtadas (P5b614bba B e C). Testes 922/922. Seguindo com fis-21.
