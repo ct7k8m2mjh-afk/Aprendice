@@ -116,7 +116,7 @@ export function ProvaDetalhe() {
               </Link>
             ))}
           </div>
-        ) : <p className="miolo">Os simulados desta prova entram quando a prova inteira, com todas as matérias, estiver no banco{p.provas_anteriores ? <> (<a href={p.provas_anteriores} target="_blank" rel="noreferrer noopener">provas anteriores na fonte oficial</a>)</> : ''}.</p>}
+        ) : <p className="miolo">Os simulados desta prova entram quando a prova inteira estiver no site{p.provas_anteriores ? <> (<a href={p.provas_anteriores} target="_blank" rel="noreferrer noopener">provas anteriores na fonte oficial</a>)</> : ''}.</p>}
       </section>
     </div>
   );

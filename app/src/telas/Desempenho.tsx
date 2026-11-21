@@ -63,7 +63,7 @@ export function Desempenho() {
         <div className="bloco"><b className="num">{feitas}</b><span>questões feitas</span></div>
         <div className="bloco"><b className="num">{tent ? Math.round((okT / tent) * 100) : 0}%</b><span>de acerto nas tentativas</span></div>
         <div className="bloco"><b className="num">{(segN ? Math.round(segSoma / segN / 6) / 10 : 0).toLocaleString('pt-BR')} min</b><span>por questão, em média</span></div>
-        <div className="bloco"><b className="num">{horasMin(tempoTotal(e))}</b><span>de estudo no total · {sem.semana} questões nesta semana</span></div>
+        <div className="bloco"><b className="num">{horasMin(tempoTotal(e))}</b><span>de tempo registrado · {sem.semana} questões nesta semana</span></div>
       </div>
 
       <section className="secao">
@@ -120,9 +120,9 @@ export function Desempenho() {
           <section className="bloco">
             <h2 className="sec-tit">Como você erra</h2>
             <ul className="padroes">
-              <li><b className="num">{comCerteza}</b><span>erros com “tenho certeza”: o conceito está errado, não foi distração. Comece a revisão por eles.</span></li>
+              <li><b className="num">{comCerteza}</b><span>erros com “tenho certeza”: provavelmente o conceito, não distração. A revisão traz esses primeiro.</span></li>
               <li><b className="num">{chuteCerto}</b><span>acertos no chute: não contam como sabidos e voltam na revisão.</span></li>
-              <li><b className="num">{comPista}</b><span>respostas com pista: também voltam na revisão.</span></li>
+              <li><b className="num">{comPista}</b><span>respostas com dica: também voltam na revisão.</span></li>
             </ul>
           </section>
           {fracos.length > 0 && (
