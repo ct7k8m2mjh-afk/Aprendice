@@ -59,3 +59,17 @@ Resultado: 21 letras reescritas e gravadas em 14 questões; 49 letras sem equív
 2 rejeitadas pela lente de fatos (origem inventada). Amostra (outro agente): 3 letras, 1 com erro (texto longo demais,
 49 palavras), consertada. Testes: converte, tsc e vitest verdes (912). Gasto de API: zero.
 Em andamento: conteudo-erradas-mq-02 (Matemática).
+
+## 2026-11-21 — FIM — erradas (série mq, sem API)
+Lotes gravados: conteudo-erradas-mq-01, mq-02 e mq-03 (Matemática, provas-alvo, 75 questões, 204 letras fracas).
+Nenhum lote aberto. Sessão encerrada no limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa (regra nova do dono).
+Resultado: 57 letras reescritas e gravadas em 39 questões (mq-01: 21; mq-02: 20; mq-03: 16). As demais letras não têm
+equívoco honesto que leve a elas e ficaram com o texto antigo; 2 rejeitadas pela lente de fatos (origem inventada).
+Amostra (20%): 8 letras, 3 com erro, todos de tamanho (texto acima de ~35 palavras), consertados; nenhum erro de fato.
+A partir do mq-03 a lente didática recebe o limite de 40 palavras.
+Testes: converte, tsc e vitest verdes (916). Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 mat` (próximo
+lote: conteudo-erradas-mq-04; na fila: Matemática provas-alvo ~370, depois Química provas-alvo ~438), seguindo
+docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
