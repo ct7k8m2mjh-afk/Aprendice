@@ -392,3 +392,8 @@ lote: conteudo-erradas-mq-20; na fila: ~413 de Química provas-alvo), seguindo d
 conteudo-erradas-fis-20 gravado: 20 letras reescritas em 11 questões (UPE SSA3 2021–2024). Fatos 19 ok e 1 corrigida
 (Paca5f8e2 A: óculos polarizados filtram a luz que a reflexão já polarizou); didática melhorou 8, 2ª passagem 8 ok.
 Amostra: 4 letras, 2 encurtadas (P5b614bba B e C). Testes 922/922. Seguindo com fis-21.
+## 2026-11-21 — AVISO — erradas (série mq, sem API, 8ª sessão)
+Lote conteudo-erradas-mq-20 (Química, provas-alvo Unesp/Unicamp) gravado: 45 letras em 22 questões (10 mantidas por falta
+de equívoco honesto). Fatos 44 ok e 1 corrigida (P41ff8a18 B, frase forte demais); didática melhorou 8, todas
+reconferidas (8 ok). Amostra: 10 letras, 0 erro. converte, tsc e vitest 922/922 verdes. Conflito em erradas-feitas.json
+resolvido por união. Gasto de API: zero. Segue o mq-21 (na fila: 391 de Química provas-alvo).
