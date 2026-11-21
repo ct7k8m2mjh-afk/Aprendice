@@ -63,14 +63,14 @@ export function BoasVindas() {
       <div className="bv-form">
         <TemaSeg escuro={escuro} className="bv-tema" />
         <Logo className="bv-logo-cel" />
-        <ol className="bv-passos" aria-label="Etapas">
+        <ol className="bv-passos" aria-label="Etapas do cadastro">
           {['Sua conta', 'Provas-alvo', 'Ritmo'].map((t, i) => <li key={t} aria-current={i === passo ? 'step' : undefined} className={i < passo ? 'feito' : ''}><span>{i + 1}</span>{t}</li>)}
         </ol>
 
         {passo === 1 && (
           <div className="bv-corpo">
             <h1>Quais provas você vai fazer?</h1>
-            <p className="miolo">O site prioriza o que essas provas cobram: simulados, sugestões e treinos. Dá para mudar depois no perfil.</p>
+            <p className="miolo">O site monta o seu estudo pelo que essas provas cobram e pela região delas. Dá para mudar depois no Perfil.</p>
             <EscolhaProvas valor={provas} aoMudar={setProvas} />
             <div className="bv-acoes">
               <button className="btn fantasma" onClick={voltaAoLogin}><Icone nome="esquerda" /> Voltar</button>
@@ -82,7 +82,7 @@ export function BoasVindas() {
         {passo === 2 && (
           <div className="bv-corpo">
             <h1>Qual o seu ritmo?</h1>
-            <p className="miolo">Meta de questões por semana. Ela aparece no menu e no início; ajuste quando quiser.</p>
+            <p className="miolo">Meta de questões por semana. Ela aparece no menu lateral; dá para mudar no Perfil.</p>
             <div className="bv-metas" role="radiogroup" aria-label="Meta semanal">
               {[[70, 'Leve', '10 por dia'], [150, 'Firme', 'cerca de 20 por dia'], [300, 'Intenso', 'cerca de 40 por dia']].map(([n, t, d]) => (
                 <button key={n} role="radio" aria-checked={meta === n} className={'bv-meta' + (meta === n ? ' sel' : '')} onClick={() => setMeta(n as number)}>

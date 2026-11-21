@@ -28,7 +28,7 @@ export function EscolhaProvas({ valor, aoMudar }: { valor: string[]; aoMudar: (v
           {REGIOES.map((r) => <button key={r.id} className="chip" aria-pressed={regiao === r.id} onClick={() => setRegiao(r.id)}>{r.curto}</button>)}
         </div>
       </div>
-      <p className="fraco" style={{ fontSize: 14, margin: '4px 0 10px' }}>{valor.length ? `${valor.length} selecionada${valor.length > 1 ? 's' : ''}` : 'Escolha ao menos uma'}</p>
+      <p className="fraco" style={{ fontSize: 14, margin: '4px 0 10px' }}>{valor.length ? `${valor.length} selecionada${valor.length > 1 ? 's' : ''}` : 'Escolha pelo menos uma'}</p>
       <ul className="ep-lista">
         {lista.map((p) => {
           const n = nQ.get(p.id) || 0, sel = valor.includes(p.id);

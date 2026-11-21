@@ -307,13 +307,13 @@ export function traduzErro(e: { message?: string; code?: string; status?: number
   const m = (e?.message || '').toLowerCase();
   const c = e?.code || '';
   if (c === 'invalid_credentials' || m.includes('invalid login')) return 'E-mail ou senha incorretos.';
-  if (c === 'email_not_confirmed' || m.includes('not confirmed')) return 'Confirme o seu e-mail pelo link que enviamos antes de entrar.';
-  if (c === 'user_already_exists' || m.includes('already registered')) return 'Já existe uma conta com este e-mail. Entre, ou use "Esqueceu sua senha?".';
+  if (c === 'email_not_confirmed' || m.includes('not confirmed')) return 'Antes de entrar, abra o link que enviamos para o seu e-mail.';
+  if (c === 'user_already_exists' || m.includes('already registered')) return 'Já existe uma conta com este e-mail. Entre ou use “Esqueceu sua senha?”.';
   if (c === 'weak_password' || m.includes('password should')) return 'Senha fraca: use pelo menos 6 caracteres, misturando letras e números.';
   if (c === 'over_email_send_rate_limit' || c === 'over_request_rate_limit' || m.includes('rate limit') || e?.status === 429) return 'Muitas tentativas agora. Espere alguns minutos e tente de novo.';
   if (c === 'email_address_invalid' || m.includes('email address') && m.includes('invalid')) return 'Este e-mail não foi aceito. Confira se está certo.';
   if (c === 'same_password') return 'A nova senha precisa ser diferente da anterior.';
-  if (m.includes('fetch') || m.includes('network') || m.includes('failed to')) return 'Sem conexão com a internet. Confira a conexão e tente de novo.';
+  if (m.includes('fetch') || m.includes('network') || m.includes('failed to')) return 'Sem internet. Confira a conexão e tente de novo.';
   return 'Não foi possível concluir agora. Tente de novo em instantes.';
 }
 
