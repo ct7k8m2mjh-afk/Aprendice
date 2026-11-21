@@ -89,3 +89,10 @@ Para tornar outra pessoa administradora: no painel do Supabase, SQL Editor,
    conta). Sem ele, o botão "Excluir minha conta" responde "Não foi possível concluir agora" e não apaga nada.
 4. Opcional: login com Google (Authentication → Providers → Google, com as credenciais do Google Cloud do dono).
 5. Opcional: proteção contra senhas vazadas (Authentication → Passwords; depende do plano).
+
+## Interruptor das contas de verdade (dono, 21/11/2026)
+"Deixe como conta demo no login enquanto não publicamos." O site só usa o Supabase quando o build tem
+`VITE_CONTAS_REAIS=1` (app/src/nuvem/cliente.ts). Sem essa variável, o login é o de demonstração (tudo fica no aparelho),
+mesmo com `VITE_SUPABASE_URL` e a chave configuradas na Vercel. Por isso o ramo pode ser publicado com segurança antes de
+configurar o Supabase. Para ligar as contas: concluir a configuração (URL, SMTP), pôr `VITE_CONTAS_REAIS=1` na Vercel e
+publicar de novo.

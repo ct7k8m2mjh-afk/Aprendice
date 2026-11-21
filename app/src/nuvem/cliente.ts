@@ -9,12 +9,16 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
 const URL_NUVEM = import.meta.env.VITE_SUPABASE_URL as string | undefined;
 const CHAVE_PUBLICA = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string | undefined;
+/** Interruptor das contas de verdade (dono, 21/11/2026: "deixe como conta demo no login enquanto não publicamos").
+ *  Só com VITE_CONTAS_REAIS=1 no build o site usa o Supabase; sem ele, o login é o de demonstração (tudo no aparelho),
+ *  mesmo que a URL e a chave estejam configuradas. Para ligar as contas: pôr VITE_CONTAS_REAIS=1 na Vercel e publicar. */
+const CONTAS_REAIS = import.meta.env.VITE_CONTAS_REAIS === '1';
 
 let cliente: SupabaseClient | null | undefined;
 
 export function nuvem(): SupabaseClient | null {
   if (cliente !== undefined) return cliente;
-  if (import.meta.env.MODE === 'test' || import.meta.env.VITE_PREVIA === '1' || !URL_NUVEM || !CHAVE_PUBLICA) cliente = null;
+  if (import.meta.env.MODE === 'test' || import.meta.env.VITE_PREVIA === '1' || !CONTAS_REAIS || !URL_NUVEM || !CHAVE_PUBLICA) cliente = null;
   else cliente = createClient(URL_NUVEM, CHAVE_PUBLICA, {
     // pkce: o link do e-mail volta com ?code= (não briga com o # das rotas do site)
     auth: { flowType: 'pkce', persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
