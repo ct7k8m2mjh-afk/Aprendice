@@ -1,4 +1,4 @@
-import { pegaConta } from '../estado/sessao';
+import { useConta } from '../estado/sessao';
 import { useRef, useState } from 'react';
 import { carregaMateria, MATERIAS_COM_CONTEUDO } from '../dados/conteudo';
 import { pegaEstado, substitui, useEstado, zera } from '../estado/loja';
@@ -16,6 +16,7 @@ async function idsPorMateria() {
 export function Config() {
   useTitulo('Configurações');
   const e = useEstado();
+  const comConta = useConta().fase !== 'local';
   const arq = useRef<HTMLInputElement>(null);
   const [toast, setToast] = useState<string | null>(null);
   const [zerando, setZerando] = useState(false);
@@ -56,7 +57,7 @@ export function Config() {
 
       <section className="bloco secao">
         <h2 className="sec-tit">Meus dados</h2>
-        <p className="miolo">{pegaConta().fase === 'local' ? 'Seu progresso fica salvo neste aparelho.' : 'Seu progresso fica salvo na sua conta e neste aparelho: funciona sem internet e é enviado quando a conexão volta.'} Baixe uma cópia de vez em quando ou traga o progresso de outro aparelho ou do protótipo antigo: a importação junta tudo e não apaga nada.</p>
+        <p className="miolo">{!comConta ? 'Seu progresso fica salvo neste aparelho.' : 'Seu progresso fica salvo na sua conta e neste aparelho: funciona sem internet e é enviado quando a conexão volta.'} Baixe uma cópia de vez em quando ou traga o progresso de outro aparelho ou do protótipo antigo: a importação junta tudo e não apaga nada.</p>
         <div className="dados-acoes">
           <button className="btn sec" onClick={exporta}><Icone nome="download" /> Baixar meu progresso</button>
           <button className="btn sec" onClick={() => arq.current?.click()}><Icone nome="upload" /> Importar progresso</button>
@@ -66,7 +67,7 @@ export function Config() {
         <div className="zona-perigo">
           {!zerando ? <button className="btn fantasma" onClick={() => setZerando(true)}><Icone nome="lixo" /> Zerar progresso</button> : (
             <div className="confirma-zera">
-              <p><b>Zerar todo o progresso?</b> Uma cópia de segurança fica guardada neste aparelho, mas as estatísticas recomeçam do zero.</p>
+              <p><b>Zerar todo o progresso?</b>{comConta ? ' As estatísticas recomeçam do zero, também na sua conta. Uma cópia de segurança fica guardada neste aparelho.' : ' Uma cópia de segurança fica guardada neste aparelho, mas as estatísticas recomeçam do zero.'}</p>
               <div className="fc-acoes"><button className="btn sec" onClick={() => setZerando(false)}>Cancelar</button><button className="btn perigo" onClick={() => { zera(); setZerando(false); setToast('Progresso zerado. A cópia de segurança ficou guardada.'); }}>Zerar</button></div>
             </div>
           )}
@@ -94,7 +95,9 @@ export function Config() {
 
       <section className="bloco secao">
         <h2 className="sec-tit">Privacidade</h2>
-        <p className="miolo">Sem servidor nesta versão: nenhum dado pessoal é enviado a ninguém. Sem anúncios, sem rastreamento, fontes hospedadas no próprio site. Quando houver contas na nuvem, você poderá baixar e apagar seus dados a qualquer momento (LGPD).</p>
+        <p className="miolo">{comConta
+          ? 'Seu e-mail, perfil de estudo e progresso ficam na sua conta; cada conta só lê os próprios dados. Sem anúncios, sem rastreamento, fontes hospedadas no próprio site. Detalhes em Privacidade.'
+          : 'Sem servidor nesta versão: nenhum dado pessoal é enviado a ninguém. Sem anúncios, sem rastreamento, fontes hospedadas no próprio site. Quando houver contas na nuvem, você poderá baixar e apagar seus dados a qualquer momento (LGPD).'}</p>
       </section>
 
       <section className="bloco secao">
@@ -106,7 +109,7 @@ export function Config() {
           <li>Ícones de interface: Lucide (ISC). Fontes: Familjen Grotesk, Dancing Script, Literata, Caveat e DM Sans (SIL Open Font License).</li>
           <li>Catálogo de provas: editais e sites oficiais das bancas, ciclo 2027.</li>
         </ul>
-        <p className="fraco" style={{ fontSize: 14, marginTop: 12 }}>Aprendice · versão de demonstração: o progresso fica salvo neste aparelho</p>
+        <p className="fraco" style={{ fontSize: 14, marginTop: 12 }}>{comConta ? 'Aprendice · progresso salvo na sua conta e neste aparelho' : 'Aprendice · progresso salvo neste aparelho'}</p>
       </section>
       <Toast texto={toast} aoFechar={() => setToast(null)} />
     </div>
