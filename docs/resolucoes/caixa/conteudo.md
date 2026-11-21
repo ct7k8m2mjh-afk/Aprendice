@@ -429,3 +429,15 @@ mantidas pelo escritor por falta de equívoco honesto; 2 deixadas de fora pelo f
 P3c5710b7 B). Fatos 52 ok e 1 corrigida; didática melhorou 8, reconferidas (7 ok, 1 corrigida). Amostra: 14 letras, 1
 consertada (Pc9596a25 C: o N da guanidina tende a receber H⁺). converte, tsc e vitest 922/922 verdes. Gasto de API: zero.
 Segue o mq-23 (na fila: 341 de Química provas-alvo).
+## 2026-11-21 — FIM — erradas (série mq, sem API, 10ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-mq-22 e mq-23 (Química, provas-alvo UERJ, UFPR, UEL e outras). Nenhum
+lote aberto. Sessão encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 87 letras reescritas e gravadas em 41 questões (mq-22: 51 em 22; mq-23: 36 em 19); 33 letras mantidas por
+falta de equívoco honesto e 2 deixadas de fora pelo filtro de palavras (mq-22). mq-23: fatos 35 ok e 1 corrigida;
+didática melhorou 9, reconferidas (9 ok); amostra 10 letras, 0 erro.
+Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
+Dica: pedir aos agentes que evitem "dá"/"daria" em qualquer sentido (o filtro do final.json barra "dá X" até como verbo).
+Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 qui` (próximo
+lote: conteudo-erradas-mq-24; na fila: 316 de Química provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
