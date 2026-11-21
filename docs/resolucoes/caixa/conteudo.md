@@ -181,3 +181,21 @@ Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero
 Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 mat` (próximo
 lote: conteudo-erradas-mq-09; na fila: Matemática provas-alvo, depois Química provas-alvo), seguindo
 docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+
+## 2026-11-21 — FIM — erradas (série fis, sem API, 4ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-fis-08 e fis-09 (Física, provas-alvo Famerp 2020–2025 e Santa Casa
+2026–2027, 50 questões, 158 letras fracas). Nenhum lote aberto. Sessão encerrada perto do limite de contexto combinado
+(40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 88 letras reescritas e gravadas em 33 questões (fis-08: 52 em 18; fis-09: 36 em 15). As demais 70 letras não
+têm equívoco honesto que leve a elas e ficaram com o texto antigo; nenhuma rejeitada. Lente de fatos corrigiu 3 (1 na
+2ª passagem: "tamanho das cristas" ambíguo trocado por altura/amplitude); didática melhorou 11, todas reconferidas.
+Um texto barrado pelo filtro só por "o enunciado dá 4,0 kΩ" teve a palavra trocada por "informa" e foi conferido pela
+amostra (ok).
+Amostra (20%): fis-08 11 letras, 0 erro; fis-09 10 letras, 1 erro (Santa Casa, Pd218d854 D: origem não levava à D —
+"objeto entre o espelho e o foco"), consertado.
+Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
+lote: conteudo-erradas-fis-10; fila de Física provas-alvo pela `erradas-fila`), seguindo
+docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
