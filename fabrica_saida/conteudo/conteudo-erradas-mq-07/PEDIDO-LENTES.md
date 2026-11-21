@@ -16,7 +16,7 @@ Instruções completas: prompt-didatica.md. Entrada: parte-N.json + escritor-N.j
 Avalie o texto final de cada letra (o `depois` da lente de fatos se veredito "corrigir"; o do escritor se "ok"; ignore
 "rejeitar" e "manter"). Limite ABSOLUTO de 40 palavras (conte em python; mire ~35). Diz o que faltou no raciocínio de
 quem marcou a letra? O aluno se reconhece? Sem "não confere/não bate/não fecha/daria/dá X" como explicação, sem
-"provavelmente/talvez/chute/distrator", fração "a/b", sem emoji. Veredito: ok | melhorar (com `depois`, sem mudar fato nem
+"provavelmente/talvez/chute/distrator", fração SEMPRE "a/b" (o site empilha; "a/b" é o certo, nunca troque por "÷" nem por "a sobre b"), sem emoji. Veredito: ok | melhorar (com `depois`, sem mudar fato nem
 conta) | alerta_fato (com motivo).
 Saída: didatica-N.json = {"<id>": {"<letra>": {"veredito": "...", "depois": "", "motivo": ""}}}. Valide o JSON.
 
