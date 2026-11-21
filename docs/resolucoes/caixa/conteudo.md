@@ -506,3 +506,15 @@ O pacote UDESC 2026 (p05, 11 letras) teve dois escritores independentes e nenhum
 Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
 Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
 lote: conteudo-erradas-fis-27; na fila: 106 de Física provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+## 2026-11-21 — FIM — erradas (série fb, sem API, sessão paralela de Física)
+Lotes gravados nesta sessão: conteudo-erradas-fb-01, fb-02 e fb-03 (Física, provas-alvo UECE e UEA).
+Nenhum lote aberto. Sessão encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 119 letras reescritas e gravadas em 50 questões (fb-01: 36 em 16; fb-02: 40 em 18; fb-03: 43 em 16);
+102 letras mantidas por falta de equívoco honesto. fb-02: fatos e 2ª lente sem correção, didática melhorou 11;
+amostra 8 letras, 0 erro. fb-03: fatos sem correção, didática melhorou 8 (reconferidas ok); amostra 8 letras, 3
+encurtadas (P18faf3bf A, B, E passavam de 35 palavras; fatos corretos).
+Testes: converte, tsc e vitest 922/922 verdes nos três lotes. Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=fb BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
+lote: conteudo-erradas-fb-04; na fila: 106 de Física provas-alvo), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
