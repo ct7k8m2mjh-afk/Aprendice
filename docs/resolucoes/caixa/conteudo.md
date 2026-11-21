@@ -536,3 +536,16 @@ Lote conteudo-erradas-fb-04 gravado (Física, provas-alvo UDESC): 36 letras rees
 mantidas por falta de equívoco honesto. Fatos: 2 corrigidas, 0 rejeitadas; didática melhorou 10 e alertou 1, todas
 reconferidas ok pela 2ª lente de fatos; amostra 8 letras, 0 erro. Testes: converte, tsc e vitest 922/922 verdes.
 Gasto de API: zero. Seguindo com conteudo-erradas-fb-05.
+## 2026-11-21 — FIM — erradas (série fis, sem API, 12ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-fis-27 e fis-28 (Física, provas-alvo UDESC 2020-1, 2025-1, 2025-2 e
+2026-2; ACAFE 2024 a 2026). Nenhum lote aberto.
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 45 letras reescritas e gravadas em 29 questões (fis-27: 18 em 14; fis-28: 27 em 15). As demais letras não
+têm equívoco honesto que chegue exatamente à alternativa e ficaram com o texto antigo.
+fis-28: fatos 26 ok e 1 corrigida (só o código de equívoco de P3baad52f D); didática melhorou 3, reconferidas (3 ok);
+amostra 5 letras, 0 erro. Dica: no brief do escritor proibir o verbo "dá" (no fis-27, 3 letras boas caíram no filtro).
+Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero.
+## 2026-11-21 — ACABOU (provas-alvo de Física)
+`erradas-fila` não mostra mais Física na faixa 1 (provas-alvo): todas as questões de Física das provas-alvo já têm
+lote (séries fis e fb). Próximo passo da série, se o dono quiser: faixa 2 (866 de Física), com BASE_MAX=2.
