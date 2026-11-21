@@ -154,3 +154,11 @@ Testes: converte, tsc e vitest 922/922 verdes nos dois lotes. Gasto de API: zero
 Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
 lote: conteudo-erradas-fis-08; fila de Física provas-alvo pela `erradas-fila`), seguindo
 docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+
+## 2026-11-21 — AVISO — erradas (série mq, sem API, 3ª sessão)
+Lote conteudo-erradas-mq-07 gravado (Matemática, provas-alvo UECE, 25 questões, 63 letras fracas): 13 letras reescritas
+em 9 questões; 50 mantidas (sem equívoco honesto que leve a elas); nenhuma rejeitada. Lente de fatos corrigiu 1
+("seno e cosseno só são iguais em 45° e 225°" sem "numa volta"); didática melhorou 9, todas reconferidas ok (uma trocava
+"a/b" por "÷"; o organizador voltou para "a/b"). Amostra: 4 letras, 0 erro. Testes: converte, tsc e vitest 922/922
+verdes. Gasto de API: zero.
+Nota: o 1º escritor da parte 1 marcou tudo "manter" sem abrir os prints; foi descartado e refeito por um agente novo.
