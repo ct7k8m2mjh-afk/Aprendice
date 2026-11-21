@@ -288,3 +288,23 @@ questões; 54 mantidas (sem equívoco honesto que leve a elas); nenhuma rejeitad
 didática melhorou 5; 2ª passagem corrigiu 2 (Pe95e05cc A; Pdb7908b8 B). Duas letras só trocaram
 "dá" por sinônimo (Pe76fb676 B, Paecdb161 D), conferidas junto com a amostra. Amostra: 3 letras, 0 erro. Testes:
 converte, tsc e vitest 922/922 verdes. Gasto de API: zero. Em andamento: conteudo-erradas-fis-15.
+
+## 2026-11-21 — FIM — erradas (série fis, sem API, 7ª sessão)
+Lotes gravados nesta sessão: conteudo-erradas-fis-14, fis-15 e fis-16 (Física, provas-alvo, 75 questões, 215 letras
+fracas). Nenhum lote aberto. Sessão encerrada perto do limite de contexto combinado (40%).
+Feito por agentes do Claude Code, cada etapa um agente diferente (escritor, lente de fatos, lente didática, lente de
+fatos de novo, amostra); no máximo 3 agentes em paralelo por etapa.
+Resultado: 71 letras reescritas e gravadas em 40 questões (fis-14: 15 em 8; fis-15: 29 em 15; fis-16: 27 em 17). As
+demais 144 letras não têm equívoco honesto que leve a elas e ficaram com o texto antigo; nenhuma rejeitada.
+fis-15: lente de fatos corrigiu 5 (1 de fato: P97dde726 E, farol não concentra luz; 4 só encurtadas); didática melhorou
+11; 2ª passagem corrigiu 8 (3 de fato na FMABC 2022 q56 C e q59 C/E; demais só tamanho). Amostra: 4 letras, 0 erro.
+fis-16: lente de fatos corrigiu 6 (Pc67ee8e1 B: descida entre níveis excitados também emite fóton); didática melhorou
+12 (símbolos trocados por palavras); 2ª passagem corrigiu 2 (só tamanho/≈). Amostra: 3 letras, 1 consertada
+(P2a28cd0d B, só tamanho).
+Para o dono/banca: na P7f372339 (FMABC, Física) o texto_da_prova traz "2v" nas alternativas A, D e E, mas o print diz
+"v/2"; os textos novos seguem o print; a transcrição do enunciado precisa de conserto (não mexido aqui).
+Processo: um `git pull --rebase --autostash` ficou preso (rebase sem head-name) após reinício do worker; resolvido com
+`git rebase --quit`, guardando o autostash no stash e reaplicando — nada perdido.
+Testes: converte, tsc e vitest 922/922 verdes (fis-14; fis-15 e fis-16 juntos). Gasto de API: zero.
+Continuar de: `ERRADAS_SERIE=fis BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 fis` (próximo
+lote: conteudo-erradas-fis-17), seguindo docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
