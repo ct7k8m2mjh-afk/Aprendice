@@ -73,3 +73,13 @@ Testes: converte, tsc e vitest verdes (916). Gasto de API: zero.
 Continuar de: `ERRADAS_SERIE=mq BASE_MAX=1 python3 ferramentas/fabrica/conteudo_api.py erradas-abre 25 mat` (próximo
 lote: conteudo-erradas-mq-04; na fila: Matemática provas-alvo ~370, depois Química provas-alvo ~438), seguindo
 docs/resolucoes/PROMPT-ERRADAS-CLAUDE.md.
+
+## 2026-11-21 — AVISO — erradas (série fis, sem API)
+1º lote gravado: conteudo-erradas-fis-01 (Física, provas-alvo Unesp, 25 questões, 67 letras fracas). Feito por agentes do
+Claude Code (escritor → lente de fatos → lente didática → lente de fatos de novo → amostra, cada etapa um agente diferente).
+Resultado: 27 letras reescritas e gravadas em 12 questões (5 arquivos resolucoes-fis.json da Unesp); 40 letras sem
+equívoco honesto ficaram com o texto antigo; nenhuma rejeitada. Lente de fatos corrigiu 3 na 1ª passada e 5 na 2ª
+(origem trocada por equívoco mais plausível, frase ambígua, campo da Terra esquecido, textos longos).
+Amostra (outro agente): 5 letras, 1 com erro (texto longo, 43 palavras), consertada; nenhum erro de fato.
+Testes: converte, tsc e vitest verdes (916). Gasto de API: zero.
+Em andamento: conteudo-erradas-fis-02 (Física).
