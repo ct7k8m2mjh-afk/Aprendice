@@ -110,6 +110,34 @@
 :root, [data-theme='light'] { --s: color-mix(in srgb, var(--tinta) 7%, var(--folha)); }
 [data-theme='dark'] { --s: color-mix(in srgb, var(--tinta) 3%, var(--folha)); }
 .casca.em-materia { background: var(--papel); }
+/* FOLHA DE CADERNO (pedido do dono, 20/11/2026: "a ref é a folha de um caderno"): o fundo de todas as telas é papel
+   quadriculado, com a linha da margem na coluna principal. Ícones, cartões e demais elementos ficam lisos (--folha) por
+   cima da folha, e por isso se destacam. Tudo em CSS, sem imagem: grade azul fina sobre o tom de --papel (creme fora
+   das matérias, véu da matéria dentro), margem rosada. Cores misturadas ao próprio --papel, então a folha acompanha as
+   nove matérias e os dois temas; os textos que ficam direto sobre o fundo mantêm o contraste (linhas a ~1 px, claras). */
+:root, [data-theme='light'], .casca.em-materia {
+  --quadro-passo: 24px;
+  --quadro: color-mix(in srgb, #3F7FD6 24%, var(--papel));
+  --margem: color-mix(in srgb, #E2487E 60%, var(--papel));
+}
+[data-theme='dark'], [data-theme='dark'] .casca.em-materia {
+  --quadro: color-mix(in srgb, #8DB4E2 13%, var(--papel));
+  --margem: color-mix(in srgb, #EE6E9A 38%, var(--papel));
+}
+body, .casca.em-materia {
+  background-image:
+    linear-gradient(to right, var(--quadro) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--quadro) 1px, transparent 1px);
+  background-size: var(--quadro-passo) var(--quadro-passo);
+  background-position: -1px -1px;
+}
+/* linha da margem: vertical, no espaço livre à esquerda do conteúdo (dentro do --pag-x), em toda a altura */
+.principal {
+  /* no meio do espaço livre à esquerda do .conteudo, também quando ele fica centralizado (telas acima de --pag-max) */
+  --margem-x: calc(max(0px, (100% - var(--pag-max)) / 2) + var(--pag-x) * .5);
+  background: linear-gradient(to right, transparent calc(var(--margem-x) - 1px), var(--margem) calc(var(--margem-x) - 1px),
+    var(--margem) calc(var(--margem-x) + 1px), transparent calc(var(--margem-x) + 1px)) no-repeat;
+}
 :root {
   --fonte: 'Familjen Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --mao: 'Caveat', 'Segoe Print', cursive;
@@ -143,7 +171,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body {
-  margin: 0; background: var(--papel); color: var(--tinta);
+  margin: 0; background-color: var(--papel); color: var(--tinta);
   font: 400 var(--fs-texto)/1.5 var(--fonte); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'ss01' 0; font-synthesis: none;
 }
