@@ -119,7 +119,7 @@ export interface ResultadoImportacao { materias: MateriaId[]; questoes: number; 
 /** Importa um arquivo (texto JSON) para dentro do estado atual, sem apagar nada. */
 export function importaArquivo(estado: Estado, texto: string, idsPorMateria: Record<string, Set<string>>): { estado: Estado; r: ResultadoImportacao } {
   let dado: unknown;
-  try { dado = JSON.parse(texto); } catch { return { estado, r: { materias: [], questoes: 0, cartoes: 0, erro: 'O arquivo não é um JSON válido.' } }; }
+  try { dado = JSON.parse(texto); } catch { return { estado, r: { materias: [], questoes: 0, cartoes: 0, erro: 'Este não é um arquivo de progresso do Aprendice.' } }; }
   const d = obj<Record<string, unknown>>(dado);
   if (!d) return { estado, r: { materias: [], questoes: 0, cartoes: 0, erro: 'Arquivo vazio ou em formato desconhecido.' } };
 
@@ -151,7 +151,7 @@ export function importaArquivo(estado: Estado, texto: string, idsPorMateria: Rec
   } else if (obj(d.q) || obj(d.flash)) {
     // exportação do protótipo: o S de uma matéria
     const m = materiaDoS(d as Partial<EstadoMateria>, idsPorMateria);
-    if (!m) return { estado, r: { ...r, erro: 'Não reconheci de qual matéria é este arquivo.' } };
+    if (!m) return { estado, r: { ...r, erro: 'Não foi possível saber de qual matéria é este arquivo.' } };
     junta(m, d as Partial<EstadoMateria>);
   } else {
     // pode ser um despejo de várias chaves do protótipo: { "saocamilo.bio.v1": {...} | "texto" }
@@ -162,7 +162,7 @@ export function importaArquivo(estado: Estado, texto: string, idsPorMateria: Rec
       const s = typeof v === 'string' ? (() => { try { return JSON.parse(v); } catch { return null; } })() : v;
       if (obj(s)) { junta(m, s as Partial<EstadoMateria>); achou = true; }
     }
-    if (!achou) return { estado, r: { ...r, erro: 'Não encontrei progresso do APRENDICE neste arquivo.' } };
+    if (!achou) return { estado, r: { ...r, erro: 'Este arquivo não tem progresso do Aprendice.' } };
   }
   return { estado: aplicaRetiradas(novo), r };
 }
