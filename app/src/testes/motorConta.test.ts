@@ -5,7 +5,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { avalia, contaTransicoes, junta, montaRoteiro, quadroEquivale, quadroNaConta, tokeniza, type Roteiro } from '../logica/motorConta';
+import { avalia, contaTransicoes, itensDaConta, junta, montaRoteiro, quadroEquivale, quadroNaConta, tokeniza, type Roteiro } from '../logica/motorConta';
 import { cruzamento } from '../logica/punnett';
 import { ResolucaoAnimada, textoVisivel } from '../ui/ResolucaoAnimada';
 import { ResolucaoView } from '../ui/Resolucao';
@@ -47,11 +47,13 @@ function confereLinhas(r: Resolucao, rt: Roteiro): string | null {
   const ps = r.passos || [];
   const q = (r.quadro || []).filter((x) => x.linha);
   const comConta = ps.some((p) => (p.conta || '').trim());
+  // (passada 6 Y5) a linha do quadro com " | " sai um item por linha, como a conta dos passos
+  const pedacos = (x: string) => (/\s\|\s/.test(x) ? itensDaConta(x, 'mat') : [x]);
   if (!comConta) {
-    const esp = q.map((x) => x.linha);
+    const esp = q.flatMap((x) => pedacos(x.linha));
     return JSON.stringify(rt.linhas.map((l) => l.texto)) === JSON.stringify(esp) ? null : 'quadro sem conta: linhas diferentes';
   }
-  const qs = new Set(q.map((x) => x.linha));
+  const qs = new Set(q.flatMap((x) => [x.linha, ...pedacos(x.linha)]));
   if (rt.passos.length !== ps.length) return 'número de passos';
   for (let k = 0; k < ps.length; k++) {
     const ls = rt.passos[k].linhas.map((l) => rt.linhas[l]);
@@ -61,8 +63,9 @@ function confereLinhas(r: Resolucao, rt: Roteiro): string | null {
   }
   const textos = rt.linhas.map((l) => l.texto), notas = rt.linhas.map((l) => l.nota || '').join(' ');
   for (const x of q) {
-    if (textos.includes(x.linha)) continue;
-    if (!textos.some((t) => quadroNaConta(t, x.linha) || quadroEquivale(t, x.linha))) return `quadro "${x.linha}" sumiu`;
+    if (textos.includes(x.linha) || pedacos(x.linha).every((y) => textos.includes(y))) continue;
+    if (!pedacos(x.linha).every((y) => textos.some((t) => quadroNaConta(t, y) || quadroEquivale(t, y)))
+      && !textos.some((t) => quadroNaConta(t, x.linha) || quadroEquivale(t, x.linha))) return `quadro "${x.linha}" sumiu`;
     if (x.nota && !notas.includes(x.nota)) return `nota "${x.nota}" sumiu`;
   }
   return null;

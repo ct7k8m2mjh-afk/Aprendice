@@ -763,7 +763,8 @@ function cortes(s: string, re: RegExp): [number, number][] {
     const c = s[i];
     if (c === '"' || c === '“' || c === '”') aspas = !aspas;
     if (c === '(' || c === '[') prof++;
-    if (c === ')' || c === ']') prof--;
+    // (passada 6 Y5) parêntese que fecha sem ter aberto (rótulo "a)", "1)") não deixa o resto da linha "dentro" de um grupo
+    if (c === ')' || c === ']') prof = Math.max(0, prof - 1);
     prof_em.push(aspas ? 99 : prof);
   }
   for (let m = r.exec(s); m; m = r.exec(s)) if (!prof_em[m.index]) out.push([m.index, m.index + m[0].length]);
@@ -1141,17 +1142,36 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
     return linhas.length - 1;
   };
   const quadro = (r.quadro || []).filter((q) => q.linha);
+  // (revisão de 21/11/2026, passada 6 Y5) o separador " | " da linha do quadro também nunca é mostrado cru (na letra à mão
+  // ele se inclina e parece barra de divisão): como na conta dos passos (`itensDaConta`), cada item vai numa linha, no
+  // mesmo lugar da linha do quadro; a nota fica no último item (onde estava, no fim da linha) e o destaque no item que o tem
+  const pedacos = (linha: string): string[] => {
+    const cs = cortes(linha, /\s+\|\s+/);
+    if (!cs.length) return [linha];
+    const out: string[] = [];
+    let ult = 0;
+    for (const [a, b] of cs) { out.push(linha.slice(ult, a)); ult = b; }
+    out.push(linha.slice(ult));
+    return out.map((x) => x.trim()).filter(Boolean);
+  };
+  const itensDoQuadro = (q: { linha: string; nota?: string; destaque?: string }): ItemPasso[] => pedacos(q.linha).map((texto, i, arr) => ({
+    texto, notas: i === arr.length - 1 && q.nota ? [q.nota] : [], destaque: q.destaque && texto.includes(q.destaque) ? q.destaque : undefined, doQuadro: true,
+  }));
   const ps = r.passos || [];
   const itens: ItemPasso[][] = ps.map((p) => itensDaConta(p.conta || '', materia).map((texto) => ({ texto, notas: [] })));
   const comConta = itens.some((x) => x.length);
   const usaQuadro = !!quadro.length && !comConta;
   if (usaQuadro || !ps.length) {
     // só o quadro (sem conta nos passos): uma linha por passo, com faz/porque quando os números batem
+    // (os itens de uma linha do quadro com " | " ficam juntos, no passo dela)
     const mesmo = ps.length === quadro.length;
     quadro.forEach((q, k) => {
-      const l = nova(q.linha, { nota: q.nota || undefined });
-      if (q.destaque) linhas[l].marca = localiza(linhas[l], q.destaque);
-      passos.push({ faz: mesmo ? ps[k].faz || undefined : undefined, porque: mesmo ? ps[k].porque || undefined : undefined, linhas: [l] });
+      const ls = itensDoQuadro(q).map((it) => {
+        const l = nova(it.texto, { nota: it.notas[0] || undefined });
+        if (it.destaque) linhas[l].marca = localiza(linhas[l], it.destaque);
+        return l;
+      });
+      passos.push({ faz: mesmo ? ps[k].faz || undefined : undefined, porque: mesmo ? ps[k].porque || undefined : undefined, linhas: ls });
     });
   } else {
     // passos com a conta de cada um; o quadro acrescenta a nota (e o destaque) à linha que já tem aquele resultado, ou
@@ -1167,6 +1187,20 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
           for (let x = j === cj ? cx : 0; x < itens[j].length; x++) if (casaCom(itens[j][x].texto, q.linha)) { achou = { j, x }; break; }
         }
         if (achou) break;
+      }
+      // (passada 6 Y5) a linha com " | " cujos itens já estão todos na conta de um passo, na mesma ordem: casa com eles
+      // (a nota vai para o último), e não entra repetida
+      const pq = pedacos(q.linha);
+      let ultX = -1;
+      for (let j = cj; !achou && pq.length > 1 && j < itens.length; j++) {
+        let x = j === cj ? cx : 0, prim = -1;
+        for (const pd of pq) {
+          while (x < itens[j].length && !quadroNaConta(itens[j][x].texto, pd) && !quadroEquivale(itens[j][x].texto, pd)) x++;
+          if (x >= itens[j].length) { prim = -2; break; }
+          if (prim < 0) prim = x;
+          ultX = x++;
+        }
+        if (prim >= 0) achou = { j, x: ultX };
       }
       casa.push(achou);
       if (achou) { cj = achou.j; cx = achou.x; }
@@ -1200,12 +1234,12 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
         }
       }
       const alvo = melhor >= 0 && nota * 2 >= aq.length ? melhor : Math.max(Math.max(a, 0), Math.min(b, prop));
-      const item: ItemPasso = { texto: q.linha, notas: q.nota ? [q.nota] : [], destaque: q.destaque, doQuadro: true };
+      const novos = itensDoQuadro(q);
       const e = lugar(alvo);
       // depois da linha casada antes (mesmo passo); senão antes da casada depois (mesmo passo); senão no fim do passo
       const pos = alvo === a ? ax + 1 : alvo === b && bx !== Infinity ? bx : Infinity;
-      if (pos === Infinity) e.fim.push(item);
-      else { const v = e.antes.get(pos) || []; v.push(item); e.antes.set(pos, v); }
+      if (pos === Infinity) e.fim.push(...novos);
+      else { const v = e.antes.get(pos) || []; v.push(...novos); e.antes.set(pos, v); }
     });
     for (const [j, e] of extras) {
       const novo: ItemPasso[] = [];

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { partesFracao } from '../logica/fracao';
-import { junta as juntaToks, tokeniza } from '../logica/motorConta';
+import { itensDaConta, junta as juntaToks, montaRoteiro, tokeniza } from '../logica/motorConta';
 
 /* Revisão de 21/11/2026, 6ª passada, itens Y (questao-correcao-5.md) */
 const fr = (s: string, m?: string) => partesFracao(s, m).filter((p) => p.t === 'frac').map((p) => (p.t === 'frac' ? `${p.n}|${p.d}` : ''));
@@ -141,5 +141,53 @@ describe('Y4: frações de conta que estavam na linha', () => {
     expect(fr('Energia seria força × comprimento; a razão B/A é comprimento/tempo².', 'fis')).toEqual([]);
     expect(fr('enganos, / tu que', 'por')).toEqual([]);
     expect(fr('e/ou', 'ing')).toEqual([]);
+  });
+});
+
+describe('Y5: o separador " | " nunca aparece na conta à mão', () => {
+  const textos = (r: Parameters<typeof montaRoteiro>[0], m: string) => {
+    const rot = montaRoteiro(r, m);
+    return rot.passos.map((p) => p.linhas.map((l) => rot.linhas[l].texto));
+  };
+  it('mat P5943cbb6: a linha do quadro com " | " não repete a conta nem mostra o "|"', () => {
+    const r = {
+      passos: [
+        { faz: 'Calcule os arcos', conta: 'f: (1 + 9/2)π = 11π/2 | g: (1 − 9/2)π = −7π/2' },
+        { faz: 'Reduza à 1.ª volta', conta: '11π/2 − 4π = 3π/2 | −7π/2 + 4π = π/2' },
+        { faz: 'Ache os senos', conta: 'f(9) = sen 3π/2 = −1 | g(9) = sen π/2 = 1' },
+        { faz: 'Multiplique', conta: 'K = (−1) × 1 = −1 → alternativa B' },
+      ],
+      quadro: [
+        { linha: '(1 + 9/2)π = 11π/2 | (1 − 9/2)π = −7π/2', nota: 'arcos' },
+        { linha: '11π/2 − 4π = 3π/2 | −7π/2 + 4π = π/2', nota: 'tira voltas' },
+        { linha: 'sen 3π/2 = −1 | sen π/2 = 1', nota: 'senos' },
+        { linha: 'K = (−1) × 1 = −1', nota: 'produto' },
+      ],
+    };
+    const t = textos(r, 'mat');
+    expect(t).toEqual([
+      ['f: (1 + 9/2)π = 11π/2', 'g: (1 − 9/2)π = −7π/2'],
+      ['11π/2 − 4π = 3π/2', '−7π/2 + 4π = π/2'],
+      ['f(9) = sen 3π/2 = −1', 'g(9) = sen π/2 = 1'],
+      ['K = (−1) × 1 = −1 → alternativa B'],
+    ]);
+    const rot = montaRoteiro(r, 'mat');
+    expect(rot.linhas.filter((l) => l.nota).map((l) => l.nota)).toEqual(['arcos', 'tira voltas', 'senos', 'produto']);
+  });
+  it('linha do quadro com " | " que não está na conta entra no mesmo lugar, um item por linha, com a nota no último', () => {
+    const r = { passos: [{ faz: 'Calcule', conta: 'a = 2 + 3 = 5' }], quadro: [{ linha: 'b = 1 | c = 4', nota: 'dados' }] };
+    const rot = montaRoteiro(r, 'mat');
+    expect(rot.linhas.map((l) => l.texto).filter((x) => x !== 'a = 2 + 3 = 5')).toEqual(['b = 1', 'c = 4']);
+    expect(rot.linhas.find((l) => l.texto === 'c = 4')?.nota).toBe('dados');
+    expect(rot.linhas.some((l) => / \| /.test(l.texto))).toBe(false);
+  });
+  it('só o quadro: os itens da mesma linha ficam no mesmo passo', () => {
+    const r = { passos: [{ faz: 'Ache' }, { faz: 'Conclua' }], quadro: [{ linha: 'x = 2 | y = 3' }, { linha: 'x + y = 5' }] };
+    expect(textos(r, 'mat')).toEqual([['x = 2', 'y = 3'], ['x + y = 5']]);
+  });
+  it('rótulo com parêntese que fecha ("a)") não impede a separação', () => {
+    expect(itensDaConta('a) 3–2 | b) 2–1 | c) 3–4', 'mat')).toEqual(['a) 3–2', 'b) 2–1', 'c) 3–4']);
+    // a barra de "dado que" dentro do parêntese continua: P(A | B)
+    expect(itensDaConta('P(A | B) = 20/50 = 2/5', 'mat')).toEqual(['P(A | B) = 20/50 = 2/5']);
   });
 });
