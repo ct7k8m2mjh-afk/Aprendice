@@ -1010,7 +1010,7 @@ export const pedacoEhFormula = (s: string) => /[\dA-Za-z]/.test(s) && palavrasPr
  * Nada mais muda no texto: só o separador sai.
  */
 /** item que é relação ou conta completa (tem "=", seta, comparação ou "rótulo: valor"), e não só um valor solto */
-const ehRelacao = (s: string) => /[=≈≠→⇒<>≤≥]|:\s/.test(s);
+const ehRelacao = (s: string) => /[=≈≠→⇒<>≤≥∝↔⇔∈]|:\s/.test(s);
 export function itensDaConta(conta: string, materia?: string): string[] {
   const out: string[] = [];
   const lista = !materia || !['mat', 'fis'].includes(materia);
@@ -1228,8 +1228,9 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
         if (achou) break;
       }
       // (passada 6 Y5) a linha com " | " cujos itens já estão todos na conta de um passo, na mesma ordem: casa com eles
-      // (a nota vai para o último), e não entra repetida
-      const pq = pedacos(q.linha);
+      // (a nota vai para o último), e não entra repetida. (passada 8 A1) Os pedaços crus (`partesBarra`): a junção com
+      // "; " de `pedacos` é só para mostrar a linha que não casou (com ela, o casamento nunca era tentado)
+      const pq = partesBarra(q.linha);
       let ultX = -1;
       for (let j = cj; !achou && pq.length > 1 && j < itens.length; j++) {
         let x = j === cj ? cx : 0, prim = -1;

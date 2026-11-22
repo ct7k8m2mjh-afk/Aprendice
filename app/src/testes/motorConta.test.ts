@@ -52,7 +52,7 @@ function confereLinhas(r: Resolucao, rt: Roteiro): string | null {
   const pedacos = (x: string) => {
     if (!/\s\|\s/.test(x)) return [x];
     const it = itensDaConta(x, 'mat');
-    return it.every((y) => /[=≈≠→⇒<>≤≥]|:\s/.test(y)) ? it : [it.join('; ')];
+    return it.every((y) => /[=≈≠→⇒<>≤≥∝↔⇔∈]|:\s/.test(y)) ? it : [it.join('; ')];
   };
   if (!comConta) {
     const esp = q.flatMap((x) => pedacos(x.linha));
@@ -72,7 +72,10 @@ function confereLinhas(r: Resolucao, rt: Roteiro): string | null {
     // (passada 7 Z1) a lista de valores que já são resultados das contas não entra repetida: cada valor está numa linha
     const valores = itensDaConta(x.linha, 'mat').map((y, i) => (i ? y : y.replace(/^[^:]{1,30}:\s+/, '')).replace(/\s?(?:%|[A-Za-zµ]{1,5}(?:\/[A-Za-z]{1,5})?)$/, ''));
     const sao = /\s\|\s/.test(x.linha) && valores.every((v) => textos.some((t) => new RegExp(`(?<![\\d,])${v.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&')}(?![\\d]|,\\d)`).test(t)));
-    if (!sao && !pedacos(x.linha).every((y) => textos.some((t) => quadroNaConta(t, y) || quadroEquivale(t, y)))
+    // (passada 8 A1) a linha cujos pedaços crus já estão, cada um, numa linha da conta também não entra repetida
+    const crus = x.linha.split(/\s+\|\s+/);
+    const naConta = (ys: string[]) => ys.every((y) => textos.some((t) => quadroNaConta(t, y) || quadroEquivale(t, y)));
+    if (!sao && !naConta(pedacos(x.linha)) && !naConta(crus)
       && !textos.some((t) => quadroNaConta(t, x.linha) || quadroEquivale(t, x.linha))) return `quadro "${x.linha}" sumiu`;
     if (x.nota && !x.nota.split(/\s+\|\s+/).every((n) => notas.includes(n))) return `nota "${x.nota}" sumiu`;
   }
