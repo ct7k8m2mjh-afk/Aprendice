@@ -44,14 +44,22 @@ const TERMO = String.raw`(?:\d+(?:,\d+)?|√\d*|ln|log[₀-₉\d]*|sen|cos|tg|[A
 // sem ser unidade, sigla ou genótipo (validado em `produtoValido`)
 const FUNCAO = String.raw`(?:\d+(?:,\d+)?)?(?:sen|cos|tg|tan|log|ln)[²³]?\s?(?:\d+(?:,\d+)?°|\d*[a-zA-Zα-ωθ][₀-₉]*[²³]?|\d+(?:,\d+)?)(?![\d,A-Za-zÀ-ÿ])`;
 const PRODUTO = String.raw`(?:\d+(?:,\d+)?)?(?:[a-zA-Zα-ωπθΦ](?:_[A-Za-z0-9]+|[₀-₉]+)?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*){2,4}`;
-const RE = new RegExp(`(${FUNCAO}|${PRODUTO}|${TERMO})/(${FUNCAO}|${PRODUTO}|${TERMO})`, 'g');
+// (revisão de 21/11/2026, passada 3 N3) numerador entre colchetes: o valor posto no lugar da variável ("2·[1]/(4·[3])"),
+// o grupo ("[x(x + 1) − 2x(x − 1)]/((x − 1)(x + 1))", "4[(t + Δt)² − t²]/Δt"), a concentração ("[H⁺]²/C",
+// "[NH3]²/([N2] × [H2]³)", "[CO][H2]³/([CH4][H2O])") e a variação ("Δ[NH3]/Δt"). Coeficiente colado ou com "·" antes;
+// vários colchetes seguidos são um produto. Só no numerador: embaixo, "[A⁻]/[HA]" e "[C]²/[A]·[B]" não mostram onde o
+// denominador termina e ficam na linha, como antes
+const UM_COLCHETE = String.raw`\[[^\[\]\n]{1,30}\]${EXP_POS}`;
+const COLCHETE = String.raw`(?:\d+(?:,\d+)?·?|Δ)?${UM_COLCHETE}(?:·?${UM_COLCHETE})*`;
+const RE = new RegExp(`(${FUNCAO}|${PRODUTO}|${COLCHETE}|${TERMO})/(${FUNCAO}|${PRODUTO}|${TERMO})`, 'g');
+const RE_COLCHETE = new RegExp(`^(?:${COLCHETE})$`);
 const RE_TERMO = new RegExp(`^(?:${TERMO})$`);
 const RE_FUNCAO = new RegExp(`^(?:${FUNCAO})$`);
 // nomes de unidade com mais de uma letra ("kJ", "mL", "mmHg"): nunca são produto de variáveis
 const UNIDADES_NOME = new Set(('mmol kmol mol mA μA µA mV kV MW GW MJ GJ kN MPa GPa GHz MHz kHz hm ha mg kg μg µg mL dL mm cm dm km nm '
   + 'min kJ kcal cal atm kPa Pa kΩ kWh Wh kW Hz eV mmHg kgf ppm erg rad cd lm lx Gcal mAh Ah').split(' '));
 function produtoValido(x: string): boolean {
-  if (RE_TERMO.test(x) || RE_FUNCAO.test(x)) return true;
+  if (RE_TERMO.test(x) || RE_FUNCAO.test(x) || RE_COLCHETE.test(x)) return true;
   const letras = x.replace(/^\d+(?:,\d+)?/, '').replace(/_[A-Za-z0-9]+|[₀-₉²³⁴⁵⁶⁷⁸⁹¹⁰]/g, '');
   if (/^(?:sen|cos|tg|tan|log|ln)/.test(letras)) return false;
   if (/^[A-Z]{3,}$/.test(letras)) return false; // sigla ("VIP/VOP", "HIV/AIDS")
@@ -328,8 +336,12 @@ function barras(texto: string, materia?: string): ParteFracao[] {
       continue;
     }
     if (m.index > ult) out.push({ t: 'txt', v: texto.slice(ult, m.index) });
-    out.push({ t: 'frac', n: semParenteses(num), d: semParenteses(den), orig, sep: '/', pn: num !== semParenteses(num), pd: den !== semParenteses(den) });
-    ult = m.index + orig.length;
+    // fatorial no denominador ("[n(n − 1)(n − 2)]/5!", "40320/3!") vai junto dele: o "!" é do número de baixo, não da
+    // fração inteira (passada 3 N3)
+    const fat = texto.charAt(fimM) === '!' && /^(?:\d+|[a-zA-Z])$/.test(den) && !/^!=/.test(texto.slice(fimM)) ? '!' : '';
+    out.push({ t: 'frac', n: semParenteses(num), d: semParenteses(den) + fat, orig: orig + fat, sep: '/', pn: num !== semParenteses(num), pd: den !== semParenteses(den) });
+    ult = m.index + orig.length + fat.length;
+    if (fat) RE.lastIndex = ult;
   }
   if (ult < texto.length) out.push({ t: 'txt', v: texto.slice(ult) });
   return out;

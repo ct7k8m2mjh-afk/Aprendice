@@ -479,3 +479,34 @@ describe('revisão de 21/11, dados R1: barra que não é fração fica na linha'
       expect(partesFracao(s, 'por').map((p) => (p.t === 'txt' ? p.v : p.orig)).join('')).toBe(s);
   });
 });
+
+describe('numerador entre colchetes e fatorial embaixo (revisão de 21/11, passada 3 N3)', () => {
+  it('colchete em cima empilha: valor posto no lugar, grupo, concentração e variação', () => {
+    // mat Pba9549df, erradas C
+    expect(fr('com x = 1 a expressão vale 2·[1]/(4·[3]) = 2/12 = 1/6.')).toEqual(['2·[1]|4·[3]', '2|12', '1|6']);
+    expect(fr('[x(x + 1) − 2x(x − 1)]/((x − 1)(x + 1)) = (−x² + 3x)/((x − 1)(x + 1))')).toEqual(['[x(x + 1) − 2x(x − 1)]|(x − 1)(x + 1)', '−x² + 3x|(x − 1)(x + 1)']);
+    expect(fr('4[(t + Δt)² − t²]/Δt = 4(2t + Δt)')).toEqual(['4[(t + Δt)² − t²]|Δt']);
+    expect(fr('sen a cos b = [sen(a + b) + sen(a − b)]/2')).toEqual(['[sen(a + b) + sen(a − b)]|2']);
+    expect(fr('Ka ≈ [H+]²/C → [H+] = √(Ka · C)')).toEqual(['[H+]²|C']);
+    expect(fr('Q = [NH3]²/([N2] × [H2]³) fica menor')).toEqual(['[NH3]²|[N2] × [H2]³']);
+    expect(fr('o quociente [CO][H2]³/([CH4][H2O]) abaixo de K')).toEqual(['[CO][H2]³|[CH4][H2O]']);
+    expect(fr('taxa = −Δ[reagente]/Δt = Δ[produto]/Δt')).toEqual(['Δ[reagente]|Δt', 'Δ[produto]|Δt']);
+    // o grupo de dentro continua uma fração, desenhada dentro do numerador
+    expect(fr('[Vmáx × (T₁ + T₂)/2]/(T₁ + T₂)')).toEqual(['[Vmáx × (T₁ + T₂)/2]|T₁ + T₂']);
+  });
+  it('colchete embaixo não tem onde terminar: fica na linha, como antes', () => {
+    expect(fr('pH = pKa + log [A⁻]/[HA]')).toEqual([]);
+    expect(fr('Kc = [C]²/[A]·[B]')).toEqual([]);
+    expect(fr('Ka = [H⁺] × [CN⁻]/[HCN]')).toEqual([]);
+  });
+  it('fatorial embaixo fica com o número de baixo', () => {
+    expect(fr('C(n, 5) = [n(n − 1)(n − 2)(n − 3)(n − 4)]/5!')).toEqual(['[n(n − 1)(n − 2)(n − 3)(n − 4)]|5!']);
+    expect(fr('40320 → 40320/3! = 40320/6')).toEqual(['40320|3!', '40320|6']);
+    expect(fr('210/3! = 210/6 = 35')).toEqual(['210|3!', '210|6']);
+    expect(fr('x/2 != 3')).toEqual(['x|2']);
+  });
+  it('o texto não muda', () => {
+    for (const s of ['vale 2·[1]/(4·[3]) = 2/12', 'Δ[NH3]/Δt', '[n(n − 1)]/5! = 10', '40320/3! = 6720'])
+      expect(junta(s)).toBe(s);
+  });
+});
