@@ -23,7 +23,7 @@ export function Privacidade() {
         <h2 className="sec-tit">O que guardamos</h2>
         <ul className="miolo">
           {local
-            ? <li><b>Nome e e-mail</b> que você escreveu ao entrar, só neste aparelho. A senha não é guardada nem enviada.</li>
+            ? <li><b>E-mail</b> que você escreveu ao entrar (e o nome tirado dele, que você pode trocar no Perfil), só neste aparelho. A senha não é guardada nem enviada.</li>
             : <li><b>E-mail e senha</b>, para você entrar na sua conta. A senha é guardada cifrada pelo serviço de contas; ninguém do Aprendice consegue lê-la.</li>}
           <li><b>Perfil de estudo</b>: o nome que você escolheu, as provas-alvo, as datas das provas e a meta de questões por semana.</li>
           <li><b>Progresso</b>: as respostas que você deu (letra, acerto, tempo, certeza), a revisão espaçada, os flashcards, os simulados feitos e as preferências de estudo.</li>
