@@ -366,7 +366,7 @@ function nuclideo(texto: string, ini: number, num: string, den: string): string 
  *  denominador: "(7/2) ÷ (37/10)", "800π ÷ (π/3)"); 2ª: "a/b" nos trechos de texto que sobraram. */
 export function partesFracao(texto: string, materia?: string): ParteFracao[] {
   const fim: ParteFracao[] = [];
-  for (const p of divisoes(texto)) if (p.t === 'txt') fim.push(...barras(p.v, materia)); else fim.push(p);
+  for (const p of divisoes(texto, materia)) if (p.t === 'txt') fim.push(...barras(p.v, materia)); else fim.push(p);
   if (!fim.length) return [{ t: 'txt', v: texto }];
   // fração do Unicode ("½", "¼", "⅛") no mesmo texto de uma fração empilhada também empilha, para a mesma linha não
   // misturar as duas formas ("1 → ½ → ¼ → ⅛ → 1/16"); a letra com "½" é índice ("t½") e fica (revisão de 21/11/2026,
@@ -514,6 +514,10 @@ const temValor = (x: string) => /[0-9a-zA-Zα-ωπθμΔÀ-ÿ]/.test(x);
 const SOBE = /[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺!ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻ]*$/;
 // coeficiente, raiz ou nome de função colado antes de um grupo: "2(x − 8)", "√3(…)", "m(soluto)", "sen(…)"
 const COEF = /(?:\d+(?:,\d+)?|√\d*|[A-Za-zα-ωπ]{1,4})$/;
+// palavra (com o adjetivo que a completa) dos dois lados de " / " na fórmula por extenso (passada 5 V1)
+const NOME_PAL = String.raw`[a-zà-ÿ]{3,}(?: (?:${ADJ}))?`;
+const RE_PAL_ESQ = new RegExp(`(?<=[=≈] )${NOME_PAL}$`, 'u');
+const RE_PAL_DIR = new RegExp(`^${NOME_PAL}(?=\\s*$|\\s*[,;.)]|\\s+[=≈+−×·])`, 'u');
 const PAR: Record<string, string> = { ')': '(', ']': '[' };
 
 /** operando que termina em `fim` (grupo entre parênteses, colchetes ou barras de módulo, com expoente; ou simples) */
@@ -589,7 +593,7 @@ function dentroDeBarra(s: string, idx: number): boolean {
   }
   return false;
 }
-function divisoes(s: string): ParteFracao[] {
+function divisoes(s: string, materia?: string): ParteFracao[] {
   if (!/÷| \/ /.test(s)) return [{ t: 'txt', v: s }];
   // o texto inteiro é a razão entre dois nomes ("alcance ÷ tempo de voo", nota do quadro): cada lado inteiro, mesmo
   // com "de" no meio (revisão de 21/11, dados N1)
@@ -619,6 +623,13 @@ function divisoes(s: string): ParteFracao[] {
       const fe = /(?<![A-Za-zÀ-ÿ0-9])[A-Za-z]\([^()\n]{1,30}\)$/.exec(s.slice(0, o.ini));
       const fd = /^[A-Za-z]\([^()\n]{1,30}\)(?![A-Za-zÀ-ÿ0-9(])/.exec(s.slice(o.fim));
       if (fe && fd) { a = fe.index; b = o.fim + fd[0].length; }
+      // (revisão de 21/11/2026, passada 5 V1) em Matemática, Física e Química, palavra sobre palavra logo depois de "="
+      // é a fórmula por extenso ("P(A) = favoráveis / possíveis", "sen = cateto oposto / hipotenusa"); verso, "e/ou" e
+      // unidade não têm "=" antes e ficam na linha
+      if (materia && /^(?:mat|fis|qui)$/.test(materia)) {
+        const pe = RE_PAL_ESQ.exec(s.slice(0, o.ini)), pd = RE_PAL_DIR.exec(s.slice(o.fim));
+        if (pe && pd) { a = pe.index; b = o.fim + pd[0].length; }
+      }
     }
     // divisão encadeada (a ÷ b ÷ c = (a ÷ b) ÷ c): o numerador leva a divisão de antes, que empilha dentro dele
     for (let m = a == null ? null : /\s*÷\s*$/.exec(s.slice(0, a)); a != null && m; m = /\s*÷\s*$/.exec(s.slice(0, a))) {

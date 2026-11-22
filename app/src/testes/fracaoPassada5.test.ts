@@ -52,3 +52,20 @@ describe('U3: "R\'\'" inteiro no denominador', () => {
     expect(fr("x = 3/R'''")).toEqual([]);
   });
 });
+
+describe('V1: "P(A) = favoráveis / possíveis" empilha', () => {
+  it('mat M13 e as outras fórmulas por extenso depois de "="', () => {
+    expect(fr('P(A) = favoráveis / possíveis', 'mat')).toEqual(['favoráveis|possíveis']);
+    expect(fr('sen = cateto oposto / hipotenusa', 'mat')).toEqual(['cateto oposto|hipotenusa']);
+    expect(fr('taxa = casos / população × base', 'mat')).toEqual(['casos|população']);
+    expect(fr('grau de ionização = ionizadas / total', 'qui')).toEqual(['ionizadas|total']);
+    expect(junta('P(A) = favoráveis / possíveis', 'mat')).toBe('P(A) = favoráveis / possíveis');
+  });
+  it('sem "=" antes, em matéria de texto e com frase depois continua na linha', () => {
+    expect(fr('favoráveis / possíveis', 'mat')).toEqual([]);
+    expect(fr('rima = amor / dor', 'por')).toEqual([]);
+    expect(fr('P(A) = favoráveis / possíveis', 'his')).toEqual([]);
+    expect(fr('x = casos / mortes que ocorreram', 'mat')).toEqual([]);
+    expect(fr('use e / ou conforme o caso', 'mat')).toEqual([]);
+  });
+});
