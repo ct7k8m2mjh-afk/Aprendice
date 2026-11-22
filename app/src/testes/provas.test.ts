@@ -49,6 +49,17 @@ describe.skipIf(!temProvas)('provas completas (recorte oficial)', () => {
     }
   });
 
+  it('nota da prova coerente com o gabarito em uso (revisão de 21/11/2026, dados R2)', () => {
+    for (const p of provas) {
+      const qs = p.questoes as { gabFonte?: string; gab_fonte?: string }[];
+      const usaAprendice = qs.some((q) => q.gab_fonte === 'aprendice' || q.gabFonte === 'aprendice');
+      // não diz ao mesmo tempo que o definitivo foi publicado e que não foi
+      expect(/foi publicado|Gabarito oficial definitivo:/.test(p.nota) && /não publicado/.test(p.nota), p.id).toBe(false);
+      // gabarito do Aprendice na nota só quando a prova o usa
+      if (!usaAprendice) expect(p.nota, p.id).not.toMatch(/gabarito do Aprendice|Só o gabarito PRELIMINAR/);
+    }
+  });
+
   it('nenhum texto entrega a resposta (caderno comentado ou marcado)', () => {
     for (const p of provas) for (const q of p.questoes) {
       expect(q.texto).not.toMatch(/Alternativa correta|►|Gabarito:/);

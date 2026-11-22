@@ -547,10 +547,47 @@ def _divide_fora_de_parenteses(s, sep):
     return partes + [atual]
 
 
-def nota_aluno(nota):
+# Frases do registro sobre o gabarito que dependem do que o banco usa (revisão de 21/11/2026, dados R2): o registro
+# conta a história da coleta ("no pacote, só o preliminar"; "definitivo não publicado ou não localizado"), e a nota
+# para o aluno diz só o que vale hoje.
+NOTA_SO_PRELIMINAR = re.compile(r'^No pacote, só o gabarito PRELIMINAR')
+NOTA_SEM_DEFINITIVO = re.compile(r'^Gabarito definitivo/oficial não publicado ou não localizado; a questão entra com o '
+                                 r'gabarito do Aprendice \(([^()]*)\) e fica fora do ar até lá\.?$')
+NOTA_DEFINITIVO_PUBLICADO = re.compile(r'(?:definitivo|oficial após recursos|oficial pós-recursos)[^.]*foi publicado|'
+                                       r'Gabarito oficial definitivo:', re.I)
+
+
+def _frases_nota(nota):
+    return re.split(r'(?<=[.!?])\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ0-9"(])', (nota or '').strip())
+
+
+def _nota_conforme_gabarito(nota, prova):
+    """Ajusta ao gabarito em uso as frases do registro que se contradizem quando o definitivo foi publicado:
+    - o banco usa o oficial em todas (nenhuma com gabarito do Aprendice): saem "só o preliminar" e "definitivo não
+      publicado... vale o gabarito do Aprendice" (ufrr-2024);
+    - o definitivo foi publicado, mas ainda não foi conferido e vale o gabarito do Aprendice: a nota diz isso, em vez
+      de "não publicado ou não localizado" (ime-2024, ime-2025, ufrr-2025, ufrr-2026)."""
+    if not prova or not NOTA_DEFINITIVO_PUBLICADO.search(nota or ''):
+        return nota
+    usa_aprendice = any(q.get('gab_fonte') == 'aprendice' for q in prova.get('questoes', []))
+    out = []
+    for f in _frases_nota(nota):
+        if NOTA_SO_PRELIMINAR.search(f):
+            continue
+        m = NOTA_SEM_DEFINITIVO.search(f)
+        if m:
+            if usa_aprendice:
+                out.append('O gabarito definitivo foi publicado pela banca, mas ainda não foi conferido pelo Aprendice; '
+                           f'até lá, vale o gabarito do Aprendice ({m.group(1)}).')
+            continue
+        out.append(f)
+    return ' '.join(out)
+
+
+def nota_aluno(nota, prova=None):
     """Texto da nota para o aluno: frase a frase, cada trecho com detalhe interno sai (o trecho útil antes de ', ' ou
-    ': ' fica); frase que fica vazia sai inteira."""
-    frases = re.split(r'(?<=[.!?])\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ0-9"(])', (nota or '').strip())
+    ': ' fica); frase que fica vazia sai inteira. Com a prova, as frases do gabarito seguem o que o banco usa."""
+    frases = _frases_nota(_nota_conforme_gabarito(nota, prova))
     out = []
     for f in frases:
         for rx, novo in NOTA_REESCRITA:
@@ -581,7 +618,8 @@ def prova_publicada(p):
     """A prova como vai ao site: a anulada pelo Aprendice sai, como a anulada pela banca (que o recorte já tira), e o
     número dela fica em fora.anuladas_aprendice; a indisponível (dono, 19/11/2026) também sai, com o número em
     fora.indisponiveis. A nota vai só com o texto para o aluno (nota_aluno). A fonte não muda."""
-    p = dict(p, nota=nota_aluno(p.get('nota')))
+    p = dict(p, nota=nota_aluno(p.get('nota'), p))
+    p.pop('nota_revisoes', None)  # registro das correções da nota, só para o dono
     fora_ap = [q['n'] for q in p['questoes'] if q.get('anuladaAprendice')]
     fora_ind = [q['n'] for q in p['questoes'] if q.get('indisponivelDono') and not q.get('anuladaAprendice')]
     if not fora_ap and not fora_ind:
