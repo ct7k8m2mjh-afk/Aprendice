@@ -61,3 +61,29 @@ describe('W2: nome de função sem argumento, "tg = sen/cos", empilha em Mat, F�
   });
 });
 
+describe('W3: notação científica inteira dos dois lados da barra', () => {
+  it('fís Pca19482b, passo 2: "6,3 × 10⁴/1,0 × 10⁵"', () => {
+    const s = '= (6,3 × 10⁴/1,0 × 10⁵) × (300/270) = 0,63 × 300/270';
+    expect(fr(s, 'fis')).toEqual(['6,3 × 10⁴|1,0 × 10⁵', '300|270', '300|270']);
+    expect(fr(s)).toEqual(['6,3 × 10⁴|1,0 × 10⁵', '300|270', '300|270']);
+    expect(junta(s)).toBe(s);
+    const f = tokeniza(s).find((t) => t.k === 'frac');
+    expect(f && [f.n, f.d]).toEqual(['6,3 × 10⁴', '1,0 × 10⁵']);
+    expect(juntaToks(tokeniza(s))).toBe(s);
+  });
+  it('outros casos iguais, com "/", "÷", grupo e unidade', () => {
+    expect(fr('x = 7,2 × 10¹⁵/9 × 10¹⁴ = 8')).toEqual(['7,2 × 10¹⁵|9 × 10¹⁴']);
+    expect(fr('= 7,9 × 10¹⁵ ÷ 2,0 × 10¹² = 3950')).toEqual(['7,9 × 10¹⁵|2,0 × 10¹²']);
+    expect(fr('Volta: 4,8 × 10^24 ÷ 6 × 10^23 = 8 mol')).toEqual(['4,8 × 10^24|6 × 10^23']);
+    expect(fr('x = (80 × 10⁻⁶)/137,3 × 10⁻² = 1')).toEqual(['80 × 10⁻⁶|137,3 × 10⁻²']);
+    expect(fr('= (6,7 × 10⁴)² ÷ 6,37 × 10⁶ ≈ 700')).toEqual(['(6,7 × 10⁴)²|6,37 × 10⁶']);
+    expect(fr('converter a divisão: 0,10 ÷ 2,5 × 10⁻² = 4,0.')).toEqual(['0,10|2,5 × 10⁻²']);
+    expect(fr('θ ≈ 1,22 × 1,3 × 10⁻⁶ km/1,27 × 10⁴ km ≈ 1,25')).toEqual(['1,3 × 10⁻⁶ km|1,27 × 10⁴ km']);
+    expect(fr('8,0 × 10⁻¹⁰ C/1,6 × 10⁻¹⁹ C = 5,0')).toEqual(['8,0 × 10⁻¹⁰ C|1,6 × 10⁻¹⁹ C']);
+  });
+  it('com "/" colado e só um lado em notação científica, nada muda', () => {
+    expect(fr('E = 100/3 × 10⁶ J')).toEqual(['100|3']);
+    expect(fr('x = 7,2 × 10¹⁵/9 = 8')).toEqual(['10¹⁵|9']);
+    expect(fr('= 27√3/2 × 10√3 = 405')).toEqual(['27√3|2']);
+  });
+});

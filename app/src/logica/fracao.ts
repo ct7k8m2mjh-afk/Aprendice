@@ -372,7 +372,10 @@ export function partesFracao(texto: string, materia?: string): ParteFracao[] {
   const fim: ParteFracao[] = [];
   for (const p of divisoes(texto, materia)) {
     if (p.t !== 'txt') { fim.push(p); continue; }
-    for (const q of razoesDeNomes(p.v, materia)) if (q.t === 'txt') fim.push(...barras(q.v, materia)); else fim.push(q);
+    for (const c of cientificasComUnidade(p.v)) {
+      if (c.t !== 'txt') { fim.push(c); continue; }
+      for (const q of razoesDeNomes(c.v, materia)) if (q.t === 'txt') fim.push(...barras(q.v, materia)); else fim.push(q);
+    }
   }
   if (!fim.length) return [{ t: 'txt', v: texto }];
   // fração do Unicode ("½", "¼", "⅛") no mesmo texto de uma fração empilhada também empilha, para a mesma linha não
@@ -456,6 +459,46 @@ function numeradorLongo(texto: string, ult: number, ini: number, num: string, de
   return null;
 }
 
+/*
+ * (revisão de 21/11/2026, passada 5 W3) Número em notação científica dos dois lados da barra ("6,3 × 10⁴/1,0 × 10⁵",
+ * "7,9 × 10¹⁵ ÷ 2,0 × 10¹²"): cada número é lido inteiro, mantissa e potência de 10, e não "6,3 × (10⁴ sobre 1,0) × 10⁵".
+ * Em cima, a potência de 10 puxa a mantissa escrita antes ("6,3 × ") ou é um grupo com a potência dentro ("(80 × 10⁻⁶)");
+ * embaixo, o número puxa a potência escrita depois (" × 10⁵"). Com "/" colado, só quando os dois lados são notação
+ * científica ("100/3 × 10⁶" é (100 ÷ 3) × 10⁶ e fica como está); com "÷", o número de baixo com a potência depois é
+ * sempre um número só ("0,10 ÷ 2,5 × 10⁻²", "0,6 ÷ 3,448 × 10⁻³ = 174").
+ * Devolve quantos caracteres o numerador cresce para trás e o denominador para a frente, ou null.
+ */
+const POT10 = String.raw`10(?:[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+|\^\(?[−\-]?\d+\)?)`;
+const RE_POT10 = new RegExp(`^${POT10}$`);
+const RE_MANTISSA = /(?<![\d,.A-Za-zÀ-ÿ])\d+(?:,\d+)?\s?×\s?$/;
+const RE_POT10_DEPOIS = new RegExp(String.raw`^\s?×\s?${POT10}(?![\d,⁰¹²³⁴⁵⁶⁷⁸⁹^])`);
+const RE_GRUPO_CIENT = new RegExp(String.raw`^\(\s*\d+(?:,\d+)?\s?×\s?${POT10}\s*\)$`);
+function cientifica(antes: string, num: string, den: string, depois: string, divisao: boolean): { antes: number; depois: number } | null {
+  const mant = RE_POT10.test(num) ? RE_MANTISSA.exec(antes) : null;
+  const numCient = !!mant || RE_GRUPO_CIENT.test(num);
+  const pot = /^\d+(?:,\d+)?$/.test(den) ? RE_POT10_DEPOIS.exec(depois) : null;
+  if (!pot || !(numCient || divisao)) return null;
+  return { antes: mant ? mant[0].length : 0, depois: pot[0].length };
+}
+
+/** a mesma notação científica com a mesma unidade dos dois lados ("1,3 × 10⁻⁶ km/1,27 × 10⁴ km", "8,0 × 10⁻¹⁰ C/1,6 ×
+ *  10⁻¹⁹ C"): cada lado inteiro, com a unidade, empilha (passada 5 W3) */
+const RE_CIENT_UNID = new RegExp(String.raw`(?<![\d,.A-Za-zÀ-ÿ])(\d+(?:,\d+)?\s?×\s?${POT10}\s([A-Za-zμΩ]{1,4}))\/(\d+(?:,\d+)?\s?×\s?${POT10}\s([A-Za-zμΩ]{1,4}))(?![A-Za-zÀ-ÿ\d/²³])`, 'gu');
+function cientificasComUnidade(texto: string): ParteFracao[] {
+  if (!texto.includes('/') || !texto.includes('×')) return [{ t: 'txt', v: texto }];
+  const out: ParteFracao[] = [];
+  let ult = 0;
+  for (const m of texto.matchAll(RE_CIENT_UNID)) {
+    if (m[2] !== m[4]) continue;
+    if (m.index! > ult) out.push({ t: 'txt', v: texto.slice(ult, m.index) });
+    out.push({ t: 'frac', n: m[1], d: m[3], orig: m[0], sep: '/' });
+    ult = m.index! + m[0].length;
+  }
+  if (!out.length) return [{ t: 'txt', v: texto }];
+  if (ult < texto.length) out.push({ t: 'txt', v: texto.slice(ult) });
+  return out;
+}
+
 /** frações escritas com "/" colado ("2/5", "27x/60", "(a + b)/2") e nuclídeos ("207/82 Pb") */
 function barras(texto: string, materia?: string): ParteFracao[] {
   const out: ParteFracao[] = [];
@@ -478,6 +521,15 @@ function barras(texto: string, materia?: string): ParteFracao[] {
       if (ini > ult) out.push({ t: 'txt', v: texto.slice(ult, ini) });
       out.push({ t: 'frac', n: orig, d: cad[1], orig: orig + cad[0], sep: '/' });
       ult = fimM + cad[0].length;
+      RE.lastIndex = ult;
+      continue;
+    }
+    const sci = cientifica(texto.slice(ult, ini), num, den, texto.slice(fimM), false);
+    if (sci) {
+      const a = ini - sci.antes, b = fimM + sci.depois, n = texto.slice(a, barra);
+      if (a > ult) out.push({ t: 'txt', v: texto.slice(ult, a) });
+      out.push({ t: 'frac', n: semParenteses(n), d: texto.slice(barra + 1, b), orig: texto.slice(a, b), sep: '/', pn: n !== semParenteses(n) });
+      ult = b;
       RE.lastIndex = ult;
       continue;
     }
@@ -688,6 +740,11 @@ function divisoes(s: string, materia?: string): ParteFracao[] {
     if (!amplo && a != null && /^\(.*[−+×·\-].*\)$/.test(s.slice(a, o.ini)) && (b == null || /^[A-Za-zÀ-ÿ]/.test(s.slice(b)))) {
       const w = /^[A-Za-zÀ-ÿα-ω]{2,}(?![A-Za-zÀ-ÿ0-9])/.exec(s.slice(o.fim));
       if (w) b = o.fim + w[0].length;
+    }
+    // notação científica dos dois lados, ou embaixo de "÷" (passada 5 W3)
+    if (a != null && b != null) {
+      const sci = cientifica(s.slice(0, a), s.slice(a, o.ini), s.slice(o.fim, b), s.slice(b), amplo);
+      if (sci) { a -= sci.antes; b += sci.depois; }
     }
     if (a == null || b == null || !livre(a, b)) continue;
     // operando que começa depois de um índice ou expoente é pedaço de um produto ("α²C ÷ (1 − α)", "R₁R₂ ÷ (R₂ − R₁)",
