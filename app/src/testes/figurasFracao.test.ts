@@ -76,4 +76,27 @@ describe('figuras da teoria: fração empilhada no texto desenhado (CLAUDE.md, r
     expect(FRACAO_EM_LINHA.test(semExcecoes('Trovadorismo 1189/1198 → 1418'))).toBe(false);
     expect(FRACAO_EM_LINHA.test(semExcecoes('v = 20 m/s · 72 km/h · 180,16 g/mol · 0,1 mol/L'))).toBe(false);
   });
+
+  // matérias-2 R2: "64 sobre ½" da PG; a fração de baixo não pode encostar na barra principal
+  it.skipIf(!existsSync(resolve(CONTEUDO, 'mat', 'figuras.json')))('fração dupla da PG: nada encosta na barra principal, e ela é mais larga que a interna', () => {
+    const figuras = JSON.parse(readFileSync(resolve(CONTEUDO, 'mat', 'figuras.json'), 'utf8')) as Record<string, { t: string; u: string }[]>;
+    const f = figuras.M07.find((x) => x.t.startsWith('Progressão geométrica decrescente'))!;
+    const svg = Buffer.from(f.u.split(',', 2)[1], 'base64').toString('utf8');
+    const grupo = [...svg.matchAll(/<g>([\s\S]*?)<\/g>/g)].map((g) => g[1]).find((g) => />64<\/text>/.test(g) && /linecap="butt"/.test(g))!;
+    const num = (s: string, a: string) => parseFloat(new RegExp(`${a}="([-\\d.]+)"`).exec(s)![1]);
+    // só o traço de verdade (o halo branco tem ponta redonda)
+    const barras = [...grupo.matchAll(/<line [^>]*linecap="butt"[^>]*>/g)].map((m) => ({ x1: num(m[0], 'x1'), x2: num(m[0], 'x2'), y: num(m[0], 'y1'), esp: num(m[0], 'stroke-width') }));
+    const textos = [...grupo.matchAll(/<text ([^>]*)>([^<]*)<\/text>/g)].filter((m) => !/stroke=/.test(m[1])).map((m) => ({ s: m[2], x: num(m[1], 'x'), y: num(m[1], 'y'), tam: num(m[1], 'font-size') }));
+    const i64 = textos.findIndex((t) => t.s === '64');
+    const sob = textos.slice(i64, i64 + 3).map((t) => t.s);
+    expect(sob).toEqual(['64', '1', '2']);
+    const x = textos[i64].x;
+    const sobre = barras.filter((b) => b.x1 < x && x < b.x2).sort((a, b) => (b.x2 - b.x1) - (a.x2 - a.x1));
+    const [principal, interna] = sobre;
+    expect(principal.x2 - principal.x1).toBeGreaterThan(interna.x2 - interna.x1 + 8);
+    const um = textos[i64 + 1];
+    // topo do "1" (altura dos algarismos ~0,74 do corpo) abaixo da barra principal, com folga
+    expect(um.y - 0.74 * um.tam).toBeGreaterThan(principal.y + principal.esp / 2 + 1);
+    expect(interna.y).toBeGreaterThan(principal.y);
+  });
 });

@@ -176,7 +176,19 @@ function diagrama(nos, fonte, tam, base, larg, dentro) {
       const baseD = eixo + 0.11 * tam + 0.74 * p;
       const rn = diagrama(n.n, fonte, p, baseN, larg, true);
       const rd = diagrama(n.d, fonte, p, baseD, larg, true);
-      const sobra = 0.10 * tam;
+      // fração dentro do numerador ou do denominador (revisão de 21/11/2026, matérias-2 R2: "64 sobre ½"): a parte
+      // interna é mais alta que uma linha só; afasta-a da barra principal pela altura real, para nada encostar na barra
+      const aninhada = n.n.some((x) => x.t === 'frac') || n.d.some((x) => x.t === 'frac');
+      if (aninhada) {
+        const folga = 0.16 * tam;
+        const topoD = Math.min(...rd.itens.map((it) => (it.tipo === 't' ? it.y - 0.74 * it.tam : it.y - it.esp / 2)));
+        const fundoN = Math.max(...rn.itens.map((it) => (it.tipo === 't' ? it.y + (DESCE.test(it.s) ? 0.21 : 0.03) * it.tam : it.y + it.esp / 2)));
+        const descer = Math.max(0, eixo + folga - topoD), subir = Math.max(0, fundoN - (eixo - folga));
+        for (const it of rd.itens) it.y += descer;
+        for (const it of rn.itens) it.y -= subir;
+      }
+      // barra principal bem mais larga que a da fração interna, para se ver qual divide qual
+      const sobra = (aninhada ? 0.24 : 0.10) * tam;
       const w = Math.max(rn.w, rd.w) + 2 * sobra;
       for (const it of rn.itens) itens.push(desloca(it, x + (w - rn.w) / 2));
       for (const it of rd.itens) itens.push(desloca(it, x + (w - rd.w) / 2));
