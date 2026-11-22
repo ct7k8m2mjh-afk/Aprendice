@@ -11,5 +11,6 @@ casca, materias, questao-correcao, dados (relatórios nesta pasta).
 - 4ª passada: questao-correcao-3.md (6 ERROS S1–S6, 1 dono) e materias-3.md (5 ERROS T1, T2, T4–T6, 1 dono) — todos corrigidos (um commit cada); 1017 testes verdes.
 - 5ª passada: questao-correcao-4.md (U1–U3) e materias-4.md (V1–V2) — corrigidos; 1028 testes verdes. O corretor achou
   3 erros antigos de fração (W1 n!/(n−p)!, W2 sen/cos, W3 notação científica em fís Pca19482b) — corrigidos (1038 testes). Falta X1: fórmula por extenso ("densidade = massa/volume") ainda na linha — corrigido (f8a0507d; 1044 testes).
-- Continuar de: 6ª passada em andamento (questao-correcao-5.md, itens U, V, W, X1); corrigir os ERROS dela, rebuild,
-  nova passada só neles, até zero; depois PLANO final com FIM.
+- 6ª passada (questao-correcao-5.md): U, V, W, X1 resolvidos; 5 ERROS novos Y1–Y5 (Y1 é regressão do W3 com valor
+  errado: "× 10ⁿ" depois da fração caía no denominador) — em correção.
+- Continuar de: depois do corretor Y, converte + build, tsc e vitest, 7ª passada só em Y1–Y5, até zero; PLANO final com FIM.
