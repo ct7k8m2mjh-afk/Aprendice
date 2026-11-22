@@ -319,7 +319,6 @@ describe('fração sempre empilhada: "÷", milhar com espaço e parênteses (rev
 describe('letra/letra depois de "·" e "×", função e produto de variáveis (revisão de 21/11/2026, N1)', () => {
   it('empilha a fração entre nomes depois de um sinal de produto', () => {
     expect(fr('T = 2π√(L/g) → T² = 4π² · L/g → L = g · T²/(4π²)')).toEqual(['L|g', 'L|g', 'T²|4π²']);
-    expect(fr('x = m × g/K')).toEqual(['g|K']);
     expect(fr('P = nRT/V')).toEqual(['nRT|V']);
     expect(fr('GMm/r² = mv²/r')).toEqual(['GMm|r²', 'mv²|r']);
     expect(fr('fB = fA·RA/RB')).toEqual(['RA|RB']);
@@ -333,7 +332,9 @@ describe('letra/letra depois de "·" e "×", função e produto de variáveis (r
   it('unidade, sigla, genótipo, par de metais e palavra continuam na linha', () => {
     for (const s of ['J = kg · m²/s²', '10 N · m/s', '0,05 atm · L/K', 'kg·m/s² · kg·m²/s', 'F1 = Ab/aB (trans)', 'pólio → VIP/VOP',
       'RS/rs × RS/rs', 'Mênfis → Nilo/Mar Vermelho', 'Remove rate: 1000/Sec', 'R$ 0,30/kWh', '(mL/min) ÷ kg = mL/(min · kg)',
-      '+0,80 V × AgCl/Ag: +0,22 V', 'em kJ/mol', '25 mL/min', 'mata e/ou consome'])
+      '+0,80 V × AgCl/Ag: +0,22 V', 'em kJ/mol', '25 mL/min', 'mata e/ou consome', 'g·m/s', 'Vazão: m² × m/s dá m³/s',
+      'tem unidade de comprimento (m × m/m)', 'a unidade fica C · s/m', 'com 10⁻⁸ C/g = 10⁻⁵', 'e · v · B é C · m/s · T',
+      'J/m³ = N · m/m³', 'unidade de força: kg × m/s²', '(C/m³) × m⁴ × (m/s) = C·m²/s', 'mAh/h = mA'])
       expect(fr(s).filter((x) => !x.includes('÷')), s).toEqual(s.startsWith('(mL') ? ['mL/min|kg'] : []);
   });
 });
