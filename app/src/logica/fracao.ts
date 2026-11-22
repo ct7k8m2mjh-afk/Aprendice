@@ -815,3 +815,15 @@ export function formulaEhTexto(s: string, materia?: string): boolean {
   if (t.split(';').every((x) => /[=≠≈]/.test(x) && maiorFrase(x.replace(/\([^()]*\)/g, ' ')) < 7)) return false;
   return contaEhTexto(s, materia);
 }
+
+/**
+ * A letra da lista inteira do caderno (revisão de 21/11/2026, questão-correção 2 R9; DESIGN.md: a mesma peça com uma letra
+ * só): cada linha vota com `formulaEhTexto` e a lista toda sai na letra da maioria; no empate, na letra da fórmula (o caderno
+ * é escrito à mão). Matérias de texto: sempre texto.
+ */
+export function cadernoEhTexto(linhas: string[], materia?: string): boolean {
+  if (materia && SEMPRE_TEXTO.has(materia)) return true;
+  if (!linhas.length) return false;
+  const texto = linhas.filter((x) => formulaEhTexto(x, materia)).length;
+  return texto > linhas.length - texto;
+}

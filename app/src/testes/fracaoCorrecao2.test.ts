@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { partesFracao } from '../logica/fracao';
+import { cadernoEhTexto, formulaEhTexto, partesFracao } from '../logica/fracao';
 
 /* Revisão de 21/11/2026, questão-correção 2 (docs/revisao-site/2026-11-21/questao-correcao-2.md) */
 const fr = (s: string, m?: string) => partesFracao(s, m).filter((p) => p.t === 'frac').map((p) => (p.t === 'frac' ? `${p.n}|${p.d}` : ''));
@@ -106,5 +106,17 @@ describe('R7: par de unidades igual ao nome de uma unidade fica na linha', () =>
   it('a conta com letras continua empilhada', () => {
     expect(fr('V = E/B', 'fis')).toEqual(['E|B']);
     expect(fr('d = m/V', 'qui')).toEqual(['m|V']);
+  });
+});
+
+describe('R9: a letra do caderno vem da lista inteira', () => {
+  const q03 = ['Arrhenius: ácido → H⁺ (H₃O⁺); base → OH⁻', 'Brønsted: ácido doa H⁺; base recebe H⁺', 'Lewis: ácido recebe par de e⁻; base doa', 'par conjugado: HA / A⁻ (diferem de um H⁺)'];
+  it('tema qui Q03: as quatro linhas na mesma letra (a da fórmula)', () => {
+    expect(formulaEhTexto(q03[2], 'qui')).toBe(true); // sozinha, a linha do Lewis seria texto
+    expect(cadernoEhTexto(q03, 'qui')).toBe(false);
+  });
+  it('maioria de texto: a lista toda em texto; matéria de texto: sempre texto', () => {
+    expect(cadernoEhTexto(['cada gestação é independente das anteriores', 'acima da T ótima: desnatura (em geral, irreversível)', 'T baixa: só desacelera; volta ao aquecer', 'Aa × Aa = 3 : 1'], 'bio')).toBe(true);
+    expect(cadernoEhTexto(['x = 2'], 'his')).toBe(true);
   });
 });

@@ -11,7 +11,7 @@ import { Icone } from '../ui/Icone';
 import { IcTema } from '../ui/IconeTema';
 import { CabMateria, subMateria, FaixaTemas } from './Materia';
 import { comFracoes, comNegrito } from '../ui/Fracao';
-import { contaEhTexto, formulaEhTexto, materiaDoCodigo } from '../logica/fracao';
+import { cadernoEhTexto, contaEhTexto, materiaDoCodigo } from '../logica/fracao';
 import type { CartaoTeoria, Figura, MateriaId, Modulo } from '../dados/tipos';
 import { Formula, TextoMat, ehLatex } from '../ui/Formula';
 import { useIndiceRevisao, useResumos } from '../dados/revisao';
@@ -34,7 +34,8 @@ export function CartaoTeoriaView({ c, figs }: { c: CartaoTeoria; figs?: Figura[]
         <ul className="caderno">{c.caderno.map((x, i) => ehLatex(x)
           // revisão (docs/revisao): texto na letra da interface com as fórmulas entre $…$ à mão
           ? <li key={i} className="texto com-fm"><TextoMat t={x} prosa={contaEhTexto('1 + 1', materiaDoCodigo(c.sub))} /></li>
-          : <li key={i} className={formulaEhTexto(x, materiaDoCodigo(c.sub)) ? 'texto' : undefined}>{comFracoes(x)}</li>)}</ul>
+          // a letra vem da lista inteira, não de cada linha (questão-correção 2 R9)
+          : <li key={i} className={cadernoEhTexto(c.caderno!.filter((y) => !ehLatex(y)), materiaDoCodigo(c.sub)) ? 'texto' : undefined}>{comFracoes(x)}</li>)}</ul>
       )}
       {c.cuidado && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Cuidado: </b>{comNegrito(c.cuidado)}</span></p>}
       {figs && figs.map((f, i) => {
@@ -61,7 +62,7 @@ export function TeoriaModulo({ m, mod }: { m: MateriaId; mod: Modulo }) {
         <p className="resumo-mod">{comFracoes(mod.resumo)}</p>
         {mod.formulas.length > 0 && (<><h3>No caderno</h3><ul className="caderno">{mod.formulas.map((f, i) => ehLatex(f)
           ? (contaEhTexto('1 + 1', m) ? <li key={i} className="texto"><Formula tex={f} prosa /></li> : <li key={i}><Formula tex={f} bloco={false} /></li>)
-          : <li key={i} className={formulaEhTexto(f, m) ? 'texto' : undefined}>{comFracoes(f)}</li>)}</ul></>)}
+          : <li key={i} className={cadernoEhTexto(mod.formulas.filter((y) => !ehLatex(y)), m) ? 'texto' : undefined}>{comFracoes(f)}</li>)}</ul></>)}
         {mod.erro && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>O erro mais comum: </b>{comFracoes(mod.erro)}</span></p>}
       </section>
       <div className="grade g2" style={{ marginTop: 16 }}>
