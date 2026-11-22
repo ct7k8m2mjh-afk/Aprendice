@@ -83,6 +83,18 @@ function produtoValido(x: string, outro = ''): boolean {
     && !(/[₀-₉]/.test(x) && /^[A-Za-zα-ω][₀-₉]+$/.test(outro) && !especie(outro))) return false;
   return /[A-Zα-ωπθΦΔ∆₀-₉²³⁴⁵⁶⁷⁸⁹¹⁰_]/.test(x.replace(/^\d+(?:,\d+)?/, ''));
 }
+/** produto de variáveis sobre um grupo de variáveis coladas ("2mg/(qB)", "mg/(qB)", "m³g²/(q²B²)"), só em Matemática,
+ *  Física e Química; cada lado tem duas a quatro letras (com coeficiente em cima, expoente e índice) e o grupo de baixo
+ *  não é só de unidades ("(kg)", "(min)", "(ms)") (revisão de 21/11/2026, passada 5 U1) */
+function prodSobreGrupo(num: string, den: string, materia?: string): boolean {
+  if (!materia || !/^(?:mat|fis|qui)$/.test(materia)) return false;
+  const fator = String.raw`[a-zA-Zα-ωπθℓ][₀-₉²³⁴⁵⁶⁷⁸⁹¹⁰]*`;
+  if (!new RegExp(`^(?:\\d+(?:,\\d+)?)?(?:${fator}){2,4}$`).test(num)) return false;
+  const g = new RegExp(`^\\(((?:${fator}){2,4})\\)$`).exec(den);
+  if (!g) return false;
+  const letras = g[1].replace(/[₀-₉²³⁴⁵⁶⁷⁸⁹¹⁰]/g, '');
+  return !UNIDADES_NOME.has(letras) && ![...letras].every((c) => UNIDADE.has(c));
+}
 /** par de unidades com um nome de mais de uma letra ("kJ/mol", "mL/min", "kg/m³", "Ω·mm²/m"); "mA/mB" e "dL/dS"
  *  são variáveis com índice */
 function parDeUnidades(num: string, den: string): boolean {
@@ -221,7 +233,11 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
   if (/^\(?0\)?$/.test(den) && LETRA.test(num) && /∈\s*$/.test(texto.slice(0, ini))) return false;
   if (/^\(?0\)?$/.test(den) && num !== '0' && !LETRA.test(num) && !/(?:[=≈×·÷]|[+−]\s)\s*$/.test(texto.slice(0, ini)) && !/^\s*[=≈+−×·÷]/.test(texto.slice(ini + num.length + 1 + den.length))) return false;
   if (/^\([+−-]\)$/.test(num) && /^\([+−-]\)$/.test(den) && !/^\s*[<>≤≥=]/.test(texto.slice(ini + num.length + 1 + den.length))) return false;
-  if (!produtoValido(num, den) || !produtoValido(den, num) || parDeUnidades(num, den)) return false;
+  // (revisão de 21/11/2026, passada 5 U1) em Matemática, Física e Química, produto de variáveis em minúsculas, com
+  // coeficiente, sobre um grupo de variáveis coladas ("2mg/(qB)", "mg/(qB)"): é conta, mesmo que "mg" seja nome de
+  // unidade; o grupo só de unidades ("mg/(kg)", "mL/(min)") continua unidade
+  const prodGrupo = prodSobreGrupo(num, den, materia);
+  if (!prodGrupo && (!produtoValido(num, den) || !produtoValido(den, num) || parDeUnidades(num, den))) return false;
   // ângulo sobre unidade de tempo sozinha ("30°/h") é velocidade angular
   if (/°$/.test(num) && /^(?:h|s|min)$/.test(den)) return false;
   // genótipo com as mesmas letras em cima e embaixo ("Ab/aB", "AB/ab", "RS/rs")
@@ -299,12 +315,12 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
       && !(simbU(den) && /^[A-Z]{2}$/.test(num)) && !(materia === 'qui' && especie(num, true) && especie(den, true))
       && !(materia === 'qui' && (num === 'H' || den === 'H')) && !ROTULO_PAR.test(`${num}/${den}`)
       && !/[α-ωΑ-ΩΔ∆²³⁴-⁹¹⁰'%]$/.test(antes) && !/^['′]/.test(texto.slice(fim));
-    if (!depoisDeSinal && !ehForte && !corrido) return false;
+    if (!depoisDeSinal && !ehForte && !corrido && !prodGrupo) return false;
     // no começo do texto, só letra de variável ou segmento ("a/b = c/d", "AB/CD"); "Wh/L (watt-hora...)" é unidade
     // e "Mg/Fe" é par de metais
     const simples = (x: string) => /^(?:[a-zα-ωπθℓ]|[A-Z]{1,2})$/.test(tira(x));
     // (antes de uma comparação ou seta também é conta: "FX/mX < FY/mY", "ΔV/Δt → litros")
-    if (!antes.trim() && !(simples(num) && simples(den)) && !ehForte && !corrido && !/^\s*[=≈<>≤≥→]/.test(texto.slice(fim))) return false;
+    if (!antes.trim() && !(simples(num) && simples(den)) && !ehForte && !corrido && !prodGrupo && !/^\s*[=≈<>≤≥→]/.test(texto.slice(fim))) return false;
     // letras de alternativa ("A/B"); antes ou depois de "=" é razão ("B/A = 2", "V = E/B")
     if (/^[A-E]$/.test(num) && /^[A-E]$/.test(den) && !/^\s*[=≈]/.test(texto.slice(fim)) && !/[=≈]\s*$/.test(antes)) return false;
     // produto de unidades: "atm·L/K", "atm · L/(mol·K)"
