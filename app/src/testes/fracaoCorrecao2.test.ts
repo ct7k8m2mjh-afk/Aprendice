@@ -97,3 +97,14 @@ describe('R6: sinal de interação e denominador zero fora de conta ficam na lin
     expect(fr('(x − 6)/(+) ≥ 0 e (+)/(−) < 0')).toEqual(['x − 6|+', '+|−']);
   });
 });
+
+describe('R7: par de unidades igual ao nome de uma unidade fica na linha', () => {
+  it('qui P08cd85a8, nota do quadro', () => {
+    expect(fr('J/C = volt', 'qui')).toEqual([]);
+    expect(fr('C/s = ampère', 'fis')).toEqual([]);
+  });
+  it('a conta com letras continua empilhada', () => {
+    expect(fr('V = E/B', 'fis')).toEqual(['E|B']);
+    expect(fr('d = m/V', 'qui')).toEqual(['m|V']);
+  });
+});

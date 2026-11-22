@@ -261,6 +261,10 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
     if (/^[A-E]$/.test(num) && /^[A-E]$/.test(den) && !/^\s*[=≈]/.test(texto.slice(fim)) && !/[=≈]\s*$/.test(antes)) return false;
     // produto de unidades: "atm·L/K", "atm · L/(mol·K)"
     // (só quando o fator antes do "·" é nome de unidade: "fA·RA/RB" é produto de variáveis)
+    // par de unidades igual ao nome de uma unidade ("J/C = volt", "C/s = ampère"): é unidade, não conta (revisão de 21/11/2026,
+    // questão-correção 2 R7)
+    const simbU = (x: string) => UNIDADE.has(tira(x)) || UNIDADES_NOME.has(tira(x)) || /^(?:C|A|T|Ω|Pa|Wb|H|F|S|Hz|kg|mol)$/.test(tira(x));
+    if (simbU(num) && simbU(den) && /^\s*=\s*(?:volts?|ampères?|watts?|joules?|ohms?|newtons?|pascals?|coulombs?|teslas?|webers?|henrys?|farads?|hertz|siemens|kelvins?|metros?|segundos?|quilogramas?|gramas?|litros?|mols?)(?![A-Za-zÀ-ÿ])/i.test(texto.slice(fim))) return false;
     const fatorAntes = /([A-Za-zÀ-ÿ]{2,})\s*[·×]\s*$/.exec(antes);
     if (fatorAntes && (UNIDADES_NOME.has(fatorAntes[1]) || !/[A-Z]/.test(fatorAntes[1]))) return false;
     // dois símbolos de unidade ("m/s²", "g/L") só depois de "=" ("d = m/V") ou depois de "·"/"×" com uma variável ou um
