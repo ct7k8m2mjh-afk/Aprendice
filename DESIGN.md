@@ -63,13 +63,18 @@ Resultado por matéria (papel / folha):
 
 Contraste (19/11/2026, todas as matérias e o creme, nos dois temas): tinta ≥ 13,0:1, lapis ≥ 5,7:1, fraco ≥ 4,7:1 em fundo e cartão; cor da matéria (`--t`) ≥ 4,65:1 no cartão e ≥ 4,18:1 no fundo (Química clara; passa 3:1 de texto grande e ícone; texto pequeno na cor da matéria fica nos cartões). Exceções que continuam: o print da questão é a página da prova (papel branco dela; o quadro em volta segue o cartão); o caderno da resolução animada é `cad-papel`; os círculos dos ícones continuam claros no escuro.
 
+> **22/11/2026 (dono): fundo neutralizado.** O véu da matéria no fundo da página (`--papel` em `.casca.em-materia`) caiu de
+> 8% para 3% da cor principal no claro e de 10% para 4% no escuro, para as cores das abas, ícones e botões não se
+> confundirem com o fundo. Os cartões (`--folha`) não mudaram. Os valores aprovados de Biologia citados acima valiam até
+> esta data.
+
 ### Folha de caderno: o fundo de todas as telas (pedido do dono, 20/11/2026; `base.css`, bloco "FOLHA DE CADERNO")
 "A ref é a folha de um caderno": o fundo (`--papel`) é papel quadriculado, e os cartões e ícones (`--folha`, lisos) ficam
 por cima, destacados. Só CSS, sem imagem.
 - Grade: quadrado de 24 px (`--quadro-passo`), linha de 1 px em `--quadro` = azul misturado ao próprio `--papel`
-  (claro: `#3F7FD6` 24%; escuro: `#8DB4E2` 13%). Por ser mistura com o fundo, acompanha o creme de fora e o véu de cada
+  (claro: `#3F7FD6` 9%; escuro: `#8DB4E2` 6% — bem suave a pedido do dono, 22/11). Por ser mistura com o fundo, acompanha o creme de fora e o véu de cada
   matéria, nos dois temas.
-- Margem: linha vertical de 2 px em `--margem` (rosa `#E2487E` 60% no claro; `#EE6E9A` 38% no escuro), no fundo da coluna
+- Margem: linha vertical de 2 px em `--margem` (rosa `#E2487E` 22% no claro; `#EE6E9A` 16% no escuro (22/11)), no fundo da coluna
   principal (`.principal`), no meio do espaço livre à esquerda do `.conteudo` (`--pag-x` × 0,5, somado à sobra quando o
   conteúdo fica centralizado em telas largas); vai da barra do topo até o pé (a barra do topo, quase opaca, fica lisa).
 - Gráficos com linhas de referência finas (Início, "Seu desempenho por matéria") ficam sobre papel liso (`--papel`),
