@@ -6,7 +6,7 @@
 import { describe, expect, it } from 'vitest';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { CARTAO_BIO_ESCURO, TONS_ESCURO, figuraEscura, fundosDosTextos, svgEscuro } from '../logica/figuraEscura';
+import { ALVO_TELA, CARTAO_BIO_ESCURO, LETRA_ESCURA_FIG, TONS_ESCURO, contrasteNaTela, figuraEscura, fundosDosTextos, svgEscuro } from '../logica/figuraEscura';
 import { contraste, mistura } from '../logica/contraste';
 import { MATERIAS } from '../dados/materias';
 
@@ -93,3 +93,34 @@ describe('figuras de Bio no tema escuro (matérias-2 R3)', () => {
     }
   });
 });
+
+/* Revisão de 21/11/2026, 4ª passada T1: a caixa cinza da translocação (B05) dava 4,54:1 na conta e 4,49:1 no print (o
+ * navegador mistura em 8 bits). A conta agora é a da tela, e a forma reforçada chega a 4,6:1 com folga. */
+describe('T1: letra escura sobre forma, medida como na tela', () => {
+  it('a caixa #9AA0BD a 0,75 sobre o cartão rgb(20,27,25): a conta da tela fica abaixo de 4,5, como o print', () => {
+    const caixa = mistura('#9AA0BD', 0.75, '#141B19');
+    expect(contraste(LETRA_ESCURA_FIG, caixa)).toBeGreaterThan(4.5);
+    expect(contrasteNaTela(LETRA_ESCURA_FIG, caixa)).toBeLessThan(4.5);
+    expect(contrasteNaTela(LETRA_ESCURA_FIG, '#787E94')).toBeLessThanOrEqual(contraste(LETRA_ESCURA_FIG, '#787E94'));
+  });
+  it.skipIf(!existsSync(ARQ('bio')))('B05: "J", "K", "H" e "I" da translocação ≥ 4,6:1, e toda letra escura sobre forma também', () => {
+    let menor = Infinity, n = 0;
+    const b05: number[] = [];
+    for (const f of figuras('bio')) {
+      const u = figuraEscura(f.u);
+      if (!u) continue;
+      for (const t of fundosDosTextos(decodifica(u))) {
+        if (t.cor !== LETRA_ESCURA_FIG || !t.forma) continue;
+        n++;
+        menor = Math.min(menor, t.contraste);
+        if (/^Alterações cromossômicas estruturais/.test(f.t) && /^[JKHI]$/.test(t.texto)) b05.push(t.contraste);
+      }
+    }
+    expect(ALVO_TELA).toBeGreaterThanOrEqual(4.6);
+    expect(b05.length).toBeGreaterThanOrEqual(4);
+    expect(Math.min(...b05)).toBeGreaterThanOrEqual(4.6);
+    expect(n).toBeGreaterThan(150);
+    expect(menor).toBeGreaterThanOrEqual(4.6);
+  });
+});
+

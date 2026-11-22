@@ -21,6 +21,16 @@ import { MATERIAS } from '../dados/materias';
 
 const MEDIA_CLARO = '@media (prefers-color-scheme: light){';
 export const ALVO_FIGURA = 4.5;
+/** (revisão de 21/11/2026, 4ª passada T1) o navegador desenha a mistura em 8 bits e pode arredondar cada canal um ponto
+ *  para o lado pior (a caixa cinza de B05 deu 4,54:1 na conta e 4,49:1 na tela): a conta usa o fundo um ponto mais perto
+ *  da letra em cada canal, e a meta das formas reforçadas é 4,6:1, com folga sobre o 4,5:1 */
+export const ALVO_TELA = 4.6;
+export function contrasteNaTela(letra: string, fundo: string): number {
+  const rgb = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const L = rgb(letra), F = rgb(fundo);
+  const pior = '#' + F.map((v, i) => Math.max(0, Math.min(255, v + (L[i] > v ? 1 : L[i] < v ? -1 : 0))).toString(16).padStart(2, '0')).join('');
+  return contraste(letra, pior);
+}
 /** letra escura das etiquetas coloridas (a mesma nas duas paletas) */
 export const LETRA_ESCURA_FIG = '#0F1529';
 
@@ -286,7 +296,8 @@ export function fundosDosTextos(svg: string, cartao = CARTAO_BIO_ESCURO): TextoF
           const [lx, ly] = aplica(f.inv, px, py);
           if (f.dentro(lx, ly)) { const [c, al] = f.corEm(lx, ly); fundo = mistura(c, al, fundo); alta = f; }
         }
-        const c = contraste(t.cor, fundo);
+        // (letra escura sobre forma misturada: a conta da tela, em 8 bits; T1)
+        const c = alta && t.cor === LETRA_ESCURA_FIG ? contrasteNaTela(t.cor, fundo) : contraste(t.cor, fundo);
         if (c < pior) { pior = c; fundoPior = fundo; formaPior = alta; }
       }
       res.push({ texto: s, cor: t.cor, forma: formaPior, fundo: fundoPior, contraste: pior });
@@ -357,13 +368,13 @@ export function fundosDosTextos(svg: string, cartao = CARTAO_BIO_ESCURO): TextoF
 }
 
 /**
- * Letra escura sobre forma colorida abaixo de 4,5:1: a forma fica mais opaca (de 0,05 em 0,05) e, se nem opaca basta,
+ * Letra escura sobre forma colorida abaixo de 4,6:1 na tela (`ALVO_TELA`): a forma fica mais opaca (de 0,05 em 0,05) e, se nem opaca basta,
  * um pouco mais clara (misturada com branco). Só a forma de cima, atrás da letra; o resto da figura não muda.
  */
 function reforcaEtiquetas(svg: string, cartao: string): string {
   const ajustes = new Map<Forma, { alfa: number; cor: string }>();
   for (const t of fundosDosTextos(svg, cartao)) {
-    if (t.cor !== LETRA_ESCURA_FIG || t.contraste >= ALVO_FIGURA || !t.forma || !t.forma.cor) continue;
+    if (t.cor !== LETRA_ESCURA_FIG || t.contraste >= ALVO_TELA || !t.forma || !t.forma.cor) continue;
     const f = t.forma;
     // fundo atrás da forma, nesse ponto: desfaz a mistura dela
     const atras = (() => {
@@ -373,8 +384,8 @@ function reforcaEtiquetas(svg: string, cartao: string): string {
       return '#' + [des(fr, cr), des(fg, cg), des(fb, cb)].map((v) => Math.round(v).toString(16).padStart(2, '0')).join('').toUpperCase();
     })();
     let alfa = f.alfa, cor = f.cor;
-    while (alfa < 1 && contraste(LETRA_ESCURA_FIG, mistura(cor, alfa, atras)) < ALVO_FIGURA + 0.05) alfa = Math.min(1, Math.round((alfa + 0.05) * 100) / 100);
-    for (let k = 1; k <= 100 && contraste(LETRA_ESCURA_FIG, mistura(cor, alfa, atras)) < ALVO_FIGURA + 0.05; k++) cor = mistura('#FFFFFF', k / 100, f.cor);
+    while (alfa < 1 && contrasteNaTela(LETRA_ESCURA_FIG, mistura(cor, alfa, atras)) < ALVO_TELA) alfa = Math.min(1, Math.round((alfa + 0.05) * 100) / 100);
+    for (let k = 1; k <= 100 && contrasteNaTela(LETRA_ESCURA_FIG, mistura(cor, alfa, atras)) < ALVO_TELA; k++) cor = mistura('#FFFFFF', k / 100, f.cor);
     const ant = ajustes.get(f);
     if (!ant || alfa > ant.alfa || cor !== ant.cor) ajustes.set(f, { alfa: Math.max(alfa, ant?.alfa ?? 0), cor: ant && contraste('#FFFFFF', ant.cor) < contraste('#FFFFFF', cor) ? ant.cor : cor });
   }
