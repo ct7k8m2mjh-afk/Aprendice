@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { itensDaConta, montaRoteiro, quebrasConta, tokeniza } from '../logica/motorConta';
+import { partesNotacao } from '../logica/notacao';
 
 /* Revisão de 21/11/2026, 8ª passada, itens A (questao-correcao-7.md) */
 const linhas = (r: Parameters<typeof montaRoteiro>[0], m = 'mat') => montaRoteiro(r, m).linhas.map((l) => l.texto + (l.nota ? ` «${l.nota}»` : ''));
@@ -116,5 +117,15 @@ describe('A4: a frase dentro da linha da conta quebra como texto na folha estrei
     expect(quebrasConta(ts).has(ts.length - 2)).toBe(false);
     const conta = tokeniza('x + 2 = 5', 'mat');
     expect(quebrasConta(conta).size).toBe(quebrasConta(tokeniza('x + 2 = 5')).size);
+  });
+});
+
+describe('A5: o índice de "ε0A" desce como o de "θ1"', () => {
+  it('fís Pabef4082: "ε0A" é ε₀ seguido de A', () => {
+    expect(partesNotacao('ε0A')).toEqual([{ t: 'txt', v: 'ε' }, { t: 'sub', v: '0', pre: '', pos: '' }, { t: 'txt', v: 'A' }]);
+    expect(partesNotacao('θ1').map((p) => p.t)).toEqual(['txt', 'sub']);
+  });
+  it('palavra ou fórmula com letra grega não muda ("α2Be" não é índice)', () => {
+    expect(partesNotacao('α2Be').some((p) => p.t === 'sub' && p.v === '2')).toBe(false);
   });
 });

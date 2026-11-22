@@ -22,6 +22,8 @@ const RE_EXPO = /\^\(([^()\n]{1,30})\)|\^([−\-+]?[0-9a-zA-Z,]+[+−]?)/g;
 const RE_INDICE = /_\{([^{}\n]{1,20})\}|_([A-Za-z0-9áéíóúâêôãõç]+)/g;
 // variável de uma letra com número colado: "m0", "v0", "a1", "x2", "b21", "ℓ1" (passada 4 S2: "Aℓ2O3" é fórmula, fica)
 const RE_VARIND = /(?<![A-Za-zÀ-ÿ0-9_#.,])([a-zα-ωℓ])(\d{1,2})(?![A-Za-zÀ-ÿ0-9#_^]|[.,]\d)/g;
+// (revisão de 21/11, passada 8 A5) letra grega com índice seguida de outra grandeza maiúscula ("ε0A" = ε₀ · A)
+const RE_GREGA_IND = /(?<![A-Za-zÀ-ÿ0-9_#.,])([α-ω])(\d)(?=[A-Z](?![A-Za-z0-9]))/g;
 
 /** é uma fórmula química de verdade (todos os pedaços são símbolos de elementos; tem índice ou carga)? */
 export function ehFormulaQuimica(f: string): boolean {
@@ -83,6 +85,11 @@ export function partesNotacao(s: string): ParteNotacao[] {
   // 3) variável com índice colado ("m0", "a1")
   RE_VARIND.lastIndex = 0;
   for (let m = RE_VARIND.exec(s); m; m = RE_VARIND.exec(s)) {
+    const ini = m.index, fim = m.index + m[0].length;
+    if (livre(ini, fim)) pedacos.push({ ini, fim, partes: [{ t: 'txt', v: m[1] }, { t: 'sub', v: m[2], pre: '', pos: '' }] });
+  }
+  RE_GREGA_IND.lastIndex = 0;
+  for (let m = RE_GREGA_IND.exec(s); m; m = RE_GREGA_IND.exec(s)) {
     const ini = m.index, fim = m.index + m[0].length;
     if (livre(ini, fim)) pedacos.push({ ini, fim, partes: [{ t: 'txt', v: m[1] }, { t: 'sub', v: m[2], pre: '', pos: '' }] });
   }
