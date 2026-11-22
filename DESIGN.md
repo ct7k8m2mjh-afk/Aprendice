@@ -63,6 +63,12 @@ Resultado por matéria (papel / folha):
 
 Contraste (19/11/2026, todas as matérias e o creme, nos dois temas): tinta ≥ 13,0:1, lapis ≥ 5,7:1, fraco ≥ 4,7:1 em fundo e cartão; cor da matéria (`--t`) ≥ 4,65:1 no cartão e ≥ 4,18:1 no fundo (Química clara; passa 3:1 de texto grande e ícone; texto pequeno na cor da matéria fica nos cartões). Exceções que continuam: o print da questão é a página da prova (papel branco dela; o quadro em volta segue o cartão); o caderno da resolução animada é `cad-papel`; os círculos dos ícones continuam claros no escuro.
 
+> **22/11/2026 (dono): equilíbrio de cor na matéria** ("não padronizar tudo e botar tudo rosa; tem que haver equilíbrio").
+> A cor da matéria fica no título (Dancing Script), no item ativo do menu, no progresso, nos destaques e nos botões. O
+> resto é neutro: círculo dos ícones de tema em cinza-claro neutro (`icones-tema.css`), faixa do título com o tom suave
+> da matéria a 45% sobre a folha, capa do Treino geral da matéria em `--folha` com filete de 4 px na cor da matéria
+> (`telas.css`), e no escuro os cartões da matéria com 5% da cor (antes 11%).
+
 > **22/11/2026 (dono): fundo neutralizado.** O véu da matéria no fundo da página (`--papel` em `.casca.em-materia`) caiu de
 > 8% para 3% da cor principal no claro e de 10% para 4% no escuro, para as cores das abas, ícones e botões não se
 > confundirem com o fundo. Os cartões (`--folha`) não mudaram. Os valores aprovados de Biologia citados acima valiam até
