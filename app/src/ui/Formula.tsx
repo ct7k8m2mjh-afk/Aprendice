@@ -8,14 +8,16 @@ import '../estilo/revisao.css'; // fórmulas e revisão em slides (comandos 24 e
  * as mesmas peças de ui/Fracao.tsx (.frac, .frac-n, .frac-d: numerador, barra, denominador), expoente e índice no lugar.
  * O texto da fórmula fica no documento para leitor de tela (aria-label com "sobre" no lugar da barra).
  */
-export function Formula({ tex, className, bloco = true, prosa = false }: { tex: string; className?: string; bloco?: boolean;
+export function Formula({ tex, className, bloco = true, prosa = false, rotulosNaMao = false }: { tex: string; className?: string; bloco?: boolean;
   /** Humanas (Filosofia e Sociologia, História...): a "fórmula" é frase em \text{}: vai na letra da interface, nunca à mão
-   *  (guia: cursiva nunca em texto corrido); as quebras "\\" que só cortam a frase somem */ prosa?: boolean }) {
+   *  (guia: cursiva nunca em texto corrido); as quebras "\\" que só cortam a frase somem */ prosa?: boolean;
+  /** "No caderno" de matéria de cálculo (revisão de 21/11, 4ª passada T2): o \text{} do rótulo vai na letra da fórmula,
+   *  com uma palavra ou com várias, para a lista ter uma letra só */ rotulosNaMao?: boolean }) {
   const linhas = prosa ? juntaFrases(analisaLatex(tex)) : analisaLatex(tex);
   const Tag = bloco ? 'div' : 'span';
   return (
     <Tag className={'fm' + (prosa ? ' fm-prosa' : '') + (bloco ? ' fm-bloco' : '') + (className ? ' ' + className : '')} role={prosa ? undefined : 'math'} aria-label={prosa ? undefined : latexParaLeitura(tex)}>
-      {linhas.map((l, k) => <span key={k} className="fm-linha" aria-hidden={prosa ? undefined : true}>{nos(l)}</span>)}
+      {linhas.map((l, k) => <span key={k} className="fm-linha" aria-hidden={prosa ? undefined : true}>{nos(l, rotulosNaMao && !prosa)}</span>)}
     </Tag>
   );
 }
@@ -31,19 +33,19 @@ function juntaFrases(ls: NoMat[][]): NoMat[][] {
   return out;
 }
 
-function nos(ns: NoMat[]): ReactNode[] {
+function nos(ns: NoMat[], mao = false): ReactNode[] {
   return ns.map((n, i) => {
     switch (n.t) {
-      case 'txt': return n.texto ? <span key={i} className="fm-texto">{n.v}</span> : <Fragment key={i}>{n.v}</Fragment>;
+      case 'txt': return n.texto && !mao ? <span key={i} className="fm-texto">{n.v}</span> : <Fragment key={i}>{n.v}</Fragment>;
       case 'esp': return <span key={i} className={'fm-esp e' + n.w} />;
-      case 'sup': return <sup key={i}>{nos(n.v)}</sup>;
-      case 'sub': return <sub key={i}>{nos(n.v)}</sub>;
-      case 'raiz': return <span key={i} className="fm-raiz"><span className="fm-raiz-s">√</span><span className="fm-raiz-v">{nos(n.v)}</span></span>;
-      case 'vet': return <span key={i} className="fm-vet">{nos(n.v)}</span>;
-      case 'sobre': return <span key={i} className="fm-sobre"><span className="fm-sobre-t">{nos(n.topo)}</span><span>{nos(n.v)}</span></span>;
+      case 'sup': return <sup key={i}>{nos(n.v, mao)}</sup>;
+      case 'sub': return <sub key={i}>{nos(n.v, mao)}</sub>;
+      case 'raiz': return <span key={i} className="fm-raiz"><span className="fm-raiz-s">√</span><span className="fm-raiz-v">{nos(n.v, mao)}</span></span>;
+      case 'vet': return <span key={i} className="fm-vet">{nos(n.v, mao)}</span>;
+      case 'sobre': return <span key={i} className="fm-sobre"><span className="fm-sobre-t">{nos(n.topo, mao)}</span><span>{nos(n.v, mao)}</span></span>;
       case 'frac': return (
         <span key={i} className="frac">
-          <span className="frac-n">{nos(n.n)}</span><span className="sr">/</span><span className="frac-d">{nos(n.d)}</span>
+          <span className="frac-n">{nos(n.n, mao)}</span><span className="sr">/</span><span className="frac-d">{nos(n.d, mao)}</span>
         </span>
       );
     }

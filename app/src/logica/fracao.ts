@@ -874,3 +874,15 @@ export function cadernoEhTexto(linhas: string[], materia?: string): boolean {
   const texto = linhas.filter((x) => formulaEhTexto(x, materia)).length;
   return texto > linhas.length - texto;
 }
+
+/**
+ * A letra das linhas sem LaTeX de uma lista do caderno que pode ter linhas em LaTeX (revisão de 21/11/2026, 4ª passada T2:
+ * a mesma peça com uma letra só). Sem LaTeX na lista, vale a maioria (`cadernoEhTexto`). Com LaTeX, as linhas sem LaTeX
+ * seguem as de LaTeX: no cartão, a linha com $…$ tem a prosa na letra da interface (texto); no "No caderno", a linha em
+ * LaTeX é fórmula inteira, rótulo incluído (letra da fórmula). Matérias de texto: sempre texto.
+ */
+export function cadernoComLatexEhTexto(linhas: string[], materia: string | undefined, ehLatex: (s: string) => boolean, latexEhTexto: boolean): boolean {
+  if (materia && SEMPRE_TEXTO.has(materia)) return true;
+  if (linhas.some(ehLatex)) return latexEhTexto;
+  return cadernoEhTexto(linhas, materia);
+}
