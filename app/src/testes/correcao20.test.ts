@@ -32,11 +32,12 @@ describe('N1: conta comprida quebra em lugar de conta, nunca fica cortada', () =
       .toBe('20 × 6|2+ 30 × 4|2+ 25 × 3|1= 120|2+ 120|2+ 75|1= 315');
     expect(marcaQuebras('4,1 × 10¹² × 5,20 = 21,32 × 10¹² = 2,132 × 10¹³ reais'))
       .toBe('4,1|2× 10¹²|2× 5,20|1= 21,32|2× 10¹²|1= 2,132|2× 10¹³ reais');
-    expect(marcaQuebras('C = 7 + 4 + 1')).toBe('C|2= 7|2+ 4|2+ 1');
+    // a incógnita sozinha não se separa do primeiro "=" (revisão de 21/11, N6)
+    expect(marcaQuebras('C = 7 + 4 + 1')).toBe('C = 7|2+ 4|2+ 1');
   });
   it('nunca dentro de parênteses; depois de seta e de vírgula é nível 1', () => {
     expect(marcaQuebras('2 × (3 + 4 + 5) = 24')).toBe('2|2× (3 + 4 + 5)|2= 24');
-    expect(marcaQuebras('a = 3, b = 4 → c = 5')).toBe('a|2= 3,|1b|2= 4|2→|1c|2= 5');
+    expect(marcaQuebras('a = 3, b = 4 → c = 5')).toBe('a = 3,|1b = 4|2→|1c = 5');
     expect(marcaQuebras('2 × (3 + 4 + 5) = 7 × 2 = 14')).toBe('2|2× (3 + 4 + 5)|1= 7|2× 2|1= 14');
   });
   it('desenhada: os trechos ficam em .ra-seg e cada pedaço sem quebra em .ra-u; o texto é o dos dados', () => {
@@ -208,5 +209,15 @@ describe('N11: a fonte não promete o caderno quando o link é a página inicial
     const h = origemDoLink('https://bkpsitecpsnew.blob.core.windows.net/x/prova.pdf');
     expect(h.rotulo).not.toContain('blob.core');
     expect(h.nome).toBe('bkpsitecpsnew.blob.core.windows.net');
+  });
+});
+
+describe('revisão de 21/11, N6: a quebra não separa a incógnita do "≈" ou do "="', () => {
+  it('quebra depois da seta, e a incógnita fica com o primeiro sinal de igualdade do trecho', () => {
+    expect(marcaQuebras('picos em ≈ 21,0 s e ≈ 29,3 s, com 6 intervalos entre eles → T ≈ (29,3 − 21,0)/6 ≈ 1,4 s'))
+      .toMatch(/→\|1T ≈ \(29,3 − 21,0\)\/6\|1≈ 1,4 s$/);
+    expect(marcaQuebras('L = 10 × 1,4²/(4 × 3²) → L = 19,6/36 ≈ 0,54 m')).toBe('L = 10|2× 1,4²/(4 × 3²)|2→|1L = 19,6/36|1≈ 0,54 m');
+    // com mais de um termo antes do "=", continua podendo quebrar ali
+    expect(marcaQuebras('2 × (3 + 4 + 5) = 7 × 2 = 14')).toBe('2|2× (3 + 4 + 5)|1= 7|2× 2|1= 14');
   });
 });

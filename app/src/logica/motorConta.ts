@@ -1404,13 +1404,19 @@ export function quebrasConta(ts: Tok[]): Map<number, 1 | 2> {
     const a = ant(i);
     if (pr === 0 && t.k === 'op' && /^[+−\-]$/.test(t.v) && a && a.k !== 'op' && a.k !== 'rel' && a.k !== 'abre' && a.k !== 'seta') temSoma[tr] = true;
   });
-  let prof = 0, vistos = 0;
+  // nTr: termos do trecho até aqui. A incógnita sozinha antes do primeiro "=" ou "≈" não se separa dele ("… → T ≈ …"
+  // quebra depois da seta, não entre o "T" e o "≈"; revisão de 21/11, N6)
+  let prof = 0, vistos = 0, nTr = 0;
   tr = 0;
   ts.forEach((t, i) => {
     if (t.k === 'abre') prof++;
     if (t.k === 'fecha') prof--;
-    if (prof === 0 && (t.k === 'seta' || t.k === 'pont')) { vistos = 0; tr++; }
-    if (t.k === 'rel' && prof === 0) vistos++;
+    if (prof === 0 && (t.k === 'seta' || t.k === 'pont')) { vistos = 0; tr++; nTr = 0; }
+    else if (t.k !== 'esp') nTr++;
+    if (t.k === 'rel' && prof === 0 && vistos++ === 0 && nTr === 2) {
+      // o espaço entre a incógnita e o primeiro sinal de igualdade do trecho fica sem quebra
+      for (let j = i - 1; j >= 0 && ts[j].k === 'esp'; j--) ok.delete(j);
+    }
     if (t.k !== 'esp' || prof !== 0) return;
     const a = ant(i), p = prox(i);
     if (!a || !p) return;
