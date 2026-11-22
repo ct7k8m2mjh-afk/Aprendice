@@ -36,3 +36,21 @@ describe('R1: marca-texto com fração', () => {
     expect(doc.querySelectorAll('.ra-marca-g').length).toBe(0);
   });
 });
+
+/* Revisão de 21/11/2026, 4ª passada S6: sem fração, o trecho marcado com mais de uma peça também é uma marca só */
+describe('S6: marca-texto sem fração', () => {
+  it('fís P0a6b7f22, passo 2: "ℓ1 é o maior" numa marca só, sem marca nas peças', () => {
+    const doc = desenha('menor potência: P1 = 3300 W → ℓ1 é o maior', 'ℓ1 é o maior');
+    const g = [...doc.querySelectorAll('.ra-marca-l')];
+    expect(g.length).toBe(1);
+    expect(g[0].textContent).toBe('ℓ1 é o maior');
+    expect(g[0].querySelectorAll('.ra-marca').length).toBe(0);
+    expect(doc.querySelectorAll('.ra-marca').length).toBe(1);
+    expect(doc.querySelectorAll('.ra-marca-g').length).toBe(0);
+  });
+  it('uma peça só continua com a marca na própria peça', () => {
+    const doc = desenha('x = 12 ÷ 3 = 4', '4');
+    expect(doc.querySelectorAll('.ra-marca-l, .ra-marca-g').length).toBe(0);
+    expect(doc.querySelectorAll('.ra-marca').length).toBe(1);
+  });
+});

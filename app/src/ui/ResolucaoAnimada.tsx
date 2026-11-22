@@ -369,13 +369,16 @@ function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<stri
   // da fração, sem quebra no meio; cada peça fica sem marca própria (antes, um bloco baixo por peça e um alto na fração)
   let p0 = 0;
   const dentro = L.toks.map((t) => { const a = p0; p0 += t.v.length; return !!L.marca && a >= L.marca[0] && p0 <= L.marca[1]; });
-  const marcaUnica = L.toks.some((t, i) => dentro[i] && t.k === 'frac');
+  // (revisão de 21/11, passada 4 S6) também sem fração: trecho marcado com mais de uma peça ("ℓ1 é o maior", conta e
+  // palavra com letras diferentes) leva uma marca só, contínua e da mesma altura, que quebra como o texto
+  const comFracao = L.toks.some((t, i) => dentro[i] && t.k === 'frac');
+  const marcaUnica = comFracao || L.toks.filter((t, i) => dentro[i] && t.k !== 'esp').length > 1;
   let grupo: ReactNode[] | null = null;
   L.toks.forEach((t, i) => {
     const marca = dentro[i] && !marcaUnica ? ' ra-marca' : '';
     const tr = trechos[trechos.length - 1];
     const fora = tr.pedacos[tr.pedacos.length - 1] as ReactNode[];
-    if (marcaUnica && dentro[i] && !grupo) { grupo = []; fora.push(<span key={`m${i}`} className="ra-marca ra-marca-g">{grupo}</span>); }
+    if (marcaUnica && dentro[i] && !grupo) { grupo = []; fora.push(<span key={`m${i}`} className={comFracao ? 'ra-marca ra-marca-g' : 'ra-marca ra-marca-l'}>{grupo}</span>); }
     const u = marcaUnica && dentro[i] ? grupo! : fora;
     if (t.k === 'esp' && u === grupo) { u.push(t.v); return; }
     if (t.k === 'esp') {
