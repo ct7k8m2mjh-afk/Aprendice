@@ -1406,11 +1406,23 @@ export function quebrasConta(ts: Tok[]): Map<number, 1 | 2> {
   });
   // nTr: termos do trecho até aqui. A incógnita sozinha antes do primeiro "=" ou "≈" não se separa dele ("… → T ≈ …"
   // quebra depois da seta, não entre o "T" e o "≈"; revisão de 21/11, N6)
+  // vetor ou par ordenado no nível de fora ("(a, b, c)", não "f(x, y)"): pode quebrar depois de cada vírgula dele, no
+  // nível 2 (revisão de 21/11/2026, questão-correção 2 R8: a 390 px, "u × v = (…, …, …)" rolava por dentro)
+  const vetor = new Set<number>();
+  {
+    let p = 0, abre = -1;
+    ts.forEach((t, i) => {
+      if (t.k === 'abre') { p++; if (p === 1) { const a = ant(i); abre = t.v === '(' && !(a && (a.k === 'var' || a.k === 'fecha') && ts[i - 1] === a) ? i : -1; } }
+      else if (t.k === 'fecha') p--;
+      else if (p === 1 && abre >= 0 && t.k === 'pont' && t.v === ',') vetor.add(i);
+    });
+  }
   let prof = 0, vistos = 0, nTr = 0;
   tr = 0;
   ts.forEach((t, i) => {
     if (t.k === 'abre') prof++;
     if (t.k === 'fecha') prof--;
+    if (t.k === 'esp' && prof === 1 && i > 0 && vetor.has(i - 1)) { ok.set(i, 2); return; }
     if (prof === 0 && (t.k === 'seta' || t.k === 'pont')) { vistos = 0; tr++; nTr = 0; }
     else if (t.k !== 'esp') nTr++;
     if (t.k === 'rel' && prof === 0 && vistos++ === 0 && nTr === 2) {

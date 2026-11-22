@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { cadernoEhTexto, formulaEhTexto, partesFracao } from '../logica/fracao';
+import { junta as juntaToks, quebrasConta, tokeniza } from '../logica/motorConta';
 
 /* Revisão de 21/11/2026, questão-correção 2 (docs/revisao-site/2026-11-21/questao-correcao-2.md) */
 const fr = (s: string, m?: string) => partesFracao(s, m).filter((p) => p.t === 'frac').map((p) => (p.t === 'frac' ? `${p.n}|${p.d}` : ''));
@@ -118,5 +119,22 @@ describe('R9: a letra do caderno vem da lista inteira', () => {
   it('maioria de texto: a lista toda em texto; matéria de texto: sempre texto', () => {
     expect(cadernoEhTexto(['cada gestação é independente das anteriores', 'acima da T ótima: desnatura (em geral, irreversível)', 'T baixa: só desacelera; volta ao aquecer', 'Aa × Aa = 3 : 1'], 'bio')).toBe(true);
     expect(cadernoEhTexto(['x = 2'], 'his')).toBe(true);
+  });
+});
+
+describe('R8: a conta com vetor quebra depois de cada coordenada', () => {
+  const vs = (s: string) => { const ts = tokeniza(s); return [...quebrasConta(ts)].filter(([i]) => ts[i - 1]?.v === ',').map(([i, n]) => `${juntaToks(ts.slice(0, i))}|${n}`); };
+  it('mat Pe922fcad: depois de cada vírgula do vetor (nível 2, só quando não cabe)', () => {
+    const s = 'u × v = (1/3·(−1) − 0·1, 0·1/3 − (−1/3)·(−1), (−1/3)·1 − 1/3·1/3) → (−1/3, −1/3, −4/9)';
+    expect(vs(s)).toEqual([
+      'u × v = (1/3·(−1) − 0·1,|2',
+      'u × v = (1/3·(−1) − 0·1, 0·1/3 − (−1/3)·(−1),|2',
+      'u × v = (1/3·(−1) − 0·1, 0·1/3 − (−1/3)·(−1), (−1/3)·1 − 1/3·1/3) → (−1/3,|2',
+      'u × v = (1/3·(−1) − 0·1, 0·1/3 − (−1/3)·(−1), (−1/3)·1 − 1/3·1/3) → (−1/3, −1/3,|2',
+    ]);
+  });
+  it('argumento de função não quebra', () => {
+    expect(vs('C(10, 3) = 120')).toEqual([]);
+    expect(vs('f(x, y) = x + y')).toEqual([]);
   });
 });
