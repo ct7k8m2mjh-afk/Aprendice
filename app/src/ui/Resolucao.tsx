@@ -33,7 +33,7 @@ function ResolucaoTexto({ r, materia }: { r: Resolucao; materia?: string }) {
       <ol className="cor-passos">
         {passos.map((p, i) => (
           <li key={i}>
-            {p.faz && <p className="cor-expl"><b>{txt(p.faz)}</b></p>}
+            {p.faz && <p className="cor-expl"><b>{comFracoes(textoCorrecao(p.faz), false, true)}</b></p>}
             {p.conta && <Trecho conta={p.conta} materia={materia} />}
             {p.porque && <p className="cor-expl">{txt(p.porque)}</p>}
           </li>

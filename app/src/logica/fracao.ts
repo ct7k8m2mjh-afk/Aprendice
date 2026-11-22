@@ -355,6 +355,37 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
   return true;
 }
 
+/**
+ * (revisão de 21/11/2026, passada 10 C3) No título do passo ("Calcule T/V em cada ponto", "h/g", "Calcule (ab)/c",
+ * "Escreva cada resistência com L/(k·A)", "isole L/S", "Calcule ΔT/Δt"), em Matemática, Física e Química, a barra entre
+ * variáveis é fração, mesmo depois de verbo e mesmo que as letras sejam também símbolos de unidade (T, V, L, S, h, g):
+ * cada lado é uma letra (latina ou grega, com Δ, índice ou expoente), um segmento ("AP") ou um grupo entre parênteses
+ * só de letras e sinais ("(ab)", "(k·A)"). Ficam na linha: unidade comum ("m/s", "N/C", "g/L", "J/s"), a mesma letra em
+ * maiúscula e minúscula ("A/a"), letras de alternativa ("A/B"), par de espécies ou de eletrodos ("M/Cu", "pilha X/Y"),
+ * palavra sobre palavra ("preço/massa", "aldeído/cetona") e números ("1a/1b", "07/05").
+ */
+const UNID_NUM_TIT = new Set(['m', 'g', 'L', 'J', 'N', 'W', 'C', 'V', 'A', 'Pa', 'mol', 'cal', 'km', 'cm', 'mm', 'kg', 'mg', 'mL', 'kJ']);
+const UNID_DEN_TIT = new Set(['s', 'h', 'L', 'g', 'kg', 'mol', 'm', 'cm', 'K', 'C', 'A', 'mL', 'min', 'km']);
+const LADO_TIT = /^(?:[Δ∆]?(?:[a-zA-Zα-ωπθℓ]|[A-Z]{2})(?:[₀-₉]+|_[A-Za-z0-9]+|\d)?['′]?[²³]?|\([a-zA-Zα-ωπθℓ₀-₉²³ ·×+−-]{1,12}\))$/;
+function varDeTitulo(texto: string, ini: number, num: string, den: string, materia?: string): boolean {
+  if (!materia || !/^(?:mat|fis|qui)$/.test(materia)) return false;
+  if (!LADO_TIT.test(num) || !LADO_TIT.test(den)) return false;
+  // grupo entre parênteses: com duas letras ou mais ("(ab)", "(k·A)"), sem número
+  const grupo = (x: string) => !x.startsWith('(') || ((x.match(/[a-zA-Zα-ωπθℓ]/g) || []).length >= 2);
+  if (!grupo(num) || !grupo(den)) return false;
+  if (UNID_NUM_TIT.has(num) && UNID_DEN_TIT.has(den.replace(/[²³]$/, ''))) return false;
+  // rótulo de concentração ("10% m/v", "m/V", "v/v", "p/v")
+  if (/^(?:m\/[vVmz]|v\/v|p\/[vp])$/.test(`${num}/${den}`)) return false;
+  if ((num.length === 1 && num.toLowerCase() === den.toLowerCase()) || (/^[A-E]$/.test(num) && /^[A-E]$/.test(den))) return false;
+  if (materia === 'qui' && especie(num, true) && especie(den, true)) return false;
+  const antes = texto.slice(0, ini), depois = texto.slice(ini + num.length + 1 + den.length);
+  if (/[A-Za-zÀ-ÿ0-9_.,'′/Δ∆%]$/.test(antes) || /^[A-Za-zÀ-ÿ0-9_/(]/.test(depois)) return false;
+  // depois de número com espaço é unidade ("g = 10 m/s²")
+  if (/\d\s+$/.test(antes)) return false;
+  if (/(?:^|[^A-Za-zÀ-ÿ])(?:par|pares|alelos?|genótipos?|pilhas?|eletrodos?|semicélulas?|células?|colunas?|casas?)\s+$/i.test(antes)) return false;
+  return true;
+}
+
 /** "207/82 Pb": massa/número atômico seguidos do símbolo do elemento com esse Z. Devolve o trecho "207/82 " ou null. */
 function nuclideo(texto: string, ini: number, num: string, den: string): string | null {
   if (!/^\d{1,3}$/.test(num) || !/^\d{1,3}$/.test(den) || +num < +den) return null;
@@ -370,13 +401,13 @@ function nuclideo(texto: string, ini: number, num: string, den: string): string 
  *  1ª passada: divisão com "÷" ou com "/" entre espaços (as de fora, que podem ter "a/b" dentro do numerador ou do
  *  denominador: "(7/2) ÷ (37/10)", "800π ÷ (π/3)"); 2ª: "a/b" nos trechos de texto que sobraram.
  *  `inteira`: o texto é o numerador ou o denominador de outra fração, ou uma fração já separada (passada 5 X1). */
-export function partesFracao(texto: string, materia?: string, inteira = false): ParteFracao[] {
+export function partesFracao(texto: string, materia?: string, inteira = false, titulo = false): ParteFracao[] {
   const fim: ParteFracao[] = [];
   for (const p of divisoes(texto, materia)) {
     if (p.t !== 'txt') { fim.push(p); continue; }
     for (const c of cientificasComUnidade(p.v)) {
       if (c.t !== 'txt') { fim.push(c); continue; }
-      for (const q of razoesDeNomes(c.v, materia, inteira && c.v === texto)) if (q.t === 'txt') fim.push(...barras(q.v, materia)); else fim.push(q);
+      for (const q of razoesDeNomes(c.v, materia, inteira && c.v === texto)) if (q.t === 'txt') fim.push(...barras(q.v, materia, titulo)); else fim.push(q);
     }
   }
   if (!fim.length) return [{ t: 'txt', v: texto }];
@@ -650,7 +681,7 @@ function cientificasComUnidade(texto: string): ParteFracao[] {
 }
 
 /** frações escritas com "/" colado ("2/5", "27x/60", "(a + b)/2") e nuclídeos ("207/82 Pb") */
-function barras(texto: string, materia?: string): ParteFracao[] {
+function barras(texto: string, materia?: string, titulo = false): ParteFracao[] {
   const out: ParteFracao[] = [];
   let ult = 0;
   // a barra dentro do expoente escrito ("2744^(1/3)") fica no expoente (revisão de 20/11, N12: o "^(" saía cru)
@@ -711,7 +742,7 @@ function barras(texto: string, materia?: string): ParteFracao[] {
       ult = fimM;
       continue;
     }
-    if (!ehFracao(texto, m.index, num, den, materia)) {
+    if (!ehFracao(texto, m.index, num, den, materia) && !(titulo && varDeTitulo(texto, m.index, num, den, materia))) {
       // tenta de novo a partir do caractere seguinte (o denominador pode ser o numerador de outra fração)
       RE.lastIndex = m.index + 1;
       continue;

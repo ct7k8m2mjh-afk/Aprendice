@@ -240,7 +240,7 @@ export function ResolucaoAnimada({ r, materia }: { r: Resolucao; materia?: strin
             <li key={k} className="ra-passo" data-passo={k} hidden={atual < 0 || k > visivel ? true : undefined}>
               {rt.origem === 'passos' && <span className="ra-n" aria-hidden>{k + 1}</span>}
               <div className="ra-corpo">
-                {p.faz && <b className="ra-faz">{comFracoes(vis(p.faz))}</b>}
+                {p.faz && <b className="ra-faz">{comFracoes(vis(p.faz), false, true)}</b>}
                 {p.linhas.map((l) => (
                   <div key={l} className="ra-lin">
                     {rt.linhas[l].pre && <PreContas pre={rt.linhas[l].pre!} l={l} />}

@@ -10,8 +10,8 @@ import { partesNotacao } from '../logica/notacao';
  * O texto não muda: o sinal escrito ("/", " ÷ ", "^", "_") e os parênteses que o layout tira continuam no documento,
  * escondidos, para leitor de tela, copiar e colar e testes.
  */
-export function comFracoes(texto: string, inteira = false): ReactNode {
-  return <TextoComFracoes texto={texto} inteira={inteira} />;
+export function comFracoes(texto: string, inteira = false, titulo = false): ReactNode {
+  return <TextoComFracoes texto={texto} inteira={inteira} titulo={titulo} />;
 }
 
 /** Matéria do texto mostrado (revisão de 21/11/2026, dados R1): nas matérias de texto (Português, História, Geografia,
@@ -19,12 +19,13 @@ export function comFracoes(texto: string, inteira = false): ReactNode {
  *  matéria e a correção da questão dizem qual é; fora delas vale a regra geral. */
 export const MateriaDoTexto = createContext<string | undefined>(undefined);
 
-function TextoComFracoes({ texto, inteira }: { texto: string; inteira?: boolean }) {
-  return <>{desenhaFracoes(texto, useContext(MateriaDoTexto), inteira)}</>;
+function TextoComFracoes({ texto, inteira, titulo }: { texto: string; inteira?: boolean; titulo?: boolean }) {
+  return <>{desenhaFracoes(texto, useContext(MateriaDoTexto), inteira, titulo)}</>;
 }
 
-function desenhaFracoes(texto: string, materia?: string, inteira = false): ReactNode {
-  const partes = partesFracao(texto, materia, inteira);
+/** `titulo`: o texto é o título do passo (passada 10 C3: "Calcule T/V em cada ponto" empilha) */
+function desenhaFracoes(texto: string, materia?: string, inteira = false, titulo = false): ReactNode {
+  const partes = partesFracao(texto, materia, inteira, titulo);
   if (partes.length === 1 && partes[0].t === 'txt') return comNotacao(texto);
   return partes.map((p, i) => p.t === 'txt' ? <Fragment key={i}>{comNotacao(p.v)}</Fragment> : p.t === 'nuc' ? (
     // nuclídeo: número de massa em cima e número atômico embaixo, à esquerda do símbolo, sem barra
