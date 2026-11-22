@@ -43,7 +43,8 @@ const POTENCIA = String.raw`(?:\d+(?:,\d+)?|[A-Za-zα-ωπ])\^(?:\([^()\n]{1,30}
 const IND_GRUPO = String.raw`(?:[₀-₉ₐ-ₜ]+)?`;
 // coeficiente colado ao grupo: número, raiz, função ("log2(y)"), até duas letras ("Mm(ΔT − 100)", "pq(p + q)") ou outro
 // grupo ("(l√19/3)(l√17/3)/2"); letra colada à raiz ("l√19/3") vai junto
-const TERMO = String.raw`(?:[Δ∆]?(?:\d+(?:,\d+)?|√\d*|ln|log[₀-₉\d]*|sen|cos|tg|[A-Za-zα-ω]{1,2}[₀-₉ₐ-ₜ]*|\([^()\n]{1,30}\))|[Δ∆])?${GRUPO}${IND_GRUPO}${EXP_POS}|${POTENCIA}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?(?:[a-zA-Zℓ](?=√))?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?[Δ∆]?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦℓ][\u0302\u0304\u0305]?(?:['′]{1,2}|″)?)?(?:_[A-Za-zÀ-ÿ0-9]+|[△□]|(?<=[A-Za-z]['′])[A-Za-z](?![A-Za-zÀ-ÿ])|[₀-₉ₐ-ₜ][₀-₉ₐ-ₜ₊₋]*|(?<=[A-Za-z])½|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-zℓ])[A-Za-zℓ])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
+// (passada 7 Z3) letra grega com índice escrito como número, seguida de outra letra ("ε0A/d"): um nome só, ε₀·A
+const TERMO = String.raw`[α-ω]\d[A-Za-z](?![A-Za-zÀ-ÿ\d])|(?:[Δ∆]?(?:\d+(?:,\d+)?|√\d*|ln|log[₀-₉\d]*|sen|cos|tg|[A-Za-zα-ω]{1,2}[₀-₉ₐ-ₜ]*|\([^()\n]{1,30}\))|[Δ∆])?${GRUPO}${IND_GRUPO}${EXP_POS}|${POTENCIA}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?(?:[a-zA-Zℓ](?=√))?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?[Δ∆]?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦℓ][\u0302\u0304\u0305]?(?:['′]{1,2}|″)?)?(?:_[A-Za-zÀ-ÿ0-9]+|[△□]|(?<=[A-Za-z]['′])[A-Za-z](?![A-Za-zÀ-ÿ])|[₀-₉ₐ-ₜ][₀-₉ₐ-ₜ₊₋]*|(?<=[A-Za-z])½|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-zℓα-ω])[A-Za-zℓα-ω])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
 // (revisão de 21/11/2026, N1) função com argumento ("sen θ/g", "BC/tg 30°", "log x/log 2") e produto de variáveis
 // ("nRT/V", "GMm/r²", "4π²R²/T²", "vA/vB", "FX/mX"); o produto só vale com maiúscula, letra grega, índice ou expoente e
 // sem ser unidade, sigla ou genótipo (validado em `produtoValido`)
