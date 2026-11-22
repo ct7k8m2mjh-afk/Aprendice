@@ -63,6 +63,10 @@ Resultado por matéria (papel / folha):
 
 Contraste (19/11/2026, todas as matérias e o creme, nos dois temas): tinta ≥ 13,0:1, lapis ≥ 5,7:1, fraco ≥ 4,7:1 em fundo e cartão; cor da matéria (`--t`) ≥ 4,65:1 no cartão e ≥ 4,18:1 no fundo (Química clara; passa 3:1 de texto grande e ícone; texto pequeno na cor da matéria fica nos cartões). Exceções que continuam: o print da questão é a página da prova (papel branco dela; o quadro em volta segue o cartão); o caderno da resolução animada é `cad-papel`; os círculos dos ícones continuam claros no escuro.
 
+> **22/11/2026 (dono): título da matéria em destaque no escuro.** Faixa do título no escuro quase neutra (tom suave da
+> matéria a 22% → 12% sobre a folha, contorno de 1 px na cor) e o título em Dancing Script 22% mais claro que a letra da
+> matéria. Contraste medido nas 9 matérias: escuro 7,1 a 10,1; claro 4,8 a 8,4.
+
 > **22/11/2026 (dono): equilíbrio de cor na matéria** ("não padronizar tudo e botar tudo rosa; tem que haver equilíbrio").
 > A cor da matéria fica no título (Dancing Script), no item ativo do menu, no progresso, nos destaques e nos botões. O
 > resto é neutro: círculo dos ícones de tema em cinza-claro neutro (`icones-tema.css`), faixa do título com o tom suave
