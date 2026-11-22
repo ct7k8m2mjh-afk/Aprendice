@@ -1011,6 +1011,8 @@ export const pedacoEhFormula = (s: string) => /[\dA-Za-z]/.test(s) && palavrasPr
  */
 /** item que é relação ou conta completa (tem "=", seta, comparação ou "rótulo: valor"), e não só um valor solto */
 const ehRelacao = (s: string) => /[=≈≠→⇒<>≤≥∝↔⇔∈]|:\s/.test(s);
+/** número solto, com ou sem unidade curta ("3,6", "17", "1,55 A", "+3 kV", "12%", "9.205 km²") */
+const valorSolto = (s: string) => /^[−+-]?\d+(?:[.,]\d+)*(?:\s?(?:%|°[CF]|[A-Za-zµ]{1,3}[²³]?(?:\/[A-Za-z]{1,3})?))?$/.test(s);
 export function itensDaConta(conta: string, materia?: string): string[] {
   const out: string[] = [];
   const lista = !materia || !['mat', 'fis'].includes(materia);
@@ -1029,6 +1031,27 @@ export function itensDaConta(conta: string, materia?: string): string[] {
     const partes: string[] = [];
     for (const [a, b] of cortes(linha, /\s+\|\s+/)) { partes.push(linha.slice(ult, a)); ult = b; }
     partes.push(linha.slice(ult));
+    // (passada 8 A3) a mesma ideia do quadro (Z1): na linha com número solto ("pH: 4,0 | 3,6 | 2,5 → …", "Na: 2 | 2"), o
+    // item que começa por número continua o item de antes, se este começa ou termina por número, com o separador "; "
+    // das listas no lugar do "|" (em coluna, os números soltos perdiam o rótulo); o item com rótulo ou de texto abre
+    // linha, como o que vem depois de " ; " (fim de uma linha da tabela) ou, em Biologia, Química e humanas, de "; "
+    if (partes.length > 1 && !partes.every((x) => ehRelacao(x.trim())) && partes.some((x) => valorSolto(x.trim()))) {
+      const gs: string[] = [];
+      let ult = '';
+      for (const pt of partes) {
+        const subs = pt.split(lista ? /\s*;\s+/ : /\s+;\s+/).map((y) => y.trim());
+        subs.forEach((x, i) => {
+          if (!x) return;
+          const segue = i === 0 && gs.length && /^[−+-]?\d/.test(x)
+            && (/^[−+-]?\d/.test(ult) || /\d(?:\s?(?:%|°[CF]|[A-Za-zµ]{1,3}[²³]?(?:\/[A-Za-z]{1,3})?))?(?:\s\([^)]*\))?$/.test(ult));
+          if (segue) gs[gs.length - 1] += '; ' + x;
+          else gs.push(x);
+          ult = x;
+        });
+      }
+      out.push(...gs);
+      continue;
+    }
     for (const pt of partes) {
       const sc = lista ? cortes(pt, /;\s+/) : [];
       const ps: string[] = [];
@@ -1037,7 +1060,8 @@ export function itensDaConta(conta: string, materia?: string): string[] {
       ps.push(pt.slice(u));
       // lista com seta, ou itens paralelos ("solução 1: …; solução 2: …", "100 L …; 10 L …"): um por linha (N8)
       const paralelos = ps.every((x) => /^\s*(?:[^:;]{1,30}:\s|\d)/.test(x));
-      const ok = sc.length && (/→|⇒/.test(pt) || paralelos) && ps.every((x) => x.trim() && palavras(x) <= 14);
+      // (passada 8 A3) a lista com número solto ("0,49; 0,42; 0,09 → alternativa C") fica numa linha, como com " | "
+      const ok = sc.length && (/→|⇒/.test(pt) || paralelos) && ps.every((x) => x.trim() && palavras(x) <= 14) && !ps.some((x) => valorSolto(x.trim()));
       for (const x of ok ? ps : [pt]) if (x.trim()) out.push(x.trim());
     }
   }
@@ -1221,11 +1245,13 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
     const porValor: ({ j: number; x: number }[] | null)[] = [];
     let cj = 0, cx = 0;
     for (const q of quadro) {
-      let achou: { j: number; x: number; ini?: number } | null = null;
+      // `depois`: vários pedaços casaram com a mesma linha (uma lista); a linha seguinte do quadro começa depois dela
+      // (passada 8 A3: "2,6 | 5,2 | 7,8" casa com a lista "2,6; 5,2; 7,8", e o "5,2" seguinte é o da linha de baixo)
+      let achou: { j: number; x: number; ini?: number; depois?: boolean } | null = null;
       // a mesma conta escrita igual; senão, a mesma conta escrita de outro jeito (N4: sem linha repetida no passo)
       for (const casaCom of [quadroNaConta, quadroEquivale]) {
         for (let j = cj; j < itens.length && !achou; j++) {
-          for (let x = j === cj ? cx : 0; x < itens[j].length; x++) if (casaCom(itens[j][x].texto, q.linha)) { achou = { j, x }; break; }
+          for (let x = j === cj ? cx : 0; x < itens[j].length; x++) if (casaCom(itens[j][x].texto, q.linha)) { achou = { j, x, depois: partesBarra(q.linha).length > 1 && itens[j][x].texto.includes('; ') }; break; }
         }
         if (achou) break;
       }
@@ -1233,20 +1259,27 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
       // (a nota vai para o último), e não entra repetida. (passada 8 A1) Os pedaços crus (`partesBarra`): a junção com
       // "; " de `pedacos` é só para mostrar a linha que não casou (com ela, o casamento nunca era tentado)
       const pq = partesBarra(q.linha);
+      // (passada 8 A1) a linha inteira casou com uma conta de um passo adiante ("açúcares: 8,61 | 7,49 | 5,13" e
+      // "8,61% e 7,49% > 5,13% → alternativa A", quí Pf90acda4): os pedaços, ou os valores, num passo antes dele valem mais
+      const inteira = achou;
+      const ate = inteira ? inteira.j : itens.length;
+      let pedaco: typeof achou = null;
       let ultX = -1;
-      for (let j = cj; !achou && pq.length > 1 && j < itens.length; j++) {
-        let x = j === cj ? cx : 0, prim = -1;
+      for (let j = cj; !pedaco && pq.length > 1 && j < ate; j++) {
+        let x = j === cj ? cx : 0, prim = -1, mesma = false;
         for (const pd of pq) {
           while (x < itens[j].length && !quadroNaConta(itens[j][x].texto, pd) && !quadroEquivale(itens[j][x].texto, pd)) x++;
           if (x >= itens[j].length) { prim = -2; break; }
           if (prim < 0) prim = x;
-          ultX = x++;
+          else if (x === ultX) mesma = true;
+          // (passada 8 A3) o pedaço seguinte pode estar na mesma linha, se ela é uma lista ("2,6; 5,2; 7,8")
+          ultX = itens[j][x].texto.includes('; ') ? x : x++;
         }
-        if (prim >= 0) achou = { j, x: ultX, ini: prim };
+        if (prim >= 0) pedaco = { j, x: ultX, ini: prim, depois: mesma };
       }
       // (passada 8 A2) os mesmos pedaços, todos no mesmo passo, mas em outra ordem ("GB 65 | França 64 | Austrália 53"
       // de uma tabela escrita na ordem do enunciado): também casa; a nota vai para a última dessas linhas da conta
-      for (let j = cj; !achou && pq.length > 1 && j < itens.length; j++) {
+      for (let j = cj; !pedaco && pq.length > 1 && j < ate; j++) {
         const usados: number[] = [];
         for (const pd of pq) {
           let x = j === cj ? cx : 0;
@@ -1254,19 +1287,20 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
           if (x >= itens[j].length) break;
           usados.push(x);
         }
-        if (usados.length === pq.length) achou = { j, x: Math.max(...usados), ini: Math.min(...usados) };
+        if (usados.length === pq.length) pedaco = { j, x: Math.max(...usados), ini: Math.min(...usados) };
       }
+      if (pedaco) achou = pedaco;
       // (passada 7 Z1) lista de valores em que cada número já é o resultado de uma linha da conta (o número do fim da
       // linha, em qualquer ordem, deste passo em diante): não entra repetida; cada pedaço da nota vai para a linha do seu
       // valor, ou a nota inteira para a última; é um resumo, então não avança a ordem das linhas seguintes do quadro
-      const vs = achou ? null : valoresDaLista(q.linha);
+      const vs = pedaco || (inteira && pq.length < 2) ? null : valoresDaLista(q.linha);
       let pv: { j: number; x: number }[] | null = null;
       if (vs) {
         const usados = new Set<string>();
         const ach: { j: number; x: number }[] = [];
         for (const v of vs) {
           let o: { j: number; x: number } | null = null;
-          for (let j = cj; !o && j < itens.length; j++) {
+          for (let j = cj; !o && j < ate; j++) {
             for (let x = 0; x < itens[j].length; x++) if (!usados.has(j + ':' + x) && resultadoDe(itens[j][x].texto) === v) { o = { j, x }; break; }
           }
           if (!o) break;
@@ -1281,7 +1315,7 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
       }
       porValor.push(pv);
       casa.push(achou);
-      if (achou && !pv) { cj = achou.j; cx = achou.x; }
+      if (achou && !pv) { cj = achou.j; cx = achou.x + (achou.depois ? 1 : 0); }
     }
     quadro.forEach((q, k) => {
       const c = casa[k];

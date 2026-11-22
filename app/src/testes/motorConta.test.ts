@@ -5,7 +5,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { avalia, contaTransicoes, itensDaConta, junta, montaRoteiro, quadroEquivale, quadroNaConta, tokeniza, type Roteiro } from '../logica/motorConta';
+import { avalia, contaTransicoes, junta, montaRoteiro, quadroEquivale, quadroNaConta, tokeniza, type Roteiro } from '../logica/motorConta';
 import { cruzamento } from '../logica/punnett';
 import { ResolucaoAnimada, textoVisivel } from '../ui/ResolucaoAnimada';
 import { ResolucaoView } from '../ui/Resolucao';
@@ -51,7 +51,8 @@ function confereLinhas(r: Resolucao, rt: Roteiro): string | null {
   // (passada 7 Z1) só quando todos os itens são relações; a lista de valores fica numa linha, com "; " no lugar do "|"
   const pedacos = (x: string) => {
     if (!/\s\|\s/.test(x)) return [x];
-    const it = itensDaConta(x, 'mat');
+    // (passada 8 A3) os pedaços crus: `itensDaConta` já junta a lista de valores da conta
+    const it = x.split(/\s+\|\s+/).map((y) => y.trim()).filter(Boolean);
     return it.every((y) => /[=≈≠→⇒<>≤≥∝↔⇔∈]|:\s/.test(y)) ? it : [it.join('; ')];
   };
   if (!comConta) {
@@ -70,7 +71,7 @@ function confereLinhas(r: Resolucao, rt: Roteiro): string | null {
   for (const x of q) {
     if (textos.includes(x.linha) || pedacos(x.linha).every((y) => textos.includes(y))) continue;
     // (passada 7 Z1) a lista de valores que já são resultados das contas não entra repetida: cada valor está numa linha
-    const valores = itensDaConta(x.linha, 'mat').map((y, i) => (i ? y : y.replace(/^[^:]{1,30}:\s+/, '')).replace(/\s?(?:%|[A-Za-zµ]{1,5}(?:\/[A-Za-z]{1,5})?)$/, ''));
+    const valores = x.linha.split(/\s+\|\s+/).map((y) => y.trim()).map((y, i) => (i ? y : y.replace(/^[^:]{1,30}:\s+/, '')).replace(/\s?(?:%|[A-Za-zµ]{1,5}(?:\/[A-Za-z]{1,5})?)$/, ''));
     const sao = /\s\|\s/.test(x.linha) && valores.every((v) => textos.some((t) => new RegExp(`(?<![\\d,])${v.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&')}(?![\\d]|,\\d)`).test(t)));
     // (passada 8 A1) a linha cujos pedaços crus já estão, cada um, numa linha da conta também não entra repetida
     const crus = x.linha.split(/\s+\|\s+/);

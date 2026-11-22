@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { montaRoteiro } from '../logica/motorConta';
+import { itensDaConta, montaRoteiro } from '../logica/motorConta';
 
 /* Revisão de 21/11/2026, 8ª passada, itens A (questao-correcao-7.md) */
 const linhas = (r: Parameters<typeof montaRoteiro>[0], m = 'mat') => montaRoteiro(r, m).linhas.map((l) => l.texto + (l.nota ? ` «${l.nota}»` : ''));
@@ -65,5 +65,40 @@ describe('A2: nota e linha do quadro no lugar certo', () => {
   it('mat P7abf1bcd: os mesmos itens em outra ordem casam com a conta (sem linha repetida)', () => {
     const r = { passos: [{ faz: '', conta: 'a cada 3 dias: 2¹⁰ = 1024 | a cada 5 dias: 2⁶ = 64', porque: '' }], quadro: [{ linha: '2⁶ = 64 | 2¹⁰ = 1024', nota: 'áreas' }] };
     expect(linhas(r)).toEqual(['a cada 3 dias: 2¹⁰ = 1024', 'a cada 5 dias: 2⁶ = 64 «áreas»']);
+  });
+});
+
+describe('A3: a lista de valores da conta do passo não vira coluna de números soltos', () => {
+  it('quí Pf90acda4: "pH: 4,0 | 3,6 | 2,5 → …" fica numa linha, com "; "', () => {
+    expect(itensDaConta('pH: 4,0 | 3,6 | 2,5 → todos < 7 → caráter ácido', 'qui')).toEqual(['pH: 4,0; 3,6; 2,5 → todos < 7 → caráter ácido']);
+  });
+  it('mat Pfe3cc0ba e Pb28d85a4: tabela e lista com rótulo numa linha', () => {
+    expect(itensDaConta('Total: 16 | 17 | 66 — Homens: 21 | 15 | 64', 'mat')).toEqual(['Total: 16; 17; 66 — Homens: 21; 15; 64']);
+    expect(itensDaConta('altas: 1,0 | 1,3 | 5,0 | 0,5 → a maior é 5,0', 'mat')).toEqual(['altas: 1,0; 1,3; 5,0; 0,5 → a maior é 5,0']);
+  });
+  it('quí Pf2101c1e: cada elemento fica numa linha, com os dois lados da equação', () => {
+    expect(itensDaConta('H: 2 + 2 = 4 | 2 × 2 = 4; O: 4 + 2 = 6 | 4 + 2 = 6; Na: 2 | 2; S: 1 | 1', 'qui'))
+      .toEqual(['H: 2 + 2 = 4; 2 × 2 = 4', 'O: 4 + 2 = 6; 4 + 2 = 6', 'Na: 2; 2', 'S: 1; 1']);
+  });
+  it('mat P7244b669: " ; " fecha a linha da tabela', () => {
+    expect(itensDaConta('janeiro: 900 | 1200 | 1000 ; custo: 12 | 10 | 16', 'mat')).toEqual(['janeiro: 900; 1200; 1000', 'custo: 12; 10; 16']);
+  });
+  it('relações e itens de texto continuam um por linha', () => {
+    expect(itensDaConta('x = 3 | y = 4', 'mat')).toEqual(['x = 3', 'y = 4']);
+    expect(itensDaConta('338 °C | não conduz no sólido | conduz em água', 'qui')).toEqual(['338 °C', 'não conduz no sólido', 'conduz em água']);
+  });
+  it('mat Pf7605a63: a lista do quadro casa com a lista da conta, e o "5,2" seguinte é o do passo 3', () => {
+    const r = {
+      passos: [{ faz: '', conta: '2x = 5,2 → x = 2,6', porque: '' }, { faz: '', conta: '2,6 | 5,2 | 7,8', porque: '' }, { faz: '', conta: 'a do meio: 5,2 → alternativa C', porque: '' }],
+      quadro: [{ linha: '2,6 | 5,2 | 7,8', nota: 'notas' }, { linha: '5,2', nota: 'mediana' }],
+    };
+    expect(porPasso(r)).toEqual([['2x = 5,2 → x = 2,6'], ['2,6; 5,2; 7,8 «notas»'], ['a do meio: 5,2 → alternativa C «mediana»']]);
+  });
+  it('quí Pf90acda4: a linha do quadro casa com os valores do passo 1, e não com a conclusão do passo 4', () => {
+    const r = {
+      passos: [{ faz: '', conta: 'abacaxi: 8,61% | acerola: 7,49% | cajá: 5,13%', porque: '' }, { faz: '', conta: '8,61% e 7,49% > 5,13% → alternativa A', porque: '' }],
+      quadro: [{ linha: 'açúcares: 8,61 | 7,49 | 5,13', nota: 'abacaxi e acerola na frente: A' }],
+    };
+    expect(porPasso(r, 'qui')).toEqual([['abacaxi: 8,61%', 'acerola: 7,49%', 'cajá: 5,13% «abacaxi e acerola na frente: A»'], ['8,61% e 7,49% > 5,13% → alternativa A']]);
   });
 });
