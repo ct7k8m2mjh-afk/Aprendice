@@ -1176,16 +1176,31 @@ const rotuloDe = (s: string) => /^\s*([^:;=<>→()]{1,20}):\s/.exec(s)?.[1].trim
 /** os sinais de uma conta ("=", "→", "/", "×", "+", "−"…), com "rótulo: " valendo "=" e "·" valendo "×" */
 const sinaisDe = (s: string): string[] => (s.replace(/:\s/g, '= ').replace(/[·*]/g, '×').replace(/-/g, '−').replace(/÷/g, '/').match(/[=≈≠<>≤≥→⇒⇔/×+−√]/g) || []);
 const fimDaSeta = (s: string) => { const i = s.lastIndexOf('→'); return i < 0 ? undefined : s.slice(i + 1).trim().toLowerCase(); };
-/** `a` está dentro de `b`, na mesma ordem (contando as repetições) */
+/** (passada 10 C1) o mesmo número, ou o mesmo arredondado ("0,0256" e "0,02564"; "0,0626" e "0,06265"): o de menos
+ *  casas tem pelo menos uma casa decimal e três algarismos significativos */
+function mesmoNum(a: string, b: string): boolean {
+  if (a === b) return true;
+  if (!/^\d+(?:,\d+)?$/.test(a) || !/^\d+(?:,\d+)?$/.test(b)) return false;
+  const [c, l] = casasDecimais(a) <= casasDecimais(b) ? [a, b] : [b, a];
+  const k = casasDecimais(c);
+  if (!k || k === casasDecimais(l) || c.replace(/^[0,]+/, '').replace(',', '').length < 3) return false;
+  const vc = +c.replace(',', '.'), vl = +l.replace(',', '.');
+  return Math.abs(vl - vc) <= 0.5 * 10 ** -k + 1e-12;
+}
+const achaNum = (b: string[], x: string, de: number) => { for (let i = de; i < b.length; i++) if (mesmoNum(x, b[i])) return i; return -1; };
+/** `a` está dentro de `b`, na mesma ordem (contando as repetições; número arredondado vale) */
 function contido(a: string[], b: string[]): boolean {
   let de = 0;
   for (const x of a) {
-    const i = b.indexOf(x, de);
+    const i = achaNum(b, x, de);
     if (i < 0) return false;
     de = i + 1;
   }
   return true;
 }
+/** as letras soltas de uma conta (variáveis), sem o rótulo, sem unidade depois de número e sem o "e" de ligação */
+const letrasDe = (t: string) => new Set((t.replace(/^\s*[^:;=<>→()]{1,20}:\s/, '').replace(/(\d)\s?[A-Za-zµΩ]{1,3}\b/g, '$1').match(/\p{L}+/gu) || [])
+  .filter((w) => w.length === 1 && w !== 'e' && !/[ºª]/.test(w)).map((w) => w.toLowerCase()));
 /**
  * (passada 9 B2) A linha do quadro diz o mesmo que estas linhas seguidas da conta, com outras palavras ("µ mínimo = 0,50 →
  * 3,2%" e "menor coeficiente: 0,50 → 3,2% de água"; "Cu: +0,34 V e Al: +1,66 V > −0,55 V" e as linhas do Cu e do Al)?
@@ -1199,27 +1214,78 @@ function contido(a: string[], b: string[]): boolean {
  *   com no máximo um a mais (ou metade) (1);
  * - senão (uma linha): a mesma conclusão, os números dela na linha e metade das palavras (1).
  */
-export function parecida(ls: string[], q: string, dist = 0, antes = false): 0 | 1 | 2 {
+export function parecida(ls: string[], q: string, dist = 0, antes = false, nota = ''): 0 | 1 | 2 {
   if (!ls.length) return 0;
   const rq = rotuloDe(q), rl = rotuloDe(ls[0]);
-  if (rq && rl && rq !== rl) return 0;
+  // (passada 10 C1) várias linhas com rótulo, todos citados na linha do quadro, que tem o seu próprio ("mulheres: 2020 =
+  // 47,3 | 2021 = 52,3" e "2020: 47,3", "2021: 52,3"): o rótulo dela não conta
+  let multi = false;
   if (ls.length > 1) {
     const pq = new Set(q.match(/[\p{L}\d]+/gu) || []);
     if (!ls.every((l) => { const r = /^\s*([^:;=<>→()]{1,20}):\s/.exec(l)?.[1].trim(); return r && pq.has(r); })) return 0;
+    multi = !!rq && !ls.some((l) => rotuloDe(l) === rq);
+    if (multi) q = q.replace(/^\s*[^:;=<>→()]{1,20}:\s/, '');
   }
+  if (!multi && rq && rl && rq !== rl) return 0;
   const nq = numerosDe(q), nl = numerosDe(ls.join(' ; '), true);
-  const iguais = nq.join(' ') === nl.join(' ');
+  const iguais = nq.length === nl.length && nq.every((x, i) => mesmoNum(x, nl[i]));
   const fq = fimDaSeta(q), fl = ls.length === 1 ? fimDaSeta(ls[0]) : undefined;
   const mesmoFim = !!fq && fq === fl && !/^(?:alternativa\s+)?[a-e]$/.test(fq);
   if (mesmoFim && rq && rq === rl && (contido(nl, nq) || contido(nq, nl))) return 2;
   // os sinais dela também estão nessas linhas ("g(1) = 0" não é "vértice (1, 0)"; "2/(1/2)" não é "1/2"), e ela é relação
   const sl = sinaisDe(ls.join(' ; ')), sq = sinaisDe(q);
   const sinais = sq.every((c) => { const i = sl.indexOf(c); if (i < 0) return false; sl.splice(i, 1); return true; }) && sq.some((c) => /[=≈≠<>≤≥→⇒⇔]/.test(c));
+  const n2 = (xs: string[]) => xs.filter((x) => x !== '0' && x !== '1');
+  if (ls.length === 1 && dist <= 1) {
+    const l = ls[0];
+    const corpo = (t: string) => t.replace(/^\s*[^:;=<>→()]{1,20}:\s/, '').replace(/\s+/g, ' ').trim();
+    // (passada 10 C1) a mesma relação com outro rótulo, ou sem ele: a linha do quadro, sem o rótulo, é um trecho inteiro
+    // da conta entre setas ("homem: ii Rr" e "O Rh⁺ com mãe Rh⁻ (rr) → ii Rr"; "A: P − NA = m v²/R" e "A: centro para
+    // baixo → P − NA = m v²/R → NA < P")
+    const cq = corpo(q);
+    if (cq.length >= 4 && /\p{L}/u.test(cq.replace(/(?<!\p{L})(?:e|ou)(?!\p{L})/gu, '')) && corpo(l).split(/\s*→\s*/).some((t) => t === cq)) return 2;
+  }
   // longe: o mesmo rótulo e os mesmos números, três ou mais; ou, num passo antes, os mesmos números e os mesmos sinais
   // ("d = 2r → V/2" e "… → d = 2r: V = (k · Q/r)/2", que o quadro escreve fora da ordem da conta)
   // metade das palavras dela (sem repetir) também estão nessas linhas ("CH2= primário; CH secundário" não é "CH2=CH−CH3")
   const wl = new Set(palavrasDe(ls.join(' ; '))), wq = [...new Set(palavrasDe(q))];
   const palavras = wq.filter((w) => wl.has(w)).length * 2 >= wq.length;
+  // (passada 10 C1) trecho de uma conta deste passo ou do vizinho: os números dela (fora os ordinais, dois ou mais além
+  // de 0 e 1) são os de um ou mais trechos seguidos da conta entre setas (arredondados valem), com as letras dela e
+  // metade das palavras dela e da nota ("centrais: 24,50 e 24,80 «4.º e 5.º de 8 valores»" e "8 valores → 4.º = 24,50 e
+  // 5.º = 24,80"; "inclinação = 4/3 → f(4) = −1 + 8/3 = 5/3", a mesma conta com "2 · 4/3")
+  const trecho = (l: string, qq: string) => {
+    const sem = (t: string) => numerosDe(t.replace(/\d+\.?\s?[ºª]/g, ' '));
+    const xq = sem(qq), x2 = n2(xq);
+    // dois números além de 0 e 1, dois deles com mais de um algarismo, ou três ("2" e "2" de "(p² − 2q)² − 2q²" não bastam)
+    if (x2.length < 2 || (x2.length < 3 && x2.filter((x) => x.replace(/\D/g, '').length > 1).length < 2)) return false;
+    // os sinais dela estão nesses trechos ("pH = −(log 2 + log 10^(−7))" não é "pH = −log (2 × 10^(−7))")
+    const temSinais = (t: string) => { const sl2 = sinaisDe(t); return sinaisDe(qq).every((c) => { const i = sl2.indexOf(c); if (i < 0) return false; sl2.splice(i, 1); return true; }); };
+    const lq = letrasDe(qq), ll = letrasDe(l);
+    if (![...lq].every((c) => ll.has(c))) return false;
+    const metade = (t: string) => { const wn = [...new Set(palavrasDe(t))]; return wn.filter((w) => wl.has(w)).length * 2 >= wn.length; };
+    if (!metade(qq) && !metade(qq + ' ' + nota)) return false;
+    const sg = l.split(/\s*→\s*/);
+    for (let a = 0; a < sg.length; a++) for (let b = a + 1; b <= sg.length; b++) {
+      const xs = sem(sg.slice(a, b).join(' → '));
+      if (xs.length === xq.length && xs.every((x, k) => mesmoNum(x, xq[k])) && temSinais(sg.slice(a, b).join(' → '))) return true;
+    }
+    return false;
+  };
+  // (passada 10 C1) a conta que dá o resultado escrito por extenso na linha do passo ("840/7 = 120 «média»" e "… → soma
+  // 840 → média 120"): três números ou mais, no máximo um fora da linha, o primeiro na linha e o último no fim de um
+  // trecho entre setas, com a palavra da nota antes dele
+  const porExtenso = () => {
+    const q2 = n2(nq);
+    if (ls.length > 1 || dist !== 0 || q2.length < 3) return false;
+    const ult = q2[q2.length - 1];
+    const fins = ls[0].split(/\s*→\s*/).map((t) => /(\p{L}+)\s+([\d.,]+)\s*$/u.exec(t)).filter(Boolean) as RegExpExecArray[];
+    const fim = fins.find((m) => mesmoNum(numerosDe(m[2])[0] || '', ult) && palavrasDe(nota).includes(m[1].toLowerCase()));
+    if (!fim || achaNum(nl, q2[0], 0) < 0) return false;
+    return q2.filter((x) => achaNum(nl, x, 0) < 0).length <= 1;
+  };
+  if (ls.length === 1 && dist <= 1 && (trecho(ls[0], q) || (RE_PROD.test(ls[0]) && prodsDe(q).every((x) => ls[0].includes(x)) && trecho(produtos(ls[0]), produtos(q))))) return 2;
+  if (porExtenso()) return 1;
   if (dist >= 2) return (rq && rq === rl && nq.length >= 3 && iguais) || (antes && nq.filter((x) => x !== '0' && x !== '1').length >= 2 && iguais && sinais && palavras) ? 2 : 0;
   if (nq.length >= 2) {
     // dois números que não sejam 0 nem 1 ("ΔU = 0 ; W < 0 → Q < 0" não é "W = 0 ; … → Q = ΔU < 0"), e os sinais dela
@@ -1236,7 +1302,7 @@ export function parecida(ls: string[], q: string, dist = 0, antes = false): 0 | 
     if (nl.length - nq.length <= Math.max(1, Math.floor(nq.length / 2))) return 1;
     // no mesmo passo, os números dela seguidos dentro de uma conta mais longa ("A: 252 − 162 = 90" em "6% de 2 700 = 162
     // → 252 − 162 = 90"): "C = A → B = 100 − 2A" não é "2A + B = 100 → B = 100 − 2A" (letras)
-    const seguidos = nl.some((_, i) => nq.every((x, k) => nl[i + k] === x));
+    const seguidos = nl.some((_, i) => nq.every((x, k) => nl[i + k] != null && mesmoNum(x, nl[i + k])));
     return dist === 0 && seguidos && palavras ? 1 : 0;
   }
   if (!mesmoFim || ls.length > 1) return 0;
@@ -1244,6 +1310,19 @@ export function parecida(ls: string[], q: string, dist = 0, antes = false): 0 | 
   return contido(nq, nl) && ws.length >= 3 && ws.filter((w) => wl.has(w)).length * 2 >= ws.length ? 1 : 0;
 }
 
+const RE_PROD = /\d(?:[.,]\d+)?\s?[×·]\s?\d/;
+/** (passada 10 C1) troca o produto de números ("4 · 25", "2,70 × 10⁻³") pelo valor, para comparar duas contas */
+const RE_CADEIA = () => { const N = String.raw`\d+(?:,\d+)?(?:[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+)?(?![\d,^])`; return new RegExp(String.raw`(?<![\d,^])${N}(?:\s?[×·]\s?${N})+(?![\d,])`, 'g'); };
+/** os produtos de números escritos numa linha ("2,70 × 10⁻³"): os da linha do quadro têm de estar na conta, escritos
+ *  igual (a linha do quadro com a conta por fazer, "2,5 × 8 + 1,6 × 12", não é a conta já feita, "20 + 19,2") */
+const prodsDe = (s: string) => s.match(RE_CADEIA()) || [];
+export function produtos(s: string): string {
+  return s.replace(RE_CADEIA(), (m) => {
+    let v = 1;
+    for (const f of m.split(/\s?[×·]\s?/)) { const x = valorTokNum(f); if (x == null) return m; v *= x; }
+    return String(+v.toPrecision(10)).replace('.', ',');
+  });
+}
 /**
  * Reação escrita com palavras em Química (item 8c): "1 C2H5OH dá 1 C2H4 mais 1 H2O", "2 H2 e O2 formam 2 H2O". Só
  * fórmulas de verdade dos dois lados; o verbo vira a seta e "mais"/"e" viram "+". Os termos (coeficientes e fórmulas)
@@ -1447,7 +1526,9 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
         const d = Math.abs(j - alvo);
         for (let g = 1; g <= 3; g++) {
           for (let x = 0; x + g <= its.length; x++) {
-            const n = parecida(its.slice(x, x + g).map((it) => it.texto), q.linha, d, j < alvo);
+            const ls = its.slice(x, x + g).map((it) => it.texto);
+            // (passada 10 C1) o produto de números escrito por extenso ("4 · 25" e "100"; "3,4 × 10⁻³" e "0,0034")
+            const n = parecida(ls, q.linha, d, j < alvo, q.nota || '');
             if (n && (!m || n > m.n || (n === m.n && (d < m.d || (d === m.d && (g < m.g || (g === m.g && j > m.j))))))) m = { j, x: x + g - 1, n, d, g };
           }
         }
