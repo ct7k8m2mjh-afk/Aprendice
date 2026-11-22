@@ -69,6 +69,41 @@ describe.skipIf(!tem)('C1: linha do quadro que repete a conta não entra de novo
   });
 });
 
+describe.skipIf(!tem)('C2: linha do quadro no passo certo, nunca depois da conclusão', () => {
+  it('mat P5be7ca9e: "j(1) = 0 → j(2) = −1" vai para o passo do "j decrescente"; "|x| ≥ 0 …" para a afirmação C', () => {
+    const ps = porPasso('mat', 'P5be7ca9e');
+    expect(ps[3][ps[3].length - 1]).toBe('j(1) = 0 → j(2) = −1 «j decresce»');
+    expect(ps[4]).toEqual(['as cinco afirmações de D são verdadeiras → alternativa D']);
+    expect(ps[2]).toEqual(["A: 'g linear' falsa", "B: 'i par' falsa", "C: 'imagem de g é ℝ' falsa, Im(g) = [−2, +∞[", '|x| ≥ 0 → |x| − 2 ≥ −2 «Im(g) = [−2, +∞[, não ℝ»', "E: 'g linear' falsa"]);
+    expect(ps[1].some((l) => l.startsWith('|x|'))).toBe(false);
+  });
+  it('quí P0d56efd8: "137 = 137 + 0" é a massa da equação do item II (nuclídeo), não entra no passo 1', () => {
+    const ps = porPasso('qui', 'P0d56efd8');
+    expect(ps[0]).toEqual(['decaimento espontâneo; meia-vida não depende do ambiente']);
+    expect(ps[1]).toEqual(['¹³⁷₅₅Cs → ¹³⁷₅₆Ba + ⁰₋₁β «massa; carga: Z sobe 1»']);
+  });
+  it('bio Pba6766ee: "Rr × rr → Rr | rr" fica no "Cruze"', () => {
+    const ps = porPasso('bio', 'Pba6766ee');
+    expect(ps[2]).toEqual(['ii Rr × ii rr → ii Rr (O Rh+)', 'ii rr (O Rh−)', 'Rr × rr → Rr; rr «1/2 Rh+ e 1/2 Rh−»']);
+    expect(ps[3]).toEqual(['C: ABO e Rh são genes diferentes', 'D: IAi Rr × IBIB RR → todos Rh+', 'E: IAi Rr × IBi Rr → A, B, AB, O']);
+  });
+  it('mat Pb28d85a4: "maior alta = 5,0 → C" é a conclusão do passo 5, não entra no meio das letras', () => {
+    const ps = porPasso('mat', 'Pb28d85a4');
+    expect(ps[3].some((l) => l.startsWith('maior alta'))).toBe(false);
+    expect(ps[4]).toEqual(['maior alta anual: 47,3 → 52,3 (+5,0) → alternativa C «conclusão»']);
+  });
+  it('nenhuma linha do quadro depois da conclusão do passo (resoluções de exemplo)', () => {
+    expect(porPasso('mat', 'P12681577')[3].at(-1)).toBe('t ≈ 13,2 + 1 = 14,2 anos → alternativa C');
+    expect(porPasso('fis', 'P733b8dee')[3].at(-1)).toBe('grooving → maior força de atrito pneu-piso → alternativa A');
+    expect(porPasso('qui', 'P988a6ce2')[3].at(-1)).toBe('4º período, grupo 2, 2 elétrons de valência → B');
+  });
+  it('o lugar não muda por uma palavra solta da nota (fís P20f45835, Clarice no passo 1; quí P1e14511a)', () => {
+    expect(porPasso('fis', 'P20f45835')[0]).toEqual(['vê de perto, não de longe → miopia', 'Clarice: miopia → divergente «não vê de longe»']);
+    expect(porPasso('qui', 'P1e14511a')[0]).toEqual(['dependem da quantidade de partículas, não da natureza', '1 g/0,01 mol = 100 g/mol «exemplo de massa molar»']);
+    expect(porPasso('qui', 'Pdeb86dd5')[0]).toHaveLength(6);
+  });
+});
+
 describe.skipIf(!tem)('passadas anteriores continuam (Z, A1–A5, B1–B3)', () => {
   it('A1: mat P476c4b22 sem linha repetida', () => {
     expect(porPasso('mat', 'P476c4b22')[0]).toEqual(['2018: A/1,35 ≈ 0,741A', '2017: A/1,45 ≈ 0,690A', '2016: A/1,28 ≈ 0,781A «áreas»']);

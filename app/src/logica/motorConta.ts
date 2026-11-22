@@ -1127,10 +1127,11 @@ export function quadroNaConta(linha: string, q: string): boolean {
   return nomes.some((m) => semNomeTexto(m));
 }
 
+const SOBRE_DIG: Record<string, string> = { '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4', '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9' };
 const SUB_DIG: Record<string, string> = { '₀': '0', '₁': '1', '₂': '2', '₃': '3', '₄': '4', '₅': '5', '₆': '6', '₇': '7', '₈': '8', '₉': '9' };
 /** os "átomos" de uma linha: números, letras e funções (sem palavra, sinal nem unidade escrita por extenso), para
  *  comparar a mesma conta escrita de outro jeito ("log₂₇₄₄ 2" e "log de 2 (base 2744)"; "V(sub)" e "V(submerso)") */
-function atomos(s: string): string[] {
+function atomos(s: string, nuclideo = false): string[] {
   const out: string[] = [];
   const vai = (ts: Tok[]) => {
     for (const t of ts) {
@@ -1143,7 +1144,9 @@ function atomos(s: string): string[] {
       out.push(t.v);
     }
   };
-  vai(tokeniza(s.replace(/[₀-₉]+/g, (m) => ` ${[...m].map((c) => SUB_DIG[c]).join('')} `)));
+  // (passada 10 C2) nuclídeo: o número de massa sobrescrito antes do número atômico ("¹³⁷₅₅Cs", "⁰₋₁β") também é número
+  const t = !nuclideo ? s : s.replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹]+(?=[₀-₉₋]+\s?[A-Zα-ωβ])/g, (m) => ` ${[...m].map((c) => SOBRE_DIG[c]).join('')} `);
+  vai(tokeniza(t.replace(/[₀-₉]+/g, (m) => ` ${[...m].map((c) => SUB_DIG[c]).join('')} `)));
   return out;
 }
 /**
@@ -1152,9 +1155,9 @@ function atomos(s: string): string[] {
  * com pelo menos três deles e um número. Então ela não entra de novo: só a nota vai para a linha do passo.
  */
 export function quadroEquivale(linha: string, q: string): boolean {
-  const aq = atomos(q);
+  const aq = atomos(q, true);
   if (aq.length < 3 || !aq.some((x) => /^-?\d/.test(x))) return false;
-  const resto = atomos(linha);
+  const resto = atomos(linha, true);
   for (const x of aq) {
     const k = resto.indexOf(x);
     if (k < 0) return false;
@@ -1244,6 +1247,10 @@ export function parecida(ls: string[], q: string, dist = 0, antes = false, nota 
     // baixo → P − NA = m v²/R → NA < P")
     const cq = corpo(q);
     if (cq.length >= 4 && /\p{L}/u.test(cq.replace(/(?<!\p{L})(?:e|ou)(?!\p{L})/gu, '')) && corpo(l).split(/\s*→\s*/).some((t) => t === cq)) return 2;
+    // (passada 10 C2) a mesma conclusão por letra ("maior alta = 5,0 → C" e "maior alta anual: 47,3 → 52,3 (+5,0) →
+    // alternativa C"), com os números dela na linha e metade das palavras
+    const letra = (t: string) => /→\s*(?:alternativa\s+)?([A-E])\s*$/.exec(t)?.[1];
+    if (letra(q) && letra(q) === letra(l) && contido(nq, numerosDe(l)) && palavrasDe(q.replace(/→\s*[A-E]\s*$/, '')).filter((w) => new Set(palavrasDe(l)).has(w)).length * 2 >= palavrasDe(q.replace(/→\s*[A-E]\s*$/, '')).length) return 2;
   }
   // longe: o mesmo rótulo e os mesmos números, três ou mais; ou, num passo antes, os mesmos números e os mesmos sinais
   // ("d = 2r → V/2" e "… → d = 2r: V = (k · Q/r)/2", que o quadro escreve fora da ordem da conta)
@@ -1540,6 +1547,42 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
       if (q.destaque && !it.destaque && it.texto.includes(q.destaque)) it.destaque = q.destaque;
       return true;
     };
+    const evidencia = (q: { linha: string; nota?: string }, de: number, ate: number, pode: (j: number) => boolean = () => true): { j: number; x: number; forca: number; linha: boolean } | null => {
+      let m: { j: number; x: number; forca: number; linha: boolean } | null = null;
+      const tq = q.linha.split(/[\s|;]+/).filter(Boolean);
+      for (let j = de; j <= ate && j < itens.length; j++) {
+        if (!pode(j)) continue;
+        const its = itens[j];
+        // a nota: o maior trecho dela, de 8 letras ou mais, inteiro (começa e acaba em palavra), no título ou num item
+        let forca = 0, x = its.length - 1, linha = false;
+        if (q.nota) {
+          const n = q.nota.toLowerCase();
+          const ondes = [(ps[j].faz || '').toLowerCase(), ...its.map((it) => it.texto.toLowerCase())];
+          for (let i = 0; i < n.length; i++) for (let f = n.length; f - i >= 8 && f - i > forca; f--) {
+            const tr = n.slice(i, f);
+            // (duas palavras ou mais, sem as do veredito e da letra: "verdadeira", "falsa", "alternativa C")
+            if (/^[\s,;.]|[\s,;.]$/.test(tr) || (!/[=<>≤≥()[\]]/.test(tr) && palavrasDe(tr).length < 2) || !/\S\s+\S/.test(tr) || (tr.match(/\p{L}/gu) || []).length < 3 || (i > 0 && /[\p{L}\d]/u.test(n[i - 1]) && /[\p{L}\d]/u.test(n[i])) || (f < n.length && /[\p{L}\d]/u.test(n[f - 1]) && /[\p{L}\d]/u.test(n[f]))
+              || /verdadeir|fals[oa]|corret|incorret|alternativa|errad|cert[oa]\b/.test(tr)) continue;
+            const re = new RegExp(`(?<![\\p{L}\\d])${tr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}${/\p{L}{6,}$/u.test(tr) ? '' : '(?![\\p{L}\\d])'}`, 'u');
+            const w = ondes.findIndex((o) => re.test(o));
+            // (a última palavra longa pode ser o começo da palavra do passo: "j decresce" e "j decrescente")
+            // (o trecho de fórmula, com sinal ou parênteses, vale mais: "Im(g) = [−2, +∞[")
+            if (w >= 0) { forca = /[=<>≤≥()[\]]/.test(tr) ? f - i : Math.min(f - i, 13); if (w > 0) x = w - 1; break; }
+          }
+        }
+        // a linha inteira, termo a termo, na mesma ordem, dentro da conta do passo (três termos ou mais, com letra)
+        if (!forca && tq.length >= 3 && tq.some((t) => /\p{L}/u.test(t))) {
+          const tl = its.map((it, w) => it.texto.split(/[\s|;]+/).filter(Boolean).map((t) => [t, w] as const)).flat();
+          let de2 = 0, ult = -1;
+          let ini = -1;
+          for (const t of tq) { const i = tl.findIndex(([y], z) => z >= de2 && y === t); if (i < 0) { ult = -2; break; } if (ini < 0) ini = i; de2 = i + 1; ult = tl[i][1]; }
+          // os termos perto uns dos outros (no máximo o dobro deles), não espalhados por uma conta longa
+          if (ult >= 0 && de2 - ini <= 2 * tq.length) { forca = 8; x = ult; linha = true; }
+        }
+        if (forca && (!m || forca > m.forca)) m = { j, x, forca, linha };
+      }
+      return m;
+    };
     quadro.forEach((q, k) => {
       if (casa[k]) return;
       let a = -1, ax = -1, b = itens.length - 1, bx = Infinity;
@@ -1557,12 +1600,32 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
           if (n > nota) { nota = n; melhor = j; }
         }
       }
-      const alvo = melhor >= 0 && nota * 2 >= aq.length ? melhor : Math.max(Math.max(a, 0), Math.min(b, prop));
+      const porNumeros = melhor >= 0 && nota * 2 >= aq.length;
+      let alvo = porNumeros ? melhor : Math.max(Math.max(a, 0), Math.min(b, prop));
+      // (passada 10 C2) o lugar de antes é duvidoso quando veio só da proporção (sem números), ou cai no último passo ou
+      // depois da conclusão de um passo ("… → alternativa D"). Então vale o passo que fala da mesma coisa: a nota (ou um
+      // trecho dela) escrita na conta ou no título do passo ("j decresce" e "j decrescente"), ou a linha inteira dentro da
+      // conta, termo a termo ("Rr × rr → Rr | rr" no "Cruze": "ii Rr × ii rr → ii Rr | ii rr"); ela entra logo depois do
+      // item. Um trecho longo da nota escrito igual ("Im(g) = [−2, +∞[") vale sempre. O passo da conclusão não recebe.
+      const conclusao = /(?:→|^)\s*(?:alternativa\s+)?[A-E]\s*$/;
+      const concluiQ = conclusao.test(q.linha) || /(?:^|\s|:)\s*(?:resposta|alternativa|letra)\s*:?\s*[A-E]\s*$/i.test(q.linha);
+      const fecha = (j: number) => (j === itens.length - 1 && /^(?:ligue|conclua|responda|marque|assinale|feche|decida)/i.test(ps[j].faz || '')) || (!!itens[j].length && conclusao.test(itens[j][itens[j].length - 1].texto));
+      const ev = concluiQ ? null : evidencia(q, Math.max(a, 0), b, (j) => !fecha(j));
+      // (a nota só decide quando a linha cairia no passo da conclusão; a linha inteira na conta, também quando o lugar veio
+      // só da proporção)
+      const duvida = fecha(alvo) || (!porNumeros && !!ev?.linha);
+      let depoisDe = -1;
+      if (ev && ev.j !== alvo && (duvida || ev.forca >= 14) && !(evidencia(q, alvo, alvo)?.forca ?? 0)) { alvo = ev.j; depoisDe = ev.x; }
       if (achaParecida(q, alvo)) return;
       const novos = itensDoQuadro(q);
       const e = lugar(alvo);
       // depois da linha casada antes (mesmo passo); senão antes da casada depois (mesmo passo); senão no fim do passo
-      const pos = alvo === a ? ax + 1 : alvo === b && bx !== Infinity ? bx : Infinity;
+      let pos = depoisDe >= 0 ? depoisDe + 1 : alvo === a ? ax + 1 : alvo === b && bx !== Infinity ? bx : Infinity;
+      // (passada 10 C2) nunca depois da conclusão do passo ("… → alternativa D"), a não ser que ela também conclua
+      if (!concluiQ) {
+        const c = itens[alvo].length - 1;
+        if (c >= 0 && conclusao.test(itens[alvo][c].texto) && pos > c) pos = c;
+      }
       if (pos === Infinity) e.fim.push(...novos);
       else { const v = e.antes.get(pos) || []; v.push(...novos); e.antes.set(pos, v); }
     });
