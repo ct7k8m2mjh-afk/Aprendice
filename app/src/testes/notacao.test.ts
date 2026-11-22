@@ -32,3 +32,13 @@ describe('notação', () => {
     for (const s of ['H2SO4 → 2 H+ + SO4^2−', '10^−2', 'V_R', 'h_{máx}', 'm0']) expect(juntaNotacao(partesNotacao(s))).toBe(s);
   });
 });
+
+describe('passada 4 S2/S6: "ℓ1" é variável com índice', () => {
+  it('o algarismo desce; "Aℓ2O3" fica', async () => {
+    const { partesNotacao } = await import('../logica/notacao');
+    const { tokeniza } = await import('../logica/motorConta');
+    expect(partesNotacao('ℓ1 é o maior')).toEqual([{ t: 'txt', v: 'ℓ' }, { t: 'sub', v: '1', pre: '', pos: '' }, { t: 'txt', v: ' é o maior' }]);
+    expect(partesNotacao('Aℓ2O3').some((p) => p.t === 'sub' && p.v === '2' && false)).toBe(false);
+    expect(tokeniza('P₁ = 3300 W → ℓ1 é o maior').filter((t) => t.k === 'var').map((t) => t.v)).toContain('ℓ1');
+  });
+});

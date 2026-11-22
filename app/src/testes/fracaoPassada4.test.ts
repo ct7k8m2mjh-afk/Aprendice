@@ -22,3 +22,29 @@ describe('S1: denominador entre colchetes empilha', () => {
     expect(junta(s, 'mat')).toBe(s);
   });
 });
+
+describe('S2: "ℓ" com algarismo e "k₀Q/ℓ²" no meio da frase empilham', () => {
+  it('fís P0a6b7f22 e P6335eb04', () => {
+    expect(fr('U fixa: ℓ2/ℓ1 = P1/P2', 'fis')).toEqual(['ℓ2|ℓ1', 'P1|P2']);
+    expect(fr('ℓ3/ℓ1 = 3300/5500 = 0,60', 'fis')).toEqual(['ℓ3|ℓ1', '3300|5500']);
+    expect(fr('já dão um campo maior que k₀Q/ℓ² (√3 ≈ 1,73 vezes)', 'fis')).toEqual(['k₀Q|ℓ²']);
+    expect(fr('a soma de dois vetores de módulo k₀Q/ℓ² com 60° entre eles', 'fis')).toEqual(['k₀Q|ℓ²']);
+    expect(fr('k₀Q/ℓ² é o campo de uma só carga efetiva', 'fis')).toEqual(['k₀Q|ℓ²']);
+  });
+  it('variável com índice: o produto inteiro e o índice inteiro', () => {
+    expect(fr('P₁V₁/T₁ = P₂V₂/T₂', 'fis')).toEqual(['P₁V₁|T₁', 'P₂V₂|T₂']);
+    expect(fr('1/aₖ − 1/aₖ₊₁ = r/(aₖaₖ₊₁)', 'mat')).toEqual(['1|aₖ', '1|aₖ₊₁', 'r|aₖaₖ₊₁']);
+    expect(fr('x = log₂10/3', 'mat')).toEqual(['log₂10|3']);
+    expect(fr('+vₘ(t₂ − t₁)/2 − vₘ(t₃ − t₂)/2 = 0', 'fis')).toEqual(['vₘ(t₂ − t₁)|2', 'vₘ(t₃ − t₂)|2']);
+  });
+  it('pedaço de fórmula, espécie e par de ligações continuam na linha', () => {
+    expect(fr('A razão H₂O/CO₂ é H/2C', 'qui')).toEqual(['H|2C']);
+    expect(fr('baterias de lítio-iodo (Li/I₂).', 'qui')).toEqual([]);
+    expect(fr('sobre ligações σ/π e funções', 'qui')).toEqual([]);
+    expect(fr('A razão pₓ/p\'ₓ.', 'fis')).toEqual([]);
+    expect(fr('Aℓ2O3 e Aℓ3+', 'qui')).toEqual([]);
+  });
+  it('o texto não muda', () => {
+    for (const s of ['U fixa: ℓ2/ℓ1 = P1/P2', 'maior que k₀Q/ℓ² (√3 ≈ 1,73 vezes)', '1/aₖ − 1/aₖ₊₁ = r/(aₖaₖ₊₁)']) expect(junta(s, 'fis')).toBe(s);
+  });
+});

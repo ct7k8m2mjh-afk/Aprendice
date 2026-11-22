@@ -20,8 +20,8 @@ const RE_FORMULA = /(?<![A-Za-zÀ-ÿ0-9_#])((?:[A-Z][a-z]?\d*|\((?:[A-Z][a-z]?\d
 const RE_EXPO = /\^\(([^()\n]{1,30})\)|\^([−\-+]?[0-9a-zA-Z,]+[+−]?)/g;
 // índice com sublinhado
 const RE_INDICE = /_\{([^{}\n]{1,20})\}|_([A-Za-z0-9áéíóúâêôãõç]+)/g;
-// variável de uma letra com número colado: "m0", "v0", "a1", "x2", "b21"
-const RE_VARIND = /(?<![A-Za-zÀ-ÿ0-9_#.,])([a-zα-ω])(\d{1,2})(?![A-Za-zÀ-ÿ0-9#_^]|[.,]\d)/g;
+// variável de uma letra com número colado: "m0", "v0", "a1", "x2", "b21", "ℓ1" (passada 4 S2: "Aℓ2O3" é fórmula, fica)
+const RE_VARIND = /(?<![A-Za-zÀ-ÿ0-9_#.,])([a-zα-ωℓ])(\d{1,2})(?![A-Za-zÀ-ÿ0-9#_^]|[.,]\d)/g;
 
 /** é uma fórmula química de verdade (todos os pedaços são símbolos de elementos; tem índice ou carga)? */
 export function ehFormulaQuimica(f: string): boolean {

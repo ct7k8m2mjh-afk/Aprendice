@@ -39,11 +39,11 @@ const EXP_POS = String.raw`(?:[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]+|\^\([^()\n]{1,30
 const POTENCIA = String.raw`(?:\d+(?:,\d+)?|[A-Za-zα-ωπ])\^(?:\([^()\n]{1,30}\)|[−\-]?\d+(?:,\d+)?|[a-zA-Z](?![A-Za-z]))`;
 // coeficiente colado ao grupo: número, raiz, função ("log2(y)"), até duas letras ("Mm(ΔT − 100)", "pq(p + q)") ou outro
 // grupo ("(l√19/3)(l√17/3)/2"); letra colada à raiz ("l√19/3") vai junto
-const TERMO = String.raw`(?:\d+(?:,\d+)?|√\d*|ln|log[₀-₉\d]*|sen|cos|tg|[A-Za-zα-ω]{1,2}|\([^()\n]{1,30}\))?${GRUPO}${EXP_POS}|${POTENCIA}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?(?:[a-zA-Zℓ](?=√))?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦℓ][\u0302\u0304\u0305]?)?(?:_[A-Za-z0-9]+|[₀-₉]+|(?<=[A-Za-z])½|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-z])[A-Za-z])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
+const TERMO = String.raw`(?:\d+(?:,\d+)?|√\d*|ln|log[₀-₉\d]*|sen|cos|tg|[A-Za-zα-ω]{1,2}[₀-₉ₐ-ₜ]*|\([^()\n]{1,30}\))?${GRUPO}${EXP_POS}|${POTENCIA}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?(?:[a-zA-Zℓ](?=√))?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦℓ][\u0302\u0304\u0305]?)?(?:_[A-Za-z0-9]+|[₀-₉ₐ-ₜ][₀-₉ₐ-ₜ₊₋]*|(?<=[A-Za-z])½|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-zℓ])[A-Za-zℓ])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
 // (revisão de 21/11/2026, N1) função com argumento ("sen θ/g", "BC/tg 30°", "log x/log 2") e produto de variáveis
 // ("nRT/V", "GMm/r²", "4π²R²/T²", "vA/vB", "FX/mX"); o produto só vale com maiúscula, letra grega, índice ou expoente e
 // sem ser unidade, sigla ou genótipo (validado em `produtoValido`)
-const FUNCAO = String.raw`(?:\d+(?:,\d+)?)?(?:sen|cos|tg|tan|log|ln)[²³]?\s?(?:\d+(?:,\d+)?°|\d*[a-zA-Zα-ωθℓ][₀-₉]*[²³]?|\d+(?:,\d+)?)(?![\d,A-Za-zÀ-ÿ])`;
+const FUNCAO = String.raw`(?:\d+(?:,\d+)?)?(?:sen|cos|tg|tan|log[₀-₉]*|ln)[²³]?\s?(?:\d+(?:,\d+)?°|\d*[a-zA-Zα-ωθℓ][₀-₉]*[²³]?|\d+(?:,\d+)?)(?![\d,A-Za-zÀ-ÿ])`;
 const PRODUTO = String.raw`(?:\d+(?:,\d+)?)?(?:[a-zA-Zα-ωπθΦℓ](?:_[A-Za-z0-9]+|[₀-₉]+)?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*){2,4}`;
 // (revisão de 21/11/2026, passada 3 N3) numerador entre colchetes: o valor posto no lugar da variável ("2·[1]/(4·[3])"),
 // o grupo ("[x(x + 1) − 2x(x − 1)]/((x − 1)(x + 1))", "4[(t + Δt)² − t²]/Δt"), a concentração ("[H⁺]²/C",
@@ -63,7 +63,7 @@ const RE_FUNCAO = new RegExp(`^(?:${FUNCAO})$`);
 // nomes de unidade com mais de uma letra ("kJ", "mL", "mmHg"): nunca são produto de variáveis
 const UNIDADES_NOME = new Set(('mmol kmol mol mA μA µA mV kV MW GW MJ GJ kN MPa GPa GHz MHz kHz hm ha mg kg μg µg mL dL mm cm dm km nm '
   + 'min kJ kcal cal atm kPa Pa kΩ kWh Wh kW Hz eV mmHg kgf ppm erg rad cd lm lx Gcal mAh Ah').split(' '));
-function produtoValido(x: string): boolean {
+function produtoValido(x: string, outro = ''): boolean {
   if (RE_TERMO.test(x) || RE_FUNCAO.test(x) || RE_COLCHETE.test(x)) return true;
   const letras = x.replace(/^\d+(?:,\d+)?/, '').replace(/_[A-Za-z0-9]+|[₀-₉²³⁴⁵⁶⁷⁸⁹¹⁰]/g, '');
   if (/^(?:sen|cos|tg|tan|log|ln)/.test(letras)) return false;
@@ -71,7 +71,10 @@ function produtoValido(x: string): boolean {
   if (/^[A-Z][a-zà-ÿ]{2,}$/.test(letras)) return false; // palavra ("Nilo/Mar", "1000/Sec")
   // fórmula química ("AgCl/Ag", "H₂O/CO₂", "HAc"): só símbolos de elemento, dois ou mais
   const simb = x.replace(/^\d+(?:,\d+)?/, '').replace(/[₀-₉\d²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺]/g, '').match(/[A-Z][a-z]?|./g) || [];
-  if (simb.length >= 2 && simb.every((e) => Z_DO_SIMBOLO.has(e))) return false;
+  // (índice ₀ ou ₁ só existe em variável: "P₁V₁" é produto; passada 4 S2)
+  // (sobre ou sob uma variável que não é espécie, "P₂V₂/T₂", também é produto)
+  if (simb.length >= 2 && simb.every((e) => Z_DO_SIMBOLO.has(e)) && !/[₀₁]/.test(x)
+    && !(/[₀-₉]/.test(x) && /^[A-Za-zα-ω][₀-₉]+$/.test(outro) && !especie(outro))) return false;
   return /[A-Zα-ωπθΦ₀-₉²³⁴⁵⁶⁷⁸⁹¹⁰_]/.test(x.replace(/^\d+(?:,\d+)?/, ''));
 }
 /** par de unidades com um nome de mais de uma letra ("kJ/mol", "mL/min", "kg/m³", "Ω·mm²/m"); "mA/mB" e "dL/dS"
@@ -97,7 +100,8 @@ const ROTULO_PAR = /^\((?:R|S|E|Z|D|L)\)\/\((?:R|S|E|Z|D|L)\)$|^(?:R\/S|S\/R|E\/
 const LETRA = /[A-Za-zÀ-ÿα-ωπθℓ]/;
 // (letras acentuadas sim; "×" e "÷", que caem no mesmo bloco, não: "1×10^-4/2" é conta; revisão de 21/11, dados N1)
 const ANTES_PROIBIDO = /[A-Za-zÀ-ÖØ-öø-ÿ0-9.,/_\\-]/; // colado a uma palavra, número, data ou link
-const DEPOIS_PROIBIDO = /[A-Za-zÀ-ÖØ-öø-ÿ0-9/_(]/;
+// (índice colado depois: o denominador continua, "1/aₖ"; passada 4 S2)
+const DEPOIS_PROIBIDO = /[A-Za-zÀ-ÖØ-öø-ÿ0-9/_(ₐ-ₜ₀-₉]/;
 // símbolos de unidade de uma letra: "m/s", "g/L" só viram fração depois de um sinal (d = m/V)
 const UNIDADE = new Set(['m', 's', 'g', 'L', 'l', 'h', 'K', 'N', 'J', 'W', 'V']);
 
@@ -206,7 +210,7 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
   // (o "+" colado ao número é o sinal dele: "+1/0"; "0/0", a indeterminação da conta, continua empilhada)
   if (/^\(?0\)?$/.test(den) && num !== '0' && !/(?:[=≈×·÷]|[+−]\s)\s*$/.test(texto.slice(0, ini)) && !/^\s*[=≈+−×·÷]/.test(texto.slice(ini + num.length + 1 + den.length))) return false;
   if (/^\([+−-]\)$/.test(num) && /^\([+−-]\)$/.test(den) && !/^\s*[<>≤≥=]/.test(texto.slice(ini + num.length + 1 + den.length))) return false;
-  if (!produtoValido(num) || !produtoValido(den) || parDeUnidades(num, den)) return false;
+  if (!produtoValido(num, den) || !produtoValido(den, num) || parDeUnidades(num, den)) return false;
   // genótipo com as mesmas letras em cima e embaixo ("Ab/aB", "AB/ab", "RS/rs")
   if (/^[A-Za-z]{2,4}$/.test(num) && num.length === den.length && num !== den && num.toLowerCase() === den.toLowerCase()) return false;
   // (revisão de 21/11/2026, questão-correção 2 R3) barra entre espécies químicas: par redox ("O2/OH⁻", "Cu²⁺/Cu") e
@@ -220,6 +224,10 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
   const charDepois = texto.charAt(fim);
   // "-t²/4" (sinal de menos com hífen) pode; hífen colado a palavra ou número não
   if (charAntes && ANTES_PROIBIDO.test(charAntes) && !(charAntes === '-' && /(^|[\s=(])-$/.test(antes))) return false;
+  // colado a um índice: é pedaço de um produto ("P₁V₁/T₁" depois de recusado o produto inteiro; passada 4 S2)
+  if (/[₀-₉ₐ-ₜ]$/.test(antes)) return false;
+  // apóstrofo com índice depois: o denominador continua ("pₓ/p'ₓ")
+  if (/^['′][₀-₉ₐ-ₜ]/.test(texto.slice(fim))) return false;
   if (charDepois && DEPOIS_PROIBIDO.test(charDepois)) return false;
   // código com hífen e número ou sigla depois ("F/A-18", nome de avião; "81/2025-CEV", "89/23-CPV")
   if (charDepois === '-' && /^-[\dA-Z]/.test(texto.slice(fim))) return false;
@@ -227,7 +235,7 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
   // tensão de rede trifásica ("220/127 V", "380/220 V") e par de valores com unidade elétrica depois
   if (/^\d+$/.test(num) && /^\d+$/.test(den) && /^\s?k?V(?![A-Za-zÀ-ÿ])/.test(texto.slice(fim))) return false;
   // "0,5 mol de H2/2": a fórmula depois de "de" não é o numerador (a conta é da quantidade inteira)
-  if (/\bde\s$/.test(antes) && /^[A-Z]/.test(num)) return false;
+  if (/\bde\s$/.test(antes) && /^[A-Z]/.test(num) && !/[₀₁]/.test(num)) return false;
   const nNum = /^\d+$/.test(num), nDen = /^\d+$/.test(den);
   // datas e anos: "05/11", "12/03", "2024/2", "2020/21"
   if (nNum && nDen) {
@@ -255,12 +263,19 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
       || /\braz(ão|ões)\s+$/i.test(antes) || /^\s*[=≈]/.test(texto.slice(fim))
       // produto escrito com espaço, com uma variável logo depois de um sinal ("N = m v²/R", "t = 2V0 sen θ/g")
       || /(?:^|[=+−×·→(]\s*)\d*(?![aeoAEOé]\s)[A-Za-zα-ω][0-9₀-₉]?[²³]?\s+$/.test(antes);
-    if (!depoisDeSinal) return false;
+    // (revisão de 21/11/2026, passada 4 S2) variável com índice ou letra grega num dos lados ("k₀Q/ℓ²", "v₀/g", "λ/T") é
+    // conta também no meio da frase: unidade e par de genes não têm índice nem letra grega
+    // (colado a índice, expoente ou letra grega é pedaço de outro termo: "H₂O/CO₂", "ΔV/V₀", "1/aₖ"; par de espécies,
+    // "Li/I₂", e o par de ligações "σ/π" não são conta; índice ₀ e ₁ só existe em variável)
+    const forte = (x: string) => /[₀-₉_]|[α-λν-ωπθΦℓ]/.test(x);
+    const ehForte = (forte(num) || forte(den)) && !/[₀-₉ₐ-ₜ⁰¹²³⁴-⁹⁺⁻α-ωΑ-Ω]$/.test(antes) && !/^[ₐ-ₜ₀-₉₊₋]/.test(texto.slice(fim))
+      && !/^_/.test(num) && !(especie(num) && especie(den) && !/[₀₁]/.test(num + den)) && !/^(?:σ\/π|π\/σ)$/.test(`${num}/${den}`);
+    if (!depoisDeSinal && !ehForte) return false;
     // no começo do texto, só letra de variável ou segmento ("a/b = c/d", "AB/CD"); "Wh/L (watt-hora...)" é unidade
     // e "Mg/Fe" é par de metais
     const simples = (x: string) => /^(?:[a-zα-ωπθℓ]|[A-Z]{1,2})$/.test(tira(x));
     // (antes de uma comparação ou seta também é conta: "FX/mX < FY/mY", "ΔV/Δt → litros")
-    if (!antes.trim() && !(simples(num) && simples(den)) && !/^\s*[=≈<>→]/.test(texto.slice(fim))) return false;
+    if (!antes.trim() && !(simples(num) && simples(den)) && !ehForte && !/^\s*[=≈<>≤≥→]/.test(texto.slice(fim))) return false;
     // letras de alternativa ("A/B"); antes ou depois de "=" é razão ("B/A = 2", "V = E/B")
     if (/^[A-E]$/.test(num) && /^[A-E]$/.test(den) && !/^\s*[=≈]/.test(texto.slice(fim)) && !/[=≈]\s*$/.test(antes)) return false;
     // produto de unidades: "atm·L/K", "atm · L/(mol·K)"
@@ -270,7 +285,7 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
     const simbU = (x: string) => UNIDADE.has(tira(x)) || UNIDADES_NOME.has(tira(x)) || /^(?:C|A|T|Ω|Pa|Wb|H|F|S|Hz|kg|mol)$/.test(tira(x));
     if (simbU(num) && simbU(den) && /^\s*=\s*(?:volts?|ampères?|watts?|joules?|ohms?|newtons?|pascals?|coulombs?|teslas?|webers?|henrys?|farads?|hertz|siemens|kelvins?|metros?|segundos?|quilogramas?|gramas?|litros?|mols?)(?![A-Za-zÀ-ÿ])/i.test(texto.slice(fim))) return false;
     const fatorAntes = /([A-Za-zÀ-ÿ]{2,})\s*[·×]\s*$/.exec(antes);
-    if (fatorAntes && (UNIDADES_NOME.has(fatorAntes[1]) || !/[A-Z]/.test(fatorAntes[1]))) return false;
+    if (fatorAntes && !ehForte && (UNIDADES_NOME.has(fatorAntes[1]) || !/[A-Z]/.test(fatorAntes[1]))) return false;
     // dois símbolos de unidade ("m/s²", "g/L") só depois de "=" ("d = m/V") ou depois de "·"/"×" com uma variável ou um
     // número antes ("4π² · L/g"; revisão de 21/11/2026, N1); "10 N · m/s" continua unidade
     const fatorDeConta = /(?:^|[\s=(+−\-→≈])(?:[\d,.]*\d[²³⁴⁵⁶⁷⁸⁹¹⁰]*|\d*(?:[a-zα-ωπθℓ]|[A-Z](?=[²³⁴⁵⁶⁷⁸⁹¹⁰]))[²³⁴⁵⁶⁷⁸⁹¹⁰]*(?:\d*[a-zα-ωπθℓ][²³⁴⁵⁶⁷⁸⁹¹⁰]*)*|\d*[A-Z])\s*[·×]\s*$/.exec(antes);

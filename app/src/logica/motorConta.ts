@@ -38,8 +38,8 @@ const RE_TOK = new RegExp([
   String.raw`(?<esp>[\s  ]+)`,
   // número com milhar separado por espaço ("6 480", "1 000 000"), decimal com vírgula, fatorial e expoente
   String.raw`(?<num>\d{1,3}(?:[   ]\d{3})+(?![\d])(?:,\d+)?[${SOBRE}]*!?|\d+(?:[.,]\d+)*[${SOBRE}]*!?${CIRC})`,
-  // variável com índice colado ("m0", "a1", "b21") é um termo só
-  String.raw`(?<var>(?<![A-Za-z0-9])[a-zα-ω]\d{1,2}(?![\dA-Za-z#])${CIRC}|[A-Za-zÀ-ÖØ-öø-ÿα-ωΑ-ΩℓΔπθ∞μµ][A-Za-zÀ-ÖØ-öø-ÿα-ωΑ-Ωℓμµ₀-₉ₐ-ₜ'′]*(?:_\{[^{}\n]{1,20}\}|_[A-Za-zÀ-ÖØ-öø-ÿα-ωΑ-Ωℓμµ₀-₉ₐ-ₜ'′]*)?[${SOBRE}]*${CIRC})`,
+  // variável com índice colado ("m0", "a1", "b21", "ℓ1") é um termo só
+  String.raw`(?<var>(?<![A-Za-z0-9])[a-zα-ωℓ]\d{1,2}(?![\dA-Za-z#])${CIRC}|[A-Za-zÀ-ÖØ-öø-ÿα-ωΑ-ΩℓΔπθ∞μµ][A-Za-zÀ-ÖØ-öø-ÿα-ωΑ-Ωℓμµ₀-₉ₐ-ₜ'′]*(?:_\{[^{}\n]{1,20}\}|_[A-Za-zÀ-ÖØ-öø-ÿα-ωΑ-Ωℓμµ₀-₉ₐ-ₜ'′]*)?[${SOBRE}]*${CIRC})`,
   String.raw`(?<raiz>[√∛])`,
   String.raw`(?<op>[+\-−×÷·*/±∓])`,
   String.raw`(?<rel>[=≈≅<>≤≥≠])`,
