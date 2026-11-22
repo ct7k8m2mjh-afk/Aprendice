@@ -370,7 +370,10 @@ function nuclideo(texto: string, ini: number, num: string, den: string): string 
  *  denominador: "(7/2) ÷ (37/10)", "800π ÷ (π/3)"); 2ª: "a/b" nos trechos de texto que sobraram. */
 export function partesFracao(texto: string, materia?: string): ParteFracao[] {
   const fim: ParteFracao[] = [];
-  for (const p of divisoes(texto, materia)) if (p.t === 'txt') fim.push(...barras(p.v, materia)); else fim.push(p);
+  for (const p of divisoes(texto, materia)) {
+    if (p.t !== 'txt') { fim.push(p); continue; }
+    for (const q of razoesDeNomes(p.v, materia)) if (q.t === 'txt') fim.push(...barras(q.v, materia)); else fim.push(q);
+  }
   if (!fim.length) return [{ t: 'txt', v: texto }];
   // fração do Unicode ("½", "¼", "⅛") no mesmo texto de uma fração empilhada também empilha, para a mesma linha não
   // misturar as duas formas ("1 → ½ → ¼ → ⅛ → 1/16"); a letra com "½" é índice ("t½") e fica (revisão de 21/11/2026,
@@ -396,6 +399,44 @@ function vulgares(s: string): ParteFracao[] {
     ult = m.index! + 1;
   }
   if (ult < s.length) out.push({ t: 'txt', v: s.slice(ult) });
+  return out;
+}
+
+/*
+ * (revisão de 21/11/2026, passada 5 W2) Em Matemática, Física e Química, razão entre nomes escrita com "/" colado:
+ * - nome de função sem argumento dos dois lados, numa igualdade ("tg = sen/cos", "= cateto oposto / cateto adjacente =
+ *   sen/cos"): "=" ou "≈" logo antes ou logo depois;
+ * - palavra sobre palavra no meio de uma cadeia de igualdades que continua com outra fração ("Declividade =
+ *   vertical/horizontal = sen/cos = 0,57/0,82"). Fora disso a barra entre palavras fica na linha: "altura = agudo/grave =
+ *   frequência" (agudo ou grave), "n = massa/massa molar" (o nome de baixo não cabe inteiro), unidades.
+ */
+const FUNC_NOME = '(?:sen|cos|tg|tan|cotg|cotan|sec|cossec|csc)';
+const RE_FUNC_PAR = new RegExp(`(?<![A-Za-zÀ-ÿ0-9_/'′])(${FUNC_NOME})/(${FUNC_NOME})(?![A-Za-zÀ-ÿ0-9_/(²³'′])`, 'gu');
+const RE_PAL_PAR = /(?<=[=≈] )([a-zà-ÿ]{3,})\/([a-zà-ÿ]{3,})(?= [=≈] ([^,;:\n]*))/gu;
+function razoesDeNomes(texto: string, materia?: string): ParteFracao[] {
+  if (!materia || !/^(?:mat|fis|qui)$/.test(materia) || !texto.includes('/')) return [{ t: 'txt', v: texto }];
+  const achados: { a: number; b: number; n: string; d: string }[] = [];
+  for (const m of texto.matchAll(RE_FUNC_PAR)) {
+    const antes = texto.slice(0, m.index), depois = texto.slice(m.index! + m[0].length);
+    if (m[1] === m[2] || !(/[=≈]\s*$/.test(antes) || /^\s*[=≈]/.test(depois))) continue;
+    achados.push({ a: m.index!, b: m.index! + m[0].length, n: m[1], d: m[2] });
+  }
+  for (const m of texto.matchAll(RE_PAL_PAR)) {
+    const [, n, d, resto] = m;
+    if (n === d || UNIDADES_NOME.has(n) || UNIDADES_NOME.has(d) || !/[/÷]/.test(resto)) continue;
+    if (achados.some((x) => m.index! < x.b && x.a < m.index! + m[0].length)) continue;
+    achados.push({ a: m.index!, b: m.index! + m[0].length, n, d });
+  }
+  if (!achados.length) return [{ t: 'txt', v: texto }];
+  achados.sort((x, y) => x.a - y.a);
+  const out: ParteFracao[] = [];
+  let ult = 0;
+  for (const f of achados) {
+    if (f.a > ult) out.push({ t: 'txt', v: texto.slice(ult, f.a) });
+    out.push({ t: 'frac', n: f.n, d: f.d, orig: texto.slice(f.a, f.b), sep: '/' });
+    ult = f.b;
+  }
+  if (ult < texto.length) out.push({ t: 'txt', v: texto.slice(ult) });
   return out;
 }
 

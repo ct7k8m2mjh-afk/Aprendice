@@ -41,3 +41,23 @@ describe('W1: fatorial no numerador empilha', () => {
   });
 });
 
+describe('W2: nome de função sem argumento, "tg = sen/cos", empilha em Mat, Fís e Quí', () => {
+  it('mat M10 e fís F11', () => {
+    expect(fr('tg = cateto oposto / cateto adjacente = sen/cos', 'mat')).toEqual(['cateto oposto|cateto adjacente', 'sen|cos']);
+    expect(fr('cateto oposto dividido pelo cateto adjacente (tg = sen/cos). Na geometria', 'mat')).toEqual(['sen|cos']);
+    expect(fr('converter cm em m e usar tg = sen/cos, não o seno sozinho.', 'fis')).toEqual(['sen|cos']);
+    const s = 'Declividade = vertical/horizontal = sen/cos = 0,57/0,82 ≈ 0,70.';
+    expect(fr(s, 'mat')).toEqual(['vertical|horizontal', 'sen|cos', '0,57|0,82']);
+    expect(junta(s, 'mat')).toBe(s);
+    expect(fr('θ = arco/raio = 600/300 = 2 rad.', 'mat')).toEqual(['arco|raio', '600|300']);
+  });
+  it('fora de igualdade, em matéria de texto e entre palavras sem conta depois continua na linha', () => {
+    expect(fr('confundir sen/cos na prova', 'mat')).toEqual([]);
+    expect(fr('tg = sen/cos', 'por')).toEqual([]);
+    expect(fr('tg = sen/cos')).toEqual([]);
+    expect(fr('altura = agudo/grave = frequência', 'fis')).toEqual([]);
+    expect(fr('n = massa/massa molar', 'qui')).toEqual([]);
+    expect(fr('x = sen/sen', 'mat')).toEqual([]);
+  });
+});
+
