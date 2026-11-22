@@ -4,8 +4,9 @@ Login em modo demonstração (VITE_CONTAS_REAIS desligado). Build servido localm
 casca, materias, questao-correcao, dados (relatórios nesta pasta).
 
 ## Estado (continuar de …)
-- 1ª passada: casca 6 ERROS, matérias 3, questão-correção 7, dados 4.
-- Corrigidos: casca N1–N6; questão N1–N7; dados N2, N3 (rótulo), N4.
-- Em correção: matérias N1 (figuras com fração), matérias N2–N3, dados N1.
-- Depois: suíte completa (17 falhas vistas com public/ desatualizado — reconferir após converte), novo build,
-  2ª passada dos revisores só no que mudou + lente de fatos no N4 de dados (texto de erradas.D de fís Pacdab1ea).
+- 1ª passada: casca 6 ERROS, matérias 3, questão-correção 7, dados 4 — todos corrigidos (São Camilo sem número: dono).
+- 2ª passada: casca-2 4 (corrigidos), materias-2 3 (corrigidos), dados-2 3 (R1, R2 corrigidos; R3 bloqueado pela rede: dono).
+- 3ª passada (passada-3.md): 3 ERROS — N1 corrigido; N2 (contraste Bio escuro) e N3 (colchete na fração) em correção.
+- questao-correcao-2.md: 10 ERROS (R1–R10, quase todos do detector de frações) — corrigir depois que o corretor da
+  passada 3 liberar app/src/logica/fracao.ts; depois nova passada só nesses itens.
+- Suíte completa verde no commit 14147be9 (955 testes).
