@@ -1006,6 +1006,8 @@ export const pedacoEhFormula = (s: string) => /[\dA-Za-z]/.test(s) && palavrasPr
  * mostrado cru); em Biologia, Química e humanas, a lista com seta separada por ";" também vira uma linha por item.
  * Nada mais muda no texto: só o separador sai.
  */
+/** item que é relação ou conta completa (tem "=", seta, comparação ou "rótulo: valor"), e não só um valor solto */
+const ehRelacao = (s: string) => /[=≈≠→⇒<>≤≥]|:\s/.test(s);
 export function itensDaConta(conta: string, materia?: string): string[] {
   const out: string[] = [];
   const lista = !materia || !['mat', 'fis'].includes(materia);
@@ -1145,7 +1147,7 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
   // (revisão de 21/11/2026, passada 6 Y5) o separador " | " da linha do quadro também nunca é mostrado cru (na letra à mão
   // ele se inclina e parece barra de divisão): como na conta dos passos (`itensDaConta`), cada item vai numa linha, no
   // mesmo lugar da linha do quadro; a nota fica no último item (onde estava, no fim da linha) e o destaque no item que o tem
-  const pedacos = (linha: string): string[] => {
+  const partesBarra = (linha: string): string[] => {
     const cs = cortes(linha, /\s+\|\s+/);
     if (!cs.length) return [linha];
     const out: string[] = [];
@@ -1154,8 +1156,32 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
     out.push(linha.slice(ult));
     return out.map((x) => x.trim()).filter(Boolean);
   };
+  // (passada 7 Z1) os números de uma lista de valores ("µ: 0,57 | 0,54 | 0,50", "58 | 60 | 62 g/mol"), sem rótulo e sem
+  // unidade; null se a linha não é lista de valores
+  const valoresDaLista = (linha: string): string[] | null => {
+    const ps = partesBarra(linha);
+    if (ps.length < 2) return null;
+    const vs = ps.map((x, i) => (i === 0 ? x.replace(/^[^:|]{1,30}:\s+/, '') : x));
+    const re = /^([−-]?\d+(?:[.,]\d+)?(?:\/\d+)?)(?:\s?(?:%|[A-Za-zµ]{1,5}(?:\/[A-Za-z]{1,5})?))?$/;
+    const ns = vs.map((x) => re.exec(x)?.[1]);
+    return ns.every(Boolean) ? (ns as string[]) : null;
+  };
+  // o número do fim de uma linha da conta (sem a unidade): "200 − 40 = 160" → "160", "etilenoglicol 62 g/mol" → "62"
+  const resultadoDe = (t: string): string | null => {
+    const m = /([−-]?\d+(?:[.,]\d+)?(?:\/\d+)?)\s?(?:%|[A-Za-zµ]{1,5}(?:\/[A-Za-z]{1,5})?)?\s*$/.exec(t);
+    return m && !/[\d,./]$/.test(t.slice(0, m.index)) ? m[1] : null;
+  };
+  const pedacos = (linha: string): string[] => {
+    const ps = partesBarra(linha);
+    if (ps.length < 2) return ps;
+    // (passada 7 Z1) só a linha cujos itens são todos relações ou contas completas ("Mg: 0 → +2", "x = 3") vira um item
+    // por linha; a lista de valores ("Ca (Z = 20): 2 | 8 | 8 | 2", "1 | 1 | 4 | 0") fica numa linha só, com o separador
+    // "; " das listas do sistema no lugar do "|" (em coluna, os números soltos perdiam o rótulo)
+    return ps.every(ehRelacao) ? ps : [ps.join('; ')];
+  };
+  const semBarra = (s: string) => cortes(s, /\s+\|\s+/).reverse().reduce((t, [a, b]) => t.slice(0, a) + '; ' + t.slice(b), s);
   const itensDoQuadro = (q: { linha: string; nota?: string; destaque?: string }): ItemPasso[] => pedacos(q.linha).map((texto, i, arr) => ({
-    texto, notas: i === arr.length - 1 && q.nota ? [q.nota] : [], destaque: q.destaque && texto.includes(q.destaque) ? q.destaque : undefined, doQuadro: true,
+    texto, notas: i === arr.length - 1 && q.nota ? [semBarra(q.nota)] : [], destaque: q.destaque && texto.includes(q.destaque) ? q.destaque : undefined, doQuadro: true,
   }));
   const ps = r.passos || [];
   const itens: ItemPasso[][] = ps.map((p) => itensDaConta(p.conta || '', materia).map((texto) => ({ texto, notas: [] })));
@@ -1178,6 +1204,7 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
     // entra como linha nova no passo a que pertence (item 6)
     // 1) onde cada linha do quadro já está na conta (em ordem: nunca volta a um passo anterior)
     const casa: ({ j: number; x: number } | null)[] = [];
+    const porValor: ({ j: number; x: number }[] | null)[] = [];
     let cj = 0, cx = 0;
     for (const q of quadro) {
       let achou: { j: number; x: number } | null = null;
@@ -1202,14 +1229,36 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
         }
         if (prim >= 0) achou = { j, x: ultX };
       }
+      // (passada 7 Z1) lista de valores em que cada número já é o resultado de uma linha da conta (o número do fim da
+      // linha, em qualquer ordem, deste passo em diante): não entra repetida; cada pedaço da nota vai para a linha do seu
+      // valor, ou a nota inteira para a última; é um resumo, então não avança a ordem das linhas seguintes do quadro
+      const vs = achou ? null : valoresDaLista(q.linha);
+      let pv: { j: number; x: number }[] | null = null;
+      if (vs) {
+        const usados = new Set<string>();
+        const ach: { j: number; x: number }[] = [];
+        for (const v of vs) {
+          let o: { j: number; x: number } | null = null;
+          for (let j = cj; !o && j < itens.length; j++) {
+            for (let x = 0; x < itens[j].length; x++) if (!usados.has(j + ':' + x) && resultadoDe(itens[j][x].texto) === v) { o = { j, x }; break; }
+          }
+          if (!o) break;
+          usados.add(o.j + ':' + o.x);
+          ach.push(o);
+        }
+        if (ach.length === vs.length) { pv = ach; achou = ach.reduce((m, o) => (o.j > m.j || (o.j === m.j && o.x > m.x) ? o : m)); }
+      }
+      porValor.push(pv);
       casa.push(achou);
-      if (achou) { cj = achou.j; cx = achou.x; }
+      if (achou && !pv) { cj = achou.j; cx = achou.x; }
     }
     quadro.forEach((q, k) => {
       const c = casa[k];
       if (!c) return;
       const it = itens[c.j][c.x];
-      if (q.nota) it.notas.push(q.nota);
+      const pv = porValor[k], pn = q.nota ? partesBarra(q.nota) : [];
+      if (pv && pn.length === pv.length) pv.forEach((o, i) => { const v = itens[o.j][o.x]; if (!v.notas.includes(pn[i])) v.notas.push(pn[i]); });
+      else if (q.nota) it.notas.push(semBarra(q.nota));
       if (q.destaque && !it.destaque) it.destaque = q.destaque;
     });
     // 2) o que não está na conta entra como linha nova, entre o passo da linha casada antes e o da casada depois

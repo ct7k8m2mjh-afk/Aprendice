@@ -37,7 +37,7 @@ function todas(): Item[] {
   return out;
 }
 /** sem espaço e sem o separador de itens (" | ", ";"), para comparar o texto dos dados com as linhas desenhadas */
-const sem = (s: string) => s.replace(/[\s|;]+/g, '');
+const sem = (s: string) => s.replace(/[\s|;,]+/g, '');
 /**
  * As linhas do roteiro são o texto dos dados (revisão 19/11, itens 6 e 8b): a conta de cada passo, quebrada só nos
  * separadores de itens, nada a mais nem a menos, na ordem; e as linhas do quadro: as que já estão na conta do passo
@@ -48,7 +48,12 @@ function confereLinhas(r: Resolucao, rt: Roteiro): string | null {
   const q = (r.quadro || []).filter((x) => x.linha);
   const comConta = ps.some((p) => (p.conta || '').trim());
   // (passada 6 Y5) a linha do quadro com " | " sai um item por linha, como a conta dos passos
-  const pedacos = (x: string) => (/\s\|\s/.test(x) ? itensDaConta(x, 'mat') : [x]);
+  // (passada 7 Z1) só quando todos os itens são relações; a lista de valores fica numa linha, com "; " no lugar do "|"
+  const pedacos = (x: string) => {
+    if (!/\s\|\s/.test(x)) return [x];
+    const it = itensDaConta(x, 'mat');
+    return it.every((y) => /[=≈≠→⇒<>≤≥]|:\s/.test(y)) ? it : [it.join('; ')];
+  };
   if (!comConta) {
     const esp = q.flatMap((x) => pedacos(x.linha));
     return JSON.stringify(rt.linhas.map((l) => l.texto)) === JSON.stringify(esp) ? null : 'quadro sem conta: linhas diferentes';
@@ -64,9 +69,12 @@ function confereLinhas(r: Resolucao, rt: Roteiro): string | null {
   const textos = rt.linhas.map((l) => l.texto), notas = rt.linhas.map((l) => l.nota || '').join(' ');
   for (const x of q) {
     if (textos.includes(x.linha) || pedacos(x.linha).every((y) => textos.includes(y))) continue;
-    if (!pedacos(x.linha).every((y) => textos.some((t) => quadroNaConta(t, y) || quadroEquivale(t, y)))
+    // (passada 7 Z1) a lista de valores que já são resultados das contas não entra repetida: cada valor está numa linha
+    const valores = itensDaConta(x.linha, 'mat').map((y, i) => (i ? y : y.replace(/^[^:]{1,30}:\s+/, '')).replace(/\s?(?:%|[A-Za-zµ]{1,5}(?:\/[A-Za-z]{1,5})?)$/, ''));
+    const sao = /\s\|\s/.test(x.linha) && valores.every((v) => textos.some((t) => new RegExp(`(?<![\\d,])${v.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&')}(?![\\d]|,\\d)`).test(t)));
+    if (!sao && !pedacos(x.linha).every((y) => textos.some((t) => quadroNaConta(t, y) || quadroEquivale(t, y)))
       && !textos.some((t) => quadroNaConta(t, x.linha) || quadroEquivale(t, x.linha))) return `quadro "${x.linha}" sumiu`;
-    if (x.nota && !notas.includes(x.nota)) return `nota "${x.nota}" sumiu`;
+    if (x.nota && !x.nota.split(/\s+\|\s+/).every((n) => notas.includes(n))) return `nota "${x.nota}" sumiu`;
   }
   return null;
 }
