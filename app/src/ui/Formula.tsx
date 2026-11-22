@@ -33,11 +33,15 @@ function juntaFrases(ls: NoMat[][]): NoMat[][] {
   return out;
 }
 
+const WJ = String.fromCharCode(0x2060);
 function nos(ns: NoMat[], mao = false): ReactNode[] {
   return ns.map((n, i) => {
     switch (n.t) {
       case 'txt': return n.texto && !mao ? <span key={i} className="fm-texto">{n.v}</span> : <Fragment key={i}>{n.v}</Fragment>;
-      case 'esp': return <span key={i} className={'fm-esp e' + n.w} />;
+      // o espaço fino ("\,": "P\,\cos\,\theta") não quebra a linha: é texto, o "WORD JOINER" (U+2060), que prende a função
+      // ao argumento (revisão de 21/11/2026, 5ª passada V2: "cos" no fim de uma linha e "θ" na seguinte); a largura vem do
+      // CSS. O espaço largo entre duas relações continua podendo quebrar
+      case 'esp': return <span key={i} className={'fm-esp e' + n.w}>{n.w === 1 ? WJ : null}</span>;
       case 'sup': return <sup key={i}>{nos(n.v, mao)}</sup>;
       case 'sub': return <sub key={i}>{nos(n.v, mao)}</sub>;
       case 'raiz': return <span key={i} className="fm-raiz"><span className="fm-raiz-s">√</span><span className="fm-raiz-v">{nos(n.v, mao)}</span></span>;
