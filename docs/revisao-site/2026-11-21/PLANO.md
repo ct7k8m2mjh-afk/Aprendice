@@ -18,13 +18,10 @@ casca, materias, questao-correcao, dados (relatórios nesta pasta).
   Z2 (Y5 junta nox de uma reação com o rótulo da seguinte, quí Paca34b46), Z3 (antigo: "ε0A/λ", "θ1/4" com o índice
   fora da fração, fís Pabef4082, Pdd874c02); Z4 foi para o dono (item 11).
 
+- Z1–Z3 corrigidos (fcc5bcfa, 70830002, bcdde3ca; 1075 testes verdes); 8ª passada (questao-correcao-7.md) em curso.
+
 ## Continuar de
-Sessão encerrada por contexto (regra dos 40%). Próxima sessão:
-1. Corretor para Z1–Z3 de questao-correcao-6.md (sugestão para Z1: o Y5 só divide em linhas o quadro cujos itens
-   são relações/contas completas; lista de valores com rótulo "rótulo: a | b | c" volta a ficar numa linha só, com o
-   "|" trocado pelo separador já usado no sistema; conferir as 9 resoluções citadas e a contagem de linhas só de
-   número, que deve voltar a 33).
-2. converte + vite build + preview 4191; tsc e vitest verdes.
-3. 8ª passada (revisor novo) só em Z1–Z3; repetir até zero ERROS.
-4. PLANO final curto (achados por área, corrigidos, pendentes para o dono: itens 1–11 de PARA-O-DONO.md) com FIM.
-O site NÃO foi publicado nesta sessão.
+Se esta sessão parar: ler questao-correcao-7.md (8ª passada, revisor novo, só Z1–Z3). Se tiver ERROS, corrigir (um
+commit cada), converte + vite build + preview 4191, tsc e vitest, e nova passada com revisor novo; com zero ERROS,
+escrever o PLANO final curto (achados por área, corrigidos, pendentes do dono: itens 1–11 de PARA-O-DONO.md) com FIM.
+O site NÃO foi publicado.
