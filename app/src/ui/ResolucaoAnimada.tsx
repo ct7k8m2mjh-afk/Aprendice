@@ -41,6 +41,15 @@ function ajustaContas(folha: HTMLElement) {
     p.style.fontSize = `${Math.max(MAO_MIN, Math.floor(base * (p.clientWidth / larg) * 10) / 10)}px`;
     if (p.scrollWidth > p.clientWidth + 1) p.classList.add('rola');
   });
+  // processo (fluxo, reação) que não cabe numa linha: desce em coluna, com a seta para baixo, como o de etapa comprida;
+  // quebrado no meio, a seta ficava solta no fim da linha apontando para a margem (revisão de 21/11, N5)
+  folha.querySelectorAll<HTMLElement>('.ra-linha.diag.dg-fluxo, .ra-linha.diag.dg-reacao').forEach((p) => {
+    p.classList.remove('coluna');
+    if (!p.offsetParent || p.classList.contains('longo') && matchMedia?.('(max-width: 480px)').matches) return;
+    const pecas = [...p.children].filter((c): c is HTMLElement => c instanceof HTMLElement && !c.classList.contains('dg-rotulo') && c.offsetWidth > 0);
+    const topo = (c: HTMLElement) => c.offsetTop + c.offsetHeight / 2;
+    if (pecas.length > 1 && pecas.some((c) => Math.abs(topo(c) - topo(pecas[0])) > pecas[0].offsetHeight / 2)) p.classList.add('coluna');
+  });
 }
 function velSalva(): number {
   try { const v = Number(localStorage.getItem('ra-vel')); return VELS.includes(v) ? v : 1; } catch { return 1; }
