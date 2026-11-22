@@ -22,23 +22,30 @@ casca, materias, questao-correcao, dados (relatórios nesta pasta).
 - 8ª passada (questao-correcao-7.md): Z2 e Z3 resolvidos; Z1 resolvido nos casos pedidos, com efeito colateral.
   4 ERROS: A1 e A2 vêm do Z1; A3 e A4 já existiam. Mais 2 DETALHES (A5, A6).
 
-## Continuar de
-Sessão encerrada por contexto (regra dos 40%). Próxima sessão:
-1. Corretor para A1–A4 de questao-correcao-7.md, um commit cada:
-   - **A1:** cerca de 45 linhas do quadro voltaram a repetir a conta. Em `montaRoteiro`, o casamento da linha com " | "
-     usa `pedacos(q.linha)`, que já junta tudo com "; ", então o casamento nunca é tentado. Sugestão: usar
-     `partesBarra(q.linha)` no laço de casamento (o `const pq`). Conferir mat Pc9132e4a, P476c4b22, bio P85452565 e
-     quí P16af84a2.
-   - **A2:** nota ou linha no lugar errado (mat Pf7605a63, P13525e2d; fís Pce134e95; quí P4f99343f). Ver se o A1
-     resolve; senão, rever a regra `porValor`, que casa o valor com o resultado da linha.
-   - **A3:** lista de valores dentro da conta do passo, um número por linha (39 resoluções, como quí Pf90acda4
-     "pH: 4,0 | 3,6 | 2,5"). Sugestão: em `itensDaConta`, a mesma regra do Z1 (`ehRelacao`): se nem todos os pedaços
-     são relações, juntar com "; ".
-   - **A4:** mat P5be7ca9e, passo 5, a 390 px: a frase "as cinco afirmações de D são verdadeiras →" é cortada na
-     borda da folha.
-   - A5 e A6 são DETALHES (o 0 de "ε0A" fica na altura normal; "pH: 4,0; 3,6; 2,5 < 7"). Corrigir se for barato.
-2. converte + vite build + preview na porta 4191; tsc e vitest verdes (o teste `confereLinhas` em motorConta.test.ts
-   já conhece a regra do Z1).
-3. 9ª passada, com revisor novo, só em A1–A4; repetir até zero ERROS.
-4. PLANO final curto (achados por área, corrigidos, pendentes do dono: itens 1–11 de PARA-O-DONO.md) com FIM.
-O site NÃO foi publicado nesta sessão.
+- A1–A5 corrigidos (A6 depende dos dados); 9ª passada (questao-correcao-9.md): 2 ERROS B1, B2 + DETALHES B3–B6;
+  B1–B3 corrigidos (1109 testes). 10ª passada (questao-correcao-10.md): 3 ERROS antigos C1–C3 + DETALHES C4–C8;
+  C1–C3 corrigidos (motor comparado nas 51 655 resoluções; 1167 testes verdes). 11ª e última passada
+  (questao-correcao-11.md): C1–C3, B1–B3 e A1–A4 seguem valendo; 4 ERROS D1–D4 ficam pendentes (critério de parada
+  da coordenação: no máximo uma passada depois da 10ª).
+
+## Resultado final (22/11/2026)
+Achados por área (todas as passadas): casca 10, matérias 13, dados 7, questão-correção 50+ (motor de contas e
+frações: R, S, U, W, X, Y, Z, A, B, C). Todos os ERROS corrigidos, um commit cada, com teste, exceto:
+
+Pendentes técnicos (para a próxima rodada de correção, nesta ordem):
+1. **D1 (regressão do C2, prioridade):** bio P85452565, passo 3 — "IBi → B" é lido como conclusão e "AB: 1/2" e
+   "B: 1/2" aparecem antes dele. Corrigir a regra do C2 para não mover linha de genótipo → fenótipo.
+2. D2: linha do quadro repete a conta quando difere só em grafia (fís Pd2b4ad62, P6f60a2e4, P8f1936d9, Pfb7662f6;
+   mat P5be7ca9e, Pb28d85a4).
+3. D3: linha no passo errado (fís Pf8f2eeea, P6f60a2e4).
+4. D4: fração na linha dentro da conta/nota (fís P8f1936d9, Pfb7662f6; mat P053636f4).
+5. DETALHES cosméticos: A6, B4–B6, C4–C8 e os da 11ª passada (ver relatórios).
+
+Pendentes para o dono decidir: itens 1–11 de PARA-O-DONO.md (resultado do simulado na cor da matéria; faixa de
+temas no Treino geral; 10 questões da São Camilo sem número; figuras da teoria pequenas no celular; gabarito
+definitivo ainda não aplicado; tons das figuras de Bio no escuro; figura da α/β-glicose; ½ inclinado; frase longa no
+"No caderno"; citação com fração em his P78979201; divisões por extenso na linha).
+
+tsc sem erro, vitest 1167/1167. O site NÃO foi publicado.
+
+FIM
