@@ -22,3 +22,10 @@ Mudanças visuais novas sugeridas pelos revisores. Nada disto foi aplicado.
 4. **Figuras da teoria pequenas no celular** (materias-2 R4). No celular as figuras aparecem com cerca de 256 px de
    largura (221 px em 768); frações e números pequenos dentro delas ficam difíceis de ler. Recomendação: **a figura
    ocupa a largura da folha no celular e abre ampliada ao toque** (a mesma lupa que já existe para o print da questão).
+
+5. **Gabarito definitivo já publicado, ainda não aplicado** (dados-2 R3; passo a passo em `dados-correcoes.md`).
+   ime-2024 (39 questões), ime-2025 (39), ufrr-2025 (68) e ufrr-2026 (69) estão no ar com o gabarito do Aprendice, mas
+   a banca já publicou o definitivo. A rede desta sessão bloqueia `editais.ufrr.br`, `ime.eb.mil.br` e o arquivo da
+   internet; a nota da prova agora diz a verdade ("publicado, ainda não conferido pelo Aprendice"). Para fechar:
+   liberar esses dois endereços na rede do ambiente ou pôr os 4 arquivos no repositório. Recomendação: **liberar e
+   aplicar antes de abrir aos alunos** (questão anulada pela banca pode estar no ar).
