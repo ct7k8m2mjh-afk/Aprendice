@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { useConta } from '../estado/sessao';
@@ -14,7 +14,9 @@ export function Privacidade() {
   const conta = useConta();
   // modo de demonstração (sem nuvem, fase 'local'): o texto diz o que é verdade nesta versão (revisão de 21/11/2026, casca N1 e N2)
   const local = conta.fase === 'local';
-  const voltar = conta.fase === 'dentro' || local ? '/perfil' : '/boas-vindas';
+  // Voltar leva a quem abriu a página (Configurações manda o próprio endereço; revisão de 21/11/2026, passada 3 N1)
+  const de = (useLocation().state as { voltar?: string } | null)?.voltar;
+  const voltar = conta.fase === 'dentro' || local ? (de || '/perfil') : '/boas-vindas';
   return (
     <div className="conteudo estreito">
       <div className="titulo-pag"><h1>Privacidade</h1><p className="sub">O que o Aprendice guarda e para quê</p></div>
