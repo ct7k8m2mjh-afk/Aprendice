@@ -84,3 +84,16 @@ describe('R5: artigo, pedaço de nome ou de valor em dinheiro não vira numerado
     for (const s of ['US$ 37 mi ÷ US$ 60,2 mi ≈ 0,61', 'esquecer o ÷ 2 da área', 'não utilizadas ÷ utilizadas = 2 ÷ 9']) expect(junta(s, 'geo')).toBe(s);
   });
 });
+
+describe('R6: sinal de interação e denominador zero fora de conta ficam na linha', () => {
+  it('bio P7e3a78a1 e parecidos', () => {
+    expect(fr('X e Y crescem como sozinhas (0 / 0), sem benefício', 'bio')).toEqual([]);
+    expect(fr('B: competição exige − / −, e X + Y dá 0 / 0', 'bio')).toEqual([]);
+    expect(fr('Conte ligações e pares livres do central: 4/0, 5/0, 3/1 e 2/1.', 'qui')).toEqual(['3|1', '2|1']);
+    expect(fr('diferem só pelos rótulos (R)/(S) e (+)/(−).', 'qui')).toEqual([]);
+  });
+  it('na conta, continua empilhada', () => {
+    expect(fr('f(3) = 0/0, não existe')).toEqual(['0|0']);
+    expect(fr('(x − 6)/(+) ≥ 0 e (+)/(−) < 0')).toEqual(['x − 6|+', '+|−']);
+  });
+});

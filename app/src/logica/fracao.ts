@@ -196,6 +196,12 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
   // (ângulo com acento, "(Â + Ĉ)/2", também tem valor)
   const temValor = (x: string) => /[0-9a-zA-Zα-ωπθΦℓÀ-ÖØ-öø-ÿĀ-ſ]/.test(x) || /^\([+−-]\)$/.test(x);
   if (!temValor(num) || !temValor(den)) return false;
+  // denominador zero fora de conta ("4/0 e 5/0" ligações e pares, "+1/0" cargas) e sinais de interação ou de rotação
+  // ("(+)/(−)") fora do quadro de sinais não empilham; "f(3) = 0/0" continua conta (revisão de 21/11/2026,
+  // questão-correção 2 R6)
+  // (o "+" colado ao número é o sinal dele: "+1/0"; "0/0", a indeterminação da conta, continua empilhada)
+  if (/^\(?0\)?$/.test(den) && num !== '0' && !/(?:[=≈×·÷]|[+−]\s)\s*$/.test(texto.slice(0, ini)) && !/^\s*[=≈+−×·÷]/.test(texto.slice(ini + num.length + 1 + den.length))) return false;
+  if (/^\([+−-]\)$/.test(num) && /^\([+−-]\)$/.test(den) && !/^\s*[<>≤≥=]/.test(texto.slice(ini + num.length + 1 + den.length))) return false;
   if (!produtoValido(num) || !produtoValido(den) || parDeUnidades(num, den)) return false;
   // genótipo com as mesmas letras em cima e embaixo ("Ab/aB", "AB/ab", "RS/rs")
   if (/^[A-Za-z]{2,4}$/.test(num) && num.length === den.length && num !== den && num.toLowerCase() === den.toLowerCase()) return false;
@@ -562,6 +568,8 @@ function divisoes(s: string): ParteFracao[] {
     if (/[A-Za-zÀ-ÿ0-9.,_^\\/÷₀-₉⁰¹²³⁴-⁹⁺⁻$]$/.test(antes) || /^[A-Za-zÀ-ÿ0-9(_^/₀-₉$]/.test(depois)) continue;
     // artigo ou preposição como operando, unidade entre parênteses ("massa (g) ÷ massa molar (g/mol)"): o nome da razão
     // não cabe inteiro dos dois lados, a divisão fica na linha (questão-correção 2 R5)
+    // sinal de interação ecológica ("0 / 0", "− / −", "+ / 0") e denominador zero: fica na linha (questão-correção 2 R6)
+    if ((/^[0+−-]$/.test(num) && /^[0+−-]$/.test(den)) || (/^0$/.test(den) && !/[=≈×·÷+−]\s*$/.test(antes) && !/^\s*[=≈]/.test(depois))) continue;
     // ("o" sozinho só é artigo entre palavras: "i / o = p' / p" e "razão = um ÷ outro" são conta; "(m/s) ÷ (m/s²)" é
     // análise de unidade)
     if ((ARTIGO.test(num) && (/\s/.test(num) || /[A-Za-zÀ-ÿ]\s$/.test(antes))) || (ARTIGO.test(den) && /^\s+[a-zà-ÿ]/.test(depois))
