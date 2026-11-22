@@ -1,6 +1,8 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent as TeclaReact } from 'react';
 import { useMateria } from '../dados/conteudo';
+import { useMateriaEstado } from '../estado/loja';
+import { CabMateria, FaixaTemas, subMateria } from './Materia';
 import { materia as infoMateria } from '../dados/materias';
 import { MATERIAS_ANIMADAS, useIndiceRevisao, useTemaRevisao, type Essencial, type TelaEssencial, type TemaRevisao } from '../dados/revisao';
 import type { Letra, MateriaId, Questao, Resolucao } from '../dados/tipos';
@@ -273,13 +275,26 @@ export function EssencialMateria() {
   const { m } = useParams() as { m: MateriaId };
   const mc = useMateria(m);
   const ind = useIndiceRevisao(m);
-  useTitulo(`Revisão essencial · ${infoMateria(m)?.nome || ''}`);
-  if (!mc || !ind) return <div className="conteudo"><Carregando /></div>;
+  const s = useMateriaEstado(m);
+  const info = infoMateria(m);
+  useTitulo(`Revisão essencial · ${info?.nome || ''}`);
+  if (!mc || !ind || !info) return <div className="conteudo"><Carregando /></div>;
   const temas = mc.conteudo.modulos.filter((x) => ind.temas[x.id]?.essencial);
+  // topo como as outras telas da matéria (nome em Dancing Script e faixa de temas) e a lista na folha
+  // (revisão de 21/11, matérias N3)
   return (
     <div className={`conteudo m-${m}`}>
-      <div className="titulo-pag"><div><h1>Revisão essencial de {infoMateria(m)?.nome}</h1><p className="sub">Por tema: o que mais cai, o mapa mental, uma tela por conteúdo, uma Questão Aprendice e a conexão com outras matérias.</p></div></div>
-      {!temas.length ? <div className="vazio"><h3>Em preparação</h3><p>A revisão essencial chega tema a tema, depois de revisada pela banca do Aprendice.</p></div> : (
+      <CabMateria m={m} nome={info.nome} titulo={false} sub={subMateria(mc.conteudo.modulos.length, mc.banco.length === 0)} />
+      <FaixaTemas mc={mc} s={s} compacta />
+      <section className="tp-capa" aria-labelledby="es-mat-tit">
+        <div className="fl-capa-txt">
+          <h1 id="es-mat-tit">Revisão essencial</h1>
+          <p>Por tema: o que mais cai, o mapa mental, uma tela por conteúdo, uma Questão Aprendice e a conexão com outras matérias.</p>
+        </div>
+      </section>
+      {!temas.length ? <section className="tp-bloco vazio"><h3>Em preparação</h3><p>A revisão essencial chega tema a tema, depois de revisada pela banca do Aprendice.</p></section> : (
+        <section className="tp-bloco" aria-labelledby="es-mat-temas">
+        <h2 id="es-mat-temas" className="tp-h">Temas</h2>
         <ul className="tp-enc es-lista">
           {temas.map((t) => (
             <li key={t.id}><Link to={`/m/${m}/essencial/${t.id}`}>
@@ -290,6 +305,7 @@ export function EssencialMateria() {
             </Link></li>
           ))}
         </ul>
+        </section>
       )}
     </div>
   );
