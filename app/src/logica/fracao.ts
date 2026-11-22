@@ -723,7 +723,7 @@ const LETRA_NOME = String.raw`[A-ZΔ]\s[a-zà-ÿ]{3,}`;
 // letra com raiz ("L√3 ÷ 2", "3ℓ²√3 ÷ 2")
 const LETRA_RAIZ = String.raw`\d*[A-Za-zℓ][²³]?√\d+`;
 // palavra, ou nome com o adjetivo que o completa ("carga total ÷ capacitância total", "cateto oposto ÷ hipotenusa")
-const ADJ = 'correspondente|interna|interno|externa|externo|recebido|recebida|cedido|cedida|elementar|possíveis|favoráveis|possível|favorável|total|totais|médio|média|oposto|adjacente|inicial|final|útil|equivalente|resultante|retirado|retirada|molar|específico|específica|elétrica|elétrico|percorrida|percorrido|gasto|gasta';
+const ADJ = 'antigo|antiga|novo|nova|correspondente|interna|interno|externa|externo|recebido|recebida|cedido|cedida|elementar|possíveis|favoráveis|possível|favorável|total|totais|médio|média|oposto|adjacente|inicial|final|útil|equivalente|resultante|retirado|retirada|molar|específico|específica|elétrica|elétrico|percorrida|percorrido|gasto|gasta';
 const NOME_RAZAO = String.raw`[a-zà-ÿ]{3,}(?: (?:${ADJ}))?(?: (?:de|do|da|dos|das|por) [a-zà-ÿ]+[²³]?)?`;
 // (com "não" antes: "expostos ÷ não expostos"; questão-correção 2 R5)
 const PALAVRA_OP = String.raw`(?:não\s)?[A-Za-zÀ-ÿ]{2,}(?:\s(?:${ADJ})(?![A-Za-zÀ-ÿ]))?`;
@@ -751,6 +751,8 @@ const COEF = /(?:\d+(?:,\d+)?|√\d*|[A-Za-zα-ωπ]{1,4})$/;
 const NOME_PAL = String.raw`[a-zà-ÿ]{3,}(?: (?:${ADJ}))?`;
 const RE_PAL_ESQ = new RegExp(`(?<=[=≈] )${NOME_PAL}$`, 'u');
 const RE_PAL_DIR = new RegExp(`^${NOME_PAL}(?=\\s*$|\\s*[,;.)]|\\s+[=≈+−×·])`, 'u');
+// verbo de oração relativa ("quantidade que reagiu", "soma que falta"): fim de um nome comprido, não o numerador
+const QUE_VERBO = /^(?:falta|faltam|faltou|sobra|sobram|sobrou|serve|servem|reage|reagiu|reagem|sai|saiu|saem|resta|restam|restou|entra|entrou|passa|passou)$/;
 const PAR: Record<string, string> = { ')': '(', ']': '[' };
 
 /** operando que termina em `fim` (grupo entre parênteses, colchetes ou barras de módulo, com expoente; ou simples) */
@@ -892,6 +894,12 @@ function divisoes(s: string, materia?: string): ParteFracao[] {
     // "não" em cima só no começo da razão ("não utilizadas / utilizadas"); depois de palavra é a negação da frase
     // ("e não cateto ÷ cateto")
     if (s.startsWith('não ', a) && /[A-Za-zÀ-ÿ]\s$/.test(s.slice(0, a))) a += 4;
+    // (revisão de 21/11/2026, passada 6 Y3) palavra solta em cima depois de "ao" é o fim de outro nome ("x ao quadrado ÷
+    // C", "(distância ao vértice ÷ h)²"), e "não" ou "nem" sozinhos em cima são a negação da frase ("não ÷ novo", "nem ÷
+    // média"): a divisão fica na linha; o verbo depois de "que" também ("trabalho que falta ÷ ritmo": o nome de cima não cabe
+    // inteiro)
+    if (/^[A-Za-zÀ-ÿ]+$/.test(s.slice(a, o.ini)) && (/(?:^|\s)(?:ao|à|aos|às)\s$/.test(s.slice(0, a)) || /^(?:não|nem)$/.test(s.slice(a, o.ini))
+      || (/(?:^|\s)que\s$/.test(s.slice(0, a)) && QUE_VERBO.test(s.slice(a, o.ini))))) continue;
     const num = s.slice(a, o.ini), den = s.slice(o.fim, b);
     const antes = s.slice(0, a), depois = s.slice(b);
     // colado a palavra, número, índice ou outra divisão: não é um operando inteiro
@@ -909,7 +917,8 @@ function divisoes(s: string, materia?: string): ParteFracao[] {
     // "2 kmol de O2 ÷ 1,5", "V de Júpiter ÷ V da Terra": o operando é o complemento de um nome maior (antes de "de"
     // ou depois dele), não o número inteiro; fica na linha
     // palavra solta depois de número é unidade ("100 mA ÷ 1000"); depois de preposição é complemento ("calor por tempo")
-    if (amplo && /^[A-Za-zÀ-ÿ]+(?:\s[A-Za-zÀ-ÿ]+)?$/.test(num) && (/\d\s+$/.test(antes) || /(?:^|\s)(?:por|em|no|na|nos|nas|com|para|pelo|pela)\s$/i.test(antes))) continue;
+    // (passada 6 Y3: também depois da potência de 10, "7,2 × 10¹⁷ átomos ÷ 6,0 × 10²³", "1,2 × 10⁸ J úteis ÷ 1,2 × 10⁷ J")
+    if (amplo && /^[A-Za-zÀ-ÿ]+(?:\s[A-Za-zÀ-ÿ]+)?$/.test(num) && (/(?:\d|10[⁰¹²³⁴-⁹⁻]+)\s+$/.test(antes) || /(?:^|\s)(?:por|em|no|na|nos|nas|com|para|pelo|pela)\s$/i.test(antes))) continue;
     // (uma variável sozinha depois de "de" é o numerador: "de p ÷ (p − 5) = 22 ÷ 17 sai p = 22")
     if ((/(?:^|\s)(?:de|da|do|dos|das)\s$/.test(antes) && /^[A-Za-zÀ-ÿΔ]/.test(num) && !(/^[a-zα-ω][₀-₉]?$/.test(num) && /^de\s$/.test(antes.slice(-3)) && /^[(\d]/.test(den)))
       || (/^\s(?:de|da|do|dos|das)\s/.test(depois) && /^[A-Za-zÀ-ÿΔ]/.test(den))) continue;

@@ -69,3 +69,31 @@ describe('Y2: o nome da função e o ângulo ficam no lugar certo', () => {
     expect(fr('x = 3/sen 2,5 + 1', 'mat')).toEqual(['3|sen 2,5']);
   });
 });
+
+describe('Y3: palavra solta não vira numerador', () => {
+  it('quí P23cb376 e P1dfb107: "x ao quadrado ÷ C" fica na linha', () => {
+    const s = 'Chamando de x o que reage, a expressão fica x ao quadrado ÷ C = K, e com a aproximação da base fraca vale x ao quadrado = K x C.';
+    expect(fr(s, 'qui')).toEqual([]);
+    expect(fr('Kb = (2 × 10⁻⁴) ao quadrado ÷ 0,02 = 2 × 10⁻⁶, e não', 'qui')).toEqual([]);
+    const t = 'x ao quadrado ÷ C = K';
+    expect(tokeniza(t).filter((k) => k.k === 'frac')).toEqual([]);
+  });
+  it('Q04.1 P0229d63 e F04.2: unidade depois da potência de 10 não é numerador', () => {
+    expect(fr('n = 7,2 × 10¹⁷ átomos ÷ 6,0 × 10²³ átomos/mol = 1,2 × 10⁻⁶ mol', 'qui')).toEqual([]);
+    expect(fr('1,2 × 10⁸ J úteis ÷ 1,2 × 10⁷ J por bloco = 10.', 'fis')).toEqual([]);
+    expect(fr('1 U3O8 → 3 UF6; 10⁶ g ÷ 842 ≈ 1 187,6 mol', 'qui')).toEqual([]);
+    // a variável com expoente antes não é número: "π r² h ÷ 2" continua com h sobre 2
+    expect(fr('V₁ = π r² h ÷ 2', 'mat')).toEqual(['h|2']);
+  });
+  it('M11.3, M04.5 e Q06.1: "ao vértice", "não ÷ novo", "nem ÷ média", "não ÷10"', () => {
+    expect(fr('semelhança: (área da secção ÷ área da base) = (distância ao vértice ÷ h)²', 'mat')).toEqual([]);
+    expect(fr('O desconto é 5 ÷ preço antigo (22), não ÷ novo (17) nem ÷ média; não arredonde a razão no meio da conta.', 'mat')).toEqual(['5|preço antigo']);
+    expect(fr('Pressão menor faz o volume CRESCER (×10, não ÷10); e a temperatura', 'qui')).toEqual([]);
+  });
+  it('nome com "novo" ou "antigo" cabe inteiro embaixo; verbo depois de "que" não é numerador', () => {
+    expect(fr('Variação percentual = diferença ÷ valor antigo.', 'mat')).toEqual(['diferença|valor antigo']);
+    expect(fr('valor antigo = valor novo ÷ (1 + i)', 'mat')).toEqual(['valor novo|1 + i']);
+    expect(fr('tempo que falta = trabalho que falta ÷ ritmo novo', 'mat')).toEqual([]);
+    expect(fr('dizer que r ÷ q = 6 é dizer que r é 6 vezes q', 'mat')).toEqual(['r|q']);
+  });
+});
