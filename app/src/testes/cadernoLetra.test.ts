@@ -29,3 +29,17 @@ describe('T2: "No caderno" de Física numa letra só', () => {
     expect(cadernoComLatexEhTexto(['\\text{Kant: razão}'], 'fs', ehLatex, false)).toBe(true);
   });
 });
+
+describe('T6: rótulo no começo da linha não junta com a linha de cima', () => {
+  it('geo G01, "No caderno": latitude e longitude em duas linhas', async () => {
+    const { continuaFrase } = await import('../logica/latex');
+    expect(continuaFrase('latitude: 0° a 90° N ou S do Equador', 'longitude: 0° a 180° L ou O de Greenwich')).toBe(false);
+    expect(continuaFrase('placas convergentes: cordilheiras, fossas, vulcões', 'divergentes: dorsais oceânicas')).toBe(false);
+    // continuação de verdade continua junta
+    expect(continuaFrase('a moeda forte atrai capital', 'e encarece a exportação')).toBe(true);
+    expect(continuaFrase('modernidade sólida →', 'líquida: provisório,')).toBe(true);
+    const tex = '\\begin{gathered}\\text{latitude: } 0^\\circ \\text{ a } 90^\\circ \\text{ N ou S do Equador} \\\\ \\text{longitude: } 0^\\circ \\text{ a } 180^\\circ \\text{ L ou O de Greenwich}\\end{gathered}';
+    const html = renderToStaticMarkup(createElement(Formula, { tex, prosa: true }));
+    expect(html.match(/class="fm-linha"/g)?.length).toBe(2);
+  });
+});
