@@ -89,3 +89,41 @@ fonte, medida nem de dado. Conferido como no A1–A5: `montaRoteiro` em todas as
 
 ## Testes
 `npx tsc --noEmit -p .` sem erro; `npx vitest run`: 60 arquivos, 1109 testes, todos verdes.
+
+# Correção C1–C3 (questao-correcao-10.md), 22/11/2026
+
+Arquivos: `app/src/logica/motorConta.ts`, `app/src/logica/fracao.ts`, `app/src/ui/Fracao.tsx`, `app/src/ui/ResolucaoAnimada.tsx`,
+`app/src/ui/Resolucao.tsx`, `app/src/testes/fracaoPassada10.test.ts` (novo, C1 e C2 com as resoluções dos dados e os casos de
+Z, A e B), `app/src/testes/fracaoPassada10C3.test.ts` (novo), `app/src/testes/motorConta.test.ts`. Sem mudança de cor, fonte,
+medida nem de dado. Conferido como antes: `montaRoteiro` em todas as 51 655 resoluções (banco e provas), antes e depois, lendo
+as que mudam.
+
+## C3 — fração na linha no título do passo (commit 1)
+- `partesFracao(…, titulo)`: no título do passo (Matemática, Física, Química), variável sobre variável empilha mesmo depois de
+  verbo e com letra que também é unidade: "Calcule T/V", "h/g", "isole L/S", "ΔT/Δt", "ΔV/ΔT", "V/T", "L/(k·A)", "(ab)/c".
+- Ficam na linha: unidades ("m/s", "g/L", "10 m/s²"), "m/v", pares ("M/Cu", "cis/trans"), palavra/palavra, datas.
+- "r ∝ T^(2/3)": a fração do expoente já sai empilhada, pequena (`comNotacao`); não muda.
+
+## C1 — linha do quadro que repete a conta (commit 2)
+- `parecida`: número arredondado vale ("0,0256" = "0,02564"); produto escrito vale o valor ("4 · 25" = 100, "3,4 × 10⁻³" =
+  0,0034, só quando os produtos da linha do quadro estão na conta); trecho entre setas da conta com outro rótulo ("homem: ii
+  Rr", "A: P − NA = m v²/R"); números de trechos seguidos da conta, com os sinais e as letras ("centrais: 24,50 e 24,80");
+  resultado por extenso com a palavra da nota ("840/7 = 120 «média»"); várias linhas com rótulo citadas por uma linha com
+  rótulo próprio ("mulheres: 2020 = 47,3 | 2021 = 52,3").
+- Conferidos os 8 casos citados. Efeito: **138 resoluções do banco** (e as mesmas 138 das provas) mudam, todas por linha
+  repetida a menos; li todas. Testados os que não podem casar (mat P4133018e, P466ce997, P84c242f6, P38be2c42, P1aee808c,
+  Pb0b64def; fís Pc89ec3fc; quí P0fc6f7b7).
+
+## C2 — linha do quadro no passo certo (commit 3)
+- Nunca depois da conclusão do passo ("… → alternativa D", "→ B"): entra antes dela.
+- Quando o lugar cairia no passo da conclusão, ou veio só da proporção, vale o passo que fala da mesma coisa: trecho da nota
+  escrito no passo ("j decresce" e "j decrescente") ou a linha inteira, termo a termo, na conta ("Rr × rr" no "Cruze"); um
+  trecho de fórmula da nota escrito igual ("Im(g) = [−2, +∞[") vale sempre.
+- Nuclídeo ("¹³⁷₅₅Cs") compara com a conta ("137 = 137 + 0" casa com a equação do item II); a conclusão por letra ("maior
+  alta = 5,0 → C") casa com a conclusão do último passo.
+- Efeito: **416 resoluções do banco** (e as mesmas nas provas): 289 só levam a linha para antes da conclusão; 51 levam a linha
+  para outro passo; 76 juntam a conclusão repetida ou uma linha igual à da conta. Li todas as que mudam de passo e as 76.
+- Ficam: mat Pb28d85a4, "2012: … ≠ 11,7" (dados, já listado no B2); B4–B6 e C4–C8 (detalhes).
+
+## Testes
+`npx tsc --noEmit -p .` sem erro; `npx vitest run`: todos verdes.
