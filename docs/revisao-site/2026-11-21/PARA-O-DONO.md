@@ -29,3 +29,13 @@ Mudanças visuais novas sugeridas pelos revisores. Nada disto foi aplicado.
    internet; a nota da prova agora diz a verdade ("publicado, ainda não conferido pelo Aprendice"). Para fechar:
    liberar esses dois endereços na rede do ambiente ou pôr os 4 arquivos no repositório. Recomendação: **liberar e
    aplicar antes de abrir aos alunos** (questão anulada pela banca pode estar no ar).
+
+6. **Aviso: tons do texto das figuras de Bio no tema escuro ficaram um pouco mais claros** (passada-3 N2, já aplicado
+   por ser falha de acessibilidade). O texto das figuras ficava com contraste de 3,2:1 sobre a etiqueta colorida (o
+   mínimo é 4,5:1). Para corrigir, só no tema escuro, os tons das letras clarearam um pouco (vermelho `#F26F84`, cinza
+   `#A4AAC4`, azul `#74B7F2`, lilás `#D0A3FD`) e 16 etiquetas em 6 figuras ficaram um pouco mais opacas. O menor
+   contraste agora é 4,61:1. O tema claro não mudou. Se preferir outro ajuste, é só dizer: dá para voltar ao tom
+   anterior e escurecer o fundo da etiqueta.
+
+7. **Figura da α/β-glicose (Bio B02)**: as linhas do anel passam encostadas no "O" e no "3", nos dois temas. É assim
+   no desenho original. Recomendação: **redesenhar a figura** com as letras afastadas das linhas.
