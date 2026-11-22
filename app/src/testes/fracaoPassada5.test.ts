@@ -37,3 +37,18 @@ describe('U2: razão entre razões com índice, "(n/V)₂/(n/V)₁", empilha', (
     expect(fr('(m/s)₁')).toEqual([]);
   });
 });
+
+describe('U3: "R\'\'" inteiro no denominador', () => {
+  it('fís Pdba47980: "110²/R\'\'" empilha com os dois apóstrofos embaixo', () => {
+    const s = "750 = 110²/R'' → R'' = R/4 → L'' = L/4";
+    expect(fr(s)).toEqual(["110²|R''", 'R|4', 'L|4']);
+    expect(fr(s, 'fis')).toEqual(["110²|R''", 'R|4', 'L|4']);
+    expect(junta(s)).toBe(s);
+    expect(fr('750 = 110²/R″ → x')).toEqual(['110²|R″']);
+    expect(fr("a = R''/2")).toEqual(["R''|2"]);
+  });
+  it('um apóstrofo só continua como antes e o que sobra não fica fora da fração', () => {
+    expect(fr("i/o = p'/p")).toEqual(['i|o', "p'|p"]);
+    expect(fr("x = 3/R'''")).toEqual([]);
+  });
+});
