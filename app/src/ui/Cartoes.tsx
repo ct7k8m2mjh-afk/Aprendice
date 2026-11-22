@@ -7,7 +7,7 @@ import { pegaEstado } from '../estado/loja';
 import { atualizaMateria, useMateriaEstado } from '../estado/loja';
 import { urlFlashImg, EH_PREVIA } from '../dados/conteudo';
 import { Icone } from './Icone';
-import { comFracoes } from './Fracao';
+import { comFracoes, MateriaDoTexto } from './Fracao';
 import { Protecao } from './Protecao';
 import { leFonte } from '../logica/fonteTexto';
 
@@ -73,10 +73,10 @@ function FonteCartao({ fonte, credito }: { fonte?: string; credito?: string }) {
 type PropsFlash = Parameters<typeof FlashcardCartao>[0];
 /** Flashcard com proteção: uma falha de desenho num cartão não derruba a sessão inteira (dados.md, item 1). */
 export function FlashcardView(p: PropsFlash) {
-  return <Protecao chave={p.c.id} texto="Este cartão não abriu."><FlashcardCartao {...p} /></Protecao>;
+  return <MateriaDoTexto.Provider value={p.m}><Protecao chave={p.c.id} texto="Este cartão não abriu."><FlashcardCartao {...p} /></Protecao></MateriaDoTexto.Provider>;
 }
 export function CompletarView(p: Parameters<typeof CompletarCartao>[0]) {
-  return <Protecao chave={p.c.id} texto="Esta frase não abriu."><CompletarCartao {...p} /></Protecao>;
+  return <MateriaDoTexto.Provider value={p.m}><Protecao chave={p.c.id} texto="Esta frase não abriu."><CompletarCartao {...p} /></Protecao></MateriaDoTexto.Provider>;
 }
 
 /** Flashcard: pergunta curta no estilo das discursivas; o aluno escreve, o app corrige (local ou IA simulada) e ele confirma. */

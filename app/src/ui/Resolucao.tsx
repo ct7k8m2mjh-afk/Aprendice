@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import { Icone } from './Icone';
 import { MATERIAS_ANIMADAS } from '../dados/revisao';
 import { ResolucaoAnimada } from './ResolucaoAnimada';
-import { comFracoes } from './Fracao';
+import { comFracoes, MateriaDoTexto } from './Fracao';
 import { textoCorrecao } from '../logica/aspas';
 import { itensDaConta } from '../logica/motorConta';
 
@@ -63,6 +63,7 @@ export function ResolucaoView({ q, r, marcada, materia, origem, semFonte }: { q:
   const outras = (Object.entries(r?.erradas || {}) as [Letra, string][])
     .filter(([l, t]) => t && l !== q.gab && !(erradaTxt && l === marcada)).sort(([a], [b]) => a.localeCompare(b));
   return (
+    <MateriaDoTexto.Provider value={mat}>
     <section className={'resolucao' + (acertou ? ' ok' : marcada ? ' err' : '')} aria-labelledby="res-tit">
       <header className="res-cab">
         <span className={'res-selo ' + (acertou ? 'ok' : marcada ? 'err' : '')}>
@@ -119,5 +120,6 @@ export function ResolucaoView({ q, r, marcada, materia, origem, semFonte }: { q:
         Fonte: {(() => { const r = origemDoLink(q.url, q.origem).rotulo; return /^[A-Z][a-zà-ÿ]/.test(r) ? r.charAt(0).toLowerCase() + r.slice(1) : r; })()} · <a href={q.url} target="_blank" rel="noreferrer noopener">{q.escola} {q.ano} <Icone nome="externo" tam={13} /></a>
       </p>}
     </section>
+    </MateriaDoTexto.Provider>
   );
 }

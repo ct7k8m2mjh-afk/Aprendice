@@ -401,3 +401,81 @@ describe('revisão de 21/11, dados N1: grupo com expoente, potência e cadeia em
       expect(junta(s)).toBe(s);
   });
 });
+
+describe('revisão de 21/11, dados R1: barra que não é fração fica na linha', () => {
+  const frm = (s: string, m?: string) => partesFracao(s, m).filter((p) => p.t === 'frac').map((p) => (p.t === 'frac' ? `${p.n}|${p.d}` : ''));
+  it('anos e períodos, em todas as matérias', () => {
+    for (const s of ['Conferência de Berlim (1884/1885).', 'safra 2009/2010', 'entre 2014/2015 e 2019/2020', 'depois de 1960/1970, com estradas',
+      'Futurismo (≈1907/1909): Manifesto', 'questão 27 do IME 2022/2023, cujo gabarito', 'Em outra prova (2027/1, questão 15)'])
+      expect(frm(s), s).toEqual([]);
+    expect(frm('1215 e 1054/1378.', 'his')).toEqual([]);
+    // Matemática: anos-número de conta continuam fração
+    expect(frm('A = ln(2/3) + … + ln(1001/1002)')).toEqual(['2|3', '1001|1002']);
+    expect(frm('1012/1013 não confere')).toEqual(['1012|1013']);
+    expect(frm('Alternativa B — 288/2019')).toEqual(['288|2019']);
+    expect(frm('o cone inteiro de (2000/3)π')).toEqual(['2000|3']);
+  });
+  it('lei, projeto, edital e comunicado', () => {
+    for (const s of ['regulação (PL 2.338/23) só aparece', 'projeto de lei (PL 404/17)', '"LEI FEDERAL Nº 9 605/98"', 'BRASIL. Lei n. 10 639/2003',
+      'Lei Complementar federal 14/1973 (oito RMs) e 20/1974 (Rio)', 'Lei Complementar estadual 90/2013, não', 'CONAMA 275/2001: verde = vidro',
+      'no Comunicado 81/2025-CEV/UECE, que', 'preliminar (Edital nº 89/25-CPV), com', 'Anvisa, RDC 360/2003 (Anexo)', 'Leis Complementares 124 e 125/2007 e 129/2009',
+      'Resoluções Condel/Sudene 150/2021, 155/2022, 163/2022 e 176/2024', 'art. 2º: CF/1988; ligação'])
+      expect(frm(s), s).toEqual([]);
+  });
+  it('datas', () => {
+    expect(frm('"De 31/5 a 7/6."', 'por')).toEqual([]);
+    expect(frm('Declarações de guerra em 3/9.', 'his')).toEqual([]);
+    expect(frm('comício (13/3), marcha (19/3), Revolta (25/3) e golpe em 31/3 e 1/4, início', 'his')).toEqual([]);
+    expect(frm('13/6 MetLife (Nova York) → 19/6 Lincoln Financial Field → 24/6 Hard Rock', 'geo')).toEqual([]);
+    expect(frm('"Israel anunciou nesta terça-feira (10/6) que"', 'geo')).toEqual([]);
+    expect(frm('10/04 e 10/10: intermediárias', 'geo')).toEqual([]);
+    expect(frm('levante em 3/10 e junta até 3/11/1930', 'his')).toEqual([]);
+    // intervalo de datas também em Matemática
+    expect(frm('Conte os dias de 3/1 a 15/4')).toEqual([]);
+    expect(frm('a cada 18 dias (de 19/3 a 6/4)')).toEqual([]);
+  });
+  it('fora das matérias de texto, número/número fora de conta continua fração', () => {
+    expect(frm('A sai de parar em 1/3: é a chance')).toEqual(['1|3']);
+    expect(frm('a função sobe até 1/2 e depois desce')).toEqual(['1|2']);
+    expect(frm('Altura da pirâmide 13/2 e meia aresta 13/2.')).toEqual(['13|2', '13|2']);
+    expect(frm('Parar na soma dos três termos dados (19/6) e esquecer')).toEqual(['19|6']);
+    expect(frm('22/6 → 11/3 → 3,67')).toEqual(['22|6', '11|3']);
+    expect(frm('compare com 24/6 e 24/4.')).toEqual(['24|6', '24|4']);
+    expect(frm('1,0 A sai de 20/20, como se')).toEqual(['20|20']);
+    expect(frm('escreva 1 como 2/2')).toEqual(['2|2']);
+    // nas matérias de texto, a fração de verdade continua empilhada
+    expect(frm('"cerca de 1/3 dos que cumpriram pena"', 'fs')).toEqual(['1|3']);
+    expect(frm('costa (3/4), área (11%)', 'ing')).toEqual(['3|4']);
+    expect(frm('2 sai de dividir 40 pelo diâmetro, 40/20, o que', 'geo')).toEqual(['40|20']);
+    expect(frm('125 − 63 = 62 | 62/63 ≈ 0,98', 'geo')).toEqual(['62|63']);
+  });
+  it('linhas, medida, siglas, pares, itens e verso', () => {
+    expect(frm('linhas 16/17: assunto · linhas 28/29: a resposta', 'por')).toEqual([]);
+    expect(frm('PA ≈ 120/80 mmHg (sistólica/diastólica)')).toEqual([]);
+    expect(frm('o trabalho era 24/7.', 'ing')).toEqual([]);
+    expect(frm('Redação 50/50 da Fuvest 2025', 'por')).toEqual([]);
+    expect(frm('por isso a mistura não sai 50/50.')).toEqual([]);
+    expect(frm('Hashimoto → T3/T4 ↓ → TSH ↑')).toEqual([]);
+    expect(frm('mimetismo (1a/1b); camuflagem (3a/3b).')).toEqual([]);
+    expect(frm('Alotropia é de elemento (O2/O3), nunca')).toEqual([]);
+    expect(frm('em qualquer caso, a mistura 46/47 se forma')).toEqual([]);
+    expect(frm('RJ/ES = carvão, não vegetal', 'geo')).toEqual([]);
+    expect(frm('AC/DC é banda de hard rock', 'fs')).toEqual([]);
+    expect(frm('Vogal + r/s dobra a consoante', 'por')).toEqual([]);
+    expect(frm('V/F: basta um dado errado', 'geo')).toEqual([]);
+    expect(frm('"Sem que veja a Rua 15 / E o progresso de São Paulo"', 'por')).toEqual([]);
+    expect(frm('Sem que veja a Rua 15 / E o progresso')).toEqual([]);
+    expect(frm('I - H / II - D / III - F / IV - C → alternativa E')).toEqual([]);
+    for (const s of ['PF / PE', 'HF / HI', 'R / P', 'E / W', 'NS / NR']) expect(frm(s), s).toEqual([]);
+    // conta com as mesmas formas continua fração
+    expect(frm('tg 30° = DC/AC = √3/3 → AC/DC = 3/√3 = √3')).toEqual(['DC|AC', '√3|3', 'AC|DC', '3|√3']);
+    expect(frm('a = 10/10 = 1 m/s²')).toEqual(['10|10']);
+    expect(frm('temperatura entra direta (T2/T1).')).toEqual(['T2|T1']);
+    expect(frm('Produto das raízes a/a = 1')).toEqual(['a|a']);
+    expect(frm('d = m / V')).toEqual(['m|V']);
+  });
+  it('o texto não muda', () => {
+    for (const s of ['"De 31/5 a 7/6."', 'PL 2.338/23', 'Rua 15 / E o progresso'])
+      expect(partesFracao(s, 'por').map((p) => (p.t === 'txt' ? p.v : p.orig)).join('')).toBe(s);
+  });
+});

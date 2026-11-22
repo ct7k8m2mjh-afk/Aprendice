@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode } from 'react';
+import { createContext, Fragment, useContext, type ReactNode } from 'react';
 import { partesFracao, type ParteFracao } from '../logica/fracao';
 import { partesNotacao } from '../logica/notacao';
 
@@ -11,7 +11,20 @@ import { partesNotacao } from '../logica/notacao';
  * escondidos, para leitor de tela, copiar e colar e testes.
  */
 export function comFracoes(texto: string): ReactNode {
-  const partes = partesFracao(texto);
+  return <TextoComFracoes texto={texto} />;
+}
+
+/** Matéria do texto mostrado (revisão de 21/11/2026, dados R1): nas matérias de texto (Português, História, Geografia,
+ *  Filosofia e Sociologia, Inglês) a barra entre números fora de conta é data, lei ou período, não fração. A tela da
+ *  matéria e a correção da questão dizem qual é; fora delas vale a regra geral. */
+export const MateriaDoTexto = createContext<string | undefined>(undefined);
+
+function TextoComFracoes({ texto }: { texto: string }) {
+  return <>{desenhaFracoes(texto, useContext(MateriaDoTexto))}</>;
+}
+
+function desenhaFracoes(texto: string, materia?: string): ReactNode {
+  const partes = partesFracao(texto, materia);
   if (partes.length === 1 && partes[0].t === 'txt') return comNotacao(texto);
   return partes.map((p, i) => p.t === 'txt' ? <Fragment key={i}>{comNotacao(p.v)}</Fragment> : p.t === 'nuc' ? (
     // nuclídeo: número de massa em cima e número atômico embaixo, à esquerda do símbolo, sem barra

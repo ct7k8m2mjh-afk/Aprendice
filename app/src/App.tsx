@@ -31,6 +31,7 @@ import { useEffect } from 'react';
 import { useConta } from './estado/sessao';
 import { Privacidade } from './telas/Privacidade';
 import { NaoEncontrada } from './telas/NaoEncontrada';
+import { MateriaDoTexto } from './ui/Fracao';
 
 function Rotas() {
   const e = useEstado();
@@ -54,6 +55,8 @@ function Rotas() {
   if (antiga) return <Navigate to={'/m/' + materiaAtual(antiga[1]) + (antiga[2] || '') + loc.search} replace />;
   return (
     <Casca foco={foco}>
+      {/* a matéria da tela decide o que é fração no texto (revisão de 21/11/2026, dados R1) */}
+      <MateriaDoTexto.Provider value={/^\/m\/(\w+)/.exec(loc.pathname)?.[1]}>
       <Routes>
         <Route path="/" element={<Inicio />} />
         <Route path="/materias" element={<ListaMaterias />} />
@@ -86,6 +89,7 @@ function Rotas() {
         <Route path="/privacidade" element={<Privacidade />} />
         <Route path="*" element={<NaoEncontrada />} />
       </Routes>
+      </MateriaDoTexto.Provider>
     </Casca>
   );
 }

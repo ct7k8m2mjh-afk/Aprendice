@@ -85,7 +85,91 @@ function semParenteses(x: string): string {
   return x.slice(1, -1).trim();
 }
 
-function ehFracao(texto: string, ini: number, num: string, den: string): boolean {
+/*
+ * Barra que não é fração (revisão de 21/11/2026, dados R1): ano/ano, lei com número e ano, data, linhas do texto, par de
+ * siglas, itens de chave e pressão arterial. Dentro de uma conta (sinal logo antes ou logo depois: "= 1013/2026 − 1/2026",
+ * "62/63 ≈ 0,98") continua fração. Nas matérias de texto (Português, História, Geografia, Filosofia e Sociologia, Inglês)
+ * a regra é mais estrita: número/número fora de conta só empilha como fração própria ("cerca de 1/3 dos presos").
+ */
+const NUMERO_INT = /^\d{1,3}(?:[.   ]\d{3})+$|^\d+$/;
+const ANO = /^(1[0-9]|20)\d\d$/;
+// nome de norma, ato ou documento antes do número, também numa lista ("PL 2.338/23", "Lei Federal nº 9 605/98",
+// "Edital 90/23-CPV", "LC 14/1973 (oito RMs) e 20/1974", "Resoluções Condel/Sudene 150/2021, 155/2022 e 176/2024")
+const NORMA_ANTES = new RegExp(String.raw`(?:^|[^A-Za-zÀ-ÿ])(?:leis?|pl|plp|pls|pec|lc|rdc|emendas?|decretos?|decreto-lei|decreto legislativo|n[º°o]\.?|n\.|resolu[çc](?:ão|ões)|portarias?|mp|medida provisória|processos?|adi|adpf|ec|editais|edital|comunicados?|vetos?|nota técnica|circular técnica|instrução normativa|conama|súmula|acórdão|parecer)(?:\s+(?:federal|estadual|municipal|complementar(?:es)?|ordinária|[A-Z][A-Za-z]*\/[A-Z][A-Za-z]*))*\s*(?:n[º°o]\.?\s*|n\.\s*)?(?:\d[\d.   ]*(?:\/\d{2,4})?(?:\s*\([^()]{1,40}\))?\s*(?:,|e|a)\s+)*$`, 'i');
+// siglas das unidades da federação: "RJ/ES" é par de estados
+const UF = new Set('AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO'.split(' '));
+// data com o dia maior que 12 ou com zero na frente: com certeza é data ("31/5", "13/6", "10/04")
+const DATA_CERTA = /^(?:(?:1[3-9]|2\d|3[01])\/(?:[1-9]|1[0-2])|\d{1,2}\/0\d|0\d\/\d{1,2})$/;
+/** Matérias de texto: a barra entre números fora de conta quase nunca é fração. */
+const MATERIAS_TEXTO = new Set(['por', 'his', 'geo', 'fs', 'ing']);
+function naoEhFracao(antes: string, depois: string, num: string, den: string, materia?: string): boolean {
+  const txt = !!materia && MATERIAS_TEXTO.has(materia);
+  const sinalAntes = /[=+−×·÷≈<>≤≥]\s*\(?\s*$/.test(antes) || /(?:^|[\s=(])-\s*$/.test(antes) || /[A-Za-z]\($/.test(antes);
+  const sinalDepois = /^\s*\)?\s*[=≈<>≤≥+−×·÷]/.test(depois);
+  const conta = sinalAntes || sinalDepois;
+  const nNum = NUMERO_INT.test(num), nDen = NUMERO_INT.test(den);
+  // pedaço de um número com milhar separado por espaço ("Nº 9 605/98" depois de recusado o número inteiro)
+  if (nNum && /^\d{3}$/.test(num) && /\d[   ]$/.test(antes)) return true;
+  if (nNum && nDen) {
+    const a = +num.replace(/\D/g, ''), b = +den.replace(/\D/g, '');
+    // período entre dois anos seguidos ("1884/1885", "safra 2009/2010", "≈1907/1909"); "1012/1013" e "ln(1001/1002)" de
+    // Matemática continuam fração; nas matérias de texto, qualquer par de anos ("1054/1378")
+    if (ANO.test(num) && ANO.test(den) && b > a && !/^\s*[=≈]/.test(depois)
+      && (txt ? !conta || b - a <= 10 : a >= 1500 && b - a <= 10 && (!conta || /≈\s*$/.test(antes)))) return true;
+    // lei, projeto, edital ou comunicado com o ano embaixo, com dois ou quatro algarismos ("PL 404/17", "LC 14/1973")
+    if ((/^\d\d$/.test(den) || ANO.test(den)) && NORMA_ANTES.test(antes)) return true;
+    // pressão arterial ("120/80 mmHg")
+    if (/^\s?(?:mmHg|cmHg)(?![A-Za-z])/.test(depois)) return true;
+    // linhas, versos ou páginas do texto ("linhas 16/17")
+    if (/(?:^|[^A-Za-zÀ-ÿ])(?:linhas?|versos?|estrofes?|páginas?|pp?\.)\s*$/i.test(antes)) return true;
+    if (conta) return false;
+    // mosaico de cariótipos ("a mistura 46/47"): número de cromossomos, não fração
+    if (a >= 44 && a <= 48 && b === a + 1 && /\b(?:mistura|mosaico|cariótipos?|cromossomos)\s+$/i.test(antes)) return true;
+    // "24/7" (o dia inteiro) e "50/50" (metade e metade) depois de palavra
+    if (((a === 24 && b === 7) || (a === 50 && b === 50)) && /[A-Za-zÀ-ÿ]\s+$/.test(antes)) return true;
+    const dm = `${num}/${den}`;
+    const data = a >= 1 && a <= 31 && b >= 1 && b <= 12;
+    // "de 3/1 a 15/4", "De 31/5 a 7/6", "de 19/3 a 6/4": intervalo entre duas datas, uma delas certa
+    if (data) {
+      const ate = /^\s+(?:a|até)\s+(\d{1,2}\/\d{1,2})(?![\d/])/.exec(depois);
+      if (ate && /(?:^|[^A-Za-zÀ-ÿ])de\s+$/i.test(antes) && (DATA_CERTA.test(dm) || DATA_CERTA.test(ate[1]))) return true;
+      const de = /(?:^|[^A-Za-zÀ-ÿ])de\s+(\d{1,2}\/\d{1,2})\s+(?:a|até)\s+$/i.exec(antes);
+      if (de && (DATA_CERTA.test(dm) || DATA_CERTA.test(de[1]))) return true;
+    }
+    if (!txt) return false;
+    // nas matérias de texto, fora de conta: número/ano ("125/2007", "Veto 20/2025") e número igual em cima e embaixo
+    // ("Redação 50/50", "10/10") ficam na linha; "dividir 40 pelo diâmetro, 40/20" continua fração
+    if (/^(1[5-9]|20)\d\d$/.test(den) || a === b) return true;
+    if (data) {
+      // data entre parênteses ou antes de um nome ("(10/6)", "(13/3)", "13/6 MetLife (Nova York) → 19/6 Lincoln")
+      if ((DATA_CERTA.test(dm) || a > b) && ((/\($/.test(antes) && /^\)/.test(depois)) || /^\s+[A-Z][A-Za-zÀ-ÿ]/.test(depois))) return true;
+      // data depois de "em", "dia", "até", "desde" ("em 3/9", "em 3/10 e junta"); "em 3/4 dos casos" é fração
+      if (/(?:^|[^A-Za-zÀ-ÿ])(?:em|dia|dias|até|desde|após)\s+$/i.test(antes) && !/^\s*(?:d[oa]s?|de)\b/.test(depois)) return true;
+      // a data vizinha puxa esta ("31/3 e 1/4", "13/6 → 19/6", "levante em 3/10 e junta até 3/11/1930")
+      const viz = /(\d{1,2}\/\d{1,2})(\/\d{2,4})?\s*(?:a|e|até|→|–)\s+$/.exec(antes) || /^\s*(?:a|e|até|→|–)\s+(\d{1,2}\/\d{1,2})(\/\d{2,4})?(?![\d/])/.exec(depois);
+      if (viz && (DATA_CERTA.test(viz[1]) || viz[2])) return true;
+    }
+    return false;
+  }
+  // pronomes "o/a", "os/as"
+  if ((num === 'o' && den === 'a') || (num === 'os' && den === 'as')) return true;
+  // hormônios da tireoide ("TSH → T3/T4"), itens de chave ("1a/1b", "3a/3b") e alótropos ("O2/O3")
+  if (/^(?:T3\/T4|O2\/O3)$/.test(`${num}/${den}`)) return true;
+  if (/^(\d+)[a-z]$/.test(num) && /^(\d+)[a-z]$/.test(den) && num.slice(0, -1) === den.slice(0, -1) && num !== den) return true;
+  // sigla com o ano embaixo ("CF/1988", "PD/1923")
+  if (/^[A-Z]{1,6}$/.test(num) && /^(1[5-9]|20)\d\d$/.test(den) && !conta) return true;
+  if (!txt) return false;
+  // letras depois de palavra com "+" ("vogal + r/s", "vogal + m/n"): regra de grafia, não conta
+  if (/^[a-z]$/.test(num) && /^[a-z]$/.test(den) && /(?:^|\s)[A-Za-zÀ-ÿ]{4,}\s*\+\s*$/.test(antes)) return true;
+  // "V/F" (verdadeiro ou falso)
+  if (num === 'V' && den === 'F' && !conta) return true;
+  // par de estados ("RJ/ES = carvão") e de siglas no começo, antes de uma palavra ("AC/DC é banda")
+  if (UF.has(num) && UF.has(den)) return true;
+  if (!antes.trim() && /^[A-Z]{2,}$/.test(num) && /^[A-Z]{2,}$/.test(den) && /^\s+[a-zà-ÿ]/.test(depois)) return true;
+  return false;
+}
+
+function ehFracao(texto: string, ini: number, num: string, den: string, materia?: string): boolean {
   if (!num || !den) return false;
   // termo vazio por dentro (só "√" ou só expoente) não conta; o sinal entre parênteses do quadro de sinais conta
   // ("(x − 6)/(+) ≥ 0", "(+)/(−) < 0")
@@ -102,12 +186,9 @@ function ehFracao(texto: string, ini: number, num: string, den: string): boolean
   // "-t²/4" (sinal de menos com hífen) pode; hífen colado a palavra ou número não
   if (charAntes && ANTES_PROIBIDO.test(charAntes) && !(charAntes === '-' && /(^|[\s=(])-$/.test(antes))) return false;
   if (charDepois && DEPOIS_PROIBIDO.test(charDepois)) return false;
-  // código com hífen e número depois ("F/A-18", nome de avião)
-  if (charDepois === '-' && /^-\d/.test(texto.slice(fim))) return false;
-  // número de lei, emenda ou processo com o ano embaixo ("PEC 48/2023", "Lei 12.519/2011", "Lei nº 3.353/1888"): o ano
-  // embaixo só é lei com o nome antes ou com o milhar com ponto; "1013/2026" numa conta é fração
-  if (/^\d+(?:[.,]\d+)*$/.test(num) && /^(1[89]|20)\d\d$/.test(den)
-    && (/\d\.\d{3}/.test(num) || /\b(?:lei|leis|pec|emendas?|decretos?|decreto-lei|n[º°o]\.?|resolu[çc](?:ão|ões)|portarias?|mp|medida provisória|processos?|adi|adpf|ec)\s*(?:n[º°o]\.?\s*)?$/i.test(antes))) return false;
+  // código com hífen e número ou sigla depois ("F/A-18", nome de avião; "81/2025-CEV", "89/23-CPV")
+  if (charDepois === '-' && /^-[\dA-Z]/.test(texto.slice(fim))) return false;
+  if (naoEhFracao(antes, texto.slice(fim), num, den, materia)) return false;
   // tensão de rede trifásica ("220/127 V", "380/220 V") e par de valores com unidade elétrica depois
   if (/^\d+$/.test(num) && /^\d+$/.test(den) && /^\s?k?V(?![A-Za-zÀ-ÿ])/.test(texto.slice(fim))) return false;
   // "0,5 mol de H2/2": a fórmula depois de "de" não é o numerador (a conta é da quantidade inteira)
@@ -117,7 +198,8 @@ function ehFracao(texto: string, ini: number, num: string, den: string): boolean
   if (nNum && nDen) {
     if (/^0\d/.test(den) || /^0\d/.test(num)) return false;
     // ano com o semestre ou o ano seguinte embaixo ("2024/2", "2020/21"); "2000/500" e "2048/128" são conta
-    if (/^(19|20)\d\d$/.test(num) && den.length <= 2 && !/[=+−×·(]\s*$/.test(antes) && !/^\s*[=≈]/.test(texto.slice(fim))) return false;
+    // ("(2027/1, questão 15": o parêntese seguido de vírgula não é de conta)
+    if (/^(19|20)\d\d$/.test(num) && den.length <= 2 && !(/[=+−×·(]\s*$/.test(antes) && !/^,/.test(texto.slice(fim))) && !/^\s*[=≈]/.test(texto.slice(fim))) return false;
   }
   const letraNum = !num.startsWith('(') && LETRA.test(num);
   const letraDen = !den.startsWith('(') && LETRA.test(den);
@@ -176,9 +258,9 @@ function nuclideo(texto: string, ini: number, num: string, den: string): string 
 /** Divide o texto em trechos de texto e frações empilháveis. Sem fração, devolve um trecho só.
  *  1ª passada: divisão com "÷" ou com "/" entre espaços (as de fora, que podem ter "a/b" dentro do numerador ou do
  *  denominador: "(7/2) ÷ (37/10)", "800π ÷ (π/3)"); 2ª: "a/b" nos trechos de texto que sobraram. */
-export function partesFracao(texto: string): ParteFracao[] {
+export function partesFracao(texto: string, materia?: string): ParteFracao[] {
   const fim: ParteFracao[] = [];
-  for (const p of divisoes(texto)) if (p.t === 'txt') fim.push(...barras(p.v)); else fim.push(p);
+  for (const p of divisoes(texto)) if (p.t === 'txt') fim.push(...barras(p.v, materia)); else fim.push(p);
   return fim.length ? fim : [{ t: 'txt', v: texto }];
 }
 
@@ -199,7 +281,7 @@ function numeradorLongo(texto: string, ult: number, ini: number, num: string, de
 }
 
 /** frações escritas com "/" colado ("2/5", "27x/60", "(a + b)/2") e nuclídeos ("207/82 Pb") */
-function barras(texto: string): ParteFracao[] {
+function barras(texto: string, materia?: string): ParteFracao[] {
   const out: ParteFracao[] = [];
   let ult = 0;
   // a barra dentro do expoente escrito ("2744^(1/3)") fica no expoente (revisão de 20/11, N12: o "^(" saía cru)
@@ -240,7 +322,7 @@ function barras(texto: string): ParteFracao[] {
       ult = fimM;
       continue;
     }
-    if (!ehFracao(texto, m.index, num, den)) {
+    if (!ehFracao(texto, m.index, num, den, materia)) {
       // tenta de novo a partir do caractere seguinte (o denominador pode ser o numerador de outra fração)
       RE.lastIndex = m.index + 1;
       continue;
@@ -417,6 +499,10 @@ function divisoes(s: string): ParteFracao[] {
       // "A / B" entre alternativas, unidade ("10 m / s"), verso ("enganos, / tu"), palavras
       const so = (x: string) => /^[A-Za-zÀ-ÿα-ωμ]+$/.test(x);
       if (/^[A-E]$/.test(num) && /^[A-E]$/.test(den)) continue;
+      // (revisão de 21/11/2026, dados R1) verso ("Rua 15 / E o progresso": maiúscula e palavra depois da barra),
+      // par de siglas ou de pontos cardeais ("E / W", "NS / NR") e enumeração ("I - H / II - D") sem sinal de conta
+      if (/^[A-ZÀ-Ý][A-Za-zÀ-ÿ]*$/.test(den) && /^\s+[a-zà-ÿ]/.test(depois)) continue;
+      if (/^[A-Z]+$/.test(num) && /^[A-Z]+$/.test(den) && !/[=≈×·÷+−]\s*$/.test(antes) && !/^\s*[=≈]/.test(depois)) continue;
       if (new RegExp(`^${UNID_SIMPLES}$`, 'u').test(num) && /^(?:s|h|min|L|mL|mol|kg|g|m|cm|km)$/.test(den)) continue;
       if (so(num) && /\d\s+$/.test(antes)) continue;
       if (so(num) && so(den) && !/(^|[=+−\-×·(≈])\s*$/.test(antes) && !/^\s*[=≈]/.test(depois)) continue;
