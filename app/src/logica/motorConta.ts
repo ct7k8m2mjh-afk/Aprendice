@@ -1566,6 +1566,10 @@ export function quebrasConta(ts: Tok[]): Map<number, 1 | 2> {
       else if (p === 1 && abre >= 0 && t.k === 'pont' && t.v === ',') vetor.add(i);
     });
   }
+  // (passada 8 A4) entre duas palavras de texto corrido ("as cinco afirmações de D são verdadeiras → …"), no nível 2: a
+  // frase quebra como texto quando não cabe na folha estreita (a 390 px, a frase inteira era um pedaço só e rolava)
+  const prosa = tokensProsa(ts);
+  const vizI = (i: number, d: 1 | -1) => { for (let j = i + d; j >= 0 && j < ts.length; j += d) if (ts[j].k !== 'esp') return j; return -1; };
   let prof = 0, vistos = 0, nTr = 0;
   tr = 0;
   ts.forEach((t, i) => {
@@ -1586,6 +1590,7 @@ export function quebrasConta(ts: Tok[]): Map<number, 1 | 2> {
     else if (p.k === 'rel') ok.set(i, vistos >= 1 || (rels[tr] || 0) >= 2 ? 1 : 2);
     else if (p.k === 'seta') ok.set(i, 2);
     else if (p.k === 'op' && (/^[+−\-]$/.test(p.v) || (/^[×÷·]$/.test(p.v) && !temSoma[tr])) && a.k !== 'op' && a.k !== 'rel' && a.k !== 'abre') ok.set(i, 2);
+    else if (prosa.has(vizI(i, -1)) && prosa.has(vizI(i, 1)) && !/^[A-E]$/.test(p.v)) ok.set(i, 2);
   });
   return ok;
 }

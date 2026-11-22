@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { itensDaConta, montaRoteiro } from '../logica/motorConta';
+import { itensDaConta, montaRoteiro, quebrasConta, tokeniza } from '../logica/motorConta';
 
 /* Revisão de 21/11/2026, 8ª passada, itens A (questao-correcao-7.md) */
 const linhas = (r: Parameters<typeof montaRoteiro>[0], m = 'mat') => montaRoteiro(r, m).linhas.map((l) => l.texto + (l.nota ? ` «${l.nota}»` : ''));
@@ -100,5 +100,21 @@ describe('A3: a lista de valores da conta do passo não vira coluna de números 
       quadro: [{ linha: 'açúcares: 8,61 | 7,49 | 5,13', nota: 'abacaxi e acerola na frente: A' }],
     };
     expect(porPasso(r, 'qui')).toEqual([['abacaxi: 8,61%', 'acerola: 7,49%', 'cajá: 5,13% «abacaxi e acerola na frente: A»'], ['8,61% e 7,49% > 5,13% → alternativa A']]);
+  });
+});
+
+describe('A4: a frase dentro da linha da conta quebra como texto na folha estreita', () => {
+  it('mat P5be7ca9e: "as cinco afirmações de D são verdadeiras → alternativa D" pode quebrar entre as palavras', () => {
+    const ts = tokeniza('as cinco afirmações de D são verdadeiras → alternativa D', 'mat');
+    const brk = quebrasConta(ts);
+    const antes = (palavra: string) => { const i = ts.findIndex((t) => t.v === palavra); return brk.get(i - 1); };
+    expect(antes('afirmações')).toBe(2);
+    expect(antes('verdadeiras')).toBe(2);
+  });
+  it('"alternativa D" e a conta continuam juntas', () => {
+    const ts = tokeniza('as cinco afirmações de D são verdadeiras → alternativa D', 'mat');
+    expect(quebrasConta(ts).has(ts.length - 2)).toBe(false);
+    const conta = tokeniza('x + 2 = 5', 'mat');
+    expect(quebrasConta(conta).size).toBe(quebrasConta(tokeniza('x + 2 = 5')).size);
   });
 });
