@@ -53,3 +53,39 @@ Playwright no servidor local (porta 4191).
 
 ## Testes
 `npx tsc --noEmit -p .` sem erro; `npx vitest run`: todos verdes.
+
+# Correção B1–B6 (questao-correcao-9.md), 22/11/2026
+
+Arquivos: `app/src/logica/motorConta.ts`, `app/src/testes/fracaoPassada9.test.ts` (novo, 14 casos),
+`app/src/testes/motorConta.test.ts` (a conferência de todas as resoluções aceita a linha `parecida`). Sem mudança de cor,
+fonte, medida nem de dado. Conferido como no A1–A5: `montaRoteiro` em todas as 26 552 resoluções, antes e depois.
+
+## B1 — tabela com " ; " entre registros (commit 1)
+- `itensDaConta`: a linha com " | " é cortada antes no " ; " de fora de parênteses e colchetes; os campos de cada registro
+  ficam juntos com "; ", a não ser que todos sejam relações ("AP = 1 | PB = 2": um por linha).
+- mat Pc9132e4a: "Alice: V 1; E 2; D 1 «linha de Alice»" … um jogador por linha, cada nota na linha dele.
+- Efeito: **13 resoluções mudam**, todas para melhor (mat Pf994201f, Pa153d593, P8edbce06, P1ceeaf64…; fís P5a001974,
+  Pc2373321; bio Pa1a2d61e). "(V₀ ; P₀)" e "[3  5 ; 6  8]" não mudam.
+
+## B2 e B3 — linha do quadro escrita com outras palavras (commit 2)
+- `parecida` + `montaRoteiro`: a linha do quadro que não casou, mas diz o mesmo que 1 a 3 linhas seguidas de um passo, não
+  entra repetida; a nota vai para a última delas. No passo em que ela entraria e nos vizinhos: os números na mesma ordem
+  (no máximo um a mais), com os mesmos sinais e letras e dois números além de 0 e 1; ou o mesmo rótulo ("III:") e a mesma
+  conclusão; ou a mesma conclusão e metade das palavras. Longe: o mesmo rótulo com os mesmos números ("Mg:"), ou, num
+  passo antes, os mesmos números, sinais e palavras ("d = 2r → V/2", B3).
+- Conferidos: quí Pf90acda4 (Mg no passo 2), P16af84a2 (passos 2 e 3, nota "alternativa C" na linha do II), Pf2101c1e (o
+  passo 5 fica só com a equação), Pe28a5b82; fís Pce134e95, P9ba33c4c; mat Pfe3cc0ba (III e IV), P4abfc5e2.
+- Casos que não podem casar (testados): mat P14eb9b56 "f(0) < 0 → c < 0", Pcc615176 "C = A → …", fís P3d1e1205 "CA: …",
+  mat P7c448baa, P15050672, P3c5f83d0, quí P4aff86f1.
+- Efeito: **477 resoluções mudam** (593 linhas repetidas a menos; 106 levam a nota a outro passo). Li todas as que mudam
+  de passo e amostras das outras; nenhuma linha da conta muda e nenhuma nota some. A1–A5 continuam (testes da passada 8).
+- Ficam: mat P9c957c10 ("GB" ≠ "Grã-Bretanha", dados); mat P5be7ca9e e Pb28d85a4 (a linha do quadro tem mais que a da
+  conta: "−2 × (−x)", "≠ 11,7").
+
+## B4, B5, B6 — não corrigidos
+- B4: há 695 notas que repetem um trecho da linha, quase todas de propósito (unidade, "verdadeira"); tirar exige escolher
+  caso a caso. B5: pede quebra nova na tela (design) ou mudança nos dados. B6: a linha de conta é desenhada termo a termo;
+  trocar as aspas ali mexe no motor de desenho, não é barato.
+
+## Testes
+`npx tsc --noEmit -p .` sem erro; `npx vitest run`: 60 arquivos, 1109 testes, todos verdes.
