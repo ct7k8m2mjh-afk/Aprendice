@@ -1025,12 +1025,37 @@ export function itensDaConta(conta: string, materia?: string): string[] {
       for (const g of gs) linhas.push(cortes(g, /\s+\|\s+/).reverse().reduce((t, [a, b]) => t.slice(0, a) + ', ' + t.slice(b), g));
     } else linhas.push(l);
   }
+  // (passada 9 B1) tabela escrita com " ; " entre registros e " | " entre campos ("Alice: V 1 | E 2 | D 1 ; Bruno: V 3 |
+  // …"): cada registro é uma linha; os campos dele ficam juntos, com o "; " das listas, a não ser que todos sejam
+  // relações ("AP = 1 | PB = 2", um por linha). Só o " ; " de fora de parênteses e colchetes ("(V₀ ; P₀)", "[3  5 ; 6  8]")
+  const registros = new Set<string>();
+  for (let k = linhas.length - 1; k >= 0; k--) {
+    const l = linhas[k];
+    if (!/\s\|\s/.test(l)) continue;
+    const rs: string[] = [];
+    let prof = 0, ini = 0;
+    for (let i = 0; i < l.length; i++) {
+      const c = l[i];
+      if ('([{'.includes(c)) prof++;
+      else if (')]}'.includes(c)) prof = Math.max(0, prof - 1);
+      else if (c === ';' && !prof && /\s/.test(l[i - 1] || '') && /\s/.test(l[i + 1] || '')) { rs.push(l.slice(ini, i).trim()); ini = i + 1; }
+    }
+    if (!rs.length) continue;
+    rs.push(l.slice(ini).trim());
+    const ok = rs.filter(Boolean);
+    ok.forEach((x) => registros.add(x));
+    linhas.splice(k, 1, ...ok);
+  }
   for (const linha of linhas) {
     if (!linha.trim()) continue;
     let ult = 0;
     const partes: string[] = [];
     for (const [a, b] of cortes(linha, /\s+\|\s+/)) { partes.push(linha.slice(ult, a)); ult = b; }
     partes.push(linha.slice(ult));
+    if (registros.has(linha) && partes.length > 1 && !partes.every((x) => ehRelacao(x.trim()))) {
+      out.push(partes.map((x) => x.trim()).filter(Boolean).join('; '));
+      continue;
+    }
     // (passada 8 A3) a mesma ideia do quadro (Z1): na linha com número solto ("pH: 4,0 | 3,6 | 2,5 → …", "Na: 2 | 2"), o
     // item que começa por número continua o item de antes, se este começa ou termina por número, com o separador "; "
     // das listas no lugar do "|" (em coluna, os números soltos perdiam o rótulo); o item com rótulo ou de texto abre
