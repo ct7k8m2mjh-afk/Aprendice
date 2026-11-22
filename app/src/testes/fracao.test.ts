@@ -355,3 +355,49 @@ describe('lista de fórmulas da Teoria: igualdade vai para a letra da fórmula (
     expect(contaEhTexto('variação = (novo − antigo) / antigo', 'mat')).toBe(true);
   });
 });
+
+describe('revisão de 21/11, dados N1: grupo com expoente, potência e cadeia empilham', () => {
+  it('grupo entre parênteses com expoente em cima ou embaixo', () => {
+    expect(fr('Alternativa A — (x + 4)²/25 + (y − 3)²/9 = 1')).toEqual(['(x + 4)²|25', '(y − 3)²|9']);
+    expect(fr('cos θ = 1 − (x₁ − x₀)²/(2ℓ²)')).toEqual(['(x₁ − x₀)²|2ℓ²']);
+    expect(fr('(mg)²/(2kF) daria 0,0005 m')).toEqual(['(mg)²|2kF']);
+    expect(fr('9·10⁹·(10⁻⁷)²/(0,02)²')).toEqual(['(10⁻⁷)²|(0,02)²']);
+    expect(fr('(√3)²/2')).toEqual(['(√3)²|2']);
+    expect(fr('Kc = (0,012)²/0,030')).toEqual(['(0,012)²|0,030']);
+  });
+  it('potência com "^" é numerador ou denominador inteiro; o expoente com barra fica no expoente', () => {
+    expect(fr('V(n) = 20^(n−1)/27^n')).toEqual(['20^(n−1)|27^n']);
+    expect(fr('10^(−7,34)/10^(−7,44) = 10^(0,1)')).toEqual(['10^(−7,34)|10^(−7,44)']);
+    expect(fr('I2 sobrou: 1×10^-4/2 = 5×10^-5 mol')).toEqual(['10^-4|2']);
+    expect(fr('5^(3/2)/8')).toEqual(['5^(3/2)|8']);
+    expect(fr('2744^(1/3)')).toEqual([]);
+  });
+  it('coeficiente colado ao grupo, grupos aninhados e função com base', () => {
+    expect(fr('massa de sacarose = Mm(ΔT − 100)/(Ke + Kc).')).toEqual(['Mm(ΔT − 100)|Ke + Kc']);
+    expect(fr('x = log2(y)/3')).toEqual(['log2(y)|3']);
+    expect(fr('((x(x − 1))/2)/((3x(x − 1))/2) = 1/3')).toEqual(['(x(x − 1))/2|(3x(x − 1))/2', '1|3']);
+    expect(fr('A = (a² × √((1 + √5)/2))/2')).toEqual(['a² × √((1 + √5)/2)|2']);
+    expect(fr('(l√19/3)(l√17/3)/2 ≈ 0,998')).toEqual(['(l√19/3)(l√17/3)|2']);
+    expect(fr('Sobra 90° − (Â + Ĉ)/2 = B̂/2.')).toEqual(['Â + Ĉ|2', 'B̂|2']);
+    expect(fr('(x − 6)/(+) ≥ 0')).toEqual(['x − 6|+']);
+  });
+  it('barra em cadeia, quantidade e fórmula inteira sobre um número', () => {
+    expect(fr('π = 3 × (27,1/164/3) × 0,086')).toEqual(['27,1/164|3']);
+    expect(fr('em 21/11/2026 = 3')).toEqual([]);
+    expect(fr('0,5 mol de H2/2 = 0,25 mol de O2')).toEqual(['0,5 mol de H2|2']);
+    expect(fr('C4H10N2O4/2 = C2H5NO2')).toEqual(['C4H10N2O4|2']);
+    expect(fr('o par H2O/CO2')).toEqual([]);
+  });
+  it('divisão com "÷": variável depois de "de", ângulo por tempo, razão entre nomes', () => {
+    expect(fr('de p ÷ (p − 5) = 22 ÷ 17 sai p = 22')).toEqual(['p|p − 5', '22|17']);
+    expect(fr('15° ÷ 15°/h = 1 h')).toEqual(['15°|15°/h']);
+    expect(fr('alcance ÷ tempo de voo')).toEqual(['alcance|tempo de voo']);
+    expect(fr('potência total ÷ potência por m²')).toEqual(['potência total|potência por m²']);
+    expect(fr('[H+] final = soma dos n ÷ volume total')).toEqual([]);
+    expect(fr('isola massa ÷ volume')).toEqual(['massa|volume']);
+  });
+  it('o texto não muda', () => {
+    for (const s of ['π = 3 × (27,1/164/3) × 0,086', '0,5 mol de H2/2 = 0,25 mol', 'V(n) = 20^(n−1)/27^n', 'alcance ÷ tempo de voo'])
+      expect(junta(s)).toBe(s);
+  });
+});

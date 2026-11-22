@@ -29,9 +29,16 @@ const Z_DO_SIMBOLO = new Map(ELEMENTOS.map((s, i) => [s, i + 1]));
 // número com milhar separado por espaço ("27 000/96 500", "450 000/1 000 000") e grupo com um nível de parênteses dentro
 // ("((1 · 1)/2 · 1)/3", "(1 × (−1) × 18)/(1 × 2)"), com coeficiente, letra ou raiz colados antes ("k(k + 1)/2",
 // "√3(√3 − √2)/(3 − 2)", "Q(0)/2") (revisão de dados de 19/11/2026, item 3)
-const GRUPO = String.raw`\((?:[^()\n]|\([^()\n]*\)){1,60}\)`;
+// (dois níveis de parênteses dentro: "((x(x − 1))/2)/((3x(x − 1))/2)", "(a² × √((1 + √5)/2))/2"; revisão de 21/11, dados N1)
+const GRUPO = String.raw`\((?:[^()\n]|\((?:[^()\n]|\([^()\n]*\))*\)){1,60}\)`;
 const MILHAR = String.raw`\d{1,3}(?:[ \u00a0\u202f]\d{3})+(?:,\d+)?`;
-const TERMO = String.raw`(?:\d+(?:,\d+)?|√\d*|ln|log|sen|cos|tg|[A-Za-zα-ω])?${GRUPO}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦ])?(?:_[A-Za-z0-9]+|[₀-₉]+|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-z])[A-Za-z])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
+// (revisão de 21/11/2026, dados N1) expoente depois do grupo ("(x + 4)²/25", "(2v)^2/2") e potência escrita com "^"
+// ("20^(n−1)/27^n", "10^(−7,34)/10^(−7,44)", "1×10^-4/2"): o grupo ou a potência inteira vai em cima (ou embaixo)
+const EXP_POS = String.raw`(?:[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]+|\^\([^()\n]{1,30}\)|\^[−\-]?\d+(?:,\d+)?)?`;
+const POTENCIA = String.raw`(?:\d+(?:,\d+)?|[A-Za-zα-ωπ])\^(?:\([^()\n]{1,30}\)|[−\-]?\d+(?:,\d+)?|[a-zA-Z](?![A-Za-z]))`;
+// coeficiente colado ao grupo: número, raiz, função ("log2(y)"), até duas letras ("Mm(ΔT − 100)", "pq(p + q)") ou outro
+// grupo ("(l√19/3)(l√17/3)/2"); letra colada à raiz ("l√19/3") vai junto
+const TERMO = String.raw`(?:\d+(?:,\d+)?|√\d*|ln|log[₀-₉\d]*|sen|cos|tg|[A-Za-zα-ω]{1,2}|\([^()\n]{1,30}\))?${GRUPO}${EXP_POS}|${POTENCIA}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?(?:[a-zA-Zℓ](?=√))?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦ][\u0302\u0304\u0305]?)?(?:_[A-Za-z0-9]+|[₀-₉]+|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-z])[A-Za-z])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
 // (revisão de 21/11/2026, N1) função com argumento ("sen θ/g", "BC/tg 30°", "log x/log 2") e produto de variáveis
 // ("nRT/V", "GMm/r²", "4π²R²/T²", "vA/vB", "FX/mX"); o produto só vale com maiúscula, letra grega, índice ou expoente e
 // sem ser unidade, sigla ou genótipo (validado em `produtoValido`)
@@ -64,8 +71,9 @@ function parDeUnidades(num: string, den: string): boolean {
     || (/^\(/.test(num) && UNIDADES_NOME.has(l(den.replace(/^\(|\)$/g, ''))));
 }
 const LETRA = /[A-Za-zÀ-ÿα-ωπθ]/;
-const ANTES_PROIBIDO = /[A-Za-zÀ-ÿ0-9.,/_\\-]/; // colado a uma palavra, número, data ou link
-const DEPOIS_PROIBIDO = /[A-Za-zÀ-ÿ0-9/_(]/;
+// (letras acentuadas sim; "×" e "÷", que caem no mesmo bloco, não: "1×10^-4/2" é conta; revisão de 21/11, dados N1)
+const ANTES_PROIBIDO = /[A-Za-zÀ-ÖØ-öø-ÿ0-9.,/_\\-]/; // colado a uma palavra, número, data ou link
+const DEPOIS_PROIBIDO = /[A-Za-zÀ-ÖØ-öø-ÿ0-9/_(]/;
 // símbolos de unidade de uma letra: "m/s", "g/L" só viram fração depois de um sinal (d = m/V)
 const UNIDADE = new Set(['m', 's', 'g', 'L', 'l', 'h', 'K', 'N', 'J', 'W', 'V']);
 
@@ -79,8 +87,10 @@ function semParenteses(x: string): string {
 
 function ehFracao(texto: string, ini: number, num: string, den: string): boolean {
   if (!num || !den) return false;
-  // termo vazio por dentro (só "√" ou só expoente) não conta
-  const temValor = (x: string) => /[0-9a-zA-Zα-ωπθΦ]/.test(x);
+  // termo vazio por dentro (só "√" ou só expoente) não conta; o sinal entre parênteses do quadro de sinais conta
+  // ("(x − 6)/(+) ≥ 0", "(+)/(−) < 0")
+  // (ângulo com acento, "(Â + Ĉ)/2", também tem valor)
+  const temValor = (x: string) => /[0-9a-zA-Zα-ωπθΦÀ-ÖØ-öø-ÿĀ-ſ]/.test(x) || /^\([+−-]\)$/.test(x);
   if (!temValor(num) || !temValor(den)) return false;
   if (!produtoValido(num) || !produtoValido(den) || parDeUnidades(num, den)) return false;
   // genótipo com as mesmas letras em cima e embaixo ("Ab/aB", "AB/ab", "RS/rs")
@@ -172,6 +182,22 @@ export function partesFracao(texto: string): ParteFracao[] {
   return fim.length ? fim : [{ t: 'txt', v: texto }];
 }
 
+/** início do numerador longo (quantidade com nome ou fórmula química inteira) sobre um número, antes de "="; ou null */
+function numeradorLongo(texto: string, ult: number, ini: number, num: string, den: string): number | null {
+  if (!/^\d+(?:,\d+)?$/.test(den) || !/^\s*[=≈]/.test(texto.slice(ini + num.length + 1 + den.length))) return null;
+  const antes = texto.slice(ult, ini);
+  if (/^[A-Z][A-Za-z0-9₀-₉]*$/.test(num)) {
+    const q = new RegExp(`(?<![\\d,.A-Za-zÀ-ÿ])${CIENT}\\s(?:${UNID_NOME}|[a-zà-ÿ]{3,})\\sde\\s$`, 'u').exec(antes);
+    if (q) return ult + q.index;
+  }
+  const f = /(?<![A-Za-z0-9])(?:[A-Z][a-z]?\d*){2,}$/.exec(antes + num);
+  if (f && f[0].length > num.length) {
+    const simb = f[0].match(/[A-Z][a-z]?/g) || [];
+    if (/\d/.test(f[0]) && simb.every((e) => Z_DO_SIMBOLO.has(e))) return ult + f.index;
+  }
+  return null;
+}
+
 /** frações escritas com "/" colado ("2/5", "27x/60", "(a + b)/2") e nuclídeos ("207/82 Pb") */
 function barras(texto: string): ParteFracao[] {
   const out: ParteFracao[] = [];
@@ -182,14 +208,36 @@ function barras(texto: string): ParteFracao[] {
   RE.lastIndex = 0;
   for (let m = RE.exec(texto); m; m = RE.exec(texto)) {
     if (m[0].length === 0) { RE.lastIndex++; continue; }
-    if (expo.some(([a, b]) => m!.index < b && m!.index + m![0].length > a)) { RE.lastIndex = m.index + 1; continue; }
+    // (a potência inteira, base e expoente, pode ser numerador ou denominador: "20^(n−1)/27^n"; revisão de 21/11, dados N1)
+    const ini = m.index, fimM = m.index + m[0].length, barra = m.index + m[1].length;
+    if (expo.some(([a, b]) => (barra >= a && barra < b) || (ini > a && ini < b) || (fimM > a && fimM < b))) { RE.lastIndex = m.index + 1; continue; }
     const [orig, num, den] = m;
+    // barra em cadeia entre números numa conta ("3 × (27,1/164/3)"): a/b/c = (a/b)/c, a primeira empilha dentro do
+    // numerador; data ("21/11/2026") fica na linha (revisão de 21/11, dados N1)
+    const cad = /^\/(\d+(?:,\d+)?)(?![\d,/A-Za-zÀ-ÿ(])/.exec(texto.slice(fimM));
+    if (cad && /^\d+(?:,\d+)?$/.test(num) && /^\d+(?:,\d+)?$/.test(den) && /[=(×·+−]\s*$/.test(texto.slice(0, ini))
+      && !/^\d{1,2}\/\d{1,2}\/\d{2,4}$/.test(orig + cad[0])) {
+      if (ini > ult) out.push({ t: 'txt', v: texto.slice(ult, ini) });
+      out.push({ t: 'frac', n: orig, d: cad[1], orig: orig + cad[0], sep: '/' });
+      ult = fimM + cad[0].length;
+      RE.lastIndex = ult;
+      continue;
+    }
     const nuc = nuclideo(texto, m.index, num, den);
     if (nuc) {
       if (m.index > ult) out.push({ t: 'txt', v: texto.slice(ult, m.index) });
       out.push({ t: 'nuc', a: num, z: den, orig: nuc });
       ult = m.index + nuc.length;
       RE.lastIndex = ult;
+      continue;
+    }
+    // numerador maior que o termo: a quantidade inteira ("0,5 mol de H2/2 = 0,25 mol") ou a fórmula inteira
+    // ("C4H10N2O4/2 = C2H5NO2") dividida por um número antes de "=" (revisão de 21/11, dados N1)
+    const ext = numeradorLongo(texto, ult, ini, num, den);
+    if (ext != null) {
+      if (ext > ult) out.push({ t: 'txt', v: texto.slice(ult, ext) });
+      out.push({ t: 'frac', n: texto.slice(ext, barra), d: den, orig: texto.slice(ext, fimM), sep: '/' });
+      ult = fimM;
       continue;
     }
     if (!ehFracao(texto, m.index, num, den)) {
@@ -214,7 +262,8 @@ const SIMPLES = String.raw`(?:(?:log|ln|sen|cos|tg)\s?)?Σ?(?:\d{1,3}(?:[   ]
 const UBASE = 'mmol|kmol|mol|mA|μA|µA|mV|kV|MW|GW|MJ|GJ|kN|MPa|GPa|GHz|MHz|kHz|hm|ha|mg|kg|μg|µg|g|mL|dL|L|mm|cm|dm|km|nm|m|min|s|h|kJ|J|kcal|cal|atm|kPa|Pa|K|kΩ|Ω|kWh|Wh|kW|W|N|V|A|C|Hz|eV|t|dias?|anos?|horas?|bi|mi|mil|milhão|milhões|bilhão|bilhões';
 const UNID_NOME = String.raw`(?:${UBASE})(?:[²³]|[23](?![\d,]))?(?:[·.\/](?:${UBASE})(?:[²³]|[23](?![\d,]))?){0,2}`;
 const CIENT = String.raw`${NUM}(?:\s?×\s?10(?:[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+|\^\(?[−\-]?\d+\)?))?`;
-const UNID = String.raw`${CIENT}(?:\s(?:${UNID_NOME})|°C?|\s?%)`;
+// (ângulo por tempo, "15° ÷ 15°/h": o denominador leva a unidade inteira; revisão de 21/11, dados N1)
+const UNID = String.raw`${CIENT}(?:\s(?:${UNID_NOME})|°(?:C|\/(?:h|s|min))?|\s?%)`;
 const UNID_SIMPLES = String.raw`\d+(?:[.,]\d+)?\s(?:mg|kg|μg|µg|g|mL|L|mol|mm|cm|km|nm|m|min|s|h|J|kJ|kcal|atm|K|C|A|V)`;
 // só com "÷" (nunca com " / ", que separa verso, par e alternativa): fração com "/" colado ("3π/4 ÷ 3", "1 ÷ 1/2"),
 // número com nome ("1 900 crianças ÷ 1 000 famílias"), letra com nome ("E total ÷ E fóton") e palavra ("massa ÷ volume")
@@ -224,7 +273,8 @@ const LETRA_NOME = String.raw`[A-ZΔ]\s[a-zà-ÿ]{3,}`;
 // letra com raiz ("L√3 ÷ 2", "3ℓ²√3 ÷ 2")
 const LETRA_RAIZ = String.raw`\d*[A-Za-zℓ][²³]?√\d+`;
 // palavra, ou nome com o adjetivo que o completa ("carga total ÷ capacitância total", "cateto oposto ÷ hipotenusa")
-const ADJ = 'total|totais|médio|média|oposto|adjacente|inicial|final|útil|equivalente|resultante|retirado|retirada|molar|específico|específica|elétrica|elétrico|percorrida|percorrido|gasto|gasta';
+const ADJ = 'interna|interno|externa|externo|recebido|recebida|cedido|cedida|elementar|possíveis|favoráveis|possível|favorável|total|totais|médio|média|oposto|adjacente|inicial|final|útil|equivalente|resultante|retirado|retirada|molar|específico|específica|elétrica|elétrico|percorrida|percorrido|gasto|gasta';
+const NOME_RAZAO = String.raw`[a-zà-ÿ]{3,}(?: (?:${ADJ}))?(?: (?:de|do|da|dos|das|por) [a-zà-ÿ]+[²³]?)?`;
 const PALAVRA_OP = String.raw`[A-Za-zÀ-ÿ]{2,}(?:\s(?:${ADJ})(?![A-Za-zÀ-ÿ]))?`;
 const FIM_UNID = String.raw`(?![A-Za-zÀ-ÿ\d])`;
 // quantidade de uma substância ou coisa ("8 mol de H+ ÷ 4 mol de ácido", "46 átomos de H ÷ 2", "15 g de sal ÷ 50 g de água")
@@ -236,7 +286,8 @@ const RE_DIR_NOME = new RegExp(`^(?:${QTD}|${NUM_NOME}|${LETRA_NOME})${FIM_UNID}
 const RE_DIR_DIV = new RegExp(`^(?:${UNID}${FIM_UNID}|${LETRA_RAIZ}|${BARRA}|${SIMPLES}(?![A-Za-zÀ-ÿ])|${PALAVRA_OP})`, 'u');
 const RE_OP = /\s*÷\s*| \/ /g;
 const temValor = (x: string) => /[0-9a-zA-Zα-ωπθμΔÀ-ÿ]/.test(x);
-const SOBE = /[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺!]*$/;
+// (letra pequena em cima também: "[C]ᶜ·[D]ᵈ ÷ ([A]ᵃ·[B]ᵇ)")
+const SOBE = /[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺!ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻ]*$/;
 // coeficiente, raiz ou nome de função colado antes de um grupo: "2(x − 8)", "√3(…)", "m(soluto)", "sen(…)"
 const COEF = /(?:\d+(?:,\d+)?|√\d*|[A-Za-zα-ωπ]{1,4})$/;
 const PAR: Record<string, string> = { ')': '(', ']': '[' };
@@ -285,13 +336,13 @@ function opDir(s: string, ini: number, amplo: boolean, nome = false): number | n
     let p = 0;
     for (let i = j; i < s.length; i++) {
       if (s[i] === abre) p++;
-      else if (s[i] === fecha) { p--; if (p === 0) return i + 1 + /^[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺!]*/.exec(s.slice(i + 1))![0].length; }
+      else if (s[i] === fecha) { p--; if (p === 0) return i + 1 + /^[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺!ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻ]*/.exec(s.slice(i + 1))![0].length; }
     }
     return null;
   }
   if (amplo && resto[0] === '|') {
     const i = s.indexOf('|', ini + 1);
-    return i > ini + 1 && temValor(s.slice(ini + 1, i)) ? i + 1 + /^[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺!]*/.exec(s.slice(i + 1))![0].length : null;
+    return i > ini + 1 && temValor(s.slice(ini + 1, i)) ? i + 1 + /^[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺!ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻ]*/.exec(s.slice(i + 1))![0].length : null;
   }
   const m = (amplo ? RE_DIR_DIV : RE_DIR).exec(resto);
   if (!m || !temValor(m[0])) return null;
@@ -316,6 +367,11 @@ function dentroDeBarra(s: string, idx: number): boolean {
 }
 function divisoes(s: string): ParteFracao[] {
   if (!/÷| \/ /.test(s)) return [{ t: 'txt', v: s }];
+  // o texto inteiro é a razão entre dois nomes ("alcance ÷ tempo de voo", nota do quadro): cada lado inteiro, mesmo
+  // com "de" no meio (revisão de 21/11, dados N1)
+  // (cada lado: um nome, com o adjetivo ou com "de"/"por" e o complemento; "isola massa ÷ volume" e "Calcule L ÷ A" não)
+  const nomes = new RegExp(`^(${NOME_RAZAO}) ÷ (${NOME_RAZAO})$`, 'u').exec(s);
+  if (nomes) return [{ t: 'frac', n: nomes[1], d: nomes[2], orig: s, sep: ' ÷ ' }];
   // as divisões de fora primeiro (menor profundidade de parênteses): "(x ÷ 6) ÷ (1 − x²)" empilha a de fora, e a de
   // dentro empilha dentro do numerador quando ele é desenhado
   const ops: { ini: number; fim: number; txt: string; prof: number }[] = [];
@@ -354,7 +410,8 @@ function divisoes(s: string): ParteFracao[] {
     // ou depois dele), não o número inteiro; fica na linha
     // palavra solta depois de número é unidade ("100 mA ÷ 1000"); depois de preposição é complemento ("calor por tempo")
     if (amplo && /^[A-Za-zÀ-ÿ]+(?:\s[A-Za-zÀ-ÿ]+)?$/.test(num) && (/\d\s+$/.test(antes) || /(?:^|\s)(?:por|em|no|na|nos|nas|com|para|pelo|pela)\s$/i.test(antes))) continue;
-    if ((/(?:^|\s)(?:de|da|do|dos|das)\s$/.test(antes) && /^[A-Za-zÀ-ÿΔ]/.test(num))
+    // (uma variável sozinha depois de "de" é o numerador: "de p ÷ (p − 5) = 22 ÷ 17 sai p = 22")
+    if ((/(?:^|\s)(?:de|da|do|dos|das)\s$/.test(antes) && /^[A-Za-zÀ-ÿΔ]/.test(num) && !(/^[a-zα-ω][₀-₉]?$/.test(num) && /^de\s$/.test(antes.slice(-3)) && /^[(\d]/.test(den)))
       || (/^\s(?:de|da|do|dos|das)\s/.test(depois) && /^[A-Za-zÀ-ÿΔ]/.test(den))) continue;
     if (!amplo) {
       // "A / B" entre alternativas, unidade ("10 m / s"), verso ("enganos, / tu"), palavras
