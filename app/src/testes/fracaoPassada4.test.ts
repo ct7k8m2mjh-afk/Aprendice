@@ -41,7 +41,7 @@ describe('S2: "ℓ" com algarismo e "k₀Q/ℓ²" no meio da frase empilham', ()
     expect(fr('A razão H₂O/CO₂ é H/2C', 'qui')).toEqual(['H|2C']);
     expect(fr('baterias de lítio-iodo (Li/I₂).', 'qui')).toEqual([]);
     expect(fr('sobre ligações σ/π e funções', 'qui')).toEqual([]);
-    expect(fr('A razão pₓ/p\'ₓ.', 'fis')).toEqual([]);
+    expect(fr('A razão pₓ/p\'ₓ.', 'fis')).toEqual(['pₓ|p\'ₓ']); // (S5: o apóstrofo com índice é do denominador)
     expect(fr('Aℓ2O3 e Aℓ3+', 'qui')).toEqual([]);
   });
   it('o texto não muda', () => {
@@ -78,5 +78,36 @@ describe('S4: ângulo em cima empilha', () => {
   });
   it('o texto não muda', () => {
     for (const s of ['360°/24 h = 15° por hora', 'sen(180°/n)']) expect(junta(s, 'mat')).toBe(s);
+  });
+});
+
+describe('S5: fração de letras também no texto corrido', () => {
+  it('fís P37451010, P4d88d6f7, P29193ade, P732427ed e mat P7fea8b7c', () => {
+    expect(fr('AB/(A + B) tem unidade de comprimento;', 'fis')).toEqual(['AB|A + B']);
+    expect(fr('já AB/(A + B) tem unidade de comprimento', 'fis')).toEqual(['AB|A + B']);
+    expect(fr('Alternativa E — (1/2)·m³g²/(q²B²).', 'fis')).toEqual(['1|2', 'm³g²|q²B²']);
+    expect(fr('T′/T = (P′ × V′)/(P × V)', 'fis')).toEqual(['T′|T', 'P′ × V′|P × V']);
+    expect(fr('A△/A□ = √3/4', 'mat')).toEqual(['A△|A□', '√3|4']);
+    expect(fr('isolando v no raio, ela some e fica só m/q.', 'fis')).toEqual(['m|q']);
+  });
+  it('apóstrofo e Δ fazem parte do termo', () => {
+    expect(fr("1/f = 1/p + 1/p'", 'fis')).toEqual(['1|f', '1|p', "1|p'"]);
+    expect(fr('Δi ≈ −fΔn/(n − 1)', 'fis')).toEqual(['fΔn|n − 1']);
+    expect(fr('γ = ∆V/(V1.∆T) . Com base nestas informações', 'fis')).toEqual(['∆V|V1.∆T']);
+  });
+  it('unidade, rótulo, par de genes, espécie e matéria de texto continuam na linha', () => {
+    expect(fr('10 m/s e a concentração em g/L', 'fis')).toEqual([]);
+    expect(fr('o soro a 5% (m/v)', 'qui')).toEqual([]);
+    expect(fr('detectada como m/z 421,7', 'qui')).toEqual([]);
+    expect(fr('a razão de massas O/H', 'qui')).toEqual([]);
+    expect(fr('Velocidade de referência (MB/s)', 'fis')).toEqual([]);
+    expect(fr('coloque V para a/s verdadeira/s', 'fis')).toEqual([]);
+    expect(fr('as outras trocam definições (R/S × E/Z)', 'qui')).toEqual([]);
+    expect(fr('o par A/a se separa', 'bio')).toEqual([]);
+    expect(fr('fica só m/q', 'bio')).toEqual([]);
+    expect(fr('fica só m/q', 'his')).toEqual([]);
+  });
+  it('o texto não muda', () => {
+    for (const s of ['Alternativa E — (1/2)·m³g²/(q²B²).', 'T′/T = (P′ × V′)/(P × V)', "1/f = 1/p + 1/p'"]) expect(junta(s, 'fis')).toBe(s);
   });
 });
