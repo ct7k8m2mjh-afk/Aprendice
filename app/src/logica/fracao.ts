@@ -52,8 +52,12 @@ const PRODUTO = String.raw`(?:\d+(?:,\d+)?)?(?:[a-zA-Zα-ωπθΦℓ](?:_[A-Za-z
 // denominador termina e ficam na linha, como antes
 const UM_COLCHETE = String.raw`\[[^\[\]\n]{1,30}\]${EXP_POS}`;
 const COLCHETE = String.raw`(?:\d+(?:,\d+)?·?|Δ)?${UM_COLCHETE}(?:·?${UM_COLCHETE})*`;
-const RE = new RegExp(`(${FUNCAO}|${PRODUTO}|${COLCHETE}|${TERMO})/(${FUNCAO}|${PRODUTO}|${TERMO})`, 'g');
-const RE_COLCHETE = new RegExp(`^(?:${COLCHETE})$`);
+// (revisão de 21/11/2026, passada 4 S1) denominador entre colchetes só quando o colchete agrupa uma conta (tem parênteses
+// ou sinal de conta entre espaços dentro: "(√3 + 1)²/[(√3 − 1)(√3 + 1)]") e termina ali (sem outro colchete ou "·" colado
+// depois); a concentração embaixo ("[HA]", "[HSO4−]", "[Cu2+]") continua na linha
+const COLCHETE_DEN = String.raw`\[(?=[^\[\]\n]*(?:[()]|\s[+−×·]\s))[^\[\]\n]{3,40}\]${EXP_POS}(?![·\[])`;
+const RE = new RegExp(`(${FUNCAO}|${PRODUTO}|${COLCHETE}|${TERMO})/(${COLCHETE_DEN}|${FUNCAO}|${PRODUTO}|${TERMO})`, 'g');
+const RE_COLCHETE = new RegExp(`^(?:${COLCHETE}|${COLCHETE_DEN})$`);
 const RE_TERMO = new RegExp(`^(?:${TERMO})$`);
 const RE_FUNCAO = new RegExp(`^(?:${FUNCAO})$`);
 // nomes de unidade com mais de uma letra ("kJ", "mL", "mmHg"): nunca são produto de variáveis
