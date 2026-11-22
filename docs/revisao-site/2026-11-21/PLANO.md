@@ -9,4 +9,6 @@ casca, materias, questao-correcao, dados (relatórios nesta pasta).
 - 3ª passada (passada-3.md): 3 ERROS — todos corrigidos (N1, N2 3f756078, N3 b0f6638a).
 - questao-correcao-2.md: 10 ERROS (R1–R10) — todos corrigidos (um commit cada); 987 testes verdes.
 - 4ª passada: questao-correcao-3.md (6 ERROS S1–S6, 1 dono) e materias-3.md (5 ERROS T1, T2, T4–T6, 1 dono) — todos corrigidos (um commit cada); 1017 testes verdes.
-- Continuar de: 5ª passada em andamento (questao-correcao-4.md e materias-4.md); corrigir o que aparecer até zero.
+- 5ª passada: questao-correcao-4.md (U1–U3) e materias-4.md (V1–V2) — corrigidos; 1028 testes verdes. O corretor achou
+  3 erros antigos de fração (W1 n!/(n−p)!, W2 sen/cos, W3 notação científica em fís Pca19482b) — em correção.
+- Continuar de: depois do corretor W, converte + build, tsc e vitest, 6ª passada em U1–U3, V1–V2, W1–W3 até zero.
