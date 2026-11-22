@@ -101,6 +101,10 @@ REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, comm
   relatório docs/revisao-site/2026-11-20/decisoes-do-dono-telas.md) e session_01Tq253ZZrpookBgGHXXqZHc (conteúdo;
   relatório docs/resolucoes/decisoes-do-dono-conteudo.md). Arquivar sessões da conta antiga: só o dono.
 
+## PUBLICADO 22/11 ~01h UTC: dpl_8yuRCeJ9vfyswDsr7N81aXDjytAk (commit 2a149bc1f), 26.552 resoluções, LOGIN DE DEMONSTRAÇÃO
+Conector do Vercel disponível nesta conta desde 22/11. Publicar já não depende do Supabase: as contas só ligam com
+VITE_CONTAS_REAIS=1 na Vercel (docs/contas.md). Próxima publicação: ao fim da revisão final (docs/revisao-site/2026-11-21/).
+
 ## REGRA DO DONO (21/11/2026): NO MÁXIMO 4 SESSÕES AO MESMO TEMPO
 "Termina a tarefa ou matéria e liga a próxima." Motivo: em 20/11 às 22h51 oito sessões juntas estouraram o limite de 5 h da
 conta. Peça a cada sessão no máximo 3 agentes em paralelo. Fila (21/11 04h35 UTC):
