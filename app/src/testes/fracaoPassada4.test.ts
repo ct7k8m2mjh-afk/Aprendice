@@ -48,3 +48,18 @@ describe('S2: "ℓ" com algarismo e "k₀Q/ℓ²" no meio da frase empilham', ()
     for (const s of ['U fixa: ℓ2/ℓ1 = P1/P2', 'maior que k₀Q/ℓ² (√3 ≈ 1,73 vezes)', '1/aₖ − 1/aₖ₊₁ = r/(aₖaₖ₊₁)']) expect(junta(s, 'fis')).toBe(s);
   });
 });
+
+describe('S3: letra sobre zero é divisão de verdade', () => {
+  it('fís P8d52a008', () => {
+    expect(fr('nenhum material tem índice de refração nulo: a luz teria velocidade c/0, infinita;', 'fis')).toEqual(['c|0']);
+    expect(fr('a luz teria velocidade c ÷ 0', 'fis')).toEqual(['c|0']);
+  });
+  it('sinal ecológico, ligações e carga sobre zero continuam na linha (R6)', () => {
+    expect(fr('relação (0 / 0) entre as espécies', 'bio')).toEqual([]);
+    expect(fr('Conte ligações e pares livres: 4/0, 5/0.', 'qui')).toEqual([]);
+    expect(fr('{x ∈ R/0 < x < 1}', 'mat')).toEqual([]);
+    expect(fr('{x ∈ R / 0 < x < 1}', 'mat')).toEqual([]);
+    expect(fr('carga +1/0 no átomo', 'qui')).toEqual([]);
+    expect(fr('f(3) = 0/0', 'mat')).toEqual(['0|0']);
+  });
+});

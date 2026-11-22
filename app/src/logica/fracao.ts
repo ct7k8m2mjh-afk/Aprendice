@@ -208,7 +208,10 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
   // ("(+)/(−)") fora do quadro de sinais não empilham; "f(3) = 0/0" continua conta (revisão de 21/11/2026,
   // questão-correção 2 R6)
   // (o "+" colado ao número é o sinal dele: "+1/0"; "0/0", a indeterminação da conta, continua empilhada)
-  if (/^\(?0\)?$/.test(den) && num !== '0' && !/(?:[=≈×·÷]|[+−]\s)\s*$/.test(texto.slice(0, ini)) && !/^\s*[=≈+−×·÷]/.test(texto.slice(ini + num.length + 1 + den.length))) return false;
+  // (só número ou sinal em cima: letra sobre zero é divisão de verdade, "a luz teria velocidade c/0"; passada 4 S3)
+  // (o conjunto "{x ∈ R/0 < x < 1}" da prova é "tal que", não divisão)
+  if (/^\(?0\)?$/.test(den) && LETRA.test(num) && /∈\s*$/.test(texto.slice(0, ini))) return false;
+  if (/^\(?0\)?$/.test(den) && num !== '0' && !LETRA.test(num) && !/(?:[=≈×·÷]|[+−]\s)\s*$/.test(texto.slice(0, ini)) && !/^\s*[=≈+−×·÷]/.test(texto.slice(ini + num.length + 1 + den.length))) return false;
   if (/^\([+−-]\)$/.test(num) && /^\([+−-]\)$/.test(den) && !/^\s*[<>≤≥=]/.test(texto.slice(ini + num.length + 1 + den.length))) return false;
   if (!produtoValido(num, den) || !produtoValido(den, num) || parDeUnidades(num, den)) return false;
   // genótipo com as mesmas letras em cima e embaixo ("Ab/aB", "AB/ab", "RS/rs")
@@ -592,7 +595,7 @@ function divisoes(s: string): ParteFracao[] {
     // artigo ou preposição como operando, unidade entre parênteses ("massa (g) ÷ massa molar (g/mol)"): o nome da razão
     // não cabe inteiro dos dois lados, a divisão fica na linha (questão-correção 2 R5)
     // sinal de interação ecológica ("0 / 0", "− / −", "+ / 0") e denominador zero: fica na linha (questão-correção 2 R6)
-    if ((/^[0+−-]$/.test(num) && /^[0+−-]$/.test(den)) || (/^0$/.test(den) && !/[=≈×·÷+−]\s*$/.test(antes) && !/^\s*[=≈]/.test(depois))) continue;
+    if ((/^[0+−-]$/.test(num) && /^[0+−-]$/.test(den)) || (/^0$/.test(den) && !(/^[A-Za-zα-ω]$/.test(num) && !/∈\s*$/.test(antes)) && !/[=≈×·÷+−]\s*$/.test(antes) && !/^\s*[=≈]/.test(depois))) continue;
     // ("o" sozinho só é artigo entre palavras: "i / o = p' / p" e "razão = um ÷ outro" são conta; "(m/s) ÷ (m/s²)" é
     // análise de unidade)
     if ((ARTIGO.test(num) && (/\s/.test(num) || /[A-Za-zÀ-ÿ]\s$/.test(antes))) || (ARTIGO.test(den) && /^\s+[a-zà-ÿ]/.test(depois))
