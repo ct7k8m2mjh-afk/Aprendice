@@ -79,6 +79,17 @@ function parDeUnidades(num: string, den: string): boolean {
   return UNIDADES_NOME.has(l(den)) || (UNIDADES_NOME.has(l(num)) && (unid(den) || /^[\d(]/.test(den)))
     || (/^\(/.test(num) && UNIDADES_NOME.has(l(den.replace(/^\(|\)$/g, ''))));
 }
+/** Espécie química: só símbolos de elemento, com coeficiente, índice e carga ("O2", "OH⁻", "Cl⁻", "H₂O", "NH4+"); com
+ *  `genericos`, também as letras de fórmula genérica ("HA", "A⁻", "BH⁺", "R–X") (revisão de 21/11/2026,
+ *  questão-correção 2 R3) */
+function especie(x: string, genericos = false): boolean {
+  const t = x.replace(/^\d+/, '').replace(/[₀-₉\d²³⁴⁵⁶⁷⁸⁹¹⁰⁺⁻+−]/g, '');
+  const simb = t.match(/[A-Z][a-z]?/g) || [];
+  return !!t && simb.join('') === t && simb.every((e) => Z_DO_SIMBOLO.has(e) || (genericos && /^[ABRX]$/.test(e)));
+}
+const temCarga = (x: string) => /[⁺⁻]/.test(x) || /[A-Za-z₀-₉\d][+−]$/.test(x);
+// rótulo de configuração ("(R)/(S)", "E/Z", "cis/trans"): par de nomes, não fração; entre parênteses, também "(D)/(L)"
+const ROTULO_PAR = /^\((?:R|S|E|Z|D|L)\)\/\((?:R|S|E|Z|D|L)\)$|^(?:R\/S|S\/R|E\/Z|Z\/E|cis\/trans|trans\/cis)$/;
 const LETRA = /[A-Za-zÀ-ÿα-ωπθℓ]/;
 // (letras acentuadas sim; "×" e "÷", que caem no mesmo bloco, não: "1×10^-4/2" é conta; revisão de 21/11, dados N1)
 const ANTES_PROIBIDO = /[A-Za-zÀ-ÖØ-öø-ÿ0-9.,/_\\-]/; // colado a uma palavra, número, data ou link
@@ -188,6 +199,11 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
   if (!produtoValido(num) || !produtoValido(den) || parDeUnidades(num, den)) return false;
   // genótipo com as mesmas letras em cima e embaixo ("Ab/aB", "AB/ab", "RS/rs")
   if (/^[A-Za-z]{2,4}$/.test(num) && num.length === den.length && num !== den && num.toLowerCase() === den.toLowerCase()) return false;
+  // (revisão de 21/11/2026, questão-correção 2 R3) barra entre espécies químicas: par redox ("O2/OH⁻", "Cu²⁺/Cu") e
+  // ligação escrita colada ("C=O/P=O": o "O" é da dupla de antes, o "P" da de depois); rótulos "(R)/(S)" e "E/Z"
+  if (especie(num) && especie(den) && (temCarga(num) || temCarga(den))) return false;
+  if ((/[A-Z)][=≡–]$/.test(texto.slice(0, ini)) && especie(num)) || (/^[=≡–][A-Z(]/.test(texto.slice(ini + num.length + 1 + den.length)) && especie(den))) return false;
+  if (ROTULO_PAR.test(`${num}/${den}`) && (num.startsWith('(') || (!/[=≈+−\-×·÷(]\s*$/.test(texto.slice(0, ini)) && !/^\s*[=≈]/.test(texto.slice(ini + num.length + 1 + den.length))))) return false;
   const antes = texto.slice(0, ini);
   const fim = ini + num.length + 1 + den.length;
   const charAntes = antes.slice(-1);
@@ -521,10 +537,19 @@ function divisoes(s: string): ParteFracao[] {
       if (w) b = o.fim + w[0].length;
     }
     if (a == null || b == null || !livre(a, b)) continue;
+    // operando que começa depois de um índice ou expoente é pedaço de um produto ("α²C ÷ (1 − α)", "R₁R₂ ÷ (R₂ − R₁)",
+    // "2²√3 ÷ 4"): o produto inteiro vai em cima (questão-correção 2 R3)
+    // (o índice da raiz vai junto: "³√x² ÷ √2", "³√(8²) ÷ √2")
+    if (a != null && s[a] === '√' && /[²³⁴⁵⁶⁷⁸⁹]$/.test(s.slice(0, a)) && !/[A-Za-zÀ-ÿ0-9)]$/.test(s.slice(0, a - 1))) a -= 1;
+    if (a != null && /[₀-₉⁰¹²³⁴-⁹⁺⁻]$/.test(s.slice(0, a))) {
+      const pr = /(?<![A-Za-zÀ-ÿ0-9,.₀-₉⁰¹²³⁴-⁹⁺⁻])(?:(?:\d+(?:,\d+)?|[A-Za-zα-ωπℓ]|√)[₀-₉⁰¹²³⁴-⁹⁻⁺]*)+$/.exec(s.slice(0, a));
+      if (pr) a = pr.index;
+    }
     const num = s.slice(a, o.ini), den = s.slice(o.fim, b);
     const antes = s.slice(0, a), depois = s.slice(b);
     // colado a palavra, número, índice ou outra divisão: não é um operando inteiro
-    if (/[A-Za-zÀ-ÿ0-9.,_^\\/÷]$/.test(antes) || /^[A-Za-zÀ-ÿ0-9(_^/]/.test(depois)) continue;
+    // (índice e expoente também: "H₂O / CO₂" não é "O" sobre "CO₂"; questão-correção 2 R3)
+    if (/[A-Za-zÀ-ÿ0-9.,_^\\/÷₀-₉⁰¹²³⁴-⁹⁺⁻]$/.test(antes) || /^[A-Za-zÀ-ÿ0-9(_^/₀-₉]/.test(depois)) continue;
     if (/\s\/\s*$/.test(antes)) continue;
     // "2 kmol de O2 ÷ 1,5", "V de Júpiter ÷ V da Terra": o operando é o complemento de um nome maior (antes de "de"
     // ou depois dele), não o número inteiro; fica na linha
@@ -537,6 +562,8 @@ function divisoes(s: string): ParteFracao[] {
       // "A / B" entre alternativas, unidade ("10 m / s"), verso ("enganos, / tu"), palavras
       const so = (x: string) => /^[A-Za-zÀ-ÿα-ωμ]+$/.test(x);
       if (/^[A-E]$/.test(num) && /^[A-E]$/.test(den)) continue;
+      // fórmulas e espécies ("HA / A⁻", "H₂O / CO₂ / Cl⁻") só empilham com sinal de conta (questão-correção 2 R3)
+      if (especie(num, true) && especie(den, true) && !/[=≈×·÷+−]\s*$/.test(antes) && !/^\s*[=≈×·÷+−]/.test(depois)) continue;
       // (revisão de 21/11/2026, dados R1) verso ("Rua 15 / E o progresso": maiúscula e palavra depois da barra),
       // par de siglas ou de pontos cardeais ("E / W", "NS / NR") e enumeração ("I - H / II - D") sem sinal de conta
       if (/^[A-ZÀ-Ý][A-Za-zÀ-ÿ]*$/.test(den) && /^\s+[a-zà-ÿ]/.test(depois)) continue;

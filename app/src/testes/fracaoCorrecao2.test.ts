@@ -33,3 +33,28 @@ describe('R4: "t½" é um termo só; fração do Unicode empilha junto da empilh
     for (const s of ['t/t½ = (1,40 × 10⁹)/(7,05 × 10⁸)', '1 → ½ → ¼ → ⅛ → 1/16', 'n = tempo ÷ t½']) expect(junta(s)).toBe(s);
   });
 });
+
+describe('R3: barra entre espécies químicas e rótulos fica na linha', () => {
+  it('os 5 casos da revisão', () => {
+    expect(fr('3 O–H, 1 N–H e 2 C=O/P=O', 'qui')).toEqual([]);
+    expect(fr('TCE → ácidos com oxigênio → H₂O / CO₂ / Cl⁻', 'qui')).toEqual([]);
+    expect(fr('ΔE° (O2/OH⁻) = 0,40 − (−0,44) = 0,84 V', 'qui')).toEqual([]);
+    expect(fr('o par (R)/(S) não muda', 'qui')).toEqual([]);
+    expect(fr('par conjugado: HA / A⁻', 'qui')).toEqual([]);
+    expect(fr('E/Z')).toEqual([]);
+  });
+  it('a conta continua empilhada', () => {
+    expect(fr('g\' = g × (1 − D/R)')).toEqual(['D|R']);
+    expect(fr('D/L = (100/800)·2')).toEqual(['D|L', '100|800']);
+    expect(fr('6 S = 0,60 L → L/S = 6/0,60 = 10')).toEqual(['L|S', '6|0,60']);
+    expect(fr('C4H10N2O4/2 = C2H5NO2')).toEqual(['C4H10N2O4|2']);
+  });
+  it('o produto inteiro vai em cima quando o operando começa depois de índice ou expoente', () => {
+    expect(fr('Ostwald: Ka = α²C ÷ (1 − α) ≈ α²C')).toEqual(['α²C|1 − α']);
+    expect(fr('PQ = R₁R₂ ÷ (R₂ − R₁)')).toEqual(['R₁R₂|R₂ − R₁']);
+    expect(fr('y = ³√x² ÷ √2')).toEqual(['³√x²|√2']);
+  });
+  it('o texto não muda', () => {
+    for (const s of ['2 C=O/P=O', 'H₂O / CO₂ / Cl⁻', 'Ka = α²C ÷ (1 − α)', 'y = ³√x² ÷ √2']) expect(junta(s)).toBe(s);
+  });
+});
