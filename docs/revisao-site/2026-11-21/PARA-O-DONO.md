@@ -18,3 +18,7 @@ Mudanças visuais novas sugeridas pelos revisores. Nada disto foi aplicado.
    que temos (devem ser de outra edição). Para fechar: liberar um desses dois endereços na rede do ambiente ou pôr os
    cadernos no repositório. Decisão sua: a bio P113600a tem como link um post de blog da Estratégia — recomendação:
    **tirar do ar** até ser ligada ao caderno oficial (princípio 1 pede prova, ano, número e link).
+
+4. **Figuras da teoria pequenas no celular** (materias-2 R4). No celular as figuras aparecem com cerca de 256 px de
+   largura (221 px em 768); frações e números pequenos dentro delas ficam difíceis de ler. Recomendação: **a figura
+   ocupa a largura da folha no celular e abre ampliada ao toque** (a mesma lupa que já existe para o print da questão).
