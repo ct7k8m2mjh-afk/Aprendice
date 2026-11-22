@@ -38,12 +38,12 @@ const EXP_POS = String.raw`(?:[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]+|\^\([^()\n]{1,30
 const POTENCIA = String.raw`(?:\d+(?:,\d+)?|[A-Za-zα-ωπ])\^(?:\([^()\n]{1,30}\)|[−\-]?\d+(?:,\d+)?|[a-zA-Z](?![A-Za-z]))`;
 // coeficiente colado ao grupo: número, raiz, função ("log2(y)"), até duas letras ("Mm(ΔT − 100)", "pq(p + q)") ou outro
 // grupo ("(l√19/3)(l√17/3)/2"); letra colada à raiz ("l√19/3") vai junto
-const TERMO = String.raw`(?:\d+(?:,\d+)?|√\d*|ln|log[₀-₉\d]*|sen|cos|tg|[A-Za-zα-ω]{1,2}|\([^()\n]{1,30}\))?${GRUPO}${EXP_POS}|${POTENCIA}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?(?:[a-zA-Zℓ](?=√))?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦ][\u0302\u0304\u0305]?)?(?:_[A-Za-z0-9]+|[₀-₉]+|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-z])[A-Za-z])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
+const TERMO = String.raw`(?:\d+(?:,\d+)?|√\d*|ln|log[₀-₉\d]*|sen|cos|tg|[A-Za-zα-ω]{1,2}|\([^()\n]{1,30}\))?${GRUPO}${EXP_POS}|${POTENCIA}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?(?:[a-zA-Zℓ](?=√))?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦℓ][\u0302\u0304\u0305]?)?(?:_[A-Za-z0-9]+|[₀-₉]+|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-z])[A-Za-z])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
 // (revisão de 21/11/2026, N1) função com argumento ("sen θ/g", "BC/tg 30°", "log x/log 2") e produto de variáveis
 // ("nRT/V", "GMm/r²", "4π²R²/T²", "vA/vB", "FX/mX"); o produto só vale com maiúscula, letra grega, índice ou expoente e
 // sem ser unidade, sigla ou genótipo (validado em `produtoValido`)
-const FUNCAO = String.raw`(?:\d+(?:,\d+)?)?(?:sen|cos|tg|tan|log|ln)[²³]?\s?(?:\d+(?:,\d+)?°|\d*[a-zA-Zα-ωθ][₀-₉]*[²³]?|\d+(?:,\d+)?)(?![\d,A-Za-zÀ-ÿ])`;
-const PRODUTO = String.raw`(?:\d+(?:,\d+)?)?(?:[a-zA-Zα-ωπθΦ](?:_[A-Za-z0-9]+|[₀-₉]+)?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*){2,4}`;
+const FUNCAO = String.raw`(?:\d+(?:,\d+)?)?(?:sen|cos|tg|tan|log|ln)[²³]?\s?(?:\d+(?:,\d+)?°|\d*[a-zA-Zα-ωθℓ][₀-₉]*[²³]?|\d+(?:,\d+)?)(?![\d,A-Za-zÀ-ÿ])`;
+const PRODUTO = String.raw`(?:\d+(?:,\d+)?)?(?:[a-zA-Zα-ωπθΦℓ](?:_[A-Za-z0-9]+|[₀-₉]+)?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*){2,4}`;
 // (revisão de 21/11/2026, passada 3 N3) numerador entre colchetes: o valor posto no lugar da variável ("2·[1]/(4·[3])"),
 // o grupo ("[x(x + 1) − 2x(x − 1)]/((x − 1)(x + 1))", "4[(t + Δt)² − t²]/Δt"), a concentração ("[H⁺]²/C",
 // "[NH3]²/([N2] × [H2]³)", "[CO][H2]³/([CH4][H2O])") e a variação ("Δ[NH3]/Δt"). Coeficiente colado ou com "·" antes;
@@ -78,7 +78,7 @@ function parDeUnidades(num: string, den: string): boolean {
   return UNIDADES_NOME.has(l(den)) || (UNIDADES_NOME.has(l(num)) && (unid(den) || /^[\d(]/.test(den)))
     || (/^\(/.test(num) && UNIDADES_NOME.has(l(den.replace(/^\(|\)$/g, ''))));
 }
-const LETRA = /[A-Za-zÀ-ÿα-ωπθ]/;
+const LETRA = /[A-Za-zÀ-ÿα-ωπθℓ]/;
 // (letras acentuadas sim; "×" e "÷", que caem no mesmo bloco, não: "1×10^-4/2" é conta; revisão de 21/11, dados N1)
 const ANTES_PROIBIDO = /[A-Za-zÀ-ÖØ-öø-ÿ0-9.,/_\\-]/; // colado a uma palavra, número, data ou link
 const DEPOIS_PROIBIDO = /[A-Za-zÀ-ÖØ-öø-ÿ0-9/_(]/;
@@ -182,7 +182,7 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
   // termo vazio por dentro (só "√" ou só expoente) não conta; o sinal entre parênteses do quadro de sinais conta
   // ("(x − 6)/(+) ≥ 0", "(+)/(−) < 0")
   // (ângulo com acento, "(Â + Ĉ)/2", também tem valor)
-  const temValor = (x: string) => /[0-9a-zA-Zα-ωπθΦÀ-ÖØ-öø-ÿĀ-ſ]/.test(x) || /^\([+−-]\)$/.test(x);
+  const temValor = (x: string) => /[0-9a-zA-Zα-ωπθΦℓÀ-ÖØ-öø-ÿĀ-ſ]/.test(x) || /^\([+−-]\)$/.test(x);
   if (!temValor(num) || !temValor(den)) return false;
   if (!produtoValido(num) || !produtoValido(den) || parDeUnidades(num, den)) return false;
   // genótipo com as mesmas letras em cima e embaixo ("Ab/aB", "AB/ab", "RS/rs")
@@ -231,7 +231,7 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
     if (!depoisDeSinal) return false;
     // no começo do texto, só letra de variável ou segmento ("a/b = c/d", "AB/CD"); "Wh/L (watt-hora...)" é unidade
     // e "Mg/Fe" é par de metais
-    const simples = (x: string) => /^(?:[a-zα-ωπθ]|[A-Z]{1,2})$/.test(tira(x));
+    const simples = (x: string) => /^(?:[a-zα-ωπθℓ]|[A-Z]{1,2})$/.test(tira(x));
     // (antes de uma comparação ou seta também é conta: "FX/mX < FY/mY", "ΔV/Δt → litros")
     if (!antes.trim() && !(simples(num) && simples(den)) && !/^\s*[=≈<>→]/.test(texto.slice(fim))) return false;
     // letras de alternativa ("A/B"); antes ou depois de "=" é razão ("B/A = 2", "V = E/B")
@@ -242,7 +242,7 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
     if (fatorAntes && (UNIDADES_NOME.has(fatorAntes[1]) || !/[A-Z]/.test(fatorAntes[1]))) return false;
     // dois símbolos de unidade ("m/s²", "g/L") só depois de "=" ("d = m/V") ou depois de "·"/"×" com uma variável ou um
     // número antes ("4π² · L/g"; revisão de 21/11/2026, N1); "10 N · m/s" continua unidade
-    const fatorDeConta = /(?:^|[\s=(+−\-→≈])(?:[\d,.]*\d[²³⁴⁵⁶⁷⁸⁹¹⁰]*|\d*(?:[a-zα-ωπθ]|[A-Z](?=[²³⁴⁵⁶⁷⁸⁹¹⁰]))[²³⁴⁵⁶⁷⁸⁹¹⁰]*(?:\d*[a-zα-ωπθ][²³⁴⁵⁶⁷⁸⁹¹⁰]*)*|\d*[A-Z])\s*[·×]\s*$/.exec(antes);
+    const fatorDeConta = /(?:^|[\s=(+−\-→≈])(?:[\d,.]*\d[²³⁴⁵⁶⁷⁸⁹¹⁰]*|\d*(?:[a-zα-ωπθℓ]|[A-Z](?=[²³⁴⁵⁶⁷⁸⁹¹⁰]))[²³⁴⁵⁶⁷⁸⁹¹⁰]*(?:\d*[a-zα-ωπθℓ][²³⁴⁵⁶⁷⁸⁹¹⁰]*)*|\d*[A-Z])\s*[·×]\s*$/.exec(antes);
     // o fator antes do sinal é unidade quando vem depois de número ("10 N · m/s") ou quando é ele mesmo um símbolo de
     // unidade ("a unidade fica C · s/m", "(m × m/m)", "N · m/m³": produto de unidades)
     const unidadeAntes = fatorDeConta && (/\d\s+[A-Za-zµμΩ]{1,3}[²³]?\s*[·×]\s*$/.test(antes)
