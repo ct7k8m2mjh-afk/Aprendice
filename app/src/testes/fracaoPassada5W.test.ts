@@ -75,7 +75,8 @@ describe('W3: notação científica inteira dos dois lados da barra', () => {
     expect(fr('x = 7,2 × 10¹⁵/9 × 10¹⁴ = 8')).toEqual(['7,2 × 10¹⁵|9 × 10¹⁴']);
     expect(fr('= 7,9 × 10¹⁵ ÷ 2,0 × 10¹² = 3950')).toEqual(['7,9 × 10¹⁵|2,0 × 10¹²']);
     expect(fr('Volta: 4,8 × 10^24 ÷ 6 × 10^23 = 8 mol')).toEqual(['4,8 × 10^24|6 × 10^23']);
-    expect(fr('x = (80 × 10⁻⁶)/137,3 × 10⁻² = 1')).toEqual(['80 × 10⁻⁶|137,3 × 10⁻²']);
+    // (passada 6 Y1: sem resultado que confira, o 10⁻² depois de 137,3, que não é mantissa, multiplica a fração)
+    expect(fr('x = (80 × 10⁻⁶)/137,3 × 10⁻² = 1')).toEqual(['80 × 10⁻⁶|137,3']);
     expect(fr('= (6,7 × 10⁴)² ÷ 6,37 × 10⁶ ≈ 700')).toEqual(['(6,7 × 10⁴)²|6,37 × 10⁶']);
     expect(fr('converter a divisão: 0,10 ÷ 2,5 × 10⁻² = 4,0.')).toEqual(['0,10|2,5 × 10⁻²']);
     expect(fr('θ ≈ 1,22 × 1,3 × 10⁻⁶ km/1,27 × 10⁴ km ≈ 1,25')).toEqual(['1,3 × 10⁻⁶ km|1,27 × 10⁴ km']);

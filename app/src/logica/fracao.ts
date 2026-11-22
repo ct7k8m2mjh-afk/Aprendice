@@ -565,7 +565,43 @@ function cientifica(antes: string, num: string, den: string, depois: string, div
   const numCient = !!mant || RE_GRUPO_CIENT.test(num);
   const pot = /^\d+(?:,\d+)?$/.test(den) ? RE_POT10_DEPOIS.exec(depois) : null;
   if (!pot || !(numCient || divisao)) return null;
+  // (revisão de 21/11/2026, passada 6 Y1) o "× 10ᵐ" depois do número de baixo pode multiplicar a fração inteira:
+  // "32 ÷ 600 × 10⁶ = 2,00" é (32 ÷ 600) × 10⁶, "(80 × 10⁻⁶)/137,3 × 10⁻² ≈ 5,8 × 10⁻⁹" é (80 × 10⁻⁶ ÷ 137,3) × 10⁻².
+  // O resultado escrito depois ("= X", "≈ X") decide entre as duas leituras ("3,0 × 10⁸/13,6 × 10⁶ ≈ 22" é um número só
+  // embaixo); sem resultado que decida, só a mantissa de uma notação científica (de 1 a menos de 10) puxa a potência
+  const b = Number(den.replace(',', '.'));
+  const lei = leituraPeloResultado(antes.slice(0, antes.length - (mant ? mant[0].length : 0)), mant ? mant[0] + num : num, b, pot[0], depois.slice(pot[0].length));
+  // (em cima, a notação científica continua inteira: "(2,40 × 10⁻³ ÷ 600) × 10⁶")
+  if (lei === 'fora' || (lei == null && !(b >= 1 && b < 10))) return mant ? { antes: mant[0].length, depois: 0 } : null;
   return { antes: mant ? mant[0].length : 0, depois: pot[0].length };
+}
+
+const SOBRESCRITO: Record<string, string> = { '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4', '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9', '⁻': '-' };
+const NUM_CIENT = String.raw`(?:\d+(?:,\d+)?(?:\s?×\s?${POT10})?|${POT10})`;
+/** valor de "6,3", "6,3 × 10⁴", "(80 × 10⁻⁶)", "10⁻³" ou "1 × 10^-4"; NaN se não for um número assim */
+function valorCient(s: string): number {
+  const m = new RegExp(String.raw`^\(?\s*(?:(\d+(?:,\d+)?)(?:\s?×\s?10(\S+))?|10(\S+))\s*\)?$`).exec(s.trim());
+  if (!m) return NaN;
+  const e = m[2] ?? m[3];
+  const ex = e == null ? 0 : Number([...e.replace(/^\^\(?|\)$/g, '')].map((c) => SOBRESCRITO[c] ?? (c === '−' ? '-' : c)).join(''));
+  return (m[1] != null ? Number(m[1].replace(',', '.')) : 1) * 10 ** ex;
+}
+/** "dentro": o resultado escrito depois confere com o "× 10ᵐ" no denominador; "fora": confere com ele multiplicando a
+ *  fração; null: não há resultado, a conta tem outra parcela ou nenhuma leitura confere (passada 6 Y1) */
+function leituraPeloResultado(prefixo: string, num: string, b: number, pot: string, resto: string): 'dentro' | 'fora' | null {
+  const N = valorCient(num), P10 = valorCient(pot.replace(/^\s?×\s?/, ''));
+  if (!(N > 0) || !(b > 0) || !(P10 > 0)) return null;
+  // fatores multiplicados antes, até o começo da conta ("3,75 × 10⁻⁵ × 32 ÷ 600 × 10⁶")
+  let fator = 1, pre = prefixo;
+  const RE_FATOR = new RegExp(`(?<![\\d,.])(${NUM_CIENT})\\s?[×·]\\s?$`);
+  for (let f = RE_FATOR.exec(pre); f; f = RE_FATOR.exec(pre)) { fator *= valorCient(f[1]); pre = pre.slice(0, f.index); }
+  if (/[+−\-÷/×·]\s*$/.test(pre)) return null;
+  const r = new RegExp(`^\\s*[=≈]\\s*(${NUM_CIENT})(?![\\d,])`).exec(resto);
+  if (!r) return null;
+  const X = valorCient(r[1]);
+  const perto = (v: number) => Math.abs(Math.log10(v / X)) < 0.03;
+  const dentro = perto(fator * N / (b * P10)), fora = perto(fator * N / b * P10);
+  return dentro && !fora ? 'dentro' : fora && !dentro ? 'fora' : null;
 }
 
 /** a mesma notação científica com a mesma unidade dos dois lados ("1,3 × 10⁻⁶ km/1,27 × 10⁴ km", "8,0 × 10⁻¹⁰ C/1,6 ×
