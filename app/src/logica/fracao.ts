@@ -589,6 +589,13 @@ function divisoes(s: string): ParteFracao[] {
     const amplo = o.txt.includes('÷');
     let a = opEsq(s, o.ini, amplo);
     let b = opDir(s, o.fim, amplo, a != null && new RegExp(`^(?:${QTD}|${NUM_NOME}|${LETRA_NOME})$`, 'u').test(s.slice(a, o.ini)));
+    // (revisão de 21/11/2026, 4ª passada T5) função de uma letra dos dois lados de " / " ("P(A ∩ B) / P(B)", "f(x) / g(x)"):
+    // o nome da função vai junto do grupo, em cima e embaixo
+    if (!amplo) {
+      const fe = /(?<![A-Za-zÀ-ÿ0-9])[A-Za-z]\([^()\n]{1,30}\)$/.exec(s.slice(0, o.ini));
+      const fd = /^[A-Za-z]\([^()\n]{1,30}\)(?![A-Za-zÀ-ÿ0-9(])/.exec(s.slice(o.fim));
+      if (fe && fd) { a = fe.index; b = o.fim + fd[0].length; }
+    }
     // divisão encadeada (a ÷ b ÷ c = (a ÷ b) ÷ c): o numerador leva a divisão de antes, que empilha dentro dele
     for (let m = a == null ? null : /\s*÷\s*$/.exec(s.slice(0, a)); a != null && m; m = /\s*÷\s*$/.exec(s.slice(0, a))) {
       const a2 = opEsq(s, m.index, true);

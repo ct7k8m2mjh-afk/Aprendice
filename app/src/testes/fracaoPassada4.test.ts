@@ -111,3 +111,15 @@ describe('S5: fração de letras também no texto corrido', () => {
     for (const s of ['Alternativa E — (1/2)·m³g²/(q²B²).', 'T′/T = (P′ × V′)/(P × V)', "1/f = 1/p + 1/p'"]) expect(junta(s, 'fis')).toBe(s);
   });
 });
+
+describe('T5: probabilidade condicional com " / " empilha', () => {
+  it('mat M13, cartão "Probabilidade condicional"', () => {
+    expect(fr('P(A|B) = P(A ∩ B) / P(B)', 'mat')).toEqual(['P(A ∩ B)|P(B)']);
+    expect(fr('f(x) / g(x) = 2', 'mat')).toEqual(['f(x)|g(x)']);
+    expect(junta('P(A|B) = P(A ∩ B) / P(B)', 'mat')).toBe('P(A|B) = P(A ∩ B) / P(B)');
+  });
+  it('verso e par com " / " continuam na linha', () => {
+    expect(fr('Rua 15 / E o progresso', 'por')).toEqual([]);
+    expect(fr('enganos, / tu', 'por')).toEqual([]);
+  });
+});
