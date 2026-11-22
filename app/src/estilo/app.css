@@ -227,6 +227,8 @@
 .janela { width: min(640px, 100%); background: var(--folha); border-radius: 16px; box-shadow: var(--sombra-alta); border: 1px solid var(--linha); overflow: hidden; max-height: 80vh; display: flex; flex-direction: column; }
 .janela .cab { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 20px; border-bottom: 1px solid var(--linha); }
 .janela .cab h2 { font-size: 18px; }
+/* o Fechar não encolhe ao lado do campo, em qualquer largura (revisão de 21/11/2026, casca R4) */
+.janela .cab .btn-ic { flex: none; }
 .janela .corpo { padding: 18px 20px; overflow-y: auto; }
 
 /* ícones 3D de módulo/conteúdo */
@@ -268,7 +270,7 @@ a.chip, a.chip:hover { text-decoration: none; }
   /* abas (Revisão, Simulados e as outras): a fileira rola por dentro e cortaria a área invisível; a aba ganha 44px de
      altura (revisão de 20/11/2026, casca N3) */
   .abas button { min-height: 44px; }
-  /* Fechar da busca: não encolhe (40 px) e ganha a área invisível de 44 px (revisão de 21/11/2026, casca N4) */
-  .janela .cab .btn-ic { flex: none; position: relative; }
-  .janela .cab .btn-ic::before { content: ''; position: absolute; inset: -2px; }
+  /* Fechar da busca: área invisível de 44 × 44 px centrada (revisão de 21/11/2026, casca N4 e R1) */
+  .janela .cab .btn-ic { position: relative; }
+  .janela .cab .btn-ic::before { content: ''; position: absolute; left: 50%; top: 50%; width: 44px; height: 44px; transform: translate(-50%, -50%); }
 }
