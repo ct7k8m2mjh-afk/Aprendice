@@ -56,7 +56,7 @@ describe('W2: nome de função sem argumento, "tg = sen/cos", empilha em Mat, F�
     expect(fr('tg = sen/cos', 'por')).toEqual([]);
     expect(fr('tg = sen/cos')).toEqual([]);
     expect(fr('altura = agudo/grave = frequência', 'fis')).toEqual([]);
-    expect(fr('n = massa/massa molar', 'qui')).toEqual([]);
+    // (passada 5 X1: "n = massa/massa molar" passou a empilhar; ver fracaoPassada5X.test.ts)
     expect(fr('x = sen/sen', 'mat')).toEqual([]);
   });
 });

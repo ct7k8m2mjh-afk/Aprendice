@@ -10,8 +10,8 @@ import { partesNotacao } from '../logica/notacao';
  * O texto não muda: o sinal escrito ("/", " ÷ ", "^", "_") e os parênteses que o layout tira continuam no documento,
  * escondidos, para leitor de tela, copiar e colar e testes.
  */
-export function comFracoes(texto: string): ReactNode {
-  return <TextoComFracoes texto={texto} />;
+export function comFracoes(texto: string, inteira = false): ReactNode {
+  return <TextoComFracoes texto={texto} inteira={inteira} />;
 }
 
 /** Matéria do texto mostrado (revisão de 21/11/2026, dados R1): nas matérias de texto (Português, História, Geografia,
@@ -19,12 +19,12 @@ export function comFracoes(texto: string): ReactNode {
  *  matéria e a correção da questão dizem qual é; fora delas vale a regra geral. */
 export const MateriaDoTexto = createContext<string | undefined>(undefined);
 
-function TextoComFracoes({ texto }: { texto: string }) {
-  return <>{desenhaFracoes(texto, useContext(MateriaDoTexto))}</>;
+function TextoComFracoes({ texto, inteira }: { texto: string; inteira?: boolean }) {
+  return <>{desenhaFracoes(texto, useContext(MateriaDoTexto), inteira)}</>;
 }
 
-function desenhaFracoes(texto: string, materia?: string): ReactNode {
-  const partes = partesFracao(texto, materia);
+function desenhaFracoes(texto: string, materia?: string, inteira = false): ReactNode {
+  const partes = partesFracao(texto, materia, inteira);
   if (partes.length === 1 && partes[0].t === 'txt') return comNotacao(texto);
   return partes.map((p, i) => p.t === 'txt' ? <Fragment key={i}>{comNotacao(p.v)}</Fragment> : p.t === 'nuc' ? (
     // nuclídeo: número de massa em cima e número atômico embaixo, à esquerda do símbolo, sem barra
@@ -50,11 +50,11 @@ export function Fracao({ p, n, d, className = 'frac', props }: {
   return (
     <span className={className} {...props}>
       {p.pn && <span className="sr">(</span>}
-      <span className="frac-n" data-p="n">{n ?? comFracoes(p.n)}</span>
+      <span className="frac-n" data-p="n">{n ?? <TextoComFracoes texto={p.n} inteira />}</span>
       {p.pn && <span className="sr">)</span>}
       <span className="sr">{p.sep ?? '/'}</span>
       {p.pd && <span className="sr">(</span>}
-      <span className="frac-d" data-p="d">{d ?? comFracoes(p.d)}</span>
+      <span className="frac-d" data-p="d">{d ?? <TextoComFracoes texto={p.d} inteira />}</span>
       {p.pd && <span className="sr">)</span>}
     </span>
   );

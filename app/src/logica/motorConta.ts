@@ -78,12 +78,13 @@ function tokTexto(s: string, out: Tok[]) {
   }
 }
 
-/** Quebra a linha em termos. `junta(tokeniza(s)) === s` sempre. */
-export function tokeniza(linha: string): Tok[] {
+/** Quebra a linha em termos. `junta(tokeniza(s)) === s` sempre. `materia`: em Mat, Fís e Quí a fórmula escrita com
+ *  palavras ("potência = trabalho/tempo") também vira fração (revisão de 21/11, passada 5 X1). */
+export function tokeniza(linha: string, materia?: string, inteira = false): Tok[] {
   const out: Tok[] = [];
-  for (const p of partesFracao(linha)) {
+  for (const p of partesFracao(linha, materia, inteira)) {
     if (p.t === 'txt') tokTexto(p.v, out);
-    else if (p.t === 'frac') out.push({ k: 'frac', v: p.orig, n: p.n, d: p.d, nt: tokeniza(p.n), dt: tokeniza(p.d), sep: p.sep, pn: p.pn, pd: p.pd });
+    else if (p.t === 'frac') out.push({ k: 'frac', v: p.orig, n: p.n, d: p.d, nt: tokeniza(p.n, materia, true), dt: tokeniza(p.d, materia, true), sep: p.sep, pn: p.pn, pd: p.pd });
     else out.push({ k: 'nuc', v: p.orig });
   }
   return out;
@@ -1133,7 +1134,7 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
     const ciencia = !materia || ['bio', 'qui', 'fis'].includes(materia);
     // conta de Química com seta e sem "=" é reação (desenhada); conta com "=" fica com o motor da conta
     const dg = ciencia && (!conta || (materia !== 'mat' && !/=/.test(texto))) ? diagrama(texto, conta) : undefined;
-    const L: LinhaRot = { texto, toks: tokeniza(texto), conta, planos: [], diagrama: dg, ...extra };
+    const L: LinhaRot = { texto, toks: tokeniza(texto, materia), conta, planos: [], diagrama: dg, ...extra };
     if (materia === 'bio') { const c = cruzamento(texto); if (c) L.cruza = c; }
     if (materia === 'qui' && (!dg || dg.tipo === 'etapas') && !conta) { const rx = reacaoPorExtenso(texto); if (rx) L.reacao = rx; }
     linhas.push(L);

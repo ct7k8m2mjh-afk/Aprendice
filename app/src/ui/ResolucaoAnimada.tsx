@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
+import { Fragment, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import { partesFracao } from '../logica/fracao';
 import { textoMao } from './maoGlifos';
 import type { Resolucao } from '../dados/tipos';
@@ -6,7 +6,7 @@ import { diagrama, montaRoteiro, pedacoEhFormula, quebrasConta, tokensProsa, typ
 import { textoCorrecao } from '../logica/aspas';
 import type { Punnett } from '../logica/punnett';
 import { animaPasso, type Controle } from './motorAnima';
-import { comFracoes, Fracao } from './Fracao';
+import { comFracoes, Fracao, MateriaDoTexto } from './Fracao';
 import { Icone } from './Icone';
 
 /**
@@ -261,22 +261,25 @@ export function ResolucaoAnimada({ r, materia }: { r: Resolucao; materia?: strin
   );
 }
 
-/** texto da conta na letra à mão, com fração empilhada (também aninhada), expoente, índice e sinais desenhados */
-function mao(s: string): ReactNode {
-  const ps = partesFracao(s);
+/** texto da conta na letra à mão, com fração empilhada (também aninhada), expoente, índice e sinais desenhados;
+ *  `m`: a matéria, para a fórmula escrita com palavras ("potência = trabalho/tempo") empilhar também na animação
+ *  (revisão de 21/11, passada 5 X1) */
+function mao(s: string, m?: string, inteira = false): ReactNode {
+  const ps = partesFracao(s, m, inteira);
   if (ps.length === 1 && ps[0].t === 'txt') return textoMao(s);
   return ps.map((p, i) => (p.t === 'txt' ? <span key={i}>{textoMao(p.v)}</span>
     : p.t === 'nuc' ? <span key={i}>{comFracoes(p.orig)}</span>
-      : <Fracao key={i} p={p} n={mao(p.n)} d={mao(p.d)} />));
+      : <Fracao key={i} p={p} n={mao(p.n, m, true)} d={mao(p.d, m, true)} />));
 }
 
 /** Um processo desenhado (fluxo, reação, cadeia, pares, contraste, etapas): peças com o texto dos dados, na ordem. */
 function Diagrama({ L, l, extra }: { L: LinhaRot; l: number; extra?: boolean }) {
+  const m = useContext(MateriaDoTexto);
   const dg = L.diagrama!;
   const tv = textoVisivel(L);
   // Caveat só para conta e fórmula (item 8a): o pedaço com palavra de texto corrido fica na letra do texto
   const formula = (x: string) => pedacoEhFormula(x);
-  const conteudo = (x: string) => (formula(x) ? mao(x) : comFracoes(x));
+  const conteudo = (x: string) => (formula(x) ? mao(x, m) : comFracoes(x));
   const fonte = (x: string) => (formula(x) ? ' dg-mao' : ' dg-txt');
   // processo com etapa comprida: no celular, as etapas descem uma embaixo da outra (a seta aponta para baixo)
   const longo = (dg.tipo === 'fluxo' || dg.tipo === 'reacao') && dg.pecas.some((p) => p.papel === 'item' && p.fim - p.ini > 22);
@@ -294,14 +297,14 @@ function Diagrama({ L, l, extra }: { L: LinhaRot; l: number; extra?: boolean }) 
           );
         }
         if (p.papel === 'div') return <span key={k} className="dg-div" data-k={k}>{/[|;]/.test(t) ? <span className="sr">{t}</span> : t}</span>;
-        if (p.papel === 'mais' || p.papel === 'liga' || p.papel === 'vs') return <span key={k} className={`dg-${p.papel}`} data-k={k}>{L.conta ? mao(t) : t}</span>;
+        if (p.papel === 'mais' || p.papel === 'liga' || p.papel === 'vs') return <span key={k} className={`dg-${p.papel}`} data-k={k}>{L.conta ? mao(t, m) : t}</span>;
         if (!t.trim()) return <span key={k}>{t}</span>;
         const cls = `dg-${p.papel === 'item' ? 'item' : p.papel}` + (p.papel === 'rotulo' ? '' : fonte(t)) + (chave(p.ini, p.fim) && p.papel !== 'rotulo' ? ' dg-chave' : '');
         // reação: o coeficiente que acerta a equação entra depois da fórmula ("2 H2O": o 2 chega por último)
         const coef = dg.tipo === 'reacao' && p.papel === 'item' ? /^(\s*)(\d+(?:[.,]\d+)?|\d+\/\d+)(\s+)(?=[A-Z(\[])/.exec(t) : null;
         if (coef) {
           const resto = t.slice(coef[0].length);
-          return <span key={k} className={cls} data-k={k} data-lado={p.lado}>{coef[1]}<span className="dg-coef">{mao(coef[2])}</span>{coef[3]}{conteudo(resto)}</span>;
+          return <span key={k} className={cls} data-k={k} data-lado={p.lado}>{coef[1]}<span className="dg-coef">{mao(coef[2], m)}</span>{coef[3]}{conteudo(resto)}</span>;
         }
         return <span key={k} className={cls} data-k={k} data-lado={p.lado}>{p.papel === 'rotulo' ? comFracoes(t) : conteudo(t)}</span>;
       })}
@@ -341,13 +344,17 @@ function QuadroPunnett({ q, l }: { q: Punnett; l: number }) {
 /** Uma linha da conta no estado final: cada termo num <span data-i> (fração empilhada com os termos em data-s), com
  *  riscos e marca-texto; os pedaços entre quebras permitidas ficam juntos (sem quebrar no meio). */
 function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<string, number>; ate: number }) {
+  const m = useContext(MateriaDoTexto);
   if (L.diagrama) return <Diagrama L={L} l={l} />;
   if (!L.conta) {
     const [a, b] = L.marca || [0, 0];
     const tv = textoVisivel(L);
+    // marca-texto logo depois de "=" com a razão inteira dentro ("EC = consumo/massa"): a razão é a da fórmula e
+    // empilha (passada 5 X1)
+    const razao = /[=≈] $/.test(tv.slice(0, a));
     return (
       <p className="ra-linha texto" data-l={l}>
-        {L.marca ? <>{comFracoes(tv.slice(0, a))}<mark className="ra-marca">{comFracoes(tv.slice(a, b))}</mark>{comFracoes(tv.slice(b))}</> : comFracoes(tv)}
+        {L.marca ? <>{comFracoes(tv.slice(0, a))}<mark className="ra-marca">{comFracoes(tv.slice(a, b), razao)}</mark>{comFracoes(tv.slice(b))}</> : comFracoes(tv)}
       </p>
     );
   }
@@ -356,7 +363,7 @@ function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<stri
     return k != null && k <= ate ? <span className="ra-risco" aria-hidden /> : null;
   };
   const termos = (ts: Tok[], i: number, p: 'n' | 'd'): ReactNode => ts.map((t, s) => (t.k === 'esp' ? t.v
-    : <span key={s} className={'ra-st' + (t.k === 'op' || t.k === 'rel' ? ' op' : '')} data-s={s}>{t.k === 'frac' ? mao(t.v) : textoMao(t.v)}{risco(i, p, s)}</span>));
+    : <span key={s} className={'ra-st' + (t.k === 'op' || t.k === 'rel' ? ' op' : '')} data-s={s}>{t.k === 'frac' ? mao(t.v, m, true) : textoMao(t.v)}{risco(i, p, s)}</span>));
   // quebra em dois níveis (N1): os trechos (entre seta, vírgula, "=") ficam inteiros enquanto cabem; o trecho que não
   // cabe sozinho quebra por dentro, antes de "+", "−", "×", "÷" (cada pedaço `.ra-u` nunca quebra)
   const brk = quebrasConta(L.toks);
@@ -417,6 +424,7 @@ function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<stri
 /** O que o passo cancela e a conta dos dados não escreve (N5): as linhas antes da conta, com os termos riscados; na soma
  *  de equações, o traço da soma embaixo. Desenho a mais (aria-hidden). */
 function PreContas({ pre, l }: { pre: PreLinhas; l: number }) {
+  const m = useContext(MateriaDoTexto);
   return (
     <div className={'ra-pre' + (pre.soma ? ' soma' : '')} data-pre={l} aria-hidden="true">
       {pre.linhas.map((x, k) => {
@@ -424,11 +432,11 @@ function PreContas({ pre, l }: { pre: PreLinhas; l: number }) {
         const out: ReactNode[] = [];
         let u = 0;
         rs.forEach(([a, b], j) => {
-          if (a > u) out.push(<span key={`t${j}`}>{mao(x.texto.slice(u, a))}</span>);
-          out.push(<span key={`r${j}`} className="ra-corte">{mao(x.texto.slice(a, b))}<span className="ra-risco" /></span>);
+          if (a > u) out.push(<span key={`t${j}`}>{mao(x.texto.slice(u, a), m)}</span>);
+          out.push(<span key={`r${j}`} className="ra-corte">{mao(x.texto.slice(a, b), m)}<span className="ra-risco" /></span>);
           u = b;
         });
-        if (u < x.texto.length) out.push(<span key="fim">{mao(x.texto.slice(u))}</span>);
+        if (u < x.texto.length) out.push(<span key="fim">{mao(x.texto.slice(u), m)}</span>);
         return <p key={k} className="ra-linha conta ra-pre-l">{out}</p>;
       })}
       {pre.soma && <span className="ra-soma-traco" />}

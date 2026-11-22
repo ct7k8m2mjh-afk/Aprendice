@@ -367,14 +367,15 @@ function nuclideo(texto: string, ini: number, num: string, den: string): string 
 
 /** Divide o texto em trechos de texto e frações empilháveis. Sem fração, devolve um trecho só.
  *  1ª passada: divisão com "÷" ou com "/" entre espaços (as de fora, que podem ter "a/b" dentro do numerador ou do
- *  denominador: "(7/2) ÷ (37/10)", "800π ÷ (π/3)"); 2ª: "a/b" nos trechos de texto que sobraram. */
-export function partesFracao(texto: string, materia?: string): ParteFracao[] {
+ *  denominador: "(7/2) ÷ (37/10)", "800π ÷ (π/3)"); 2ª: "a/b" nos trechos de texto que sobraram.
+ *  `inteira`: o texto é o numerador ou o denominador de outra fração, ou uma fração já separada (passada 5 X1). */
+export function partesFracao(texto: string, materia?: string, inteira = false): ParteFracao[] {
   const fim: ParteFracao[] = [];
   for (const p of divisoes(texto, materia)) {
     if (p.t !== 'txt') { fim.push(p); continue; }
     for (const c of cientificasComUnidade(p.v)) {
       if (c.t !== 'txt') { fim.push(c); continue; }
-      for (const q of razoesDeNomes(c.v, materia)) if (q.t === 'txt') fim.push(...barras(q.v, materia)); else fim.push(q);
+      for (const q of razoesDeNomes(c.v, materia, inteira && c.v === texto)) if (q.t === 'txt') fim.push(...barras(q.v, materia)); else fim.push(q);
     }
   }
   if (!fim.length) return [{ t: 'txt', v: texto }];
@@ -416,7 +417,7 @@ function vulgares(s: string): ParteFracao[] {
 const FUNC_NOME = '(?:sen|cos|tg|tan|cotg|cotan|sec|cossec|csc)';
 const RE_FUNC_PAR = new RegExp(`(?<![A-Za-zÀ-ÿ0-9_/'′])(${FUNC_NOME})/(${FUNC_NOME})(?![A-Za-zÀ-ÿ0-9_/(²³'′])`, 'gu');
 const RE_PAL_PAR = /(?<=[=≈] )([a-zà-ÿ]{3,})\/([a-zà-ÿ]{3,})(?= [=≈] ([^,;:\n]*))/gu;
-function razoesDeNomes(texto: string, materia?: string): ParteFracao[] {
+function razoesDeNomes(texto: string, materia?: string, inteira = false): ParteFracao[] {
   if (!materia || !/^(?:mat|fis|qui)$/.test(materia) || !texto.includes('/')) return [{ t: 'txt', v: texto }];
   const achados: { a: number; b: number; n: string; d: string }[] = [];
   for (const m of texto.matchAll(RE_FUNC_PAR)) {
@@ -430,6 +431,7 @@ function razoesDeNomes(texto: string, materia?: string): ParteFracao[] {
     if (achados.some((x) => m.index! < x.b && x.a < m.index! + m[0].length)) continue;
     achados.push({ a: m.index!, b: m.index! + m[0].length, n, d });
   }
+  formulasPorExtenso(texto, achados, inteira);
   if (!achados.length) return [{ t: 'txt', v: texto }];
   achados.sort((x, y) => x.a - y.a);
   const out: ParteFracao[] = [];
@@ -441,6 +443,91 @@ function razoesDeNomes(texto: string, materia?: string): ParteFracao[] {
   }
   if (ult < texto.length) out.push({ t: 'txt', v: texto.slice(ult) });
   return out;
+}
+
+/*
+ * (revisão de 21/11/2026, passada 5 X1) Fórmula escrita com palavras e "/" colado, numa igualdade, em Matemática, Física e
+ * Química: "potência = trabalho/tempo", "densidade = massa/volume", "n = massa/massa molar", "P = casos favoráveis/casos
+ * possíveis × 100". O numerador começa logo depois de "= " (ou "≈ "); o denominador vai até onde dá para delimitar com
+ * segurança: fim do trecho, pontuação, parêntese, outra igualdade ou operação. Nome com palavra de ligação no meio
+ * ("comprimento do arco", "consumo por habitante") cabe inteiro; palavra que abre outra oração ("e", "que", "logo"…)
+ * não, e a razão fica na linha. Com a igualdade empilhada, o outro lado escrito do mesmo jeito empilha junto ("Prédio/
+ * sombra do prédio = poste/sombra do poste"). Fica na linha: a barra de "ou" ("altura = agudo/grave = frequência",
+ * "masculino/feminino"), unidades ("cal/min", "km/h"), fora de igualdade e nas matérias de texto.
+ */
+const X_PAL = String.raw`(?:[A-ZÀ-Ýa-zà-ÿ][a-zà-ÿ]+(?:-[a-zà-ÿ]+)*|[A-Z]{1,3})[²³]?`;
+const X_LADO = `${X_PAL}(?: ${X_PAL}){0,4}`;
+const X_FIM = String.raw`(?=\s*$|[,;:.!?)\]|]|\s+(?:[=≈×·+−→|]|\(|- ))`;
+const RE_X_DIR = new RegExp(`(?<=(?:^|[^<>!=≈])[=≈] )(${X_LADO})/(${X_LADO})${X_FIM}`, 'gu');
+// parcela seguinte da mesma soma ("tempo = distância na areia/velocidade na areia + distância na água/velocidade na água")
+const RE_X_SOMA = new RegExp(`(?<=[+−] )(${X_LADO})/(${X_LADO})${X_FIM}`, 'gu');
+const RE_X_SO = new RegExp(`^(\\s*)(${X_LADO})/(${X_LADO})\\s*$`, 'u');
+const RE_X_ESQ =new RegExp(`(?<=^|[:;,(]\\s?)(${X_LADO})/(${X_LADO})(?= [=≈] )`, 'gu');
+// palavras de ligação que cabem dentro de um nome ("massa do palete", "distância ao vértice")
+const X_LIGA = new Set('de do da dos das em no na nos nas ao à aos às por pelo pela o a os as um uma'.split(' '));
+// palavras que abrem outra oração: o nome terminou antes, e o fim do denominador não é seguro
+// ("com" e "sem" abrindo o nome valem: "razão = com restrição/sem restrição")
+const X_PARA = new Set(('e ou que se é são logo então mas pois porque como quando com sem foi era fica dá vale '
+  + 'mede vira tem há não sim').split(' '));
+// pares em que a barra quer dizer "ou"
+const X_OU = new Set(['agudo/grave', 'grave/agudo', 'masculino/feminino', 'feminino/masculino', 'sim/não', 'não/sim',
+  'verdadeiro/falso', 'falso/verdadeiro', 'claro/escuro', 'escuro/claro', 'alto/baixo', 'baixo/alto', 'maior/menor',
+  'menor/maior', 'ida/volta', 'entrada/saída', 'cis/trans', 'trans/cis', 'positivo/negativo', 'negativo/positivo', 'par/ímpar', 'ímpar/par']);
+function ladoNome(x: string): boolean {
+  const ps = x.split(' ');
+  if (ps.some((p, i) => X_PARA.has(p.toLowerCase()) && !(i === 0 && /^(?:com|sem)$/.test(p)))) return false;
+  const cheias = ps.filter((p) => !X_LIGA.has(p));
+  // não começa nem termina em palavra de ligação, e tem um nome de verdade (não só sigla de segmento)
+  return cheias.length > 0 && !X_LIGA.has(ps[0]) && !X_LIGA.has(ps[ps.length - 1]);
+}
+const temPalavra = (x: string) => /[a-zà-ÿ]{3,}/.test(x);
+// símbolo de grandeza ou de segmento ("V", "AB", "U²", "Req")
+const simbolo = (p: string) => /^(?:[A-Z]{1,3}|[A-Z][a-z]{1,2})[²³]?$/.test(p);
+function razaoXValida(n: string, d: string): boolean {
+  if (n === d || !ladoNome(n) || !ladoNome(d) || !(temPalavra(n) || temPalavra(d))) return false;
+  const pn = n.split(' '), pd = d.split(' ');
+  // unidade colada na barra ("concentração em mol/L", "cal/min")
+  if (UNIDADES_NOME.has(pn[pn.length - 1]) || (pd.length === 1 && UNIDADES_NOME.has(pd[0]))) return false;
+  if (X_OU.has(`${n}/${d}`.toLowerCase()) || /^alc[a-z]+os$/.test(pn[pn.length - 1]) && /^alc[a-z]+os$/.test(pd[0])) return false;
+  // símbolo seguido de palavras só vale dos dois lados ("P instalada/P recebida"); de um lado só, a palavra é o resto
+  // da frase ("V/T final", "U/R em cada lâmpada") e a razão é só a dos símbolos
+  const comResto = (ps: string[]) => simbolo(ps[0]) && ps.length > 1;
+  if (comResto(pn) !== comResto(pd)) return false;
+  return true;
+}
+type Achado = { a: number; b: number; n: string; d: string };
+function formulasPorExtenso(texto: string, achados: Achado[], inteira: boolean): void {
+  const cruza = (a: number, b: number) => achados.some((x) => a < x.b && x.a < b);
+  const novos: Achado[] = [];
+  for (const m of texto.matchAll(RE_X_DIR)) {
+    const [t, n, d] = m;
+    const a = m.index!, b = a + t.length;
+    if (!razaoXValida(n, d) || cruza(a, b)) continue;
+    // a igualdade continua só com palavras ("altura = agudo/grave = frequência"): a barra é "ou"
+    const seg = /^\s*[=≈]\s*([^,;:.\n]*)/.exec(texto.slice(b));
+    if (seg && /^[A-Za-zÀ-ÿ]/.test(seg[1]) && !/[\d/÷]/.test(seg[1])) continue;
+    novos.push({ a, b, n, d });
+  }
+  for (const m of texto.matchAll(RE_X_SOMA)) {
+    const [t, n, d] = m;
+    const a = m.index!, b = a + t.length;
+    if (!novos.some((x) => x.b === a - 3) || !razaoXValida(n, d) || cruza(a, b)) continue;
+    novos.push({ a, b, n, d });
+  }
+  // o lado de lá da igualdade, quando o de cá empilhou ("imagem/objeto = profundidade da câmara/distância do objeto")
+  for (const m of texto.matchAll(RE_X_ESQ)) {
+    const [t, n, d] = m;
+    const a = m.index!, b = a + t.length;
+    const dir = novos.find((x) => x.a === b + 3);
+    if (!dir || !razaoXValida(n, d) || cruza(a, b)) continue;
+    novos.push({ a, b, n, d });
+  }
+  // o trecho é o numerador ou o denominador de outra fração, inteiro ("(força/tempo²)/(força/comprimento)"), ou a própria
+  // fração já separada (termo da conta animada): a barra entre os dois nomes é a da fração. Só com `inteira`: o texto
+  // solto "cis/trans", "Copese/UFT" fica na linha
+  const so = inteira && !novos.length && !achados.length ? RE_X_SO.exec(texto) : null;
+  if (so && razaoXValida(so[2], so[3])) novos.push({ a: so[1].length, b: so[1].length + so[2].length + 1 + so[3].length, n: so[2], d: so[3] });
+  achados.push(...novos);
 }
 
 /** início do numerador longo (quantidade com nome ou fórmula química inteira) sobre um número, antes de "="; ou null */
