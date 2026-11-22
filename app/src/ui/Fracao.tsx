@@ -88,14 +88,14 @@ const algarismos = (x: string) => [...x].map((c) => String(Math.max(SUBS.indexOf
 /** "₁/₂" vira índice com a fração empilhada. O texto do documento continua o dos dados ("₁/₂", escondido para leitor
  *  de tela, copiar e colar e testes); os algarismos desenhados vêm do CSS (atributo data-v), fora do texto. */
 function comFracaoMiuda(s: string): ReactNode {
-  if (!/[₀-₉⁰-⁹¹²³]\/[₀-₉⁰-⁹¹²³]/.test(s)) return s;
+  if (!/[₀-₉⁰-⁹¹²³]\/[₀-₉⁰-⁹¹²³]/.test(s)) return semQuebraNaRelacao(s);
   const out: ReactNode[] = [];
   let ult = 0;
   RE_FRAC_MIUDA.lastIndex = 0;
   for (let m = RE_FRAC_MIUDA.exec(s); m; m = RE_FRAC_MIUDA.exec(s)) {
     const sub = m[1] != null;
     const n = algarismos(sub ? m[1] : m[3]), d = algarismos(sub ? m[2] : m[4]);
-    if (m.index > ult) out.push(s.slice(ult, m.index));
+    if (m.index > ult) out.push(semQuebraNaRelacao(s.slice(ult, m.index)));
     const Tag = sub ? 'sub' : 'sup';
     out.push(
       <Fragment key={m.index}>
@@ -107,6 +107,24 @@ function comFracaoMiuda(s: string): ReactNode {
     );
     ult = m.index + m[0].length;
   }
+  if (ult < s.length) out.push(semQuebraNaRelacao(s.slice(ult)));
+  return out;
+}
+
+/** Relação curta ("q < 0", "Q > 0", "x ≤ 2", "v = 0") não quebra no meio da linha (revisão de 21/11/2026, 4ª passada T4:
+ *  "q <" ficava no fim de uma linha e o "0" ia para a seguinte). O texto não muda: só um <span> que não quebra. */
+const RE_RELACAO = /(?<![^\s(])([^\s()]{1,8}) ([<>=≤≥≠≈]) ([^\s()]{1,8})(?=$|[\s,;.:)])/g;
+function semQuebraNaRelacao(s: string): ReactNode {
+  if (!/ [<>=≤≥≠≈] /.test(s)) return s;
+  const out: ReactNode[] = [];
+  let ult = 0;
+  RE_RELACAO.lastIndex = 0;
+  for (let m = RE_RELACAO.exec(s); m; m = RE_RELACAO.exec(s)) {
+    if (m.index > ult) out.push(s.slice(ult, m.index));
+    out.push(<span key={`r${m.index}`} className="nq">{m[0]}</span>);
+    ult = m.index + m[0].length;
+  }
+  if (!out.length) return s;
   if (ult < s.length) out.push(s.slice(ult));
   return out;
 }
