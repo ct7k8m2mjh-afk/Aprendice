@@ -37,9 +37,12 @@ const MILHAR = String.raw`\d{1,3}(?:[ \u00a0\u202f]\d{3})+(?:,\d+)?`;
 // ("20^(n−1)/27^n", "10^(−7,34)/10^(−7,44)", "1×10^-4/2"): o grupo ou a potência inteira vai em cima (ou embaixo)
 const EXP_POS = String.raw`(?:[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]+|\^\([^()\n]{1,30}\)|\^[−\-]?\d+(?:,\d+)?)?`;
 const POTENCIA = String.raw`(?:\d+(?:,\d+)?|[A-Za-zα-ωπ])\^(?:\([^()\n]{1,30}\)|[−\-]?\d+(?:,\d+)?|[a-zA-Z](?![A-Za-z]))`;
+// (revisão de 21/11/2026, passada 5 U2) índice depois do grupo: a razão entre duas razões, "(n/V)₂/(n/V)₁", tem o
+// grupo com o índice em cima e embaixo (as razões de dentro empilham dentro dele)
+const IND_GRUPO = String.raw`(?:[₀-₉ₐ-ₜ]+)?`;
 // coeficiente colado ao grupo: número, raiz, função ("log2(y)"), até duas letras ("Mm(ΔT − 100)", "pq(p + q)") ou outro
 // grupo ("(l√19/3)(l√17/3)/2"); letra colada à raiz ("l√19/3") vai junto
-const TERMO = String.raw`(?:[Δ∆]?(?:\d+(?:,\d+)?|√\d*|ln|log[₀-₉\d]*|sen|cos|tg|[A-Za-zα-ω]{1,2}[₀-₉ₐ-ₜ]*|\([^()\n]{1,30}\))|[Δ∆])?${GRUPO}${EXP_POS}|${POTENCIA}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?(?:[a-zA-Zℓ](?=√))?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?[Δ∆]?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦℓ][\u0302\u0304\u0305]?[′']?)?(?:_[A-Za-z0-9]+|[△□]|(?<=[A-Za-z]['′])[A-Za-z](?![A-Za-zÀ-ÿ])|[₀-₉ₐ-ₜ][₀-₉ₐ-ₜ₊₋]*|(?<=[A-Za-z])½|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-zℓ])[A-Za-zℓ])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
+const TERMO = String.raw`(?:[Δ∆]?(?:\d+(?:,\d+)?|√\d*|ln|log[₀-₉\d]*|sen|cos|tg|[A-Za-zα-ω]{1,2}[₀-₉ₐ-ₜ]*|\([^()\n]{1,30}\))|[Δ∆])?${GRUPO}${IND_GRUPO}${EXP_POS}|${POTENCIA}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?(?:[a-zA-Zℓ](?=√))?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?[Δ∆]?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦℓ][\u0302\u0304\u0305]?[′']?)?(?:_[A-Za-z0-9]+|[△□]|(?<=[A-Za-z]['′])[A-Za-z](?![A-Za-zÀ-ÿ])|[₀-₉ₐ-ₜ][₀-₉ₐ-ₜ₊₋]*|(?<=[A-Za-z])½|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-zℓ])[A-Za-zℓ])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
 // (revisão de 21/11/2026, N1) função com argumento ("sen θ/g", "BC/tg 30°", "log x/log 2") e produto de variáveis
 // ("nRT/V", "GMm/r²", "4π²R²/T²", "vA/vB", "FX/mX"); o produto só vale com maiúscula, letra grega, índice ou expoente e
 // sem ser unidade, sigla ou genótipo (validado em `produtoValido`)
@@ -291,6 +294,8 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
     // depois de sinal, no começo, como argumento de função ("f(c/b)"), depois de "razão" ou antes de "=" ("a/g = 10/15")
     const depoisDeSinal = /(^|[=≠+−\-×·÷≈<>≤≥∝→√]\s*[({\[]?)\s*$/.test(antes) || /(^|[^A-Za-zÀ-ÿ])[a-zA-Z]\($/.test(antes)
       || /\braz(ão|ões)\s+$/i.test(antes) || /^\s*[=≈]/.test(texto.slice(fim))
+      // a razão com índice que é numerador ou denominador de outra ("(n/V)₂" de "(n/V)₂/(n/V)₁"; passada 5 U2)
+      || (antes === '(' && /^\)[₀-₉ₐ-ₜ]+$/.test(texto.slice(fim)))
       // produto escrito com espaço, com uma variável logo depois de um sinal ("N = m v²/R", "t = 2V0 sen θ/g")
       || /(?:^|[=+−×·→(]\s*)\d*(?![aeoAEOé]\s)[A-Za-zα-ω][0-9₀-₉]?[²³]?\s+$/.test(antes);
     // (revisão de 21/11/2026, passada 4 S2) variável com índice ou letra grega num dos lados ("k₀Q/ℓ²", "v₀/g", "λ/T") é

@@ -22,3 +22,18 @@ describe('U1: produto de variáveis sobre grupo, "2mg/(qB)", empilha no texto co
     expect(junta(s, 'fis')).toBe(s);
   });
 });
+
+describe('U2: razão entre razões com índice, "(n/V)₂/(n/V)₁", empilha', () => {
+  it('fís Pca19482b: a de fora empilha, com o índice em cima e embaixo, e as de dentro também', () => {
+    const s = '(n/V)₂/(n/V)₁ = (P₂/P₁) × (T₁/T₂)';
+    expect(fr(s)).toEqual(['(n/V)₂|(n/V)₁', 'P₂|P₁', 'T₁|T₂']);
+    expect(fr(s, 'fis')).toEqual(['(n/V)₂|(n/V)₁', 'P₂|P₁', 'T₁|T₂']);
+    expect(fr('(n/V)₂')).toEqual(['n|V']);
+    expect(fr('(n/V)₁', 'fis')).toEqual(['n|V']);
+    expect(junta(s)).toBe(s);
+  });
+  it('unidade entre parênteses continua na linha', () => {
+    expect(fr('(g/L)')).toEqual([]);
+    expect(fr('(m/s)₁')).toEqual([]);
+  });
+});
