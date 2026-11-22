@@ -43,13 +43,13 @@ const POTENCIA = String.raw`(?:\d+(?:,\d+)?|[A-Za-zα-ωπ])\^(?:\([^()\n]{1,30}
 const IND_GRUPO = String.raw`(?:[₀-₉ₐ-ₜ]+)?`;
 // coeficiente colado ao grupo: número, raiz, função ("log2(y)"), até duas letras ("Mm(ΔT − 100)", "pq(p + q)") ou outro
 // grupo ("(l√19/3)(l√17/3)/2"); letra colada à raiz ("l√19/3") vai junto
-const TERMO = String.raw`(?:[Δ∆]?(?:\d+(?:,\d+)?|√\d*|ln|log[₀-₉\d]*|sen|cos|tg|[A-Za-zα-ω]{1,2}[₀-₉ₐ-ₜ]*|\([^()\n]{1,30}\))|[Δ∆])?${GRUPO}${IND_GRUPO}${EXP_POS}|${POTENCIA}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?(?:[a-zA-Zℓ](?=√))?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?[Δ∆]?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦℓ][\u0302\u0304\u0305]?(?:['′]{1,2}|″)?)?(?:_[A-Za-z0-9]+|[△□]|(?<=[A-Za-z]['′])[A-Za-z](?![A-Za-zÀ-ÿ])|[₀-₉ₐ-ₜ][₀-₉ₐ-ₜ₊₋]*|(?<=[A-Za-z])½|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-zℓ])[A-Za-zℓ])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
+const TERMO = String.raw`(?:[Δ∆]?(?:\d+(?:,\d+)?|√\d*|ln|log[₀-₉\d]*|sen|cos|tg|[A-Za-zα-ω]{1,2}[₀-₉ₐ-ₜ]*|\([^()\n]{1,30}\))|[Δ∆])?${GRUPO}${IND_GRUPO}${EXP_POS}|${POTENCIA}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?(?:[a-zA-Zℓ](?=√))?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?[Δ∆]?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦℓ][\u0302\u0304\u0305]?(?:['′]{1,2}|″)?)?(?:_[A-Za-zÀ-ÿ0-9]+|[△□]|(?<=[A-Za-z]['′])[A-Za-z](?![A-Za-zÀ-ÿ])|[₀-₉ₐ-ₜ][₀-₉ₐ-ₜ₊₋]*|(?<=[A-Za-z])½|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-zℓ])[A-Za-zℓ])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
 // (revisão de 21/11/2026, N1) função com argumento ("sen θ/g", "BC/tg 30°", "log x/log 2") e produto de variáveis
 // ("nRT/V", "GMm/r²", "4π²R²/T²", "vA/vB", "FX/mX"); o produto só vale com maiúscula, letra grega, índice ou expoente e
 // sem ser unidade, sigla ou genótipo (validado em `produtoValido`)
 const FUNCAO = String.raw`(?:\d+(?:,\d+)?)?(?:sen|cos|tg|tan|log[₀-₉]*|ln)[²³]?\s?(?:\d+(?:,\d+)?°|\d*[a-zA-Zα-ωθℓ][₀-₉]*[²³]?|\d+(?:,\d+)?)(?![\dA-Za-zÀ-ÿα-ω°]|,\d)`;
 // (com Δ dentro: "fΔn", "2MΔf", "b²kΔφ"; passada 4 S5)
-const PRODUTO = String.raw`(?:\d+(?:,\d+)?)?(?:[Δ∆]?[a-zA-Zα-ωπθΦℓ](?:_[A-Za-z0-9]+|[₀-₉]+)?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*){2,4}`;
+const PRODUTO = String.raw`(?:\d+(?:,\d+)?)?(?:[Δ∆]?[a-zA-Zα-ωπθΦℓ](?:_[A-Za-zÀ-ÿ0-9]+|[₀-₉]+)?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*){2,4}`;
 // (revisão de 21/11/2026, passada 3 N3) numerador entre colchetes: o valor posto no lugar da variável ("2·[1]/(4·[3])"),
 // o grupo ("[x(x + 1) − 2x(x − 1)]/((x − 1)(x + 1))", "4[(t + Δt)² − t²]/Δt"), a concentração ("[H⁺]²/C",
 // "[NH3]²/([N2] × [H2]³)", "[CO][H2]³/([CH4][H2O])") e a variação ("Δ[NH3]/Δt"). Coeficiente colado ou com "·" antes;
@@ -79,7 +79,7 @@ const UNIDADES_NOME = new Set(('mmol kmol mol mA μA µA mV kV MW GW MJ GJ kN MP
   + 'min kJ kcal cal atm kPa Pa kΩ kWh Wh kW Hz eV mmHg kgf ppm erg rad cd lm lx Gcal mAh Ah').split(' '));
 function produtoValido(x: string, outro = ''): boolean {
   if (RE_TERMO.test(x) || RE_FUNCAO.test(x) || RE_COLCHETE.test(x) || RE_FATORIAL.test(x)) return true;
-  const letras = x.replace(/^\d+(?:,\d+)?/, '').replace(/_[A-Za-z0-9]+|[₀-₉²³⁴⁵⁶⁷⁸⁹¹⁰]/g, '');
+  const letras = x.replace(/^\d+(?:,\d+)?/, '').replace(/_[A-Za-zÀ-ÿ0-9]+|[₀-₉²³⁴⁵⁶⁷⁸⁹¹⁰]/g, '');
   if (/^(?:sen|cos|tg|tan|log|ln)/.test(letras)) return false;
   if (/^[A-Z]{3,}$/.test(letras)) return false; // sigla ("VIP/VOP", "HIV/AIDS")
   if (/^[A-Z][a-zà-ÿ]{2,}$/.test(letras)) return false; // palavra ("Nilo/Mar", "1000/Sec")
@@ -417,12 +417,22 @@ function vulgares(s: string): ParteFracao[] {
 const FUNC_NOME = '(?:sen|cos|tg|tan|cotg|cotan|sec|cossec|csc)';
 const RE_FUNC_PAR = new RegExp(`(?<![A-Za-zÀ-ÿ0-9_/'′])(${FUNC_NOME})/(${FUNC_NOME})(?![A-Za-zÀ-ÿ0-9_/(²³'′])`, 'gu');
 const RE_PAL_PAR = /(?<=[=≈] )([a-zà-ÿ]{3,})\/([a-zà-ÿ]{3,})(?= [=≈] ([^,;:\n]*))/gu;
+const ID_EXTENSO = String.raw`(?:[A-Za-zÀ-ÿα-ω]{2,}_[A-Za-zÀ-ÿ0-9]+|[a-z][A-Z][a-zà-ÿ]{2,})`;
+const RE_ID_PAR = new RegExp(`(?<![A-Za-zÀ-ÿ0-9_/'′])(${ID_EXTENSO})/(${ID_EXTENSO})(?![A-Za-zÀ-ÿ0-9_/(²³'′])`, 'gu');
 function razoesDeNomes(texto: string, materia?: string, inteira = false): ParteFracao[] {
   if (!materia || !/^(?:mat|fis|qui)$/.test(materia) || !texto.includes('/')) return [{ t: 'txt', v: texto }];
-  const achados: { a: number; b: number; n: string; d: string }[] = [];
+  const achados: Achado[] = [];
   for (const m of texto.matchAll(RE_FUNC_PAR)) {
     const antes = texto.slice(0, m.index), depois = texto.slice(m.index! + m[0].length);
     if (m[1] === m[2] || !(/[=≈]\s*$/.test(antes) || /^\s*[=≈]/.test(depois))) continue;
+    achados.push({ a: m.index!, b: m.index! + m[0].length, n: m[1], d: m[2] });
+  }
+  // (passada 6 Y4) variável com o índice escrito por extenso ("tamanho_img/dist_img", "tTerra/tLua = gLua/gTerra"),
+  // numa igualdade
+  for (const m of texto.matchAll(RE_ID_PAR)) {
+    const antes = texto.slice(0, m.index), depois = texto.slice(m.index! + m[0].length);
+    if (m[1] === m[2] || !(/[=≈]\s*$/.test(antes) || /^\s*[=≈]/.test(depois))) continue;
+    if (achados.some((x) => m.index! < x.b && x.a < m.index! + m[0].length)) continue;
     achados.push({ a: m.index!, b: m.index! + m[0].length, n: m[1], d: m[2] });
   }
   for (const m of texto.matchAll(RE_PAL_PAR)) {
@@ -438,7 +448,7 @@ function razoesDeNomes(texto: string, materia?: string, inteira = false): ParteF
   let ult = 0;
   for (const f of achados) {
     if (f.a > ult) out.push({ t: 'txt', v: texto.slice(ult, f.a) });
-    out.push({ t: 'frac', n: f.n, d: f.d, orig: texto.slice(f.a, f.b), sep: '/' });
+    out.push({ t: 'frac', n: f.n, d: f.d, orig: texto.slice(f.a, f.b), sep: '/', ...(f.pn ? { pn: true } : {}), ...(f.pd ? { pd: true } : {}) });
     ult = f.b;
   }
   if (ult < texto.length) out.push({ t: 'txt', v: texto.slice(ult) });
@@ -462,6 +472,10 @@ const RE_X_DIR = new RegExp(`(?<=(?:^|[^<>!=≈])[=≈] )(${X_LADO})/(${X_LADO})
 // parcela seguinte da mesma soma ("tempo = distância na areia/velocidade na areia + distância na água/velocidade na água")
 const RE_X_SOMA = new RegExp(`(?<=[+−] )(${X_LADO})/(${X_LADO})${X_FIM}`, 'gu');
 const RE_X_SO = new RegExp(`^(\\s*)(${X_LADO})/(${X_LADO})\\s*$`, 'u');
+// (passada 6 Y4) um dos lados entre parênteses, logo depois de "=": "variação = (novo − antigo)/antigo", "IMC =
+// massa/(altura)²", "meses = investimento/(economia por mês)", "h = (cateto · cateto)/hipotenusa", "tg β = (15 − lado)/lado"
+const X_GRUPO = String.raw`\([^()\n]{1,40}\)[²³]?`;
+const RE_X_GRUPO = new RegExp(`(?<=(?:^|[^<>!=≈])[=≈] )(${X_GRUPO}|${X_LADO})/(${X_GRUPO}|${X_LADO})${X_FIM}`, 'gu');
 const RE_X_ESQ =new RegExp(`(?<=^|[:;,(]\\s?)(${X_LADO})/(${X_LADO})(?= [=≈] )`, 'gu');
 // palavras de ligação que cabem dentro de um nome ("massa do palete", "distância ao vértice")
 const X_LIGA = new Set('de do da dos das em no na nos nas ao à aos às por pelo pela o a os as um uma'.split(' '));
@@ -495,7 +509,7 @@ function razaoXValida(n: string, d: string): boolean {
   if (comResto(pn) !== comResto(pd)) return false;
   return true;
 }
-type Achado = { a: number; b: number; n: string; d: string };
+type Achado = { a: number; b: number; n: string; d: string; pn?: boolean; pd?: boolean };
 function formulasPorExtenso(texto: string, achados: Achado[], inteira: boolean): void {
   const cruza = (a: number, b: number) => achados.some((x) => a < x.b && x.a < b);
   const novos: Achado[] = [];
@@ -513,6 +527,18 @@ function formulasPorExtenso(texto: string, achados: Achado[], inteira: boolean):
     const a = m.index!, b = a + t.length;
     if (!novos.some((x) => x.b === a - 3) || !razaoXValida(n, d) || cruza(a, b)) continue;
     novos.push({ a, b, n, d });
+  }
+  for (const m of texto.matchAll(RE_X_GRUPO)) {
+    const [t, n, d] = m;
+    const a = m.index!, b = a + t.length;
+    const gn = n.startsWith('('), gd = d.startsWith('(');
+    if (gn === gd || cruza(a, b) || novos.some((x) => a < x.b && x.a < b)) continue;
+    // o lado de palavras é um nome; o grupo tem palavra dentro (com número ou sinal de conta é a passada das barras)
+    const pal = gn ? d : n, grupo = gn ? n : d;
+    if (!ladoNome(pal) || !temPalavra(pal) || UNIDADES_NOME.has(pal) || !/[a-zà-ÿ]{3,}/.test(grupo)) continue;
+    if (/\b(?:e|ou|que)\b/.test(grupo)) continue;
+    const tira = (x: string) => (/[²³]$/.test(x) ? x : x.slice(1, -1));
+    novos.push({ a, b, n: gn ? tira(n) : n, d: gd ? tira(d) : d, pn: gn && !/[²³]$/.test(n), pd: gd && !/[²³]$/.test(d) });
   }
   // o lado de lá da igualdade, quando o de cá empilhou ("imagem/objeto = profundidade da câmara/distância do objeto")
   for (const m of texto.matchAll(RE_X_ESQ)) {
@@ -708,7 +734,7 @@ function barras(texto: string, materia?: string): ParteFracao[] {
 // porcentagem; ou número com unidade ("1 g ÷ 2^4", "90 g ÷ 18 g/mol", "108 km/h ÷ 3,6", "45° ÷ 15°")
 const EXPO = String.raw`(?:\^\([^()\n]{1,24}\)|\^[−\-+]?[0-9a-zA-Z,]+[+−]?|[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻ]+)?!?`;
 const NUM = String.raw`(?:\d{1,3}(?:[   ]\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)*)`;
-const SIMPLES = String.raw`(?:(?:log|ln|sen|cos|tg)\s?)?Σ?(?:\d{1,3}(?:[   ]\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθμΔℓ](?:_[A-Za-z0-9]+|\d(?!\d|[.,]\d)|½)?)?[₀-₉ᵢⱼₙₐₑₒₓ]*` + EXPO + '%?';
+const SIMPLES = String.raw`(?:(?:log|ln|sen|cos|tg)\s?)?Σ?(?:\d{1,3}(?:[   ]\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθμΔℓ](?:_[A-Za-zÀ-ÿ0-9]+|\d(?!\d|[.,]\d)|½)?)?[₀-₉ᵢⱼₙₐₑₒₓ]*` + EXPO + '%?';
 const UBASE = 'mmol|kmol|mol|mA|μA|µA|mV|kV|MW|GW|MJ|GJ|kN|MPa|GPa|GHz|MHz|kHz|hm|ha|mg|kg|μg|µg|g|mL|dL|L|mm|cm|dm|km|nm|m|min|s|h|kJ|J|kcal|cal|atm|kPa|Pa|K|kΩ|Ω|kWh|Wh|kW|W|N|V|A|C|Hz|eV|t|dias?|anos?|horas?|bi|mi|mil|milhão|milhões|bilhão|bilhões';
 const UNID_NOME = String.raw`(?:${UBASE})(?:[²³]|[23](?![\d,]))?(?:[·.\/](?:${UBASE})(?:[²³]|[23](?![\d,]))?){0,2}`;
 const CIENT = String.raw`${NUM}(?:\s?×\s?10(?:[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+|\^\(?[−\-]?\d+\)?))?`;
@@ -753,6 +779,9 @@ const RE_PAL_ESQ = new RegExp(`(?<=[=≈] )${NOME_PAL}$`, 'u');
 const RE_PAL_DIR = new RegExp(`^${NOME_PAL}(?=\\s*$|\\s*[,;.)]|\\s+[=≈+−×·])`, 'u');
 // verbo de oração relativa ("quantidade que reagiu", "soma que falta"): fim de um nome comprido, não o numerador
 const QUE_VERBO = /^(?:falta|faltam|faltou|sobra|sobram|sobrou|serve|servem|reage|reagiu|reagem|sai|saiu|saem|resta|restam|restou|entra|entrou|passa|passou)$/;
+const NOME_LONGO = String.raw`[a-zà-ÿ]{3,}(?: (?:de|do|da|dos|das|por) [a-zà-ÿ]{3,})?(?: (?:${ADJ}))?`;
+const RE_NOME_ESQ = new RegExp(`(?<=^|[=≈:] )${NOME_LONGO}$`, 'u');
+const RE_NOME_DIR = new RegExp(`^${NOME_LONGO}(?=\\s*$|\\s*[,;.)]|\\s+[=≈+−×·(])`, 'u');
 const PAR: Record<string, string> = { ')': '(', ']': '[' };
 
 /** operando que termina em `fim` (grupo entre parênteses, colchetes ou barras de módulo, com expoente; ou simples) */
@@ -864,6 +893,14 @@ function divisoes(s: string, materia?: string): ParteFracao[] {
       if (materia && /^(?:mat|fis|qui)$/.test(materia)) {
         const pe = RE_PAL_ESQ.exec(s.slice(0, o.ini)), pd = RE_PAL_DIR.exec(s.slice(o.fim));
         if (pe && pd) { a = pe.index; b = o.fim + pd[0].length; }
+        // (passada 6 Y4) nome com complemento dos dois lados, numa igualdade: "média mensal = total / número de meses",
+        // "altura do poste / sombra do poste = altura do estudante / sombra do estudante", "E = desenho / real (mesma
+        // unidade)"; o lado de cá logo depois de "=" ou, no começo do texto ou depois de ":", o de lá logo antes de "="
+        else {
+          const le = RE_NOME_ESQ.exec(s.slice(0, o.ini)), ld = RE_NOME_DIR.exec(s.slice(o.fim));
+          const igual = le && ld && (/[=≈]\s$/.test(s.slice(0, le.index)) || (/^\s*$|:\s$/.test(s.slice(0, le.index)) && /^\s+[=≈]\s/.test(s.slice(o.fim + ld[0].length))));
+          if (igual && ladoNome(le[0]) && ladoNome(ld[0]) && le[0] !== ld[0]) { a = le.index; b = o.fim + ld[0].length; }
+        }
       }
     }
     // divisão encadeada (a ÷ b ÷ c = (a ÷ b) ÷ c): o numerador leva a divisão de antes, que empilha dentro dele

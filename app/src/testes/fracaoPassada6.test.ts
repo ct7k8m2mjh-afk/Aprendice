@@ -97,3 +97,49 @@ describe('Y3: palavra solta não vira numerador', () => {
     expect(fr('dizer que r ÷ q = 6 é dizer que r é 6 vezes q', 'mat')).toEqual(['r|q']);
   });
 });
+
+describe('Y4: frações de conta que estavam na linha', () => {
+  it('fís P8be725f1: "tTerra/tLua = gLua/gTerra" empilha, também na animação', () => {
+    const s = 'tTerra/tLua = gLua/gTerra';
+    expect(fr(s, 'fis')).toEqual(['tTerra|tLua', 'gLua|gTerra']);
+    const f = tokeniza(s, 'fis').filter((t) => t.k === 'frac');
+    expect(f.map((t) => [t.n, t.d])).toEqual([['tTerra', 'tLua'], ['gLua', 'gTerra']]);
+    expect(juntaToks(tokeniza(s, 'fis'))).toBe(s);
+  });
+  it('variável com índice escrito com "_"', () => {
+    expect(fr('Potência (ou energia) útil dividida pela total: η = P_útil/P_total.', 'fis')).toEqual(['P_útil|P_total']);
+    expect(fr('sen θL = n_casca/n_núcleo = 1,44/1,60 = 0,90.', 'fis')).toEqual(['n_casca|n_núcleo', '1,44|1,60']);
+    expect(fr('série, mesma i: P_lâmpada/P_total = R_lâmpada/R_total', 'fis')).toEqual(['P_lâmpada|P_total', 'R_lâmpada|R_total']);
+    expect(fr('tamanho_img/dist_img = tamanho_obj/dist_obj', 'fis')).toEqual(['tamanho_img|dist_img', 'tamanho_obj|dist_obj']);
+    expect(fr('p_janela/p_tímpano = (F_janela/F_tímpano) × (A_tímpano/A_janela)', 'fis')).toEqual(['p_janela|p_tímpano', 'F_janela|F_tímpano', 'A_tímpano|A_janela']);
+    expect(fr('tg θ = B_eletroímã/B_Terra (ângulo com o norte)', 'fis')).toEqual(['B_eletroímã|B_Terra']);
+  });
+  it('parêntese de um lado, depois de "="', () => {
+    expect(fr('variação = (novo − antigo)/antigo', 'mat')).toEqual(['novo − antigo|antigo']);
+    expect(fr('IMC = massa/(altura)²', 'mat')).toEqual(['massa|(altura)²']);
+    expect(fr('luminância = intensidade/(distância)²', 'mat')).toEqual(['intensidade|(distância)²']);
+    expect(fr('meses = investimento/(economia por mês)', 'mat')).toEqual(['investimento|economia por mês']);
+    expect(fr('altura relativa à hipotenusa: h = (cateto · cateto)/hipotenusa', 'mat')).toEqual(['cateto · cateto|hipotenusa']);
+    expect(fr('tg β = (15 − lado)/lado', 'mat')).toEqual(['15 − lado|lado']);
+    const p = partesFracao('variação = (novo − antigo)/antigo', 'mat').find((x) => x.t === 'frac');
+    expect(p).toMatchObject({ pn: true });
+    const q = partesFracao('IMC = massa/(altura)²', 'mat').find((x) => x.t === 'frac');
+    expect(q && q.t === 'frac' && !!q.pd).toBe(false);
+    for (const s of ['variação = (novo − antigo)/antigo', 'IMC = massa/(altura)²', 'meses = investimento/(economia por mês)']) expect(junta(s, 'mat')).toBe(s);
+  });
+  it('nomes com espaço dos dois lados de " / ", numa igualdade', () => {
+    expect(fr('altura do poste / sombra do poste = altura do estudante / sombra do estudante', 'mat'))
+      .toEqual(['altura do poste|sombra do poste', 'altura do estudante|sombra do estudante']);
+    expect(fr('triângulos semelhantes: tamanho da imagem / tamanho do objeto = distância da imagem / distância do objeto. Com', 'fis'))
+      .toEqual(['tamanho da imagem|tamanho do objeto', 'distância da imagem|distância do objeto']);
+    expect(fr('E = desenho / real (mesma unidade)', 'mat')).toEqual(['desenho|real']);
+    expect(fr('média mensal = total / número de meses', 'mat')).toEqual(['total|número de meses']);
+  });
+  it('fica na linha: razão com nome, sem "=" ("razão carga/massa", "razão lucro/custo"), verso e "e/ou"', () => {
+    expect(fr('A espectrometria de massas separa íons pela relação carga/massa.', 'qui')).toEqual([]);
+    expect(fr('A razão lucro/custo foi de 1 para 1,5', 'mat')).toEqual([]);
+    expect(fr('Energia seria força × comprimento; a razão B/A é comprimento/tempo².', 'fis')).toEqual([]);
+    expect(fr('enganos, / tu que', 'por')).toEqual([]);
+    expect(fr('e/ou', 'ing')).toEqual([]);
+  });
+});
