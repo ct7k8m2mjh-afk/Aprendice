@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { contaEhTexto, materiaDoCodigo, partesFracao } from '../logica/fracao';
+import { contaEhTexto, formulaEhTexto, materiaDoCodigo, partesFracao } from '../logica/fracao';
 
 const fr = (s: string) => partesFracao(s).filter((p) => p.t === 'frac').map((p) => (p.t === 'frac' ? `${p.n}|${p.d}` : ''));
 const junta = (s: string) => partesFracao(s).map((p) => (p.t === 'txt' ? p.v : p.orig)).join('');
@@ -335,5 +335,22 @@ describe('letra/letra depois de "·" e "×", função e produto de variáveis (r
       'RS/rs × RS/rs', 'Mênfis → Nilo/Mar Vermelho', 'Remove rate: 1000/Sec', 'R$ 0,30/kWh', '(mL/min) ÷ kg = mL/(min · kg)',
       '+0,80 V × AgCl/Ag: +0,22 V', 'em kJ/mol', '25 mL/min', 'mata e/ou consome'])
       expect(fr(s).filter((x) => !x.includes('÷')), s).toEqual(s.startsWith('(mL') ? ['mL/min|kg'] : []);
+  });
+});
+
+describe('lista de fórmulas da Teoria: igualdade vai para a letra da fórmula (revisão de 21/11/2026, N7)', () => {
+  it('igualdade com "=" escrita com palavras é fórmula; a linha sem "=" e a explicação comprida são texto', () => {
+    for (const s of ['variação = (novo − antigo) / antigo', 'x% de A = (x/100) · A', 'total = parte/(x/100)', 'sen = cateto oposto / hipotenusa'])
+      expect(formulaEhTexto(s, 'mat'), s).toBe(false);
+    expect(formulaEhTexto('próton = uud; nêutron = udd', 'fis')).toBe(false);
+    expect(formulaEhTexto('cristas = dobras da membrana interna', 'bio')).toBe(false);
+    expect(formulaEhTexto('pontos percentuais: diferença simples', 'mat')).toBe(true);
+    expect(formulaEhTexto('série: mesma corrente; R equivalente = soma', 'fis')).toBe(true);
+    expect(formulaEhTexto('nêutrons = número de massa − número atômico; o número de massa já tem os prótons dentro dele, então o caminho é sempre subtrair', 'qui')).toBe(true);
+    // matérias de texto continuam em texto
+    expect(formulaEhTexto('tema = assunto (cabe num substantivo)', 'por')).toBe(true);
+  });
+  it('a conta do passo continua com a regra de antes', () => {
+    expect(contaEhTexto('variação = (novo − antigo) / antigo', 'mat')).toBe(true);
   });
 });

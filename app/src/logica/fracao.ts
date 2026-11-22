@@ -561,3 +561,18 @@ export function contaEhTexto(s: string, materia?: string): boolean {
   }
   return true;
 }
+
+/**
+ * Linha da lista de fórmulas da Teoria ("No caderno" do tema e o caderno do cartão): a igualdade com "=" vai sempre para a
+ * letra da fórmula, mesmo escrita com palavras ("variação = (novo − antigo)/antigo", "sen = cateto oposto / hipotenusa"),
+ * para a mesma caixa não misturar duas letras (revisão de 21/11/2026, N7). Fica em texto a linha sem "=", a explicação
+ * comprida (um trecho sem "=" depois de ";" ou 7 palavras seguidas) e as matérias de texto. Só para essa lista: a conta
+ * do passo continua com `contaEhTexto`.
+ */
+export function formulaEhTexto(s: string, materia?: string): boolean {
+  if (materia && SEMPRE_TEXTO.has(materia)) return true;
+  const t = s.trim();
+  // duas igualdades separadas por ";" ("próton = uud; nêutron = udd") também são fórmula
+  if (t.split(';').every((x) => /[=≠≈]/.test(x) && maiorFrase(x.replace(/\([^()]*\)/g, ' ')) < 7)) return false;
+  return contaEhTexto(s, materia);
+}
