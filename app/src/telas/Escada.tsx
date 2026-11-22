@@ -115,7 +115,9 @@ export function Escada() {
             const pv = lv.find((q) => !s.q[q.id]?.tent.length) || lv[0] || lvOutras[0];
             const fraco = d.acerto !== null && d.feitas >= 3 && d.acerto < 0.6;
             return (
-              <div key={d.nivel} className={'nivel-cartao' + (lv.length ? '' : ' vazio')}>
+              // apagado só o nível sem questão nenhuma (sem botão); o que treina com as de outras regiões fica normal, com a frase
+              // em `fraco` (revisão de 21/11, N2: a opacidade derrubava o contraste e o cartão parecia desativado com botão ativo)
+              <div key={d.nivel} className={'nivel-cartao' + (pv ? '' : ' vazio')}>
                 <span className={`nivel-etq n-${d.nivel}`}>{nomeNivel(d.nivel)}</span>
                 {lv.length > 0 && <span className="num nv-qtd">{plural(d.total, 'questão', 'questões')}</span>}
                 {lv.length > 0 && <span className={'num nv-acerto' + (fraco ? ' err' : '')}>{d.acerto === null ? 'Ainda sem respostas' : `${Math.round(d.acerto * 100)}% de acerto · ${plural(d.feitas, 'feita', 'feitas')}`}</span>}
