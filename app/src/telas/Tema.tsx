@@ -18,6 +18,7 @@ import { useIndiceRevisao, useResumos } from '../dados/revisao';
 import { ResumoSubtemaView } from '../ui/revisao/ResumoSubtema';
 import { emDias } from '../logica/revisao';
 import { legendaFigura } from '../logica/legendaFigura';
+import { figuraEscura } from '../logica/figuraEscura';
 import type { EstadoMateria } from '../estado/tipos';
 import { AvisoRegiao, FiltroRegiaoChips, useRegiao } from '../ui/FiltroRegiao';
 import { deFiltro, filtraTema } from '../logica/regiao';
@@ -36,12 +37,17 @@ export function CartaoTeoriaView({ c, figs }: { c: CartaoTeoria; figs?: Figura[]
           : <li key={i} className={formulaEhTexto(x, materiaDoCodigo(c.sub)) ? 'texto' : undefined}>{comFracoes(x)}</li>)}</ul>
       )}
       {c.cuidado && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Cuidado: </b>{comNegrito(c.cuidado)}</span></p>}
-      {figs && figs.map((f, i) => (
+      {figs && figs.map((f, i) => {
+        // figura com paleta própria para o escuro (Bio): uma imagem por tema, trocada pelo botão Dia/Noite (matérias-2 R3)
+        const esc = figuraEscura(f.u);
+        return (
         <figure key={i} className="fig-teoria">
-          <img src={f.u} alt={f.t} loading="lazy" />
+          <img src={f.u} alt={f.t} loading="lazy" className={esc ? 'fig-claro' : undefined} />
+          {esc && <img src={esc} alt={f.t} loading="lazy" className="fig-escuro" />}
           <figcaption><span className="fig-t">{comFracoes(f.t)}</span><small title={f.fonte}>{legendaFigura(f.fonte)}</small></figcaption>
         </figure>
-      ))}
+        );
+      })}
     </article>
   );
 }
