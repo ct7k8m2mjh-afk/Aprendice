@@ -36,3 +36,36 @@ describe('Y1: o "× 10ⁿ" que multiplica depois da fração fica fora do denomi
     expect(fr('T = 0,6 ÷ 3,448 × 10⁻³ = 174 K', 'qui')).toEqual(['0,6|3,448 × 10⁻³']);
   });
 });
+
+describe('Y2: o nome da função e o ângulo ficam no lugar certo', () => {
+  it('mat P5943cbb6: "sen 3π/2" é sen (3π sobre 2), a função fica fora da fração', () => {
+    const s = 'f(9) = sen 3π/2 = −1 | g(9) = sen π/2 = 1';
+    expect(fr(s, 'mat')).toEqual(['3π|2', 'π|2']);
+    expect(junta(s, 'mat')).toBe(s);
+    const f = tokeniza(s).filter((t) => t.k === 'frac');
+    expect(f.map((t) => [t.n, t.d])).toEqual([['3π', '2'], ['π', '2']]);
+    expect(juntaToks(tokeniza(s))).toBe(s);
+  });
+  it('M10.4, M10.5 e M16.2: "cos 3π/4", "sen 7π/6", "sen 2π/3", "cos 5π/4"', () => {
+    expect(fr('cos 0 = 1 | cos 3π/4 = −√2/2', 'mat')).toEqual(['3π|4', '√2|2']);
+    expect(fr('sen π/2 = 1 | sen 3π/2 = −1 | sen 2π/3 = √3/2', 'mat')).toEqual(['π|2', '3π|2', '2π|3', '√3|2']);
+    expect(fr('z = √2 · (cos 5π/4 + i sen 5π/4)', 'mat')).toEqual(['5π|4', '5π|4']);
+  });
+  it('M10 "Ângulos notáveis": "30°: sen 1/2" é o valor do seno', () => {
+    expect(fr('30°: sen 1/2 · cos √3/2 · tg √3/3', 'mat')).toEqual(['1|2', '√3|2', '√3|3']);
+    expect(fr('60°: sen √3/2 · cos 1/2 · tg √3', 'mat')).toEqual(['√3|2', '1|2']);
+    const s = '30°: sen 1/2 · cos √3/2 · tg √3/3';
+    expect(junta(s, 'mat')).toBe(s);
+  });
+  it('fora da tabela, função de um número sobre um número continua inteira em cima ("log 8/2", "cos 1/2 + cos 2/4")', () => {
+    expect(fr('a área é log 8/2 = log √8.', 'mat')).toEqual(['log 8|2']);
+    expect(fr('Pela soma numérica: cos 1/2 + cos 2/4 + cos 3/8 + …', 'mat')).toEqual(['cos 1|2', 'cos 2|4', 'cos 3|8']);
+  });
+  it('mat P8af6b4ab e M10.2: a letra e o grau ficam no denominador, mesmo com vírgula depois', () => {
+    expect(fr('A tangente de 2θ é sen 2θ/cos 2θ, e não se divide por zero.', 'mat')).toEqual(['sen 2θ|cos 2θ']);
+    expect(fr('lei dos senos BC = 8 · sen 75°/sen 60°, com sen 75° = (√6 + √2)/4.', 'mat')).toEqual(['sen 75°|sen 60°', '√6 + √2|4']);
+    expect(fr('então BE = 5/sen 40°, e o ângulo AEB mede 50°.', 'mat')).toEqual(['5|sen 40°']);
+    // a vírgula decimal continua dentro do número: "sen 2,5" não vira "sen 2"
+    expect(fr('x = 3/sen 2,5 + 1', 'mat')).toEqual(['3|sen 2,5']);
+  });
+});

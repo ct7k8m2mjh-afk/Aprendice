@@ -47,7 +47,7 @@ const TERMO = String.raw`(?:[Δ∆]?(?:\d+(?:,\d+)?|√\d*|ln|log[₀-₉\d]*|se
 // (revisão de 21/11/2026, N1) função com argumento ("sen θ/g", "BC/tg 30°", "log x/log 2") e produto de variáveis
 // ("nRT/V", "GMm/r²", "4π²R²/T²", "vA/vB", "FX/mX"); o produto só vale com maiúscula, letra grega, índice ou expoente e
 // sem ser unidade, sigla ou genótipo (validado em `produtoValido`)
-const FUNCAO = String.raw`(?:\d+(?:,\d+)?)?(?:sen|cos|tg|tan|log[₀-₉]*|ln)[²³]?\s?(?:\d+(?:,\d+)?°|\d*[a-zA-Zα-ωθℓ][₀-₉]*[²³]?|\d+(?:,\d+)?)(?![\d,A-Za-zÀ-ÿ])`;
+const FUNCAO = String.raw`(?:\d+(?:,\d+)?)?(?:sen|cos|tg|tan|log[₀-₉]*|ln)[²³]?\s?(?:\d+(?:,\d+)?°|\d*[a-zA-Zα-ωθℓ][₀-₉]*[²³]?|\d+(?:,\d+)?)(?![\dA-Za-zÀ-ÿα-ω°]|,\d)`;
 // (com Δ dentro: "fΔn", "2MΔf", "b²kΔφ"; passada 4 S5)
 const PRODUTO = String.raw`(?:\d+(?:,\d+)?)?(?:[Δ∆]?[a-zA-Zα-ωπθΦℓ](?:_[A-Za-z0-9]+|[₀-₉]+)?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*){2,4}`;
 // (revisão de 21/11/2026, passada 3 N3) numerador entre colchetes: o valor posto no lugar da variável ("2·[1]/(4·[3])"),
@@ -645,6 +645,17 @@ function barras(texto: string, materia?: string): ParteFracao[] {
       out.push({ t: 'frac', n: orig, d: cad[1], orig: orig + cad[0], sep: '/' });
       ult = fimM + cad[0].length;
       RE.lastIndex = ult;
+      continue;
+    }
+    // (revisão de 21/11/2026, passada 6 Y2) a fração é o argumento da função, não o seu numerador: "sen 3π/2" é
+    // sen (3π/2), e não (sen 3π)/2; na tabela de ângulos notáveis ("30°: sen 1/2 · cos √3/2"), "sen 1/2" é o valor do
+    // seno. O nome da função fica na linha e só o argumento (ou o valor) empilha
+    const arg = /^\d+$/.test(den) ? (/^((?:\d+(?:,\d+)?)?(?:sen|cos|tg|tan)\s?)(\d*π)$/.exec(num)
+      || (/^\s*\d+(?:,\d+)?°\s*:/.test(texto) ? /^((?:sen|cos|tg|tan)\s)(\d+(?:,\d+)?)$/.exec(num) : null)) : null;
+    if (arg && ehFracao(texto, ini + arg[1].length, arg[2], den, materia)) {
+      if (ini + arg[1].length > ult) out.push({ t: 'txt', v: texto.slice(ult, ini + arg[1].length) });
+      out.push({ t: 'frac', n: arg[2], d: den, orig: `${arg[2]}/${den}`, sep: '/' });
+      ult = fimM;
       continue;
     }
     const sci = cientifica(texto.slice(ult, ini), num, den, texto.slice(fimM), false);
