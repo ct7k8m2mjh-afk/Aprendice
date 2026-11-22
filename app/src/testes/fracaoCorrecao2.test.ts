@@ -18,3 +18,18 @@ describe('R2: fração com "ℓ" empilha', () => {
     for (const s of ['2π · √(ℓ/g) → k/m = g/ℓ', 'o termo 2ℓ²/(x₁ − x₀)² cresce']) expect(junta(s)).toBe(s);
   });
 });
+
+describe('R4: "t½" é um termo só; fração do Unicode empilha junto da empilhada', () => {
+  it('qui Pd7109aee e tema Q09', () => {
+    expect(fr('t/t½ = (1,40 × 10⁹)/(7,05 × 10⁸)')).toEqual(['t|t½', '1,40 × 10⁹|7,05 × 10⁸']);
+    expect(fr('n = tempo ÷ t½')).toEqual(['tempo|t½']);
+    expect(fr('1 → ½ → ¼ → ⅛ → 1/16')).toEqual(['1|2', '1|4', '1|8', '1|16']);
+  });
+  it('sem fração empilhada no texto, a do Unicode fica como está; o índice "t½" nunca vira fração', () => {
+    expect(fr('NO + ½ O2 → NO2')).toEqual([]);
+    expect(fr('t½ = 10 h → 3 meias-vidas')).toEqual([]);
+  });
+  it('o texto não muda', () => {
+    for (const s of ['t/t½ = (1,40 × 10⁹)/(7,05 × 10⁸)', '1 → ½ → ¼ → ⅛ → 1/16', 'n = tempo ÷ t½']) expect(junta(s)).toBe(s);
+  });
+});

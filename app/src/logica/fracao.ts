@@ -26,6 +26,7 @@ const Z_DO_SIMBOLO = new Map(ELEMENTOS.map((s, i) => [s, i + 1]));
 // (coeficiente e raiz juntos: "6√5/5" é (6√5) ÷ 5, o numerador inteiro vai em cima; letras: uma, ou um segmento
 // "AB", "Ab" (área da base), "xP" (abscissa de P))
 // "Δ" antes da letra ("ΔV²", "Δt", "ΔΦ") e índice depois dela ("v₂", "T₁", "B_f", "Δε_jul") fazem parte do termo
+// (a meia-vida "t½" é um termo só: "t/t½", "tempo ÷ t½"; revisão de 21/11, questão-correção 2 R4)
 // número com milhar separado por espaço ("27 000/96 500", "450 000/1 000 000") e grupo com um nível de parênteses dentro
 // ("((1 · 1)/2 · 1)/3", "(1 × (−1) × 18)/(1 × 2)"), com coeficiente, letra ou raiz colados antes ("k(k + 1)/2",
 // "√3(√3 − √2)/(3 − 2)", "Q(0)/2") (revisão de dados de 19/11/2026, item 3)
@@ -38,7 +39,7 @@ const EXP_POS = String.raw`(?:[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]+|\^\([^()\n]{1,30
 const POTENCIA = String.raw`(?:\d+(?:,\d+)?|[A-Za-zα-ωπ])\^(?:\([^()\n]{1,30}\)|[−\-]?\d+(?:,\d+)?|[a-zA-Z](?![A-Za-z]))`;
 // coeficiente colado ao grupo: número, raiz, função ("log2(y)"), até duas letras ("Mm(ΔT − 100)", "pq(p + q)") ou outro
 // grupo ("(l√19/3)(l√17/3)/2"); letra colada à raiz ("l√19/3") vai junto
-const TERMO = String.raw`(?:\d+(?:,\d+)?|√\d*|ln|log[₀-₉\d]*|sen|cos|tg|[A-Za-zα-ω]{1,2}|\([^()\n]{1,30}\))?${GRUPO}${EXP_POS}|${POTENCIA}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?(?:[a-zA-Zℓ](?=√))?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦℓ][\u0302\u0304\u0305]?)?(?:_[A-Za-z0-9]+|[₀-₉]+|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-z])[A-Za-z])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
+const TERMO = String.raw`(?:\d+(?:,\d+)?|√\d*|ln|log[₀-₉\d]*|sen|cos|tg|[A-Za-zα-ω]{1,2}|\([^()\n]{1,30}\))?${GRUPO}${EXP_POS}|${POTENCIA}|${MILHAR}|(?:\d+(?:[.,]\d+)*)?(?:[a-zA-Zℓ](?=√))?√?(?:\d+(?:[.,]\d+)*)?(?:\^[−\-]?\d+)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθΦℓ][\u0302\u0304\u0305]?)?(?:_[A-Za-z0-9]+|[₀-₉]+|(?<=[A-Za-z])½|(?<=Δ[A-Za-z])\d+|(?<=(?:^|[^A-Za-z])[A-Za-z])\d(?!\d|[.,]\d))?[²³⁴⁵⁶⁷⁸⁹¹⁰⁻]*`;
 // (revisão de 21/11/2026, N1) função com argumento ("sen θ/g", "BC/tg 30°", "log x/log 2") e produto de variáveis
 // ("nRT/V", "GMm/r²", "4π²R²/T²", "vA/vB", "FX/mX"); o produto só vale com maiúscula, letra grega, índice ou expoente e
 // sem ser unidade, sigla ou genótipo (validado em `produtoValido`)
@@ -269,7 +270,32 @@ function nuclideo(texto: string, ini: number, num: string, den: string): string 
 export function partesFracao(texto: string, materia?: string): ParteFracao[] {
   const fim: ParteFracao[] = [];
   for (const p of divisoes(texto)) if (p.t === 'txt') fim.push(...barras(p.v, materia)); else fim.push(p);
-  return fim.length ? fim : [{ t: 'txt', v: texto }];
+  if (!fim.length) return [{ t: 'txt', v: texto }];
+  // fração do Unicode ("½", "¼", "⅛") no mesmo texto de uma fração empilhada também empilha, para a mesma linha não
+  // misturar as duas formas ("1 → ½ → ¼ → ⅛ → 1/16"); a letra com "½" é índice ("t½") e fica (revisão de 21/11/2026,
+  // questão-correção 2 R4)
+  if (!fim.some((p) => p.t === 'frac') || !RE_VULGAR.test(texto)) return fim;
+  return fim.flatMap((p) => (p.t === 'txt' ? vulgares(p.v) : [p]));
+}
+
+const VULGAR: Record<string, [string, string]> = {
+  '½': ['1', '2'], '⅓': ['1', '3'], '⅔': ['2', '3'], '¼': ['1', '4'], '¾': ['3', '4'], '⅕': ['1', '5'], '⅖': ['2', '5'],
+  '⅗': ['3', '5'], '⅘': ['4', '5'], '⅙': ['1', '6'], '⅚': ['5', '6'], '⅛': ['1', '8'], '⅜': ['3', '8'], '⅝': ['5', '8'], '⅞': ['7', '8'],
+};
+const RE_VULGAR = /(?<![A-Za-zÀ-ÿα-ωℓ])[½⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞]/;
+/** A fração do Unicode é um caractere só: `orig` guarda o caractere, `n` e `d` os algarismos desenhados. */
+export const ehFracaoUnicode = (orig: string) => orig.length === 1 && orig in VULGAR;
+function vulgares(s: string): ParteFracao[] {
+  const out: ParteFracao[] = [];
+  let ult = 0;
+  for (const m of s.matchAll(new RegExp(RE_VULGAR.source, 'g'))) {
+    if (m.index! > ult) out.push({ t: 'txt', v: s.slice(ult, m.index) });
+    const [n, d] = VULGAR[m[0]];
+    out.push({ t: 'frac', n, d, orig: m[0], sep: '' });
+    ult = m.index! + 1;
+  }
+  if (ult < s.length) out.push({ t: 'txt', v: s.slice(ult) });
+  return out;
 }
 
 /** início do numerador longo (quantidade com nome ou fórmula química inteira) sobre um número, antes de "="; ou null */
@@ -352,7 +378,7 @@ function barras(texto: string, materia?: string): ParteFracao[] {
 // porcentagem; ou número com unidade ("1 g ÷ 2^4", "90 g ÷ 18 g/mol", "108 km/h ÷ 3,6", "45° ÷ 15°")
 const EXPO = String.raw`(?:\^\([^()\n]{1,24}\)|\^[−\-+]?[0-9a-zA-Z,]+[+−]?|[²³⁴⁵⁶⁷⁸⁹¹⁰⁻⁺ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻ]+)?!?`;
 const NUM = String.raw`(?:\d{1,3}(?:[   ]\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)*)`;
-const SIMPLES = String.raw`(?:(?:log|ln|sen|cos|tg)\s?)?Σ?(?:\d{1,3}(?:[   ]\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθμΔℓ](?:_[A-Za-z0-9]+|\d(?!\d|[.,]\d))?)?[₀-₉ᵢⱼₙₐₑₒₓ]*` + EXPO + '%?';
+const SIMPLES = String.raw`(?:(?:log|ln|sen|cos|tg)\s?)?Σ?(?:\d{1,3}(?:[   ]\d{3})+(?:,\d+)?|\d+(?:[.,]\d+)*)?√?(?:\d+(?:[.,]\d+)*)?Δ?(?:[A-Z]{2}|[A-Z][a-z]|[xy][A-Z]|[a-zA-Zα-ωπθμΔℓ](?:_[A-Za-z0-9]+|\d(?!\d|[.,]\d)|½)?)?[₀-₉ᵢⱼₙₐₑₒₓ]*` + EXPO + '%?';
 const UBASE = 'mmol|kmol|mol|mA|μA|µA|mV|kV|MW|GW|MJ|GJ|kN|MPa|GPa|GHz|MHz|kHz|hm|ha|mg|kg|μg|µg|g|mL|dL|L|mm|cm|dm|km|nm|m|min|s|h|kJ|J|kcal|cal|atm|kPa|Pa|K|kΩ|Ω|kWh|Wh|kW|W|N|V|A|C|Hz|eV|t|dias?|anos?|horas?|bi|mi|mil|milhão|milhões|bilhão|bilhões';
 const UNID_NOME = String.raw`(?:${UBASE})(?:[²³]|[23](?![\d,]))?(?:[·.\/](?:${UBASE})(?:[²³]|[23](?![\d,]))?){0,2}`;
 const CIENT = String.raw`${NUM}(?:\s?×\s?10(?:[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+|\^\(?[−\-]?\d+\)?))?`;

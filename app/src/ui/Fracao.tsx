@@ -1,5 +1,5 @@
 import { createContext, Fragment, useContext, type ReactNode } from 'react';
-import { partesFracao, type ParteFracao } from '../logica/fracao';
+import { ehFracaoUnicode, partesFracao, type ParteFracao } from '../logica/fracao';
 import { partesNotacao } from '../logica/notacao';
 
 /**
@@ -38,6 +38,15 @@ function desenhaFracoes(texto: string, materia?: string): ReactNode {
 export function Fracao({ p, n, d, className = 'frac', props }: {
   p: Extract<ParteFracao, { t: 'frac' }>; n?: ReactNode; d?: ReactNode; className?: string; props?: Record<string, unknown>;
 }) {
+  // fração do Unicode ("½"): os algarismos desenhados ficam fora do texto, que continua o caractere dos dados
+  // (revisão de 21/11/2026, questão-correção 2 R4)
+  if (ehFracaoUnicode(p.orig)) return (
+    <span className={className} {...props}>
+      <span className="frac-n" data-p="n" aria-hidden="true">{n ?? p.n}</span>
+      <span className="frac-d" data-p="d" aria-hidden="true">{d ?? p.d}</span>
+      <span className="sr">{p.orig}</span>
+    </span>
+  );
   return (
     <span className={className} {...props}>
       {p.pn && <span className="sr">(</span>}
