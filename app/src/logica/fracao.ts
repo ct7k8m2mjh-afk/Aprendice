@@ -56,8 +56,13 @@ const COLCHETE = String.raw`(?:\d+(?:,\d+)?·?|Δ)?${UM_COLCHETE}(?:·?${UM_COLC
 // ou sinal de conta entre espaços dentro: "(√3 + 1)²/[(√3 − 1)(√3 + 1)]") e termina ali (sem outro colchete ou "·" colado
 // depois); a concentração embaixo ("[HA]", "[HSO4−]", "[Cu2+]") continua na linha
 const COLCHETE_DEN = String.raw`\[(?=[^\[\]\n]*(?:[()]|\s[+−×·]\s))[^\[\]\n]{3,40}\]${EXP_POS}(?![·\[])`;
-const RE = new RegExp(`(${FUNCAO}|${PRODUTO}|${COLCHETE}|${TERMO})/(${COLCHETE_DEN}|${FUNCAO}|${PRODUTO}|${TERMO})`, 'g');
-const RE_COLCHETE = new RegExp(`^(?:${COLCHETE}|${COLCHETE_DEN})$`);
+// (revisão de 21/11/2026, passada 4 S4) ângulo em cima ("360°/24 h", "180°/n", "360°/6", "90°/360°"): embaixo, número
+// (com o grau ou com a unidade de tempo, só depois de ângulo) ou variável; "30°/h", velocidade angular, é unidade e fica na linha
+const GRAU = String.raw`\d+(?:,\d+)?°`;
+const GRAU_DEN_SO = String.raw`\d+(?:,\d+)?(?:°|\s(?:h|s|min)(?![A-Za-zÀ-ÿ\d]))`;
+const GRAU_DEN = String.raw`(?<=°\/)${GRAU_DEN_SO}`;
+const RE = new RegExp(`(${GRAU}|${FUNCAO}|${PRODUTO}|${COLCHETE}|${TERMO})/(${GRAU_DEN}|${COLCHETE_DEN}|${FUNCAO}|${PRODUTO}|${TERMO})`, 'g');
+const RE_COLCHETE = new RegExp(`^(?:${COLCHETE}|${COLCHETE_DEN}|${GRAU}|${GRAU_DEN_SO})$`);
 const RE_TERMO = new RegExp(`^(?:${TERMO})$`);
 const RE_FUNCAO = new RegExp(`^(?:${FUNCAO})$`);
 // nomes de unidade com mais de uma letra ("kJ", "mL", "mmHg"): nunca são produto de variáveis
@@ -214,6 +219,8 @@ function ehFracao(texto: string, ini: number, num: string, den: string, materia?
   if (/^\(?0\)?$/.test(den) && num !== '0' && !LETRA.test(num) && !/(?:[=≈×·÷]|[+−]\s)\s*$/.test(texto.slice(0, ini)) && !/^\s*[=≈+−×·÷]/.test(texto.slice(ini + num.length + 1 + den.length))) return false;
   if (/^\([+−-]\)$/.test(num) && /^\([+−-]\)$/.test(den) && !/^\s*[<>≤≥=]/.test(texto.slice(ini + num.length + 1 + den.length))) return false;
   if (!produtoValido(num, den) || !produtoValido(den, num) || parDeUnidades(num, den)) return false;
+  // ângulo sobre unidade de tempo sozinha ("30°/h") é velocidade angular
+  if (/°$/.test(num) && /^(?:h|s|min)$/.test(den)) return false;
   // genótipo com as mesmas letras em cima e embaixo ("Ab/aB", "AB/ab", "RS/rs")
   if (/^[A-Za-z]{2,4}$/.test(num) && num.length === den.length && num !== den && num.toLowerCase() === den.toLowerCase()) return false;
   // (revisão de 21/11/2026, questão-correção 2 R3) barra entre espécies químicas: par redox ("O2/OH⁻", "Cu²⁺/Cu") e

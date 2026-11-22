@@ -63,3 +63,20 @@ describe('S3: letra sobre zero é divisão de verdade', () => {
     expect(fr('f(3) = 0/0', 'mat')).toEqual(['0|0']);
   });
 });
+
+describe('S4: ângulo em cima empilha', () => {
+  it('geo P3adaa388, mat Pe9cd1f75, Pc784cb63 e Pd5b9e245', () => {
+    expect(fr('360°/24 h = 15° por hora', 'geo')).toEqual(['360°|24 h']);
+    expect(fr('360°/24 = 15°', 'geo')).toEqual(['360°|24']);
+    expect(fr('sen(180°/n) e 180°/n = 30°', 'mat')).toEqual(['180°|n', '180°|n']);
+    expect(fr('360°/6 = 60° e 720°/3 = 240°', 'mat')).toEqual(['360°|6', '720°|3']);
+    expect(fr('esquecer a fração 90°/360°.', 'mat')).toEqual(['90°|360°']);
+  });
+  it('velocidade angular e fração de tempo ficam como antes', () => {
+    expect(fr('curto: 360°/h | longo: 30°/h', 'mat')).toEqual([]);
+    expect(fr('40 min = 2/3 h', 'fis')).toEqual(['2|3']);
+  });
+  it('o texto não muda', () => {
+    for (const s of ['360°/24 h = 15° por hora', 'sen(180°/n)']) expect(junta(s, 'mat')).toBe(s);
+  });
+});
