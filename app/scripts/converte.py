@@ -59,6 +59,35 @@ def ajustes_temas(m):
     return ler(AJUSTES_TEMAS).get(m) or {}
 
 
+# Revisão de 21/11/2026 (matérias N1): figuras de teoria com fração empilhada e expoente sobrescrito no texto desenhado
+# (CLAUDE.md, "Fração sempre empilhada"). app-atual/ não muda: a figura refeita fica em
+# conteudo-fonte/figuras-corrigidas/<m>/<tema>.json (gerada por scripts/figuras_fracao.cjs a partir de marcacao.json) e
+# entra aqui no lugar da original, casada pelo título. "orig" é o começo do sha256 da figura original: se o protótipo
+# mudar a figura, a correção para de valer e o programa avisa (refazer com o figuras_fracao.cjs).
+FIGURAS_CORRIGIDAS = os.path.join(APP, 'conteudo-fonte', 'figuras-corrigidas')
+
+
+def figuras_corrigidas(m, mod, lst):
+    arq = os.path.join(FIGURAS_CORRIGIDAS, m, mod + '.json')
+    if not os.path.exists(arq):
+        return lst
+    novas = {c['t']: c for c in ler(arq)}
+    usadas = set()
+    saida = []
+    for x in lst:
+        c = novas.get(x.get('t', ''))
+        if c:
+            if hashlib.sha256(x.get('u', '').encode('utf-8')).hexdigest()[:16] != c['orig']:
+                raise SystemExit(f'{m}/{mod}: a figura "{x.get("t")}" mudou em app-atual; refaça a correção (node scripts/figuras_fracao.cjs)')
+            x = dict(x, u=c['u'])
+            usadas.add(c['t'])
+        saida.append(x)
+    sobra = set(novas) - usadas
+    if sobra:
+        raise SystemExit(f'{m}/{mod}: figura corrigida sem original: {sorted(sobra)}')
+    return saida
+
+
 def aplica_ajustes_temas(m, materia):
     """20/11/2026: aplica conteudo-fonte/ajustes-temas.json (nomes por id e áreas) no materia.json montado."""
     aj = ajustes_temas(m)
@@ -253,7 +282,7 @@ def converte_materia(m, amostra_ids=None):
     if os.path.isdir(pasta_img):
         for f in sorted(os.listdir(pasta_img)):
             if f.endswith('.json'):
-                lst = ler(os.path.join(pasta_img, f))
+                lst = figuras_corrigidas(m, f[:-5], ler(os.path.join(pasta_img, f)))
                 figuras[f[:-5]] = [{'t': x.get('t', ''), 'u': x.get('u', ''), 'subs': x.get('sub') if isinstance(x.get('sub'), list) else [], 'fonte': x.get('f', ''), 'licenca': x.get('l', '')} for x in lst]
 
     # módulos e conteúdos
@@ -468,10 +497,91 @@ def marca_indisponiveis(provas):
     return len(achou)
 
 
+# Nota da prova para o aluno (revisão de 21/11/2026, dados N2). O `nota` da fonte (conteudo-fonte/provas/<id>/prova.json)
+# é o registro da coleta para o dono (de onde veio cada arquivo, cópias, acessos) e não muda; o `origem` continua com os
+# endereços usados. No site vai só o que serve ao aluno: o nome de site didático (CLAUDE.md, "Questões de sites didáticos
+# saem": nem nome) e os detalhes internos da coleta ("acesso automático", "link do dono", "cópia pública"...) saem.
+NOTA_INTERNA = re.compile(
+    r'brasil\s*escola|brasilescola|mundo\s*educa|prepara\s*enem|infoescola|estrat[eé]gia|curso[\s-]objetivo|'
+    r'acesso autom|\bdono\b|\bdrive\b|c[oó]pia|daqui|n[aã]o respond|gab_preliminar|pacote|sess[aã]o d|tirad[oa] d|'
+    r'\bocr\b|\btls\b|rob[oô]s|web\.archive|https?:|\w\.(?:br|com|org)\b|\bachad[oa]|apagad|reconferir|'
+    r'n[aã]o conferid|arquivo|\blink\b|baixad|obtid|bloqueia', re.I)
+
+# reescritas de frases da coleta que têm uma parte útil ao aluno (aplicadas antes do filtro)
+NOTA_REESCRITA = [
+    (re.compile(r'\bNo pacote, só o gabarito'), 'Só o gabarito'),
+    (re.compile(r'O arquivo "[^"]*" da Acafe é o gabarito PRELIMINAR'), 'Gabarito PRELIMINAR da Acafe'),
+    (re.compile(r'O arquivo publicado como "gabarito oficial" traz o gabarito PRELIMINAR'),
+     'O gabarito publicado como oficial é o PRELIMINAR'),
+    (re.compile(r'O gabarito do pacote saiu'), 'O gabarito usado saiu'),
+    (re.compile(r' de gabaritos do pacote '), ' de gabaritos '),
+    (re.compile(r' foi achado \('), ' ('),
+    (re.compile(r'^A notícia do Estratégia .*voltaram\.$'), ''),
+    (re.compile(r'^Caderno [^.:]*: questões localizadas por OCR \(o print é a página original\)\.$'), ''),
+    (re.compile(r'Gabarito definitivo/oficial não publicado ou não localizado; a questão entra com o gabarito do Aprendice '
+                r'\(([^()]*)\) e fica fora do ar até lá\.'),
+     r'Gabarito definitivo não publicado ou não localizado: vale o gabarito do Aprendice (\1).'),
+]
+
+
+def _sem_parenteses_internos(s):
+    """Tira os parênteses (sem aninhar) que trazem detalhe interno."""
+    while True:
+        novo = re.sub(r'\s*\(([^()]*)\)', lambda m: '' if NOTA_INTERNA.search(m.group(1)) else m.group(0).replace('(', '\0').replace(')', '\1'), s)
+        if novo == s:
+            return s.replace('\0', '(').replace('\1', ')')
+        s = novo
+
+
+def _divide_fora_de_parenteses(s, sep):
+    partes, nivel, atual, i = [], 0, '', 0
+    while i < len(s):
+        c = s[i]
+        nivel += (c == '(') - (c == ')')
+        if nivel == 0 and s.startswith(sep, i):
+            partes.append(atual)
+            atual, i = '', i + len(sep)
+            continue
+        atual += c
+        i += 1
+    return partes + [atual]
+
+
+def nota_aluno(nota):
+    """Texto da nota para o aluno: frase a frase, cada trecho com detalhe interno sai (o trecho útil antes de ', ' ou
+    ': ' fica); frase que fica vazia sai inteira."""
+    frases = re.split(r'(?<=[.!?])\s+(?=[A-ZÁÉÍÓÚÂÊÔÃÕÇ0-9"(])', (nota or '').strip())
+    out = []
+    for f in frases:
+        for rx, novo in NOTA_REESCRITA:
+            f = rx.sub(novo, f)
+        f = _sem_parenteses_internos(f.strip().rstrip('.'))
+        trechos = []
+        for t in _divide_fora_de_parenteses(f, '; '):
+            m = NOTA_INTERNA.search(t)
+            if m:
+                # corta no último ', ' ou ': ' (fora de parênteses) antes do detalhe interno
+                antes = t[:m.start()]
+                cortes = [i for i in (antes.rfind(', '), antes.rfind(': ')) if i > 0]
+                t = antes[:max(cortes)] if cortes else ''
+                if NOTA_INTERNA.search(t) or t.count('(') != t.count(')'):
+                    t = ''
+            t = re.sub(r'\s+([;,.:])', r'\1', t).strip(' ,;:')
+            if t:
+                trechos.append(t)
+        if trechos:
+            s = '; '.join(trechos)
+            out.append(s[0].upper() + s[1:] + '.')
+    texto = ' '.join(out)
+    assert not NOTA_INTERNA.search(texto), texto
+    return texto
+
+
 def prova_publicada(p):
     """A prova como vai ao site: a anulada pelo Aprendice sai, como a anulada pela banca (que o recorte já tira), e o
     número dela fica em fora.anuladas_aprendice; a indisponível (dono, 19/11/2026) também sai, com o número em
-    fora.indisponiveis. A fonte não muda."""
+    fora.indisponiveis. A nota vai só com o texto para o aluno (nota_aluno). A fonte não muda."""
+    p = dict(p, nota=nota_aluno(p.get('nota')))
     fora_ap = [q['n'] for q in p['questoes'] if q.get('anuladaAprendice')]
     fora_ind = [q['n'] for q in p['questoes'] if q.get('indisponivelDono') and not q.get('anuladaAprendice')]
     if not fora_ap and not fora_ind:

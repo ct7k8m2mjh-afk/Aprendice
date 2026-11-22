@@ -41,6 +41,14 @@ describe.skipIf(!temProvas)('provas completas (recorte oficial)', () => {
     }
   });
 
+  it('nota da prova (mostrada no simulado) sem site didático nem detalhe interno da coleta', () => {
+    // revisão de 21/11/2026, dados N2: o registro da coleta fica na fonte; no site, só o texto para o aluno
+    for (const p of provas) {
+      expect(p.nota, p.id).not.toMatch(/brasil\s*escola|brasilescola|mundo\s*educa|prepara\s*enem|infoescola/i);
+      expect(p.nota, p.id).not.toMatch(/acesso autom|\bdono\b|c[oó]pia|daqui|gab_preliminar|pacote|https?:|\bdrive\b|estrat[eé]gia/i);
+    }
+  });
+
   it('nenhum texto entrega a resposta (caderno comentado ou marcado)', () => {
     for (const p of provas) for (const q of p.questoes) {
       expect(q.texto).not.toMatch(/Alternativa correta|►|Gabarito:/);
