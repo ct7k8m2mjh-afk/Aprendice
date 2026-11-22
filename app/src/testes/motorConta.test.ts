@@ -5,7 +5,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { avalia, contaTransicoes, junta, montaRoteiro, quadroEquivale, quadroNaConta, tokeniza, type Roteiro } from '../logica/motorConta';
+import { avalia, contaTransicoes, junta, montaRoteiro, parecida, quadroEquivale, quadroNaConta, tokeniza, type Roteiro } from '../logica/motorConta';
 import { cruzamento } from '../logica/punnett';
 import { ResolucaoAnimada, textoVisivel } from '../ui/ResolucaoAnimada';
 import { ResolucaoView } from '../ui/Resolucao';
@@ -76,7 +76,9 @@ function confereLinhas(r: Resolucao, rt: Roteiro): string | null {
     // (passada 8 A1) a linha cujos pedaços crus já estão, cada um, numa linha da conta também não entra repetida
     const crus = x.linha.split(/\s+\|\s+/);
     const naConta = (ys: string[]) => ys.every((y) => textos.some((t) => quadroNaConta(t, y) || quadroEquivale(t, y)));
-    if (!sao && !naConta(pedacos(x.linha)) && !naConta(crus)
+    // (passada 9 B2) a linha que diz o mesmo que uma a três linhas seguidas da conta, com outras palavras
+    const parecidaEm = textos.some((_, i) => [1, 2, 3].some((g) => i + g <= textos.length && (parecida(textos.slice(i, i + g), x.linha, 0) || parecida(textos.slice(i, i + g), x.linha, 2, true))));
+    if (!sao && !naConta(pedacos(x.linha)) && !naConta(crus) && !parecidaEm
       && !textos.some((t) => quadroNaConta(t, x.linha) || quadroEquivale(t, x.linha))) return `quadro "${x.linha}" sumiu`;
     if (x.nota && !x.nota.split(/\s+\|\s+/).every((n) => notas.includes(n))) return `nota "${x.nota}" sumiu`;
   }

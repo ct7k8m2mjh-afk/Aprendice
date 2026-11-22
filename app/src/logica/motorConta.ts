@@ -1163,6 +1163,87 @@ export function quadroEquivale(linha: string, q: string): boolean {
   return true;
 }
 
+/** os números de um texto ("70,0" → "70"), sem o da unidade ("mg/100 g") e, com `semNota`, sem os de uma observação
+ *  entre parênteses ("(14h)", "(esquerda)"; não "(1 − y)") */
+const numerosDe = (s: string, semNota = false) => {
+  let t = s.replace(/\/\s?\d+\s?[A-Za-zµ]{1,3}\b/g, ' ');
+  if (semNota) t = t.replace(/\(\s*[\d,.]*\s*\p{L}[\p{L}\s.,]*\)/gu, ' ');
+  return (t.match(/\d+(?:[.,]\d+)*[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]*/g) || []).map((x) => x.replace(/[.,](\d*?)0+(?=[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]*$)/, (_m, d: string) => (d ? ',' + d : '')).replace('.', ','));
+};
+const PALAVRA_VAZIA = new Set(['de', 'da', 'do', 'das', 'dos', 'e', 'a', 'o', 'os', 'as', 'em', 'no', 'na', 'com', 'que', 'para', 'por']);
+const palavrasDe = (s: string) => (s.toLowerCase().match(/\p{L}+/gu) || []).filter((w) => !PALAVRA_VAZIA.has(w));
+const rotuloDe = (s: string) => /^\s*([^:;=<>→()]{1,20}):\s/.exec(s)?.[1].trim().toLowerCase();
+/** os sinais de uma conta ("=", "→", "/", "×", "+", "−"…), com "rótulo: " valendo "=" e "·" valendo "×" */
+const sinaisDe = (s: string): string[] => (s.replace(/:\s/g, '= ').replace(/[·*]/g, '×').replace(/-/g, '−').replace(/÷/g, '/').match(/[=≈≠<>≤≥→⇒⇔/×+−√]/g) || []);
+const fimDaSeta = (s: string) => { const i = s.lastIndexOf('→'); return i < 0 ? undefined : s.slice(i + 1).trim().toLowerCase(); };
+/** `a` está dentro de `b`, na mesma ordem (contando as repetições) */
+function contido(a: string[], b: string[]): boolean {
+  let de = 0;
+  for (const x of a) {
+    const i = b.indexOf(x, de);
+    if (i < 0) return false;
+    de = i + 1;
+  }
+  return true;
+}
+/**
+ * (passada 9 B2) A linha do quadro diz o mesmo que estas linhas seguidas da conta, com outras palavras ("µ mínimo = 0,50 →
+ * 3,2%" e "menor coeficiente: 0,50 → 3,2% de água"; "Cu: +0,34 V e Al: +1,66 V > −0,55 V" e as linhas do Cu e do Al)?
+ * 0: não; 2: com certeza; 1: provável. `dist`: a distância entre o passo dessas linhas e o passo em que ela entraria.
+ * - o rótulo do começo, quando as duas têm, é o mesmo ("Mg:" não casa com "Zn:"); várias linhas, só quando cada uma tem
+ *   rótulo e a linha do quadro cita todos ("Cu … e Al …");
+ * - o mesmo rótulo ("III:") e a mesma conclusão depois da última seta, e os números de uma estão na outra: 2;
+ * - longe (dist ≥ 2): só o mesmo rótulo e exatamente os mesmos números, três ou mais ("Mg: 70,0 | 48,0 | 23,0"); ou, num
+ *   passo antes (`antes`), exatamente os mesmos números, dois ou mais, e os mesmos sinais;
+ * - dois números ou mais, e os sinais dela nessas linhas: os mesmos números (2); ou todos nessas linhas, na mesma ordem,
+ *   com no máximo um a mais (ou metade) (1);
+ * - senão (uma linha): a mesma conclusão, os números dela na linha e metade das palavras (1).
+ */
+export function parecida(ls: string[], q: string, dist = 0, antes = false): 0 | 1 | 2 {
+  if (!ls.length) return 0;
+  const rq = rotuloDe(q), rl = rotuloDe(ls[0]);
+  if (rq && rl && rq !== rl) return 0;
+  if (ls.length > 1) {
+    const pq = new Set(q.match(/[\p{L}\d]+/gu) || []);
+    if (!ls.every((l) => { const r = /^\s*([^:;=<>→()]{1,20}):\s/.exec(l)?.[1].trim(); return r && pq.has(r); })) return 0;
+  }
+  const nq = numerosDe(q), nl = numerosDe(ls.join(' ; '), true);
+  const iguais = nq.join(' ') === nl.join(' ');
+  const fq = fimDaSeta(q), fl = ls.length === 1 ? fimDaSeta(ls[0]) : undefined;
+  const mesmoFim = !!fq && fq === fl && !/^(?:alternativa\s+)?[a-e]$/.test(fq);
+  if (mesmoFim && rq && rq === rl && (contido(nl, nq) || contido(nq, nl))) return 2;
+  // os sinais dela também estão nessas linhas ("g(1) = 0" não é "vértice (1, 0)"; "2/(1/2)" não é "1/2"), e ela é relação
+  const sl = sinaisDe(ls.join(' ; ')), sq = sinaisDe(q);
+  const sinais = sq.every((c) => { const i = sl.indexOf(c); if (i < 0) return false; sl.splice(i, 1); return true; }) && sq.some((c) => /[=≈≠<>≤≥→⇒⇔]/.test(c));
+  // longe: o mesmo rótulo e os mesmos números, três ou mais; ou, num passo antes, os mesmos números e os mesmos sinais
+  // ("d = 2r → V/2" e "… → d = 2r: V = (k · Q/r)/2", que o quadro escreve fora da ordem da conta)
+  // metade das palavras dela (sem repetir) também estão nessas linhas ("CH2= primário; CH secundário" não é "CH2=CH−CH3")
+  const wl = new Set(palavrasDe(ls.join(' ; '))), wq = [...new Set(palavrasDe(q))];
+  const palavras = wq.filter((w) => wl.has(w)).length * 2 >= wq.length;
+  if (dist >= 2) return (rq && rq === rl && nq.length >= 3 && iguais) || (antes && nq.filter((x) => x !== '0' && x !== '1').length >= 2 && iguais && sinais && palavras) ? 2 : 0;
+  if (nq.length >= 2) {
+    // dois números que não sejam 0 nem 1 ("ΔU = 0 ; W < 0 → Q < 0" não é "W = 0 ; … → Q = ΔU < 0"), e os sinais dela
+    if (!sinais || nq.filter((x) => x !== '0' && x !== '1').length < 2) return 0;
+    // e as mesmas letras (sem o rótulo, sem unidade depois de número, sem o "e" de ligação; sem o nome do começo da conta
+    // de um "=" só, "A = (10 × 10)/2"): "f(0) < 0 → c < 0" não é "xv < 0 e a < 0 → … → b < 0"
+    const letras = (t: string) => new Set((t.replace(/^\s*[^:;=<>→()]{1,20}:\s/, '').replace(/(\d)\s?[A-Za-zµΩ]{1,3}\b/g, '$1').match(/\p{L}+/gu) || [])
+      .filter((w) => w.length === 1 && w !== 'e').map((w) => w.toLowerCase()));
+    const semNome = (sinaisDe(q).filter((c) => /[=≈≠<>≤≥→⇒⇔]/.test(c)).length === 1 ? q.replace(/^\s*[^\d=:;<>→]{1,12}?\s=\s/u, '') : q);
+    const lq = letras(semNome), ll = letras(ls.join(' ; '));
+    if (iguais) return 2;
+    if (![...lq].every((c) => ll.has(c))) return 0;
+    if (!contido(nq, nl)) return 0;
+    if (nl.length - nq.length <= Math.max(1, Math.floor(nq.length / 2))) return 1;
+    // no mesmo passo, os números dela seguidos dentro de uma conta mais longa ("A: 252 − 162 = 90" em "6% de 2 700 = 162
+    // → 252 − 162 = 90"): "C = A → B = 100 − 2A" não é "2A + B = 100 → B = 100 − 2A" (letras)
+    const seguidos = nl.some((_, i) => nq.every((x, k) => nl[i + k] === x));
+    return dist === 0 && seguidos && palavras ? 1 : 0;
+  }
+  if (!mesmoFim || ls.length > 1) return 0;
+  const ws = palavrasDe(q);
+  return contido(nq, nl) && ws.length >= 3 && ws.filter((w) => wl.has(w)).length * 2 >= ws.length ? 1 : 0;
+}
+
 /**
  * Reação escrita com palavras em Química (item 8c): "1 C2H5OH dá 1 C2H4 mais 1 H2O", "2 H2 e O2 formam 2 H2O". Só
  * fórmulas de verdade dos dois lados; o verbo vira a seta e "mais"/"e" viram "+". Os termos (coeficientes e fórmulas)
@@ -1355,6 +1436,29 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
     //    (no passo proporcional, quando há folga), logo depois da linha casada antes ou antes da casada depois
     const extras = new Map<number, { antes: Map<number, ItemPasso[]>; fim: ItemPasso[] }>();
     const lugar = (j: number) => { let e = extras.get(j); if (!e) { e = { antes: new Map(), fim: [] }; extras.set(j, e); } return e; };
+    // (passada 9 B2) a linha do quadro que não casou, mas diz o mesmo que uma ou mais linhas seguidas da conta com outras
+    // palavras (`parecida`): não entra repetida; a nota vai para a última dessas linhas. Procura no passo em que ela
+    // entraria e nos vizinhos dele; nos outros passos, só a mesma lista de números com o mesmo rótulo ("Mg:", "H:"), que o
+    // quadro escreve fora da ordem da conta. Não muda o lugar das outras linhas.
+    const achaParecida = (q: { linha: string; nota?: string; destaque?: string }, alvo: number): boolean => {
+      // a melhor: certeza antes de provável, o passo mais perto, menos linhas, o passo mais adiante
+      let m: { j: number; x: number; n: number; d: number; g: number } | null = null;
+      itens.forEach((its, j) => {
+        const d = Math.abs(j - alvo);
+        for (let g = 1; g <= 3; g++) {
+          for (let x = 0; x + g <= its.length; x++) {
+            const n = parecida(its.slice(x, x + g).map((it) => it.texto), q.linha, d, j < alvo);
+            if (n && (!m || n > m.n || (n === m.n && (d < m.d || (d === m.d && (g < m.g || (g === m.g && j > m.j))))))) m = { j, x: x + g - 1, n, d, g };
+          }
+        }
+      });
+      if (!m) return false;
+      const { j, x } = m as { j: number; x: number };
+      const it = itens[j][x];
+      if (q.nota) { const n = semBarra(q.nota); if (!it.notas.includes(n)) it.notas.push(n); }
+      if (q.destaque && !it.destaque && it.texto.includes(q.destaque)) it.destaque = q.destaque;
+      return true;
+    };
     quadro.forEach((q, k) => {
       if (casa[k]) return;
       let a = -1, ax = -1, b = itens.length - 1, bx = Infinity;
@@ -1373,6 +1477,7 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
         }
       }
       const alvo = melhor >= 0 && nota * 2 >= aq.length ? melhor : Math.max(Math.max(a, 0), Math.min(b, prop));
+      if (achaParecida(q, alvo)) return;
       const novos = itensDoQuadro(q);
       const e = lugar(alvo);
       // depois da linha casada antes (mesmo passo); senão antes da casada depois (mesmo passo); senão no fim do passo
