@@ -66,7 +66,11 @@ const COLCHETE_DEN = String.raw`\[(?=[^\[\]\n]*(?:[()]|\s[+−×·]\s))[^\[\]\n]
 const GRAU = String.raw`\d+(?:,\d+)?°`;
 const GRAU_DEN_SO = String.raw`\d+(?:,\d+)?(?:°|\s(?:h|s|min)(?![A-Za-zÀ-ÿ\d]))`;
 const GRAU_DEN = String.raw`(?<=°\/)${GRAU_DEN_SO}`;
-const RE = new RegExp(`(${GRAU}|${FUNCAO}|${PRODUTO}|${COLCHETE}|${TERMO})/(${GRAU_DEN}|${COLCHETE_DEN}|${FUNCAO}|${PRODUTO}|${TERMO})`, 'g');
+// (revisão de 21/11/2026, passada 5 W1) fatorial em cima: número, letra ou grupo com "!" ("n!/(n − p)!", "6!/2!",
+// "(n − 1)!/2"); o "!" do denominador vai junto dele em `barras`
+const FATORIAL = String.raw`(?:\d+|[a-zA-Z]|${GRUPO})!(?!=)`;
+const RE = new RegExp(`(${FATORIAL}|${GRAU}|${FUNCAO}|${PRODUTO}|${COLCHETE}|${TERMO})/(${GRAU_DEN}|${COLCHETE_DEN}|${FUNCAO}|${PRODUTO}|${TERMO})`, 'g');
+const RE_FATORIAL = new RegExp(`^(?:${FATORIAL})$`);
 const RE_COLCHETE = new RegExp(`^(?:${COLCHETE}|${COLCHETE_DEN}|${GRAU}|${GRAU_DEN_SO})$`);
 const RE_TERMO = new RegExp(`^(?:${TERMO})$`);
 const RE_FUNCAO = new RegExp(`^(?:${FUNCAO})$`);
@@ -74,7 +78,7 @@ const RE_FUNCAO = new RegExp(`^(?:${FUNCAO})$`);
 const UNIDADES_NOME = new Set(('mmol kmol mol mA μA µA mV kV MW GW MJ GJ kN MPa GPa GHz MHz kHz hm ha mg kg μg µg mL dL mm cm dm km nm '
   + 'min kJ kcal cal atm kPa Pa kΩ kWh Wh kW Hz eV mmHg kgf ppm erg rad cd lm lx Gcal mAh Ah').split(' '));
 function produtoValido(x: string, outro = ''): boolean {
-  if (RE_TERMO.test(x) || RE_FUNCAO.test(x) || RE_COLCHETE.test(x)) return true;
+  if (RE_TERMO.test(x) || RE_FUNCAO.test(x) || RE_COLCHETE.test(x) || RE_FATORIAL.test(x)) return true;
   const letras = x.replace(/^\d+(?:,\d+)?/, '').replace(/_[A-Za-z0-9]+|[₀-₉²³⁴⁵⁶⁷⁸⁹¹⁰]/g, '');
   if (/^(?:sen|cos|tg|tan|log|ln)/.test(letras)) return false;
   if (/^[A-Z]{3,}$/.test(letras)) return false; // sigla ("VIP/VOP", "HIV/AIDS")
@@ -461,8 +465,10 @@ function barras(texto: string, materia?: string): ParteFracao[] {
     if (m.index > ult) out.push({ t: 'txt', v: texto.slice(ult, m.index) });
     // fatorial no denominador ("[n(n − 1)(n − 2)]/5!", "40320/3!") vai junto dele: o "!" é do número de baixo, não da
     // fração inteira (passada 3 N3)
-    const fat = texto.charAt(fimM) === '!' && /^(?:\d+|[a-zA-Z])$/.test(den) && !/^!=/.test(texto.slice(fimM)) ? '!' : '';
-    out.push({ t: 'frac', n: semParenteses(num), d: semParenteses(den) + fat, orig: orig + fat, sep: '/', pn: num !== semParenteses(num), pd: den !== semParenteses(den) });
+    // (passada 5 W1: o grupo também, "n!/(n − p)!", "n!/(p!(n − p)!)"; com o "!", os parênteses do grupo ficam à vista)
+    const fat = texto.charAt(fimM) === '!' && (/^(?:\d+|[a-zA-Z])$/.test(den) || (den.startsWith('(') && den !== semParenteses(den))) && !/^!=/.test(texto.slice(fimM)) ? '!' : '';
+    const dFat = fat && den.startsWith('(') ? den : semParenteses(den);
+    out.push({ t: 'frac', n: RE_FATORIAL.test(num) ? num : semParenteses(num), d: dFat + fat, orig: orig + fat, sep: '/', pn: !RE_FATORIAL.test(num) && num !== semParenteses(num), pd: dFat !== den });
     ult = m.index + orig.length + fat.length;
     if (fat) RE.lastIndex = ult;
   }
