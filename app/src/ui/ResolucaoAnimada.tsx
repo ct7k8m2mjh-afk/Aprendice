@@ -365,12 +365,19 @@ function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<stri
   type Pedaco = ReactNode[] | { sp: string; marca?: boolean };
   const trechos: { sp: string; marca?: boolean; pedacos: Pedaco[] }[] = [{ sp: '', pedacos: [[]] }];
   const esp = (sp: string, marca?: boolean) => (marca && sp ? <span className="ra-esp ra-marca">{sp}</span> : sp);
-  let pos = 0;
+  // marca-texto com fração (revisão de 21/11, questão-correção 2 R1): um retângulo só atrás do trecho inteiro, da altura
+  // da fração, sem quebra no meio; cada peça fica sem marca própria (antes, um bloco baixo por peça e um alto na fração)
+  let p0 = 0;
+  const dentro = L.toks.map((t) => { const a = p0; p0 += t.v.length; return !!L.marca && a >= L.marca[0] && p0 <= L.marca[1]; });
+  const marcaUnica = L.toks.some((t, i) => dentro[i] && t.k === 'frac');
+  let grupo: ReactNode[] | null = null;
   L.toks.forEach((t, i) => {
-    const ini = pos; pos += t.v.length;
-    const marca = !!L.marca && ini >= L.marca[0] && pos <= L.marca[1] ? ' ra-marca' : '';
+    const marca = dentro[i] && !marcaUnica ? ' ra-marca' : '';
     const tr = trechos[trechos.length - 1];
-    const u = tr.pedacos[tr.pedacos.length - 1] as ReactNode[];
+    const fora = tr.pedacos[tr.pedacos.length - 1] as ReactNode[];
+    if (marcaUnica && dentro[i] && !grupo) { grupo = []; fora.push(<span key={`m${i}`} className="ra-marca ra-marca-g">{grupo}</span>); }
+    const u = marcaUnica && dentro[i] ? grupo! : fora;
+    if (t.k === 'esp' && u === grupo) { u.push(t.v); return; }
     if (t.k === 'esp') {
       const nv = brk.get(i);
       if (nv === 1) { trechos.push({ sp: t.v, marca: !!marca, pedacos: [[]] }); return; }
