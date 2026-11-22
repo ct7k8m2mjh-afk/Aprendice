@@ -52,3 +52,8 @@ Mudanças visuais novas sugeridas pelos revisores. Nada disto foi aplicado.
 10. **Citação da prova com fração** (questao-correcao-3 S7): em his P78979201, a citação "tentei T2/D3" aparece
     empilhada, embora a banca a escreva na linha. Recomendação: **citação entre aspas da prova fica como a banca
     escreveu, na linha**.
+
+11. **Divisões por extenso que ficam na linha de propósito** (questao-correcao-6 Z4): "razão carga/massa", "razão
+    lucro/custo", "a razão B/A é comprimento/tempo", "trabalho que falta ÷ ritmo novo", "x ao quadrado ÷ C". O
+    detector não consegue saber com segurança onde o nome de cima começa; empilhar errado mostraria outra conta.
+    Nenhuma mostra valor errado. Recomendação: **deixar na linha** (ou reescrever essas frases da resolução com "=").
