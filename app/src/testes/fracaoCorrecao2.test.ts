@@ -58,3 +58,29 @@ describe('R3: barra entre espécies químicas e rótulos fica na linha', () => {
     for (const s of ['2 C=O/P=O', 'H₂O / CO₂ / Cl⁻', 'Ka = α²C ÷ (1 − α)', 'y = ³√x² ÷ √2']) expect(junta(s)).toBe(s);
   });
 });
+
+describe('R5: artigo, pedaço de nome ou de valor em dinheiro não vira numerador nem denominador', () => {
+  it('fica na linha', () => {
+    expect(fr('esquecer o ÷ 2 da área')).toEqual([]);
+    expect(fr('Cada um ÷ 14 dá a parte de cada')).toEqual([]);
+    expect(fr('percentual nos válidos = percentual do total ÷ 70')).toEqual([]);
+    expect(fr('mol de cada elemento ÷ o menor')).toEqual([]);
+    expect(fr('quantidade em mol = massa (g) ÷ massa molar (g/mol)', 'qui')).toEqual([]);
+  });
+  it('o valor com moeda e o nome inteiro empilham', () => {
+    expect(fr('US$ 37 mi ÷ US$ 60,2 mi ≈ 0,61', 'geo')).toEqual(['US$ 37 mi|US$ 60,2 mi']);
+    expect(fr('US$ 517,4 milhões ÷ US$ 366,3 milhões ≈ 1,41', 'geo')).toEqual(['US$ 517,4 milhões|US$ 366,3 milhões']);
+    expect(fr('razão = segmento correspondente ÷ segmento correspondente')).toEqual(['segmento correspondente|segmento correspondente']);
+    expect(fr('risco relativo (expostos ÷ não expostos)')).toEqual(['expostos|não expostos']);
+    expect(fr('não utilizadas ÷ utilizadas = 2 ÷ 9  →  não utilizadas = 2k')).toEqual(['não utilizadas|utilizadas', '2|9']);
+    expect(fr('a razão dada pela ilustração é cateto ÷ hipotenusa (seno), e não cateto ÷ cateto (tangente).')).toEqual(['cateto|hipotenusa', 'cateto|cateto']);
+  });
+  it('"o" variável, "um ÷ outro" e análise de unidade continuam conta', () => {
+    expect(fr('i / o = 3 / 4')).toEqual(['i|o', '3|4']);
+    expect(fr('razão = um ÷ outro')).toEqual(['um|outro']);
+    expect(fr('dividir a densidade pelo quadrado da velocidade: (kg/m³) ÷ (m²/s²).')).toEqual(['kg/m³|m²/s²']);
+  });
+  it('o texto não muda', () => {
+    for (const s of ['US$ 37 mi ÷ US$ 60,2 mi ≈ 0,61', 'esquecer o ÷ 2 da área', 'não utilizadas ÷ utilizadas = 2 ÷ 9']) expect(junta(s, 'geo')).toBe(s);
+  });
+});

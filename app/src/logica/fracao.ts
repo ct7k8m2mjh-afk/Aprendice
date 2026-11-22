@@ -409,17 +409,24 @@ const LETRA_NOME = String.raw`[A-ZΔ]\s[a-zà-ÿ]{3,}`;
 // letra com raiz ("L√3 ÷ 2", "3ℓ²√3 ÷ 2")
 const LETRA_RAIZ = String.raw`\d*[A-Za-zℓ][²³]?√\d+`;
 // palavra, ou nome com o adjetivo que o completa ("carga total ÷ capacitância total", "cateto oposto ÷ hipotenusa")
-const ADJ = 'interna|interno|externa|externo|recebido|recebida|cedido|cedida|elementar|possíveis|favoráveis|possível|favorável|total|totais|médio|média|oposto|adjacente|inicial|final|útil|equivalente|resultante|retirado|retirada|molar|específico|específica|elétrica|elétrico|percorrida|percorrido|gasto|gasta';
+const ADJ = 'correspondente|interna|interno|externa|externo|recebido|recebida|cedido|cedida|elementar|possíveis|favoráveis|possível|favorável|total|totais|médio|média|oposto|adjacente|inicial|final|útil|equivalente|resultante|retirado|retirada|molar|específico|específica|elétrica|elétrico|percorrida|percorrido|gasto|gasta';
 const NOME_RAZAO = String.raw`[a-zà-ÿ]{3,}(?: (?:${ADJ}))?(?: (?:de|do|da|dos|das|por) [a-zà-ÿ]+[²³]?)?`;
-const PALAVRA_OP = String.raw`[A-Za-zÀ-ÿ]{2,}(?:\s(?:${ADJ})(?![A-Za-zÀ-ÿ]))?`;
+// (com "não" antes: "expostos ÷ não expostos"; questão-correção 2 R5)
+const PALAVRA_OP = String.raw`(?:não\s)?[A-Za-zÀ-ÿ]{2,}(?:\s(?:${ADJ})(?![A-Za-zÀ-ÿ]))?`;
+// valor em dinheiro, com a moeda e a escala ("US$ 37 mi", "R$ 1,2 bilhão"): um operando inteiro (questão-correção 2 R5)
+const MOEDA = String.raw`(?:US\$|R\$|€)\s?${CIENT}(?:\s(?:mi|bi|mil|milhão|milhões|bilhão|bilhões)(?![A-Za-zÀ-ÿ]))?`;
+// artigo, preposição ou contração nunca é numerador nem denominador ("esquecer o ÷ 2", "Cada um ÷ 14", "do total ÷ 70")
+// ("a" e "e" sozinhos são variável ou o número e; "Na" é sódio: só minúsculas)
+const ARTIGO = /^(?:o|os|as|um|uma|uns|umas|de|do|da|dos|das|no|na|nos|nas|em|ao|à|aos|às|pelo|pela|pelos|pelas|por|com|para|que|se)(?:\s|$)/;
+const UNID_PAR = new RegExp(String.raw`^\((?:${UNID_NOME})\)$`, 'u');
 const FIM_UNID = String.raw`(?![A-Za-zÀ-ÿ\d])`;
 // quantidade de uma substância ou coisa ("8 mol de H+ ÷ 4 mol de ácido", "46 átomos de H ÷ 2", "15 g de sal ÷ 50 g de água")
 const QTD = String.raw`${CIENT}\s(?:${UNID_NOME}|[a-zà-ÿ]{3,})\sde\s(?:[A-Z][A-Za-z0-9⁺⁻²³⁴⁵⁶⁷⁸⁹¹⁰+−]*|[a-zà-ÿ]{3,})`;
 const RE_ESQ = new RegExp(`(?:${UNID_SIMPLES}|${SIMPLES})$`, 'u');
 const RE_DIR = new RegExp(`^(?:${UNID_SIMPLES}(?![A-Za-z])|${SIMPLES})`, 'u');
-const RE_ESQ_DIV = new RegExp(`(?:${QTD}|${UNID}|${NUM_NOME}|${LETRA_NOME}|${LETRA_RAIZ}|${BARRA}|${SIMPLES}|${PALAVRA_OP})$`, 'u');
+const RE_ESQ_DIV = new RegExp(`(?:${MOEDA}|${QTD}|${UNID}|${NUM_NOME}|${LETRA_NOME}|${LETRA_RAIZ}|${BARRA}|${SIMPLES}|${PALAVRA_OP})$`, 'u');
 const RE_DIR_NOME = new RegExp(`^(?:${QTD}|${NUM_NOME}|${LETRA_NOME})${FIM_UNID}`, 'u');
-const RE_DIR_DIV = new RegExp(`^(?:${UNID}${FIM_UNID}|${LETRA_RAIZ}|${BARRA}|${SIMPLES}(?![A-Za-zÀ-ÿ])|${PALAVRA_OP})`, 'u');
+const RE_DIR_DIV = new RegExp(`^(?:${MOEDA}${FIM_UNID}|${UNID}${FIM_UNID}|${LETRA_RAIZ}|${BARRA}|${SIMPLES}(?![A-Za-zÀ-ÿ])|${PALAVRA_OP})`, 'u');
 const RE_OP = /\s*÷\s*| \/ /g;
 const temValor = (x: string) => /[0-9a-zA-Zα-ωπθμΔÀ-ÿ]/.test(x);
 // (letra pequena em cima também: "[C]ᶜ·[D]ᵈ ÷ ([A]ᵃ·[B]ᵇ)")
@@ -545,11 +552,20 @@ function divisoes(s: string): ParteFracao[] {
       const pr = /(?<![A-Za-zÀ-ÿ0-9,.₀-₉⁰¹²³⁴-⁹⁺⁻])(?:(?:\d+(?:,\d+)?|[A-Za-zα-ωπℓ]|√)[₀-₉⁰¹²³⁴-⁹⁻⁺]*)+$/.exec(s.slice(0, a));
       if (pr) a = pr.index;
     }
+    // "não" em cima só no começo da razão ("não utilizadas / utilizadas"); depois de palavra é a negação da frase
+    // ("e não cateto ÷ cateto")
+    if (s.startsWith('não ', a) && /[A-Za-zÀ-ÿ]\s$/.test(s.slice(0, a))) a += 4;
     const num = s.slice(a, o.ini), den = s.slice(o.fim, b);
     const antes = s.slice(0, a), depois = s.slice(b);
     // colado a palavra, número, índice ou outra divisão: não é um operando inteiro
     // (índice e expoente também: "H₂O / CO₂" não é "O" sobre "CO₂"; questão-correção 2 R3)
-    if (/[A-Za-zÀ-ÿ0-9.,_^\\/÷₀-₉⁰¹²³⁴-⁹⁺⁻]$/.test(antes) || /^[A-Za-zÀ-ÿ0-9(_^/₀-₉]/.test(depois)) continue;
+    if (/[A-Za-zÀ-ÿ0-9.,_^\\/÷₀-₉⁰¹²³⁴-⁹⁺⁻$]$/.test(antes) || /^[A-Za-zÀ-ÿ0-9(_^/₀-₉$]/.test(depois)) continue;
+    // artigo ou preposição como operando, unidade entre parênteses ("massa (g) ÷ massa molar (g/mol)"): o nome da razão
+    // não cabe inteiro dos dois lados, a divisão fica na linha (questão-correção 2 R5)
+    // ("o" sozinho só é artigo entre palavras: "i / o = p' / p" e "razão = um ÷ outro" são conta; "(m/s) ÷ (m/s²)" é
+    // análise de unidade)
+    if ((ARTIGO.test(num) && (/\s/.test(num) || /[A-Za-zÀ-ÿ]\s$/.test(antes))) || (ARTIGO.test(den) && /^\s+[a-zà-ÿ]/.test(depois))
+      || (UNID_PAR.test(num) && /[A-Za-zÀ-ÿ]{3,}\s$/.test(antes))) continue;
     if (/\s\/\s*$/.test(antes)) continue;
     // "2 kmol de O2 ÷ 1,5", "V de Júpiter ÷ V da Terra": o operando é o complemento de um nome maior (antes de "de"
     // ou depois dele), não o número inteiro; fica na linha
