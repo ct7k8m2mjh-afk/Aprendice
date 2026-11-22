@@ -1215,11 +1215,13 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
     // passos com a conta de cada um; o quadro acrescenta a nota (e o destaque) à linha que já tem aquele resultado, ou
     // entra como linha nova no passo a que pertence (item 6)
     // 1) onde cada linha do quadro já está na conta (em ordem: nunca volta a um passo anterior)
-    const casa: ({ j: number; x: number } | null)[] = [];
+    // (passada 8 A2) `ini`: a primeira linha da conta com que a linha do quadro casou (a linha que não casa e vem antes
+    // dela entra antes desse ponto, e não no meio das linhas casadas)
+    const casa: ({ j: number; x: number; ini?: number } | null)[] = [];
     const porValor: ({ j: number; x: number }[] | null)[] = [];
     let cj = 0, cx = 0;
     for (const q of quadro) {
-      let achou: { j: number; x: number } | null = null;
+      let achou: { j: number; x: number; ini?: number } | null = null;
       // a mesma conta escrita igual; senão, a mesma conta escrita de outro jeito (N4: sem linha repetida no passo)
       for (const casaCom of [quadroNaConta, quadroEquivale]) {
         for (let j = cj; j < itens.length && !achou; j++) {
@@ -1240,7 +1242,19 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
           if (prim < 0) prim = x;
           ultX = x++;
         }
-        if (prim >= 0) achou = { j, x: ultX };
+        if (prim >= 0) achou = { j, x: ultX, ini: prim };
+      }
+      // (passada 8 A2) os mesmos pedaços, todos no mesmo passo, mas em outra ordem ("GB 65 | França 64 | Austrália 53"
+      // de uma tabela escrita na ordem do enunciado): também casa; a nota vai para a última dessas linhas da conta
+      for (let j = cj; !achou && pq.length > 1 && j < itens.length; j++) {
+        const usados: number[] = [];
+        for (const pd of pq) {
+          let x = j === cj ? cx : 0;
+          while (x < itens[j].length && (usados.includes(x) || (!quadroNaConta(itens[j][x].texto, pd) && !quadroEquivale(itens[j][x].texto, pd)))) x++;
+          if (x >= itens[j].length) break;
+          usados.push(x);
+        }
+        if (usados.length === pq.length) achou = { j, x: Math.max(...usados), ini: Math.min(...usados) };
       }
       // (passada 7 Z1) lista de valores em que cada número já é o resultado de uma linha da conta (o número do fim da
       // linha, em qualquer ordem, deste passo em diante): não entra repetida; cada pedaço da nota vai para a linha do seu
@@ -1259,7 +1273,11 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
           usados.add(o.j + ':' + o.x);
           ach.push(o);
         }
-        if (ach.length === vs.length) { pv = ach; achou = ach.reduce((m, o) => (o.j > m.j || (o.j === m.j && o.x > m.x) ? o : m)); }
+        if (ach.length === vs.length) {
+          pv = ach;
+          const ult = ach.reduce((m, o) => (o.j > m.j || (o.j === m.j && o.x > m.x) ? o : m));
+          achou = { ...ult, ini: Math.min(...ach.filter((o) => o.j === ult.j).map((o) => o.x)) };
+        }
       }
       porValor.push(pv);
       casa.push(achou);
@@ -1282,7 +1300,7 @@ export function montaRoteiro(r: Fonte, materia?: string): Roteiro {
       if (casa[k]) return;
       let a = -1, ax = -1, b = itens.length - 1, bx = Infinity;
       for (let z = k - 1; z >= 0; z--) if (casa[z]) { a = casa[z]!.j; ax = casa[z]!.x; break; }
-      for (let z = k + 1; z < quadro.length; z++) if (casa[z]) { b = casa[z]!.j; bx = casa[z]!.x; break; }
+      for (let z = k + 1; z < quadro.length; z++) if (casa[z]) { b = casa[z]!.j; bx = casa[z]!.ini ?? casa[z]!.x; break; }
       const prop = Math.min(itens.length - 1, Math.floor((k * itens.length) / quadro.length));
       // o passo que tem a maior parte dos números da linha (metade ou mais) é o lugar dela; senão, o proporcional
       const aq = atomos(q.linha).filter((x) => /^-?\d/.test(x));

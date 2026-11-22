@@ -33,3 +33,37 @@ describe('A1: a linha do quadro com " | " que já está na conta não entra repe
     expect(linhas(r, 'fis')).toEqual(['V ∝ 1/d', 'E ∝ 1/d² «potencial × campo»']);
   });
 });
+
+describe('A2: nota e linha do quadro no lugar certo', () => {
+  it('mat Pf7605a63: a nota "mediana" fica no passo 3, e não na conta da média', () => {
+    const r = {
+      passos: [
+        { faz: '', conta: '(x + 2x + 3x)/3 = 6x/3 = 2x = 5,2 → x = 2,6', porque: '' },
+        { faz: '', conta: '2,6 | 5,2 | 7,8', porque: '' },
+        { faz: '', conta: 'a do meio: 5,2 → alternativa C', porque: '' },
+      ],
+      quadro: [{ linha: '2x = 5,2', nota: 'média' }, { linha: '2,6 | 5,2 | 7,8', nota: 'notas' }, { linha: '5,2', nota: 'mediana' }],
+    };
+    const ps = porPasso(r);
+    expect(ps[0]).toEqual(['(x + 2x + 3x)/3 = 6x/3 = 2x = 5,2 → x = 2,6 «média»']);
+    expect(ps[2]).toEqual(['a do meio: 5,2 → alternativa C «mediana»']);
+  });
+  it('fís Pce134e95: a linha que não está na conta entra antes da tabela, e não no meio dela', () => {
+    const r = {
+      passos: [{ faz: '', conta: '0%: 0,57 | 1,5%: 0,54 | 3,2%: 0,50 | 7,4%: 0,61', porque: '' }, { faz: '', conta: 'menor coeficiente: 0,50 → 3,2% de água', porque: '' }],
+      quadro: [{ linha: 'atrito = µ × N', nota: 'normal constante' }, { linha: 'µ: 0,57 | 0,54 | 0,50 | 0,61', nota: 'lê a tabela' }],
+    };
+    expect(porPasso(r, 'fis')[0]).toEqual(['atrito = µ × N «normal constante»', '0%: 0,57', '1,5%: 0,54', '3,2%: 0,50', '7,4%: 0,61 «lê a tabela»']);
+  });
+  it('quí P16af84a2: a reação do quadro não parte "esquerda | direita" ao meio', () => {
+    const r = {
+      passos: [{ faz: '', conta: 'esquerda: 1 + 3 = 4 mol | direita: 2 mol', porque: '' }],
+      quadro: [{ linha: 'N2 + 3 H2 ⇌ 2 NH3; ΔH° = −92,6 kJ/mol', nota: 'direta exotérmica' }, { linha: 'gás: 1 + 3 = 4 mol | 2 mol', nota: 'esquerda | direita' }],
+    };
+    expect(linhas(r, 'qui')).toEqual(['N2 + 3 H2 ⇌ 2 NH3; ΔH° = −92,6 kJ/mol «direta exotérmica»', 'esquerda: 1 + 3 = 4 mol', 'direita: 2 mol «esquerda; direita»']);
+  });
+  it('mat P7abf1bcd: os mesmos itens em outra ordem casam com a conta (sem linha repetida)', () => {
+    const r = { passos: [{ faz: '', conta: 'a cada 3 dias: 2¹⁰ = 1024 | a cada 5 dias: 2⁶ = 64', porque: '' }], quadro: [{ linha: '2⁶ = 64 | 2¹⁰ = 1024', nota: 'áreas' }] };
+    expect(linhas(r)).toEqual(['a cada 3 dias: 2¹⁰ = 1024', 'a cada 5 dias: 2⁶ = 64 «áreas»']);
+  });
+});
