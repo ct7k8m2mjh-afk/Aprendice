@@ -39,3 +39,7 @@ Mudanças visuais novas sugeridas pelos revisores. Nada disto foi aplicado.
 
 7. **Figura da α/β-glicose (Bio B02)**: as linhas do anel passam encostadas no "O" e no "3", nos dois temas. É assim
    no desenho original. Recomendação: **redesenhar a figura** com as letras afastadas das linhas.
+
+8. **½ inclinado em textos sem outra fração** (questao-correcao-2 R4). Onde o texto já tem fração empilhada, ½, ¼ e ⅛
+   agora empilham junto. Nos cerca de 180 textos sem nenhuma outra fração (ex.: "NO + ½ O2", "½ · 70 · v²") o ½
+   continua como caractere inclinado. Recomendação: **empilhar sempre**, pela regra "fração sempre empilhada".
