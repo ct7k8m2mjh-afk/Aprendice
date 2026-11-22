@@ -762,7 +762,10 @@ function cortes(s: string, re: RegExp): [number, number][] {
   for (let i = 0; i < s.length; i++) {
     const c = s[i];
     if (c === '"' || c === '“' || c === '”') aspas = !aspas;
-    if (c === '(' || c === '[') prof++;
+    // (passada 7) "[" que fecha intervalo ("[−2, +∞[") não abre grupo
+    const fechaIntervalo = c === '[' && /[\d∞]\s*$/.test(s.slice(0, i));
+    if (c === '(' || (c === '[' && !fechaIntervalo)) prof++;
+    if (fechaIntervalo) prof = Math.max(0, prof - 1);
     // (passada 6 Y5) parêntese que fecha sem ter aberto (rótulo "a)", "1)") não deixa o resto da linha "dentro" de um grupo
     if (c === ')' || c === ']') prof = Math.max(0, prof - 1);
     prof_em.push(aspas ? 99 : prof);
@@ -1011,7 +1014,16 @@ const ehRelacao = (s: string) => /[=≈≠→⇒<>≤≥]|:\s/.test(s);
 export function itensDaConta(conta: string, materia?: string): string[] {
   const out: string[] = [];
   const lista = !materia || !['mat', 'fis'].includes(materia);
-  for (const linha of conta.split('\n')) {
+  // (passada 7 Z2) vários itens com rótulo na mesma linha, separados por dois espaços ("1) Mg: 0 → +2 | H: +1 → 0  3) …"):
+  // cada rótulo é um item, e o "|" de dentro dele vira ", " (antes, o H da reação 1 ia para a linha da reação 3)
+  const linhas: string[] = [];
+  for (const l of conta.split('\n')) {
+    const gs = l.split(/\s{2,}(?=(?:\d{1,2}|[a-z])\)\s)/);
+    if (gs.length > 1 && /^\s*(?:\d{1,2}|[a-z])\)\s/.test(gs[0])) {
+      for (const g of gs) linhas.push(cortes(g, /\s+\|\s+/).reverse().reduce((t, [a, b]) => t.slice(0, a) + ', ' + t.slice(b), g));
+    } else linhas.push(l);
+  }
+  for (const linha of linhas) {
     if (!linha.trim()) continue;
     let ult = 0;
     const partes: string[] = [];
