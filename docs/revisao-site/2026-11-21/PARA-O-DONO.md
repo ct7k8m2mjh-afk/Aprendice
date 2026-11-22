@@ -43,3 +43,12 @@ Mudanças visuais novas sugeridas pelos revisores. Nada disto foi aplicado.
 8. **½ inclinado em textos sem outra fração** (questao-correcao-2 R4). Onde o texto já tem fração empilhada, ½, ¼ e ⅛
    agora empilham junto. Nos cerca de 180 textos sem nenhuma outra fração (ex.: "NO + ½ O2", "½ · 70 · v²") o ½
    continua como caractere inclinado. Recomendação: **empilhar sempre**, pela regra "fração sempre empilhada".
+
+9. **Frase longa à mão no "No caderno" da Teoria** (materias-3 T3). Com a regra "uma letra por lista" (a da maioria),
+   algumas frases inteiras saem em Caveat (ex.: mat M02 "inversa: dobrando uma, a outra cai à metade…"), o que deixa a
+   leitura mais lenta no celular. Recomendação: **exceção para frase longa sem sinal de conta** (acima de ~8 palavras),
+   que fica em Familjen Grotesk mesmo numa lista de fórmulas.
+
+10. **Citação da prova com fração** (questao-correcao-3 S7): em his P78979201, a citação "tentei T2/D3" aparece
+    empilhada, embora a banca a escreva na linha. Recomendação: **citação entre aspas da prova fica como a banca
+    escreveu, na linha**.
