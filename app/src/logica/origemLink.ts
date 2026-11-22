@@ -24,6 +24,11 @@ function host(url: string): string {
   try { return new URL(url).hostname.replace(/^www\./, '').toLowerCase(); } catch { return ''; }
 }
 
+/** o endereço aponta para um arquivo PDF */
+function ehPdf(url: string): boolean {
+  try { return /\.pdf$/i.test(new URL(url).pathname); } catch { return false; }
+}
+
 /** o link é só a página inicial do site ("https://www.uea.edu.br/", "https://vestibular.uemg.br") */
 function paginaInicial(url: string): boolean {
   try { const u = new URL(url); return /^\/?(?:index\.(?:html?|php))?$/.test(u.pathname) && !u.search; } catch { return false; }
@@ -32,7 +37,8 @@ function paginaInicial(url: string): boolean {
 export function origemDoLink(url: string | undefined, origem: 'prova' | 'site' = 'prova'): OrigemLink {
   if (origem !== 'prova') return { tipo: 'lista', rotulo: 'Lista pública de exercícios' };
   const h = host(url || '');
-  for (const [re, nome] of CURSINHOS) if (re.test(h)) return { tipo: 'cursinho', nome, rotulo: 'PDF de resolução publicada, com a prova' };
+  // "PDF" só quando o link é um PDF; página de questão ou post do cursinho (revisão de 21/11/2026, dados N3)
+  for (const [re, nome] of CURSINHOS) if (re.test(h)) return { tipo: 'cursinho', nome, rotulo: ehPdf(url || '') ? 'PDF de resolução publicada, com a prova' : 'Resolução publicada por cursinho' };
   for (const [re, nome] of TERCEIROS) if (re.test(h)) return { tipo: 'terceiros', nome, rotulo: 'Cópia da prova em site de terceiros' };
   // o domínio técnico do armazenamento fica no registro (`nome`), não na tela do aluno (revisão de 20/11/2026, N11)
   if (HOSPEDAGEM.test(h)) return { tipo: 'hospedado', nome: h, rotulo: 'Caderno da prova, em arquivo hospedado na internet' };

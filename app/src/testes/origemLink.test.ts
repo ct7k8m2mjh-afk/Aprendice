@@ -12,6 +12,10 @@ describe('origem do link da questão', () => {
   it('PDF de cursinho e cópia em site de terceiros', () => {
     expect(origemDoLink('https://www.curso-objetivo.br/vestibular/resolucao-comentada/alberteinstein/2019/a.pdf')).toEqual({ tipo: 'cursinho', nome: 'Objetivo', rotulo: 'PDF de resolução publicada, com a prova' });
     expect(origemDoLink('https://vestibulares.estrategia.com/public/questoes/x/').nome).toBe('Estratégia');
+    // revisão de 21/11 (dados N3): "PDF" só quando o link é PDF; página de questão ou post de cursinho não
+    expect(origemDoLink('https://vestibulares.estrategia.com/public/questoes/x/').rotulo).toBe('Resolução publicada por cursinho');
+    expect(origemDoLink('https://vestibulares.estrategia.com/portal/atualidades-e-dicas/questoes-sobre-virus/').rotulo).toBe('Resolução publicada por cursinho');
+    expect(origemDoLink('https://www.quimicaparaovestibular.com.br/wp-content/uploads/a.PDF').rotulo).toBe('PDF de resolução publicada, com a prova');
     expect(origemDoLink('https://arquivos.qconcursos.com/prova/arquivo_prova/1/p.pdf').tipo).toBe('terceiros');
     expect(origemDoLink('https://storage.googleapis.com/b/p.pdf').tipo).toBe('hospedado');
   });
