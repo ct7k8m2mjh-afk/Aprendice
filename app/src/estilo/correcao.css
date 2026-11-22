@@ -150,6 +150,12 @@ mark.ra-marca { padding: 0 .12em; }
 .nt-sub { top: .3em; }
 /* letra pequena do genótipo ("XᴬXᵃ", N9): maior e afastada da letra de baixo, para não encostar no X */
 .nt-sup.nt-letra { font-size: .74em; top: -.52em; margin: 0 .06em 0 .07em; }
+/* fração dentro do expoente ou do índice ("(½)^(t/6)", "log₁/₂ x"; revisão de 21/11/2026, matérias-2 R1): empilhada e
+   pequena, como nas figuras corrigidas (expoente a .68 e a fração dentro dele a .9) */
+:is(.nt-sup, .nt-sub).nt-frac > .frac { font-size: .9em; line-height: 1.02; vertical-align: baseline; margin: 0 .04em; }
+.nt-sup.nt-frac { top: -1.2em; }
+.nt-sub.nt-frac { top: .25em; }
+.frac-v::before { content: attr(data-v); }
 /* sinais que a Caveat não tem, desenhados no mesmo traço da caneta (ui/maoGlifos.tsx) */
 .mao-g { display: inline-block; height: 1em; vertical-align: -.16em; overflow: visible; }
 .mao-g path { fill: none; stroke: currentColor; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }

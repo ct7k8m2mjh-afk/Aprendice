@@ -38,17 +38,55 @@ export function Fracao({ p, n, d, className = 'frac', props }: {
   );
 }
 
-/** expoente, índice e fórmula química (o sinal escrito fica escondido) */
+/** expoente, índice e fórmula química (o sinal escrito fica escondido). Fração dentro do expoente ou do índice
+ *  ("(½)^(t/6)", "2^(t/20)", "log₁/₂ x") também sai empilhada, pequena (revisão de 21/11/2026, matérias-2 R1). */
 export function comNotacao(s: string): ReactNode {
   const ps = partesNotacao(s);
-  if (ps.length === 1 && ps[0].t === 'txt') return s;
-  return ps.map((p, i) => p.t === 'txt' ? <Fragment key={i}>{p.v}</Fragment> : (
-    <Fragment key={i}>
-      {p.pre && <span className="sr">{p.pre}</span>}
-      {p.t === 'sup' ? <sup className="nt-sup">{p.v}</sup> : <sub className="nt-sub">{p.v}</sub>}
-      {p.pos && <span className="sr">{p.pos}</span>}
-    </Fragment>
-  ));
+  if (ps.length === 1 && ps[0].t === 'txt') return comFracaoMiuda(s);
+  return ps.map((p, i) => {
+    if (p.t === 'txt') return <Fragment key={i}>{comFracaoMiuda(p.v)}</Fragment>;
+    const temFrac = p.v.includes('/') && partesFracao(p.v).some((x) => x.t === 'frac');
+    const v = temFrac ? comFracoes(p.v) : p.v;
+    const cls = temFrac ? ' nt-frac' : '';
+    return (
+      <Fragment key={i}>
+        {p.pre && <span className="sr">{p.pre}</span>}
+        {p.t === 'sup' ? <sup className={'nt-sup' + cls}>{v}</sup> : <sub className={'nt-sub' + cls}>{v}</sub>}
+        {p.pos && <span className="sr">{p.pos}</span>}
+      </Fragment>
+    );
+  });
+}
+
+// fração escrita com algarismos já sobrescritos ou subscritos do Unicode ("log₁/₂ x", "t₁/₂", "x¹/²")
+const SUBS = '₀₁₂₃₄₅₆₇₈₉', SUPS = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+const RE_FRAC_MIUDA = /([₀-₉]+)\/([₀-₉]+)|([⁰¹²³⁴-⁹]+)\/([⁰¹²³⁴-⁹]+)/g;
+const algarismos = (x: string) => [...x].map((c) => String(Math.max(SUBS.indexOf(c), SUPS.indexOf(c)))).join('');
+
+/** "₁/₂" vira índice com a fração empilhada. O texto do documento continua o dos dados ("₁/₂", escondido para leitor
+ *  de tela, copiar e colar e testes); os algarismos desenhados vêm do CSS (atributo data-v), fora do texto. */
+function comFracaoMiuda(s: string): ReactNode {
+  if (!/[₀-₉⁰-⁹¹²³]\/[₀-₉⁰-⁹¹²³]/.test(s)) return s;
+  const out: ReactNode[] = [];
+  let ult = 0;
+  RE_FRAC_MIUDA.lastIndex = 0;
+  for (let m = RE_FRAC_MIUDA.exec(s); m; m = RE_FRAC_MIUDA.exec(s)) {
+    const sub = m[1] != null;
+    const n = algarismos(sub ? m[1] : m[3]), d = algarismos(sub ? m[2] : m[4]);
+    if (m.index > ult) out.push(s.slice(ult, m.index));
+    const Tag = sub ? 'sub' : 'sup';
+    out.push(
+      <Fragment key={m.index}>
+        <Tag className={(sub ? 'nt-sub' : 'nt-sup') + ' nt-frac'} aria-hidden="true">
+          <span className="frac"><span className="frac-n frac-v" data-v={n} /><span className="frac-d frac-v" data-v={d} /></span>
+        </Tag>
+        <span className="sr">{m[0]}</span>
+      </Fragment>,
+    );
+    ult = m.index + m[0].length;
+  }
+  if (ult < s.length) out.push(s.slice(ult));
+  return out;
 }
 
 /** Texto com negrito marcado por **…** (cartões de teoria de Português; revisão de 19/11/2026, item 2): o trecho sai em
