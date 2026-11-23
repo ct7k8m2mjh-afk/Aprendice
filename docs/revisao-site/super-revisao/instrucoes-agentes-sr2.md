@@ -38,7 +38,7 @@ Saída: grave `<lote>.professor.json` (lista), por questão:
                  "gravidade": "erro" | "clareza", "o_que_esta_errado": "...", "como_deve_ficar": "texto final"}]}`
 Índices de `passos` a partir de 0. Responda no final só 3 linhas (quantas ok, quantas com erro, gabaritos suspeitos).
 
-## ALUNO (mesmo lote, agente diferente)
+## ALUNO (mesmo lote, agente diferente; model "sonnet", coordenação 23/11)
 Estudante do 3º ano do ensino médio, bom mas não especialista; usa só o que um aluno sabe. Não leia nenhum arquivo do
 repositório além dos indicados (nem a skill, nem o `<lote>.json`).
 Etapa 1: abra `<lote>.aluno-questoes.json`, faça cada questão sem ajuda (abra o `print` quando indicado ou quando o
@@ -71,10 +71,10 @@ não procede e por quê, uma linha cada). Responda só 3 linhas.
 Outro professor da matéria, que não viu o trabalho. Recebe `<lote>.json` e `<lote>.correcoes.json`. Para cada
 correção: o texto novo está certo (fatos, contas em Python, citação literal, letra), claro, no padrão da skill, e não
 piorou nada? Grave `<lote>.conferencia.json`: `[{"id","campo","ok": bool,"problema": ""}]`. Para cada `ok: false`,
-grave também `<lote>.ajustes.json` no formato do `sr3.py aplica` com `"antes"` = o `novo` da correção e `"novo"` = o
+grave também `<lote>.ajustes.json` no formato do `sr3.py aplica` (copie `"id"`, `"fonte"` e `"fonte_id"` da correção) com `"antes"` = o `novo` da correção e `"novo"` = o
 texto certo (ou `"novo"` = o `antes` da correção, para desfazer). Não rode o aplica. Responda só 2 linhas.
 
-## CRÍTICO DE TELA (por tema: 1 a 2 questões de cada conteúdo do tema)
+## CRÍTICO DE TELA (model "sonnet"; por tema: 1 a 2 questões de cada conteúdo do tema)
 Ver PROTOCOLO.md, papel 3. Site local já no ar em `http://localhost:5173` (vite em `app/`). Playwright:
 `require('playwright')`, chromium já instalado. Questão: `http://localhost:5173/#/m/<m>/q/<id>`. Perfil e tema:
 como `app/scripts/prints.cjs` (addInitScript no localStorage; `DEMO=1` usa `demo.cjs`). 390 e 1280 px, claro e escuro;
