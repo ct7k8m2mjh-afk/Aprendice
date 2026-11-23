@@ -23,6 +23,7 @@ CONTINUAR DE: I01.1 lote 2
 ## Andamento por conteúdo
 | Conteúdo | Questões | Lotes feitos | Corrigidas | Achados (erro/clareza) | Crítico de tela |
 |---|---|---|---|---|---|
+| ENEM (todos os conteúdos) | 30 | 2 (as 30 do ENEM) | 3 | 0/15 | P6f46b634, P261ed021: sem rolagem lateral, sem erro no console |
 | I01.1 | 132 | 1 (q 1–15) | 6 (+2 da mesma prova em I01.5 e I02.1) | 0/14 | P0fea2fcf, Pf3356411, Pf0fcfc0b: sem rolagem lateral, sem erro no console; achado de texto-base (abaixo) |
 
 ## Achados que valem para o site todo (tela e conteúdo da questão)
