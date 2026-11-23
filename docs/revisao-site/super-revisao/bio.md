@@ -14,9 +14,13 @@ CONTINUAR DE: B01.1 lote 1
 ## Andamento por conteúdo
 | Conteúdo | Questões | Lotes | Corrigidas (campos) | Achados erro/clareza | Gabarito suspeito |
 |---|---|---|---|---|---|
+| B01.2 | 8 | 1 | 8 | 1/3 | — |
 
 ## Crítico de tela por tema
 
 ## Gabaritos para a coordenação (anular / errata)
+
+## Texto da questão para a coordenação (DADO)
+- DADO Pf34120b0 (Unespar 2024): alternativa E traz a legenda da figura colada ("planta de mimosa imperturbada planta de mimosa quando tocada"); pelo print termina em "aumentando sua turgidez."
 
 ## Pendências do dono
