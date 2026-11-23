@@ -828,5 +828,139 @@
    "chave": "Subtrair em Gtep, converter a Wh com 1,2 × 10⁷ e dividir por 10⁹ para chegar a GWh.",
    "cuidado": "Giga são nove zeros; a mantissa 8,4 é igual em todas as alternativas e só o expoente decide."
   }
+ },
+ "P6707c42": {
+  "antes": {
+   "texto": "Um número primo é um número inteiro maior que 1 que tem exatamente dois divisores: o 1 e ele mesmo. Dividir um primo por qualquer outro número sempre deixa resto. Aqui você não precisa provar nada: a questão pede a única frase correta entre cinco. Para derrubar uma frase do tipo “todo número tal é assim”, é suficiente achar um único número que desobedece a ela.",
+   "formulas": [
+    "primo: exatamente 2 divisores positivos, o 1 e ele mesmo",
+    "para testar se N é primo, divida N por 2, 3, 5, 7, 11, 13... enquanto o divisor ao quadrado não passar de N"
+   ],
+   "simbolos": [
+    [
+     "contraexemplo",
+     "um único caso que desobedece a frase e, com isso, prova que ela é falsa"
+    ],
+    [
+     "2ⁿ (2 elevado a n)",
+     "o 2 multiplicado por ele mesmo n vezes: 2¹ = 2, 2² = 4, 2³ = 8, 2⁴ = 16"
+    ],
+    [
+     "n ∈ ℕ",
+     "lê-se “n pertence aos naturais”: n é um número natural, ou seja, 0, 1, 2, 3, 4, ..."
+    ]
+   ]
+  },
+  "pista": "Não tente provar as cinco frases. Em quatro delas você só precisa achar um número que desobedece. Comece pela letra A pensando no menor primo de todos, e deixe a letra D por último, porque nela você vai precisar listar os números de 25 a 35.",
+  "passos": [
+   {
+    "faz": "Derrube a letra A com o número 2",
+    "conta": "divisores de 2: 1 e 2 → 2 é par e primo",
+    "porque": "O 2 é par e mesmo assim é primo, porque ter exatamente dois divisores é a definição de primo. Um único número fora da regra já torna falsa a frase “todos os primos são ímpares”.",
+    "tipo": "eliminar"
+   },
+   {
+    "faz": "Derrube a letra B mostrando que os primos não acabam",
+    "conta": "2 × 3 × 5 × 7 × 11 × 13 + 1 = 30 031",
+    "porque": "30 031 deixa resto 1 na divisão por cada primo da lista, então tem um fator primo fora dela. Isso vale para qualquer lista, mesmo com 7 trilhões de primos: os primos não acabam.",
+    "tipo": "eliminar"
+   },
+   {
+    "faz": "Derrube a letra C testando n = 3",
+    "conta": "2³ + 1 = 8 + 1 = 9 e 9 = 3 × 3",
+    "porque": "A frase diz “todo número da forma 2ⁿ + 1”. Com n = 3 ela produz 9, que tem três divisores (1, 3 e 9) e por isso não é primo. Um caso contrário derruba o “todo”.",
+    "tipo": "eliminar"
+   },
+   {
+    "faz": "Teste a letra D listando os números entre 24 e 36",
+    "conta": "25 = 5 × 5 ; 26 par ; 27 = 3 × 9 ; 28 par ; 29 primo ; 30 par ; 31 primo ; 32 par ; 33 = 3 × 11 ; 34 par ; 35 = 5 × 7",
+    "porque": "“Entre 24 e 36” quer dizer de 25 até 35, sem contar as pontas. Sobraram exatamente 29 e 31. Para ter certeza de que esses dois são primos, testam-se 2, 3 e 5 (nenhum divide) e para-se por aí: o próximo divisor a testar seria 7, e 7 × 7 = 49 já passa de 35, então não há mais divisor possível.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Derrube a letra E fatorando o 143",
+    "conta": "143 ÷ 11 = 13, ou seja, 143 = 11 × 13",
+    "porque": "O 143 tem quatro divisores (1, 11, 13 e 143), então não é primo. Ele engana porque passa nos testes fáceis: não é par, não termina em 0 nem em 5, e 1 + 4 + 3 = 8 não é múltiplo de 3.",
+    "tipo": "eliminar"
+   }
+  ],
+  "resposta": "Alternativa D — entre 24 e 36 existem somente 2 números primos, que são 29 e 31.",
+  "checagem": "Conte de outro jeito, por eliminação: na lista de 25 a 35, risque os pares (26, 28, 30, 32, 34), os múltiplos de 3 (27, 30, 33) e os múltiplos de 5 (25, 35). Sobram 29 e 31 — dois números, como diz a alternativa D. Repare ainda que 29 e 31 são primos gêmeos, com o 30 no meio.",
+  "erradas": {
+   "A": "Quem raciocina “número par é divisível por 2, logo nenhum par pode ser primo” esquece o próprio 2: ele é par e tem exatamente dois divisores, 1 e 2, então é primo. O 2 é o único primo par — e é justamente esse número que aparece na camiseta de um dos personagens da tira.",
+   "B": "7 trilhões é um número tão grande que parece um teto seguro. Mas qualquer teto é falso: pegue todos os primos até certo ponto, multiplique-os e some 1; o número que aparece não é divisível por nenhum deles, então existe primo fora da lista. Os primos são infinitos.",
+   "C": "Quem testa só n = 1, n = 2 e n = 4 vê 2¹ + 1 = 3, 2² + 1 = 5 e 2⁴ + 1 = 17, todos primos, e generaliza. Faltou testar n = 3: 2³ + 1 = 9, e 9 = 3 × 3 não é primo.",
+   "E": "O 143 passa nos três testes rápidos (não é par, não termina em 0 nem em 5, e a soma dos algarismos 1 + 4 + 3 = 8 não é múltiplo de 3), então parece primo. Quem para nesses três testes marca E. Faltou dividir por 11 e por 13: 11 × 13 = 143."
+  },
+  "armadilha": "Dois números enganam nesta questão: o 2, que é par e primo ao mesmo tempo e derruba a letra A, e o 143, que parece primo porque escapa dos testes de 2, 3 e 5, mas é 11 × 13.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "Qual afirmação sobre números primos é verdadeira.",
+   "chave": "Achar um contraexemplo para A, B, C e E e listar os números de 25 a 35 para testar D.",
+   "cuidado": "O 2 é primo e par; o 143 parece primo, mas é 11 × 13; 2ⁿ + 1 falha em n = 3."
+  }
+ },
+ "P5fdfcdb": {
+  "antes": {
+   "texto": "Número primo é o número maior que 1 que só pode ser dividido por 1 e por ele mesmo. Os primeiros são 2, 3, 5, 7, 11, 13. O enunciado inventa uma operação nova, chamada primorial, e já explica o que ela faz: multiplicar todos os primos de 2 até n. Então aqui você não precisa de nenhuma fórmula de fora; precisa saber listar primos e multiplicar.",
+   "formulas": [
+    "n# = produto de todos os números primos menores que ou iguais a n",
+    "6# = 2 × 3 × 5 = 30"
+   ],
+   "simbolos": [
+    [
+     "n#",
+     "primorial de n: o resultado de multiplicar todos os números primos que são menores que ou iguais a n"
+    ],
+    [
+     "≤",
+     "menor que ou igual a"
+    ]
+   ]
+  },
+  "pista": "Não tente adivinhar o n certo de cara. Vá construindo a lista de primos em ordem (2, 3, 5, 7, 11...) e multiplicando um de cada vez, anotando cada resultado parcial. Pare na primeira vez que o produto passar de 2 000.",
+  "passos": [
+   {
+    "faz": "Liste os primos em ordem",
+    "conta": "2, 3, 5, 7, 11, 13, ...",
+    "porque": "O primorial só usa primos. Os números 4, 6, 8, 9 e 10 ficam de fora porque têm outros divisores além de 1 e deles mesmos: 4 = 2 × 2, 9 = 3 × 3.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Multiplique acumulando, primo por primo",
+    "conta": "2# = 2 → 3# = 2 × 3 = 6",
+    "porque": "Cada primorial novo é o primorial anterior multiplicado pelo próximo primo. Assim você reaproveita a conta em vez de recomeçar do zero a cada vez.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Continue até ultrapassar 2 000",
+    "conta": "6 × 5 = 30 → 30 × 7 = 210 → 210 × 11 = 2 310",
+    "porque": "Esses três resultados são 5#, 7# e 11#. Como cada passo multiplica por um número maior que 1, a sequência só cresce. Por isso a primeira vez que ela passa de 2 000 já dá o menor valor possível.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Confirme que o primorial anterior não serve",
+    "conta": "210 < 2 000 < 2 310",
+    "porque": "210 é o maior primorial que ainda fica abaixo de 2 000, e entre 210 e 2 310 não existe nenhum outro primorial. Logo 2 310 é mesmo o menor que passa de 2 000.",
+    "tipo": "comparar"
+   }
+  ],
+  "resposta": "Alternativa C — 2 310, que é o primorial de 11 (2 × 3 × 5 × 7 × 11)",
+  "checagem": "Teste os divisores. Um primorial de 11 tem de ser divisível por 2, 3, 5, 7 e 11 ao mesmo tempo. 2 310 é par, termina em 0 (logo é múltiplo de 5), a soma dos algarismos 2 + 3 + 1 + 0 = 6 é múltiplo de 3, 2 310 ÷ 7 = 330 e 330 ÷ 11 = 30. Fecha tudo.",
+  "erradas": {
+   "A": "2 300 não tem o fator 3 (2 + 3 + 0 + 0 = 5), e todo primorial a partir de 3# tem. O menor acima de 2 000 é 11# = 2 310.",
+   "B": "2 305 é ímpar, e todo primorial tem o fator 2. Como 7# = 210, o menor acima de 2 000 é 11# = 2 310.",
+   "D": "2 312 não termina em 0 nem em 5, e todo primorial a partir de 5# tem o fator 5. O menor acima de 2 000 é 11# = 2 310.",
+   "E": "2 322 não termina em 0 nem em 5, e todo primorial a partir de 5# tem o fator 5. O menor acima de 2 000 é 11# = 2 310."
+  },
+  "armadilha": "Achar que n# multiplica todos os números de 2 até n. Ele multiplica só os primos, e por isso vários valores diferentes de n dão o mesmo primorial: 7#, 8#, 9# e 10# valem todos 210.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "O menor primorial (produto dos primos até n) maior que 2 000.",
+   "chave": "Multiplicar os primos em ordem, acumulando, até o produto passar de 2 000.",
+   "cuidado": "O primorial multiplica só os primos, não todos os números até n; vários n dão o mesmo valor."
+  }
  }
 }
