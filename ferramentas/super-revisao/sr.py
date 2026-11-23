@@ -180,25 +180,32 @@ def materia_de(qid):
 
 
 def troca(alvo, campo, valor):
-    """campo 'erradas.B' ou 'passos.2' troca só o item; 'campo' inteiro troca tudo. Devolve o valor antigo."""
-    if '.' in campo:
-        c, i = campo.split('.', 1)
-        cont = alvo.setdefault(c, [] if c == 'passos' else {})
+    """campo 'erradas.B', 'passos.2' ou 'passos.2.conta' troca só aquele item (qualquer profundidade); 'campo' inteiro
+    troca tudo. Valor None num item de lista remove o item. Devolve o valor antigo."""
+    partes = campo.split('.')
+    cont = alvo
+    for k, p in enumerate(partes[:-1]):
+        prox = partes[k + 1]
+        chave = int(p) if isinstance(cont, list) else p
         if isinstance(cont, list):
-            i = int(i)
-            antigo = cont[i] if i < len(cont) else None
-            if valor is None:
-                cont.pop(i)
-            elif i < len(cont):
-                cont[i] = valor
-            else:
-                cont.append(valor)
+            cont = cont[chave]
         else:
-            antigo = cont.get(i)
+            if p not in cont:
+                cont[p] = [] if (p == 'passos' or prox.isdigit()) else {}
+            cont = cont[p]
+    ult = partes[-1]
+    if isinstance(cont, list):
+        i = int(ult)
+        antigo = cont[i] if i < len(cont) else None
+        if valor is None:
+            cont.pop(i)
+        elif i < len(cont):
             cont[i] = valor
+        else:
+            cont.append(valor)
         return antigo
-    antigo = alvo.get(campo)
-    alvo[campo] = valor
+    antigo = cont.get(ult)
+    cont[ult] = valor
     return antigo
 
 
