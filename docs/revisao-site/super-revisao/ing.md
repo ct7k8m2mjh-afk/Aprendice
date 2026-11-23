@@ -33,9 +33,13 @@ pelo todo; B traz o que o texto não diz…"), passo final "Ligue a ideia à let
 tradução, e respostas sem o porquê. As demais estavam certas e claras. Por isso, a partir do lote 5 de I01.1 a sessão
 corrigiu as 33 resoluções desse lote nas q 61–132 (achadas por varredura) e deixou as outras para revisão a fundo.
 Em todo o Inglês, 1.167 resoluções têm o passo final "Ligue … à letra" e 301 têm o porque genérico; lista em
-\`ing-achados.jsonl\` conforme cada conteúdo for feito. O que se corrigiu em cada uma: o porque do passo de comparação
+`ing-achados.jsonl` conforme cada conteúdo for feito. O que se corrigiu em cada uma: o porque do passo de comparação
 diz por que cada alternativa errada atrai e onde o texto a desmente; o passo final traz o trecho entre aspas (com
 tradução quando falta); citações conferidas literalmente contra o texto da prova.
+Como achar o lote fraco (varredura): algum passo com porque que contém "é a única que confere", ou com `faz` que
+começa por "Ligue a ideia à letra" / "Ligue o tema à letra" / "Ligue à letra". Por conteúdo: I01.3 410, I02.1 145,
+I01.4 99, I03.2 88, I01.8 63, I03.1 51, I01.1 48 (feitas), I03.8 42, I02.4 28, I03.3 23, I01.2 20, I01.6 20, I01.9 20,
+I03.4 14, I02.3 12, I02.5 10, I03.5 10, I04.3 9, I04.6 8, I01.7 7, I03.6 7, I03.7 7, I03.9 6, I04.1 6, I04.2 5, outros ≤3.
 
 ## Achados que valem para o site todo (tela e conteúdo da questão)
 
