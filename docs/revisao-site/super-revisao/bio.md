@@ -16,6 +16,7 @@ CONTINUAR DE: B01.4 lote 3 (em conferência), B01.5 (corretor), B01.6 e B02.1 (p
 |---|---|---|---|---|---|
 | B01.1 | 46 | 4 | 88 | 4/73 | Pe8aa4f48 (ver coordenação) |
 | B01.3 | 36 | 3 | 63 | 3/29 | — |
+| B01.4 | 45 | 3 | 55 | 6/39 | — |
 | B01.2 | 8 | 1 | 8 | 1/3 | — |
 
 ## Crítico de tela por tema
