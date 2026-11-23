@@ -20,6 +20,9 @@ CONTINUAR DE: B01.1 lote 1
 
 ## Gabaritos para a coordenação (anular / errata)
 
+## Para a coordenação (possível dupla resposta)
+- Pe8aa4f48 (PUC-Campinas 2025): oficial B mantida; a D também tem base fisiológica (CFTR abre com ATP, cloreto a favor do gradiente). Sem errata/anulação na web; explicado no alerta. Avaliar se é caso de anular.
+
 ## Texto da questão para a coordenação (DADO)
 - DADO Pf34120b0 (Unespar 2024): alternativa E traz a legenda da figura colada ("planta de mimosa imperturbada planta de mimosa quando tocada"); pelo print termina em "aumentando sua turgidez."
 
