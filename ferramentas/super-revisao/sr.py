@@ -17,6 +17,8 @@ Antes: `cd app && python3 scripts/converte.py` (o banco montado em app/public/co
                                                                   de fora dela (quadro, caminhos, visual). "erradas.B"
                                                                   e "passos.2" trocam só aquele item. Guarda o antes em
                                                                   <patch>.antes.json (para o professor novo conferir).
+                                                                  --simula: só escreve o .antes.json (para conferir
+                                                                  antes de gravar no repositório).
 
 Onde se grava: questão de prova -> app/conteudo-fonte/provas/<prova>/resolucoes-<m>.json (ou resolucoes.json, lotes
 antigos); questão antiga do protótipo (app-atual/, que não se altera) -> app/conteudo-fonte/correcoes-res/<m>.json,
@@ -192,7 +194,7 @@ def troca(alvo, campo, valor):
     return antigo
 
 
-def cmd_aplica(fp):
+def cmd_aplica(fp, simula=False):
     patch = ler(fp)
     antes = {}
     por_arquivo = {}
@@ -221,8 +223,9 @@ def cmd_aplica(fp):
                     d[qid] = res_pub(m, sub)[qid]
                 for c, v in campos.items():
                     antes[qid][c] = troca(d[qid], c, v)
-        L.gravar(f, d)
-        print('gravado', os.path.relpath(f, RAIZ), len(itens))
+        if not simula:
+            L.gravar(f, d)
+        print('simulado' if simula else 'gravado', os.path.relpath(f, RAIZ), len(itens))
     L.gravar(fp.replace('.json', '') + '.antes.json', antes)
 
 
@@ -237,6 +240,6 @@ if __name__ == '__main__':
     elif a[0] == 'fonte':
         cmd_fonte(a[1])
     elif a[0] == 'aplica':
-        cmd_aplica(a[1])
+        cmd_aplica(a[1], '--simula' in a)
     else:
         sys.exit(__doc__)
