@@ -248,6 +248,8 @@ def converte_materia(m, amostra_ids=None):
     # resoluções por conteúdo, sem o print (que vira arquivo)
     res_por_sub, prints = {}, {}
     pasta_res = os.path.join(src, 'res')
+    f_corr = os.path.join(APP, 'conteudo-fonte', 'correcoes-res', m + '.json')
+    corrigidas = ler(f_corr) if os.path.exists(f_corr) else {}
     for f in sorted(os.listdir(pasta_res)):
         if not f.endswith('.json'):
             continue
@@ -263,6 +265,9 @@ def converte_materia(m, amostra_ids=None):
                 prints[qid] = img
             r.pop('id', None)
             limpo[qid] = neutro(r)
+            if qid in corrigidas:
+                # super revisão (23/11/2026): a resolução antiga corrigida (app-atual/ não se altera)
+                limpo[qid] = corrigidas[qid]
         if limpo:
             res_por_sub[sub] = limpo
     # questão que mudou de conteúdo (sub_troca): a resolução vai junto para o arquivo do conteúdo novo
