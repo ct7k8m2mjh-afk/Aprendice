@@ -214,19 +214,74 @@ def cmd_aplica(arq):
         else:
             pai[ch] = c['novo']
         feitos += 1
+    if SECO:
+        print('teste (--seco): nada gravado;', feitos, 'correções conferem')
+        return
     for f, d in cache.items():
         gravar(f, d)
     print('aplicadas', feitos, 'correções em', len(cache), 'arquivos')
 
 
+def cmd_registra(lote):
+    """Acrescenta ao <m>-achados.jsonl os achados do lote (correções conferidas, rejeitados, dados, gabarito)."""
+    m, sub = lote.split('-')[0], lote.split('-')[1]
+    base = os.path.join(TRAB, lote)
+    conf = {(c['id'], c['campo']): c for c in ler(base + '.conferencia.json', [])}
+    out = []
+    for c in ler(base + '.correcoes.json', []):
+        k = conf.get((c['id'], c['campo']), {})
+        out.append({'id': c['id'], 'sub': sub, 'papel': c.get('papel', 'professor'), 'campo': c['campo'],
+                    'problema': c.get('motivo', ''), 'correcao': c['novo'] if isinstance(c['novo'], str) else 'lista nova',
+                    'status': 'corrigido' if k.get('ok', True) else 'refeito na conferência'})
+    for r in ler(base + '.rejeitados.json', []):
+        out.append({'id': r.get('id', ''), 'sub': sub, 'papel': r.get('papel', ''), 'campo': r.get('campo', ''),
+                    'problema': r.get('apontamento', r.get('problema', '')), 'correcao': r.get('motivo', r.get('porque', '')),
+                    'status': 'não procede'})
+    for d in ler(base + '.dados.json', []):
+        out.append({'id': d['id'], 'sub': sub, 'papel': 'dados', 'campo': 'enunciado/print', 'problema': d['problema'],
+                    'correcao': '', 'status': 'para a coordenação'})
+    for g in ler(base + '.gabarito.json', []):
+        out.append({'id': g['id'], 'sub': sub, 'papel': 'professor', 'campo': 'gabarito', 'problema': g.get('motivo', ''),
+                    'correcao': '', 'status': 'para a coordenação'})
+    f = os.path.join(RAIZ, 'docs', 'revisao-site', 'super-revisao', f'{m}-achados.jsonl')
+    with open(f, 'a', encoding='utf-8') as h:
+        for x in out:
+            h.write(json.dumps(x, ensure_ascii=False) + '\n')
+    print(lote, len(out), 'achados registrados')
+
+
+def cmd_final(lote):
+    """<lote>.final.json = correções com a versão do professor novo onde ele recusou (ok=false)."""
+    base = os.path.join(TRAB, lote)
+    conf = {(c['id'], c['campo']): c for c in ler(base + '.conferencia.json', [])}
+    out, troc = [], 0
+    for c in ler(base + '.correcoes.json', []):
+        k = conf.get((c['id'], c['campo']))
+        if k and not k.get('ok', True):
+            if not k.get('como_deve_ficar'):
+                print('SEM VERSÃO do conferente, fica de fora:', c['id'], c['campo'])
+                continue
+            c = dict(c, novo=k['como_deve_ficar'], motivo=c.get('motivo', '') + ' (texto do professor novo)')
+            troc += 1
+        out.append(c)
+    gravar(base + '.final.json', out)
+    print(lote, len(out), 'correções finais;', troc, 'com o texto do professor novo')
+
+
+SECO = '--seco' in sys.argv
+
 if __name__ == '__main__':
-    a = sys.argv[1:]
+    a = [x for x in sys.argv[1:] if x != '--seco']
     if not a:
         sys.exit(__doc__)
     if a[0] == 'subs':
         cmd_subs(a[1])
     elif a[0] == 'lote':
         cmd_lote(a[1], a[2], int(a[3]), int(a[4]) if len(a) > 4 else 15)
+    elif a[0] == 'final':
+        cmd_final(a[1])
+    elif a[0] == 'registra':
+        cmd_registra(a[1])
     elif a[0] == 'aplica':
         cmd_aplica(a[1])
     else:
