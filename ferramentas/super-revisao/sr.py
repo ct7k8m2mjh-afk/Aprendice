@@ -108,13 +108,22 @@ def cmd_lote(m, sub, k=1):
     parte = qs[(k - 1) * TAM:k * TAM]
     if not parte:
         sys.exit(f'{sub}: não há lote {k} ({len(qs)} questões)')
-    ents = {e['id']: e for e in L.entrada(m, parte)}
+    ents = {e['id']: e for e in L.entrada(m, [q for q in parte if q.get('print')])}
+    for q in parte:
+        if q['id'] not in ents:
+            # questão antiga do protótipo: texto e alternativas do banco; o print é o do site
+            pr = os.path.join('app', 'public', 'conteudo', m, 'prints', q['id'] + '.webp')
+            ents[q['id']] = {'prova': f"{q['escola']} {q['ano']}" + (f" {q['fase']}" if q.get('fase') else '')
+                             + f" · questão {q.get('n')}", 'letras': sorted(q.get('alts') or {}),
+                             'texto_da_prova': q.get('enun', ''), 'alternativas': q.get('alts') or {},
+                             'print': pr if os.path.exists(os.path.join(RAIZ, pr)) else '',
+                             'tem_figura': bool(q.get('figura'))}
     aluno, prof = [], []
     for q in parte:
         e = ents[q['id']]
         base = {'id': q['id'], 'prova': e['prova'], 'nivel': q.get('dif'), 'letras': e['letras'],
                 'texto_da_prova': e.get('texto_da_prova', ''), 'alternativas': e.get('alternativas', {}),
-                'print': os.path.join(RAIZ, e['print'])}
+                'print': os.path.join(RAIZ, e['print']) if e['print'] else ''}
         if e.get('ler_o_print'):
             base['ler_o_print'] = True
         if e.get('tem_figura'):
