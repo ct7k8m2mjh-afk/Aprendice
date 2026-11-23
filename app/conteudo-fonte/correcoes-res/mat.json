@@ -962,5 +962,78 @@
    "chave": "Multiplicar os primos em ordem, acumulando, até o produto passar de 2 000.",
    "cuidado": "O primorial multiplica só os primos, não todos os números até n; vários n dão o mesmo valor."
   }
+ },
+ "4b7f4c04": {
+  "antes": {
+   "texto": "Rastrear um fluxograma é fazer o papel do computador: anotar o valor de cada variável e refazer a conta a cada volta, sem pular nenhuma e sem adiantar. Aqui há três variáveis, m, n e i, e o i serve só para contar voltas de um tipo. A operação que aparece é o resto da divisão: o que sobra quando se divide um número por outro.",
+   "formulas": [
+    "m mod n = resto da divisão de m por n",
+    "em cada volta muda só o que a seta manda mudar; as outras variáveis ficam com o valor anterior"
+   ],
+   "simbolos": [
+    [
+     "m mod n",
+     "o resto da divisão de m por n: 32 mod 7 = 4, porque 32 = 7 × 4 + 4"
+    ],
+    [
+     "i",
+     "um contador: variável que soma 1 cada vez que o fluxograma passa por um caminho específico"
+    ],
+    [
+     "≥",
+     "maior ou igual a"
+    ],
+    [
+     "→",
+     "passagem de uma volta para a seguinte"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Anote os valores de partida e os dois caminhos do teste",
+    "conta": "m = 32 ; n = 7 ; i = 0",
+    "porque": "Do Início vai direto para m = m mod n e depois para \"m = 0?\": sim, acaba; não, soma 3 no m, 1 no n e 1 no i. Em seguida \"m ≥ n?\": sim, volta ao resto; não, soma de novo. O i só muda na caixa dos aumentos.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Faça as três primeiras voltas",
+    "conta": "m = 32 mod 7 = 4 ; 4 = 0? não → m = 7, n = 8, i = 1 ; 7 ≥ 8? não → m = 10, n = 9, i = 2",
+    "porque": "Siga as setas do desenho: depois do resto vem \"m = 0?\"; depois dos aumentos vem \"m ≥ n?\". O i só ganha 1 na caixa dos aumentos.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Continue até m e n empatarem",
+    "conta": "10 ≥ 9? sim → m = 10 mod 9 = 1 ; 1 = 0? não → m = 4, n = 10, i = 3 ; 4 ≥ 10? não → m = 7, n = 11, i = 4 ; 7 ≥ 11? não → m = 10, n = 12, i = 5 ; 10 ≥ 12? não → m = 13, n = 13, i = 6",
+    "porque": "Nas voltas dos aumentos o m cresce de 3 em 3 e o n de 1 em 1, então eles se aproximam até ficarem iguais. Nesse trecho o i subiu de 2 para 6, uma unidade por passagem nos aumentos.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Resolva a volta final",
+    "conta": "13 ≥ 13? sim → m = 13 mod 13 = 0 ; 0 = 0? sim → Fim",
+    "porque": "Com m igual a n o teste manda para o resto, e 13 = 13 × 1 + 0, resto 0. O caminho do resto não mexe no i, e \"m = 0? sim\" encerra o fluxograma.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Leia o valor final do contador",
+    "conta": "i = 6",
+    "porque": "Com m = 0 o fluxograma encerra. O último valor registrado no i é 6, que é o número de voltas em que o teste deu falso.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C — o valor final de i é 6.",
+  "checagem": "Conte por outro lado: o i só sobe nas voltas falsas, e exatamente nessas voltas o n também sobe de 1 em 1. O n saiu de 7 e terminou em 13, então houve 13 − 7 = 6 voltas falsas, ou seja, i = 6. Nenhuma tabela precisa ser relida.",
+  "erradas": {
+   "A": "Vem de somar 1 também na volta final, aquela em que m vira 0 e o fluxograma para. Nessa volta o caminho percorrido é o do resto (m = 13 mod 13), e esse caminho não mexe no contador.",
+   "B": "Vem de tratar as voltas do resto como se também contassem: às 6 voltas falsas somam-se as duas voltas em que o resto foi calculado antes do fim, 32 mod 7 e 10 mod 9. Essas duas voltas mudam o m e não o i.",
+   "D": "Vem de interromper o rastreamento quando o m repete um valor já visto — ele volta a valer 7 quando n = 11, e nesse ponto i = 4 — achando que o fluxograma entrou em repetição sem fim. Não entrou: o n continua crescendo e o empate m = n = 13 chega.",
+   "E": "Vem de parar uma volta antes do fim, na linha m = 10, n = 12, i = 5, esquecendo a última volta falsa que ainda falta, a que leva a m = 13, n = 13 e i = 6, antes do resto final."
+  },
+  "armadilha": "Nem toda volta soma 1 no contador. O i só cresce no caminho do teste falso; nas voltas em que se calcula o resto ele fica parado, inclusive na última, que é a que encerra o fluxograma.",
+  "essencial": {
+   "pede": "O valor final de i ao término do fluxograma.",
+   "chave": "Rastrear m, n e i volta a volta; o i só sobe na caixa dos aumentos, nas voltas em que o teste dá 'não'.",
+   "cuidado": "A última volta, m = 13 mod 13 = 0, só calcula o resto e não soma 1 em i."
+  }
  }
 }
