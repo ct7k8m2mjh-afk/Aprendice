@@ -47,7 +47,15 @@ def ler(f, p=None):
 
 
 def banco(m):
-    return ler(os.path.join(PUB, m, 'banco.json'))
+    """Banco montado do site; enquanto o converte.py remonta (pasta apagada), usa a cópia guardada em trabalho/."""
+    copia = os.path.join(TRAB, f'banco-{m}.json')
+    b = ler(os.path.join(PUB, m, 'banco.json'))
+    if b is None:
+        return ler(copia, [])
+    if not os.path.exists(copia) or os.path.getmtime(copia) < os.path.getmtime(os.path.join(PUB, m, 'banco.json')):
+        os.makedirs(TRAB, exist_ok=True)
+        L.gravar(copia, b)
+    return b
 
 
 def res_pub(m, sub):
