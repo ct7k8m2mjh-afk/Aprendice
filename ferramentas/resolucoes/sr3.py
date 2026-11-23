@@ -258,8 +258,8 @@ def cmd_final(lote):
     for c in ler(base + '.correcoes.json', []):
         k = conf.get((c['id'], c['campo']))
         if k and not k.get('ok', True):
-            if not k.get('como_deve_ficar'):
-                print('SEM VERSÃO do conferente, fica de fora:', c['id'], c['campo'])
+            if not k.get('como_deve_ficar') or type(k['como_deve_ficar']) is not type(c['novo']):
+                print('VERSÃO do conferente ausente ou de outro tipo (lista x texto); acerte à mão:', c['id'], c['campo'])
                 continue
             c = dict(c, novo=k['como_deve_ficar'], motivo=c.get('motivo', '') + ' (texto do professor novo)')
             troc += 1
