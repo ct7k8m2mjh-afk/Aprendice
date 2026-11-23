@@ -24,6 +24,8 @@ CONTINUAR DE: tema B01 completo (falta o crítico de tela do tema B01); B02.1 (c
 | B02.3 | 21 | 2 | 25 | 3/18 | — |
 | B02.4 | 22 | 2 | 41 | 2/37 | — |
 | B02.5 | 26 | 2 | 15 | 2/11 | P05c39044 |
+| B03.1 | 9 | 1 | 6 | 0/4 | — |
+| B03.2 | 13 | 1 | 8 | 0/6 | — |
 | B01.2 | 8 | 1 | 8 | 1/3 | — |
 
 ## Crítico de tela por tema
