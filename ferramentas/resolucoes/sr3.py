@@ -52,8 +52,9 @@ def questoes(m):
     for f in glob.glob(os.path.join(PUB, m, 'res', '*.json')):
         for k, v in ler(f).items():
             res[k] = v
+    # só o que o aluno vê no site (dono, 23/11): pendente ou retirada não aparece
     qs = [q for q in b if q['id'] in res and not q.get('anuladaAprendice') and not q.get('outraMateria')
-          and not str(q.get('pendente', '')).startswith('indisponível')]
+          and not q.get('pendente') and not q.get('retirada')]
     return qs, res
 
 
