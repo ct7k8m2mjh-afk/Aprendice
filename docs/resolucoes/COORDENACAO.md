@@ -328,3 +328,6 @@ Andamento por matéria em docs/revisao-site/super-revisao/<m>.md ("CONTINUAR DE:
 com o mesmo prompt (retoma pelo <m>.md). Publicar no ar ao fim de cada matéria.
 Painel de decisões do dono (com campo para ele responder): https://claude.ai/artifact/Ti1PkT4uARbRh3h8y2BPqs
 (ler com ArtifactData, coleção "decisoes"; ao aplicar, gravar lido:true e resposta).
+- PENDENTE DA COORDENAÇÃO (SR-3, 23/11): questão de texto compartilhado aparece SEM o texto-base (Pa65cc39c PUC-Campinas 2027 q2, P65667e3b UFT 2024 q14, P7ee3116 Fatec 2019). Varredura em todas as matérias + refazer print (ferramentas/ingestao/refaz_print.py). Detalhes em super-revisao/por.md (papel "dados").
+- Decisões do dono no painel (23/11): itens 1, 4, 8, 9, 10 sim (agente aplicando); 11 nada a fazer; 3 = São Camilo fica com questão e resposta (nenhuma sai); 2, 5, 6, 7 sem resposta.
+
