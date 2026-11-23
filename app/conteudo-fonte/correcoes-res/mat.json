@@ -1,0 +1,76 @@
+{
+ "d463edb8": {
+  "antes": {
+   "texto": "Na base 10 cada casa vale 1, 10, 100, 1 000 e assim por diante. Na base 2 as casas valem 1, 2, 4, 8, 16, 32 e vão dobrando. Escrever um número na base 2 é decidir quais dessas casas você usa (marca 1) e quais não usa (marca 0). Cada casa pode ser usada uma vez só.",
+   "formulas": [
+    "valor das casas na base 2: 2⁰ = 1, 2¹ = 2, 2² = 4, 2³ = 8, 2⁴ = 16, 2⁵ = 32, 2⁶ = 64, 2⁷ = 128, 2⁸ = 256, 2⁹ = 512, 2¹⁰ = 1 024",
+    "número = soma das potências de 2 escolhidas",
+    "algarismo de cada casa: 1 (usei essa potência) ou 0 (não usei)"
+   ],
+   "simbolos": [
+    [
+     "2⁷",
+     "2 multiplicado por si mesmo 7 vezes: 2 × 2 × 2 × 2 × 2 × 2 × 2 = 128"
+    ],
+    [
+     "2⁰",
+     "qualquer número elevado a 0 vale 1, então 2⁰ = 1"
+    ],
+    [
+     "(174)₂",
+     "o número 174 escrito na base 2; o 2 pequeno embaixo avisa qual é a base"
+    ],
+    [
+     "resto",
+     "o que sobra numa divisão que não é exata: em 9 ÷ 2 o quociente é 4 e o resto é 1, porque 9 = 2 × 4 + 1"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Monte a régua das potências de 2",
+    "conta": "2⁰ = 1; 2¹ = 2; 2² = 4; 2³ = 8; 2⁴ = 16; 2⁵ = 32; 2⁶ = 64; 2⁷ = 128; 2⁸ = 256; 2⁹ = 512; 2¹⁰ = 1 024; 2¹¹ = 2 048",
+    "porque": "Cada casa da base 2 vale o dobro da anterior. 2 048 já passa de 2 023, então a maior casa que cabe é 1 024 = 2¹⁰. Isso já avisa que a resposta vai ter 11 algarismos: de 2¹⁰ até 2⁰.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Tire a maior potência que cabe, uma de cada vez",
+    "conta": "2 023 − 1 024 = 999; 999 − 512 = 487; 487 − 256 = 231; 231 − 128 = 103; 103 − 64 = 39; 39 − 32 = 7",
+    "porque": "Se uma potência cabe no que sobrou, use: todas as menores juntas não chegam a ela.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Continue até chegar a zero",
+    "conta": "7 − 4 = 3; 3 − 2 = 1; 1 − 1 = 0",
+    "porque": "Sobraram 7 = 4 + 2 + 1. Chegar a zero garante que nada ficou de fora.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Veja quais casas ficaram de fora",
+    "conta": "2 023 = 1 024 + 512 + 256 + 128 + 64 + 32 + 4 + 2 + 1",
+    "porque": "Nessa soma não aparecem 16 nem 8, isto é, 2⁴ e 2³. Essas duas casas recebem o algarismo 0; todas as outras recebem 1.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Escreva os algarismos de 2¹⁰ até 2⁰",
+    "conta": "1 1 1 1 1 1 0 0 1 1 1 → 11111100111",
+    "porque": "O enunciado pede em ordem decrescente das potências: primeiro o coeficiente de 2¹⁰, por último o de 2⁰. Os dois zeros ficam nas casas de 2⁴ e 2³.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa A — 11111100111 (onze algarismos, correspondendo a 2¹⁰ + 2⁹ + 2⁸ + 2⁷ + 2⁶ + 2⁵ + 2² + 2¹ + 2⁰)",
+  "checagem": "Some de volta: 1 024 + 512 = 1 536; + 256 = 1 792; + 128 = 1 920; + 64 = 1 984; + 32 = 2 016; + 4 + 2 + 1 = 2 023. Segunda conferência, de graça: 2 023 é ímpar, e o único algarismo ímpar da base 2 é o 1 da casa 2⁰ — então a resposta tem de terminar em 1. A termina em 1; a alternativa E termina em 0 e já cai fora por aqui.",
+  "erradas": {
+   "B": "11100111111 vale 1 855, não 2 023: é a resposta lida de trás para frente. Nas divisões por 2 o primeiro resto é o da casa 2⁰; anotá-los na ordem em que saem dá essa sequência.",
+   "C": "10111100111 vale 1 511: tem 0 na casa de 2⁹, ou seja, pulou o 512 na régua. É o erro de quem tira 1 024 de 2 023, fica com 999 e vai direto para 256, esquecendo que 512 ainda cabe em 999. Confira a falta: 1 511 + 512 = 2 023.",
+   "D": "11011100111 vale 1 767: tem 0 na casa de 2⁸, isto é, deixou o 256 de fora. Depois de 2 023 − 1 024 − 512 = 487, o 256 cabe em 487 e foi ignorado. Confira: 1 767 + 256 = 2 023.",
+   "E": "11100111110 vale 1 854: é a mesma inversão de ordem da alternativa B e, por cima, perde o último resto — termina em 0, o que descreveria um número par. Como 2 023 é ímpar, nenhuma resposta correta pode terminar em 0."
+  },
+  "armadilha": "Os restos das divisões sucessivas por 2 saem na ordem contrária à da escrita: a alternativa B é o espelho exato da resposta, e é nela que cai quem não inverte a sequência no fim.",
+  "essencial": {
+   "pede": "O número 2 023 escrito no sistema binário (base 2).",
+   "chave": "Tirar de 2 023 a maior potência de 2 que cabe, até zerar; 1 nas usadas e 0 nas outras.",
+   "cuidado": "Escrever os algarismos de 2¹⁰ até 2⁰; a alternativa B é a resposta lida de trás para frente."
+  }
+ }
+}
