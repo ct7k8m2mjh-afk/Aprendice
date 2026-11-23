@@ -7,8 +7,10 @@ Achados: `por-achados.jsonl` (uma linha por achado). Arquivos de trabalho (fora 
 Total: 4.987 questões com resolução em 57 conteúdos (P01.1 … P12.5), na ordem de `sr3.py subs por`;
 dentro do conteúdo: ENEM, provas-alvo, demais; nível básico → avançado.
 
-CONTINUAR DE: P01.1 — lotes 1–3 gravados; 4–12 em andamento (ver `trabalho/por-P01.1-*`; lote sem
-`.final.json` ainda não foi gravado: refazer a partir do arquivo que faltar).
+CONTINUAR DE: P01.1 — lotes 1–8 gravados; 9–12 com correções prontas (falta professor novo → final → aplica);
+13–15 com professor e aluno prontos (falta corretor); 16–17 abertos (falta professor e aluno); crítico de tela
+de P01.1 por fazer. Lote sem `.final.json` ainda não foi gravado: refazer a partir do arquivo que faltar.
+Regra da coordenação (23/11, 8h20): no máximo 4 agentes ao mesmo tempo; ALUNO e CRÍTICO DE TELA com model "sonnet".
 
 Fluxo de cada lote (`sr3.py`): `lote` → professor (`.professor.json`) + aluno em 2 etapas (`.aluno-1/2.json`) →
 corretor (`.correcoes.json`, `.rejeitados.json`, `.dados.json`, `.gabarito.json`) → `aplica --seco` → professor novo
@@ -17,7 +19,7 @@ corretor (`.correcoes.json`, `.rejeitados.json`, `.dados.json`, `.gabarito.json`
 ## Andamento por conteúdo
 | Conteúdo | Questões | Lotes feitos | Corrigidas | Achados (erro/clareza) | Crítico de tela |
 |---|---|---|---|---|---|
-| P01.1 | 245 | 1–3 de 17 | 68 correções | ver jsonl | em andamento |
+| P01.1 | 245 | 1–8 de 17 | 232 correções | ver jsonl | em andamento |
 
 ## Gabaritos para a coordenação (anular / errata)
 
