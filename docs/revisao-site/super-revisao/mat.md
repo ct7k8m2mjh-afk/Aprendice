@@ -22,6 +22,8 @@ confirmados (oficial vale; ponto sutil no `alerta`). Crítico de tela: M01.1 em 
 
 ## Gabarito para a coordenação (anular / errata)
 
+- **anular** E109d981 (M02.1; questão antiga do protótipo): ao pé da letra o enunciado dá 365 pares (teto de 1 200 valendo para as mortas, 40% de vivas), que não está entre as alternativas; o oficial C (205) só sai torcendo o teto para o total ou lendo os 40% como vivas sobre mortas. Conferido por dois professores (corretor e professor novo). A resolução ficou com o oficial e o alerta, à espera da decisão.
+
 ## CONTINUAR DE: M01.4
 Em andamento (arquivos em `trabalho/`, fora do git): M01.4 lotes 1–3 (patches prontos, conferência do professor novo
 pendente; lote 1 com 1 item a refazer), M01.5 lote 1 (falta o professor) e lote 2 (patch pronto, falta conferência).

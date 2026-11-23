@@ -1723,5 +1723,86 @@
    "chave": "Somar os dois trechos da barra (1 + 3,5 = 4,5 cm) e multiplicar por 1,5%, pois 'azul' mede 1 cm.",
    "cuidado": "O 3,5 é só parte da palavra: o trecho de 1 cm também é de 'mundo' e entra na soma."
   }
+ },
+ "E109d981": {
+  "antes": {
+   "texto": "A questão define viabilidade como a porcentagem de células vivas dentro do total observado, e o total observado é vivas mais mortas. Dizer que a viabilidade é 40 % é dizer que vivas divididas por (vivas mais mortas) dá 0,4. Essa única equação amarra V e M numa proporção fixa. Como os dois têm que ser números inteiros, o truque é escrever os dois como múltiplos de um mesmo inteiro k e depois contar quantos valores de k cabem nos limites dados.",
+   "formulas": [
+    "V ÷ (V + M) = 0,4",
+    "dessa igualdade sai M = 1,5 × V, ou seja, V = 2k e M = 3k",
+    "quantidade de inteiros de a até b = b − a + 1"
+   ],
+   "simbolos": [
+    [
+     "V",
+     "número de células vivas"
+    ],
+    [
+     "M",
+     "número de células mortas"
+    ],
+    [
+     "(V, M)",
+     "par ordenado: a dupla de valores; cada dupla diferente conta como uma possibilidade"
+    ],
+    [
+     "k",
+     "número inteiro auxiliar, inventado para gerar todos os pares de uma vez só"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Escreva os 40 % como equação",
+    "conta": "V/(V + M) = 0,4",
+    "porque": "Viabilidade é a porcentagem de vivas no total observado, e o total é vivas mais mortas: o denominador é V + M.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Isole a relação entre V e M",
+    "conta": "V = 0,4 × (V + M) → V − 0,4V = 0,4M → 0,6V = 0,4M → M = 1,5 × V",
+    "porque": "O denominador passa multiplicando; juntando os termos com V, as mortas são sempre uma vez e meia as vivas.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Force os dois a serem inteiros",
+    "conta": "V = 2k e M = 3k, com k inteiro",
+    "porque": "M = 1,5 × V só dá número inteiro quando V é par. Escrevendo V = 2k, sai M = 1,5 × 2k = 3k. Assim, cada valor inteiro de k gera exatamente um par (V, M) válido, e todos os pares válidos aparecem desse jeito.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Use a condição 'mais do que 70 células vivas'",
+    "conta": "2k > 70 → k > 35 → k ≥ 36",
+    "porque": "Mais do que 70 exclui o próprio 70. Como k é inteiro, o primeiro valor depois de 35 é 36, que dá V = 72.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Use o limite de 1 200 células",
+    "conta": "V + M = 2k + 3k = 5k ≤ 1 200 → k ≤ 1 200/5 → k ≤ 240",
+    "porque": "Ao pé da letra o teto seria só das mortas: 3k ≤ 1 200 dá k ≤ 400 e 365 pares, que não está nas alternativas. O gabarito aplica o teto ao total observado (vivas + mortas): 5k ≤ 1 200. O maior k é 240 (V = 480, M = 720).",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte os inteiros de 36 até 240",
+    "conta": "240 − 36 + 1 = 205",
+    "porque": "A subtração 240 − 36 conta os passos de um número até o outro, não os números. Somar 1 inclui o próprio 36 na contagem. Cada k desses gera um par (V, M) diferente, então há 205 pares.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C — 205 pares ordenados (V, M)",
+  "checagem": "Teste as duas pontas. Com k = 36: V = 72 e M = 108, total 180, e 72 ÷ 180 = 0,4, com 72 maior que 70 — vale. Com k = 240: V = 480 e M = 720, total 1 200, e 480 ÷ 1 200 = 0,4 — vale, no limite. Um k a menos (35) daria V = 70, que não é 'mais do que 70'; um k a mais (241) daria total 1 205, acima do teto.",
+  "erradas": {
+   "A": "206 é o que sai se você começar a contagem em k = 35, isto é, aceitar V = 70. O enunciado pede mais do que 70 células vivas, então o 70 fica de fora e o primeiro k válido é 36.",
+   "B": "204 é 240 − 36, a subtração sem o +1. Essa conta mede quantos passos existem de 36 até 240, mas a pergunta é quantos números existem nesse intervalo, e aí o próprio 36 precisa ser contado.",
+   "D": "207 sai de esticar as duas pontas ao mesmo tempo: contar de 35 até 241, ou seja, 241 − 35 + 1 = 207. Isso aceita um par com V = 70 (que o enunciado proíbe) e outro com 1 205 células (acima do teto).",
+   "E": "208 é a mesma contagem de D com mais um valor indevido na ponta de baixo (de 34 até 241 dá 241 − 34 + 1 = 208). Cada valor a mais nas pontas quebra uma das duas condições do enunciado."
+  },
+  "armadilha": "'Mais do que 70' deixa o 70 de fora, e contar os inteiros de 36 a 240 exige somar 1. Atenção: o gabarito aplica o teto de 1 200 ao total de células (vivas + mortas); só com as mortas daria 365, fora das alternativas.",
+  "alerta": "Há uma divergência de leitura no enunciado, e ela é importante. A condição 3 diz, ao pé da letra, 'não há mais do que 1 200 células MORTAS no total', o que daria 3k ≤ 1 200, ou seja, k ≤ 400 e, com k de 36 a 400, 365 pares — resultado que não aparece em nenhuma alternativa. O valor 205 do gabarito oficial só aparece se o teto de 1 200 for aplicado ao TOTAL de células observadas (vivas mais mortas), isto é, 5k ≤ 1 200 e k ≤ 240. A resolução acima segue a leitura do gabarito oficial, que é C. Se esta questão cair de novo, vale sublinhar a quem o limite de 1 200 se refere antes de contar.",
+  "essencial": {
+   "pede": "Contar os pares (V, M) inteiros que respeitam os 40 % de células vivas e os dois limites do enunciado.",
+   "chave": "40 % vira M = 1,5 × V, logo V = 2k e M = 3k; conte os valores de k entre 36 e 240.",
+   "cuidado": "Divergência registrada: o gabarito aplica o teto de 1 200 ao total, e não só às mortas. 'Mais de 70' exclui o 70."
+  }
  }
 }
