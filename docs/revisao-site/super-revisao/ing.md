@@ -18,13 +18,24 @@ Site local para conferir: o build de `app/public/conteudo/ing` foi baixado do si
 as resoluções corrigidas foram reconstruídas das fontes com a mesma regra do `converte.py` (`provas_fonte`); as
 demais 2.499 resoluções reconstruídas saíram idênticas ao site, o que confirma a regra.
 
-CONTINUAR DE: I01.1 lote 5
+CONTINUAR DE: I01.2 (e, em I01.1, revisar a fundo as q 61–132 que não são do lote fraco)
 
 ## Andamento por conteúdo
 | Conteúdo | Questões | Lotes feitos | Corrigidas | Achados (erro/clareza) | Crítico de tela |
 |---|---|---|---|---|---|
 | ENEM (todos os conteúdos) | 30 | 2 (as 30 do ENEM) | 3 | 0/15 | P6f46b634, P261ed021: sem rolagem lateral, sem erro no console |
-| I01.1 | 132 | 4 (q 1–60) | 23 (+2 da mesma prova em I01.5 e I02.1) | 0/49 | P0fea2fcf, Pf3356411, Pf0fcfc0b, Pdfb39a5b, P2364d7a9: sem rolagem lateral, sem erro no console; achado de texto-base (abaixo) |
+| I01.1 | 132 | 4 lotes completos (q 1–60) + as 33 resoluções do lote fraco nas q 61–132 | 56 (+2 da mesma prova em I01.5 e I02.1) | 0/82 | P0fea2fcf, Pf3356411, Pf0fcfc0b, Pdfb39a5b, P2364d7a9, Pca03e7e4, P6a5f762c, P1333ff78, P7d723474: sem rolagem lateral, sem erro no console; achado de texto-base (abaixo) |
+
+## O lote fraco (achado principal de Inglês)
+Nos 4 lotes completos de I01.1 e nos 30 do ENEM, as resoluções com problema foram quase todas de um mesmo lote da
+fábrica: passo "Teste as alternativas" com porque genérico ("X é a única que confere com o trecho; A toma um detalhe
+pelo todo; B traz o que o texto não diz…"), passo final "Ligue a ideia à letra X" com trecho em inglês sem aspas e sem
+tradução, e respostas sem o porquê. As demais estavam certas e claras. Por isso, a partir do lote 5 de I01.1 a sessão
+corrigiu as 33 resoluções desse lote nas q 61–132 (achadas por varredura) e deixou as outras para revisão a fundo.
+Em todo o Inglês, 1.167 resoluções têm o passo final "Ligue … à letra" e 301 têm o porque genérico; lista em
+\`ing-achados.jsonl\` conforme cada conteúdo for feito. O que se corrigiu em cada uma: o porque do passo de comparação
+diz por que cada alternativa errada atrai e onde o texto a desmente; o passo final traz o trecho entre aspas (com
+tradução quando falta); citações conferidas literalmente contra o texto da prova.
 
 ## Achados que valem para o site todo (tela e conteúdo da questão)
 
