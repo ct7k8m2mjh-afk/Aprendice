@@ -317,3 +317,14 @@ Disparada 20/11 02h14 (pedido do dono): dpl_AX9c2qaAryjD2UwyHYL8SNSukrX4 (commit
 Contagem: `com_resolucao` de https://aprendice.vercel.app/conteudo/relatorio.json (ou do relatório local do converte).
 
 Coordenadora atual: ver a tabela de sessões e a tarefa agendada (13/11: nova coordenadora enxuta).
+
+## 23/11: SUPER REVISÃO EM ANDAMENTO (pedido do dono)
+Protocolo: docs/revisao-site/super-revisao/PROTOCOLO.md (professor + aluno por lote, crítico de tela por conteúdo).
+Sessões (3 de trabalho + coordenação):
+- SR-1 session_01Tq253YUmxRPmEZ2FtgkVRH: mat → fis → fs
+- SR-2 session_01Tq253WeYmtSmdQzbwAuQSt: bio → qui → geo
+- SR-3 session_01Tq253Y1YcZkNgdHHM8CNt3: por → his → ing
+Andamento por matéria em docs/revisao-site/super-revisao/<m>.md ("CONTINUAR DE:"). Sessão que parar: abrir outra
+com o mesmo prompt (retoma pelo <m>.md). Publicar no ar ao fim de cada matéria.
+Painel de decisões do dono (com campo para ele responder): https://claude.ai/artifact/Ti1PkT4uARbRh3h8y2BPqs
+(ler com ArtifactData, coleção "decisoes"; ao aplicar, gravar lido:true e resposta).
