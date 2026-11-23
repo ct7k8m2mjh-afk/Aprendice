@@ -25,6 +25,7 @@ CONTINUAR DE: tema B01 completo (falta o crítico de tela do tema B01); B02.1 (c
 | B01.2 | 8 | 1 | 8 | 1/3 | — |
 
 ## Crítico de tela por tema
+- B01 (23/11): 12 questões (2 por conteúdo) em 390/1280 px, claro/escuro (48 passadas), resposta errada + animação até o fim + "outras erradas"; escada, tema, flashcards, revisão geral, slides, essencial. Nenhum problema (bio-B01.tela.json vazio).
 
 ## Gabaritos para a coordenação (anular / errata)
 
