@@ -18,13 +18,13 @@ Site local para conferir: o build de `app/public/conteudo/ing` foi baixado do si
 as resoluções corrigidas foram reconstruídas das fontes com a mesma regra do `converte.py` (`provas_fonte`); as
 demais 2.499 resoluções reconstruídas saíram idênticas ao site, o que confirma a regra.
 
-CONTINUAR DE: I01.1 lote 3
+CONTINUAR DE: I01.1 lote 4
 
 ## Andamento por conteúdo
 | Conteúdo | Questões | Lotes feitos | Corrigidas | Achados (erro/clareza) | Crítico de tela |
 |---|---|---|---|---|---|
 | ENEM (todos os conteúdos) | 30 | 2 (as 30 do ENEM) | 3 | 0/15 | P6f46b634, P261ed021: sem rolagem lateral, sem erro no console |
-| I01.1 | 132 | 2 (q 1–30) | 12 (+2 da mesma prova em I01.5 e I02.1) | 0/26 | P0fea2fcf, Pf3356411, Pf0fcfc0b, Pdfb39a5b, P2364d7a9: sem rolagem lateral, sem erro no console; achado de texto-base (abaixo) |
+| I01.1 | 132 | 3 (q 1–45) | 17 (+2 da mesma prova em I01.5 e I02.1) | 0/35 | P0fea2fcf, Pf3356411, Pf0fcfc0b, Pdfb39a5b, P2364d7a9: sem rolagem lateral, sem erro no console; achado de texto-base (abaixo) |
 
 ## Achados que valem para o site todo (tela e conteúdo da questão)
 
