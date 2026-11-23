@@ -29,6 +29,13 @@ confirmados (oficial vale; ponto sutil no `alerta`). Crítico de tela: M01.1 em 
   passo "Raiz", "5"); (b) quando o passo não tem `nota`, o motor mostra o `faz` como nota ao lado da conta, repetindo
   o título do passo (Ped0907b5, todos os passos; Pf4d505e1 mostra "resposta" solto).
 
+- M01.2–M02.1 (Pca1bc478, P4f95738b, Pa320b1c6, Pd4293f24, P4a86ac3f): sem rolagem lateral, animação até o fim.
+  Dados corrigidos: linha quase repetida (P4a86ac3f) e linha fora do passo (Pd4293f24).
+  **Para a coordenação (motor):** (c) quando a conta termina com unidade ("374 dentes", "7 434 milhares de km²"), a
+  unidade volta como nota solta ao lado ("374 dentes   dentes"); (d) no celular, cadeia longa com "→" quebra deixando a
+  seta pendurada no fim da linha. Só do build local (não do site no ar): banco.json de outras matérias e ícone do tema
+  não carregam no `npx vite`.
+
 ## Gabarito para a coordenação (anular / errata)
 
 - **anular** E109d981 (M02.1; questão antiga do protótipo): ao pé da letra o enunciado dá 365 pares (teto de 1 200 valendo para as mortas, 40% de vivas), que não está entre as alternativas; o oficial C (205) só sai torcendo o teto para o total ou lendo os 40% como vivas sobre mortas. Conferido por dois professores (corretor e professor novo). A resolução ficou com o oficial e o alerta, à espera da decisão.
