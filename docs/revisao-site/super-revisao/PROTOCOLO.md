@@ -4,6 +4,13 @@ Objetivo: **nenhum erro para o usuário** antes de o site abrir ao público. Cad
 **professor** e por um **aluno**; cada conteúdo passa por um **crítico de tela**. O que eles acharem é corrigido e
 conferido de novo (princípio 3: a 1ª lente volta em tudo que mudou).
 
+**O que se revisa é o SITE (dono, 23/11/2026).** Revisamos as questões do site, como o aluno as vê: as que estão
+no ar em https://aprendice.vercel.app (o `banco.json` e `res/` de cada matéria em `/conteudo/<m>/`, iguais ao build
+local de `app/`). Professor e aluno recebem a questão e a correção **como o site mostra** (enunciado ou print, as
+alternativas, os 4 blocos da correção, a animação), não o rascunho da fábrica. Questão que não aparece no site não
+entra. A correção é feita no arquivo-fonte (o que o `converte.py` lê) e conferida de novo **no site** (build local)
+antes do commit.
+
 Palavras do dono: "a resolução tem que estar de uma forma que o aluno entenda e consiga refazer o exercício olhando
 ela". Não é para acrescentar linhas nem texto: é para a resolução ficar **clara e completa no essencial**. Encurtar
 também vale.
@@ -14,7 +21,8 @@ também vale.
 |---|---|---|
 | SR-1 | Matemática → Física → Filosofia e Sociologia | 3.817 + 2.809 + 1.598 |
 | SR-2 | Biologia → Química → Geografia | 2.894 + 2.989 + 2.592 |
-| SR-3 | Português → História → Inglês | 5.021 + 2.444 + 2.508 |
+| SR-3 | Português → História | 5.021 + 2.444 |
+| Coordenação | Inglês | 2.508 |
 
 Ordem dentro da matéria: conteúdo por conteúdo (subtema), começando pelas questões das provas-alvo e do ENEM
 (mesma prioridade do `ferramentas/resolucoes/lote.py`), do nível básico ao avançado.
