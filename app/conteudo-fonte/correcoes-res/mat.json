@@ -1035,5 +1035,292 @@
    "chave": "Rastrear m, n e i volta a volta; o i só sobe na caixa dos aumentos, nas voltas em que o teste dá 'não'.",
    "cuidado": "A última volta, m = 13 mod 13 = 0, só calcula o resto e não soma 1 em i."
   }
+ },
+ "Pb462d0a": {
+  "antes": {
+   "texto": "Esta questão inventa uma função na hora e já te ensina o que ela faz: E(n) conta quantos números menores do que n não têm nenhum divisor em comum com n além do 1. Você não precisa conhecer essa função de antes. Precisa só saber o que é máximo divisor comum e saber reconhecer um número primo. A chave é esta: se n é primo, nenhum número menor que ele o divide, então todos os n − 1 números anteriores contam.",
+   "formulas": [
+    "E(n) = quantidade de números de 1 até n − 1 cujo mdc com n é igual a 1",
+    "se p é primo, então E(p) = p − 1"
+   ],
+   "simbolos": [
+    [
+     "mdc",
+     "máximo divisor comum — o maior número que divide os dois ao mesmo tempo sem deixar resto"
+    ],
+    [
+     "mdc igual a 1",
+     "os dois números não têm nenhum divisor em comum a não ser o 1; dizemos que eles são primos entre si"
+    ],
+    [
+     "número primo",
+     "número maior que 1 que só pode ser dividido por 1 e por ele mesmo: 2, 3, 5, 7, 11, 13, 17, 19, 23"
+    ],
+    [
+     "E(n)",
+     "a função definida no próprio enunciado, chamada função de Euler"
+    ]
+   ]
+  },
+  "pista": "Antes de sair contando de 1 em 1 seis vezes, olhe quais dos números de 20 a 25 são primos. Para um número primo, nenhum número menor do que ele consegue dividi-lo. Pense no que isso faz com a contagem.",
+  "passos": [
+   {
+    "faz": "Procure o primo entre 20 e 25",
+    "conta": "20 = 2 × 10 ; 21 = 3 × 7 ; 22 = 2 × 11 ; 24 = 2 × 12 ; 25 = 5 × 5 ; 23 é primo",
+    "porque": "23 não é divisível por 2, 3 nem 5 (e 5 × 5 = 25 já passa de 23), então é primo.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Calcule E(23)",
+    "conta": "E(23) = 23 − 1 = 22",
+    "porque": "Como 23 é primo, nenhum número de 1 a 22 tem divisor comum com ele: todos os 22 contam.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule os outros cinco para comparar",
+    "conta": "E(20) = 19 − 9 − 2 = 8 ; E(21) = 20 − 6 − 2 = 12 ; E(22) = 21 − 10 − 1 = 10 ; E(24) = 23 − 11 − 4 = 8 ; E(25) = 24 − 4 = 20",
+    "porque": "Dos n − 1 números menores, tire os que têm fator comum com n, sem contar nenhum duas vezes. Em 21: os 6 múltiplos de 3 e os 2 de 7 (7 e 14). Em 24: os 11 pares e os múltiplos ímpares de 3 (3, 9, 15, 21).",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Compare os seis valores e escolha o maior",
+    "conta": "E(23) = 22 ; E(25) = 20 ; E(21) = 12 ; E(22) = 10 ; E(20) = E(24) = 8 → o maior é 22",
+    "porque": "A pergunta é o valor máximo de E(n), não o n que o produz.",
+    "tipo": "comparar"
+   }
+  ],
+  "resposta": "Alternativa C — 22 (o máximo acontece em n = 23, com E(23) = 22)",
+  "checagem": "Existe um teto para cada E(n): como só existem n − 1 números menores do que n, nunca se pode passar de n − 1. O teto de 25 é 24 e o de 24 é 23, mas esses dois números têm divisores de sobra (2, 3 e 5), então ficam bem abaixo do teto. Já 23, por ser primo, alcança o próprio teto, 22. E 22 é maior que qualquer valor que 24 e 25 conseguem atingir de fato (8 e 20).",
+  "erradas": {
+   "A": "A sai de usar a regra do primo em n = 20: 20 − 1 = 19. Mas 20 = 2 × 2 × 5 não é primo e E(20) = 8. O máximo é E(23) = 22.",
+   "B": "Esse é exatamente E(25) = 20. Cai aqui quem supõe que o maior n da faixa dá o maior E: dos 24 números menores que 25, apenas os múltiplos de 5 (5, 10, 15 e 20) têm divisor em comum, e 24 − 4 = 20. O número é certo, mas é o máximo do n errado: em n = 23 sai 22, que é maior.",
+   "D": "Aplicar a regra do primo, E(n) = n − 1, no maior n da faixa: 25 − 1 = 24. Só que 25 = 5 × 5 não é primo, e os quatro múltiplos de 5 abaixo dele estragam a contagem, derrubando o resultado de 24 para 20.",
+   "E": "Responder com o próprio n em vez da contagem: contar de 1 até 25 incluindo o 25. O enunciado pede números menores do que n, então o 25 não pode entrar, e para n primo o máximo possível já seria n − 1."
+  },
+  "armadilha": "Achar que o maior n da faixa dá o maior E(n); só um primo chega ao teto n − 1, e o único primo de 20 a 25 é 23.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "O maior valor de E(n) para n de 20 a 25.",
+   "chave": "Só um primo alcança o teto n − 1; o único primo da faixa é 23, com E(23) = 22.",
+   "cuidado": "Não pegue o maior n: 25 não é primo e E(25) = 20."
+  }
+ },
+ "Pe1791cf": {
+  "antes": {
+   "texto": "Um paralelepípedo reto retângulo é simplesmente uma caixa de cantos retos. Encher essa caixa com cubinhos todos iguais só funciona se a aresta do cubinho couber um número inteiro de vezes em cada uma das três medidas da caixa. Ou seja: a aresta tem de ser um divisor comum de 60, de 24 e de 18 ao mesmo tempo. E usar poucos cubos é a mesma coisa que usar cubos grandes, então você vai procurar o maior divisor comum dos três números.",
+   "formulas": [
+    "volume da caixa = comprimento × largura × altura",
+    "volume do cubo = aresta × aresta × aresta = a³",
+    "quantidade de cubos = volume da caixa ÷ volume do cubo"
+   ],
+   "simbolos": [
+    [
+     "MDC",
+     "máximo divisor comum — o maior número que divide dois ou mais números deixando resto zero"
+    ],
+    [
+     "a³",
+     "a elevado ao cubo, ou seja a × a × a"
+    ],
+    [
+     "cm³",
+     "centímetro cúbico, a unidade de volume: o espaço ocupado por um cubinho de 1 cm de aresta"
+    ]
+   ]
+  },
+  "pista": "Chame a aresta do cubinho de a. Antes de qualquer conta, responda: quanto maior for a, mais cubos ou menos cubos você precisa? Depois pergunte quais valores de a fazem o cubinho caber certinho nas três medidas, sem sobrar pedaço nem precisar cortar.",
+  "passos": [
+   {
+    "faz": "Traduza a frase menor quantidade possível",
+    "conta": "",
+    "porque": "O volume da caixa é sempre o mesmo. Se cada cubo for maior, cabem menos cubos lá dentro. Então pedir a menor quantidade de cubos é pedir o maior cubo possível. Essa troca é o coração da questão.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Descubra quais arestas são possíveis",
+    "conta": "60 = 2² × 3 × 5     24 = 2³ × 3     18 = 2 × 3²",
+    "porque": "Para preencher sem sobra, a aresta a tem de dividir 60, 24 e 18 exatamente. Quebrando cada número em fatores primos, dá para ver o que os três têm em comum: um fator 2 e um fator 3.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Tome o maior divisor comum como aresta",
+    "conta": "a = MDC (60; 24; 18) = 2 × 3 = 6 cm",
+    "porque": "O 2 aparece nos três (o 18 só tem um 2, então só vale um 2) e o 3 aparece nos três (o 60 e o 24 só têm um 3, então só vale um 3). O 5 não está em todos. Logo o maior divisor comum é 6.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte os cubos em cada medida",
+    "conta": "60/6 = 10 ; 24/6 = 4 ; 18/6 = 3 → 10 × 4 × 3 = 120 cubos",
+    "porque": "Em cada medida cabem medida/aresta cubos em fila; o total é o produto das três fileiras.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E — 120 cubos, cada um com 6 cm de aresta",
+  "checagem": "Conte por camadas, sem usar volume: ao longo dos 60 cm cabem 60 ÷ 6 = 10 cubos; ao longo dos 24 cm cabem 24 ÷ 6 = 4; ao longo dos 18 cm cabem 18 ÷ 6 = 3. Multiplicando as três contagens: 10 × 4 × 3 = 120. Os dois caminhos dão o mesmo número, e todas as divisões deram inteiro, o que confirma que o cubo de 6 cm encaixa sem sobra.",
+  "erradas": {
+   "A": "60 cubos teriam (60 × 24 × 18)/60 = 25 920/60 = 432 cm³ cada, e 432 não é cubo perfeito (7³ = 343, 8³ = 512). Com aresta 6, são 10 × 4 × 3 = 120.",
+   "B": "B sai de trocar MDC por MMC: MMC(60, 24, 18) = 360, e o volume da caixa, 60 × 24 × 18 = 25 920, dividido por 360 dá 72. Mas a aresta tem de dividir as três medidas, e 360 cm nem cabe na caixa.",
+   "C": "Usa aresta 6 nas duas primeiras medidas e divide o 18 por 9, chegando a 10 × 4 × 2 = 80. O 9 divide o 18, mas não divide 60 nem 24 — a aresta tem de servir para as três medidas ao mesmo tempo.",
+   "D": "96 cubos teriam (60 × 24 × 18)/96 = 25 920/96 = 270 cm³ cada, e 270 não é cubo perfeito. Com aresta 6 = MDC(60, 24, 18), são 10 × 4 × 3 = 120."
+  },
+  "armadilha": "Menos cubos quer dizer cubos maiores, e o maior cubo que encaixa nas três medidas é dado pelo MDC — não pelo MMC, que é o erro de quem confunde os dois nomes.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "O menor número de cubos idênticos de aresta natural que formam o bloco de 60 × 24 × 18 cm.",
+   "chave": "Menos cubos pede o maior cubo: aresta = MDC(60; 24; 18) = 6 cm; depois dividir os volumes.",
+   "cuidado": "É MDC, não MMC; a aresta tem de dividir as três medidas ao mesmo tempo, não só duas."
+  }
+ },
+ "72fdc10b": {
+  "antes": {
+   "texto": "1a79b não é uma multiplicação. São os cinco algarismos de um número, nessa ordem: 1, depois o algarismo escondido a, depois 7, depois 9, e por último o algarismo b. Cada letra pode valer de 0 a 9, o que daria 100 pares para testar um por um. Os critérios de divisibilidade cortam esses 100 casos em poucos.",
+   "formulas": [
+    "divisível por 15 = divisível por 3 e por 5 ao mesmo tempo",
+    "divisível por 5: o último algarismo é 0 ou 5",
+    "divisível por 3: a soma dos algarismos é múltiplo de 3"
+   ],
+   "simbolos": [
+    [
+     "1a79b",
+     "um número de cinco algarismos; a e b são algarismos escondidos, cada um podendo ser 0, 1, 2, ... até 9"
+    ],
+    [
+     "N",
+     "a quantidade de números que servem — é isso que a questão pede, e não quais são eles"
+    ],
+    [
+     "múltiplo de 3",
+     "número que cai na tabuada do 3: 3, 6, 9, 12, 15, 18, ...; dizer que um número é múltiplo de 3 é o mesmo que dizer que a divisão dele por 3 não deixa resto"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Quebre o 15 em dois critérios",
+    "conta": "15 = 3 × 5",
+    "porque": "O 3 e o 5 não têm fator comum além do 1. Quando isso acontece, ser divisível pelo produto é o mesmo que ser divisível pelos dois separadamente. Então o número tem de passar nos dois testes de uma vez.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Use o critério do 5 para fechar o b",
+    "conta": "b = 0 ou b = 5",
+    "porque": "O critério do 5 olha somente o algarismo das unidades, que aqui é o b. De 0 a 9, só o 0 e o 5 servem. Sobraram dois casos a estudar separadamente.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva a soma dos algarismos",
+    "conta": "1 + a + 7 + 9 + b = 17 + a + b",
+    "porque": "O critério do 3 não olha o número, olha a soma dos seus algarismos. Somando os algarismos já conhecidos (1 + 7 + 9 = 17), sobra 17 + a + b.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Resolva o caso b = 0",
+    "conta": "17 + a múltiplo de 3 → a = 1 (soma 18), a = 4 (soma 21), a = 7 (soma 24)",
+    "porque": "Com a indo de 0 a 9, a soma 17 + a varia de 17 até 26. Os múltiplos de 3 nesse trecho são 18, 21 e 24, que correspondem a três valores de a.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Resolva o caso b = 5",
+    "conta": "17 + a + 5 = 22 + a múltiplo de 3 → a = 2 (soma 24), a = 5 (soma 27), a = 8 (soma 30)",
+    "porque": "Agora a soma varia de 22 até 31. Os múltiplos de 3 nesse trecho são 24, 27 e 30, que correspondem a outros três valores de a.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Some os dois casos",
+    "conta": "N = 3 + 3 = 6",
+    "porque": "Os casos b = 0 e b = 5 não se misturam, porque um número não termina em 0 e em 5 ao mesmo tempo. Então as quantidades se somam. Os seis números são 11 790, 14 790, 17 790, 12 795, 15 795 e 18 795.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D — 6 números.",
+  "checagem": "Pegue um número de cada caso e divida por 15 para ver se fecha exato: 11 790 ÷ 15 = 786 e 18 795 ÷ 15 = 1 253. Outro sinal de coerência: dentro de cada caso os valores de a andam de 3 em 3 (1, 4, 7 e depois 2, 5, 8), que é o esperado quando a condição é sobre múltiplos de 3.",
+  "erradas": {
+   "A": "15 é o divisor do enunciado, não uma contagem. O b só pode ser 0 ou 5, e cada um aceita 3 valores de a: 2 × 3 = 6 números.",
+   "B": "B sai de juntar os 6 valores de a (1, 4, 7, 2, 5, 8) e multiplicar pelas 2 opções de b: 6 × 2 = 12. Mas a = 1, 4, 7 só servem com b = 0 e a = 2, 5, 8 só com b = 5: são 3 + 3 = 6.",
+   "C": "9 não confere. O critério do 5 deixa só b = 0 ou b = 5, e cada um aceita 3 valores de a: 2 × 3 = 6.",
+   "E": "Vem de parar no critério do 5: contam-se as duas opções de b (0 e 5) e esquece-se que, com o b fixado, ainda sobram três valores de a que fazem a soma dos algarismos ser múltipla de 3."
+  },
+  "armadilha": "A pergunta é quantos, não quais. E as duas condições se combinam: o critério do 5 escolhe o b, mas é o critério do 3 que multiplica por 3 o número de respostas.",
+  "essencial": {
+   "pede": "Quantos números 1a79b, de cinco algarismos, são divisíveis por 15.",
+   "chave": "Divisível por 15 é por 3 e por 5: b vale 0 ou 5 e, para cada b, a soma 17 + a + b deixa 3 valores de a.",
+   "cuidado": "Os casos b = 0 e b = 5 se somam sem se repetir; dobrar ou multiplicar 3 × 3 erra a contagem."
+  }
+ },
+ "10a1dc7e": {
+  "antes": {
+   "texto": "Uma escala '12 × 36' não é uma multiplicação. É um jeito de escrever: o funcionário trabalha 12 horas seguidas e depois descansa 36 horas seguidas. O que se repete, de novo e de novo, é o pacote inteiro trabalho + descanso. Esse pacote é o ciclo do funcionário, e é o tamanho do ciclo que interessa aqui.",
+   "formulas": [
+    "ciclo = horas de trabalho + horas de descanso",
+    "um dia = 24 h",
+    "MMC: fatore cada número em primos e pegue o maior expoente de cada primo"
+   ],
+   "simbolos": [
+    [
+     "12 × 36",
+     "escala de trabalho: 12 horas trabalhando e depois 36 horas de descanso; aqui o × não é multiplicação"
+    ],
+    [
+     "MMC",
+     "mínimo múltiplo comum — o menor número que é múltiplo de todos eles ao mesmo tempo"
+    ],
+    [
+     "número primo",
+     "número maior que 1 que só é divisível por 1 e por ele mesmo: 2, 3, 5, 7, 11, 13, 17, ..."
+    ],
+    [
+     "2⁴",
+     "o 2 multiplicado por si mesmo 4 vezes: 2 × 2 × 2 × 2 = 16"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Ache o ciclo de cada funcionário",
+    "conta": "12 + 36 = 48 h ; 18 + 36 = 54 h ; 24 + 48 = 72 h",
+    "porque": "O funcionário só volta a começar o trabalho depois de trabalhar E descansar. Então o que se repete é a soma das duas partes, não a jornada sozinha.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Entenda o que é 'começar juntos de novo'",
+    "conta": "primeiro: 48, 96, 144, 192, ... ; segundo: 54, 108, 162, ... ; terceiro: 72, 144, 216, ... → a primeira hora que aparece nas três listas é o MMC (48, 54, 72)",
+    "porque": "Eles só recomeçam juntos numa hora que esteja nas três listas; a primeira hora assim é o MMC dos três ciclos.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Fatore os três ciclos em primos",
+    "conta": "48 = 2⁴ × 3 ; 54 = 2 × 3³ ; 72 = 2³ × 3²",
+    "porque": "Fatorar é reescrever o número só como multiplicação de primos. Com os primos à vista, o MMC sai sem precisar listar múltiplos até achar o encontro.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte o MMC pegando o maior expoente de cada primo",
+    "conta": "MMC = 2⁴ × 3³ = 16 × 27 = 432 h",
+    "porque": "Para ser múltiplo de 48, o número precisa conter os 2⁴ do 48. Para ser múltiplo de 54, precisa conter os 3³ do 54. Pegar o maior expoente de cada primo garante as duas coisas e nada além disso, ou seja, dá o menor número que serve.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Troque horas por dias",
+    "conta": "432 ÷ 24 = 18 dias",
+    "porque": "A pergunta é em dias e um dia tem 24 h. Dividir por 24 é contar quantos blocos de 24 h cabem dentro das 432 h.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D — 18 dias, que são 432 horas.",
+  "checagem": "Confira se os três fecham conta exata em 432 h: 432 ÷ 48 = 9 ciclos do primeiro, 432 ÷ 54 = 8 ciclos do segundo e 432 ÷ 72 = 6 ciclos do terceiro. Três divisões sem sobra: é o sinal de que, na hora 432, os três estão começando um ciclo novo.",
+  "erradas": {
+   "A": "A usa o 54, o ciclo do segundo funcionário em horas, como se fosse a resposta em dias. Os três só recomeçam juntos no MMC(48, 54, 72) = 432 h = 18 dias.",
+   "B": "Vem de achar as 432 h certas e dividir pelas 12 h da jornada do primeiro em vez das 24 h do dia: 432 ÷ 12 = 36. A passagem de hora para dia usa sempre o 24.",
+   "C": "24 dias são 576 h, e 576 não é múltiplo de 54 (576 ÷ 54 ≈ 10,7): o segundo funcionário está no meio do ciclo. O primeiro encontro é em 432 h.",
+   "E": "Vem de tirar o MMC só de 48 e 72 e esquecer o 54: MMC(48, 72) = 144 h e 144 ÷ 24 = 6 dias. Mas na hora 144 o segundo funcionário está no meio do ciclo, porque 144 ÷ 54 ≈ 2,67 não é divisão exata."
+  },
+  "armadilha": "A escala 12 × 36 convida a usar só o 12 ou só o 36; o número que manda é a soma 48, porque é o pacote trabalho + descanso que se repete.",
+  "essencial": {
+   "pede": "Depois de quantos dias os três funcionários voltam a começar o trabalho juntos.",
+   "chave": "O que se repete é trabalho + descanso: ciclos de 48, 54 e 72 h; o MMC é 432 h.",
+   "cuidado": "Usar só o 12 ou só o 36 da escala; e passar de horas a dias dividindo por 24, não por 12."
+  }
  }
 }
