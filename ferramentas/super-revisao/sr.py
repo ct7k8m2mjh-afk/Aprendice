@@ -229,6 +229,28 @@ def cmd_aplica(fp, simula=False):
     L.gravar(fp.replace('.json', '') + '.antes.json', antes)
 
 
+def cmd_resumo(m):
+    """Achados por conteúdo (docs/revisao-site/super-revisao/<m>-achados.jsonl)."""
+    from collections import defaultdict
+    f = os.path.join(RAIZ, 'docs', 'revisao-site', 'super-revisao', m + '-achados.jsonl')
+    por = defaultdict(lambda: {'achados': 0, 'corrigidos': 0, 'questoes': set(), 'gabarito': 0})
+    for linha in open(f, encoding='utf-8'):
+        if not linha.strip():
+            continue
+        a = json.loads(linha)
+        p = por[a.get('sub', '?')]
+        p['achados'] += 1
+        st = str(a.get('status', ''))
+        if st.startswith('corrigido'):
+            p['corrigidos'] += 1
+            p['questoes'].add(a.get('id'))
+        if st.startswith('gabarito'):
+            p['gabarito'] += 1
+    for s in sorted(por, key=chave_sub):
+        p = por[s]
+        print(f"| {s} | {p['achados']} | {p['corrigidos']} | {len(p['questoes'])} | {p['gabarito']} |")
+
+
 if __name__ == '__main__':
     a = sys.argv[1:]
     if not a:
@@ -239,6 +261,8 @@ if __name__ == '__main__':
         cmd_lote(a[1], a[2], int(a[3]) if len(a) > 3 else 1)
     elif a[0] == 'fonte':
         cmd_fonte(a[1])
+    elif a[0] == 'resumo':
+        cmd_resumo(a[1])
     elif a[0] == 'aplica':
         cmd_aplica(a[1], '--simula' in a)
     else:
