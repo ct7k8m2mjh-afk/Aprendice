@@ -101,6 +101,10 @@ REGRA para qualquer trabalho em paralelo: logo depois do `lote.py proximo`, comm
   relatório docs/revisao-site/2026-11-20/decisoes-do-dono-telas.md) e session_01Tq253ZZrpookBgGHXXqZHc (conteúdo;
   relatório docs/resolucoes/decisoes-do-dono-conteudo.md). Arquivar sessões da conta antiga: só o dono.
 
+## 23/11: REVISÃO FINAL (3ª rodada) CONCLUÍDA E PUBLICADA — dpl_5HGPKTKh5XSS5npBpUy6h9wTHJBM (ed45936b0)
+11 passadas; pendentes técnicos D1–D4 + detalhes em docs/revisao-site/2026-11-21/PLANO.md; 11 decisões do dono em
+PARA-O-DONO.md (enviadas ao dono 23/11). Nenhuma sessão de trabalho aberta.
+
 ## PUBLICADO 22/11 ~01h UTC: dpl_8yuRCeJ9vfyswDsr7N81aXDjytAk (commit 2a149bc1f), 26.552 resoluções, LOGIN DE DEMONSTRAÇÃO
 Conector do Vercel disponível nesta conta desde 22/11. Publicar já não depende do Supabase: as contas só ligam com
 VITE_CONTAS_REAIS=1 na Vercel (docs/contas.md). Próxima publicação: ao fim da revisão final (docs/revisao-site/2026-11-21/).
