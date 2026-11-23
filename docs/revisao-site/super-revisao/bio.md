@@ -9,7 +9,7 @@ Total: 2.869 questões com resolução em 75 conteúdos (B01.1 … B12.10), 225 
 Fluxo por lote: professor + aluno (2 etapas) → corretor (aplica) → professor novo (confere; ajustes aplicados).
 Crítico de tela: um agente por tema, com 1 a 2 questões de cada conteúdo do tema.
 
-CONTINUAR DE: B01.4 lote 3 (em conferência), B01.5 (corretor), B01.6 e B02.1 (professor; aluno de B02.1 na etapa 2). Aluno e crítico de tela com model sonnet; no máximo 4 agentes (coordenação, 23/11).
+CONTINUAR DE: tema B01 completo (falta o crítico de tela do tema B01); B02.1 (corretor), B02.2 (professor; aluno na etapa 2). Aluno e crítico com model sonnet; no máximo 4 agentes.
 
 ## Andamento por conteúdo
 | Conteúdo | Questões | Lotes | Corrigidas (campos) | Achados erro/clareza | Gabarito suspeito |
@@ -18,6 +18,7 @@ CONTINUAR DE: B01.4 lote 3 (em conferência), B01.5 (corretor), B01.6 e B02.1 (p
 | B01.3 | 36 | 3 | 63 | 3/29 | — |
 | B01.4 | 45 | 3 | 55 | 6/39 | — |
 | B01.5 | 27 | 2 | 28 | 1/15 | P71189cd1 |
+| B01.6 | 18 | 2 | 20 | 5/13 | — |
 | B01.2 | 8 | 1 | 8 | 1/3 | — |
 
 ## Crítico de tela por tema
