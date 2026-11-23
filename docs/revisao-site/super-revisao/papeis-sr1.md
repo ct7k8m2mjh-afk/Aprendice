@@ -5,6 +5,9 @@ Base: `docs/revisao-site/super-revisao/PROTOCOLO.md`. Arquivos de trabalho em
 Palavras do dono: "a resolução tem que estar de uma forma que o aluno entenda e consiga refazer o exercício olhando
 ela". Não é para acrescentar texto: é para ficar clara e completa no essencial. Encurtar também vale.
 
+Coordenação (23/11, 8:22 UTC): ALUNO e CRÍTICO DE TELA rodam com `model: "sonnet"`; PROFESSOR, CORRETOR e
+PROFESSOR NOVO no modelo padrão; no máximo 4 agentes ao mesmo tempo; gravar e dar push a cada conteúdo.
+
 Como o site mostra a correção (4 blocos): 1. **Por que eu errei** = `erradas[letra marcada]` (só se errou);
 2. **Resposta correta** = `resposta` + **A pegadinha** = `armadilha`; 3. **Resolução animada** = os `passos` (faz,
 conta, porque): o motor desenha à mão cada `conta`, uma linha por trecho separado por "→", movendo os termos
