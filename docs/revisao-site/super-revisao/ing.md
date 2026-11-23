@@ -18,13 +18,14 @@ Site local para conferir: o build de `app/public/conteudo/ing` foi baixado do si
 as resoluções corrigidas foram reconstruídas das fontes com a mesma regra do `converte.py` (`provas_fonte`); as
 demais 2.499 resoluções reconstruídas saíram idênticas ao site, o que confirma a regra.
 
-CONTINUAR DE: I01.2 (e, em I01.1, revisar a fundo as q 61–132 que não são do lote fraco)
+CONTINUAR DE: lote fraco de I01.3 (410), depois I01.4, I02.1, I03.2… (lista na seção "O lote fraco"); em I01.1 e I01.2, revisar a fundo as questões que não são do lote fraco
 
 ## Andamento por conteúdo
 | Conteúdo | Questões | Lotes feitos | Corrigidas | Achados (erro/clareza) | Crítico de tela |
 |---|---|---|---|---|---|
 | ENEM (todos os conteúdos) | 30 | 2 (as 30 do ENEM) | 3 | 0/15 | P6f46b634, P261ed021: sem rolagem lateral, sem erro no console |
 | I01.1 | 132 | 4 lotes completos (q 1–60) + as 33 resoluções do lote fraco nas q 61–132 | 56 (+2 da mesma prova em I01.5 e I02.1) | 0/82 | P0fea2fcf, Pf3356411, Pf0fcfc0b, Pdfb39a5b, P2364d7a9, Pca03e7e4, P6a5f762c, P1333ff78, P7d723474: sem rolagem lateral, sem erro no console; achado de texto-base (abaixo) |
+| I01.2 | 78 | as 20 resoluções do lote fraco (6 do ENEM já feitas no lote ENEM) | 15 | 0/28 | Pceb4d43b, P8d782e90: sem rolagem lateral, sem erro no console |
 
 ## O lote fraco (achado principal de Inglês)
 Nos 4 lotes completos de I01.1 e nos 30 do ENEM, as resoluções com problema foram quase todas de um mesmo lote da
