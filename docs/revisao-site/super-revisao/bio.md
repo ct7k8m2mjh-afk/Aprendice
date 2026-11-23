@@ -23,6 +23,7 @@ CONTINUAR DE: tema B01 completo (falta o crítico de tela do tema B01); B02.1 (c
 | B02.2 | 28 | 2 | 24 | 0/30 | — |
 | B02.3 | 21 | 2 | 25 | 3/18 | — |
 | B02.4 | 22 | 2 | 41 | 2/37 | — |
+| B02.5 | 26 | 2 | 15 | 2/11 | P05c39044 |
 | B01.2 | 8 | 1 | 8 | 1/3 | — |
 
 ## Crítico de tela por tema
@@ -31,10 +32,13 @@ CONTINUAR DE: tema B01 completo (falta o crítico de tela do tema B01); B02.1 (c
 ## Gabaritos para a coordenação (anular / errata)
 
 ## Para a coordenação (possível dupla resposta)
+- P05c39044 (URCA 2024.2 q46, B02.5): oficial D mantida (gabarito corrigido, não anulada); a B também é defensável. Recursos de urca.br não acessíveis desta sessão; explicado no alerta.
 - P5894717e (IME 2025 q35, B02.3): sem gabarito oficial ("gabarito do Aprendice em preparação"); professor da super revisão resolveu às cegas e deu D = preliminar.
 - Pe8aa4f48 (PUC-Campinas 2025): oficial B mantida; a D também tem base fisiológica (CFTR abre com ATP, cloreto a favor do gradiente). Sem errata/anulação na web; explicado no alerta. Avaliar se é caso de anular.
 
 ## Texto da questão para a coordenação (DADO)
+- DADO P97ede54c (B02.5): alternativa D veio "hemoglobina 36".
+- DADO P05c39044 (B02.5): acentos e hifenização quebrados no texto e nas alternativas.
 - DADO P6d033b55 (B02.3): lixo da figura no texto da alternativa D e quebra de linha depois do "I.".
 - DADO P96f3a9da (B02.2): alternativa E e enunciado divergem do print (ver trabalho/bio-B02.2-2.dados.json: E = "Gorduras 2,8").
 - DADO P76073a1 (B02.2): alternativa E deve ser "308." pelo print.
