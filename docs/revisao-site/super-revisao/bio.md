@@ -17,6 +17,7 @@ CONTINUAR DE: B01.4 lote 3 (em conferência), B01.5 (corretor), B01.6 e B02.1 (p
 | B01.1 | 46 | 4 | 88 | 4/73 | Pe8aa4f48 (ver coordenação) |
 | B01.3 | 36 | 3 | 63 | 3/29 | — |
 | B01.4 | 45 | 3 | 55 | 6/39 | — |
+| B01.5 | 27 | 2 | 28 | 1/15 | P71189cd1 |
 | B01.2 | 8 | 1 | 8 | 1/3 | — |
 
 ## Crítico de tela por tema
@@ -27,6 +28,8 @@ CONTINUAR DE: B01.4 lote 3 (em conferência), B01.5 (corretor), B01.6 e B02.1 (p
 - Pe8aa4f48 (PUC-Campinas 2025): oficial B mantida; a D também tem base fisiológica (CFTR abre com ATP, cloreto a favor do gradiente). Sem errata/anulação na web; explicado no alerta. Avaliar se é caso de anular.
 
 ## Texto da questão para a coordenação (DADO)
+- DADO P6d956a1f (B01.5): enunciado começa com "m" em vez de "Em".
+- DADO P7f365563 (B01.4): alternativa D aparece como "a mitocôndria.ii".
 - DADO Pf34120b0 (Unespar 2024): alternativa E traz a legenda da figura colada ("planta de mimosa imperturbada planta de mimosa quando tocada"); pelo print termina em "aumentando sua turgidez."
 
 ## Pendências do dono
