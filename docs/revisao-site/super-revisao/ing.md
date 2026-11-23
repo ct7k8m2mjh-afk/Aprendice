@@ -20,6 +20,8 @@ demais 2.499 resoluções reconstruídas saíram idênticas ao site, o que confi
 
 CONTINUAR DE: lote fraco de I01.3 (410), depois I01.4, I02.1, I03.2… (lista na seção "O lote fraco"); em I01.1 e I01.2, revisar a fundo as questões que não são do lote fraco
 
+Conferência independente das 69 correções: 69 conferidas por um professor de Inglês em agente separado (23/11/2026), cada questão resolvida antes de ler a resolução, citações conferidas contra o texto e o print; 66 aprovadas sem mudança e 3 com ajuste pontual (P52c1bebc: “legalidade” → “legitimidade”; Pfafb4765: C e D falham em Maathai, e não “valem só para Pureza”, já que o texto de Phoebe também é de mãe defendendo a filha; P4f17b57a: nem todos os quadros do infográfico são de carreira). Nenhuma correção piorou a resolução anterior. Registro em `ing-achados.jsonl` (papel "professor-conferencia").
+
 ## Andamento por conteúdo
 | Conteúdo | Questões | Lotes feitos | Corrigidas | Achados (erro/clareza) | Crítico de tela |
 |---|---|---|---|---|---|
