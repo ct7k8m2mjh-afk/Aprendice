@@ -1,6 +1,6 @@
-# Inglês: resoluções (gerado por lote.py em 2026-11-20)
+# Inglês: resoluções (gerado por lote.py em 2026-11-27)
 
-Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 0.
+Faltam 36 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 36; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 0.
 
 ## Lotes
 
@@ -91,6 +91,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | ing-0083 | demais nível 7-10 | 30 | gravado | 30 | 0 | 0 |
 | ing-0084 | demais nível 7-10 | 26 | gravado | 26 | 0 | 0 |
 | ing-0085 | provas-alvo nível 1-6 | 4 | gravado | 4 | 0 | 0 |
+| ing-0086 | provas-alvo nível 1-6 | 50 | gravado | 49 | 1 | 0 |
 | ing-pend-0001 | pendentes todos-menos-anular | 25 | gravado | 25 | 0 | 0 |
 | ing-pend-0002 | pendentes todos-menos-anular | 16 | gravado | 16 | 0 | 0 |
 | ing-pend-0003 | pendentes =reclassificada | 2 | gravado | 2 | 0 | 0 |
@@ -98,7 +99,9 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 
 ## Pendentes (falta de certeza absoluta)
 
-Nenhuma.
+| Questão | Prova | Conteúdo | Motivo |
+|---|---|---|---|
+| P0d18e438 | UERJ 2020 1º Exame de Qualificação · questão 23 | I01.1 tema e ideia principal (tema I01 Leitura e interpretação de textos) | print: a q.23 compara dois textos, mas o print traz só “The flat Earth cruise”; falta o texto base “Sobreviveremos na Terra?” (Stephen Hawking), páginas 4-5 do caderno (no prova.json, texto da q.1). Refazer o print com o texto base. |
 
 ## Divergências de gabarito (o dono decide)
 
