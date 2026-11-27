@@ -41,7 +41,7 @@ export function CabQuestaoSim({ n, grupo, nome }: { n: number; grupo: string; no
     <div className="q-cab-sim">
       <span className="q-cab-n num">{n}</span>
       <span className="q-cab-txt">
-        <span className="q-cab-l1"><b>{grupo}</b>{nome ? ` · ${nome.tema}` : ''}</span>
+        <span className="q-cab-l1"><b>{grupo}</b>{nome && <><span className="q-cab-sep"> · </span>{nome.tema}</>}</span>
         {nome && <span className="q-cab-l2">{nome.conteudo}</span>}
       </span>
     </div>

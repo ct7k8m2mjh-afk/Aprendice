@@ -40,17 +40,14 @@ export function ListaMaterias() {
 
 /** Linha de apoio do cabeçalho: número de temas e, se a matéria ainda não tem questões, "questões em preparação"
  *  (o mesmo texto em todas as telas da matéria; nunca "questões reais" numa matéria sem questão). */
-export function subMateria(nTemas: number, vazia: boolean): string {
-  return `${plural(nTemas, 'tema', 'temas')} · ${vazia ? 'questões em preparação' : 'questões reais, todas com a fonte'}`;
-}
 
 /** Cabeçalho de toda tela da matéria (sistema do protótipo): nome em Dancing Script na cor da matéria e a linha de apoio. */
-export function CabMateria({ m, nome, sub, titulo = true, children }: { m: MateriaId; nome: string; sub: string; titulo?: boolean; children?: ReactNode }) {
+export function CabMateria({ m, nome, sub, titulo = true, children }: { m: MateriaId; nome: string; sub?: string; titulo?: boolean; children?: ReactNode }) {
   return (
     <div className="mat-cab">
       <div className="mat-cab-txt">
         {titulo ? <h1 className="tit-mat">{nome}</h1> : <Link to={`/m/${m}`} className="tit-mat">{nome}</Link>}
-        <p className="mat-sub num">{sub}</p>
+        {sub && <p className="mat-sub num">{sub}</p>}
       </div>
       {children}
     </div>
@@ -60,7 +57,7 @@ export function CabMateria({ m, nome, sub, titulo = true, children }: { m: Mater
 /** Capa da matéria (comando 32 do dono): faixa larga (3:1 nas referências REF-CLARO/REF-ESCURO de docs/capas/), fundo suave
  *  da paleta, objetos à direita (montados por scripts/capas.py, na posição e com a sombra da referência) e, à esquerda,
  *  o cabeçalho da matéria (título em Dancing Script). A caixa da arte vem de dados/capas.ts, em frações da referência. */
-export function CapaMateria({ m, nome, sub, children }: { m: MateriaId; nome: string; sub: string; children?: ReactNode }) {
+export function CapaMateria({ m, nome, sub, children }: { m: MateriaId; nome: string; sub?: string; children?: ReactNode }) {
   const url = urlCapa(m);
   const cx = CAIXA_CAPA[m];
   const vars = cx ? { '--cl': cx[0], '--ct': cx[1], '--cr': cx[2], '--cb': cx[3] } as CSSProperties : undefined;
@@ -186,7 +183,7 @@ export function Materia() {
 
   return (
     <div className={`conteudo m-${m}`}>
-      <CapaMateria m={m} nome={info.nome} sub={subMateria(mc.conteudo.modulos.length, vazia)}>
+      <CapaMateria m={m} nome={info.nome}>
         {r.feitas > 0 && <div className="mat-anel"><Anel valor={r.acertos / r.feitas} tam={58} espessura={6}>{acertoPct}%</Anel><span className="fraco">de acerto<br />{plural(r.feitas, 'questão feita', 'questões feitas')}</span></div>}
       </CapaMateria>
 

@@ -9,7 +9,7 @@ import { desempenhoPorNivel, nomeNivel } from '../logica/nivel';
 import { Barra, Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { IcTema } from '../ui/IconeTema';
-import { CabMateria, subMateria, FaixaTemas } from './Materia';
+import { CabMateria, FaixaTemas } from './Materia';
 import { comFracoes, comNegrito } from '../ui/Fracao';
 import { cadernoComLatexEhTexto, contaEhTexto, materiaDoCodigo } from '../logica/fracao';
 import type { CartaoTeoria, Figura, MateriaId, Modulo } from '../dados/tipos';
@@ -144,7 +144,7 @@ export function Tema() {
 
   return (
     <div className={`conteudo m-${m}`}>
-      <CabMateria m={m} nome={nomeMat} sub={subMateria(mods.length, mc.banco.length === 0)} titulo={false} />
+      <CabMateria m={m} nome={nomeMat} titulo={false} />
       <FaixaTemas mc={mc} s={s} atual={mod.id} compacta />
       <div className="tp-topo"><Link to={`/m/${m}`} className="tp-volta"><Icone nome="esquerda" />Todos os temas</Link></div>
       {subs.length > 0 && <div className="tp-regiao"><FiltroRegiaoChips /><AvisoRegiao f={ft} onde="neste tema" semNumero /></div>}

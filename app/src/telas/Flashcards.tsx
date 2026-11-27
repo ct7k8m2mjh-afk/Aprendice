@@ -10,7 +10,7 @@ import { Icone, type NomeIcone } from '../ui/Icone';
 import { IcTema } from '../ui/IconeTema';
 import { BotaoTelaCheia } from '../ui/QuestaoCartao';
 import { FlashcardView, type Nota } from '../ui/Cartoes';
-import { CabMateria, FaixaTemas, subMateria } from './Materia';
+import { CabMateria, FaixaTemas} from './Materia';
 import type { Flashcard, MateriaId } from '../dados/tipos';
 
 const N_SESSAO = 20;
@@ -57,7 +57,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
   // matéria ainda sem cartões (a fábrica está criando; revisão de 19/11/2026, item 6): aviso honesto, nunca "Volte amanhã"
   if (!todos.length) return (
     <div className={`conteudo m-${m}`}>
-      <CabMateria m={m} nome={info.nome} titulo={false} sub={subMateria(mc.conteudo.modulos.length, mc.banco.length === 0)} />
+      <CabMateria m={m} nome={info.nome} titulo={false} />
       <FaixaTemas mc={mc} s={s} compacta />
       <section className="bloco preparo">
         <span className="preparo-ic" aria-hidden><Icone nome="cartas" tam={28} /></span>
@@ -90,7 +90,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
     const escolheArea = (a: string) => { setArea(a); setMod(''); };
     return (
       <div className={`conteudo m-${m}`}>
-        <CabMateria m={m} nome={info.nome} titulo={false} sub={subMateria(mc.conteudo.modulos.length, mc.banco.length === 0)} />
+        <CabMateria m={m} nome={info.nome} titulo={false} />
         {/* faixa de temas sempre no topo da matéria (CLAUDE.md; revisão de 19/11/2026, item 14) */}
         <FaixaTemas mc={mc} s={s} compacta />
         <section className="tp-capa fl-capa" aria-labelledby="fl-tit">

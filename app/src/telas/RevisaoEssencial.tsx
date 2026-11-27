@@ -2,7 +2,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent as TeclaReact } from 'react';
 import { useMateria } from '../dados/conteudo';
 import { useMateriaEstado } from '../estado/loja';
-import { CabMateria, FaixaTemas, subMateria } from './Materia';
+import { CabMateria, FaixaTemas} from './Materia';
 import { materia as infoMateria } from '../dados/materias';
 import { MATERIAS_ANIMADAS, useIndiceRevisao, useTemaRevisao, type Essencial, type TelaEssencial, type TemaRevisao } from '../dados/revisao';
 import type { Letra, MateriaId, Questao, Resolucao } from '../dados/tipos';
@@ -284,7 +284,7 @@ export function EssencialMateria() {
   // (revisão de 21/11, matérias N3)
   return (
     <div className={`conteudo m-${m}`}>
-      <CabMateria m={m} nome={info.nome} titulo={false} sub={subMateria(mc.conteudo.modulos.length, mc.banco.length === 0)} />
+      <CabMateria m={m} nome={info.nome} titulo={false} />
       <FaixaTemas mc={mc} s={s} compacta />
       <section className="tp-capa" aria-labelledby="es-mat-tit">
         <div className="fl-capa-txt">

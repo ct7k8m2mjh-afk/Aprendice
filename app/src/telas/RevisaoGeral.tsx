@@ -13,7 +13,7 @@ import {
 import { Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { TextoMat } from '../ui/Formula';
 import { Icone, type NomeIcone } from '../ui/Icone';
-import { CabMateria, subMateria } from './Materia';
+import { CabMateria} from './Materia';
 import '../estilo/geral.css';
 
 type Filtro = 'todos' | 'nao-lidos' | 'marcados';
@@ -113,7 +113,7 @@ export function RevisaoGeralTela() {
 
   return (
     <div className={`conteudo m-${m} rg`}>
-      <CabMateria m={m} nome={info.nome} titulo={false} sub={mc ? subMateria(mc.conteudo.modulos.length, mc.banco.length === 0) : info.descricao} />
+      <CabMateria m={m} nome={info.nome} titulo={false} />
       <div className="tp-topo"><Link to={`/m/${m}`} className="tp-volta"><Icone nome="esquerda" />Todos os temas</Link></div>
 
       <section className="tp-capa rg-capa" aria-labelledby="rg-h1">
