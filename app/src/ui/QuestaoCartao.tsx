@@ -71,8 +71,8 @@ function EnunciadoTexto({ q }: { q: Questao }) {
 }
 
 /** Largura do print (regra do protótipo, app-atual/design/materia.js: ajustaPrint). Acima de 700 px:
- *  - se o print inteiro + letras + Confirmar cabem na altura da tela sem o print ficar menor que 90% do tamanho natural,
- *    ele estreita para caber sem rolar;
+ *  - o print estreita até o print inteiro + letras + Confirmar caberem na altura da tela, sem ficar menor que 70% da
+ *    escala de leitura (dono, 27/11/2026: "não é possível ver nem a metade da questão");
  *  - nunca passa de 1,3x o tamanho natural (1,05x quando a escala da letra foi medida): um print estreito não vira letra gigante;
  *  - senão fica na largura da coluna e a linha A–E + Confirmar fica presa ao pé da tela.
  *  A largura vai em --q-pw no cartão: o print fica centrado e a linha da resposta acompanha a largura dele. */
@@ -125,17 +125,24 @@ function useLarguraPrint(pr: HTMLDivElement | null, src: string | null) {
       const resp = cartao.querySelector<HTMLElement>('.q-resp');
       if (innerWidth <= 700 || !img.naturalWidth || !img.naturalHeight || resp?.classList.contains('com-texto')) { tira(); return; }
       const cs = getComputedStyle(cartao);
-      const col = cartao.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      // resposta ao lado do print (simulado no computador, forma 2): o print usa a altura toda e a largura da sua coluna
+      const lado = cartao.classList.contains('q-lado-a-lado') && innerWidth >= 1101;
+      const interno = cartao.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      if (lado) cartao.style.setProperty('--q-in', interno + 'px'); else cartao.style.removeProperty('--q-in');
+      const col = lado ? interno - 328 : interno;
       // a altura da resposta depende da largura do print e vice-versa: usar a maior já vista nesta questão evita oscilar
       respMax = Math.max(respMax, resp ? resp.offsetHeight : 0);
       const pe = pr.querySelector<HTMLElement>('.q-print-pe');
       const topo = pr.getBoundingClientRect().top + scrollY;
-      const baixo = (resp ? respMax + 14 : 0) + (pe ? pe.offsetHeight : 0) + 8;
+      const baixo = (resp && !lado ? respMax + 14 : 0) + (pe ? pe.offsetHeight : 0) + (lado ? 24 : 8);
       // largura "natural" na escala de letra comum (linha de ~25 px); com escala medida, o teto é 1,05x em vez de 1,3x
       const passo = passoDasLinhas(img), esc = passo ? Math.max(0.55, Math.min(1.9, 25 / passo)) : 1;
       const nw = img.naturalWidth * esc, ar = img.naturalWidth / img.naturalHeight;
       const cabe = (innerHeight - topo - baixo) * ar, alvo = Math.min(col, (esc !== 1 ? 1.05 : 1.3) * nw);
-      const pw = Math.max(320, Math.round(cabe >= 0.9 * nw ? Math.min(cabe, alvo) : alvo));
+      // dono, 27/11/2026: a questão inteira tem de aparecer sem rolar. O print diminui até caber na altura da tela, mas
+      // nunca abaixo de 40% da escala de leitura (a letra continua do tamanho do texto do site) (letra ainda legível); só o que não cabe nem assim fica para rolar.
+      const piso = Math.min(alvo, (lado ? 0.3 : 0.4) * nw);
+      const pw = Math.max(320, Math.round(Math.min(alvo, Math.max(piso, cabe))));
       if (pw >= col - 1) { tira(); return; }
       if (!atual || Math.abs(pw - atual) > 24) { atual = pw; cartao.style.setProperty('--q-pw', pw + 'px'); }   // sem tremer por poucos pixels
     };

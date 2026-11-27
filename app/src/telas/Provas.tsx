@@ -1,3 +1,4 @@
+import { faixasDeAnos } from '../logica/anos';
 import { Link, useParams } from 'react-router-dom';
 import { useMemo, useState } from 'react';
 import { useTodasMaterias } from '../dados/conteudo';
@@ -20,7 +21,12 @@ export function Provas() {
   const e = useEstado();
   const nQ = useMemo(() => (todas ? escolasComQuestoes(todas) : new Map<string, number>()), [todas]);
   const indiceL = useIndiceProvas();
-  const nSim = useMemo(() => { const m = new Map<string, number>(); for (const x of indiceL || []) m.set(x.catalogoId, (m.get(x.catalogoId) || 0) + 1); return m; }, [indiceL]);
+  // anos com simulado de cada prova (dono, 27/11/2026: no lugar de "N provas completas"; anos seguidos viram "2020 a 2027")
+  const anosSim = useMemo(() => {
+    const m = new Map<string, Set<string>>();
+    for (const x of indiceL || []) { const s = m.get(x.catalogoId) || new Set<string>(); s.add(x.ano); m.set(x.catalogoId, s); }
+    return new Map([...m].map(([k, s]) => [k, faixasDeAnos(s)]));
+  }, [indiceL]);
   // pedido do dono (09/11/2026): abre na região das provas do aluno (+ ENEM); São Paulo separado do Sudeste
   const rg = useRegiao();
   const [regiao, setRegiao] = useState<FiltroRegiao>(rg.minhas.length ? 'minha' : 'todas');
@@ -56,7 +62,9 @@ export function Provas() {
                 <small className="fraco">{[p.cidade, p.uf, p.banca && 'banca ' + p.banca].filter(Boolean).join(' · ')}</small>
                 <div className="cp-pe">
                   <span className="etq">{p.rede === 'publica' ? 'Pública' : p.rede === 'privada' ? 'Privada' : 'Rede a verificar'}</span>
-                  <span className={'etq' + (nSim.get(p.id) || nQ.get(p.id) ? ' ok' : '')}>{nSim.get(p.id) ? plural(nSim.get(p.id)!, 'prova completa', 'provas completas') : nQ.get(p.id) ? `${nQ.get(p.id)} questões` : 'questões em preparação'}</span>
+                  {anosSim.get(p.id)
+                    ? <span className="etq ok num cp-anos" title="Anos com simulado da prova completa">{anosSim.get(p.id)}</span>
+                    : <span className={'etq' + (nQ.get(p.id) ? ' ok' : '')}>{nQ.get(p.id) ? `${nQ.get(p.id)} questões` : 'questões em preparação'}</span>}
                 </div>
               </Link>
             ))}
@@ -112,7 +120,6 @@ export function ProvaDetalhe() {
               <Link key={ed.id} to={`/simulados/prova/${encodeURIComponent(ed.id)}`} className="cartao-sim">
                 <b className="cs-titulo">{ed.titulo}</b>
                 <span className="num">{plural(ed.questoes, 'questão', 'questões')} · prova completa</span>
-                <span className="cs-mats">{Object.keys(ed.areas).slice(0, 6).map((a) => <span key={a}><i className="ponto" />{a}</span>)}</span>
               </Link>
             ))}
           </div>

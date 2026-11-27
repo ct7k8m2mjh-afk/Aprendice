@@ -328,7 +328,9 @@ export function SimuladoExec() {
       ) : q && it ? (
         <div className={'q-corpo' + (it.m ? ` m-${it.m}` : '')}>
           <div className={'q-grade' + (revelado ? ' respondida' : '')}>
-            <article className="folha q-cartao">
+            {/* computador: resposta numa coluna ao lado do print, para a questão inteira caber na tela (dono, 27/11/2026, forma 2);
+                com alternativas em texto ela continua embaixo */}
+            <article className={'folha q-cartao' + (!q.transcricao && qq?.print ? ' q-lado-a-lado' : '')}>
               <EnunciadoQuestao q={q} print={qq?.print ?? null} semFonte
                 antes={<CabQuestaoSim n={sim.i + 1} grupo={grupoDoItem(it)} nome={nomeConteudoDoItem(it, q.sub, todas)} />}
                 acao={<button className={'q-marca' + (sim.marcadas.includes(it.id) ? ' marcado' : '')} onClick={marca} aria-pressed={sim.marcadas.includes(it.id)} aria-label="Revisar depois" title={sim.marcadas.includes(it.id) ? 'Marcada para revisar' : 'Revisar depois'}><Icone nome="bandeira" /></button>} />

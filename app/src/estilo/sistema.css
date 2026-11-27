@@ -140,8 +140,30 @@
 @media (max-width: 700px) { .q-print { margin-top: 12px; } }
 
 /* resposta: letras numa linha e ações embaixo, presas ao pé da tela dentro do cartão */
-.q-resp { position: sticky; bottom: var(--tabs-h, 0px); z-index: 5; margin: 14px calc(-1 * var(--qc)) 0; padding: 10px calc(var(--qc) + max(0px, (100% - var(--q-pw, 100%)) / 2)) 14px; background: var(--folha); border-radius: 0 0 17px 17px; }
+.q-resp { position: sticky; bottom: var(--tabs-h, 0px); z-index: 5; margin: 14px calc(-1 * var(--qc)) 0; padding: 10px calc(var(--qc) + max(0px, (100% - max(var(--q-pw, 100%), var(--q-resp-min, 0px))) / 2)) 14px; background: var(--folha); border-radius: 0 0 17px 17px; }
 .q-resp.com-texto { position: static; }
+/* computador: a resposta não encolhe junto com um print estreito; com 760px, letras numa linha e certeza + ações na outra (dono, 27/11/2026) */
+@media (min-width: 1101px) { .q-cartao { --q-resp-min: 760px; } }
+/* simulado no computador (dono, 27/11/2026, forma 2): a resposta numa coluna de 300px à direita do print, presa no alto;
+   o print usa a altura toda da tela (useLarguraPrint) e a questão cabe inteira. O topo (número, matéria, bandeira) ocupa
+   as duas colunas. */
+@media (min-width: 1101px) {
+  /* print + resposta centrados juntos no cartão; o topo continua na largura toda (--q-in, medido em useLarguraPrint) */
+  .q-cartao.q-lado-a-lado { --q-resp-min: 0px; display: grid; grid-template-columns: var(--q-pw, minmax(0, 1fr)) 300px; justify-content: center; column-gap: 28px; align-items: start; }
+  .q-lado-a-lado > .q-enun { grid-column: 1; grid-row: 1; }
+  .q-lado-a-lado > .q-enun > .q-meta { width: var(--q-in, calc(100% + 328px)); margin-left: calc((var(--q-pw, var(--q-in)) + 328px - var(--q-in)) / 2); }
+  .q-lado-a-lado .q-print { max-width: none; }
+  .q-lado-a-lado > .q-resp { grid-column: 2; grid-row: 1; position: sticky; top: calc(var(--topo, 61px) + 64px); margin: 50px 0 16px; padding: 0; background: none; border-radius: 0; }
+  .q-lado-a-lado .q-bolhas { display: block; }
+  .q-lado-a-lado .q-bolhas::before { display: block; margin: 0 0 10px; }
+  .q-lado-a-lado .q-bolhas .alts:not(.com-texto) { gap: 8px; }
+  .q-lado-a-lado .q-resp .q-acoes { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; margin-top: 16px; }
+  .q-lado-a-lado .q-resp .q-acoes > .certeza { grid-column: 1 / -1; height: auto; flex-wrap: wrap; justify-content: space-between; }
+  .q-lado-a-lado .q-resp .q-acoes > .certeza > span { flex: 1 1 100%; padding: 4px 6px 2px; }
+  .q-lado-a-lado .q-resp .q-acoes > .btn.fantasma { grid-column: 1 / -1; justify-self: start; }
+  .q-lado-a-lado .q-resp .q-acoes > .btn-conf { margin-left: 0; min-width: 0; width: 100%; }
+  .q-lado-a-lado .q-resp .q-acoes > .btn-conf:first-child, .q-lado-a-lado .q-resp .q-acoes > .certeza + .btn-conf { grid-column: 1 / -1; }
+}
 /* questão indisponível (dono, 19/11/2026): o mesmo pé, rótulo "Questão indisponível" e uma linha no lugar das letras */
 .q-resp.q-indisp { --q-pw: 100%; } /* começa no mesmo x da caixa normal, não no do print estreito */
 /* sem letras para tocar, o pé da indisponível não fica preso: segue o conteúdo, que assim nunca fica embaixo dele ("Ver em texto")
