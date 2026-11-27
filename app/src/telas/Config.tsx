@@ -49,7 +49,8 @@ export function Config() {
 
       <section className="bloco">
         <h2 className="sec-tit">Aparência</h2>
-        <div className="chips" role="radiogroup" aria-label="Tema claro ou escuro">
+        <p className="miolo cfg-tema-aparelho">No celular e no tablet, o tema segue o do aparelho.</p>
+        <div className="chips cfg-tema-escolha" role="radiogroup" aria-label="Tema claro ou escuro">
           {([['claro', 'Claro', 'sol'], ['escuro', 'Escuro', 'lua'], ['sistema', 'Igual ao aparelho', 'config']] as const).map(([v, t, ic]) => (
             <button key={v} role="radio" aria-checked={tema === v} className="chip" onClick={() => defineTema(v)}><Icone nome={ic} tam={15} /> {t}</button>
           ))}
@@ -64,7 +65,7 @@ export function Config() {
           <button className="btn sec" onClick={() => arq.current?.click()}><Icone nome="upload" /> Importar progresso</button>
           <input ref={arq} type="file" accept="application/json,.json" hidden onChange={(ev) => { const f = ev.target.files?.[0]; if (f) importa(f); ev.target.value = ''; }} />
         </div>
-        <p className="fraco" style={{ fontSize: 14 }}>Aceita o arquivo do Aprendice e os arquivos “Baixar meu progresso” do protótipo (uma matéria por arquivo).{e.migradoDe.length ? ` Progresso do protótipo trazido automaticamente deste navegador: ${e.migradoDe.length} matéria(s).` : ''}</p>
+        <p className="fraco" style={{ fontSize: 14 }}>Aceita o arquivo do Aprendice e os arquivos “Baixar meu progresso” do protótipo (uma matéria por arquivo).{e.migradoDe.length ? (e.migradoDe.length === 1 ? ' Progresso da versão anterior importado deste navegador: 1 matéria.' : ` Progresso da versão anterior importado deste navegador: ${e.migradoDe.length} matérias.`) : ''}</p>
         <div className="zona-perigo">
           {!zerando ? <button className="btn fantasma" onClick={() => setZerando(true)}><Icone nome="lixo" /> Zerar progresso</button> : (
             <div className="confirma-zera">
@@ -77,7 +78,7 @@ export function Config() {
 
       <section className="bloco secao">
         <h2 className="sec-tit">Correção dos flashcards</h2>
-        <p className="miolo">Nesta versão, quem corrige é o próprio aparelho, comparando ideias-chave e números pelo valor. Nada do que você escreve sai daqui. Se um dia a correção usar IA, a resposta irá sem nome nem e-mail.</p>
+        <p className="miolo">Nesta versão, a correção é feita no próprio aparelho, comparando ideias-chave e valores numéricos. Nada do que você escreve sai daqui. Se no futuro a correção usar inteligência artificial, a resposta será enviada sem nome nem e-mail.</p>
       </section>
 
       <section className="bloco secao">

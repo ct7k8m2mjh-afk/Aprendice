@@ -67,7 +67,7 @@ export function Simulados() {
       <div className="titulo-pag"><div><h1>Simulados</h1><p className="sub">{aba === 'conteudo'
         ? 'Questões reais de prova dos conteúdos que você escolher, da mais fácil à mais difícil, com cronômetro e resultado por conteúdo.'
         : aba === 'historico' ? 'Os simulados que você já entregou, com o resultado e a correção de cada um.'
-        : 'Provas inteiras, com todas as matérias, no tempo oficial. Escolha a instituição e o ano.'}</p></div></div>
+        : 'Provas inteiras, com todas as matérias e o tempo oficial. Escolha a instituição e o ano.'}</p></div></div>
 
       {/* simulados começados e não entregues (dono, 27/11/2026, "forma 1"): no alto, antes das abas; some quando não há */}
       {andamento.length > 0 && (
@@ -127,12 +127,12 @@ export function Simulados() {
           )}
           {!eds.length && (
             <div className="vazio" style={{ paddingTop: 12 }}>
-              <h3>Nenhuma prova completa carregou</h3>
-              <p>Confira a conexão e abra a página de novo. Cada simulado é uma prova inteira, do jeito que caiu.</p>
+              <h3>Não foi possível carregar as provas completas</h3>
+              <p>Verifique sua conexão e recarregue a página.</p>
             </div>
           )}
           <section className="bloco sim-folha secao" aria-labelledby="sim-prep">
-            <div className="sim-grupo-cab"><div><h2 id="sim-prep">Em preparação</h2><p className="fraco">Provas que ainda não entram como simulado, e o motivo.</p></div></div>
+            <div className="sim-grupo-cab"><div><h2 id="sim-prep">Em preparação</h2><p className="fraco">Provas que ainda não estão disponíveis como simulado, com o motivo.</p></div></div>
             {PROVAS_EM_PREPARO.map((p) => (
               <Link key={p.titulo} to={`/provas/${p.catalogoId}`} className="sim-linha prep">
                 <span className="sim-ic" aria-hidden><Icone nome="relogio" tam={24} /></span>
@@ -160,7 +160,7 @@ export function Simulados() {
               </Link>
             ))}
           </div>
-        ) : <div className="vazio"><h3>Nenhum simulado feito ainda</h3><p>Seus resultados ficam aqui, com o desempenho por matéria.</p></div>
+        ) : <div className="vazio"><h3>Nenhum simulado entregue ainda</h3><p>Ao entregar um simulado, o resultado aparece aqui, com o desempenho por matéria.</p></div>
       )}
     </div>
   );

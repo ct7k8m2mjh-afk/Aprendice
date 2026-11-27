@@ -63,7 +63,7 @@ export function Revisao() {
         <section className="bloco rv-geral-dest" aria-labelledby="rv-gd-tit">
           <div className="rv-gd-txt">
             <h2 id="rv-gd-tit">Revisão geral</h2>
-            <p>Todo o conteúdo de cada matéria em tópicos curtos: o essencial, a pegadinha da banca e busca. A base para responder as questões das provas.</p>
+            <p>Todo o conteúdo de cada matéria em tópicos curtos, com busca: o essencial e a pegadinha da banca. A base para resolver as questões das provas.</p>
           </div>
           <div className="rv-gd-acao">
             <button type="button" className="btn grande" onClick={() => { setQs({ aba: 'geral' }, { replace: true }); window.scrollTo({ top: 0 }); }}>Abrir a revisão geral <Icone nome="direita" /></button>
@@ -79,12 +79,12 @@ export function Revisao() {
   return (
     <div className="conteudo">
       <div className="titulo-pag"><div><h1>Revisão</h1><p className="sub">{aba === 'conteudos'
-        ? 'Cada conteúdo revisado em slides volta no dia marcado no fim da revisão: amanhã quando algo não firmou, mais tarde quando firmou.'
+        ? 'Cada conteúdo revisado em slides volta na data marcada ao fim da revisão: amanhã, se algo não ficou firme; mais adiante, se ficou.'
         : aba === 'geral'
-          ? 'A matéria inteira em tópicos curtos, com busca: o essencial, a pegadinha da banca e a imagem de cada tópico. Filosofia e Sociologia em duas listas.'
+          ? 'A matéria inteira em tópicos curtos, com busca: o essencial, a pegadinha da banca e uma imagem por tópico. Filosofia e Sociologia aparecem em duas listas.'
           : aba === 'dominio'
-          ? 'O que você domina, está aprendendo ou esqueceu, pelos acertos em dias diferentes, cada um na data marcada.'
-          : `Errou, chutou ou usou a dica: a questão volta no dia certo. Sai da revisão depois de ${SAIDA} acertos em dias diferentes, cada um na data marcada.`}</p></div>
+          ? 'O que você domina, está aprendendo ou esqueceu, calculado pelos acertos em dias diferentes.'
+          : `Toda questão que você errou, chutou ou em que usou a dica volta para revisão. Ela sai da lista depois de ${SAIDA} acertos em dias diferentes, cada um na data marcada.`}</p></div>
         <Link to="/hoje" className="btn sec peq rv-hoje"><Icone nome="calendario" />O que estudar hoje</Link></div>
       {!cel && destaque}
       <div className="abas abas-rev" role="group" aria-label="Seções da revisão">
@@ -110,7 +110,7 @@ export function Revisao() {
       )}</div>}
 
       {aba === 'questoes' && (totVenc === 0 && !porMat.some((x) => x.prox.length) ? (
-        <div className="vazio"><h3>Nada para revisar hoje</h3><p>Quando você errar, chutar ou usar a dica, a questão aparece aqui no dia certo.</p><Link to="/" className="btn sec">Voltar ao início</Link></div>
+        <div className="vazio"><h3>Nenhuma questão para revisar hoje</h3><p>Quando você errar, chutar ou usar a dica, a questão aparecerá aqui na data marcada.</p><Link to="/" className="btn sec">Voltar ao início</Link></div>
       ) : (
         <div className="grade g2 rv-mats">
           {porMat.filter((x) => x.venc.length || x.prox.length).map(({ mc, venc, prox, s }) => (
@@ -152,7 +152,7 @@ export function Revisao() {
       )}
 
       {aba === 'conteudos' && (totCont === 0 ? (
-        <div className="vazio"><h3>Nenhum conteúdo para rever hoje</h3><p>A revisão em slides de cada conteúdo (na tela do tema) marca o dia em que ele volta. Quando chegar o dia, ele aparece aqui.</p></div>
+        <div className="vazio"><h3>Nenhum conteúdo para rever hoje</h3><p>Ao fim da revisão em slides de um conteúdo (na tela do tema), o site marca a data em que ele volta. Nesse dia, ele aparece aqui.</p></div>
       ) : (
         <div className="bloco">
           {porMat.flatMap(({ mc, conteudos }) => conteudos.map((c) => (
@@ -166,7 +166,7 @@ export function Revisao() {
       ))}
 
       {aba === 'marcadas' && (totMarc === 0 ? (
-        <div className="vazio"><h3>Nenhuma questão marcada</h3><p>Use o marcador na tela da questão para guardar as que você quer rever.</p></div>
+        <div className="vazio"><h3>Nenhuma questão marcada</h3><p>Use o marcador na tela da questão para guardar as que quiser rever.</p></div>
       ) : (
         <div className="bloco">
           {porMat.flatMap(({ mc, marcadas, s }) => marcadas.map((q) => {

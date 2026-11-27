@@ -41,7 +41,7 @@ export function AgendaRevisao({ ag, hoje, futuras, agora }: { ag: Agenda; hoje: 
           <h2 id="ag-tit" className="ag-tit">{ag.prova ? <>{nomeProva(ag.provaId)} em {DATA_LONGA.format(ag.prova)}</> : 'Sua agenda de revisão'}</h2>
           <p className="ag-sub">{ag.prova
             ? <>Faltam <b className="num">{plural(falta, 'dia', 'dias')}</b>. A revisão encurta os intervalos conforme a prova se aproxima: hoje, no máximo {plural(maior, 'dia', 'dias')} entre uma revisão e outra. O que você responder até a antevéspera volta no máximo na véspera; erro, chute ou dica volta no dia seguinte.</>
-            : <>Sem data de prova, a questão volta em 1, 3 e 7 dias. Informe a data das suas provas-alvo e a agenda passa a contar a partir da prova.</>}</p>
+            : <>Sem data de prova, a questão volta em 1, 3 e 7 dias. Informe a data das suas provas-alvo para que a agenda seja contada a partir dessas datas.</>}</p>
         </div>
         <Link to="/perfil#datas-prova" className="btn sec peq ag-btn">{ag.prova ? 'Trocar a data' : 'Informar a data'}</Link>
       </div>

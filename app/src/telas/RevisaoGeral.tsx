@@ -120,7 +120,7 @@ export function RevisaoGeralTela() {
         <div className="rg-capa-g">
           <div className="rg-capa-txt">
             <h1 id="rg-h1">Revisão geral{m === 'fs' ? ` de ${nome}` : ''}</h1>
-            <p className="rg-apoio">A matéria inteira em tópicos curtos, do simples ao complexo: o essencial de cada um, a pegadinha da banca e a imagem do tópico.</p>
+            <p className="rg-apoio">A matéria inteira em tópicos curtos, do mais simples ao mais complexo: o essencial, a pegadinha da banca e uma imagem por tópico.</p>
             {n > 0 && <p className="tp-stat num"><b>{lidos}</b> de {n} {n === 1 ? 'tópico lido' : 'tópicos lidos'} · <b>{marcados}</b> {marcados === 1 ? 'marcado' : 'marcados'} para rever</p>}
           </div>
           {m === 'fs' && (
@@ -141,7 +141,7 @@ export function RevisaoGeralTela() {
                 onChange={(e) => muda({ q: e.target.value, ...(aberto ? { t: null } : {}) })} onKeyDown={teclaBusca} />
               {q && <button type="button" className="rg-limpa" onClick={() => { muda({ q: '' }); buscaRef.current?.focus(); }} aria-label="Limpar a busca"><Icone nome="fechar" /></button>}
             </div>
-            <small id="rg-q-ajuda">Pelo nome, pelo conteúdo ou do jeito que você lembra; acento e maiúscula não importam. Enter abre o primeiro resultado.</small>
+            <small id="rg-q-ajuda">Busque pelo nome, pelo conteúdo ou como você lembrar; acentos e maiúsculas não importam. Enter abre o primeiro resultado.</small>
           </div>
         )}
       </section>

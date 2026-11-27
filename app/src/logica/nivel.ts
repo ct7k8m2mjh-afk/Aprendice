@@ -70,8 +70,8 @@ export function feedbackNiveis(d: DesempenhoNivel[]): string | null {
   if (!trava) {
     const falta = d.find((x) => x.total > 0 && x.feitas < MIN_FEEDBACK);
     return falta
-      ? `Você vai bem no que já fez. Avance para o nível ${nomeNivel(falta.nivel).toLowerCase()}.`
-      : 'Você vai bem em todos os níveis. Mantenha a revisão dos erros em dia.';
+      ? `Bom desempenho no nível atual. Avance para o nível ${nomeNivel(falta.nivel).toLowerCase()}.`
+      : 'Bom desempenho em todos os níveis. Mantenha a revisão dos erros em dia.';
   }
   const pct = Math.round(trava.acerto! * 100);
   const antes = com.filter((x) => x !== trava && NIVEIS.findIndex((n) => n.id === x.nivel) < NIVEIS.findIndex((n) => n.id === trava.nivel));

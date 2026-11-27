@@ -73,10 +73,10 @@ function FonteCartao({ fonte, credito }: { fonte?: string; credito?: string }) {
 type PropsFlash = Parameters<typeof FlashcardCartao>[0];
 /** Flashcard com proteção: uma falha de desenho num cartão não derruba a sessão inteira (dados.md, item 1). */
 export function FlashcardView(p: PropsFlash) {
-  return <MateriaDoTexto.Provider value={p.m}><Protecao chave={p.c.id} texto="Este cartão não abriu."><FlashcardCartao {...p} /></Protecao></MateriaDoTexto.Provider>;
+  return <MateriaDoTexto.Provider value={p.m}><Protecao chave={p.c.id} texto="Não foi possível abrir este cartão."><FlashcardCartao {...p} /></Protecao></MateriaDoTexto.Provider>;
 }
 export function CompletarView(p: Parameters<typeof CompletarCartao>[0]) {
-  return <MateriaDoTexto.Provider value={p.m}><Protecao chave={p.c.id} texto="Esta frase não abriu."><CompletarCartao {...p} /></Protecao></MateriaDoTexto.Provider>;
+  return <MateriaDoTexto.Provider value={p.m}><Protecao chave={p.c.id} texto="Não foi possível abrir esta frase."><CompletarCartao {...p} /></Protecao></MateriaDoTexto.Provider>;
 }
 
 /** Flashcard: pergunta curta no estilo das discursivas; o aluno escreve, o app corrige (local ou IA simulada) e ele confirma. */
@@ -118,7 +118,7 @@ function FlashcardCartao({ m, c, todos, aoNotar, usarIA = true, tema, conteudo }
       ) : <div className="fc-topo"><span className="etq cor">{TIPO[c.tipo || (c.img ? 'imagem' : '')] || 'Flashcard'}</span></div>}
       {img && <img className="fc-img" src={img} alt="" />}
       <h2 className="fc-frente">{comFracoes(c.frente)}</h2>
-      <label className="fc-lab" htmlFor={'fc-' + c.id}><Icone nome="caneta" tam={17} /> Sua resposta, com as suas palavras</label>
+      <label className="fc-lab" htmlFor={'fc-' + c.id}><Icone nome="caneta" tam={17} /> Escreva a resposta com suas palavras</label>
       <textarea id={'fc-' + c.id} ref={inp} className="fc-resp" rows={3} value={resp} readOnly={fase !== 'pergunta'} placeholder="Escreva aqui o que você lembra"
         onChange={(e) => setResp(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); if (fase === 'pergunta') corrigir(); } }} />
       {fase === 'pergunta' && (
@@ -136,7 +136,7 @@ function FlashcardCartao({ m, c, todos, aoNotar, usarIA = true, tema, conteudo }
               <b>{rotuloVer(cor.veredito)}</b>
               <p>{cor.comentario}</p>
               {cor.faltou.length > 0 && cor.veredito !== 'certo' && <p className="fraco">Faltou: {cor.faltou.join('; ')}</p>}
-              <small className="fraco">{origem === 'ia-simulada' ? 'Correção automática, feita no aparelho' : 'Correção automática'}: é uma sugestão; quem decide é você.</small>
+              <small className="fraco">{origem === 'ia-simulada' ? 'Correção feita no próprio aparelho' : 'Correção automática'}. É uma sugestão: a decisão final é sua.</small>
             </div>
           )}
           <div className="fc-modelo"><span className="fraco">Resposta-modelo</span><p>{comFracoes(c.verso)}</p></div>

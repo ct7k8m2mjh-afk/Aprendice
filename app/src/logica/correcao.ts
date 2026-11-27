@@ -183,7 +183,7 @@ export function criaCorretor(cartoes: Flashcard[]) {
     seq = [];
     const comentario = numErr ? 'O número da sua resposta não confere com o da resposta-modelo. Compare e decida.'
       : contra ? 'Parece que a sua resposta inverte o sentido (de onde para onde). Compare com a resposta-modelo e decida.'
-        : v === 'certo' ? 'Sua resposta traz as ideias essenciais. Confira com a resposta-modelo e confirme.'
+        : v === 'certo' ? 'Sua resposta traz as ideias essenciais. Compare com a resposta-modelo e confirme.'
           : v === 'quase' ? 'Sua resposta tem parte do essencial. Compare com a resposta-modelo: se você disse o mesmo com outras palavras, marque Acertei.'
             : 'As ideias essenciais não apareceram na sua resposta. Compare com a resposta-modelo: se você disse o mesmo com outras palavras, marque Acertei.';
     return { veredito: v, faltou, comentario };

@@ -62,7 +62,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
       <section className="bloco preparo">
         <span className="preparo-ic" aria-hidden><Icone nome="cartas" tam={28} /></span>
         <h2>Flashcards de {info.nome} em preparação</h2>
-        <p className="miolo">Os cartões desta matéria estão sendo escritos e conferidos pela banca do Aprendice. Só entram depois de revisados.</p>
+        <p className="miolo">Os flashcards desta matéria estão sendo escritos e revisados pela banca do Aprendice. Entram no site depois de aprovados.</p>
         <div className="preparo-acoes"><Link to={`/m/${m}`} className="btn sec">Voltar para {info.nome}</Link></div>
       </section>
     </div>
@@ -97,7 +97,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
           <div className="fl-capa-g">
             <div className="fl-capa-txt">
               <h1 id="fl-tit">Flashcards</h1>
-              <p>Pergunta curta no estilo das discursivas, resposta em uma frase. Você escreve, o site corrige e você confirma: vale a ideia, não a frase exata.</p>
+              <p>Pergunta curta, no estilo das questões discursivas, com resposta em uma frase. Você escreve, o site sugere a correção e você confirma: vale a ideia, não as palavras exatas.</p>
             </div>
             <div className="fl-resumo" aria-label="Seus cartões">
               <div className="ven"><b className="num">{venc}</b><span>para revisar hoje</span></div>
@@ -140,7 +140,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
             })}
           </div>
         </section>
-        <p className="fraco fl-nota">Acertei: volta em 1, 3, 7, 16, 35 e 80 dias, mais cedo se a prova estiver perto. Quase: amanhã. Errei: hoje.{ocultos ? ` ${plural(ocultos, 'cartão tirado', 'cartões tirados')} por “Não”.` : ''}</p>
+        <p className="fraco fl-nota">Acertei: volta em 1, 3, 7, 16, 35 e 80 dias, mais cedo se a prova estiver perto. Quase: amanhã. Errei: hoje.{ocultos ? ` ${plural(ocultos, 'cartão marcado', 'cartões marcados')} com “Não” ${ocultos === 1 ? 'sai' : 'saem'} das próximas sessões.` : ''}</p>
       </div>
     );
   }
@@ -161,7 +161,7 @@ export function Flashcards({ sessao = false }: { sessao?: boolean }) {
             <div className="qs"><b className="num">{v.filter((x) => x === 'q').length}</b><span>Quase</span></div>
             <div className="er"><b className="num">{v.filter((x) => x === 'e').length}</b><span>Errei</span></div>
           </div>
-          <p className="miolo">Os que você errou voltam ainda hoje; os demais, no dia certo da revisão.</p>
+          <p className="miolo">Os cartões que você errou voltam ainda hoje; os demais, na data marcada.</p>
           <div className="fc-acoes"><Link to={`/m/${m}/flashcards`} className="btn sec">Voltar aos flashcards</Link><Link to={`/m/${m}`} className="btn">Ir para {info.nome}</Link></div>
         </div>
       </div>

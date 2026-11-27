@@ -25,7 +25,7 @@ describe('composição da rodada', () => {
   it('a capa só promete o que a matéria tem', () => {
     expect(descreveTreino(40, 0, 0)).toMatch(/^Questões reais de prova/);
     expect(descreveTreino(40, 0, 0)).not.toMatch(/flashcard|frase/i);
-    expect(descreveTreino(40, 40, 60)).toBe('Questões reais de prova, frases para completar e flashcards dos temas que mais caem, tudo misturado.');
+    expect(descreveTreino(40, 40, 60)).toBe('Questões reais de prova, frases para completar e flashcards dos temas que mais caem, em ordem sorteada.');
   });
 });
 

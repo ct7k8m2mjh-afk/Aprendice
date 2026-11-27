@@ -1,6 +1,7 @@
 import { Fragment, type ReactNode } from 'react';
 import { analisaLatex, continuaFrase, latexParaLeitura, type NoMat } from '../logica/latex';
 import { comFracoes } from './Fracao';
+import { trechoMao } from './maoGlifos';
 import '../estilo/revisao.css'; // fórmulas e revisão em slides (comandos 24 e 26)
 
 /**
@@ -17,7 +18,7 @@ export function Formula({ tex, className, bloco = true, prosa = false, rotulosNa
   const Tag = bloco ? 'div' : 'span';
   return (
     <Tag className={'fm' + (prosa ? ' fm-prosa' : '') + (bloco ? ' fm-bloco' : '') + (className ? ' ' + className : '')} role={prosa ? undefined : 'math'} aria-label={prosa ? undefined : latexParaLeitura(tex)}>
-      {linhas.map((l, k) => <span key={k} className="fm-linha" aria-hidden={prosa ? undefined : true}>{nos(l, rotulosNaMao && !prosa)}</span>)}
+      {linhas.map((l, k) => <span key={k} className="fm-linha" aria-hidden={prosa ? undefined : true}>{nos(l, rotulosNaMao && !prosa, !prosa)}</span>)}
     </Tag>
   );
 }
@@ -34,27 +35,45 @@ function juntaFrases(ls: NoMat[][]): NoMat[][] {
 }
 
 const WJ = String.fromCharCode(0x2060);
-function nos(ns: NoMat[], mao = false): ReactNode[] {
-  return ns.map((n, i) => {
+/** `mao`: o \\text{} do rótulo vai na letra da fórmula; `caneta`: a fórmula é à mão (não é prosa), e os sinais que a
+ *  Caveat não tem (Δ, θ, ω, π, setas...) saem desenhados no traço da caneta, na altura das letras vizinhas (ui/maoGlifos.tsx;
+ *  pedido do dono, 27/11/2026: antes vinham de outra fonte, maiores e fora da linha) */
+function nos(ns: NoMat[], mao = false, caneta = false): ReactNode[] {
+  const out: ReactNode[] = [];
+  for (let i = 0; i < ns.length; i++) {
+    const n = ns[i];
+    // índice e expoente juntos ("v_0^2"): um em cima do outro, na mesma coluna, como se escreve no caderno
+    const prox = ns[i + 1];
+    if ((n.t === 'sub' && prox?.t === 'sup') || (n.t === 'sup' && prox?.t === 'sub')) {
+      const [sup, sub] = n.t === 'sup' ? [n, prox] : [prox, n];
+      out.push(<span key={i} className="fm-ss"><sup>{nos((sup as Extract<NoMat, { t: 'sup' }>).v, mao, caneta)}</sup><sub>{nos((sub as Extract<NoMat, { t: 'sub' }>).v, mao, caneta)}</sub></span>);
+      i++;
+      continue;
+    }
+    out.push(no(n, i, mao, caneta));
+  }
+  return out;
+}
+function no(n: NoMat, i: number, mao: boolean, caneta: boolean): ReactNode {
     switch (n.t) {
-      case 'txt': return n.texto && !mao ? <span key={i} className="fm-texto">{n.v}</span> : <Fragment key={i}>{n.v}</Fragment>;
+      case 'txt': return n.texto && !mao ? <span key={i} className="fm-texto">{n.v}</span> : <Fragment key={i}>{caneta ? trechoMao(n.v, `t${i}`) : n.v}</Fragment>;
       // o espaço fino ("\,": "P\,\cos\,\theta") não quebra a linha: é texto, o "WORD JOINER" (U+2060), que prende a função
       // ao argumento (revisão de 21/11/2026, 5ª passada V2: "cos" no fim de uma linha e "θ" na seguinte); a largura vem do
       // CSS. O espaço largo entre duas relações continua podendo quebrar
       case 'esp': return <span key={i} className={'fm-esp e' + n.w}>{n.w === 1 ? WJ : null}</span>;
-      case 'sup': return <sup key={i}>{nos(n.v, mao)}</sup>;
-      case 'sub': return <sub key={i}>{nos(n.v, mao)}</sub>;
-      case 'raiz': return <span key={i} className="fm-raiz"><span className="fm-raiz-s">√</span><span className="fm-raiz-v">{nos(n.v, mao)}</span></span>;
-      case 'vet': return <span key={i} className="fm-vet">{nos(n.v, mao)}</span>;
-      case 'sobre': return <span key={i} className="fm-sobre"><span className="fm-sobre-t">{nos(n.topo, mao)}</span><span>{nos(n.v, mao)}</span></span>;
+      case 'sup': return <sup key={i}>{nos(n.v, mao, caneta)}</sup>;
+      case 'sub': return <sub key={i}>{nos(n.v, mao, caneta)}</sub>;
+      case 'raiz': return <span key={i} className="fm-raiz"><span className="fm-raiz-s">{caneta ? trechoMao('√', `r${i}`) : '√'}</span><span className="fm-raiz-v">{nos(n.v, mao, caneta)}</span></span>;
+      // seta do vetor logo acima da letra: mais baixa sobre letra sem haste ("v", "a"), acima da maiúscula ("F", "E")
+      case 'vet': return <span key={i} className={'fm-vet' + (n.v.every((x) => x.t === 'txt' && /^[acemnorsuvwxzαεμνπρστυω]+$/.test(x.v)) ? ' baixa' : '')}>{nos(n.v, mao, caneta)}</span>;
+      case 'sobre': return <span key={i} className="fm-sobre"><span className="fm-sobre-t">{nos(n.topo, mao, caneta)}</span><span>{nos(n.v, mao, caneta)}</span></span>;
       case 'frac': return (
         <span key={i} className="frac">
-          <span className="frac-n">{nos(n.n, mao)}</span><span className="sr">/</span><span className="frac-d">{nos(n.d, mao)}</span>
+          <span className="frac-n">{nos(n.n, mao, caneta)}</span><span className="sr">/</span><span className="frac-d">{nos(n.d, mao, caneta)}</span>
         </span>
       );
     }
     return null;
-  });
 }
 
 /**

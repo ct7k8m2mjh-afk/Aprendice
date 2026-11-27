@@ -11,9 +11,14 @@ import './estilo/dominio.css'; // agenda pela data da prova e painel de domínio
 import './estilo/hoje.css'; // tela Hoje e Escudo TRI (comando 24, fase 3)
 import './estilo/tipografia.css'; // guia tipográfico: carregado por último
 import './estilo/correcao.css'; // correção em 4 blocos + resolução animada (comando 20)
+import './estilo/grade-texto.css'; // texto na grade do caderno (dono, 27/11/2026)
 import { App } from './App';
 import { preparaConteudo } from './dados/conteudo';
 import { iniciaConta } from './estado/sessao';
+import { iniciaGradeTexto } from './ui/gradeTexto';
+
+// texto direto sobre a folha sentado nas linhas do quadriculado (aprovado pelo dono, 27/11/2026)
+iniciaGradeTexto();
 
 // contas de verdade (20/11/2026): abre a sessão guardada e junta o progresso com a nuvem, sem esperar o conteúdo
 iniciaConta();

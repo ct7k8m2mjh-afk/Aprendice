@@ -50,8 +50,8 @@ export function TreinoMisto() {
 
   if (!ses.it.length) {
     return (
-      <div className="conteudo estreito"><div className="vazio"><h3>Sem questões para sortear agora</h3>
-        <p>As questões de prova entram com as provas completas.</p><Link to="/" className="btn sec">Voltar ao início</Link></div></div>
+      <div className="conteudo estreito"><div className="vazio"><h3>Ainda não há questões para sortear</h3>
+        <p>As questões chegam com as provas completas.</p><Link to="/" className="btn sec">Voltar ao início</Link></div></div>
     );
   }
 
@@ -69,7 +69,7 @@ export function TreinoMisto() {
               <li key={x.m} className={`m-${x.m}`}><i className="ponto" aria-hidden /><span>{nomeMateria(x.m)}</span><b className="num">{x.ok} de {x.n}</b></li>
             ))}
           </ul>
-          <p className="miolo">Cada resposta conta no progresso da matéria. {er === 0 ? 'Nenhum erro nesta rodada.' : er === 1 ? '1 erro volta amanhã na revisão.' : `${er.toLocaleString('pt-BR')} erros voltam amanhã na revisão.`}</p>
+          <p className="miolo">Cada resposta conta no progresso da matéria. {er === 0 ? 'Nenhum erro nesta rodada.' : er === 1 ? '1 erro volta amanhã para revisão.' : `${er.toLocaleString('pt-BR')} erros voltam amanhã para revisão.`}</p>
           <div className="tm-regiao"><FiltroRegiaoChips compacto /></div>
           <div className="fc-acoes"><button className="btn sec" onClick={encerrar}>Voltar ao início</button><button className="btn" onClick={recomecar}>Nova rodada</button></div>
         </div>
@@ -77,7 +77,7 @@ export function TreinoMisto() {
     );
   }
 
-  return <RodadaQuestoes ses={ses} rotulo="Treino geral" dica="Treino geral de todas as matérias. O treino fica salvo se você sair"
+  return <RodadaQuestoes ses={ses} rotulo="Treino geral" dica="Treino geral de todas as matérias. Se você sair, o treino fica salvo."
     ctx="misto" voltar="/" aoAvancar={avanca} topo={ses.i === 0 ? <div className="q-regiao"><FiltroRegiaoChips compacto aoMudar={recomecar} /></div> : null}
     acao={<button className="btn fantasma peq" onClick={recomecar}>Nova rodada</button>} todas={todas} />;
 }

@@ -58,7 +58,7 @@ export function FiltroRegiaoChips({ aoMudar, compacto }: { aoMudar?: (f: FiltroR
       <p className="fr-frase">
         <span>{r.minhas.length
           ? <>Minha região: <b>{descreveFiltro('minha', r.minhas)}</b>{r.automatica ? ', pelas suas provas-alvo' : ''}.</>
-          : <>Escolha suas provas-alvo ou a sua região para praticar com as provas de onde você vai prestar.</>}</span>
+          : <>Escolha suas provas-alvo ou sua região para praticar com questões das provas que você vai prestar.</>}</span>
         <button className="link-sec fr-trocar" aria-expanded={abrir} onClick={() => setAbrir(!abrir)}>{abrir ? 'Fechar' : 'Trocar'}</button>
       </p>
       {abrir && <SeletorMinhaRegiao aoMudou={() => aoMudar?.('minha')} />}

@@ -10,7 +10,7 @@ import { Barra, Carregando, cap, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { IcTema } from '../ui/IconeTema';
 import { CabMateria, FaixaTemas } from './Materia';
-import { comFracoes, comNegrito } from '../ui/Fracao';
+import { comContasMarcadas, comFracoes, comNegrito, IndiceMaiusculo } from '../ui/Fracao';
 import { cadernoComLatexEhTexto, contaEhTexto, materiaDoCodigo } from '../logica/fracao';
 import type { CartaoTeoria, Figura, MateriaId, Modulo } from '../dados/tipos';
 import { Formula, TextoMat, ehLatex } from '../ui/Formula';
@@ -26,18 +26,19 @@ import { deFiltro, filtraTema } from '../logica/regiao';
 export function CartaoTeoriaView({ c, figs }: { c: CartaoTeoria; figs?: Figura[] }) {
   return (
     <article className="cartao-teoria">
-      <h3>{c.titulo}</h3>
-      {c.oque && <p>{comNegrito(c.oque)}</p>}
-      {c.identificar && <p><b>Como reconhecer na prova. </b>{comNegrito(c.identificar.replace(/^Pistas:\s*/i, ''))}</p>}
-      {c.exemplo && <p><b>Exemplo. </b>{comNegrito(c.exemplo)}</p>}
+      <h3>{comContasMarcadas(c.titulo, true)}</h3>
+      {c.oque && <p>{comNegrito(c.oque, true)}</p>}
+      {c.identificar && <p><b>Como reconhecer na prova. </b>{comNegrito(c.identificar.replace(/^Pistas:\s*/i, ''), true)}</p>}
+      {c.exemplo && <p><b>Exemplo. </b>{comNegrito(c.exemplo, true)}</p>}
       {c.caderno && c.caderno.length > 0 && (
         <ul className="caderno">{c.caderno.map((x, i) => ehLatex(x)
           // revisão (docs/revisao): texto na letra da interface com as fórmulas entre $…$ à mão
           ? <li key={i} className="texto com-fm"><TextoMat t={x} prosa={contaEhTexto('1 + 1', materiaDoCodigo(c.sub))} /></li>
           // a letra vem da lista inteira, não de cada linha (questão-correção 2 R9), também com linhas $…$ na lista (4ª passada T2)
-          : <li key={i} className={cadernoComLatexEhTexto(c.caderno!, materiaDoCodigo(c.sub), ehLatex, true) ? 'texto' : undefined}>{comFracoes(x)}</li>)}</ul>
+          : cadernoComLatexEhTexto(c.caderno!, materiaDoCodigo(c.sub), ehLatex, true) ? <li key={i} className="texto">{comFracoes(x)}</li>
+            : <li key={i}>{comFracoes(x, false, false, true)}</li>)}</ul>
       )}
-      {c.cuidado && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Cuidado: </b>{comNegrito(c.cuidado)}</span></p>}
+      {c.cuidado && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>Cuidado: </b>{comNegrito(c.cuidado, true)}</span></p>}
       {figs && figs.map((f, i) => {
         // figura com paleta própria para o escuro (Bio): uma imagem por tema, trocada pelo botão Dia/Noite (matérias-2 R3)
         const esc = figuraEscura(f.u);
@@ -57,19 +58,22 @@ export function TeoriaModulo({ m, mod }: { m: MateriaId; mod: Modulo }) {
   const [figs, setFigs] = useState<Figura[]>([]);
   useEffect(() => { carregaFiguras(m).then((f) => setFigs(f[mod.id] || [])); }, [m, mod.id]);
   return (
+    <IndiceMaiusculo.Provider value={m === 'fis'}>
     <div className="teoria">
       <section className="bloco teoria-resumo">
         <p className="resumo-mod">{comFracoes(mod.resumo)}</p>
         {mod.formulas.length > 0 && (<><h3>No caderno</h3><ul className="caderno">{mod.formulas.map((f, i) => ehLatex(f)
           // (4ª passada T2: o rótulo em \text{} vai na letra da fórmula, com uma palavra ou várias; a lista inteira numa letra)
           ? (contaEhTexto('1 + 1', m) ? <li key={i} className="texto"><Formula tex={f} prosa /></li> : <li key={i}><Formula tex={f} bloco={false} rotulosNaMao /></li>)
-          : <li key={i} className={cadernoComLatexEhTexto(mod.formulas, m, ehLatex, false) ? 'texto' : undefined}>{comFracoes(f)}</li>)}</ul></>)}
+          : cadernoComLatexEhTexto(mod.formulas, m, ehLatex, false) ? <li key={i} className="texto">{comFracoes(f)}</li>
+            : <li key={i}>{comFracoes(f, false, false, true)}</li>)}</ul></>)}
         {mod.erro && <p className="cuidado"><Icone nome="info" tam={16} /> <span><b>O erro mais comum: </b>{comFracoes(mod.erro)}</span></p>}
       </section>
       <div className="grade g2" style={{ marginTop: 16 }}>
         {figurasPorCartao(mod.cartoes, figs).map((fs, i) => <CartaoTeoriaView key={i} c={mod.cartoes[i]} figs={fs} />)}
       </div>
     </div>
+    </IndiceMaiusculo.Provider>
   );
 }
 
@@ -193,7 +197,7 @@ export function Tema() {
           {nEss > 0 && (
             <section className="tp-bloco es-chamada" aria-labelledby="tp-ess-tit">
               <h2 id="tp-ess-tit" className="tp-h">Revisão essencial</h2>
-              <p className="miolo tp-rev-p">O que todo aluno precisa saber: o que mais cai no tema, o mapa mental, {plural(nEss, 'tela', 'telas')} de conteúdo, uma Questão Aprendice resolvida e a conexão com outras matérias.</p>
+              <p className="miolo tp-rev-p">O essencial do tema: o que mais cai, o mapa mental, {plural(nEss, 'tela', 'telas')} de conteúdo, uma Questão Aprendice resolvida e a ligação com outras matérias.</p>
               <Link className="btn tp-comecar" to={`/m/${m}/essencial/${mod.id}`}><Icone nome="play" />Começar a revisão</Link>
             </section>
           )}
@@ -217,7 +221,7 @@ export function Tema() {
       ) : !subs.length ? (
         <section className="tp-bloco preparo">
           <h2 className="tp-h">Questões em preparação</h2>
-          <p className="miolo">As questões de {mod.nome.toLowerCase()} entram com as provas completas, cada uma com a fonte (prova, ano, número, link), o gabarito e o seu nível: básico, intermediário ou avançado.</p>
+          <p className="miolo">As questões de {mod.nome.toLowerCase()} chegam com as provas completas, cada uma com fonte (prova, ano, número e link), gabarito e nível: básico, intermediário ou avançado.</p>
           <div className="preparo-acoes"><Link to="/simulados" className="btn sec">Ver simulados</Link></div>
           {subsOcultos.length > 0 && <ul className="tp-enc">{subsOcultos.map((sub) => <SubOculto key={sub.id} m={m} sub={sub} frase={fraseDe(mod, sub.id)} n={mc.ocultasPorSub!.get(sub.id)!.length} />)}</ul>}
         </section>
@@ -233,7 +237,7 @@ export function Tema() {
                 <li key={sub.id}>
                   <Link to={`/m/${m}/escada/${sub.id}`}>
                     <i className="ponto-sub" aria-hidden />
-                    <span className="t"><b>{cap(sub.nome)}</b>{frase && <span>{frase}</span>}{rg.conj && porSubR.get(sub.id)?.reserva && <span className="tp-outras">De outras regiões: nenhuma questão {deFiltro(rg.filtro, rg.minhas)} neste conteúdo</span>}</span>
+                    <span className="t"><b>{comContasMarcadas(cap(sub.nome), true)}</b>{frase && <span>{comContasMarcadas(frase)}</span>}{rg.conj && porSubR.get(sub.id)?.reserva && <span className="tp-outras">De outras regiões: nenhuma questão {deFiltro(rg.filtro, rg.minhas)} neste conteúdo</span>}</span>
                     <span className="p"><span className="num">{pe.feitas} de {pe.total}</span><Barra valor={pe.total ? pe.feitas / pe.total : 0} rotulo={`Progresso em ${sub.nome}`} /></span>
                     <Icone nome="direita" className="tp-seta" />
                   </Link>
@@ -247,7 +251,7 @@ export function Tema() {
                 <li key={sub.id}>
                   <div className="tp-semq">
                     <i className="ponto-sub" aria-hidden />
-                    <span className="t"><b>{cap(sub.nome)}</b>{frase && <span>{frase}</span>}<span className="tp-outras">Ainda sem questões</span></span>
+                    <span className="t"><b>{comContasMarcadas(cap(sub.nome), true)}</b>{frase && <span>{comContasMarcadas(frase)}</span>}<span className="tp-outras">Ainda sem questões</span></span>
                   </div>
                 </li>
               );
@@ -276,7 +280,7 @@ function RevisaoDoTema({ m, mod, subs, s, questoes, embutida }: { m: MateriaId; 
       <ul className="tp-enc tp-rev-l">
         {subs.map((sub) => {
           const r = s.revs?.[sub.id];
-          const est = r?.and ? 'Continuar de onde parou' : !r?.hist.length ? 'Nova' : r.vence <= agora ? 'Para revisar hoje' : `Volta ${emDias(r.vence, agora)}`;
+          const est = r?.and ? 'Em andamento' : !r?.hist.length ? 'Nova' : r.vence <= agora ? 'Para revisar hoje' : `Volta ${emDias(r.vence, agora)}`;
           const nq = questoes(sub.id);
           return (
             <li key={sub.id}>
@@ -300,7 +304,7 @@ function SubOculto({ m, sub, frase, n }: { m: MateriaId; sub: { id: string; nome
     <li>
       <Link to={`/m/${m}/escada/${sub.id}`}>
         <i className="ponto-sub" aria-hidden />
-        <span className="t"><b>{cap(sub.nome)}</b>{frase && <span>{frase}</span>}<span className="tp-outras num">{plural(n, 'questão', 'questões')} · <span className="etq aviso">{ETIQUETA_OCULTO}</span></span></span>
+        <span className="t"><b>{comContasMarcadas(cap(sub.nome), true)}</b>{frase && <span>{comContasMarcadas(frase)}</span>}<span className="tp-outras num">{plural(n, 'questão', 'questões')} · <span className="etq aviso">{ETIQUETA_OCULTO}</span></span></span>
         <Icone nome="direita" className="tp-seta" />
       </Link>
     </li>

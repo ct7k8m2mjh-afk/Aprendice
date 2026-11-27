@@ -130,7 +130,8 @@ function useLarguraPrint(pr: HTMLDivElement | null, src: string | null) {
       const lado = cartao.classList.contains('q-lado-a-lado') && innerWidth >= 1101;
       const interno = cartao.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
       if (lado) cartao.style.setProperty('--q-in', interno + 'px'); else cartao.style.removeProperty('--q-in');
-      const col = lado ? interno - 328 : interno;
+      const colLado = lado ? (parseFloat(getComputedStyle(cartao).getPropertyValue('--q-col')) || 300) + 28 : 0;
+      const col = lado ? interno - colLado : interno;
       // a altura da resposta depende da largura do print e vice-versa: usar a maior já vista nesta questão evita oscilar
       respMax = Math.max(respMax, resp ? resp.offsetHeight : 0);
       const pe = pr.querySelector<HTMLElement>('.q-print-pe');
@@ -210,10 +211,10 @@ export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao, sem
         </div>
       )}
       {src && q.transcricao && original && (
-        <button className="q-ver-txt" onClick={() => setOriginal(false)}><Icone nome="arquivo" tam={15} /> {soNoPrint ? 'Ver em texto (o sublinhado da prova só aparece no print)' : 'Voltar para o texto'}</button>
+        <button className="q-ver-txt" onClick={() => setOriginal(false)}><Icone nome="arquivo" tam={15} /> {soNoPrint ? 'Ver em texto (os sublinhados aparecem apenas na imagem da prova)' : 'Voltar para o texto'}</button>
       )}
       {src && !q.transcricao && (
-        <button className="q-ver-txt" onClick={() => setTxt(!txt)} aria-expanded={txt}><Icone nome="arquivo" tam={15} /> {txt ? 'Esconder texto' : 'Ver em texto (leitor de tela, busca)'}</button>
+        <button className="q-ver-txt" onClick={() => setTxt(!txt)} aria-expanded={txt}><Icone nome="arquivo" tam={15} /> {txt ? 'Esconder texto' : 'Ver em texto'}</button>
       )}
       {src && txt && <div className="q-texto" style={{ whiteSpace: 'pre-line' }}>{alt}</div>}
       {lupa && src && <Lupa src={src} alt={alt} aoFechar={() => setLupa(false)} />}
@@ -262,7 +263,7 @@ export function FonteQuestao({ q }: { q: Questao }) {
     // de onde é o arquivo: caderno oficial ou cópia (revisão de 19/11/2026, item 19), sem o nome de quem publicou a cópia (dono, 27/11/2026)
     ['Origem', origemDoLink(q.url, q.origem).rotulo],
     // questão indisponível (dono, 19/11/2026); gabarito do Aprendice (princípio 2): o mesmo texto da correção
-    ['Gabarito', q.indisponivel ? 'Indisponível: a banca do Aprendice encontrou erro no gabarito oficial, e a banca da prova não publicou errata. A questão fica só para consulta: sem resposta nem correção, fora dos treinos, simulados e revisões.' : origemGabarito(q)],
+    ['Gabarito', q.indisponivel ? 'Questão indisponível. A banca do Aprendice encontrou um erro no gabarito oficial, e a banca da prova não publicou errata. A questão fica apenas para consulta, sem resposta nem correção, e não entra em treinos, simulados e revisões.' : origemGabarito(q)],
   ];
   return (
     <div className="q-fonte-aba">

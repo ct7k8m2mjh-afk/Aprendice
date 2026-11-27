@@ -50,7 +50,7 @@ export function Desempenho() {
 
   if (!feitas) return (
     <div className="conteudo"><div className="titulo-pag"><h1>Desempenho</h1></div>
-      <div className="vazio"><h3>Ainda sem respostas</h3><p>Responda algumas questões para ver seu acerto por matéria, por tema e por prova.</p><Link to="/" className="btn sec">Começar</Link></div></div>
+      <div className="vazio"><h3>Ainda sem respostas</h3><p>Responda a algumas questões para ver seu acerto por matéria, por tema e por prova.</p><Link to="/" className="btn sec">Começar</Link></div></div>
   );
 
   return (
@@ -60,7 +60,7 @@ export function Desempenho() {
         <div className="bloco"><b className="num">{feitas}</b><span>questões feitas</span></div>
         <div className="bloco"><b className="num">{tent ? Math.round((okT / tent) * 100) : 0}%</b><span>de acerto nas tentativas</span></div>
         <div className="bloco"><b className="num">{(segN ? Math.round(segSoma / segN / 6) / 10 : 0).toLocaleString('pt-BR')} min</b><span>por questão, em média</span></div>
-        <div className="bloco"><b className="num">{horasMin(tempoTotal(e))}</b><span>de tempo registrado · {sem.semana} questões nesta semana</span></div>
+        <div className="bloco"><b className="num">{horasMin(tempoTotal(e))}</b><span>de tempo registrado · {plural(sem.semana, 'questão', 'questões')} nesta semana</span></div>
       </div>
 
       <section className="secao">

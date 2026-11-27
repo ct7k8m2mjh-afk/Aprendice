@@ -65,7 +65,7 @@ export function SimuladoNovo() {
   const plano = useMemo<PlanoSimulado | null>(() => (prova ? planoDaProva(prova) : null), [prova]);
   useTitulo(plano?.titulo || 'Simulado');
   if (prova === undefined) return <div className="conteudo"><Carregando /></div>;
-  if (!plano) return <div className="conteudo vazio"><h3>Simulado não encontrado</h3><p>Os simulados são as provas completas. Escolha uma na lista.</p><Link className="btn sec" to="/simulados">Ver simulados</Link></div>;
+  if (!plano) return <div className="conteudo vazio"><h3>Simulado não encontrado</h3><p>Esta prova não está disponível. Escolha uma na lista de simulados.</p><Link className="btn sec" to="/simulados">Ver simulados</Link></div>;
   if (!plano.itens.length) return (
     <div className="conteudo estreito vazio">
       <h3>{plano.titulo}</h3>
@@ -108,8 +108,8 @@ function ConfigSimulado({ plano, nota, migalha }: { plano: PlanoSimulado; nota?:
         {nota && <p className="fraco" style={{ fontSize: 14, margin: 0 }}>{nota}</p>}
         <fieldset className={'sc-grupo' + (jaComecado ? ' travado' : '')} aria-disabled={!!jaComecado || undefined}>
           <legend>Correção</legend>
-          <label className={'opcao' + (modoVisto === 'prova' ? ' sel' : '')}><input type="radio" name="modo" tabIndex={jaComecado ? -1 : undefined} checked={modoVisto === 'prova'} onChange={() => setModo('prova')} /><span><b>Como na prova</b><small>Folha de respostas, pode pular e voltar; resultado e resoluções no fim.</small></span></label>
-          <label className={'opcao' + (modoVisto === 'treino' ? ' sel' : '')}><input type="radio" name="modo" tabIndex={jaComecado ? -1 : undefined} checked={modoVisto === 'treino'} onChange={() => setModo('treino')} /><span><b>Resolução após cada resposta</b><small>Responde, vê a resolução comentada e segue.</small></span></label>
+          <label className={'opcao' + (modoVisto === 'prova' ? ' sel' : '')}><input type="radio" name="modo" tabIndex={jaComecado ? -1 : undefined} checked={modoVisto === 'prova'} onChange={() => setModo('prova')} /><span><b>Como na prova</b><small>Folha de respostas: você pode pular questões e voltar a elas. Resultado e resoluções no fim.</small></span></label>
+          <label className={'opcao' + (modoVisto === 'treino' ? ' sel' : '')}><input type="radio" name="modo" tabIndex={jaComecado ? -1 : undefined} checked={modoVisto === 'treino'} onChange={() => setModo('treino')} /><span><b>Resolução após cada resposta</b><small>Você responde, vê a resolução comentada e segue para a próxima.</small></span></label>
         </fieldset>
         <label className={'sc-tempo' + (jaComecado ? ' travado' : '')} aria-disabled={!!jaComecado || undefined}><input type="checkbox" tabIndex={jaComecado ? -1 : undefined} checked={cronVisto} onChange={(ev) => setCron(ev.target.checked)} />
           <span><b>Cronometrado</b><small className="num">{formataTempo(plano.itens.length * plano.segPorQuestao)} no total ({(Math.round(plano.segPorQuestao / 6) / 10).toLocaleString('pt-BR')} min por questão). Dá para pausar.</small></span></label>
@@ -147,7 +147,7 @@ export function SimuladoConteudo() {
   if (!subs.some((x) => conhecidos.has(x))) return (
     <div className="conteudo estreito vazio">
       <h3>Conteúdo não encontrado</h3>
-      <p>Este endereço não corresponde a nenhum conteúdo. Escolha a matéria e os conteúdos de novo.</p>
+      <p>Este endereço não corresponde a nenhum conteúdo. Escolha a matéria e os conteúdos novamente.</p>
       <Link className="btn sec" to="/simulados?aba=conteudo">Simulado por conteúdo</Link>
     </div>
   );
@@ -302,7 +302,7 @@ export function SimuladoExec() {
   return (
     <div className="questao-tela simulado">
       <div className="q-barra">
-        <button className="q-volta" onClick={() => nav('/simulados')} aria-label="Sair (o simulado fica salvo)" title="Sair (fica salvo)"><Icone nome="esquerda" /><span>Sair</span></button>
+        <button className="q-volta" onClick={() => nav('/simulados')} aria-label="Sair do simulado (ele fica salvo)" title="Sair do simulado (ele fica salvo)"><Icone nome="esquerda" /><span>Sair do simulado</span></button>
         <div className="q-barq">
           <span className="g" aria-hidden><Icone nome="arquivo" /></span>
           <span className="n">{sim.titulo}</span>
@@ -330,7 +330,7 @@ export function SimuladoExec() {
           <div className={'q-grade' + (revelado ? ' respondida' : '')}>
             {/* computador: resposta numa coluna ao lado do print, para a questão inteira caber na tela (dono, 27/11/2026, forma 2);
                 com alternativas em texto ela continua embaixo */}
-            <article className={'folha q-cartao' + (!q.transcricao && qq?.print ? ' q-lado-a-lado' : '')}>
+            <article className={'folha q-cartao' + (!q.transcricao && qq?.print ? ' q-lado-a-lado' : '') + (revelado && sim.modo === 'treino' ? ' com-correcao' : '')}>
               <EnunciadoQuestao q={q} print={qq?.print ?? null} semFonte
                 antes={<CabQuestaoSim n={sim.i + 1} grupo={grupoDoItem(it)} nome={nomeConteudoDoItem(it, q.sub, todas)} />}
                 acao={<button className={'q-marca' + (sim.marcadas.includes(it.id) ? ' marcado' : '')} onClick={marca} aria-pressed={sim.marcadas.includes(it.id)} aria-label="Revisar depois" title={sim.marcadas.includes(it.id) ? 'Marcada para revisar' : 'Revisar depois'}><Icone nome="bandeira" /></button>} />
@@ -347,6 +347,9 @@ export function SimuladoExec() {
                   </>
                 )}
               </RespostaCartao>
+              {/* correção logo abaixo das alternativas, na coluna ao lado do print (dono, 27/11/2026); fora do computador ela
+                  continua embaixo do cartão */}
+              {revelado && sim.modo === 'treino' && <div className="q-correcao-lado"><ResolucaoView q={q} r={q.res || (res ? res[q.id] : undefined)} marcada={escolha} /></div>}
             </article>
             <aside className="folha q-lado" id="q-lado" aria-label="Folha de respostas">
               <h2 className="q-lado-tit">Folha de respostas</h2>
@@ -369,7 +372,7 @@ export function SimuladoExec() {
               </div>
             </aside>
           </div>
-          {revelado && sim.modo === 'treino' && <ResolucaoView q={q} r={q.res || (res ? res[q.id] : undefined)} marcada={escolha} />}
+          {revelado && sim.modo === 'treino' && <div className="q-correcao-baixo"><ResolucaoView q={q} r={q.res || (res ? res[q.id] : undefined)} marcada={escolha} /></div>}
         </div>
       ) : <Carregando />}
 

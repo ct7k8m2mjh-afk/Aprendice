@@ -9,7 +9,7 @@ export function NaoEncontrada() {
   return (
     <div className="conteudo vazio nao-encontrada">
       <h1 className="ne-tit">Página não encontrada</h1>
-      <p>O endereço pode estar incompleto ou a página pode ter mudado de lugar. O seu progresso continua salvo.</p>
+      <p>O endereço pode estar incompleto ou a página pode ter mudado de lugar. Seu progresso continua salvo.</p>
       <div className="ne-acoes">
         <Link to="/" className="btn"><Icone nome="inicio" /> Ir para o início</Link>
         <Link to="/materias" className="btn sec">Ver matérias</Link>

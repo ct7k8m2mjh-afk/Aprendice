@@ -148,3 +148,75 @@
 .fl-tema .t b, .fc-faixa-nm b { font-family: var(--fonte); font-weight: 600; font-size: var(--fs-tema); line-height: 1.3; }
 /* item do caderno que é frase, não fórmula: letra da interface sobre o mesmo papel pautado (guia: cursiva nunca em texto corrido) */
 .caderno li.texto { font-family: var(--fonte); font-weight: 400; font-size: var(--fs-texto); }
+
+/* ===================== sinais da conta do tamanho e na altura das letras (dono, 27/11/2026) =====================
+   "O delta e informações de fração e contas: todos os caracteres devem estar alinhados e ser do mesmo tamanho."
+   Os sinais que a Caveat não tem saem desenhados (ui/maoGlifos.tsx), agora medidos pela Caveat: Δ na altura da maiúscula,
+   setas e "≈" no eixo do "=", gregas minúsculas na altura do x; e também no "No caderno" (Formula, comFracoes com mão). */
+.mao-g path { stroke-width: 6.5; }
+/* seta do vetor: desenhada no traço da caneta (antes era a "→" de outra fonte, solta acima da linha) */
+.fm .fm-vet { line-height: 1; }
+.fm .fm-vet::after { content: ''; top: auto; bottom: calc(.17em + .74em); left: -.02em; transform: none; width: max(100%, .52em); height: .26em; font-size: inherit; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 62 26'%3E%3Cpath d='M3 16 Q29 15 55 16 M45 7 Q51 12 56 16 Q51 20 45 25' fill='none' stroke='black' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 62 26'%3E%3Cpath d='M3 16 Q29 15 55 16 M45 7 Q51 12 56 16 Q51 20 45 25' fill='none' stroke='black' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
+.fm .fm-vet.baixa::after { bottom: calc(.17em + .44em); }
+/* índice e expoente na mesma letra ("v₀²"): o expoente fica em cima do índice, na mesma coluna */
+.fm .fm-ss { position: relative; }
+.fm .fm-ss > sup { position: absolute; left: 0; line-height: 1; }
+/* raiz desenhada: o traço de cima do radicando sai da ponta do sinal */
+.fm .fm-raiz { align-items: baseline; }
+.fm .fm-raiz-v { margin-top: 0; padding-top: .06em; border-top-width: max(1.5px, .065em); }
+
+/* ===================== "No caderno" escrito sobre as linhas (dono, 27/11/2026) =====================
+   "Se for fazer isso, o texto precisa estar alinhado com as linhas do caderno" e "as frações e contas precisam estar
+   organizadas igualmente a como um estudante escreveria numa folha de caderno alinhada com as linhas".
+   - a pauta (a cada --cad-lh) é desenhada na altura da linha de base da letra à mão: a base de cada linha de texto
+     encosta na pauta (antes a pauta começava no alto do papel e o texto ficava ~9 px acima dela, flutuando);
+   - o item em letra da interface (frase) desce o que falta para a base dele cair na mesma pauta;
+   - a fração ocupa exatamente duas pautas: o numerador senta na pauta, a barra é traçada em cima dessa pauta e o
+     denominador fica logo abaixo da barra, no espaço da pauta seguinte; o resto da conta continua sentado na pauta.
+     O item com fração ocupa duas pautas inteiras, e o seguinte volta a sentar na pauta. Nada mais abre a entrelinha.
+   Medidas da letra (navegador, 27/11): Caveat sobe .96em e desce .30em (base = meio da linha + .33em);
+   Familjen sobe 1.03em e desce .23em (base = meio da linha + .40em). */
+ul.caderno { --cad-lh: calc(var(--fs-mao) * 1.5); --cad-b: calc(var(--cad-lh) / 2 + var(--fs-mao) * .33); --cad-bl: var(--cad-b); --k: .33; --cap: .62;
+  font-size: var(--fs-mao); line-height: var(--cad-lh); padding-top: 8px; padding-bottom: 12px;
+  background-image: linear-gradient(transparent var(--cad-b), color-mix(in srgb, var(--cad-tinta) 14%, transparent) var(--cad-b),
+    color-mix(in srgb, var(--cad-tinta) 14%, transparent) calc(var(--cad-b) + 1px), transparent calc(var(--cad-b) + 1px));
+  background-size: 100% var(--cad-lh); background-repeat: repeat; background-origin: content-box; }
+ul.caderno > li { margin: 0; line-height: var(--cad-lh); }
+ul.caderno > li.texto { --cad-sh: calc(var(--fs-mao) * .33 - var(--fs-texto) * .40); --cad-bl: calc(var(--cad-b) - var(--cad-sh)); --k: .40; --cap: .66;
+  position: relative; top: var(--cad-sh); }
+ul.caderno > li.com-fm { line-height: var(--cad-lh); }
+ul.caderno .fm { --k: .33; --cap: .62; }
+/* fração do caderno (não a que está dentro de expoente ou de outra fração): duas pautas */
+ul.caderno li:not(.texto) .frac:not(:is(sup, sub, .frac) .frac) { vertical-align: top; height: calc(2 * var(--cad-lh)); margin-block: 0; line-height: normal; }
+ul.caderno li:not(.texto) .frac:not(:is(sup, sub, .frac) .frac) > .frac-n { box-sizing: border-box; height: calc(var(--cad-bl) + 1px); padding-bottom: 0;
+  line-height: calc(2 * (var(--cad-bl) - 3px) - 2 * var(--k) * 1em); }
+ul.caderno li:not(.texto) .frac:not(:is(sup, sub, .frac) .frac) > .frac-d { box-sizing: border-box; height: calc(2 * var(--cad-lh) - var(--cad-bl) - 1px); padding-top: 0;
+  line-height: calc(2 * (4px + var(--cap) * 1em - var(--k) * 1em)); }
+/* item em frase (letra da interface, "½ dos meninos afetados"): a fração fica pequena dentro da própria pauta, sem abrir
+   uma pauta vazia no meio da frase; a linha continua sentada na pauta */
+ul.caderno li.texto .frac:not(:is(sup, sub, .frac) .frac) { font-size: .78em; line-height: 1.02; vertical-align: middle; margin-block: -.6em; }
+ul.caderno li.texto .fm-raiz-v { padding-top: 0; }
+
+/* ===================== conta dentro de texto e de título (dono, 27/11/2026, opção B) =====================
+   "Precisa diferenciar o formato da escrita quando provém de fórmulas do texto anterior ou a seguir." A conta vem marcada
+   (.mt, ui/Fracao.tsx: comContasMarcadas) na letra à mão do caderno, na tinta do caderno, e não quebra no meio. */
+.mt { white-space: nowrap; font-family: var(--mao); font-weight: 600; font-size: 1.3em; line-height: 0; letter-spacing: 0; color: var(--cad-tinta); padding: 0 .06em; }
+
+/* ===================== índice e expoente claramente menores que a letra (dono, 27/11/2026) =====================
+   "O caractere que será substituído por algum valor deve ser maior que o caractere que é usado embaixo dele como sigla."
+   Como num livro de Física: índice a ~60% da letra, com a base abaixo da linha; expoente do mesmo tamanho, acima.
+   Na letra à mão (Caveat) os algarismos são altos (0,56em, mais que a altura do x), por isso o índice fica a 58%:
+   o "1" de "s₁" passa a ser menor que o "s" (antes, a 66%, o algarismo do índice tinha a altura do "s").
+   O `top` de cada um está na medida da própria letra pequena (em). */
+.nt-sub:not(.nt-frac) { font-size: .6em; top: .34em; }
+.nt-sup:not(.nt-frac):not(.nt-letra) { font-size: .6em; top: -.64em; }
+:is(.ra-linha.conta, .ra-linha.diag .dg-mao, ul.caderno > li:not(.texto), .passos .conta, .q-linha, .pn-pais, .pn-grade, .fm-em-linha, .rv-conta, .mt) .nt-sub:not(.nt-frac) { font-size: .58em; top: .4em; }
+:is(.ra-linha.conta, .ra-linha.diag .dg-mao, ul.caderno > li:not(.texto), .passos .conta, .q-linha, .pn-pais, .pn-grade, .fm-em-linha, .rv-conta, .mt) .nt-sup:not(.nt-frac):not(.nt-letra) { font-size: .58em; top: -.7em; }
+.fm .fm-linha sub { font-size: .58em; top: .4em; }
+.fm .fm-linha sup { font-size: .58em; top: -.7em; }
+.fm-prosa .fm-linha sub { font-size: .6em; top: .34em; }
+.fm-prosa .fm-linha sup { font-size: .6em; top: -.64em; }
+/* índice e expoente na mesma letra ("v₀²"): o expoente em cima do índice, na mesma coluna */
+.fm .fm-linha .fm-ss > sup { top: .13em; }

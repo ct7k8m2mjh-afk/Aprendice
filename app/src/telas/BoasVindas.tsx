@@ -58,7 +58,7 @@ export function BoasVindas() {
         <div className="bv-ilus">
           {MATERIAS_PRINCIPAIS.filter((m) => temIlu(m.id)).map((m, i) => <span key={m.id} className="bv-ilu" style={{ animationDelay: `${i * 90}ms` }}><IluMateria m={m.id} /></span>)}
         </div>
-        <p className="bv-frase">Questões reais dos vestibulares, do jeito que a banca cobra.</p>
+        <p className="bv-frase">Questões reais do ENEM e dos vestibulares, do jeito que a banca cobra.</p>
       </div>
       <div className="bv-form">
         <TemaSeg escuro={escuro} className="bv-tema" />
@@ -69,8 +69,8 @@ export function BoasVindas() {
 
         {passo === 1 && (
           <div className="bv-corpo">
-            <h1>Quais provas você vai fazer?</h1>
-            <p className="miolo">O site monta o seu estudo pelo que essas provas cobram e pela região delas. Dá para mudar depois no Perfil.</p>
+            <h1>Quais provas você vai prestar?</h1>
+            <p className="miolo">Seu estudo passa a priorizar o que essas provas cobram e as questões da região delas. Você pode alterar a lista depois, no Perfil.</p>
             <EscolhaProvas valor={provas} aoMudar={setProvas} />
             <div className="bv-acoes">
               <button className="btn fantasma" onClick={voltaAoLogin}><Icone nome="esquerda" /> Voltar</button>
@@ -81,8 +81,8 @@ export function BoasVindas() {
 
         {passo === 2 && (
           <div className="bv-corpo">
-            <h1>Qual o seu ritmo?</h1>
-            <p className="miolo">Meta de questões por semana. Ela aparece no menu lateral; dá para mudar no Perfil.</p>
+            <h1>Qual é o seu ritmo?</h1>
+            <p className="miolo">Defina quantas questões quer resolver por semana. A meta aparece no menu lateral e pode ser alterada no Perfil.</p>
             <div className="bv-metas" role="radiogroup" aria-label="Meta semanal">
               {[[70, 'Leve', '10 por dia'], [150, 'Firme', 'cerca de 20 por dia'], [300, 'Intenso', 'cerca de 40 por dia']].map(([n, t, d]) => (
                 <button key={n} role="radio" aria-checked={meta === n} className={'bv-meta' + (meta === n ? ' sel' : '')} onClick={() => setMeta(n as number)}>

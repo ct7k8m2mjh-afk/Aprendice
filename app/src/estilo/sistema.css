@@ -144,14 +144,24 @@
 .q-resp.com-texto { position: static; }
 /* computador: a resposta não encolhe junto com um print estreito; com 760px, letras numa linha e certeza + ações na outra (dono, 27/11/2026) */
 @media (min-width: 1101px) { .q-cartao { --q-resp-min: 760px; } }
+/* a correção ao lado só existe no computador com a resposta ao lado; senão fica embaixo do cartão */
+.q-correcao-lado { display: none; }
+@media (min-width: 1101px) { .q-lado-a-lado > .q-correcao-lado { display: block; } }
 /* simulado no computador (dono, 27/11/2026, forma 2): a resposta numa coluna de 300px à direita do print, presa no alto;
    o print usa a altura toda da tela (useLarguraPrint) e a questão cabe inteira. O topo (número, matéria, bandeira) ocupa
    as duas colunas. */
 @media (min-width: 1101px) {
   /* print + resposta centrados juntos no cartão; o topo continua na largura toda (--q-in, medido em useLarguraPrint) */
-  .q-cartao.q-lado-a-lado { --q-resp-min: 0px; display: grid; grid-template-columns: var(--q-pw, minmax(0, 1fr)) 300px; justify-content: center; column-gap: 28px; align-items: start; }
-  .q-lado-a-lado > .q-enun { grid-column: 1; grid-row: 1; }
-  .q-lado-a-lado > .q-enun > .q-meta { width: var(--q-in, calc(100% + 328px)); margin-left: calc((var(--q-pw, var(--q-in)) + 328px - var(--q-in)) / 2); }
+  .q-cartao.q-lado-a-lado { --q-col: 300px; --q-resp-min: 0px; display: grid; grid-template-columns: var(--q-pw, minmax(0, 1fr)) var(--q-col); grid-template-rows: auto 1fr; justify-content: center; column-gap: 28px; align-items: start; }
+  /* com a correção aberta (modo com resolução): a coluna da direita alarga e a correção vem logo abaixo das letras; o
+     print fica preso no alto enquanto a correção rola (dono, 27/11/2026) */
+  .q-cartao.q-lado-a-lado.com-correcao { --q-col: 460px; }
+  .q-lado-a-lado.com-correcao > .q-enun { position: sticky; top: calc(var(--topo, 61px) + 64px); }
+  .q-lado-a-lado.com-correcao > .q-resp { position: static; }
+  .q-lado-a-lado > .q-correcao-lado { grid-column: 2; grid-row: 2; min-width: 0; margin: 4px 0 16px; }
+  .q-corpo:has(.q-lado-a-lado) > .q-correcao-baixo { display: none; }
+  .q-lado-a-lado > .q-enun { grid-column: 1; grid-row: 1 / 3; }
+  .q-lado-a-lado > .q-enun > .q-meta { width: var(--q-in, calc(100% + var(--q-col) + 28px)); margin-left: calc((var(--q-pw, var(--q-in)) + var(--q-col) + 28px - var(--q-in)) / 2); }
   .q-lado-a-lado .q-print { max-width: none; }
   .q-lado-a-lado > .q-resp { grid-column: 2; grid-row: 1; position: sticky; top: calc(var(--topo, 61px) + 64px); margin: 50px 0 16px; padding: 0; background: none; border-radius: 0; }
   .q-lado-a-lado .q-bolhas { display: block; }

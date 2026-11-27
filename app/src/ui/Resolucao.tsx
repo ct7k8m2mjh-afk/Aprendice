@@ -71,7 +71,7 @@ export function ResolucaoView({ q, r, marcada, materia, origem, semFonte }: { q:
           <Icone nome={acertou ? 'check' : marcada ? 'fechar' : 'info'} tam={18} />
         </span>
         <div>
-          <h2 id="res-tit">{acertou ? 'Você acertou' : marcada ? `Você marcou ${marcada}. A resposta é ${q.gab}.` : `Gabarito: ${q.gab}`}</h2>
+          <h2 id="res-tit">{acertou ? 'Você acertou' : marcada ? `Você marcou ${marcada}. A resposta correta é ${q.gab}.` : `Gabarito: ${q.gab}`}</h2>
           {origem ?? (
             <>
               <p className="fraco">{avisoGabarito(q) ? '' : `${origemGabarito(q)} · `}{q.escola} {q.ano}{q.n ? `, questão ${numeroQuestao(q)}` : ''}</p>
@@ -81,7 +81,7 @@ export function ResolucaoView({ q, r, marcada, materia, origem, semFonte }: { q:
         </div>
       </header>
 
-      {!r && <p className="miolo">A resolução comentada desta questão ainda está em revisão pela banca do Aprendice. O gabarito acima já vale.</p>}
+      {!r && <p className="miolo">A resolução comentada desta questão está em revisão pela banca do Aprendice. O gabarito acima já está confirmado.</p>}
       {r && (
         <>
           {/* 1. Por que eu errei: o que faltou no raciocínio de quem marcou esta letra (só quando errou) */}

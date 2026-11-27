@@ -16,9 +16,9 @@ export class Protecao extends Component<{ children: ReactNode; chave?: string; t
     if (!this.state.erro) return this.props.children;
     return (
       <div className="protecao folha" role="alert">
-        <p><b>{this.props.texto || 'Esta parte da tela não abriu.'}</b> O resto continua funcionando, e o seu progresso está salvo.</p>
+        <p><b>{this.props.texto || 'Não foi possível abrir esta parte da tela.'}</b> O restante continua funcionando, e seu progresso está salvo.</p>
         <div className="protecao-acoes">
-          <button className="btn sec" onClick={() => this.setState({ erro: false })}>Tentar de novo</button>
+          <button className="btn sec" onClick={() => this.setState({ erro: false })}>Tentar novamente</button>
           {this.props.aoPular && <button className="btn" onClick={this.props.aoPular}>Pular</button>}
         </div>
       </div>

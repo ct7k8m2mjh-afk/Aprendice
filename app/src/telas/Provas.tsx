@@ -63,7 +63,7 @@ export function Provas() {
                 <div className="cp-pe">
                   <span className="etq">{p.rede === 'publica' ? 'Pública' : p.rede === 'privada' ? 'Privada' : 'Rede a verificar'}</span>
                   {anosSim.get(p.id)
-                    ? <span className="etq ok num cp-anos" title="Anos com simulado da prova completa">{anosSim.get(p.id)}</span>
+                    ? <span className="etq ok num cp-anos" title="Anos disponíveis como simulado">{anosSim.get(p.id)}</span>
                     : <span className={'etq' + (nQ.get(p.id) ? ' ok' : '')}>{nQ.get(p.id) ? `${nQ.get(p.id)} questões` : 'questões em preparação'}</span>}
                 </div>
               </Link>
@@ -71,7 +71,7 @@ export function Provas() {
           </div>
         </section>
       ))}
-      <p className="fraco" style={{ fontSize: 14, marginTop: 28 }}>Dados do ciclo 2027 levantados de fontes oficiais (editais e sites das bancas) em 01/11/2026. Itens ainda não conferidos no edital aparecem marcados em cada prova.</p>
+      <p className="fraco" style={{ fontSize: 14, marginTop: 28 }}>Dados do ciclo 2027 levantados em fontes oficiais (editais e sites das bancas) em 01/11/2026. Itens ainda não confirmados no edital aparecem sinalizados em cada prova.</p>
     </div>
   );
 }

@@ -9,6 +9,10 @@ import { Protecao } from './Protecao';
 import { Busca } from '../telas/Busca';
 import { destinoAba, destinoAtivo, materiaAtivaNoMenu } from '../logica/navAtiva';
 
+/** Celular e tablet: o tema segue o do aparelho e o seletor Dia/Noite some (dono, 27/11/2026: "no celular é ativado no
+ *  próprio dispositivo"). Mesmo critério do CSS (.tema-seg some em ≤640px ou em tela de toque). */
+export const TEMA_DO_APARELHO = '(max-width: 640px), (hover: none) and (pointer: coarse)';
+
 export function usaTema() {
   const e = useEstado();
   const pref = e.pref.tema;
@@ -19,7 +23,14 @@ export function usaTema() {
     mq.addEventListener('change', f);
     return () => mq.removeEventListener('change', f);
   }, []);
-  const escuro = pref === 'escuro' || (pref === 'sistema' && sistemaEscuro);
+  const [doAparelho, setDA] = useState(() => typeof matchMedia !== 'undefined' && matchMedia(TEMA_DO_APARELHO).matches);
+  useEffect(() => {
+    const mq = matchMedia(TEMA_DO_APARELHO);
+    const f = () => setDA(mq.matches);
+    mq.addEventListener('change', f);
+    return () => mq.removeEventListener('change', f);
+  }, []);
+  const escuro = doAparelho ? sistemaEscuro : pref === 'escuro' || (pref === 'sistema' && sistemaEscuro);
   useEffect(() => {
     document.documentElement.dataset.theme = escuro ? 'dark' : 'light';
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', escuro ? '#1A1712' : '#F5F0E6');
@@ -117,7 +128,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
           <div className="grupo" aria-hidden>Estudo</div>
           <nav aria-label="Estudo">
             <ItemNav para="/hoje" icone="calendario">Hoje</ItemNav>
-            <ItemNav para="/materias" icone="quadcheck">Questões</ItemNav>
+            <ItemNav para="/materias" icone="quadcheck">Matérias</ItemNav>
             <ItemNav para="/simulados" icone="arquivo">Simulados</ItemNav>
             <ItemNav para="/revisao" icone="camadas">Revisão</ItemNav>
             <ItemNav para="/desempenho" icone="barras">Desempenho</ItemNav>
@@ -127,7 +138,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
         <div className="rodape">
           <div className="meta-lado" title="Meta da semana">
             <Anel valor={sem.semana / meta}>{Math.min(100, Math.round((sem.semana / meta) * 100))}%</Anel>
-            <div><b className="num">{sem.semana} de {meta}</b><small>feitas na semana</small><small className="num">hoje {sem.hoje} · ontem {sem.ontem}</small></div>
+            <div><b className="num">{sem.semana} de {meta}</b><small>questões nesta semana</small><small className="num">hoje {sem.hoje} · ontem {sem.ontem}</small></div>
           </div>
           <ItemNav para="/config" icone="config">Configurações</ItemNav>
         </div>
@@ -151,7 +162,7 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
             </Link>
           </div>
         </header>
-        <main id="principal" className="conteudo-wrap"><Protecao chave={loc.pathname} texto="Esta tela não abriu.">{children}</Protecao></main>
+        <main id="principal" className="conteudo-wrap"><Protecao chave={loc.pathname} texto="Não foi possível abrir esta tela.">{children}</Protecao></main>
       </div>
 
       <nav className="tabs" aria-label="Navegação principal">

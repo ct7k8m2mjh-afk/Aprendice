@@ -41,7 +41,7 @@ export function EscolhaProvas({ valor, aoMudar }: { valor: string[]; aoMudar: (v
                   <small>{[p.instituicao !== p.prova ? p.instituicao : null, [p.cidade, p.uf].filter(Boolean).join('/')].filter(Boolean).join(' · ') || p.regiao}</small>
                 </span>
                 {/* etiqueta neutra (verde é só de "certo"; casca 11); enquanto o banco carrega, nada de "em preparação" falso (casca 12) */}
-                {todas ? <span className="etq">{n ? `${n.toLocaleString('pt-BR')} questões` : 'em preparação'}</span> : <span className="etq ep-carregando" aria-label="Carregando">carregando…</span>}
+                {todas ? <span className="etq">{n ? `${n.toLocaleString('pt-BR')} questões` : 'em preparação'}</span> : <span className="etq ep-carregando" aria-label="Carregando">Carregando…</span>}
               </button>
             </li>
           );

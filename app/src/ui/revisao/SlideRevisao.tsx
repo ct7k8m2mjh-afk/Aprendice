@@ -86,7 +86,7 @@ export function SlideRevisao({ m, tema, sub, k, s, pos, total, aviso, lembrou, a
             <div className="rv-escrita" ref={escrita}>
               {!destaqueDepois && destaque}
               {s.formula && <Formula tex={s.formula} prosa={prosa} className="rv-formula" />}
-              {tent && lembrou && <p className={'rv-lembrou v-' + lembrou}>{lembrou === 'a' ? 'Você lembrou.' : lembrou === 'q' ? 'Quase: releia com atenção.' : 'Esta volta na próxima revisão.'}</p>}
+              {tent && lembrou && <p className={'rv-lembrou v-' + lembrou}>{lembrou === 'a' ? 'Você lembrou.' : lembrou === 'q' ? 'Quase: releia com atenção.' : 'Este item volta na próxima revisão.'}</p>}
             </div>
           )}
           {s.legenda && s.legenda.length > 0 && (revelado || tent !== 'formula') && (

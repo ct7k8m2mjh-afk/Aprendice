@@ -22,6 +22,11 @@ const RE_EXPO = /\^\(([^()\n]{1,30})\)|\^([−\-+]?[0-9a-zA-Z,]+[+−]?)/g;
 const RE_INDICE = /_\{([^{}\n]{1,20})\}|_([A-Za-z0-9áéíóúâêôãõç]+)/g;
 // variável de uma letra com número colado: "m0", "v0", "a1", "x2", "b21", "ℓ1" (passada 4 S2: "Aℓ2O3" é fórmula, fica)
 const RE_VARIND = /(?<![A-Za-zÀ-ÿ0-9_#.,])([a-zα-ωℓ])(\d{1,2})(?![A-Za-zÀ-ÿ0-9#_^]|[.,]\d)/g;
+// grandeza maiúscula de Física com índice de um algarismo ("R1", "V2", "I1", "C1", "E0", "F1", "T2"; pedido do dono,
+// 27/11/2026: o índice que identifica fica menor e mais baixo que a letra). Só com `maiusculas` (Física), porque nas
+// outras matérias "F1", "T3", "H1", "G2", "C4" são nomes (geração, hormônio, hipótese, fase, planta). Dois algarismos
+// ("F02", "Q01") nunca: é código de tema ou de questão.
+const RE_MAIUSC_IND = /(?<![A-Za-zÀ-ÿ0-9_#.,/\-])([A-Z])(\d)(?![A-Za-zÀ-ÿ0-9#_^]|[.,]\d)/g;
 // (revisão de 21/11, passada 8 A5) letra grega com índice seguida de outra grandeza maiúscula ("ε0A" = ε₀ · A)
 const RE_GREGA_IND = /(?<![A-Za-zÀ-ÿ0-9_#.,])([α-ω])(\d)(?=[A-Z](?![A-Za-z0-9]))/g;
 
@@ -41,7 +46,7 @@ function ehFormula(f: string, carga: string | undefined): boolean {
 interface Pedaco { ini: number; fim: number; partes: ParteNotacao[] }
 
 /** Divide o texto em trechos normais e pedaços de expoente/índice. Sem notação, devolve um trecho só. */
-export function partesNotacao(s: string): ParteNotacao[] {
+export function partesNotacao(s: string, maiusculas = false): ParteNotacao[] {
   if (!/[\^_\d+−-]/.test(s)) return [{ t: 'txt', v: s }];
   const pedacos: Pedaco[] = [];
   const livre = (a: number, b: number) => !pedacos.some((p) => a < p.fim && p.ini < b);
@@ -86,7 +91,17 @@ export function partesNotacao(s: string): ParteNotacao[] {
   RE_VARIND.lastIndex = 0;
   for (let m = RE_VARIND.exec(s); m; m = RE_VARIND.exec(s)) {
     const ini = m.index, fim = m.index + m[0].length;
+    // "50 m2", "2 m3": unidade escrita sem o expoente, não grandeza com índice (pedido do dono, 27/11/2026: não virar
+    // índice o que não é); fica como está nos dados
+    if (m[1] === 'm' && /\d[\s\u00a0]$/.test(s.slice(0, ini))) continue;
     if (livre(ini, fim)) pedacos.push({ ini, fim, partes: [{ t: 'txt', v: m[1] }, { t: 'sub', v: m[2], pre: '', pos: '' }] });
+  }
+  if (maiusculas) {
+    RE_MAIUSC_IND.lastIndex = 0;
+    for (let m = RE_MAIUSC_IND.exec(s); m; m = RE_MAIUSC_IND.exec(s)) {
+      const ini = m.index, fim = m.index + m[0].length;
+      if (livre(ini, fim)) pedacos.push({ ini, fim, partes: [{ t: 'txt', v: m[1] }, { t: 'sub', v: m[2], pre: '', pos: '' }] });
+    }
   }
   RE_GREGA_IND.lastIndex = 0;
   for (let m = RE_GREGA_IND.exec(s); m; m = RE_GREGA_IND.exec(s)) {

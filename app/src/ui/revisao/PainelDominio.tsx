@@ -39,7 +39,7 @@ function Numeros({ c }: { c: ContaDominio }) {
 export function PainelDominio({ todas, e, ag, agora }: { todas: MateriaCarregada[]; e: Estado; ag: Agenda; agora: number }) {
   const mats = todas.map((mc) => ({ mc, d: dominioMateria(mc, e.materias[mc.id] || estadoMateriaVazio(), ag, agora) })).filter((x) => feitasDe(x.d.c) > 0);
   if (!mats.length) return (
-    <div className="vazio"><h3>Ainda sem questões respondidas</h3><p>O painel mostra o que você domina, está aprendendo ou esqueceu assim que você começa a responder.</p></div>
+    <div className="vazio"><h3>Ainda sem questões respondidas</h3><p>Assim que você começar a responder, o painel mostra o que você domina, o que está aprendendo e o que esqueceu.</p></div>
   );
   const geral = somaContas(mats.map((x) => x.d.c));
   const prev = previsao(geral);

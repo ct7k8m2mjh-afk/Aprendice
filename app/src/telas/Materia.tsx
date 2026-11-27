@@ -24,12 +24,12 @@ export function ListaMaterias() {
   useTitulo('Matérias');
   return (
     <div className="conteudo">
-      <div className="titulo-pag"><div><h1>Matérias</h1><p className="sub">Todas as matérias do ENEM e do vestibular.</p></div></div>
+      <div className="titulo-pag"><div><h1>Matérias</h1><p className="sub">Todas as matérias do ENEM e dos vestibulares.</p></div></div>
       <div className="grade g2">
         {[...MATERIAS].sort((a, b) => (ORDEM_MENU.indexOf(a.id) + 1 || 99) - (ORDEM_MENU.indexOf(b.id) + 1 || 99)).map((m) => ( /* ordem do menu (dono, 27/11/2026) */
           <Link key={m.id} to={`/m/${m.id}`} className={`linha-mat m-${m.id}` + (m.ativa ? '' : ' inativa')}>
             <CirculoMateria m={m.id} tam={56} />
-            <span><b>{m.nome}</b><small>{m.ativa ? m.descricao : 'Em preparação: entra com as provas completas.'}</small></span>
+            <span><b>{m.nome}</b><small>{m.ativa ? m.descricao : 'Em preparação. As questões chegam com as provas completas.'}</small></span>
             <Icone nome="direita" />
           </Link>
         ))}
@@ -143,12 +143,12 @@ function EmPreparacao({ m }: { m: MateriaId }) {
         <span className="preparo-ic" aria-hidden><Icone nome="camadas" tam={28} /></span>
         <h2>Questões em preparação</h2>
         <p className="miolo">
-          {`As questões de ${info.nome} chegam com as provas completas: cada uma com a fonte (prova, ano, número, link) e o gabarito.`}
+          {`As questões de ${info.nome} chegam com as provas completas, cada uma com fonte (prova, ano, número e link) e gabarito.`}
         </p>
         <ol className="preparo-passos">
-          <li><b>Provas completas</b><span>ENEM e vestibulares de todas as regiões, baixados da fonte oficial.</span></li>
-          <li><b>Gabarito conferido</b><span>Oficial quando a banca publica; sem ele, o gabarito do Aprendice, com aviso.</span></li>
-          <li><b>Resolução revisada</b><span>Conferida contra a fonte e revisada pela banca do Aprendice.</span></li>
+          <li><b>Provas completas</b><span>ENEM e vestibulares de todas as regiões, diretamente das provas oficiais.</span></li>
+          <li><b>Gabarito conferido</b><span>Oficial, quando a banca publica; sem ele, o Gabarito do Aprendice, sempre com aviso.</span></li>
+          <li><b>Resolução revisada</b><span>Conferida com a fonte e revisada pela banca do Aprendice.</span></li>
         </ol>
         <div className="preparo-acoes">
           <Link to="/provas" className="btn sec">Ver o catálogo de provas</Link>
@@ -194,7 +194,7 @@ export function Materia() {
         <section className="bloco preparo">
           <span className="preparo-ic" aria-hidden><Icone nome="camadas" tam={28} /></span>
           <h2>Questões de {info.nome} em preparação</h2>
-          <p className="miolo">Os temas já estão aqui. As questões entram com as provas completas: cada uma com a fonte (prova, ano, número, link), o gabarito e o nível de dificuldade.</p>
+          <p className="miolo">Os temas já estão disponíveis. As questões chegam com as provas completas, cada uma com fonte (prova, ano, número e link), gabarito e nível de dificuldade.</p>
           <div className="preparo-acoes"><Link to="/simulados" className="btn sec">Ver simulados</Link></div>
         </section>
       )}
@@ -227,10 +227,10 @@ export function Materia() {
             </Link>
           )}
           <Link to="/revisao" className="atalho">
-            <Icone nome="repetir" /><span><b>Revisão dos erros</b><small>{r.vencidas ? plural(r.vencidas, 'volta hoje', 'voltam hoje') : 'Nada volta hoje'}</small></span><Icone nome="direita" className="at-seta" />
+            <Icone nome="repetir" /><span><b>Revisão dos erros</b><small>{r.vencidas ? plural(r.vencidas, 'volta hoje', 'voltam hoje') : 'Em dia'}</small></span><Icone nome="direita" className="at-seta" />
           </Link>
           <Link to="/simulados" className="atalho">
-            <Icone nome="relogio" /><span><b>Simulados</b><small>Provas completas, por ano</small></span><Icone nome="direita" className="at-seta" />
+            <Icone nome="relogio" /><span><b>Simulados</b><small>Prova inteira ou por conteúdo</small></span><Icone nome="direita" className="at-seta" />
           </Link>
         </nav>
       </div>

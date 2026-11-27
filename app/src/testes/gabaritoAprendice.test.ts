@@ -11,7 +11,7 @@ const temBanco = existsSync(join(PUB, 'bio', 'banco.json'));
 
 describe('origem do gabarito', () => {
   it('o aluno vê de onde veio o gabarito', () => {
-    expect(origemGabarito({})).toBe('Gabarito oficial publicado');
+    expect(origemGabarito({})).toBe('Gabarito oficial');
     expect(origemGabarito({ gabFonte: 'aprendice' })).toMatch(/^Gabarito do Aprendice: a banca não publicou gabarito oficial/);
     expect(origemGabarito({ gabFonte: 'resolucao' })).toBe('Gabarito de resolução publicada');
   });

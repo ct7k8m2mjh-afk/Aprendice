@@ -92,7 +92,7 @@ export function QuestaoInline({ mc, q: q0, aoTerminar, ctx = 'treino' }: { mc: M
         <AbasPainel aba={aba} aoMudar={setAba} />
         <div className="q-lado-corpo" id="q-lado-corpo">
           {aba === 'res' && (revelado ? <><ResolucaoView q={q} r={res ? res[q.id] : undefined} marcada={escolha} /><div className="q-lado-fim"><span /><button className="btn" onClick={() => aoTerminar(escolha === q.gab)}>Continuar <Icone nome="direita" /></button></div></> : (
-            <div className="q-trava"><Icone nome="lampada" /><div><b>A resolução abre quando você confirmar</b><p>Marque uma alternativa e confirme. A resolução explica a alternativa que você marcou.</p></div></div>
+            <div className="q-trava"><Icone nome="lampada" /><div><b>A resolução aparece depois da sua resposta</b><p>Marque uma alternativa e confirme. A correção começa pela alternativa que você marcou.</p></div></div>
           ))}
           {aba === 'teo' && (
             <div className="q-teoria">
@@ -158,7 +158,7 @@ export function Treino() {
               <div key={t}><b className="num">{x.ok} de {x.n}</b><span>{t}</span></div>
             ))}
           </div>
-          <p className="miolo">Erros e chutes voltam na revisão: as questões amanhã, os flashcards e frases no dia marcado.</p>
+          <p className="miolo">Erros e chutes voltam para revisão: as questões, amanhã; os flashcards e as frases, na data marcada.</p>
           <div className="tm-regiao"><FiltroRegiaoChips compacto /></div>
           <div className="fc-acoes"><button className="btn sec" onClick={encerrar}>Voltar a {info.nome}</button><button className="btn" onClick={recomecar}>Novo treino</button></div>
         </div>

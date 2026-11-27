@@ -91,7 +91,7 @@ export function RevisaoSlides() {
     return (
       <div className={`conteudo vazio m-${m}`}>
         <h3>Revisão em preparação</h3>
-        <p>Os slides deste conteúdo ainda estão sendo conferidos pela banca do Aprendice.</p>
+        <p>Os slides deste conteúdo estão em revisão pela banca do Aprendice.</p>
         <Link className="btn sec" to={mod ? `/m/${m}/tema/${mod.id}` : `/m/${m}`}>Voltar ao tema</Link>
       </div>
     );
@@ -189,7 +189,7 @@ function Capa({ nomeMat, tema, sub, nomeSub, rev, nQuestoes, ciclo, aoComecar }:
       : ['Rever os pontos', `${plural(ciclo.ver.length, 'slide', 'slides')}. Nos de conceito, você tenta lembrar a frase-chave antes de ver.`],
     ['Lembrar sem olhar', ciclo.fixe ? 'As 3 linhas para levar viram 3 lacunas para completar de memória.' : 'As frases-chave para completar de memória.'],
     ['Aplicar', 'Questões novas do mesmo conteúdo, diferentes das do começo.'],
-    ['Voltar', 'O site marca o dia em que este conteúdo volta.'],
+    ['Voltar', 'O site marca a data em que este conteúdo volta.'],
   ];
   return (
     <section className="tp-capa rv-capa" aria-labelledby="rv-capa-tit">
@@ -258,7 +258,7 @@ function FaseQuestoes({ m, fase, and, porId, sub, temRes, aoResponder, aoIr, aoF
     return (
       <section className="tp-bloco rv-sem">
         <h2 className="tp-h">{fase === 0 ? 'Sem questões para começar' : 'Sem questão nova agora'}</h2>
-        <p className="miolo">{fase === 0 ? 'Este conteúdo ainda não tem questões de prova no site. A revisão segue pelos slides.' : 'Este conteúdo só tem a questão que apareceu no começo.'}</p>
+        <p className="miolo">{fase === 0 ? 'Este conteúdo ainda não tem questões de prova no site. A revisão continua pelos slides.' : 'Este conteúdo só tem a questão que apareceu no começo.'}</p>
         <button className="btn" onClick={aoFim}>Continuar <Icone nome="direita" /></button>
       </section>
     );
@@ -269,8 +269,8 @@ function FaseQuestoes({ m, fase, and, porId, sub, temRes, aoResponder, aoIr, aoF
       <div className="rv-intro">
         <h2 className="tp-h">{fase === 0 ? 'Antes de rever, tente responder' : 'Agora aplique numa questão nova'}</h2>
         <p className="miolo">{fase === 0
-          ? 'Ainda sem explicação: o esforço de tentar prepara o que vem depois. Marque também a sua certeza.'
-          : 'Questão real diferente das do começo, do mesmo conteúdo. Depois de responder, a correção aparece aqui embaixo.'}
+          ? 'Responda antes de ver a explicação: tentar primeiro ajuda a fixar o conteúdo. Marque também o seu grau de certeza.'
+          : 'Uma questão real do mesmo conteúdo, diferente das anteriores. Depois que você responder, a correção aparece logo abaixo.'}
           <span className="rv-intro-n num"> Questão {i + 1} de {ids.length}.</span></p>
       </div>
       <div className={'q-grade' + (feita && fase === 3 ? ' respondida' : '')}>
@@ -295,8 +295,8 @@ function FaseQuestoes({ m, fase, and, porId, sub, temRes, aoResponder, aoIr, aoF
             <div>
               <h3>{feita.ok ? 'Você acertou' : `Você marcou ${feita.letra}. A resposta é ${q.gab}.`}</h3>
               <p className="miolo">{feita.ok
-                ? (feita.conf === 'chute' ? 'Acertou no chute: ainda não conta como sabido. Os slides mostram o porquê.' : 'Os slides vão mostrar o porquê, passo a passo.')
-                : feita.conf === 'certeza' ? 'Errou com certeza: este é o erro que mais vale corrigir. Os slides marcados mostram onde.' : 'Os slides a seguir mostram o que faltou. No fim, a questão fica na lista para você rever.'}</p>
+                ? (feita.conf === 'chute' ? 'Acerto no chute: ainda não conta como conteúdo aprendido. Os slides mostram o porquê.' : 'Os slides vão mostrar o porquê, passo a passo.')
+                : feita.conf === 'certeza' ? 'Errou com certeza: este é o erro que mais vale corrigir. Os slides marcados mostram onde.' : 'Os próximos slides mostram o que faltou. No fim, a questão fica guardada na lista para você rever.'}</p>
             </div>
           </aside>
         ) : (
@@ -415,7 +415,7 @@ function Fim({ m, resumos, temRes, rev, temaId, mcBanco, aoRefazer }: { m: Mater
         <li><b className="num">{r.lembrou.a} de {r.lembrou.total}</b><span>Lembrou sem olhar{r.lembrou.q ? ` · ${r.lembrou.q} quase` : ''}</span></li>
         <li><b className="num">{r.apl.certas} de {r.apl.total}</b><span>Aplicação</span></li>
       </ul>
-      <p className="rv-fim-volta"><Icone nome="relogio" tam={18} /> <span>Volta <b>{emDias(rev.vence)}</b> ({new Date(rev.vence).toLocaleDateString('pt-BR')}). {boa ? 'Acertou a aplicação e lembrou do essencial: o intervalo cresce.' : 'Algo não firmou (aplicação, certeza errada ou lacunas): volta cedo para fixar.'}</span></p>
+      <p className="rv-fim-volta"><Icone nome="relogio" tam={18} /> <span>Volta <b>{emDias(rev.vence)}</b> ({new Date(rev.vence).toLocaleDateString('pt-BR')}). {boa ? 'Você acertou a aplicação e lembrou o essencial: o intervalo até a próxima revisão aumenta.' : 'Ainda há pontos a fixar (a aplicação, uma certeza equivocada ou alguma lacuna). O conteúdo volta em breve para revisão.'}</span></p>
       {erradas.length > 0 && (
         <div className="rv-fim-err">
           <h2 className="tp-h">Questões que você errou</h2>
@@ -455,7 +455,7 @@ function SemResolucao({ q, marcada }: { q: Questao; marcada: Letra }) {
           <p className="fraco">{origemGabarito(q)} · {q.escola} {q.ano}{q.n ? `, questão ${q.n}` : ''}</p>
         </div>
       </header>
-      <p className="miolo rv-sr-p">A resolução comentada desta questão está em preparação: ela só entra no site depois de passar pela banca da matéria. Os slides deste conteúdo explicam a ideia que a questão cobra.</p>
+      <p className="miolo rv-sr-p">A resolução comentada desta questão está em preparação e só entra no site depois de aprovada pela banca da matéria. Os slides deste conteúdo explicam a ideia que a questão cobra.</p>
     </section>
   );
 }

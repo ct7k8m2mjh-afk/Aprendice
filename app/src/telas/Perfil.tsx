@@ -44,7 +44,7 @@ export function Perfil() {
 
       <section className="bloco secao">
         <h2 className="sec-tit">Provas-alvo</h2>
-        <p className="miolo" style={{ marginBottom: 14 }}>A tela Hoje, a região das suas questões e o filtro “Minhas provas-alvo” dos simulados seguem esta lista.</p>
+        <p className="miolo" style={{ marginBottom: 14 }}>Esta lista orienta a tela Hoje, a região das suas questões e o filtro “Minhas provas-alvo” dos simulados.</p>
         <EscolhaProvas valor={p.provasAlvo} aoMudar={(v) => muda({ provasAlvo: v })} />
       </section>
 
@@ -53,7 +53,7 @@ export function Perfil() {
       <section className="bloco secao">
         <h2 className="sec-tit">Região das minhas provas</h2>
         <p className="miolo" style={{ marginBottom: 14 }}>{rg.minhas.length
-          ? <>Você pratica com questões de <b>{descreveFiltro('minha', rg.minhas)}</b>{rg.automatica ? ', pelas suas provas-alvo' : ''}. Nas listas de questões, os chips trocam para outra região ou para todas.</>
+          ? <>Você pratica com questões de <b>{descreveFiltro('minha', rg.minhas)}</b>{rg.automatica ? ', pelas suas provas-alvo' : ''}. Nas listas de questões, os filtros permitem trocar para outra região ou ver todas.</>
           : 'Sem provas-alvo nem região escolhida, você pratica com as questões de todas as regiões.'}</p>
         <SeletorMinhaRegiao semTitulo />
       </section>
@@ -72,8 +72,8 @@ export function Perfil() {
         </button>
       </section>
       <p className="fraco" style={{ fontSize: 14, marginTop: 10 }}>{pegaConta().fase === 'local'
-        ? 'Sair não apaga nada: o progresso, as provas-alvo, as datas e a meta continuam salvos neste aparelho e voltam quando você entrar de novo com o mesmo e-mail.'
-        : 'Sair não apaga nada: o progresso, as provas-alvo, as datas e a meta ficam guardados na sua conta e voltam quando você entrar de novo, neste ou em outro aparelho.'} <Link to="/privacidade">Privacidade</Link></p>
+        ? 'Sair não apaga nada. O progresso, as provas-alvo, as datas e a meta continuam salvos neste aparelho e voltam quando você entrar novamente com o mesmo e-mail.'
+        : 'Sair não apaga nada. O progresso, as provas-alvo, as datas e a meta ficam guardados na sua conta e voltam quando você entrar novamente, neste ou em outro aparelho.'} <Link to="/privacidade">Privacidade</Link></p>
 
       <ExcluirConta />
     </div>
@@ -115,7 +115,7 @@ function ExcluirConta() {
         <form className="confirma-zera" onSubmit={(ev) => { ev.preventDefault(); void exclui(); }}>
           <p><b>Excluir sua conta?</b> {local
             ? 'O perfil, as provas-alvo, as datas, a meta, todo o progresso e as cópias de segurança deste aparelho serão apagados.'
-            : 'A conta, o perfil, as provas-alvo, as datas, a meta e todo o progresso serão apagados da nuvem e deste aparelho. Para estudar de novo, será preciso criar outra conta. Se quiser guardar uma cópia, baixe o progresso em Configurações antes.'}</p>
+            : 'A conta, o perfil, as provas-alvo, as datas, a meta e todo o progresso serão apagados da nuvem e deste aparelho. Esta ação não pode ser desfeita: para voltar a estudar, será preciso criar outra conta. Se quiser guardar uma cópia, baixe o progresso em Configurações antes de continuar.'}</p>
           <div className="campo">
             <label htmlFor="exc-conf">Para confirmar, escreva {PALAVRA}</label>
             <input id="exc-conf" value={txt} onChange={(ev) => setTxt(ev.target.value)} autoComplete="off" autoCapitalize="characters" spellCheck={false} autoFocus />
@@ -150,7 +150,7 @@ function DatasProva() {
   return (
     <section className="bloco secao" id="datas-prova" style={{ scrollMarginTop: 80 }}>
       <h2 className="sec-tit">Datas das provas</h2>
-      <p className="miolo" style={{ marginBottom: 14 }}>A revisão conta a partir da sua próxima prova: quanto mais perto, mais curto o intervalo entre uma revisão e outra. Sem data, vale a escala de 1, 3 e 7 dias.</p>
+      <p className="miolo" style={{ marginBottom: 14 }}>A revisão é contada a partir da sua próxima prova: quanto mais perto ela estiver, menor o intervalo entre as revisões. Sem data, vale a escala de 1, 3 e 7 dias.</p>
       {p.provasAlvo.length ? (
         <ul className="dp-lista">
           {p.provasAlvo.map((id) => {

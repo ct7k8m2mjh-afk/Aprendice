@@ -77,7 +77,7 @@ export function numeroQuestao(q: Pick<Questao, 'n' | 'nq'>): string { return q.n
 export function origemGabarito(q: Pick<Questao, 'gabFonte'>): string {
   if (q.gabFonte === 'aprendice') return 'Gabarito do Aprendice: a banca não publicou gabarito oficial';
   if (q.gabFonte === 'resolucao') return 'Gabarito de resolução publicada';
-  return 'Gabarito oficial publicado';
+  return 'Gabarito oficial';
 }
 
 /** Aviso que acompanha a questão com gabarito do Aprendice em toda parte: antes de responder, na correção e na aba Fonte

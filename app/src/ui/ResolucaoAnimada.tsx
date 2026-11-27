@@ -50,6 +50,28 @@ function ajustaContas(folha: HTMLElement) {
     const topo = (c: HTMLElement) => c.offsetTop + c.offsetHeight / 2;
     if (pecas.length > 1 && pecas.some((c) => Math.abs(topo(c) - topo(pecas[0])) > pecas[0].offsetHeight / 2)) p.classList.add('coluna');
   });
+  assentaNaGrade(folha);
+}
+/** Contas sentadas na grade (dono, 27/11/2026): "as contas devem sentar nas linhas da grade". A base de cada linha de conta à mão desce
+ *  (ou sobe, se estiver a menos de 9px) até a linha do quadriculado (grade de 24px do .ra-folha), como no caderno. Medido antes do que anima (as medidas do
+ *  motor já são as finais), a cada passo que aparece e quando a largura muda. */
+const GRADE = 24;
+function assentaNaGrade(folha: HTMLElement) {
+  const contas = [...folha.querySelectorAll<HTMLElement>('.ra-linha.conta:not(.diag)')];
+  contas.forEach((p) => { p.style.paddingTop = ''; p.style.marginTop = ''; });
+  const topo = folha.getBoundingClientRect().top;
+  for (const p of contas) {
+    if (!p.offsetParent) continue;
+    const sonda = document.createElement('span');
+    sonda.style.cssText = 'display:inline-block;width:0;height:0;';
+    p.insertBefore(sonda, p.firstChild);
+    const base = sonda.getBoundingClientRect().bottom - topo;
+    sonda.remove();
+    const falta = (GRADE - (base % GRADE)) % GRADE;
+    // perto da linha de cima (até 9px): sobe para ela, no espaço vazio acima das letras; senão desce para a de baixo
+    if (falta > GRADE - 9.5) p.style.marginTop = `${falta - GRADE}px`;
+    else if (falta > 0.5) p.style.paddingTop = `${falta}px`;
+  }
 }
 function velSalva(): number {
   try { const v = Number(localStorage.getItem('ra-vel')); return VELS.includes(v) ? v : 1; } catch { return 1; }
@@ -266,8 +288,8 @@ export function ResolucaoAnimada({ r, materia }: { r: Resolucao; materia?: strin
  *  (revisão de 21/11, passada 5 X1) */
 function mao(s: string, m?: string, inteira = false): ReactNode {
   const ps = partesFracao(s, m, inteira);
-  if (ps.length === 1 && ps[0].t === 'txt') return textoMao(s);
-  return ps.map((p, i) => (p.t === 'txt' ? <span key={i}>{textoMao(p.v)}</span>
+  if (ps.length === 1 && ps[0].t === 'txt') return textoMao(s, m === 'fis');
+  return ps.map((p, i) => (p.t === 'txt' ? <span key={i}>{textoMao(p.v, m === 'fis')}</span>
     : p.t === 'nuc' ? <span key={i}>{comFracoes(p.orig)}</span>
       : <Fracao key={i} p={p} n={mao(p.n, m, true)} d={mao(p.d, m, true)} />));
 }
@@ -363,7 +385,7 @@ function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<stri
     return k != null && k <= ate ? <span className="ra-risco" aria-hidden /> : null;
   };
   const termos = (ts: Tok[], i: number, p: 'n' | 'd'): ReactNode => ts.map((t, s) => (t.k === 'esp' ? t.v
-    : <span key={s} className={'ra-st' + (t.k === 'op' || t.k === 'rel' ? ' op' : '')} data-s={s}>{t.k === 'frac' ? mao(t.v, m, true) : textoMao(t.v)}{risco(i, p, s)}</span>));
+    : <span key={s} className={'ra-st' + (t.k === 'op' || t.k === 'rel' ? ' op' : '')} data-s={s}>{t.k === 'frac' ? mao(t.v, m, true) : textoMao(t.v, m === 'fis')}{risco(i, p, s)}</span>));
   // quebra em dois níveis (N1): os trechos (entre seta, vírgula, "=") ficam inteiros enquanto cabem; o trecho que não
   // cabe sozinho quebra por dentro, antes de "+", "−", "×", "÷" (cada pedaço `.ra-u` nunca quebra)
   const brk = quebrasConta(L.toks);
@@ -404,7 +426,7 @@ function Linha({ L, l, riscos, ate }: { L: LinhaRot; l: number; riscos: Map<stri
     } else if (t.k === 'nuc') {
       u.push(<span key={i} className={cls} data-i={i}>{comFracoes(t.v)}</span>);
     } else {
-      u.push(<span key={i} className={cls + (t.cola ? ' cola' : '')} data-i={i}>{textoMao(t.v)}{risco(i)}</span>);
+      u.push(<span key={i} className={cls + (t.cola ? ' cola' : '')} data-i={i}>{textoMao(t.v, m === 'fis')}{risco(i)}</span>);
     }
   });
   return (

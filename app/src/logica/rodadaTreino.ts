@@ -18,5 +18,5 @@ export function descreveTreino(nQuestoes: number, nFrases: number, nFlash: numbe
   if (!partes.length) return '';
   if (partes.length === 1) return `${partes[0][0].toUpperCase()}${partes[0].slice(1)} dos temas que mais caem, em ordem sorteada a cada rodada.`;
   const lista = partes.slice(0, -1).join(', ') + ' e ' + partes[partes.length - 1];
-  return `${lista[0].toUpperCase()}${lista.slice(1)} dos temas que mais caem, tudo misturado.`;
+  return `${lista[0].toUpperCase()}${lista.slice(1)} dos temas que mais caem, em ordem sorteada.`;
 }

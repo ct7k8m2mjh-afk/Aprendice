@@ -260,7 +260,7 @@ export function QuestaoResolvida({ m, e }: { m: MateriaId; e: Essencial }) {
       ) : (
         <div className="es-res">
           <ResolucaoView q={correcao.qq} r={correcao.r} marcada={(esc as Letra) || null} materia={m} semFonte
-            origem={<p className="fraco">Questão Aprendice: gabarito da banca do Aprendice, conferido de forma independente.</p>} />
+            origem={<p className="fraco">Questão Aprendice: gabarito definido pela banca do Aprendice e conferido de forma independente.</p>} />
           {!res && q.passos?.length ? (
             <ol className="rv-passos es-passos-txt">{q.passos.map((p, k) => <li key={k}><span className="rv-passo-n num" aria-hidden>{k + 1}</span><div><b>{p.faz}</b><Formula tex={p.conta} prosa={prosa} /></div></li>)}</ol>
           ) : null}
@@ -289,10 +289,10 @@ export function EssencialMateria() {
       <section className="tp-capa" aria-labelledby="es-mat-tit">
         <div className="fl-capa-txt">
           <h1 id="es-mat-tit">Revisão essencial</h1>
-          <p>Por tema: o que mais cai, o mapa mental, uma tela por conteúdo, uma Questão Aprendice e a conexão com outras matérias.</p>
+          <p>Por tema: o que mais cai, o mapa mental, uma tela por conteúdo, uma Questão Aprendice e a ligação com outras matérias.</p>
         </div>
       </section>
-      {!temas.length ? <section className="tp-bloco vazio"><h3>Em preparação</h3><p>A revisão essencial chega tema a tema, depois de revisada pela banca do Aprendice.</p></section> : (
+      {!temas.length ? <section className="tp-bloco vazio"><h3>Em preparação</h3><p>A revisão essencial chega tema a tema, depois de aprovada pela banca do Aprendice.</p></section> : (
         <section className="tp-bloco" aria-labelledby="es-mat-temas">
         <h2 id="es-mat-temas" className="tp-h">Temas</h2>
         <ul className="tp-enc es-lista">

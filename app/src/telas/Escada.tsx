@@ -60,7 +60,7 @@ export function Escada() {
   // modo administrador: o que o aluno não vê (vazio para o aluno)
   const ocultas = mc.ocultasPorSub?.get(sub) || [];
   if (!l.length) return (
-    <div className="conteudo vazio"><h3>{cap(conteudo.nome)}</h3><p>Este conteúdo ainda não tem questões. Elas estão em preparação.</p><Link className="btn sec" to={`/m/${m}/tema/${mod.id}`}>Voltar ao tema</Link>
+    <div className="conteudo vazio"><h3>{cap(conteudo.nome)}</h3><p>As questões deste conteúdo estão em preparação.</p><Link className="btn sec" to={`/m/${m}/tema/${mod.id}`}>Voltar ao tema</Link>
       {ocultas.length > 0 && <ol className="degraus">{ocultas.map((q) => <DegrauOculto key={q.id} m={m} q={q} />)}</ol>}
     </div>
   );
@@ -91,7 +91,7 @@ export function Escada() {
       <div className="escada-acao folha">
         <div style={{ flex: 1 }}>
           <b>Treine sua evolução</b>
-          <p className="fraco" style={{ fontSize: 14, margin: '2px 0 8px' }}>Do mais fácil ao mais difícil: você vê em que nível trava.</p>
+          <p className="fraco" style={{ fontSize: 14, margin: '2px 0 8px' }}>Do básico ao avançado: você identifica em que nível tem mais dificuldade.</p>
           <span className="num fraco" style={{ fontSize: 14 }}>{p.feitas} de {p.total} feitas · {p.certas} certas</span>
           <Barra valor={p.feitas / p.total} rotulo="Progresso no conteúdo" />
         </div>

@@ -46,7 +46,7 @@ export function SimuladoResultado() {
         <div>
           <h1>{f.titulo}</h1>
           <p className="miolo num">{f.acertos} de {f.total} certas · {formataTempo(f.seg)} · {new Date(f.ts).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long' })}</p>
-          <p className="fraco" style={{ fontSize: 14, marginTop: 6 }}>{f.itens[0]?.p ? 'Toque numa questão para ver o print e o gabarito. A resolução comentada entra quando for revisada pela banca do Aprendice.' : (nRev === 0 ? 'Nenhum erro e nenhuma questão em branco.' : nRev === 1 ? '1 questão entrou na sua revisão (erro ou em branco).' : `${nRev.toLocaleString('pt-BR')} questões entraram na sua revisão, entre erros e em branco.`)}</p>
+          <p className="fraco" style={{ fontSize: 14, marginTop: 6 }}>{f.itens[0]?.p ? 'Selecione uma questão para ver a imagem da prova e o gabarito. A resolução comentada entra depois de aprovada pela banca do Aprendice.' : (nRev === 0 ? 'Nenhum erro e nenhuma questão em branco.' : nRev === 1 ? '1 questão entrou na sua revisão (erro ou em branco).' : `${nRev.toLocaleString('pt-BR')} questões entraram na sua revisão, entre erros e em branco.`)}</p>
         </div>
       </div>
       <section className="secao">

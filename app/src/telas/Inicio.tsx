@@ -93,8 +93,8 @@ function CartaoTreino({ e }: { e: Estado }) {
     <section className="in-treino" aria-labelledby="in-treino-tit">
       <div className="in-dest-txt">
         <h2 id="in-treino-tit">Treino geral</h2>
-        <p className="in-dest-sub">Questões reais de prova, de todas as matérias, misturadas.</p>
-        <p className="in-dest-info num">{emAndamento ? `Rodada em andamento: ${ses!.i} de ${ses!.it.length} questões` : `${n} questões por rodada`}</p>
+        <p className="in-dest-sub">Questões reais de prova, de todas as matérias, em ordem sorteada.</p>
+        <p className="in-dest-info num">{emAndamento ? `Rodada em andamento: questão ${ses!.i + 1} de ${ses!.it.length}` : `${n} questões por rodada`}</p>
         <div className="in-dest-acoes">
           <Link to="/treino-geral" className="btn grande in-btn-treino"><Icone nome="misturar" tam={20} />{emAndamento ? 'Retomar treino' : 'Começar treino'}</Link>
           <button type="button" className="in-personalizar" aria-expanded={abre} aria-controls="in-rodada" onClick={() => setAbre((v) => !v)}>Personalizar</button>
@@ -105,7 +105,7 @@ function CartaoTreino({ e }: { e: Estado }) {
             <div className="in-rodada-ops">
               {RODADAS.map((k) => <button key={k} type="button" className="chip" aria-pressed={k === n} onClick={() => escolhe(k)}>{k}</button>)}
             </div>
-            <small>Trocar o tamanho começa uma rodada nova.</small>
+            <small>Ao mudar o tamanho, uma nova rodada começa.</small>
           </div>
         )}
       </div>
@@ -129,7 +129,7 @@ function CartaoContinue({ todas, e }: { todas: MateriaCarregada[]; e: Estado }) 
         {parou ? (<>
           <p className="in-dest-sub">{cap(parou.sub?.nome || parou.mod?.nome || '')}</p>
           <p className="in-cont-prog num"><span>{parou.prog.feitas} de {plural(parou.prog.total, 'questão', 'questões')}</span>
-            <small><span className="in-ponto" aria-hidden>•</span>{falta ? `Faltam ${falta} para concluir` : 'Conteúdo concluído'}</small></p>
+            <small><span className="in-ponto" aria-hidden>•</span>{falta ? (falta === 1 ? 'Falta 1 questão para concluir' : `Faltam ${falta.toLocaleString('pt-BR')} questões para concluir`) : 'Conteúdo concluído'}</small></p>
           <Barra valor={parou.prog.feitas / Math.max(1, parou.prog.total)} rotulo="Progresso no conteúdo" />
           <Link to={`/m/${parou.m}/q/${parou.prox.id}?ctx=escada`} className="btn grande">Continuar <Icone nome="seta" /></Link>
         </>) : (<>
@@ -154,7 +154,7 @@ function Desempenho({ e }: { e: Estado }) {
   return (
     <section className="in-desemp" aria-labelledby="in-desemp-tit">
       <h2 id="in-desemp-tit" className="in-sec-tit">Seu desempenho por matéria</h2>
-      <p className="in-sec-sub">Compare seus acertos e veja onde vale reforçar.</p>
+      <p className="in-sec-sub">Compare seu acerto entre as matérias e veja onde vale reforçar.</p>
       <label className="in-periodo">
         <span className="sr">Período</span>
         <select value={per} onChange={(ev) => setPer(ev.target.value)}>
@@ -188,7 +188,7 @@ function Desempenho({ e }: { e: Estado }) {
         <span><Icone nome="camadas" tam={22} /><b className="num">{plural(total, 'questão resolvida', 'questões resolvidas')}</b></span>
         <span><Icone nome="calendario" tam={22} /><b className="num">{plural(dias, 'dia seguido', 'dias seguidos')}</b></span>
       </div>
-      {dest && <p className="in-destaque num"><i aria-hidden />Seu destaque: {infoMateria(dest.m)?.nome} · {pctInt(dest.acertos, dest.resolvidas)}% de acerto</p>}
+      {dest && <p className="in-destaque num"><i aria-hidden />Melhor desempenho: {infoMateria(dest.m)?.nome} · {pctInt(dest.acertos, dest.resolvidas)}% de acerto</p>}
     </section>
   );
 }
@@ -203,9 +203,9 @@ function HoraDeRevisar({ todas, e, totVenc }: { todas: MateriaCarregada[]; e: Es
   return (
     <section className="in-revisar" aria-labelledby="in-rev-tit">
       <h2 id="in-rev-tit" className="in-sec-tit">Hora de revisar</h2>
-      <p className="in-sec-sub">{totVenc === 0 ? 'Nenhuma questão volta hoje.' : totVenc === 1 ? '1 questão volta hoje na revisão.' : `${totVenc.toLocaleString('pt-BR')} questões voltam hoje na revisão.`}</p>
+      <p className="in-sec-sub">{totVenc === 0 ? 'Sua revisão está em dia: nenhuma questão volta hoje.' : totVenc === 1 ? '1 questão volta hoje para revisão.' : `${totVenc.toLocaleString('pt-BR')} questões voltam hoje para revisão.`}</p>
       {lista.length ? (<>
-        <p className="in-rev-chamada">Comece pelas de menor acerto</p>
+        <p className="in-rev-chamada">Comece pelas matérias com menor acerto</p>
         <ul className="in-rev-lista">
           {lista.map(({ mc, r, venc }) => (
             <li key={mc.id} className={`m-${mc.id}`}>
@@ -216,10 +216,10 @@ function HoraDeRevisar({ todas, e, totVenc }: { todas: MateriaCarregada[]; e: Es
           ))}
         </ul>
       </>) : (
-        <p className="in-rev-chamada">Responda às primeiras questões e as matérias de menor acerto aparecem aqui.</p>
+        <p className="in-rev-chamada">Responda às primeiras questões. Aqui aparecerão as matérias com menor acerto, para você revisar primeiro.</p>
       )}
       <Link to="/revisao" className="btn grande in-btn-revisar">Revisar meus erros <Icone nome="seta" /></Link>
-      <p className="in-rev-pe">Cada erro volta no dia certo.</p>
+      <p className="in-rev-pe">Cada erro volta na data marcada.</p>
     </section>
   );
 }
@@ -238,17 +238,17 @@ export function Inicio() {
   const totVenc = todas.reduce((a, mc) => a + questoesVencidas(mc, e.materias[mc.id] || VAZIA, agora, ag).length, 0);
   const pl = !atividadeRecente(e, 1).length ? planoHoje(todas, e.materias, { provasAlvo: e.perfil?.provasAlvo || [], conj: regiaoDoEstado(e).conj, ag, agora, minutos: e.pref.minutosHoje || TEMPO_PADRAO }) : null;
   const u = ultimoEstudo(e);
-  let cabSub = 'Escolha uma matéria ou treine todas juntas.';
+  let cabSub = 'Escolha uma matéria ou faça o Treino geral, que reúne todas elas.';
   if (pl?.sessao.length) {
     const pv = pl.pesos.provas, onde = !pv.length ? 'nas provas do banco' : pv.length === 1 && pv[0] === 'enem' ? 'no ENEM' : 'nas suas provas';
-    cabSub = `Para começar, a tela Hoje separou ${plural(pl.sessao.length, 'questão', 'questões')}, cerca de ${minutosDe(pl.sessao.length, pl.segPorQuestao)} min, pelo que mais cai ${onde}.`;
+    cabSub = `Para começar, separamos ${plural(pl.sessao.length, 'questão', 'questões')}, cerca de ${minutosDe(pl.sessao.length, pl.segPorQuestao)} min, entre o que mais cai ${onde}.`;
   } else if (u > 0 && diasEntre(u, agora) >= 3) {
-    cabSub = 'Bom ter você aqui. ' + (totVenc === 0 ? 'Escolha por onde recomeçar.' : totVenc === 1 ? '1 questão volta hoje na revisão.' : `${totVenc.toLocaleString('pt-BR')} questões voltam hoje na revisão.`);
+    cabSub = 'Seu progresso está salvo. ' + (totVenc === 0 ? 'Escolha por onde retomar.' : totVenc === 1 ? '1 questão volta hoje para revisão.' : `${totVenc.toLocaleString('pt-BR')} questões voltam hoje para revisão.`);
   }
   return (
     <div className="conteudo inicio-novo">
       <header className="in-cab">
-        <h1>Vamos avançar nos estudos?</h1>
+        <h1>Por onde você quer começar hoje?</h1>
         <p>{cabSub}</p>
       </header>
       <SuasMaterias todas={todas} e={e} />

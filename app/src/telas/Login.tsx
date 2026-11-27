@@ -32,7 +32,7 @@ export function Login({ aoEntrar, tema, emailInicial = '' }: { aoEntrar: (email:
   const envia = async (ev: React.FormEvent) => {
     ev.preventDefault();
     if (ocupado) return;
-    if (modo !== 'nova' && !emailOk()) { refEmail.current?.focus(); avisa('Digite um e-mail válido.'); return; }
+    if (modo !== 'nova' && !emailOk()) { refEmail.current?.focus(); avisa('Informe um e-mail válido.'); return; }
     if (senha.length < 6) { refSenha.current?.focus(); avisa('A senha precisa ter pelo menos 6 caracteres.'); return; }
     if (!naNuvem) { setSenha(''); aoEntrar(email.trim()); return; }
     setOcupado(true);
@@ -48,15 +48,15 @@ export function Login({ aoEntrar, tema, emailInicial = '' }: { aoEntrar: (email:
         if (r.erro) avisa(r.erro);
         else {
           setSenha('');
-          if (r.confirmar) { setModo('entrar'); setRecado(`Enviamos um link para ${email.trim()}. Abra o link e depois entre com seu e-mail e senha.`); }
+          if (r.confirmar) { setModo('entrar'); setRecado(`Enviamos um link de confirmação para ${email.trim()}. Abra o link para confirmar o cadastro e depois entre com seu e-mail e sua senha.`); }
         }
       }
     } finally { setOcupado(false); }
   };
 
   const esqueci = async () => {
-    if (!naNuvem) { avisa('Nesta versão, sem conta na nuvem, não dá para recuperar a senha.'); return; }
-    if (!emailOk()) { refEmail.current?.focus(); avisa('Escreva seu e-mail acima e toque de novo em “Esqueceu sua senha?”.'); return; }
+    if (!naNuvem) { avisa('Nesta versão, sem conta na nuvem, não é possível recuperar a senha.'); return; }
+    if (!emailOk()) { refEmail.current?.focus(); avisa('Digite seu e-mail no campo acima e selecione novamente “Esqueceu sua senha?”.'); return; }
     setOcupado(true);
     const erro = await esqueciSenha(email);
     setOcupado(false);
@@ -65,7 +65,7 @@ export function Login({ aoEntrar, tema, emailInicial = '' }: { aoEntrar: (email:
   };
 
   const titulo = modo === 'nova' ? 'Crie uma nova senha' : entrar_ ? 'Entre na sua conta' : 'Crie sua conta';
-  const sub = recado && modo !== 'nova' ? recado : modo === 'nova' ? 'Escolha a nova senha da sua conta. Depois disso você já entra.' : entrar_ ? 'Continue de onde parou.' : 'Depois, você escolhe as provas que vai fazer.';
+  const sub = recado && modo !== 'nova' ? recado : modo === 'nova' ? 'Defina a nova senha para acessar a sua conta.' : entrar_ ? 'Continue de onde parou.' : 'Em seguida, você escolhe as provas que vai prestar.';
   const botao = ocupado ? 'Aguarde…' : modo === 'nova' ? 'Salvar nova senha' : entrar_ ? 'Entrar' : 'Criar minha conta';
 
   return (
@@ -77,16 +77,16 @@ export function Login({ aoEntrar, tema, emailInicial = '' }: { aoEntrar: (email:
           <section className="l-apresenta" aria-label="Conheça o Aprendice">
             <a href="#login" className="l-logo" aria-label="Aprendice, ir para o login" data-logo-alvo><Logo /></a>
             <div><span className="l-selo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round"><path d="m2 9 10-5 10 5-10 5L2 9Z" /><path d="M6 11v5c4 4 8 4 12 0v-5" /><path d="M22 9v6" /></svg> Questões reais de prova, com a fonte</span></div>
-            <h1 className="l-titulo">Estude pelas<br />questões reais das provas <em>e veja onde você erra.</em></h1>
-            <p className="l-lead">Questões do ENEM e dos vestibulares, do básico ao avançado. A correção começa pela letra que você marcou, e o erro volta no dia certo.</p>
+            <h1 className="l-titulo">Estude pelas<br />questões reais das provas <em>e entenda cada erro</em></h1>
+            <p className="l-lead">Questões do ENEM e dos vestibulares, do nível básico ao avançado. A correção começa pela alternativa que você marcou, e cada erro volta para revisão na data marcada.</p>
             <div className="l-ilustracao">
               <div className="l-barras" aria-hidden>{[32, 44, 59, 74, 89].map((h) => <i key={h} style={{ ['--h' as string]: h + '%' }} />)}</div>
               <img className="l-figura" src={figura} alt="Célula, átomo, livros, frasco de laboratório, cubo mágico e caderno" width={660} height={395} />
             </div>
             <div className="l-vantagens">
-              <div className="l-vantagem"><div className="l-vantagem-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 10h18" /></svg></div><div><b>Saiba o que estudar hoje</b><p>Pelo que cai nas suas provas e pelo que você erra.</p></div></div>
+              <div className="l-vantagem"><div className="l-vantagem-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M7 3v4m10-4v4M3 10h18" /></svg></div><div><b>Saiba o que estudar hoje</b><p>Com base no que cai nas suas provas e no que você mais erra.</p></div></div>
               <div className="l-vantagem"><div className="l-vantagem-ic ouro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round"><path d="M12 21a9 9 0 1 0-9-9c0 2.4 1 4.5 2.5 6L5 22l4-2.5c1 .3 2 .5 3 .5Z" /><path d="M9.5 9a2.6 2.6 0 0 1 5.2.2c0 2-2.6 2-2.6 4M12 17h.01" /></svg></div><div><b>Questões reais de prova</b><p>Cada uma com a fonte e o gabarito.</p></div></div>
-              <div className="l-vantagem"><div className="l-vantagem-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M4 20v-5m5 5v-9m5 9V8m5 12V3" /></svg></div><div><b>Veja onde você trava</b><p>Acerto por matéria, tema e nível.</p></div></div>
+              <div className="l-vantagem"><div className="l-vantagem-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"><path d="M4 20v-5m5 5v-9m5 9V8m5 12V3" /></svg></div><div><b>Veja onde você mais erra</b><p>Acerto por matéria, tema e nível.</p></div></div>
             </div>
           </section>
 
@@ -117,7 +117,7 @@ export function Login({ aoEntrar, tema, emailInicial = '' }: { aoEntrar: (email:
               {/* "Entrar com o Google" fica escondido até o dono criar as credenciais do Google (OAuth) no serviço de contas */}
               {modo !== 'nova' && <p className="l-trocar">{entrar_ ? 'Ainda não tem uma conta? ' : 'Já tem uma conta? '}<button type="button" onClick={() => { setModo(entrar_ ? 'criar' : 'entrar'); setRecado(''); }}>{entrar_ ? 'Criar conta' : 'Entrar'}</button></p>}
               <div className="l-faixa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinejoin="round"><path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2Z" /></svg><span>Cada erro vira revisão.</span></div>
-              <div className="l-rodape">{naNuvem ? 'Guardamos só e-mail, perfil de estudo e progresso' : 'Tudo fica salvo só neste aparelho'} • <Link to="/privacidade">Privacidade</Link></div>
+              <div className="l-rodape">{naNuvem ? 'Guardamos apenas seu e-mail, seu perfil de estudo e seu progresso' : 'Seus dados ficam salvos apenas neste aparelho'} • <Link to="/privacidade">Privacidade</Link></div>
             </div>
           </section>
         </main>
