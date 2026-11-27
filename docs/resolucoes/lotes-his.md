@@ -1,6 +1,6 @@
 # História: resoluções (gerado por lote.py em 2026-11-27)
 
-Faltam 42 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 42; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 0.
+Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 0.
 
 ## Lotes
 
@@ -92,6 +92,7 @@ Faltam 42 questões sem resolução (fora as que estão em lote, pendentes ou co
 | his-0084 | demais nível 7-10 | 2 | gravado | 2 | 0 | 0 |
 | his-0085 | demais nível 1-6 | 1 | gravado | 1 | 0 | 0 |
 | his-0086 | provas-alvo nível 1-6 | 50 | gravado | 50 | 0 | 0 |
+| his-0087 | demais nível 1-6 | 42 | gravado | 40 | 2 | 0 |
 | his-pend-0001 | pendentes fato,as | 4 | gravado | 3 | 1 | 0 |
 | his-pend-0002 | pendentes reclassificada | 2 | gravado | 1 | 1 | 0 |
 | his-pend-0003 | pendentes =reclassificada | 2 | gravado | 2 | 0 | 0 |
@@ -107,6 +108,8 @@ Faltam 42 questões sem resolução (fora as que estão em lote, pendentes ou co
 |---|---|---|---|
 | P3a2fa1cd | Fuvest 2026 1ª fase · questão 42 | H06.9 nacionalismos, unificações e revoluções de 1848 (tema H06 Revoluções) | outra matéria: Artes (história do circo; já em app/conteudo-fonte/outra-materia.json desde 13/11). A questão trata da linguagem circense e do circo como arte contemporânea, não de nacionalismos ou de 1848; não se resolve. |
 | P881983dc | UECE 2020 2020.2 – 2ª fase · questão 151 | H02.4 reinos e impérios africanos (tema H02 Idade Média) | fato: tentado de novo (20/11) na web: nenhuma resolução publicada da UECE 2020.2 q151; o trecho de Macedo (2019, pp. 132-135) não está acessível na web. As fontes consultadas (Wikipedia Kingdom of Bamum/Ibrahim Njoya, RBHR/UFMA 2024) mostram que a diplomacia de Njoya foi com os alemães e que Fumban foi ocupada pelos britânicos em 1915 e passou ao mandato francês, o que contraria a 2ª afirmativa (V no gabarito A); a 1ª (islã como resistência ao avanço cristão) também não aparece nas fontes. Sem o livro de Macedo não há certeza: se o dono não conseguir o trecho, candidata a ANULAR pela 2ª afirmativa. (Lote his-pend-0008: não retentada, já são 3 tentativas.) |
+| Pa1c05b4f | UERR 2024 · questão 57 | H06.3 independência dos Estados Unidos (tema H06 Revoluções) | anular: o gabarito B afirma que a Lei do Chá (1773) 'determinou o aumento dos impostos' sobre o chá, o que é falso: a lei manteve a taxa de 3 pence por libra já existente e baixou o preço do chá da Companhia das Índias Orientais, ao dispensá-la do imposto na Grã-Bretanha; o protesto veio do monopólio e do princípio da taxação (Britannica, Tea Act; History.com, Tea Act). As demais também são falsas (a D pelo 'apesar do apoio francês'). Questão sem alternativa correta. |
+| P570c434c | UFSM 2024 · questão 27 | H03.1 povos indígenas e o contato com os europeus (tema H03 Brasil e América coloniais) | fato: as afirmativas I (indígenas adoravam carne de macaco; europeus só a comiam nas expedições) e IV (indígenas evitavam tartaruga por julgá-la indigesta) dependem do livro de S. M. Hue citado na fonte; não achei confirmação em fonte confiável na web nem em conhecimento consolidado, então não dá para ensinar I, III e IV como verdadeiras com certeza absoluta. |
 
 ## Divergências de gabarito (o dono decide)
 
