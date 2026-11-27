@@ -40,6 +40,13 @@ técnico (ele não programa). Nunca use send_message para outras sessões.
 
 ## 2. O que você pode fazer sem perguntar e o que precisa de permissão
 **Regra do dono (11/11/2026): toda mudança visual precisa da permissão dele ANTES.**
+
+**Regra do dono (27/11/2026), vale acima de tudo nesta seção:** para **toda e qualquer alteração** (visual, de texto,
+de escrita ou bug), antes de mudar o repositório, mostre ao dono um **print de antes e um print de depois** (o "depois"
+feito no site local, sem gravar nada no ramo) e diga em poucas linhas como planeja fazer. **Só com a autorização dele**
+a mudança é gravada (commit) e publicada. Se ele não autorizar, nada muda: desfaça a alteração local. Prints para o
+dono em deviceScaleFactor 2, enviados com SendUserFile. Esta regra substitui o "sem perguntar" abaixo e o "nunca peça
+ao dono para conferir por print": o print agora é obrigatório para ele aprovar (a conferência técnica continua sua).
 - O pedido do dono é a permissão **só para o que ele pediu**. Se ele disse exatamente o que quer ("tira esse traço",
   "aumenta a fonte do título da correção"), faça.
 - Se o pedido deixa uma escolha visual em aberto (cor, tamanho, posição, forma, qual de duas soluções), **pergunte antes**
