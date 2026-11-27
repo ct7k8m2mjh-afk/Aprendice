@@ -100,3 +100,9 @@ Os 14 "anular" restantes dos registros (docs/resolucoes/registro-*.json) entrara
 ## Mais 1 de Geografia (decisão do dono de 20/11, "todas sim"; aplicada em 21/11)
 
 - **Pe436860e** — UFRR 2025 Vestibular 2025 – Prova Integral · questão 49 (Geografia): anular: pede a INCORRETA, mas A e C são incorretas (C: área de benefícios da Suframa "superior a 8,5 milhões de km²", a área do Brasil; a real é ≈ 2,15 milhões de km²; A: "apenas um polo", mas há também o distrito agropecuário). Preliminar A; nos trechos do Edital 97/24-CPV achados na busca só as questões 16 (anulada) e 36 (alterada) mudaram; o PDF não abriu daqui. Total na lista: 67.
+
+## Mais 3 (decisão do dono de 20/11, "todas sim"; aplicada em 27/11)
+
+- **Pb816c091** — URCA 2024 2024.1 · questão 105 (Português): anular: o oficial C (13) não sai de afirmações verdadeiras. 13 = só a III ou I + II (5 + 8). A III é falsa: a frase de que a civilização brasileira não recebeu 'influxo algum' do elemento índio e a recusa de fazê-lo 'exclusivo patrimônio' da literatura brasileira são de Machado de Assis ('Instinto d
+- **Pa8bd2834** — UDESC 2025 Verão 2025.1 · questão 84 (Filosofia e Sociologia): anular: o gabarito exige a proposição 5 como verdadeira (o EZLN 'participou ativamente dos Fóruns Sociais Mundiais'), mas a Carta de Princípios do FSM excluía organizações armadas e o EZLN ficou de fora de Porto Alegre; em 2002 o Fórum só aprovou moção de apoio (La Jornada, 03/02/2002; Bulatlat, 200
+- **Peefb896f** — PUCPR 2023 Medicina 2023/2 · questão 46 (Filosofia e Sociologia): anular: o gabarito oficial (E, todas corretas) exige a I como verdadeira, mas a I diz que "as únicas desigualdades naturais são as de força física", e no próprio Discurso sobre a desigualdade Rousseau define a desigualdade natural ou física como a diferença de idade, saúde, forças do corpo e qualida
