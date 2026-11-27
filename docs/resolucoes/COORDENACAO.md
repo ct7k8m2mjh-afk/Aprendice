@@ -331,3 +331,10 @@ Painel de decisões do dono (com campo para ele responder): https://claude.ai/ar
 - PENDENTE DA COORDENAÇÃO (SR-3, 23/11): questão de texto compartilhado aparece SEM o texto-base (Pa65cc39c PUC-Campinas 2027 q2, P65667e3b UFT 2024 q14, P7ee3116 Fatec 2019). Varredura em todas as matérias + refazer print (ferramentas/ingestao/refaz_print.py). Detalhes em super-revisao/por.md (papel "dados").
 - Decisões do dono no painel (23/11): itens 1, 4, 8, 9, 10 sim (agente aplicando); 11 nada a fazer; 3 = São Camilo fica com questão e resposta (nenhuma sai); 2, 5, 6, 7 sem resposta.
 
+
+## 27/11: SESSÃO ATELIÊ (pedido do dono)
+Uma sessão só para o dono pedir correções visuais, de escrita e de design: prompt `docs/resolucoes/PROMPT-SESSAO-ATELIE.md`,
+registro `docs/revisao-site/atelie/REGISTRO.md`. Conta como uma das 4 sessões. Ela publica no ar ao fim de cada pedido.
+
+### Pedidos do dono vindos do Ateliê
+(o Ateliê escreve aqui o que é da coordenação: resoluções, gabaritos, classificação, provas)

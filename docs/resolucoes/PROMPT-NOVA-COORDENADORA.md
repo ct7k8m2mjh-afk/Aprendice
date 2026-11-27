@@ -1,5 +1,12 @@
 # Prompt da nova coordenadora do Aprendice (outra conta do Claude) — revisado em 20/11/2026, 20h UTC
 
+> **HISTÓRICO (conferido em 27/11/2026).** Esta passagem já foi feita em 20/11: a coordenadora da conta nova assumiu e
+> trabalhou até 23/11 (revisão final publicada e super revisão aberta). O estado atual está nas seções "23/11" de
+> `docs/resolucoes/COORDENACAO.md`, que valem acima deste texto. Diferenças importantes: publicar já não depende do
+> Supabase (as contas só ligam com `VITE_CONTAS_REAIS=1` na Vercel, `docs/contas.md`), e o limite é de 4 sessões ao mesmo
+> tempo (dono, 21/11). Correções visuais e de escrita pedidas pelo dono: sessão Ateliê (`PROMPT-SESSAO-ATELIE.md`).
+
+
 ## Antes de colar (o dono faz, uma vez, na conta nova)
 1. Em claude.ai → Configurações → Conectores: conectar **GitHub** (a mesma conta que é dona de `ct7k8m2mjh-afk/Aprendice`),
    **Vercel** (o mesmo login do projeto `aprendice`) e **Supabase** (o mesmo login da organização onde está o projeto `aprendice`).
