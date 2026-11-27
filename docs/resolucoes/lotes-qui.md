@@ -1,6 +1,6 @@
-# Química: resoluções (gerado por lote.py em 2026-11-20)
+# Química: resoluções (gerado por lote.py em 2026-11-27)
 
-Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 0.
+Faltam 49 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 9; demais nível 1-6 37; ENEM nível 7-10 0; provas-alvo nível 7-10 3; demais nível 7-10 0.
 
 ## Lotes
 
@@ -85,6 +85,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | qui-0077 | demais nível 7-10 | 50 | gravado | 50 | 0 | 0 |
 | qui-0078 | demais nível 7-10 | 25 | gravado | 25 | 0 | 0 |
 | qui-0079 | demais nível 1-6 | 4 | gravado | 4 | 0 | 0 |
+| qui-0080 | provas-alvo nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | qui-pend-0001 | pendentes todos-menos-anular | 11 | gravado | 4 | 7 | 0 |
 | qui-pend-0002 | pendentes =reclassificada | 1 | gravado | 1 | 0 | 0 |
 | qui-pend-0003 | pendentes todos-menos-anular | 21 | gravado | 21 | 0 | 0 |

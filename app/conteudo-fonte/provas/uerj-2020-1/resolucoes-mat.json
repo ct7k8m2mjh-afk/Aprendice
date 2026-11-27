@@ -1,0 +1,760 @@
+{
+ "P872b2171": {
+  "n": "29",
+  "conceito": "Encontrar o próximo encontro de dois eventos periódicos pelo MMC e contar as ocorrências isoladas até lá.",
+  "equivocos": {
+   "A": "M01.4:so-contou-um-dos-dois",
+   "B": "M01.4:so-contou-um-dos-dois",
+   "D": "M01.4:contou-a-viagem-conjunta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Dois eventos que se repetem em intervalos fixos voltam a coincidir no MMC dos intervalos. Até esse dia, cada um acontece algumas vezes sozinho. A questão quer só as viagens SOZINHOS: a viagem do reencontro não entra na conta.",
+    "formulas": [
+     "próximo encontro = MMC(24, 16)",
+     "viagens sozinho = (MMC ÷ intervalo) − 1"
+    ],
+    "simbolos": [
+     [
+      "MMC",
+      "mínimo múltiplo comum: o menor número que é múltiplo dos dois"
+     ],
+     [
+      "x",
+      "viagens da gerente sozinha"
+     ],
+     [
+      "y",
+      "viagens do assistente sozinho"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro em que dia, contado a partir da viagem juntos, os dois voltam a coincidir.",
+   "passos": [
+    {
+     "faz": "Ache o dia do próximo encontro",
+     "conta": "24 = 2³ · 3 | 16 = 2⁴ → MMC = 2⁴ · 3 = 48",
+     "porque": "Os dois só coincidem num dia que é múltiplo de 24 e de 16 ao mesmo tempo; o primeiro deles é o MMC.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as viagens da gerente sozinha",
+     "conta": "48/24 = 2 viagens → 2 − 1 = 1 → x = 1",
+     "porque": "Ela viaja nos dias 24 e 48; a do dia 48 é com o assistente, então sozinha foi só a do dia 24.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as viagens do assistente sozinho",
+     "conta": "48/16 = 3 viagens → 3 − 1 = 2 → y = 2",
+     "porque": "Ele viaja nos dias 16, 32 e 48; tirando a do reencontro, sobram 2 sozinho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e marque",
+     "conta": "x + y = 1 + 2 = 3",
+     "porque": "Como 48 é o PRIMEIRO dia em comum, esse é o menor valor possível de x + y.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3",
+   "checagem": "Liste os dias: gerente 24, 48; assistente 16, 32, 48. Antes do 48 aparecem 24, 16 e 32: três viagens sozinhos, nenhuma coincidência no meio.",
+   "erradas": {
+    "A": "A sai de contar só as viagens da gerente sozinha: x = 1, esquecendo o y.",
+    "B": "B sai de contar só as viagens do assistente sozinho: y = 2, esquecendo o x.",
+    "D": "D não confere: na lista de dias até o 48, só os dias 16, 24 e 32 têm alguém viajando sozinho; são 3, não 4."
+   },
+   "armadilha": "Contar a viagem do reencontro (dia 48) como viagem sozinho, ou somar só um dos dois.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas viagens individuais acontecem entre dois encontros seguidos.",
+    "chave": "O próximo encontro é o MMC(24, 16) = 48 dias.",
+    "cuidado": "A viagem do dia 48 é conjunta: tire uma viagem de cada um."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lista de dias",
+    "ideia": "Escreva os múltiplos de 24 e de 16 até o primeiro comum (48) e conte os que não são comuns: 16, 24, 32."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "MMC(24, 16) = 48",
+    "nota": "dia do próximo encontro"
+   },
+   {
+    "linha": "x = 48/24 − 1 = 2 − 1 = 1",
+    "nota": "gerente, sem a viagem conjunta"
+   },
+   {
+    "linha": "y = 48/16 − 1 = 3 − 1 = 2",
+    "nota": "assistente, sem a viagem conjunta"
+   },
+   {
+    "linha": "x + y = 1 + 2 = 3",
+    "nota": "total de viagens sozinhos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ },
+ "Pc4f78881": {
+  "n": "28",
+  "conceito": "Atualizar as duas idades pelo mesmo intervalo de tempo antes de calcular a razão.",
+  "equivocos": {
+   "A": "M02.1:razao-sem-atualizar-idades",
+   "C": "M02.1:razao-sem-atualizar-idades",
+   "D": "M02.1:inverteu-a-razao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "De 2014 a 2024 passam 10 anos para a filha E para o pai. A razão entre as idades muda com o tempo, porque se soma o mesmo número às duas, não se multiplica. Então atualize as idades primeiro e só depois divida.",
+    "formulas": [
+     "idade em 2024 = idade em 2014 + 10",
+     "razão = idade da filha ÷ idade do pai"
+    ],
+    "simbolos": [
+     [
+      "razão",
+      "divisão de uma grandeza pela outra, na ordem pedida"
+     ]
+    ]
+   },
+   "pista": "Antes de dividir, descubra quantos anos cada um terá em dezembro de 2024.",
+   "passos": [
+    {
+     "faz": "Calcule o tempo que passou",
+     "conta": "2024 − 2014 = 10 anos",
+     "porque": "Os dois envelhecem a mesma quantidade de anos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Atualize as duas idades",
+     "conta": "filha: 20 + 10 = 30 | pai: 50 + 10 = 60",
+     "porque": "Soma-se 10 a cada idade; a diferença de 30 anos entre eles não muda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a razão filha para pai",
+     "conta": "30/60 = 1/2",
+     "porque": "A questão pede a razão entre a idade da filha e a do pai, nessa ordem; simplifique dividindo por 30.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a razão",
+     "conta": "razão = 1/2",
+     "porque": "Em 2024 a filha terá metade da idade do pai.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1/2",
+   "checagem": "Diferença de idades: 60 − 30 = 30, igual à de 2014 (50 − 20 = 30). E 30 é metade de 60.",
+   "erradas": {
+    "A": "A não confere: com a filha aos 30 anos, a razão 1/5 exigiria um pai de 150 anos.",
+    "C": "C não confere: com a filha aos 30 anos, a razão 3/4 exigiria um pai de 40 anos, mais novo que os 50 que já tinha em 2014.",
+    "D": "D não confere: razão maior que 1 diria que a filha é mais velha que o pai; e a razão invertida seria 60/30 = 2, não 4/3."
+   },
+   "armadilha": "Achar que a razão de 2014 se mantém ou atualizar só uma das idades.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão entre as idades da filha e do pai em 2024.",
+    "chave": "Somar 10 anos às duas idades e dividir 30 por 60.",
+    "cuidado": "Respeitar a ordem: filha em cima, pai embaixo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diferença fixa",
+    "ideia": "O pai é sempre 30 anos mais velho; razão 1/2 significa pai com o dobro da idade, o que acontece quando a filha tem 30, em 2024."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2024 − 2014 = 10",
+    "nota": "anos que passaram"
+   },
+   {
+    "linha": "20 + 10 = 30 ; 50 + 10 = 60",
+    "nota": "idades em 2024"
+   },
+   {
+    "linha": "30/60 = 1/2",
+    "nota": "razão filha para pai, simplificada por 30"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ },
+ "P8bc3376a": {
+  "n": "5",
+  "conceito": "Multiplicar o desperdício por escovação pelo número de pessoas, de escovações por dia e de dias.",
+  "equivocos": {
+   "A": "M02.2:esqueceu-um-fator",
+   "C": "M02.2:esqueceu-um-fator",
+   "D": "M02.2:esqueceu-um-fator"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A pergunta é o DESPERDÍCIO, não o gasto total: por escovação, são 10 litros, não 11. Depois é só multiplicar pelas escovações da família no ano: pessoas × vezes por dia × dias.",
+    "formulas": [
+     "desperdício = 10 L × pessoas × escovações por dia × dias"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "litro"
+     ]
+    ]
+   },
+   "pista": "Separe o que é gasto do que é desperdício em uma escovação antes de multiplicar.",
+   "passos": [
+    {
+     "faz": "Identifique o desperdício por escovação",
+     "conta": "11 L − 1 L = 10 L",
+     "porque": "O texto diz que, dos 11 litros gastos com a torneira aberta, só 1 é necessário; o resto é desperdício.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte as escovações da família por dia",
+     "conta": "4 pessoas × 3 vezes = 12 escovações por dia",
+     "porque": "Cada pessoa escova três vezes, e são quatro pessoas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o desperdício diário",
+     "conta": "12 × 10 L/escovação → 120 L por dia",
+     "porque": "Cada escovação desperdiça 10 litros.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique pelos dias do ano",
+     "conta": "120 L/dia × 365 dias → 43 800 L",
+     "porque": "A questão pede o total em 365 dias.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 43800 litros",
+   "checagem": "Ordem de grandeza: cerca de 120 L por dia × cerca de 400 dias ≈ 48 000 L, perto de 43 800; e 43 800 ÷ 365 = 120 L por dia, o que fecha com 12 escovações de 10 L.",
+   "erradas": {
+    "A": "A não confere: 21 900 ÷ 365 = 60 L por dia, metade dos 120 L desperdiçados pelas 12 escovações diárias.",
+    "C": "C não confere: 65 700 ÷ 365 = 180 L por dia, o que exigiria 18 escovações de 10 L; a família faz 12.",
+    "D": "D não confere: 87 600 ÷ 365 = 240 L por dia, o dobro do desperdício diário de 120 L."
+   },
+   "armadilha": "Usar os 11 litros gastos no lugar dos 10 litros desperdiçados (daria 48 180 L, que não está nas alternativas) ou esquecer um dos fatores.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O desperdício de água da família em um ano.",
+    "chave": "10 L × 4 × 3 × 365 = 43 800 L.",
+    "cuidado": "Desperdício é 10 L por escovação, não 11 L."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por pessoa",
+    "ideia": "Uma pessoa desperdiça 3 × 10 × 365 = 10 950 L por ano; a família, 4 × 10 950 = 43 800 L."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "11 − 1 = 10",
+    "nota": "litros desperdiçados por escovação"
+   },
+   {
+    "linha": "4 × 3 = 12",
+    "nota": "escovações da família por dia"
+   },
+   {
+    "linha": "12 × 10 = 120",
+    "nota": "litros desperdiçados por dia"
+   },
+   {
+    "linha": "120 × 365 = 43 800",
+    "nota": "litros desperdiçados no ano"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ },
+ "Pfeeddf12": {
+  "n": "33",
+  "conceito": "Contar quantos cubos cabem na caixa e resolver 2^t = N com logaritmos da tabela.",
+  "equivocos": {
+   "B": "M02.4:leu-volume-como-aresta",
+   "C": "M02.4:erro-no-numero-de-cubos",
+   "D": "M02.4:erro-no-numero-de-cubos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro descubra quantos cubos enchem a caixa: volume da caixa dividido pelo volume de um cubo (o 0,5 cm³ já é o volume do cubo, não a aresta). Como o número de cubos dobra a cada minuto, depois de t minutos há 2^t cubos. A tabela dá log 2 ≈ 0,30 e log 4 ≈ 0,60 para resolver a equação exponencial.",
+    "formulas": [
+     "V = comprimento × largura × altura",
+     "cubos após t minutos = 2^t",
+     "log(a · b) = log a + log b ; log 2^t = t · log 2"
+    ],
+    "simbolos": [
+     [
+      "log",
+      "logaritmo na base 10: log 10^x = x"
+     ],
+     [
+      "t",
+      "tempo em minutos"
+     ],
+     [
+      "cm³",
+      "centímetro cúbico, unidade de volume"
+     ]
+    ]
+   },
+   "pista": "Calcule o volume da caixa e veja quantos cubinhos de 0,5 cm³ cabem nela.",
+   "passos": [
+    {
+     "faz": "Calcule o volume da caixa",
+     "conta": "V = 25 × 10 × 8 = 2000 cm³",
+     "porque": "Volume do paralelepípedo é o produto das três dimensões.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule quantos cubos enchem a caixa",
+     "conta": "2000/0,5 = 4000 cubos",
+     "porque": "Cada cubo ocupa 0,5 cm³; dividir o volume total pelo de um cubo dá a quantidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a equação do tempo",
+     "conta": "2^t = 4000",
+     "porque": "Começa com 1 cubo e dobra a cada minuto: 1, 2, 4, 8... ou seja, 2^t depois de t minutos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique log com a tabela",
+     "conta": "t · log 2 = log 4 + log 1000 → t · 0,30 = 0,60 + 3 → t = 3,60/0,30 = 12",
+     "porque": "4000 = 4 × 10³; a tabela dá log 4 = 0,60 e log 2 = 0,30.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque o tempo",
+     "conta": "t = 12 minutos",
+     "porque": "É o tempo pedido para encher a caixa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 12 minutos",
+   "checagem": "Sem logaritmo: 2^10 = 1024, logo 2^12 = 4 × 1024 = 4096 ≈ 4000 cubos; e 2^11 = 2048 ainda não enche a caixa.",
+   "erradas": {
+    "B": "B sai de tratar 0,5 cm como aresta: cubo de 0,125 cm³ dá 2000/0,125 = 16 000 = 2⁴ × 10³ cubos; t · 0,30 = 4 · 0,30 + 3 → t = 14.",
+    "C": "C não confere: 2^16 = 65 536 cubos ocupariam 32 768 cm³, muito mais que os 2000 cm³ da caixa.",
+    "D": "D não confere: 2^18 = 262 144 cubos ocupariam 131 072 cm³, muito mais que os 2000 cm³ da caixa."
+   },
+   "armadilha": "Ler 0,5 cm³ como medida da aresta do cubo, o que multiplica a quantidade de cubos.",
+   "alerta": "Com os valores exatos, 2^12 = 4096 passa um pouco dos 4000 cubos (t exato ≈ 11,97); o 12 sai das aproximações da tabela que a própria questão manda usar.",
+   "essencial": {
+    "pede": "Em quantos minutos a caixa fica cheia.",
+    "chave": "4000 cubos e 2^t = 4000, resolvido com log 2 = 0,30 e log 4 = 0,60.",
+    "cuidado": "0,5 cm³ é o volume do cubo, não a aresta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "potências de 2",
+    "ideia": "2^10 = 1024, então 2^12 = 4096 ≈ 4000: são 12 minutos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V = 25 × 10 × 8 = 2000",
+    "nota": "volume da caixa em cm³"
+   },
+   {
+    "linha": "N = 2000/0,5 = 4000",
+    "nota": "cubos que enchem a caixa"
+   },
+   {
+    "linha": "2^t = 4000",
+    "nota": "cubos dobram a cada minuto"
+   },
+   {
+    "linha": "t · 0,30 = 0,60 + 3",
+    "nota": "log dos dois lados, 4000 = 4 × 10³"
+   },
+   {
+    "linha": "t = 3,60/0,30 = 12",
+    "nota": "o 0,30 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ },
+ "P5945a86f": {
+  "n": "30",
+  "conceito": "Resolver inequação do 2º grau pelas raízes e pelo sinal da parábola, e testar os candidatos.",
+  "equivocos": {
+   "A": "M04.4:sinal-entre-as-raizes",
+   "B": "M04.4:sinal-entre-as-raizes",
+   "C": "M04.4:aceitou-raiz-em-desigualdade-estrita"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Uma expressão do 2º grau com a > 0 é positiva FORA das raízes e negativa entre elas. Então ache as raízes de N² − 17N + 16 e veja qual alternativa fica fora do intervalo entre elas. Atenção ao sinal estrito: \"> 0\" não aceita a raiz, onde a expressão vale zero.",
+    "formulas": [
+     "N² − SN + P = 0: raízes somam S e multiplicam P",
+     "a > 0: positivo fora das raízes"
+    ],
+    "simbolos": [
+     [
+      "N",
+      "número inteiro positivo procurado"
+     ],
+     [
+      "S, P",
+      "soma e produto das raízes"
+     ]
+    ]
+   },
+   "pista": "Descubra os dois números que somam 17 e multiplicam 16.",
+   "passos": [
+    {
+     "faz": "Ache as raízes",
+     "conta": "N² − 17N + 16 = 0 → soma 17, produto 16 → N = 1 ou N = 16",
+     "porque": "1 + 16 = 17 e 1 · 16 = 16, então a expressão se fatora em (N − 1)(N − 16).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Estude o sinal",
+     "conta": "(N − 1)(N − 16) > 0 → N < 1 ou N > 16",
+     "porque": "O coeficiente de N² é positivo: a parábola abre para cima e fica positiva fora das raízes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste as alternativas",
+     "conta": "2 e 7: entre 1 e 16 | 16: raiz, vale 0 | 17 > 16",
+     "porque": "Só um valor maior que 16 deixa a expressão positiva.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Confirme e marque",
+     "conta": "17² − 17 · 17 + 16 = 289 − 289 + 16 = 16 > 0",
+     "porque": "Substituir confirma o sinal positivo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 17",
+   "checagem": "Fatorado: (17 − 1)(17 − 16) = 16 · 1 = 16 > 0, o mesmo valor da substituição direta.",
+   "erradas": {
+    "A": "A não confere: 2² − 17 · 2 + 16 = 4 − 34 + 16 = −14, negativo.",
+    "B": "B não confere: 7² − 17 · 7 + 16 = 49 − 119 + 16 = −54, negativo.",
+    "C": "C sai de tratar a inequação como \"≥ 0\": 16 é raiz, 256 − 272 + 16 = 0, e 0 não é maior que 0."
+   },
+   "armadilha": "Marcar a raiz 16 esquecendo que a desigualdade é estrita (> 0).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual inteiro positivo deixa N² − 17N + 16 positivo.",
+    "chave": "Raízes 1 e 16; positivo só para N < 1 ou N > 16.",
+    "cuidado": "Na raiz a expressão vale zero, e zero não é > 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "substituição",
+    "ideia": "Troque N por cada alternativa: 2 dá −14, 7 dá −54, 16 dá 0 e só 17 dá 16 > 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "N² − 17N + 16 > 0",
+    "nota": "inequação dada"
+   },
+   {
+    "linha": "(N − 1)(N − 16) > 0",
+    "nota": "raízes 1 e 16: soma 17, produto 16"
+   },
+   {
+    "linha": "N < 1 ou N > 16",
+    "nota": "parábola para cima: positiva fora das raízes"
+   },
+   {
+    "linha": "N = 17",
+    "nota": "único candidato maior que 16"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ },
+ "P9a2e50a7": {
+  "n": "32",
+  "conceito": "Comparar duas expressões da área do círculo para achar o valor aproximado de π que uma regra prática usa.",
+  "equivocos": {
+   "A": "M08.3:valor-fora-da-ordem-de-pi",
+   "B": "M08.3:quadrado-so-do-numerador",
+   "C": "M08.3:valor-fora-da-ordem-de-pi"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A regra prática diz: área ≈ (8/9 do diâmetro)². A fórmula exata, escrita com o diâmetro, é π·d²/4. Igualando as duas, o d² cancela e sobra o número que faz o papel de π.",
+    "formulas": [
+     "A = π·r², com r = d/2 → A = π·d²/4",
+     "regra prática: A ≈ (8/9 · d)²"
+    ],
+    "simbolos": [
+     [
+      "d",
+      "diâmetro do círculo"
+     ],
+     [
+      "r",
+      "raio, metade do diâmetro"
+     ],
+     [
+      "π",
+      "pi, aproximadamente 3,14"
+     ]
+    ]
+   },
+   "pista": "Escreva a área do círculo usando o diâmetro, não o raio, e só então compare com a regra.",
+   "passos": [
+    {
+     "faz": "Escreva a área pelo diâmetro",
+     "conta": "A = π·r² → A = π·(d/2)² → A = π·d²/4",
+     "porque": "A regra prática fala em diâmetro; para comparar, a fórmula exata tem de estar em d também.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desenvolva a regra prática",
+     "conta": "(8/9 · d)² = 64/81 · d²",
+     "porque": "O quadrado vale para o 8 e para o 9: 8² = 64 e 9² = 81.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale as duas expressões",
+     "conta": "π·d²/4 = 64/81 · d² → π/4 = 64/81",
+     "porque": "Os dois lados têm d², que cancela; o que sobra diz qual número substitui π.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole π",
+     "conta": "π/4 = 64/81 → π = (64·4)/81 → π = 256/81",
+     "porque": "O 4 que divide passa para o outro lado multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "256/81 → alternativa D",
+     "porque": "Esse é o número racional que a regra usa no lugar de π.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 256/81",
+   "checagem": "256 ÷ 81 ≈ 3,16, bem perto de π ≈ 3,14, como uma aproximação tem de ser. As outras dão 14,2 (A), 28,4 (B) e 1,58 (C), longe de π.",
+   "erradas": {
+    "A": "128/9 não confere: vale cerca de 14,2, mais de quatro vezes π, e não pode ser uma aproximação de π.",
+    "B": "256/9 sai de elevar ao quadrado só o numerador: (8/9)² escrito como 64/9, e 64/9 × 4 = 256/9. O 9 também vai ao quadrado: 81.",
+    "C": "128/81 não confere: vale cerca de 1,58, a metade de 256/81, e fica longe de π ≈ 3,14."
+   },
+   "armadilha": "A regra usa o diâmetro: se você igualar a π·d² (esquecendo que r = d/2), o 4 some da conta e o valor sai errado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número racional que a regra (8/9 · d)² usa no lugar de π.",
+    "chave": "π·d²/4 = 64/81 · d², então π = 256/81.",
+    "cuidado": "Escreva a área com o diâmetro (π·d²/4) e eleve ao quadrado o 8 e o 9."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por estimativa",
+    "ideia": "Só 256/81 ≈ 3,16 está perto de π; as outras alternativas ficam longe de 3,14."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A = π·(d/2)² = π·d²/4",
+    "nota": "área com o diâmetro"
+   },
+   {
+    "linha": "(8/9 · d)² = 64/81 · d²",
+    "nota": "regra prática ao quadrado"
+   },
+   {
+    "linha": "π·d²/4 = 64/81 · d²",
+    "nota": "igualar as duas áreas"
+   },
+   {
+    "linha": "π/4 = 64/81",
+    "nota": "d² cancela"
+   },
+   {
+    "linha": "π = 256/81",
+    "nota": "o 4 passa multiplicando"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ },
+ "P7229c775": {
+  "n": "31",
+  "conceito": "Ler pontos do gráfico de f(x) = 2sen(x) para achar base e altura de um retângulo.",
+  "equivocos": {
+   "A": "M10.5:base-errada",
+   "B": "M10.5:base-medida-da-origem",
+   "D": "M10.5:base-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O retângulo tem os vértices de baixo no eixo x e os de cima nos máximos A e B. A base é a distância horizontal entre x = π/2 e x = 5π/2; a altura é o valor máximo da função. O valor máximo de 2sen(x) é 2, porque o seno vale no máximo 1.",
+    "formulas": [
+     "área do retângulo = base × altura",
+     "máximo de 2sen(x) = 2 · 1 = 2"
+    ],
+    "simbolos": [
+     [
+      "sen(x)",
+      "seno de x, que varia entre −1 e 1"
+     ],
+     [
+      "π",
+      "pi; no eixo x, os ângulos estão em radianos"
+     ],
+     [
+      "f(x)",
+      "valor da função em x, a altura do gráfico"
+     ]
+    ]
+   },
+   "pista": "Diga as coordenadas de D e de C no eixo x; a base é a diferença entre elas.",
+   "passos": [
+    {
+     "faz": "Localize os vértices no eixo x",
+     "conta": "D: x = π/2 | C: x = 5π/2",
+     "porque": "D fica sob A e C fica sob B, e o enunciado diz que A e B estão em x = π/2 e x = 5π/2.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a base",
+     "conta": "DC = 5π/2 − π/2 → DC = 4π/2 → DC = 2π",
+     "porque": "A base é a distância entre os dois x, a diferença entre o maior e o menor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a altura",
+     "conta": "AD = f(π/2) = 2·sen(π/2) → AD = 2·1 → AD = 2",
+     "porque": "A altura vai do eixo x até o ponto A, que é o valor da função em π/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área",
+     "conta": "área = 2π × 2 → área = 4π",
+     "porque": "Retângulo: base vezes altura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "4π → alternativa C",
+     "porque": "A área pedida é 4π.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 4π",
+   "checagem": "A base é exatamente um período de 2sen(x), que é 2π (de um máximo ao seguinte). Com altura 2, a área é 2π · 2 = 4π. Fecha.",
+   "erradas": {
+    "A": "6π não confere: com altura 2, a base teria de ser 3π, mas de π/2 a 5π/2 a distância é 2π.",
+    "B": "5π sai de usar a coordenada de B como base: 5π/2 × 2 = 5π. A base começa em π/2, não em 0, e mede 5π/2 − π/2 = 2π.",
+    "D": "3π não confere: com altura 2, a base teria de ser 3π/2, mas a distância de D a C é 2π."
+   },
+   "armadilha": "Tomar 5π/2 como base, esquecendo que o retângulo começa em x = π/2 e não na origem.",
+   "alerta": "No gráfico da prova, o último zero marcado no eixo x, depois de 5π/2, aparece como 5π; pela função 2sen(x), ele é 3π. O erro de rótulo não muda a conta, que usa só π/2 e 5π/2.",
+   "essencial": {
+    "pede": "A área do retângulo ABCD sob o gráfico de f(x) = 2sen(x).",
+    "chave": "Base 5π/2 − π/2 = 2π e altura f(π/2) = 2; área 4π.",
+    "cuidado": "Subtraia o x de D do x de C; a base não começa na origem."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "período",
+    "ideia": "De um máximo ao seguinte passa um período, 2π; vezes a altura máxima 2 dá 4π."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "DC = 5π/2 − π/2",
+    "nota": "base: diferença dos x"
+   },
+   {
+    "linha": "DC = 4π/2 = 2π",
+    "nota": "simplificar"
+   },
+   {
+    "linha": "AD = 2·sen(π/2) = 2·1 = 2",
+    "nota": "altura: valor máximo"
+   },
+   {
+    "linha": "área = 2π × 2 = 4π",
+    "nota": "base vezes altura"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ }
+}

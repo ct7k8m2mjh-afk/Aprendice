@@ -1,0 +1,588 @@
+{
+ "P2d2db38a": {
+  "n": "36",
+  "conceito": "Converter a massa das latas em toneladas, calcular a energia da produção primária e tirar 95% dela como economia.",
+  "equivocos": {
+   "A": "M02.2:economia-maior-que-o-total",
+   "B": "M02.2:nao-aplicou-a-porcentagem",
+   "C": "M02.2:economia-maior-que-o-total",
+   "E": "M02.2:porcentagem-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto dá a peça decisiva: reciclar consome 95% menos energia que produzir do zero. Logo, a energia economizada é 95% da que a produção primária gastaria. Antes, converta a massa das latas de grama para tonelada, a unidade do consumo dado.",
+    "formulas": [
+     "economia = 95% · (consumo da produção primária)",
+     "1 t = 1 000 000 g"
+    ],
+    "simbolos": [
+     [
+      "t",
+      "tonelada, 1 000 kg ou 1 000 000 g"
+     ],
+     [
+      "kWh",
+      "quilowatt-hora, unidade de energia elétrica"
+     ]
+    ]
+   },
+   "pista": "Primeiro descubra quantas toneladas de alumínio há nas latas.",
+   "passos": [
+    {
+     "faz": "Calcule a massa total",
+     "conta": "m = 20 000 · 15 g → m = 300 000 g",
+     "porque": "Cada lata tem 15 g, em média.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta para tonelada",
+     "conta": "300 000 g ÷ 1 000 000 → 0,3 t",
+     "porque": "O consumo de energia é dado por tonelada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a energia da produção primária",
+     "conta": "E = 0,3 · 15 000 → E = 4 500 kWh",
+     "porque": "Seria o gasto para produzir essa massa a partir da bauxita.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a economia",
+     "conta": "economia = 0,95 · 4 500 → economia = 4 275 kWh",
+     "porque": "Reciclar gasta 95% menos: esses 95% são a economia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "4 275 kWh",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 4 275 kWh.",
+   "checagem": "A reciclagem gasta só 5%: 0,05 · 4 500 = 225 kWh. Gasto + economia = 225 + 4 275 = 4 500 kWh, o consumo da produção primária.",
+   "erradas": {
+    "A": "A não confere: 5 750 kWh passa do consumo total da produção primária (4 500 kWh), e a economia não pode ser maior que o próprio consumo.",
+    "B": "B sai de parar no consumo da produção primária: 0,3 · 15 000 = 4 500 kWh, sem aplicar os 95%.",
+    "C": "C não confere: 5 250 kWh também passa dos 4 500 kWh do consumo total.",
+    "E": "E sai de usar 90% em vez de 95%: 0,9 · 4 500 = 4 050 kWh."
+   },
+   "armadilha": "Parar nos 4 500 kWh: esse é o gasto da produção primária; a economia é 95% dele.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a energia economizada com a reciclagem das latas",
+    "chave": "massa em toneladas · 15 000 kWh · 0,95",
+    "cuidado": "converter grama em tonelada antes de multiplicar"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "regra de três",
+    "ideia": "1 t ↔ 15 000 · 0,95 = 14 250 kWh economizados; 0,3 t ↔ 0,3 · 14 250 = 4 275 kWh."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "20 000 · 15 g = 300 000 g",
+    "nota": "massa das latas"
+   },
+   {
+    "linha": "300 000 g ÷ 1 000 000 = 0,3 t",
+    "nota": "grama para tonelada"
+   },
+   {
+    "linha": "0,3 · 15 000 = 4 500 kWh",
+    "nota": "produção primária"
+   },
+   {
+    "linha": "0,95 · 4 500 = 4 275 kWh",
+    "nota": "95% economizados"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ },
+ "P8d7188aa": {
+  "n": "37",
+  "conceito": "Achar a constante k da função quadrática pela dose ingerida e calcular Q(4).",
+  "equivocos": {
+   "A": "M05.2:erro-na-substituicao",
+   "B": "M05.2:trocou-quadrado-por-dobro",
+   "D": "M05.2:erro-na-substituicao",
+   "E": "M05.2:sinal-do-quadrado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O k é a quantidade inicial de medicamento, e ela sai da dose: 5 mL de um xarope com 10 mg em cada mL. Com k conhecido, basta substituir t = 4 na função, com cuidado no sinal do −t².",
+    "formulas": [
+     "massa = concentração · volume",
+     "Q(t) = −t² − 5t + k"
+    ],
+    "simbolos": [
+     [
+      "k",
+      "quantidade inicial de medicamento, em mg"
+     ],
+     [
+      "mg/mL",
+      "miligramas de medicamento em cada mililitro"
+     ]
+    ]
+   },
+   "pista": "Descubra quantos miligramas o paciente tomou: esse é o k.",
+   "passos": [
+    {
+     "faz": "Ache k",
+     "conta": "k = 10 mg/mL · 5 mL = 50 mg",
+     "porque": "Em cada mL há 10 mg; em 5 mL, cinco vezes isso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a função completa",
+     "conta": "Q(t) = −t² − 5t + 50",
+     "porque": "O k é o valor da função em t = 0: Q(0) = 50.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua t = 4",
+     "conta": "Q(4) = −(4²) − 5 · 4 + 50 = −16 − 20 + 50",
+     "porque": "O sinal de menos fica fora do quadrado: −4² = −16.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a conta",
+     "conta": "−16 − 20 + 50 = 14",
+     "porque": "Some os negativos e tire de 50.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "14 mg",
+     "porque": "É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 14 mg.",
+   "checagem": "Q(0) = 50 mg (a dose), Q(4) = 14 mg e Q(5) = −25 − 25 + 50 = 0: a quantidade cai até zerar no fim do intervalo, coerente com 0 ≤ t ≤ 5.",
+   "erradas": {
+    "A": "A não confere: Q(4) = 31 exigiria −t² − 5t = −19 em t = 4, mas o valor é −16 − 20 = −36.",
+    "B": "B sai de trocar t² por 2t: −8 − 20 + 50 = 22.",
+    "D": "D não confere: Q(4) = 10 exigiria −t² − 5t = −40 em t = 4, mas o valor é −36.",
+    "E": "E sai de errar o sinal do quadrado, 4² com sinal de mais: 16 − 20 + 50 = 46."
+   },
+   "armadilha": "−t² com t = 4 é −16, não +16: o sinal de menos não entra no quadrado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a quantidade de medicamento após 4 horas",
+    "chave": "k = 10 · 5 = 50 mg e Q(4) = −16 − 20 + 50",
+    "cuidado": "o sinal de −t²"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fatorar",
+    "ideia": "Q(t) = 50 − t(t + 5); em t = 4: 50 − 4 · 9 = 50 − 36 = 14."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "k = 10 · 5 = 50 mg",
+    "nota": "dose inicial"
+   },
+   {
+    "linha": "Q(4) = −4² − 5 · 4 + 50",
+    "nota": "substituir t = 4"
+   },
+   {
+    "linha": "Q(4) = −16 − 20 + 50",
+    "nota": "potência e produto"
+   },
+   {
+    "linha": "Q(4) = 14 mg",
+    "nota": "resultado"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ },
+ "P7a117cd4": {
+  "n": "38",
+  "conceito": "Contar as reformas pelo princípio multiplicativo, separando os casos da parede da TV e descontando a escolha igual às outras paredes.",
+  "equivocos": {
+   "A": "M13.1:nao-multiplicou-um-dos-casos",
+   "B": "M13.1:ignorou-a-restricao",
+   "C": "M13.1:opcoes-erradas-das-outras-paredes",
+   "D": "M13.1:contou-so-um-caso"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Comece pelas três paredes iguais: textura e cor dão as opções delas. Depois conte as opções da parede da TV, que pode usar papel ou textura com pintura, mas não pode repetir exatamente a combinação das outras três. Essa restrição tira uma opção.",
+    "formulas": [
+     "princípio multiplicativo: escolhas em sequência se multiplicam",
+     "casos separados (ou) se somam"
+    ],
+    "simbolos": [
+     [
+      "textura + pintura",
+      "escolha de 1 entre 2 texturas e 1 entre 5 cores"
+     ]
+    ]
+   },
+   "pista": "Quantas combinações de textura e cor existem?",
+   "passos": [
+    {
+     "faz": "Conte as opções das três paredes",
+     "conta": "2 texturas · 5 cores = 10",
+     "porque": "As três ficam iguais: é uma única escolha para as três.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte a TV com papel",
+     "conta": "2 papéis",
+     "porque": "Papel já é diferente de textura com pintura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte a TV com textura",
+     "conta": "10 − 1 = 9",
+     "porque": "Ela não pode repetir a combinação escolhida para as outras paredes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique",
+     "conta": "10 · (2 + 9) = 10 · 11 = 110",
+     "porque": "Para cada escolha das três paredes, há 11 escolhas para a TV.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "110 maneiras",
+     "porque": "É a alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 110 maneiras.",
+   "checagem": "Pelo complementar: sem restrição seriam 10 · (2 + 10) = 120; os casos proibidos (TV igual às outras) são 10; 120 − 10 = 110.",
+   "erradas": {
+    "A": "A sai de não multiplicar o caso do papel pelas 10 escolhas das outras paredes: 10 · 9 + 2 = 92.",
+    "B": "B sai de ignorar a restrição: 10 · (2 + 10) = 120.",
+    "C": "C não confere: 132 = 12 · 11, mas as outras paredes têm 10 opções, não 12 (só usam textura com pintura).",
+    "D": "D sai de contar só o caso do papel: 2 · 10 = 20."
+   },
+   "armadilha": "Esquecer que a parede da TV não pode repetir a textura e a cor das outras: isso tira uma opção de cada caso.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o número de maneiras de reformar a sala",
+    "chave": "10 escolhas para as três paredes e 2 + 9 para a TV",
+    "cuidado": "descontar a combinação repetida"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "Total sem restrição 10 · 12 = 120, menos os 10 casos com a TV igual às outras: 110."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "outras paredes: 2 · 5 = 10",
+    "nota": "textura e cor"
+   },
+   {
+    "linha": "TV: 2 + (10 − 1) = 11",
+    "nota": "papel ou textura diferente"
+   },
+   {
+    "linha": "total: 10 · 11 = 110",
+    "nota": "princípio multiplicativo"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ },
+ "P8e7be28a": {
+  "n": "39",
+  "conceito": "Usar a raiz comum de f e g para achar m e os cortes no eixo y, e calcular a área do triângulo com log 5 = 1 − log 2.",
+  "equivocos": {
+   "A": "M06.3:log-5-calculado-errado",
+   "C": "M06.3:usou-log-2-no-lugar-de-log-5",
+   "D": "M06.3:log-5-calculado-errado",
+   "E": "M06.3:log-5-calculado-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "P é raiz das duas funções: a raiz de g dá P, e f se anular em P dá m. Q e R estão no eixo y, então QR é a base, vertical, e a altura é a distância de P até o eixo y. O log 5 sai de log 2: log 5 = log (10/2) = 1 − log 2.",
+    "formulas": [
+     "área = base · altura/2",
+     "log a = 0 ⟺ a = 1",
+     "log 5 = log 10 − log 2"
+    ],
+    "simbolos": [
+     [
+      "log",
+      "logaritmo na base 10"
+     ],
+     [
+      "raiz",
+      "valor de x em que a função vale zero"
+     ]
+    ]
+   },
+   "pista": "Comece pela função mais simples: onde g se anula?",
+   "passos": [
+    {
+     "faz": "Ache P pela raiz de g",
+     "conta": "−x − 4 = 0 → x = −4 → P(−4, 0)",
+     "porque": "P é raiz de g.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache m",
+     "conta": "f(−4) = log (−4 + m) = 0 → −4 + m = 1 → m = 5",
+     "porque": "P também é raiz de f, e log a = 0 só quando a = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache Q e R",
+     "conta": "Q: f(0) = log 5 = 1 − 0,30 = 0,70 → Q(0; 0,70) | R: g(0) = −4 → R(0, −4)",
+     "porque": "Os dois estão no eixo y, onde x = 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule base e altura",
+     "conta": "QR = 0,70 − (−4) = 4,70 | altura = distância de P ao eixo y = 4",
+     "porque": "QR fica sobre o eixo y; a altura é horizontal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área",
+     "conta": "(4,70 · 4)/2 = 9,40",
+     "porque": "É a alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 9,40.",
+   "checagem": "Pela figura, Q está pouco acima da origem (0,70 < 1) e R bem abaixo (−4): QR um pouco maior que 4 confere. Pelo determinante de P(−4, 0), Q(0; 0,7) e R(0, −4): |−4 · (0,7 + 4)|/2 = 9,4.",
+   "erradas": {
+    "A": "A não confere: 8,30 exigiria QR = 4,15, isto é, log 5 = 0,15, mas log 5 = 0,70.",
+    "C": "C sai de usar log 5 = log 2 = 0,30: QR = 4,30 e (4,30 · 4)/2 = 8,60.",
+    "D": "D não confere: 9,00 exigiria QR = 4,50, isto é, log 5 = 0,50, mas log 5 = 1 − 0,30 = 0,70.",
+    "E": "E não confere: 9,20 exigiria log 5 = 0,60, que é log 4 = 2 · 0,30, não log 5."
+   },
+   "armadilha": "log 5 não é dado: sai de log 5 = log (10/2) = 1 − 0,30 = 0,70, e não do próprio log 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a área do triângulo PQR",
+    "chave": "P = raiz comum, m = 5, log 5 = 1 − log 2",
+    "cuidado": "calcular log 5 a partir de log 2 corretamente"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "dividir em dois triângulos",
+    "ideia": "Triângulo PQO: 4 · 0,7/2 = 1,4; triângulo POR: 4 · 4/2 = 8; soma 9,4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "−x − 4 = 0 → P(−4, 0)",
+    "nota": "raiz de g"
+   },
+   {
+    "linha": "log (−4 + m) = 0 → m = 5",
+    "nota": "raiz de f"
+   },
+   {
+    "linha": "log 5 = 1 − 0,30 = 0,70",
+    "nota": "Q(0; 0,70) e R(0, −4)"
+   },
+   {
+    "linha": "QR = 4,70 | h = 4",
+    "nota": "base e altura"
+   },
+   {
+    "linha": "A = (4,70 · 4)/2 = 9,40",
+    "nota": "área"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ },
+ "Pa98fb96c": {
+  "n": "40",
+  "conceito": "Aplicar Pitágoras nos dois triângulos retângulos laterais do trapézio, que têm a mesma altura, e usar diferença de quadrados.",
+  "equivocos": {
+   "B": "M09.1:erro-na-diferenca-de-quadrados",
+   "C": "M09.1:erro-na-diferenca-de-quadrados",
+   "D": "M09.1:erro-na-diferenca-de-quadrados",
+   "E": "M09.1:erro-na-diferenca-de-quadrados"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As duas alturas BF e CE são iguais. Pitágoras nos dois triângulos laterais dá duas expressões para a mesma altura; igualando, aparece y² − x², que é (y − x)(y + x). E y + x sai das bases: 80 − 55 = 25. Nem é preciso achar a altura.",
+    "formulas": [
+     "Pitágoras: hipotenusa² = cateto² + cateto²",
+     "y² − x² = (y − x)(y + x)"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "AF"
+     ],
+     [
+      "y",
+      "DE"
+     ],
+     [
+      "h",
+      "altura do trapézio (BF = CE)"
+     ]
+    ]
+   },
+   "pista": "Quanto vale AF + DE? Olhe a base maior.",
+   "passos": [
+    {
+     "faz": "Some os pedaços da base",
+     "conta": "x + 55 + y = 80 → x + y = 25",
+     "porque": "FE = BC = 55, porque BCEF é um retângulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Pitágoras nos dois lados",
+     "conta": "h² = 15² − x² = 225 − x² | h² = (5√17)² − y² = 425 − y²",
+     "porque": "As duas alturas são iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale e isole",
+     "conta": "225 − x² = 425 − y² → y² − x² = 200",
+     "porque": "O 425 passa subtraindo e os quadrados trocam de lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore",
+     "conta": "(y − x)(y + x) = 200 → (y − x) · 25 = 200 → y − x = 200/25 = 8",
+     "porque": "A soma 25 já é conhecida; o 25 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "DE − AF = 8 cm",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 8 cm.",
+   "checagem": "Com y + x = 25 e y − x = 8: y = 16,5 e x = 8,5. Então h² = 225 − 72,25 = 152,75 e 425 − 272,25 = 152,75: as duas alturas batem.",
+   "erradas": {
+    "B": "B não confere: com y − x = 9, y² − x² = 9 · 25 = 225, e não 200.",
+    "C": "C não confere: com y − x = 6, y² − x² = 6 · 25 = 150 ≠ 200.",
+    "D": "D não confere: com y − x = 5, y² − x² = 5 · 25 = 125 ≠ 200.",
+    "E": "E não confere: com y − x = 10, y² − x² = 10 · 25 = 250 ≠ 200."
+   },
+   "armadilha": "Tentar achar a altura primeiro (ou supor o triângulo 9-12-15): o caminho certo iguala as duas expressões da altura e usa diferença de quadrados.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a diferença DE − AF",
+    "chave": "mesma altura nos dois triângulos e y² − x² = (y − x)(y + x)",
+    "cuidado": "x + y = 80 − 55 = 25, não 80"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "achar x e y",
+    "ideia": "Resolva o sistema x + y = 25 e y − x = 8: x = 8,5 e y = 16,5, e a diferença é 8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x + y = 80 − 55 = 25",
+    "nota": "base maior menos a menor"
+   },
+   {
+    "linha": "225 − x² = 425 − y²",
+    "nota": "mesma altura"
+   },
+   {
+    "linha": "y² − x² = 200",
+    "nota": "isolar os quadrados"
+   },
+   {
+    "linha": "(y − x) · 25 = 200 → y − x = 8",
+    "nota": "diferença de quadrados; o 25 passa dividindo"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ }
+}
