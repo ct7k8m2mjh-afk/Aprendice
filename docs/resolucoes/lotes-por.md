@@ -1,4 +1,4 @@
-# Português (parte 1): resoluções (gerado por lote.py em 2026-11-20)
+# Português (parte 1): resoluções (gerado por lote.py em 2026-11-27)
 
 Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com divergência): ENEM nível 1-6 0; provas-alvo nível 1-6 0; demais nível 1-6 0; ENEM nível 7-10 0; provas-alvo nível 7-10 0; demais nível 7-10 0.
 
@@ -114,6 +114,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | por-0106 | ENEM nível 7-10 | 50 | gravado | 50 | 0 | 0 |
 | por-0107 | provas-alvo nível 7-10 | 50 | gravado | 49 | 1 | 0 |
 | por-0108 | demais nível 7-10 | 22 | gravado | 22 | 0 | 0 |
+| por-0109 | provas-alvo nível 1-6 | 34 | gravado | 34 | 0 | 0 |
 | por-pend-0001 | pendentes obra | 25 | gravado | 23 | 2 | 0 |
 | por-pend-0002 | pendentes obra | 25 | gravado | 25 | 0 | 0 |
 | por-pend-0003 | pendentes obra | 25 | gravado | 25 | 0 | 0 |
