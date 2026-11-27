@@ -7,7 +7,7 @@ import { Anel, Barra, Carregando, formataTempo, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { EnunciadoQuestao } from '../ui/QuestaoCartao';
 import { useProvaCompleta } from '../dados/provasCompletas';
-import { grupoDoItem, questaoDoItem } from './SimuladoExec';
+import { CabQuestaoSim, grupoDoItem, nomeConteudoDoItem, questaoDoItem } from './SimuladoExec';
 import { ResolucaoView } from '../ui/Resolucao';
 import type { MateriaId, Resolucao } from '../dados/tipos';
 
@@ -31,6 +31,11 @@ export function SimuladoResultado() {
   if (!todas) return <div className="conteudo"><Carregando /></div>;
   const pct = f.total ? f.acertos / f.total : 0;
   const nRev = f.itens.filter((x) => !x.ok).length;
+  // prova completa: acertos por matéria contados na hora pelos itens (a classificação da questão, não a área impressa
+  // na prova; dono, 27/11/2026), o que corrige também os resultados já salvos
+  const grupos = f.itens[0]?.p
+    ? Object.entries(f.itens.reduce<Record<string, { acertos: number; total: number }>>((a, x) => { const g = grupoDoItem(x); const v = a[g] || { acertos: 0, total: 0 }; v.total++; if (x.ok) v.acertos++; a[g] = v; return a; }, {}))
+    : f.porArea ? Object.entries(f.porArea) : (Object.entries(f.porMateria) as [MateriaId, { acertos: number; total: number }][]).map(([m, p]) => [nomeMateria(m), p] as const);
   const lista = f.itens.map((x, i) => ({ ...x, n: i + 1 })).filter((x) => filtro === 'todas' || !x.ok);
 
   return (
@@ -45,10 +50,9 @@ export function SimuladoResultado() {
         </div>
       </div>
       <section className="secao">
-        <h2 className="sec-tit">{f.sid.startsWith('conteudo:') ? 'Por conteúdo' : f.porArea ? 'Por área da prova' : 'Por matéria'}</h2>
+        <h2 className="sec-tit">{f.sid.startsWith('conteudo:') ? 'Por conteúdo' : 'Por matéria'}</h2>
         <div className="por-materia">
-          {(f.porArea ? Object.entries(f.porArea) : (Object.entries(f.porMateria) as [MateriaId, { acertos: number; total: number }][]).map(([m, p]) => [nomeMateria(m), p] as const))
-            .map(([g, p]) => (
+          {grupos.map(([g, p]) => (
               <div key={g} className="pm">
                 <span className="pm-nome"><i className="ponto" />{g}</span>
                 <Barra valor={p.acertos / p.total} rotulo={g} />
@@ -71,7 +75,9 @@ export function SimuladoResultado() {
         </div>
         {itAberto && qAberta && (
           <div className={itAberto.m ? `m-${itAberto.m}` : ''} style={{ marginTop: 18 }}>
-            <article className="folha q-cartao"><EnunciadoQuestao q={qAberta} print={qqAberta?.print ?? null} numero={grupoDoItem(itAberto)} /></article>
+            <article className="folha q-cartao"><EnunciadoQuestao q={qAberta} print={qqAberta?.print ?? null} {...(itAberto.p
+                ? { semFonte: true, antes: <CabQuestaoSim n={f.itens.indexOf(itAberto) + 1} grupo={grupoDoItem(itAberto)} nome={nomeConteudoDoItem(itAberto, qAberta.sub, todas)} /> }
+                : { numero: grupoDoItem(itAberto) })} /></article>
             <ResolucaoView q={qAberta} r={qAberta.res || res[qAberta.id]} marcada={itAberto.letra} />
           </div>
         )}

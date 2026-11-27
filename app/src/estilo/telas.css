@@ -450,12 +450,15 @@ a.tit-mat:hover { text-decoration: none; filter: brightness(1.1); }
 .folha-resp { display: grid; grid-template-columns: repeat(auto-fill, minmax(52px, 1fr)); gap: 8px; padding: 14px; margin-bottom: 12px; }
 .fr-q { height: 52px; border-radius: 10px; border: 1px solid var(--linha); background: var(--folha); display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 12px; color: var(--fraco); position: relative; }
 .fr-q b { font-size: 15px; color: var(--tinta); min-height: 1em; }
-.fr-q.resp { background: var(--sv); border-color: color-mix(in srgb, var(--p) 40%, var(--linha)); color: var(--lapis); } /* número ≥ 4,5:1 sobre o véu da matéria também no escuro (revisão de 21/11, N3) */
+.fr-q.resp { background: color-mix(in srgb, var(--tinta) 9%, var(--folha)); border-color: var(--borda2); color: var(--lapis); }
+/* respondida: verde se acertou, vermelho se errou, como o gabarito do resultado (.gq); nunca a cor da matéria (dono, 27/11/2026) */
+.fr-q.resp.ok { background: var(--certo-bg); border-color: color-mix(in srgb, var(--certo) 40%, transparent); } .fr-q.resp.ok b { color: var(--certo); }
+.fr-q.resp.err { background: var(--errado-bg); border-color: color-mix(in srgb, var(--errado) 40%, transparent); } .fr-q.resp.err b { color: var(--errado); }
 .fr-q.marc::after { content: ''; position: absolute; top: 5px; right: 5px; width: 7px; height: 7px; border-radius: 50%; background: var(--aviso); }
 .fr-q.atual { border-color: var(--tinta); box-shadow: inset 0 0 0 1px var(--tinta); }
 .fr-leg { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; font-size: 13px; }
 .fr-dot { width: 10px; height: 10px; border-radius: 3px; display: inline-block; background: var(--malha); }
-.fr-dot.resp { background: var(--tinta); } .fr-dot.marc { background: var(--aviso); border-radius: 50%; }
+.fr-dot.resp { background: color-mix(in srgb, var(--tinta) 9%, var(--folha)); box-shadow: inset 0 0 0 1px var(--borda2); } /* igual à respondida da folha (dono, 27/11/2026) */ .fr-dot.ok { background: var(--certo); } .fr-dot.err { background: var(--errado); } .fr-dot.marc { background: var(--aviso); border-radius: 50%; }
 .res-sim { display: flex; align-items: center; gap: 24px; padding: 26px 28px; flex-wrap: wrap; }
 .res-sim h1 { font-size: 26px; margin-bottom: 6px; }
 .por-materia { display: grid; gap: 4px; }

@@ -150,7 +150,7 @@ function useLarguraPrint(pr: HTMLDivElement | null, src: string | null) {
 
 /** Print fiel da questão original. Sistema do protótipo: etiquetas no topo do cartão (nível, fonte, conteúdo) com o marcador
  *  à direita; o print em papel branco com o pé "Ampliar" e a fonte original (link). */
-export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao }: { m?: MateriaId; q: Questao; numero?: string; print?: string | null; antes?: ReactNode; depois?: ReactNode; acao?: ReactNode }) {
+export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao, semFonte }: { m?: MateriaId; q: Questao; numero?: string; print?: string | null; antes?: ReactNode; depois?: ReactNode; acao?: ReactNode; semFonte?: boolean }) {
   const [lupa, setLupa] = useState(false);
   const [txt, setTxt] = useState(false);
   const src = print !== undefined ? print : m ? urlPrint(m, q.id) : null;
@@ -170,7 +170,7 @@ export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao }: {
       <div className="q-meta">
         {numero && <span className="etq cor">{numero}</span>}
         {antes}
-        <span className="etq q-fonte" title={detalhe ? `${fonte} · ${detalhe}` : fonte}><b>{fonte}</b>{detalhe ? ` · ${detalhe}` : ''}</span>
+        {!semFonte && <span className="etq q-fonte" title={detalhe ? `${fonte} · ${detalhe}` : fonte}><b>{fonte}</b>{detalhe ? ` · ${detalhe}` : ''}</span>}
         {depois}
         {acao ? <span className="q-meta-acao">{acao}</span> : !src && <a className="q-link" href={q.url} target="_blank" rel="noreferrer noopener" title="Abrir a fonte original"><Icone nome="externo" tam={15} /><span className="sr">Fonte original</span></a>}
       </div>

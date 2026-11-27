@@ -15,8 +15,37 @@ import { defineTelaCheia } from '../ui/telaCheia';
 import type { Letra, MateriaId, Questao, Resolucao } from '../dados/tipos';
 import type { ItemSimulado, SimuladoAndamento, SimuladoFeito } from '../estado/tipos';
 
-/** Nome do grupo de um item no resultado: área da prova completa, ou a matéria. */
-export function grupoDoItem(it: { m?: MateriaId; a?: string }): string { return it.a || (it.m ? nomeMateria(it.m) : 'Outras'); }
+/** Nome do grupo de um item. Prova completa: a matéria da questão (classificação do Aprendice); só a questão de matéria
+ *  fora das 9 (sem m) fica com a área da prova. Simulado por conteúdo: o conteúdo.
+ *  Pedido do dono (27/11/2026): a área impressa na prova ("Conhecimentos gerais", "Geografia" numa questão de Sociologia) não serve para o ranking nem para o rótulo. */
+export function grupoDoItem(it: { m?: MateriaId; a?: string; p?: string }): string {
+  if (it.p) return it.m ? nomeMateria(it.m) : it.a || 'Outras';
+  return it.a || (it.m ? nomeMateria(it.m) : 'Outras'); // simulado por conteúdo: a = nome do conteúdo
+}
+
+/** Onde a questão está no site: o tema e o conteúdo (subtema), para a etiqueta ao lado da matéria no simulado
+ *  (dono, 27/11/2026). */
+export function nomeConteudoDoItem(it: { m?: MateriaId } | undefined, sub: string | undefined, todas: MateriaCarregada[] | null): { tema: string; conteudo: string } | null {
+  if (!it?.m || !sub || !todas) return null;
+  const mods = todas.find((x) => x.id === it.m)?.conteudo.modulos || [];
+  for (const md of mods) { const c = md.subs.find((x) => x.id === sub); if (c) return { tema: md.nome, conteudo: c.nome }; }
+  return null;
+}
+
+/** Topo da questão no simulado de prova inteira (dono, 27/11/2026, "forma A"): número num quadradinho; ao lado, em
+ *  cima, "Matéria · tema" e, embaixo, o conteúdo (subtema) em destaque. Substitui as etiquetas de número e de fonte (a
+ *  fonte já está no título do simulado e no pé do print). */
+export function CabQuestaoSim({ n, grupo, nome }: { n: number; grupo: string; nome: { tema: string; conteudo: string } | null }) {
+  return (
+    <div className="q-cab-sim">
+      <span className="q-cab-n num">{n}</span>
+      <span className="q-cab-txt">
+        <span className="q-cab-l1"><b>{grupo}</b>{nome ? ` · ${nome.tema}` : ''}</span>
+        {nome && <span className="q-cab-l2">{nome.conteudo}</span>}
+      </span>
+    </div>
+  );
+}
 
 /** Questão de um item de simulado: da prova completa (p) ou do banco da matéria (m). */
 export function questaoDoItem(it: ItemSimulado | undefined, prova: ProvaCompleta | null | undefined, todas: MateriaCarregada[] | null): { q: Questao; print: string | null } | undefined {
@@ -168,6 +197,11 @@ export function finaliza(sim: SimuladoAndamento, todas: MateriaCarregada[], prov
   return { sid: sim.sid, titulo: sim.titulo, modo: sim.modo, ts, seg: sim.usadoSeg, acertos, total: itens.length, porMateria, porArea, itens };
 }
 
+/** Quando a folha de respostas mostra certo/errado. */
+// "Resolução após cada resposta": verde/vermelho na hora; "Como na prova": cinza até entregar, e as cores aparecem no
+// resultado (dono, 27/11/2026)
+const FOLHA_CORRIGE = (modo: 'prova' | 'treino') => modo === 'treino';
+
 export function SimuladoExec() {
   const e = useEstado();
   const sim = e.simulado;
@@ -284,7 +318,8 @@ export function SimuladoExec() {
         <div className={'q-corpo' + (it.m ? ` m-${it.m}` : '')}>
           <div className={'q-grade' + (revelado ? ' respondida' : '')}>
             <article className="folha q-cartao">
-              <EnunciadoQuestao q={q} print={qq?.print ?? null} numero={`${sim.i + 1} · ${grupoDoItem(it)}`}
+              <EnunciadoQuestao q={q} print={qq?.print ?? null} semFonte
+                antes={<CabQuestaoSim n={sim.i + 1} grupo={grupoDoItem(it)} nome={nomeConteudoDoItem(it, q.sub, todas)} />}
                 acao={<button className={'q-marca' + (sim.marcadas.includes(it.id) ? ' marcado' : '')} onClick={marca} aria-pressed={sim.marcadas.includes(it.id)} aria-label="Revisar depois" title={sim.marcadas.includes(it.id) ? 'Marcada para revisar' : 'Revisar depois'}><Icone nome="bandeira" /></button>} />
               <RespostaCartao q={q} escolha={escolha} aoEscolher={(l) => grava(l)} revelado={revelado} riscadas={riscadas}
                 aoRiscar={(l) => setRiscadas((r) => { const n = new Set(r); n.has(l) ? n.delete(l) : n.add(l); return n; })} mostrarTexto={!!q.transcricao || !qq?.print}>
@@ -306,14 +341,17 @@ export function SimuladoExec() {
                   <div className="folha-resp">
                     {sim.itens.map((x, i) => {
                       const r = sim.resp[x.id];
+                      // respondida: verde se acertou, vermelho se errou; nunca a cor da matéria (dono, 27/11/2026)
+                      const gab = r && FOLHA_CORRIGE(sim.modo) ? questaoDoItem(x, prova, todas)?.q.gab : undefined;
+                      const est = !r ? '' : !gab ? ' resp' : r.letra === gab ? ' resp ok' : ' resp err';
                       return (
-                        <button key={x.id} className={'fr-q' + (i === sim.i ? ' atual' : '') + (r ? ' resp' : '') + (sim.marcadas.includes(x.id) ? ' marc' : '') + (x.m ? ` m-${x.m}` : '')} onClick={() => vai(i)}
-                          aria-label={`Questão ${i + 1}${r ? `, marcada ${r.letra}` : ', em branco'}${sim.marcadas.includes(x.id) ? ', para revisar' : ''}`}>
+                        <button key={x.id} className={'fr-q' + (i === sim.i ? ' atual' : '') + est + (sim.marcadas.includes(x.id) ? ' marc' : '')} onClick={() => vai(i)}
+                          aria-label={`Questão ${i + 1}${r ? `, marcada ${r.letra}` : ', em branco'}${est.includes('ok') ? ', certa' : est.includes('err') ? ', errada' : ''}${sim.marcadas.includes(x.id) ? ', para revisar' : ''}`}>
                           <span className="num">{i + 1}</span><b>{r?.letra || ''}</b>
                         </button>
                       );
                     })}
-                    <p className="fraco fr-leg"><i className="fr-dot resp" /> respondida <i className="fr-dot marc" /> para revisar</p>
+                    <p className="fraco fr-leg">{FOLHA_CORRIGE(sim.modo) ? <><i className="fr-dot ok" /> certa <i className="fr-dot err" /> errada</> : <><i className="fr-dot resp" /> respondida</>} <i className="fr-dot marc" /> para revisar</p>
                   </div>
               </div>
             </aside>
