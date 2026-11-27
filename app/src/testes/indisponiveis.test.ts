@@ -23,11 +23,11 @@ const LISTA = ler<{ questoes: Record<string, { questao: string; motivo: string; 
   join(APP, 'conteudo-fonte', 'indisponiveis.json')).questoes;
 
 describe('lista de questões indisponíveis', () => {
-  it('traz as 53 questões decididas pelo dono em 19/11 (menos a anulada pela UFRR) , as 14 de 20/11 e a Pe436860e (21/11), cada uma com o motivo e o que a banca encontrou', () => {
-    expect(Object.keys(LISTA)).toHaveLength(67); // 52 de 19/11 (P02f0b3a0 saiu: anulada pela própria banca, UFRR) + 14 de 20/11 + Pe436860e (geo, 21/11)
+  it('traz as 53 questões decididas pelo dono em 19/11 (menos a anulada pela UFRR) , as 14 de 20/11 a Pe436860e (21/11) e mais 8 aplicadas em 27/11, cada uma com o motivo e o que a banca encontrou', () => {
+    expect(Object.keys(LISTA)).toHaveLength(75); // 52 de 19/11 (P02f0b3a0 saiu: anulada pela própria banca, UFRR) + 14 de 20/11 + Pe436860e (geo, 21/11) + 3 e 5 (provas novas do Drive) aplicadas em 27/11
     for (const [id, v] of Object.entries(LISTA)) {
       expect(id).toMatch(/^P[0-9a-f]{8}$/);
-      expect(v.motivo).toMatch(/^dono, (19|20)\/11: questão indisponível$/);
+      expect(v.motivo).toMatch(/^dono, (19|20)\/11( \("todas sim"\))?: questão indisponível(; aplicada em \d{2}\/11)?$/);
       expect(v.suspeita.length, id).toBeGreaterThan(20);
     }
   });
@@ -50,7 +50,7 @@ describe.skipIf(!montado)('questões indisponíveis no site', () => {
       expect(q.print).toBeTruthy();
       expect(existsSync(join(PUB, q.print!)), q.print).toBe(true);
     }
-    expect(n).toBe(67);
+    expect(n).toBe(75);
   });
 
   it('aparece na lista do conteúdo (para abrir com o selo) e fica fora de banco, treinos, simulados e contagens', () => {
@@ -68,7 +68,7 @@ describe.skipIf(!montado)('questões indisponíveis no site', () => {
       for (const id of conteudos[mc.id].essencial?.abc || []) expect(ids.has(id), `treino geral ${mc.id}/${id}`).toBe(false);
       for (const id of questoesTreinoGeral(conteudos[mc.id].essencial?.abc || [], mc.banco, todas)) expect(ids.has(id)).toBe(false);
     }
-    expect(vistas).toBe(67);
+    expect(vistas).toBe(75);
   });
 
   it('o progresso do aluno fica guardado, mas a questão não vence na revisão nem entra no progresso do conteúdo', () => {
