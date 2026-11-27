@@ -12,7 +12,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | por-p3-0004 | demais nível 7-10 | 50 | gravado | 50 | 0 | 0 |
 | por-p3-0005 | demais nível 7-10 | 9 | gravado | 7 | 2 | 0 |
 | por-p3-0006 | provas-alvo nível 1-6 | 50 | gravado | 50 | 0 | 0 |
-| por-p3-0007 | demais nível 1-6 | 17 | aberto |  |  |  |
+| por-p3-0007 | demais nível 1-6 | 17 | gravado | 17 | 0 | 0 |
 
 ## Pendentes (falta de certeza absoluta)
 
