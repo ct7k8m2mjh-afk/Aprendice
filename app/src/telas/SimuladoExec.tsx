@@ -5,6 +5,7 @@ import { nomeMateria } from '../dados/materias';
 import { comoQuestao, urlPrintProva, useProvaCompleta, type ProvaCompleta } from '../dados/provasCompletas';
 import { atualiza, atualizaMateria, useEstado } from '../estado/loja';
 import { planoDaProva, planoDoConteudo, type PlanoSimulado } from '../logica/simulados';
+import { abreSimulado, andamentoDaProva, emAndamento } from '../logica/simuladosAndamento';
 import { deFiltro, filtraRegiao } from '../logica/regiao';
 import { useRegiao } from '../ui/FiltroRegiao';
 import { Carregando, formataTempo, plural, useTitulo } from '../ui/comum';
@@ -83,11 +84,18 @@ function ConfigSimulado({ plano, nota, migalha }: { plano: PlanoSimulado; nota?:
   const [modo, setModo] = useState<'prova' | 'treino'>('prova');
   const [cronometrado, setCron] = useState(true);
   const limite = cronometrado ? plano.itens.length * plano.segPorQuestao : null;
+  // vários simulados em andamento (dono, 27/11/2026): este já começado continua; outro aberto fica salvo
+  const jaComecado = andamentoDaProva(e, plano.sid);
+  const outroAberto = e.simulado && e.simulado.sid !== plano.sid ? e.simulado : null;
+  // já começado: as opções mostram (travadas) o que foi escolhido no começo
+  const modoVisto = jaComecado ? jaComecado.modo : modo;
+  const cronVisto = jaComecado ? jaComecado.limiteSeg !== null : cronometrado;
   const porGrupo = plano.itens.reduce<Record<string, number>>((a, x) => { const g = grupoDoItem(x); a[g] = (a[g] || 0) + 1; return a; }, {});
 
   const inicia = () => {
     const s: SimuladoAndamento = { sid: plano.sid, titulo: plano.titulo, modo, itens: plano.itens, resp: {}, marcadas: [], i: 0, limiteSeg: limite, usadoSeg: 0, iniciadoEm: Date.now(), pausado: false };
-    atualiza((x) => ({ ...x, simulado: s }));
+    // o que estava aberto fica salvo como pendente; se esta prova já estava em andamento, ela continua de onde parou
+    atualiza((x) => abreSimulado(x, s));
     nav('/simulado/agora');
   };
 
@@ -98,15 +106,16 @@ function ConfigSimulado({ plano, nota, migalha }: { plano: PlanoSimulado; nota?:
       <div className={'sim-config folha' + (plano.sid.startsWith('conteudo:') ? ` m-${plano.sid.split(':')[1]}` : '')}>
         <div className="sc-linha"><span className="fraco">Questões</span><b className="num">{plano.itens.length}</b><span className="sc-mats">{Object.entries(porGrupo).map(([g, n]) => <span key={g}><i className="ponto" />{g} {n}</span>)}</span></div>
         {nota && <p className="fraco" style={{ fontSize: 14, margin: 0 }}>{nota}</p>}
-        <fieldset className="sc-grupo">
+        <fieldset className={'sc-grupo' + (jaComecado ? ' travado' : '')} aria-disabled={!!jaComecado || undefined}>
           <legend>Correção</legend>
-          <label className={'opcao' + (modo === 'prova' ? ' sel' : '')}><input type="radio" name="modo" checked={modo === 'prova'} onChange={() => setModo('prova')} /><span><b>Como na prova</b><small>Folha de respostas, pode pular e voltar; resultado e resoluções no fim.</small></span></label>
-          <label className={'opcao' + (modo === 'treino' ? ' sel' : '')}><input type="radio" name="modo" checked={modo === 'treino'} onChange={() => setModo('treino')} /><span><b>Resolução após cada resposta</b><small>Responde, vê a resolução comentada e segue.</small></span></label>
+          <label className={'opcao' + (modoVisto === 'prova' ? ' sel' : '')}><input type="radio" name="modo" tabIndex={jaComecado ? -1 : undefined} checked={modoVisto === 'prova'} onChange={() => setModo('prova')} /><span><b>Como na prova</b><small>Folha de respostas, pode pular e voltar; resultado e resoluções no fim.</small></span></label>
+          <label className={'opcao' + (modoVisto === 'treino' ? ' sel' : '')}><input type="radio" name="modo" tabIndex={jaComecado ? -1 : undefined} checked={modoVisto === 'treino'} onChange={() => setModo('treino')} /><span><b>Resolução após cada resposta</b><small>Responde, vê a resolução comentada e segue.</small></span></label>
         </fieldset>
-        <label className="sc-tempo"><input type="checkbox" checked={cronometrado} onChange={(ev) => setCron(ev.target.checked)} />
+        <label className={'sc-tempo' + (jaComecado ? ' travado' : '')} aria-disabled={!!jaComecado || undefined}><input type="checkbox" tabIndex={jaComecado ? -1 : undefined} checked={cronVisto} onChange={(ev) => setCron(ev.target.checked)} />
           <span><b>Cronometrado</b><small className="num">{formataTempo(plano.itens.length * plano.segPorQuestao)} no total ({(Math.round(plano.segPorQuestao / 6) / 10).toLocaleString('pt-BR')} min por questão). Dá para pausar.</small></span></label>
-        <button className="btn grande" onClick={inicia} disabled={!!e.simulado && e.simulado.sid !== plano.sid}>Começar simulado <Icone nome="direita" /></button>
-        {e.simulado && <p className="fraco" style={{ fontSize: 14 }}>Você tem um simulado em andamento ({e.simulado.titulo}). <Link to="/simulado/agora">Retome</Link> ou entregue-o antes de começar outro.</p>}
+        {jaComecado && <p className="fraco num" style={{ fontSize: 14, margin: 0 }}>Você já começou este simulado: {Object.keys(jaComecado.resp).length} de {jaComecado.itens.length} respondidas, {formataTempo(jaComecado.usadoSeg)} usados. Ele continua de onde parou, com a correção e o cronômetro que você escolheu no começo.</p>}
+        <button className="btn grande" onClick={inicia}>{jaComecado ? 'Continuar simulado' : 'Começar simulado'} <Icone nome="direita" /></button>
+        {outroAberto && <p className="fraco" style={{ fontSize: 14 }}>O simulado que está aberto ({outroAberto.titulo}) fica salvo em Simulados, em andamento, para você continuar depois.</p>}
       </div>
     </div>
   );
@@ -282,7 +291,9 @@ export function SimuladoExec() {
     return () => removeEventListener('keydown', f);
   });
 
-  if (!sim) return <div className="conteudo vazio"><h3>Nenhum simulado em andamento</h3><Link className="btn sec" to="/simulados">Escolher um simulado</Link></div>;
+  if (!sim) return emAndamento(e).length
+    ? <div className="conteudo vazio"><h3>Nenhum simulado aberto</h3><p>Os que você começou e não entregou estão salvos em Simulados, em andamento.</p><Link className="btn sec" to="/simulados">Ver simulados em andamento</Link></div>
+    : <div className="conteudo vazio"><h3>Nenhum simulado em andamento</h3><Link className="btn sec" to="/simulados">Escolher um simulado</Link></div>;
   if (!todas || (sim.itens[0]?.p && prova === undefined)) return <div className="conteudo"><Carregando /></div>;
 
   const respondidas = Object.keys(sim.resp).length;

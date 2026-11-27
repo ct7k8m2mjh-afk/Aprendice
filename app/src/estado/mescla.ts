@@ -6,7 +6,8 @@
  */
 import type { MateriaId } from '../dados/tipos';
 import { mesclaMateria, migraEstado } from './migracao';
-import { estadoMateriaVazio, estadoVazio, type Estado, type Preferencias, type SimuladoFeito } from './tipos';
+import { estadoMateriaVazio, estadoVazio, type Estado, type Preferencias } from './tipos';
+import { mesclaAndamento } from '../logica/simuladosAndamento';
 
 function obj(x: unknown): Record<string, unknown> | null { return x && typeof x === 'object' && !Array.isArray(x) ? (x as Record<string, unknown>) : null; }
 
@@ -37,12 +38,6 @@ export function paraNuvem(e: Estado): Record<string, unknown> {
 function unePorChave<T>(a: T[], b: T[], chave: (x: T) => string): T[] {
   const vis = new Set(a.map(chave));
   return [...a, ...b.filter((x) => x && !vis.has(chave(x)))];
-}
-
-/** simulado em andamento que já foi entregue (há um feito da mesma prova depois do começo dele) não volta */
-function andamentoValido(s: Estado['simulado'], feitos: SimuladoFeito[]): Estado['simulado'] {
-  if (!s) return null;
-  return feitos.some((f) => f.sid === s.sid && f.ts >= s.iniciadoEm) ? null : s;
 }
 
 /**
@@ -81,7 +76,8 @@ export function mesclaEstados(a: Estado, b: Estado | null): Estado {
     versao: 8,
     materias,
     simuladosFeitos,
-    simulado: andamentoValido(recente.simulado ?? null, simuladosFeitos) || andamentoValido(outro.simulado ?? null, simuladosFeitos),
+    // simulado aberto: o do lado mexido por último; os outros em andamento, dos dois lados, ficam pendentes (27/11/2026)
+    ...mesclaAndamento(recente, outro, simuladosFeitos),
     treino,
     treinoMisto: recente.treinoMisto ?? null,
     sessaoHoje: recente.sessaoHoje ?? null,

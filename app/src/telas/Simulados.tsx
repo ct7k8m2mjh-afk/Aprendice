@@ -2,7 +2,9 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useMemo, useState } from 'react';
 import { CATALOGO, PROVAS_EM_PREPARO, provaPorId } from '../dados/provas';
 import { useIndiceProvas, type IndiceProva } from '../dados/provasCompletas';
-import { useEstado } from '../estado/loja';
+import { atualiza, useEstado } from '../estado/loja';
+import { chaveAndamento, emAndamento, retomaSimulado } from '../logica/simuladosAndamento';
+import type { SimuladoAndamento } from '../estado/tipos';
 import { Carregando, formataTempo, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { FiltroRegiaoChips, useRegiao } from '../ui/FiltroRegiao';
@@ -13,6 +15,18 @@ import { QTDS_CONTEUDO, entraNoSimuladoConteudo } from '../logica/simulados';
 import type { MateriaId } from '../dados/tipos';
 import { REGIOES_PRATICA, deFiltro, descreveFiltro, ehFiltro, regiaoDaProva, regiaoDaQuestao, regioesDoFiltro, type FiltroRegiao } from '../logica/regiao';
 
+/** Um simulado em andamento (aberto ou pendente; dono, 27/11/2026): título, quanto foi feito e Continuar. */
+function LinhaAndamento({ s }: { s: SimuladoAndamento }) {
+  const nav = useNavigate();
+  const continua = () => { atualiza((x) => retomaSimulado(x, chaveAndamento(s))); nav('/simulado/agora'); };
+  return (
+    <button type="button" className="andamento folha" onClick={continua}>
+      <Icone nome="relogio" tam={22} />
+      <span><b>{s.titulo}</b><small className="fraco num and-info"><span>{Object.keys(s.resp).length} de {s.itens.length} respondidas</span> · <span>{formataTempo(s.usadoSeg)} usados</span> · <span>começado em {new Date(s.iniciadoEm).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}</span></small></span>
+      <span className="btn peq">Continuar</span>
+    </button>
+  );
+}
 export function Simulados() {
   useTitulo('Simulados');
   const indice = useIndiceProvas();
@@ -34,7 +48,7 @@ export function Simulados() {
   const daRegiao = conj ? eds.filter((x) => { const r = regiaoEd(x); return !!r && conj.has(r); }) : eds;
   // nunca sem prova: região sem simulado ainda mostra todos (com aviso)
   const lista = so === 'alvo' ? (daAlvo.length ? daAlvo : eds) : daRegiao.length ? daRegiao : eds;
-  const andamento = e.simulado;
+  const andamento = emAndamento(e);
   const feitos = [...e.simuladosFeitos].sort((a, b) => b.ts - a.ts);
 
   // agrupa por instituição; dentro, do ano mais recente ao mais antigo
@@ -50,12 +64,12 @@ export function Simulados() {
         : aba === 'historico' ? 'Os simulados que você já entregou, com o resultado e a correção de cada um.'
         : 'Provas inteiras, com todas as matérias, no tempo oficial. Escolha a instituição e o ano.'}</p></div></div>
 
-      {andamento && (
-        <Link to="/simulado/agora" className="andamento folha">
-          <Icone nome="relogio" tam={22} />
-          <span><b>{andamento.titulo}</b><small className="fraco num">Em andamento · {Object.keys(andamento.resp).length} de {andamento.itens.length} respondidas · {formataTempo(andamento.usadoSeg)} usados</small></span>
-          <span className="btn peq">Retomar</span>
-        </Link>
+      {/* simulados começados e não entregues (dono, 27/11/2026, "forma 1"): no alto, antes das abas; some quando não há */}
+      {andamento.length > 0 && (
+        <section className="sim-andamento" aria-labelledby="sim-and">
+          <h2 id="sim-and" className="sec-tit">Em andamento <small className="fraco num">{andamento.length}</small></h2>
+          {andamento.map((x) => <LinhaAndamento key={chaveAndamento(x)} s={x} />)}
+        </section>
       )}
 
       <div className="abas" role="group" aria-label="Seções dos simulados">
@@ -129,6 +143,7 @@ export function Simulados() {
       )}
 
       {aba === 'conteudo' && <EscolhaConteudo />}
+
 
       {aba === 'historico' && (
         feitos.length ? (

@@ -331,15 +331,16 @@ export function aplicaRetiradas(e: Estado, tabela: TabelaRetiradas = RETIRADAS):
     treinoMisto = { ...t, it, i: Math.max(0, Math.min(i, it.length)) };
     mudou = true;
   }
-  const simulado = e.simulado ? { ...e.simulado, itens: e.simulado.itens.map(trocaItem) } : e.simulado;
+  // simulado em andamento (o aberto e os pendentes, 27/11/2026): respostas e marcações são guardadas pelo id do item
+  const trocaAndamento = (a: NonNullable<Estado['simulado']>): NonNullable<Estado['simulado']> => {
+    const itens = a.itens.map(trocaItem);
+    const novoId = new Map(a.itens.map((x, k) => [x.id, itens[k].id]));
+    return { ...a, itens, resp: Object.fromEntries(Object.entries(a.resp).map(([k, v]) => [novoId.get(k) || k, v])), marcadas: a.marcadas.map((k) => novoId.get(k) || k) };
+  };
+  const simulado = e.simulado ? trocaAndamento(e.simulado) : e.simulado;
   const simuladosFeitos = e.simuladosFeitos.map((f) => ({ ...f, itens: f.itens.map(trocaItem) }));
-  if (simulado && e.simulado) {
-    // respostas e marcações do simulado em andamento são guardadas pelo id do item
-    const novoId = new Map(e.simulado.itens.map((x, k) => [x.id, simulado.itens[k].id]));
-    simulado.resp = Object.fromEntries(Object.entries(e.simulado.resp).map(([k, v]) => [novoId.get(k) || k, v]));
-    simulado.marcadas = e.simulado.marcadas.map((k) => novoId.get(k) || k);
-  }
-  return mudou ? { ...e, materias: mats, treino, treinoMisto, simulado, simuladosFeitos } : e;
+  if (!mudou) return e;
+  return { ...e, materias: mats, treino, treinoMisto, simulado, simuladosFeitos, ...(e.simuladosPendentes ? { simuladosPendentes: e.simuladosPendentes.map(trocaAndamento) } : {}) };
 }
 
 /* v3 -> v4 (comandos 24 e 26 do dono): revisão em slides com o ciclo de 5 tempos. Cada matéria ganha `revs` (por

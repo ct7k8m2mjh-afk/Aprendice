@@ -158,6 +158,9 @@ export interface Estado {
   /** v7: momento em que a revisão passou para a regra nova (agenda pela data da prova, saída com 3 acertos espaçados).
    *  Tentativas anteriores seguem a regra antiga até esse momento (logica/revisao.ts, memoriaDe). 0 = estado novo. */
   revisaoDesde?: number;
+  /** simulados começados e não entregues, além do aberto (`simulado`), salvos para continuar depois (pedido do dono,
+   *  27/11/2026; logica/simuladosAndamento.ts). Opcional: estados antigos não têm, e nada muda para eles */
+  simuladosPendentes?: SimuladoAndamento[];
   /** sessão da tela Hoje / Escudo TRI em andamento (fase 3). Opcional: estados antigos não têm, e nada se perde */
   sessaoHoje?: SessaoHoje | null;
   /** perfil guardado ao sair da conta (revisão de 19/11/2026, casca 38): nome, provas-alvo, datas e meta voltam ao entrar
