@@ -181,7 +181,7 @@ export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao, sem
         {antes}
         {!semFonte && <span className="etq q-fonte" title={detalhe ? `${fonte} · ${detalhe}` : fonte}><b>{fonte}</b>{detalhe ? ` · ${detalhe}` : ''}</span>}
         {depois}
-        {acao ? <span className="q-meta-acao">{acao}</span> : !src && <a className="q-link" href={q.url} target="_blank" rel="noreferrer noopener" title="Abrir a fonte original"><Icone nome="externo" tam={15} /><span className="sr">Fonte original</span></a>}
+        {acao ? <span className="q-meta-acao">{acao}</span> : !src && cred.site && <a className="q-link" href={cred.site} target="_blank" rel="noreferrer noopener" title={cred.titulo}><Icone nome="externo" tam={15} /><span className="sr">{cred.titulo}</span></a>}
       </div>
       {/* gabarito do Aprendice (princípio 2): o aviso aparece já antes de responder, não só na correção */}
       {avisoGabarito(q) && <p className="q-gab-ap"><span className="etq aviso"><Icone nome="info" tam={14} /> {avisoGabarito(q)}</span></p>}
@@ -250,14 +250,16 @@ export function AbasPainel({ aba, aoMudar, sem }: { aba: AbaPainel; aoMudar: (a:
   );
 }
 
-/** Aba "Fonte": de onde vem a questão, com o link da fonte original. */
+/** Aba "Fonte": de onde vem a questão, com o link do site oficial da banca (dono, 27/11/2026: nunca o lugar exato de onde
+ *  a cópia foi tirada; esse link fica só nos dados, em `url`). */
 export function FonteQuestao({ q }: { q: Questao }) {
+  const cred = creditoProva(q);
   const linhas: [string, ReactNode][] = [
     ['Prova', q.escola], ['Ano', q.ano],
     ...(q.fase ? [['Fase', q.fase] as [string, ReactNode]] : []),
     ...(q.n ? [['Questão', numeroQuestao(q)] as [string, ReactNode]] : []),
     ...(q.banca && q.banca !== q.escola ? [['Banca', q.banca] as [string, ReactNode]] : []),
-    // de onde é o link: caderno oficial ou cópia de cursinho (revisão de 19/11/2026, item 19)
+    // de onde é o arquivo: caderno oficial ou cópia (revisão de 19/11/2026, item 19), sem o nome de quem publicou a cópia (dono, 27/11/2026)
     ['Origem', origemDoLink(q.url, q.origem).rotulo],
     // questão indisponível (dono, 19/11/2026); gabarito do Aprendice (princípio 2): o mesmo texto da correção
     ['Gabarito', q.indisponivel ? 'Indisponível: a banca do Aprendice encontrou erro no gabarito oficial, e a banca da prova não publicou errata. A questão fica só para consulta: sem resposta nem correção, fora dos treinos, simulados e revisões.' : origemGabarito(q)],
@@ -265,7 +267,7 @@ export function FonteQuestao({ q }: { q: Questao }) {
   return (
     <div className="q-fonte-aba">
       <dl className="q-props">{linhas.map(([t, d]) => <div key={t}><dt>{t}</dt><dd>{d}</dd></div>)}</dl>
-      {q.url && <a className="q-orig" href={q.url} target="_blank" rel="noreferrer noopener"><Icone nome="externo" tam={16} /> Abrir a fonte original</a>}
+      {cred.site && <a className="q-orig" href={cred.site} target="_blank" rel="noreferrer noopener" title={cred.titulo}><Icone nome="externo" tam={16} /> {cred.titulo}</a>}
     </div>
   );
 }

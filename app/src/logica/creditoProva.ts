@@ -4,8 +4,9 @@
  * origem da obra", e art. 24, II: o nome do autor na utilização da obra).
  *
  * Decisão do dono (27/11/2026): o crédito é curto ("© Inep · ENEM 2024") e o link vai SÓ ao site oficial da banca ou da
- * fundação dona da prova, nunca ao lugar exato de onde o arquivo foi tirado (PDF de cursinho, Drive etc.). O link do
- * arquivo continua registrado em `url` e na aba Fonte (princípio 10).
+ * fundação dona da prova, nunca ao lugar exato de onde o arquivo foi tirado (PDF de cursinho, Drive etc.). O mesmo vale
+ * para o ícone do topo da questão sem print, a aba Fonte e o rodapé da correção. O link do arquivo e o nome de quem
+ * publicou a cópia ficam só no registro interno (`url`, `origem`, logica/origemLink.ts `nome`; princípio 10).
  *
  * A banca vem do campo `banca` da questão (quem aplicou aquela edição: Vunesp na FMJ, na São Camilo e na UEA; Cebraspe na
  * UERR de 2023, 2025 e 2026; Comvest na Unicamp...). Sites conferidos na web em 27/11/2026.

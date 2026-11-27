@@ -1,5 +1,5 @@
 import { avisoGabarito, numeroQuestao, origemGabarito, type Letra, type Questao, type Resolucao } from '../dados/tipos';
-import { origemDoLink } from '../logica/origemLink';
+import { creditoProva } from '../logica/creditoProva';
 import type { ReactNode } from 'react';
 import { Icone } from './Icone';
 import { MATERIAS_ANIMADAS } from '../dados/revisao';
@@ -56,6 +56,7 @@ export function ResolucaoView({ q, r, marcada, materia, origem, semFonte }: { q:
   /** linha de origem no cabeçalho no lugar da do gabarito e da prova (Questão Aprendice) */ origem?: ReactNode;
   /** sem o rodapé da fonte (questão que não é de prova) */ semFonte?: boolean }) {
   const acertou = marcada === q.gab;
+  const cred = creditoProva(q);
   const erradaTxt = marcada && !acertou ? r?.erradas?.[marcada] : null;
   // a matéria decide se a "conta" de um passo é conta (letra à mão) ou texto (Português, Inglês, humanas)
   const mat = materia || materiaDoCodigo(q.modulo) || materiaDoCodigo(q.sub) || materiaDaArea(q.conceito);
@@ -117,7 +118,8 @@ export function ResolucaoView({ q, r, marcada, materia, origem, semFonte }: { q:
         </>
       )}
       {!semFonte && <p className="res-fonte">
-        Fonte: {(() => { const r = origemDoLink(q.url, q.origem).rotulo; return /^[A-Z][a-zà-ÿ]/.test(r) ? r.charAt(0).toLowerCase() + r.slice(1) : r; })()} · <a href={q.url} target="_blank" rel="noreferrer noopener">{q.escola} {q.ano} <Icone nome="externo" tam={13} /></a>
+        {/* só o crédito básico, com o site oficial da banca (dono, 27/11/2026; logica/creditoProva.ts) */}
+        Fonte: {cred.site ? <a href={cred.site} target="_blank" rel="noreferrer noopener" title={cred.titulo}>{cred.texto} <Icone nome="externo" tam={13} /></a> : cred.texto}
       </p>}
     </section>
     </MateriaDoTexto.Provider>
