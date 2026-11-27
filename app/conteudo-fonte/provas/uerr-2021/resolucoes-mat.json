@@ -1,0 +1,1033 @@
+{
+ "P07f2f3d1": {
+  "n": "19",
+  "conceito": "Contar os inteiros positivos de até 4 algarismos com soma dos algarismos 4 e no máximo um zero.",
+  "equivocos": {
+   "B": "M01.5:erro-na-contagem-por-casos",
+   "C": "M01.5:erro-na-contagem-por-casos",
+   "D": "M01.5:erro-na-contagem-por-casos",
+   "E": "M01.5:ignorou-restricao-de-zeros"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Traduza o conjunto pedido: (A ∩ B) − C são os números que estão em A e em B e não estão em C. Na prática: inteiros positivos, soma dos algarismos 4, no máximo um zero e no máximo quatro algarismos. Conte separando pelo número de algarismos, que é o jeito mais seguro de não esquecer nem repetir ninguém.",
+    "formulas": [
+     "A ∩ B: está em A e em B",
+     "X − C: está em X e não está em C",
+     "não estar em C ⇔ ter até 4 algarismos"
+    ],
+    "simbolos": [
+     [
+      "∩",
+      "intersecção: elementos comuns aos dois conjuntos"
+     ],
+     [
+      "A − C",
+      "diferença: elementos de A que não estão em C"
+     ]
+    ]
+   },
+   "pista": "Primeiro diga em uma frase quais números entram; depois liste por quantidade de algarismos: 1, 2, 3 e 4.",
+   "passos": [
+    {
+     "faz": "Traduza o conjunto pedido",
+     "conta": "(A ∩ B) − C: soma dos algarismos = 4 | no máximo um 0 | até 4 algarismos",
+     "porque": "Tirar C, os números com mais de quatro algarismos, deixa só os de 1 a 4 algarismos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os de 1 e de 2 algarismos",
+     "conta": "1 algarismo: 4 | 2 algarismos: 13, 22, 31, 40 → 1 + 4 = 5",
+     "porque": "Com dois algarismos, o primeiro vai de 1 a 4 e o segundo completa a soma; 40 tem um zero só, então fica.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os de 3 algarismos",
+     "conta": "103, 112, 121, 130, 202, 211, 220, 301, 310 (400 sai) → 9",
+     "porque": "Os de 3 algarismos com soma 4 são 10, mas 400 tem dois zeros e B não deixa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os de 4 algarismos",
+     "conta": "1012, 1021, 1102, 1111, 1120, 1201, 1210, 2011, 2101, 2110 → 10",
+     "porque": "Com soma 4 há 20 números de 4 algarismos; saem os 10 com dois ou mais zeros (1003, 1030, 1300, 2002, 2020, 2200, 3001, 3010, 3100, 4000).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os grupos",
+     "conta": "1 + 4 + 9 + 10 = 24 → alternativa A",
+     "porque": "Cada número foi contado uma vez, no grupo do seu tamanho.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 24 elementos",
+   "checagem": "Conte pelo complemento: sem a restrição de B, os números de até 4 algarismos com soma 4 são 1 + 4 + 10 + 20 = 35. Os que têm dois ou mais zeros são 400 e os 10 de quatro algarismos listados no passo 4, 11 ao todo. 35 − 11 = 24.",
+   "erradas": {
+    "B": "26 não confere: exigiria 2 números a mais que os 24 listados, e a contagem completa (35) menos os 11 com dois ou mais zeros dá exatamente 24.",
+    "C": "28 sai de esquecer de tirar C: os números de cinco algarismos 10111, 11011, 11101 e 11110 também têm soma 4 e um zero só, e 24 + 4 = 28. Mas eles têm mais de quatro algarismos e ficam fora.",
+    "D": "30 não confere: a lista por tamanho tem 1 + 4 + 9 + 10 = 24 números; não há outros com soma 4, até 4 algarismos e no máximo um zero.",
+    "E": "32 não confere: mesmo esquecendo só o 400, a conta daria 25; para 32 faltariam números que não existem com essas três condições."
+   },
+   "armadilha": "A restrição \"no máximo um zero\" corta muitos números de 4 algarismos (como 1003 e 4000), e é fácil esquecer de aplicá-la também ao 400.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos inteiros positivos têm soma dos algarismos 4, no máximo um zero e até quatro algarismos.",
+    "chave": "Contar por quantidade de algarismos: 1 + 4 + 9 + 10 = 24.",
+    "cuidado": "Tirar C significa ficar com até 4 algarismos, e B tira quem tem dois ou mais zeros."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complemento",
+    "ideia": "Conte todos os de até 4 algarismos com soma 4 (35) e tire os que têm dois ou mais zeros (11): 24."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 algarismo: 4 → 1",
+    "nota": "só o próprio 4"
+   },
+   {
+    "linha": "2 algarismos: 13, 22, 31, 40 → 4",
+    "nota": "o 1º vai de 1 a 4"
+   },
+   {
+    "linha": "3 algarismos: 10 − 1 (400) = 9",
+    "nota": "400 tem dois zeros"
+   },
+   {
+    "linha": "4 algarismos: 20 − 10 = 10",
+    "nota": "saem os de dois ou mais zeros"
+   },
+   {
+    "linha": "1 + 4 + 9 + 10 = 24",
+    "nota": "soma dos grupos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-p2-0009"
+  }
+ },
+ "Pb8bfc85b": {
+  "n": "27",
+  "conceito": "Esboçar o gráfico de uma função com módulo, abrindo o módulo em dois casos e conferindo pontos-chave.",
+  "equivocos": {
+   "A": "M05.4:aplicou-modulo-na-funcao-inteira",
+   "B": "M05.4:nao-conferiu-f-de-zero",
+   "D": "M05.4:trocou-o-sinal-dentro-do-modulo",
+   "E": "M05.4:aplicou-modulo-na-funcao-inteira"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O módulo |x − 1| muda de fórmula no ponto x = 1: à direita vale x − 1, à esquerda vale 1 − x. Abrindo o módulo, a função vira duas parábolas coladas em x = 1. Não precisa desenhar tudo: calcule f em poucos pontos (x = −1, 0, 1, 2) e compare com os gráficos.",
+    "formulas": [
+     "|x − 1| = x − 1, se x ≥ 1",
+     "|x − 1| = 1 − x, se x < 1"
+    ],
+    "simbolos": [
+     [
+      "|x − 1|",
+      "módulo: a distância de x até 1, nunca negativa"
+     ],
+     [
+      "f(x)",
+      "valor da função no ponto x, a altura do gráfico"
+     ]
+    ]
+   },
+   "pista": "Comece calculando f(1) e f(0): dois pontos já eliminam quase todos os gráficos.",
+   "passos": [
+    {
+     "faz": "Abra o módulo para x ≥ 1",
+     "conta": "f(x) = x² + 2(x − 1) − 3 → f(x) = x² + 2x − 5",
+     "porque": "Para x ≥ 1, x − 1 não é negativo, então o módulo sai sem trocar o sinal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Abra o módulo para x < 1",
+     "conta": "f(x) = x² + 2(1 − x) − 3 → f(x) = x² − 2x − 1",
+     "porque": "Para x < 1, x − 1 é negativo; o módulo troca o sinal e vira 1 − x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os pontos-chave",
+     "conta": "f(−1) = 2 | f(0) = −1 | f(1) = −2 | f(2) = 3",
+     "porque": "f(1) = 1 + 0 − 3 = −2 é o ponto mais baixo: ali as duas parábolas se encontram e o gráfico faz uma quina.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com os gráficos",
+     "conta": "A: f(1) = 0 | B: f(0) = 0 | D: mínimo em x = −1 | E: f(0) = 1",
+     "porque": "Só um gráfico passa por (0, −1) e também tem o ponto mais baixo em (1, −2): D passa por (0, −1), mas tem o mínimo em x = −1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Marque o gráfico que fecha",
+     "conta": "(−1, 2), (0, −1), (1, −2), (2, 3) → alternativa C",
+     "porque": "O gráfico C passa pelos quatro pontos e tem a quina em x = 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — o gráfico que passa por (0, −1), tem o ponto mais baixo em (1, −2) e sobe dos dois lados",
+   "checagem": "Confira o formato: as duas fórmulas têm x² com coeficiente positivo, então os dois pedaços são de parábola com a boca para cima, e não há trecho virado para baixo. Os gráficos A e B têm trechos com a boca para baixo e já caem por isso.",
+   "erradas": {
+    "A": "A não confere: o gráfico A passa por (1, 0), mas f(1) = 1 + 0 − 3 = −2. Além disso, A nunca fica abaixo do eixo x.",
+    "B": "B não confere: o gráfico B passa pela origem, mas f(0) = 0 + 2 − 3 = −1.",
+    "D": "D sai de trocar |x − 1| por |x + 1|: x² + 2|x + 1| − 3 tem o ponto mais baixo em (−1, −2). Mas f(−1) = 1 + 4 − 3 = 2.",
+    "E": "E não confere: o gráfico E passa por (0, 1) e nunca fica abaixo do eixo x, mas f(0) = −1 e f(1) = −2."
+   },
+   "armadilha": "O ponto onde o módulo muda de fórmula é x = 1, não x = −1: trocar o sinal dentro do módulo leva ao gráfico espelhado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual gráfico representa f(x) = x² + 2|x − 1| − 3.",
+    "chave": "Abra o módulo em x = 1 e calcule f em poucos pontos.",
+    "cuidado": "f(0) = −1 e f(1) = −2: confira esses dois pontos antes de olhar o formato."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo vértice",
+    "ideia": "x² + 2x − 5 tem vértice em x = −1 (fora do trecho x ≥ 1) e x² − 2x − 1 tem vértice em x = 1: as duas parábolas descem até x = 1, então o mínimo é f(1) = −2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(x) = x² + 2|x − 1| − 3",
+    "nota": "função dada"
+   },
+   {
+    "linha": "x ≥ 1: f(x) = x² + 2x − 5",
+    "nota": "módulo sai com o mesmo sinal"
+   },
+   {
+    "linha": "x < 1: f(x) = x² − 2x − 1",
+    "nota": "módulo troca o sinal"
+   },
+   {
+    "linha": "f(0) = 0 + 2 − 3 = −1",
+    "nota": "corta o eixo y em −1"
+   },
+   {
+    "linha": "f(1) = 1 + 0 − 3 = −2",
+    "nota": "quina no ponto mais baixo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-p2-0009"
+  }
+ },
+ "P4824a598": {
+  "n": "21",
+  "conceito": "Achar a razão de uma PA a partir de dois termos conhecidos e calcular termos desconhecidos.",
+  "equivocos": {
+   "A": "M07.1:usou-o-5o-termo-no-lugar-do-6o",
+   "B": "M07.1:errou-o-6o-termo",
+   "C": "M07.1:errou-o-6o-termo",
+   "D": "M07.1:errou-o-6o-termo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Você conhece dois termos da PA: o 1º (37) e o 4º (109). Entre eles há 3 saltos de razão r, então r sai direto. Com r em mãos, cada termo é o anterior mais r. O termo 2a + 11 serve só para conferir.",
+    "formulas": [
+     "an = a1 + (n − 1) · r"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais um valor fixo r"
+     ],
+     [
+      "r",
+      "razão da PA"
+     ]
+    ]
+   },
+   "pista": "Conte quantas razões separam o 37 do 109.",
+   "passos": [
+    {
+     "faz": "Ache a razão com o 1º e o 4º termos",
+     "conta": "37 + 3r = 109 → 3r = 72 → r = 24",
+     "porque": "Do 1º ao 4º termo são 3 saltos de r; o 37 passa subtraindo e o 3 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a e b",
+     "conta": "a = 37 + 24 = 61 | b = 61 + 24 = 85",
+     "porque": "Cada termo é o anterior somado com a razão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira o 5º termo e ache c",
+     "conta": "2a + 11 = 2 · 61 + 11 = 133 = 109 + 24 → c = 133 + 24 = 157",
+     "porque": "O 5º termo dado por 2a + 11 bate com 109 + 24, sinal de que a razão está certa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some b e c",
+     "conta": "b + c = 85 + 157 = 242 → alternativa E",
+     "porque": "A pergunta é a soma b + c.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 242",
+   "checagem": "Use a propriedade da PA: termos equidistantes somam igual. b é o 3º termo e c o 6º; 3 + 6 = 9 = 4 + 5, então b + c = 109 + 133 = 242.",
+   "erradas": {
+    "A": "A não confere: com b = 85, a soma 218 exigiria c = 133, que é o 5º termo; o 6º vem 24 depois, 157.",
+    "B": "B não confere: com b = 85, a soma 224 exigiria c = 139, que não é termo da PA (133 + 24 = 157).",
+    "C": "C não confere: com b = 85, a soma 230 exigiria c = 145, que não é termo da PA (133 + 24 = 157).",
+    "D": "D não confere: com b = 85, a soma 236 exigiria c = 151, que não é termo da PA (133 + 24 = 157)."
+   },
+   "armadilha": "Do 37 ao 109 são 3 razões, não 4: o 109 é o 4º termo, então a conta é 72 ÷ 3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma b + c na PA (37, a, b, 109, 2a + 11, c).",
+    "chave": "r = (109 − 37)/3 = 24; b = 85 e c = 157.",
+    "cuidado": "Conte as posições: 109 é o 4º termo, 3 razões depois do 1º."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "termos equidistantes",
+    "ideia": "b (3º) e c (6º) somam o mesmo que 109 (4º) e 2a + 11 (5º): 109 + 133 = 242."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "37 + 3r = 109",
+    "nota": "do 1º ao 4º termo, 3 razões"
+   },
+   {
+    "linha": "3r = 72",
+    "nota": "o 37 passa subtraindo"
+   },
+   {
+    "linha": "r = 72/3 = 24",
+    "nota": "o 3 passa dividindo"
+   },
+   {
+    "linha": "b = 37 + 2 · 24 = 85 | c = 37 + 5 · 24 = 157",
+    "nota": "3º e 6º termos"
+   },
+   {
+    "linha": "b + c = 85 + 157 = 242",
+    "nota": "soma pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-p2-0009"
+  }
+ },
+ "P19e574d3": {
+  "n": "22",
+  "conceito": "Área de polígono na malha quadriculada: descobrir o lado da quadrícula e contar a área por retângulo menos triângulos.",
+  "equivocos": {
+   "A": "M08.5:errou-a-contagem-na-malha",
+   "C": "M08.5:errou-a-contagem-na-malha",
+   "D": "M08.5:misturou-quadradinhos-e-cm2",
+   "E": "M08.5:errou-a-contagem-na-malha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro descubra quanto vale cada quadradinho: o quadrado ABCD ocupa 3 × 3 quadradinhos e tem 81 cm², então cada quadradinho tem 9 cm² (lado 3 cm). Depois calcule tudo em quadradinhos: a figura grande (quadrilátero com vértices A, D e os dois cantos de cima) menos o quadrado branco. Só no fim converta para cm².",
+    "formulas": [
+     "área de quadradinho = área de ABCD ÷ número de quadradinhos",
+     "área do triângulo retângulo = (cateto × cateto)/2"
+    ],
+    "simbolos": [
+     [
+      "quadrícula",
+      "cada quadradinho da malha"
+     ],
+     [
+      "cm²",
+      "centímetro quadrado"
+     ]
+    ]
+   },
+   "pista": "Conte quantos quadradinhos cabem no quadrado ABCD antes de qualquer outra conta.",
+   "passos": [
+    {
+     "faz": "Ache a área de cada quadradinho",
+     "conta": "81 ÷ (3 × 3) = 81 ÷ 9 = 9 cm²",
+     "porque": "AD e AB atravessam 3 quadradinhos cada, então ABCD tem 9 quadradinhos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Enquadre a figura num retângulo",
+     "conta": "7 × 6 = 42 quadradinhos",
+     "porque": "O vértice de cima fica 2 quadradinhos à esquerda de A; o da direita, 2 à direita de D: largura 2 + 3 + 2 = 7. A altura vai de A ao vértice de cima: 6.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Tire os três triângulos de fora",
+     "conta": "42 − (2 × 6)/2 − (7 × 2)/2 − (2 × 4)/2 = 42 − 6 − 7 − 4 = 25",
+     "porque": "Os cantos do retângulo que ficam fora do quadrilátero são três triângulos retângulos: à esquerda, em cima e à direita.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire o quadrado branco e converta",
+     "conta": "25 − 9 = 16 quadradinhos → 16 × 9 = 144 cm²",
+     "porque": "O quadrado ABCD é branco, não sombreado; cada quadradinho vale 9 cm².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a área sombreada",
+     "conta": "144 cm² → alternativa B",
+     "porque": "A pergunta é só a parte sombreada.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 144 cm²",
+   "checagem": "Corte o quadrilátero pela diagonal que sai de A até o vértice da direita: com A na origem e o quadradinho como unidade, o triângulo de cima, com vértices (0, 0), (−2, 6) e (5, 4), tem 19 quadradinhos, e o de baixo, com (0, 0), (5, 4) e (3, 0), tem 6. Total 25; menos 9 do quadrado, 16 quadradinhos de 9 cm² = 144 cm².",
+   "erradas": {
+    "A": "A não confere: 100 ÷ 9 ≈ 11,1 quadradinhos, e a figura sombreada tem 16 quadradinhos inteiros (144 cm²).",
+    "C": "C não confere: 180 cm² são 20 quadradinhos, 4 a mais que os 16 da figura sombreada.",
+    "D": "D sai de misturar unidades: 225 cm² do quadrilátero menos 9 (o número de quadradinhos de ABCD, e não os 81 cm²) = 216.",
+    "E": "E não confere: 256 ÷ 9 ≈ 28,4 quadradinhos, e a figura sombreada tem 16 quadradinhos."
+   },
+   "armadilha": "O quadrado ABCD é branco: a figura sombreada é o quadrilátero grande MENOS os 81 cm² do quadrado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área sombreada, em cm², na malha onde ABCD tem 81 cm².",
+    "chave": "Quadradinho de 9 cm²; quadrilátero de 25 quadradinhos menos 9 do quadrado = 16.",
+    "cuidado": "Desconte o quadrado branco, sempre na mesma unidade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por coordenadas",
+    "ideia": "Com A = (0, 0) e o quadradinho como unidade, a fórmula de área por coordenadas nos vértices (0, 0), (−2, 6), (5, 4), (3, 0) dá 25; tirando 9 do quadrado ficam 16 quadradinhos, 144 cm²."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "81 ÷ 9 = 9 cm²",
+    "nota": "área de cada quadradinho"
+   },
+   {
+    "linha": "7 × 6 = 42",
+    "nota": "retângulo em volta"
+   },
+   {
+    "linha": "42 − 6 − 7 − 4 = 25",
+    "nota": "tira os três triângulos"
+   },
+   {
+    "linha": "25 − 9 = 16",
+    "nota": "tira o quadrado ABCD"
+   },
+   {
+    "linha": "16 × 9 = 144 cm²",
+    "nota": "converte para cm²"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-p2-0009"
+  }
+ },
+ "Pf0ccebe8": {
+  "n": "23",
+  "conceito": "Contagem das arestas de um prisma de base losango para achar o lado da base e a área lateral.",
+  "equivocos": {
+   "A": "M11.1:area-sem-teste-da-soma",
+   "B": "M11.1:area-sem-teste-da-soma",
+   "D": "M11.1:area-sem-teste-da-soma",
+   "E": "M11.1:contou-uma-aresta-lateral-so"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Um prisma de base com 4 lados tem 12 arestas: 4 na base de baixo, 4 na de cima e 4 laterais, que medem a altura. No losango os 4 lados são iguais, então só há uma incógnita, o lado. A área lateral são 4 retângulos iguais, lado × altura.",
+    "formulas": [
+     "soma das arestas = 8 · lado + 4 · altura",
+     "área lateral = 4 · lado · altura"
+    ],
+    "simbolos": [
+     [
+      "aresta",
+      "segmento onde duas faces do prisma se encontram"
+     ],
+     [
+      "losango",
+      "quadrilátero com os quatro lados iguais"
+     ],
+     [
+      "área lateral",
+      "soma das áreas das faces laterais, sem as bases"
+     ],
+     [
+      "ℓ",
+      "lado do losango, em cm"
+     ]
+    ]
+   },
+   "pista": "Conte as arestas por tipo antes de montar a equação: quantas são lados do losango e quantas são altura?",
+   "passos": [
+    {
+     "faz": "Conte as arestas do prisma",
+     "conta": "8 arestas de base (ℓ) | 4 arestas laterais (8 cm)",
+     "porque": "São duas bases com 4 lados cada e 4 arestas verticais ligando as bases, cada uma com a altura de 8 cm.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a equação da soma",
+     "conta": "8ℓ + 4 · 8 = 88 → 8ℓ + 32 = 88",
+     "porque": "A soma de todas as arestas dada é 88 cm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole o lado do losango",
+     "conta": "8ℓ = 88 − 32 = 56 → ℓ = 56 ÷ 8 = 7 cm",
+     "porque": "O 32 passa subtraindo e o 8 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área lateral",
+     "conta": "4 · 7 · 8 = 224 cm²",
+     "porque": "Cada face lateral é um retângulo de 7 cm por 8 cm; são 4 faces iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "área lateral = 224 cm² → alternativa C",
+     "porque": "O valor bate com a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 224 cm²",
+   "checagem": "Refaça a soma com ℓ = 7: 8 · 7 + 4 · 8 = 56 + 32 = 88 cm, exatamente o dado. E a área lateral também é perímetro da base × altura: 28 · 8 = 224 cm².",
+   "erradas": {
+    "A": "128 cm² não confere: daria ℓ = 128 ÷ 32 = 4 cm, e a soma das arestas seria 8 · 4 + 32 = 64 cm, não 88 cm.",
+    "B": "176 cm² não confere: daria ℓ = 176 ÷ 32 = 5,5 cm, e a soma das arestas seria 8 · 5,5 + 32 = 76 cm, não 88 cm.",
+    "D": "272 cm² não confere: daria ℓ = 272 ÷ 32 = 8,5 cm, e a soma das arestas seria 8 · 8,5 + 32 = 100 cm, não 88 cm.",
+    "E": "320 cm² sai de descontar a altura uma vez só: 8ℓ + 8 = 88 dá ℓ = 10 e 4 · 10 · 8 = 320. São 4 arestas laterais, que somam 32 cm."
+   },
+   "armadilha": "As arestas de altura são 4, não 1: a soma das laterais é 4 · 8 = 32 cm.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área lateral do prisma de base losango.",
+    "chave": "Soma das 12 arestas: 8ℓ + 32 = 88, logo ℓ = 7 cm; área lateral 4 · 7 · 8.",
+    "cuidado": "Conte as duas bases (8 lados) e as 4 arestas laterais."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Divida cada área por 32 para achar ℓ e confira 8ℓ + 32 = 88: só 224 ÷ 32 = 7 fecha."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "8ℓ + 4 · 8 = 88",
+    "nota": "soma das 12 arestas"
+   },
+   {
+    "linha": "8ℓ = 88 − 32 = 56",
+    "nota": "o 32 passa subtraindo"
+   },
+   {
+    "linha": "ℓ = 56 ÷ 8 = 7",
+    "nota": "o 8 passa dividindo"
+   },
+   {
+    "linha": "4 · 7 · 8 = 224 cm²",
+    "nota": "4 faces laterais de 7 por 8"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-p2-0009"
+  }
+ },
+ "Pc8f33b37": {
+  "n": "24",
+  "conceito": "Mediatriz, ponto médio e triângulo retângulo isósceles no plano cartesiano.",
+  "equivocos": {
+   "A": "M12.5:ignorou-ponto-medio",
+   "C": "M12.5:ignorou-ponto-medio",
+   "D": "M12.5:ignorou-ponto-medio",
+   "E": "M12.5:so-conferiu-ponto-medio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A mediatriz de AC corta AC no ponto médio, então D(4, 2) é o meio de AC e AC está na reta y = 2. Como o triângulo é retângulo em C e isósceles, os ângulos em A e B medem 45°: no triângulo pequeno ADE, a subida DE é igual ao avanço AD.",
+    "formulas": [
+     "ponto médio = média das coordenadas",
+     "triângulo retângulo isósceles: ângulos agudos de 45°, catetos iguais"
+    ],
+    "simbolos": [
+     [
+      "mediatriz",
+      "reta perpendicular a um segmento passando pelo ponto médio dele"
+     ],
+     [
+      "isósceles",
+      "com dois lados iguais; aqui AC = BC"
+     ],
+     [
+      "D, E",
+      "pontos onde a mediatriz encontra AC e AB"
+     ]
+    ]
+   },
+   "pista": "Use o triângulo pequeno ADE: ele tem a mesma forma do triângulo grande.",
+   "passos": [
+    {
+     "faz": "Leia D e E",
+     "conta": "D(4, 2) é ponto médio de AC | DE = 5 − 2 = 3",
+     "porque": "A mediatriz passa pelo ponto médio de AC; D e E estão na mesma vertical x = 4.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use o ângulo de 45° em A",
+     "conta": "AD = DE = 3 → A = (4 − 3, 2) = (1, 2)",
+     "porque": "ADE é retângulo em D com ângulo de 45° em A, então também é isósceles.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache C pelo ponto médio",
+     "conta": "C = (4 + 3, 2) = (7, 2)",
+     "porque": "D é o meio de AC: C fica 3 unidades à direita de D.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache B pelo cateto igual",
+     "conta": "BC = AC = 7 − 1 = 6 → B = (7, 2 + 6) = (7, 8)",
+     "porque": "O triângulo é isósceles em C: o cateto vertical BC tem o mesmo tamanho de AC.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "A(1, 2), B(7, 8), C(7, 2) → alternativa B",
+     "porque": "As três coordenadas batem com a alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — A(1, 2), B(7, 8) e C(7, 2)",
+   "checagem": "A reta AB passa por (1, 2) e (7, 8): y = x + 1. Em x = 4, y = 5, que é o ponto E dado. Fecha.",
+   "erradas": {
+    "A": "(0, 0), (8, 8) e (8, 0) não confere: o ponto médio de AC seria (4, 0), não D(4, 2).",
+    "C": "(2, 0), (6, 6) e (6, 0) não confere: o ponto médio de AC seria (4, 0), não D(4, 2).",
+    "D": "(−1, 2), (9, 10) e (9, 0) não confere: A e C não estão na mesma horizontal, e o ponto médio de AC seria (4, 1), não D(4, 2).",
+    "E": "(−2, 2), (10, 10) e (10, 2) não confere: AC = 12 e BC = 8, então não é isósceles; em x = 4 a reta AB passa em y = 6, não em E(4, 5)."
+   },
+   "armadilha": "Ter D como ponto médio não basta (a alternativa E também tem): o triângulo precisa ser isósceles, com AD = DE.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As coordenadas de A, B e C.",
+    "chave": "D é o meio de AC e o ângulo de 45° em A dá AD = DE = 3.",
+    "cuidado": "Confira as duas condições: ponto médio em D e reta AB passando por E."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "semelhança",
+    "ideia": "ADE é semelhante a ACB com razão 1/2 (AD é metade de AC): BC = 2 · DE = 6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "DE = 5 − 2 = 3",
+    "nota": "altura do triângulo pequeno"
+   },
+   {
+    "linha": "AD = DE = 3 → A = (1, 2)",
+    "nota": "ângulo de 45° em A"
+   },
+   {
+    "linha": "C = (4 + 3, 2) = (7, 2)",
+    "nota": "D é ponto médio"
+   },
+   {
+    "linha": "BC = AC = 6 → B = (7, 8)",
+    "nota": "isósceles em C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-p2-0009"
+  }
+ },
+ "P6e34730e": {
+  "n": "26",
+  "conceito": "Média aritmética: montar a soma das alturas a partir da média e achar os quatro menores valores.",
+  "equivocos": {
+   "A": "M14.1:media-abaixo-do-minimo",
+   "B": "M14.1:so-a-mais-baixa",
+   "C": "M14.1:soma-dos-quatro-errada",
+   "D": "M14.1:esqueceu-os-meninos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A média de 146,1 cm para 10 alunos dá a soma das alturas: 1 461 cm. Escreva todas as alturas em função da de Ana e resolva uma equação. Depois ordene as alturas: os quatro mais baixos podem incluir meninos.",
+    "formulas": [
+     "soma = média · quantidade",
+     "média = soma ÷ quantidade"
+    ],
+    "simbolos": [
+     [
+      "a",
+      "altura de Ana, em cm"
+     ],
+     [
+      "média aritmética",
+      "soma dos valores dividida pela quantidade"
+     ]
+    ]
+   },
+   "pista": "Chame a altura de Ana de a e escreva as outras nove alturas em função dela.",
+   "passos": [
+    {
+     "faz": "Escreva as alturas em função de Ana",
+     "conta": "Ana: a | Bel: a − 3 | Cris: a − 5 | meninos: 2a, 2(a − 3), 3 · 151",
+     "porque": "Bel é 3 cm mais baixa que Ana; Cris, 5 cm mais baixa.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a soma pela média",
+     "conta": "a + (a − 3) + (a − 5) + 2a + 2(a − 3) + 453 = 146,1 · 10 → 7a + 439 = 1 461",
+     "porque": "A média vezes 10 dá a soma das alturas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a altura de Ana",
+     "conta": "7a = 1 461 − 439 = 1 022 → a = 1 022 ÷ 7 = 146",
+     "porque": "O 439 passa subtraindo e o 7 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ordene e pegue os 4 mais baixos",
+     "conta": "Cris 141 | Bel 143 | 2 meninos 143 → 141, 143, 143, 143",
+     "porque": "Bel tem 146 − 3 = 143 e Cris, 146 − 5 = 141; dois meninos têm a altura de Bel.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Calcule a média dos quatro",
+     "conta": "(141 + 143 + 143 + 143)/4 = 570/4 = 142,5 cm",
+     "porque": "Soma dos quatro dividida por 4.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 142,5 cm",
+   "checagem": "Confira a média geral: 3 · 146 + 3 · 143 + 141 + 3 · 151 = 438 + 429 + 141 + 453 = 1 461, e 1 461 ÷ 10 = 146,1 cm. Fecha.",
+   "erradas": {
+    "A": "140,5 cm não confere: é menor que 141 cm, a altura de quem é o mais baixo da turma, e uma média nunca fica abaixo do menor valor.",
+    "B": "141 cm sai de ficar só com Cris, a mais baixa (146 − 5 = 141). A média pedida é de quatro alunos, e os outros três têm 143 cm.",
+    "C": "141,5 cm não confere: com Cris (141) e três alunos de 143 cm, a soma é 570, e 570 ÷ 4 = 142,5.",
+    "D": "142 cm sai da média só de Cris e Bel: (141 + 143)/2 = 142. Faltam os dois meninos com a altura de Bel."
+   },
+   "armadilha": "Os quatro mais baixos não são só meninas: dois meninos têm a altura de Bel e entram na conta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A média das alturas dos 4 alunos mais baixos.",
+    "chave": "Soma 1 461 dá 7a + 439 = 1 461, a = 146; os quatro menores são 141, 143, 143 e 143.",
+    "cuidado": "Inclua os dois meninos que têm a altura de Bel."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelos desvios",
+    "ideia": "Em relação a 143, os quatro valores desviam −2, 0, 0, 0: média 143 − 2/4 = 142,5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "7a + 439 = 1 461",
+    "nota": "soma pela média"
+   },
+   {
+    "linha": "7a = 1 461 − 439 = 1 022",
+    "nota": "o 439 passa subtraindo"
+   },
+   {
+    "linha": "a = 1 022 ÷ 7 = 146",
+    "nota": "o 7 passa dividindo"
+   },
+   {
+    "linha": "(141 + 143 + 143 + 143)/4 = 142,5",
+    "nota": "média dos quatro mais baixos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-p2-0009"
+  }
+ },
+ "P2583e0a8": {
+  "n": "20",
+  "conceito": "Transposta de uma matriz e produto de matrizes (linha por coluna).",
+  "equivocos": {
+   "A": "M15.1:errou-conta-linha-coluna",
+   "B": "M15.1:errou-sinal-no-produto",
+   "C": "M15.1:errou-conta-linha-coluna",
+   "E": "M15.1:comparou-pelo-modulo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro transponha B: as linhas de B viram colunas. A é 2×3 e Bt é 3×2, então A · Bt existe e é 2×2. Cada elemento é linha de A vezes coluna de Bt, termo a termo, e soma. A pergunta é o MAIOR elemento, com sinal.",
+    "formulas": [
+     "(Bt)ij = Bji: linha vira coluna",
+     "(A·Bt)ij = linha i de A · coluna j de Bt"
+    ],
+    "simbolos": [
+     [
+      "Bt",
+      "transposta de B: troca linhas por colunas"
+     ],
+     [
+      "2×3",
+      "matriz de 2 linhas e 3 colunas"
+     ]
+    ]
+   },
+   "pista": "Escreva Bt antes de multiplicar e confira que o número de colunas de A é igual ao de linhas de Bt.",
+   "passos": [
+    {
+     "faz": "Transponha B",
+     "conta": "B = [[4, −1, 5], [2, 0, 0]] → Bt = [[4, 2], [−1, 0], [5, 0]]",
+     "porque": "A 1ª linha de B vira a 1ª coluna de Bt, e a 2ª linha vira a 2ª coluna.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a 1ª linha de A·Bt",
+     "conta": "(−6)·4 + 3·(−1) + 0·5 = −27 | (−6)·2 + 3·0 + 0·0 = −12",
+     "porque": "Linha 1 de A = (−6, 3, 0) contra cada coluna de Bt.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a 2ª linha de A·Bt",
+     "conta": "2·4 + 1·(−1) + 1·5 = 12 | 2·2 + 1·0 + 1·0 = 4",
+     "porque": "Linha 2 de A = (2, 1, 1) contra cada coluna de Bt.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o maior elemento",
+     "conta": "A·Bt = [[−27, −12], [12, 4]] → maior = 12 → alternativa D",
+     "porque": "Entre −27, −12, 12 e 4, o maior é 12. Negativo grande em módulo é pequeno.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 12",
+   "checagem": "Sem montar Bt: cada elemento de A·Bt é uma linha de A vezes uma LINHA de B. Linha 2 de A com linha 1 de B: 2·4 + 1·(−1) + 1·5 = 12. Mesmo resultado.",
+   "erradas": {
+    "A": "−9 não confere: os quatro elementos de A·Bt são −27, −12, 12 e 4; nenhum vale −9.",
+    "B": "−4 não confere: o elemento da linha 2, coluna 2 é 2·2 + 1·0 + 1·0 = +4, positivo; nenhum elemento vale −4.",
+    "C": "0 não confere: nenhum dos quatro elementos (−27, −12, 12, 4) é zero.",
+    "E": "27 sai de tomar o módulo: o elemento −27 é o MENOR da matriz, não o maior. O sinal conta."
+   },
+   "armadilha": "O maior elemento é o maior com sinal: −27 tem o maior módulo, mas é o menor número da matriz.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O maior elemento de A·Bt.",
+    "chave": "Transpor B (linha vira coluna) e multiplicar linha de A por coluna de Bt.",
+    "cuidado": "Comparar com sinal: −27 é menor que 12."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "linha com linha",
+    "ideia": "A·Bt é o produto de cada linha de A por cada linha de B; basta fazer as quatro combinações sem escrever Bt."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "Bt = [[4, 2], [−1, 0], [5, 0]]",
+    "nota": "linhas de B viram colunas"
+   },
+   {
+    "linha": "(−6)·4 + 3·(−1) + 0·5 = −27",
+    "nota": "linha 1 × coluna 1"
+   },
+   {
+    "linha": "(−6)·2 + 3·0 + 0·0 = −12",
+    "nota": "linha 1 × coluna 2"
+   },
+   {
+    "linha": "2·4 + 1·(−1) + 1·5 = 12",
+    "nota": "linha 2 × coluna 1"
+   },
+   {
+    "linha": "2·2 + 1·0 + 1·0 = 4",
+    "nota": "linha 2 × coluna 2"
+   },
+   {
+    "linha": "maior entre −27, −12, 12, 4 = 12",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-p2-0009"
+  }
+ },
+ "P37914d34": {
+  "n": "25",
+  "conceito": "Princípio multiplicativo na coloração de setores vizinhos com uma restrição de cor igual.",
+  "equivocos": {
+   "A": "M13.1:restringiu-cor-de-nao-vizinho",
+   "B": "M13.1:contou-a-mesma-cor-duas-vezes",
+   "C": "M13.1:errou-opcoes-de-um-setor",
+   "E": "M13.1:ignorou-a-restricao-a-igual-d"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Pinte os setores numa ordem esperta e conte as opções de cada um. Os setores formam uma roda: A–B–C–D–E–A, e E é vizinho de D e de A. Como A e D têm a mesma cor, E só precisa fugir de uma cor.",
+    "formulas": [
+     "total = produto das opções de cada setor"
+    ],
+    "simbolos": [
+     [
+      "setores adjacentes",
+      "setores que têm um lado (raio) em comum"
+     ]
+    ]
+   },
+   "pista": "Comece por A (que leva D junto) e depois conte B, C e E olhando só os vizinhos de cada um.",
+   "passos": [
+    {
+     "faz": "Mapeie as vizinhanças",
+     "conta": "A–B, B–C, C–D, D–E, E–A | A = D",
+     "porque": "Pela figura, cada setor encosta nos dois vizinhos da roda.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Pinte A e D",
+     "conta": "A: 6 cores → D: 1 (a mesma de A)",
+     "porque": "Escolhida a cor de A, a de D está decidida.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Pinte B, C e E",
+     "conta": "B ≠ A: 5 | C ≠ B e C ≠ D: 4 | E ≠ D = A: 5",
+     "porque": "C foge de duas cores diferentes (B e D). E é vizinho de D e de A, que têm a mesma cor, então perde só 1 cor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique",
+     "conta": "6 · 5 · 4 · 5 = 600",
+     "porque": "Princípio multiplicativo: as escolhas são feitas em sequência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "600 maneiras → alternativa D",
+     "porque": "Todas as restrições já foram usadas na contagem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 600 maneiras",
+   "checagem": "Conte em outra ordem: A (6, e D junto), E (5), B (5: foge só de A, e pode repetir a cor de E, que não é vizinho dele) e C (4: foge de B e de D). 6 · 5 · 5 · 4 = 600. Fecha.",
+   "erradas": {
+    "A": "360 = 6 · 5 · 4 · 3 sai de tirar de E três cores, como se ele fosse vizinho também de B e de C (fugindo de 3 cores); E só encosta em D e A, que têm a mesma cor.",
+    "B": "480 = 6 · 5 · 4 · 4 sai de tirar de E duas cores, como se A e D tivessem cores diferentes; como A = D, E perde só uma.",
+    "C": "540 não confere: 540 ÷ (6 · 5) = 18, e C e E juntos têm 4 · 5 = 20 combinações.",
+    "E": "720 = 6 · 5 · 4 · 3 · 2 sai de pintar os 5 setores com cores todas diferentes, o que contraria A e D com a mesma cor."
+   },
+   "armadilha": "E é vizinho de D e de A, mas como os dois têm a mesma cor, E perde só uma opção: são 5, não 4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas pinturas com A e D da mesma cor e vizinhos de cores diferentes.",
+    "chave": "Pintar A (6), B (5), C (4, foge de B e D) e E (5, foge só da cor de A = D).",
+    "cuidado": "Não contar a cor de A e D duas vezes ao pintar E."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelos pares",
+    "ideia": "A=D (6) e B (5); depois C e E são independentes: C tem 4 e E tem 5, total 6 · 5 · 20 = 600."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A: 6 | D = A",
+    "nota": "D não tem escolha"
+   },
+   {
+    "linha": "B: 6 − 1 = 5",
+    "nota": "foge de A"
+   },
+   {
+    "linha": "C: 6 − 2 = 4",
+    "nota": "foge de B e de D"
+   },
+   {
+    "linha": "E: 6 − 1 = 5",
+    "nota": "foge de D = A"
+   },
+   {
+    "linha": "6 · 5 · 4 · 5 = 600",
+    "nota": "princípio multiplicativo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-p2-0009"
+  }
+ }
+}
