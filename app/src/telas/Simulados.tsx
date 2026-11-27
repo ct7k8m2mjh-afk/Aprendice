@@ -5,7 +5,7 @@ import { useIndiceProvas, type IndiceProva } from '../dados/provasCompletas';
 import { atualiza, useEstado } from '../estado/loja';
 import { chaveAndamento, emAndamento, retomaSimulado } from '../logica/simuladosAndamento';
 import type { SimuladoAndamento } from '../estado/tipos';
-import { Carregando, formataTempo, plural, useTitulo } from '../ui/comum';
+import { Barra, Carregando, formataTempo, plural, useTitulo } from '../ui/comum';
 import { Icone } from '../ui/Icone';
 import { FiltroRegiaoChips, useRegiao } from '../ui/FiltroRegiao';
 import { useMateria } from '../dados/conteudo';
@@ -15,14 +15,19 @@ import { QTDS_CONTEUDO, entraNoSimuladoConteudo } from '../logica/simulados';
 import type { MateriaId } from '../dados/tipos';
 import { REGIOES_PRATICA, deFiltro, descreveFiltro, ehFiltro, regiaoDaProva, regiaoDaQuestao, regioesDoFiltro, type FiltroRegiao } from '../logica/regiao';
 
-/** Um simulado em andamento (aberto ou pendente; dono, 27/11/2026): título, quanto foi feito e Continuar. */
+/** Um simulado em andamento (aberto ou pendente; dono, 27/11/2026): título, informações, barra com o % concluído
+ *  (respondidas / total) e Continuar. */
 function LinhaAndamento({ s }: { s: SimuladoAndamento }) {
   const nav = useNavigate();
   const continua = () => { atualiza((x) => retomaSimulado(x, chaveAndamento(s))); nav('/simulado/agora'); };
+  const feitas = Object.keys(s.resp).length;
+  const pct = s.itens.length ? Math.round((feitas / s.itens.length) * 100) : 0;
   return (
     <button type="button" className="andamento folha" onClick={continua}>
       <Icone nome="relogio" tam={22} />
-      <span><b>{s.titulo}</b><small className="fraco num and-info"><span>{Object.keys(s.resp).length} de {s.itens.length} respondidas</span> · <span>{formataTempo(s.usadoSeg)} usados</span> · <span>começado em {new Date(s.iniciadoEm).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}</span></small></span>
+      <span><b>{s.titulo}</b><small className="fraco num and-info"><span>{feitas} de {s.itens.length} respondidas</span> · <span>{formataTempo(s.usadoSeg)} usados</span> · <span>começado em {new Date(s.iniciadoEm).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })}</span></small>
+        {/* quanto já foi feito: barra + "% concluído" (dono, 27/11/2026, forma B) */}
+        <span className="and-prog"><Barra valor={feitas / (s.itens.length || 1)} rotulo={`${pct}% concluído`} /><span className="and-pct num">{pct}% concluído</span></span></span>
       <span className="btn peq">Continuar</span>
     </button>
   );
