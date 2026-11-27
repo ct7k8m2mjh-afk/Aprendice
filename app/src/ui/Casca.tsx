@@ -2,7 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Icone, type NomeIcone } from './Icone';
 import { Anel, Logo } from './comum';
-import { MATERIAS_PRINCIPAIS, OUTRAS_MATERIAS, materia, type MateriaInfo } from '../dados/materias';
+import { MATERIAS_MENU, materia, type MateriaInfo } from '../dados/materias';
 import { atualiza, useEstado } from '../estado/loja';
 import { semana } from '../logica/estatisticas';
 import { Protecao } from './Protecao';
@@ -90,11 +90,8 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
   useEffect(() => { setBusca(false); scrollTo(0, 0); }, [loc.pathname]);
 
   const mAtual = loc.pathname.match(/^\/m\/(\w+)/)?.[1];
-  const emOutra = !!mAtual && OUTRAS_MATERIAS.some((m) => m.id === mAtual);
   // ao entrar numa matéria, o site inteiro (menu, abas, onda, anel da meta) assume a cor dela
   const corMateria = mAtual ? materia(mAtual)?.id : undefined;
-  const [outrasAbertas, setOutras] = useState(emOutra);
-  useEffect(() => { if (emOutra) setOutras(true); }, [emOutra]);
 
   return (
     <div className={'casca' + (fechado ? ' menu-fechado' : '') + (oculto ? ' trilho-oculto' : '') + (foco ? ' foco' : '') + (corMateria ? ` em-materia m-${corMateria}` : '')}>
@@ -110,26 +107,23 @@ export function Casca({ children, foco = false }: { children: ReactNode; foco?: 
             <Icone nome="esquerda" />
           </button>
         </div>
-        <nav aria-label="Início e matérias">
-          <ItemNav para="/" icone="inicio" fim>Início</ItemNav>
-          {MATERIAS_PRINCIPAIS.map((m) => <ItemMateria key={m.id} m={m} atual={mAtual} />)}
-          <button type="button" className={'item-nav outras' + (outrasAbertas ? ' aberto' : '')} aria-expanded={outrasAbertas} aria-controls="outras-materias"
-            onClick={() => setOutras(!outrasAbertas)} title="Outras matérias">
-            <Icone nome="grade" className="ic-mat" /><span className="rotulo">Outras matérias</span><Icone nome={outrasAbertas ? 'cima' : 'baixo'} className="seta" tam={16} />
-          </button>
-          <div id="outras-materias" className="sub-nav" hidden={!outrasAbertas}>
-            {OUTRAS_MATERIAS.map((m) => <ItemMateria key={m.id} m={m} atual={mAtual} />)}
-          </div>
-        </nav>
-        <div className="grupo" aria-hidden>Estudo</div>
-        <nav aria-label="Estudo">
-          <ItemNav para="/hoje" icone="calendario">Hoje</ItemNav>
-          <ItemNav para="/materias" icone="quadcheck">Questões</ItemNav>
-          <ItemNav para="/simulados" icone="arquivo">Simulados</ItemNav>
-          <ItemNav para="/revisao" icone="camadas">Revisão</ItemNav>
-          <ItemNav para="/desempenho" icone="barras">Desempenho</ItemNav>
-          <ItemNav para="/provas" icone="predio">Provas e faculdades</ItemNav>
-        </nav>
+        {/* as nove matérias visíveis, todas iguais (pedido do dono, 27/11/2026); numa tela baixa só esta parte rola,
+            e a meta da semana e Configurações ficam sempre à vista */}
+        <div className="lado-rolo">
+          <nav aria-label="Início e matérias">
+            <ItemNav para="/" icone="inicio" fim>Início</ItemNav>
+            {MATERIAS_MENU.map((m) => <ItemMateria key={m.id} m={m} atual={mAtual} />)}
+          </nav>
+          <div className="grupo" aria-hidden>Estudo</div>
+          <nav aria-label="Estudo">
+            <ItemNav para="/hoje" icone="calendario">Hoje</ItemNav>
+            <ItemNav para="/materias" icone="quadcheck">Questões</ItemNav>
+            <ItemNav para="/simulados" icone="arquivo">Simulados</ItemNav>
+            <ItemNav para="/revisao" icone="camadas">Revisão</ItemNav>
+            <ItemNav para="/desempenho" icone="barras">Desempenho</ItemNav>
+            <ItemNav para="/provas" icone="predio">Provas e faculdades</ItemNav>
+          </nav>
+        </div>
         <div className="rodape">
           <div className="meta-lado" title="Meta da semana">
             <Anel valor={sem.semana / meta}>{Math.min(100, Math.round((sem.semana / meta) * 100))}%</Anel>

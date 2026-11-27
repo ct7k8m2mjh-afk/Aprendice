@@ -23,7 +23,7 @@ export interface MateriaInfo {
   nome: string;
   curto: string;
   ativa: boolean;
-  /** As seis matérias do menu e da tela inicial; as outras ficam em "Outras matérias". */
+  /** As seis matérias das boas-vindas (ilustrações). O menu lateral mostra as nove, todas iguais (`MATERIAS_MENU`). */
   principal: boolean;
   /** Os tons do arquivo da paleta, sem alteração. */
   paleta: { principal: string; textoClaro: string; textoEscuro: string; fundoClaro: string; fundoEscuro: string; sobrePrincipal: string };
@@ -83,9 +83,14 @@ export const MATERIAS: MateriaInfo[] = [
     { c: '#AC002A', ink: BRANCO }, 'Leitura e interpretação de textos em inglês.'),
 ];
 
-export const MATERIAS_ATIVAS = MATERIAS.filter((m) => m.ativa);
+
 export const MATERIAS_PRINCIPAIS = MATERIAS.filter((m) => m.principal);
-export const OUTRAS_MATERIAS = MATERIAS.filter((m) => m.ativa && !m.principal);
+/** Menu lateral e trilho: as nove matérias visíveis, uma embaixo da outra, sem o grupo "Outras matérias" (pedido do dono,
+ *  27/11/2026: "Matem., Portg., Quím., etc."; ordem confirmada pelo dono, a mesma em todas as listas). */
+export const ORDEM_MENU: MateriaId[] = ['mat', 'por', 'qui', 'bio', 'fis', 'his', 'geo', 'ing', 'fs'];
+/** Matérias do site na ordem do menu (dono, 27/11/2026: a mesma ordem em todas as listas) */
+export const MATERIAS_ATIVAS = MATERIAS.filter((m) => m.ativa).sort((a, b) => (ORDEM_MENU.indexOf(a.id) + 1 || 99) - (ORDEM_MENU.indexOf(b.id) + 1 || 99));
+export const MATERIAS_MENU = ORDEM_MENU.map((id) => MATERIAS_ATIVAS.find((m) => m.id === id)).filter((m): m is MateriaInfo => !!m);
 
 export function materia(id: string): MateriaInfo | undefined {
   const atual = materiaAtual(id);

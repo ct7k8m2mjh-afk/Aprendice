@@ -1,7 +1,7 @@
 import { useState, type CSSProperties } from 'react';
 import { Link } from 'react-router-dom';
 import { urlArteTreinoGeral, useTodasMaterias, type MateriaCarregada } from '../dados/conteudo';
-import { MATERIAS_ATIVAS, materia as infoMateria } from '../dados/materias';
+import { MATERIAS_ATIVAS, ORDEM_MENU, materia as infoMateria } from '../dados/materias';
 import { atualiza, useEstado } from '../estado/loja';
 import { agendaDe, diasEntre } from '../logica/revisao';
 import { minutosDe, planoHoje, TEMPO_PADRAO } from '../logica/hoje';
@@ -44,14 +44,14 @@ const PERIODOS: { v: string; dias: number | null; nome: string }[] = [
 
 const pctInt = (n: number, d: number) => (d ? Math.round((n / d) * 100) : 0);
 
-/** Ordem e nomes curtos da referência da aba principal (Inglês antes de Filosofia e Sociologia; "Quím", "Fil/Soc"...). */
-const ORDEM_INICIO: MateriaId[] = ['bio', 'qui', 'mat', 'por', 'fis', 'geo', 'his', 'ing', 'fs'];
+/** Ordem do menu em todas as listas (dono, 27/11/2026); nomes curtos da referência ("Quím", "Fil/Soc"...). */
+const ORDEM_INICIO: MateriaId[] = ORDEM_MENU;
 const MATERIAS_INICIO = ORDEM_INICIO.map((id) => MATERIAS_ATIVAS.find((m) => m.id === id)).filter((m): m is (typeof MATERIAS_ATIVAS)[number] => !!m);
 const CURTO_GRAFICO: Partial<Record<MateriaId, string>> = { bio: 'Bio', qui: 'Quím', mat: 'Mat', por: 'Port', fis: 'Fís', geo: 'Geo', his: 'Hist', ing: 'Ingl', fs: 'Fil/Soc' };
 
 /** "Suas matérias": faixa com rolagem lateral (roda do mouse e setas), um cartão por matéria. */
 function SuasMaterias({ todas, e }: { todas: MateriaCarregada[]; e: Estado }) {
-  const { rolo, bordas, mede, anda } = useRoloHorizontal('inicio');
+  const { rolo, bordas, mede, anda } = useRoloHorizontal('inicio', { semCiclo: true });
   return (
     <section className="in-mats" aria-labelledby="in-mats-tit">
       <h2 id="in-mats-tit" className="in-sec-tit">Suas matérias</h2>

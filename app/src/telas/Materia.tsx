@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useEffect, useLayoutEffect, type CSSProperties, type ReactNode } from 'react';
 import { urlCapa, useMateria, type MateriaCarregada } from '../dados/conteudo';
 import { CAIXA_CAPA } from '../dados/capas';
-import { MATERIAS, materia as infoMateria } from '../dados/materias';
+import { MATERIAS, ORDEM_MENU, materia as infoMateria } from '../dados/materias';
 import { useEstado, useMateriaEstado } from '../estado/loja';
 import { progressoEscada, resumoMateria } from '../logica/estatisticas';
 import { agendaDe } from '../logica/revisao';
@@ -13,7 +13,7 @@ import { Icone } from '../ui/Icone';
 import { ArteTreinoMateria, CirculoMateria } from '../ui/IconeMateria';
 import { IcTema } from '../ui/IconeTema';
 import { ProgressoMateria } from '../ui/ProgressoMateria';
-import { useRoloHorizontal } from '../ui/rolo';
+import { COPIAS_CICLO, propsCopia, useRoloHorizontal } from '../ui/rolo';
 import type { MateriaId } from '../dados/tipos';
 import type { EstadoMateria } from '../estado/tipos';
 import { useIndiceRevisao } from '../dados/revisao';
@@ -26,7 +26,7 @@ export function ListaMaterias() {
     <div className="conteudo">
       <div className="titulo-pag"><div><h1>Matérias</h1><p className="sub">Todas as matérias do ENEM e do vestibular.</p></div></div>
       <div className="grade g2">
-        {MATERIAS.map((m) => (
+        {[...MATERIAS].sort((a, b) => (ORDEM_MENU.indexOf(a.id) + 1 || 99) - (ORDEM_MENU.indexOf(b.id) + 1 || 99)).map((m) => ( /* ordem do menu (dono, 27/11/2026) */
           <Link key={m.id} to={`/m/${m.id}`} className={`linha-mat m-${m.id}` + (m.ativa ? '' : ' inativa')}>
             <CirculoMateria m={m.id} tam={56} />
             <span><b>{m.nome}</b><small>{m.ativa ? m.descricao : 'Em preparação: entra com as provas completas.'}</small></span>
@@ -74,7 +74,8 @@ export function CapaMateria({ m, nome, sub, children }: { m: MateriaId; nome: st
 /** Faixa de temas: sempre no topo da matéria (vocabulário do produto). Compacta dentro de um tema ou conteúdo. */
 export function FaixaTemas({ mc, s, atual, compacta = false }: { mc: MateriaCarregada; s: EstadoMateria; atual?: string; compacta?: boolean }) {
   // rolagem lateral, roda do mouse (girar para baixo anda para a direita) e setas: ui/rolo.ts
-  const { rolo, bordas, mede, anda } = useRoloHorizontal(mc.id);
+  // no computador com mouse, ciclo infinito: a lista é desenhada mais COPIAS_CICLO vezes (cópias fora do leitor e do Tab)
+  const { rolo, bordas, mede, anda, ciclo } = useRoloHorizontal(mc.id);
   const rg = useRegiao();
   // Todos os cartões têm a mesma altura (ícone + duas linhas de nome), em todas as matérias. O nome nunca é cortado:
   // o cartão cujo nome pediria 3 ou mais linhas fica mais largo, de 10 em 10 px, até caber em duas.
@@ -110,16 +111,16 @@ export function FaixaTemas({ mc, s, atual, compacta = false }: { mc: MateriaCarr
     <nav className={'faixa-temas' + (compacta ? ' compacta' : '') + (bordas.e ? ' fe' : '') + (bordas.d ? ' fd' : '')} aria-label="Faixa de temas">
       {bordas.e && <button className="ft-seta esq" onClick={() => anda(-1)} aria-label="Temas anteriores"><Icone nome="esquerda" /></button>}
       <div className="ft-rolo" ref={rolo} onScroll={mede}>
-        {mc.conteudo.modulos.map((mod) => {
+        {Array.from({ length: ciclo ? COPIAS_CICLO + 1 : 1 }, (_, k) => mc.conteudo.modulos.map((mod) => {
           const p = progressoEscada(questoesDoTema(mc, mod.id, rg.conj), s);
           return (
-            <Link key={mod.id} to={`/m/${mc.id}/tema/${mod.id}`} className={'ft-item' + (atual === mod.id ? ' atual' : '')} aria-current={atual === mod.id ? 'page' : undefined}>
+            <Link key={`${k}-${mod.id}`} to={`/m/${mc.id}/tema/${mod.id}`} className={'ft-item' + (atual === mod.id ? ' atual' : '')} aria-current={atual === mod.id && !k ? 'page' : undefined} {...propsCopia(k)}>
               <span className="ft-ic"><IcTema m={mc.id} tema={mod.id} tam={compacta ? 76 : 112} /></span>
               <span className="ft-nome">{mod.nome}</span>
               <Barra valor={p.total ? p.feitas / p.total : 0} rotulo={`Progresso em ${mod.nome}`} />
             </Link>
           );
-        })}
+        }))}
       </div>
       {bordas.d && <button className="ft-seta dir" onClick={() => anda(1)} aria-label="Próximos temas"><Icone nome="direita" /></button>}
     </nav>

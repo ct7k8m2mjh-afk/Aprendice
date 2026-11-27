@@ -12,7 +12,7 @@ import { ehAdmin, inscreveAdmin, useAdmin } from './modoAdmin';
 const PREVIA = import.meta.env.VITE_PREVIA === '1';
 const BASE = import.meta.env.BASE_URL + 'conteudo/';
 
-export const MATERIAS_COM_CONTEUDO: MateriaId[] = ['bio', 'qui', 'mat', 'por', 'fis', 'geo', 'his', 'fs', 'ing'];
+export const MATERIAS_COM_CONTEUDO: MateriaId[] = ['mat', 'por', 'qui', 'bio', 'fis', 'his', 'geo', 'ing', 'fs']; // ordem do menu (dono, 27/11/2026)
 
 interface PacotePrevia {
   materias: Record<string, {
