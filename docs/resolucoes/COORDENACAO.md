@@ -344,3 +344,5 @@ Prompt: docs/revisao-site/super-revisao/PROMPT-RETOMADA.md. 4 sessões (limite d
 SR-1 session_01PveEKYFBUaEtvF2C6K1qfd (34 questões sem resolução no site, depois mat → fis → fs);
 SR-2 session_01PveEKb2SqrWV1xKZaN21Ac (bio → qui → geo); SR-3 session_01PveEKZ3Ymk4cXfQrrg8F75 (por → his → ing).
 Cada uma publica ao fim de cada matéria. 45 min sem commit = caiu: abrir outra com o mesmo prompt.
+- 27/11 08h45 UTC: CANCELADO pelo dono ("eu não pedi para fazer a revisão"). SR-1, SR-2 e SR-3 interrompidas e arquivadas antes de
+  gravar qualquer coisa. Não reabrir a super revisão sem pedido expresso do dono. Só a sessão Ateliê continua.
