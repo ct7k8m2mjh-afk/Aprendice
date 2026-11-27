@@ -2450,3 +2450,8 @@ PROVAS.update(_mais_grupo_b())
 # ------------------------------------- Provas sem gabarito definitivo publicado (princípio 2 novo, dono, 11/11/2026)
 from provas_sem_gabarito import PROVAS as _sem_gab  # noqa: E402
 PROVAS.update(_sem_gab)
+
+
+# ------------------------------------- Drive do dono, 3º lote (pasta PROVAS MANUAIS, 19/11/2026; integrado em 27/11/2026)
+from provas_drive3 import PROVAS as _drive3  # noqa: E402
+PROVAS.update(_drive3)
