@@ -684,5 +684,460 @@
    "data": "2026-11-27",
    "lote": "mat-0083"
   }
+ },
+ "P5b40138e": {
+  "n": "47",
+  "conceito": "Ler um gráfico de barras duplas para somar totais, calcular uma porcentagem e achar a moda.",
+  "equivocos": {
+   "A": "M14.2:porcentagem-mal-calculada",
+   "B": "M14.1:ignorou-o-zero-na-moda",
+   "D": "M14.1:ignorou-o-zero-na-moda",
+   "E": "M14.1:ignorou-o-zero-na-moda"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada ano tem duas barras: a escura é de homens, a clara de mulheres; ano sem barra clara tem zero mulheres. Leia as 10 alturas de cada grupo antes de testar as afirmativas. Na moda, conte quantas vezes aparece cada valor, inclusive o zero.",
+    "formulas": [
+     "porcentagem = parte ÷ total",
+     "moda = valor que mais se repete"
+    ],
+    "simbolos": [
+     [
+      "moda",
+      "o valor que aparece mais vezes num conjunto de dados"
+     ],
+     [
+      "bimodal",
+      "conjunto com dois valores empatados como os mais frequentes"
+     ]
+    ]
+   },
+   "pista": "Anote as 10 alturas das barras claras, contando como zero os anos em que ela não aparece.",
+   "passos": [
+    {
+     "faz": "Leia as barras",
+     "conta": "homens: 2, 1, 5, 5, 5, 2, 1, 2, 7, 5 | mulheres: 3, 0, 4, 2, 1, 2, 1, 0, 0, 1",
+     "porque": "De 2013 a 2022; em 2014, 2020 e 2021 não há barra clara.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste a I",
+     "conta": "35 + 14 = 49 → I verdadeira",
+     "porque": "Homens somam 35 e mulheres 14.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a II",
+     "conta": "14/49 ≈ 0,286 = 28,6% < 30% → II verdadeira",
+     "porque": "A parte é o número de mulheres e o total são os 49 titulados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a III",
+     "conta": "valor 0: 3 vezes | valor 1: 3 vezes → moda 0 e 1 → III falsa",
+     "porque": "O zero empata com o 1; a série é bimodal, então dizer que a moda é 1 está incompleto.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "I e II corretas → alternativa C",
+     "porque": "Só a III cai.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — apenas I e II.",
+   "checagem": "Para a II, sem dividir: 30% de 49 é 14,7, e as mulheres são 14, menos que isso. Para a III, a lista ordenada 0, 0, 0, 1, 1, 1, 2, 2, 3, 4 mostra o empate.",
+   "erradas": {
+    "A": "Apenas I esquece que a II também vale: 14/49 ≈ 28,6%, abaixo de 30%.",
+    "B": "Apenas III erra duas vezes: a I e a II são verdadeiras, e a III é falsa porque o 0 aparece tantas vezes quanto o 1.",
+    "D": "II e III marca a III, que é falsa (o 0 empata com o 1), e deixa de fora a I, que vale (49 titulados).",
+    "E": "I, II e III inclui a III, que é falsa: os anos sem mulheres tituladas (valor 0) são três, como os anos com uma."
+   },
+   "armadilha": "Ano sem barra clara é o valor 0, e ele entra na moda: aparece 3 vezes, empatado com o 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmativas sobre total, porcentagem de mulheres e moda estão corretas.",
+    "chave": "Mulheres: 3, 0, 4, 2, 1, 2, 1, 0, 0, 1 (14); total 49; 0 e 1 empatam na moda.",
+    "cuidado": "Conte os zeros na moda."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "régua dos 30%",
+    "ideia": "0,3 · 49 = 14,7 > 14 confirma a II sem dividir; a lista ordenada das mulheres mostra o empate na moda."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "35 + 14 = 49",
+    "nota": "I: total de titulados"
+   },
+   {
+    "linha": "14/49 ≈ 28,6%",
+    "nota": "II: abaixo de 30%"
+   },
+   {
+    "linha": "0 → 3 vezes | 1 → 3 vezes",
+    "nota": "III: moda dupla, não só 1"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0084"
+  }
+ },
+ "P874c9db6": {
+  "n": "55",
+  "conceito": "Calcular a mediana (depois de ordenar) e a média de cinco valores de uma tabela.",
+  "equivocos": {
+   "A": "M14.1:mediana-sem-ordenar",
+   "B": "M14.1:mediana-sem-ordenar",
+   "C": "M14.1:media-mal-calculada",
+   "D": "M14.1:media-mal-calculada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Use só a linha \"Feminino\" da tabela. A mediana exige ordenar os valores; com 5 valores, é o 3.º. A média é a soma dividida por 5. A ordem pedida é mediana primeiro, média depois.",
+    "formulas": [
+     "mediana: valor central dos dados ordenados",
+     "média = soma dos valores ÷ quantidade"
+    ],
+    "simbolos": [
+     [
+      "mediana",
+      "valor do meio quando os dados estão em ordem"
+     ],
+     [
+      "média",
+      "soma de todos os valores dividida pela quantidade deles"
+     ]
+    ]
+   },
+   "pista": "Antes de procurar o valor do meio, ponha os cinco números em ordem.",
+   "passos": [
+    {
+     "faz": "Separe os dados",
+     "conta": "Feminino: 4 870 | 4 995 | 4 807 | 4 823 | 4 419",
+     "porque": "São os cinco anos, de 2018 a 2022.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ordene e ache a mediana",
+     "conta": "4 419 < 4 807 < 4 823 < 4 870 < 4 995 → mediana = 4 823",
+     "porque": "Com 5 valores, o do meio é o 3.º da lista ordenada.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os valores",
+     "conta": "4 870 + 4 995 + 4 807 + 4 823 + 4 419 = 23 914",
+     "porque": "A soma entra na média.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a média",
+     "conta": "23914/5 = 4 782,8",
+     "porque": "Divide-se pelo número de anos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "mediana 4 823 e média 4 782,8 → alternativa E",
+     "porque": "Na ordem pedida: mediana, depois média.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — mediana 4 823 e média 4 782,8.",
+   "checagem": "A média tem de ficar abaixo da mediana, porque o 4 419 é bem menor que os outros e puxa a média para baixo: 4 782,8 < 4 823 confere.",
+   "erradas": {
+    "A": "4 782,8 e 4 807 inverte a ordem (média primeiro) e usa como mediana o 4 807, que é o 3.º valor da tabela sem ordenar.",
+    "B": "4 807 e 4 872,8 não confere: 4 807 é o 3.º valor sem ordenar, e 4 872,8 · 5 = 24 364, que não é a soma 23 914.",
+    "C": "4 792,8 e 4 823 não confere: além da ordem trocada, 4 792,8 · 5 = 23 964, 50 a mais que a soma 23 914.",
+    "D": "4 823 e 4 792,8 acerta a mediana, mas a média não confere: 4 792,8 · 5 = 23 964, e a soma é 23 914."
+   },
+   "armadilha": "A mediana só se lê depois de ordenar: o 3.º valor da tabela (4 807) não é o do meio.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A mediana e a média, nessa ordem, dos ingressantes do sexo feminino em cinco anos.",
+    "chave": "Ordenados, o do meio é 4 823; a média é 23914/5 = 4 782,8.",
+    "cuidado": "Ordene antes da mediana e respeite a ordem mediana, média."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "desvios",
+    "ideia": "Tome 4 800 como base: desvios +70, +195, +7, +23, −381 somam −86; −86/5 = −17,2, e a média é 4 800 − 17,2 = 4 782,8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4 419, 4 807, 4 823, 4 870, 4 995",
+    "nota": "ordena; o 3.º é a mediana"
+   },
+   {
+    "linha": "soma = 23 914",
+    "nota": "cinco anos"
+   },
+   {
+    "linha": "23914/5 = 4 782,8",
+    "nota": "média"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0084"
+  }
+ },
+ "Pd0eeda35": {
+  "n": "56",
+  "conceito": "Julgar afirmativas com proporções e probabilidades tiradas de dois gráficos de barras e de dados da questão anterior.",
+  "equivocos": {
+   "A": "M14.2:leitura-errada-do-grafico",
+   "B": "M14.2:leitura-errada-do-grafico",
+   "C": "M13.4:probabilidade-mal-comparada",
+   "E": "M13.5:espaco-amostral-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada afirmativa usa um gráfico diferente; leia com cuidado qual grupo é o espaço amostral. Na terceira, o sorteio é entre todas as ingressantes de graduação do sexo feminino em 2021, que o segundo gráfico dá: 3 064. Na quarta, o sorteio é entre os ingressantes de CCS ou CCSH, dos dois sexos.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis"
+    ],
+    "simbolos": [
+     [
+      "CCNE, CCS, CCSH, CT",
+      "centros de ensino da UFSM: Ciências Naturais e Exatas, Ciências da Saúde, Ciências Sociais e Humanas e Tecnologia"
+     ],
+     [
+      "espaço amostral",
+      "o grupo inteiro de onde se sorteia"
+     ]
+    ]
+   },
+   "pista": "Em cada afirmativa, ache primeiro o grupo de onde se sorteia: ele é o denominador.",
+   "passos": [
+    {
+     "faz": "Teste a 1.ª",
+     "conta": "Brasil: 51,1% > 48,9% | CCNE: 212 < 222 | CT: 184 < 389 → F",
+     "porque": "Na população as mulheres são maioria, mas em CCNE e CT os homens são maioria: o \"mesmo ocorre\" é falso.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste a 2.ª",
+     "conta": "tabela: feminino > masculino em 2018 a 2022 | pós 2021: 824 > 537 → V",
+     "porque": "As duas partes se confirmam nos dados.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste a 3.ª",
+     "conta": "(212 + 184)/3064 = 396/3064 ≈ 0,129 < 0,15 → V",
+     "porque": "O sorteio é entre todas as 3 064 ingressantes de graduação; as de CCNE ou CT são 396.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a 4.ª",
+     "conta": "(318 + 474)/(318 + 132 + 474 + 370) = 792/1294 ≈ 0,612 → não é menor que 0,6 → F",
+     "porque": "O grupo são todos os ingressantes de CCS ou CCSH; as mulheres são 792 deles.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "F – V – V – F → alternativa D",
+     "porque": "É a sequência obtida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — F – V – V – F.",
+   "checagem": "Na 4.ª, sem dividir: 0,6 · 1 294 = 776,4, e as mulheres são 792, mais que isso; logo a probabilidade passa de 0,6. Na 3.ª, 0,15 · 3 064 = 459,6, e 396 fica abaixo.",
+   "erradas": {
+    "A": "V – V – F – F erra a 1.ª (em CCNE e CT os homens são maioria) e a 3.ª (396/3064 ≈ 0,129, abaixo de 0,15).",
+    "B": "V – F – V – F erra a 1.ª (homens são maioria em CCNE e CT) e a 2.ª (na pós de 2021, 824 mulheres contra 537 homens).",
+    "C": "F – V – V – V erra a 4.ª: 792/1294 ≈ 0,612, que não é menor que 0,6.",
+    "E": "F – V – F – F erra a 3.ª. A 3.ª dá F se o sorteio for só entre as mulheres dos quatro centros do gráfico: 396/1188 ≈ 0,33; mas a afirmativa fala de toda ingressante de graduação, as 3 064."
+   },
+   "armadilha": "Na 3.ª, o denominador são as 3 064 ingressantes de graduação, e não só as 1 188 dos quatro centros do primeiro gráfico.",
+   "alerta": "O texto da 3.ª afirmativa diz \"ingressante de graduação do sexo feminino\", e o gabarito oficial usa como total as 3 064 do segundo gráfico; com o total só dos quatro centros (1 188), a afirmativa ficaria falsa.",
+   "essencial": {
+    "pede": "A sequência de V e F das quatro afirmativas.",
+    "chave": "Para cada uma, ache o grupo do sorteio: 396/3064 ≈ 0,13 e 792/1294 ≈ 0,61.",
+    "cuidado": "Confira o espaço amostral antes de dividir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "régua do limite",
+    "ideia": "Multiplique o limite pelo total e compare com os favoráveis: 0,15 · 3 064 = 459,6 > 396 (V); 0,6 · 1 294 = 776,4 < 792 (F)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "212 < 222 | 184 < 389",
+    "nota": "1.ª: F"
+   },
+   {
+    "linha": "824 > 537",
+    "nota": "2.ª: V"
+   },
+   {
+    "linha": "396/3064 ≈ 0,129 < 0,15",
+    "nota": "3.ª: V"
+   },
+   {
+    "linha": "792/1294 ≈ 0,612 > 0,6",
+    "nota": "4.ª: F"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0084"
+  }
+ },
+ "P1e2cb189": {
+  "n": "48",
+  "conceito": "Calcular a variância (populacional) de dez valores lidos num gráfico de barras.",
+  "equivocos": {
+   "A": "M14.3:variancia-mal-calculada",
+   "C": "M14.3:variancia-mal-calculada",
+   "D": "M14.3:variancia-mal-calculada",
+   "E": "M14.3:variancia-mal-calculada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Variância mede o quanto os valores se espalham em torno da média: é a média dos quadrados dos desvios. Leia as 10 barras de mulheres (anos sem barra contam zero), ache a média e some os quadrados dos desvios. Divida pelos 10 anos.",
+    "formulas": [
+     "média = soma ÷ 10",
+     "variância = soma de (valor − média)² ÷ 10"
+    ],
+    "simbolos": [
+     [
+      "variância",
+      "média dos quadrados das distâncias de cada valor à média"
+     ],
+     [
+      "desvio",
+      "diferença entre um valor e a média"
+     ]
+    ]
+   },
+   "pista": "Primeiro anote as 10 alturas das barras claras e calcule a média delas.",
+   "passos": [
+    {
+     "faz": "Leia os dados",
+     "conta": "mulheres: 3, 0, 4, 2, 1, 2, 1, 0, 0, 1",
+     "porque": "De 2013 a 2022; 2014, 2020 e 2021 têm zero.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a média",
+     "conta": "14/10 = 1,4",
+     "porque": "A soma das barras é 14.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os quadrados dos desvios",
+     "conta": "(1,6)² + 3 · (−1,4)² + (2,6)² + 2 · (0,6)² + 3 · (−0,4)² = 2,56 + 5,88 + 6,76 + 0,72 + 0,48 = 16,4",
+     "porque": "Valores 3, 0, 4, 2 e 1 ficam a 1,6; −1,4; 2,6; 0,6 e −0,4 da média; o quadrado tira o sinal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida por 10",
+     "conta": "16,4/10 = 1,64",
+     "porque": "É a média dos quadrados dos desvios.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "1,64 → alternativa B",
+     "porque": "É a variância pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 1,640.",
+   "checagem": "Pelo atalho \"média dos quadrados menos quadrado da média\": quadrados 9 + 0 + 16 + 4 + 1 + 4 + 1 + 0 + 0 + 1 = 36; 36/10 − 1,4² = 3,6 − 1,96 = 1,64. Fecha.",
+   "erradas": {
+    "A": "1,052 não confere: a soma dos quadrados dos desvios é 16,4, e 16,4/10 = 1,64; nem dividindo por 9 se chega a ele (1,82).",
+    "C": "1,700 não confere: daria uma soma de quadrados de 17,0, e a soma correta é 16,4.",
+    "D": "2,072 não confere: passa da variância correta, 1,64, e também da que se obtém dividindo por 9, cerca de 1,82.",
+    "E": "2,288 não confere: passa da variância correta, 1,64, e também da que se obtém dividindo por 9, cerca de 1,82."
+   },
+   "armadilha": "Os três anos sem barra clara valem zero e entram na conta; sem eles, a média e a variância mudam.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A variância do número de mulheres tituladas nos 10 anos.",
+    "chave": "Média 1,4; soma dos quadrados dos desvios 16,4; 16,4/10 = 1,64.",
+    "cuidado": "Conte os anos com zero e divida por 10."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "atalho",
+    "ideia": "variância = (média dos quadrados) − (média)² = 36/10 − 1,96 = 1,64."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "média = 14/10 = 1,4",
+    "nota": "dez anos, zeros incluídos"
+   },
+   {
+    "linha": "soma dos (x − 1,4)² = 16,4",
+    "nota": "quadrados dos desvios"
+   },
+   {
+    "linha": "16,4/10 = 1,64",
+    "nota": "variância"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0084"
+  }
  }
 }

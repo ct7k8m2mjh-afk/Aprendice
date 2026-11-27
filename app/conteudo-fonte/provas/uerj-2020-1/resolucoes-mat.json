@@ -756,5 +756,121 @@
    "data": "2026-11-27",
    "lote": "mat-0083"
   }
+ },
+ "Pd44528a9": {
+  "n": "34",
+  "conceito": "Achar o menor caminho sobre a superfície lateral de um cone pela planificação em setor circular.",
+  "equivocos": {
+   "A": "M11.3:conta-errada-no-triangulo",
+   "C": "M11.3:caminho-menor-que-o-segmento",
+   "D": "M11.3:usou-a-circunferencia-da-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na superfície do cone, o caminho mais curto vira um segmento de reta quando você abre o cone. A lateral planificada é um setor circular de raio igual à geratriz (60 cm), e o arco do setor tem o comprimento da circunferência da base (2π·10). O ponto A aparece duas vezes, nas duas bordas do setor; o menor caminho é o segmento entre essas duas cópias.",
+    "formulas": [
+     "arco do setor = comprimento da base: θ·g = 2πr",
+     "θ = 2πr/g (em radianos)"
+    ],
+    "simbolos": [
+     [
+      "g",
+      "geratriz: segmento do vértice do cone até a borda da base"
+     ],
+     [
+      "r",
+      "raio da base"
+     ],
+     [
+      "θ",
+      "ângulo central do setor planificado"
+     ],
+     [
+      "A, A'",
+      "as duas cópias do ponto A nas bordas do setor"
+     ]
+    ]
+   },
+   "pista": "Abra o cone num setor e descubra o ângulo desse setor.",
+   "passos": [
+    {
+     "faz": "Calcule o arco do setor",
+     "conta": "arco = 2π·10 = 20π cm",
+     "porque": "Ao abrir o cone, a borda da base vira o arco do setor; o comprimento não muda.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o ângulo do setor",
+     "conta": "θ = 20π/60 = π/3 → 60°",
+     "porque": "Ângulo em radianos é arco dividido pelo raio, e o raio do setor é a geratriz, 60 cm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reconheça o triângulo",
+     "conta": "VA = VA' = 60 cm | ângulo AVA' = 60°",
+     "porque": "Dois lados iguais com 60° entre eles: os ângulos da base também são 60°, então o triângulo é equilátero.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Leia o menor caminho",
+     "conta": "AA' = 60 cm → alternativa B",
+     "porque": "No plano, o menor caminho entre A e A' é o segmento, que é o lado do triângulo equilátero.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 60",
+   "checagem": "Lei dos cossenos no triângulo VAA': AA'² = 60² + 60² − 2·60·60·cos 60° = 3600 + 3600 − 3600 = 3600, então AA' = 60.",
+   "erradas": {
+    "A": "50 não confere: no triângulo VAA' com lados 60 e 60 e ângulo de 60°, a lei dos cossenos dá AA'² = 3600, AA' = 60, e não 50.",
+    "C": "18π ≈ 56,5 cm não confere: é menor que o segmento AA' = 60 cm, e nenhum caminho entre A e A' é mais curto que o segmento reto.",
+    "D": "20π sai de dar a volta pela base: 2π·10 = 20π ≈ 62,8 cm, que é o arco do setor, não o menor caminho (60 cm é menor)."
+   },
+   "armadilha": "Achar que a volta pela base (20π) é o menor caminho: na planificação, o segmento reto entre as duas cópias de A é mais curto.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor comprimento de uma volta completa sobre a lateral do cone, de A até A.",
+    "chave": "A planificação é um setor de 60°; o caminho é o lado de um triângulo equilátero de lado 60.",
+    "cuidado": "O raio do setor é a geratriz (60), e não o raio da base (10)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fração da volta",
+    "ideia": "r/g = 10/60 = 1/6 da volta completa: setor de 360° ÷ 6 = 60°, triângulo equilátero, caminho de 60 cm"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "arco = 2π · 10 = 20π",
+    "nota": "o arco do setor é a circunferência da base"
+   },
+   {
+    "linha": "θ = 20π/60",
+    "nota": "ângulo = arco ÷ raio do setor"
+   },
+   {
+    "linha": "θ = π/3 = 60°",
+    "nota": "o 20 cancela com o 60"
+   },
+   {
+    "linha": "AA'² = 60² + 60² − 2·60·60·cos 60°",
+    "nota": "lei dos cossenos no triângulo VAA'"
+   },
+   {
+    "linha": "AA'² = 3600 → AA' = 60",
+    "nota": "triângulo equilátero de lado 60"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0084"
+  }
  }
 }

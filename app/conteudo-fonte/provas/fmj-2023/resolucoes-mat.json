@@ -695,5 +695,455 @@
    "data": "2026-11-27",
    "lote": "mat-0083"
   }
+ },
+ "Pae33b7e7": {
+  "n": "14",
+  "conceito": "Probabilidade de exatamente 1 homem num sorteio de 3 pessoas entre 4 homens e 4 mulheres, por combinações.",
+  "equivocos": {
+   "A": "M13.4:contagem-de-favoraveis-errada",
+   "B": "M13.4:contagem-de-favoraveis-errada",
+   "C": "M13.4:contagem-de-favoraveis-errada",
+   "D": "M13.4:contagem-de-favoraveis-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sortear 3 pessoas de uma vez forma um grupo, sem ordem: o total de casos é C(8,3). Exatamente um homem quer dizer 1 homem e 2 mulheres; conte cada parte e multiplique.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "favoráveis = C(4,1) · C(4,2)"
+    ],
+    "simbolos": [
+     [
+      "C(n,p)",
+      "número de grupos de p pessoas escolhidas entre n, sem ordem"
+     ]
+    ]
+   },
+   "pista": "Traduza \"exatamente um homem\" em quantos homens e quantas mulheres o grupo de 3 tem.",
+   "passos": [
+    {
+     "faz": "Conte os casos possíveis",
+     "conta": "C(8,3) = (8 · 7 · 6)/(3 · 2 · 1) = 336/6 = 56",
+     "porque": "São todos os grupos de 3 pessoas que podem sair do grupo de 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Traduza o pedido",
+     "conta": "exatamente 1 homem = 1 homem e 2 mulheres",
+     "porque": "\"Exatamente\" exclui grupos com 2 ou 3 homens e também o grupo só de mulheres.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os favoráveis",
+     "conta": "C(4,1) · C(4,2) = 4 · 6 = 24",
+     "porque": "Escolhe-se o homem (4 jeitos) e, para cada um, a dupla de mulheres (6 jeitos): \"e\" multiplica.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "24/56 = 3/7",
+     "porque": "Dividindo em cima e embaixo por 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "3/7 → alternativa E",
+     "porque": "É a probabilidade pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 3/7.",
+   "checagem": "Pela ordem do sorteio: P(H, M, M) = 4/8 · 4/7 · 3/6 = 1/7, e o homem pode sair em 1º, 2º ou 3º lugar: 3 · 1/7 = 3/7. Fecha.",
+   "erradas": {
+    "A": "3/14 = 12/56 não confere: é a metade dos 24 grupos com exatamente um homem; os 56 grupos se dividem em 4 sem homem, 24 com um, 24 com dois e 4 com três.",
+    "B": "9/14 = 36/56 não confere: nenhuma contagem do grupo dá 36; um homem são 24 grupos, e pelo menos um homem são 52.",
+    "C": "9/28 = 18/56 não confere: os grupos com exatamente um homem são 4 · 6 = 24, e não 18.",
+    "D": "15/28 = 30/56 não confere: os grupos com exatamente um homem são 24 dos 56."
+   },
+   "armadilha": "Contar o sorteio em ordem e esquecer as 3 posições do homem dá 1/7; contando por grupos, 24/56 já resolve sem esse risco.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de sair exatamente 1 homem num sorteio de 3 entre 4 homens e 4 mulheres.",
+    "chave": "Favoráveis C(4,1) · C(4,2) = 24 sobre C(8,3) = 56.",
+    "cuidado": "\"Exatamente um\" é 1 homem e 2 mulheres; use grupos dos dois lados da fração."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "sorteio em ordem",
+    "ideia": "4/8 · 4/7 · 3/6 = 1/7 para H, M, M; vezes 3 posições do homem = 3/7."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(8,3) = (8 · 7 · 6)/6 = 56",
+    "nota": "casos possíveis"
+   },
+   {
+    "linha": "C(4,1) · C(4,2) = 4 · 6 = 24",
+    "nota": "1 homem e 2 mulheres"
+   },
+   {
+    "linha": "24/56 = 3/7",
+    "nota": "simplifica por 8"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0084"
+  }
+ },
+ "P107cbeb1": {
+  "n": "12",
+  "conceito": "Achar um coeficiente pela soma das raízes (Girard) e calcular o resto da divisão por (x − 2) pelo teorema do resto.",
+  "equivocos": {
+   "A": "M16.1:conta-errada-no-valor-numerico",
+   "B": "M16.1:conta-errada-no-valor-numerico",
+   "C": "M16.1:conta-errada-no-valor-numerico",
+   "E": "M16.1:conta-errada-no-valor-numerico"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São duas ideias encadeadas. A soma das raízes de um polinômio de 3º grau ax³ + bx² + cx + d é −b/a; com ela você descobre p. Depois, o resto da divisão por (x − 2) é simplesmente P(2): não precisa fazer a divisão.",
+    "formulas": [
+     "soma das raízes = −b/a",
+     "resto da divisão de P(x) por (x − a) = P(a)"
+    ],
+    "simbolos": [
+     [
+      "Girard",
+      "relações entre os coeficientes e as raízes de um polinômio"
+     ],
+     [
+      "a, b",
+      "coeficientes de x³ e de x²; aqui a = −5 e b = p"
+     ],
+     [
+      "P(2)",
+      "valor do polinômio quando x = 2"
+     ]
+    ]
+   },
+   "pista": "Comece pela soma das raízes: identifique quem é o coeficiente de x³ e quem é o de x², com os sinais.",
+   "passos": [
+    {
+     "faz": "Monte a soma das raízes",
+     "conta": "−p/(−5) = 4",
+     "porque": "Pela relação de Girard, a soma é −b/a, com b = p e a = −5. Os dois sinais de menos se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para p",
+     "conta": "p/5 = 4 → p = 20",
+     "porque": "O 5 que divide passa multiplicando para o outro lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o teorema do resto",
+     "conta": "resto = P(2) = −5·2³ + 20·2² − 3·2 − 1",
+     "porque": "Dividir por (x − 2) deixa resto igual ao valor do polinômio em x = 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule P(2)",
+     "conta": "−40 + 80 − 6 − 1 = 33",
+     "porque": "2³ = 8 e 2² = 4: −5·8 = −40 e 20·4 = 80.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "resto = 33 → alternativa D",
+     "porque": "O pedido é o resto, que é o próprio P(2).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 33",
+   "checagem": "Pelo dispositivo de Briot-Ruffini com 2: −5 → −5·2 + 20 = 10 → 10·2 − 3 = 17 → 17·2 − 1 = 33. O último número é o resto: 33.",
+   "erradas": {
+    "A": "25 não confere: P(2) = 4p − 47, e para dar 25 seria p = 18; a soma das raízes seria 18/5 = 3,6, e não 4.",
+    "B": "7 não confere: P(2) = 4p − 47 = 7 exigiria p = 13,5; a soma das raízes seria 13,5/5 = 2,7, e não 4.",
+    "C": "18 não confere: P(2) = 4p − 47 = 18 exigiria p = 16,25; a soma das raízes seria 3,25, e não 4.",
+    "E": "14 não confere: P(2) = 4p − 47 = 14 exigiria p = 15,25; a soma das raízes seria 3,05, e não 4."
+   },
+   "armadilha": "O coeficiente de x³ é −5: na fórmula −b/a os dois sinais de menos se cancelam; quem erra o sinal acha p = −20 e P(2) = −127.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O resto da divisão de P(x) por (x − 2).",
+    "chave": "Girard dá p = 20; o teorema do resto dá P(2).",
+    "cuidado": "Na fórmula −b/a use a = −5 com o sinal."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Briot-Ruffini",
+    "ideia": "divida pelo dispositivo prático com a raiz 2: os coeficientes −5, 20, −3, −1 dão resto 33"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "−p/(−5) = 4",
+    "nota": "soma das raízes = −b/a"
+   },
+   {
+    "linha": "p/5 = 4",
+    "nota": "os dois sinais de menos se cancelam"
+   },
+   {
+    "linha": "p = 4 · 5 = 20",
+    "nota": "o 5 que divide passa multiplicando"
+   },
+   {
+    "linha": "P(2) = −5·8 + 20·4 − 3·2 − 1",
+    "nota": "troca x por 2"
+   },
+   {
+    "linha": "P(2) = −40 + 80 − 6 − 1 = 33",
+    "nota": "o resto é 33"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0084"
+  }
+ },
+ "P07627ab2": {
+  "n": "20",
+  "conceito": "Executar passo a passo um código com laço de repetição que só para quando a variável passa de 20.",
+  "equivocos": {
+   "A": "M17.2:simulou-o-laco-errado",
+   "C": "M17.2:simulou-o-laco-errado",
+   "D": "M17.2:simulou-o-laco-errado",
+   "E": "M17.2:esqueceu-a-ultima-linha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Faça uma tabela com o valor de res depois de cada linha. O bloco entre chaves é executado inteiro (soma 1 e depois dobra) e só então se confere se res passou de 20. Quando passar, sai do laço e ainda falta a última linha, que tira 5.",
+    "formulas": [
+     "res = res + 1 → soma 1 ao valor atual",
+     "res = 2 * res → dobra o valor atual"
+    ],
+    "simbolos": [
+     [
+      "res",
+      "nome da variável; guarda um número que muda a cada linha"
+     ],
+     [
+      "*",
+      "sinal de multiplicação no código"
+     ],
+     [
+      "laço",
+      "bloco entre chaves repetido até a condição ser atendida"
+     ]
+    ]
+   },
+   "pista": "Anote o valor de res depois de cada linha, inclusive antes de entrar nas chaves.",
+   "passos": [
+    {
+     "faz": "Execute as duas primeiras linhas",
+     "conta": "res = 1 → res = 3 * 1 = 3",
+     "porque": "O laço começa com res valendo 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a 1ª volta do laço",
+     "conta": "3 + 1 = 4 → 2 * 4 = 8",
+     "porque": "8 não é maior que 20, então o bloco se repete.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a 2ª volta",
+     "conta": "8 + 1 = 9 → 2 * 9 = 18",
+     "porque": "18 ainda não passa de 20: repete mais uma vez.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a 3ª volta",
+     "conta": "18 + 1 = 19 → 2 * 19 = 38",
+     "porque": "38 é maior que 20: o laço termina aqui.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Execute a última linha",
+     "conta": "res = 38 − 5 = 33 → alternativa B",
+     "porque": "A linha depois das chaves roda uma vez, depois do laço.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 33",
+   "checagem": "De trás para frente: 33 + 5 = 38; desfazendo a volta, 38/2 − 1 = 18, que não passa de 20, então o laço não teria parado antes; e 38 > 20 confirma a saída. Seguindo, 18/2 − 1 = 8 e 8/2 − 1 = 3, o valor inicial.",
+   "erradas": {
+    "A": "25 não confere: antes do − 5, res valeria 30, mas a sequência de valores no fim de cada volta é 8, 18, 38; 30 não aparece.",
+    "C": "15 não confere: antes do − 5, res valeria 20, e 20 não aparece no fim de nenhuma volta (8, 18, 38); além disso, 20 não é maior que 20.",
+    "D": "16 não confere: o laço sempre termina com um dobro, que é par, e par − 5 é ímpar; 16 é par.",
+    "E": "38 sai de parar no fim do laço e esquecer a última linha: falta fazer res = 38 − 5."
+   },
+   "armadilha": "Esquecer a linha res = res − 5, que fica fora das chaves e roda depois que o laço termina.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor final de res depois de todo o código.",
+    "chave": "Executar linha por linha: 3 → 8 → 18 → 38, e então 38 − 5.",
+    "cuidado": "O teste de parada vem depois do bloco inteiro; a última linha ainda roda."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula do bloco",
+    "ideia": "cada volta faz res → 2·(res + 1); aplique a 3, 8 e 18 até passar de 20 e subtraia 5"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "res = 1 → res = 3 · 1 = 3",
+    "nota": "antes do laço"
+   },
+   {
+    "linha": "3 + 1 = 4 → 2 · 4 = 8",
+    "nota": "1ª volta; 8 ≤ 20, repete"
+   },
+   {
+    "linha": "8 + 1 = 9 → 2 · 9 = 18",
+    "nota": "2ª volta; 18 ≤ 20, repete"
+   },
+   {
+    "linha": "18 + 1 = 19 → 2 · 19 = 38",
+    "nota": "3ª volta; 38 > 20, sai"
+   },
+   {
+    "linha": "38 − 5 = 33",
+    "nota": "linha depois das chaves"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0084"
+  }
+ },
+ "Pcf55d3e0": {
+  "n": "13",
+  "conceito": "Contar elementos que correspondem, um a um, aos pares de postos: combinação de 9 tomados 2 a 2.",
+  "equivocos": {
+   "A": "M13.3:contagem-errada",
+   "C": "M13.3:contagem-errada",
+   "D": "M13.3:contagem-errada",
+   "E": "M13.3:combinacao-com-n-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Leia as duas condições juntas: cada guarda-vidas atua em exatamente 2 postos, então cada um define um par de postos; e cada par de postos tem exatamente 1 guarda-vidas em comum. Logo há um guarda-vidas para cada par de postos, e contar guarda-vidas é contar pares. Par não tem ordem: é combinação.",
+    "formulas": [
+     "número de pares entre n itens = C(n, 2) = n·(n − 1)/2"
+    ],
+    "simbolos": [
+     [
+      "C(9, 2)",
+      "número de maneiras de escolher 2 postos entre 9, sem importar a ordem"
+     ]
+    ]
+   },
+   "pista": "Pergunte: a cada guarda-vidas corresponde o quê?",
+   "passos": [
+    {
+     "faz": "Traduza as condições",
+     "conta": "guarda-vidas ↔ par de postos",
+     "porque": "Cada guarda-vidas atua em 2 postos (um par) e cada par tem exatamente 1 guarda-vidas: a correspondência é um para um.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os pares de postos",
+     "conta": "C(9, 2) = 9 · 8/2 = 72/2 = 36",
+     "porque": "O par {posto 1, posto 2} é o mesmo que {posto 2, posto 1}; por isso divide por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira por posto",
+     "conta": "cada posto: 8 guarda-vidas | 9 · 8 = 72 → 72/2 = 36",
+     "porque": "Cada posto forma par com os outros 8, então tem 8 guarda-vidas; somando os 9 postos, cada guarda-vidas foi contado duas vezes.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "36 guarda-vidas → alternativa B",
+     "porque": "O número de guarda-vidas é o número de pares de postos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 36",
+   "checagem": "Volte às condições: 36 guarda-vidas em 2 postos cada dão 72 atuações, divididas igualmente entre 9 postos, 8 por posto; e cada posto precisa de exatamente 1 guarda-vidas em comum com cada um dos outros 8. Fecha.",
+   "erradas": {
+    "A": "54 não confere: daria 54 · 2/9 = 12 guarda-vidas por posto, mas cada posto só tem 8 (um para cada um dos outros 8 postos).",
+    "C": "27 não confere: daria 27 · 2/9 = 6 guarda-vidas por posto, poucos para dividir 1 com cada um dos outros 8 postos.",
+    "D": "18 não confere: daria 18 · 2/9 = 4 guarda-vidas por posto, e cada posto precisa de 8.",
+    "E": "45 não confere: daria 45 · 2/9 = 10 guarda-vidas por posto, mas cada posto tem 8; 45 seria C(10, 2), com 10 postos."
+   },
+   "armadilha": "Somar os guarda-vidas de cada posto (9 · 8 = 72) sem perceber que cada um foi contado em 2 postos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número total de guarda-vidas da praia.",
+    "chave": "Há um guarda-vidas para cada par de postos: C(9, 2) = 36.",
+    "cuidado": "Cada guarda-vidas está em 2 postos; não conte duas vezes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem por posto",
+    "ideia": "cada posto tem 8 guarda-vidas; 9 · 8 = 72 atuações, e cada guarda-vidas atua 2 vezes: 72/2 = 36"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "guarda-vidas = pares de postos",
+    "nota": "cada um ocupa um par, e cada par tem um"
+   },
+   {
+    "linha": "C(9, 2) = 9 · 8/2",
+    "nota": "combinação de 9 tomados 2 a 2"
+   },
+   {
+    "linha": "9 · 8/2 = 72/2",
+    "nota": "multiplica 9 por 8"
+   },
+   {
+    "linha": "72/2 = 36",
+    "nota": "divide por 2: a ordem do par não importa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0084"
+  }
  }
 }
