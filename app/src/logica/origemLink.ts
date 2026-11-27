@@ -8,7 +8,7 @@ export interface OrigemLink { tipo: TipoLink; nome?: string; rotulo: string }
 
 // domínio → nome de quem publica (cursinhos e sites de professor que resolvem e republicam a prova)
 const CURSINHOS: [RegExp, string][] = [
-  [/(^|\.)curso-objetivo\.br$/, 'Objetivo'], [/(^|\.)estrategia\.com$/, 'Estratégia'], [/(^|\.)etapa\.com\.br$/, 'Etapa'],
+  [/(^|\.)curso-objetivo\.br$/, 'Objetivo'], [/(^|\.)estrategia\.com$|(^|\.)estrategiavestibulares\.com\.br$/, 'Estratégia'], [/(^|\.)etapa\.com\.br$/, 'Etapa'],
   [/(^|\.)poliedro\.com\.br$/, 'Poliedro'], [/(^|\.)sistemaanglo\.com\.br$|(^|\.)anglo\w*\.com\.br$/, 'Anglo'],
   [/(^|\.)descomplica\.com\.br$/, 'Descomplica'], [/(^|\.)elitepre\.com\.br$/, 'Elite'], [/(^|\.)bernoulli\.com\.br$/, 'Bernoulli'],
   [/(^|\.)fariasbrito\.com\.br$/, 'Farias Brito'], [/(^|\.)aridesa\.com\.br$/, 'Ari de Sá'], [/(^|\.)cursinhodapoli\.com\.br$/, 'Cursinho da Poli'],
@@ -38,8 +38,10 @@ export function origemDoLink(url: string | undefined, origem: 'prova' | 'site' =
   if (origem !== 'prova') return { tipo: 'lista', rotulo: 'Lista pública de exercícios' };
   const h = host(url || '');
   // "PDF" só quando o link é um PDF; página de questão ou post do cursinho (revisão de 21/11/2026, dados N3)
-  for (const [re, nome] of CURSINHOS) if (re.test(h)) return { tipo: 'cursinho', nome, rotulo: ehPdf(url || '') ? 'PDF de resolução publicada, com a prova' : 'Resolução publicada por cursinho' };
-  for (const [re, nome] of TERCEIROS) if (re.test(h)) return { tipo: 'terceiros', nome, rotulo: 'Cópia da prova em site de terceiros' };
+  // o nome de quem publicou a cópia aparece ao aluno: é a origem da obra que a citação exige (Lei 9.610/98, art. 46, III;
+  // pedido do dono de 27/11/2026, "dar direito a tudo"); site didático nunca é nomeado (CLAUDE.md, dono, 05/11/2026)
+  for (const [re, nome] of CURSINHOS) if (re.test(h)) return { tipo: 'cursinho', nome, rotulo: `${ehPdf(url || '') ? 'PDF de resolução publicada, com a prova' : 'Resolução publicada por cursinho'} (${nome})` };
+  for (const [re, nome] of TERCEIROS) if (re.test(h)) return { tipo: 'terceiros', nome, rotulo: ehSiteDidatico(url) ? 'Cópia da prova em site de terceiros' : `Cópia da prova em site de terceiros (${nome})` };
   // o domínio técnico do armazenamento fica no registro (`nome`), não na tela do aluno (revisão de 20/11/2026, N11)
   if (HOSPEDAGEM.test(h)) return { tipo: 'hospedado', nome: h, rotulo: 'Caderno da prova, em arquivo hospedado na internet' };
   // link só para a página inicial da instituição: não promete o caderno (N11)

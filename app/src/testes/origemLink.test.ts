@@ -10,14 +10,20 @@ describe('origem do link da questão', () => {
     expect(origemDoLink('https://storage.acafe.org.br/x.pdf').tipo).toBe('oficial');
   });
   it('PDF de cursinho e cópia em site de terceiros', () => {
-    expect(origemDoLink('https://www.curso-objetivo.br/vestibular/resolucao-comentada/alberteinstein/2019/a.pdf')).toEqual({ tipo: 'cursinho', nome: 'Objetivo', rotulo: 'PDF de resolução publicada, com a prova' });
+    expect(origemDoLink('https://www.curso-objetivo.br/vestibular/resolucao-comentada/alberteinstein/2019/a.pdf')).toEqual({ tipo: 'cursinho', nome: 'Objetivo', rotulo: 'PDF de resolução publicada, com a prova (Objetivo)' });
     expect(origemDoLink('https://vestibulares.estrategia.com/public/questoes/x/').nome).toBe('Estratégia');
     // revisão de 21/11 (dados N3): "PDF" só quando o link é PDF; página de questão ou post de cursinho não
-    expect(origemDoLink('https://vestibulares.estrategia.com/public/questoes/x/').rotulo).toBe('Resolução publicada por cursinho');
-    expect(origemDoLink('https://vestibulares.estrategia.com/portal/atualidades-e-dicas/questoes-sobre-virus/').rotulo).toBe('Resolução publicada por cursinho');
-    expect(origemDoLink('https://www.quimicaparaovestibular.com.br/wp-content/uploads/a.PDF').rotulo).toBe('PDF de resolução publicada, com a prova');
+    expect(origemDoLink('https://vestibulares.estrategia.com/public/questoes/x/').rotulo).toBe('Resolução publicada por cursinho (Estratégia)');
+    expect(origemDoLink('https://vestibulares.estrategia.com/portal/atualidades-e-dicas/questoes-sobre-virus/').rotulo).toBe('Resolução publicada por cursinho (Estratégia)');
+    expect(origemDoLink('https://www.quimicaparaovestibular.com.br/wp-content/uploads/a.PDF').rotulo).toBe('PDF de resolução publicada, com a prova (Química para o Vestibular)');
     expect(origemDoLink('https://arquivos.qconcursos.com/prova/arquivo_prova/1/p.pdf').tipo).toBe('terceiros');
     expect(origemDoLink('https://storage.googleapis.com/b/p.pdf').tipo).toBe('hospedado');
+  });
+  // pedido do dono de 27/11/2026: quem publicou a cópia é nomeado (origem da obra, Lei 9.610/98, art. 46, III)
+  it('nomeia o cursinho e o site de terceiros, nunca o site didático', () => {
+    expect(origemDoLink('https://cdn.blog.estrategiavestibulares.com.br/x/prova.pdf')).toEqual({ tipo: 'cursinho', nome: 'Estratégia', rotulo: 'PDF de resolução publicada, com a prova (Estratégia)' });
+    expect(origemDoLink('https://arquivos.qconcursos.com/prova/arquivo_prova/1/p.pdf').rotulo).toBe('Cópia da prova em site de terceiros (Qconcursos)');
+    expect(origemDoLink('https://vestibular.brasilescola.uol.com.br/downloads/x.pdf').rotulo).toBe('Cópia da prova em site de terceiros');
   });
   it('lista de exercícios e link quebrado não lançam erro', () => {
     expect(origemDoLink('https://x.y', 'site').tipo).toBe('lista');

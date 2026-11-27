@@ -45,7 +45,7 @@ export function CartaoTeoriaView({ c, figs }: { c: CartaoTeoria; figs?: Figura[]
         <figure key={i} className="fig-teoria">
           <img src={f.u} alt={f.t} loading="lazy" className={esc ? 'fig-claro' : undefined} />
           {esc && <img src={esc} alt={f.t} loading="lazy" className="fig-escuro" />}
-          <figcaption><span className="fig-t">{comFracoes(f.t)}</span><small title={f.fonte}>{legendaFigura(f.fonte)}</small></figcaption>
+          <figcaption><span className="fig-t">{comFracoes(f.t)}</span><small title={f.fonte}>{legendaFigura(f.fonte, f.licenca)}</small></figcaption>
         </figure>
         );
       })}

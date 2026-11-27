@@ -25,7 +25,15 @@ FOTOS = os.path.join(APP, 'conteudo-fonte', 'revisao')
 DESTINO = os.path.join(APP, 'public', 'conteudo')
 TIPOS = {'abertura', 'conceito', 'formula', 'grafico', 'exemplo', 'pegadinha', 'na_prova', 'fixe'}
 # de onde vêm as fichas de cada matéria (as chaves de fonte "L1-F1-C02" são livro, frente e capítulo dessa obra)
-OBRAS = {'fis': 'PV Física (Poliedro)', 'bio': 'PV Biologia (Poliedro)'}  # fs: a chave já diz a obra (FIL-..., SOC-...), ver dados/revisao.ts
+OBRAS = {'fis': 'PV Física (Poliedro)', 'bio': 'PV Biologia (Poliedro)', 'qui': 'PV Química (Poliedro)'}  # qui: docs/revisao/qui/LEIA.md
+# fs: a chave já diz a obra (FIL-..., SOC-...), ver dados/revisao.ts; S05 e S06 usam a chave sem prefixo ("L1-F1-C08"), e o
+# crédito do livro sumia da tela (pedido do dono de 27/11/2026, "dar direito a tudo"): a obra vem pela letra do tema
+# (L = PV Filosofia, S = PV Sociologia; docs/revisao/fs/LEIA.md). Chave com prefixo continua mandando (fonteLegivel).
+OBRAS_TEMA = {'fs': {'L': 'PV Filosofia (Poliedro)', 'S': 'PV Sociologia (Poliedro)'}}
+
+
+def obra_do_tema(m, tema):
+    return OBRAS_TEMA.get(m, {}).get(tema[:1], OBRAS.get(m, ''))
 LARGURA_FOTO = 1280
 TEORIA_PROPRIA = {'bio', 'qui', 'mat', 'por'}
 # fotos que só vão ao ar com o OK do dono (princípio 10): o slide fica com o roteiro animado, sem a imagem e sem o link
@@ -370,7 +378,7 @@ def converte(materias=None):
             d.setdefault('slides', {})
             confere_tema(m, d, f'docs/revisao/{m}/{a}')
             fotos += prepara_fotos(m, d, saida)
-            d['obra'] = OBRAS.get(m, '')
+            d['obra'] = obra_do_tema(m, d['id'])
             temas[d['id']] = d
             gravar(os.path.join(saida, d['id'] + '.json'), d)
             indice['temas'][d['id']] = {

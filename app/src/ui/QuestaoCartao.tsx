@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { Letra, MateriaId, Questao } from '../dados/tipos';
 import { avisoGabarito, numeroQuestao, origemGabarito } from '../dados/tipos';
+import { creditoProva } from '../logica/creditoProva';
 import { origemDoLink } from '../logica/origemLink';
 import { blocosDoParagrafo, juntaQuebrasDoPdf, perdeDestaque } from '../logica/transcricao';
 import { materiaDoCodigo } from '../logica/fracao';
@@ -168,6 +169,7 @@ export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao, sem
   useEffect(() => setOriginal(soNoPrint), [q.id, soNoPrint]);
   useLarguraPrint(prEl, src);
   const alt = textoAlternativo(q);
+  const cred = creditoProva(q);
   // sem espaço sobrando nos campos (revisão de 19/11/2026, item 16: "Cederj 2026  · 2026.2")
   const limpa = (x: string | undefined) => (x || '').replace(/\s+/g, ' ').trim();
   const fonte = limpa(`${limpa(q.escola)} ${limpa(q.ano)}`);
@@ -195,7 +197,10 @@ export function EnunciadoQuestao({ m, q, numero, print, antes, depois, acao, sem
           </button>
           <div className="q-print-pe">
             <button className="q-amplia" onClick={() => setLupa(true)}><Icone nome="lupa" tam={14} /> Ampliar</button>
-            <a className="q-print-fonte" href={q.url} target="_blank" rel="noreferrer noopener" title="Abrir a fonte original"><span className="q-pf-t">{q.escola}</span> <Icone nome="externo" tam={13} /></a>
+            {/* crédito de direito autoral, com o site oficial da banca (dono, 27/11/2026; logica/creditoProva.ts) */}
+            {cred.site
+              ? <a className="q-print-fonte" href={cred.site} target="_blank" rel="noreferrer noopener" title={cred.titulo}><span className="q-pf-t">{cred.texto}</span> <Icone nome="externo" tam={13} /></a>
+              : <span className="q-print-fonte" title={cred.titulo}><span className="q-pf-t">{cred.texto}</span></span>}
           </div>
         </div>
       ) : (
