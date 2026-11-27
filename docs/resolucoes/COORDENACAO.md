@@ -338,3 +338,9 @@ registro `docs/revisao-site/atelie/REGISTRO.md`. Conta como uma das 4 sessões. 
 
 ### Pedidos do dono vindos do Ateliê
 (o Ateliê escreve aqui o que é da coordenação: resoluções, gabaritos, classificação, provas)
+
+## 27/11 08h37 UTC: SUPER REVISÃO RETOMADA (dono: "as sessões responsáveis devem publicá-las e corrigi-las; devem terminar")
+Prompt: docs/revisao-site/super-revisao/PROMPT-RETOMADA.md. 4 sessões (limite do dono): Ateliê session_01PveEKahCxkhQd2i5or2Ke2;
+SR-1 session_01PveEKYFBUaEtvF2C6K1qfd (34 questões sem resolução no site, depois mat → fis → fs);
+SR-2 session_01PveEKb2SqrWV1xKZaN21Ac (bio → qui → geo); SR-3 session_01PveEKZ3Ymk4cXfQrrg8F75 (por → his → ing).
+Cada uma publica ao fim de cada matéria. 45 min sem commit = caiu: abrir outra com o mesmo prompt.
