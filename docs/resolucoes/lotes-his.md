@@ -93,6 +93,7 @@ Faltam 0 questões sem resolução (fora as que estão em lote, pendentes ou com
 | his-0085 | demais nível 1-6 | 1 | gravado | 1 | 0 | 0 |
 | his-0086 | provas-alvo nível 1-6 | 50 | gravado | 50 | 0 | 0 |
 | his-0087 | demais nível 1-6 | 42 | gravado | 40 | 2 | 0 |
+| his-0088 | provas-alvo nível 1-6 | 3 | gravado | 3 | 0 | 0 |
 | his-pend-0001 | pendentes fato,as | 4 | gravado | 3 | 1 | 0 |
 | his-pend-0002 | pendentes reclassificada | 2 | gravado | 1 | 1 | 0 |
 | his-pend-0003 | pendentes =reclassificada | 2 | gravado | 2 | 0 | 0 |
