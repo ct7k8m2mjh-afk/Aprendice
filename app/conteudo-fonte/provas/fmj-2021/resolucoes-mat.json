@@ -1,0 +1,1120 @@
+{
+ "Pd95a1a40": {
+  "n": "11",
+  "conceito": "MMC com condição de paridade: todos no mesmo lado da piscina.",
+  "equivocos": {
+   "A": "M01.4:sem-origem-identificada",
+   "B": "M01.4:sem-origem-identificada",
+   "C": "M01.4:sem-origem-identificada",
+   "D": "M01.4:esqueceu-a-paridade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada nadador está no lado de partida depois de um número par de travessias e no outro lado depois de um número ímpar. Para os quatro estarem no mesmo lado, o tempo precisa ser múltiplo de todos os tempos de travessia e o número de travessias de cada um precisa ter a mesma paridade.",
+    "formulas": [
+     "mmc",
+     "lado de partida ↔ travessias pares"
+    ],
+    "simbolos": []
+   },
+   "pista": "No mmc(12, 15, 18, 25), quantas travessias cada um fez? Estão todos do mesmo lado?",
+   "passos": [
+    {
+     "faz": "Calcule o mmc dos tempos",
+     "conta": "12 = 2² · 3 → 15 = 3 · 5 → 18 = 2 · 3² → 25 = 5² → mmc = 2² · 3² · 5² = 900 s",
+     "porque": "Primeiro instante em que os quatro tocam uma borda ao mesmo tempo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as travessias em 900 s",
+     "conta": "900/12 = 75 → 900/15 = 60 → 900/18 = 50 → 900/25 = 36",
+     "porque": "Ida e volta são 2 travessias: número par deixa o nadador no lado de partida, ímpar no outro. O de 12 s fez 75, ímpar: está sozinho do outro lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Vá ao próximo instante comum",
+     "conta": "2 · 900 = 1800 s → 1800/12 = 150 → 1800/15 = 120 → 1800/18 = 100 → 1800/25 = 72",
+     "porque": "Os instantes comuns são os múltiplos de 900. Em 1800 s as quatro contagens são pares: todos no lado de partida.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a distância do mais rápido",
+     "conta": "150 · 20 m = 3 000 m → alternativa E",
+     "porque": "O mais rápido faz uma travessia de 20 m a cada 12 s.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 3 000 m.",
+   "checagem": "Tempos de ida e volta: 24, 30, 36 e 50 s. Todos voltam juntos ao ponto de partida no mmc(24, 30, 36, 50) = 2³ · 3² · 5² = 1800 s. Em 1800 s o nadador de 12 s fez 1800/24 = 75 idas e voltas, ou seja, 75 · 40 = 3 000 m. Confere.",
+   "erradas": {
+    "A": "1 000 m são 50 travessias do mais rápido, 600 s; 600 não é múltiplo de 18 (600/18 ≈ 33,3): o nadador de 18 s está no meio da piscina.",
+    "B": "2 000 m são 100 travessias (1200 s), e 1200 não é múltiplo de 18.",
+    "C": "2 500 m são 125 travessias (1500 s), que não é múltiplo de 18.",
+    "D": "1 500 m são as 75 travessias até 900 s, mas aí o mais rápido está do lado oposto ao dos outros três."
+   },
+   "armadilha": "Parar no mmc 900 s sem verificar se todos estão no mesmo lado; em 900 s o mais rápido fez 75 travessias (número ímpar).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Distância do mais rápido.",
+    "chave": "mmc com paridade: 1800 s.",
+    "cuidado": "Encontrar-se na borda não basta; tem de ser a mesma borda."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lado oposto impossível",
+    "ideia": "Para todos estarem no lado oposto, as quatro contagens t/12, t/15, t/18, t/25 precisariam ser ímpares; mas t/15 ímpar e t/18 ímpar não convivem com t múltiplo de 900 (t/15 = 60k é sempre par). Logo só o lado de partida serve, no primeiro múltiplo de 900 em que 75k é par: k = 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "mmc = 900 s",
+    "nota": "bordas"
+   },
+   {
+    "linha": "75 ímpar",
+    "nota": "lados diferentes"
+   },
+   {
+    "linha": "1800 s",
+    "nota": "mesmo lado"
+   },
+   {
+    "linha": "150 · 20 = 3 000 m",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  },
+  "super_revisao": [
+   "2026-11-23"
+  ]
+ },
+ "Pe78b3bb2": {
+  "n": "16",
+  "conceito": "Inequação entre logaritmo e reta resolvida pelo gráfico e pelos pontos de intersecção.",
+  "equivocos": {
+   "A": "M06.3:intervalo-nao-confere",
+   "C": "M06.3:regiao-invertida",
+   "D": "M06.3:cruzamento-errado",
+   "E": "M06.3:cruzamento-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O gráfico mostra que a curva do log fica acima da reta entre os dois cruzamentos. O enunciado garante que os cruzamentos têm coordenadas inteiras: basta achá-los testando inteiros em que x + 1 seja potência de 2. A resposta é o intervalo entre eles.",
+    "formulas": [
+     "log₂ (x + 1) é inteiro quando x + 1 é potência de 2",
+     "f(x) > g(x): curva acima da reta"
+    ],
+    "simbolos": [
+     [
+      "log₂",
+      "logaritmo na base 2"
+     ],
+     [
+      "f(x) > g(x)",
+      "pontos em que o gráfico de f está acima do de g"
+     ]
+    ]
+   },
+   "pista": "Procure os x inteiros que tornam log₂(x + 1) exato e teste f = g neles.",
+   "passos": [
+    {
+     "faz": "Teste x = 0",
+     "conta": "f(0) = 4 + log₂ 1 = 4 | g(0) = 28/7 = 4",
+     "porque": "No gráfico, um cruzamento está sobre o eixo y, em x = 0.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste x = 7",
+     "conta": "f(7) = 4 + log₂ 8 = 7 | g(7) = (21 + 28)/7 = 49/7 = 7",
+     "porque": "x + 1 = 8 é potência de 2 e dá o outro cruzamento, à direita.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia no gráfico onde f está acima",
+     "conta": "entre x = 0 e x = 7, a curva fica acima da reta",
+     "porque": "Antes de 0 a curva despenca rumo à assíntota x = −1; depois de 7 a reta passa por cima.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva o conjunto",
+     "conta": "{x ∈ ℝ | 0 < x < 7} → alternativa B",
+     "porque": "A desigualdade é estrita, então 0 e 7 ficam de fora.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — {x ∈ ℝ | 0 < x < 7}",
+   "checagem": "Teste um ponto do meio: x = 3 dá f(3) = 4 + log₂ 4 = 6 e g(3) = 37/7 ≈ 5,29; f > g. Um ponto fora: x = 15 dá f = 4 + 4 = 8 e g = 73/7 ≈ 10,43; f < g.",
+   "erradas": {
+    "A": "x < 0 e x > 4 não confere: em x = 3 já vale f > g (6 > 37/7), e 3 não está nesse conjunto.",
+    "C": "x < 0 e x > 7 é a região oposta: ali a reta é que está acima da curva (em x = 15, 8 < 73/7).",
+    "D": "0 < x < 4 não confere: em x = 5, f = 4 + log₂ 6 ≈ 6,58 e g = 43/7 ≈ 6,14, f > g, e 5 fica fora.",
+    "E": "4 < x < 7 não confere: em x = 3, f > g, e 3 fica fora desse intervalo."
+   },
+   "armadilha": "O segundo cruzamento é em x = 7, onde x + 1 = 8 é potência de 2, e não em x = 4.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Para que x a curva 4 + log₂(x + 1) fica acima da reta (3x + 28)/7.",
+    "chave": "Cruzamentos em (0, 4) e (7, 7); entre eles, f > g.",
+    "cuidado": "Use as coordenadas inteiras para achar os cruzamentos e deixe as pontas fora (desigualdade estrita)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de pontos",
+    "ideia": "x = 3 e x = 5 satisfazem f > g e x = 15 não: só a B contém 3 e 5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(0) = 4 + log₂ 1 = 4",
+    "nota": "x = 0"
+   },
+   {
+    "linha": "g(0) = 28/7 = 4",
+    "nota": "cruzamento (0, 4)"
+   },
+   {
+    "linha": "f(7) = 4 + log₂ 8 = 7",
+    "nota": "x = 7"
+   },
+   {
+    "linha": "g(7) = 49/7 = 7",
+    "nota": "cruzamento (7, 7)"
+   },
+   {
+    "linha": "0 < x < 7",
+    "nota": "curva acima da reta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "P6a0faed1": {
+  "n": "18",
+  "conceito": "Ângulos no hexágono regular: diagonais dividem o ângulo interno e soma dos ângulos do triângulo.",
+  "equivocos": {
+   "A": "M08.4:soma-de-angulos-que-nao-fecha",
+   "C": "M08.4:soma-de-angulos-que-nao-fecha",
+   "D": "M08.4:soma-de-angulos-que-nao-fecha",
+   "E": "M08.4:soma-de-angulos-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No hexágono regular cada ângulo interno mede 120°. A diagonal maior (a horizontal, que passa pelo centro) divide o ângulo do vértice ao meio, 60° de cada lado; e a diagonal menor, saindo do mesmo vértice, faz 30° com a maior. Com esses ângulos e o 110° dado, dois triângulos resolvem tudo.",
+    "formulas": [
+     "ângulo interno do hexágono regular = 120°",
+     "soma dos ângulos do triângulo = 180°",
+     "ângulos opostos pelo vértice são iguais; ângulos lado a lado na reta somam 180°"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "ângulo marcado no ponto sobre o lado do hexágono"
+     ],
+     [
+      "β",
+      "ângulo marcado no cruzamento com a diagonal horizontal"
+     ],
+     [
+      "x",
+      "ângulo entre o segmento e a diagonal horizontal, no cruzamento"
+     ]
+    ]
+   },
+   "pista": "Olhe o triângulo formado pelo vértice da esquerda, o ângulo de 110° e o cruzamento com a diagonal horizontal.",
+   "passos": [
+    {
+     "faz": "Ache o ângulo no vértice da esquerda",
+     "conta": "120° = 60° + 60° → 60° = 30° + 30°",
+     "porque": "A diagonal maior corta o ângulo de 120° do vértice da esquerda em dois de 60°; a diagonal menor fica no meio de um deles, a 30° da maior.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Feche o triângulo da esquerda",
+     "conta": "x + 110° + 30° = 180° → x = 40°",
+     "porque": "No triângulo com o vértice da esquerda, o ângulo de 110° e o cruzamento, os três ângulos somam 180°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule β",
+     "conta": "β + 40° = 180° → β = 140°",
+     "porque": "β e o ângulo de 40° ficam lado a lado sobre a diagonal horizontal, então somam 180°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Feche o triângulo da direita",
+     "conta": "α + 60° + 40° = 180° → α = 80°",
+     "porque": "No vértice da direita, a diagonal maior faz 60° com o lado; no cruzamento, o ângulo é 40° (oposto pelo vértice ao x).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e marque",
+     "conta": "α + β = 80° + 140° = 220° → alternativa B",
+     "porque": "É a soma pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 220°",
+   "checagem": "Pelo ângulo externo: β é externo ao triângulo da direita no cruzamento, então β = α + 60° = 80° + 60° = 140°, o mesmo valor.",
+   "erradas": {
+    "A": "230° não confere: α + β = 300° − 2x, e 230° pediria x = 35°, o que só aconteceria se o ângulo marcado fosse 115°, não 110°.",
+    "C": "235° não confere: pediria x = 32,5° no cruzamento, o que exigiria um ângulo marcado de 117,5°, não 110°.",
+    "D": "225° não confere: pediria x = 37,5°, o que exigiria um ângulo marcado de 112,5°, não 110°.",
+    "E": "215° não confere: pediria x = 42,5°, o que exigiria um ângulo marcado de 107,5°, não 110°."
+   },
+   "armadilha": "Usar 60° como ângulo entre as duas diagonais no vértice da esquerda: entre a menor e a maior são só 30°.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma α + β dos ângulos marcados na figura do hexágono regular.",
+    "chave": "30° no vértice da esquerda dá 40° no cruzamento; β = 140° e α = 180° − 60° − 40° = 80°.",
+    "cuidado": "No hexágono regular, as diagonais de um vértice cortam o ângulo de 120° em partes de 30°."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ângulo externo",
+    "ideia": "β é externo aos dois triângulos: β = 110° + 30° = 140° e β = α + 60°, logo α = 80°."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "120° = 60° + 60° → 60° = 30° + 30°",
+    "nota": "vértice da esquerda: 30° entre as diagonais"
+   },
+   {
+    "linha": "x + 110° + 30° = 180° → x = 40°",
+    "nota": "triângulo da esquerda"
+   },
+   {
+    "linha": "β = 180° − 40° = 140°",
+    "nota": "ângulos lado a lado"
+   },
+   {
+    "linha": "α = 180° − 60° − 40° = 80°",
+    "nota": "triângulo da direita"
+   },
+   {
+    "linha": "α + β = 220°",
+    "nota": "soma pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
+ },
+ "Pdf9159c6": {
+  "n": "17",
+  "conceito": "Pitágoras para achar a altura do trapézio retângulo e seno de 60° para achar o lado oblíquo.",
+  "equivocos": {
+   "A": "M10.1:razao-trigonometrica-errada",
+   "B": "M10.1:razao-trigonometrica-errada",
+   "C": "M10.1:confundiu-projecao-com-lado",
+   "E": "M10.1:razao-trigonometrica-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No trapézio retângulo da figura, o ângulo em D é reto: o triângulo ACD é retângulo em D, com hipotenusa AC. Ele dá o lado CD, que é a altura do trapézio. Essa mesma altura é o cateto oposto ao ângulo de 60° no triângulo que tem AB como hipotenusa.",
+    "formulas": [
+     "AC² = AD² + CD²",
+     "sen 60° = altura ÷ AB",
+     "sen 60° = √3/2"
+    ],
+    "simbolos": [
+     [
+      "trapézio retângulo",
+      "trapézio com dois ângulos retos"
+     ],
+     [
+      "sen 60°",
+      "cateto oposto ao ângulo de 60° dividido pela hipotenusa"
+     ]
+    ]
+   },
+   "pista": "A diagonal AC não envolve o ângulo de 60°: use-a primeiro para achar a altura.",
+   "passos": [
+    {
+     "faz": "Ache a altura pelo triângulo ACD",
+     "conta": "(2√13)² = 6² + CD² → 52 = 36 + CD² → CD² = 16 → CD = 4",
+     "porque": "Em D o ângulo é reto, então Pitágoras vale; (2√13)² = 4 × 13 = 52.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a altura no ângulo de 60°",
+     "conta": "sen 60° = 4/AB → √3/2 = 4/AB → √3 · AB = 8",
+     "porque": "Baixando a altura de B até AD, forma-se um triângulo retângulo com hipotenusa AB e cateto oposto ao 60° igual a CD = 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole AB e racionalize",
+     "conta": "AB = 8/√3 → AB = (8√3)/3",
+     "porque": "Multiplicando em cima e embaixo por √3, a raiz sai do denominador, como estão as alternativas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "AB = (8√3)/3 cm → alternativa D",
+     "porque": "A pergunta é o lado AB, a hipotenusa do triângulo de 60°.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — (8√3)/3 cm",
+   "checagem": "Com AB = (8√3)/3 ≈ 4,62 cm, a projeção de AB sobre AD é AB × cos 60° ≈ 2,31 cm, e a altura é AB × sen 60° = 4. Então BC ≈ 6 − 2,31 = 3,69 cm, positivo: o trapézio existe com esses lados.",
+   "erradas": {
+    "A": "(9√3)/2 ≈ 7,79 cm não confere: com esse AB a altura seria (9√3)/2 × √3/2 = 6,75 cm, e não 4 cm.",
+    "B": "(5√3)/2 ≈ 4,33 cm não confere: daria altura (5√3)/2 × √3/2 = 3,75 cm, e não 4 cm.",
+    "C": "(4√3)/3 ≈ 2,31 cm não confere: daria altura 2 cm, metade dos 4 cm. É a projeção de AB sobre AD, não o lado AB.",
+    "E": "(6√3)/3 = 2√3 ≈ 3,46 cm não confere: daria altura 2√3 × √3/2 = 3 cm, e não 4 cm."
+   },
+   "armadilha": "Tentar usar o 60° no triângulo ACD: o ângulo de 60° está em A, mas no lado AB, e não na diagonal AC.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A medida do lado AB do trapézio.",
+    "chave": "Pitágoras em ACD dá a altura 4; sen 60° = 4/AB dá AB = (8√3)/3.",
+    "cuidado": "(2√13)² é 52, e a altura é o cateto oposto ao 60°."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tangente",
+    "ideia": "A projeção de AB é 4/tg 60° = (4√3)/3, e AB = 2 × projeção (no 60°, a hipotenusa é o dobro do cateto adjacente) = (8√3)/3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(2√13)² = 6² + CD²",
+    "nota": "Pitágoras no triângulo ACD"
+   },
+   {
+    "linha": "52 = 36 + CD² → CD² = 16 → CD = 4",
+    "nota": "36 passou subtraindo"
+   },
+   {
+    "linha": "sen 60° = 4/AB → √3/2 = 4/AB",
+    "nota": "altura oposta ao 60°"
+   },
+   {
+    "linha": "√3 · AB = 8 → AB = 8/√3",
+    "nota": "multiplicação cruzada"
+   },
+   {
+    "linha": "AB = (8√3)/3",
+    "nota": "racionalizou"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ },
+ "Pc278a793": {
+  "n": "19",
+  "conceito": "Usar volume, área total e área de uma face de um paralelepípedo para achar a soma das dimensões.",
+  "equivocos": {
+   "A": "M11.1:area-total-montada-errada",
+   "B": "M11.1:area-total-montada-errada",
+   "C": "M11.1:area-total-montada-errada",
+   "D": "M11.1:area-total-montada-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Volume equivalente a 12 blocos iguais quer dizer que cada bloco pequeno tem 1/12 do volume grande. Com o volume pqr e uma face pq = 20, a terceira dimensão sai de uma divisão. A área total 2(pq + pr + qr) dá então a soma p + q.",
+    "formulas": [
+     "volume = p·q·r",
+     "área total = 2(pq + pr + qr)"
+    ],
+    "simbolos": [
+     [
+      "p, q, r",
+      "dimensões de cada paralelepípedo menor, em cm"
+     ],
+     [
+      "cm³",
+      "centímetro cúbico"
+     ],
+     [
+      "cm²",
+      "centímetro quadrado"
+     ]
+    ]
+   },
+   "pista": "Comece pelo volume de um bloco pequeno; com a face de 20 cm², uma dimensão sai na hora.",
+   "passos": [
+    {
+     "faz": "Ache o volume de cada bloco menor",
+     "conta": "4 × 6 × 10 = 240 → 240/12 = 20 cm³",
+     "porque": "Os 12 blocos idênticos juntos têm o volume do grande, então cada um tem um doze avos dele.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a face de 20 cm²",
+     "conta": "pqr = 20 e pq = 20 → r = 20/20 = 1",
+     "porque": "Chame de pq a face de 20 cm². O volume é essa face vezes a terceira dimensão, então r = 1 cm.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a área total",
+     "conta": "2(20 + r(p + q)) = 58 → 20 + (p + q) = 29 → p + q = 9",
+     "porque": "Com r = 1, pr + qr = p + q. O 2 passa dividindo (58/2 = 29) e o 20 passa subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as três dimensões",
+     "conta": "p + q + r = 9 + 1 = 10",
+     "porque": "Já temos p + q e r; não é preciso achar p e q separados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "p + q + r = 10 cm → alternativa E",
+     "porque": "A pergunta é a soma das três dimensões de cada bloco menor.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 10 cm",
+   "checagem": "p + q = 9 e pq = 20 dão p = 4 e q = 5 (4 + 5 = 9, 4 × 5 = 20). Bloco 4 × 5 × 1: volume 20 cm³ e área 2(20 + 4 + 5) = 58 cm². Fecha com os dois dados.",
+   "erradas": {
+    "A": "12 cm não confere: com r = 1, p + q seria 11, e a área ficaria 2(20 + 11) = 62 cm², não 58.",
+    "B": "16 cm não confere: p + q seria 15, e a área ficaria 2(20 + 15) = 70 cm², não 58.",
+    "C": "14 cm não confere: p + q seria 13, e a área ficaria 2(20 + 13) = 66 cm², não 58.",
+    "D": "18 cm não confere: p + q seria 17, e a área ficaria 2(20 + 17) = 74 cm², não 58."
+   },
+   "armadilha": "Usar o volume do bloco grande (240 cm³) como se fosse o de cada bloco menor, esquecendo de dividir por 12.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma p + q + r das dimensões de cada bloco menor.",
+    "chave": "pqr = 240/12 = 20 e pq = 20 dão r = 1; 2(20 + p + q) = 58 dá p + q = 9; soma 10 cm.",
+    "cuidado": "O volume de cada bloco é 1/12 do grande."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "achar as dimensões",
+    "ideia": "p e q são raízes de x² − 9x + 20 = 0, ou seja, 4 e 5; com r = 1, a soma é 4 + 5 + 1 = 10 cm."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4 × 6 × 10 = 240 cm³",
+    "nota": "volume do bloco grande"
+   },
+   {
+    "linha": "pqr = 240/12 = 20",
+    "nota": "cada bloco menor"
+   },
+   {
+    "linha": "pq = 20 → r = 20/20 = 1",
+    "nota": "face de 20 cm²"
+   },
+   {
+    "linha": "2(20 + p + q) = 58 → 20 + p + q = 29",
+    "nota": "área total; divide por 2"
+   },
+   {
+    "linha": "p + q = 9",
+    "nota": "20 passa subtraindo"
+   },
+   {
+    "linha": "p + q + r = 9 + 1 = 10",
+    "nota": "soma pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ },
+ "Pf81f05a9": {
+  "n": "15",
+  "conceito": "Vértices de um paralelogramo no plano e intersecção da reta de um lado com o eixo x.",
+  "equivocos": {
+   "A": "M12.2:erro-na-equacao-da-reta",
+   "B": "M12.2:erro-na-equacao-da-reta",
+   "D": "M12.2:respondeu-outra-coordenada",
+   "E": "M12.2:erro-na-equacao-da-reta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Num paralelogramo os lados opostos são paralelos e iguais. AD é vertical com medida 6, então D fica 6 unidades acima de A. A reta CD é paralela a AB, então tem a mesma inclinação de AB; com D e essa inclinação, a reta sai.",
+    "formulas": [
+     "inclinação = Δy/Δx",
+     "y − y₀ = m(x − x₀)"
+    ],
+    "simbolos": [
+     [
+      "paralelogramo",
+      "quadrilátero com lados opostos paralelos e de mesma medida"
+     ],
+     [
+      "m",
+      "coeficiente angular (inclinação) da reta"
+     ],
+     [
+      "abscissa",
+      "coordenada x do ponto"
+     ]
+    ]
+   },
+   "pista": "Use a figura: onde fica D, sabendo que AD é vertical e mede 6? E qual lado é paralelo a CD?",
+   "passos": [
+    {
+     "faz": "Localize D",
+     "conta": "A = (2, 0), AD vertical de medida 6 → D = (2, 6)",
+     "porque": "Paralelo ao eixo y significa mesma abscissa; pela figura D está acima de A.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a inclinação de AB",
+     "conta": "m = (5 − 0)/(−3 − 2) → m = 5/(−5) = −1",
+     "porque": "CD é paralela a AB (lados opostos do paralelogramo), então tem a mesma inclinação.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a reta CD por D",
+     "conta": "y − 6 = −1 · (x − 2) → y = −x + 8",
+     "porque": "Ponto D e inclinação −1 determinam a reta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça y = 0",
+     "conta": "0 = −x + 8 → x = 8",
+     "porque": "Cortar o eixo x é ter y = 0. A abscissa é 8, alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a reta CD corta o eixo x no ponto de abscissa 8.",
+   "checagem": "Pelo vértice C: C = D + (B − A) = (2 − 5, 6 + 5) = (−3, 11), e −(−3) + 8 = 11: C está na reta y = −x + 8. Fecha.",
+   "erradas": {
+    "A": "9 não confere: na reta CD, y = −x + 8, o ponto de abscissa 9 tem y = −1, e não 0.",
+    "B": "10 não confere: na reta CD, y = −x + 8, o ponto de abscissa 10 tem y = −2, e não 0.",
+    "D": "11 é a ordenada do vértice C = (−3, 11), não a abscissa do corte. Na reta CD, x = 11 dá y = −3.",
+    "E": "12 não confere: na reta CD, y = −x + 8, o ponto de abscissa 12 tem y = −4, e não 0."
+   },
+   "armadilha": "A reta CD tem a inclinação de AB (lados opostos são paralelos); sem enxergar isso, é preciso achar C antes, o que dá mais trabalho e mais chance de erro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A abscissa do ponto onde a reta CD corta o eixo x.",
+    "chave": "CD ∥ AB: inclinação −1, passando por D = (2, 6).",
+    "cuidado": "Cortar o eixo x é fazer y = 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo vértice C",
+    "ideia": "C = D + (B − A) = (−3, 11); a reta por C e D tem inclinação (11 − 6)/(−3 − 2) = −1 e corta y = 0 em x = 8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "D = (2, 0 + 6) → D = (2, 6)",
+    "nota": "AD vertical, medida 6"
+   },
+   {
+    "linha": "m = (5 − 0)/(−3 − 2) → m = −1",
+    "nota": "inclinação de AB = de CD"
+   },
+   {
+    "linha": "y − 6 = −(x − 2) → y = −x + 8",
+    "nota": "reta CD"
+   },
+   {
+    "linha": "0 = −x + 8 → x = 8",
+    "nota": "corte no eixo x"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0064"
+  }
+ },
+ "Pd0e11906": {
+  "n": "13",
+  "conceito": "Contar sequências de lances pelo princípio multiplicativo, separando o 2º lance em mexer a mesma peça ou outra.",
+  "equivocos": {
+   "B": "M13.1:contagem-sem-base",
+   "C": "M13.1:proibiu-repeticao-entre-jogadores",
+   "D": "M13.1:contagem-sem-base",
+   "E": "M13.1:ignorou-a-restricao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada jogador faz dois lances, e o total é o produto das possibilidades dos dois jogadores. No 1º lance, qualquer das 8 peças pode andar uma ou duas casas. No 2º lance o número de opções depende de qual peça se mexe: a peça que já andou só pode avançar uma casa; uma peça nova ainda tem as duas opções. Esse é o trabalho real da questão.",
+    "formulas": [
+     "opções de um jogador = opções do 1º lance × opções do 2º lance",
+     "total = (opções do jogador das brancas) × (opções do jogador das pretas)"
+    ],
+    "simbolos": [
+     [
+      "lance",
+      "um movimento de um jogador; eles se alternam"
+     ],
+     [
+      "princípio multiplicativo",
+      "etapas em sequência: multiplica-se o número de opções de cada etapa"
+     ]
+    ]
+   },
+   "pista": "Conte primeiro só as sequências de um jogador; o 2º lance tem dois tipos de escolha, olhe cada um separadamente.",
+   "passos": [
+    {
+     "faz": "Conte as opções do 1º lance",
+     "conta": "8 peças × 2 avanços = 16",
+     "porque": "Qualquer peça pode ser a primeira a se mexer, e no primeiro movimento ela escolhe avançar uma ou duas casas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as opções do 2º lance",
+     "conta": "mesma peça: 1 | outra peça: 7 × 2 = 14 → 1 + 14 = 15",
+     "porque": "A peça que já se mexeu só anda uma casa; cada uma das outras 7 ainda está no primeiro movimento e tem duas opções. Os dois casos se excluem, então se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique os dois lances do jogador",
+     "conta": "16 × 15 = 240",
+     "porque": "Cada 1º lance combina com qualquer um dos 15 segundos lances possíveis.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os dois jogadores",
+     "conta": "240 × 240 = 57 600",
+     "porque": "O outro jogador tem as mesmas regras e as mesmas 240 sequências, e cada sequência de um combina com cada sequência do outro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o total à alternativa",
+     "conta": "57 600 sequências → alternativa A",
+     "porque": "É o número de sequências dos dois primeiros lances de cada jogador, que é o pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 57 600 sequências",
+   "checagem": "Teste o modelo na figura 2: lá cada jogador mexeu duas peças das pontas, cada uma avançando duas casas de uma vez. A única escolha é a ordem das duas peças: 2 ordens para as brancas × 2 para as pretas = 4 sequências, exatamente as 4 que o enunciado diz.",
+   "erradas": {
+    "B": "53 760 não confere: 53 760 não é o quadrado de nenhum número inteiro (231² = 53 361 e 232² = 53 824), mas os dois jogadores têm as mesmas regras, então o total é um número de opções ao quadrado.",
+    "C": "43 680 sai de tratar os 4 lances como escolhas sem repetição entre as 16 opções: 16 × 15 × 14 × 13 = 43 680. Cada jogador tem as suas próprias 16 opções, e o 2º lance segue a regra da peça já mexida.",
+    "D": "60 436 não confere: não é o quadrado de nenhum número inteiro (245² = 60 025 e 246² = 60 516), e o total, com regras iguais para os dois jogadores, tem de ser um quadrado.",
+    "E": "65 536 sai de dar 16 opções a cada um dos 4 lances: 16 × 16 × 16 × 16 = 65 536. Esquece que a peça que já andou só pode avançar uma casa: no 2º lance são 15 opções, não 16."
+   },
+   "armadilha": "No 2º lance a peça que já se moveu tem uma opção só, e não duas: quem dá 16 opções de novo chega a 65 536.",
+   "alerta": "Pela figura 1, as peças começam nas fileiras 1 e 8. Em dois lances, uma peça avança no máximo três casas (até a fileira 4 de um lado e a 5 do outro), então nenhuma peça chega a bloquear outra e a regra de bloqueio não muda a conta.",
+   "essencial": {
+    "pede": "O número de sequências diferentes nos dois primeiros lances de cada jogador.",
+    "chave": "Por jogador: 16 opções no 1º lance e 1 + 14 = 15 no 2º, logo 240; para os dois, 240 × 240 = 57 600.",
+    "cuidado": "Separe o 2º lance em mexer a mesma peça (1 opção) ou outra peça (14 opções)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contar pelo complemento",
+    "ideia": "Sem regra nenhuma no 2º lance seriam 16 × 16 = 256 por jogador; tire os 16 em que a mesma peça avançaria duas casas de novo: 256 − 16 = 240, e 240² = 57 600."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1º lance: 8 × 2 = 16",
+    "nota": "8 peças, cada uma anda 1 ou 2 casas"
+   },
+   {
+    "linha": "2º lance: 1 + 7 × 2 = 15",
+    "nota": "mesma peça anda 1; outra peça anda 1 ou 2"
+   },
+   {
+    "linha": "16 × 15 = 240",
+    "nota": "sequências de um jogador"
+   },
+   {
+    "linha": "240 × 240 = 57 600",
+    "nota": "os dois jogadores juntos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
+ },
+ "Pab2325ac": {
+  "n": "20",
+  "conceito": "Usar a média para achar o total e descontar a doação para voltar ao valor inicial de Carlos.",
+  "equivocos": {
+   "B": "M04.5:valor-sem-base",
+   "C": "M04.5:valor-sem-base",
+   "D": "M04.5:sinal-da-doacao-invertido",
+   "E": "M04.5:valor-sem-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A média de 332 entre três pessoas diz o total de figurinhas: 3 × 332. A doação de Carlos para André não muda esse total, só troca figurinhas de mão. Depois da doação, André e Beto têm 490, então o resto é de Carlos. A pergunta é quanto Carlos tinha ANTES de dar as 45.",
+    "formulas": [
+     "total = média × quantidade de pessoas",
+     "Carlos depois = total − (André + Beto depois)",
+     "Carlos antes = Carlos depois + 45"
+    ],
+    "simbolos": [
+     [
+      "média",
+      "total dividido pelo número de pessoas"
+     ]
+    ]
+   },
+   "pista": "Transforme a média em total de figurinhas antes de pensar na doação.",
+   "passos": [
+    {
+     "faz": "Calcule o total de figurinhas",
+     "conta": "média = 332 → total = 3 × 332 = 996",
+     "porque": "Se a média de três pessoas é 332, o total é três vezes 332. A doação não cria nem destrói figurinhas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache Carlos depois da doação",
+     "conta": "C + 490 = 996 → C = 996 − 490 → C = 506",
+     "porque": "Depois da doação, André e Beto somam 490; o 490 passa para o outro lado subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte ao valor anterior de Carlos",
+     "conta": "C antes − 45 = 506 → C antes = 506 + 45 → C antes = 551",
+     "porque": "Carlos ficou com 45 a menos depois de dar as figurinhas; para voltar, os 45 passam somando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "551 figurinhas → alternativa A",
+     "porque": "O pedido é o número inicial de Carlos, antes da doação.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 551 figurinhas",
+   "checagem": "Substitua: Carlos com 551 dá 45 e fica com 506; André e Beto ficam com 996 − 506 = 490, como diz o enunciado.",
+   "erradas": {
+    "B": "491 não confere: com 491 iniciais, Carlos ficaria com 446 depois de dar 45, e André e Beto somariam 996 − 446 = 550, não 490.",
+    "C": "521 não confere: Carlos ficaria com 476 depois da doação, e André e Beto somariam 996 − 476 = 520, não 490.",
+    "D": "461 sai de somar os 45 aos 490 em vez de subtrair: André e Beto antes = 490 + 45 = 535 e 996 − 535 = 461. Mas André recebeu as 45, então antes eles tinham 490 − 45 = 445.",
+    "E": "431 não confere: Carlos ficaria com 386 depois da doação, e André e Beto somariam 996 − 386 = 610, não 490."
+   },
+   "armadilha": "Os 490 são de André e Beto DEPOIS de André receber as 45; Carlos tinha, antes, 45 a mais que os 506 que sobraram.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas figurinhas Carlos tinha antes de dar 45 para André.",
+    "chave": "Total 3 × 332 = 996; Carlos depois = 996 − 490 = 506; antes = 506 + 45 = 551.",
+    "cuidado": "A doação muda só a distribuição, não o total; volte somando os 45."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "André e Beto antes",
+    "ideia": "Antes da doação André e Beto tinham 490 − 45 = 445, então Carlos tinha 996 − 445 = 551."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3 × 332 = 996",
+    "nota": "a média vira total"
+   },
+   {
+    "linha": "C + 490 = 996",
+    "nota": "depois da doação"
+   },
+   {
+    "linha": "C = 996 − 490 = 506",
+    "nota": "o 490 passa subtraindo"
+   },
+   {
+    "linha": "C antes = 506 + 45 = 551",
+    "nota": "os 45 doados voltam somando"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
+ },
+ "P4448f8b0": {
+  "n": "14",
+  "conceito": "Contar duplas por tipo com um sistema: cada aluno está em exatamente uma dupla, e as duplas só misturam anos diferentes.",
+  "equivocos": {
+   "A": "M04.3:solucao-incompativel-com-o-sistema",
+   "B": "M13.4:espaco-amostral-errado",
+   "D": "M04.3:solucao-incompativel-com-o-sistema",
+   "E": "M13.4:supos-casos-equiprovaveis"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os 53 + 37 + 30 = 120 alunos formam 60 duplas, cada uma com dois anos diferentes: (1.º, 2.º), (1.º, 3.º) ou (2.º, 3.º). Cada aluno do 1.º ano está numa dupla com o 2.º ou com o 3.º, e o mesmo vale para os outros anos. Isso dá um sistema com três incógnitas.",
+    "formulas": [
+     "x + y = 53 | x + z = 37 | y + z = 30",
+     "probabilidade = casos favoráveis ÷ casos possíveis"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "duplas com um aluno do 1.º e um do 2.º ano"
+     ],
+     [
+      "y",
+      "duplas com um aluno do 1.º e um do 3.º ano"
+     ],
+     [
+      "z",
+      "duplas com um aluno do 2.º e um do 3.º ano"
+     ]
+    ]
+   },
+   "pista": "Dê nome ao número de duplas de cada tipo e escreva uma equação por ano.",
+   "passos": [
+    {
+     "faz": "Monte uma equação por ano",
+     "conta": "1.º: x + y = 53 | 2.º: x + z = 37 | 3.º: y + z = 30",
+     "porque": "Cada aluno do 1.º ano está em uma dupla do tipo x ou do tipo y; o mesmo raciocínio vale para o 2.º e o 3.º ano.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as três equações",
+     "conta": "2x + 2y + 2z = 120 → x + y + z = 60",
+     "porque": "Cada dupla aparece em duas equações, uma para cada aluno dela; dividindo por 2, sai o total de duplas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole as duplas do 1.º com o 2.º",
+     "conta": "x = 60 − (y + z) = 60 − 30 = 30",
+     "porque": "Do total de duplas, tire as que têm aluno do 3.º ano, que são y + z = 30.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo total de duplas",
+     "conta": "30/60 = 1/2",
+     "porque": "Uma das 60 duplas é escolhida ao acaso, e 30 delas são do tipo pedido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "1/2 → alternativa C",
+     "porque": "A pergunta é a chance de a dupla ter um aluno do 1.º e um do 2.º ano.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1/2",
+   "checagem": "Resolva o sistema inteiro e substitua: x = 30, y = 60 − 37 = 23, z = 60 − 53 = 7. Então x + y = 53, x + z = 37 e y + z = 30, como no enunciado, e todos os valores são positivos.",
+   "erradas": {
+    "A": "2/3 não confere: seriam 2/3 · 60 = 40 duplas do 1.º com o 2.º; aí o 2.º ano teria só 37 − 40 = −3 alunos para o 3.º, impossível.",
+    "B": "3/4 sai de contar alunos em vez de duplas: (53 + 37)/120 = 90/120 = 3/4 é a fração de alunos do 1.º ou do 2.º ano.",
+    "D": "4/5 não confere: seriam 48 duplas do 1.º com o 2.º, mais que os 37 alunos do 2.º ano.",
+    "E": "1/3 sai de supor que os três tipos de dupla são igualmente prováveis: 1 tipo em 3. A quantidade de duplas de cada tipo é diferente (30, 23 e 7)."
+   },
+   "armadilha": "Achar que os três tipos de dupla têm a mesma chance (1/3): o número de duplas de cada tipo depende do tamanho das turmas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de uma dupla sorteada ter um aluno do 1.º e um do 2.º ano.",
+    "chave": "x + y + z = 60 e y + z = 30 dão x = 30 duplas do 1.º com o 2.º: 30/60 = 1/2.",
+    "cuidado": "O sorteio é entre duplas, não entre alunos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo 3.º ano",
+    "ideia": "os 30 alunos do 3.º ano ocupam 30 duplas distintas; as 60 − 30 = 30 restantes não têm 3.º ano, logo são do 1.º com o 2.º: 30/60"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x + y = 53 | x + z = 37 | y + z = 30",
+    "nota": "uma equação por ano"
+   },
+   {
+    "linha": "2(x + y + z) = 120 → x + y + z = 60",
+    "nota": "soma das três, divide por 2"
+   },
+   {
+    "linha": "x = 60 − 30 = 30",
+    "nota": "tira as duplas com aluno do 3.º ano"
+   },
+   {
+    "linha": "30/60 = 1/2",
+    "nota": "duplas do tipo pedido sobre o total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
+ },
+ "P2f2866f8": {
+  "n": "12",
+  "conceito": "Usar o produto das raízes com multiplicidade e a fatoração em primos para achar raízes inteiras.",
+  "equivocos": {
+   "A": "M16.1:respondeu-so-m",
+   "C": "M16.1:trocou-os-sinais",
+   "D": "M16.1:errou-o-sinal",
+   "E": "M16.1:confundiu-n-com-n-ao-quadrado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com raiz m tripla e n dupla, o produto das cinco raízes é m·m·m·n·n = m³·n². Igualado a 1 372, a fatoração em primos mostra de cara quem é o cubo e quem é o quadrado. O sinal de n vem da condição n < 0.",
+    "formulas": [
+     "produto das raízes = m³·n²",
+     "1 372 = 2²·7³"
+    ],
+    "simbolos": [
+     [
+      "multiplicidade",
+      "quantas vezes a raiz se repete"
+     ],
+     [
+      "m³·n²",
+      "m três vezes e n duas vezes no produto"
+     ]
+    ]
+   },
+   "pista": "Fatore 1 372 em primos e compare com m³·n².",
+   "passos": [
+    {
+     "faz": "Escreva o produto das raízes",
+     "conta": "m·m·m·n·n = m³·n² = 1 372",
+     "porque": "Raiz de multiplicidade 3 entra três vezes no produto; a de multiplicidade 2, duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore 1 372",
+     "conta": "1 372 → 2·686 → 2·2·343 → 2²·7³",
+     "porque": "343 = 7·7·7: aparece um cubo perfeito e um quadrado perfeito.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Identifique m e n",
+     "conta": "m³ = 7³ → m = 7 | n² = 2² → n = −2",
+     "porque": "m > 0 dá m = 7; n² = 4 com n < 0 dá n = −2.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Some",
+     "conta": "m + n = 7 + (−2) = 5",
+     "porque": "É o que se pede.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — m + n = 5",
+   "checagem": "Reconstrua o produto: 7³·(−2)² = 343·4 = 1 372. Não há outra opção inteira: com m = 1 ou m = 2, n² seria 1 372 ou 171,5, que não são quadrados perfeitos.",
+   "erradas": {
+    "A": "A sai de responder só m = 7, esquecendo de somar n = −2.",
+    "C": "C sai de trocar os sinais: m = −7 e n = 2, que fere m > 0 e n < 0.",
+    "D": "D não confere: com m = 7 e n = −2 (únicos inteiros com m³·n² = 1 372, m > 0, n < 0), m + n = 5, e não −7.",
+    "E": "E sai de tomar n = −4 a partir do 2² (confundindo n com n²): 7 + (−4) = 3."
+   },
+   "armadilha": "O 4 da fatoração é n², não n: a raiz dupla é −2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "m + n, sabendo que m³·n² = 1 372, m > 0 e n < 0.",
+    "chave": "1 372 = 7³·2², logo m = 7 e n = −2.",
+    "cuidado": "Use a multiplicidade como expoente e tire o sinal de n da condição n < 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Para cada m + n possível com m > 0 e n < 0, teste m³·n² = 1 372: só 7 e −2 fecham."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m³·n² = 1 372",
+    "nota": "produto das cinco raízes"
+   },
+   {
+    "linha": "1 372 = 2²·7³",
+    "nota": "fatoração em primos"
+   },
+   {
+    "linha": "m = 7 ; n² = 4 → n = −2",
+    "nota": "m > 0 e n < 0"
+   },
+   {
+    "linha": "m + n = 7 − 2 = 5",
+    "nota": "o pedido"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
+ }
+}

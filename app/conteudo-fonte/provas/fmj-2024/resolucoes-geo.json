@@ -1,0 +1,979 @@
+{
+ "Pc577f8c0": {
+  "n": "30",
+  "conceito": "Calcular hora e dia de chegada somando duração da viagem e diferença de fuso entre Brasília (UTC−3) e Adelaide (UTC+10).",
+  "equivocos": {
+   "A": "G01.3:usou-so-o-fuso-do-destino",
+   "C": "G01.3:subtraiu-fusos-de-lados-opostos",
+   "D": "G01.3:diferenca-de-fuso-errada",
+   "E": "G01.3:so-somou-a-duracao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Questão de fuso tem duas contas independentes: a duração da viagem, que sempre soma, e a diferença entre os fusos, que soma quando o destino fica a leste. Brasília a 45° W está em UTC−3 (45° ÷ 15° = 3). Adelaide está em UTC+10, do outro lado de Greenwich, então as duas distâncias até Greenwich se somam.",
+    "formulas": [
+     "fusos = longitude ÷ 15°",
+     "lados opostos de Greenwich: diferença = 3 + 10",
+     "chegada = partida + viagem + diferença (destino a leste)",
+     "passou de 24 h: subtraia 24 e avance um dia"
+    ],
+    "simbolos": [
+     [
+      "fuso horário",
+      "faixa da Terra em que vale a mesma hora oficial"
+     ],
+     [
+      "UTC/GMT",
+      "hora de Greenwich (0°), a referência dos fusos; UTC−3 = 3 h atrás dela"
+     ],
+     [
+      "45° W",
+      "45 graus de longitude a oeste de Greenwich"
+     ]
+    ]
+   },
+   "pista": "Antes de somar as 30 horas, descubra quantas horas Adelaide está à frente de Brasília: uma cidade fica a oeste de Greenwich e a outra a leste.",
+   "passos": [
+    {
+     "faz": "Anote os dados",
+     "conta": "partida: 3 de julho, 15h, Brasília (45° W) | viagem: 30 h | destino: UTC+10",
+     "porque": "A resposta tem de sair na hora local de Adelaide, com o dia certo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a diferença de fuso",
+     "conta": "45° ÷ 15° = 3 → UTC−3 | 3 + 10 = 13 h",
+     "porque": "Brasília está 3 h atrás de Greenwich e Adelaide, 10 h à frente. Lados opostos: as diferenças se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a duração da viagem",
+     "conta": "15h + 30h = 45h → 3 de julho + 1 dia → 21h de 4 de julho (hora de Brasília)",
+     "porque": "O tempo de viagem passa igual para qualquer relógio. 45 h é um dia e 21 h.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o fuso",
+     "conta": "21h + 13h = 34h → 34 − 24 = 10h → 5 de julho",
+     "porque": "Adelaide fica a leste, onde o relógio está adiantado; por isso as 13 h entram somando e o dia vira de novo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "10h do dia 5 de julho = alternativa B",
+     "porque": "Hora e dia batem ao mesmo tempo só na B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 10h do dia 5 de julho, hora de Adelaide.",
+   "checagem": "Refaça por Greenwich: 15h em Brasília = 18h UTC de 3 de julho; mais 30 h = 48h → 0h UTC de 5 de julho; Adelaide é UTC+10, logo 10h de 5 de julho.",
+   "erradas": {
+    "A": "A sai de usar só o +10 de Adelaide, esquecendo que Brasília já está 3 h atrás de Greenwich: 21h + 10h = 31h → 7h de 5 de julho.",
+    "C": "C sai de subtrair os fusos em vez de somar: 10 − 3 = 7 h; 21h + 7h = 28h → 4h de 5 de julho. Subtrair só vale para cidades do mesmo lado de Greenwich.",
+    "D": "D não confere: 23h de 4 de julho fica a só 2 h da hora de Brasília na chegada (21h de 4 de julho), mas a diferença entre UTC−3 e UTC+10 é de 13 h.",
+    "E": "E sai de somar só a viagem: 15h + 30h = 21h de 4 de julho. É a hora no relógio de Brasília, não no de Adelaide."
+   },
+   "armadilha": "Fazer só uma das contas (só a viagem, na E) ou subtrair os fusos quando as cidades estão em lados opostos de Greenwich (C).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A hora e o dia locais de chegada a Adelaide.",
+    "chave": "Chegada = 15h + 30 h + 13 h, pois −3 e +10 estão em lados opostos de Greenwich.",
+    "cuidado": "Some as duas contas e vire o dia a cada 24 h."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0044"
+  }
+ },
+ "Pf91206bc": {
+  "n": "29",
+  "conceito": "Reconhecer que os sensores remotos captam a radiação em faixas do espectro eletromagnético (visível ou multiespectral).",
+  "equivocos": {
+   "A": "G01.7:produto-como-sensor",
+   "B": "G01.7:software-como-sensor",
+   "C": "G01.7:processamento-como-captacao",
+   "E": "G01.7:drone-como-orbital"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sensor remoto é o aparelho que registra, à distância, a radiação refletida ou emitida pela superfície. Ele opera em faixas (bandas) do espectro eletromagnético: só o visível, como uma câmera comum, ou várias bandas ao mesmo tempo (multiespectral), incluindo o infravermelho. A imagem colorida do drone, em verdes, amarelos e vermelhos, é típica de dado multiespectral usado para avaliar a vegetação. Processar a imagem, montar mosaicos e usar softwares são etapas posteriores, fora do sensor.",
+    "formulas": [
+     "sensor: capta radiação em bandas do espectro",
+     "multiespectral = várias bandas (visível + infravermelho...)",
+     "captação (sensor) → processamento (software) → produto (mosaico, mapa)"
+    ],
+    "simbolos": [
+     [
+      "sensoriamento remoto",
+      "obtenção de informação da superfície sem contato, por sensores em drones, aviões ou satélites"
+     ],
+     [
+      "espectro eletromagnético",
+      "conjunto das radiações, do ultravioleta ao infravermelho e além; o visível é só uma parte"
+     ],
+     [
+      "multiespectral",
+      "que registra ao mesmo tempo várias faixas do espectro"
+     ],
+     [
+      "suborbital",
+      "abaixo da órbita, como drones e aviões"
+     ]
+    ]
+   },
+   "pista": "Separe o que o sensor faz no momento do voo do que se faz depois com a imagem no computador.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"Os sensores remotos presentes no drone operam\"",
+     "porque": "A pergunta é sobre o modo de funcionamento do sensor, não sobre o produto final nem sobre o software.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Lembre o que um sensor capta",
+     "conta": "sensor → radiação refletida pela superfície, em bandas do espectro (visível ou multiespectral)",
+     "porque": "É a radiação captada em cada banda que vira a imagem; a figura colorida mostra justamente bandas além da cor natural.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine o que vem depois da captação",
+     "conta": "A: composição de fotografias · B: software vetorial · C: processamento de imagens",
+     "porque": "Montar o mosaico, tratar a imagem e vetorizar são feitos no computador, com o dado já captado.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Elimine a plataforma errada",
+     "conta": "E: \"trajetórias orbitais e suborbitais\"",
+     "porque": "Trajetória é da plataforma, não do sensor, e drone não entra em órbita: voa só em nível suborbital.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "sensor opera em faixas do espectro → alternativa D",
+     "porque": "É a única que descreve o que o sensor faz.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — os sensores do drone operam num conjunto de faixas do espectro, só no visível ou em modo multiespectral.",
+   "checagem": "Pense numa câmera de celular: ela é um sensor que opera na faixa do visível. O drone da figura faz o mesmo, podendo somar outras faixas, como o infravermelho; o resto (mosaico, software) vem depois.",
+   "erradas": {
+    "A": "A fala em composição de fotografias aéreas. O mosaico é um produto montado depois, a partir das imagens; não é o modo de operar do sensor.",
+    "B": "B fala em software vetorial. Software é ferramenta de processamento no computador; o sensor capta radiação.",
+    "C": "C fala em processamento e tratamento de imagens. Essa etapa vem depois da captação, em programa de computador.",
+    "E": "E fala em trajetórias orbitais e suborbitais. A trajetória é da plataforma, e o drone não opera em órbita."
+   },
+   "armadilha": "Confundir a captação feita pelo sensor com as etapas seguintes (mosaico, processamento, software).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Como operam os sensores remotos de um drone.",
+    "chave": "O sensor capta radiação em faixas do espectro: visível ou multiespectral.",
+    "cuidado": "Processar, vetorizar e montar mosaico vem depois; drone é suborbital."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0045"
+  }
+ },
+ "P4c7a8aec": {
+  "n": "26",
+  "conceito": "Falésias da Planície e Tabuleiros Litorâneos: a abrasão das ondas solapa a base e o topo desaba por movimento de massa.",
+  "equivocos": {
+   "A": "G02.4:chapada-como-forma-litoranea",
+   "C": "G02.4:queda-de-blocos-como-erosao-quimica",
+   "D": "G02.4:formacao-geologica-como-forma",
+   "E": "G02.4:fiorde-no-litoral-brasileiro"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Falésia é um paredão abrupto à beira-mar, esculpido pelas ondas. As ondas batem na base, abrem uma reentrância (abrasão) e deixam o topo sem apoio; esse topo desaba pela gravidade, o que é um movimento de massa, e o material se acumula no pé do paredão como tálus. A linha da costa então recua para o continente.",
+    "formulas": [
+     "abrasão das ondas na base → topo sem apoio → desabamento (movimento de massa) → tálus no pé → recuo da costa"
+    ],
+    "simbolos": [
+     [
+      "falésia",
+      "paredão abrupto à beira-mar, esculpido pelas ondas"
+     ],
+     [
+      "abrasão",
+      "desgaste da rocha pelo impacto das ondas carregadas de detritos"
+     ],
+     [
+      "movimento de massa",
+      "deslocamento de solo ou rocha encosta abaixo pela gravidade (queda, deslizamento)"
+     ],
+     [
+      "tálus",
+      "acúmulo de detritos caídos no pé de uma encosta"
+     ],
+     [
+      "tabuleiro",
+      "relevo de topo plano, em geral de rochas sedimentares, perto do litoral"
+     ]
+    ]
+   },
+   "pista": "Compare a posição do paredão nos blocos a e b: o que aconteceu com a linha da costa inicial e de onde vieram os sedimentos do pé?",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"a formação geomorfológica e a ação de desgaste representados, correspondem, respectivamente,\"",
+     "porque": "São duas respostas na ordem: primeiro a forma de relevo, depois o processo que a desgasta.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize a forma no bloco a",
+     "conta": "paredão vertical de cerca de 40 m junto ao mar, com \"Zona de abrasão das ondas\" na base",
+     "porque": "Paredão abrupto à beira-mar batido pelas ondas é falésia, forma típica dos tabuleiros litorâneos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize o desgaste no bloco b",
+     "conta": "\"Linha da costa inicial\" tracejada à frente do paredão + \"Acúmulo de sedimentos (talus)\" no pé",
+     "porque": "Um pedaço do paredão sumiu e o material caiu e se acumulou embaixo: houve desabamento pela gravidade, um movimento de massa.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine as formas e processos errados",
+     "conta": "chapadas, escarpas, barreiras, fiordes | erosão química, lixiviação",
+     "porque": "Chapada é planalto interior; fiorde é vale glacial invadido pelo mar; Barreiras é o nome da formação geológica, não da forma; e o desenho mostra queda de blocos, não dissolução nem lavagem de nutrientes.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "falésia + movimento de massa = alternativa B",
+     "porque": "Só a B acerta as duas partes, na ordem pedida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — às falésias e ao movimento de massa.",
+   "checagem": "Siga a ordem dos dois blocos: em a, as ondas cavam a base; em b, a costa recuou e há tálus no pé. Base solapada seguida de queda do topo é exatamente o recuo de falésia por desabamento.",
+   "erradas": {
+    "A": "A erra a forma: chapada é planalto de topo plano no interior, cercado por escarpas, e não um paredão à beira-mar. A erosão costeira até aparece, mas a primeira parte derruba a alternativa.",
+    "C": "C não confere: escarpa é termo genérico para encosta abrupta e a forma litoral desenhada é a falésia; e o bloco b mostra queda de material, não erosão química.",
+    "D": "D não confere: Barreiras é o nome da formação geológica sedimentar dos tabuleiros, não da forma; e lixiviação é lavagem de nutrientes do solo, que o desenho não mostra.",
+    "E": "E erra a forma: fiorde é vale escavado por geleira e invadido pelo mar, típico de altas latitudes, não do litoral brasileiro."
+   },
+   "armadilha": "A A traz erosão costeira, que parece certa por causa das ondas, mas a forma está errada; e o desgaste que o bloco b destaca é o desabamento com tálus.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A forma de relevo e o tipo de desgaste mostrados nos blocos diagramas.",
+    "chave": "Paredão à beira-mar é falésia; o recuo com tálus no pé é movimento de massa.",
+    "cuidado": "Responda as duas partes na ordem e não confunda Barreiras (formação) com falésia (forma)."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0046"
+  }
+ },
+ "P44b769fc": {
+  "n": "22",
+  "conceito": "Desinteresse por relacionamentos no Japão, natalidade e fecundidade muito baixas e queda da população absoluta.",
+  "equivocos": {
+   "B": "G06.2:transicao-reduz-expectativa-de-vida",
+   "C": "G06.2:estabilizacao-com-natalidade-abaixo-da-mortalidade",
+   "D": "G06.2:celibato-altera-razao-de-sexo",
+   "E": "G06.2:inverno-demografico-reduz-mortalidade-infantil"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O tuíte liga a “síndrome do celibato” à “falta de bebês que preocupa o governo japonês”. Menos relacionamentos significam menos nascimentos. Quando a natalidade fica abaixo da mortalidade por muito tempo, o crescimento vegetativo fica negativo e a população total diminui, o que já ocorre no Japão.",
+    "formulas": [
+     "natalidade < mortalidade → crescimento vegetativo negativo → população absoluta ↓"
+    ],
+    "simbolos": [
+     [
+      "população absoluta",
+      "número total de habitantes"
+     ],
+     [
+      "taxa de natalidade",
+      "nascimentos por mil habitantes em um ano"
+     ],
+     [
+      "taxa de fecundidade",
+      "média de filhos por mulher"
+     ],
+     [
+      "inverno demográfico",
+      "fecundidade muito baixa por longo tempo, com envelhecimento e risco de queda da população"
+     ],
+     [
+      "PEA",
+      "população economicamente ativa: quem trabalha ou procura trabalho"
+     ]
+    ]
+   },
+   "pista": "Leia a manchete dentro do tuíte: ela diz qual é a preocupação do governo japonês.",
+   "passos": [
+    {
+     "faz": "Localize a consequência no tuíte",
+     "conta": "“veja o que está por trás da falta de bebês que preocupa o governo japonês”",
+     "porque": "O próprio texto liga o fenômeno à falta de nascimentos, ou seja, à natalidade baixa.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Encadeie o efeito demográfico",
+     "conta": "menos relacionamentos → natalidade e fecundidade ↓ → nascimentos < mortes → população absoluta ↓",
+     "porque": "Com poucos nascimentos e população envelhecida, as mortes superam os nascimentos e a população total encolhe.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine as que erram o efeito",
+     "conta": "B: queda na “expectativa de vida” | C: “equilíbrio nas taxas” | D: mais homens que mulheres | E: inverno demográfico que “reduz a taxa de mortalidade infantil”",
+     "porque": "A transição não reduz a expectativa de vida; o Japão não está em equilíbrio, tem mais mortes que nascimentos; o fenômeno não muda a proporção entre os sexos; menos nascimentos não reduzem a mortalidade infantil.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "A: “a redução da população absoluta, em virtude da redução nas taxas de natalidade e de fecundidade.”",
+     "porque": "É a única que liga o comportamento descrito à consequência demográfica certa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — a diminuição da população total, porque as taxas de natalidade e de fecundidade caem.",
+   "checagem": "Confira pelo crescimento vegetativo: se nascem menos pessoas do que morrem, ele é negativo, e a população só não cai se houver imigração compensando, o que não é o caso descrito.",
+   "erradas": {
+    "B": "Meia verdade: a transição demográfica envolve queda da fecundidade, mas não queda da expectativa de vida, que no Japão é das mais altas do mundo.",
+    "C": "Não confere: estabilização exige natalidade e mortalidade equilibradas; no Japão as mortes superam os nascimentos, e a população diminui.",
+    "D": "Fora do assunto: o desinteresse por relacionamentos reduz os nascimentos, não altera a proporção entre homens e mulheres.",
+    "E": "Mistura certo e errado: o inverno demográfico reduz a participação da PEA no futuro, mas não reduz a mortalidade infantil, que depende de saúde e saneamento, não de nascer menos gente."
+   },
+   "armadilha": "Escolher E pelo nome “inverno demográfico”, sem notar que a alternativa atribui a ele um efeito falso (redução da mortalidade infantil).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A consequência demográfica de uma sociedade com pouco interesse em relacionamentos.",
+    "chave": "Menos nascimentos que mortes por muito tempo → população absoluta em queda.",
+    "cuidado": "Leia a alternativa inteira: um termo certo pode vir com um efeito errado."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0051"
+  }
+ },
+ "Pa36956a9": {
+  "n": "24",
+  "conceito": "Cidades inteligentes: uso de tecnologia digital (como a Internet das Coisas) na infraestrutura urbana para eficiência, sustentabilidade e segurança.",
+  "equivocos": {
+   "A": "G07.5:confunde-cidade-inteligente-com-cidade-global",
+   "B": "G07.5:confunde-cidade-inteligente-com-megacidade",
+   "C": "G07.5:confunde-tecnologia-digital-com-biotecnologia",
+   "E": "G07.5:confunde-cidade-inteligente-com-gentrificacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto junta três marcas: tecnologia avançada na infraestrutura (Internet das Coisas), menos energia e emissões, e melhor qualidade de vida e segurança. Esse conjunto define a cidade inteligente. O critério não é tamanho nem comando da economia mundial.",
+    "formulas": [
+     "cidade inteligente: tecnologia e dados na gestão da cidade",
+     "cidade global: comando de fluxos econômicos e financeiros mundiais",
+     "megacidade: 10 milhões de habitantes ou mais"
+    ],
+    "simbolos": [
+     [
+      "IoT",
+      "Internet das Coisas: objetos e equipamentos ligados à internet trocando dados, como sensores de trânsito ou de iluminação"
+     ],
+     [
+      "cidade global",
+      "cidade que concentra sedes de empresas e serviços que comandam a economia mundial"
+     ],
+     [
+      "megacidade",
+      "aglomeração urbana com 10 milhões de habitantes ou mais"
+     ],
+     [
+      "gentrificação",
+      "valorização de um bairro que expulsa os moradores mais pobres"
+     ]
+    ]
+   },
+   "pista": "Pergunte qual é o critério que uniu as sete cidades da lista. O texto diz isso logo antes de citá-las.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "“As características das áreas urbanas citadas no excerto correspondem”",
+     "porque": "Pede o nome do tipo de cidade descrito, a partir das características do texto.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize as características",
+     "conta": "“sistemas tecnológicos avançados como a Internet das Coisas (IoT) em sua infraestrutura” | “reduzindo o uso de energia e as emissões de carbono”",
+     "porque": "O que une as cidades é o uso de tecnologia na gestão urbana para poupar energia, melhorar a vida e a segurança.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ligue ao conceito",
+     "conta": "tecnologia digital na infraestrutura + eficiência + qualidade de vida → cidade inteligente",
+     "porque": "É a definição de cidade inteligente (smart city): dados e conexão a serviço da gestão da cidade.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Descarte os critérios vizinhos",
+     "conta": "cidade global = comando econômico | megacidade = tamanho | gentrificação = expulsão de moradores",
+     "porque": "Nenhum desses critérios aparece no texto; a lista foi feita pelos avanços tecnológicos.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "tecnologia na infraestrutura urbana = cidades inteligentes = alternativa D",
+     "porque": "Só a D nomeia o modelo descrito.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — às cidades inteligentes.",
+   "checagem": "Releia a frase que apresenta a lista: \"sete cidades apresentaram os maiores avanços tecnológicos\". O critério declarado é tecnologia, que é a marca da cidade inteligente, e não poder econômico nem população.",
+   "erradas": {
+    "A": "Cidade global se define pelo comando de fluxos econômicos e financeiros mundiais. O texto escolheu as cidades por avanços tecnológicos na infraestrutura, não por poder de comando.",
+    "B": "Megacidade exige 10 milhões de habitantes ou mais. Helsinque, Zurique e Oslo estão muito abaixo disso, e o texto nem fala em tamanho.",
+    "C": "\"Cidades biotécnicas\" não é a categoria descrita: o texto fala de Internet das Coisas e infraestrutura digital, não de biotecnologia.",
+    "E": "Gentrificação é a valorização de bairros que expulsa moradores pobres. O texto fala de tecnologia e qualidade de vida, sem nenhuma menção a expulsão."
+   },
+   "armadilha": "Marcar cidades globais porque Nova Iorque e Cingapura estão na lista: o critério do texto é tecnologia urbana, não comando da economia.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O tipo de cidade que reúne as características do texto.",
+    "chave": "Internet das Coisas na infraestrutura, menos energia e mais segurança = cidade inteligente.",
+    "cuidado": "Não escolha pelo nome das cidades da lista; escolha pelo critério que o texto declara."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0053"
+  }
+ },
+ "Pcf7a693a": {
+  "n": "28",
+  "conceito": "Relacionar a viabilidade da energia solar fotovoltaica à baixa latitude de uma comunidade amazônica.",
+  "equivocos": {
+   "A": "G09.5:gas-natural-como-renovavel",
+   "B": "G09.5:coriolis-como-vento",
+   "C": "G09.5:diesel-como-biomassa",
+   "D": "G09.5:rio-de-planicie-com-alto-desnivel"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A questão junta um texto sobre energia numa comunidade do Amazonas com a posição geográfica do Brasil. Perto do Equador, o Sol fica alto no céu o ano todo e a duração do dia varia pouco, o que garante muita radiação solar em todos os meses. É isso que torna os painéis fotovoltaicos uma boa solução para uma vila isolada, que só se acessa de barco.",
+    "formulas": [
+     "baixa latitude (perto do Equador) → Sol alto o ano todo → radiação solar elevada e regular",
+     "fonte renovável: se repõe na natureza (Sol, vento, água, biomassa); gás natural e diesel são fósseis"
+    ],
+    "simbolos": [
+     [
+      "latitude",
+      "distância em graus de um lugar até a linha do Equador"
+     ],
+     [
+      "fotovoltaica",
+      "geração que transforma a luz do Sol diretamente em eletricidade"
+     ],
+     [
+      "gradiente altimétrico",
+      "diferença de altitude ao longo do curso do rio; é o desnível que move turbinas"
+     ],
+     [
+      "efeito Coriolis",
+      "desvio aparente dos ventos causado pela rotação da Terra; não é um tipo de vento"
+     ]
+    ]
+   },
+   "pista": "Separe primeiro qual fonte o texto diz que é a principal da comunidade; depois pense no que a posição no globo tem a ver com ela.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"Considerando o excerto e conhecimentos sobre a posição geográfica do Brasil, afirma-se que, na comunidade ribeirinha, a geração de energia\"",
+     "porque": "A alternativa certa precisa casar duas coisas: o que o texto diz da comunidade e uma explicação ligada à posição geográfica.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize a fonte principal no texto",
+     "conta": "\"a principal é a geração solar fotovoltaica, seguida pelo diesel (que funciona como reserva)\"",
+     "porque": "O texto põe a solar em primeiro lugar e o diesel como reserva; nenhuma eólica, térmica a gás ou hidrelétrica local é citada.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ligue a solar à latitude",
+     "conta": "comunidade no Amazonas, perto do Equador → baixa latitude → Sol alto o ano todo",
+     "porque": "Em baixas latitudes a radiação solar é intensa e varia pouco entre as estações, o que dá geração regular aos painéis.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine as fontes erradas",
+     "conta": "gás natural e diesel = fósseis | Coriolis não é vento | rio Negro = rio de planície",
+     "porque": "A e C chamam de renovável ou de biomassa o que é fóssil; B inventa um vento; D atribui desnível forte a um rio de planície.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "solar + baixa latitude = alternativa E",
+     "porque": "Só a E cita a fonte principal do texto e a explica pela posição geográfica.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — a geração solar é viabilizada pela localização de Santa Helena do Inglês em baixas latitudes.",
+   "checagem": "Releia o comando: ele pede o que vale \"na comunidade ribeirinha\". O texto diz que a fonte principal ali é a solar; das cinco fontes das alternativas, só a solar aparece como principal, e só a E traz uma razão de posição geográfica correta.",
+   "erradas": {
+    "A": "Não confere: gás natural é combustível fóssil, então a geração térmica com ele não é renovável, mesmo que o gás seja fácil de obter.",
+    "B": "Não confere: Coriolis é o desvio dos ventos pela rotação da Terra, não um vento; e o texto não cita energia eólica na comunidade.",
+    "C": "Inverte o tipo de fonte: o diesel de reserva é derivado de petróleo, fóssil, e não biomassa.",
+    "D": "Não confere: o rio Negro corre na planície amazônica, com pouco desnível; e o texto não cita hidrelétrica na comunidade."
+   },
+   "armadilha": "Achar que qualquer fonte citada no texto é renovável: o diesel e o gás natural são fósseis.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre a geração de energia na comunidade combina o texto com a posição geográfica do Brasil.",
+    "chave": "A fonte principal é a solar, favorecida pela radiação forte e regular das baixas latitudes.",
+    "cuidado": "Diesel e gás natural são fósseis; Coriolis é um efeito, não um vento."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-p2-0001"
+  }
+ },
+ "Pc6d60366": {
+  "n": "25",
+  "conceito": "Ler a crítica de uma charge sobre a lentidão da implantação do 5G no Brasil.",
+  "equivocos": {
+   "B": "G10.1:leu-o-carro-como-industria-automobilistica",
+   "C": "G10.1:trocou-rede-movel-por-telefonia-fixa",
+   "D": "G10.1:inverteu-a-critica-em-elogio",
+   "E": "G10.1:leu-a-carroca-como-estrada-real"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Charge funciona por contraste de imagens. Aqui, um carro de corrida marcado com 5G, símbolo de velocidade, viaja em cima de uma carroça puxada por um cavalo com a faixa IMPLANTAÇÃO, símbolo de lentidão. O carro é metáfora da tecnologia, não indústria de carros nem estrada de verdade.",
+    "formulas": [
+     "carro de corrida = velocidade da rede 5G",
+     "carroça e cavalo = ritmo lento da implantação"
+    ],
+    "simbolos": [
+     [
+      "5G",
+      "quinta geração da rede de telefonia móvel, com internet muito mais rápida"
+     ],
+     [
+      "charge",
+      "desenho de humor que critica um fato da atualidade"
+     ]
+    ]
+   },
+   "pista": "Pergunte o que cada figura representa: o que é rápido e o que é lento no desenho?",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"A charge critica\"",
+     "porque": "Pede-se o alvo da crítica, ou seja, o contraste que o desenho mostra.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia os elementos da charge",
+     "conta": "carro de Fórmula 1 com 5G | carroça puxada por cavalo com a faixa IMPLANTAÇÃO",
+     "porque": "O 5G é veloz como um carro de corrida, mas está sendo levado por um meio lentíssimo, que é a sua implantação.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Traduza a metáfora em ideia",
+     "conta": "serviço rápido × instalação lenta",
+     "porque": "A crítica é ao descompasso: a tecnologia promete velocidade, mas chega ao país devagar.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Descarte as leituras literais",
+     "conta": "B e D: indústria automobilística | E: estradas | C: telefonia fixa",
+     "porque": "O carro e a carroça são figuras, não montadoras nem rodovias; e o desenho trata do 5G, rede móvel, não de telefone fixo.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o contraste à letra",
+     "conta": "velocidade do 5G × velocidade da implantação = alternativa A",
+     "porque": "A é a única que traduz o contraste entre o rápido e o lento como crítica à instalação do 5G no Brasil.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — A charge critica o descompasso entre a velocidade do serviço das redes móveis e a lentidão da instalação do 5G no Brasil.",
+   "checagem": "Inverta a imagem: se o 5G estivesse num carro de corrida andando sozinho, não haveria crítica. O humor depende de o veloz depender do lento, exatamente o descompasso descrito em A.",
+   "erradas": {
+    "B": "Lê o carro ao pé da letra. Ele representa a velocidade do 5G; a charge não fala de montadoras instalando fábricas no Brasil.",
+    "C": "Troca a rede: o desenho traz 5G, que é telefonia móvel, e não fala de telefonia fixa nem de interior do país.",
+    "D": "Inverte o tom e lê o carro ao pé da letra: a charge critica a lentidão, não exalta facilidades, e não fala de indústria automobilística no campo.",
+    "E": "Lê a carroça como estrada real. O desenho usa a carroça como imagem do ritmo lento, não fala de antenas ao longo das rodovias."
+   },
+   "armadilha": "Ler o carro e a carroça como objetos reais (indústria de carros, estradas) em vez de metáforas de velocidade e lentidão.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O alvo da crítica da charge.",
+    "chave": "O 5G veloz carregado por uma carroça mostra o descompasso entre a tecnologia rápida e a implantação lenta.",
+    "cuidado": "Em charge, a figura é metáfora; não a leia ao pé da letra."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-p2-0002"
+  }
+ },
+ "P119cf341": {
+  "n": "21",
+  "conceito": "Reconhecer o Sahel como a faixa de transição ao sul do Saara que reúne Sudão, Mali, Níger e Burkina Faso.",
+  "equivocos": {
+   "A": "G10.5:atribuiu-regiao-africana-errada",
+   "C": "G10.5:confundiu-bloco-regional-africano",
+   "D": "G10.5:confundiu-organismo-politico-com-alianca-militar",
+   "E": "G10.5:atribuiu-regiao-africana-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Sudão, Mali, Níger e Burkina Faso ficam todos na mesma faixa da África: o Sahel, borda semiárida ao sul do Saara, que vai do Atlântico ao Mar Vermelho. Ela marca a transição entre a África do Norte, árabe e desértica, e a África Subsaariana. É uma região de fronteiras extensas, Estados frágeis e conflitos armados, o que combina com o risco de armas circulando citado no texto.",
+    "formulas": [
+     "Sahel: faixa semiárida ao sul do Saara, do Atlântico ao Mar Vermelho",
+     "Sudão, Chade, Níger, Mali, Burkina Faso: países do Sahel",
+     "SADC = sul da África; Atlas = noroeste da África"
+    ],
+    "simbolos": [
+     [
+      "Sahel",
+      "faixa semiárida de transição entre o Saara e as savanas, de oeste a leste da África"
+     ],
+     [
+      "Chifre da África",
+      "península do leste africano (Somália, Etiópia, Eritreia, Djibuti)"
+     ],
+     [
+      "SADC",
+      "Comunidade para o Desenvolvimento da África Austral, bloco do sul do continente"
+     ],
+     [
+      "União Africana",
+      "organização política que reúne os Estados africanos"
+     ]
+    ]
+   },
+   "pista": "Localize no mapa mental os quatro países que aparecem no texto. Pergunte que faixa do continente todos eles compartilham.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"A área do conflito, juntamente com os países mencionados no excerto, integra\"",
+     "porque": "Pede a região que engloba o Sudão e os países citados: Mali, Níger e Burkina Faso.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize os países",
+     "conta": "\"especialmente ao Mali, Níger e Burkina Faso\" | Sudão",
+     "porque": "Os quatro estão na faixa logo ao sul do Saara, que atravessa a África de oeste a leste.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Nomeie a região",
+     "conta": "Sudão + Mali + Níger + Burkina Faso → Sahel",
+     "porque": "O Sahel é a faixa de transição entre o Saara e as savanas, que separa a África do Norte da Subsaariana.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine regiões e organizações erradas",
+     "conta": "A: Atlas (noroeste) | C: SADC (sul) | D: UA não é aliança militar | E: golfo de Áden (mar)",
+     "porque": "Nenhuma dessas inclui os quatro países ou descreve corretamente o que é.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "Sahel = alternativa B",
+     "porque": "É a única que dá uma região onde estão todos os países citados.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a região do Sahel, faixa que separa a África Subsaariana do norte da África.",
+   "checagem": "Confira pela localização: o Sudão chega ao Mar Vermelho e o Mali fica no oeste do continente, sem litoral, a poucas centenas de quilômetros do Atlântico; entre eles, Níger e Burkina Faso completam a faixa ao sul do Saara. É exatamente a extensão do Sahel.",
+   "erradas": {
+    "A": "A não confere: a Cordilheira do Atlas fica no noroeste da África (Marrocos, Argélia, Tunísia), longe desses países, e é um dobramento recente, não uma formação intensamente desgastada.",
+    "C": "C erra a região: a SADC reúne países do sul da África (como África do Sul, Angola e Moçambique). Sudão, Mali, Níger e Burkina Faso não fazem parte dela.",
+    "D": "D erra a definição: a União Africana é uma organização política de integração do continente, não uma aliança bélico-militar de defesa mútua. E a pergunta pede a área geográfica.",
+    "E": "E não confere: o golfo de Áden é um braço de mar entre o Iêmen e a Somália, rota de navios. Não abrange Mali, Níger nem Burkina Faso, que ficam no interior do oeste africano."
+   },
+   "armadilha": "Escolher uma organização ou um acidente geográfico real da África sem conferir se ele inclui todos os países citados.",
+   "alerta": "O texto citado diz \"outros países a leste, especialmente ao Mali, Níger e Burkina Faso\", mas esses três países ficam a OESTE do Sudão. É imprecisão do trecho citado; não muda a resposta, porque todos estão no Sahel.",
+   "essencial": {
+    "pede": "A região africana que reúne o Sudão e os países citados no texto.",
+    "chave": "Sudão, Mali, Níger e Burkina Faso formam a faixa do Sahel, ao sul do Saara.",
+    "cuidado": "Confira a localização de cada país citado antes de escolher bloco ou cordilheira."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-p2-0003"
+  }
+ },
+ "Pa5e3dd0c": {
+  "n": "23",
+  "conceito": "Reconhecer SUDAM, SUDENE e SUDECO como órgãos federais de desenvolvimento regional.",
+  "equivocos": {
+   "A": "G11.7:confundiu-com-divisao-geoeconomica",
+   "B": "G11.7:trocou-natureza-do-orgao",
+   "D": "G11.7:confundiu-com-regioes-do-ibge",
+   "E": "G11.7:conceito-fora-do-contexto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "SUDAM, SUDENE e SUDECO são superintendências do governo federal, ligadas ao ministério da integração e do desenvolvimento regional. Elas executam políticas para reduzir as desigualdades entre as regiões e integrar o país, com incentivos fiscais e financiamento. Suas áreas de atuação não coincidem com as regiões do IBGE: o mapa mostra até áreas comuns a duas delas.",
+    "formulas": [
+     "superintendência regional = órgão federal de planejamento e fomento de uma região",
+     "área de atuação ≠ região do IBGE"
+    ],
+    "simbolos": [
+     [
+      "SUDAM",
+      "Superintendência do Desenvolvimento da Amazônia"
+     ],
+     [
+      "SUDENE",
+      "Superintendência do Desenvolvimento do Nordeste"
+     ],
+     [
+      "SUDECO",
+      "Superintendência do Desenvolvimento do Centro-Oeste"
+     ],
+     [
+      "divisão geoeconômica",
+      "divisão do Brasil em Amazônia, Nordeste e Centro-Sul, de caráter acadêmico"
+     ],
+     [
+      "meio técnico-científico-informacional",
+      "conceito de Milton Santos para o espaço marcado por técnica, ciência e informação"
+     ]
+    ]
+   },
+   "pista": "Leia a legenda: há áreas \"comuns\" a duas superintendências. O que isso diz sobre a relação delas com as regiões do IBGE?",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"afirma-se que as superintendências são\"",
+     "porque": "Pede a natureza desses órgãos: o que eles são e para que servem.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia a legenda do mapa",
+     "conta": "\"Área comum à SUDAM/SUDENE\" | \"Área comum à SUDAM/SUDECO\"",
+     "porque": "As áreas se sobrepõem e não seguem as regiões do IBGE; são recortes de atuação de órgãos de governo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Nomeie o que elas são",
+     "conta": "superintendência = órgão do governo federal para o desenvolvimento regional",
+     "porque": "Elas existem para levar políticas públicas às regiões menos desenvolvidas e integrá-las ao resto do país. É o que diz C.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine as que trocam a natureza",
+     "conta": "A: divisão geoeconômica | B: público-privadas | D: divisão do IBGE | E: centros de comando",
+     "porque": "A divisão geoeconômica não é lei; elas são órgãos públicos, não parcerias; o mapa não coincide com o IBGE; e o comando de fluxos do país fica nas grandes metrópoles.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "órgãos de governo para políticas de integração = alternativa C",
+     "porque": "Só C descreve o que as superintendências são.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — são estruturas do governo para promover políticas públicas de integração nacional.",
+   "checagem": "Segunda marca no mapa: o Maranhão aparece dividido entre SUDAM e SUDENE. Nenhuma região do IBGE divide um estado assim; o recorte é de atuação de órgãos de governo.",
+   "erradas": {
+    "A": "A não confere: a divisão geoeconômica (Amazônia, Nordeste, Centro-Sul) é uma proposta acadêmica, não foi criada por lei, e seus limites não seguem os do mapa.",
+    "B": "B erra a natureza: são órgãos públicos federais, não agências público-privadas, e seu foco é o desenvolvimento regional, não os biomas.",
+    "D": "D não confere: o mapa mostra áreas comuns a duas superintendências e o Maranhão dividido, o que não existe na divisão regional do IBGE.",
+    "E": "E não confere: os centros de comando do meio técnico-científico-informacional são as grandes metrópoles; as superintendências são órgãos de planejamento."
+   },
+   "armadilha": "Confundir a área de atuação das superintendências com uma divisão regional (IBGE ou geoeconômica).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O que são SUDAM, SUDENE e SUDECO.",
+    "chave": "Órgãos federais de desenvolvimento regional e integração nacional.",
+    "cuidado": "A área deles não é uma região do IBGE: há sobreposição no mapa."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-p2-0005"
+  }
+ },
+ "P7da4fb23": {
+  "n": "27",
+  "conceito": "Avaliar o impacto de flexibilizar a Lei da Mata Atlântica, considerando que o bioma é um hotspot de biodiversidade.",
+  "equivocos": {
+   "A": "G12.1:nagoia-confundido-com-desmatamento",
+   "B": "G12.2:justificativa-sem-apoio-no-texto",
+   "D": "G12.2:dispensa-de-eia-como-interesse-coletivo",
+   "E": "G12.2:aquifero-localizado-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto relata uma mudança na Lei da Mata Atlântica que permite desmatar para certas obras sem estudo de impacto ambiental e sem compensação. A Mata Atlântica é muito rica em espécies endêmicas e já perdeu a maior parte da cobertura original, por isso é um hotspot de biodiversidade. Cortar ainda mais e sem compensação ameaça o equilíbrio desse bioma.",
+    "formulas": [
+     "hotspot = muitas espécies endêmicas + grande perda da vegetação original",
+     "EIA dispensado + sem compensação → impacto sem avaliação nem reparação"
+    ],
+    "simbolos": [
+     [
+      "hotspot",
+      "área prioritária para conservação: muitas espécies que só existem ali e grande parte da vegetação original já perdida"
+     ],
+     [
+      "EIA",
+      "Estudo de Impacto Ambiental, exigido antes de obras que podem causar dano ao ambiente"
+     ],
+     [
+      "compensação ambiental",
+      "medida que repara um dano, como reflorestar ou proteger outra área"
+     ],
+     [
+      "endêmica",
+      "espécie que só existe naquela região"
+     ]
+    ]
+   },
+   "pista": "Pense no que se perde quando o desmatamento deixa de exigir estudo e compensação justo no bioma brasileiro que mais perdeu floresta.",
+   "passos": [
+    {
+     "faz": "Localize o que a lei muda",
+     "conta": "\"permitir o desmatamento [...] sem necessidade de estudo prévio de impacto ambiental (EIA) ou compensação de qualquer natureza\"",
+     "porque": "A mudança tira as duas proteções: avaliar o dano antes e repará-lo depois.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Lembre o valor do bioma",
+     "conta": "Mata Atlântica: muitas espécies endêmicas + maior parte da cobertura original já perdida = hotspot",
+     "porque": "Num hotspot, cada nova perda pesa mais, porque restam poucos fragmentos para espécies que só existem ali.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine os erros de fato",
+     "conta": "A: Nagoia | E: aquífero Alter do Chão",
+     "porque": "O Protocolo de Nagoia trata do acesso a recursos genéticos e da repartição de benefícios, não de zerar o desmatamento; o aquífero Alter do Chão fica na Amazônia, não sob a Mata Atlântica.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Elimine as leituras sem apoio",
+     "conta": "B: \"necessidade de implementar políticas desenvolvimentistas\" | D: \"favorece o interesse coletivo\"",
+     "porque": "O texto não diz que a mudança atende a uma necessidade; e dispensar o estudo ambiental favorece os empreendimentos, não protege o interesse coletivo.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "desmatamento sem EIA nem compensação + bioma hotspot = alternativa C",
+     "porque": "A C dá a consequência certa (compromete o equilíbrio ambiental) com a justificativa certa (é hotspot).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — compromete o equilíbrio ambiental da Mata Atlântica, porque esse bioma é um dos hotspots da biodiversidade brasileira.",
+   "checagem": "Confira pelo efeito sobre a fauna: o texto diz que nem a captura e o transporte dos animais serão exigidos, só a \"afugentação\". Num bioma com muitas espécies endêmicas e pouca mata restante, isso agrava a perda de biodiversidade que a C aponta.",
+   "erradas": {
+    "A": "Erra o acordo: o Protocolo de Nagoia (2010) trata do acesso a recursos genéticos e da repartição de benefícios; não fixa meta de zerar o desmatamento até 2040.",
+    "B": "Apresenta como \"necessidade\" o que o texto não justifica: ele descreve a dispensa de estudo e compensação, sem dizer que há uma necessidade desenvolvimentista a cumprir.",
+    "D": "Inverte: dispensar o estudo de impacto e a compensação favorece os empreendimentos; e a ideia de que o desenvolvimento sustentável não agrega riqueza é falsa.",
+    "E": "Erra o lugar: o aquífero Alter do Chão está na Amazônia (Pará e Amazonas); o grande aquífero sob o Centro-Sul é o Guarani."
+   },
+   "armadilha": "A E traz um debate real e um nome de aquífero conhecido; quem não confere a localização marca a alternativa com o aquífero da Amazônia.",
+   "alerta": "A alternativa C diz que a Mata Atlântica \"corresponde aos hotspots\" da biodiversidade brasileira, mas o Cerrado também é um hotspot. A leitura que a banca aceita é que a Mata Atlântica é um dos hotspots do país, e isso basta para justificar o impacto.",
+   "essencial": {
+    "pede": "A consequência da lei que permite desmatar a Mata Atlântica sem EIA nem compensação.",
+    "chave": "A Mata Atlântica é um hotspot: cada perda ameaça espécies endêmicas e o equilíbrio do bioma.",
+    "cuidado": "Confira nomes de acordos e aquíferos: Nagoia não trata de desmatamento e Alter do Chão é amazônico."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-p2-0005"
+  }
+ }
+}

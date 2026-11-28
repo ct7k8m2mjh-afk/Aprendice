@@ -1,0 +1,827 @@
+{
+ "Pd6684918": {
+  "n": "24",
+  "conceito": "Resolver uma inequação com seno para achar um intervalo de tempo.",
+  "equivocos": {
+   "A": "M10.5:contou-instantes-em-vez-de-duracao",
+   "C": "M05.2:respondeu-o-instante-final",
+   "D": "M05.2:usou-o-limite-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A frequência passa de 90 bpm quando 80 + 20 × sen(…) > 90, isto é, quando o seno é maior que 1/2. Na primeira volta, o seno vale 1/2 nos ângulos π/6 e 5π/6 e fica acima de 1/2 entre eles. Converta esses dois ângulos em tempo.",
+    "formulas": [
+     "sen (π/6) = sen (5π/6) = 1/2",
+     "sen > 1/2 entre π/6 e 5π/6"
+    ],
+    "simbolos": [
+     [
+      "f(t)",
+      "frequência cardíaca, em bpm, no minuto t"
+     ],
+     [
+      "bpm",
+      "batimentos por minuto"
+     ]
+    ]
+   },
+   "pista": "Isole o seno na desigualdade antes de pensar em ângulos.",
+   "passos": [
+    {
+     "faz": "Isole o seno",
+     "conta": "80 + 20 × sen (πt/6) > 90 → 20 × sen (πt/6) > 10 → sen (πt/6) > 1/2",
+     "porque": "Subtraia 80 e divida por 20.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache os ângulos-limite",
+     "conta": "πt/6 = π/6 → t = 1 | πt/6 = 5π/6 → t = 5",
+     "porque": "São os dois ângulos da primeira volta com seno 1/2. Com t de 0 a 12, o ângulo vai de 0 a 2π: uma volta só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Meça o intervalo",
+     "conta": "1 < t < 5 → 5 − 1 = 4 min",
+     "porque": "Entre esses instantes o seno fica acima de 1/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "4 minutos → alternativa B",
+     "porque": "É o tempo total acima de 90 bpm.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 4",
+   "checagem": "No meio do intervalo, t = 3: f(3) = 80 + 20 × sen (π/2) = 100 bpm, acima de 90. Fora dele, t = 6: f(6) = 80 + 20 × sen π = 80 bpm, abaixo de 90.",
+   "erradas": {
+    "A": "Quem marca A conta os minutos inteiros com f acima de 90: t = 2, 3 e 4. Mas f passa de 90 em todo o intervalo de t = 1 a t = 5: 4 minutos.",
+    "C": "5 é o instante em que a frequência volta a 90 bpm, não a duração; ela só passa de 90 a partir de t = 1.",
+    "D": "6 é o tempo em que a frequência fica acima de 80 bpm (seno positivo, de 0 a 6), não acima de 90."
+   },
+   "armadilha": "Responder o instante final (5) no lugar da duração (5 − 1).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Por quantos minutos a frequência fica acima de 90 bpm.",
+    "chave": "sen (πt/6) > 1/2 para 1 < t < 5: 4 minutos.",
+    "cuidado": "Duração é a diferença entre os instantes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "simetria do seno",
+    "ideia": "O seno é máximo em πt/6 = π/2, isto é, t = 3, e fica acima de 1/2 numa faixa de π/3 para cada lado (de π/6 a 5π/6). Cada π/3 de ângulo vale (π/3)/(π/6) = 2 min: 2 + 2 = 4 min."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "80 + 20 × sen (πt/6) > 90",
+    "nota": "condição"
+   },
+   {
+    "linha": "20 × sen (πt/6) > 10",
+    "nota": "subtrai 80"
+   },
+   {
+    "linha": "sen (πt/6) > 1/2",
+    "nota": "divide por 20"
+   },
+   {
+    "linha": "πt/6 = π/6",
+    "nota": "primeiro ângulo-limite"
+   },
+   {
+    "linha": "t = 1",
+    "nota": "isola t"
+   },
+   {
+    "linha": "πt/6 = 5π/6",
+    "nota": "segundo ângulo-limite"
+   },
+   {
+    "linha": "t = 5",
+    "nota": "isola t"
+   },
+   {
+    "linha": "5 − 1 = 4 min",
+    "nota": "duração"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0015"
+  }
+ },
+ "Pa220f913": {
+  "n": "25",
+  "conceito": "Resolver uma inequação com dois módulos por intervalos.",
+  "equivocos": {
+   "B": "M05.4:errou-o-intervalo",
+   "C": "M05.4:errou-o-intervalo",
+   "D": "M05.4:errou-o-intervalo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada módulo muda de expressão onde o que está dentro troca de sinal: x − 3 em x = 3 e 3x em x = 0. Esses pontos dividem a reta em três trechos. Resolva a inequação em cada trecho e junte as respostas.",
+    "formulas": [
+     "|u| = u se u ≥ 0 | |u| = −u se u < 0"
+    ],
+    "simbolos": [
+     [
+      "S",
+      "conjunto solução: o intervalo de a até b"
+     ]
+    ]
+   },
+   "pista": "Marque na reta os pontos x = 0 e x = 3 e trabalhe um trecho de cada vez.",
+   "passos": [
+    {
+     "faz": "Resolva para x < 0",
+     "conta": "(3 − x) + (−3x) ≤ 7 → 3 − 4x ≤ 7 → −4x ≤ 4 → x ≥ −1",
+     "porque": "Aqui x − 3 e 3x são negativos. Fica −1 ≤ x < 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para 0 ≤ x < 3",
+     "conta": "(3 − x) + 3x ≤ 7 → 3 + 2x ≤ 7 → x ≤ 2",
+     "porque": "Aqui x − 3 é negativo e 3x não é. Fica 0 ≤ x ≤ 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para x ≥ 3",
+     "conta": "(x − 3) + 3x ≤ 7 → 4x ≤ 10 → x ≤ 2,5",
+     "porque": "Não há x que seja ao mesmo tempo ≥ 3 e ≤ 2,5: sem solução.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Junte e conclua",
+     "conta": "S = [−1, 2] → b − a = 2 − (−1) = 3: primo → alternativa A",
+     "porque": "3 é primo; não é quadrado perfeito, nem múltiplo de 5, nem divisor de 14.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — número primo.",
+   "checagem": "Teste as pontas: x = −1 dá |−4| + |−3| = 7 e x = 2 dá |−1| + |6| = 7, exatamente o limite. Um pouco fora, x = 2,1 dá 0,9 + 6,3 = 7,2 > 7.",
+   "erradas": {
+    "B": "Não confere: b − a = 3, e 3 não é quadrado perfeito.",
+    "C": "Não confere: b − a = 3, e 3 não é múltiplo de 5.",
+    "D": "Não confere: b − a = 3, e os divisores de 14 são 1, 2, 7 e 14."
+   },
+   "armadilha": "Ao dividir por −4, esquecer de inverter a desigualdade: −4x ≤ 4 dá x ≥ −1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A natureza do número b − a, a largura do intervalo solução.",
+    "chave": "S = [−1, 2]; b − a = 3.",
+    "cuidado": "Dividir por negativo inverte o sinal da desigualdade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pontas pela igualdade",
+    "ideia": "O lado esquerdo desce até x = 0 e depois sobe, então a solução é o intervalo entre as soluções de |x − 3| + |3x| = 7: x = −1 (4 + 3) e x = 2 (1 + 6). O comprimento é 2 − (−1) = 3, primo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(3 − x) + (−3x) ≤ 7",
+    "nota": "trecho x < 0"
+   },
+   {
+    "linha": "3 − 4x ≤ 7",
+    "nota": "junta os termos em x"
+   },
+   {
+    "linha": "−4x ≤ 4",
+    "nota": "subtrai 3"
+   },
+   {
+    "linha": "x ≥ −1",
+    "nota": "divide por −4, inverte"
+   },
+   {
+    "linha": "(3 − x) + 3x ≤ 7",
+    "nota": "trecho 0 ≤ x < 3"
+   },
+   {
+    "linha": "3 + 2x ≤ 7",
+    "nota": "junta os termos em x"
+   },
+   {
+    "linha": "x ≤ 2",
+    "nota": "subtrai 3, divide por 2"
+   },
+   {
+    "linha": "(x − 3) + 3x ≤ 7",
+    "nota": "trecho x ≥ 3"
+   },
+   {
+    "linha": "4x ≤ 10",
+    "nota": "soma 3, junta os termos"
+   },
+   {
+    "linha": "x ≤ 2,5",
+    "nota": "divide por 4; sem solução"
+   },
+   {
+    "linha": "b − a = 2 − (−1)",
+    "nota": "S = [−1, 2]"
+   },
+   {
+    "linha": "b − a = 3",
+    "nota": "número primo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0015"
+  }
+ },
+ "Pc2949a0e": {
+  "n": "28",
+  "conceito": "Teste de afirmações: contagem com produto de algarismos, divisibilidade de polinômio, múltiplos e esfera inscrita.",
+  "equivocos": {
+   "B": "M13.2:aceitou-afirmacao-falsa",
+   "C": "M13.2:aceitou-afirmacao-falsa",
+   "D": "M13.2:usou-a-aresta-como-raio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Teste cada sentença. Em A, produto 35 = 5 × 7: o número tem um 5, um 7 e sete algarismos 1. Em B, use o teorema do resto: x − 2 divide p se p(2) = 0. Em C, conte os múltiplos de 3 entre 70 e 929. Em D, a aresta do cubo é o diâmetro da esfera.",
+    "formulas": [
+     "resto da divisão por x − a = p(a)",
+     "esfera: V = 4πr³/3"
+    ],
+    "simbolos": []
+   },
+   "pista": "Em A, quais algarismos podem formar produto 35?",
+   "passos": [
+    {
+     "faz": "Teste A",
+     "conta": "algarismos: um 5, um 7 e sete 1 → posição do 5: 9, do 7: 8 → 72 = 18 × 4 → verdadeira",
+     "porque": "35 = 5 × 7, primos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste B",
+     "conta": "p(2) = 64 − 32 − 20 + 4 − 1 = 15 ≠ 0 → falsa",
+     "porque": "Teorema do resto.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste C e D",
+     "conta": "C: múltiplos de 3 de 72 a 927: (927 − 72)/3 + 1 = 286 < 290 → falsa | D: 6a² = 54 → a = 3, r = 1,5 → V = 4π(3,375)/3 = 4,5π ≠ 36π → falsa",
+     "porque": "Contagem e volume.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue ao gabarito",
+     "conta": "só A → alternativa A",
+     "porque": "Única correta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — A quantidade de números naturais de 9 algarismos cujo produto de todos os seus algarismos é 35 é um número divisível por 18.",
+   "checagem": "Em A, conte de outro jeito: os 9 algarismos são 1, 1, 1, 1, 1, 1, 1, 5, 7; permutações com repetição: 9!/7! = 72 = 2³ × 3², que contém 2 × 3² = 18.",
+   "erradas": {
+    "B": "p(2) = 2 × 32 − 4 × 8 − 5 × 4 + 2 × 2 − 1 = 15, resto diferente de zero: x − 2 não divide p.",
+    "C": "Entre 70 e 929 há 286 múltiplos de 3 (de 72 a 927), menos de 290.",
+    "D": "Quem marca D usa a aresta do cubo, 3 cm, como raio da esfera: 4/3 · π · 3³ = 36π. Na esfera inscrita, o diâmetro é a aresta: raio 1,5 cm e volume 4,5π cm³."
+   },
+   "armadilha": "Em D, usar a aresta como raio: a esfera inscrita tem diâmetro igual à aresta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A sentença correta.",
+    "chave": "A: 72 números, divisível por 18; B, C e D falsas.",
+    "cuidado": "Teste cada sentença com uma conta curta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "C pela divisão inteira",
+    "ideia": "Múltiplos de 3 até 929: 309; até 70: 23; 309 − 23 = 286."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "9 × 8 = 72 = 18 × 4",
+    "nota": "A"
+   },
+   {
+    "linha": "p(2) = 15",
+    "nota": "B"
+   },
+   {
+    "linha": "286 < 290",
+    "nota": "C"
+   },
+   {
+    "linha": "4,5π ≠ 36π",
+    "nota": "D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0034"
+  }
+ },
+ "P40523278": {
+  "n": "27",
+  "conceito": "Paralela a um lado gera triângulos semelhantes; ângulos alternos internos tornam o triângulo AEC isósceles.",
+  "equivocos": {
+   "A": "M09.3:subtraiu-be-em-vez-de-bd",
+   "B": "M09.3:nao-usou-isosceles",
+   "D": "M09.3:nao-usou-isosceles"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "DE é paralelo a AC, então o triângulo BDE é semelhante ao BAC. O dado dos ângulos iguais destrava o resto: como DE ∥ AC, o ângulo DÊA é igual ao ângulo EÂC (alternos internos). Então no triângulo AEC os ângulos em A e em E são iguais, e CA = CE. Essa igualdade é a equação que falta.",
+    "formulas": [
+     "Pitágoras: hipotenusa² = cateto² + cateto²",
+     "Semelhança: lados correspondentes têm a mesma razão",
+     "Ângulos alternos internos entre paralelas são iguais"
+    ],
+    "simbolos": [
+     [
+      "∥",
+      "paralelo"
+     ],
+     [
+      "DÊA",
+      "ângulo com vértice em E, entre ED e EA"
+     ],
+     [
+      "alternos internos",
+      "ângulos em lados opostos de uma reta que corta duas paralelas, entre elas"
+     ],
+     [
+      "isósceles",
+      "triângulo com dois lados iguais, opostos a dois ângulos iguais"
+     ]
+    ]
+   },
+   "pista": "Use a paralela DE ∥ AC para levar o ângulo x de E até A e veja que triângulo aparece.",
+   "passos": [
+    {
+     "faz": "Ache BD no triângulo BDE",
+     "conta": "BD² = 104² − 40² → BD² = 9216 → BD = 96",
+     "porque": "DE é paralelo a AC, que é perpendicular a AB; então DE ⊥ AB e BDE é retângulo em D, com hipotenusa BE = 104.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Mostre que CA = CE",
+     "conta": "DÊA = EÂC (alternos) e DÊA = AÊC → EÂC = AÊC → CA = CE = c",
+     "porque": "No triângulo AEC, os ângulos em A e em E medem x, então os lados opostos a eles são iguais: CE (oposto a A) e CA (oposto a E).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a semelhança BDE ~ BAC",
+     "conta": "DE/AC = BE/BC → 40/c = 104/(104 + c)",
+     "porque": "Os lados correspondentes: DE com AC (os paralelos) e BE com BC (as hipotenusas). BC = BE + EC = 104 + c.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para c",
+     "conta": "40 · (104 + c) = 104 · c → 4160 + 40c = 104c → 4160 = 64c → c = 65",
+     "porque": "Multiplicação cruzada e o 40c passa para o outro lado subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache BA e subtraia BD",
+     "conta": "BA/BD = BC/BE → BA = 96 · 169/104 = 156 → AD = 156 − 96 = 60",
+     "porque": "BC = 104 + 65 = 169. A razão de semelhança 169/104 aplicada a BD dá BA; AD é o que sobra de BA depois de BD.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "AD = 60 cm → alternativa C",
+     "porque": "A pergunta é AD, e não BA nem AC.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — AD mede 60 cm",
+   "checagem": "Confira no triângulo ABC: AB = 156, AC = 65 e BC = 169 satisfazem 156² + 65² = 24 336 + 4 225 = 28 561 = 169², então o ângulo em A é reto. E CE = 169 − 104 = 65 = AC, como exige o isósceles.",
+   "erradas": {
+    "A": "Quem marca 52 acha BA = 156, mas subtrai a hipotenusa BE = 104 em vez do cateto BD = 96, que fica sobre AB. Certo: AD = 156 − 96 = 60.",
+    "B": "56 não confere: com AD = 56, BA = 152, AC = 40 · 152/96 ≈ 63,3 e CE = 104 · 152/96 − 104 ≈ 60,7; CA ≠ CE.",
+    "D": "62 não confere: com AD = 62, BA = 158, AC = 40 · 158/96 ≈ 65,8 e CE = 104 · 158/96 − 104 ≈ 67,2; CA ≠ CE."
+   },
+   "armadilha": "Os ângulos iguais em E só viram informação útil quando você leva DÊA para A pela paralela: é daí que sai CA = CE.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A medida de AD, em cm.",
+    "chave": "DE ∥ AC dá BDE ~ BAC e torna AEC isósceles (CA = CE = c); 40/c = 104/(104 + c) dá c = 65, BA = 156 e AD = 60.",
+    "cuidado": "BC é 104 + c, não 104: o ponto E divide a hipotenusa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tangente do ângulo x",
+    "ideia": "Com θ = DÊB, cos θ = 40/104 = 5/13 e sen θ = 12/13; como 2x = 180° − θ, tg x = (1 + cos θ)/sen θ = 3/2 e AD = 40 · tg x = 60."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "BD² = 104² − 40² = 9216",
+    "nota": "Pitágoras no BDE"
+   },
+   {
+    "linha": "BD = 96",
+    "nota": "raiz"
+   },
+   {
+    "linha": "40/c = 104/(104 + c)",
+    "nota": "semelhança, com CA = CE = c"
+   },
+   {
+    "linha": "4160 = 64c → c = 65",
+    "nota": "multiplicação cruzada"
+   },
+   {
+    "linha": "BA = 96 · 169/104 = 156",
+    "nota": "razão de semelhança"
+   },
+   {
+    "linha": "AD = 156 − 96 = 60",
+    "nota": "o que sobra de BA"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
+ },
+ "P341a0f0f": {
+  "n": "22",
+  "conceito": "Achar o parâmetro de um modelo logarítmico por um ponto dado e calcular o valor em outro tempo, com conversão de dias em meses.",
+  "equivocos": {
+   "A": "M06.5:errou-o-parametro-do-modelo",
+   "C": "M06.5:errou-o-parametro-do-modelo",
+   "D": "M06.5:errou-o-parametro-do-modelo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O modelo tem uma constante a desconhecida, e um ponto conhecido (t = 7 meses, V = 8,32 cm³) a revela. A segunda armadilha é a unidade: t está em meses, e o enunciado pede o volume em 51 dias. Convertido, t + 1 vira exatamente o valor de e que a prova manda usar.",
+    "formulas": [
+     "V(t) = a · ln(t + 1)",
+     "t em meses: 1 mês = 30 dias",
+     "ln e = 1"
+    ],
+    "simbolos": [
+     [
+      "V(t)",
+      "volume do tumor em cm³ no tempo t"
+     ],
+     [
+      "t",
+      "tempo em meses"
+     ],
+     [
+      "a",
+      "constante do modelo"
+     ],
+     [
+      "ln",
+      "logaritmo natural, de base e"
+     ],
+     [
+      "e",
+      "número de Euler; a prova manda usar e = 2,7"
+     ]
+    ]
+   },
+   "pista": "Use o dado de 7 meses para descobrir a. Depois, antes de substituir, veja em que unidade o modelo quer o tempo.",
+   "passos": [
+    {
+     "faz": "Ache a constante a",
+     "conta": "V(7) = a · ln 8 = 8,32 → a · 2,08 = 8,32 → a = 8,32/2,08 = 4",
+     "porque": "O ponto conhecido dá uma equação com uma só incógnita.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta 51 dias em meses",
+     "conta": "t = 51/30 → t = 1,7 mês",
+     "porque": "O modelo usa t em meses; substituir 51 direto seria tratar 51 dias como 51 meses.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o volume",
+     "conta": "V(1,7) = 4 · ln(1,7 + 1) = 4 · ln 2,7 → 4 · ln e = 4 · 1 = 4",
+     "porque": "Com e = 2,7, como manda a prova, ln 2,7 = ln e = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "V = 4 cm³ → alternativa B",
+     "porque": "O volume em 51 dias é 4 cm³.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 4 cm³.",
+   "checagem": "Confira pela razão entre os dois instantes, sem achar a: V(1,7)/V(7) = ln 2,7/ln 8 = 1/2,08, e 8,32/2,08 = 4. Também faz sentido ser menor que 8,32, porque 51 dias é menos que 7 meses.",
+   "erradas": {
+    "A": "A não confere: V = 3 com ln 2,7 = 1 exigiria a = 3, mas então V(7) = 3 · 2,08 = 6,24, não 8,32.",
+    "C": "C não confere: V = 4,8 com ln 2,7 = 1 exigiria a = 4,8, e V(7) = 4,8 · 2,08 = 9,984, não 8,32.",
+    "D": "D não confere: V = 5,1 com ln 2,7 = 1 exigiria a = 5,1, e V(7) = 5,1 · 2,08 = 10,608, não 8,32."
+   },
+   "armadilha": "Substituir t = 51 sem converter dias em meses: o modelo mede t em meses, e 51 dias são 1,7 mês.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume do tumor aos 51 dias, pelo modelo V(t) = a · ln(t + 1).",
+    "chave": "a = 8,32/2,08 = 4; 51 dias = 1,7 mês, e ln(1,7 + 1) = ln e = 1, logo V = 4.",
+    "cuidado": "Converta o tempo para a unidade do modelo antes de substituir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela razão",
+    "ideia": "V(1,7)/V(7) = ln 2,7/ln 8 = 1/2,08, então V(1,7) = 8,32/2,08 = 4 sem calcular a."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a · ln 8 = 8,32",
+    "nota": "ponto t = 7 meses"
+   },
+   {
+    "linha": "a = 8,32/2,08 = 4",
+    "nota": "isolar a"
+   },
+   {
+    "linha": "t = 51/30 = 1,7",
+    "nota": "dias em meses"
+   },
+   {
+    "linha": "V = 4 · ln(2,7) = 4 · 1 = 4",
+    "nota": "e = 2,7: ln e = 1"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
+ },
+ "P68c55054": {
+  "n": "26",
+  "conceito": "Triângulo retângulo inscrito: a hipotenusa é diâmetro do círculo circunscrito.",
+  "equivocos": {
+   "A": "M12.4:diametro-menor-que-a-corda",
+   "B": "M12.4:diametro-menor-que-a-corda",
+   "C": "M12.4:diametro-menor-que-a-corda"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Antes de montar sistema, teste se o triângulo é retângulo: se for, a hipotenusa é diâmetro do círculo circunscrito e o centro é o ponto médio dela. Inclinações de produto −1 indicam ângulo reto.",
+    "formulas": [
+     "m = (y2 − y1)/(x2 − x1) ; perpendiculares: m1 · m2 = −1",
+     "triângulo retângulo: hipotenusa = diâmetro, R = hipotenusa/2",
+     "área do círculo = πR²"
+    ],
+    "simbolos": [
+     [
+      "m",
+      "coeficiente angular do lado"
+     ],
+     [
+      "R",
+      "raio do círculo circunscrito"
+     ],
+     [
+      "circunscrito",
+      "círculo que passa pelos três vértices"
+     ]
+    ]
+   },
+   "pista": "Calcule as inclinações dos lados que saem de B e compare.",
+   "passos": [
+    {
+     "faz": "Calcule as inclinações de AB e BC",
+     "conta": "m(AB) = (4 − 10)/(11 − 5) = −1 | m(BC) = (2 − 4)/(9 − 11) = 1",
+     "porque": "Variação de y sobre variação de x entre os pontos de cada lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reconheça o ângulo reto em B",
+     "conta": "m(AB) · m(BC) = (−1) · 1 = −1 → AB ⟂ BC",
+     "porque": "Produto −1 é perpendicularidade. Então AC é a hipotenusa e o diâmetro do círculo.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Calcule a hipotenusa AC",
+     "conta": "AC² = (9 − 5)² + (2 − 10)² → AC² = 16 + 64 = 80",
+     "porque": "Distância entre A e C pelo Pitágoras das diferenças.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache R² e a área",
+     "conta": "R = AC/2 → R² = 80/4 = 20 → área = π · 20 = 20π",
+     "porque": "O raio é metade do diâmetro; ao quadrado, divide-se o AC² por 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "20π → alternativa D",
+     "porque": "A pergunta é a área do círculo, e não o raio nem o comprimento da circunferência.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 20π unidades de área",
+   "checagem": "O centro é o ponto médio de AC, M(7, 6). As três distâncias ao quadrado dão o mesmo: A: 2² + 4² = 20; B: 4² + (−2)² = 20; C: 2² + (−4)² = 20.",
+   "erradas": {
+    "A": "10π não confere: daria R = √10 e diâmetro 2√10 ≈ 6,32, menor que a corda AC = √80 ≈ 8,94; nenhuma corda é maior que o diâmetro.",
+    "B": "15π não confere: R² = 15 dá diâmetro 2√15 ≈ 7,75, ainda menor que AC ≈ 8,94, que é corda do círculo.",
+    "C": "16π não confere: R = 4 dá diâmetro 8, mas AC = √80 ≈ 8,94 já passa de 8 e é corda do mesmo círculo."
+   },
+   "armadilha": "Partir para o sistema de três equações sem notar o ângulo reto em B, que entrega o diâmetro de graça.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do círculo que passa por A, B e C.",
+    "chave": "m(AB) · m(BC) = −1: ângulo reto em B, AC é diâmetro; R² = 80/4 = 20, área 20π.",
+    "cuidado": "R² é AC²/4, não AC²/2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "mediatrizes",
+    "ideia": "A mediatriz de AB (pelo ponto (8, 7), inclinação 1) é y = x − 1; a de BC (por (10, 3), inclinação −1) é y = −x + 13; cruzam em (7, 6), e R² = (11 − 7)² + (4 − 6)² = 20."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m(AB) = −6/6 = −1 ; m(BC) = −2/(−2) = 1",
+    "nota": "inclinações a partir de B"
+   },
+   {
+    "linha": "(−1) · 1 = −1",
+    "nota": "ângulo reto em B"
+   },
+   {
+    "linha": "AC² = 4² + 8² = 80",
+    "nota": "a hipotenusa é o diâmetro"
+   },
+   {
+    "linha": "R² = 80/4 = 20 → 20π",
+    "nota": "área = πR²"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
+ },
+ "Pd84b86bb": {
+  "n": "23",
+  "conceito": "Usar sensibilidade e especificidade para achar a chance de estar doente após um teste positivo.",
+  "equivocos": {
+   "A": "M13.5:valor-que-nao-fecha",
+   "B": "M13.5:valor-que-nao-fecha",
+   "D": "M13.5:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A pergunta fixa um resultado positivo: só conta quem deu positivo. Os positivos vêm de dois grupos: doentes detectados (sensibilidade) e sadios que o teste errou (100% menos a especificidade). Monte uma população de 1000 pessoas e conte cada grupo.",
+    "formulas": [
+     "falso positivo entre sadios = 100% − especificidade",
+     "P(doente | positivo) = verdadeiros positivos ÷ todos os positivos"
+    ],
+    "simbolos": [
+     [
+      "sensibilidade",
+      "porcentagem de positivos entre os doentes"
+     ],
+     [
+      "especificidade",
+      "porcentagem de negativos entre os sadios"
+     ],
+     [
+      "P(doente | positivo)",
+      "chance de ter a doença sabendo que o teste deu positivo"
+     ]
+    ]
+   },
+   "pista": "A especificidade fala dos negativos entre os sadios; descubra quantos sadios recebem positivo.",
+   "passos": [
+    {
+     "faz": "Separe a população",
+     "conta": "1000 pessoas → 200 doentes | 800 sadios",
+     "porque": "A doença afeta 20% da comunidade: 20% de 1000 = 200.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os verdadeiros positivos",
+     "conta": "90% × 200 = 180",
+     "porque": "A sensibilidade de 90% diz quantos doentes o teste detecta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os falsos positivos",
+     "conta": "100% − 70% = 30% → 30% × 800 = 240",
+     "porque": "Especificidade de 70% quer dizer que 70% dos sadios dão negativo; os outros 30% dão positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo total de positivos",
+     "conta": "180/(180 + 240) = 180/420 = 3/7 ≈ 0,4286",
+     "porque": "Entre os 420 positivos, 180 têm a doença.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "3/7 ≈ 42,9% → alternativa C",
+     "porque": "A probabilidade aproximada é 42,9%.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 42,9%",
+   "checagem": "Reconstrua o teste com os números achados: dos 200 doentes, 180 positivos dão 180/200 = 90% de sensibilidade; dos 800 sadios, 800 − 240 = 560 negativos dão 560/800 = 70% de especificidade. Os dados fecham, então 180/420 vale.",
+   "erradas": {
+    "A": "22,22% não confere: com 180 verdadeiros positivos, exigiria 180 × (1 − 0,2222)/0,2222 ≈ 630 falsos positivos, mas são 30% × 800 = 240.",
+    "B": "28,6% não confere: com 180 verdadeiros positivos, exigiria cerca de 449 falsos positivos em 1000 pessoas, mas os sadios positivos são 240.",
+    "D": "50,8% não confere: exigiria cerca de 174 falsos positivos, menos que os 240 que saem de 30% dos 800 sadios."
+   },
+   "armadilha": "Especificidade de 70% não é a taxa de falso positivo: o falso positivo é o que falta, 30% dos sadios.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de quem testou positivo estar de fato doente.",
+    "chave": "Em 1000 pessoas: 180 doentes positivos e 240 sadios positivos; 180/420 ≈ 42,9%.",
+    "cuidado": "Use 100% − especificidade para os falsos positivos e divida pelo total de positivos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "chances",
+    "ideia": "Antes, 20 : 80 = 1 : 4; o positivo multiplica por 0,9 ÷ 0,3 = 3 e dá 3 : 4, ou seja, 3/7 ≈ 42,9%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "200 doentes | 800 sadios",
+    "nota": "20% de 1000"
+   },
+   {
+    "linha": "90% × 200 = 180",
+    "nota": "verdadeiros positivos"
+   },
+   {
+    "linha": "30% × 800 = 240",
+    "nota": "falsos positivos"
+   },
+   {
+    "linha": "180/420 = 3/7 ≈ 42,9%",
+    "nota": "dado o positivo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
+ }
+}

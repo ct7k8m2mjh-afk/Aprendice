@@ -1,0 +1,919 @@
+{
+ "P8be84563": {
+  "n": "34",
+  "conceito": "Minimizar o tempo total distribuindo velocidades entre trechos: o trecho mais longo vai com a maior velocidade.",
+  "equivocos": {
+   "A": "M04.5:valor-que-nao-fecha",
+   "C": "M04.5:pareamento-errado",
+   "D": "M04.5:pareamento-errado",
+   "E": "M04.5:pior-caso-no-lugar-do-melhor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Tempo de cada trecho é distância dividida pela velocidade. Para o total ser o menor possível, a maior velocidade deve ficar com o trecho mais longo, e a menor com o mais curto. São só 6 combinações; a regra evita testar todas.",
+    "formulas": [
+     "tempo = distância ÷ velocidade",
+     "menor tempo: maior velocidade no maior trecho"
+    ],
+    "simbolos": [
+     [
+      "km/h",
+      "quilômetros percorridos em uma hora"
+     ]
+    ]
+   },
+   "pista": "Ordene os trechos e as velocidades do maior para o menor antes de dividir.",
+   "passos": [
+    {
+     "faz": "Ordene trechos e velocidades",
+     "conta": "trechos: 18 > 15 > 9 | velocidades: 10 > 9 > 6",
+     "porque": "Casar maior com maior faz os trechos longos andarem rápido.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule cada tempo",
+     "conta": "18/10 + 15/9 + 9/6 = 1,8 + 1,666... + 1,5",
+     "porque": "Cada trecho com a sua velocidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some",
+     "conta": "1,8 + 5/3 + 1,5 = 149/30 h ≈ 4,9667 h",
+     "porque": "Somando em fração fica exato.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta a parte decimal",
+     "conta": "0,9667 h · 60 = 58 min → 4 h 58 min",
+     "porque": "A parte depois da vírgula é fração de hora, não minutos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "4 h 58 min → alternativa B",
+     "porque": "É o menor tempo entre as combinações.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 4 h e 58 min",
+   "checagem": "As seis combinações dão 5 h 18, 5 h 24, 4 h 58, 5 h 34, 5 h 00 e 5 h 30 min; a menor é 4 h 58 min.",
+   "erradas": {
+    "A": "4 h 48 min não confere: nenhuma das seis distribuições dá esse tempo; a menor é 4 h 58 min.",
+    "C": "5 h 24 min sai de 15 km a 6 km/h, 9 km a 10 km/h e 18 km a 9 km/h: 2,5 + 0,9 + 2 = 5,4 h.",
+    "D": "5 h 30 min sai de 15 km a 10 km/h, 9 km a 9 km/h e 18 km a 6 km/h: 1,5 + 1 + 3 = 5,5 h.",
+    "E": "5 h 34 min é o pior caso: 15 km a 9 km/h, 9 km a 10 km/h e 18 km a 6 km/h dão 5,5666... h, o maior tempo possível."
+   },
+   "armadilha": "Ler 4,9667 h como 4 h 96 min ou ignorar que o maior trecho precisa da maior velocidade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor tempo total para os três trechos.",
+    "chave": "18/10 + 15/9 + 9/6 = 149/30 h = 4 h 58 min.",
+    "cuidado": "Converta a parte decimal da hora multiplicando por 60."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar todas",
+    "ideia": "São 3! = 6 maneiras de distribuir as velocidades; calcule as seis e escolha a menor."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "18/10 + 15/9 + 9/6 = 149/30",
+    "nota": "maior trecho com maior velocidade"
+   },
+   {
+    "linha": "149/30 = 4 + 29/30",
+    "nota": "4 horas inteiras"
+   },
+   {
+    "linha": "29/30 · 60 = 58",
+    "nota": "minutos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
+ },
+ "P3d57713e": {
+  "n": "29",
+  "conceito": "Depreciação percentual mensal: achar o número de meses com logaritmos.",
+  "equivocos": {
+   "B": "M06.5:conta-errada-do-log",
+   "C": "M06.5:conta-errada-do-log",
+   "D": "M06.5:conta-errada-do-log",
+   "E": "M06.5:conta-errada-do-log"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro descubra quanto foi aplicado: metade da herança no apartamento, um terço do RESTO no carro, e o que sobra em ações. Depois, perder 2% ao mês é multiplicar por 0,98 a cada mês. O valor caiu de 300 mil para 150 mil, ou seja, à metade, e o log resolve.",
+    "formulas": [
+     "fator mensal = 1 − 0,02 = 0,98",
+     "log 0,98 = log (2 × 7²) − 2"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "número de meses com as ações"
+     ],
+     [
+      "log",
+      "logaritmo na base 10"
+     ]
+    ]
+   },
+   "pista": "Calcule o valor aplicado em ações antes de montar qualquer exponencial.",
+   "passos": [
+    {
+     "faz": "Ache o valor aplicado",
+     "conta": "900 000 − 450 000 = 450 000 | carro: 450000/3 = 150 000 | ações: 450 000 − 150 000 = 300 000",
+     "porque": "O terço é do restante (450 mil), não da herança toda.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a equação",
+     "conta": "300 000 · 0,98ⁿ = 150 000 → 0,98ⁿ = 150000/300000 = 1/2",
+     "porque": "Perder 2% ao mês multiplica o saldo por 0,98; o 300 000 vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule log 0,98",
+     "conta": "log 0,98 = log 98 − 2 = log 2 + 2 log 7 − 2 = 0,301 + 1,690 − 2 = −0,009",
+     "porque": "98 = 2 × 7² e 0,98 = 98/100.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva para n",
+     "conta": "n × (−0,009) = −0,301 → n = 0,301/0,009 ≈ 33,4",
+     "porque": "log (1/2) = −log 2; o −0,009 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o intervalo",
+     "conta": "33,4 ∈ [33; 35) → alternativa A",
+     "porque": "n fica entre 33 e 35 meses.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — n está no intervalo [33; 35)",
+   "checagem": "Com logaritmos exatos, log 0,5 ÷ log 0,98 ≈ 34,3, ainda dentro de [33; 35). E 0,98³⁴ ≈ 0,503, praticamente a metade. Fecha.",
+   "erradas": {
+    "B": "[35; 37) não confere: com n = 35, 0,98³⁵ ≈ 0,493, já abaixo da metade, e n ≈ 33,4 pelos logs dados.",
+    "C": "[37; 39) não confere: com n = 37, 0,98³⁷ ≈ 0,474, o saldo já estaria em cerca de 142 mil.",
+    "D": "[39; 41) não confere: com n = 39, 0,98³⁹ ≈ 0,455, cerca de 136 mil.",
+    "E": "[41; 43) não confere: com n = 41, 0,98⁴¹ ≈ 0,437, cerca de 131 mil."
+   },
+   "armadilha": "Calcular o carro como um terço da herança toda (300 mil) e errar o valor aplicado: o terço é do restante.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O intervalo que contém o número de meses n.",
+    "chave": "Aplicou 300 mil; 300 000 · 0,98ⁿ = 150 000 dá n = 0,301/0,009 ≈ 33,4.",
+    "cuidado": "O terço é do restante, e a perda de 2% é multiplicativa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de potência",
+    "ideia": "Sem log: 0,98³³ ≈ 0,513 e 0,98³⁵ ≈ 0,493; a metade fica entre 33 e 35."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ações = 450 000 − 150 000 = 300 000",
+    "nota": "metade e um terço do resto"
+   },
+   {
+    "linha": "300 000 · 0,98ⁿ = 150 000",
+    "nota": "perda de 2% ao mês"
+   },
+   {
+    "linha": "0,98ⁿ = 150000/300000",
+    "nota": "o 300 000 vai dividindo"
+   },
+   {
+    "linha": "0,98ⁿ = 1/2",
+    "nota": "simplifica"
+   },
+   {
+    "linha": "n × (−0,009) = −0,301",
+    "nota": "log dos dois lados"
+   },
+   {
+    "linha": "n = 0,301/0,009",
+    "nota": "o −0,009 vai dividindo"
+   },
+   {
+    "linha": "n ≈ 33,4",
+    "nota": "intervalo [33; 35)"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
+ },
+ "Pbaa0138c": {
+  "n": "35",
+  "conceito": "Reflexão em espelhos planos: ângulos iguais com o espelho, triângulos 30-60-90 e raio que volta pelo mesmo caminho.",
+  "equivocos": {
+   "B": "M09.1:dividiu-por-3-sem-motivo",
+   "C": "M09.1:contou-so-a-ida",
+   "D": "M09.1:trajeto-menor-que-o-minimo",
+   "E": "M09.1:valor-sem-conta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em cada reflexão, o raio sai do espelho com o mesmo ângulo com que chegou. Siga o raio de espelho em espelho: se em algum momento ele bater perpendicular a um espelho, volta exatamente pelo mesmo caminho até a lanterna. Então o trajeto total é o dobro do caminho de ida até esse ponto.",
+    "formulas": [
+     "ângulo do raio com o espelho na chegada = ângulo na saída",
+     "triângulo 30-60-90: lados x, x√3 e 2x"
+    ],
+    "simbolos": [
+     [
+      "√",
+      "raiz quadrada"
+     ],
+     [
+      "perpendicular",
+      "que forma ângulo de 90°"
+     ]
+    ]
+   },
+   "pista": "Descubra o ângulo do raio com o espelho de cima em B, usando que AB é paralelo ao espelho de baixo.",
+   "passos": [
+    {
+     "faz": "Ache o ângulo em B",
+     "conta": "AB ∥ espelho de baixo → ângulo do raio com o espelho de cima = 30°",
+     "porque": "Ângulos alternos com a paralela: o raio chega a B formando 30° com o espelho, como o ângulo em C. Ele sai também a 30°.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o trecho até o espelho de baixo",
+     "conta": "triângulo B, C, P: ângulos 30°, 30°, 120° → BP = PC = 2/√3",
+     "porque": "O raio refletido e o espelho de cima formam 30° em B, e em C também há 30°: o triângulo é isósceles com BC = 2. Pela lei dos senos, BP = 2 × sen 30° ÷ sen 120° = 2/√3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Siga a segunda reflexão",
+     "conta": "em P: ângulo de saída 60° → chega ao espelho de cima a 90° → PQ = (2/√3) × sen 30° = 1/√3",
+     "porque": "O raio chega ao espelho de baixo a 60° e sai a 60°; com os 30° de C, o terceiro ângulo é 90°: o raio bate perpendicular e volta pelo mesmo caminho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some ida e volta",
+     "conta": "2 × (2 + 2/√3 + 1/√3) = 2 × (2 + √3) = 4 + 2√3",
+     "porque": "2/√3 + 1/√3 = 3/√3 = √3. Ida e volta têm o mesmo comprimento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "4 + 2√3 m → alternativa A",
+     "porque": "É o trajeto completo, da lanterna de volta a ela.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 4 + 2√3 m",
+   "checagem": "Por coordenadas, com C na origem e o espelho de baixo no eixo horizontal: B = (−√3, 1), o raio bate no espelho de baixo em (−2/√3, 0) e chega ao de cima em (−√3/2, 1/2), a 1 m de C, na direção perpendicular a ele. Os comprimentos dão 2, 2/√3 e 1/√3, total de ida 2 + √3 ≈ 3,73; ida e volta ≈ 7,46 = 4 + 2√3. Fecha.",
+   "erradas": {
+    "B": "(4 + 2√3)/3 ≈ 2,49 não confere: o raio sai de A, passa por B e volta a A, então o trajeto é no mínimo 2 × AB = 4 m.",
+    "C": "2 + √3 sai de contar só a ida (2 + 2/√3 + 1/√3) e esquecer a volta pelo mesmo caminho.",
+    "D": "(2 + 3√3)/3 ≈ 2,40 não confere: é menor que 2 × AB = 4 m, o mínimo de qualquer trajeto que sai de A, passa por B e volta a A.",
+    "E": "5 não confere: só AB e BP, na ida e na volta, já dão 2 · (2 + 2/√3) ≈ 6,3 m, mais que 5."
+   },
+   "armadilha": "Parar quando o raio bate perpendicular ao espelho: a pergunta é até ele voltar à lanterna, o dobro da ida.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O comprimento total do raio, saindo da lanterna e voltando a ela.",
+    "chave": "Ângulos de 30° e 60° nas reflexões levam o raio a bater a 90° no espelho e voltar: total 2 × (2 + √3).",
+    "cuidado": "Somar a ida e a volta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas",
+    "ideia": "C na origem, espelhos nas retas y = 0 e y = −x/√3; reflita o vetor direção em cada espelho e meça os trechos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ângulo em B = 30°",
+    "nota": "alternos com a paralela"
+   },
+   {
+    "linha": "BP = 2 × sen 30°/sen 120° = 2/√3",
+    "nota": "lei dos senos no triângulo BCP"
+   },
+   {
+    "linha": "PQ = (2/√3) × sen 30° = 1/√3",
+    "nota": "triângulo 30-60-90"
+   },
+   {
+    "linha": "ida = 2 + 2/√3 + 1/√3 = 2 + √3",
+    "nota": "soma da ida"
+   },
+   {
+    "linha": "total = 2 × (2 + √3) = 4 + 2√3",
+    "nota": "ida e volta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
+ },
+ "P9b0745ff": {
+  "n": "32",
+  "conceito": "Volume de paralelepípedo e de cilindro, com frações e porcentagem de perda, para achar o número mínimo de viagens (arredondamento para cima).",
+  "equivocos": {
+   "A": "M11.2:esqueceu-a-fracao-do-balde",
+   "B": "M11.2:arredondou-para-baixo",
+   "C": "M11.2:esqueceu-o-desperdicio",
+   "E": "M11.2:desperdicio-sobre-a-capacidade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São três contas encadeadas: quanto de água o reservatório precisa (75% dele), quanto de água chega por viagem (4/5 do balde, menos 10% dessa água) e quantas viagens fecham a conta. As medidas vêm em metros e centímetros; passar tudo para litros evita erro. Como não existe meia viagem, o número de viagens arredonda para cima.",
+    "formulas": [
+     "volume do paralelepípedo = comprimento × largura × altura",
+     "volume do cilindro = πr²h, com π = 3",
+     "1 m³ = 1000 L ; 1 L = 1000 cm³"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "litro"
+     ],
+     [
+      "r",
+      "raio do balde, metade do diâmetro de 40 cm"
+     ],
+     [
+      "π ≈ 3",
+      "aproximação permitida pelo enunciado"
+     ]
+    ]
+   },
+   "pista": "Calcule separadamente a meta em litros e o que de fato chega ao reservatório em cada viagem.",
+   "passos": [
+    {
+     "faz": "Calcule a meta do reservatório",
+     "conta": "V = 2 × 0,6 × 0,86 = 1,032 m³ = 1032 L → 0,75 × 1032 = 774 L",
+     "porque": "Os 60 cm viram 0,6 m. A meta é ao menos 75% da capacidade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a capacidade do balde",
+     "conta": "V = 3 × 20² × 50 = 60000 cm³ → 60000/1000 = 60 L",
+     "porque": "O diâmetro é 40 cm, então o raio é 20 cm; usa-se π = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a água que chega por viagem",
+     "conta": "(4/5) × 60 = 48 L → 48 − 0,1 × 48 = 43,2 L",
+     "porque": "Ele enche 4/5 do balde e perde 10% da água que estava no balde, ou seja, 10% de 48 L.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida a meta pela água útil",
+     "conta": "774/43,2 ≈ 17,9 → 18 viagens",
+     "porque": "Com 17 viagens chegam 17 × 43,2 = 734,4 L, menos que 774 L; com 18 chegam 777,6 L, que bastam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "mínimo de 18 viagens → alternativa D",
+     "porque": "O pedido é o número mínimo que garante os 75%.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 18 viagens",
+   "checagem": "Com o π da calculadora o balde tem cerca de 62,8 L, chegam cerca de 45,2 L por viagem e 774 ÷ 45,2 ≈ 17,1: ainda são 18 viagens. A aproximação π = 3 não muda a resposta.",
+   "erradas": {
+    "A": "15 sai de esquecer que o balde vai só com 4/5: 60 L menos 10% dá 54 L, e 774 ÷ 54 ≈ 14,3, arredondado para 15.",
+    "B": "16 não confere: 16 viagens levam 16 × 43,2 = 691,2 L, bem menos que os 774 L necessários.",
+    "C": "17 sai de esquecer o desperdício: 774 ÷ 48 ≈ 16,1, arredondado para 17. Mas chegam só 43,2 L por viagem, e 17 × 43,2 = 734,4 L não alcançam 774 L.",
+    "E": "19 sai de tirar os 10% da capacidade do balde (6 L) em vez da água que havia nele: 48 − 6 = 42 L, e 774 ÷ 42 ≈ 18,4, arredondado para 19."
+   },
+   "armadilha": "O desperdício é de 10% da água que estava no balde (48 L), não da capacidade dele; e o número de viagens arredonda para cima.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número mínimo de viagens para encher ao menos 75% do reservatório.",
+    "chave": "Meta 774 L; por viagem chegam 0,9 × 0,8 × 60 = 43,2 L; 774 ÷ 43,2 ≈ 17,9 → 18.",
+    "cuidado": "Aplique o 4/5 e o desconto de 10% sobre a água do balde, e arredonde para cima."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fator único",
+    "ideia": "Cada viagem entrega 0,8 × 0,9 = 0,72 do balde, 0,72 × 60 = 43,2 L; 774 ÷ 43,2 ≈ 17,9, então 18 viagens."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V = 2 × 0,6 × 0,86 = 1,032 m³ = 1032 L",
+    "nota": "reservatório"
+   },
+   {
+    "linha": "0,75 × 1032 = 774 L",
+    "nota": "meta de 75%"
+   },
+   {
+    "linha": "V = 3 × 20² × 50 = 60000 cm³ = 60 L",
+    "nota": "balde"
+   },
+   {
+    "linha": "(4/5) × 60 = 48 L",
+    "nota": "balde com 4/5"
+   },
+   {
+    "linha": "48 − 0,1 × 48 = 43,2 L",
+    "nota": "perde 10% no caminho"
+   },
+   {
+    "linha": "774/43,2 ≈ 17,9 → 18",
+    "nota": "arredonda para cima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ },
+ "Pb7b092ab": {
+  "n": "33",
+  "conceito": "Contar as trocas de presentes em que ninguém se presenteia (permutação caótica de 5), separando pelo formato das trocas.",
+  "equivocos": {
+   "A": "M13.9:esqueceu-um-caso",
+   "B": "M13.9:esqueceu-um-caso",
+   "D": "M13.9:valor-sem-base",
+   "E": "M13.9:ignorou-a-restricao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada pessoa dá um presente e recebe um, e ninguém dá a si mesmo: é uma permutação dos 5 em que ninguém fica no próprio lugar. Seguindo quem dá a quem, as trocas formam ciclos fechados, e nenhum ciclo pode ter 1 pessoa só. Com 5 pessoas sobram dois formatos: uma roda com as 5, ou uma troca entre 2 mais uma roda com 3. Conte cada formato e some.",
+    "formulas": [
+     "roda com n pessoas: (n − 1)! rodas (ciclos) diferentes",
+     "casos que se excluem: somam"
+    ],
+    "simbolos": [
+     [
+      "ciclo (roda)",
+      "grupo em que A dá a B, B dá a C, ..., e o último dá ao primeiro"
+     ],
+     [
+      "(n − 1)!",
+      "fatorial de n − 1: número de rodas diferentes com n pessoas"
+     ]
+    ]
+   },
+   "pista": "Desenhe setas de quem dá para quem recebe: que formatos de grupos fechados são possíveis com 5 pessoas, sem ninguém sozinho?",
+   "passos": [
+    {
+     "faz": "Liste os formatos possíveis",
+     "conta": "5 = 5 (roda única) | 5 = 2 + 3 (dupla + roda de 3)",
+     "porque": "Ninguém pode ficar num ciclo de 1, porque daria presente a si mesmo; 4 + 1 e 3 + 1 + 1 ficam de fora.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte a roda com as 5 pessoas",
+     "conta": "(5 − 1)! = 4! = 24",
+     "porque": "Fixe uma pessoa na roda; as outras 4 se ordenam em 4! maneiras de seguir a cadeia de presentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte dupla mais roda de 3",
+     "conta": "C(5, 2) × (3 − 1)! = 10 × 2 = 20",
+     "porque": "Escolha a dupla que troca entre si (10 formas); as 3 restantes formam uma roda, que pode girar em 2 sentidos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os dois formatos",
+     "conta": "24 + 20 = 44",
+     "porque": "Os formatos não se misturam, então os casos se somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "44 maneiras → alternativa C",
+     "porque": "É o número de distribuições em que todos dão e recebem um presente de outra pessoa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 44 maneiras",
+   "checagem": "Pelo princípio da inclusão e exclusão: 5! − C(5, 1)·4! + C(5, 2)·3! − C(5, 3)·2! + C(5, 4)·1! − 1 = 120 − 120 + 60 − 20 + 5 − 1 = 44. Um programa que testa as 120 permutações também acha 44.",
+   "erradas": {
+    "A": "20 sai de contar só o formato dupla + roda de 3: 10 × 2 = 20, esquecendo a roda com as 5 pessoas.",
+    "B": "24 sai de contar só a roda com as 5 pessoas: 4! = 24, esquecendo as trocas em que uma dupla presenteia entre si.",
+    "D": "116 não confere: das 120 distribuições, as que deixam alguém com o próprio presente são 120 − 44 = 76, e não só 4.",
+    "E": "120 sai de contar todas as permutações dos 5: 5! = 120, incluindo aquelas em que alguém dá presente a si mesmo, o que a regra proíbe."
+   },
+   "armadilha": "A troca não precisa ser uma roda única: uma dupla pode trocar entre si enquanto os outros três formam uma roda.",
+   "alerta": "",
+   "essencial": {
+    "pede": "De quantos modos 5 pessoas trocam presentes sem ninguém se presentear.",
+    "chave": "Roda de 5: 4! = 24; dupla + roda de 3: 10 × 2 = 20; total 44.",
+    "cuidado": "Não esqueça nenhum formato de troca."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "inclusão e exclusão",
+    "ideia": "D₅ = 120 − 120 + 60 − 20 + 5 − 1 = 44."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "roda de 5: 4! = 24",
+    "nota": "uma cadeia com todos"
+   },
+   {
+    "linha": "dupla + trio: 10 × 2 = 20",
+    "nota": "a dupla troca entre si"
+   },
+   {
+    "linha": "24 + 20 = 44",
+    "nota": "casos somados"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
+ },
+ "P4dab5d78": {
+  "n": "37",
+  "conceito": "Probabilidade geométrica: chance proporcional à área, com raios tirados das equações das circunferências e áreas de coroas.",
+  "equivocos": {
+   "A": "M13.4:circulo-inteiro-no-lugar-da-coroa",
+   "B": "M13.4:circulo-inteiro-no-lugar-da-coroa",
+   "C": "M13.4:circulo-inteiro-no-lugar-da-coroa",
+   "E": "M13.4:circulo-inteiro-no-lugar-da-coroa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A chance de cada região é proporcional à área, então n é só a razão entre a área de D e a de B. Cada equação dá o centro e o raio ao quadrado completando quadrados; antes divida pelo coeficiente de x² (4 em γ, 9 em δ). As quatro circunferências são concêntricas; ordenando os raios, cada coroa é a diferença entre dois círculos.",
+    "formulas": [
+     "x² + y² + Dx + Ey + F = 0 → centro (−D/2, −E/2) e r² = (D/2)² + (E/2)² − F",
+     "área da coroa = π(R² − r²)"
+    ],
+    "simbolos": [
+     [
+      "coroa circular",
+      "região entre duas circunferências de mesmo centro"
+     ],
+     [
+      "r²",
+      "raio ao quadrado; a área do círculo é π r²"
+     ]
+    ]
+   },
+   "pista": "Divida γ e δ pelo coeficiente de x² antes de achar os raios, e ordene os quatro raios.",
+   "passos": [
+    {
+     "faz": "Ache os raios de α e β",
+     "conta": "α: r² = 9 + 4 − 4 → 9 | β: r² = 9 + 4 − 12 → 1",
+     "porque": "Centro (3, −2) nas duas: (x − 3)² + (y + 2)² = 13 − F.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache os raios de γ e δ",
+     "conta": "γ: 13 − 51/4 → 1/4 | δ: 13 − 113/9 → 4/9",
+     "porque": "Dividindo por 4 e por 9, as equações ficam com o mesmo centro (3, −2) e o termo constante vira 51/4 e 113/9.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ordene e calcule as áreas de B e D",
+     "conta": "r²: 1/4 (A) < 4/9 < 1 < 9 | B = π(4/9 − 1/4) → 7π/36 | D = π(9 − 1) → 8π",
+     "porque": "B fica entre os dois menores círculos e D entre os dois maiores.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida D por B e aproxime",
+     "conta": "n = 8π/(7π/36) → 288/7 ≈ 41,1 → alternativa D",
+     "porque": "O π cancela; 288 ÷ 7 ≈ 41,1, mais perto de 41.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 41",
+   "checagem": "Confira a ordem de grandeza: D tem 8π ≈ 25,1 de área e B tem 7π/36 ≈ 0,61; 25,1 ÷ 0,61 ≈ 41. E a soma das quatro regiões, π/4 + 7π/36 + 5π/9 + 8π, dá 9π, a área do círculo α: fecha.",
+   "erradas": {
+    "A": "8 sai de dividir a coroa D (8π) pelo círculo β inteiro (π), e não pela coroa B (7π/36).",
+    "B": "9 sai de comparar os círculos inteiros α e β: 9π ÷ π = 9, em vez das coroas D e B.",
+    "C": "36 sai de comparar o maior e o menor círculo: 9 ÷ (1/4) = 36, em vez das coroas D e B.",
+    "E": "50 sai de usar o círculo α inteiro no lugar da coroa D: 9π ÷ (7π/36) = 324/7 ≈ 46,3, mais perto de 50 que de 41."
+   },
+   "armadilha": "γ e δ precisam ser divididas por 4 e 9 antes de ler o raio, e B e D são coroas, não círculos inteiros.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas vezes a área da coroa D é maior que a da coroa B.",
+    "chave": "r² = 1/4, 4/9, 1 e 9; D = 8π e B = 7π/36, n = 288/7 ≈ 41.",
+    "cuidado": "Divida pelo coeficiente de x² e use as diferenças de r²."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "só com r²",
+    "ideia": "como o π cancela, n = (9 − 1)/(4/9 − 1/4) = 8 · 36/7 ≈ 41,1"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "α: r² = 9 | β: r² = 1",
+    "nota": "completar quadrados, centro (3, −2)"
+   },
+   {
+    "linha": "γ: r² = 1/4 | δ: r² = 4/9",
+    "nota": "dividir por 4 e por 9"
+   },
+   {
+    "linha": "B = π(4/9 − 1/4) = 7π/36",
+    "nota": "coroa entre γ e δ"
+   },
+   {
+    "linha": "D = π(9 − 1) = 8π",
+    "nota": "coroa entre β e α"
+   },
+   {
+    "linha": "n = 8π/(7π/36) = 288/7 ≈ 41,1",
+    "nota": "π cancela"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
+ },
+ "P0ab5e950": {
+  "n": "30",
+  "conceito": "Nova média após acrescentar n notas máximas, garantida para todo número inicial de viagens do intervalo.",
+  "equivocos": {
+   "A": "M14.4:somou-medias-sem-pesar-pela-quantidade",
+   "B": "M14.4:usou-extremo-fora-do-intervalo",
+   "C": "M14.4:usou-o-menor-n-em-vez-do-pior-caso",
+   "E": "M14.4:incluiu-o-extremo-excluido"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se Paulo tem N viagens com média 4,7, a soma das notas é 4,7N. Cada nova viagem soma 5. A nova média é (4,7N + 5n)/(N + n), e ela precisa chegar a 4,9. Como N não é conhecido (está entre 5900 e 6000), o n tem de servir para o pior caso, o maior N possível.",
+    "formulas": [
+     "soma das notas = média × número de notas",
+     "nova média = (4,7N + 5n)/(N + n)"
+    ],
+    "simbolos": [
+     [
+      "N",
+      "número de viagens que Paulo já fez (mais de 5900 e menos de 6000)"
+     ],
+     [
+      "n",
+      "número de próximas viagens, todas com nota 5"
+     ]
+    ]
+   },
+   "pista": "Escreva a soma atual das notas em função de N e monte a condição da nova média ser pelo menos 4,9.",
+   "passos": [
+    {
+     "faz": "Monte a condição da nova média",
+     "conta": "(4,7N + 5n)/(N + n) ≥ 4,9",
+     "porque": "A soma antiga é 4,7N, cada nova nota excelente acrescenta 5 e o total de notas passa a N + n.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole n",
+     "conta": "4,7N + 5n ≥ 4,9N + 4,9n → 5n − 4,9n ≥ 4,9N − 4,7N → 0,1n ≥ 0,2N → n ≥ 2N",
+     "porque": "O N + n multiplica para o outro lado; os termos com n vão para a esquerda e os com N para a direita. Dividir por 0,1 deixa n ≥ 2N.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o maior N possível",
+     "conta": "N < 6000 → N ≤ 5999 → n ≥ 2 · 5999 = 11998",
+     "porque": "Para garantir, n tem de funcionar para qualquer N do intervalo. Quanto maior N, maior o n exigido, e o maior N com menos de 6000 viagens é 5999.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "n mínimo = 11998 → alternativa D",
+     "porque": "11998 cobre todos os casos e qualquer valor menor falha para N = 5999.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 11.998 viagens",
+   "checagem": "Substitua N = 5999 e n = 11998: (4,7 · 5999 + 5 · 11998)/(5999 + 11998) = 4,9 exatamente. Com n = 11997, a média fica em 4,89999…, abaixo de 4,9. Fecha.",
+   "erradas": {
+    "A": "6.000 não confere: com n ≈ N a nova média fica perto de (4,7 + 5)/2 = 4,85, abaixo de 4,9. É preciso o dobro de N.",
+    "B": "11.798 sai de n = 2N com N = 5899, que está abaixo de 5900; Paulo tem mais de 5900 viagens, e para N = 5999 esse n não basta.",
+    "C": "11.800 sai de n = 2N com N = 5900. Paulo tem MAIS de 5900 viagens; para N = 5999 seriam necessárias 11998.",
+    "E": "12.000 sai de n = 2N com N = 6000, que já é excluído (menos de 6000). Garante 4,9, mas não é o menor valor."
+   },
+   "armadilha": "Usar um extremo do intervalo errado: \"garantir\" exige o pior caso, N = 5999, e não 5900 nem 6000.",
+   "alerta": "A questão trata a média 4,7 como exata para qualquer N do intervalo. Com notas naturais, uma média exatamente 4,7 só ocorre se N for múltiplo de 10; a banca ignora esse detalhe e o gabarito D corresponde ao raciocínio n ≥ 2N com N = 5999, que é o que se espera do candidato.",
+   "essencial": {
+    "pede": "O menor número de notas 5 que garante média 4,9 para qualquer N entre 5900 e 6000.",
+    "chave": "(4,7N + 5n)/(N + n) ≥ 4,9 dá n ≥ 2N; com N máximo 5999, n = 11998.",
+    "cuidado": "\"Menos de 6000\" quer dizer no máximo 5999, e garantir significa usar esse pior caso."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pontos que faltam",
+    "ideia": "Cada nota 5 está 0,1 acima de 4,9 e cada nota antiga está 0,2 abaixo: para compensar 0,2N são precisas 0,2N/0,1 = 2N notas 5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(4,7N + 5n)/(N + n) ≥ 4,9",
+    "nota": "condição da nova média"
+   },
+   {
+    "linha": "4,7N + 5n ≥ 4,9N + 4,9n",
+    "nota": "N + n passa multiplicando"
+   },
+   {
+    "linha": "0,1n ≥ 0,2N",
+    "nota": "n para a esquerda, N para a direita"
+   },
+   {
+    "linha": "n ≥ 2N",
+    "nota": "divide por 0,1"
+   },
+   {
+    "linha": "n ≥ 2 · 5999 = 11998",
+    "nota": "pior caso: N = 5999"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
+ },
+ "P47113b71": {
+  "n": "31",
+  "conceito": "Distribuir 1 + 2 + 3 + ... cartas em três colunas até 1000 e comparar os totais das colunas.",
+  "equivocos": {
+   "A": "M17.1:sobra-no-lugar-da-diferenca",
+   "B": "M17.1:comparou-colunas-erradas",
+   "D": "M17.1:esqueceu-a-sobra",
+   "E": "M17.1:soma-das-colunas-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As cartas saem em levas 1, 2, 3, 4, ... e as colunas se revezam: 1.ª, 2.ª, 3.ª, 1.ª, ... Então a coluna da leva k depende do resto de k por 3. Primeiro descubra até que leva completa as 1000 cartas chegam (soma 1 + 2 + ... + n) e para onde vai a sobra; depois some cada coluna.",
+    "formulas": [
+     "1 + 2 + ... + n = n(n + 1)/2",
+     "soma de PA = (número de termos) × (primeiro + último)/2"
+    ],
+    "simbolos": [
+     [
+      "leva",
+      "cada vez que Natália coloca cartas numa coluna"
+     ],
+     [
+      "n",
+      "número de levas completas"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro quantas levas completas cabem em 1000 cartas.",
+   "passos": [
+    {
+     "faz": "Ache a última leva completa",
+     "conta": "n(n + 1)/2 ≤ 1000 → 44 · 45/2 = 990 | 45 · 46/2 = 1035",
+     "porque": "Até a leva 44 usam-se 990 cartas; a leva 45 pediria 1035, mais do que há.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Coloque a sobra na coluna da vez",
+     "conta": "1000 − 990 = 10 cartas → leva 45 → 3.ª coluna",
+     "porque": "A leva 45 é múltipla de 3, então cabe à 3.ª coluna; ela recebe só as 10 que restam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some cada coluna como uma PA",
+     "conta": "1.ª: 1 + 4 + ... + 43 = 15 · 44/2 = 330 | 2.ª: 2 + 5 + ... + 44 = 15 · 46/2 = 345 | 3.ª: 3 + 6 + ... + 42 + 10 = 14 · 45/2 + 10 = 325",
+     "porque": "Cada coluna recebe levas de 3 em 3. A 1.ª e a 2.ª têm 15 levas; a 3.ª tem 14 levas completas mais a sobra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a diferença entre a maior e a menor",
+     "conta": "345 − 325 = 20",
+     "porque": "A 2.ª coluna é a que mais recebeu e a 3.ª, a que menos recebeu.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "|345 − 325| = 20 → alternativa C",
+     "porque": "A pergunta é a diferença em módulo, não um total.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 20",
+   "checagem": "Some as três colunas: 330 + 345 + 325 = 1000, exatamente as cartas do baralho.",
+   "erradas": {
+    "A": "A não confere: 10 é a sobra da última leva, não a diferença entre colunas; a diferença é 345 − 325 = 20.",
+    "B": "B sai de comparar a 2.ª com a 1.ª coluna: 345 − 330 = 15. A que menos recebeu é a 3.ª, com 325.",
+    "D": "D sai de esquecer a sobra de 10 cartas: a 3.ª coluna ficaria com 315 e 345 − 315 = 30.",
+    "E": "E não confere: as colunas têm 330, 345 e 325 cartas; a maior diferença entre duas delas é 20."
+   },
+   "armadilha": "Esquecer as 10 cartas que sobram na leva incompleta: sem elas a 3.ª coluna fica com 315 e a diferença sai 30.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A diferença entre a coluna que mais e a que menos recebeu cartas.",
+    "chave": "Levas completas até 44 (990 cartas); a sobra de 10 vai para a 3.ª coluna.",
+    "cuidado": "Some a sobra antes de comparar as colunas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por rodadas",
+    "ideia": "cada rodada de 3 levas dá à 2.ª coluna uma carta a mais que à 1.ª; após 14 rodadas e as levas 43 e 44, a 2.ª tem 345; a 3.ª fica com 315 + 10"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "44 · 45/2 = 990",
+    "nota": "levas completas"
+   },
+   {
+    "linha": "1000 − 990 = 10",
+    "nota": "sobra na leva 45, 3.ª coluna"
+   },
+   {
+    "linha": "1.ª: 15 · 44/2 = 330",
+    "nota": "levas 1, 4, ..., 43"
+   },
+   {
+    "linha": "2.ª: 15 · 46/2 = 345",
+    "nota": "levas 2, 5, ..., 44"
+   },
+   {
+    "linha": "3.ª: 14 · 45/2 + 10 = 325",
+    "nota": "levas 3, ..., 42 e a sobra"
+   },
+   {
+    "linha": "345 − 325 = 20",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0073"
+  }
+ }
+}

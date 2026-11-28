@@ -1,0 +1,535 @@
+{
+ "Paeac1cc3": {
+  "n": "25",
+  "conceito": "Comprimento de poligonal: soma das distâncias entre pontos consecutivos.",
+  "equivocos": {
+   "A": "M12.1:somou-catetos-em-vez-da-hipotenusa",
+   "B": "M12.1:sem-origem-identificada",
+   "C": "M12.1:sem-origem-identificada",
+   "D": "M12.1:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A poligonal é A → B → C → D. Calcule a distância de cada segmento pela fórmula da distância entre dois pontos e some.",
+    "formulas": [
+     "d = √(Δx² + Δy²)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Calcule AB, BC e CD separadamente.",
+   "passos": [
+    {
+     "faz": "AB",
+     "conta": "A(1, −8) → B(−2, −3): √(3² + 5²) = √34",
+     "porque": "Δx = −3, Δy = 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "BC",
+     "conta": "B(−2, −3) → C(2, 4): √(4² + 7²) = √65",
+     "porque": "Δx = 4, Δy = 7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "CD",
+     "conta": "C(2, 4) → D(−6, 7): √(8² + 3²) = √73",
+     "porque": "Δx = −8, Δy = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some",
+     "conta": "√34 + √65 + √73 → alternativa E",
+     "porque": "Comprimento da poligonal.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — √34 + √65 + √73",
+   "checagem": "Some os deslocamentos: (−3, 5) + (4, 7) + (−8, 3) = (−7, 15), que é D − A = (−6 − 1, 7 + 8). Os três segmentos estão bem lidos.",
+   "erradas": {
+    "A": "Quem marca A soma o avanço horizontal e o vertical de cada trecho: (3+5) + (4+7) + (8+3) = 30. Isso mede um caminho em escada. Cada trecho reto é a hipotenusa: √(horizontal² + vertical²).",
+    "B": "3√19 não confere: vale ≈ 13,1, menos que o segmento direto AD ≈ 16,6; uma poligonal não pode ser mais curta.",
+    "C": "√122 + 1 + √137 não confere: nenhum dos segmentos mede 1; o menor, AB, mede √34.",
+    "D": "√82 + √5 + √173 não confere: AB² = 3² + 5² = 34, não 82."
+   },
+   "armadilha": "Somar os quadrados das coordenadas em vez de usar as diferenças entre pontos vizinhos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O comprimento da poligonal ABCD.",
+    "chave": "AB = √34, BC = √65, CD = √73.",
+    "cuidado": "Use as diferenças de coordenadas de pontos vizinhos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelos quadrados",
+    "ideia": "Os quadrados dos três segmentos somam 34 + 65 + 73 = 172; só a alternativa E tem parcelas 34, 65 e 73."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "√(9 + 25) = √34",
+    "nota": "AB"
+   },
+   {
+    "linha": "√(16 + 49) = √65",
+    "nota": "BC"
+   },
+   {
+    "linha": "√(64 + 9) = √73",
+    "nota": "CD"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0031"
+  }
+ },
+ "P77c5b18b": {
+  "n": "31",
+  "conceito": "Usar uma função de área dada e reconhecer que semicírculo corresponde a α = π (M e N diametralmente opostos).",
+  "equivocos": {
+   "A": "M08.3:esqueceu-a-metade-do-semicirculo",
+   "C": "M08.3:simplificacao-errada",
+   "D": "M08.3:correia-lida-como-circunferencia-inteira",
+   "E": "M08.3:simplificacao-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A questão não pede para deduzir a fórmula: ela já está pronta. O trabalho é descobrir que valor de α corresponde ao semicírculo. Se a correia forma um semicírculo, M e N são as pontas de um diâmetro, e o ângulo MÔN é raso: α = π radianos.",
+    "formulas": [
+     "A(α) = p²/(2π − α)² · (sen(α)/2 − α/2 + π)",
+     "semicírculo: M, O e N alinhados → α = π"
+    ],
+    "simbolos": [
+     [
+      "α",
+      "ângulo MÔN, medido em radianos"
+     ],
+     [
+      "p",
+      "comprimento da correia de couro"
+     ],
+     [
+      "π rad",
+      "180°, o ângulo raso"
+     ]
+    ]
+   },
+   "pista": "Pense na figura do semicírculo: onde fica o centro O em relação à reta s, e quanto mede o ângulo MÔN?",
+   "passos": [
+    {
+     "faz": "Traduza semicírculo em valor de α",
+     "conta": "semicírculo → MN é diâmetro → α = π",
+     "porque": "No semicírculo, o centro O fica sobre o litoral, entre M e N; os raios OM e ON ficam em linha reta, e o ângulo entre eles é raso.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Substitua α = π na função",
+     "conta": "A(π) = p²/(2π − π)² · (sen(π)/2 − π/2 + π) = p²/π² · (0 − π/2 + π)",
+     "porque": "sen(π) = 0, então o primeiro termo dos parênteses some.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique",
+     "conta": "p²/π² · π/2 = p²/(2π)",
+     "porque": "Dentro dos parênteses sobra π − π/2 = π/2; um π de cima cancela com um dos dois π de baixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "A(π) = p²/(2π) → alternativa B",
+     "porque": "É o número que o geômetra obtém ao aplicar a função A ao semicírculo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — p²/(2π)",
+   "checagem": "Faça sem a função: no semicírculo a correia é meia circunferência, p = πr, logo r = p/π. A área é πr²/2 = π · p²/π² · 1/2 = p²/(2π). Bate.",
+   "erradas": {
+    "A": "p²/π sai de esquecer o 1/2 do semicírculo: π · (p/π)² = p²/π é a área do círculo inteiro de raio p/π.",
+    "C": "p²/(3π) não confere: com α = π a função dá p²/π² · π/2 = p²/(2π); nenhum outro α de [0, π] ligado ao semicírculo leva a 3π no denominador.",
+    "D": "p²/(4π) sai de ler p como a circunferência inteira: r = p/(2π) e πr² = p²/(4π). Mas p é só o arco da correia, metade da volta.",
+    "E": "p²/(5π) não confere: substituindo α = π na função, o denominador é π² e os parênteses valem π/2; o resultado é p²/(2π), não p²/(5π)."
+   },
+   "armadilha": "Usar α = π/2 ou α = 0 sem traduzir a figura: o semicírculo tem M, O e N alinhados, ângulo raso, α = π.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do semicírculo calculada pela função A.",
+    "chave": "Semicírculo ⇔ α = π; com sen(π) = 0, A(π) = p²/π² · π/2 = p²/(2π).",
+    "cuidado": "p é o comprimento da correia (meia volta), não a circunferência inteira."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "geometria direta",
+    "ideia": "Meia circunferência: p = πr → r = p/π, e a área πr²/2 = p²/(2π)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "semicírculo → α = π",
+    "nota": "M, O e N alinhados"
+   },
+   {
+    "linha": "A(π) = p²/(2π − π)² · (0 − π/2 + π)",
+    "nota": "substituir, sen(π) = 0"
+   },
+   {
+    "linha": "p²/π² · π/2",
+    "nota": "π − π/2 = π/2"
+   },
+   {
+    "linha": "p²/(2π)",
+    "nota": "cancelar um π"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "O arco da correia vai se abrindo até que O desce para a reta s; o ângulo MÔN vira raso (α = π); a função é calculada com α = π e o resultado p²/(2π) aparece sobre o semicírculo."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
+ },
+ "Pea9b6cc5": {
+  "n": "26",
+  "conceito": "Escala: razão entre a medida no mapa e a medida real, na mesma unidade.",
+  "equivocos": {
+   "A": "M02.3:conversao-km-cm-errada",
+   "B": "M02.3:escala-nao-fecha",
+   "C": "M02.3:escala-nao-fecha",
+   "E": "M02.3:usou-so-um-trecho"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escala é medida no desenho ÷ medida real, as duas na mesma unidade. A fronteira inteira, de cerca de 9.000 km, está representada pelos quatro trechos medidos no mapa. O trabalho real da questão é converter quilômetros em centímetros: 1 km = 100.000 cm.",
+    "formulas": [
+     "escala = medida no mapa ÷ medida real (mesma unidade)",
+     "1 km = 100.000 cm"
+    ],
+    "simbolos": [
+     [
+      "1 : n",
+      "1 cm no mapa vale n cm no real"
+     ]
+    ]
+   },
+   "pista": "Some todos os trechos que representam a fronteira e coloque as duas medidas na mesma unidade antes de dividir.",
+   "passos": [
+    {
+     "faz": "Some os trechos do mapa",
+     "conta": "2 + 6 + 3 + 4 = 15 cm",
+     "porque": "Os quatro segmentos juntos representam a fronteira inteira, a de 9.000 km.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta a distância real em centímetros",
+     "conta": "9.000 km = 9.000 × 100.000 cm = 900.000.000 cm",
+     "porque": "A escala é uma razão sem unidade: as duas medidas precisam estar em centímetros.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida real pelo mapa",
+     "conta": "900.000.000/15 = 60.000.000",
+     "porque": "Cada 1 cm do mapa corresponde a 60.000.000 cm, isto é, 600 km.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "escala 1 : 60.000.000 → alternativa D",
+     "porque": "A escala se escreve como 1 : (medida real de 1 cm do mapa).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1:60.000.000",
+   "checagem": "De trás para frente: na escala 1:60.000.000, 15 cm valem 15 × 60.000.000 = 900.000.000 cm = 9.000 km, a extensão da fronteira dada no texto.",
+   "erradas": {
+    "A": "1:60.000 sai de achar 600 km por centímetro e converter como se fossem 600 m: 600 × 100 = 60.000. Faltou o fator 1.000 de km para m.",
+    "B": "1:250.000 não confere: 15 cm valeriam 15 × 250.000 = 3.750.000 cm = 37,5 km, longe dos 9.000 km.",
+    "C": "1:15.000.000 não confere: 15 cm valeriam 15 × 15.000.000 = 225.000.000 cm = 2.250 km, um quarto da fronteira.",
+    "E": "1:150.000.000 sai de usar só o trecho de 6 cm: 900.000.000/6 = 150.000.000. A fronteira tem os quatro trechos, 15 cm."
+   },
+   "armadilha": "Usar só um trecho do mapa ou errar a conversão de km para cm (1 km = 100.000 cm).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A escala do mapa.",
+    "chave": "15 cm representam 900.000.000 cm: 900.000.000/15 = 60.000.000.",
+    "cuidado": "Some os quatro trechos e converta km em cm antes de dividir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "km por centímetro",
+    "ideia": "9.000 km ÷ 15 cm = 600 km por cm; 600 km = 60.000.000 cm, escala 1:60.000.000."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2 + 6 + 3 + 4 = 15 cm",
+    "nota": "fronteira no mapa"
+   },
+   {
+    "linha": "9.000 km = 900.000.000 cm",
+    "nota": "converte para a mesma unidade"
+   },
+   {
+    "linha": "900.000.000/15 = 60.000.000",
+    "nota": "real dividido pelo mapa"
+   },
+   {
+    "linha": "1 : 60.000.000",
+    "nota": "escala"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "processo",
+   "roteiro": "Junta os quatro trechos do mapa numa régua de 15 cm, converte 9.000 km em centímetros e mostra a divisão que dá 60.000.000."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
+ },
+ "P2404332b": {
+  "n": "7",
+  "conceito": "Probabilidade condicional a partir de gráfico: interseção pela fórmula da união e divisão pelo grupo dos hipertensos.",
+  "equivocos": {
+   "A": "M14.5:denominador-errado",
+   "C": "M14.5:excluiu-a-intersecao-do-grupo",
+   "D": "M14.5:ignorou-a-condicao",
+   "E": "M14.5:respondeu-o-denominador"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O gráfico dá três porcentagens dos 150 óbitos: diabéticos ou hipertensos (70%), diabéticos (30%) e hipertensos (50%). Como 30% + 50% passa de 70%, há pacientes com as duas doenças. A pergunta sorteia só entre os hipertensos: o denominador é esse grupo.",
+    "formulas": [
+     "P(D ou H) = P(D) + P(H) − P(D e H)",
+     "P(D | H) = P(D e H) ÷ P(H)"
+    ],
+    "simbolos": [
+     [
+      "D",
+      "paciente diabético"
+     ],
+     [
+      "H",
+      "paciente hipertenso"
+     ],
+     [
+      "P(D | H)",
+      "probabilidade de ser diabético dado que é hipertenso"
+     ]
+    ]
+   },
+   "pista": "Leia as três barras e descubra quantos por cento têm as duas doenças ao mesmo tempo.",
+   "passos": [
+    {
+     "faz": "Leia as barras do gráfico",
+     "conta": "D ou H: 70% | D: 30% | H: 50%",
+     "porque": "As três porcentagens se referem aos mesmos 150 óbitos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache a interseção",
+     "conta": "70 = 30 + 50 − (D e H) → D e H = 80 − 70 = 10%",
+     "porque": "Somando 30% e 50%, quem tem as duas doenças foi contado duas vezes; o excesso sobre os 70% é exatamente esse grupo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo grupo dos hipertensos",
+     "conta": "P(D | H) = 10/50 = 1/5 = 20%",
+     "porque": "O sorteio é feito só entre os hipertensos, que são 50% dos óbitos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "20% → alternativa B",
+     "porque": "Um em cada cinco hipertensos do estudo também era diabético.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 20%",
+   "checagem": "Em pacientes: 70% de 150 = 105, 30% = 45 e 50% = 75; as duas doenças: 45 + 75 − 105 = 15. Entre os 75 hipertensos, 15 diabéticos: 15 ÷ 75 = 0,2.",
+   "erradas": {
+    "A": "10% é a interseção sobre todos os 150 óbitos; a pergunta sorteia só entre os hipertensos.",
+    "C": "25% sai de dividir a interseção pelos só hipertensos: 10/(50 − 10) = 10/40. O grupo do sorteio inclui todos os 50% de hipertensos.",
+    "D": "30% é a porcentagem de diabéticos entre todos os óbitos, sem a condição de ser hipertenso.",
+    "E": "50% é a porcentagem de hipertensos entre todos os óbitos, que é o denominador, não a resposta."
+   },
+   "armadilha": "Usar os 150 óbitos como denominador, quando o sorteio é feito só entre os hipertensos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de um hipertenso do estudo, sorteado ao acaso, ser diabético.",
+    "chave": "Interseção 30 + 50 − 70 = 10% e condicional 10/50 = 20%.",
+    "cuidado": "O denominador é o grupo dos hipertensos (50%), não o total."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diagrama de Venn",
+    "ideia": "Desenhe dois círculos: só D = 20%, D e H = 10%, só H = 40%; entre os 50% de H, 10% são D."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "D e H = 30 + 50 − 70 = 10%",
+    "nota": "fórmula da união"
+   },
+   {
+    "linha": "P(D | H) = 10/50",
+    "nota": "dividir pelos hipertensos"
+   },
+   {
+    "linha": "10/50 = 1/5 = 20%",
+    "nota": "simplificar"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Prova comentada UEL 2021 (Cops)",
+    "url": "https://www.cops.uel.br/v2/download.php?Acesso=NTc0NTQyMzZjZTU3Mzg2MDZkNzAwMjMyMmVmZjA2MjJiM2EzNjg5NDhlYTY1NGM5NGU3N2Q0NGNkYTM2NTUzZmIxODM0YWY5OGYwNzMxNmI3MjljY2I2MWQ1MDA0Y2U2YjgwZmQ2M2RkZmY5YzlmNWEyYzY1MGJlYWM2MGE5ZTRlOGM2MmQxNzA3Y2ExOGVjYmQ1MDc5ZjU0Yjc4ZTk0Zg=="
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
+ },
+ "P89b7d221": {
+  "n": "11",
+  "conceito": "Escrever o número 42 na base 2 com seis algarismos.",
+  "equivocos": {
+   "A": "M17.2:decomposicao-errada",
+   "B": "M17.2:inverteu-a-ordem-dos-algarismos",
+   "D": "M17.2:confundiu-valor-da-casa-com-expoente",
+   "E": "M17.2:usou-potencia-que-nao-cabe-no-resto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A regra de Simão é a escrita em base 2: cada algarismo m vale 0 ou 1 e multiplica uma potência de 2, de 2^5 = 32 até 2^0 = 1. Para achar a sequência, decomponha 42 em potências de 2 distintas, começando pela maior que cabe.",
+    "formulas": [
+     "N = m5 · 2^5 + m4 · 2^4 + m3 · 2^3 + m2 · 2^2 + m1 · 2^1 + m0 · 2^0",
+     "potências: 32, 16, 8, 4, 2, 1"
+    ],
+    "simbolos": [
+     [
+      "m5, ..., m0",
+      "algarismos da sequência, cada um 0 ou 1"
+     ],
+     [
+      "2^5",
+      "2 multiplicado 5 vezes: 32"
+     ],
+     [
+      "base 2",
+      "sistema com só dois algarismos, 0 e 1"
+     ]
+    ]
+   },
+   "pista": "Qual é a maior potência de 2 que cabe em 42? Tire-a e repita com o que sobra.",
+   "passos": [
+    {
+     "faz": "Tire a maior potência que cabe",
+     "conta": "42 − 32 = 10 → m5 = 1",
+     "porque": "32 cabe em 42 e 64 já passa; o 16 não cabe no resto 10, então m4 = 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Continue com o resto",
+     "conta": "10 − 8 = 2 → m3 = 1; 4 não cabe → m2 = 0",
+     "porque": "8 cabe em 10, sobra 2; o 4 é maior que 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Feche as últimas casas",
+     "conta": "2 − 2 = 0 → m1 = 1, m0 = 0",
+     "porque": "O 2 cabe exatamente e não sobra nada para a casa do 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a sequência",
+     "conta": "42 = 32 + 8 + 2 → 1, 0, 1, 0, 1, 0 → alternativa C",
+     "porque": "Os 1 ficam nas casas de 32, 8 e 2, na ordem m5 até m0.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1, 0, 1, 0, 1, 0",
+   "checagem": "Divida 42 por 2 sucessivamente e leia os restos de baixo para cima: 42 → 21 (resto 0) → 10 (1) → 5 (0) → 2 (1) → 1 (0) → 0 (1). De baixo para cima: 101010.",
+   "erradas": {
+    "A": "0, 0, 1, 1, 1, 1 não confere: 8 + 4 + 2 + 1 = 15.",
+    "B": "0, 1, 0, 1, 0, 1 sai de escrever a sequência certa de trás para a frente, de m0 para m5: lida na ordem pedida, vale 16 + 4 + 1 = 21.",
+    "D": "Depois de 32 + 8, sobra 2. Você põe o 1 em m2 porque o índice é 2. Mas m2 vale 2² = 4. Quem vale 2 é m1 (2¹). A soma vira 32 + 8 + 4 = 44.",
+    "E": "Quem marca E põe 1 em m4 (16) sem conferir com o resto. Mas 42 − 32 = 10, e 16 não cabe em 10. Com 1 nas casas de 32, 16 e 2, a soma vira 32 + 16 + 2 = 50, e não 42."
+   },
+   "armadilha": "A ordem é de m5 (casa de 32) para m0 (casa de 1); ler ao contrário troca o número.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A sequência m5, ..., m0 de 0 e 1 que representa N = 42.",
+    "chave": "42 = 32 + 8 + 2, então há 1 nas casas de 32, 8 e 2: 101010.",
+    "cuidado": "Comece pela casa de 32 (m5) e mantenha a ordem pedida."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "calcule N em cada opção: só 1, 0, 1, 0, 1, 0 dá 32 + 8 + 2 = 42"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "42 − 32 = 10",
+    "nota": "m5 = 1; 16 não cabe, m4 = 0"
+   },
+   {
+    "linha": "10 − 8 = 2",
+    "nota": "m3 = 1; 4 não cabe, m2 = 0"
+   },
+   {
+    "linha": "2 − 2 = 0",
+    "nota": "m1 = 1, m0 = 0"
+   },
+   {
+    "linha": "101010 → C",
+    "nota": "sequência de m5 a m0"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
+ }
+}

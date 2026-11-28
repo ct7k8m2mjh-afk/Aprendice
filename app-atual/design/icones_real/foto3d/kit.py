@@ -88,8 +88,14 @@ def texto(txt, loc, tam, m, rot=(math.radians(90), 0, 0), extr=0.04, fonte=None,
 
 def render(caminho, tam=360, elev=30, azim=-18, lente=50, folga=1.12, amostras=None):
     """Enquadra todos os objetos (menos chao/luzes) e renderiza. elev = graus acima do horizonte (referencias: ~25-35)."""
+    import os as _os
+    if _os.environ.get('ICONE_TAM'):   # 03/11: re-render em alta resolução para o app (sem mudar as cenas)
+        tam = int(_os.environ['ICONE_TAM'])
+    if _os.environ.get('ICONE_SAIDA'):
+        caminho = _os.path.join(_os.environ['ICONE_SAIDA'], _os.path.basename(caminho))
     sc = bpy.context.scene; sc.render.resolution_x = sc.render.resolution_y = tam
     if amostras: sc.cycles.samples = amostras
+    sc.cycles.samples = max(sc.cycles.samples, int(_os.environ.get('ICONE_AMOSTRAS', 0)))
     pts = []
     dg = bpy.context.evaluated_depsgraph_get()
     for o in sc.objects:

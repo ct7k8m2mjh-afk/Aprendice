@@ -1,0 +1,668 @@
+{
+ "P9ab85d9d": {
+  "n": "18",
+  "conceito": "Corredores que chegam juntos: o tempo do primeiro na metade final (MU) é o tempo do segundo no percurso todo (MUV a partir do repouso).",
+  "equivocos": {
+   "A": "F02.2:expressao-nao-fecha",
+   "B": "F02.2:expressao-nao-fecha",
+   "C": "F02.2:esqueceu-meio-no-muv"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O que liga os dois corredores é o tempo: eles cruzam a linha juntos, e o segundo larga quando o primeiro está na metade. Então o tempo do primeiro para fazer L/2 com velocidade v₁ é o tempo do segundo para fazer L inteiro, partindo do repouso com aceleração a₂.",
+    "formulas": [
+     "MU: T = (L/2)/v₁",
+     "MUV do repouso: L = a₂ · T²/2"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "comprimento total do percurso"
+     ],
+     [
+      "v₁",
+      "velocidade constante do primeiro corredor"
+     ],
+     [
+      "a₂",
+      "aceleração do segundo corredor"
+     ],
+     [
+      "T",
+      "tempo até a chegada, desde a largada do segundo"
+     ]
+    ]
+   },
+   "pista": "Calcule o tempo que o primeiro corredor ainda leva até a chegada.",
+   "passos": [
+    {
+     "faz": "Ache o tempo comum",
+     "conta": "T = (L/2)/v₁ = L/(2v₁)",
+     "porque": "O primeiro ainda tem metade do percurso, em MU.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva o MUV do segundo",
+     "conta": "L = a₂ · T²/2",
+     "porque": "Parte do repouso e faz o percurso todo no mesmo T.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua T",
+     "conta": "L = a₂ · L²/(8v₁²) → a₂ = 8v₁²/L",
+     "porque": "T² = L²/(4v₁²), e a metade disso é L²/(8v₁²).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "a₂ = 8v₁²/L",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a₂ = 8v₁²/L.",
+   "checagem": "Teste com números: L = 100 m e v₁ = 5 m/s dão T = 50/5 = 10 s; para fazer 100 m em 10 s do repouso, a₂ = 2 × 100/10² = 2 m/s²; e 8 × 5²/100 = 2. Confere.",
+   "erradas": {
+    "A": "Não confere: com L = 100 m e v₁ = 5 m/s dá cerca de 0,03 m/s², e o segundo andaria só 1,6 m em 10 s, não 100 m.",
+    "B": "Não confere: com L = 100 m e v₁ = 5 m/s dá cerca de 0,06 m/s², e o segundo andaria só 3,1 m em 10 s.",
+    "C": "Sai de esquecer o 1/2 do MUV (L = a₂ · T²): a₂ = L/T² = 4v₁²/L."
+   },
+   "armadilha": "Usar L = a · T² sem o 1/2 ou trocar o L/2 do primeiro corredor pelo L inteiro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A aceleração do segundo corredor para chegar junto com o primeiro.",
+    "chave": "T = L/(2v₁) e L = a₂ · T²/2 → a₂ = 8v₁²/L.",
+    "cuidado": "O primeiro só tem metade do percurso; o MUV tem o 1/2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "velocidade média",
+    "ideia": "O segundo faz L em T com média L/T = 2v₁; no MUV do repouso a velocidade final é o dobro da média, 4v₁; a₂ = 4v₁/T = 4v₁ · 2v₁/L = 8v₁²/L."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "T = (L/2)/v₁ = L/(2v₁)",
+    "nota": "tempo comum"
+   },
+   {
+    "linha": "L = a₂ · T²/2",
+    "nota": "MUV do segundo"
+   },
+   {
+    "linha": "L = a₂ · L²/(8v₁²)",
+    "nota": "substituindo T"
+   },
+   {
+    "linha": "a₂ = 8v₁²/L",
+    "nota": "isolando"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0045"
+  }
+ },
+ "P54fc0c30": {
+  "n": "14",
+  "conceito": "Relacionar a perda de peso aparente com o empuxo para achar a razão entre as densidades.",
+  "equivocos": {
+   "B": "F07.4:errou-a-razao-peso-empuxo",
+   "C": "F07.4:errou-a-razao-peso-empuxo",
+   "D": "F07.4:errou-a-razao-peso-empuxo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O dinamômetro mostra quanto o fio sustenta. Dentro da água, o empuxo ajuda, então o peso aparente é o peso menos o empuxo. Totalmente submerso, o objeto desloca o próprio volume V; peso e empuxo usam o mesmo V e o mesmo g, que cancelam na razão. A razão das densidades é o peso dividido pelo empuxo.",
+    "formulas": [
+     "peso aparente = P − E",
+     "P = ρo × V × g e E = ρa × V × g → ρo/ρa = P/E"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "peso do objeto, lido fora da água"
+     ],
+     [
+      "E",
+      "empuxo da água no objeto submerso"
+     ],
+     [
+      "ρo",
+      "densidade do objeto"
+     ],
+     [
+      "ρa",
+      "densidade da água"
+     ],
+     [
+      "V",
+      "volume do objeto, igual ao volume de água deslocada"
+     ],
+     [
+      "g",
+      "aceleração da gravidade"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro que fração do peso virou empuxo.",
+   "passos": [
+    {
+     "faz": "Ache o empuxo",
+     "conta": "0,95P = P − E → E = 0,05P",
+     "porque": "A diferença entre o peso real e o aparente é a força que a água faz para cima.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva P e E com densidades",
+     "conta": "P = ρo × V × g | E = ρa × V × g",
+     "porque": "Totalmente submerso, o objeto desloca exatamente o seu volume V de água.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Divida um pelo outro",
+     "conta": "ρo/ρa = P/E = P/(0,05P) = 20",
+     "porque": "V e g aparecem nos dois e cancelam; sobra a razão das densidades.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "ρo/ρa = 20 → alternativa A",
+     "porque": "O objeto é 20 vezes mais denso que a água.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 20.",
+   "checagem": "Substitua de volta: com densidade 20 vezes a da água, o empuxo é 1/20 do peso, 0,05P, e o dinamômetro marca P − 0,05P = 0,95P, como no enunciado.",
+   "erradas": {
+    "B": "Não confere: com razão 15, o empuxo seria P/15 e o dinamômetro marcaria cerca de 0,93P, não 0,95P.",
+    "C": "Não confere: com razão 10, o empuxo seria 0,1P e o dinamômetro marcaria 0,90P.",
+    "D": "Não confere: com razão 5, o empuxo seria 0,2P e o dinamômetro marcaria 0,80P."
+   },
+   "armadilha": "Dividir pelo peso aparente: a razão das densidades é P/E, com o empuxo (0,05P), não com 0,95P.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A razão entre a densidade do objeto e a da água, sabendo que o peso aparente é 0,95P.",
+    "chave": "E = P − 0,95P = 0,05P; ρo/ρa = P/E = 20.",
+    "cuidado": "Volume e gravidade cancelam porque o objeto está totalmente submerso."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "proporção direta",
+    "ideia": "O objeto perdeu 5% do peso, então o empuxo é 1/20 do peso e a densidade é 20 vezes a da água."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "E = P − 0,95P",
+    "nota": "perda de peso"
+   },
+   {
+    "linha": "E = 0,05P",
+    "nota": "empuxo"
+   },
+   {
+    "linha": "ρo/ρa = P/E",
+    "nota": "V e g cancelam"
+   },
+   {
+    "linha": "ρo/ρa = P/(0,05P)",
+    "nota": "substitui"
+   },
+   {
+    "linha": "ρo/ρa = 20",
+    "nota": "alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "fis-0056"
+  }
+ },
+ "P5ab6e67f": {
+  "n": "17",
+  "conceito": "O som que sai das cordas viaja no mesmo ar: mesma velocidade; frequência maior (mais agudo) dá comprimento de onda menor.",
+  "equivocos": {
+   "A": "F10.6:onda-na-corda-em-vez-do-som",
+   "B": "F10.6:frequencia-igual-na-mesma-nota",
+   "D": "F10.6:frequencias-invertidas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A pergunta é sobre a onda SONORA emitida por cada corda, que viaja no ar. No mesmo ar, todo som tem a mesma velocidade, então v₁ = v₆. A primeira corda soa duas oitavas acima: a frequência dela é maior (quatro vezes a da sexta). Com v igual, frequência maior significa comprimento de onda menor.",
+    "formulas": [
+     "v = λ · f",
+     "mesmo meio → mesma v",
+     "uma oitava acima → f × 2"
+    ],
+    "simbolos": [
+     [
+      "λ₁, λ₆",
+      "comprimentos de onda dos sons das cordas 1 e 6"
+     ],
+     [
+      "f₁, f₆",
+      "frequências desses sons"
+     ],
+     [
+      "v₁, v₆",
+      "velocidades desses sons no ar"
+     ],
+     [
+      "oitava",
+      "intervalo em que a frequência dobra"
+     ]
+    ]
+   },
+   "pista": "Antes de comparar, decida em que meio está a onda de que a questão fala.",
+   "passos": [
+    {
+     "faz": "Compare as velocidades",
+     "conta": "som no ar: v₁ = v₆",
+     "porque": "As duas ondas sonoras se propagam no mesmo ar; a velocidade depende do meio, não da corda.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Compare as frequências",
+     "conta": "duas oitavas acima: f₁ = 2 × 2 × f₆ = 4 f₆ → f₁ > f₆",
+     "porque": "Cada oitava dobra a frequência; o som mais agudo tem frequência maior.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Compare os comprimentos de onda",
+     "conta": "λ = v/f: v igual, f₁ > f₆ → λ₁ < λ₆",
+     "porque": "O mesmo v dividido por uma frequência maior dá um comprimento menor.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Marque a combinação",
+     "conta": "λ₁ < λ₆; f₁ > f₆; v₁ = v₆",
+     "porque": "É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — λ₁ < λ₆; f₁ > f₆; v₁ = v₆.",
+   "checagem": "Pela conta com a oitava: f₁ = 4 f₆ e v igual dão λ₁ = λ₆/4, que é menor; o produto λ · f fica o mesmo para as duas.",
+   "erradas": {
+    "A": "A descreve a onda dentro das cordas (mesmo λ = 2L, com v maior na corda fina), não o som emitido; no ar, v₁ = v₆.",
+    "B": "Diz f₁ = f₆, mas a primeira corda soa duas oitavas acima, com frequência quatro vezes maior.",
+    "D": "Inverte as frequências: a primeira corda é a mais aguda, então f₁ > f₆ e, com v igual, λ₁ < λ₆."
+   },
+   "armadilha": "Confundir a onda que vibra na corda com a onda sonora no ar: a pergunta é sobre o som emitido, que tem a mesma velocidade para as duas cordas.",
+   "alerta": "Na própria corda, as duas ondas fundamentais têm o mesmo λ (mesmo comprimento) e a da corda fina é mais rápida, que é o que diz a alternativa A. A banca pergunta pela onda sonora emitida, no ar, e por isso a resposta é C.",
+   "essencial": {
+    "pede": "As relações entre λ, f e v dos sons das cordas 1 e 6.",
+    "chave": "Som no mesmo ar: v igual; mais agudo: f maior; λ = v/f menor.",
+    "cuidado": "A onda pedida é a sonora no ar, não a que vibra na corda."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Só C e D têm v₁ = v₆; como a corda 1 é mais aguda, f₁ > f₆, e fica C."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "v₁ = v₆",
+    "nota": "mesmo ar"
+   },
+   {
+    "linha": "f₁ = 4 f₆ → f₁ > f₆",
+    "nota": "duas oitavas acima"
+   },
+   {
+    "linha": "λ = v/f → λ₁ = λ₆/4 < λ₆",
+    "nota": "v igual, f maior"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0062"
+  }
+ },
+ "Pdd0d1a75": {
+  "n": "16",
+  "conceito": "Potencial elétrico em campo uniforme: o potencial diminui no sentido das linhas de campo e é igual ao longo de uma reta perpendicular a elas (equipotencial).",
+  "equivocos": {
+   "B": "F11.3:inverteu-sentido-do-potencial",
+   "C": "F11.3:equipotencial-ignorada",
+   "D": "F11.3:inverteu-sentido-do-potencial"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Duas regras resolvem: andar no sentido do campo é descer de potencial, e andar perpendicularmente ao campo não muda o potencial. Na figura, o campo aponta para cima. O ponto (1) está mais abaixo, na mesma linha de campo que (2); o ponto (3) está na mesma altura de (2), ligado a ele por um tracejado horizontal, perpendicular às linhas.",
+    "formulas": [
+     "no sentido de E, V diminui",
+     "perpendicular a E: V constante (equipotencial)",
+     "campo uniforme: U = E · d"
+    ],
+    "simbolos": [
+     [
+      "E",
+      "vetor campo elétrico, aqui apontando para cima"
+     ],
+     [
+      "V1, V2, V3",
+      "potenciais nos pontos (1), (2) e (3)"
+     ],
+     [
+      "equipotencial",
+      "linha ou superfície onde o potencial é o mesmo"
+     ]
+    ]
+   },
+   "pista": "Veja para onde apontam as setas do campo e onde cada ponto está em relação a elas.",
+   "passos": [
+    {
+     "faz": "Leia a figura",
+     "conta": "E aponta para cima | (1) abaixo de (2) na mesma linha | (2) e (3) na mesma altura",
+     "porque": "O comando pede a relação entre os potenciais, e ela depende só da posição de cada ponto em relação às linhas de campo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Compare (1) e (2)",
+     "conta": "de (1) para (2): sobe, no sentido de E → V1 > V2",
+     "porque": "Seguir o campo é ir do potencial maior para o menor; (2) está à frente de (1) no sentido do campo.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Compare (2) e (3)",
+     "conta": "de (2) para (3): horizontal, perpendicular a E → V2 = V3",
+     "porque": "Num campo uniforme, as retas perpendiculares às linhas são equipotenciais; deslocar a carga ali não exige trabalho.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Junte as duas relações",
+     "conta": "V1 > V2 = V3",
+     "porque": "É a relação da alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — V1 > V2 = V3.",
+   "checagem": "Pense numa carga positiva solta em (1): o campo a empurra para cima, para (2), e ela ganha energia cinética perdendo energia potencial; carga positiva só faz isso indo para potencial menor, então V1 > V2. E entre (2) e (3) a força elétrica, vertical, é perpendicular ao deslocamento, sem trabalho: V2 = V3.",
+   "erradas": {
+    "B": "B sai de inverter o sentido: achar que o potencial cresce no sentido do campo. Ele diminui, então V1, que fica atrás, é o maior.",
+    "C": "C acerta V1 > V2, mas faz o potencial cair também de (2) para (3); esse trecho é perpendicular ao campo, uma equipotencial, logo V2 = V3.",
+    "D": "D inverte o sentido do campo e ainda trata o trecho horizontal como se mudasse o potencial; o certo é V1 > V2 e V2 = V3."
+   },
+   "armadilha": "O potencial cai no sentido do campo (não sobe), e o trecho de (2) a (3), perpendicular às linhas, não muda nada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A relação entre os potenciais de três pontos num campo uniforme vertical.",
+    "chave": "V cai no sentido de E e fica constante na direção perpendicular a E.",
+    "cuidado": "Não inverter o sentido de queda do potencial e não fazer V mudar ao longo de uma equipotencial."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo trabalho",
+    "ideia": "Carga positiva de (1) para (2) recebe trabalho positivo do campo (W = q · (V1 − V2) > 0, logo V1 > V2); de (2) para (3) o trabalho é nulo, logo V2 = V3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "E ↑ : V cai para cima",
+    "nota": "sentido do campo"
+   },
+   {
+    "linha": "(1) → (2) no sentido de E → V1 > V2",
+    "nota": "mesma linha de campo"
+   },
+   {
+    "linha": "(2) → (3) perpendicular a E → V2 = V3",
+    "nota": "equipotencial"
+   },
+   {
+    "linha": "V1 > V2 = V3",
+    "nota": "relação final"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0064"
+  }
+ },
+ "P63e6ee03": {
+  "n": "15",
+  "conceito": "Ponte de resistores: os dois ramos em paralelo com a bateria têm ddp nula entre os pontos do meio quando as razões das resistências são iguais.",
+  "equivocos": {
+   "A": "F11.5:igualou-diferencas-em-vez-de-razoes",
+   "C": "F11.5:inverteu-a-proporcao-da-ponte",
+   "D": "F11.5:igualou-resistencia-total-dos-ramos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois ramos (r1 com r2 e r3 com r4) estão ligados aos mesmos dois fios da bateria, então recebem a mesma tensão. A ddp entre (1) e (2) é nula quando os dois pontos ficam no mesmo potencial, isto é, quando cada ramo divide a tensão na mesma proporção. Isso acontece quando r1/r2 = r3/r4. Não é preciso saber a tensão da bateria.",
+    "formulas": [
+     "Ponte equilibrada: r1/r2 = r3/r4",
+     "Divisor de tensão: a parte da tensão em r1 é r1/(r1 + r2)"
+    ],
+    "simbolos": [
+     [
+      "ddp",
+      "diferença de potencial, a tensão entre dois pontos"
+     ],
+     [
+      "Ω",
+      "ohm, unidade de resistência"
+     ],
+     [
+      "ponte equilibrada",
+      "circuito em que os pontos do meio dos dois ramos ficam no mesmo potencial"
+     ]
+    ]
+   },
+   "pista": "Os dois ramos recebem a mesma tensão. Pense em que fração dessa tensão cai no primeiro resistor de cada ramo.",
+   "passos": [
+    {
+     "faz": "Veja o que a ddp nula exige",
+     "conta": "V(1) = V(2) → r1/(r1 + r2) = r3/(r3 + r4) → r1/r2 = r3/r4",
+     "porque": "Se a tensão cai na mesma proporção no primeiro resistor de cada ramo, os pontos do meio ficam no mesmo potencial.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Calcule a razão do ramo de cima",
+     "conta": "r1/r2 = 150/100 → r1/r2 = 1,5",
+     "porque": "É a proporção que o ramo de baixo precisa repetir.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole r4 no ramo de baixo",
+     "conta": "90/r4 = 1,5 → r4 = 90/1,5 → r4 = 60 Ω",
+     "porque": "O r4 que multiplica passa para o outro lado e o 1,5 vai dividir os 90.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "r4 = 60 Ω",
+     "porque": "É o valor da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — r4 = 60 Ω.",
+   "checagem": "Confira pela fração da tensão no primeiro resistor de cada ramo: em cima, 150/(150 + 100) = 0,6; embaixo, 90/(90 + 60) = 0,6. As frações são iguais, então (1) e (2) têm o mesmo potencial.",
+   "erradas": {
+    "A": "Sai de igualar as diferenças em vez das razões: r1 − r2 = 50, e 90 − 50 = 40 Ω. A condição da ponte é de proporção, não de subtração.",
+    "C": "Sai de inverter a proporção: r4 = r1 × r3/r2 = 150 × 90/100 = 135 Ω. Com 135 Ω, embaixo a fração em r3 seria 90/225 = 0,4, diferente de 0,6.",
+    "D": "Sai de igualar a resistência total dos ramos: 150 + 100 = 250, e 250 − 90 = 160 Ω. Ramos iguais no total não garantem a mesma divisão da tensão."
+   },
+   "armadilha": "A condição de ddp nula é a proporção r1/r2 = r3/r4; montar a razão invertida dá 135 Ω.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de r4 que zera a ddp entre os pontos do meio dos dois ramos.",
+    "chave": "Ponte equilibrada: r1/r2 = r3/r4, logo 150/100 = 90/r4 e r4 = 60 Ω.",
+    "cuidado": "Comparar o resistor de cima com o de cima e o de baixo com o de baixo, na mesma ordem nos dois ramos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "produto cruzado",
+    "ideia": "Na ponte equilibrada, r1 × r4 = r2 × r3: 150 × r4 = 100 × 90, logo r4 = 60 Ω."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "r1/r2 = r3/r4",
+    "nota": "condição de ponte equilibrada"
+   },
+   {
+    "linha": "150/100 = 90/r4",
+    "nota": "substituir os valores"
+   },
+   {
+    "linha": "r4 = (90 × 100)/150",
+    "nota": "multiplicação cruzada"
+   },
+   {
+    "linha": "r4 = 60 Ω",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0065"
+  }
+ },
+ "P1c62ecc9": {
+  "n": "13",
+  "conceito": "No movimento circular sobre mesa sem atrito, a tração é a força centrípeta, T = m · v²/R.",
+  "equivocos": {
+   "A": "F03.5:esqueceu-quadrado-e-inverteu-raio",
+   "B": "F03.5:raio-no-numerador",
+   "C": "F03.5:esqueceu-quadrado-da-velocidade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na mesa horizontal sem atrito, peso e normal se anulam, e a única força para o centro é a tração do fio: ela é a resultante centrípeta. Por isso T = m · v²/R. A questão é de proporção: trabalhe com as razões, sem números.",
+    "formulas": [
+     "T = m · v²/R",
+     "razão: T₁/T₀ = (v₁/v₀)² · (R₀/R₁)"
+    ],
+    "simbolos": [
+     [
+      "T₀, T₁",
+      "tração no fio antes e depois"
+     ],
+     [
+      "v₀, v₁",
+      "velocidade antes e depois"
+     ],
+     [
+      "R₀, R₁",
+      "raio antes e depois"
+     ]
+    ]
+   },
+   "pista": "Escreva a tração nos dois momentos e divida uma pela outra: a massa cancela.",
+   "passos": [
+    {
+     "faz": "Identifique a força centrípeta",
+     "conta": "T = m · v²/R",
+     "porque": "A tração é a única força horizontal, sempre apontando para o centro; peso e normal se cancelam na vertical.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a razão",
+     "conta": "T₁/T₀ = (m · v₁²/R₁)/(m · v₀²/R₀) → T₁/T₀ = (v₁/v₀)² · (R₀/R₁)",
+     "porque": "A massa é a mesma e cancela; sobra o efeito da velocidade e do raio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua as mudanças",
+     "conta": "T₁/T₀ = (2)² · (R₀/(R₀/2)) → T₁/T₀ = 4 · 2 → T₁/T₀ = 8",
+     "porque": "Dobrar v multiplica v² por 4; cortar o raio pela metade dobra a tração, porque R está no denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque",
+     "conta": "T₁ = 8 · T₀",
+     "porque": "Os dois efeitos se multiplicam.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 8.",
+   "checagem": "Com números: m = 1 kg, v₀ = 1 m/s e R₀ = 1 m dão T₀ = 1 N; depois, v₁ = 2 m/s e R₁ = 0,5 m dão T₁ = 1 · 4/0,5 = 8 N.",
+   "erradas": {
+    "A": "Sai de usar v sem o quadrado e multiplicar pelo raio em vez de dividir: 2 · (1/2) = 1.",
+    "B": "Sai de elevar v ao quadrado mas multiplicar pelo raio: 4 · (1/2) = 2. O raio fica no denominador de m · v²/R.",
+    "C": "Sai de esquecer o quadrado da velocidade: 2 · 2 = 4. Na força centrípeta a velocidade entra ao quadrado."
+   },
+   "armadilha": "Esquecer o quadrado da velocidade ou pôr o raio no numerador: dobrar v quadruplica a tração e cortar R pela metade a dobra.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas vezes a tração aumenta quando v dobra e R cai pela metade.",
+    "chave": "T = m · v²/R: (2)² · 2 = 8.",
+    "cuidado": "v ao quadrado, R no denominador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "números simples",
+    "ideia": "Tome m = 1, v₀ = 1, R₀ = 1: T₀ = 1 e T₁ = 1 · 2²/0,5 = 8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "T₁/T₀ = (v₁/v₀)² · (R₀/R₁)",
+    "nota": "a massa cancela"
+   },
+   {
+    "linha": "T₁/T₀ = (2)² · 2",
+    "nota": "v dobra; R cai à metade"
+   },
+   {
+    "linha": "T₁/T₀ = 8",
+    "nota": "alternativa D"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "fis-0073"
+  }
+ }
+}

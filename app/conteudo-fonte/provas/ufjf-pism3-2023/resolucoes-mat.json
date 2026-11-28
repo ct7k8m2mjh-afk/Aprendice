@@ -1,0 +1,571 @@
+{
+ "P8117b06d": {
+  "n": "17",
+  "conceito": "Arranjo: distribuir 25 turistas em 25 dos 40 assentos numerados, em que importa qual pessoa senta em qual lugar.",
+  "equivocos": {
+   "B": "M13.2:n-e-p-trocados-no-arranjo",
+   "C": "M13.2:so-a-primeira-escolha",
+   "D": "M13.2:permutou-os-lugares-vazios",
+   "E": "M13.2:subtraiu-em-vez-de-dividir"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os assentos são numerados e os turistas são pessoas diferentes, então trocar dois turistas de lugar gera outra acomodação: a ordem importa. Cada turista ocupa um assento, e sobram 15 vazios. É um arranjo de 40 assentos tomados 25 a 25, que se escreve com fatoriais e é exatamente o formato das alternativas.",
+    "formulas": [
+     "A(n, p) = n! ÷ (n − p)!",
+     "\"e\" entre etapas: multiplique"
+    ],
+    "simbolos": [
+     [
+      "n!",
+      "fatorial: n × (n − 1) × ... × 2 × 1"
+     ],
+     [
+      "A(n, p)",
+      "arranjo: número de filas ordenadas de p elementos escolhidos entre n"
+     ],
+     [
+      "não há preferência por lugares",
+      "qualquer turista pode ficar em qualquer assento"
+     ]
+    ]
+   },
+   "pista": "Pergunte: se dois turistas trocarem de assento, a acomodação muda?",
+   "passos": [
+    {
+     "faz": "Decida se a ordem importa",
+     "conta": "turista 1 no 05 e turista 2 no 12 ≠ turista 1 no 12 e turista 2 no 05",
+     "porque": "As pessoas e os assentos são distinguíveis; trocar duas pessoas de lugar dá outra acomodação, então é arranjo, não combinação.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte o arranjo de 40 tomados 25 a 25",
+     "conta": "A(40, 25) = 40!/(40 − 25)! → 40!/15!",
+     "porque": "Na fórmula do arranjo, o n são os 40 assentos e o p são os 25 turistas; 40 − 25 = 15 é o número de assentos que ficam vazios.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Veja o que a fração representa",
+     "conta": "40!/15! = 40 × 39 × ... × 16",
+     "porque": "Os fatores de 15! cancelam com os últimos de 40!, e sobra um produto de 25 fatores, um para cada turista.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a forma entre as alternativas",
+     "conta": "40!/15! → alternativa A",
+     "porque": "A alternativa A traz exatamente o arranjo A(40, 25).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 40!/15! modos",
+   "checagem": "Pelo princípio multiplicativo, turista por turista: o 1.º tem 40 assentos livres, o 2.º tem 39, ..., o 25.º tem 40 − 24 = 16. O produto 40 × 39 × ... × 16 tem 25 fatores e é o mesmo que 40!/15!. Num caso pequeno, 3 assentos e 2 turistas, a fórmula dá 3!/1! = 6, e de fato há 3 × 2 = 6 acomodações.",
+   "erradas": {
+    "B": "25!/15! sai de trocar os 40 assentos pelos 25 turistas no numerador; esse quociente é A(25, 10), filas de 10 pessoas tiradas de 25, que não descreve a viagem.",
+    "C": "40 sai de contar só as escolhas do primeiro turista; os outros 24 também escolhem entre os assentos que sobram, e as escolhas se multiplicam.",
+    "D": "15! sai de permutar só os 15 assentos que ficam vazios; essas posições não têm ninguém, e o que se conta é onde ficam os 25 turistas.",
+    "E": "40! − 15! sai de subtrair em vez de dividir; na fórmula A(n, p) = n! ÷ (n − p)!, o 15! entra dividindo, para cancelar os fatores que não são usados."
+   },
+   "armadilha": "O 15! não se subtrai: ele divide o 40! para tirar os 15 fatores dos assentos que ficam vazios.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas acomodações há para 25 turistas em 40 assentos numerados.",
+    "chave": "Ordem importa (pessoas e assentos diferentes): A(40, 25) = 40!/15!.",
+    "cuidado": "Em arranjo, o (n − p)! divide; não se subtrai."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "princípio multiplicativo",
+    "ideia": "turista por turista: 40 × 39 × ... × 16, que é 40!/15!"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A(40, 25) = 40!/(40 − 25)!",
+    "nota": "arranjo de 40 assentos, 25 turistas"
+   },
+   {
+    "linha": "40 − 25 = 15",
+    "nota": "assentos vazios"
+   },
+   {
+    "linha": "40!/15! = 40 × 39 × ... × 16",
+    "nota": "25 fatores, um por turista"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
+ },
+ "P9bbd45d7": {
+  "n": "16",
+  "conceito": "Completar um quadrado mágico 3x3 montando equações com as somas iguais de linha, coluna e diagonal.",
+  "equivocos": {
+   "A": "M17.1:esqueceu-a-incognita-da-coluna",
+   "B": "M17.1:numero-magico-chutado",
+   "D": "M17.1:numero-magico-chutado",
+   "E": "M17.1:numero-magico-chutado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Repare que x, y e z estão na mesma diagonal: x + y + z é o próprio número mágico S. Então a questão pede só o valor de S. Cada linha, coluna ou diagonal com uma casa só desconhecida vira uma equação simples em S.",
+    "formulas": [
+     "x + y + z = S (diagonal principal)",
+     "linha, coluna ou diagonal: soma = S"
+    ],
+    "simbolos": [
+     [
+      "S",
+      "número mágico: a soma de cada linha, coluna e diagonal"
+     ],
+     [
+      "x, y, z",
+      "as casas desconhecidas da diagonal principal do quadrado (II)"
+     ]
+    ]
+   },
+   "pista": "Procure em que linha ou coluna do quadrado (II) cada letra aparece sozinha, com os outros números conhecidos.",
+   "passos": [
+    {
+     "faz": "Perceba o que a questão pede",
+     "conta": "x, y, z na diagonal → x + y + z = S",
+     "porque": "x está no canto de cima à esquerda, y no centro e z no canto de baixo à direita: é a diagonal principal, cuja soma é o número mágico.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva x e z em função de S",
+     "conta": "x + 66 + 25 = S → x = S − 91 | 25 + 24 + z = S → z = S − 49",
+     "porque": "Na 1ª linha só x é desconhecido, e na 3ª coluna só z. O que é conhecido passa para o outro lado subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a coluna do meio e a diagonal",
+     "conta": "66 + y + 4 = S → y = S − 70 | (S − 91) + (S − 70) + (S − 49) = S → 3S − 210 = S",
+     "porque": "Com as três letras escritas em função de S, a diagonal vira uma equação com uma incógnita só.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a equação",
+     "conta": "3S − 210 = S → 2S = 210 → S = 210/2 = 105",
+     "porque": "O S da direita passa subtraindo e o 210 passa somando; depois o 2 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "x + y + z = S = 105 → alternativa C",
+     "porque": "A soma pedida é a da diagonal, que é o número mágico.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 105",
+   "checagem": "Monte o quadrado inteiro: x = 14, y = 35, z = 56; a 1ª coluna fica 14, 46, 45. Linhas: 14 + 66 + 25 = 105, 46 + 35 + 24 = 105, 45 + 4 + 56 = 105; a outra diagonal 25 + 35 + 45 = 105. Fecha.",
+   "erradas": {
+    "A": "A sai de somar só os números conhecidos da coluna do meio, 66 + 4 = 70, esquecendo o y do centro. Com y = 35 a coluna dá 105.",
+    "B": "B não confere: com S = 94, as linhas e colunas dão x = 3, y = 24 e z = 45, e a diagonal soma 72, não 94.",
+    "D": "D não confere: com S = 135, x = 44, y = 65 e z = 86, e a diagonal soma 195, não 135. Só S = 105 fecha a diagonal.",
+    "E": "E não confere: com S = 198, x = 107, y = 128 e z = 149, e a diagonal soma 384, não 198."
+   },
+   "armadilha": "Não é preciso achar x, y e z um por um: os três formam a diagonal, e a soma deles é o próprio número mágico.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma x + y + z no quadrado mágico (II).",
+    "chave": "x, y, z estão na diagonal, então a soma é S; escrevendo x, y e z em função de S, a diagonal dá 3S − 210 = S, logo S = 105.",
+    "cuidado": "Escreva cada letra pela linha ou coluna em que ela aparece sozinha antes de juntar na diagonal."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "centro do quadrado",
+    "ideia": "Num quadrado mágico 3x3 o número mágico é o triplo do centro: 66 + y + 4 = 3y dá y = 35 e S = 105."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x = S − 91",
+    "nota": "1ª linha: x + 66 + 25 = S"
+   },
+   {
+    "linha": "y = S − 70",
+    "nota": "coluna do meio: 66 + y + 4 = S"
+   },
+   {
+    "linha": "z = S − 49",
+    "nota": "3ª coluna: 25 + 24 + z = S"
+   },
+   {
+    "linha": "(S − 91) + (S − 70) + (S − 49) = S",
+    "nota": "diagonal principal"
+   },
+   {
+    "linha": "3S − 210 = S → 2S = 210",
+    "nota": "S passa subtraindo; 210 passa somando"
+   },
+   {
+    "linha": "S = 210/2 = 105",
+    "nota": "o 2 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0073"
+  }
+ },
+ "P657a1229": {
+  "n": "18",
+  "conceito": "Posição de ponto em relação à circunferência: interior se a distância ao centro é menor que o raio, exterior se é maior.",
+  "equivocos": {
+   "B": "M12.1:errou-a-distancia-entre-pontos",
+   "C": "M12.1:esqueceu-a-raiz-da-distancia",
+   "D": "M12.4:inverteu-interior-e-exterior",
+   "E": "M12.4:inverteu-interior-e-exterior"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Um ponto é interior quando a distância dele ao centro é menor que o raio, e exterior quando é maior. Então Q interior dá um piso para r (r maior que PQ) e R exterior dá um teto (r menor que PR). Basta calcular as duas distâncias.",
+    "formulas": [
+     "d = √((x₂ − x₁)² + (y₂ − y₁)²)",
+     "interior: d < r ; exterior: d > r"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "centro da circunferência C"
+     ],
+     [
+      "r",
+      "raio"
+     ],
+     [
+      "d",
+      "distância de um ponto ao centro"
+     ]
+    ]
+   },
+   "pista": "Calcule a distância de cada ponto até o centro P e pense: o raio tem de ser maior ou menor que ela?",
+   "passos": [
+    {
+     "faz": "Calcule a distância de Q ao centro",
+     "conta": "PQ = √((1 − 3)² + (2 − 4)²) = √(4 + 4) = √8 → PQ = 2√2",
+     "porque": "Q é interior, então fica mais perto do centro do que a borda: r > 2√2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a distância de R ao centro",
+     "conta": "PR = √((0 − 3)² + (7 − 4)²) = √(9 + 9) = √18 → PR = 3√2",
+     "porque": "R é exterior, então fica mais longe do centro do que a borda: r < 3√2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as duas condições",
+     "conta": "r > 2√2 e r < 3√2 → 2√2 < r < 3√2",
+     "porque": "O raio precisa satisfazer as duas ao mesmo tempo, o que dá o intervalo entre as distâncias.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2√2 < r < 3√2",
+   "checagem": "Pegue r = 3, que está no intervalo (2√2 ≈ 2,83 e 3√2 ≈ 4,24): Q fica a 2,83 < 3 do centro (dentro) e R a 4,24 > 3 (fora). Fecha.",
+   "erradas": {
+    "B": "B não confere: com r < √3 ≈ 1,73, o ponto Q, a 2√2 ≈ 2,83 do centro, ficaria fora da circunferência.",
+    "C": "C sai de esquecer a raiz: 8 e 18 são as distâncias ao quadrado (PQ² = 8, PR² = 18), não as distâncias.",
+    "D": "D não confere: com r ≥ 3√3 ≈ 5,20, o ponto R, a 3√2 ≈ 4,24 do centro, ficaria dentro, e não fora.",
+    "E": "E inverte a condição de Q: com r < 2√2, Q, a 2√2 do centro, ficaria fora da circunferência, e ele é interior."
+   },
+   "armadilha": "Interior pede raio MAIOR que a distância; trocar o sentido leva à alternativa E.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O intervalo do raio para Q ficar dentro e R ficar fora da circunferência.",
+    "chave": "PQ = 2√2 e PR = 3√2, então 2√2 < r < 3√2.",
+    "cuidado": "Tire a raiz das distâncias ao quadrado e acerte o sentido de cada desigualdade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "comparar quadrados",
+    "ideia": "Compare r² com as potências: (1 − 3)² + (2 − 4)² = 8 < r² e (0 − 3)² + (7 − 4)² = 18 > r², logo 8 < r² < 18 e 2√2 < r < 3√2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "PQ² = (1 − 3)² + (2 − 4)² = 8",
+    "nota": "distância de Q ao centro, ao quadrado"
+   },
+   {
+    "linha": "PQ = √8 = 2√2",
+    "nota": "Q interior: r > 2√2"
+   },
+   {
+    "linha": "PR² = (0 − 3)² + (7 − 4)² = 18",
+    "nota": "distância de R ao centro, ao quadrado"
+   },
+   {
+    "linha": "PR = √18 = 3√2",
+    "nota": "R exterior: r < 3√2"
+   },
+   {
+    "linha": "2√2 < r < 3√2",
+    "nota": "juntar as duas condições"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "P568fa424": {
+  "n": "20",
+  "conceito": "Vértices por interseção de retas com os eixos e entre si; área de triângulo por coordenadas.",
+  "equivocos": {
+   "A": "M12.5:errou-o-determinante-da-area",
+   "B": "M12.5:errou-o-determinante-da-area",
+   "C": "M12.5:trocou-os-eixos-das-intersecoes",
+   "D": "M12.5:errou-o-determinante-da-area"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro ache os três vértices: o encontro de r e s, onde r corta o eixo y (x = 0) e onde s corta o eixo x (y = 0). Depois a área sai do determinante (ou da fórmula do 'cadarço') com as coordenadas.",
+    "formulas": [
+     "eixo y: x = 0 ; eixo x: y = 0",
+     "área = |x₁(y₂ − y₃) + x₂(y₃ − y₁) + x₃(y₁ − y₂)|/2"
+    ],
+    "simbolos": [
+     [
+      "r, s",
+      "as duas retas dadas"
+     ],
+     [
+      "eixo-y",
+      "eixo das ordenadas, onde x = 0"
+     ],
+     [
+      "eixo-x",
+      "eixo das abscissas, onde y = 0"
+     ]
+    ]
+   },
+   "pista": "Cada vértice sai de um sistema simples; cuidado com qual reta corta qual eixo.",
+   "passos": [
+    {
+     "faz": "Ache o encontro de r e s",
+     "conta": "4x − 4 = −2x + 14 → 6x = 18 → x = 3 → y = 8",
+     "porque": "Igualando os dois y, o −2x passa somando e o −4 passa somando: P = (3, 8).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache r no eixo y e s no eixo x",
+     "conta": "r: x = 0 → y = −4 ; s: y = 0 → 2x = 14 → x = 7",
+     "porque": "No eixo y vale x = 0; no eixo x vale y = 0. Os vértices são (0, −4) e (7, 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área pelas coordenadas",
+     "conta": "|3(−4 − 0) + 0(0 − 8) + 7(8 − (−4))|/2 = |−12 + 84|/2 = 72/2 = 36",
+     "porque": "A fórmula do determinante dá o dobro da área; dividindo por 2, sai 36.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "área = 36 → alternativa E",
+     "porque": "O valor pedido é a área, 36.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 36",
+   "checagem": "Retângulo envolvente: de x = 0 a 7 e de y = −4 a 8 tem área 7 · 12 = 84. Tirando os três triângulos de canto (18, 14 e 16), sobra 84 − 48 = 36. Fecha.",
+   "erradas": {
+    "A": "A não confere: com os vértices (3, 8), (0, −4) e (7, 0), o determinante dá 72 e a área é 36, não 8.",
+    "B": "B não confere: a área com os vértices (3, 8), (0, −4) e (7, 0) é 72/2 = 36, não 8,5.",
+    "C": "C sai de trocar os eixos: com r no eixo x, (1, 0), e s no eixo y, (0, 14), o triângulo com (3, 8) tem área 18.",
+    "D": "D não confere: 19,5 não sai dos vértices (3, 8), (0, −4) e (7, 0), cuja área pelo determinante é 36."
+   },
+   "armadilha": "A questão cruza as retas com eixos diferentes: r com o eixo y e s com o eixo x; trocar dá 18.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do triângulo formado por r ∩ s, r ∩ eixo-y e s ∩ eixo-x.",
+    "chave": "Vértices (3, 8), (0, −4) e (7, 0); pelo determinante, área = 72/2 = 36.",
+    "cuidado": "Confira qual reta encontra qual eixo antes de calcular."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "retângulo menos cantos",
+    "ideia": "Retângulo de 7 por 12 (área 84) menos os triângulos de canto 18, 14 e 16 dá 36."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4x − 4 = −2x + 14 → 6x = 18 → x = 3",
+    "nota": "encontro de r e s; y = 8"
+   },
+   {
+    "linha": "r: x = 0 → y = −4",
+    "nota": "r no eixo y"
+   },
+   {
+    "linha": "s: y = 0 → x = 7",
+    "nota": "s no eixo x"
+   },
+   {
+    "linha": "|3(−4) + 0 + 7·12|/2 = 72/2",
+    "nota": "determinante pelos vértices"
+   },
+   {
+    "linha": "área = 36",
+    "nota": "metade do módulo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "P0b4a134d": {
+  "n": "19",
+  "conceito": "Montar um polinômio de grau 4 a partir de soma e produto de duas raízes e de valores numéricos, e classificar suas raízes.",
+  "equivocos": {
+   "A": "M16.1:nao-testou-o-segundo-fator",
+   "B": "M16.1:achou-raiz-dupla-no-segundo-fator",
+   "D": "M16.1:esqueceu-as-raizes-inteiras",
+   "E": "M16.1:ignorou-raizes-negativas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Duas raízes com soma 0 e produto −4 são as raízes de x² − 0x − 4 = x² − 4, isto é, 2 e −2. Então p(x) = (x² − 4)(x² + bx + c), com coeficiente líder 1. Os valores p(0) = 8 e p(1) = 9 dão c e b; depois o discriminante do segundo fator diz se as outras duas raízes são reais.",
+    "formulas": [
+     "raízes com soma S e produto P: x² − Sx + P = 0",
+     "p(x) = (x² − 4)(x² + bx + c)",
+     "Δ = b² − 4ac"
+    ],
+    "simbolos": [
+     [
+      "p(x)",
+      "polinômio de grau 4 com coeficiente líder 1"
+     ],
+     [
+      "b, c",
+      "coeficientes do segundo fator, a descobrir"
+     ],
+     [
+      "Δ",
+      "discriminante; Δ > 0 dá duas raízes reais distintas"
+     ]
+    ]
+   },
+   "pista": "Comece descobrindo quais são as duas raízes de soma 0 e produto −4, e escreva p(x) como produto de dois fatores de grau 2.",
+   "passos": [
+    {
+     "faz": "Ache as duas raízes conhecidas",
+     "conta": "x² − 0x − 4 = 0 → x² = 4 → x = ±2",
+     "porque": "Soma 0 e produto −4 definem a equação x² − Sx + P = 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva p(x) fatorado",
+     "conta": "p(x) = (x² − 4)(x² + bx + c)",
+     "porque": "O coeficiente de grau 4 é 1, então o segundo fator também começa por x².",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Use p(0) = 8 e p(1) = 9",
+     "conta": "p(0) = −4c = 8 → c = 8/(−4) = −2 ; p(1) = −3(1 + b − 2) = 9 → b − 1 = −3 → b = −2",
+     "porque": "Em x = 0 sobra (−4)·c; em x = 1, x² − 4 vale −3. O que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva o segundo fator",
+     "conta": "x² − 2x − 2 = 0 → Δ = 4 + 8 = 12 > 0 → x = (2 ± 2√3)/2 = 1 ± √3",
+     "porque": "Δ positivo: duas raízes reais distintas, e irracionais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Classifique as raízes",
+     "conta": "raízes: −2, 2, 1 − √3, 1 + √3 → quatro reais → alternativa C",
+     "porque": "Todas as quatro raízes são reais.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — p(x) tem exatamente 4 (quatro) raízes reais.",
+   "checagem": "Expanda: p(x) = (x² − 4)(x² − 2x − 2) = x⁴ − 2x³ − 6x² + 8x + 8. Então p(0) = 8 e p(1) = 1 − 2 − 6 + 8 + 8 = 9, como o enunciado pede. Fecha.",
+   "erradas": {
+    "A": "A não confere: além de 2 e −2, o fator x² − 2x − 2 tem Δ = 12 > 0 e dá mais duas raízes reais.",
+    "B": "B não confere: Δ = 12 > 0 dá duas raízes distintas, 1 + √3 e 1 − √3; não há raiz dupla, então são quatro reais, e não três.",
+    "D": "D não confere: 2 e −2 são raízes racionais.",
+    "E": "E não confere: −2 e 1 − √3 ≈ −0,73 são raízes reais negativas."
+   },
+   "armadilha": "Saber duas raízes não basta: o segundo fator também precisa ser testado pelo discriminante.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas e quais raízes reais tem o polinômio de grau 4 descrito.",
+    "chave": "Duas raízes ±2 dão o fator x² − 4; p(0) e p(1) dão o fator x² − 2x − 2, de Δ = 12 > 0.",
+    "cuidado": "Use o coeficiente líder 1 ao montar o segundo fator e confira o sinal de Δ."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Girard no grau 4",
+    "ideia": "O produto das quatro raízes é p(0) = 8; como 2·(−2) = −4, as outras duas têm produto c = −2. Sendo negativo, elas têm sinais opostos e são reais."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² − 4 = 0 → x = ±2",
+    "nota": "soma 0 e produto −4"
+   },
+   {
+    "linha": "p(x) = (x² − 4)(x² + bx + c)",
+    "nota": "fatorar com coeficiente líder 1"
+   },
+   {
+    "linha": "−4c = 8 → c = −2",
+    "nota": "p(0) = 8: o −4 passa dividindo"
+   },
+   {
+    "linha": "−3(b − 1) = 9 → b = −2",
+    "nota": "p(1) = 9: o −3 passa dividindo"
+   },
+   {
+    "linha": "Δ = 4 + 8 = 12 → x = 1 ± √3",
+    "nota": "segundo fator tem duas raízes reais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ }
+}

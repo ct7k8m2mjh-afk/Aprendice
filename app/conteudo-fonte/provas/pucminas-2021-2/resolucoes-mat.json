@@ -1,0 +1,550 @@
+{
+ "P54122add": {
+  "n": "43",
+  "conceito": "MDC para encher um paralelepípedo com cubos iguais.",
+  "equivocos": {
+   "A": "M01.4:sem-origem-identificada",
+   "C": "M01.4:sem-origem-identificada",
+   "D": "M01.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para os cubos encherem a caixa sem sobra, a aresta do cubo precisa dividir 18, 24 e 60. Menos ampolas significa menos cubos, ou seja, cubos maiores: aresta = mdc(18, 24, 60).",
+    "formulas": [
+     "aresta = mdc(18, 24, 60)",
+     "cubos = (18/a)(24/a)(60/a)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Qual é o maior número que divide 18, 24 e 60 ao mesmo tempo?",
+   "passos": [
+    {
+     "faz": "mdc",
+     "conta": "18 = 2 · 3²; 24 = 2³ · 3; 60 = 2² · 3 · 5 → mdc = 2 · 3 = 6",
+     "porque": "Fatores comuns com menor expoente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Cubos por aresta",
+     "conta": "18/6 = 3; 24/6 = 4; 60/6 = 10",
+     "porque": "Cubos em cada direção.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Total de cubos",
+     "conta": "3 · 4 · 10 = 120",
+     "porque": "Produto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ampolas",
+     "conta": "120 · 4 = 480 → alternativa B",
+     "porque": "4 ampolas por cubo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 480",
+   "checagem": "18/6 = 3, 24/6 = 4 e 60/6 = 10 não têm fator comum maior que 1, então 6 é a maior aresta possível; 3 · 4 · 10 · 4 = 480. Confere.",
+   "erradas": {
+    "A": "324 não confere: 324/4 = 81 cubos. A aresta tem de dividir 18, 24 e 60, então é 6 ou 6 dividido por um inteiro (3, 2, ...), e os cubos são 120, 960, 3 240, ...; nunca 81.",
+    "C": "516 não confere: 516/4 = 129 cubos, que não está entre as quantidades possíveis (120, 960, 3 240, ...).",
+    "D": "648 não confere: 648/4 = 162 cubos, que não está entre as quantidades possíveis (120, 960, 3 240, ...)."
+   },
+   "armadilha": "Esquecer de multiplicar pelas 4 ampolas e procurar 120 nas alternativas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Menor número de ampolas.",
+    "chave": "Aresta = mdc = 6; 120 cubos; 480 ampolas.",
+    "cuidado": "Cubos maiores → menos cubos → mdc."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "algoritmo de Euclides",
+    "ideia": "mdc(18, 24): 24 = 1 · 18 + 6; 18 = 3 · 6 → 6. mdc(6, 60) = 6, pois 60 = 10 · 6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "mdc(18, 24, 60) = 6",
+    "nota": "aresta"
+   },
+   {
+    "linha": "3 · 4 · 10 = 120",
+    "nota": "cubos"
+   },
+   {
+    "linha": "120 · 4 = 480",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  },
+  "super_revisao": [
+   "2026-11-23"
+  ]
+ },
+ "Pbeff836d": {
+  "n": "41",
+  "conceito": "Sistema linear de três quantidades com 'dobro do total' e 'metade mais 3'.",
+  "equivocos": {
+   "A": "M04.3:respondeu-outra-soma",
+   "B": "M04.3:valor-que-nao-fecha",
+   "D": "M04.3:respondeu-outra-soma"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "B é o dobro de A + C. Então o total 108 é A + C mais o dobro disso: 3 vezes A + C. Daí sai A + C, depois B e, com a relação de C, cada farmácia.",
+    "formulas": [
+     "B = 2(A + C)",
+     "C = A/2 + 3"
+    ],
+    "simbolos": [
+     [
+      "A, B, C",
+      "encomendas de cada farmácia"
+     ]
+    ]
+   },
+   "pista": "Troque B por 2(A + C) na soma total.",
+   "passos": [
+    {
+     "faz": "Ache A + C e B",
+     "conta": "(A + C) + 2(A + C) = 108 → A + C = 36 → B = 72",
+     "porque": "B é o dobro das outras duas juntas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a relação de C",
+     "conta": "A + A/2 + 3 = 36 → 3A/2 = 33 → A = 22",
+     "porque": "C é a metade de A mais 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache C",
+     "conta": "C = 22/2 + 3 = 14",
+     "porque": "Ou C = 36 − 22.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "B + C = 72 + 14 = 86 → alternativa C",
+     "porque": "A pergunta é B mais C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 86",
+   "checagem": "22 + 72 + 14 = 108; 72 = 2 · (22 + 14); 14 = 11 + 3. Tudo confere.",
+   "erradas": {
+    "A": "36 sai de A + C, o total das duas outras farmácias, não de B + C.",
+    "B": "54 não confere: B sozinha já tem 72 encomendas.",
+    "D": "94 sai de B + A = 72 + 22, a farmácia errada."
+   },
+   "armadilha": "Somar a farmácia errada: a pergunta é B + C, não B + A.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas encomendas foram para B e C juntas.",
+    "chave": "3(A + C) = 108: A + C = 36, B = 72; A = 22, C = 14.",
+    "cuidado": "Some exatamente as farmácias pedidas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "atalho",
+    "ideia": "B + C = 108 − A; com A = 22, B + C = 86."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3 · (A + C) = 108",
+    "nota": "A + C + 2(A + C)"
+   },
+   {
+    "linha": "A + C = 108/3 = 36",
+    "nota": "B = 72"
+   },
+   {
+    "linha": "A + A/2 + 3 = 36",
+    "nota": "C = A/2 + 3"
+   },
+   {
+    "linha": "3A/2 = 33",
+    "nota": "o 3 passa subtraindo"
+   },
+   {
+    "linha": "A = 33 · 2/3 = 22",
+    "nota": "C = 14"
+   },
+   {
+    "linha": "72 + 14 = 86",
+    "nota": "B + C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0051"
+  }
+ },
+ "P1fe909dc": {
+  "n": "42",
+  "conceito": "Altura do triângulo equilátero e Pitágoras para comparar um desvio com o caminho direto.",
+  "equivocos": {
+   "A": "M09.1:ignorou-a-diferenca-entre-os-lados",
+   "C": "M09.1:respondeu-a-distancia-direta",
+   "D": "M09.1:respondeu-so-um-trecho"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "ABDC é um retângulo (D fica na vertical de C) e o triângulo equilátero DEF tem a base FE sobre a reta AE. Como C é o ponto médio de FE, o vértice D fica bem em cima de C: DC é a altura do equilátero e mede o mesmo que AB. Com isso, BD = AC e o trecho BC sai de Pitágoras no triângulo retângulo ABC.",
+    "formulas": [
+     "altura do triângulo equilátero de lado L = L√3/2",
+     "Pitágoras: hipotenusa² = cateto² + cateto²"
+    ],
+    "simbolos": [
+     [
+      "BCED",
+      "o desvio: de B até C, de C até E e de E até D"
+     ],
+     [
+      "ponto médio",
+      "ponto que divide o segmento em duas partes iguais"
+     ],
+     [
+      "√",
+      "raiz quadrada"
+     ]
+    ]
+   },
+   "pista": "Descubra onde fica o pé da perpendicular que desce de D: ele cai sobre um ponto já marcado na figura.",
+   "passos": [
+    {
+     "faz": "Use o equilátero para achar FC, CE e a altura",
+     "conta": "FE = 6 → FC = CE = 6/2 = 3 → altura = 6√3/2 = 3√3",
+     "porque": "Todos os lados do equilátero medem 6, como DE. Num equilátero, a altura cai no ponto médio da base, que é C; então DC é a altura e AB = DC = 3√3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule BD e AC",
+     "conta": "BD = AC = AF + FC = 10 + 3 = 13",
+     "porque": "BD é paralelo a AE e D está na vertical de C, então ABDC é um retângulo e BD tem o mesmo comprimento que AC.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache BC por Pitágoras",
+     "conta": "BC² = 13² + (3√3)² = 169 + 27 = 196 → BC = 14",
+     "porque": "No triângulo ABC o ângulo em A é reto, com catetos AC = 13 e AB = 3√3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some o desvio e subtraia o caminho direto",
+     "conta": "BC + CE + ED = 14 + 3 + 6 = 23 → 23 − 13 = 10",
+     "porque": "A pergunta é a diferença entre o percurso BCED e a distância BD, não o percurso inteiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "diferença = 10 km → alternativa B",
+     "porque": "O desvio é 10 km mais longo que a rodovia interrompida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 10 km",
+   "checagem": "Por coordenadas: A = (0, 0), C = (13, 0), B = (0, 3√3) e D = (13, 3√3). A distância de B a C dá √(169 + 27) = √196 = 14, e de B a D dá 13 − 0 = 13. Com CE = 3 e ED = 6, 23 − 13 = 10. Fecha.",
+   "erradas": {
+    "A": "9 sai de somar só CE + ED = 3 + 6 = 9, como se BC e BD tivessem o mesmo tamanho. BC = 14 é 1 km maior que BD = 13.",
+    "C": "13 é BD = AF + FC = 10 + 3, a distância direta; a pergunta é a diferença entre o desvio e ela.",
+    "D": "14 é BC, só o primeiro trecho do desvio; falta somar CE e ED e depois subtrair BD."
+   },
+   "armadilha": "Sem perceber que D fica na vertical de C (altura do equilátero no ponto médio), não dá para achar BD nem a altura AB.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quanto o percurso BCED é mais longo que a distância BD.",
+    "chave": "Altura do equilátero 3√3 = AB e BD = AC = 13; Pitágoras dá BC = 14 e 14 + 3 + 6 − 13 = 10.",
+    "cuidado": "Responder a diferença, não o percurso inteiro nem um trecho dele."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas",
+    "ideia": "Ponha A na origem, C = (13, 0), B = (0, 3√3), D = (13, 3√3) e calcule as distâncias pela fórmula."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "FC = CE = 6/2 = 3",
+    "nota": "C é ponto médio de FE"
+   },
+   {
+    "linha": "AB = DC = 6√3/2 = 3√3",
+    "nota": "altura do equilátero"
+   },
+   {
+    "linha": "BD = AC = 10 + 3 = 13",
+    "nota": "lados opostos do retângulo"
+   },
+   {
+    "linha": "BC² = 13² + (3√3)² = 196 → BC = 14",
+    "nota": "Pitágoras em ABC"
+   },
+   {
+    "linha": "14 + 3 + 6 − 13 = 10",
+    "nota": "desvio menos caminho direto"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
+ },
+ "P9e4c4002": {
+  "n": "45",
+  "conceito": "Decaimento de 10% ao período sobre o que resta: resolver 0,9^t = 0,3 com logaritmos escritos a partir de log 3.",
+  "equivocos": {
+   "B": "M06.5:passou-do-tempo-de-decaimento",
+   "C": "M06.5:passou-do-tempo-de-decaimento",
+   "D": "M06.5:passou-do-tempo-de-decaimento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Consumir 10% do que ainda resta é ficar com 90% do volume da hora anterior: o volume é multiplicado por 0,9 a cada hora. Depois de t horas sobra V0 · 0,9^t. Chegar a 30% do inicial é resolver 0,9^t = 0,3, e o t no expoente sai com logaritmo; 0,9 e 0,3 se escrevem com log 3 e log 10.",
+    "formulas": [
+     "V(t) = V0 · 0,9^t",
+     "log 0,9 = log 9 − log 10 = 2 · log 3 − 1",
+     "log 0,3 = log 3 − log 10 = log 3 − 1"
+    ],
+    "simbolos": [
+     [
+      "V0",
+      "volume inicial de oxigênio no cilindro"
+     ],
+     [
+      "V(t)",
+      "volume que resta depois de t horas"
+     ],
+     [
+      "t",
+      "tempo de uso, em horas"
+     ],
+     [
+      "log",
+      "logaritmo na base 10; log 10 = 1"
+     ]
+    ]
+   },
+   "pista": "Antes de pensar em logaritmo, decida quanto sobra a cada hora: o consumo é sobre o que resta, não sobre o volume inicial.",
+   "passos": [
+    {
+     "faz": "Traduza o consumo em fator",
+     "conta": "consome 10% do que resta → sobra 90% → V(t) = V0 · 0,9^t",
+     "porque": "Cada hora tira 10% do volume daquela hora, então o volume é multiplicado por 1 − 0,1 = 0,9, hora após hora.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Iguale a 30% do inicial",
+     "conta": "V0 · 0,9^t = 0,3 · V0 → 0,9^t = 0,3",
+     "porque": "V0 está nos dois lados e cancela.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique log e isole t",
+     "conta": "log 0,9^t = log 0,3 → t · log 0,9 = log 0,3 → t = (log 0,3)/(log 0,9)",
+     "porque": "O expoente desce multiplicando; o log 0,9 que multiplica t passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use log 3 = 0,48",
+     "conta": "t = (log 3 − 1)/(2 · log 3 − 1) → t = (0,48 − 1)/(0,96 − 1) = (−0,52)/(−0,04) = 13",
+     "porque": "0,3 = 3/10 e 0,9 = 3²/10, então tudo sai de log 3 e de log 10 = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte ao comando",
+     "conta": "t = 13 h → alternativa A",
+     "porque": "Com o dado da prova a conta dá exatamente 13 horas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — aproximadamente 13 horas",
+   "checagem": "Desfaça pelos logs: 13 horas de fator 0,9 dão log(0,9¹³) = 13 · (−0,04) = −0,52, que é log 3 − 1 = log 0,3. Com os dados da prova, sobram 30% do volume.",
+   "erradas": {
+    "B": "14 horas não confere: 14 · (−0,04) = −0,56, abaixo de log 0,3 = −0,52; com os dados da prova sobraria menos de 30% do volume.",
+    "C": "15 horas não confere: 15 · (−0,04) = −0,60, e não −0,52 = log 0,3.",
+    "D": "16 horas não confere: 16 · (−0,04) = −0,64, e não −0,52 = log 0,3."
+   },
+   "armadilha": "Os 10% saem do que ainda resta, não do volume inicial: quem tira 10% fixos por hora pensa em reta (70% gastos em 7 h) e não usa logaritmo.",
+   "alerta": "Com o valor mais preciso log 3 ≈ 0,4771, log 0,9 ≈ −0,0458 e o tempo dá cerca de 11,4 horas (em 13 h sobram cerca de 25%, pois 0,9¹³ ≈ 0,25). A diferença vem do arredondamento: log 0,9 é um número pequeno, e trocá-lo por −0,04 pesa na divisão. A prova manda usar log 3 = 0,48, e com esse dado a resposta é 13 horas; mesmo com o valor preciso, 13 h é a alternativa mais próxima.",
+   "essencial": {
+    "pede": "Em quantas horas o oxigênio cai a 30% do volume inicial, se cada hora consome 10% do que resta.",
+    "chave": "0,9^t = 0,3 dá t = (log 3 − 1)/(2 · log 3 − 1) = (−0,52)/(−0,04) = 13.",
+    "cuidado": "Escreva 0,9 como 3²/10 e 0,3 como 3/10 para usar só log 3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelo inverso",
+    "ideia": "Invertendo, (10/9)^t = 10/3, e os logs ficam positivos: t · (1 − 2 · 0,48) = 1 − 0,48, ou seja, t · 0,04 = 0,52 e t = 13 h."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V0 · 0,9^t = 0,3 · V0",
+    "nota": "sobra 90% a cada hora"
+   },
+   {
+    "linha": "0,9^t = 0,3",
+    "nota": "V0 cancela"
+   },
+   {
+    "linha": "t = (log 0,3)/(log 0,9)",
+    "nota": "log dos dois lados"
+   },
+   {
+    "linha": "t = (0,48 − 1)/(0,96 − 1)",
+    "nota": "0,3 = 3/10 e 0,9 = 3²/10"
+   },
+   {
+    "linha": "t = (−0,52)/(−0,04) = 13",
+    "nota": "divide"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Caderno oficial — PUC Minas 2021 Medicina 2021/2 · questão 45",
+    "url": "https://www.pucminas.br/formas-ingresso/vestibular/Documents/2021/CadernoMedicinaBETIM2_2021.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
+ },
+ "Pc236822a": {
+  "n": "44",
+  "conceito": "Probabilidade em árvore (diagrama de caminhos): multiplicar ao longo de cada caminho e somar os caminhos que chegam a F.",
+  "equivocos": {
+   "A": "M13.5:esqueceu-um-caminho-da-arvore",
+   "B": "M13.5:conta-sem-origem-conferida",
+   "C": "M13.5:conta-sem-origem-conferida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada seta traz a chance de seguir por ela. Ao longo de um caminho, as chances se multiplicam (é \"esta seta E a próxima\"); caminhos diferentes que chegam a F se somam (é \"este caminho OU aquele\"). O trabalho real é achar TODOS os caminhos de A até F, inclusive o que passa por C e depois sobe para B.",
+    "formulas": [
+     "probabilidade de um caminho = produto das setas",
+     "probabilidade de chegar a F = soma dos caminhos até F"
+    ],
+    "simbolos": [
+     [
+      "A → B",
+      "seta de A para B, percorrida só nesse sentido"
+     ]
+    ]
+   },
+   "pista": "Liste os caminhos que terminam em F, seguindo as setas no sentido indicado; há mais de um que passa por C.",
+   "passos": [
+    {
+     "faz": "Liste os caminhos até F",
+     "conta": "A → B → F | A → C → B → F | A → C → D → F",
+     "porque": "De A sai-se para B ou C; de C, para B ou D; só B e D têm seta para F.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Multiplique ao longo de cada caminho",
+     "conta": "0,7 · 0,4 = 0,28 | 0,3 · 0,2 · 0,4 = 0,024 | 0,3 · 0,8 · 0,5 = 0,12",
+     "porque": "Para seguir um caminho, o visitante precisa escolher cada seta dele; escolhas em sequência multiplicam as chances.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os caminhos",
+     "conta": "0,28 + 0,024 + 0,12 = 0,424",
+     "porque": "Os três caminhos são maneiras diferentes, que não acontecem juntas, de chegar a F.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "0,424 → alternativa D",
+     "porque": "É a probabilidade total de um visitante ir de A até F.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 0,424",
+   "checagem": "Pelos pontos de passagem: chega-se a B com 0,7 + 0,3 · 0,2 = 0,76 e a D com 0,3 · 0,8 = 0,24. Então P(F) = 0,76 · 0,4 + 0,24 · 0,5 = 0,304 + 0,12 = 0,424. Fecha.",
+   "erradas": {
+    "A": "0,400 sai de esquecer o caminho A → C → B → F: 0,28 + 0,12 = 0,40, faltando os 0,024 desse caminho.",
+    "B": "0,408 não confere: fica 0,016 abaixo da soma dos três caminhos, 0,28 + 0,024 + 0,12 = 0,424, e nenhum caminho até F vale 0,016.",
+    "C": "0,420 não confere: os três caminhos até F valem 0,28, 0,024 e 0,12, e nenhuma combinação deles dá 0,420."
+   },
+   "armadilha": "O caminho A → C → B → F é fácil de esquecer: a seta de C sobe para B, e é ela que leva o resultado de 0,400 para 0,424.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de um visitante sair de A e chegar à lanchonete F.",
+    "chave": "Três caminhos: 0,7 · 0,4 + 0,3 · 0,2 · 0,4 + 0,3 · 0,8 · 0,5 = 0,424.",
+    "cuidado": "Multiplique dentro do caminho, some entre caminhos e não esqueça o que passa por C e B."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por pontos de passagem",
+    "ideia": "P(chegar a B) = 0,76 e P(chegar a D) = 0,24; P(F) = 0,76 · 0,4 + 0,24 · 0,5 = 0,424."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A → B → F: 0,7 · 0,4 = 0,28",
+    "nota": "1º caminho"
+   },
+   {
+    "linha": "A → C → B → F: 0,3 · 0,2 · 0,4 = 0,024",
+    "nota": "2º caminho, pela seta C → B"
+   },
+   {
+    "linha": "A → C → D → F: 0,3 · 0,8 · 0,5 = 0,12",
+    "nota": "3º caminho"
+   },
+   {
+    "linha": "P(F) = 0,28 + 0,024 + 0,12 = 0,424",
+    "nota": "soma dos caminhos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ }
+}

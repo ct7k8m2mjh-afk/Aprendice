@@ -1,0 +1,718 @@
+{
+ "P29440f59": {
+  "n": "23",
+  "conceito": "Resolver uma inequação exponencial e escolher o menor inteiro que a satisfaz.",
+  "equivocos": {
+   "A": "M06.2:esqueceu-o-coeficiente",
+   "B": "M06.2:incluiu-a-igualdade",
+   "D": "M06.2:nao-buscou-o-menor"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O atleta fica apto quando N(t) fica menor que 0,0625. Escreva 0,0625 como potência de 1/2 e compare os expoentes. Atenção a dois detalhes: com base menor que 1 a desigualdade inverte, e a condição é “menor que”, não “menor ou igual”.",
+    "formulas": [
+     "0,0625 = 1/16 = (1/2)⁴",
+     "base entre 0 e 1: a desigualdade inverte ao passar para os expoentes"
+    ],
+    "simbolos": [
+     [
+      "N(t)",
+      "nível da substância no sangue, em g/L, depois de t horas"
+     ]
+    ]
+   },
+   "pista": "Escreva 0,0625 como fração e depois como potência de 1/2.",
+   "passos": [
+    {
+     "faz": "Monte a inequação",
+     "conta": "2 × (1/2)^t < 1/16 → (1/2)^t < 1/32",
+     "porque": "0,0625 = 1/16; divida os dois lados por 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva na mesma base",
+     "conta": "(1/2)^t < (1/2)⁵",
+     "porque": "32 = 2⁵.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare os expoentes",
+     "conta": "t > 5",
+     "porque": "Base menor que 1: potência menor exige expoente maior.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Pegue o menor inteiro",
+     "conta": "t > 5 → t = 6 → alternativa C",
+     "porque": "Em t = 5 o nível é igual ao limite, não menor.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 6",
+   "checagem": "Tabela: N(4) = 2/16 = 0,125; N(5) = 2/32 = 0,0625 (igual ao limite, ainda não apto); N(6) = 2/64 = 0,03125 (abaixo do limite).",
+   "erradas": {
+    "A": "Quem marca A esquece o 2 na frente da potência e iguala (1/2)^t a 1/16 = (1/2)^4, chegando a t = 4. Com o 2, N(4) = 2/16 = 0,125 g/L, o dobro do limite.",
+    "B": "Quem marca B resolve a igualdade 2 · (1/2)^t = 1/16 e para em t = 5. Ali N(5) = 0,0625 g/L, igual ao limite; o atleta só fica apto com nível menor.",
+    "D": "7 satisfaz a condição, mas não é o menor inteiro: com 6 horas o nível já é 0,03125 g/L."
+   },
+   "armadilha": "Marcar 5: nesse instante o nível é igual ao limite, e a regra exige menor.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor número inteiro de horas de espera.",
+    "chave": "(1/2)^t < (1/2)⁵ → t > 5 → 6 horas.",
+    "cuidado": "Menor que não inclui o igual."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "potências de 2",
+    "ideia": "2 × (1/2)^t = 2^(1 − t) e 0,0625 = 2^(−4). Então 1 − t < −4, isto é, t > 5, e o menor inteiro é 6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2 × (1/2)^t < 1/16",
+    "nota": "0,0625 = 1/16"
+   },
+   {
+    "linha": "(1/2)^t < 1/32",
+    "nota": "divide por 2"
+   },
+   {
+    "linha": "(1/2)^t < (1/2)⁵",
+    "nota": "32 = 2⁵"
+   },
+   {
+    "linha": "t > 5",
+    "nota": "base menor que 1"
+   },
+   {
+    "linha": "t = 6",
+    "nota": "menor inteiro"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0016"
+  }
+ },
+ "Pfc77bdfe": {
+  "n": "22",
+  "conceito": "Ler período, valor mínimo e valor máximo de uma função cosseno V(t) = A − B·cos(kt) num contexto de respiração.",
+  "equivocos": {
+   "A": "M10.5:nao-usou-limites-do-cosseno",
+   "B": "M10.5:usou-cos-1-para-o-maximo",
+   "C": "M10.5:leu-denominador-como-periodo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em V(t) = 1500 − 300·cos(πt/3), o cosseno só varia entre −1 e 1. Por isso o volume vai de 1500 − 300 a 1500 + 300. O período sai do número que multiplica t. Com isso as três afirmações se decidem por conta curta.",
+    "formulas": [
+     "−1 ≤ cos ≤ 1",
+     "período = 2π ÷ k, para cos(kt)"
+    ],
+    "simbolos": [
+     [
+      "V(t)",
+      "volume de ar nos pulmões, em mL, no instante t"
+     ],
+     [
+      "t",
+      "tempo, em segundos"
+     ],
+     [
+      "k",
+      "número que multiplica t dentro do cosseno; aqui π/3"
+     ],
+     [
+      "volume residual",
+      "segundo o texto, o ar que fica nos pulmões após a expiração"
+     ]
+    ]
+   },
+   "pista": "Calcule V(0) e o maior valor possível de V; depois tire o período do π/3.",
+   "passos": [
+    {
+     "faz": "Calcule o volume residual em t = 0",
+     "conta": "V(0) = 1500 − 300·cos 0 = 1500 − 300 = 1200 mL",
+     "porque": "O texto diz que em t = 0 há só o volume residual nos pulmões. cos 0 = 1 dá o menor valor de V.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue a afirmação I",
+     "conta": "1200 mL > 600 mL → I verdadeira",
+     "porque": "O texto dá 600 mL inspirados e expirados por ciclo; o residual de 1200 mL é maior.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Calcule o período para a afirmação II",
+     "conta": "T = 2π ÷ (π/3) = 2π · 3/π = 6 s → II verdadeira",
+     "porque": "Um ciclo completo do cosseno corresponde a um ciclo respiratório; o π cancela e sobram 6 segundos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o volume máximo para a III",
+     "conta": "cos = −1 → V = 1500 − 300·(−1) = 1800 mL → III verdadeira",
+     "porque": "Com o cosseno no mínimo, o termo −300·cos vira +300 e o volume é o maior possível.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as verdadeiras",
+     "conta": "I, II e III verdadeiras → 3",
+     "porque": "As três afirmações conferem com a função e com o texto.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 3 afirmações corretas",
+   "checagem": "A diferença entre máximo e mínimo é 1800 − 1200 = 600 mL, exatamente o ar inspirado e expirado por ciclo que o texto dá. O modelo é coerente.",
+   "erradas": {
+    "A": "0 não confere: a III sai direto de cos = −1, que dá 1500 + 300 = 1800 mL, então ao menos uma está certa.",
+    "B": "Quem marca B usa cos = 1 no máximo, 1500 − 300 = 1200 mL (III falsa), e lê o período como 3 s (II falsa). O máximo vem de cos = −1: 1800 mL; período, 6 s.",
+    "C": "2 sai de ler o período como 3 s, o número do denominador, e marcar a II como falsa. O período é 2π ÷ (π/3) = 6 s."
+   },
+   "armadilha": "O 3 dentro do cosseno não é o período: o período é 2π dividido pelo número que multiplica t.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas das três afirmações sobre o ciclo respiratório estão corretas.",
+    "chave": "Mínimo 1200 mL em t = 0, máximo 1800 mL, período 2π ÷ (π/3) = 6 s: as três conferem.",
+    "cuidado": "Calcule o período por 2π ÷ k, sem ler o denominador como período."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela de valores",
+    "ideia": "Calcule V em t = 0, 3 e 6 (1200, 1800, 1200): o ciclo fecha em 6 s e o máximo é 1800 mL."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V(0) = 1500 − 300·1 = 1200",
+    "nota": "cos 0 = 1: volume residual"
+   },
+   {
+    "linha": "V máx = 1500 − 300·(−1) = 1800",
+    "nota": "cos = −1: maior volume"
+   },
+   {
+    "linha": "T = 2π ÷ (π/3) = 2π · 3/π = 6",
+    "nota": "o π cancela"
+   },
+   {
+    "linha": "I V, II V, III V → 3",
+    "nota": "contar as corretas"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "gráfico",
+   "roteiro": "curva de V(t) de 0 a 6 s: começa em 1200, sobe até 1800 em t = 3 e volta a 1200 em t = 6; a faixa de 600 mL se destaca entre as linhas tracejadas"
+  },
+  "fontes": [
+   {
+    "nome": "Prova oficial comentada Acafe Verão 2025",
+    "url": "https://storage.acafe.org.br/concurso/vestibular/2025/1/02%20-%20prova/02%20-%20Prova%20objetiva%20Verao%202025%20-%20oficial%20comentada.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0074"
+  }
+ },
+ "Pc64b553f": {
+  "n": "24",
+  "conceito": "Achar as constantes de x = C · y^k com duas medições: dividir as equações para eliminar C e usar os logs dados.",
+  "equivocos": {
+   "B": "M06.4:trocou-as-constantes",
+   "C": "M06.4:log-da-potencia-errado",
+   "D": "M06.4:trocou-potencia-por-produto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada medição dá uma equação com C e k. Dividindo uma pela outra, C some e sobra uma equação só em k. Depois, com k, volte a uma das equações para achar C. Os logs dados existem para trocar potências de 10 por números.",
+    "formulas": [
+     "x = C · y^k",
+     "10^a = b ⇔ log b = a",
+     "log 8 = 3 · log 2"
+    ],
+    "simbolos": [
+     [
+      "C, k",
+      "constantes positivas da lei da Alometria"
+     ],
+     [
+      "x, y",
+      "comprimentos dos órgãos A e B, em mm"
+     ],
+     [
+      "log",
+      "logaritmo na base 10"
+     ]
+    ]
+   },
+   "pista": "Monte as duas equações e divida a segunda pela primeira.",
+   "passos": [
+    {
+     "faz": "Monte as duas equações",
+     "conta": "8 = C · 10^k | 64 = C · 100^k",
+     "porque": "Cada linha da tabela dá um par (x, y): 1ª medição x = 8 e y = 10; 2ª medição x = 64 e y = 100.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Divida para eliminar C",
+     "conta": "64/8 = (C · 100^k)/(C · 10^k) → 8 = 10^k",
+     "porque": "O C se cancela e 100^k/10^k = (100/10)^k = 10^k.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule k",
+     "conta": "10^k = 8 → k = log 8 = 3 · log 2 = 3 · 0,30 = 0,90 = 9/10",
+     "porque": "k é o expoente de 10 que dá 8, ou seja, log 8; e 8 = 2³.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule C",
+     "conta": "8 = C · 10^(9/10) → 10^0,90 = 7,95 → C = 8/7,95 = 800/795 = 160/159",
+     "porque": "Pelo dado log 7,95 = 0,90, 10^0,90 = 7,95. Dividindo 800 e 795 por 5, sobra 160/159.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "C = 160/159 | k = 9/10 → alternativa A",
+     "porque": "As duas constantes batem com a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — C = 160/159 e k = 9/10",
+   "checagem": "Use a 2ª medição: C · 100^0,9 = (160/159) · 10^1,8 = (160/159) · 7,95² ≈ 1,006 · 63,2 ≈ 63,6, perto dos 64 mm, com a diferença vinda do arredondamento dos logs dados.",
+   "erradas": {
+    "B": "B sai de trocar as constantes: os valores certos são C = 160/159 e k = 9/10, e a alternativa B inverte quem é quem.",
+    "C": "k = 27/1000 sai de calcular log 8 como (log 2)³ = 0,30³ = 0,027; o certo é log 2³ = 3 · log 2 = 0,90.",
+    "D": "C = 8/9 sai de trocar 10^k por 10 · k: 8 = C · 10 · 0,9 = 9C dá C = 8/9; o certo é 10^0,9 = 7,95."
+   },
+   "armadilha": "log 2³ é 3 · log 2, não (log 2)³; e 10^0,9 não é 10 · 0,9: o log 7,95 = 0,90 foi dado para isso.",
+   "alerta": "Com logaritmos exatos, k = log 8 e C = 8/10^(log 8) = 8/8 = 1; o valor 160/159 ≈ 1,006 vem dos arredondamentos que o enunciado manda adotar (log 2 = 0,30 e log 7,95 = 0,90). Com os valores adotados, a alternativa A é a correta.",
+   "essencial": {
+    "pede": "As constantes C e k da lei x = C · y^k para os dois órgãos.",
+    "chave": "Dividir as equações elimina C: 10^k = 8, k = 0,90; depois C = 8/7,95 = 160/159.",
+    "cuidado": "log 8 = 3 · log 2, e 10^0,9 é potência, não produto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "log nos dois lados",
+    "ideia": "aplique log: log x = log C + k · log y, e subtraia as medições: log 64 − log 8 = k · (log 100 − log 10) → 0,90 = k"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "8 = C · 10^k | 64 = C · 100^k",
+    "nota": "duas medições"
+   },
+   {
+    "linha": "64/8 = 10^k → 8 = 10^k",
+    "nota": "o C se cancela"
+   },
+   {
+    "linha": "k = log 8 = 3 · 0,30 = 9/10",
+    "nota": "log dado"
+   },
+   {
+    "linha": "C = 8/10^0,9 = 8/7,95 = 160/159",
+    "nota": "log 7,95 = 0,90"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
+ },
+ "Pb91c0777": {
+  "n": "25",
+  "conceito": "Julgar três afirmações: área de quadrilátero inscrito com diâmetro, número de arestas de poliedro pelas faces e área lateral de cone equilátero.",
+  "equivocos": {
+   "A": "M08.3:julgou-verdadeira-como-falsa",
+   "B": "M08.3:angulo-de-75-lido-como-acd",
+   "D": "M08.3:arestas-contadas-duas-vezes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada afirmação é uma conta curta. Em I, o diâmetro AC faz os ângulos em B e em D serem retos, e o quadrilátero se divide em dois triângulos retângulos. Em II, cada aresta é lado de duas faces, então a soma dos lados das faces conta cada aresta duas vezes. Em III, cone equilátero é aquele cuja geratriz é igual ao diâmetro da base.",
+    "formulas": [
+     "ângulo inscrito sobre o diâmetro = 90°",
+     "arestas = (soma dos lados de todas as faces)/2",
+     "cone equilátero: g = 2R; área lateral = π · R · g"
+    ],
+    "simbolos": [
+     [
+      "g",
+      "geratriz do cone, segmento do vértice até a borda da base"
+     ],
+     [
+      "R",
+      "raio da base do cone"
+     ],
+     [
+      "S_L",
+      "área lateral do cone"
+     ]
+    ]
+   },
+   "pista": "Em I, olhe o que o diâmetro AC faz com os ângulos em B e em D; em II, lembre que uma aresta é dividida por duas faces.",
+   "passos": [
+    {
+     "faz": "Divida ABCD pela diagonal AC",
+     "conta": "AC = 20 | AB = BC → AB = 20/√2 = 10√2 → área ABC = (10√2 · 10√2)/2 = 100",
+     "porque": "B enxerga o diâmetro, então o ângulo B é reto; com AB = BC o triângulo é retângulo isósceles e o ângulo ACB vale 45°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o triângulo ACD",
+     "conta": "ACD = 75° − 45° = 30° → AD = 20 · sen 30° = 10 | CD = 20 · cos 30° = 10√3 → área = (10 · 10√3)/2 = 50√3",
+     "porque": "O ângulo de 75° em C é o ângulo BCD inteiro; tirando os 45° de ACB, sobram 30° para ACD. D também enxerga o diâmetro, então é reto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e julgue I",
+     "conta": "100 + 50√3 = 50(2 + √3) → I correta",
+     "porque": "A área do quadrilátero é a soma dos dois triângulos, e o resultado coincide com o da afirmação.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conte as arestas em II",
+     "conta": "(12 · 5 + 20 · 6)/2 = (60 + 120)/2 = 180/2 = 90 → II errada",
+     "porque": "Cada aresta é lado de duas faces vizinhas, então somar os lados das faces conta cada aresta duas vezes. São 90 arestas, não 180.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área lateral em III",
+     "conta": "g = 2R = 2√3 → S_L = π · √3 · 2√3 = 6π → III correta",
+     "porque": "No cone equilátero a seção meridiana é um triângulo equilátero de lado 2R, então a geratriz vale 2R.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as corretas",
+     "conta": "I e III corretas → 2 → alternativa C",
+     "porque": "Só a II falha, por contar cada aresta duas vezes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 2 afirmações corretas (I e III)",
+   "checagem": "Em II, confira por Euler: com A = 90 e F = 32, V = 2 + A − F = 60, e cada vértice recebe 3 arestas: 60 · 3/2 = 90 (é o formato da bola de futebol). Com A = 180 daria V = 150 e 150 · 3/2 = 225 ≠ 180, incoerente.",
+   "erradas": {
+    "A": "0 não confere: em I a soma 100 + 50√3 bate com 50(2 + √3), e em III π · √3 · 2√3 = 6π; ao menos duas afirmações são verdadeiras.",
+    "B": "Quem marca B lê os 75° como ângulo ACD: a área de ACD vira 50, o total 150, e rejeita a I. Os 75° são do ângulo BCD; ACD = 30°.",
+    "D": "3 sai de aceitar II somando os lados das faces sem dividir por 2: 12 · 5 + 20 · 6 = 180. Cada aresta foi contada duas vezes; são 90."
+   },
+   "armadilha": "Em II, somar os lados das faces e esquecer que cada aresta pertence a duas faces (180 em vez de 90).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas das três afirmações são corretas.",
+    "chave": "I: 100 + 50√3 = 50(2 + √3); II: (60 + 120)/2 = 90 arestas; III: g = 2R, π · √3 · 2√3 = 6π.",
+    "cuidado": "Arestas = soma dos lados das faces dividida por 2; o 75° é o ângulo BCD inteiro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ângulos centrais",
+    "ideia": "Em I, os arcos AB = BC = 90°, CD = 2 · 60° = 120° e DA = 2 · 30° = 60° dão área = (10²/2)(sen 90° + sen 90° + sen 120° + sen 60°) = 50(2 + √3), I certa; com II errada (90 arestas) e III certa, são 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "AB = 20/√2 = 10√2 → (10√2 · 10√2)/2 = 100",
+    "nota": "triângulo ABC, retângulo isósceles"
+   },
+   {
+    "linha": "75° − 45° = 30° → (10 · 10√3)/2 = 50√3",
+    "nota": "triângulo ACD"
+   },
+   {
+    "linha": "100 + 50√3 = 50(2 + √3)",
+    "nota": "I correta"
+   },
+   {
+    "linha": "(60 + 120)/2 = 90",
+    "nota": "II errada: não são 180"
+   },
+   {
+    "linha": "π · √3 · 2√3 = 6π",
+    "nota": "III correta"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "A diagonal AC divide o quadrilátero; os ângulos retos em B e D acendem; 75° se separa em 45° + 30°; as áreas 100 e 50√3 se somam. Depois, uma aresta aparece compartilhada por duas faces; por fim, o cone equilátero mostra g = 2R."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0075"
+  }
+ },
+ "Pa055a305": {
+  "n": "28",
+  "conceito": "Julgar três afirmações de geometria analítica: reta paralela, equação de circunferência e comprimento de mediana.",
+  "equivocos": {
+   "A": "M12.3:trocou-coeficientes-e-esqueceu-a-raiz",
+   "B": "M12.3:paralela-com-mesmo-coeficiente-linear",
+   "D": "M12.4:circunferencia-sem-conferir-raio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada afirmação é uma conta curta. Retas paralelas têm o mesmo coeficiente angular. Uma equação do tipo x² + y² + Dx + Ey + F = 0 só é circunferência se o raio ao quadrado der positivo: achar o centro não basta. A mediana relativa a A vai de A até o ponto médio do lado BC.",
+    "formulas": [
+     "paralelas: mesmo coeficiente angular",
+     "completar quadrados: (x − h)² + (y − k)² = R²",
+     "ponto médio: M = ((x1 + x2)/2, (y1 + y2)/2)"
+    ],
+    "simbolos": [
+     [
+      "coeficiente linear",
+      "o termo independente de y = mx + n, isto é, n"
+     ],
+     [
+      "R²",
+      "raio ao quadrado; precisa ser positivo"
+     ],
+     [
+      "mediana",
+      "segmento de um vértice até o ponto médio do lado oposto"
+     ]
+    ]
+   },
+   "pista": "Na afirmação II, não pare no centro: complete os quadrados e veja quanto dá o raio ao quadrado.",
+   "passos": [
+    {
+     "faz": "Teste a afirmação I",
+     "conta": "m = −1/2 → y − 4 = −1/2 · (x − 1) → y = −x/2 + 9/2",
+     "porque": "A reta r, x + 2y − 17 = 0, tem coeficiente angular −1/2, e a paralela s tem o mesmo; passando por (1, 4), o termo independente é 9/2. I é correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Complete os quadrados na II",
+     "conta": "(x − 3)² + (y + 5)² = 9 + 25 − 35 → R² = −1",
+     "porque": "O centro seria (3, −5), mas o raio ao quadrado é negativo: nenhum ponto satisfaz a equação. II é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a mediana da III",
+     "conta": "M = ((0 + 4)/2, (1 + 5)/2) = (2, 3) → AM = √(1² + 1²) = √2",
+     "porque": "A mediana relativa a A vai de A(3, 2) até o ponto médio de BC; √2 é irracional. III é correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as corretas",
+     "conta": "I: V | II: F | III: V → 2 → alternativa C",
+     "porque": "Duas afirmações são corretas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 2",
+   "checagem": "Na I, substitua: o ponto (1, 4) em y = −x/2 + 9/2 dá −1/2 + 9/2 = 4. Na II, o lado esquerdo é (x − 3)² + (y + 5)² + 1; o menor valor dele é 1, no ponto (3, −5), então nunca chega a 0: a equação não tem solução.",
+   "erradas": {
+    "A": "Quem marca A, na I, usa o coeficiente angular (−1/2) no lugar do linear (9/2). Na III, esquece a raiz e acha AM = 2, racional. O certo é AM = √2, irracional.",
+    "B": "1 sai de julgar a I falsa por achar que a paralela tem o mesmo coeficiente linear de r, 17/2. Paralelas têm o mesmo coeficiente angular, não o mesmo linear.",
+    "D": "3 sai de aceitar a II só pelo centro (3, −5), sem conferir o raio: completando quadrados, R² = −1."
+   },
+   "armadilha": "Na II, achar o centro e parar: a equação só é circunferência se R² for positivo, e aqui R² = −1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas das três afirmações são corretas.",
+    "chave": "I e III fecham com a conta; a II tem R² = −1 e não é circunferência.",
+    "cuidado": "Centro certo não garante circunferência: confira o sinal de R²."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste direto",
+    "ideia": "Para a II, teste o centro: um ponto do plano não pode dar soma de quadrados negativa, e a equação exige (x − 3)² + (y + 5)² = −1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "y − 4 = −1/2 · (x − 1) → y = −x/2 + 9/2",
+    "nota": "I: coeficiente linear 9/2"
+   },
+   {
+    "linha": "(x − 3)² + (y + 5)² = 9 + 25 − 35 = −1",
+    "nota": "II: R² negativo"
+   },
+   {
+    "linha": "M = (2, 3) → AM = √(1 + 1) = √2",
+    "nota": "III: mediana irracional"
+   },
+   {
+    "linha": "I: V | II: F | III: V → 2",
+    "nota": "contar as corretas"
+   }
+  ],
+  "visual": {
+   "cabe": true,
+   "tipo": "estrutura",
+   "roteiro": "Três cartões lado a lado: na I, a reta s paralela a r passa por (1, 4) e corta o eixo y em 9/2; na II, os quadrados são completados e o R² = −1 aparece em vermelho; na III, o triângulo ABC mostra o ponto médio M(2, 3) e a mediana AM = √2."
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
+ },
+ "P02b21574": {
+  "n": "26",
+  "conceito": "Julgar três afirmações: contagem de modos de acender lâmpadas, soma de PA pela propriedade dos termos equidistantes e equação modular por casos.",
+  "equivocos": {
+   "A": "M13.1:julgou-sem-calcular",
+   "B": "M13.1:contou-o-caso-todas-apagadas",
+   "C": "M13.1:esqueceu-intervalo-do-modulo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada afirmação se resolve com uma ferramenta diferente. Em I, cada lâmpada fica acesa ou apagada, e só não vale todas apagadas. Em II, numa PA a soma de dois termos cujos índices somam 51 é igual a a1 + a50. Em III, o módulo muda de sinal em x = −2 e x = 3, então a equação se resolve em três intervalos.",
+    "formulas": [
+     "modos de acender = 2^n − 1",
+     "S_n = (a1 + a_n) × n/2",
+     "|u| = u se u ≥ 0 e |u| = −u se u < 0"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais uma constante"
+     ],
+     [
+      "S50",
+      "soma dos 50 primeiros termos"
+     ],
+     [
+      "|u|",
+      "módulo de u, a distância de u até zero"
+     ]
+    ]
+   },
+   "pista": "Em II, compare os índices 13 + 38 com 1 + 50. Em III, separe os intervalos pelos pontos em que cada módulo zera.",
+   "passos": [
+    {
+     "faz": "Julgue a afirmação I",
+     "conta": "2^5 − 1 = 32 − 1 = 31",
+     "porque": "Cada uma das 5 lâmpadas tem 2 estados, e o caso todas apagadas não ilumina a sala. A I é correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue a afirmação II",
+     "conta": "13 + 38 = 1 + 50 → a1 + a50 = 41 → S50 = (41 × 50)/2 = 1025",
+     "porque": "Numa PA, termos com a mesma soma de índices têm a mesma soma. A II é correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva III em x < −2",
+     "conta": "−(2x + 4) − (3 − x) = −2 → −x − 7 = −2 → x = −5",
+     "porque": "Para x < −2 os dois módulos têm o conteúdo negativo e trocam de sinal; x = −5 está no intervalo e vale.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva III nos outros intervalos",
+     "conta": "−2 ≤ x < 3: 3x + 1 = −2 → x = −1 | x ≥ 3: x + 7 = −2 → x = −9 (fora)",
+     "porque": "Entre −2 e 3 só o segundo módulo troca de sinal; x = −1 vale. Para x ≥ 3 sai x = −9, que não está no intervalo e cai.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Some as soluções e conte as corretas",
+     "conta": "−5 + (−1) = −6 = 6 × (−1) → I, II e III corretas → 3 → alternativa D",
+     "porque": "−6 é divisível por 6, então a III também é correta; as três afirmações valem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 3 afirmações corretas",
+   "checagem": "Substitua as soluções de III: para x = −5, |−6| − |−8| = 6 − 8 = −2; para x = −1, |2| − |−4| = 2 − 4 = −2. As duas satisfazem a equação.",
+   "erradas": {
+    "A": "0 não confere: as três afirmações se verificam (31 modos, S50 = 1025 e soma das soluções −6).",
+    "B": "Quem marca B conta 2^5 = 32 modos, com a sala toda apagada (I falsa), e em III acha só x = −1 (III falsa). Iluminar exige ao menos uma acesa: 31. E x = −5 também resolve: soma −6.",
+    "C": "2 sai de achar só x = −1 em III, esquecendo o intervalo x < −2: a soma seria −1, não divisível por 6, e a III pareceria falsa."
+   },
+   "armadilha": "Na equação modular, deixar de testar um dos intervalos e perder a solução x = −5.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas das três afirmações são corretas.",
+    "chave": "2^5 − 1 = 31; a1 + a50 = a13 + a38 = 41, S50 = 1025; soluções −5 e −1, soma −6.",
+    "cuidado": "Na equação modular, resolva os três intervalos e confira se cada solução está no seu intervalo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "termo médio",
+    "ideia": "Em II, a média de a1 e a50 é 41/2 = 20,5, e 50 termos com essa média somam 50 × 20,5 = 1025."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I: 2^5 − 1 = 31",
+    "nota": "cada lâmpada acesa ou apagada, menos todas apagadas"
+   },
+   {
+    "linha": "II: S50 = (41 × 50)/2 = 1025",
+    "nota": "a1 + a50 = a13 + a38 = 41"
+   },
+   {
+    "linha": "x < −2: −x − 7 = −2 → x = −5",
+    "nota": "os dois módulos trocam de sinal"
+   },
+   {
+    "linha": "−2 ≤ x < 3: 3x + 1 = −2 → x = −1",
+    "nota": "só o segundo troca de sinal"
+   },
+   {
+    "linha": "x ≥ 3: x + 7 = −2 → x = −9 (fora)",
+    "nota": "não está no intervalo"
+   },
+   {
+    "linha": "−5 + (−1) = −6",
+    "nota": "divisível por 6: III correta"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Prova objetiva comentada Acafe Verão 2025",
+    "url": "https://storage.acafe.org.br/concurso/vestibular/2025/1/02%20-%20prova/02%20-%20Prova%20objetiva%20Verao%202025%20-%20oficial%20comentada.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0076"
+  }
+ }
+}

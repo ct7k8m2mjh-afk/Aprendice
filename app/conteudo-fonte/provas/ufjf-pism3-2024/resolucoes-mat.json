@@ -1,0 +1,573 @@
+{
+ "P4dccb275": {
+  "n": "18",
+  "conceito": "Probabilidade de uma sequência de escolhas sem reposição imediata: produto das probabilidades de cada dia escolher uma cor nova.",
+  "equivocos": {
+   "A": "M13.4:ignorou-a-restricao-e-contou-uma-sequencia",
+   "B": "M13.4:contou-uma-so-sequencia-favoravel",
+   "C": "M13.4:ordem-fixa-em-vez-de-qualquer-ordem",
+   "E": "M13.4:razao-de-contagem-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada dia, a camisa do dia anterior está lavando: sobram 4 disponíveis (no 1º dia, 5). A probabilidade de os 5 dias terem cores diferentes é o produto, dia a dia, da chance de pegar uma camisa ainda não usada entre as disponíveis. O detalhe é que a camisa usada ontem não está disponível, então ela não conta como risco de repetir.",
+    "formulas": [
+     "P(todos os dias) = produto das probabilidades de cada dia",
+     "P(dia) = camisas novas disponíveis ÷ camisas disponíveis"
+    ],
+    "simbolos": [
+     [
+      "P",
+      "probabilidade"
+     ],
+     [
+      "2^5",
+      "2 × 2 × 2 × 2 × 2 = 32"
+     ],
+     [
+      "5!",
+      "5 × 4 × 3 × 2 × 1 = 120"
+     ]
+    ]
+   },
+   "pista": "Para cada dia, conte quantas camisas estão disponíveis e quantas delas ainda não foram usadas. Atenção à camisa de ontem.",
+   "passos": [
+    {
+     "faz": "Conte as disponíveis por dia",
+     "conta": "dia 1: 5 | dias 2 a 5: 5 − 1 = 4",
+     "porque": "No 1º dia todas estão secas; a partir do 2º, a de ontem está lavando.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a chance de cor nova a cada dia",
+     "conta": "dia 2: 4/4 | dia 3: 3/4 | dia 4: 2/4 | dia 5: 1/4",
+     "porque": "As já usadas que estão disponíveis são todas menos a de ontem. No 3º dia, das 4 disponíveis, só a do 1º dia é repetida: 3 novas. No 4º, 2 novas; no 5º, 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as probabilidades",
+     "conta": "1 × 4/4 × 3/4 × 2/4 × 1/4 = 6/64 = 3/32",
+     "porque": "Os dias são etapas sucessivas, então as probabilidades se multiplicam; o 1º dia não tem risco.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva como nas alternativas",
+     "conta": "3/32 = 3/2^5 → alternativa D",
+     "porque": "32 = 2^5.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 3/2^5",
+   "checagem": "Por contagem: há 5 × 4^4 = 1280 sequências possíveis, todas igualmente prováveis (5 escolhas no 1º dia e 4 nos demais). As de cores todas diferentes são 5! = 120. Então 120/1280 = 3/32 = 3/2^5. Fecha.",
+   "erradas": {
+    "A": "1/5^5 sai de achar que todo dia há 5 camisas disponíveis e contar uma única sequência; nem há 5 disponíveis do 2º dia em diante, nem há uma só sequência favorável (são 5! = 120).",
+    "B": "1/(5 · 4^4) é a probabilidade de UMA sequência específica de camisas; as sequências com cores todas diferentes são 5! = 120, então a resposta é 120/(5 · 4^4).",
+    "C": "1/5! é a chance de acertar uma ordem fixa das 5 cores; o pedido é qualquer ordem com cores diferentes.",
+    "E": "5/4! não confere: 5/24 ≈ 0,208, mais que o dobro de 3/32 ≈ 0,094 que o produto dia a dia dá."
+   },
+   "armadilha": "A camisa de ontem não está disponível: as escolhas são entre 4, e a chance de repetir só vem das usadas antes de ontem.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de 5 dias com cores diferentes.",
+    "chave": "Produto 1 × 1 × 3/4 × 2/4 × 1/4 = 3/32, ou 5!/(5 · 4^4).",
+    "cuidado": "Desconte a camisa de ontem das disponíveis (4, não 5) e conte todas as ordens favoráveis."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem",
+    "ideia": "favoráveis 5! = 120 sobre possíveis 5 × 4^4 = 1280: 120/1280 = 3/32"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "disponíveis: 5, 4, 4, 4, 4",
+    "nota": "a de ontem está lavando"
+   },
+   {
+    "linha": "P = 1 × 4/4 × 3/4 × 2/4 × 1/4",
+    "nota": "cor nova a cada dia"
+   },
+   {
+    "linha": "P = 6/64 = 3/32",
+    "nota": "multiplicar e simplificar"
+   },
+   {
+    "linha": "3/32 = 3/2^5 → D",
+    "nota": "forma da alternativa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0077"
+  }
+ },
+ "P5b7a018a": {
+  "n": "19",
+  "conceito": "Dividir um segmento em três partes iguais: os pontos ficam a 1/3 e 2/3 do caminho de A até B.",
+  "equivocos": {
+   "A": "M12.1:ponto-fora-do-segmento",
+   "B": "M12.1:ponto-fora-do-segmento",
+   "C": "M12.1:ponto-fora-do-segmento",
+   "D": "M12.1:ponto-fora-do-segmento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Distâncias iguais AC = CD = DB querem dizer que C e D dividem AB em três partes iguais. Ande de A até B em três saltos iguais: cada salto é um terço do deslocamento em x e um terço do deslocamento em y.",
+    "formulas": [
+     "salto = (B − A)/3",
+     "C = A + salto | D = A + 2 · salto"
+    ],
+    "simbolos": [
+     [
+      "A, B",
+      "extremos do segmento"
+     ],
+     [
+      "C, D",
+      "pontos que dividem AB em três partes iguais"
+     ],
+     [
+      "salto",
+      "deslocamento de um terço do segmento, em x e em y"
+     ]
+    ]
+   },
+   "pista": "Calcule quanto x e y andam de A até B e divida cada um por 3.",
+   "passos": [
+    {
+     "faz": "Calcule o deslocamento de A até B",
+     "conta": "B − A = (7 − 1, 12 − 3) → B − A = (6, 9)",
+     "porque": "São 6 unidades em x e 9 em y.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida em três saltos iguais",
+     "conta": "salto = (6/3, 9/3) → salto = (2, 3)",
+     "porque": "Três partes iguais: cada salto é um terço do deslocamento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Dê o primeiro salto a partir de A",
+     "conta": "C = (1 + 2, 3 + 3) → C = (3, 6)",
+     "porque": "C é o ponto a um terço do caminho.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Dê o segundo salto",
+     "conta": "D = (3 + 2, 6 + 3) → D = (5, 9)",
+     "porque": "Um terceiro salto leva a (7, 12), que é B: confere.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à letra",
+     "conta": "C = (3, 6) e D = (5, 9) → alternativa E",
+     "porque": "Na ordem pedida, C primeiro.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — (3, 6) e (5, 9).",
+   "checagem": "C é o ponto médio de A e D: ((1 + 5)/2, (3 + 9)/2) = (3, 6); e D é o ponto médio de C e B: ((3 + 7)/2, (6 + 12)/2) = (5, 9). As três partes são iguais.",
+   "erradas": {
+    "A": "(2, 3) não confere: de A(1, 3) até (2, 3) y não muda, mas no segmento y sobe 3/2 para cada 1 de x.",
+    "B": "(4, 6) não confere: de A até (4, 6) x anda 3 e y anda 3, inclinação 1, e o segmento tem inclinação 9/6 = 3/2.",
+    "C": "(2, 3) não confere: está fora do segmento, pois de A até ele y não varia, e (5, 6) também fica fora (de A, x anda 4 e y anda 3).",
+    "D": "(3, 0) não confere: tem y = 0, abaixo de 3, mas todo ponto entre A e B tem y entre 3 e 12."
+   },
+   "armadilha": "Os pontos precisam estar sobre o segmento: confira a inclinação 3/2 antes de aceitar coordenadas que parecem \"redondas\".",
+   "alerta": "",
+   "essencial": {
+    "pede": "As coordenadas dos pontos que dividem AB em três partes iguais.",
+    "chave": "Salto de um terço: (6, 9)/3 = (2, 3), somado a A uma e duas vezes.",
+    "cuidado": "Confira se o ponto está sobre o segmento e na ordem C, D."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pontos médios",
+    "ideia": "C é o médio de A e D e D é o médio de C e B; ou use razão 1 : 2 e 2 : 1 na fórmula de divisão de segmento."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "B − A = (6, 9)",
+    "nota": "deslocamento total"
+   },
+   {
+    "linha": "salto = (6/3, 9/3) = (2, 3)",
+    "nota": "um terço do caminho"
+   },
+   {
+    "linha": "C = (1 + 2, 3 + 3) = (3, 6)",
+    "nota": "primeiro salto"
+   },
+   {
+    "linha": "D = (3 + 2, 6 + 3) = (5, 9)",
+    "nota": "segundo salto: alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0079"
+  }
+ },
+ "P8b904ae2": {
+  "n": "20",
+  "conceito": "Contagem de escolhas com peças idênticas e limite de 2 por forma: decidir quantas peças de cada forma.",
+  "equivocos": {
+   "B": "M13.3:ignorou-limite-por-tipo",
+   "C": "M13.3:arranjo-no-lugar-de-combinacao",
+   "D": "M13.3:pecas-identicas-como-distintas",
+   "E": "M13.3:contagem-sem-restricao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Peças da mesma forma são idênticas, então uma escolha fica definida só por quantas peças de cada forma Maria pega. Cada forma tem no máximo 2 peças e precisa aparecer pelo menos uma vez. Com 4 formas e 6 peças, as quantidades só podem ser 1 ou 2, e a conta mostra que duas formas entram com 2 e duas com 1. Resta escolher quais formas levam 2.",
+    "formulas": [
+     "escolha = (quantidade de quadrados, triângulos, discos, estrelas)",
+     "C(n, k) = n!/(k! · (n − k)!)"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "número de formas que entram com 2 peças"
+     ],
+     [
+      "C(4, 2)",
+      "modos de escolher 2 das 4 formas, sem ordem"
+     ]
+    ]
+   },
+   "pista": "Peças iguais não se distinguem: pense só em quantas peças de cada forma entram e quais valores são possíveis.",
+   "passos": [
+    {
+     "faz": "Veja quais quantidades são permitidas",
+     "conta": "cada forma: pelo menos 1 e no máximo 2 → quantidade 1 ou 2",
+     "porque": "Pelo menos uma de cada forma impõe o mínimo 1, e o estojo só tem 2 de cada forma.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Descubra quantas formas levam 2",
+     "conta": "4 · 1 + x = 6 → x = 6 − 4 → x = 2",
+     "porque": "Pegando uma de cada forma já são 4 peças; cada forma que sobe para 2 acrescenta uma peça, e faltam 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha quais formas levam 2",
+     "conta": "C(4, 2) = (4 · 3)/(2 · 1) → 6",
+     "porque": "Basta decidir quais 2 das 4 formas entram em dobro; a ordem dessas duas não importa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "6 maneiras → alternativa A",
+     "porque": "Como as peças da mesma forma são idênticas, cada escolha de formas em dobro é uma única maneira.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 6 maneiras",
+   "checagem": "Liste: com Q, T, D e E para as formas, os pares em dobro são QT, QD, QE, TD, TE e DE. São 6, e cada um completa 2 + 2 + 1 + 1 = 6 peças.",
+   "erradas": {
+    "B": "10 sai de esquecer o limite de 2 peças por forma: as soluções de a + b + c + d = 6 com cada termo pelo menos 1 são C(5, 3) = 10, contando casos como 3 + 1 + 1 + 1.",
+    "C": "12 sai de dar ordem às duas formas em dobro: 4 · 3 = 12. Escolher quadrado e triângulo é o mesmo que escolher triângulo e quadrado.",
+    "D": "24 sai de tratar peças da mesma forma como diferentes: C(4, 2) · 2 · 2 = 24, escolhendo qual das duas peças entra nas formas simples.",
+    "E": "30 não confere: mesmo sem exigir uma de cada forma, só há 10 modos de tirar 6 peças com no máximo 2 por forma."
+   },
+   "armadilha": "As peças da mesma forma são idênticas: o que muda uma escolha é só quais formas entram com 2 peças.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de modos de escolher 6 das 8 peças com ao menos uma de cada forma.",
+    "chave": "Só cabe 2 + 2 + 1 + 1; escolher as formas em dobro dá C(4, 2) = 6.",
+    "cuidado": "Peças iguais não se distinguem e cada forma tem no máximo 2 peças."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "o que fica fora",
+    "ideia": "Das 8 peças, ficam 2 de fora e não podem ser as duas da mesma forma; as 2 deixadas são de formas diferentes: C(4, 2) = 6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "quantidade por forma: 1 ou 2",
+    "nota": "mínimo 1, máximo 2"
+   },
+   {
+    "linha": "4 + x = 6",
+    "nota": "uma de cada forma já dá 4"
+   },
+   {
+    "linha": "x = 6 − 4 = 2",
+    "nota": "o 4 passa subtraindo"
+   },
+   {
+    "linha": "C(4, 2) = 6",
+    "nota": "quais formas levam 2: alternativa A"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P6b6b9540": {
+  "n": "17",
+  "conceito": "Resolver um sistema 2 × 2 com parâmetro e usar a condição a > 3 para decidir o sinal de cada coordenada.",
+  "equivocos": {
+   "A": "M04.3:quadrante-sem-checar-sinal",
+   "B": "M04.3:desigualdade-estrita-ignorada",
+   "D": "M04.3:quadrante-sem-checar-sinal",
+   "E": "M04.3:quadrante-sem-checar-sinal"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O ponto P é a solução do sistema, então primeiro ache x e y em função de a. As duas equações têm o mesmo +y: subtraindo uma da outra, o y some e o x sai na hora. Depois, a condição a > 3 decide o sinal de x e de y, e o sinal decide o quadrante.",
+    "formulas": [
+     "subtrair as equações elimina a incógnita de mesmo coeficiente",
+     "1º quadrante: x > 0 e y > 0"
+    ],
+    "simbolos": [
+     [
+      "a",
+      "número real dado, maior que 3"
+     ],
+     [
+      "P(x, y)",
+      "ponto cujas coordenadas são a solução do sistema"
+     ],
+     [
+      "quadrante",
+      "cada uma das quatro regiões do plano separadas pelos eixos"
+     ]
+    ]
+   },
+   "pista": "Repare que o y aparece com o mesmo coeficiente nas duas equações. O que acontece se você subtrair uma da outra?",
+   "passos": [
+    {
+     "faz": "Subtraia a 2ª equação da 1ª",
+     "conta": "(−x + y) − (−2x + y) = a − 3 → x = a − 3",
+     "porque": "O +y das duas se cancela e o −x menos −2x vira +x. Sobra o x em função de a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua x na 1ª equação",
+     "conta": "−(a − 3) + y = a → y = a + a − 3 → y = 2a − 3",
+     "porque": "Com o x conhecido, o −(a − 3) passa para o outro lado somando e o y fica isolado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use a > 3 para ver os sinais",
+     "conta": "a > 3 → x = a − 3 > 0 | a > 3 → y = 2a − 3 > 3 > 0",
+     "porque": "Se a passa de 3, a − 3 é positivo; e 2a passa de 6, então 2a − 3 passa de 3. As duas coordenadas são positivas e nenhuma é zero.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue os sinais ao quadrante",
+     "conta": "x > 0 e y > 0 → 1º quadrante → alternativa C",
+     "porque": "Coordenadas positivas e diferentes de zero põem P no primeiro quadrante, fora dos eixos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — ao primeiro quadrante, com x ≠ 0 e y ≠ 0",
+   "checagem": "Teste um valor: com a = 4, x = 1 e y = 5. Na 1ª equação, −1 + 5 = 4 = a; na 2ª, −2 + 5 = 3. Fecha, e (1, 5) está no 1º quadrante.",
+   "erradas": {
+    "A": "Eixo x não confere: exigiria y = 0, isto é, 2a − 3 = 0 → a = 3/2, que não é maior que 3.",
+    "B": "Eixo y sai de deixar a = 3, o limite: aí x = a − 3 = 0. Mas a > 3 é estrito, então x > 0.",
+    "D": "2º quadrante não confere: exigiria x < 0, isto é, a − 3 < 0 → a < 3, contra a condição a > 3.",
+    "E": "3º quadrante não confere: exigiria x < 0 e y < 0, isto é, a < 3/2, contra a condição a > 3."
+   },
+   "armadilha": "A condição a > 3 é estrita: é ela que tira P do eixo y (x = a − 3 seria zero só com a = 3).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Em que região do plano está a solução do sistema quando a > 3.",
+    "chave": "Subtraindo as equações, x = a − 3 e y = 2a − 3, ambos positivos para a > 3.",
+    "cuidado": "Confira o sinal de cada coordenada com a desigualdade estrita."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "regra de Cramer",
+    "ideia": "D = (−1)(1) − (1)(−2) = 1, Dx = a − 3 e Dy = −3 + 2a, logo x = a − 3 e y = 2a − 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "−x + y = a | −2x + y = 3",
+    "nota": "o sistema"
+   },
+   {
+    "linha": "x = a − 3",
+    "nota": "1ª menos 2ª: o y some"
+   },
+   {
+    "linha": "y = a + (a − 3) = 2a − 3",
+    "nota": "x na 1ª equação"
+   },
+   {
+    "linha": "a > 3 → x > 0 e y > 0 → P no 1º quadrante",
+    "nota": "sinais pela condição; alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ },
+ "P539d0583": {
+  "n": "16",
+  "conceito": "Soma dos coeficientes é o valor do polinômio em x = 1; produto das raízes de um polinômio de grau par é (termo independente)/(coeficiente líder).",
+  "equivocos": {
+   "A": "M16.1:sinal-do-produto-das-raizes",
+   "B": "M16.1:produto-das-raizes-errado",
+   "D": "M16.1:somou-valores-em-vez-de-multiplicar",
+   "E": "M16.1:sinal-da-soma-dos-coeficientes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Não precisa multiplicar p(x) por q(x) inteiro. A soma dos coeficientes de qualquer polinômio é o valor dele em x = 1, e o valor de um produto é o produto dos valores. O produto das raízes também sai sem expandir: as raízes de r(x) são as de p(x) mais as de q(x).",
+    "formulas": [
+     "soma dos coeficientes de r = r(1)",
+     "r(1) = p(1) · q(1)",
+     "grau 4: produto das raízes = (termo independente)/(coeficiente líder)"
+    ],
+    "simbolos": [
+     [
+      "r(1)",
+      "valor de r(x) quando x vale 1"
+     ],
+     [
+      "coeficiente líder",
+      "número que multiplica a maior potência de x"
+     ],
+     [
+      "termo independente",
+      "parte do polinômio sem x"
+     ],
+     [
+      "C",
+      "soma dos coeficientes de r(x)"
+     ],
+     [
+      "P",
+      "produto das raízes de r(x)"
+     ]
+    ]
+   },
+   "pista": "Troque x por 1 em p e em q separadamente antes de pensar em multiplicar os polinômios.",
+   "passos": [
+    {
+     "faz": "Calcule C pelo valor em x = 1",
+     "conta": "p(1) = 1 + 1 − 6 → −4 | q(1) = 1 + 1/2 − 1/2 → 1 | C = (−4) · 1 → −4",
+     "porque": "Em x = 1 cada potência vira 1 e sobra só a soma dos coeficientes. Como r = p · q, basta multiplicar os dois valores.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache as raízes de p(x)",
+     "conta": "x² + x − 6 = 0 → (x − 2)(x + 3) = 0 → x = 2 ou x = −3",
+     "porque": "Dois números de soma −1 e produto −6: 2 e −3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache as raízes de q(x)",
+     "conta": "x² + x/2 − 1/2 = 0 → 2x² + x − 1 = 0 → (2x − 1)(x + 1) = 0 → x = 1/2 ou x = −1",
+     "porque": "Multiplicar a equação por 2 tira as frações sem mudar as raízes. Toda raiz de p ou de q zera o produto r.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as quatro raízes",
+     "conta": "P = 2 · (−3) · 1/2 · (−1) → 3",
+     "porque": "r(x) tem grau 4 e exatamente essas quatro raízes. Dois sinais negativos deixam o produto positivo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some C e P",
+     "conta": "C + P = −4 + 3 → −1 → alternativa C",
+     "porque": "O pedido é a soma dos dois números encontrados.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — C + P = −1.",
+   "checagem": "Pelo termo independente: r(0) = p(0) · q(0) = (−6) · (−1/2) = 3, e o coeficiente líder de r é 1 · 1 = 1. Em grau par, o produto das raízes é 3/1 = 3. Fecha com P = 3.",
+   "erradas": {
+    "A": "−8 não confere: com C = −4, exigiria P = −4, mas o produto 2 · (−3) · 1/2 · (−1) tem dois fatores negativos e é positivo.",
+    "B": "−6 não confere: com C = −4, exigiria P = −2, mas P = r(0)/1 = (−6)(−1/2) = 3.",
+    "D": "0 sai de somar em vez de multiplicar os valores em x = 1: p(1) + q(1) = −4 + 1 = −3, e −3 + 3 = 0. Mas r = p · q, então r(1) = −4 · 1 = −4.",
+    "E": "7 sai de trocar o sinal de C: 4 + 3 = 7. Mas r(1) = p(1) · q(1) = (−4) · 1 = −4, que é negativo."
+   },
+   "armadilha": "r(x) é o produto p · q: o valor em x = 1 também se multiplica (−4 · 1), não se soma.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma C + P, com C a soma dos coeficientes e P o produto das raízes de r = p · q.",
+    "chave": "C = p(1) · q(1) = −4 e P = 2 · (−3) · 1/2 · (−1) = 3.",
+    "cuidado": "Soma dos coeficientes é o valor em x = 1, sem precisar expandir o produto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "Girard",
+    "ideia": "P = r(0)/1 = p(0) · q(0) = (−6) · (−1/2) = 3, sem achar raiz nenhuma."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p(1) = 1 + 1 − 6 = −4",
+    "nota": "x = 1 em p"
+   },
+   {
+    "linha": "q(1) = 1 + 1/2 − 1/2 = 1",
+    "nota": "x = 1 em q"
+   },
+   {
+    "linha": "C = (−4) · 1 = −4",
+    "nota": "r(1) = p(1) · q(1)"
+   },
+   {
+    "linha": "raízes: 2, −3, 1/2, −1 → P = 2 · (−3) · 1/2 · (−1) = 3",
+    "nota": "as de p e as de q; produto das raízes"
+   },
+   {
+    "linha": "C + P = −4 + 3 = −1",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0080"
+  }
+ }
+}

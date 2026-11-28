@@ -1,0 +1,673 @@
+{
+ "P22701677": {
+  "n": "42",
+  "conceito": "Progressão geométrica de razão 3: primeira hora em que o termo passa de um valor, com logaritmos.",
+  "equivocos": {
+   "A": "M06.5:fronteira-da-desigualdade",
+   "C": "M06.5:conta-errada-do-log",
+   "D": "M06.5:confundiu-as-bases"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Triplicar a cada hora dá 200 · 3ⁿ vírus após n horas. Dividindo 51 200 por 200, sai 256 = 2⁸, e a pergunta vira 3ⁿ > 2⁸. Com os logs dados, n > 5; como 3⁵ = 243 ainda não passa de 256, a primeira hora é a 6.ª.",
+    "formulas": [
+     "V(n) = 200 · 3ⁿ",
+     "3ⁿ > 256 ⇔ n · log 3 > 8 · log 2"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "horas cheias desde o início"
+     ],
+     [
+      "log",
+      "logaritmo na base 10"
+     ]
+    ]
+   },
+   "pista": "Divida 51 200 por 200 e reconheça a potência de 2 que aparece.",
+   "passos": [
+    {
+     "faz": "Monte a inequação",
+     "conta": "200 · 3ⁿ > 51 200 → 3ⁿ > 51200/200 = 256",
+     "porque": "O 200 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique log",
+     "conta": "n × 0,48 > 8 × 0,3 = 2,4",
+     "porque": "256 = 2⁸, então log 256 = 8 log 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole n",
+     "conta": "n > 2,4/0,48 = 5",
+     "porque": "O 0,48 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira o limite",
+     "conta": "3⁵ = 243 < 256 | 3⁶ = 729 > 256",
+     "porque": "Com n = 5 ainda são 48 600 vírus, menos que 51 200; a desigualdade é estrita.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "n = 6 → alternativa B",
+     "porque": "Primeira hora cheia em que passa de 51 200.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — na 6.ª hora",
+   "checagem": "Liste: 200, 600, 1800, 5400, 16 200, 48 600 (5 h), 145 800 (6 h). A primeira acima de 51 200 é a da 6.ª hora. Fecha.",
+   "erradas": {
+    "A": "5 sai de ler n > 5 como n = 5; na 5.ª hora há 200 × 243 = 48 600 vírus, menos que 51 200.",
+    "C": "7 não confere: já na 6.ª hora há 145 800 vírus, acima de 51 200.",
+    "D": "8 sai de confundir 256 = 2⁸ com 3⁸; o expoente 8 é da base 2, não da base 3."
+   },
+   "armadilha": "Parar em n = 5 porque a conta com logs deu exatamente 5: precisa ultrapassar, e 3⁵ = 243 < 256.",
+   "alerta": "Com os logaritmos aproximados dados, a conta dá n > 5 exatamente; a fronteira se decide pela conta exata 3⁵ = 243 < 256, e a resposta é 6.",
+   "essencial": {
+    "pede": "A primeira hora em que passa de 51 200 vírus.",
+    "chave": "3ⁿ > 256 = 2⁸; com os logs, n > 5, e 3⁵ = 243 não basta.",
+    "cuidado": "Desigualdade estrita: confira a fronteira com a conta exata."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lista da PG",
+    "ideia": "Multiplique por 3 a partir de 200 até passar de 51 200: isso acontece na 6.ª hora."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "200 · 3ⁿ > 51 200",
+    "nota": "condição"
+   },
+   {
+    "linha": "3ⁿ > 51200/200",
+    "nota": "o 200 vai dividindo"
+   },
+   {
+    "linha": "3ⁿ > 256",
+    "nota": "256 = 2⁸"
+   },
+   {
+    "linha": "n × 0,48 > 2,4",
+    "nota": "log dos dois lados"
+   },
+   {
+    "linha": "n > 2,4/0,48",
+    "nota": "o 0,48 vai dividindo"
+   },
+   {
+    "linha": "n > 5",
+    "nota": "3⁵ = 243 não passa"
+   },
+   {
+    "linha": "n = 6",
+    "nota": "6.ª hora"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
+ },
+ "P39992ddd": {
+  "n": "38",
+  "conceito": "Termos de uma PA e aumento percentual entre dois deles.",
+  "equivocos": {
+   "A": "M07.1:percentual-sobre-o-valor-novo",
+   "B": "M07.1:arredondamento",
+   "D": "M07.1:arredondamento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os exames crescem 20 por semana: PA com a₁ = 110 e r = 20. Calcule a 7.ª e a 10.ª semanas. O aumento percentual compara a diferença com o valor ANTIGO, o da 7.ª semana.",
+    "formulas": [
+     "aₙ = a₁ + (n − 1) × r",
+     "aumento percentual = (novo − antigo)/antigo × 100"
+    ],
+    "simbolos": [
+     [
+      "PA",
+      "progressão aritmética: cada termo é o anterior mais um número fixo"
+     ],
+     [
+      "r",
+      "razão da PA: o número que se soma de um termo para o seguinte"
+     ],
+     [
+      "aₙ",
+      "termo de posição n da sequência"
+     ]
+    ]
+   },
+   "pista": "Ache os dois termos antes de pensar em porcentagem.",
+   "passos": [
+    {
+     "faz": "Calcule a 7.ª semana",
+     "conta": "a₇ = 110 + 6 × 20 = 230",
+     "porque": "Seis saltos de 20 desde a 1.ª semana.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a 10.ª semana",
+     "conta": "a₁₀ = 110 + 9 × 20 = 290",
+     "porque": "Nove saltos de 20.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o aumento",
+     "conta": "290 − 230 = 60 → 60/230 ≈ 0,261",
+     "porque": "O aumento se mede em relação ao valor da 7.ª semana.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta para porcentagem",
+     "conta": "0,261 × 100 ≈ 26 %",
+     "porque": "A pergunta pede o valor aproximado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — cerca de 26 %",
+   "checagem": "Aplique 26 % sobre 230: 230 × 1,26 = 289,8, praticamente os 290 da 10.ª semana.",
+   "erradas": {
+    "A": "A sai de dividir o aumento pelo valor novo: 60/290 ≈ 0,207, cerca de 20 %; mas 230 × 1,20 = 276, longe de 290.",
+    "B": "B não confere: 230 × 1,23 = 282,9, abaixo dos 290 exames.",
+    "D": "D não confere: 230 × 1,29 = 296,7, acima dos 290 exames."
+   },
+   "armadilha": "O percentual é sobre a 7.ª semana (230), não sobre a 10.ª (290).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O aumento percentual da 10.ª semana em relação à 7.ª.",
+    "chave": "a₇ = 230 e a₁₀ = 290; 60/230 ≈ 26 %.",
+    "cuidado": "Divida pelo valor antigo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razão direta",
+    "ideia": "a₁₀/a₇ = 290/230 ≈ 1,26, ou seja, 26 % a mais."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a₇ = 110 + 6 × 20 = 230",
+    "nota": "7.ª semana"
+   },
+   {
+    "linha": "a₁₀ = 110 + 9 × 20 = 290",
+    "nota": "10.ª semana"
+   },
+   {
+    "linha": "290 − 230 = 60",
+    "nota": "aumento"
+   },
+   {
+    "linha": "60/230 ≈ 0,261",
+    "nota": "sobre o valor antigo"
+   },
+   {
+    "linha": "0,261 × 100 ≈ 26",
+    "nota": "em porcentagem"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0059"
+  }
+ },
+ "P66626638": {
+  "n": "40",
+  "conceito": "Seno no triângulo retângulo: altura de uma extremidade de um segmento inclinado em relação ao plano horizontal.",
+  "equivocos": {
+   "A": "M10.1:grau-lido-como-porcentagem",
+   "B": "M10.1:conta-sem-conferir",
+   "D": "M10.1:conta-sem-conferir"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O antebraço é a hipotenusa (35 cm), o cotovelo fica na mesa e o ângulo com a mesa é 30°. A altura do pulso é o cateto oposto a esse ângulo. Oposto se liga à hipotenusa pelo seno.",
+    "formulas": [
+     "cateto oposto = hipotenusa × sen do ângulo",
+     "sen 30° = 1/2"
+    ],
+    "simbolos": [
+     [
+      "h",
+      "altura do pulso em relação à mesa"
+     ],
+     [
+      "sen",
+      "seno: cateto oposto ÷ hipotenusa"
+     ]
+    ]
+   },
+   "pista": "Desenhe o antebraço inclinado a partir do cotovelo e baixe a altura do pulso até a mesa.",
+   "passos": [
+    {
+     "faz": "Identifique os lados do triângulo",
+     "conta": "hipotenusa = 35 cm | ângulo = 30° | h = cateto oposto",
+     "porque": "O cotovelo na mesa é o vértice do ângulo de 30°; a altura do pulso fica de frente para esse ângulo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique o seno",
+     "conta": "sen 30° = h/35 → h = 35 · sen 30°",
+     "porque": "Seno liga o cateto oposto à hipotenusa, que são exatamente o pedido e o dado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua sen 30°",
+     "conta": "h = 35 · 1/2 → h = 17,5 cm",
+     "porque": "sen 30° = 1/2 é valor notável.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "h = 17,5 cm → alternativa C",
+     "porque": "A pergunta é a altura do pulso, e foi o que se calculou.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 17,5 cm",
+   "checagem": "Num triângulo 30°-60°-90°, o cateto oposto a 30° é a metade da hipotenusa: metade de 35 é 17,5.",
+   "erradas": {
+    "A": "10,5 cm sai de usar 30 % no lugar de sen 30°: 0,3 × 35 = 10,5. O ângulo de 30° tem seno 0,5.",
+    "B": "15,5 cm não confere: 15,5 ÷ 35 ≈ 0,443, e sen 30° = 0,5.",
+    "D": "20,5 cm não confere: 20,5 ÷ 35 ≈ 0,586, e sen 30° = 0,5."
+   },
+   "armadilha": "30° não é 30 %: o seno de 30° é 0,5, não 0,3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A altura do pulso acima da mesa, com antebraço de 35 cm inclinado 30°.",
+    "chave": "h = 35 · sen 30° = 17,5 cm.",
+    "cuidado": "A altura é o cateto oposto ao ângulo: use seno, não cosseno."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "triângulo 30-60-90",
+    "ideia": "Oposto a 30° é sempre metade da hipotenusa: 35 ÷ 2 = 17,5 cm, sem fórmula."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "sen 30° = h/35",
+    "nota": "seno = oposto ÷ hipotenusa"
+   },
+   {
+    "linha": "h = 35 · sen 30°",
+    "nota": "o 35 passa multiplicando"
+   },
+   {
+    "linha": "h = 35 · 1/2 = 17,5",
+    "nota": "sen 30° = 1/2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ },
+ "P11ff5560": {
+  "n": "41",
+  "conceito": "Volume de cilindro com conversão mm → cm e cm³ → cL, somando porcentagens de dois recipientes.",
+  "equivocos": {
+   "A": "M11.2:parou-na-capacidade",
+   "C": "M11.2:recipientes-cheios",
+   "D": "M11.2:contou-so-um-recipiente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O diâmetro vem em milímetros e a altura em centímetros: passe tudo para centímetros antes. Depois some as frações cheias dos dois recipientes (80 % + 50 % = 130 % de um recipiente). No fim converta: 1 cL = 10 mL = 10 cm³.",
+    "formulas": [
+     "V = π · r² · h",
+     "1 cm³ = 1 mL",
+     "1 cL = 10 mL"
+    ],
+    "simbolos": [
+     [
+      "mm",
+      "milímetro; 10 mm = 1 cm"
+     ],
+     [
+      "cL",
+      "centilitro, a centésima parte do litro (a prova escreve cl)"
+     ],
+     [
+      "π",
+      "use 3, como manda a prova"
+     ]
+    ]
+   },
+   "pista": "Diâmetro de 40 mm: quanto é isso em centímetros, e qual é o raio?",
+   "passos": [
+    {
+     "faz": "Converta e tire o raio",
+     "conta": "d = 40 mm = 4 cm → r = 4/2 = 2 cm",
+     "porque": "A altura está em cm; o diâmetro precisa estar também, e a fórmula usa o raio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a capacidade de um recipiente",
+     "conta": "V = 3 · 2² · 12 → V = 3 · 4 · 12 → V = 144 cm³",
+     "porque": "Área da base vezes a altura, com π = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as partes preenchidas",
+     "conta": "0,80 · 144 + 0,50 · 144 → 1,3 · 144 → 187,2 mL",
+     "porque": "Os dois recipientes são idênticos: juntos têm 130 % de um recipiente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta para centilitros",
+     "conta": "187,2/10 → 18,72 cL",
+     "porque": "Cada centilitro tem 10 mL.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "18,72 cL → alternativa B",
+     "porque": "É o volume total das duas amostras.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 18,72 cL",
+   "checagem": "Separe as amostras: 80 % de 144 = 115,2 mL e 50 % de 144 = 72 mL; 115,2 + 72 = 187,2 mL = 18,72 cL.",
+   "erradas": {
+    "A": "14,4 cL sai de parar na capacidade de um recipiente: 144 mL = 14,4 cL, sem aplicar 80 % e 50 %.",
+    "C": "28,8 cL sai de somar os dois recipientes cheios: 2 · 144 = 288 mL = 28,8 cL.",
+    "D": "11,52 cL sai de contar só o primeiro recipiente: 0,8 · 144 = 115,2 mL = 11,52 cL."
+   },
+   "armadilha": "40 mm é o diâmetro: o raio é 2 cm, não 4 cm nem 40.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume, em cL, das duas amostras (80 % e 50 % de recipientes iguais).",
+    "chave": "Um recipiente: 3 · 2² · 12 = 144 mL; 1,3 · 144 = 187,2 mL = 18,72 cL.",
+    "cuidado": "Converta mm para cm, use o raio e some as duas porcentagens."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "em litros",
+    "ideia": "144 cm³ = 0,144 L; 1,3 · 0,144 = 0,1872 L, e 1 L = 100 cL dá 18,72 cL."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "40 mm = 4 cm → r = 2 cm",
+    "nota": "converte e tira o raio"
+   },
+   {
+    "linha": "V = 3 · 2² · 12 = 144 cm³",
+    "nota": "um recipiente"
+   },
+   {
+    "linha": "0,8 + 0,5 = 1,3",
+    "nota": "soma das frações cheias"
+   },
+   {
+    "linha": "1,3 · 144 = 187,2 mL",
+    "nota": "volume das amostras"
+   },
+   {
+    "linha": "187,2 mL = 18,72 cL",
+    "nota": "divide por 10"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ },
+ "P45c194c9": {
+  "n": "37",
+  "conceito": "Descobrir a interseção das três cidades pela união e tirá-la de Palmas e Gurupi.",
+  "equivocos": {
+   "B": "M13.6:esqueceu-a-intersecao-tripla",
+   "C": "M13.6:valor-sem-teste-de-consistencia",
+   "D": "M13.6:somou-os-conjuntos-em-vez-da-intersecao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os 76 que atuaram em Palmas e Gurupi incluem quem atuou também em Araguaína; a pergunta quer só quem nunca foi a Araguaína. Para tirar essa parte, é preciso descobrir quantos atuaram nas três cidades, e isso sai da união: 470 médicos menos os 36 de fora.",
+    "formulas": [
+     "união = P + G + A − (P e G) − (P e A) − (G e A) + (as três)",
+     "P e G sem A = (P e G) − (as três)"
+    ],
+    "simbolos": [
+     [
+      "P, G, A",
+      "Palmas, Gurupi, Araguaína"
+     ],
+     [
+      "t",
+      "médicos que atuaram nas três cidades"
+     ]
+    ]
+   },
+   "pista": "A pergunta tem um \"nunca em Araguaína\": descubra primeiro quantos atuaram nas três cidades.",
+   "passos": [
+    {
+     "faz": "Ache a união das três cidades",
+     "conta": "470 − 36 = 434",
+     "porque": "Os 36 que nunca atuaram nessas cidades ficam fora; os demais estão em pelo menos uma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a união e ache t",
+     "conta": "235 + 212 + 258 − 127 − 76 − 110 + t = 434 → 392 + t = 434 → t = 42",
+     "porque": "A fórmula da união é o único lugar onde t aparece. O 392 passa subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire as três cidades de Palmas e Gurupi",
+     "conta": "76 − 42 = 34",
+     "porque": "Os 76 incluem os 42 que também atuaram em Araguaína.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Transforme em percentual",
+     "conta": "34/470 ≈ 0,0723 = 7,23%",
+     "porque": "O percentual é sobre os 470 cooperados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "7,23% ≈ 7,2% → alternativa A",
+     "porque": "É o percentual mais próximo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 7,2%",
+   "checagem": "Monte o diagrama com t = 42: só P = 235 − 127 − 76 + 42 = 74, só G = 212 − 76 − 110 + 42 = 68, só A = 258 − 127 − 110 + 42 = 63, P e A sem G = 85, G e A sem P = 68, P e G sem A = 34. 74 + 68 + 63 + 85 + 68 + 34 + 42 + 36 = 470: fecha.",
+   "erradas": {
+    "B": "16,5% sai de não tirar os que atuaram nas três: 76/470 ≈ 16,2%, e a alternativa mais próxima é 16,5%. Os 76 incluem 42 que também atuaram em Araguaína.",
+    "C": "40,2% não confere: 40,2% de 470 dá cerca de 189 médicos, mais do que os 76 que atuaram em Palmas e Gurupi no total.",
+    "D": "95,1% sai de somar Palmas e Gurupi: (235 + 212)/470 = 447/470 ≈ 95,1%. A pergunta é quem atuou nas duas, sem Araguaína."
+   },
+   "armadilha": "\"Palmas e Gurupi\" (76) inclui quem também atuou em Araguaína; para \"nunca em Araguaína\" é preciso tirar os 42 das três cidades.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O percentual dos 470 médicos que atuaram em Palmas e Gurupi, mas nunca em Araguaína.",
+    "chave": "União 434 dá t = 42; Palmas e Gurupi sem Araguaína = 76 − 42 = 34; 34/470 ≈ 7,2%.",
+    "cuidado": "Tire os das três cidades dos 76 antes de dividir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem por número de cidades",
+    "ideia": "Chame de n1, n2 e t quem atuou em exatamente uma, duas e três cidades. As duplas somam 127 + 76 + 110 = 313 = n2 + 3t; a união dá n1 + n2 + t = 434; as cidades somam 235 + 212 + 258 = 705 = n1 + 2n2 + 3t. Somando as duas primeiras, n1 + 2n2 + 4t = 747, então 747 − t = 705 e t = 42; 76 − 42 = 34 e 34/470 ≈ 7,2%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "união = 470 − 36 = 434",
+    "nota": "tirar quem não atuou nas três"
+   },
+   {
+    "linha": "392 + t = 434 → t = 434 − 392 = 42",
+    "nota": "o 392 passa subtraindo"
+   },
+   {
+    "linha": "76 − 42 = 34",
+    "nota": "Palmas e Gurupi sem Araguaína"
+   },
+   {
+    "linha": "34/470 ≈ 0,072",
+    "nota": "percentual sobre os 470"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
+ },
+ "P7ac3030c": {
+  "n": "39",
+  "conceito": "Média e mediana de oito tempos de espera e a diferença entre elas.",
+  "equivocos": {
+   "A": "M14.1:supos-media-igual-a-mediana",
+   "B": "M14.1:arredondou-a-media",
+   "C": "M14.1:mediana-com-um-so-termo-central"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São oito tempos; calcule a média e a mediana e subtraia. Com número par de dados, a mediana é a média dos dois valores centrais do rol. As alternativas só pedem comparar a diferença com 1 minuto.",
+    "formulas": [
+     "média = soma ÷ 8",
+     "mediana (n = 8) = (4º termo + 5º termo)/2 no rol"
+    ],
+    "simbolos": [
+     [
+      "média",
+      "soma dos tempos dividida pela quantidade"
+     ],
+     [
+      "mediana",
+      "valor do meio dos tempos ordenados"
+     ],
+     [
+      "rol",
+      "lista em ordem crescente"
+     ]
+    ]
+   },
+   "pista": "Ordene os oito tempos antes de procurar o meio; a média sai da soma.",
+   "passos": [
+    {
+     "faz": "Some os tempos e divida por 8",
+     "conta": "30 + 40 + 28 + 25 + 20 + 40 + 35 + 25 = 243 → 243/8 = 30,375 min",
+     "porque": "A média reparte o total de espera igualmente entre os oito pacientes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ordene e ache a mediana",
+     "conta": "20, 25, 25, 28, 30, 35, 40, 40 → (28 + 30)/2 = 29 min",
+     "porque": "Com oito dados não há um termo central único: a mediana é a média do 4º e do 5º termos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia as duas medidas",
+     "conta": "30,375 − 29 = 1,375 min",
+     "porque": "A pergunta é a diferença entre os dois indicadores.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com 1 minuto",
+     "conta": "1,375 > 1 → alternativa D",
+     "porque": "A diferença passa de 1 minuto, que é o corte usado nas alternativas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — a diferença é maior do que 1 minuto (1,375 min)",
+   "checagem": "Confira a média pelos desvios em relação a 29: −9, −4, −4, −1, +1, +6, +11, +11 somam 11; 11/8 = 1,375. A média fica 1,375 acima da mediana.",
+   "erradas": {
+    "A": "A não confere: a média é 243/8 = 30,375 e a mediana 29; elas não são iguais.",
+    "B": "B sai de arredondar a média 30,375 para 30: 30 − 29 = 1. Sem arredondar, a diferença é 1,375 min.",
+    "C": "C sai de tomar o 5º termo, 30, como mediana: 30,375 − 30 = 0,375. Com oito dados, a mediana é (28 + 30)/2 = 29."
+   },
+   "armadilha": "Com número par de dados, a mediana é a média dos dois centrais (28 e 30), e não um deles.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A diferença entre a média e a mediana dos oito tempos de espera.",
+    "chave": "Média 243/8 = 30,375 e mediana (28 + 30)/2 = 29: diferença de 1,375 min.",
+    "cuidado": "Ordene e, com oito dados, faça a média dos dois termos centrais."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "desvios em torno da mediana",
+    "ideia": "Some os desvios de cada tempo em relação a 29 (dá 11) e divida por 8: a média fica 1,375 acima da mediana."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "30 + 40 + 28 + 25 + 20 + 40 + 35 + 25 = 243",
+    "nota": "soma dos tempos"
+   },
+   {
+    "linha": "243/8 = 30,375",
+    "nota": "média"
+   },
+   {
+    "linha": "20, 25, 25, 28, 30, 35, 40, 40 → (28 + 30)/2 = 29",
+    "nota": "mediana"
+   },
+   {
+    "linha": "30,375 − 29 = 1,375 > 1",
+    "nota": "diferença maior que 1 minuto"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
+ }
+}

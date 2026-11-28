@@ -1,0 +1,1300 @@
+{
+ "P462e3fb2": {
+  "n": "12",
+  "conceito": "Número de divisores a partir da fatoração em primos.",
+  "equivocos": {
+   "A": "M01.4:nao-viu-paridade-dos-expoentes",
+   "B": "M01.4:achou-que-a-pode-ser-zero",
+   "D": "M01.4:fixou-tres-primos",
+   "E": "M01.4:fixou-tres-primos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se n = p^a · q^b · ..., o número de divisores positivos é (a + 1)(b + 1)··· . Escreva m = 2^a · (parte ímpar); então 16m = 2^(a + 4) · (parte ímpar), e o fator de 2 contribui com (a + 5).",
+    "formulas": [
+     "d(n) = (a + 1)(b + 1)···",
+     "231 = 3 · 7 · 11"
+    ],
+    "simbolos": []
+   },
+   "pista": "231 é ímpar. O que isso diz sobre cada fator (expoente + 1)?",
+   "passos": [
+    {
+     "faz": "Escreva 16m em fatores primos",
+     "conta": "m = 2^a · (parte ímpar) → 16m = 2^(a + 4) · (parte ímpar)",
+     "porque": "O número de divisores é o produto dos (expoente + 1); o fator 2 contribui com a + 4 + 1 = a + 5, e esse produto tem de dar 231.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Veja os valores possíveis de a + 5",
+     "conta": "a + 5 divide 231 e a + 5 ≥ 5 → a + 5 ∈ {7, 11, 21, 33, 77, 231}",
+     "porque": "Como a ≥ 0, a + 5 ≥ 5; e 5 não divide 231, então a + 5 não pode ser 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Afirmação I",
+     "conta": "a + 5 ≥ 7 → a ≥ 2 → m par",
+     "porque": "Com a ≥ 2, m tem pelo menos 2² como fator: é par.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Afirmação II",
+     "conta": "231 ímpar → cada (expoente + 1) é ímpar → todo expoente de 16m é par; a + 4 par → a par",
+     "porque": "Os expoentes de m são os de 16m, só o do 2 tem 4 a menos: todos pares, então m é quadrado perfeito. II verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Afirmação III",
+     "conta": "m = 2^226 → 16m = 2^230 → 230 + 1 = 231 divisores, um só primo",
+     "porque": "m = 2^226 cumpre o enunciado e 16m = 2^230 tem um só primo: III pode falhar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Juntar",
+     "conta": "I e II → alternativa C",
+     "porque": "Apenas I e II.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — I e II.",
+   "checagem": "Exemplos: m = 2^226 dá 16m = 2^230, com 231 divisores e um só primo; m = 2^2 · 3^10 · 5^2 dá 16m = 2^6 · 3^10 · 5^2, com 7 · 11 · 3 = 231 divisores e três primos. Nos dois, m é par e quadrado ((2^113)² e (2 · 3^5 · 5)²). Então III pode ou não ocorrer, e I e II valem sempre. Confere.",
+   "erradas": {
+    "A": "Omite II, mas todos os expoentes são pares (231 é ímpar), então m é quadrado.",
+    "B": "Omite I, mas a + 5 não pode ser 5 (5 não divide 231), logo a ≥ 2 e m é par.",
+    "D": "III falha com m = 2^226: 16m = 2^230 tem um só fator primo.",
+    "E": "III não é obrigatória (contraexemplo 2^230), e falta I."
+   },
+   "armadilha": "Achar que 231 = 3 · 7 · 11 obriga três primos distintos; 231 também é 231 · 1 (um primo só) ou 21 · 11 etc.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Afirmações verdadeiras.",
+    "chave": "231 ímpar → expoentes pares; a + 5 ≠ 5 → a ≥ 2.",
+    "cuidado": "A fatoração de 231 não fixa a quantidade de primos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso m ímpar",
+    "ideia": "Se m fosse ímpar, 16m = 2^4 · m e o número de divisores seria 5 · d(m), múltiplo de 5. Como 231 não é múltiplo de 5, m é par (I). Para II, a paridade dos fatores de 231 basta."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "16m = 2^(a + 4) · ...",
+    "nota": "fatoração"
+   },
+   {
+    "linha": "(a + 5)(...) = 231",
+    "nota": "divisores"
+   },
+   {
+    "linha": "a ≥ 2, todos expoentes pares",
+    "nota": "I e II"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  },
+  "super_revisao": [
+   "2026-11-23"
+  ]
+ },
+ "Pf670fe9d": {
+  "n": "1",
+  "conceito": "Área de triângulo com vértices dados por números complexos (determinante das coordenadas).",
+  "equivocos": {
+   "A": "M16.2:valor-que-nao-fecha-a-area",
+   "C": "M16.2:valor-que-nao-fecha-a-area",
+   "D": "M16.2:valor-que-nao-fecha-a-area",
+   "E": "M16.2:valor-que-nao-fecha-a-area"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada número complexo é um ponto: 1 = (1, 0), z = (a, 2) e z² = (a² − 4, 4a). Com os três pontos, a área sai do determinante das coordenadas, dividido por 2. Isso dá uma equação do 2º grau em a.",
+    "formulas": [
+     "z² = (a + 2i)² = a² − 4 + 4a·i",
+     "área = |D|/2, D = determinante das coordenadas com coluna de 1"
+    ],
+    "simbolos": [
+     [
+      "plano de Argand-Gauss",
+      "plano em que a + bi é o ponto (a, b)"
+     ],
+     [
+      "D",
+      "determinante 3 × 3 das linhas (x, y, 1)"
+     ]
+    ]
+   },
+   "pista": "Antes de calcular área, escreva z² na forma a + bi para ter as coordenadas dos três pontos.",
+   "passos": [
+    {
+     "faz": "Calcule z²",
+     "conta": "(a + 2i)² = a² + 4a·i + 4i² → a² − 4 + 4a·i",
+     "porque": "i² = −1 faz o 4i² virar −4, que vai para a parte real.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o determinante",
+     "conta": "D = 1·(2 − 4a) − 0 + 1·(4a² − 2(a² − 4)) → D = 2a² − 4a + 10",
+     "porque": "Linhas (1, 0, 1), (a, 2, 1) e (a² − 4, 4a, 1); desenvolvendo pela primeira linha.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale a área a 200",
+     "conta": "(2a² − 4a + 10)/2 = 200 → a² − 2a + 5 = 200 → a² − 2a − 195 = 0",
+     "porque": "Dividir por 2 é a fórmula da área; o 200 passa subtraindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva e escolha a positiva",
+     "conta": "(a − 15)(a + 13) = 0 → a = 15 ou a = −13 → a = 15",
+     "porque": "O enunciado diz que a é positivo. Alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 15",
+   "checagem": "Com a = 15: os pontos são (1, 0), (15, 2) e (221, 60). Vetores (14, 2) e (220, 60): 14·60 − 2·220 = 840 − 440 = 400, e 400/2 = 200.",
+   "erradas": {
+    "A": "14 não confere: a² − 2a + 5 com a = 14 dá 196 − 28 + 5 = 173, não 200.",
+    "C": "16 não confere: 256 − 32 + 5 = 229, não 200.",
+    "D": "17 não confere: 289 − 34 + 5 = 260, não 200.",
+    "E": "18 não confere: 324 − 36 + 5 = 293, não 200."
+   },
+   "armadilha": "Esquecer que i² = −1 em z² e usar (a², 4a) como ponto, ou esquecer de dividir o determinante por 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O a positivo que faz o triângulo de vértices 1, z, z² ter área 200.",
+    "chave": "Área = metade do determinante: a² − 2a + 5 = 200.",
+    "cuidado": "Escreva z² = a² − 4 + 4ai antes de tirar as coordenadas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar as alternativas",
+    "ideia": "Teste a² − 2a + 5 = 200 nas opções: só 15 dá 225 − 30 + 5 = 200."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "z² = a² − 4 + 4a·i",
+    "nota": "quadrado do complexo"
+   },
+   {
+    "linha": "D = 2 − 4a + 4a² − 2a² + 8 = 2a² − 4a + 10",
+    "nota": "determinante"
+   },
+   {
+    "linha": "(2a² − 4a + 10)/2 = 200",
+    "nota": "área = D/2"
+   },
+   {
+    "linha": "a² − 2a + 5 = 200 → a² − 2a − 195 = 0",
+    "nota": "200 passa subtraindo"
+   },
+   {
+    "linha": "(a − 15)(a + 13) = 0 → a = 15",
+    "nota": "raiz positiva"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
+ },
+ "P67d9c31b": {
+  "n": "7",
+  "conceito": "Sistemas equivalentes: o sistema I é indeterminado, e sua família de soluções tem de satisfazer o sistema II para todo valor do parâmetro.",
+  "equivocos": {
+   "B": "M04.3:nao-exigiu-validade-para-todo-z",
+   "C": "M04.3:nao-exigiu-validade-para-todo-z",
+   "D": "M04.3:nao-exigiu-validade-para-todo-z",
+   "E": "M04.3:inverteu-a-divisao-final"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Comece pelo sistema I, que não tem parâmetro. Ele tem infinitas soluções, que dependem de z. Sistemas equivalentes têm o mesmo conjunto solução, então toda solução de I tem de satisfazer cada equação de II, qualquer que seja z. Uma expressão do tipo a·z + b = c vale para todo z só se a = 0 e b = c.",
+    "formulas": [
+     "mesma solução para todo z: coeficiente de z = 0 e termo sem z igual ao outro lado"
+    ],
+    "simbolos": [
+     [
+      "sistemas equivalentes",
+      "sistemas com exatamente o mesmo conjunto de soluções"
+     ],
+     [
+      "m, n, k",
+      "números reais desconhecidos do sistema II"
+     ],
+     [
+      "z",
+      "variável livre: cada valor de z dá uma solução de I"
+     ]
+    ]
+   },
+   "pista": "Resolva primeiro o sistema I deixando x e y em função de z; depois leve essa solução para a 3ª equação de II.",
+   "passos": [
+    {
+     "faz": "Elimine x no sistema I",
+     "conta": "(x + 2y − z) − (x + y + z) = 2 − 1 → y − 2z = 1 → y = 1 + 2z",
+     "porque": "Subtraindo a 1ª equação da 2ª, o x some e sobra uma relação entre y e z.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva x em função de z",
+     "conta": "x + (1 + 2z) + z = 1 → x = −3z ; 3ª de I: 2(−3z) + (1 + 2z) + 4z = 1 → 1 = 1",
+     "porque": "A 3ª equação de I vira 1 = 1 para todo z: o sistema I é indeterminado, com soluções (−3z, 1 + 2z, z).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache m e n pela 2ª equação de II",
+     "conta": "−3z + m(1 + 2z) + nz = 5 → m + (2m + n − 3)z = 5 → m = 5 e 2·5 + n − 3 = 0 → n = −7",
+     "porque": "A igualdade tem de valer para todo z: o termo sem z dá m = 5 e o coeficiente de z precisa zerar, o que dá n.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache k pela 3ª equação de II",
+     "conta": "k(−3z) + (1 + 2z) − z = 3·5 + 2·(−7) → 1 + (1 − 3k)z = 1 → 1 − 3k = 0 → k = 1/3",
+     "porque": "O lado direito vale 15 − 14 = 1, igual ao termo sem z. Para valer em todo z, o coeficiente 1 − 3k tem de ser zero.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "k = 1/3 → alternativa A",
+     "porque": "A pergunta é só o valor de k.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1/3",
+   "checagem": "Teste uma solução concreta de I, z = 3: (x, y, z) = (−9, 7, 3). Na 2ª de II: −9 + 5·7 − 7·3 = 5. Na 3ª: (1/3)(−9) + 7 − 3 = 1 = 3·5 + 2·(−7). As duas equações fecham.",
+   "erradas": {
+    "B": "1/2 não confere: com a solução (−3, 3, 1) de I, a 3ª de II dá −3·(1/2) + 3 − 1 = 0,5, e o lado direito é 3m + 2n = 1.",
+    "C": "1 não confere: com a solução (−3, 3, 1), a 3ª de II dá −3 + 3 − 1 = −1, longe do 1 que o lado direito exige.",
+    "D": "2 não confere: com a solução (−3, 3, 1), a 3ª de II dá −6 + 3 − 1 = −4, e não 1.",
+    "E": "3 sai de inverter a divisão no fim: de 1 − 3k = 0 escreveu k = 3 em vez de k = 1/3. Teste: −9 + 3 − 1 = −7 com a solução (−3, 3, 1), e não 1."
+   },
+   "armadilha": "O sistema I tem infinitas soluções; quem testa uma única solução não fixa k, e é preciso exigir a igualdade para todo z.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de k para que o sistema II tenha o mesmo conjunto solução do sistema I.",
+    "chave": "I dá (−3z, 1 + 2z, z); em II isso força m = 5, n = −7 e, na 3ª equação, 1 − 3k = 0, logo k = 1/3.",
+    "cuidado": "Exija a igualdade para todo z: coeficiente de z igual a zero."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "duas soluções particulares",
+    "ideia": "Use as soluções (0, 1, 0) e (−3, 3, 1) de I: a 1ª dá m = 5 e 3m + 2n = 1, logo n = −7; a 2ª na 3ª de II dá −3k + 2 = 1, k = 1/3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "y − 2z = 1 → y = 1 + 2z",
+    "nota": "2ª de I menos a 1ª"
+   },
+   {
+    "linha": "x = 1 − y − z → x = −3z",
+    "nota": "volta na 1ª de I"
+   },
+   {
+    "linha": "m + (2m + n − 3)z = 5 → m = 5, n = −7",
+    "nota": "2ª de II para todo z"
+   },
+   {
+    "linha": "1 + (1 − 3k)z = 15 − 14 = 1",
+    "nota": "3ª de II com a solução de I"
+   },
+   {
+    "linha": "1 − 3k = 0 → k = 1/3",
+    "nota": "coeficiente de z zera"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
+ },
+ "P4debcb7f": {
+  "n": "4",
+  "conceito": "Usar a não injetividade de 2x² − x + 1 nos positivos para concluir que g não é injetora, e testar as outras afirmações com exemplos.",
+  "equivocos": {
+   "A": "M05.5:afirmou-o-que-nao-se-garante",
+   "B": "M05.5:afirmou-o-que-nao-se-garante",
+   "C": "M05.5:afirmou-o-que-nao-se-garante",
+   "E": "M05.5:afirmou-o-que-nao-se-garante"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A igualdade amarra g, nos números positivos x², aos valores de f em 2x² − x + 1. O segredo está nesse lado direito: a parábola h(x) = 2x² − x + 1 tem vértice em x = 1/4, dentro dos positivos, então dois x positivos simétricos em torno de 1/4 dão o mesmo h. Isso força g a repetir valor em dois pontos diferentes. As outras afirmações caem com um exemplo de f e g que cumpra a igualdade.",
+    "formulas": [
+     "injetora: x₁ ≠ x₂ ⇒ g(x₁) ≠ g(x₂)",
+     "vértice de 2x² − x + 1: x_v = −(−1)/(2 · 2) = 1/4",
+     "pontos simétricos ao vértice: x₁ + x₂ = 2 · (1/4) = 1/2"
+    ],
+    "simbolos": [
+     [
+      "injetora",
+      "x diferentes sempre dão valores diferentes"
+     ],
+     [
+      "sobrejetora",
+      "todo número real é valor da função para algum x"
+     ],
+     [
+      "h(x)",
+      "apelido para 2x² − x + 1"
+     ]
+    ]
+   },
+   "pista": "Procure dois valores positivos de x que deem o mesmo 2x² − x + 1.",
+   "passos": [
+    {
+     "faz": "Ache o vértice de h",
+     "conta": "x_v = −(−1)/(2 · 2) → x_v = 1/4",
+     "porque": "O vértice cai em x > 0, então h desce e depois sobe dentro do domínio da igualdade.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha dois x simétricos ao vértice",
+     "conta": "h(1/8) = 2/64 − 1/8 + 1 = 29/32 | h(3/8) = 18/64 − 3/8 + 1 = 29/32",
+     "porque": "1/8 e 3/8 estão a 1/8 de distância de 1/4, um de cada lado: dão o mesmo valor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leve à igualdade dada",
+     "conta": "g((1/8)²) = f(29/32) = g((3/8)²) → g(1/64) = g(9/64)",
+     "porque": "Os dois lados direitos são f do mesmo número, então os lados esquerdos são iguais.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descarte as outras afirmações",
+     "conta": "f(t) = t − 7/8 e g(s) = 2s − √s + 1/8 (s > 0) cumprem a igualdade",
+     "porque": "Com esse exemplo, f é injetora e sobrejetora, o que derruba A e B; C e E caem com exemplos semelhantes (ver as erradas).",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua sobre g",
+     "conta": "1/64 ≠ 9/64 e g(1/64) = g(9/64) → g não é injetora → alternativa D",
+     "porque": "Dois pontos diferentes com o mesmo valor: é exatamente o que nega a injetividade, para quaisquer f e g da questão.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — g não é injetora",
+   "checagem": "Por fatoração: h(x₁) − h(x₂) = 2(x₁² − x₂²) − (x₁ − x₂) = (x₁ − x₂)(2(x₁ + x₂) − 1), que zera sempre que x₁ + x₂ = 1/2. Com 1/8 + 3/8 = 1/2, confere: h repete valor, e g também.",
+   "erradas": {
+    "A": "A não confere: f(t) = t − 7/8 é sobrejetora e cumpre a igualdade com g(s) = 2s − √s + 1/8 para s > 0, pois g(x²) = 2x² − x + 1/8 = f(2x² − x + 1).",
+    "B": "B não confere: no mesmo exemplo, f(t) = t − 7/8 é injetora (t diferentes dão valores diferentes), e a igualdade vale para todo x > 0.",
+    "C": "C não confere: no mesmo exemplo, pondo g(s) = s para s ≤ 0, g cobre (−∞, 0]; para s > 0, cobre [0, +∞) (mínimo 0 em √s = 1/4). Logo g é sobrejetora.",
+    "E": "E não confere: f e g iguais a zero em todo ponto cumprem a igualdade (0 = 0) e têm f(a) = g(a) para todo a > 0."
+   },
+   "armadilha": "A igualdade não diz nada sobre f ou g sozinhas; o que ela força é g repetir valor, porque 2x² − x + 1 repete valor para x positivos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação vale sempre que g(x²) = f(2x² − x + 1) para todo x > 0.",
+    "chave": "2x² − x + 1 tem vértice em x = 1/4 > 0: h(1/8) = h(3/8), logo g(1/64) = g(9/64) e g não é injetora.",
+    "cuidado": "Para afirmar algo, precisa valer em todos os casos; um único exemplo de f e g derruba as outras."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "exemplo concreto",
+    "ideia": "Com f(t) = t e g(s) = 2s − √s + 1 para s > 0, a igualdade vale e g(1/64) = g(9/64) = 29/32: a repetição aparece já no exemplo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x_v = 1/(2 · 2) = 1/4",
+    "nota": "vértice de h"
+   },
+   {
+    "linha": "h(1/8) = 1/32 − 4/32 + 32/32 = 29/32",
+    "nota": "um lado do vértice"
+   },
+   {
+    "linha": "h(3/8) = 9/32 − 12/32 + 32/32 = 29/32",
+    "nota": "o outro lado"
+   },
+   {
+    "linha": "g(1/64) = f(29/32) = g(9/64)",
+    "nota": "g repete valor"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
+ },
+ "P95130007": {
+  "n": "6",
+  "conceito": "Equação exponencial que vira 2º grau em y = 3ˣ: duas soluções reais distintas exigem duas raízes y positivas e distintas.",
+  "equivocos": {
+   "A": "M06.2:intervalo-restrito-demais",
+   "C": "M06.2:intervalo-restrito-demais",
+   "D": "M06.2:esqueceu-que-3-x-e-positivo",
+   "E": "M06.2:esqueceu-raiz-dupla"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com y = 3ˣ, a equação vira y² − (3a + 4)y + 2a² + 9a − 5 = 0. Cada raiz y positiva dá exatamente um x, e raiz y negativa ou nula não dá nenhum. Então duas soluções em x pedem duas raízes y diferentes e as duas positivas. O discriminante aqui é um quadrado perfeito, e as raízes saem prontas.",
+    "formulas": [
+     "9ˣ = (3ˣ)² = y²",
+     "Δ = b² − 4ac; y = (−b ± √Δ)/(2a)"
+    ],
+    "simbolos": [
+     [
+      "Δ",
+      "discriminante da equação do 2º grau"
+     ],
+     [
+      "a ∈ ℝ",
+      "a é um número real qualquer"
+     ],
+     [
+      "(1/2, ∞) \\ {6}",
+      "todos os reais maiores que 1/2, menos o 6"
+     ]
+    ]
+   },
+   "pista": "Troque 3ˣ por y e calcule o discriminante: ele tem uma forma especial.",
+   "passos": [
+    {
+     "faz": "Troque 3ˣ por y",
+     "conta": "9ˣ − (3a + 4)3ˣ + 2a² + 9a − 5 = 0 → y² − (3a + 4)y + 2a² + 9a − 5 = 0",
+     "porque": "9ˣ é (3²)ˣ = (3ˣ)². A equação vira de 2º grau em y, com y > 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o discriminante",
+     "conta": "Δ = (3a + 4)² − 4(2a² + 9a − 5) → Δ = a² − 12a + 36 → Δ = (a − 6)²",
+     "porque": "9a² + 24a + 16 − 8a² − 36a + 20 dá a² − 12a + 36, um quadrado perfeito. A raiz de Δ sai sem resto.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache as duas raízes em y",
+     "conta": "y = ((3a + 4) ± (a − 6))/2 → y₁ = 2a − 1 | y₂ = a + 5",
+     "porque": "Com o sinal +: (4a − 2)/2. Com o sinal −: (2a + 10)/2. Confira: (2a − 1)(a + 5) = 2a² + 9a − 5, o termo independente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Exija raízes positivas e distintas",
+     "conta": "2a − 1 > 0 → a > 1/2 | a + 5 > 0 → a > −5 | 2a − 1 ≠ a + 5 → a ≠ 6",
+     "porque": "Cada y positivo dá um x = log₃ y. As raízes coincidem quando Δ = 0, isto é, em a = 6.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Junte as condições e marque",
+     "conta": "a > 1/2 e a ≠ 6 → (1/2, ∞) \\ {6} → alternativa B",
+     "porque": "a > 1/2 já garante a > −5. Tirando o 6, fica o conjunto da alternativa B.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — (1/2, ∞) \\ {6}",
+   "checagem": "Teste a = 1, que está em B: as raízes são y = 1 e y = 6, e x = 0 e x = log₃ 6, duas soluções. Teste a = 0, fora de B: y = −1 e y = 5, e só 3ˣ = 5 tem solução.",
+   "erradas": {
+    "A": "(6, ∞) não confere: deixa de fora a = 2, que funciona: y = 3 e y = 7, com x = 1 e x = log₃ 7, duas soluções reais distintas.",
+    "C": "(3/2, ∞) \\ {6} não confere: deixa de fora a = 1, que funciona: y = 1 e y = 6 dão x = 0 e x = log₃ 6.",
+    "D": "ℝ \\ {6} sai de exigir só Δ > 0, esquecendo que y = 3ˣ tem de ser positivo. Com a = 0, y = −1 não dá x real, e sobra uma solução.",
+    "E": "ℝ sai de esquecer também que Δ > 0: em a = 6, Δ = 0 e a raiz é dupla, y = 11, com uma única solução x = log₃ 11."
+   },
+   "armadilha": "Exigir só Δ > 0: cada raiz y precisa ser positiva, porque y = 3ˣ nunca é negativo nem zero.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os valores de a para os quais a equação tem duas soluções reais distintas.",
+    "chave": "Com y = 3ˣ, Δ = (a − 6)² e as raízes são 2a − 1 e a + 5; ambas positivas e distintas para a > 1/2, a ≠ 6.",
+    "cuidado": "A raiz y precisa ser positiva para virar um x real."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "soma e produto",
+    "ideia": "Duas raízes positivas distintas pedem Δ > 0, soma 3a + 4 > 0 e produto (2a − 1)(a + 5) > 0; com a ≠ 6, a > −4/3 e (a > 1/2 ou a < −5), o que dá a > 1/2, a ≠ 6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "y² − (3a + 4)y + 2a² + 9a − 5 = 0",
+    "nota": "y = 3ˣ"
+   },
+   {
+    "linha": "Δ = 9a² + 24a + 16 − 8a² − 36a + 20 = (a − 6)²",
+    "nota": "discriminante"
+   },
+   {
+    "linha": "y = ((3a + 4) ± (a − 6))/2",
+    "nota": "Bhaskara"
+   },
+   {
+    "linha": "y₁ = 2a − 1 ; y₂ = a + 5",
+    "nota": "as duas raízes"
+   },
+   {
+    "linha": "a > 1/2 e a ≠ 6",
+    "nota": "positivas e distintas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
+ },
+ "P66109bca": {
+  "n": "11",
+  "conceito": "Hipérbole com os mesmos focos de uma elipse: 2a é a diferença das distâncias de um ponto comum aos focos.",
+  "equivocos": {
+   "B": "M12.4:errou-a-diferenca-das-distancias-aos-focos",
+   "C": "M12.4:errou-a-diferenca-das-distancias-aos-focos",
+   "D": "M12.4:errou-a-diferenca-das-distancias-aos-focos",
+   "E": "M12.4:errou-a-diferenca-das-distancias-aos-focos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A hipérbole tem os mesmos focos da elipse, então c é o mesmo. Falta o a da hipérbole, que sai da definição: para qualquer ponto dela, a diferença das distâncias aos focos é 2a. O ponto P está nas duas curvas, então basta achar P e medir as duas distâncias.",
+    "formulas": [
+     "elipse x²/A² + y²/B² = 1: c² = A² − B²",
+     "hipérbole: |PF₁ − PF₂| = 2a",
+     "excentricidade: e = c/a"
+    ],
+    "simbolos": [
+     [
+      "F₁, F₂",
+      "focos comuns às duas curvas"
+     ],
+     [
+      "θ",
+      "ângulo entre o segmento OP e o eixo x"
+     ],
+     [
+      "tan θ",
+      "inclinação da reta OP, igual a y/x de P"
+     ],
+     [
+      "e",
+      "excentricidade da hipérbole"
+     ]
+    ]
+   },
+   "pista": "A reta OP tem inclinação tan θ: use isso para escrever y em função de x e jogar na elipse.",
+   "passos": [
+    {
+     "faz": "Ache os focos da elipse",
+     "conta": "c² = 4 − 1 = 3 → F₁ = (−√3, 0), F₂ = (√3, 0)",
+     "porque": "Na elipse, c² = A² − B², com A² = 4 e B² = 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache P na elipse",
+     "conta": "y = (√3/6)x → x²/4 + 3x²/36 = 1 → x²/3 = 1 → x = √3, y = 1/2",
+     "porque": "P está na reta OP e na elipse. No primeiro quadrante, x = √3 e y = (√3/6)·√3 = 1/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Meça as distâncias de P aos focos",
+     "conta": "PF₂ = √(0² + (1/2)²) = 1/2 | PF₁ = √((2√3)² + (1/2)²) = √(49/4) = 7/2",
+     "porque": "P tem a mesma abscissa de F₂, então PF₂ é só a altura 1/2. Para F₁, a distância horizontal é 2√3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o a da hipérbole",
+     "conta": "2a = 7/2 − 1/2 = 3 → a = 3/2",
+     "porque": "Definição da hipérbole: a diferença das distâncias aos focos é 2a.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a excentricidade",
+     "conta": "e = c/a = √3/(3/2) = 2√3/3",
+     "porque": "Com c = √3 e a = 3/2, sai a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 2√3/3.",
+   "checagem": "Pela elipse: PF₁ + PF₂ = 7/2 + 1/2 = 4 = 2·2, que é 2A da elipse; P está mesmo nela. E e = 2√3/3 ≈ 1,15 > 1, como deve ser numa hipérbole.",
+   "erradas": {
+    "B": "√6/2 não confere: daria a = √3/(√6/2) = √2 e 2a = 2√2 ≈ 2,83, mas PF₁ − PF₂ = 3.",
+    "C": "3√3/4 não confere: daria a = 4/3 e 2a = 8/3 ≈ 2,67, diferente de 7/2 − 1/2 = 3.",
+    "D": "2√6/3 não confere: daria a = 3/(2√2) ≈ 1,06 e 2a ≈ 2,12, diferente de 3.",
+    "E": "3√3/2 não confere: daria a = 2/3 e 2a = 4/3, diferente de 3."
+   },
+   "armadilha": "Na hipérbole, 2a é a DIFERENÇA das distâncias aos focos; usar a soma (4) dá a = 2, o a da elipse.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A excentricidade da hipérbole que tem os focos da elipse e passa por P.",
+    "chave": "c = √3; P = (√3, 1/2); 2a = 7/2 − 1/2 = 3; e = √3/(3/2) = 2√3/3.",
+    "cuidado": "Use a diferença das distâncias, não a soma, e confira que e > 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "equação da hipérbole",
+    "ideia": "Escreva x²/a² − y²/(3 − a²) = 1, substitua P(√3, 1/2) e resolva: a² = 9/4, a = 3/2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "c² = 4 − 1 = 3",
+    "nota": "focos (±√3, 0)"
+   },
+   {
+    "linha": "x²/4 + 3x²/36 = 1 → x = √3, y = 1/2",
+    "nota": "P na elipse e na reta OP"
+   },
+   {
+    "linha": "PF₁ = 7/2 | PF₂ = 1/2",
+    "nota": "distâncias aos focos"
+   },
+   {
+    "linha": "2a = 3 → a = 3/2",
+    "nota": "definição da hipérbole"
+   },
+   {
+    "linha": "e = √3/(3/2) = 2√3/3",
+    "nota": "excentricidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "P4612f0e5": {
+  "n": "5",
+  "conceito": "Tirar o termo geral a partir da soma Sn = bn+1 − b1 e testar cada afirmação com fórmula ou contraexemplo.",
+  "equivocos": {
+   "A": "M07.3:generalizou-a-partir-de-um-exemplo",
+   "B": "M07.3:generalizou-a-partir-de-um-exemplo",
+   "C": "M07.3:soma-de-pa-tratada-como-pa",
+   "E": "M07.3:nao-relacionou-termo-e-soma"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Subtraindo duas somas seguidas, a soma some e fica an = bn+1 − bn: cada termo de (an) é a diferença entre termos vizinhos de (bn). Com isso, cada afirmação se testa: a verdadeira se prova com o termo geral; as falsas caem com um contraexemplo simples.",
+    "formulas": [
+     "an = Sn − Sn−1 (n ≥ 2) e a1 = S1",
+     "PG: bn = b1·q^(n−1)",
+     "soma de PA cresce como n², não em PA"
+    ],
+    "simbolos": [
+     [
+      "Sn",
+      "soma dos n primeiros termos de (an)"
+     ],
+     [
+      "PA",
+      "progressão aritmética"
+     ],
+     [
+      "PG",
+      "progressão geométrica"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ]
+    ]
+   },
+   "pista": "Escreva Sn e Sn−1 e subtraia: que relação sobra entre an e a sequência (bn)?",
+   "passos": [
+    {
+     "faz": "Ache a relação entre an e bn",
+     "conta": "an = Sn − Sn−1 = (bn+1 − b1) − (bn − b1) → an = bn+1 − bn",
+     "porque": "O b1 cancela; para n = 1, a1 = S1 = b2 − b1, a mesma fórmula.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste I",
+     "conta": "bn = b1·q^(n−1) → an = b1·q^(n−1)·(q − 1) → razão q",
+     "porque": "Cada an é o anterior vezes q: (an) é PG. I correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste II com contraexemplo",
+     "conta": "an = 1, 1, 1, ... e b1 = 1 → bn = 1, 2, 3, ...",
+     "porque": "(an) é PG de razão 1, mas 2/1 ≠ 3/2: (bn) não é PG. II falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste III com contraexemplo",
+     "conta": "an = 1, 2, 3, ... → Sn = 1, 3, 6, 10 → diferenças 2, 3, 4",
+     "porque": "As diferenças mudam: (Sn) não é PA. III falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Junte os resultados",
+     "conta": "I V | II F | III F → alternativa D",
+     "porque": "Só a afirmação I vale sempre.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — apenas I",
+   "checagem": "Exemplo numérico de I: bn = 3, 6, 12, 24, 48 dá an = 3, 6, 12, 24, uma PG de razão 2, a mesma de (bn).",
+   "erradas": {
+    "A": "I e II não confere: II cai com an = 1 para todo n e b1 = 1, que dá bn = 1, 2, 3, ..., que não é PG.",
+    "B": "II e III não confere: as duas caem por contraexemplo (bn = 1, 2, 3, ... e Sn = 1, 3, 6, 10), e ainda deixa de fora I, que é verdadeira.",
+    "C": "I e III não confere: com an = 1, 2, 3, ... as somas 1, 3, 6, 10 têm diferenças 2, 3, 4, então (Sn) não é PA.",
+    "E": "nenhuma não confere: I é verdadeira, porque an = b1·q^(n−1)·(q − 1) é PG de razão q."
+   },
+   "armadilha": "Afirmação do tipo \"se..., então...\" precisa valer sempre: um único contraexemplo derruba II e III.",
+   "alerta": "Se (bn) for constante (razão 1), (an) é a sequência nula. O gabarito oficial considera I correta; a sequência nula satisfaz an+1 = q·an.",
+   "essencial": {
+    "pede": "Quais das três afirmações sobre (an), (bn) e (Sn) são sempre verdadeiras, sabendo que Sn = bn+1 − b1.",
+    "chave": "Subtrair somas vizinhas dá an = bn+1 − bn; a diferença de uma PG é PG, e contraexemplos derrubam II e III.",
+    "cuidado": "Não teste só um exemplo que funciona: uma afirmação geral cai com um só contraexemplo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "termo geral da soma",
+    "ideia": "Para III: se an = a1 + (n − 1)r, então Sn = n·a1 + n(n − 1)r/2, que tem n²; só é PA quando r = 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "an = (bn+1 − b1) − (bn − b1) = bn+1 − bn",
+    "nota": "subtrair somas vizinhas"
+   },
+   {
+    "linha": "an = b1·q^(n−1)·(q − 1)",
+    "nota": "I: (an) é PG de razão q"
+   },
+   {
+    "linha": "an = 1 e b1 = 1 → bn = 1, 2, 3",
+    "nota": "II: contraexemplo"
+   },
+   {
+    "linha": "Sn = 1, 3, 6, 10",
+    "nota": "III: diferenças 2, 3, 4, não é PA"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ },
+ "Pf2f01bff": {
+  "n": "8",
+  "conceito": "Domínio de raiz quadrada com expressão trigonométrica: fatorar e estudar o sinal no ciclo.",
+  "equivocos": {
+   "A": "M10.4:intervalo-errado",
+   "B": "M10.4:intervalo-errado",
+   "C": "M10.4:nao-comparou-os-comprimentos",
+   "D": "M10.4:esqueceu-o-zero-do-denominador"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A raiz só existe se o que está dentro for maior ou igual a zero, e a fração só existe se o denominador não for zero. O denominador 8(cos 2x + 1) é 16cos²x: nunca negativo, só zera quando cos x = 0. O numerador fatora em (2sen x − 1)(2cos x + 1), e o problema vira estudar o sinal desse produto em [−π, 2π].",
+    "formulas": [
+     "cos 2x + 1 = 2cos²x",
+     "sen 2x = 2·sen x·cos x",
+     "produto ≥ 0: os dois fatores com o mesmo sinal"
+    ],
+    "simbolos": [
+     [
+      "I = (a, b)",
+      "intervalo aberto de a até b"
+     ],
+     [
+      "[−π, 2π]",
+      "intervalo fechado onde se procura I"
+     ]
+    ]
+   },
+   "pista": "Escreva o denominador só com cos x e tente fatorar o numerador agrupando termos.",
+   "passos": [
+    {
+     "faz": "Simplifique o denominador",
+     "conta": "8(cos 2x + 1) = 8 · 2cos²x = 16cos²x",
+     "porque": "cos 2x = 2cos²x − 1. O denominador é positivo sempre que cos x ≠ 0 e não interfere no sinal.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatore o numerador",
+     "conta": "4sen x cos x + 2sen x − 2cos x − 1 → 2sen x(2cos x + 1) − (2cos x + 1) → (2sen x − 1)(2cos x + 1)",
+     "porque": "Com sen 2x = 2sen x cos x, os dois primeiros termos têm 2sen x em comum e os dois últimos têm −1; sobra o fator (2cos x + 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache onde os dois fatores têm o mesmo sinal",
+     "conta": "ambos ≥ 0: sen x ≥ 1/2 e cos x ≥ −1/2 → [π/6, 2π/3] | ambos ≤ 0: sen x ≤ 1/2 e cos x ≤ −1/2 → [−π, −2π/3] e [5π/6, 4π/3]",
+     "porque": "Produto maior ou igual a zero exige fatores de mesmo sinal. Os cortes vêm de sen x = 1/2 (π/6 e 5π/6) e cos x = −1/2 (±2π/3 e 4π/3).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Tire os pontos com cos x = 0 e compare os comprimentos",
+     "conta": "[−π, −2π/3]: π/3 | (π/6, π/2): π/3 | (π/2, 2π/3): π/6 | [5π/6, 4π/3]: π/2",
+     "porque": "x = π/2 zera o denominador e parte o primeiro trecho em dois; 3π/2 não cai em nenhum trecho. O maior comprimento é π/2.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Some os extremos do maior intervalo",
+     "conta": "a + b = 5π/6 + 4π/3 = 5π/6 + 8π/6 = 13π/6 → alternativa E",
+     "porque": "O maior intervalo é (5π/6, 4π/3).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — a + b = 13π/6",
+   "checagem": "Teste x = π (dentro de (5π/6, 4π/3)): numerador (2·0 − 1)(2·(−1) + 1) = 1 > 0 e denominador 16 > 0, então f existe. Teste x = 3π/2 (fora): (−3)(1) = −3 < 0, f não existe. Confirma o trecho.",
+   "erradas": {
+    "A": "A não confere: nenhum dos trechos válidos tem extremos que somam 0; o simétrico mais próximo, [−π, −2π/3], soma −5π/3.",
+    "B": "B não confere: π/3 não é a soma dos extremos de nenhum dos quatro trechos válidos (−5π/3, 2π/3, 7π/6 e 13π/6).",
+    "C": "C sai do trecho (π/6, π/2): π/6 + π/2 = 2π/3. Ele mede só π/3, menor que π/2.",
+    "D": "D sai de esquecer que cos x = 0 zera o denominador: tomou [π/6, 2π/3] inteiro, com soma π/6 + 2π/3 = 5π/6; mas π/2 está fora do domínio."
+   },
+   "armadilha": "O ponto x = π/2 anula o denominador e corta o trecho [π/6, 2π/3]; sem ver isso, parece haver dois candidatos de mesmo comprimento.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a + b para o maior intervalo (a, b) em [−π, 2π] onde f está definida.",
+    "chave": "Radicando = (2sen x − 1)(2cos x + 1)/(16cos²x); o maior trecho com produto ≥ 0 e cos x ≠ 0 é (5π/6, 4π/3).",
+    "cuidado": "Exclua os pontos com cos x = 0, que zeram o denominador."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela de sinais",
+    "ideia": "Marque no eixo de −π a 2π os zeros de 2sen x − 1, 2cos x + 1 e cos x, faça a tabela de sinais do quociente e meça cada trecho positivo."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "8(cos 2x + 1) = 16cos²x",
+    "nota": "denominador ≥ 0, zera em cos x = 0"
+   },
+   {
+    "linha": "numerador = (2sen x − 1)(2cos x + 1)",
+    "nota": "agrupar e fatorar"
+   },
+   {
+    "linha": "mesmo sinal: [−π, −2π/3], [π/6, 2π/3], [5π/6, 4π/3]",
+    "nota": "estudo do sinal no ciclo"
+   },
+   {
+    "linha": "tira π/2: (π/6, π/2) e (π/2, 2π/3)",
+    "nota": "cos x = 0 fora do domínio"
+   },
+   {
+    "linha": "maior: (5π/6, 4π/3) → a + b = 13π/6",
+    "nota": "comprimento π/2"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ },
+ "P115d0dcc": {
+  "n": "2",
+  "conceito": "Existência de poliedros: paridade da soma dos lados das faces, relação de Euler e a desigualdade 2A ≥ 3F.",
+  "equivocos": {
+   "A": "M11.5:ignorou-paridade-da-soma-dos-lados",
+   "B": "M11.5:ignorou-paridade-da-soma-dos-lados",
+   "C": "M11.5:euler-tomado-como-suficiente",
+   "D": "M11.5:euler-tomado-como-suficiente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Para decidir se um poliedro existe, use três ferramentas. A soma dos lados de todas as faces é 2A, então tem de ser par. Toda face tem pelo menos 3 lados, então 2A ≥ 3F. A relação de Euler, V − A + F = 2, vale nos convexos; satisfazê-la não garante a existência.",
+    "formulas": [
+     "soma dos lados das faces = 2A",
+     "2A ≥ 3F (cada face tem pelo menos 3 lados)",
+     "V − A + F = 2"
+    ],
+    "simbolos": [
+     [
+      "V",
+      "número de vértices"
+     ],
+     [
+      "A",
+      "número de arestas"
+     ],
+     [
+      "F",
+      "número de faces"
+     ],
+     [
+      "q",
+      "quantidade de faces quadrangulares"
+     ],
+     [
+      "não convexo",
+      "poliedro com alguma reentrância"
+     ]
+    ]
+   },
+   "pista": "Em cada afirmação, some os lados de todas as faces e compare com 2A.",
+   "passos": [
+    {
+     "faz": "Teste a afirmação I pela paridade",
+     "conta": "2A = 3 · 3 + 4 · q → 2A = 9 + 4q, que é ímpar → impossível",
+     "porque": "Cada aresta é lado de duas faces, então a soma dos lados é sempre par; 9 + 4q é sempre ímpar.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste a afirmação III pela desigualdade",
+     "conta": "Euler: 7 − 16 + 11 = 2 (passa) | 2A ≥ 3F → 32 ≥ 33 (falso) → impossível",
+     "porque": "Onze faces com pelo menos 3 lados somam no mínimo 33 lados, mas 16 arestas só dão 32.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Construa um exemplo para II",
+     "conta": "tetraedro ABCD + ponto E dentro, perto da face ABC → troca ABC por EAB, EBC, ECA → V = 5, A = 9, F = 6",
+     "porque": "Afundar uma face do tetraedro cria uma reentrância: o poliedro fica não convexo, com 5 vértices, 9 arestas (6 + 3) e 6 faces (4 − 1 + 3).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os resultados",
+     "conta": "I falsa | II verdadeira | III falsa → apenas II → alternativa E",
+     "porque": "Só a afirmação II tem um poliedro que a realiza.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — apenas II",
+   "checagem": "Confira o exemplo de II por Euler: 5 − 9 + 6 = 2, e pela soma dos lados: 6 triângulos dão 18 lados = 2 × 9. Na III, mesmo com todas as 11 faces triangulares, seriam 33 lados para 32 disponíveis.",
+   "erradas": {
+    "A": "I e II não confere: a I é falsa, porque 3 triângulos e q quadriláteros somam 9 + 4q lados, número ímpar, e a soma dos lados tem de ser 2A, par.",
+    "B": "I e III não confere: as duas são falsas; a I pela paridade (9 + 4q ímpar) e a III porque 2A = 32 é menor que 3F = 33.",
+    "C": "II e III não confere: a III satisfaz Euler (7 − 16 + 11 = 2), mas 11 faces exigem pelo menos 33 lados e 16 arestas só dão 32.",
+    "D": "apenas III sai de aceitar a III só porque 7 − 16 + 11 = 2; Euler é condição necessária, não suficiente, e 2A ≥ 3F a derruba."
+   },
+   "armadilha": "A afirmação III passa na relação de Euler, mas Euler não garante existência: 2A ≥ 3F (32 ≥ 33) falha.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das três afirmações sobre existência de poliedros são verdadeiras.",
+    "chave": "I cai pela paridade (9 + 4q ímpar), III cai por 2A ≥ 3F (32 < 33), II tem exemplo: tetraedro com uma face afundada.",
+    "cuidado": "Satisfazer V − A + F = 2 não basta para o poliedro existir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "bipirâmide afundada",
+    "ideia": "A bipirâmide triangular tem V = 5, A = 9, F = 6; levando um dos ápices para dentro, do mesmo lado do outro, ela fica não convexa com as mesmas contagens."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "I: 2A = 9 + 4q (ímpar) → falsa",
+    "nota": "a soma dos lados tem de ser par"
+   },
+   {
+    "linha": "III: 7 − 16 + 11 = 2, mas 32 ≥ 33 é falso → falsa",
+    "nota": "cada face tem pelo menos 3 lados"
+   },
+   {
+    "linha": "II: 5 − 9 + 6 = 2 e 18 = 2 · 9",
+    "nota": "tetraedro com uma face afundada"
+   },
+   {
+    "linha": "apenas II → E",
+    "nota": "juntar as três"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ },
+ "Pf9f83343": {
+  "n": "10",
+  "conceito": "Raiz comum de dois polinômios é raiz do resto da divisão de um pelo outro (algoritmo de Euclides).",
+  "equivocos": {
+   "A": "M16.1:sinal-trocado-na-parte-real",
+   "B": "M16.1:raiz-que-nao-anula-os-dois",
+   "C": "M16.1:raiz-que-nao-anula-os-dois",
+   "E": "M16.1:raiz-que-nao-anula-os-dois"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se z anula p e q, anula também p − (x + 1)·q, que é o resto da divisão de p por q. Esse resto é de grau 2, então as raízes comuns estão entre as raízes de uma equação do 2.º grau. Depois, basta confirmar que esse fator divide q.",
+    "formulas": [
+     "p(x) = Q(x)·q(x) + R(x)",
+     "p(z) = q(z) = 0 ⇒ R(z) = 0",
+     "x² − 2x + 3 = 0 → x = (2 ± √(4 − 12))/2"
+    ],
+    "simbolos": [
+     [
+      "Q(x)",
+      "quociente da divisão de p por q"
+     ],
+     [
+      "R(x)",
+      "resto da divisão"
+     ],
+     [
+      "i",
+      "unidade imaginária, i² = −1"
+     ]
+    ]
+   },
+   "pista": "Divida p por q. O que o resto da divisão tem a ver com uma raiz que anula os dois?",
+   "passos": [
+    {
+     "faz": "Divida p por q",
+     "conta": "x⁵ − x³ + 12x − 18 = (x + 1)(x⁴ − x³ + 5x − 3) + (−5x² + 10x − 15)",
+     "porque": "(x + 1)·q = x⁵ − x³ + 5x² + 2x − 3; tirando isso de p, sobra −5x² + 10x − 15.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use que a raiz comum anula o resto",
+     "conta": "−5x² + 10x − 15 = 0 → −5(x² − 2x + 3) = 0 → x² − 2x + 3 = 0",
+     "porque": "Se p(z) = 0 e q(z) = 0, então R(z) = p(z) − (z + 1)·q(z) = 0. O −5 sai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a equação do 2.º grau",
+     "conta": "x = (2 ± √(4 − 12))/2 → x = (2 ± 2√2 i)/2 → x = 1 ± √2 i",
+     "porque": "Δ = −8 e √(−8) = 2√2 i; o 2 se cancela com o denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confirme que o fator divide q",
+     "conta": "q(x) = (x² − 2x + 3)(x² + x − 1)",
+     "porque": "Sem isso, 1 ± √2 i anularia o resto mas talvez não q. A divisão é exata, então são raízes de q e, portanto, de p.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue a raiz à alternativa",
+     "conta": "1 + √2 i → alternativa D",
+     "porque": "Entre as alternativas, só 1 + √2 i está entre as raízes comuns 1 ± √2 i.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1 + √2 i",
+   "checagem": "Substitua z = 1 + √2 i: z² = 1 + 2√2 i − 2 = −1 + 2√2 i, e z² − 2z + 3 = −1 + 2√2 i − 2 − 2√2 i + 3 = 0. Como p(x) = (x² − 2x + 3)(x³ + 2x² − 6), z anula p também.",
+   "erradas": {
+    "A": "A não confere: −1 + √2 i e a conjugada têm soma −2 (fator x² + 2x + 3); as raízes comuns vêm de x² − 2x + 3, com soma 2.",
+    "B": "B não confere: √2 + √2 i e a conjugada têm soma 2√2 e produto 4; o fator comum tem soma 2 e produto 3.",
+    "C": "C não confere: √2 + i e a conjugada têm soma 2√2 e produto 3; a soma deveria ser 2.",
+    "E": "E não confere: −√2 + i e a conjugada têm soma −2√2 e produto 3; a soma deveria ser 2."
+   },
+   "armadilha": "Testar alternativa por alternativa em polinômios de grau 4 e 5, com conta longa e fácil de errar, em vez de dividir p por q.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Uma raiz comum a p e q.",
+    "chave": "Resto de p ÷ q: −5(x² − 2x + 3); raízes 1 ± √2 i, e o fator divide q.",
+    "cuidado": "Confirme que o fator do resto divide q antes de concluir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fator de cada alternativa",
+    "ideia": "z e z̄ formam o fator x² − 2·Re(z)·x + |z|²; só para 1 + √2 i ele é x² − 2x + 3, que divide p e q."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p = (x + 1)·q + (−5x² + 10x − 15)",
+    "nota": "divisão de p por q"
+   },
+   {
+    "linha": "−5x² + 10x − 15 = −5(x² − 2x + 3)",
+    "nota": "raiz comum anula o resto"
+   },
+   {
+    "linha": "x² − 2x + 3 = 0 → x = (2 ± √(−8))/2",
+    "nota": "fórmula de Bhaskara"
+   },
+   {
+    "linha": "x = 1 ± √2 i",
+    "nota": "√(−8) = 2√2 i"
+   },
+   {
+    "linha": "q = (x² − 2x + 3)(x² + x − 1)",
+    "nota": "o fator divide q"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ },
+ "Pc99e3797": {
+  "n": "3",
+  "conceito": "Termo geral do binômio de Newton: expoente de cada termo de um produto de duas expansões.",
+  "equivocos": {
+   "A": "M13.9:nao-testou-paridade-dos-expoentes",
+   "B": "M13.9:nao-testou-paridade-dos-expoentes",
+   "D": "M13.9:nao-testou-paridade-dos-expoentes",
+   "E": "M13.9:nao-testou-paridade-dos-expoentes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Antes de expandir qualquer coisa, olhe o expoente de x em cada termo. Em (x + 1/x)⁶ os expoentes são todos pares; em (x − 2/x)⁵, todos ímpares. Par mais ímpar é sempre ímpar, e zero é par.",
+    "formulas": [
+     "termo de (x + 1/x)⁶: C(6, i) · x^(6 − 2i)",
+     "termo de (x − 2/x)⁵: C(5, j) · (−2)^j · x^(5 − 2j)"
+    ],
+    "simbolos": [
+     [
+      "termo independente",
+      "termo sem x (expoente de x igual a 0)"
+     ],
+     [
+      "C(n, i)",
+      "número binomial: combinação de n tomados i a i"
+     ]
+    ]
+   },
+   "pista": "Escreva o expoente de x de um termo genérico de cada fator e some os dois.",
+   "passos": [
+    {
+     "faz": "Expoentes do primeiro fator",
+     "conta": "x^(6 − i) · (1/x)^i = x^(6 − 2i) → 6, 4, 2, 0, −2, −4, −6",
+     "porque": "Cada 1/x tira 1 do expoente, e cada x a menos também: o expoente cai de 2 em 2 a partir de 6, sempre par.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Expoentes do segundo fator",
+     "conta": "x^(5 − j) · (−2/x)^j → expoente de x: 5 − 2j → 5, 3, 1, −1, −3, −5",
+     "porque": "Mesmo raciocínio a partir de 5: sempre ímpar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os expoentes",
+     "conta": "(6 − 2i) + (5 − 2j) = 0 → 2(i + j) = 11 → i + j = 11/2",
+     "porque": "Ao multiplicar dois termos, os expoentes de x se somam; o termo independente precisa de soma 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a solução",
+     "conta": "i + j = 11/2 não é inteiro → nenhum termo tem x⁰",
+     "porque": "i e j contam termos (são inteiros); par + ímpar nunca dá 0.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Marque a letra",
+     "conta": "termo independente = 0 → alternativa C",
+     "porque": "Se nenhum termo é constante, o coeficiente do termo constante é 0.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 0",
+   "checagem": "Trocando x por −x, (x + 1/x)⁶ não muda e (x − 2/x)⁵ troca de sinal; o produto é função ímpar, e função ímpar não tem termo constante. Confere.",
+   "erradas": {
+    "A": "−18 não confere: todo termo do produto tem expoente ímpar de x, então nenhum é constante.",
+    "B": "−12 não confere: todo termo do produto tem expoente ímpar de x, então nenhum é constante.",
+    "D": "12 não confere: todo termo do produto tem expoente ímpar de x, então nenhum é constante.",
+    "E": "18 não confere: todo termo do produto tem expoente ímpar de x, então nenhum é constante."
+   },
+   "armadilha": "Sair expandindo e combinando coeficientes, quando a paridade dos expoentes já mostra que não há termo sem x.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O termo independente do produto.",
+    "chave": "Expoentes pares (6 − 2i) somados a ímpares (5 − 2j) nunca dão 0.",
+    "cuidado": "Termo independente que não existe vale 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "função ímpar",
+    "ideia": "Trocar x por −x mantém (x + 1/x)⁶ e troca o sinal de (x − 2/x)⁵: o produto é ímpar e não tem termo constante."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x + 1/x)⁶: x^(6 − 2i)",
+    "nota": "expoentes pares"
+   },
+   {
+    "linha": "(x − 2/x)⁵: x^(5 − 2j)",
+    "nota": "expoentes ímpares"
+   },
+   {
+    "linha": "(6 − 2i) + (5 − 2j) = 0 → 2(i + j) = 11",
+    "nota": "expoentes se somam"
+   },
+   {
+    "linha": "i + j = 11/2 → impossível",
+    "nota": "i, j inteiros"
+   },
+   {
+    "linha": "termo independente = 0",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [
+   {
+    "nome": "Caderno oficial ITA 2025, 1ª fase (questão 3)",
+    "url": "https://vestibular.ita.br/provas/2025_fase1.pdf"
+   }
+  ],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-pend-0001"
+  }
+ }
+}

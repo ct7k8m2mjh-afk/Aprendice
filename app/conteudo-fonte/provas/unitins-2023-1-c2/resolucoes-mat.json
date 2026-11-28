@@ -1,0 +1,216 @@
+{
+ "P840790a6": {
+  "n": "12",
+  "conceito": "Probabilidade condicional com diagrama de Venn: dengue dado chikungunya.",
+  "equivocos": {
+   "A": "M13.5:denominador-sem-a-intersecao",
+   "B": "M13.5:ignorou-a-condicao",
+   "D": "M13.5:ignorou-a-condicao",
+   "E": "M13.5:denominador-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Dado que já teve chikungunya\" troca o universo: só contam as 50 pessoas que tiveram chikungunya. Dentro delas, as favoráveis são as que tiveram dengue também, isto é, a interseção.",
+    "formulas": [
+     "P(D | C) = (pessoas com D e C) ÷ (pessoas com C)"
+    ],
+    "simbolos": [
+     [
+      "P(D | C)",
+      "chance de ter tido dengue sabendo que teve chikungunya"
+     ],
+     [
+      "interseção",
+      "quem teve as duas doenças"
+     ]
+    ]
+   },
+   "pista": "Antes de dividir, pergunte: qual é o grupo de onde a pessoa foi escolhida?",
+   "passos": [
+    {
+     "faz": "Ache o novo universo",
+     "conta": "condição: teve chikungunya → 50 pessoas",
+     "porque": "O \"dado que\" fixa o grupo de onde se escolhe: os 50 que tiveram chikungunya.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache os favoráveis dentro dele",
+     "conta": "dengue e chikungunya → 10 pessoas",
+     "porque": "Dentro desse grupo, teve dengue quem está na interseção.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "10/50 = 1/5",
+     "porque": "Favoráveis sobre o novo universo; 10 e 50 dividem por 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1/5 → alternativa C",
+     "porque": "É a chance pedida: dengue, sabendo que teve chikungunya.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1/5",
+   "checagem": "Monte o diagrama inteiro: só dengue 160 − 10 = 150, só chikungunya 50 − 10 = 40, ambas 10, nenhuma 200; 150 + 40 + 10 + 200 = 400, o total. Com os dados coerentes, a fração 10/50 = 0,2 confirma.",
+   "erradas": {
+    "A": "1/4 sai de dividir pelos que tiveram só chikungunya: 10/40. O universo inclui os 10 que tiveram as duas: são 50.",
+    "B": "2/5 sai de ignorar a condição: 160/400, a chance de ter tido dengue no grupo todo.",
+    "D": "3/8 sai de 150/400, os que tiveram só dengue sobre o total. A condição pede o grupo da chikungunya.",
+    "E": "16/35 sai de 160/(400 − 50): dividiu todos os casos de dengue pelos que NÃO tiveram chikungunya; a condição pede os 50 com chikungunya: 10/50 = 1/5."
+   },
+   "armadilha": "Dividir pelo total de 400, ou pelos 40 de \"só chikungunya\", em vez dos 50 que tiveram chikungunya.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de ter tido dengue entre os que tiveram chikungunya.",
+    "chave": "Interseção 10 sobre os 50 com chikungunya: 10/50 = 1/5.",
+    "cuidado": "O \"dado que\" troca o denominador para o grupo da condição, inteiro (com a interseção)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmula",
+    "ideia": "P(D | C) = P(D e C) ÷ P(C) = (10/400) ÷ (50/400) = 1/5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "universo: 50 (chikungunya)",
+    "nota": "o grupo da condição"
+   },
+   {
+    "linha": "favoráveis: 10 (as duas)",
+    "nota": "a interseção"
+   },
+   {
+    "linha": "10/50 = 1/5",
+    "nota": "simplificar por 10"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
+ },
+ "Pf6a5e09d": {
+  "n": "11",
+  "conceito": "Produto de matriz de preços por vetor de quantidades: custo total em cada fornecedor e comparação.",
+  "equivocos": {
+   "A": "M15.1:valores-fora-dos-custos-calculados",
+   "C": "M15.1:pegou-os-custos-intermediarios",
+   "D": "M15.1:valores-fora-dos-custos-calculados",
+   "E": "M15.1:valores-fora-dos-custos-calculados"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada empresa vende as três matérias-primas a preços diferentes, e a fábrica precisa sempre de 10 de A, 20 de B e 20 de C. O custo em cada empresa é preço vezes quantidade, somado nas três matérias-primas: é o produto da linha de preços pela coluna de quantidades. Calcule as quatro contas e pegue a menor e a maior.",
+    "formulas": [
+     "custo na empresa = preço de A × 10 + preço de B × 20 + preço de C × 20"
+    ],
+    "simbolos": [
+     [
+      "E1, E2, E3, E4",
+      "as quatro empresas pesquisadas"
+     ],
+     [
+      "custo total",
+      "quanto se gasta comprando tudo numa mesma empresa"
+     ]
+    ]
+   },
+   "pista": "Fixe uma empresa por vez e multiplique cada preço da linha dela pela quantidade da mesma matéria-prima.",
+   "passos": [
+    {
+     "faz": "Monte a conta de cada empresa",
+     "conta": "custo = 10·A + 20·B + 20·C",
+     "porque": "As quantidades não mudam de empresa para empresa; só os preços mudam. Por isso a mesma fórmula serve para as quatro linhas do quadro 1.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule E1 e E2",
+     "conta": "E1: 6·10 + 8·20 + 4·20 = 60 + 160 + 80 = 300 | E2: 8·10 + 4·20 + 5·20 = 80 + 80 + 100 = 260",
+     "porque": "Cada preço do quadro 1 vai com a quantidade da mesma letra no quadro 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule E3 e E4",
+     "conta": "E3: 10·10 + 3·20 + 4·20 = 100 + 60 + 80 = 240 | E4: 9·10 + 4·20 + 2·20 = 90 + 80 + 40 = 210",
+     "porque": "Mesma conta, agora com as duas últimas linhas de preços.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ordene e responda",
+     "conta": "210 < 240 < 260 < 300 → mínimo 210, máximo 300",
+     "porque": "A pergunta pede o menor e o maior custo, nessa ordem: 210 (E4) e 300 (E1).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — R$ 210 (mínimo) e R$ 300 (máximo)",
+   "checagem": "Pela ordem de grandeza: E4 tem o C mais barato (2) e o B quase mais barato, e C e B pesam 20 unidades cada; por isso E4 sai a mais barata. E1 tem o B mais caro (8) com peso 20: é a mais cara. Fecha com 210 e 300.",
+   "erradas": {
+    "A": "200 e 320 não confere: nenhuma empresa dá 200 nem 320; os quatro custos são 300, 260, 240 e 210.",
+    "C": "240 e 260 são os dois custos do meio (E3 e E2), não o menor e o maior.",
+    "D": "220 e 340 não confere: nenhum dos quatro custos (300, 260, 240, 210) é 220 ou 340.",
+    "E": "250 e 400 não confere: o maior custo é 300 (E1); 400 passaria do custo de qualquer empresa."
+   },
+   "armadilha": "Multiplicar o preço pela quantidade de outra matéria-prima, misturando as colunas dos dois quadros.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor e o maior custo total entre as quatro empresas.",
+    "chave": "Custo = 10·A + 20·B + 20·C em cada linha: 300, 260, 240 e 210.",
+    "cuidado": "Cada preço vai com a quantidade da mesma matéria-prima."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diferença para E4",
+    "ideia": "Como B e C têm o mesmo peso 20, compare 10·A + 20·(B + C): E1 = 60 + 240, E2 = 80 + 180, E3 = 100 + 140, E4 = 90 + 120."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "[6 8 4; 8 4 5; 10 3 4; 9 4 2] · [10; 20; 20]",
+    "nota": "preços × quantidades"
+   },
+   {
+    "linha": "E1 = 60 + 160 + 80 = 300",
+    "nota": "linha 1"
+   },
+   {
+    "linha": "E2 = 80 + 80 + 100 = 260",
+    "nota": "linha 2"
+   },
+   {
+    "linha": "E3 = 100 + 60 + 80 = 240",
+    "nota": "linha 3"
+   },
+   {
+    "linha": "E4 = 90 + 80 + 40 = 210",
+    "nota": "linha 4"
+   },
+   {
+    "linha": "mín = 210 | máx = 300",
+    "nota": "comparar"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
+ }
+}

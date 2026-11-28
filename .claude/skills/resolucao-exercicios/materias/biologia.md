@@ -70,6 +70,7 @@ Códigos e nomes exatamente como no `nomesub` do app. Marcas qualitativas: **[mu
 - B08.6 imunidade inata e adaptativa, vacina × soro e memória imunológica **[muito cobrado]**
 - B08.7 ciclo menstrual, fecundação, clivagem e folhetos embrionários **[cobrado]**
 - B08.8 (novo) métodos contraceptivos e reprodução humana: pílula, DIU, barreira, vasectomia e laqueadura **[cobrado]**
+- B08.8 reprodução sexuada e assexuada, partenogênese e reprodução assistida (conteúdo novo, 20/11/2026)
 
 **B09 Ecologia**
 - B09.1 cadeias e teias alimentares, níveis tróficos **[muito cobrado]**
@@ -79,6 +80,7 @@ Códigos e nomes exatamente como no `nomesub` do app. Marcas qualitativas: **[mu
 - B09.5 sucessão ecológica e dinâmica de populações **[cobrado]**
 - B09.6 biomas brasileiros e impactos **[muito cobrado]**
 - B09.7 (novo) poluição e desequilíbrios: biomagnificação, eutrofização, efeito estufa, chuva ácida e camada de ozônio **[muito cobrado]**
+- B09.7 conceitos básicos de ecologia: níveis de organização, hábitat e nicho (conteúdo novo, 20/11/2026)
 
 **B10 Saúde**
 - B10.1 viroses e arboviroses **[muito cobrado]**
@@ -102,6 +104,10 @@ Códigos e nomes exatamente como no `nomesub` do app. Marcas qualitativas: **[mu
 - B12.5 invertebrados: novidades evolutivas
 - B12.6 vertebrados, classificação, nomenclatura e filogenia **[cobrado]** (cladograma)
 - B12.7 (novo) grupos vegetais e reprodução: briófitas, pteridófitas, gimnospermas, angiospermas, alternância de gerações, flor, fruto e semente **[cobrado]**
+- B12.7 grupos vegetais: briófitas, pteridófitas, gimnospermas e angiospermas (conteúdo novo, 20/11/2026)
+- B12.8 ciclos de vida das plantas e alternância de gerações (conteúdo novo, 20/11/2026)
+- B12.9 flor, polinização, fruto e semente (conteúdo novo, 20/11/2026)
+- B12.10 morfologia vegetal: raiz, caule e folha (conteúdo novo, 20/11/2026)
 
 ## Método da matéria
 

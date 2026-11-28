@@ -1,0 +1,573 @@
+{
+ "Pf8d8b9e5": {
+  "n": "17",
+  "conceito": "Contar senhas de algarismos distintos que satisfazem uma condição, decompondo 55 em fatores e somando casos.",
+  "equivocos": {
+   "B": "M13.2:conjunto-a-mais",
+   "C": "M13.2:ignorou-condicao",
+   "D": "M13.2:ignorou-condicao",
+   "E": "M13.2:ignorou-condicao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Comece pela condição, não pelas senhas: a × b × (c + d + e) = 55 obriga a fatorar 55 = 5 × 11. Como c + d + e com três algarismos distintos vai de 0 + 1 + 2 = 3 a 9 + 8 + 7 = 24, o fator 11 tem de ser a soma, e a × b = 5. Depois conte as ternas ordenadas de soma 11 que não usam os algarismos já gastos em a e b.",
+    "formulas": [
+     "55 = 5 × 11",
+     "ternas ordenadas de 3 algarismos distintos = conjuntos × 3!"
+    ],
+    "simbolos": [
+     [
+      "a, b, c, d, e",
+      "os cinco algarismos da senha, na ordem, todos distintos"
+     ],
+     [
+      "3!",
+      "fatorial de 3: 3 × 2 × 1 = 6 ordens para três algarismos distintos"
+     ]
+    ]
+   },
+   "pista": "Descubra primeiro quais valores a × b e c + d + e podem ter para o produto dar 55.",
+   "passos": [
+    {
+     "faz": "Decida o valor de a × b e da soma",
+     "conta": "55 = 5 × 11 → a × b = 5 e c + d + e = 11",
+     "porque": "A soma de três algarismos distintos fica entre 3 e 24, então não pode ser 1 nem 55; a soma 5 exigiria a × b = 11, e 11 não é produto de dois algarismos; a × b = 55 também não é; a × b = 1 exigiria a = b = 1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conte as escolhas de a e b",
+     "conta": "a × b = 5 → (1, 5) ou (5, 1) → 2 opções",
+     "porque": "5 é primo, então só 1 × 5 serve, nas duas ordens.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Liste os conjuntos de soma 11 sem 1 e 5",
+     "conta": "{0, 2, 9} | {0, 3, 8} | {0, 4, 7} | {2, 3, 6} → 4 conjuntos",
+     "porque": "Os algarismos 1 e 5 já foram usados e a senha tem algarismos distintos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ordene e multiplique",
+     "conta": "4 × 3! → 4 × 6 = 24 ternas | 2 × 24 → 48",
+     "porque": "Cada conjunto pode ser colocado em c, d, e de 3! = 6 modos, e cada terna combina com as 2 escolhas de a e b.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o total à alternativa",
+     "conta": "48 senhas → alternativa A",
+     "porque": "O número máximo de senhas é a contagem completa dos casos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 48 senhas",
+   "checagem": "Ordem de grandeza: mesmo sem a condição da soma, com a × b = 5 haveria no máximo 2 × 8 × 7 × 6 = 672 senhas; C, D e E passam desse teto. Um exemplo confere: 1 5 0 2 9 dá 1 × 5 × (0 + 2 + 9) = 55.",
+   "erradas": {
+    "B": "60 não confere: exigiria 5 conjuntos de três algarismos de soma 11 sem o 1 e o 5 (5 × 6 × 2 = 60), mas há só 4.",
+    "C": "1 512 não confere: com a × b = 5 obrigatório, o total não passa de 2 × 8 × 7 × 6 = 672 senhas.",
+    "D": "1 890 não confere: passa do teto de 2 × 8 × 7 × 6 = 672 senhas possíveis com a × b = 5.",
+    "E": "2 592 não confere: passa do teto de 2 × 8 × 7 × 6 = 672 senhas possíveis com a × b = 5."
+   },
+   "armadilha": "Esquecer que c, d e e não podem repetir os algarismos 1 e 5 usados em a e b, nem um ao outro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas senhas de 5 algarismos distintos satisfazem a × b × (c + d + e) = 55.",
+    "chave": "a × b = 5 e c + d + e = 11: 2 × 4 × 3! = 48.",
+    "cuidado": "Tire 1 e 5 da lista de c, d, e e conte as ordens de cada conjunto."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "listagem por a",
+    "ideia": "Fixe a = 1, b = 5: 24 ternas de soma 11; troque para a = 5, b = 1: mais 24, total 48."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "a × b × (c + d + e) = 55",
+    "nota": "condição da senha"
+   },
+   {
+    "linha": "a × b = 5 ; c + d + e = 11",
+    "nota": "55 = 5 × 11"
+   },
+   {
+    "linha": "4 conjuntos × 3! = 24",
+    "nota": "ternas sem 1 e 5"
+   },
+   {
+    "linha": "2 × 24 = 48",
+    "nota": "casos de a e b"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0066"
+  }
+ },
+ "P7d8ba75e": {
+  "n": "16",
+  "conceito": "Montar e resolver um sistema de duas equações a partir de uma razão e de uma diferença.",
+  "equivocos": {
+   "A": "M04.5:sem-origem-identificada",
+   "B": "M04.5:sem-origem-identificada",
+   "C": "M04.5:sem-origem-identificada",
+   "D": "M04.5:respondeu-a-outra-incognita"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto dá duas informações sobre os PIBs de 2017: uma razão (10 vezes o da Alemanha é igual a 19 vezes o do Brasil) e uma diferença (1 trilhão e 800 bilhões de dólares). Duas incógnitas e duas equações: um sistema. Escreva a diferença na unidade pedida, trilhões: 1,8 trilhão.",
+    "formulas": [
+     "10A = 19B",
+     "A − B = 1,8"
+    ],
+    "simbolos": [
+     [
+      "A",
+      "PIB da Alemanha em 2017, em trilhões de dólares"
+     ],
+     [
+      "B",
+      "PIB do Brasil em 2017, em trilhões de dólares"
+     ],
+     [
+      "PIB",
+      "produto interno bruto"
+     ]
+    ]
+   },
+   "pista": "Dê nome aos dois PIBs e transforme cada frase do texto numa equação; converta a diferença para trilhões antes.",
+   "passos": [
+    {
+     "faz": "Monte as duas equações",
+     "conta": "10A = 19B | A − B = 1 trilhão + 800 bilhões = 1,8 trilhão",
+     "porque": "800 bilhões são 0,8 trilhão, porque 1 trilhão = 1.000 bilhões. As alternativas estão em trilhões.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Isole A na primeira equação",
+     "conta": "10A = 19B → A = 19B/10 = 1,9B",
+     "porque": "O 10 que multiplica A passa para o outro lado dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua na diferença",
+     "conta": "1,9B − B = 1,8 → 0,9B = 1,8 → B = 1,8/0,9 = 2,0",
+     "porque": "Juntando os termos com B sobra 0,9B; o 0,9 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Volte ao comando",
+     "conta": "B = 2,0 trilhões (A = 3,8) → alternativa E",
+     "porque": "A pergunta é o PIB do Brasil. O 3,8 é o da Alemanha.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 2,0 trilhões de dólares",
+   "checagem": "Substitua: A = 3,8 e B = 2,0. 10 × 3,8 = 38 e 19 × 2,0 = 38, iguais; 3,8 − 2,0 = 1,8 trilhão. As duas condições fecham.",
+   "erradas": {
+    "A": "380 não confere: com B = 380, A = 19 · 380/10 = 722 e A − B = 342, não 1,8.",
+    "B": "200 não confere: com B = 200, A = 19 · 200/10 = 380 e A − B = 180, não 1,8.",
+    "C": "38 não confere: com B = 38, A = 19 · 38/10 = 72,2 e A − B = 34,2, não 1,8. O 38 é o valor de 10A, não um PIB.",
+    "D": "3,8 é o PIB da Alemanha (A = 1,9 × 2,0 = 3,8); a pergunta é o do Brasil."
+   },
+   "armadilha": "Resolver o sistema e responder o PIB da Alemanha (3,8) no lugar do PIB do Brasil.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O PIB do Brasil em 2017, em trilhões de dólares.",
+    "chave": "10A = 19B e A − B = 1,8 dão 0,9B = 1,8, logo B = 2,0.",
+    "cuidado": "Converta 1 trilhão e 800 bilhões em 1,8 trilhão e confira qual país a pergunta quer."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "partes",
+    "ideia": "Se 10A = 19B, A tem 19 partes e B tem 10; a diferença de 9 partes é 1,8, então cada parte vale 0,2 e B = 10 × 0,2 = 2,0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10A = 19B",
+    "nota": "a razão do texto"
+   },
+   {
+    "linha": "A = 19B/10 = 1,9B",
+    "nota": "o 10 passa dividindo"
+   },
+   {
+    "linha": "1,9B − B = 1,8",
+    "nota": "substitui na diferença"
+   },
+   {
+    "linha": "0,9B = 1,8",
+    "nota": "junta os termos com B"
+   },
+   {
+    "linha": "B = 1,8/0,9 = 2,0",
+    "nota": "o 0,9 passa dividindo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0070"
+  }
+ },
+ "P3ca782f1": {
+  "n": "19",
+  "conceito": "Pontos sobre a bissetriz y = x e sobre a reta y = −2; triângulo retângulo com catetos horizontal e vertical.",
+  "equivocos": {
+   "A": "M12.5:mediu-catetos-ate-os-eixos",
+   "C": "M12.5:mediu-catetos-ate-os-eixos",
+   "D": "M12.5:area-de-triangulo-errada",
+   "E": "M12.5:usou-hipotenusa-como-cateto"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A bissetriz dos quadrantes ímpares é a reta y = x. C está nela e também em y = −2, então C é a interseção das duas. B e C estão na mesma reta horizontal, então o cateto BC é horizontal e, como o ângulo reto está em B (a hipotenusa é AC), o cateto AB é vertical.",
+    "formulas": [
+     "bissetriz dos quadrantes ímpares: y = x",
+     "distância de (a, a) à origem: |a|√2",
+     "área do triângulo retângulo = (cateto · cateto)/2"
+    ],
+    "simbolos": [
+     [
+      "quadrantes ímpares",
+      "1º e 3º quadrantes"
+     ],
+     [
+      "hipotenusa AC",
+      "lado oposto ao ângulo reto, que fica em B"
+     ]
+    ]
+   },
+   "pista": "Ache C primeiro: ele está em duas retas ao mesmo tempo.",
+   "passos": [
+    {
+     "faz": "Ache C",
+     "conta": "y = x e y = −2 → C = (−2, −2)",
+     "porque": "C pertence à bissetriz e à reta y = −2. Ele está no 3º quadrante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache A",
+     "conta": "A = (a, a): |a|√2 = 5√2 → a = 5 ou a = −5 → A = (5, 5)",
+     "porque": "A e C estão em quadrantes distintos; (−5, −5) ficaria no 3º, como C. Então A está no 1º.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache B",
+     "conta": "B em y = −2, com AB vertical → B = (5, −2)",
+     "porque": "O ângulo reto está em B; como BC é horizontal (os dois estão em y = −2), AB tem de ser vertical, com a mesma abscissa de A.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule os catetos e a área",
+     "conta": "AB = 5 − (−2) = 7 | BC = 5 − (−2) = 7 → área = (7 · 7)/2 = 49/2 = 24,5",
+     "porque": "Catetos vertical e horizontal se medem pela diferença das coordenadas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "24,5 cm² → alternativa B",
+     "porque": "A área do triângulo ABC é 24,5 centímetros quadrados.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 24,5 cm².",
+   "checagem": "Pitágoras: AC vai de (−2, −2) a (5, 5), AC = 7√2, e 7² + 7² = 98 = (7√2)². O triângulo é retângulo isósceles, de área (7 · 7)/2 = 24,5.",
+   "erradas": {
+    "A": "12,5 sai de medir os catetos até os eixos, (5 · 5)/2 = 12,5, em vez de até a reta y = −2 e até x = −2, onde estão B e C.",
+    "C": "25,0 sai de 5 · 5 = 25: catetos medidos até os eixos e sem dividir por 2.",
+    "D": "10√2 não confere: os catetos são inteiros, AB = BC = 7, e a área (7 · 7)/2 = 24,5 não tem raiz.",
+    "E": "49√2 sai de multiplicar o cateto AB = 7 pela hipotenusa AC = 7√2; área é cateto vezes cateto, dividido por 2."
+   },
+   "armadilha": "Os catetos vão até a reta y = −2 e até x = −2, não até os eixos: medem 7, não 5.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do triângulo retângulo ABC, com hipotenusa AC sobre y = x e B, C em y = −2.",
+    "chave": "C = (−2, −2), A = (5, 5), B = (5, −2); catetos 7 e 7, área 24,5 cm².",
+    "cuidado": "Use a condição de quadrantes distintos para escolher A = (5, 5)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "área por coordenadas",
+    "ideia": "Com A(5, 5), B(5, −2) e C(−2, −2): B − A = (0, −7) e C − A = (−7, −7); área = |0 · (−7) − (−7) · (−7)|/2 = 49/2 = 24,5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "y = x e y = −2 → C = (−2, −2)",
+    "nota": "interseção das retas"
+   },
+   {
+    "linha": "|a|√2 = 5√2 → A = (5, 5)",
+    "nota": "A no 1º quadrante"
+   },
+   {
+    "linha": "B = (5, −2)",
+    "nota": "ângulo reto em B"
+   },
+   {
+    "linha": "AB = 7 | BC = 7",
+    "nota": "diferenças das coordenadas"
+   },
+   {
+    "linha": "área = (7 · 7)/2 = 24,5",
+    "nota": "metade do produto dos catetos"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "P3af453bc": {
+  "n": "20",
+  "conceito": "Probabilidade com combinações: pares de casas de mesma cor sobre todos os pares de casas.",
+  "equivocos": {
+   "A": "M13.4:denominador-com-repeticao",
+   "B": "M13.4:supos-cores-equiprovaveis",
+   "C": "M13.4:respondeu-o-complementar",
+   "E": "M13.4:contagem-de-casos-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As peças são idênticas, então o que se sorteia é um par de casas, sem ordem. No tabuleiro 5 × 5 da figura, os cantos são escuros: são 13 casas escuras e 12 claras. Mesma cor quer dizer as duas escuras ou as duas claras, e esses dois casos se somam.",
+    "formulas": [
+     "probabilidade = casos favoráveis ÷ casos possíveis",
+     "pares sem ordem: C(n, 2) = n(n − 1)/2"
+    ],
+    "simbolos": [
+     [
+      "C(n, 2)",
+      "modos de escolher 2 casas entre n, sem ordem"
+     ]
+    ]
+   },
+   "pista": "Conte as casas de cada cor na figura antes de qualquer conta; elas não são metade e metade.",
+   "passos": [
+    {
+     "faz": "Conte as casas de cada cor",
+     "conta": "linhas: 3 + 2 + 3 + 2 + 3 = 13 escuras | 25 − 13 = 12 claras",
+     "porque": "Na figura, as linhas 1, 3 e 5 têm 3 escuras e as linhas 2 e 4 têm 2. Com 25 casas, sobra uma escura a mais.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os pares possíveis",
+     "conta": "C(25, 2) = (25 · 24)/2 = 300",
+     "porque": "As duas peças são iguais, então só importa o par de casas ocupadas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os pares de mesma cor",
+     "conta": "C(13, 2) + C(12, 2) = (13 · 12)/2 + (12 · 11)/2 = 78 + 66 = 144",
+     "porque": "Duas escuras ou duas claras: dois casos que não se sobrepõem, por isso somam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e simplifique",
+     "conta": "144/300 = 12/25",
+     "porque": "Favoráveis sobre possíveis; dividindo por 12, fica 12/25.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "12/25 → alternativa D",
+     "porque": "É a probabilidade de as duas peças ficarem em casas da mesma cor.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 12/25",
+   "checagem": "Pelo complementar: cores diferentes são 13 · 12 = 156 pares, e 156/300 = 13/25. Somando, 12/25 + 13/25 = 1. Fecha.",
+   "erradas": {
+    "A": "288/625 sai de contar os favoráveis com ordem (13 · 12 + 12 · 11 = 288) mas dividir por 25 · 25 = 625, como se as duas peças pudessem cair na mesma casa.",
+    "B": "23/48 sai de dar chance 1/2 a cada cor para a primeira peça: (1/2) · (12/24) + (1/2) · (11/24) = 23/48. Mas 13 das 25 casas são escuras, não metade.",
+    "C": "13/25 é a probabilidade de cores DIFERENTES: 13 · 12 = 156 pares, e 156/300 = 13/25.",
+    "E": "1/4 não confere: só os pares de duas escuras já dão 78/300 = 0,26, mais que 1/4."
+   },
+   "armadilha": "Supor metade das casas de cada cor: no 5 × 5 há 13 escuras e 12 claras.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de duas peças, em casas distintas sorteadas, ficarem em casas da mesma cor.",
+    "chave": "(C(13, 2) + C(12, 2))/C(25, 2) = 144/300 = 12/25.",
+    "cuidado": "Conte as cores na figura (13 e 12) e use o mesmo critério, com ou sem ordem, em cima e embaixo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "peça por peça",
+    "ideia": "(13/25) · (12/24) + (12/25) · (11/24) = 156/600 + 132/600 = 288/600 = 12/25."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "13 escuras | 12 claras",
+    "nota": "contagem na figura"
+   },
+   {
+    "linha": "C(25, 2) = (25 · 24)/2 = 300",
+    "nota": "pares possíveis"
+   },
+   {
+    "linha": "C(13, 2) + C(12, 2) = 78 + 66 = 144",
+    "nota": "pares de mesma cor"
+   },
+   {
+    "linha": "144/300 = 12/25",
+    "nota": "simplifica por 12"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "P0b082b6a": {
+  "n": "18",
+  "conceito": "Montar o polinômio a partir de divisor, quociente e resto e usar o teorema do resto na divisão por 2x + 1.",
+  "equivocos": {
+   "A": "M16.1:errou-a-soma-de-fracoes",
+   "C": "M16.1:errou-o-sinal-do-resto",
+   "D": "M16.1:esqueceu-o-resto-da-primeira-divisao",
+   "E": "M16.1:usou-a-raiz-com-sinal-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Toda divisão obedece a dividendo = divisor × quociente + resto. Com isso você tem p(x) por completo, sem precisar expandir. O resto da divisão por 2x + 1 é o valor de p na raiz de 2x + 1, que é x = −1/2.",
+    "formulas": [
+     "p(x) = (x² − x)(2x² + x + 1) + 3x",
+     "resto de p(x) ÷ (2x + 1) = p(−1/2)"
+    ],
+    "simbolos": [
+     [
+      "p(x)",
+      "o polinômio dividido"
+     ],
+     [
+      "x² − x",
+      "primeiro divisor"
+     ],
+     [
+      "2x² + x + 1",
+      "quociente da primeira divisão"
+     ],
+     [
+      "3x",
+      "resto da primeira divisão"
+     ]
+    ]
+   },
+   "pista": "Escreva p(x) pela relação da divisão e descubra o x que anula 2x + 1.",
+   "passos": [
+    {
+     "faz": "Monte p(x) pela relação da divisão",
+     "conta": "p(x) = (x² − x)(2x² + x + 1) + 3x",
+     "porque": "Dividendo é divisor vezes quociente mais resto.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache a raiz de 2x + 1",
+     "conta": "2x + 1 = 0 → 2x = −1 → x = −1/2",
+     "porque": "O 1 passa subtraindo e o 2 passa dividindo. O resto procurado é p(−1/2).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule cada parte em x = −1/2",
+     "conta": "x² − x = 1/4 + 1/2 = 3/4 ; 2x² + x + 1 = 1/2 − 1/2 + 1 = 1 ; 3x = −3/2",
+     "porque": "Calcular os fatores separados evita expandir o polinômio de grau 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as partes",
+     "conta": "p(−1/2) = (3/4)·1 + (−3/2) = 3/4 − 6/4 = −3/4",
+     "porque": "Escrevendo 3/2 como 6/4, as frações ficam com o mesmo denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque o resto",
+     "conta": "resto = −3/4 → alternativa B",
+     "porque": "O resto de uma divisão por polinômio de grau 1 é um número, aqui −3/4.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — −3/4",
+   "checagem": "Expanda p(x) = 2x⁴ − x³ + 2x e divida por 2x + 1: o quociente é x³ − x² + x/2 + 3/4 e o resto é −3/4. Fecha.",
+   "erradas": {
+    "A": "A não confere: p(−1/2) = 3/4 − 3/2 = −3/4, e não −1/2.",
+    "C": "C não confere: p(−1/2) = 3/4 − 3/2 = −3/4; o resultado é negativo, e não 1/2.",
+    "D": "D sai de esquecer o resto 3x da primeira divisão: (x² − x)(2x² + x + 1) em x = −1/2 dá 3/4 · 1 = 3/4.",
+    "E": "E sai de substituir x = 1/2 em vez de −1/2: p(1/2) = 2/16 − 1/8 + 1 = 1."
+   },
+   "armadilha": "A raiz de 2x + 1 é −1/2, e o resto 3x da primeira divisão faz parte de p(x).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O resto da divisão de p(x) por 2x + 1, sabendo divisor, quociente e resto de outra divisão.",
+    "chave": "p(x) = (x² − x)(2x² + x + 1) + 3x e resto = p(−1/2) = −3/4.",
+    "cuidado": "Não esqueça o resto 3x ao montar p(x) e use x = −1/2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "expandir e dividir",
+    "ideia": "Expanda p(x) = 2x⁴ − x³ + 2x e aplique Briot-Ruffini com a = −1/2: o resto é −3/4 (só o quociente é que se divide por 2)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "p(x) = (x² − x)(2x² + x + 1) + 3x",
+    "nota": "dividendo = divisor × quociente + resto"
+   },
+   {
+    "linha": "2x + 1 = 0 → x = −1/2",
+    "nota": "raiz do novo divisor"
+   },
+   {
+    "linha": "p(−1/2) = (3/4)·1 + (−3/2)",
+    "nota": "substituir em cada parte"
+   },
+   {
+    "linha": "3/4 − 6/4 = −3/4",
+    "nota": "mesmo denominador"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ }
+}

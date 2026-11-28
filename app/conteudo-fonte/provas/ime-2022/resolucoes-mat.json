@@ -1,0 +1,1651 @@
+{
+ "P845891cd": {
+  "n": "4",
+  "conceito": "Equação com frações transformada em produto de inteiros (divisores de 23²).",
+  "equivocos": {
+   "A": "M01.4:sem-origem-identificada",
+   "B": "M01.4:sem-origem-identificada",
+   "C": "M01.4:so-divisores-positivos",
+   "D": "M01.4:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Multiplique tudo por 23xy para tirar os denominadores e reorganize como um produto: (x − 23)(y − 23) = 23². Então x − 23 e y − 23 são divisores inteiros (positivos ou negativos) de 529, lembrando que x e y não podem ser 0.",
+    "formulas": [
+     "23y + 23x = xy",
+     "(x − 23)(y − 23) = 529"
+    ],
+    "simbolos": []
+   },
+   "pista": "Some 529 aos dois lados de xy − 23x − 23y = 0. O que aparece?",
+   "passos": [
+    {
+     "faz": "Tirar denominadores",
+     "conta": "1/x + 1/y = 1/23 → 23y + 23x = xy",
+     "porque": "Multiplica por 23xy (x, y ≠ 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fatorar",
+     "conta": "xy − 23x − 23y = 0 → xy − 23x − 23y + 529 = 529 → (x − 23)(y − 23) = 529",
+     "porque": "Somar 529 = 23 · 23 nos dois lados faz o lado esquerdo virar o produto (x − 23)(y − 23).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divisores de 529 = 23²",
+     "conta": "±1, ±23, ±529: seis pares (d, 529/d)",
+     "porque": "23 é primo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Testar",
+     "conta": "(24, 552), (46, 46), (552, 24), (22, −506), (−506, 22); d = −23 dá (0, 0)",
+     "porque": "x = 0 não é permitido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Contar",
+     "conta": "5 pares → alternativa E",
+     "porque": "Pares válidos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 5",
+   "checagem": "Teste cada par na equação original: 1/24 + 1/552 = 23/552 + 1/552 = 24/552 = 1/23; 1/46 + 1/46 = 2/46 = 1/23; 1/22 − 1/506 = 23/506 − 1/506 = 22/506 = 1/23. Os pares trocados também valem. São 5. Confere.",
+   "erradas": {
+    "A": "1 conta só o par simétrico (46, 46).",
+    "B": "2 sai de contar só {24, 552} e {46, 46} sem a ordem. Mas (24, 552) e (552, 24) são pares ordenados diferentes, e faltam (22, −506) e (−506, 22).",
+    "C": "3 conta só os pares com x e y positivos: (24, 552), (46, 46) e (552, 24).",
+    "D": "4 não confere: os seis divisores de 529 (±1, ±23, ±529) dão seis pares, e só (0, 0) cai, porque x = 0 é proibido; sobram 5."
+   },
+   "armadilha": "Considerar só divisores positivos de 529 e esquecer as soluções com y negativo, como (22, −506).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Pares inteiros (x, y).",
+    "chave": "(x − 23)(y − 23) = 23².",
+    "cuidado": "Divisores negativos também valem; exclua x = 0."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "isolar y",
+    "ideia": "y = 23x/(x − 23) = 23 + 529/(x − 23). y é inteiro exatamente quando x − 23 divide 529; os 6 divisores dão 6 valores de x, e x = 0 (divisor −23) é descartado."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x − 23)(y − 23) = 529",
+    "nota": "fatoração"
+   },
+   {
+    "linha": "d ∈ {±1, ±23, ±529}",
+    "nota": "divisores"
+   },
+   {
+    "linha": "5 pares (sem o (0, 0))",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0044"
+  },
+  "super_revisao": [
+   "2026-11-23"
+  ]
+ },
+ "P12692de8": {
+  "n": "6",
+  "conceito": "Módulo de potência de número complexo e propriedades do logaritmo.",
+  "equivocos": {
+   "A": "M06.3:valor-nao-confere",
+   "B": "M06.3:valor-nao-confere",
+   "D": "M06.3:valor-nao-confere",
+   "E": "M06.3:valor-nao-confere"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O módulo de uma potência é a potência do módulo: |z| = |1 − 2√2 i|^12. Esse módulo dá 3, então m = 3^12. Depois, log_m(27m) se abre em log_m 27 + log_m m, e 27 = 3^3 é uma potência da mesma base 3.",
+    "formulas": [
+     "|a + bi| = √(a^2 + b^2)",
+     "|w^n| = |w|^n",
+     "log_m (A × B) = log_m A + log_m B",
+     "log_(3^12) 3^3 = 3/12"
+    ],
+    "simbolos": [
+     [
+      "|z|",
+      "módulo do número complexo z"
+     ],
+     [
+      "i",
+      "unidade imaginária, i^2 = −1"
+     ],
+     [
+      "log_m",
+      "logaritmo na base m"
+     ]
+    ]
+   },
+   "pista": "Calcule primeiro o módulo de 1 − 2√2 i.",
+   "passos": [
+    {
+     "faz": "Calcule o módulo da base",
+     "conta": "|1 − 2√2 i| = √(1 + 8) = √9 = 3",
+     "porque": "(2√2)^2 = 4 × 2 = 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache m",
+     "conta": "m = |z| = 3^12",
+     "porque": "O módulo da potência é a potência do módulo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Abra o logaritmo",
+     "conta": "log_m (27m) = log_m 27 + log_m m = log_(3^12) 3^3 + 1 = 3/12 + 1 = 5/4",
+     "porque": "Log do produto é soma; log_m m = 1; e log de 3^3 na base 3^12 é 3/12.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole x",
+     "conta": "2x = 5/4 → x = 5/4 ÷ 2 → x = 5/8",
+     "porque": "O 2 que multiplica vai dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha a alternativa",
+     "conta": "x = 5/8 → alternativa C",
+     "porque": "É o valor de x.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 5/8",
+   "checagem": "Volte pela definição: 2x = 5/4 quer dizer m^(5/4) = 27m. Com m = 3^12: m^(5/4) = 3^15, e 27m = 3^3 × 3^12 = 3^15. Fecha.",
+   "erradas": {
+    "A": "15/14 não confere: daria 2x = 15/7 e m^(15/7) = 27m exigiria m^(8/7) = 27, mas m^(8/7) = 3^(96/7), não 3^3.",
+    "B": "5/14 não confere: daria 2x = 5/7 < 1, mas log_m(27m) = 1 + log_m 27 > 1 porque m > 1 e 27 > 1.",
+    "D": "15/4 não confere: daria 2x = 15/2 e m^(15/2) = 27m exigiria m^(13/2) = 27, mas m^(13/2) = 3^78.",
+    "E": "3/8 não confere: daria 2x = 3/4 < 1, mas log_m(27m) = 1 + log_m 27 > 1."
+   },
+   "armadilha": "Depois de achar log_m(27m) = 5/4, ainda falta dividir por 2: a expressão é 2x.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de x em 2x = log_m(27m), com m = |(1 − 2√2 i)^12|.",
+    "chave": "|1 − 2√2 i| = 3, m = 3^12, log_m(27m) = 1 + 3/12 = 5/4, x = 5/8.",
+    "cuidado": "Use |w^n| = |w|^n e não esqueça o 2 de 2x."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "definição",
+    "ideia": "2x = k quer dizer m^k = 27m; com m = 3^12, 3^(12k) = 3^15 e k = 5/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "|1 − 2√2 i| = √(1 + 8) = √9 = 3",
+    "nota": "módulo"
+   },
+   {
+    "linha": "m = 3^12",
+    "nota": "|w^12| = |w|^12"
+   },
+   {
+    "linha": "log_m (27m) = log_m 27 + 1",
+    "nota": "log do produto"
+   },
+   {
+    "linha": "log_m (27m) = 3/12 + 1 = 5/4",
+    "nota": "27 = 3^3"
+   },
+   {
+    "linha": "2x = 5/4",
+    "nota": "equação"
+   },
+   {
+    "linha": "x = 5/4 ÷ 2",
+    "nota": "o 2 vai dividindo"
+   },
+   {
+    "linha": "x = 5/8",
+    "nota": "resultado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0057"
+  }
+ },
+ "P422434d8": {
+  "n": "9",
+  "conceito": "Fractal: cada operação multiplica a área restante por 5/9, uma PG.",
+  "equivocos": {
+   "A": "M07.2:numero-de-termos-errado",
+   "C": "M07.2:numero-de-termos-errado",
+   "D": "M07.2:complementar-no-lugar-do-pedido",
+   "E": "M07.2:sinal-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na operação, o quadrado é dividido em 9 quadradinhos iguais (lado L/3) e ficam 5: os 4 cantos e o do centro. Então a área que sobra é 5/9 da anterior, em cada quadrado restante. Depois de n operações, a área é (5/9)ⁿ × L².",
+    "formulas": [
+     "área após n operações = L² × (5/9)ⁿ",
+     "área do quadradinho = (L/3)² = L²/9"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes um número fixo"
+     ],
+     [
+      "q",
+      "razão da PG: o número pelo qual se multiplica de um termo para o seguinte"
+     ],
+     [
+      "L",
+      "lado do quadrado inicial"
+     ]
+    ]
+   },
+   "pista": "Na Figura B, conte em quantos quadradinhos iguais o quadrado foi dividido e quantos ficaram.",
+   "passos": [
+    {
+     "faz": "Leia a Figura B",
+     "conta": "9 quadradinhos de lado L/3, ficam 5",
+     "porque": "Os 4 cantos e o centro continuam; as 4 peças do meio das bordas saem.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache a razão da PG",
+     "conta": "área após 1 operação = 5 × L²/9 = 5/9 × L²",
+     "porque": "Cada quadradinho tem área L²/9; sobram 5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Repita em cada quadrado",
+     "conta": "após 2 operações: (5/9)² × L² = 25/81 × L²",
+     "porque": "A mesma operação em cada quadrado restante multiplica de novo por 5/9; a Figura C tem 25 quadradinhos de lado L/9.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Vá até 10 operações",
+     "conta": "após 10: (5/9)¹⁰ × L² = 5¹⁰L²/9¹⁰",
+     "porque": "Cada operação é mais um fator 5/9.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 5¹⁰L²/9¹⁰",
+   "checagem": "Conte peças: após 10 operações há 5¹⁰ quadradinhos, cada um de lado L/3¹⁰ e área L²/9¹⁰. Área total 5¹⁰ × L²/9¹⁰.",
+   "erradas": {
+    "A": "A sai de contar 9 operações: (5/9)⁹ × L².",
+    "C": "C sai de contar 11 operações: (5/9)¹¹ × L².",
+    "D": "D é a área retirada, não a que sobra: L² − (5/9)¹⁰L² = (9¹⁰ − 5¹⁰)L²/9¹⁰.",
+    "E": "E não confere: como 5¹⁰ < 9¹⁰, a expressão é negativa, e área não pode ser negativa."
+   },
+   "armadilha": "A pergunta é a área que SOBRA; a área retirada (9¹⁰ − 5¹⁰)L²/9¹⁰ está ao lado para pegar quem lê rápido.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área restante após 10 operações de corte.",
+    "chave": "Cada operação guarda 5 de 9 partes: área × 5/9; após 10, (5/9)¹⁰ L².",
+    "cuidado": "Diferencie área restante de área retirada e conte as 10 operações."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "contagem de peças",
+    "ideia": "5¹⁰ quadradinhos de área L²/9¹⁰ cada."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A₁ = 5 × L²/9 = 5/9 × L²",
+    "nota": "1.ª operação"
+   },
+   {
+    "linha": "A₂ = (5/9)² × L² = 25/81 × L²",
+    "nota": "2.ª operação"
+   },
+   {
+    "linha": "A₁₀ = (5/9)¹⁰ × L²",
+    "nota": "10.ª operação"
+   },
+   {
+    "linha": "A₁₀ = 5¹⁰L²/9¹⁰",
+    "nota": "escreve como fração"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0059"
+  }
+ },
+ "P73bdf6af": {
+  "n": "12",
+  "conceito": "Simplificação de expressão trigonométrica com tg e sec e identidades de sen⁴ + cos⁴ e sen⁶ + cos⁶.",
+  "equivocos": {
+   "A": "M10.5:nao-simplificou-a-expressao",
+   "C": "M10.5:nao-simplificou-a-expressao",
+   "D": "M10.5:esqueceu-a-parcela-final",
+   "E": "M10.5:nao-simplificou-a-expressao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Troque tangente e secante por seno e cosseno: o cosseno à potência n se cancela e fn(x) vira (senⁿx + cosⁿx)/n. Depois, sen⁴ + cos⁴ e sen⁶ + cos⁶ se escrevem com o produto sen²x·cos²x, e esse produto se cancela na diferença.",
+    "formulas": [
+     "tg x = sen x/cos x ; sec x = 1/cos x",
+     "sen⁴x + cos⁴x = 1 − 2sen²x·cos²x",
+     "sen⁶x + cos⁶x = 1 − 3sen²x·cos²x"
+    ],
+    "simbolos": [
+     [
+      "tg",
+      "tangente"
+     ],
+     [
+      "sec",
+      "secante: 1 dividido pelo cosseno"
+     ],
+     [
+      "fn",
+      "a função da família para o número n"
+     ],
+     [
+      "p",
+      "abreviação de sen²x·cos²x"
+     ]
+    ]
+   },
+   "pista": "Multiplique numerador e denominador de fn(x) por cosⁿx e veja o que sobra.",
+   "passos": [
+    {
+     "faz": "Simplifique fn(x)",
+     "conta": "fn = (senⁿx/cosⁿx + 1)/(n/cosⁿx) → fn = (senⁿx + cosⁿx)/n",
+     "porque": "Multiplicar em cima e embaixo por cosⁿx cancela o cosseno do denominador da tangente e da secante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva f4 com p = sen²x·cos²x",
+     "conta": "sen⁴x + cos⁴x = (sen²x + cos²x)² − 2p → f4 = (1 − 2p)/4",
+     "porque": "O quadrado de sen²x + cos²x = 1 tem o termo cruzado 2p, que se subtrai.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva f6 com p",
+     "conta": "sen⁶x + cos⁶x = (sen²x + cos²x)³ − 3p(sen²x + cos²x) → f6 = (1 − 3p)/6",
+     "porque": "É a soma de cubos: a³ + b³ = (a + b)³ − 3ab(a + b), com a = sen²x e b = cos²x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça a diferença",
+     "conta": "f6 − f4 = (1 − 3p)/6 − (1 − 2p)/4 → 1/6 − p/2 − 1/4 + p/2 → f6 − f4 = −1/12",
+     "porque": "Os termos com p se cancelam: a diferença é constante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some 1/3 e conclua",
+     "conta": "g = −1/12 + 1/3 → g = −1/12 + 4/12 → g = 3/12 = 1/4 → alternativa B",
+     "porque": "g é constante e vale 1/4 para todo x permitido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — g(x) = 1/4",
+   "checagem": "Teste x = π/4: sen = cos = √2/2. f6 = (1/8 + 1/8)/6 = 1/24 e f4 = (1/4 + 1/4)/4 = 1/8. g = 1/24 − 3/24 + 8/24 = 6/24 = 1/4. Fecha.",
+   "erradas": {
+    "A": "cos(x) + 3 não confere: em x = π/4 (permitido), f6 = 1/24 e f4 = 1/8, logo g(π/4) = 1/24 − 1/8 + 1/3 = 1/4, mas cos(π/4) + 3 ≈ 3,71.",
+    "C": "sen(x) − 2 não confere: em x = π/4 ela vale ≈ −1,29, e g(π/4) = 1/4.",
+    "D": "1/12 não confere: em x = π/4, g(π/4) = 1/24 − 1/8 + 1/3 = 1/4. O 1/12 é f4 − f6, a diferença com a ordem trocada e sem o 1/3 do enunciado.",
+    "E": "tg(x) − 1/3 não confere: em x = π/4 ela vale 1 − 1/3 = 2/3, e g(π/4) = 1/4."
+   },
+   "armadilha": "Ficar preso a tg e sec: escritas com seno e cosseno, as potências do cosseno se cancelam e o produto sen²x·cos²x some na diferença.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A expressão de g(x) = f6(x) − f4(x) + 1/3.",
+    "chave": "fn = (senⁿx + cosⁿx)/n; com p = sen²x·cos²x, f6 − f4 = (1 − 3p)/6 − (1 − 2p)/4 = −1/12.",
+    "cuidado": "Não esqueça de somar o 1/3 no fim: −1/12 + 1/3 = 1/4."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "Como todas as alternativas são funções diferentes, teste x = π/4 (x = 0 está fora do domínio, pois k = −1 dá (k + 1)π/2 = 0): f6 = 1/24, f4 = 1/8, g = 1/24 − 1/8 + 1/3 = 1/4, e só B serve."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "fn = (senⁿx + cosⁿx)/n",
+    "nota": "multiplica em cima e embaixo por cosⁿx"
+   },
+   {
+    "linha": "f4 = (1 − 2p)/4 ; f6 = (1 − 3p)/6",
+    "nota": "p = sen²x·cos²x"
+   },
+   {
+    "linha": "f6 − f4 = 1/6 − p/2 − 1/4 + p/2 = −1/12",
+    "nota": "o p se cancela"
+   },
+   {
+    "linha": "g = −1/12 + 4/12 = 3/12 = 1/4",
+    "nota": "soma o 1/3"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ },
+ "P5f3139b2": {
+  "n": "7",
+  "conceito": "Relações de Girard no 3º grau e escolha de primos que maximizam uma razão.",
+  "equivocos": {
+   "B": "M16.1:trio-de-primos-errado",
+   "C": "M16.1:trio-de-primos-errado",
+   "D": "M16.1:escolheu-primos-maiores",
+   "E": "M16.1:ignorou-limite-100"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Por Girard, a soma das raízes é −p1 e o produto é −p3, então a razão soma/produto vale p1/p3. Para essa fração ser a maior possível, p1 deve ficar o mais perto possível de p3: os três primos precisam ser consecutivos e próximos. Falta comparar as razões dos trios de primos consecutivos abaixo de 100.",
+    "formulas": [
+     "x³ + p1x² + p2x + p3: soma = −p1, produto = −p3",
+     "razão = (−p1)/(−p3) = p1/p3"
+    ],
+    "simbolos": [
+     [
+      "p1, p2, p3",
+      "primos com p1 < p2 < p3 < 100"
+     ],
+     [
+      "Girard",
+      "relações entre coeficientes e raízes"
+     ]
+    ]
+   },
+   "pista": "Escreva a razão soma/produto em função dos coeficientes antes de pensar nos primos.",
+   "passos": [
+    {
+     "faz": "Aplique Girard",
+     "conta": "soma = −p1/1 | produto = −p3/1 → razão = p1/p3",
+     "porque": "Os sinais negativos se cancelam; p2 nem aparece na razão.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha primos consecutivos",
+     "conta": "p1 < p2 < p3 consecutivos → p1/p3 maior",
+     "porque": "Entre p1 e p3 tem de caber um primo p2; o mais perto possível é um trio consecutivo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Compare os melhores trios",
+     "conta": "67/73 ≈ 0,918 | 71/79 ≈ 0,899 | 79/89 ≈ 0,888 | 73/83 ≈ 0,880",
+     "porque": "O trio 67, 71, 73 tem p3 − p1 = 6 com primos grandes, o que dá a maior razão.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Some p2 + p3",
+     "conta": "71 + 73 = 144",
+     "porque": "É o que o enunciado pede.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — p2 + p3 = 144 (primos 67, 71 e 73).",
+   "checagem": "Conferido por busca em todos os trios de primos menores que 100: o máximo de p1/p3 é 67/73 ≈ 0,918. Note que 1 − p1/p3 = (p3 − p1)/p3; entre os trios com p3 − p1 = 6 (a menor distância além de 3, 5, 7), 67, 71, 73 é o de maior p3 abaixo de 100.",
+   "erradas": {
+    "B": "B sai do trio 71, 73, 79: 73 + 79 = 152, mas 71/79 ≈ 0,899 < 67/73 ≈ 0,918.",
+    "C": "C sai do trio 73, 79, 83: 79 + 83 = 162, mas 73/83 ≈ 0,880 < 0,918.",
+    "D": "D sai do trio 79, 83, 89: 83 + 89 = 172, mas 79/89 ≈ 0,888 < 0,918.",
+    "E": "E não confere: com p3 < 100, o maior p2 + p3 possível é 89 + 97 = 186, menor que 196."
+   },
+   "armadilha": "Escolher os primos maiores não basta: o que importa é a distância entre p1 e p3 relativa a p3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "p2 + p3 que torna máxima a razão soma/produto das raízes.",
+    "chave": "A razão é p1/p3; o máximo é 67/73, com p2 = 71.",
+    "cuidado": "Compare as razões dos trios consecutivos; não escolha só os maiores primos."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela diferença",
+    "ideia": "1 − p1/p3 = (p3 − p1)/p3: queira a menor diferença (6, num trio com primo no meio) com o maior p3 — 67, 71, 73."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "soma = −p1 ; produto = −p3",
+    "nota": "Girard"
+   },
+   {
+    "linha": "razão = p1/p3",
+    "nota": "sinais se cancelam"
+   },
+   {
+    "linha": "67/73 ≈ 0,918",
+    "nota": "melhor trio: 67, 71, 73"
+   },
+   {
+    "linha": "71/79 ≈ 0,899 ; 79/89 ≈ 0,888",
+    "nota": "trios concorrentes"
+   },
+   {
+    "linha": "71 + 73 = 144",
+    "nota": "p2 + p3"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
+ },
+ "Pdeec308a": {
+  "n": "3",
+  "conceito": "Logaritmo de potência e mínimo de uma quadrática: coeficiente angular das secantes por um ponto do gráfico.",
+  "equivocos": {
+   "B": "M06.3:altura-no-lugar-da-inclinacao",
+   "C": "M06.3:calculou-no-proprio-ponto",
+   "D": "M06.3:nao-tomou-o-minimo",
+   "E": "M06.3:nao-tomou-o-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Traga o expoente para fora do ln: f(x) = (3x − 1) · ln|−7/12 + x − x²|. Em x = 1/3 o fator 3x − 1 zera, então o ponto é (1/3, 0). O coeficiente da secante por esse ponto é f(x)/(x − 1/3), e o (3x − 1) se cancela com o (x − 1/3). Sobra uma função de x cujo mínimo vem do vértice de uma parábola.",
+    "formulas": [
+     "ln(aⁿ) = n · ln a, para a > 0",
+     "coeficiente angular = (f(x) − f(x₀))/(x − x₀)",
+     "vértice de x² + px + q: x = −p/2"
+    ],
+    "simbolos": [
+     [
+      "ln",
+      "logaritmo natural, na base e"
+     ],
+     [
+      "|…|",
+      "módulo: o valor sem sinal"
+     ],
+     [
+      "secante",
+      "reta que corta o gráfico em pelo menos dois pontos"
+     ],
+     [
+      "coeficiente angular",
+      "inclinação da reta: quanto y sobe quando x sobe 1"
+     ]
+    ]
+   },
+   "pista": "Comece calculando f(1/3): olhe o expoente 3x − 1 nesse ponto.",
+   "passos": [
+    {
+     "faz": "Calcule o ponto fixo",
+     "conta": "x = 1/3 → 3x − 1 = 0 → |−13/36|⁰ = 1 → f(1/3) = ln 1 = 0",
+     "porque": "−7/12 + 1/3 − 1/9 = −13/36, que não é zero; e qualquer número não nulo elevado a 0 dá 1. O ponto é (1/3, 0).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire o módulo e o expoente do ln",
+     "conta": "−x² + x − 7/12 < 0 → |−7/12 + x − x²| = x² − x + 7/12 → f(x) = (3x − 1) · ln(x² − x + 7/12)",
+     "porque": "O discriminante de x² − x + 7/12 é 1 − 7/3 < 0, então ela é sempre positiva e o módulo vira essa expressão. O expoente desce multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o coeficiente da secante",
+     "conta": "m = (f(x) − 0)/(x − 1/3) → m = (3(x − 1/3) · ln(x² − x + 7/12))/(x − 1/3) → m = 3 ln(x² − x + 7/12)",
+     "porque": "3x − 1 = 3(x − 1/3), e o (x − 1/3) se cancela. Cada x ≠ 1/3 dá o segundo ponto de uma secante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o menor valor da quadrática",
+     "conta": "x = 1/2 → (1/2)² − 1/2 + 7/12 → 1/4 − 1/2 + 7/12 = 1/3",
+     "porque": "ln é crescente: m é mínimo onde x² − x + 7/12 é mínima, no vértice x = 1/2, que é diferente de 1/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o menor coeficiente e marque",
+     "conta": "m = 3 ln(1/3) → m = −3 ln 3 → alternativa A",
+     "porque": "ln(1/3) = −ln 3. A reta por (1/3, 0) e (1/2, f(1/2)) existe e é secante, então o mínimo é atingido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — −3 ln(3)",
+   "checagem": "Confira com um ponto concreto: f(1/2) = (3/2 − 1) · ln(1/3) = (1/2) ln(1/3). A inclinação de (1/3, 0) até (1/2, f(1/2)) é ((1/2) ln(1/3))/(1/6) = 3 ln(1/3) = −3 ln 3 ≈ −3,30.",
+   "erradas": {
+    "B": "(1/2) ln(1/3) é o valor de f(1/2), a altura do ponto, e não a inclinação: falta dividir por x − 1/3 = 1/6. Vale ≈ −0,55, maior que −3,30.",
+    "C": "3 ln(13/36) sai de calcular 3 ln(x² − x + 7/12) no próprio ponto x = 1/3: 1/9 − 1/3 + 7/12 = 13/36. Dá ≈ −3,06, maior que o mínimo −3,30.",
+    "D": "0 não confere como mínimo: é atingido quando x² − x + 7/12 = 1 (x = 1/2 ± √6/3), mas a secante por x = 1/2 tem inclinação −3,30, menor.",
+    "E": "1/2 não confere: é positivo, e a secante por x = 1/2 tem inclinação −3 ln 3 ≈ −3,30, bem menor."
+   },
+   "armadilha": "Calcular o coeficiente no próprio ponto x = 1/3: o mínimo da inclinação está no vértice da parábola, x = 1/2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor coeficiente angular das secantes ao gráfico de f que passam por (1/3, f(1/3)).",
+    "chave": "f(1/3) = 0 e m = f(x)/(x − 1/3) = 3 ln(x² − x + 7/12), mínimo em x = 1/2: 3 ln(1/3) = −3 ln 3.",
+    "cuidado": "Desça o expoente do ln antes de dividir: 3x − 1 = 3(x − 1/3) se cancela."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "completar quadrado",
+    "ideia": "x² − x + 7/12 = (x − 1/2)² + 1/3 ≥ 1/3, com igualdade em x = 1/2; logo m = 3 ln(...) ≥ 3 ln(1/3) = −3 ln 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(1/3) = ln(|−13/36|⁰) = ln 1 = 0",
+    "nota": "expoente zera em x = 1/3"
+   },
+   {
+    "linha": "f(x) = (3x − 1) · ln(x² − x + 7/12)",
+    "nota": "expoente desce; módulo some"
+   },
+   {
+    "linha": "m = f(x)/(x − 1/3) = 3 ln(x² − x + 7/12)",
+    "nota": "3x − 1 = 3(x − 1/3) se cancela"
+   },
+   {
+    "linha": "mín de x² − x + 7/12 = 1/3, em x = 1/2",
+    "nota": "vértice"
+   },
+   {
+    "linha": "m mín = 3 ln(1/3) = −3 ln 3",
+    "nota": "ln crescente"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
+ },
+ "P8db9d6fe": {
+  "n": "13",
+  "conceito": "Lugar geométrico: parametrizar o ponto variável B, usar perpendicularidade (produto dos coeficientes angulares = −1) e eliminar o parâmetro.",
+  "equivocos": {
+   "A": "M12.2:trocou-x-e-y-no-lugar-geometrico",
+   "B": "M12.2:ignorou-a-ordenada-do-ponto-fixo",
+   "C": "M12.2:lugar-geometrico-nao-e-reta",
+   "D": "M12.2:confundiu-com-circunferencia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Lugar geométrico se resolve dando nome ao que varia: B = (0, b). Tudo o mais (a perpendicular, o ponto C, o ponto pedido) fica em função de b. No fim, elimina-se b: o ponto pedido tem a abscissa de C e a ordenada de B. Duas retas são perpendiculares quando o produto dos coeficientes angulares é −1.",
+    "formulas": [
+     "coeficiente angular: m = (y₂ − y₁)/(x₂ − x₁)",
+     "perpendiculares: m₁ · m₂ = −1",
+     "ponto pedido: X = (x_C, b)"
+    ],
+    "simbolos": [
+     [
+      "b",
+      "ordenada do ponto B, que varia sobre o eixo y"
+     ],
+     [
+      "C",
+      "ponto onde a perpendicular a AB por B corta o eixo x"
+     ],
+     [
+      "lugar geométrico",
+      "conjunto de todas as posições do ponto quando B varia"
+     ]
+    ]
+   },
+   "pista": "Escreva B = (0, b) e descubra a abscissa de C em função de b.",
+   "passos": [
+    {
+     "faz": "Calcule a inclinação de AB",
+     "conta": "m_AB = (b − 2)/(0 − (−4)) = (b − 2)/4",
+     "porque": "A = (−4, 2) e B = (0, b).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a perpendicular por B",
+     "conta": "m = −4/(b − 2) → y = b − (4x)/(b − 2)",
+     "porque": "Perpendicular tem coeficiente angular inverso e com sinal trocado; ela passa por B, que tem x = 0 e y = b.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache C fazendo y = 0",
+     "conta": "0 = b − (4x)/(b − 2) → 4x = b(b − 2) → x_C = (b² − 2b)/4",
+     "porque": "C está no eixo das abscissas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o ponto pedido e elimine b",
+     "conta": "x = (y² − 2y)/4 → 4x = y² − 2y → 4x + 1 = y² − 2y + 1 → (y − 1)² = 4x + 1",
+     "porque": "A vertical por C tem x = x_C e a horizontal por B tem y = b; então y = b, e soma-se 1 dos dois lados para completar o quadrado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "(y − 1)² = 4x + 1 → alternativa E",
+     "porque": "É uma parábola de eixo horizontal, exatamente a equação de E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — (y − 1)² = 4x + 1.",
+   "checagem": "Caso particular b = 4: m_AB = 1/2, perpendicular y = 4 − 2x corta o eixo x em C = (2, 0); o ponto é (2, 4). Em E: (4 − 1)² = 9 e 4 · 2 + 1 = 9. Fecha.",
+   "erradas": {
+    "A": "A não confere: o ponto (2, 4), obtido com b = 4, dá x² = 4 e 4y + 1 = 17.",
+    "B": "B não confere: o ponto (2, 4) dá y² = 16 e 4x = 8. Seria a resposta se A estivesse em (−4, 0) e não em (−4, 2).",
+    "C": "C não confere: o ponto (2, 4) dá −x + 2 = 0, e não 4. O lugar é uma curva, não uma reta.",
+    "D": "D não confere: o ponto (2, 4) dá x² + (y − 2)² = 4 + 4 = 8, e não 4."
+   },
+   "armadilha": "O ponto pedido tem a abscissa de C e a ordenada de B; trocar essas coordenadas leva a uma equação de outra curva.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A equação do lugar geométrico do ponto (x_C, y_B) quando B percorre o eixo y.",
+    "chave": "x_C = (b² − 2b)/4 e y = b; eliminando b: (y − 1)² = 4x + 1.",
+    "cuidado": "Perpendicular: coeficiente angular inverso com sinal trocado."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de pontos",
+    "ideia": "Gere dois pontos do lugar (b = 4 dá (2, 4); b = 2 dá (0, 2)) e veja que só E passa pelos dois."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "m_AB = (b − 2)/4",
+    "nota": "A(−4, 2) e B(0, b)"
+   },
+   {
+    "linha": "y = b − (4x)/(b − 2)",
+    "nota": "perpendicular por B"
+   },
+   {
+    "linha": "y = 0 → x_C = (b² − 2b)/4",
+    "nota": "ponto C no eixo x"
+   },
+   {
+    "linha": "4x = y² − 2y",
+    "nota": "troca b por y"
+   },
+   {
+    "linha": "(y − 1)² = 4x + 1",
+    "nota": "completa o quadrado"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "P6331e5f1": {
+  "n": "14",
+  "conceito": "Lugar dos pontos com razão de distâncias constante (circunferência de Apolônio) e altura máxima do triângulo.",
+  "equivocos": {
+   "A": "M12.4:tomou-altura-possivel-como-maxima",
+   "B": "M12.4:tomou-altura-possivel-como-maxima",
+   "C": "M12.4:tomou-altura-possivel-como-maxima",
+   "D": "M12.4:tomou-altura-possivel-como-maxima"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Fixe B e C num sistema de coordenadas e procure todos os pontos A com AB = 3·AC. Esses pontos formam uma circunferência (a de Apolônio). A altura relativa a BC é a distância de A até a reta BC; ela é máxima no ponto mais alto da circunferência, ou seja, igual ao raio.",
+    "formulas": [
+     "AB/AC = 3 → AB² = 9·AC²",
+     "distância ao quadrado: d² = (x − x₁)² + (y − y₁)²",
+     "altura relativa a BC = |y| de A, com BC no eixo x"
+    ],
+    "simbolos": [
+     [
+      "AB/AC",
+      "razão entre os lados AB e AC"
+     ],
+     [
+      "altura relativa a BC",
+      "distância de A até a reta que contém BC"
+     ]
+    ]
+   },
+   "pista": "Ponha B = (0, 0) e C = (32, 0) e escreva AB² = 9·AC² com A = (x, y).",
+   "passos": [
+    {
+     "faz": "Escreva a condição em coordenadas",
+     "conta": "x² + y² = 9[(x − 32)² + y²]",
+     "porque": "Com BC no eixo x, a altura de A é |y|. Elevar AB = 3·AC ao quadrado tira as raízes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desenvolva e simplifique",
+     "conta": "8x² + 8y² − 576x + 9216 = 0 → x² + y² − 72x + 1152 = 0",
+     "porque": "Passando tudo para um lado e dividindo por 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Complete o quadrado",
+     "conta": "(x − 36)² + y² = 1296 − 1152 = 144",
+     "porque": "Centro (36, 0), sobre a reta BC, e raio √144 = 12.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia a maior altura",
+     "conta": "|y| máximo = raio = 12, em A = (36, 12)",
+     "porque": "Como o centro está no eixo x, o ponto mais afastado de BC fica bem acima do centro, a um raio dele. Conferindo: AB = √1440 = 12√10 e AC = √160 = 4√10, razão 3.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 12.",
+   "checagem": "Os pontos da circunferência sobre a reta BC dividem BC na razão 3: interno em x = 24 (24 e 8) e externo em x = 48 (48 e 16). O diâmetro vai de 24 a 48, mede 24, e o raio é 12. Bate.",
+   "erradas": {
+    "A": "8 é uma altura possível (pontos da circunferência com |y| = 8), mas não a maior: o ponto (36, 12) cumpre AB = 3·AC com altura 12.",
+    "B": "9 é possível, mas não máximo: o raio da circunferência de Apolônio é 12, e a altura chega a 12.",
+    "C": "10 é possível, mas não máximo: em A = (36, 12) a razão AB/AC vale 12√10 / 4√10 = 3 e a altura é 12.",
+    "D": "11 é possível, mas não máximo: a altura só é limitada pelo raio 12 da circunferência."
+   },
+   "armadilha": "Sem perceber que os vértices A formam uma circunferência, fica difícil ver que a altura máxima é exatamente o raio.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A maior altura relativa a BC entre os triângulos com BC = 32 e AB = 3·AC.",
+    "chave": "Os pontos A formam (x − 36)² + y² = 144; altura máxima = raio = 12.",
+    "cuidado": "Eleve a razão ao quadrado (AB² = 9·AC²) antes de desenvolver."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "divisão harmônica",
+    "ideia": "Os pontos de BC na razão 3 são x = 24 e x = 48; eles são as pontas de um diâmetro de 24, então o raio e a altura máxima valem 12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² + y² = 9[(x − 32)² + y²]",
+    "nota": "AB² = 9·AC²"
+   },
+   {
+    "linha": "x² + y² − 72x + 1152 = 0",
+    "nota": "desenvolver e dividir por 8"
+   },
+   {
+    "linha": "(x − 36)² + y² = 144",
+    "nota": "centro (36, 0), raio 12"
+   },
+   {
+    "linha": "altura máxima = 12",
+    "nota": "ponto mais alto da circunferência"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "Pf5fdb224": {
+  "n": "10",
+  "conceito": "Reconhecer identidades de coeficientes binomiais (Pascal, Vandermonde, derivadas de (1 + x)ⁿ) e achar a falsa.",
+  "equivocos": {
+   "B": "M13.3:desconhece-relacao-de-pascal",
+   "C": "M13.3:desconhece-soma-por-derivada",
+   "D": "M13.3:desconhece-soma-por-derivada",
+   "E": "M13.3:desconhece-soma-alternada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A pergunta é a INCORRETA. Quatro das identidades vêm de fatos clássicos: a relação de Pascal e as somas que saem de (1 + x)¹⁰⁰ fazendo x = 1 ou x = −1, também depois de derivar. A soma dos quadrados é a identidade de Vandermonde, e o lado direito dela não leva quadrado.",
+    "formulas": [
+     "Pascal: C(n, k − 1) + C(n, k) = C(n + 1, k)",
+     "Σ C(n, k)² = C(2n, n)",
+     "Σ k · C(n, k) = n · 2ⁿ⁻¹ ; Σ k(k − 1) · C(n, k) = n(n − 1) · 2ⁿ⁻²",
+     "Σ (−1)ᵏ · C(n, k) = 0"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "coeficiente binomial: modos de escolher k entre n, o mesmo que o número escrito em pé entre parênteses"
+     ],
+     [
+      "Σ",
+      "soma em k de 0 a n"
+     ],
+     [
+      "Vandermonde",
+      "identidade que conta comissões de n pessoas tiradas de dois grupos de n"
+     ]
+    ]
+   },
+   "pista": "Para a soma dos quadrados, pense em escolher 100 pessoas de um grupo de 200 formado por dois times de 100.",
+   "passos": [
+    {
+     "faz": "Confira B pela relação de Pascal",
+     "conta": "C(100, 39) + C(100, 40) = C(101, 40)",
+     "porque": "Dois vizinhos da linha 100 do triângulo de Pascal somam o número logo abaixo, na linha 101 e na posição do maior índice. B está correta.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Confira D e C derivando (1 + x)¹⁰⁰",
+     "conta": "Σ k · C(100, k) xᵏ⁻¹ = 100(1 + x)⁹⁹ → x = 1: 100 · 2⁹⁹ ; Σ k(k − 1) · C(100, k) xᵏ⁻² = 100 · 99 (1 + x)⁹⁸ → x = 1: 9 900 · 2⁹⁸",
+     "porque": "Derivar uma vez traz o fator k; derivar duas traz k(k − 1). Com x = 1 saem exatamente D e C. As duas estão corretas.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Confira E com x = −1",
+     "conta": "(1 − 1)¹⁰⁰ = 1 − C(100, 1) + C(100, 2) − ... + C(100, 100) = 0",
+     "porque": "Pondo x = −1 em (1 + x)¹⁰⁰, os sinais alternam e o total é 0¹⁰⁰ = 0. E está correta.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste A pela contagem de comissões",
+     "conta": "Σ C(100, k) · C(100, 100 − k) = C(200, 100) ≠ C(200, 100)²",
+     "porque": "Como C(100, k) = C(100, 100 − k), a soma dos quadrados conta as comissões de 100 tiradas de 200 (k de um time e 100 − k do outro): dá C(200, 100), sem o quadrado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a incorreta",
+     "conta": "A é a única falsa → alternativa A",
+     "porque": "O comando pede a identidade INCORRETA.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — C(100, 0)² + C(100, 1)² + ... + C(100, 100)² = C(200, 100)² (a soma vale C(200, 100), sem o quadrado)",
+   "checagem": "Caso pequeno com n = 2: 1² + 2² + 1² = 6 = C(4, 2), enquanto C(4, 2)² = 36. O padrão de A falha já em n = 2.",
+   "erradas": {
+    "B": "B é verdadeira: é a relação de Pascal, C(n, k − 1) + C(n, k) = C(n + 1, k), com n = 100 e k = 40.",
+    "C": "C é verdadeira: derivando (1 + x)¹⁰⁰ duas vezes e fazendo x = 1, Σ k(k − 1) · C(100, k) = 100 · 99 · 2⁹⁸ = 9 900 · 2⁹⁸.",
+    "D": "D é verdadeira: derivando (1 + x)¹⁰⁰ uma vez e fazendo x = 1, Σ k · C(100, k) = 100 · 2⁹⁹.",
+    "E": "E é verdadeira: é (1 − 1)¹⁰⁰ = 0 desenvolvido pelo binômio."
+   },
+   "armadilha": "A soma dos QUADRADOS dos coeficientes dá C(200, 100), não o quadrado dele; o quadrado no lado direito é a falha.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A identidade binomial falsa.",
+    "chave": "Vandermonde: Σ C(n, k)² = C(2n, n); as demais saem de Pascal e de (1 + x)ⁿ com x = ±1, derivada ou não.",
+    "cuidado": "O comando pede a INCORRETA; teste num caso pequeno quando duvidar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso pequeno",
+    "ideia": "Teste cada identidade com n = 2 ou 3: só a de A falha (1 + 4 + 1 = 6 = C(4, 2), não 36)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(1 + x)¹⁰⁰ = Σ C(100, k) xᵏ",
+    "nota": "binômio de Newton"
+   },
+   {
+    "linha": "x = −1 → Σ (−1)ᵏ C(100, k) = 0",
+    "nota": "E correta"
+   },
+   {
+    "linha": "derivada, x = 1 → Σ k C(100, k) = 100 · 2⁹⁹",
+    "nota": "D correta"
+   },
+   {
+    "linha": "2.ª derivada, x = 1 → Σ k(k − 1) C(100, k) = 9 900 · 2⁹⁸",
+    "nota": "C correta"
+   },
+   {
+    "linha": "Σ C(100, k)² = C(200, 100) ≠ C(200, 100)²",
+    "nota": "A falsa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "P3368e49e": {
+  "n": "2",
+  "conceito": "Somar uma PG infinita com razão que depende de x, respeitar a condição de convergência e resolver a equação resultante.",
+  "equivocos": {
+   "A": "M07.2:raizes-calculadas-errado",
+   "C": "M07.2:ignorou-condicao-de-convergencia",
+   "D": "M07.2:ignorou-condicao-de-convergencia",
+   "E": "M07.2:sinal-trocado-na-soma-das-raizes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os termos formam uma PG: cada um é o anterior vezes −4/(3x). A soma infinita só existe quando o módulo da razão é menor que 1, e isso define o conjunto B. Com a soma em mãos, a equação vira de 2º grau; o trabalho real é descartar a raiz que está fora de B.",
+    "formulas": [
+     "S = a1/(1 − q), só se |q| < 1",
+     "soma das raízes de ax² + bx + c = 0: −b/a"
+    ],
+    "simbolos": [
+     [
+      "B",
+      "conjunto dos x em que a soma infinita é finita"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ],
+     [
+      "|q|",
+      "módulo (valor absoluto) da razão"
+     ],
+     [
+      "f(x)",
+      "a soma infinita, em função de x"
+     ]
+    ]
+   },
+   "pista": "Divida o segundo termo pelo primeiro para achar a razão, e veja para quais x ela tem módulo menor que 1.",
+   "passos": [
+    {
+     "faz": "Ache a razão e o domínio",
+     "conta": "q = (16/(9x²))/(−4/(3x)) = −4/(3x) → |4/(3x)| < 1 → |x| > 4/3",
+     "porque": "Soma infinita só converge com |q| < 1; esse é o conjunto B.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some a PG infinita",
+     "conta": "f(x) = (−4/(3x))/(1 + 4/(3x)) → f(x) = −4/(3x + 4)",
+     "porque": "Multiplique em cima e embaixo por 3x para tirar as frações internas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a equação f(x) = −x",
+     "conta": "−4/(3x + 4) = −x → 4 = 3x² + 4x → 3x² + 4x − 4 = 0",
+     "porque": "O 3x + 4 passa multiplicando; os sinais de menos se cancelam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva",
+     "conta": "x = (−4 ± √64)/6 → x = 2/3 ou x = −2",
+     "porque": "Discriminante 16 + 48 = 64, raiz 8.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descarte a raiz fora de B",
+     "conta": "|2/3| < 4/3 → sai | |−2| > 4/3 → fica",
+     "porque": "Em x = 2/3 a razão vale −2: a soma não existe ali, então 2/3 não é raiz de f(x) = −x.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Some as raízes válidas",
+     "conta": "soma = −2 → alternativa B",
+     "porque": "Só sobrou uma raiz em B, e a soma é ela mesma.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — −2",
+   "checagem": "Substitua x = −2: a razão é −4/(−6) = 2/3, que tem módulo menor que 1; a soma é (2/3)/(1 − 2/3) = 2, e −x = 2. Fecha.",
+   "erradas": {
+    "A": "0 não confere: daria raízes simétricas, mas as raízes de 3x² + 4x − 4 = 0 são 2/3 e −2.",
+    "C": "−4/3 sai de somar as duas raízes da equação de 2º grau (−b/a = −4/3) sem tirar a que está fora de B.",
+    "D": "2/3 sai de ficar com a raiz errada: em x = 2/3 a razão é −2 e a soma infinita nem existe.",
+    "E": "4/3 sai de trocar o sinal na soma das raízes: b/a = 4/3 em vez de −b/a = −4/3, e ainda sem descartar 2/3."
+   },
+   "armadilha": "A raiz 2/3 da equação de 2º grau não pertence a B: lá a razão vale −2 e a soma infinita não existe.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma das raízes de f(x) = −x, sendo f a soma infinita da PG, apenas para x em que essa soma é finita.",
+    "chave": "q = −4/(3x), B: |x| > 4/3; f(x) = −4/(3x + 4); 3x² + 4x − 4 = 0 dá 2/3 e −2, e só −2 está em B.",
+    "cuidado": "Confira cada raiz na condição |q| < 1 antes de somar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Teste x = −2 na equação: razão 2/3, soma 2 = −(−2); e x = 2/3 cai fora de B porque a razão vale −2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "q = −4/(3x)",
+    "nota": "razão: segundo termo ÷ primeiro"
+   },
+   {
+    "linha": "|x| > 4/3",
+    "nota": "condição |q| < 1"
+   },
+   {
+    "linha": "f(x) = −4/(3x + 4)",
+    "nota": "soma a1/(1 − q)"
+   },
+   {
+    "linha": "3x² + 4x − 4 = 0",
+    "nota": "igualar a −x"
+   },
+   {
+    "linha": "x = 2/3 (sai) ou x = −2",
+    "nota": "Bhaskara e domínio B"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ },
+ "Pdc929384": {
+  "n": "15",
+  "conceito": "Região da superfície lateral de um cone iluminada por um ponto de luz, pela sombra do vértice e pela área lateral πRg.",
+  "equivocos": {
+   "A": "M11.3:area-maior-que-a-lateral",
+   "B": "M11.3:area-maior-que-a-lateral",
+   "C": "M11.3:considerou-toda-a-lateral-iluminada",
+   "E": "M11.3:area-maior-que-a-lateral"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A base está no chão, então só a superfície lateral pode receber luz. Cada geratriz (segmento do vértice até a borda da base) fica toda iluminada ou toda escura, e a área lateral se reparte igualmente pelo ângulo em volta do eixo. Basta achar que ângulo da base fica do lado iluminado. Para isso, projete do ponto luminoso a sombra do vértice no chão: as geratrizes de sombra são as que ficam entre as duas tangentes traçadas dessa sombra até o círculo da base.",
+    "formulas": [
+     "geratriz g = √(R² + altura²)",
+     "área lateral do cone = π · R · g",
+     "área iluminada = (ângulo iluminado/360°) × área lateral"
+    ],
+    "simbolos": [
+     [
+      "R",
+      "raio da base do cone"
+     ],
+     [
+      "g",
+      "geratriz, distância do vértice até a borda da base"
+     ],
+     [
+      "S",
+      "área da região iluminada"
+     ],
+     [
+      "V'",
+      "sombra do vértice no chão"
+     ]
+    ]
+   },
+   "pista": "Comece achando onde cai, no chão, a sombra do vértice do cone.",
+   "passos": [
+    {
+     "faz": "Ache a sombra do vértice no chão",
+     "conta": "luz: altura 3R | vértice: altura 3R/2 → o raio desce 3R/2 e anda 2R → desce mais 3R/2 e anda mais 2R → V' a 2R do centro, do lado oposto à luz",
+     "porque": "O vértice está na metade da altura da luz. O raio de luz que passa pelo vértice percorre na horizontal, até o chão, a mesma distância que percorreu até o vértice.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Trace as tangentes de V' ao círculo",
+     "conta": "cos α = R/(2R) = 1/2 → α = 60° → arco de sombra = 2 · 60° = 120° → arco iluminado = 360° − 120° = 240°",
+     "porque": "No triângulo centro, ponto de tangência e V', o raio é perpendicular à tangente. As geratrizes com o pé no arco voltado para V' ficam na sombra.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área lateral inteira",
+     "conta": "g = √(R² + (3R/2)²) = √(13R²/4) = (R√13)/2 → A lateral = π · R · (R√13)/2 = (πR²√13)/2",
+     "porque": "A geratriz é a hipotenusa do triângulo com o raio e a altura do cone.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tome a fração iluminada",
+     "conta": "S = (240/360) · (πR²√13)/2 → S = (2/3) · (πR²√13)/2 → S = (πR²√13)/3",
+     "porque": "Na planificação, a lateral é um setor circular; cada fatia de ângulo da base corresponde à mesma fração da área.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "S = (πR²√13)/3 → alternativa D",
+     "porque": "A base está apoiada no solo e não recebe luz; a área iluminada é só essa parte da lateral.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — S = πR²·√13/3",
+   "checagem": "Pelo plano tangente: a geratriz que sai do ponto de ângulo θ da base fica no plano x·cos θ + y·sen θ + (2/3)·z = R. A luz (2R, 0, 3R) fica do lado de fora quando 2R·cos θ + 2R > R, ou seja, cos θ > −1/2: θ entre −120° e 120°, os mesmos 240°.",
+   "erradas": {
+    "A": "πR²√13 não confere: é o dobro da área lateral inteira, (πR²√13)/2, e a região iluminada não pode passar da lateral.",
+    "B": "2πR²√13/3 não confere: vale 4/3 da área lateral inteira, mais do que toda a lateral do cone.",
+    "C": "πR²√13/2 sai de supor que, com a luz acima do vértice, toda a lateral fica iluminada: é a área lateral inteira, π·R·(R√13)/2. O lado oposto à luz, num arco de 120°, fica na sombra.",
+    "E": "13πR²/4 não confere: 13/4 = 3,25, maior que √13/2 ≈ 1,80, então a área passaria da lateral inteira."
+   },
+   "armadilha": "A luz estar acima do vértice não ilumina a lateral toda: um arco de 120° da base, do lado oposto à luz, fica na sombra.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área da parte do cone iluminada por um ponto de luz a 3R de altura e 2R do eixo.",
+    "chave": "A sombra do vértice cai a 2R do centro; as tangentes dela ao círculo deixam 120° na sombra, logo 2/3 de πR·(R√13)/2 ficam iluminados.",
+    "cuidado": "Só a lateral recebe luz (a base está no chão), e a área lateral se divide pelo ângulo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "plano tangente",
+    "ideia": "Escreva o plano tangente ao longo de cada geratriz, x·cos θ + y·sen θ + (2/3)z = R, e exija a luz do lado de fora: cos θ > −1/2, ou 240° iluminados."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "V' a 2R do centro, oposto à luz",
+    "nota": "sombra do vértice: o vértice está na metade da altura da luz"
+   },
+   {
+    "linha": "cos α = R/(2R) = 1/2 → α = 60°",
+    "nota": "tangentes de V' ao círculo da base"
+   },
+   {
+    "linha": "sombra: 120° ; luz: 240°",
+    "nota": "arco voltado para V' fica escuro"
+   },
+   {
+    "linha": "g = (R√13)/2 ; A lateral = (πR²√13)/2",
+    "nota": "Pitágoras e π·R·g"
+   },
+   {
+    "linha": "S = (2/3) · (πR²√13)/2 = (πR²√13)/3",
+    "nota": "240° de 360° são 2/3"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ },
+ "Pb411bc22": {
+  "n": "8",
+  "conceito": "Probabilidade geométrica: área da região do plano (s, t) em que s, t e r − s − t satisfazem a desigualdade triangular.",
+  "equivocos": {
+   "A": "M13.9:area-favoravel-errada",
+   "B": "M13.9:esqueceu-a-condicao-do-terceiro-lado",
+   "C": "M13.9:area-favoravel-errada",
+   "E": "M13.9:respondeu-o-complementar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada escolha de s e t é um ponto do plano. Os pontos possíveis (s > 0, t > 0, s + t < r) formam um triângulo retângulo de catetos r. A probabilidade é a fração dessa área em que os três segmentos formam triângulo. Como os três somam r, a desigualdade triangular vira uma regra simples: cada lado tem de ser menor que a metade do total, r/2.",
+    "formulas": [
+     "desigualdade triangular: cada lado < soma dos outros dois",
+     "com a + b + c = r: a < b + c ⇔ a < r/2",
+     "probabilidade = área favorável ÷ área possível"
+    ],
+    "simbolos": [
+     [
+      "s, t",
+      "os dois valores sorteados; o terceiro segmento é r − s − t"
+     ],
+     [
+      "r",
+      "o comprimento total dos três segmentos"
+     ],
+     [
+      "desigualdade triangular",
+      "condição para três segmentos formarem triângulo: cada um menor que a soma dos outros dois"
+     ]
+    ]
+   },
+   "pista": "Desenhe no plano (s, t) a região de todos os sorteios possíveis e escreva as três condições do triângulo em função de s e t.",
+   "passos": [
+    {
+     "faz": "Desenhe a região possível",
+     "conta": "s > 0, t > 0, s + t < r → área = (r · r)/2 = r²/2",
+     "porque": "São os pontos abaixo da reta s + t = r no primeiro quadrante: um triângulo retângulo com catetos r.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva as três condições",
+     "conta": "s < r/2 | t < r/2 | r − s − t < r/2 → s + t > r/2",
+     "porque": "Se a + b + c = r, então a < b + c é o mesmo que a < r − a, isto é, a < r/2. Vale para os três lados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área favorável",
+     "conta": "vértices (r/2, 0), (0, r/2), (r/2, r/2) → área = ((r/2) · (r/2))/2 = r²/8",
+     "porque": "As três retas s = r/2, t = r/2 e s + t = r/2 cortam um triângulo retângulo de catetos r/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e marque",
+     "conta": "P = (r²/8)/(r²/2) → P = 2/8 = 1/4 → alternativa D",
+     "porque": "A probabilidade é a razão das áreas; o r² cancela, então o resultado vale para qualquer r.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1/4",
+   "checagem": "Por simetria: as retas que ligam os pontos médios dos lados dividem o triângulo possível em 4 triângulos iguais. Nos três dos cantos, um dos segmentos passa de r/2; só o do meio serve. Logo 1 de 4 partes: 1/4.",
+   "erradas": {
+    "A": "2/3 não confere: a área favorável r²/8 dividida pela área possível r²/2 dá 1/4; 2/3 exigiria uma região favorável de r²/3.",
+    "B": "1/2 sai de esquecer a condição do terceiro lado: só s < r/2 e t < r/2 formam o quadrado de área r²/4, e (r²/4)/(r²/2) = 1/2.",
+    "C": "1/3 não confere: exigiria região favorável de área r²/6, e as três condições do triângulo deixam só r²/8.",
+    "E": "3/4 sai do complementar: é a chance de os segmentos NÃO formarem triângulo, 1 − 1/4 = 3/4."
+   },
+   "armadilha": "Os três segmentos têm de ser menores que r/2; esquecer a condição do terceiro, r − s − t < r/2, dobra a resposta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de s, t e r − s − t formarem um triângulo, com s e t sorteados e s + t < r.",
+    "chave": "Cada lado < r/2: a região favorável é o triângulo do meio, de área r²/8, dentro da região possível de área r²/2.",
+    "cuidado": "Escreva as três desigualdades, inclusive a do terceiro lado, e use a área da região possível (r²/2), não a do quadrado r²."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "Calcule onde NÃO forma triângulo: são 3 triângulos de canto, cada um com área r²/8, total 3r²/8, e 1 − (3r²/8)/(r²/2) = 1 − 3/4 = 1/4."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "região possível: (r · r)/2 = r²/2",
+    "nota": "s > 0, t > 0, s + t < r"
+   },
+   {
+    "linha": "s < r/2 | t < r/2 | s + t > r/2",
+    "nota": "cada lado menor que r/2"
+   },
+   {
+    "linha": "área favorável: ((r/2) · (r/2))/2 = r²/8",
+    "nota": "triângulo do meio"
+   },
+   {
+    "linha": "P = (r²/8)/(r²/2) = 1/4",
+    "nota": "razão das áreas"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ },
+ "P94b3aa41": {
+  "n": "11",
+  "conceito": "Determinante de uma matriz grande por operações elementares: subtrair a 1.ª linha das outras deixa a matriz triangular.",
+  "equivocos": {
+   "A": "M15.2:confundiu-ordem-com-determinante",
+   "B": "M15.2:confundiu-ordem-com-determinante",
+   "C": "M15.2:supos-determinante-nulo",
+   "E": "M15.2:contagem-errada-dos-sinais"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A 1.ª linha é toda de 1. Cada outra linha i também é toda de 1, exceto um 0 na posição da diagonal. Subtrair uma linha de outra não muda o determinante; fazendo L_i − L_1, cada linha i vira um único −1 na diagonal. A matriz fica triangular, e o determinante é o produto da diagonal.",
+    "formulas": [
+     "L_i → L_i − L_1 não altera o determinante",
+     "matriz triangular: det = produto da diagonal"
+    ],
+    "simbolos": [
+     [
+      "a_i,j",
+      "elemento da linha i e coluna j"
+     ],
+     [
+      "L_i",
+      "linha i da matriz"
+     ],
+     [
+      "matriz triangular",
+      "todos os elementos abaixo da diagonal são zero"
+     ]
+    ]
+   },
+   "pista": "Escreva a matriz para ordem 3 e compare a 1.ª linha com as outras. Que operação simples deixa quase tudo zero?",
+   "passos": [
+    {
+     "faz": "Descreva as linhas da matriz",
+     "conta": "L_1 = (1, 1, 1, …, 1) | L_i (i ≥ 2) = (1, …, 1, 0, 1, …, 1), com 0 na coluna i",
+     "porque": "Na linha 1 tudo vale 1 (inclusive a11). Nas outras, só o elemento da diagonal é 0.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Subtraia a 1.ª linha de cada outra",
+     "conta": "L_i − L_1 = (0, …, 0, −1, 0, …, 0), com −1 na coluna i",
+     "porque": "Onde as duas linhas têm 1, a diferença é 0; na diagonal fica 0 − 1 = −1. Essa operação não muda o determinante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique a diagonal da matriz triangular",
+     "conta": "diagonal: 1, −1, −1, …, −1 (2020 vezes) → det A = 1 · (−1)^2020 → det A = 1",
+     "porque": "Abaixo da diagonal só há zeros. São 2020 linhas com −1 (da 2 à 2021), e expoente par dá +1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "det A = 1 → alternativa D",
+     "porque": "É o determinante pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 1",
+   "checagem": "Teste ordens pequenas: n = 2 dá det [1  1 ; 1  0] = −1; n = 3 dá det [1  1  1 ; 1  0  1 ; 1  1  0] = 1. O sinal alterna como (−1)^(n − 1); para n = 2021, (−1)^2020 = 1.",
+   "erradas": {
+    "A": "A não confere: depois das subtrações a diagonal só tem 1 e −1, e o determinante, produto deles, tem módulo 1.",
+    "B": "B não confere: pelo mesmo motivo, o determinante só pode ser 1 ou −1, nunca 2021.",
+    "C": "C não confere: a matriz triangular obtida tem diagonal sem zeros, então o determinante é diferente de zero.",
+    "E": "E sai de contar 2021 fatores −1, incluindo a 1.ª linha: (−1)^2021 = −1. Mas a11 = 1, e só 2020 fatores valem −1."
+   },
+   "armadilha": "Errar a contagem dos −1 na diagonal: a 1.ª entrada é 1, então são 2020 fatores −1, expoente par.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O determinante da matriz 2021×2021 dada.",
+    "chave": "L_i − L_1 deixa a matriz triangular com diagonal 1, −1, …, −1: det = (−1)^2020 = 1.",
+    "cuidado": "Conte os −1: são 2020, não 2021."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "casos pequenos",
+    "ideia": "Calcule para n = 2, 3, 4 (−1, 1, −1): o padrão é (−1)^(n − 1), que para n = 2021 dá 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "L_1 = (1, 1, …, 1); L_i = (1, …, 0, …, 1)",
+    "nota": "0 só na diagonal das linhas i ≥ 2"
+   },
+   {
+    "linha": "L_i − L_1 = (0, …, −1, …, 0)",
+    "nota": "subtrair linha não muda o det"
+   },
+   {
+    "linha": "diagonal: 1, −1, …, −1",
+    "nota": "matriz triangular"
+   },
+   {
+    "linha": "det A = 1 · (−1)^2020 = 1",
+    "nota": "2020 fatores −1, expoente par"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ },
+ "P0625b7a8": {
+  "n": "5",
+  "conceito": "Reescrever αz1 − (α − 1)z2 como ponto que percorre a reta de z1 e z2, ver o mínimo como distância de z3 a essa reta e calculá-la pela área do triângulo inscrito na circunferência de raio 4.",
+  "equivocos": {
+   "A": "M16.2:confundiu-distancia-a-reta",
+   "B": "M16.2:ignorou-o-ponto-z3",
+   "D": "M16.2:confundiu-distancia-a-reta",
+   "E": "M16.2:usou-so-o-modulo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O truque é reagrupar: αz1 − (α − 1)z2 = z2 + α(z1 − z2). Quando α percorre os reais, esse ponto percorre a reta que passa por z1 e z2. Então a expressão é a distância de z3 a um ponto dessa reta, e o menor valor é a distância de z3 à reta. Como z1, z2 e z3 estão na circunferência de raio 4 centrada na origem, essa distância é a altura de um triângulo inscrito, que sai da fórmula da área com o raio da circunscrita.",
+    "formulas": [
+     "|u − v| = distância entre os pontos u e v do plano",
+     "área do triângulo = (a · b · c)/(4R), com R o raio da circunferência circunscrita",
+     "área do triângulo = (base · altura)/2"
+    ],
+    "simbolos": [
+     [
+      "z1, z2, z3",
+      "números complexos vistos como pontos do plano"
+     ],
+     [
+      "|z|",
+      "módulo de z: distância do ponto à origem"
+     ],
+     [
+      "α",
+      "número real que varia livremente"
+     ],
+     [
+      "R",
+      "raio da circunferência que passa pelos três pontos; aqui R = 4"
+     ],
+     [
+      "h",
+      "distância de z3 à reta que passa por z1 e z2"
+     ]
+    ]
+   },
+   "pista": "Junte os termos com α: o que acontece com o ponto z2 + α(z1 − z2) quando α varia em todos os reais?",
+   "passos": [
+    {
+     "faz": "Reagrupe os termos com α",
+     "conta": "αz1 − (α − 1)z2 − z3 → z2 + α(z1 − z2) − z3",
+     "porque": "Abrindo −(α − 1)z2 = −αz2 + z2, sobra z2 + α(z1 − z2). Como z1 ≠ z2, esse ponto varre a reta que passa por z1 e z2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Traduza o mínimo como distância",
+     "conta": "|P − z3|, com P na reta z1z2 → mínimo = h (distância de z3 à reta)",
+     "porque": "O módulo da diferença é a distância entre dois pontos. O ponto da reta mais próximo de z3 é o pé da perpendicular, então o mínimo é a altura h.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva a área do triângulo de dois jeitos",
+     "conta": "(|z1 − z2| · h)/2 = (|z1 − z2| · |z3 − z1| · |z3 − z2|)/(4 · 4)",
+     "porque": "Os três pontos estão na circunferência |z| = 4, que é a circunscrita do triângulo; logo R = 4. Do lado esquerdo, base z1z2 e altura h.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole h",
+     "conta": "h = (2 · |z3 − z1| · |z3 − z2|)/16 → h = (|z3 − z1| · |z3 − z2|)/8",
+     "porque": "O fator |z1 − z2|, que não é zero porque z1 ≠ z2, aparece dos dois lados e se cancela; o 2 que dividia passa multiplicando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com as alternativas",
+     "conta": "menor valor = (1/8) · |z3 − z1| · |z3 − z2| → alternativa C",
+     "porque": "É exatamente a expressão da alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — (1/8)|z3 − z1||z3 − z2|.",
+   "checagem": "Caso concreto: z1 = 4, z2 = 4i, z3 = −4. A reta x + y = 4 fica a |−4 − 4|/√2 = 4√2 de z3, e (1/8) · |−8| · |−4 − 4i| = (1/8) · 8 · 4√2 = 4√2. Bate. E com z3 = z1, α = 1 zera a expressão, e C também dá 0.",
+   "erradas": {
+    "A": "A não confere: com z3 = z1, α = 1 zera a expressão, mas (1/8)|z1 + z2| só é 0 se z2 = −z1; com z1 = 4 e z2 = 4i, A vale √2/2.",
+    "B": "B não confere: (1/4)|z1 − z2| nem depende de z3, e com z3 = z1 o mínimo é 0, enquanto B é positivo porque z1 ≠ z2.",
+    "D": "D não confere: com z3 = z1 o mínimo é 0, mas (1/4)|z1 − z2 − z3| = (1/4)|−z2| = 1.",
+    "E": "E não confere: |z3| = 4 é constante, e o mínimo muda com a posição de z3; com z3 = z1 ele é 0."
+   },
+   "armadilha": "Tentar derivar ou abrir o módulo em partes real e imaginária em vez de enxergar αz1 − (α − 1)z2 como ponto que corre na reta de z1 e z2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor valor de |αz1 − (α − 1)z2 − z3| com α real e os três pontos na circunferência de raio 4.",
+    "chave": "z2 + α(z1 − z2) percorre a reta z1z2; o mínimo é a altura do triângulo inscrito, h = (|z3 − z1| · |z3 − z2|)/(2R) com R = 4.",
+    "cuidado": "O raio da circunscrita é o 4 dos módulos; com ele, o denominador fica 2 · 4 = 8."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "seno inscrito",
+    "ideia": "h = |z3 − z1| · sen(ângulo em z1), e pela lei dos senos sen(ângulo em z1) = |z3 − z2|/(2R) = |z3 − z2|/8: o mesmo resultado."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "αz1 − (α − 1)z2 − z3 = z2 + α(z1 − z2) − z3",
+    "nota": "juntar os termos com α"
+   },
+   {
+    "linha": "mínimo = h = distância de z3 à reta z1z2",
+    "nota": "o ponto corre na reta"
+   },
+   {
+    "linha": "(|z1 − z2| · h)/2 = (|z1 − z2| · |z3 − z1| · |z3 − z2|)/16",
+    "nota": "área de dois jeitos, R = 4"
+   },
+   {
+    "linha": "h = (|z3 − z1| · |z3 − z2|)/8",
+    "nota": "cancelar |z1 − z2| e isolar h"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ }
+}

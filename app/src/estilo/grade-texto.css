@@ -1,0 +1,92 @@
+/* ===================== TEXTO NA GRADE DO CADERNO (aprovado pelo dono em 27/11/2026, variante compacta) =====================
+   "Textos que estão sem base terão o fundo como a base deles": o texto que fica DIRETO sobre a folha quadriculada
+   (fora de cartões e folhas) senta nas linhas do quadriculado, como num caderno.
+   - Título (da tela, de seção): uma linha por quadrado (48 px); a base das letras na linha do quadro.
+   - Texto de apoio / texto solto: duas linhas por quadrado (entrelinha 24 px); a 1ª linha senta no meio do quadro
+     (linha não desenhada) e a 2ª na linha do quadro; o texto sempre começa numa linha desenhada.
+   - Depois de um título ou texto, o bloco seguinte começa na próxima linha desenhada.
+   - O quadriculado é ancorado na coluna do conteúdo: a borda esquerda do texto cai numa linha vertical e o topo do
+     conteúdo, numa linha horizontal. O topo dos blocos e cartões que vêm depois é levado à linha seguinte ou à meia
+     linha (24 px) por ui/gradeTexto.ts (o CSS não sabe quantas linhas um texto terá).
+   A classe `grade-texto` no <html> é posta por ui/gradeTexto.ts ao abrir o site (vale para todos).
+   Técnica: `text-box: trim-both cap alphabetic` corta a caixa do texto do topo das maiúsculas até a base da última
+   linha; o `padding-top: calc(passo - 1cap)` devolve o espaço acima, então a caixa ocupa um número inteiro de passos e
+   termina exatamente na base da última linha. */
+
+html.grade-texto {
+  --gt-passo: var(--quadro-passo);          /* 48 px: um quadrado */
+  --gt-meio: calc(var(--quadro-passo) / 2); /* 24 px: meia linha (texto de apoio) */
+  --gt-topo: var(--gt-meio);                /* espaço entre a barra do topo e a primeira linha do conteúdo */
+}
+
+/* ---- a grade sai do body e passa para a coluna principal, ancorada no canto do conteúdo ---- */
+html.grade-texto body, html.grade-texto .casca.em-materia { background-image: none; }
+html.grade-texto .principal {
+  /* x: canto esquerdo do .conteudo (também quando ele fica centralizado acima de --pag-max). Em background-position,
+     50% = (largura - 48)/2; somando 24 px - pag-max/2 + pag-x dá a mesma fase da borda do conteúdo centralizado. */
+  --gt-x: max(var(--pag-x), calc(50% + var(--gt-meio) - var(--pag-max) / 2 + var(--pag-x)));
+  --gt-y: calc(var(--topo) + var(--gt-topo));
+  background-image:
+    linear-gradient(to right, transparent calc(var(--margem-x) - 1px), var(--margem) calc(var(--margem-x) - 1px),
+      var(--margem) calc(var(--margem-x) + 1px), transparent calc(var(--margem-x) + 1px)),
+    linear-gradient(to right, var(--quadro) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--quadro) 1px, transparent 1px);
+  background-size: 100% 100%, var(--gt-passo) var(--gt-passo), var(--gt-passo) var(--gt-passo);
+  /* vertical: a linha de 1 px fica logo à esquerda da borda do texto; horizontal: logo abaixo da base das letras */
+  background-position: 0 0, calc(var(--gt-x) - 1px) 0, 0 var(--gt-y);
+  background-repeat: no-repeat, repeat, repeat;
+}
+html.grade-texto .conteudo { padding-top: var(--gt-topo); }
+
+/* ---- títulos direto sobre a folha: uma linha por quadrado ---- */
+html.grade-texto :is(.titulo-pag h1, .tema-cab h1, .pag-estreita > .secao:not(.bloco, .tp-bloco) > .sec-tit, .in-cab h1, .in-mats > .in-sec-tit, .conteudo > .secao:not(.bloco, .tp-bloco) > .sec-tit, .vazio h3, .hj-como h2,
+  .conteudo > .mat-cab .tit-mat) {
+  line-height: var(--gt-passo);
+  text-box: trim-both cap alphabetic;
+  padding-top: calc(var(--gt-passo) - 1cap);
+  margin-top: 0; margin-bottom: 12px; /* o próximo bloco vai para a linha seguinte (ui/gradeTexto.ts) */
+}
+
+/* celular: título que quebra fica com duas linhas por quadrado, como o texto (dono, 27/11/2026); continua sentado na grade */
+@media (max-width: 700px) {
+  html.grade-texto :is(.titulo-pag h1, .tema-cab h1, .pag-estreita > .secao:not(.bloco, .tp-bloco) > .sec-tit, .in-cab h1, .in-mats > .in-sec-tit, .conteudo > .secao:not(.bloco, .tp-bloco) > .sec-tit, .vazio h3, .hj-como h2,
+    .conteudo > .mat-cab .tit-mat) { line-height: var(--gt-meio); padding-top: calc(var(--gt-passo) - 1cap); }
+}
+
+/* ---- texto de apoio e textos soltos: duas linhas por quadrado ---- */
+html.grade-texto :is(.titulo-pag .sub, .tema-cab .sub, .conteudo > .migalhas, .pag-estreita > .migalhas, .in-cab p, .fr-frase, .vazio p, .hj-como p, .conteudo > p.fraco) {
+  line-height: var(--gt-meio);
+  text-box: trim-both cap alphabetic;
+  padding-top: calc(var(--gt-meio) - 1cap);
+  margin-top: 0; margin-bottom: 12px;
+}
+/* a frase da região (texto + botão "Trocar") deixa de ser flex: vira uma linha de texto, e as duas peças sentam na base */
+html.grade-texto .fr-frase { display: block; }
+html.grade-texto .fr-frase > * { line-height: var(--gt-meio); vertical-align: baseline; }
+html.grade-texto .fr-frase > .fr-trocar { margin-left: 12px; }
+/* Perfil: o nome começa na 2ª linha vertical depois do avatar (64 px + 32 = 96 = dois quadrados) */
+html.grade-texto .perfil-cab { column-gap: calc(var(--gt-passo) * 2 - 64px); }
+/* migalhas e título do conteúdo eram flex: viram linha de texto, para a base sentar na linha (o ícone fica no meio) */
+html.grade-texto :is(.conteudo, .pag-estreita) > .migalhas { display: block; }
+html.grade-texto :is(.conteudo, .pag-estreita) > .migalhas > .ic { vertical-align: -2px; margin: 0 6px; }
+html.grade-texto .tema-cab h1 { display: block; }
+/* apoio que vinha ao lado do título (Privacidade): desce para a linha de baixo, como nas outras telas, e começa na
+   linha vertical */
+html.grade-texto .titulo-pag > h1:has(+ .sub) { flex-basis: 100%; }
+/* o caixote vazio fica com o texto centrado, mas em passos inteiros (quando é a própria coluna, o topo da coluna manda) */
+html.grade-texto .vazio:not(.conteudo) { padding: var(--gt-passo) 20px; }
+html.grade-texto .conteudo.vazio { padding-left: var(--pag-x); padding-right: var(--pag-x); padding-bottom: var(--gt-passo); }
+html.grade-texto .vazio .btn { margin-top: var(--gt-meio); }
+
+/* ---- navegador sem `text-box` (Firefox, Chrome antigo; dono, 28/11/2026: "muito espaço entre os textos"): ui/gradeTexto.ts
+   mede o que sobra acima das maiúsculas (--gt-a) e desconta do padding-top, para a base das letras cair na mesma linha ---- */
+html.grade-texto.gt-sem-trim :is(.titulo-pag h1, .tema-cab h1, .pag-estreita > .secao:not(.bloco, .tp-bloco) > .sec-tit, .in-cab h1, .in-mats > .in-sec-tit, .conteudo > .secao:not(.bloco, .tp-bloco) > .sec-tit, .vazio h3, .hj-como h2,
+  .conteudo > .mat-cab .tit-mat) { padding-top: calc(var(--gt-passo) - 1cap - var(--gt-a, 0px)); }
+html.grade-texto.gt-sem-trim :is(.titulo-pag .sub, .tema-cab .sub, .conteudo > .migalhas, .pag-estreita > .migalhas, .in-cab p, .fr-frase, .vazio p, .hj-como p, .conteudo > p.fraco) {
+  padding-top: max(0px, calc(var(--gt-meio) - 1cap - var(--gt-a, 0px)));
+}
+
+/* texto de apoio logo abaixo do título: um pouco mais afastado (dono, 28/11/2026: "o texto pequeno está muito colado ao
+   maior, deve ir minimamente mais para baixo"): 6 px a mais no topo da caixa (o topo continua na linha) */
+html.grade-texto.grade-texto :is(.titulo-pag .sub, .tema-cab .sub, .in-cab p) { padding-top: calc(var(--gt-meio) - 1cap + 6px); }
+html.grade-texto.grade-texto.gt-sem-trim :is(.titulo-pag .sub, .tema-cab .sub, .in-cab p) { padding-top: max(0px, calc(var(--gt-meio) - 1cap - var(--gt-a, 0px) + 6px)); }

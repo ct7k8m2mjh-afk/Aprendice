@@ -11,6 +11,7 @@ Códigos e nomes do `nomesub` do app. **Muito cobrado** = aparece em quase toda 
 - P01.2 informação explícita × inferência — **muito cobrado** (o maior bloco do banco)
 - P01.3 título, fonte, data e paratexto como pista de leitura
 - P01.4 finalidade do texto e interlocutor — *cobrado*
+- P01.5 intertextualidade: citação, alusão, paráfrase e paródia (conteúdo novo, 20/11/2026)
 - (novo) funções da linguagem: referencial, emotiva, conativa, fática, metalinguística, poética — *cobrado* no ENEM
 
 **P02 Argumentação**
@@ -24,6 +25,8 @@ Códigos e nomes do `nomesub` do app. **Muito cobrado** = aparece em quase toda 
 - P03.2 gêneros jornalísticos: notícia, reportagem, editorial e crônica — *cobrado*
 - P03.3 charge, tirinha, cartaz e infográfico — **muito cobrado** no ENEM
 - P03.4 divulgação científica e texto digital
+- P03.5 funções da linguagem (conteúdo novo, 20/11/2026)
+- P03.6 foco narrativo e tipos de narrador (conteúdo novo, 20/11/2026)
 
 **P04 Coesão e coerência**
 - P04.1 referência: pronome, elipse e substituição lexical — **muito cobrado**
@@ -43,12 +46,14 @@ Códigos e nomes do `nomesub` do app. **Muito cobrado** = aparece em quase toda 
 - P06.1 metáfora, comparação e metonímia — *cobrado*
 - P06.2 figuras de pensamento: ironia, antítese, paradoxo, eufemismo, hipérbole, personificação — **muito cobrado**
 - P06.3 figuras de som e de construção: aliteração, anáfora, elipse, hipérbato, zeugma, pleonasmo — *cobrado*
+- P06.4 versificação: métrica, rima e estrofe (conteúdo novo, 20/11/2026)
 
 **P07 Morfologia**
 - P07.1 substantivo, adjetivo e advérbio: classificação e função
 - P07.2 pronomes: classificação e emprego
 - P07.3 verbo: tempo, modo, aspecto e flexão — *cobrado* (inclui formas nominais e efeito do imperativo)
 - P07.4 formação de palavras: derivação, composição e sentido do afixo — *cobrado*
+- P07.5 fonologia: fonemas, sílabas, encontros vocálicos e dígrafos (conteúdo novo, 20/11/2026)
 - (novo) acentuação gráfica e ortografia (cai em vestibulares próprios e militares, quase nunca no ENEM)
 
 **P08 Período simples**
@@ -70,6 +75,7 @@ Códigos e nomes do `nomesub` do app. **Muito cobrado** = aparece em quase toda 
 - P10.3 colocação pronominal: próclise, mesóclise e ênclise
 - P10.4 pontuação: vírgula, ponto e vírgula, dois-pontos e travessão — *cobrado*
 - P10.5 vozes verbais e discurso direto, indireto e indireto livre — **muito cobrado** (reescrita "sem alterar o sentido")
+- P10.6 ortografia e acentuação gráfica (conteúdo novo, 20/11/2026)
 
 **P11 Literatura: do Barroco ao Simbolismo**
 - (novo) Quinhentismo: literatura de informação e de catequese (Carta de Caminha, cronistas)
@@ -78,6 +84,7 @@ Códigos e nomes do `nomesub` do app. **Muito cobrado** = aparece em quase toda 
 - P11.2 Romantismo: poesia das três gerações e prosa — **muito cobrado**
 - P11.3 Realismo e Naturalismo, com Machado de Assis — **muito cobrado**
 - P11.4 Parnasianismo e Simbolismo — *cobrado*
+- P11.5 Trovadorismo, Humanismo e Classicismo (conteúdo novo, 20/11/2026)
 
 **P12 Literatura: Pré-Modernismo em diante**
 - P12.1 Pré-Modernismo: Euclides da Cunha, Lima Barreto, Augusto dos Anjos — *cobrado*

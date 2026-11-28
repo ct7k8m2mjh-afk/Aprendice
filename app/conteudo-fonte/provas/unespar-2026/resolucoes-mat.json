@@ -1,0 +1,776 @@
+{
+ "P439e2847": {
+  "n": "59",
+  "conceito": "Composição, crescimento e interseção de uma quadrática com uma reta.",
+  "equivocos": {
+   "A": "M05.5:composicao-comutada",
+   "B": "M05.2:crescimento-sem-limite",
+   "D": "M05.1:sinal-da-inclinacao",
+   "E": "M05.2:minimo-tomado-como-maximo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Teste uma afirmação por vez. Para saber se dois gráficos se encontram, iguale as funções: se a equação não tem raiz real, eles nunca se cruzam.",
+    "formulas": [
+     "f(x) = g(x) → x² + 3 = 2x + 1",
+     "Δ < 0: sem raiz real"
+    ],
+    "simbolos": [
+     [
+      "f(g(x))",
+      "f aplicada a g(x)"
+     ],
+     [
+      "Δ",
+      "discriminante: b² − 4ac"
+     ]
+    ]
+   },
+   "pista": "Iguale x² + 3 a 2x + 1 e calcule o Δ.",
+   "passos": [
+    {
+     "faz": "Teste a A",
+     "conta": "f(g(x)) = (2x + 1)² + 3 = 4x² + 4x + 4 | g(f(x)) = 2(x² + 3) + 1 = 2x² + 7",
+     "porque": "As duas composições são diferentes, e nenhuma é 2x² + 4.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste B, D e E",
+     "conta": "f é parábola para cima: desce até x = 0 e sobe; mínimo em x = 0 | g tem inclinação 2 > 0: crescente",
+     "porque": "f não é sempre crescente, g não é decrescente, f não tem máximo.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste a C",
+     "conta": "x² + 3 = 2x + 1 → x² − 2x + 2 = 0 → Δ = 4 − 8 = −4 < 0",
+     "porque": "Sem raiz real: os gráficos nunca se encontram.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "alternativa C",
+     "porque": "As duas funções nunca se encontram em ℝ.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — As duas funções nunca se encontram em ℝ.",
+   "checagem": "Escreva f − g = x² − 2x + 2 = (x − 1)² + 1. Esse valor é sempre ≥ 1, então f fica sempre pelo menos 1 acima de g.",
+   "erradas": {
+    "A": "Não confere: f(g(x)) = 4x² + 4x + 4 e g(f(x)) = 2x² + 7; são diferentes e nenhuma é 2x² + 4.",
+    "B": "Não confere: f(−1) = 4 > f(0) = 3, então f desce antes de x = 0.",
+    "D": "Não confere: g(x) = 2x + 1 tem inclinação 2 > 0; é crescente.",
+    "E": "Não confere: x² + 3 abre para cima e tem mínimo 3 em x = 0; não tem ponto máximo."
+   },
+   "armadilha": "Calcular só uma composição e supor que f(g(x)) = g(f(x)): composição em geral não comuta.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre f(x) = x² + 3 e g(x) = 2x + 1 é correta.",
+    "chave": "x² − 2x + 2 = 0 tem Δ = −4: os gráficos não se cruzam.",
+    "cuidado": "f ∘ g e g ∘ f costumam ser diferentes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "completar quadrado",
+    "ideia": "f(x) − g(x) = (x − 1)² + 1 ≥ 1: f sempre acima de g."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² + 3 = 2x + 1 → x² − 2x + 2 = 0",
+    "nota": "iguala"
+   },
+   {
+    "linha": "Δ = 4 − 8 = −4 < 0",
+    "nota": "sem raiz"
+   },
+   {
+    "linha": "f − g = (x − 1)² + 1 ≥ 1",
+    "nota": "nunca se encontram"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
+ },
+ "P42b49f65": {
+  "n": "56",
+  "conceito": "Crescimento por duplicação: contar períodos de 20 min em 4 horas.",
+  "equivocos": {
+   "A": "M06.5:conta-errada",
+   "B": "M06.5:numero-de-duplicacoes-errado",
+   "D": "M06.5:numero-de-duplicacoes-errado",
+   "E": "M06.5:conta-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O total inicial já está dado: 10⁶ bactérias no frasco (10⁵ por mL × 10 mL). A cada 20 minutos o total dobra; em 4 horas cabem 12 períodos de 20 minutos, então o fator é 2¹².",
+    "formulas": [
+     "N(t) = N₀ · 2^(t/20), t em minutos",
+     "2¹² = 4096"
+    ],
+    "simbolos": [
+     [
+      "N₀",
+      "total inicial de bactérias, 10⁶"
+     ],
+     [
+      "t",
+      "tempo em minutos"
+     ]
+    ]
+   },
+   "pista": "Passe 4 horas para minutos e conte quantas duplicações cabem.",
+   "passos": [
+    {
+     "faz": "Converta o tempo",
+     "conta": "4 h = 4 × 60 = 240 min",
+     "porque": "A duplicação é dada em minutos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as duplicações",
+     "conta": "240 ÷ 20 = 12",
+     "porque": "Uma duplicação a cada 20 minutos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique o fator",
+     "conta": "10⁶ × 2¹² = 10⁶ × 4096 = 4.096 × 10⁶",
+     "porque": "Doze dobras seguidas multiplicam por 2¹².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "4.096 × 10⁶ → alternativa C",
+     "porque": "Total no frasco após 4 horas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 4.096 × 10⁶ bactérias",
+   "checagem": "Por hora: em 60 min há 3 dobras, fator 2³ = 8 por hora; em 4 horas, 8⁴ = 4096. Fecha.",
+   "erradas": {
+    "A": "25 × 10⁶ não confere: 25 não é potência de 2, e o fator de dobras sucessivas tem de ser 2ⁿ.",
+    "B": "2.048 × 10⁶ sai de contar 11 duplicações em vez de 12: 2¹¹ = 2048.",
+    "D": "16 × 10⁶ sai de dobrar uma vez por hora: 2⁴ = 16.",
+    "E": "1,667 × 10⁶ não confere: o total só cresce e 1,667 não é potência de 2."
+   },
+   "armadilha": "Contar uma dobra por hora (2⁴) em vez de três por hora (2¹²).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de bactérias após 4 horas.",
+    "chave": "240 ÷ 20 = 12 dobras: 10⁶ × 2¹² = 4096 × 10⁶.",
+    "cuidado": "Converta horas em minutos antes de contar as dobras."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fator por hora",
+    "ideia": "3 dobras por hora dão × 8 por hora; 8⁴ = 4096."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "4 h = 240 min",
+    "nota": "conversão"
+   },
+   {
+    "linha": "240 ÷ 20 = 12",
+    "nota": "dobras"
+   },
+   {
+    "linha": "N = 10⁶ × 2¹²",
+    "nota": "12 dobras"
+   },
+   {
+    "linha": "N = 4096 × 10⁶",
+    "nota": "alternativa C"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0058"
+  }
+ },
+ "P5995f674": {
+  "n": "58",
+  "conceito": "Média ponderada com pesos 7 e 3 para comparar duas empresas.",
+  "equivocos": {
+   "A": "M14.4:confundiu-media-simples-com-ponderada",
+   "B": "M14.4:errou-a-comparacao-das-medias",
+   "D": "M14.4:ignorou-os-pesos",
+   "E": "M14.4:ignorou-os-pesos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada empresa tem duas notas, e elas não contam igual: a técnica pesa 7 e o preço pesa 3. Multiplique cada nota pelo seu peso, some e divida pela soma dos pesos, 7 + 3 = 10. Vence quem tiver a maior média ponderada, e a alternativa tem de acertar o vencedor E a nota.",
+    "formulas": [
+     "média = (7 · técnica + 3 · preço)/10"
+    ],
+    "simbolos": [
+     [
+      "peso",
+      "quantas vezes a nota conta na média"
+     ]
+    ]
+   },
+   "pista": "Calcule a média ponderada de cada empresa separadamente antes de olhar as alternativas.",
+   "passos": [
+    {
+     "faz": "Calcule a nota da Empresa A",
+     "conta": "(7 · 90 + 3 · 80)/10 = (630 + 240)/10 = 870/10 = 87",
+     "porque": "A técnica de A (90) pesa 7 e o preço (80) pesa 3; a soma dos pesos é 10.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a nota da Empresa B",
+     "conta": "(7 · 80 + 3 · 100)/10 = (560 + 300)/10 = 860/10 = 86",
+     "porque": "B tem o melhor preço, mas o preço pesa pouco; a técnica, onde B é mais fraca, pesa 7.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare as duas",
+     "conta": "87 > 86 → Empresa A vence",
+     "porque": "A média ponderada maior define a vencedora.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "A vence com 87 → alternativa C",
+     "porque": "A alternativa C traz o vencedor certo e a nota certa.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — a Empresa A vence com nota final 87",
+   "checagem": "Compare só as diferenças: na técnica A ganha por 10 pontos com peso 7 (70), no preço B ganha por 20 com peso 3 (60). Saldo de 10 pontos ponderados para A, ou 1 ponto na média: 87 contra 86. Fecha.",
+   "erradas": {
+    "A": "A não confere: não há empate, as médias ponderadas são 87 (A) e 86 (B). 85 é só a média simples de A, (90 + 80)/2.",
+    "B": "B tem a nota certa de B, 86, mas B perde: A tem 87.",
+    "D": "D sai da média simples de B: (80 + 100)/2 = 90, ignorando os pesos 7 e 3.",
+    "E": "E sai da média simples de A: (90 + 80)/2 = 85. Com os pesos, A tem 87."
+   },
+   "armadilha": "Fazer média simples: ela daria B com 90, e a técnica, que pesa 7, inverte o resultado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual empresa vence e com que nota final ponderada.",
+    "chave": "A: (630 + 240)/10 = 87; B: (560 + 300)/10 = 86; vence A.",
+    "cuidado": "Use os pesos 7 e 3; a média simples inverte a vencedora."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "saldo das diferenças",
+    "ideia": "A ganha 10 pontos na técnica (× 7 = 70) e perde 20 no preço (× 3 = 60): saldo de 10 para A, 1 ponto na média."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A: (7 · 90 + 3 · 80)/10",
+    "nota": "média ponderada de A"
+   },
+   {
+    "linha": "(630 + 240)/10 = 87",
+    "nota": "nota final de A"
+   },
+   {
+    "linha": "B: (7 · 80 + 3 · 100)/10",
+    "nota": "média ponderada de B"
+   },
+   {
+    "linha": "(560 + 300)/10 = 86",
+    "nota": "nota final de B"
+   },
+   {
+    "linha": "87 > 86 → A vence",
+    "nota": "comparação"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0071"
+  }
+ },
+ "P71b348ec": {
+  "n": "55",
+  "conceito": "Quociente eleitoral e quociente partidário: duas divisões em sequência, desprezando a parte decimal.",
+  "equivocos": {
+   "A": "M02.1:quociente-calculado-errado",
+   "C": "M02.1:divisao-invertida",
+   "D": "M02.1:quociente-calculado-errado",
+   "E": "M02.1:dividiu-pelo-total-sem-qe"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O texto dá as duas fórmulas; o trabalho é aplicá-las na ordem certa. Primeiro descubra quantos votos valem uma vaga (QE). Depois veja quantas vezes esse valor cabe nos votos do partido (QP) e jogue fora a parte decimal, como o enunciado manda.",
+    "formulas": [
+     "QE = total de votos válidos ÷ número de vagas",
+     "QP = votos do partido ÷ QE, só a parte inteira"
+    ],
+    "simbolos": [
+     [
+      "QE",
+      "quociente eleitoral: votos necessários para uma vaga"
+     ],
+     [
+      "QP",
+      "quociente de partido: vagas iniciais do partido"
+     ],
+     [
+      "parte decimal desconsiderada",
+      "fica só o número inteiro, sem arredondar"
+     ]
+    ]
+   },
+   "pista": "Calcule primeiro quanto custa uma vaga em votos; só depois olhe os votos do partido.",
+   "passos": [
+    {
+     "faz": "Calcule o quociente eleitoral",
+     "conta": "QE = 840.000/8 → QE = 105.000 votos",
+     "porque": "Cada vaga custa a mesma quantidade de votos: o total válido repartido igualmente pelas 8 vagas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o quociente de partido",
+     "conta": "QP = 250.000/105.000 → QP ≈ 2,38",
+     "porque": "Você quer saber quantas vezes 105.000 votos cabem nos 250.000 do partido.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Despreze a parte decimal",
+     "conta": "QP ≈ 2,38 → QP = 2",
+     "porque": "O enunciado diz que a parte decimal é desconsiderada: o 0,38 não vira vaga nesta etapa (pode contar só na distribuição das sobras).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "QP = 2 → 2 vagas → alternativa B",
+     "porque": "A pergunta é a quantidade eleita inicialmente, antes das sobras, que é exatamente o QP.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 2 vagas.",
+   "checagem": "Por proporção: o partido teve 250.000/840.000 ≈ 0,298 dos votos válidos, e 0,298 de 8 vagas é cerca de 2,38 vagas. A parte inteira é 2, o mesmo resultado.",
+   "erradas": {
+    "A": "A não confere: 2 × 105.000 = 210.000 votos, e o partido tem 250.000, então cabem duas vagas inteiras, não só uma.",
+    "C": "C sai de inverter a divisão: 840.000 ÷ 250.000 = 3,36, parte inteira 3. Esse número não tem sentido; o certo é dividir os votos do partido pelo QE.",
+    "D": "D não confere: 4 vagas exigiriam 4 × 105.000 = 420.000 votos, bem mais que os 250.000 do partido.",
+    "E": "E sai de pular o QE e dividir pelos votos totais: 250.000 ÷ 840.000 ≈ 0,30, parte inteira 0. Faltou dividir o total pelas 8 vagas antes."
+   },
+   "armadilha": "O divisor dos votos do partido é o QE (105.000), não o total de votos válidos nem o contrário.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas vagas o partido conquista antes das sobras.",
+    "chave": "QE = 840.000 ÷ 8 = 105.000; QP = 250.000 ÷ 105.000 ≈ 2,38, parte inteira 2.",
+    "cuidado": "Divida na ordem do texto e jogue fora o decimal, sem arredondar."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "múltiplos do QE",
+    "ideia": "Liste 105.000, 210.000, 315.000: os 250.000 votos passam de 2 quocientes e não chegam a 3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "QE = 840.000/8 = 105.000",
+    "nota": "votos por vaga"
+   },
+   {
+    "linha": "QP = 250.000/105.000 ≈ 2,38",
+    "nota": "quantas vagas cabem"
+   },
+   {
+    "linha": "2,38 → 2",
+    "nota": "despreza o decimal"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
+ },
+ "P577ad146": {
+  "n": "54",
+  "conceito": "Porcentagens encadeadas (rendimento, distribuição, imposto) e divisão por cotas.",
+  "equivocos": {
+   "A": "M03.1:imposto-tomado-como-total",
+   "B": "M03.1:esqueceu-uma-porcentagem",
+   "C": "M03.1:parou-na-primeira-verdadeira",
+   "D": "M03.1:parou-na-primeira-verdadeira"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada porcentagem age sobre o resultado da anterior: 20% do fundo é o rendimento, 50% do rendimento vira dividendos, e a cota recebe 1/200 disso. Só então se aplica o imposto de 10%. Repare na alternativa E: é preciso testar C e D, não parar na primeira verdadeira.",
+    "formulas": [
+     "rendimento = 20% do fundo",
+     "dividendos = 50% do rendimento",
+     "dividendo da cota = dividendos ÷ 200",
+     "imposto = 10% do dividendo, se passar de R$ 600 mil"
+    ],
+    "simbolos": [
+     [
+      "dividendos",
+      "parte do lucro entregue aos cotistas"
+     ],
+     [
+      "cota",
+      "fração do fundo; aqui, 1 de 200"
+     ],
+     [
+      "bi",
+      "bilhão: 1.000.000.000"
+     ],
+     [
+      "mi",
+      "milhão: 1.000.000"
+     ]
+    ]
+   },
+   "pista": "Encadeie as porcentagens na ordem do texto e só depois divida pelas 200 cotas.",
+   "passos": [
+    {
+     "faz": "Calcule o rendimento do fundo",
+     "conta": "10.000.000.000 × 0,2 → 2.000.000.000",
+     "porque": "O fundo aumentou 20%: esse aumento é o rendimento.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os dividendos distribuídos",
+     "conta": "2.000.000.000 × 0,5 → 1.000.000.000",
+     "porque": "Só metade do rendimento foi distribuída.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelas cotas",
+     "conta": "1.000.000.000/200 → 5.000.000",
+     "porque": "O cotista tem 1 das 200 cotas, então recebe 1/200 dos dividendos. B (10 milhões) cai.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste o imposto da alternativa C",
+     "conta": "5.000.000 > 600.000 → 0,1 × 5.000.000 = 500.000",
+     "porque": "Ele recebe mais de 600 mil, então paga 10%: 500 mil. C é verdadeira, e A cai, porque o governo não leva tudo.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste a doação da alternativa D",
+     "conta": "5.000.000 − 500.000 = 4.500.000 → 4.500.000/2 = 2.250.000",
+     "porque": "Cada pessoa recebe 2,25 milhões, mais de 1 milhão: as duas ficam milionárias. D também é verdadeira.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "C: V | D: V → alternativa E",
+     "porque": "Com C e D verdadeiras, a resposta é a alternativa que reúne as duas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — Os itens (c) e (d) estão corretos.",
+   "checagem": "Faça a conta pelo fundo inteiro: 2 bilhões × 50% × 90% (depois do imposto) = 900 milhões líquidos; ÷ 200 cotas = 4,5 milhões; ÷ 2 pessoas = 2,25 milhões cada, o mesmo valor da alternativa D.",
+   "erradas": {
+    "A": "A não confere: o imposto é 10% de 5.000.000 = 500.000; o cotista fica com 4.500.000, então o governo não toma todos os dividendos.",
+    "B": "B sai de dividir o rendimento inteiro pelas cotas: 2.000.000.000 ÷ 200 = 10.000.000. Só 50% do rendimento foi distribuído, o que dá 5.000.000.",
+    "C": "C é verdadeira (0,1 × 5.000.000 = 500.000), mas D também é (4.500.000 ÷ 2 = 2.250.000 cada); a alternativa que reúne as duas é a E.",
+    "D": "D é verdadeira (2.250.000 para cada pessoa), mas C também é (imposto de 500.000); a alternativa que reúne as duas é a E."
+   },
+   "armadilha": "Achar C verdadeira e marcar C: a alternativa E junta C e D, e D também é verdadeira.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre os dividendos de 1 cota está correta.",
+    "chave": "20% de 10 bi = 2 bi; metade = 1 bi; ÷ 200 = 5 mi; imposto 500 mil; sobra 4,5 mi.",
+    "cuidado": "Teste todas as afirmações antes de marcar, porque a E junta duas delas."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fração única",
+    "ideia": "A cota recebe 20% × 50% × 1/200 = 1/2.000 do fundo: 10 bi ÷ 2.000 = 5 mi, e daí seguem o imposto e a doação."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10 bi × 0,2 = 2 bi",
+    "nota": "rendimento"
+   },
+   {
+    "linha": "2 bi × 0,5 = 1 bi",
+    "nota": "dividendos"
+   },
+   {
+    "linha": "1 bi ÷ 200 = 5 mi",
+    "nota": "parte da cota"
+   },
+   {
+    "linha": "0,1 × 5 mi = 500 mil",
+    "nota": "imposto"
+   },
+   {
+    "linha": "4,5 mi ÷ 2 = 2,25 mi",
+    "nota": "doação a cada pessoa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
+ },
+ "Pfa41a10a": {
+  "n": "57",
+  "conceito": "Diagrama de Venn com dois conjuntos: probabilidade de pertencer a exatamente um deles.",
+  "equivocos": {
+   "A": "M13.6:pelo-menos-um-no-lugar-de-apenas-um",
+   "B": "M13.6:conta-sem-origem-conferida",
+   "D": "M13.6:conta-sem-origem-conferida",
+   "E": "M13.6:probabilidade-maior-que-1"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os 250 de música incluem os 100 que usam os dois serviços, e o mesmo vale para os 200 de vídeo. \"Apenas um\" exclui quem usa os dois: tire a interseção de cada conjunto antes de somar. A pesquisa fecha os 400: só música + só vídeo + os dois + nenhum.",
+    "formulas": [
+     "só A = n(A) − n(A e B)",
+     "probabilidade = casos favoráveis ÷ casos possíveis"
+    ],
+    "simbolos": [
+     [
+      "n(A e B)",
+      "número de pessoas que usam os dois serviços"
+     ]
+    ]
+   },
+   "pista": "Comece pela interseção: quantos dos 250 de música usam só música?",
+   "passos": [
+    {
+     "faz": "Ache quem usa só música",
+     "conta": "250 − 100 = 150",
+     "porque": "Os 100 que usam os dois estão dentro dos 250 de música.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache quem usa só vídeo",
+     "conta": "200 − 100 = 100",
+     "porque": "Os mesmos 100 também estão dentro dos 200 de vídeo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os que usam apenas um",
+     "conta": "150 + 100 = 250",
+     "porque": "\"Apenas um dos serviços\" é só música ou só vídeo; os dois grupos não se misturam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo total e ligue à alternativa",
+     "conta": "P = 250/400 = 0,625 = 62,5% → alternativa C",
+     "porque": "A pessoa é escolhida entre os 400 entrevistados.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 62,5%",
+   "checagem": "Feche o total pelo diagrama: 150 (só música) + 100 (só vídeo) + 100 (os dois) + 50 (nenhum) = 400. Pelo complementar: 1 − (100 + 50)/400 = 1 − 0,375 = 62,5%.",
+   "erradas": {
+    "A": "87,5% sai de calcular quem usa pelo menos um serviço: 250 + 200 − 100 = 350, e 350/400 = 87,5%. Esse total inclui os 100 que usam os dois.",
+    "B": "57,5% não confere: seriam 230 pessoas com apenas um serviço, mas só música (150) + só vídeo (100) dão 250.",
+    "D": "82,5% não confere: seriam 330 pessoas com apenas um serviço, mais do que os 250 que o diagrama dá.",
+    "E": "107,5% não confere: nenhuma probabilidade passa de 100%."
+   },
+   "armadilha": "\"Apenas um\" exclui os 100 que usam os dois; sem tirá-los, a conta dá o \"pelo menos um\" (87,5%).",
+   "alerta": "O enunciado tem um erro de digitação (\"usar o apenas um\"), que não muda a pergunta.",
+   "essencial": {
+    "pede": "A probabilidade de uma pessoa usar exatamente um dos dois serviços de streaming.",
+    "chave": "Só música 250 − 100 = 150, só vídeo 200 − 100 = 100; 250/400 = 62,5%.",
+    "cuidado": "Tire a interseção de cada conjunto; \"apenas um\" não é \"pelo menos um\"."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "complementar",
+    "ideia": "Tire de 400 quem usa os dois (100) e quem não usa nenhum (50): 250/400 = 62,5%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "só música = 250 − 100 = 150",
+    "nota": "tira a interseção"
+   },
+   {
+    "linha": "só vídeo = 200 − 100 = 100",
+    "nota": "tira a interseção"
+   },
+   {
+    "linha": "apenas um = 150 + 100 = 250",
+    "nota": "soma das regiões exclusivas"
+   },
+   {
+    "linha": "P = 250/400 = 62,5%",
+    "nota": "sobre os 400 entrevistados"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "P6916f962": {
+  "n": "60",
+  "conceito": "Propriedades de sólidos: volume do cubo, poliedros e corpos redondos, razão cone/cilindro, volume × área e diagonais do cubo.",
+  "equivocos": {
+   "A": "M11.5:fator-de-area-no-lugar-do-de-volume",
+   "B": "M11.5:cilindro-tomado-como-poliedro",
+   "D": "M11.5:mesmo-volume-igual-mesma-area",
+   "E": "M11.5:confundiu-diagonal-do-cubo-e-da-face"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "É uma questão de testar cada afirmação com uma conta curta ou um contraexemplo. Lembre que volume tem três dimensões, que poliedro só tem faces planas poligonais e que cone e cilindro de mesma base e mesma altura têm volumes na razão 1 para 3.",
+    "formulas": [
+     "volume do cubo = a³",
+     "volume do cilindro = B · h ; volume do cone = (B · h)/3",
+     "diagonal da face = a√2 ; diagonal do cubo = a√3"
+    ],
+    "simbolos": [
+     [
+      "a",
+      "aresta do cubo"
+     ],
+     [
+      "B",
+      "área da base"
+     ],
+     [
+      "h",
+      "altura"
+     ],
+     [
+      "poliedro",
+      "sólido limitado só por polígonos planos"
+     ]
+    ]
+   },
+   "pista": "Para cada letra, faça uma conta pequena com números ou procure um contraexemplo.",
+   "passos": [
+    {
+     "faz": "Teste A: dobrar a aresta do cubo",
+     "conta": "a³ → (2a)³ = 8a³",
+     "porque": "O 2 multiplica as três dimensões: o volume fica 8 vezes maior, não 4.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste B e E pelas definições",
+     "conta": "círculo não é polígono → cilindro não é poliedro | cubo de aresta 1: diagonal = √3 ≈ 1,73 × face = √2 ≈ 1,41",
+     "porque": "Poliedro só tem faces poligonais planas; o cilindro tem superfície curva. A diagonal do cubo é sempre maior que a da face.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste D com um contraexemplo",
+     "conta": "cubo 2 × 2 × 2: V = 8, área = 6 · 4 = 24 | caixa 1 × 1 × 8: V = 8, área = 2 · (1 + 8 + 8) = 34",
+     "porque": "Mesmo volume, áreas diferentes: basta um exemplo para derrubar o \"obrigatoriamente\".",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Confirme C pela razão dos volumes",
+     "conta": "V cone/V cilindro = ((B · h)/3)/(B · h) = 1/3",
+     "porque": "Com mesma área da base e mesma altura, o B·h cancela e sobra 1/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "C verdadeira → alternativa C",
+     "porque": "É a única afirmação que vale sempre, dentro da condição que ela mesma impõe.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — o volume de um cone é sempre um terço do volume de um cilindro de mesma área da base e mesma altura",
+   "checagem": "Com números: cone e cilindro de raio 1 e altura 3 (π = 3). Cilindro: 3 × 1 × 3 = 9; cone: 9/3 = 3, que é um terço de 9. Fecha.",
+   "erradas": {
+    "A": "Afirma que o volume quadruplica, mas (2a)³ = 8a³: octuplica. Quadruplicar acontece com a área de uma face, (2a)² = 4a².",
+    "B": "Afirma que o cilindro é poliedro, mas círculo não é polígono e a superfície lateral é curva: o cilindro é corpo redondo.",
+    "D": "Afirma que mesmo volume obriga mesma área, mas o cubo 2 × 2 × 2 e a caixa 1 × 1 × 8 têm volume 8 e áreas 24 e 34.",
+    "E": "Afirma que as diagonais são iguais, mas a do cubo é a√3 e a da face é a√2; com a = 1, 1,73 contra 1,41."
+   },
+   "armadilha": "A alternativa A troca o fator do volume (cubo, 8) pelo da área (quadrado, 4).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A afirmação correta sobre propriedades dos sólidos.",
+    "chave": "Cone e cilindro de mesma base e altura: (B·h/3) ÷ (B·h) = 1/3.",
+    "cuidado": "Dobrar a aresta multiplica o volume por 8, e um único contraexemplo derruba uma afirmação com \"obrigatoriamente\"."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "princípio de Cavalieri",
+    "ideia": "Uma pirâmide é 1/3 do prisma de mesma base e altura; o cone é o caso limite dessa pirâmide e o cilindro, do prisma, e a razão 1/3 se mantém."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(2a)³ = 8a³",
+    "nota": "A: o volume octuplica"
+   },
+   {
+    "linha": "cubo 2×2×2: área 24 ; caixa 1×1×8: área 34",
+    "nota": "D: mesmo volume 8, áreas diferentes"
+   },
+   {
+    "linha": "√3 ≈ 1,73 ≠ √2 ≈ 1,41",
+    "nota": "E: diagonal do cubo × diagonal da face"
+   },
+   {
+    "linha": "((B · h)/3)/(B · h) = 1/3",
+    "nota": "C: o B·h cancela"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ }
+}

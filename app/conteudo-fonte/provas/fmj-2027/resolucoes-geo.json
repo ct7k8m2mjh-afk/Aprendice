@@ -1,0 +1,500 @@
+{
+ "Paf913ab9": {
+  "n": "25",
+  "conceito": "Converter um horário de Brasília (UTC−3) para dois outros fusos dados em UTC.",
+  "equivocos": {
+   "A": "G01.3:usou-brasilia-como-utc",
+   "B": "G01.3:usou-brasilia-como-utc-e-trocou-ordem",
+   "D": "G01.3:trocou-ordem-respectivamente",
+   "E": "G01.3:errou-diferenca-entre-fusos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os fusos vêm dados em relação ao UTC, o horário de Greenwich. O jeito mais seguro é passar a hora de Brasília para UTC e, de lá, para cada cidade. Brasília está em UTC−3.",
+    "formulas": [
+     "hora UTC = hora local − (fuso)",
+     "hora local = hora UTC + (fuso)"
+    ],
+    "simbolos": [
+     [
+      "UTC",
+      "Tempo Universal Coordenado, o horário de referência do meridiano de Greenwich"
+     ],
+     [
+      "UTC−4",
+      "fuso 4 horas atrás do UTC"
+     ],
+     [
+      "UTC+1",
+      "fuso 1 hora à frente do UTC"
+     ]
+    ]
+   },
+   "pista": "Antes de somar ou subtrair, descubra quantas horas Brasília está atrás do UTC.",
+   "passos": [
+    {
+     "faz": "Anote os dados",
+     "conta": "jogo: 19h em Brasília (UTC−3) | East Rutherford: UTC−4 | Marrocos: UTC+1 | resposta na ordem: East Rutherford, Marrocos",
+     "porque": "Os dois fusos estão em UTC, mas o horário dado está em Brasília: a conta passa por Greenwich.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Passe para UTC",
+     "conta": "19h + 3h = 22h UTC",
+     "porque": "Brasília está 3 horas atrás de Greenwich; para chegar ao UTC, soma-se 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule East Rutherford",
+     "conta": "22h − 4h = 18h",
+     "porque": "UTC−4 está 4 horas atrás de Greenwich.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o Marrocos",
+     "conta": "22h + 1h = 23h",
+     "porque": "UTC+1 está 1 hora à frente de Greenwich.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa na ordem pedida",
+     "conta": "18h e 23h → alternativa C",
+     "porque": "O comando diz \"respectivamente\": primeiro East Rutherford, depois Marrocos.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 18h em East Rutherford e 23h no Marrocos.",
+   "checagem": "Compare direto as diferenças com Brasília: UTC−4 fica 1 hora atrás de UTC−3 (19h − 1h = 18h) e UTC+1 fica 4 horas à frente (19h + 4h = 23h). Entre as duas cidades: 23h − 18h = 5h, igual a (+1) − (−4) = 5 fusos.",
+   "erradas": {
+    "A": "A sai de aplicar os fusos direto sobre a hora de Brasília, como se Brasília fosse o UTC: 19h − 4h = 15h e 19h + 1h = 20h.",
+    "B": "B sai do mesmo erro da A (19h − 4h = 15h; 19h + 1h = 20h), com as cidades na ordem trocada.",
+    "D": "D tem as horas certas na ordem trocada: 23h é o Marrocos e 18h é East Rutherford.",
+    "E": "E não confere: acerta 18h, mas o Marrocos (UTC+1) está 5 horas à frente de East Rutherford (UTC−4); 18h + 5h = 23h, não 21h."
+   },
+   "armadilha": "Tratar o fuso UTC como diferença em relação a Brasília, esquecendo que Brasília já está 3 horas atrás de Greenwich.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As horas locais de East Rutherford e do Marrocos quando eram 19h em Brasília.",
+    "chave": "Passe por Greenwich: 19h em UTC−3 = 22h UTC; daí, 22h − 4h = 18h e 22h + 1h = 23h.",
+    "cuidado": "Fuso UTC é contado a partir de Greenwich, não de Brasília; e respeite a ordem do \"respectivamente\"."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diferença direta",
+    "ideia": "UTC−4 está 1 h atrás de Brasília (UTC−3) e UTC+1 está 4 h à frente: 19h − 1h = 18h e 19h + 4h = 23h."
+   }
+  ],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "geo-p2-0008"
+  }
+ },
+ "P78bcf7b1": {
+  "n": "23",
+  "conceito": "Ler num perfil geológico camadas sedimentares horizontais com fósseis.",
+  "equivocos": {
+   "A": "G02.1:viu-tectonismo-em-camadas-horizontais",
+   "B": "G02.1:confundiu-sedimentar-com-cristalina",
+   "C": "G02.1:confundiu-sedimentar-com-magmatica",
+   "D": "G02.1:afirmou-tipo-de-rocha-sem-indicio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Rochas sedimentares se formam em camadas, uma depositada sobre a outra; por isso as de baixo são, em regra, as mais antigas. Restos de seres vivos presos nessas camadas viram fósseis. A figura mostra exatamente isso: faixas empilhadas com conchas, ossos, um esqueleto e três vestígios arredondados na camada logo abaixo da superfície.",
+    "formulas": [
+     "camadas horizontais empilhadas → depósitos sedimentares",
+     "restos ou marcas de seres vivos nas camadas → fósseis"
+    ],
+    "simbolos": [
+     [
+      "depósito sedimentar",
+      "material (areia, argila, restos de seres vivos) acumulado em camadas"
+     ],
+     [
+      "fóssil",
+      "resto ou vestígio de ser vivo preservado nas rochas"
+     ],
+     [
+      "metamorfismo",
+      "transformação de uma rocha por calor e pressão"
+     ],
+     [
+      "plutonismo",
+      "magma que se solidifica no interior da crosta"
+     ],
+     [
+      "barreira orográfica",
+      "relevo elevado que bloqueia massas de ar"
+     ]
+    ]
+   },
+   "pista": "Descreva a imagem com as suas palavras antes de ler as alternativas: o que há nas faixas e como elas estão arrumadas?",
+   "passos": [
+    {
+     "faz": "Descreva a imagem",
+     "conta": "faixas de cores diferentes, empilhadas e horizontais | conchas na faixa de baixo, ossos e um crânio acima, um esqueleto mais acima | três vestígios arredondados na camada logo abaixo da superfície | árvore na superfície",
+     "porque": "A pergunta é o que se \"apreende\" da imagem, isto é, o que ela mostra; a resposta tem de estar no desenho.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Nomeie o que as faixas são",
+     "conta": "camadas horizontais empilhadas = depósitos sedimentares",
+     "porque": "Sedimentos se acumulam em camadas sucessivas; as camadas estão retas, sem dobras nem quebras.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Nomeie o que está dentro delas",
+     "conta": "conchas, ossos, esqueleto = vestígios fósseis",
+     "porque": "São restos de seres vivos preservados nas camadas, e a posição de cada um conta a sequência da história do terreno.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine o que o desenho não mostra",
+     "conta": "dobras, falhas, magma, cristais, montanha que barra o ar → ausentes",
+     "porque": "As outras alternativas citam processos que deixariam marcas que a figura não tem.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "camadas sedimentares + fósseis → alternativa E",
+     "porque": "É a única que descreve as duas coisas que o desenho mostra.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — depósitos sedimentares e vestígios fósseis.",
+   "checagem": "Pense no que a imagem permite contar: a ordem em que os seres viveram (os de baixo antes dos de cima). Isso só é possível com camadas depositadas em sequência e fósseis dentro delas.",
+   "erradas": {
+    "A": "A não confere: movimento tectônico deixaria camadas dobradas, inclinadas ou quebradas, e as da figura estão horizontais; nada indica metamorfismo.",
+    "B": "B não confere: a figura não mostra cristais nem rocha cristalina; as faixas são camadas de sedimentos com restos de seres vivos.",
+    "C": "C não confere: não há intrusão de magma (plutonismo) nem relevo bloqueando massas de ar (barreira orográfica) no desenho.",
+    "D": "D usa palavras próximas, mas a figura não indica de que rocha são as camadas (nada mostra que sejam calcárias); o que ela mostra com segurança são camadas sedimentares com fósseis, a E."
+   },
+   "armadilha": "Escolher um termo técnico que soa geológico (metamorfismo, plutonismo) sem conferir se o desenho mostra aquilo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O que a imagem do perfil do terreno mostra.",
+    "chave": "Camadas horizontais empilhadas são depósitos sedimentares; os restos de seres vivos nelas são fósseis.",
+    "cuidado": "Responda pelo que está no desenho, não por processos que deixariam outras marcas."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "geo-p2-0008"
+  }
+ },
+ "Pde5affa9": {
+  "n": "24",
+  "conceito": "Reconhecer pelo padrão regional dos efeitos (seca no Norte e Nordeste, chuva no Sul) a influência do El Niño no Brasil.",
+  "equivocos": {
+   "A": "G03.5:confundiu-fenomeno-local-com-regional",
+   "B": "G03.5:atribuiu-moncao-ao-brasil",
+   "C": "G03.5:confundiu-efeito-estufa-com-el-nino",
+   "E": "G03.5:trocou-el-nino-por-la-nina"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "El Niño é o aquecimento anormal das águas superficiais do Pacífico Equatorial. No Brasil, ele tem uma \"assinatura\" conhecida: menos chuva no Norte e no Nordeste e mais chuva no Sul, além de temperaturas mais altas no Sudeste. La Niña, o resfriamento dessas águas, tende ao efeito oposto: seca no Sul e mais chuva no Norte e Nordeste.",
+    "formulas": [
+     "El Niño → Norte e Nordeste mais secos | Sul mais chuvoso",
+     "La Niña → Sul mais seco | Norte e Nordeste mais chuvosos"
+    ],
+    "simbolos": [
+     [
+      "El Niño",
+      "aquecimento anormal das águas superficiais do Oceano Pacífico Equatorial"
+     ],
+     [
+      "La Niña",
+      "resfriamento anormal das águas superficiais do Oceano Pacífico Equatorial"
+     ],
+     [
+      "ilha de calor",
+      "área urbana mais quente que o entorno"
+     ],
+     [
+      "monção",
+      "vento que muda de sentido conforme a estação, típico do sul e sudeste da Ásia"
+     ]
+    ]
+   },
+   "pista": "Compare os quadros do Norte e do Nordeste com o do Sul: o que acontece com a chuva em cada um?",
+   "passos": [
+    {
+     "faz": "Leia os efeitos por região",
+     "conta": "Norte: \"Diminuição das chuvas\" | Nordeste: \"Secas severas.\" | Sul: \"Chuvas abundantes na primavera e intensas de maio a julho\" | Sudeste: \"Aumento da temperatura média\"",
+     "porque": "O comando pede o fenômeno ligado ao conjunto dos efeitos, então o que importa é o padrão do país inteiro.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Reconheça o padrão",
+     "conta": "Norte e Nordeste secos × Sul chuvoso",
+     "porque": "Essa oposição entre o norte e o sul do país é a marca do El Niño no Brasil.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Descarte o fenômeno oposto e os locais",
+     "conta": "La Niña → seca no Sul | ilha de calor → só a cidade | monções → Ásia",
+     "porque": "La Niña daria o desenho invertido; os outros não produzem um padrão em todas as regiões.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "seca no Norte e Nordeste + chuva no Sul → alternativa D",
+     "porque": "O conjunto dos efeitos do mapa é o do El Niño.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — El Niño.",
+   "checagem": "Teste a alternativa oposta: com La Niña, o Sul teria estiagem e o Nordeste mais chuva. O mapa diz o contrário nas duas regiões, o que confirma o El Niño.",
+   "erradas": {
+    "A": "A não confere: ilha de calor é aquecimento de áreas urbanas, um fenômeno local; não explica seca no Nordeste e chuva no Sul ao mesmo tempo.",
+    "B": "B não confere: monções são ventos sazonais típicos do sul e sudeste da Ásia, não explicam esse conjunto de efeitos no Brasil.",
+    "C": "C não confere: efeito estufa é a retenção de calor pela atmosfera; não produz um padrão de seca no norte e chuva no sul do país como o do mapa.",
+    "E": "E inverte: La Niña tende a trazer seca ao Sul e mais chuva ao Norte e Nordeste, o oposto do que o mapa mostra."
+   },
+   "armadilha": "Trocar El Niño por La Niña: os dois atuam nas mesmas regiões, mas com efeitos opostos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O fenômeno associado a seca no Norte e Nordeste, chuva no Sul e calor no Sudeste.",
+    "chave": "El Niño: norte do Brasil mais seco, Sul mais chuvoso.",
+    "cuidado": "La Niña é o padrão invertido; confira o Sul e o Nordeste antes de marcar."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "geo-p2-0008"
+  }
+ },
+ "Pa021cbb4": {
+  "n": "22",
+  "conceito": "Reconhecer no esquema antes, dentro e depois da porteira o conceito de agronegócio.",
+  "equivocos": {
+   "A": "G08.3:confunde-modo-de-produzir-com-cadeia",
+   "C": "G08.3:confunde-modo-de-produzir-com-cadeia",
+   "D": "G08.3:confunde-modo-de-produzir-com-cadeia",
+   "E": "G08.3:confunde-modo-de-produzir-com-cadeia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O esquema divide a cadeia em três elos: o que vem antes da fazenda (insumos, máquinas, serviços), o que acontece dentro dela (plantar, colher, criar) e o que vem depois (transporte, indústria, comércio). Juntar esses três elos numa cadeia só é o conceito de agronegócio. Os outros termos descrevem modos de produzir dentro da porteira, não a cadeia inteira.",
+    "formulas": [
+     "agronegócio = antes + dentro + depois da porteira",
+     "agricultura familiar, extensiva, agrofloresta, permacultura → formas de produzir dentro da propriedade"
+    ],
+    "simbolos": [
+     [
+      "porteira",
+      "imagem da entrada da propriedade rural; separa o que ocorre fora e dentro da fazenda"
+     ],
+     [
+      "insumos",
+      "sementes, adubos, defensivos e rações usados na produção"
+     ],
+     [
+      "agricultura extensiva",
+      "produção com pouco capital e técnica por área, em grandes extensões"
+     ],
+     [
+      "agrofloresta",
+      "cultivo de lavouras junto com árvores, imitando a floresta"
+     ],
+     [
+      "permacultura",
+      "planejamento de sistemas agrícolas e moradia sustentáveis e de ciclo fechado"
+     ]
+    ]
+   },
+   "pista": "Repare em quantas etapas o esquema mostra e se elas ficam só dentro da fazenda.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"O conjunto de atividades representado no esquema integra o conceito de\"",
+     "porque": "Pede o nome do conceito que reúne as três caixas, não só uma delas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize as três etapas",
+     "conta": "antes da porteira: insumos e máquinas → dentro: solo, colheita, criação → depois: transporte, industrialização, comercialização",
+     "porque": "O esquema liga indústria, produção no campo, transporte e comércio numa cadeia contínua.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Nomeie o conceito",
+     "conta": "indústria + agropecuária + serviços encadeados → agronegócio",
+     "porque": "Agronegócio é justamente a soma dos elos antes, dentro e depois da porteira.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine as formas de produzir",
+     "conta": "A, C, D, E: modos de produzir dentro da propriedade",
+     "porque": "Agricultura familiar, extensiva, agrofloresta e permacultura descrevem quem produz ou como se produz, sem incluir a indústria de insumos nem a distribuição.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "cadeia antes-dentro-depois → B",
+     "porque": "O conjunto do esquema é o agronegócio.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — agronegócio.",
+   "checagem": "Olhe as caixas das pontas: \"Indústrias de fornecedores de insumos\" e \"industrialização, distribuição e comercialização\" são atividades fora do campo. Só um conceito que inclui indústria e comércio cobre as duas pontas: agronegócio.",
+   "erradas": {
+    "A": "Agricultura familiar define quem trabalha a terra (a família); não inclui a indústria de insumos nem a distribuição mostradas no esquema.",
+    "C": "Agricultura extensiva é um modo de produzir dentro da porteira, com pouca técnica por área; o esquema mostra a cadeia inteira.",
+    "D": "Agrofloresta é uma forma de cultivo que combina lavoura e árvores; o esquema não fala do tipo de cultivo.",
+    "E": "Permacultura é um planejamento sustentável da propriedade; nada no esquema trata de sustentabilidade, só dos elos da cadeia."
+   },
+   "armadilha": "Pensar só na caixa do meio (o que se faz na fazenda) e escolher um modo de produzir.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O conceito que reúne as etapas antes, dentro e depois da porteira.",
+    "chave": "Agronegócio é a cadeia inteira: insumos, produção e distribuição.",
+    "cuidado": "Modos de produzir (familiar, extensiva, agrofloresta) ficam só dentro da porteira."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "geo-p2-0008"
+  }
+ },
+ "P3af397c8": {
+  "n": "21",
+  "conceito": "Ler um mapa de ataques no sul do Líbano e no norte de Israel e reconhecer o conflito Israel × Hezbollah, com o Irã como apoiador do grupo.",
+  "equivocos": {
+   "A": "G10.5:confundiu-o-local-marcado-com-o-foco-do-conflito",
+   "C": "G10.5:atribuiu-motivo-economico-sem-apoio-no-mapa",
+   "D": "G10.5:inverteu-o-papel-do-hezbollah",
+   "E": "G10.5:trouxe-ator-que-nao-esta-na-legenda"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O mapa já diz quem ataca: a legenda separa Hezbollah, Forças de Defesa de Israel e Irã. A mancha de pontos fica na fronteira entre o sul do Líbano e o norte de Israel, perto de Tiro e Sidom. O Hezbollah é um partido político e grupo armado xiita do Líbano, apoiado pelo Irã, e trava confrontos armados com Israel nessa fronteira.",
+    "formulas": [
+     "legenda do mapa → quem são os atores do conflito",
+     "onde os pontos se concentram → onde o conflito acontece"
+    ],
+    "simbolos": [
+     [
+      "Hezbollah",
+      "partido político e grupo armado xiita do Líbano, apoiado pelo Irã"
+     ],
+     [
+      "Forças de Defesa de Israel",
+      "as Forças Armadas de Israel"
+     ],
+     [
+      "xiita",
+      "um dos dois grandes ramos do islã (o outro é o sunita); é o ramo majoritário no Irã"
+     ],
+     [
+      "Colinas de Golã",
+      "planalto entre Israel e Síria, ocupado por Israel desde 1967"
+     ]
+    ]
+   },
+   "pista": "Antes de olhar as alternativas, leia a legenda: quem são os três atores que aparecem no mapa?",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"a concentração de ataques representada no mapa associa-se, principalmente,\"",
+     "porque": "A pergunta é sobre o que o mapa mostra: quem ataca e onde. A resposta tem de bater com a legenda e com a localização da mancha.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Leia a legenda",
+     "conta": "Legenda: Hezbollah | Forças de Defesa de Israel | Irã",
+     "porque": "Os atores são só esses três. Síria, Jordânia e grupos palestinos não aparecem na legenda.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize a concentração",
+     "conta": "pontos agrupados entre Tiro, Sidom e a fronteira norte de Israel; poucos pontos vermelhos (Irã) perto de Tel Aviv",
+     "porque": "A mancha está na fronteira Líbano–Israel, não no mar nem nas Colinas de Golã. É o choque entre Israel e o Hezbollah, com ataques iranianos a Israel ao lado.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Elimine o que o mapa não mostra",
+     "conta": "Golã (A) | rotas no mar (C) | Israel × Síria (D) | Jordânia e Palestina (E)",
+     "porque": "Cada uma dessas põe no centro um ator ou um lugar que não aparece na legenda ou na concentração de pontos.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "Israel × Hezbollah, com apoio do Irã = alternativa B",
+     "porque": "Só a B traz os mesmos três atores da legenda e o lugar onde os pontos se concentram.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — Aos conflitos entre Israel e Hezbollah, com o Irã apoiando o grupo político e armado xiita libanês.",
+   "checagem": "Conte os atores: a legenda tem exatamente três (Hezbollah, Israel e Irã), e a B é a única alternativa que cita os três e nenhum outro.",
+   "erradas": {
+    "A": "A não confere: a mancha de pontos fica entre Tiro e a fronteira norte de Israel, não nas Colinas de Golã, e a legenda não traz grupos paramilitares sírios.",
+    "C": "C não confere: os pontos estão em terra, no Líbano e em Israel; o mapa não mostra nenhum ataque no mar nem fala de petróleo.",
+    "D": "D erra duas vezes: guerra civil é conflito interno de um país, não entre Israel e Síria; e o Hezbollah é inimigo de Israel, não apoio às tropas israelenses.",
+    "E": "E não confere: a Jordânia não aparece na legenda nem tem pontos de ataque no mapa; o tema do mapa não é a criação do Estado da Palestina."
+   },
+   "armadilha": "Escolher pelo nome de um lugar marcado no mapa (Colinas de Golã) ou pelo tema mais conhecido do Oriente Médio (Palestina) em vez de ler a legenda.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual conflito explica a concentração de ataques no sul do Líbano e no norte de Israel.",
+    "chave": "A legenda mostra Hezbollah, Israel e Irã; os pontos estão na fronteira Líbano–Israel.",
+    "cuidado": "Leia a legenda antes das alternativas: quem não está nela não é o centro do conflito."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação pela legenda",
+    "ideia": "Risque toda alternativa que cite ator fora da legenda (Síria, Jordânia, Palestina): sobra a B."
+   }
+  ],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "geo-p2-0008"
+  }
+ }
+}

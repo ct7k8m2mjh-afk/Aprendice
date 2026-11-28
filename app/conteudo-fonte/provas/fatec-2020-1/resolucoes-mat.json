@@ -1,0 +1,331 @@
+{
+ "P40d6e1a0": {
+  "n": "30",
+  "conceito": "Modelagem: valor líquido por viagem e número mínimo de viagens para uma meta.",
+  "equivocos": {
+   "A": "M04.5:valor-que-nao-fecha",
+   "C": "M04.5:nao-e-o-minimo",
+   "D": "M04.5:nao-e-o-minimo",
+   "E": "M04.5:nao-e-o-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Calcule primeiro quanto o passageiro paga numa viagem de 5 km e 10 min. A plataforma fica com 1/4, Amanda com 3/4, e dessa parte sai o combustível. Com o líquido por viagem, divida a meta.",
+    "formulas": [
+     "bruto = 2 + 0,26 · min + 1,40 · km",
+     "líquido = 3/4 · bruto − 0,28 · km",
+     "viagens = meta ÷ líquido"
+    ],
+    "simbolos": [
+     [
+      "bruto",
+      "o que o passageiro paga"
+     ],
+     [
+      "líquido",
+      "o que sobra para Amanda depois da plataforma e do combustível"
+     ]
+    ]
+   },
+   "pista": "Ache o valor de UMA viagem antes de pensar no mês.",
+   "passos": [
+    {
+     "faz": "Valor pago pelo passageiro",
+     "conta": "2 + 0,26 · 10 + 1,40 · 5 = 2 + 2,60 + 7 = 11,60",
+     "porque": "Fixo, minutos e quilômetros.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Parte de Amanda",
+     "conta": "3/4 · 11,60 = 8,70",
+     "porque": "A plataforma retém 1/4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Desconte o combustível",
+     "conta": "8,70 − 0,28 · 5 = 8,70 − 1,40 = 7,30",
+     "porque": "R$ 0,28 por km, 5 km por viagem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida a meta",
+     "conta": "2190/7,30 = 300 viagens",
+     "porque": "300 · 7,30 = 2 190 exatamente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "300 → alternativa B",
+     "porque": "Com 299 viagens ela fica abaixo da meta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 300 viagens",
+   "checagem": "300 viagens rendem 300 · 11,60 = 3 480 brutos; 3/4 disso é 2 610; menos 300 · 1,40 = 420 de combustível, sobra 2 190. Fecha.",
+   "erradas": {
+    "A": "280 não confere: 280 · 7,30 = 2 044 reais, abaixo da meta de 2 190.",
+    "C": "320 não confere: 300 viagens já dão os 2 190; 320 não é o menor número.",
+    "D": "340 não confere: passa da meta (340 · 7,30 = 2 482); 300 já bastam.",
+    "E": "360 não confere: passa da meta (360 · 7,30 = 2 628); 300 já bastam."
+   },
+   "armadilha": "Esquecer a retenção de 1/4 ou o combustível: o líquido é 7,30 por viagem, não 11,60.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor número de viagens para receber R$ 2 190 líquidos.",
+    "chave": "Bruto 11,60; Amanda fica com 8,70; menos 1,40 de combustível, 7,30; 2 190/7,30 = 300.",
+    "cuidado": "Desconte a plataforma e o combustível antes de dividir."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Multiplique cada número de viagens por 7,30: 280 dá 2 044 (pouco) e 300 dá 2 190 (exato)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "2 + 0,26 · 10 + 1,40 · 5 = 11,60",
+    "nota": "valor da viagem"
+   },
+   {
+    "linha": "3/4 · 11,60 = 8,70",
+    "nota": "parte de Amanda"
+   },
+   {
+    "linha": "8,70 − 0,28 · 5 = 7,30",
+    "nota": "menos combustível"
+   },
+   {
+    "linha": "2190/7,30 = 300",
+    "nota": "viagens no mês"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0052"
+  }
+ },
+ "P80620dda": {
+  "n": "31",
+  "conceito": "Receita máxima: preço e número de passageiros variam juntos e geram uma parábola.",
+  "equivocos": {
+   "A": "M05.2:nao-otimizou",
+   "B": "M05.2:valor-fora-do-maximo",
+   "C": "M05.2:valor-fora-do-maximo",
+   "E": "M05.2:passou-do-maximo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Chame de x o número de assentos vazios. Cada vazio tira um passageiro e soma R$ 2,00 ao preço de cada um. A receita é passageiros × preço, um produto de dois fatores do 1º grau: uma parábola que abre para baixo, com máximo no vértice.",
+    "formulas": [
+     "receita = (50 − x)(40 + 2x)",
+     "xv = média das raízes"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "número de assentos vazios"
+     ],
+     [
+      "R(x)",
+      "valor arrecadado na viagem, em reais"
+     ],
+     [
+      "xv",
+      "abscissa do vértice: o x onde a parábola faz a curva"
+     ]
+    ]
+   },
+   "pista": "Escreva o número de passageiros e o preço de cada um em função dos assentos vazios.",
+   "passos": [
+    {
+     "faz": "Dê nome à variável",
+     "conta": "x = assentos vazios | passageiros = 50 − x | preço = 40 + 2x",
+     "porque": "Cada vazio reduz 1 passageiro e aumenta R$ 2,00 o preço.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte a receita",
+     "conta": "R(x) = (50 − x)(40 + 2x)",
+     "porque": "Arrecadação = número de pagantes × quanto cada um paga.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o vértice pelas raízes",
+     "conta": "50 − x = 0 → x = 50 | 40 + 2x = 0 → x = −20 → xv = (50 + (−20))/2 = 15",
+     "porque": "A parábola é simétrica: o máximo fica no meio das raízes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a receita máxima",
+     "conta": "R(15) = (50 − 15)(40 + 30) = 35 × 70 = 2 450",
+     "porque": "Com 15 vazios viajam 35 pessoas pagando R$ 70,00.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — R$ 2.450,00",
+   "checagem": "Teste vizinhos: com 10 vazios, 40 × 60 = 2 400; com 20 vazios, 30 × 80 = 2 400. Os dois lados dão menos e são iguais, sinal de que 15 é o meio e o máximo.",
+   "erradas": {
+    "A": "Sai de calcular só o ônibus lotado: 50 × 40 = 2 000. Deixar assentos vazios aumenta a receita até 15 vazios.",
+    "B": "Não confere: com 10 vazios já se arrecadam 40 × 60 = 2 400, mais que 2 200.",
+    "C": "Não confere: 2 350 fica abaixo dos 2 450 obtidos com 15 vazios; então não é o máximo.",
+    "E": "Não confere: 2 540 passa do máximo da parábola, 2 450. Nenhum número de vazios chega a esse valor."
+   },
+   "armadilha": "Achar o número de vazios (15) e não voltar ao comando: a pergunta é a receita, R$ 2.450,00.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O maior valor arrecadado numa viagem.",
+    "chave": "R(x) = (50 − x)(40 + 2x), máximo no meio das raízes, x = 15.",
+    "cuidado": "Calcule R(15); o 15 é o número de vazios, não a resposta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "expandir",
+    "ideia": "R(x) = −2x² + 60x + 2 000; xv = −60/(2 · (−2)) = 15."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "R(x) = (50 − x)(40 + 2x)",
+    "nota": "passageiros × preço"
+   },
+   {
+    "linha": "raízes: x = 50 e x = −20",
+    "nota": "cada fator igual a zero"
+   },
+   {
+    "linha": "xv = (50 − 20)/2 = 15",
+    "nota": "meio das raízes"
+   },
+   {
+    "linha": "R(15) = 35 × 70 = 2 450",
+    "nota": "receita máxima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0054"
+  }
+ },
+ "P4345eb1b": {
+  "n": "34",
+  "conceito": "Área de triângulo por dois lados e o ângulo entre eles; o ângulo vem das paralelas (ângulos correspondentes).",
+  "equivocos": {
+   "A": "M08.1:area-sem-o-seno-certo",
+   "B": "M08.1:area-sem-o-seno-certo",
+   "C": "M08.1:area-sem-o-seno-certo",
+   "E": "M08.1:area-sem-o-seno-certo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A praça é um triângulo com dois lados conhecidos: 240 m na Rua Fibonacci e 300 m na Avenida Bhaskara. Falta o ângulo entre eles, e ele vem das paralelas: a Rua Fibonacci corta as duas avenidas paralelas formando ângulos correspondentes iguais, então também faz 60° com a Bhaskara. Com dois lados e o ângulo entre eles, a área é a metade do produto pelo seno.",
+    "formulas": [
+     "área = (a · b · sen θ)/2",
+     "sen 60° = √3/2"
+    ],
+    "simbolos": [
+     [
+      "θ",
+      "ângulo entre os lados de 240 m e 300 m"
+     ],
+     [
+      "ângulos correspondentes",
+      "ângulos na mesma posição quando uma reta corta duas paralelas; são iguais"
+     ]
+    ]
+   },
+   "pista": "Ache o ângulo do vértice da praça que fica na Avenida Bhaskara, usando o fato de ela ser paralela à Descartes.",
+   "passos": [
+    {
+     "faz": "Localize os dados da praça",
+     "conta": "lado na Rua Fibonacci: 240 m | lado na Av. Bhaskara: 300 m",
+     "porque": "A figura marca os dois lados do triângulo cinza que saem do mesmo vértice, o cruzamento da Fibonacci com a Bhaskara.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Transfira o ângulo de 60°",
+     "conta": "Fibonacci × Descartes = 60° → Fibonacci × Bhaskara = 60°",
+     "porque": "A Bhaskara é paralela à Descartes, e a Fibonacci corta as duas: os ângulos agudos nos dois cruzamentos são correspondentes, logo iguais.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a área do triângulo",
+     "conta": "A = (240 · 300 · sen 60°)/2 → A = (72 000 · √3/2)/2 → A = 18 000 · √3",
+     "porque": "Metade do produto de dois lados pelo seno do ângulo entre eles: 72 000 dividido por 2 e por 2 dá 18 000.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "18 000 · √3 m² → alternativa D",
+     "porque": "É a área total da praça, toda coberta de grama.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 18 000 · √3 metros quadrados",
+   "checagem": "Pela altura: tomando 300 m como base, a altura relativa a ela é 240 · sen 60° = 120√3 m, e (300 · 120√3)/2 = 18 000√3 ≈ 31 177 m². Fecha, e fica abaixo de 240 · 300/2 = 36 000 m², o máximo possível (ângulo reto).",
+   "erradas": {
+    "A": "20 400 · √3 não confere: dividido por (240 · 300)/2 = 36 000, daria sen θ ≈ 0,98, e sen 60° = √3/2 ≈ 0,87.",
+    "B": "20 400 · √2 não confere: dividido por 36 000, daria sen θ ≈ 0,80, e sen 60° ≈ 0,87.",
+    "C": "27 000 não confere: dividido por 36 000, daria sen θ = 0,75, e sen 60° = √3/2 ≈ 0,87.",
+    "E": "12 000 não confere: dividido por 36 000, daria sen θ = 1/3; o ângulo de 60° dá √3/2."
+   },
+   "armadilha": "O ângulo de 60° é dado entre a Fibonacci e a Descartes, longe da praça: é o paralelismo que o leva ao vértice da praça.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do triângulo da praça, em m².",
+    "chave": "Ângulo de 60° transferido pelas paralelas; área = (240 · 300 · sen 60°)/2 = 18 000√3.",
+    "cuidado": "Use o seno, não o cosseno, e não esqueça a metade."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "base e altura",
+    "ideia": "Base 300 m e altura 240 · sen 60° = 120√3 m: área = (300 · 120√3)/2 = 18 000√3 m²."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "θ = 60°",
+    "nota": "correspondente ao ângulo com a Descartes"
+   },
+   {
+    "linha": "A = (240 · 300 · sen 60°)/2",
+    "nota": "dois lados e o ângulo entre eles"
+   },
+   {
+    "linha": "A = (72 000 · √3/2)/2",
+    "nota": "240 · 300 = 72 000"
+   },
+   {
+    "linha": "A = 18 000 · √3",
+    "nota": "72 000 ÷ 4"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ }
+}

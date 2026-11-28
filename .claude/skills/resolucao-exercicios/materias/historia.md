@@ -4,6 +4,8 @@ Guia destilado de 50 anotações de vídeos de resolução, de 28 canais identif
 
 ## Subtemas que caem
 
+**Ids oficiais: `ferramentas/fabrica/agentes/TAXONOMIA.md` (06/11/2026).** Os códigos desta seção são a proposta antiga, anterior aos temas do site, e não coincidem com os ids em uso; para classificar questão, use sempre os ids da TAXONOMIA. A lista abaixo continua valendo como guia do que mais cai e dos roteiros.
+
 **Proposta de taxonomia.** O app ainda não tem História. Os códigos abaixo seguem o formato das outras matérias (`nomesub`: módulo H01, conteúdo H01.1) e ainda precisam de aprovação antes de virar `dados.json`. Marcação: **[++]** muito cobrado; **[+]** cobrado com frequência; sem marca, cai menos ou só em provas específicas.
 
 Panorama: o ENEM cobra História quase sempre a partir de uma fonte (texto de época, texto de historiador, imagem, letra de música, dado) e pede contexto, processo e interpretação; data decorada raramente basta. Vestibulares próprios (Fuvest, Unicamp, Unesp, UFRGS, UFSC, UERJ, faculdades de Medicina privadas) somam a isso questões de conteúdo direto, afirmativas I–IV, V/F, somatória e "assinale a incorreta".

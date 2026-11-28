@@ -1,0 +1,1427 @@
+{
+ "P4b286bf4": {
+  "n": "37",
+  "conceito": "Identidades entre conjuntos com a hipótese C ⊆ A.",
+  "equivocos": {
+   "A": "M01.5:aceitou-ii",
+   "C": "M01.5:aceitou-ii",
+   "D": "M01.5:esqueceu-a-hipotese",
+   "E": "M01.5:aceitou-ii"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Use a distributiva (A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)) e a hipótese C ⊆ A, que dá A ∩ C = C. Para derrubar uma igualdade, basta um exemplo com conjuntos pequenos.",
+    "formulas": [
+     "A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)",
+     "C ⊆ A → A ∩ C = C"
+    ],
+    "simbolos": [
+     [
+      "R − C",
+      "complementar de C nos reais"
+     ]
+    ]
+   },
+   "pista": "Em II, simplifique o lado direito: C ∪ (B ∩ (R − C)) é o quê?",
+   "passos": [
+    {
+     "faz": "I",
+     "conta": "A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C) = (A ∩ B) ∪ C",
+     "porque": "Verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "II",
+     "conta": "C ∪ (B ∩ (ℝ − C)) = C ∪ (B − C) = B ∪ C",
+     "porque": "B ∩ (ℝ − C) são os elementos de B fora de C, isto é, B − C. A ∩ B = B ∪ C não vale sempre: com A = C = {1} e B = {2}, A ∩ B = ∅ e B ∪ C = {1, 2}. Falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "III",
+     "conta": "A ∩ (B − C) = A ∩ B ∩ Cᶜ = (A ∩ B) − C",
+     "porque": "Verdadeira sempre.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Juntar",
+     "conta": "I e III → alternativa B",
+     "porque": "Apenas I e III.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — apenas I e III.",
+   "checagem": "Teste com A = {1, 2, 3}, C = {1}, B = {2, 4}: I: (A ∩ B) ∪ C = {2} ∪ {1} = {1, 2} e A ∩ (B ∪ C) = A ∩ {1, 2, 4} = {1, 2}. III: A ∩ (B − C) = A ∩ {2, 4} = {2} e (A ∩ B) − C = {2} − {1} = {2}. II: A ∩ B = {2} e C ∪ (B − C) = {1, 2, 4}. Confere.",
+   "erradas": {
+    "A": "Inclui II, que falha com A = C = {1} e B = {2}.",
+    "C": "II é falsa e deixa de fora I e III, que valem sempre.",
+    "D": "Deixa de fora I, que vale pela distributiva com A ∩ C = C.",
+    "E": "Inclui II, que é falsa."
+   },
+   "armadilha": "Não simplificar C ∪ (B − C) = B ∪ C e achar que II é uma reescrita de A ∩ B.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais valem.",
+    "chave": "I pela distributiva com C ⊆ A; III sempre; II falha.",
+    "cuidado": "Um contraexemplo derruba."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela de pertinência",
+    "ideia": "Para III, olhe um x qualquer: x ∈ A ∩ (B − C) ⟺ x ∈ A, x ∈ B, x ∉ C ⟺ x ∈ (A ∩ B) − C. Para I, x ∈ C já implica x ∈ A, e os dois lados ficam iguais caso a caso."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A ∩ C = C",
+    "nota": "hipótese"
+   },
+   {
+    "linha": "I: distributiva",
+    "nota": "V"
+   },
+   {
+    "linha": "II: B ∪ C ≠ A ∩ B",
+    "nota": "F"
+   },
+   {
+    "linha": "III: A ∩ B ∩ Cᶜ",
+    "nota": "V"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0045"
+  },
+  "super_revisao": [
+   "2026-11-23"
+  ]
+ },
+ "Pe0a50d95": {
+  "n": "43",
+  "conceito": "Progressão geométrica formada por área da base, área lateral e volume de um cilindro: condição do termo médio e de crescimento.",
+  "equivocos": {
+   "A": "M11.2:ignorou-a-condicao-de-crescente",
+   "B": "M11.2:ignorou-a-condicao-de-crescente",
+   "C": "M11.2:ignorou-a-condicao-de-crescente",
+   "D": "M11.2:ignorou-a-condicao-de-crescente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Três números estão em PG quando o do meio ao quadrado é igual ao produto dos outros dois. Aplicando isso a A1, A2 e A3, sai uma relação entre h e r. Depois, crescente quer dizer razão maior que 1; e a razão, com essa relação, depende só do raio.",
+    "formulas": [
+     "A1 = πr² ; A2 = 2πrh ; A3 = πr²h",
+     "PG: A2² = A1 × A3",
+     "razão q = A2/A1 ; crescente: q > 1"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes a mesma razão"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ],
+     [
+      "r",
+      "raio da base"
+     ],
+     [
+      "h",
+      "altura do cilindro"
+     ]
+    ]
+   },
+   "pista": "Use a propriedade do termo do meio de uma PG e simplifique até sobrar uma relação entre h e r.",
+   "passos": [
+    {
+     "faz": "Aplique a condição da PG",
+     "conta": "A2² = A1 × A3 → (2πrh)² = πr² × πr²h",
+     "porque": "Em PG, o termo do meio ao quadrado é o produto dos vizinhos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique a igualdade",
+     "conta": "4π²r²h² = π²r⁴h → 4h = r² → h = r²/4",
+     "porque": "Dividindo os dois lados por π²r²h (todos positivos), sobra 4h = r².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a razão da PG",
+     "conta": "q = A2/A1 = (2πrh)/(πr²) = 2h/r → q = 2(r²/4)/r = r/2",
+     "porque": "Trocando h por r²/4, a razão passa a depender só do raio. Confere: A3/A2 = (πr²h)/(2πrh) = r/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha a PG crescente",
+     "conta": "q > 1 → r/2 > 1 → r > 2",
+     "porque": "Crescente com termos positivos exige razão maior que 1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha o intervalo",
+     "conta": "r > 2 → só (2, 5/2) serve → alternativa E",
+     "porque": "Os outros intervalos têm todos os valores abaixo de 2, o que daria PG decrescente.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — o raio pode estar no intervalo (2, 5/2)",
+   "checagem": "Teste r = 2,4 (dentro de E): h = 2,4²/4 = 1,44. A1 = 5,76π, A2 = 2π × 2,4 × 1,44 = 6,912π, A3 = 5,76π × 1,44 = 8,2944π. Razões: 6,912/5,76 = 1,2 e 8,2944/6,912 = 1,2. PG crescente de razão 1,2.",
+   "erradas": {
+    "A": "(1, 5/4) não confere: nesse intervalo q = r/2 fica entre 0,5 e 0,625, menor que 1, e a PG seria decrescente.",
+    "B": "(5/4, 3/2) não confere: q = r/2 fica entre 0,625 e 0,75, menor que 1; a PG seria decrescente.",
+    "C": "(3/2, 7/4) não confere: q = r/2 fica entre 0,75 e 0,875, menor que 1; a PG seria decrescente.",
+    "D": "(7/4, 2) não confere: q = r/2 fica entre 0,875 e 1, ainda menor que 1; a PG só cresce com r > 2."
+   },
+   "armadilha": "Achar a relação h = r²/4 e esquecer a condição de crescimento, que é a que escolhe o intervalo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Um intervalo possível para o raio quando área da base, área lateral e volume formam PG crescente.",
+    "chave": "A2² = A1·A3 dá h = r²/4; a razão vira r/2, e crescente exige r > 2.",
+    "cuidado": "Use o crescente: razão maior que 1."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "razões iguais",
+    "ideia": "A2/A1 = 2h/r e A3/A2 = r/2; igualando, 2h/r = r/2 dá h = r²/4, e a razão r/2 > 1 exige r > 2."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(2πrh)² = πr² × πr²h",
+    "nota": "termo do meio ao quadrado"
+   },
+   {
+    "linha": "4π²r²h² = π²r⁴h → 4h = r²",
+    "nota": "dividiu por π²r²h"
+   },
+   {
+    "linha": "h = r²/4",
+    "nota": "relação entre h e r"
+   },
+   {
+    "linha": "q = 2h/r = r/2",
+    "nota": "razão da PG"
+   },
+   {
+    "linha": "r/2 > 1 → r > 2",
+    "nota": "PG crescente"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ },
+ "P8cd77c57": {
+  "n": "38",
+  "conceito": "Analisar um sistema matricial em blocos: a 2ª equação sempre determina Y; tudo depende de AX = B.",
+  "equivocos": {
+   "A": "M15.3:det-nulo-vira-impossivel",
+   "B": "M15.3:esqueceu-matriz-nula",
+   "C": "M15.3:exigiu-d-inversivel",
+   "D": "M15.3:esqueceu-matriz-nula"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A segunda equação sempre se resolve: dado qualquer X, Y = C − DX. Então o sistema tem exatamente tantas soluções quanto a equação AX = B. A matriz D não interfere em nada; quem decide é A (e B). Cada afirmação cai com um contraexemplo simples.",
+    "formulas": [
+     "DX + Y = C → Y = C − DX",
+     "A inversível → AX = B tem solução única X = A⁻¹B"
+    ],
+    "simbolos": [
+     [
+      "Mn(R)",
+      "matrizes quadradas n×n de números reais"
+     ],
+     [
+      "det",
+      "determinante"
+     ],
+     [
+      "inversível",
+      "matriz com determinante diferente de zero"
+     ],
+     [
+      "A⁻¹",
+      "inversa da matriz A"
+     ]
+    ]
+   },
+   "pista": "Isole Y na segunda equação e veja o que sobra para decidir o número de soluções.",
+   "passos": [
+    {
+     "faz": "Isole Y na 2ª equação",
+     "conta": "DX + Y = C → Y = C − DX",
+     "porque": "Para cada X, existe um único Y. A segunda equação nunca trava o sistema.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Reduza o sistema a AX = B",
+     "conta": "nº de soluções (X, Y) = nº de soluções de AX = B",
+     "porque": "Cada X que resolve AX = B gera um único par (X, Y).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste I com A = B = 0",
+     "conta": "0·X = 0 → qualquer X serve",
+     "porque": "det A = 0 e o sistema tem infinitas soluções: possível, não impossível. Também det D = 0 não muda nada. I é falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste II e III",
+     "conta": "A = B = 0: infinitas | A = I, D = 0: única",
+     "porque": "Em II, A = B = 0 tem infinitas soluções. Em III, A = I e D = 0 dão solução única X = B, Y = C, mesmo com D não inversível.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "I falsa | II falsa | III falsa → nenhuma",
+     "porque": "Nenhuma das três resiste a um contraexemplo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — nenhuma das afirmações é verdadeira.",
+   "checagem": "Pense por blocos: a matriz do sistema em (X, Y) é [A 0; D I], cujo determinante é det A · det I = det A. Solução única ⇔ det A ≠ 0, sem nenhuma exigência sobre D.",
+   "erradas": {
+    "A": "A não confere: com A = B = 0 temos det A = 0 e o sistema tem infinitas soluções; e det D = 0 nunca impede achar Y = C − DX.",
+    "B": "B não confere: com A = B = 0, a hipótese A = B vale e o sistema tem infinitas soluções, não uma só.",
+    "C": "C não confere: A = I e D = 0 dão solução única (X = B, Y = C) sem D ser inversível.",
+    "D": "D não confere: II e III caem com os contraexemplos A = B = 0 e D = 0, respectivamente."
+   },
+   "armadilha": "Achar que D precisa ser inversível: Y aparece sozinho na 2ª equação, então D não decide nada.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais afirmações sobre o sistema AX = B, DX + Y = C são verdadeiras.",
+    "chave": "Y = C − DX sempre existe; o número de soluções é o de AX = B, que só depende de A e B.",
+    "cuidado": "Teste cada afirmação com a matriz nula e a identidade antes de acreditar nela."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "determinante por blocos",
+    "ideia": "O sistema em (X, Y) tem matriz [A 0; D I], de determinante det A: unicidade ⇔ A inversível, nada sobre D."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "DX + Y = C → Y = C − DX",
+    "nota": "Y sempre determinado"
+   },
+   {
+    "linha": "sistema ⇔ AX = B",
+    "nota": "só A e B decidem"
+   },
+   {
+    "linha": "A = B = 0 → 0·X = 0",
+    "nota": "infinitas soluções: I e II caem"
+   },
+   {
+    "linha": "A = I, D = 0 → X = B, Y = C",
+    "nota": "única sem D inversível: III cai"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0072"
+  }
+ },
+ "Peccab88e": {
+  "n": "48",
+  "conceito": "Elipse na forma canônica, círculo contido nela e excentricidade máxima.",
+  "equivocos": {
+   "A": "M12.4:ignorou-a-condicao-de-contencao",
+   "B": "M12.4:ignorou-a-condicao-de-contencao",
+   "D": "M12.4:inverteu-relacao-entre-parametro-e-excentricidade",
+   "E": "M12.4:inverteu-relacao-entre-parametro-e-excentricidade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Complete quadrados na equação da elipse para achar centro e semieixos em função de λ. A excentricidade cresce quando λ diminui, então o problema é achar o menor λ que ainda deixa o círculo inteiro dentro da elipse. O ponto crítico é o topo do círculo, que fica mais perto da borda de cima da elipse.",
+    "formulas": [
+     "elipse: (x − x₀)²/a² + (y − y₀)²/b² = 1",
+     "c² = a² − b² e e = c/a",
+     "círculo: (x − a)² + (y − b)² = R²"
+    ],
+    "simbolos": [
+     [
+      "λ",
+      "parâmetro da equação da elipse"
+     ],
+     [
+      "e",
+      "excentricidade: c/a, mede o quanto a elipse é achatada"
+     ],
+     [
+      "a, b",
+      "semieixo maior e semieixo menor"
+     ],
+     [
+      "c",
+      "distância do centro a cada foco"
+     ]
+    ]
+   },
+   "pista": "Agrupe os termos em x com λ e os termos em y com (λ + 4) antes de completar quadrados.",
+   "passos": [
+    {
+     "faz": "Ponha a elipse na forma canônica",
+     "conta": "λ(x − 2)² + (λ + 4)(y − 5)² = λ(λ + 4) → (x − 2)²/(λ + 4) + (y − 5)²/λ = 1",
+     "porque": "Completando quadrados, os 25(λ + 4) se cancelam e sobra λ² + 4λ do lado direito. Para ser elipse real, λ > 0. Centro (2, 5), a² = λ + 4 (horizontal) e b² = λ (vertical).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a excentricidade",
+     "conta": "c² = (λ + 4) − λ = 4 → e² = 4/(λ + 4)",
+     "porque": "Como c = 2 fixo, a excentricidade é maior quanto menor for λ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache centro e raio do círculo",
+     "conta": "(x − 2)² + (y − 6)² = 4 + 36 − 36 = 4",
+     "porque": "Centro (2, 6) e raio 2: o círculo vai de y = 4 a y = 8 na vertical x = 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Imponha o topo do círculo dentro da elipse",
+     "conta": "5 + √λ ≥ 8 → √λ ≥ 3 → λ ≥ 9",
+     "porque": "O topo do círculo, (2, 8), está a 3 do centro da elipse; o semieixo vertical √λ precisa alcançar isso. Com λ = 9, a elipse (x − 2)²/13 + (y − 5)²/9 = 1 toca o círculo só em (2, 8) e o contém.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Escolha o menor λ",
+     "conta": "λ = 9 → e² = 4/13 (o maior possível)",
+     "porque": "λ = 9 é o menor valor permitido, logo dá a excentricidade máxima: alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 9.",
+   "checagem": "Ponto a ponto com λ = 9: no círculo, x − 2 = 2cos t e y − 5 = 1 + 2sen t. Substituindo, 4cos²t/13 + (1 + 2sen t)²/9 cresce com sen t em todo o intervalo e vale 1 só em sen t = 1, o ponto (2, 8). Todo o resto do círculo fica dentro da elipse.",
+   "erradas": {
+    "A": "λ = 3 não serve: o topo da elipse fica em y = 5 + √3 ≈ 6,73, abaixo do topo do círculo, y = 8; o círculo sai da elipse.",
+    "B": "λ = 5 não serve: o topo da elipse fica em y = 5 + √5 ≈ 7,24 < 8; o círculo não cabe.",
+    "D": "λ = 13 cabe, mas dá e² = 4/17, menor que 4/13; não é a excentricidade máxima.",
+    "E": "λ = 15 cabe, mas dá e² = 4/19, menor que 4/13; quanto maior λ, menor a excentricidade."
+   },
+   "armadilha": "Excentricidade máxima pede o MENOR λ permitido, e o limite vem do topo do círculo, que fica a 3 do centro da elipse, não a 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O λ que dá excentricidade máxima com o círculo dentro da elipse.",
+    "chave": "Elipse (x − 2)²/(λ + 4) + (y − 5)²/λ = 1, e² = 4/(λ + 4); o topo (2, 8) do círculo exige λ ≥ 9.",
+    "cuidado": "O centro do círculo (2, 6) não é o da elipse (2, 5): some o deslocamento 1 ao raio 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste das alternativas",
+    "ideia": "Compare o topo da elipse, 5 + √λ, com y = 8 para cada λ: 3 e 5 não alcançam; entre 9, 13 e 15, o menor dá a maior excentricidade."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(x − 2)²/(λ + 4) + (y − 5)²/λ = 1",
+    "nota": "completar quadrados"
+   },
+   {
+    "linha": "c² = 4 → e² = 4/(λ + 4)",
+    "nota": "e cresce quando λ diminui"
+   },
+   {
+    "linha": "(x − 2)² + (y − 6)² = 4",
+    "nota": "círculo: centro (2, 6), raio 2"
+   },
+   {
+    "linha": "5 + √λ ≥ 8 → λ ≥ 9",
+    "nota": "topo do círculo dentro da elipse"
+   },
+   {
+    "linha": "λ = 9 → e² = 4/13",
+    "nota": "menor λ, maior excentricidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "Pa121f096": {
+  "n": "47",
+  "conceito": "Reta perpendicular à bissetriz interna num vértice (a bissetriz externa), pela soma e diferença dos vetores unitários.",
+  "equivocos": {
+   "B": "M12.2:trocou-o-sinal-da-inclinacao",
+   "C": "M12.2:errou-a-inclinacao-perpendicular",
+   "D": "M12.2:parou-na-bissetriz",
+   "E": "M12.2:trocou-o-sinal-da-inclinacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A bissetriz interna do ângulo em B tem a direção da soma dos vetores unitários de B para A e de B para C. A diferença desses mesmos unitários é perpendicular à soma, porque os dois têm comprimento 1. Então a reta pedida tem a direção u_BA − u_BC e passa por B: não precisa achar a bissetriz.",
+    "formulas": [
+     "u = v/|v| (vetor unitário)",
+     "(u₁ + u₂)·(u₁ − u₂) = |u₁|² − |u₂|² = 0",
+     "reta por B: y − y_B = m(x − x_B)"
+    ],
+    "simbolos": [
+     [
+      "u_BA, u_BC",
+      "vetores de comprimento 1 de B para A e de B para C"
+     ],
+     [
+      "m",
+      "coeficiente angular da reta"
+     ],
+     [
+      "AB̂C",
+      "ângulo de vértice B entre os lados BA e BC"
+     ]
+    ]
+   },
+   "pista": "Escreva os vetores de B até A e de B até C e divida cada um pelo seu comprimento.",
+   "passos": [
+    {
+     "faz": "Escreva os vetores a partir de B",
+     "conta": "BA = (−√2, −√3), |BA| = √5 ; BC = (3√2/2, −√3), |BC| = √30/2",
+     "porque": "Os lados do ângulo em B saem de B; o comprimento de cada um vem de Pitágoras: 2 + 3 = 5 e 9/2 + 3 = 15/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Torne os dois vetores unitários",
+     "conta": "u_BA = (−√6, −3)/√15 ; u_BC = (3, −√6)/√15",
+     "porque": "Dividindo pelo comprimento e racionalizando com o mesmo denominador √15, fica fácil somar e subtrair.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia para achar a direção perpendicular",
+     "conta": "u_BA − u_BC = (−√6 − 3, −3 + √6)/√15 → m = (√6 − 3)/(−(√6 + 3)) = (3 − √6)/(3 + √6)",
+     "porque": "A soma dá a bissetriz; a diferença, perpendicular a ela, dá a direção da reta pedida.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Racionalize a inclinação",
+     "conta": "(3 − √6)/(3 + √6) = (3 − √6)²/(9 − 6) = (15 − 6√6)/3 → m = 5 − 2√6",
+     "porque": "Multiplicando em cima e embaixo por 3 − √6, o denominador vira 9 − 6 = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a reta por B e compare",
+     "conta": "b = √3 − (5 − 2√6)√2 = √3 − 5√2 + 4√3 → y = (5 − 2√6)x + 5√3 − 5√2 → alternativa A",
+     "porque": "Como 2√6·√2 = 2√12 = 4√3, o coeficiente linear fica 5√3 − 5√2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — y = (5 − 2√6)x + 5√3 − 5√2",
+   "checagem": "A bissetriz interna, direção u_BA + u_BC = (3 − √6, −3 − √6)/√15, tem inclinação −(5 + 2√6); o produto (5 − 2√6)·(−(5 + 2√6)) = −(25 − 24) = −1. São perpendiculares.",
+   "erradas": {
+    "B": "B passa por B, mas a inclinação 5 + 2√6 é a da bissetriz com o sinal trocado: o produto com −(5 + 2√6) dá −49 − 20√6, não −1.",
+    "C": "C passa por B, mas a inclinação 5 − √6 não confere: o produto com −(5 + 2√6) dá −13 − 5√6, não −1.",
+    "D": "D sai de parar na bissetriz: inclinação −(5 + 2√6) é a própria bissetriz interna por B, e a questão pede a perpendicular a ela.",
+    "E": "E passa por B, mas a inclinação −5 + 2√6 é a certa com o sinal trocado: o produto com −(5 + 2√6) dá +1, não −1."
+   },
+   "armadilha": "A reta pedida é a perpendicular à bissetriz, não a bissetriz: a alternativa D é a própria bissetriz por B.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A reta por B perpendicular à bissetriz do ângulo AB̂C.",
+    "chave": "A direção é u_BA − u_BC = (−√6 − 3, −3 + √6)/√15, inclinação 5 − 2√6; por B, o coeficiente linear é 5√3 − 5√2.",
+    "cuidado": "Use vetores unitários (mesmo comprimento) antes de somar ou subtrair, e lembre que todas as alternativas passam por B."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste da perpendicular",
+    "ideia": "Todas as alternativas passam por B; ache a bissetriz (inclinação −(5 + 2√6), pela soma dos unitários) e fique com a inclinação que multiplicada por ela dá −1: 5 − 2√6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "BA = (−√2, −√3) ; BC = (3√2/2, −√3)",
+    "nota": "vetores a partir de B"
+   },
+   {
+    "linha": "u_BA = (−√6, −3)/√15 ; u_BC = (3, −√6)/√15",
+    "nota": "dividir pelo comprimento √5 e √30/2"
+   },
+   {
+    "linha": "u_BA − u_BC = (−√6 − 3, √6 − 3)/√15",
+    "nota": "diferença: perpendicular à bissetriz"
+   },
+   {
+    "linha": "m = (3 − √6)/(3 + √6) = (15 − 6√6)/3 = 5 − 2√6",
+    "nota": "racionalizar"
+   },
+   {
+    "linha": "b = √3 − (5 − 2√6)√2 = 5√3 − 5√2",
+    "nota": "a reta passa por B"
+   },
+   {
+    "linha": "y = (5 − 2√6)x + 5√3 − 5√2",
+    "nota": "reta pedida"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "P0d2bc88b": {
+  "n": "41",
+  "conceito": "Somar, pela relação de Girard, as raízes de todos os polinômios formados com coeficientes distintos, contando quantas vezes cada par (a3, a4) aparece.",
+  "equivocos": {
+   "A": "M13.1:ignorou-coeficientes-distintos",
+   "B": "M13.1:valor-fora-do-limite-possivel",
+   "C": "M13.1:esqueceu-dividir-por-a4",
+   "E": "M13.1:contagem-de-pares-incompleta"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Não dá para achar as raízes de 120 polinômios de grau 4, e nem é preciso: pela relação de Girard, a soma das raízes de cada um é −a3/a4. O trabalho real é contar quantas vezes cada par (a3, a4) aparece e somar as frações. Com a3 e a4 fixados, os outros três coeficientes ocupam três posições com os três números que sobraram.",
+    "formulas": [
+     "soma das raízes de a4x⁴ + a3x³ + a2x² + a1x + a0 = −a3/a4",
+     "pares ordenados distintos: Σ i/j (i ≠ j) = (Σ i)·(Σ 1/j) − 5"
+    ],
+    "simbolos": [
+     [
+      "a0, ..., a4",
+      "coeficientes do polinômio, todos tirados de C = {1, 2, 3, 4, 5} e diferentes entre si"
+     ],
+     [
+      "Girard",
+      "relação entre coeficientes e raízes: em grau 4, a soma das raízes é −a3/a4"
+     ],
+     [
+      "Σ",
+      "soma de todos os termos indicados"
+     ],
+     [
+      "multiplicidade",
+      "raiz repetida conta tantas vezes quantas se repete"
+     ]
+    ]
+   },
+   "pista": "Escreva a soma das raízes de um polinômio só em função de dois coeficientes; depois pergunte quantos polinômios têm aquele mesmo par.",
+   "passos": [
+    {
+     "faz": "Use Girard em um polinômio",
+     "conta": "a4x⁴ + a3x³ + ... + a0 → soma das raízes = −a3/a4",
+     "porque": "Num polinômio de grau 4, a soma das raízes (com multiplicidade) é menos o coeficiente de x³ dividido pelo de x⁴. Os outros coeficientes não entram.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Conte os polinômios de cada par (a3, a4)",
+     "conta": "a3 = i, a4 = j (i ≠ j) → a2, a1, a0 com os 3 restantes: 3! = 6 polinômios",
+     "porque": "Fixados a3 e a4, sobram três números para três posições, e todos são diferentes: 3 · 2 · 1 = 6 jeitos. Ao todo, 5 · 4 · 6 = 120 polinômios.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some i/j em todos os pares distintos",
+     "conta": "Σ i/j (todos os pares) = 15 · (137/60) = 137/4 → tirando i = j (5 parcelas iguais a 1): 137/4 − 5 = 117/4",
+     "porque": "Somar i/j em todos os pares, inclusive i = j, é multiplicar a soma 1 + 2 + 3 + 4 + 5 = 15 pela soma 1 + 1/2 + 1/3 + 1/4 + 1/5 = 137/60. Os 5 pares com i = j dão 1 cada e não valem, porque os coeficientes são distintos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique por 6 e ponha o sinal",
+     "conta": "−6 · (117/4) = −702/4 = −351/2",
+     "porque": "Cada par aparece em 6 polinômios, e cada um contribui com −i/j.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "−351/2 → alternativa D",
+     "porque": "É a soma das raízes dos 120 polinômios, como pede o enunciado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — −351/2",
+   "checagem": "Pares invertidos: i/j + j/i para os 10 pares {i, j}. Por exemplo, {1, 2} dá 2 + 1/2 = 5/2. Somando os 10 pares: 5/2 + 10/3 + 17/4 + 26/5 + 13/6 + 5/2 + 29/10 + 25/12 + 34/15 + 41/20 = 117/4. Vezes 6 e com sinal: −351/2. Fecha.",
+   "erradas": {
+    "A": "−17125/4 sai de esquecer que os coeficientes são distintos: com repetição, cada par (a3, a4) aparece 5³ = 125 vezes, e 125 · 15 · (137/60) = 17125/4.",
+    "B": "−1800 não confere: cada polinômio tem soma −a3/a4, que vale no máximo 5 em módulo (5/1). Os 120 polinômios somam no máximo 600 em módulo.",
+    "C": "−360 sai de somar só −a3, sem dividir por a4: cada número aparece 24 vezes como a3, e 24 · 15 = 360.",
+    "E": "−101/4 não confere: para cada par {i, j}, i/j + j/i ≥ 2. São 10 pares em 6 polinômios cada, então a soma tem módulo de pelo menos 6 · 10 · 2 = 120, e 101/4 é cerca de 25."
+   },
+   "armadilha": "Tentar achar raízes ou esquecer quantos polinômios repetem o mesmo par (a3, a4): a soma é −a3/a4, e cada par aparece 6 vezes.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A soma das raízes de todos os 120 polinômios com coeficientes distintos tirados de {1, 2, 3, 4, 5}.",
+    "chave": "Girard dá −a3/a4 por polinômio; cada par aparece 6 vezes, e Σ i/j (i ≠ j) = 15 · 137/60 − 5 = 117/4.",
+    "cuidado": "Tire os pares com i = j e não esqueça o fator 3! = 6 dos outros coeficientes."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pares invertidos",
+    "ideia": "Agrupe (i, j) com (j, i): some i/j + j/i nos 10 pares, que dá 117/4, e multiplique por −6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "soma das raízes = −a3/a4",
+    "nota": "Girard no grau 4"
+   },
+   {
+    "linha": "cada par (a3, a4) → 3! = 6 polinômios",
+    "nota": "os outros três coeficientes"
+   },
+   {
+    "linha": "Σ i/j = 15 · 137/60 − 5 = 117/4",
+    "nota": "todos os pares menos os 5 com i = j"
+   },
+   {
+    "linha": "−6 · 117/4 = −351/2",
+    "nota": "seis polinômios por par, com sinal"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0006"
+  }
+ },
+ "P930cd982": {
+  "n": "45",
+  "conceito": "Achar em que razão duas retas dividem os lados de um triângulo (Menelaus) e usar a proporção entre áreas de mesma altura.",
+  "equivocos": {
+   "A": "M09.3:razao-dos-segmentos-errada",
+   "B": "M09.3:area-nao-proporcional-a-base",
+   "D": "M09.3:posicao-do-ponto-q-mal-lida",
+   "E": "M09.3:soma-das-partes-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Triângulos com o mesmo vértice e bases sobre a mesma reta têm áreas proporcionais às bases. O trabalho real é descobrir em que fração P divide AB e S divide AC. B é ponto médio de AR, e Q fica além de C, com CQ igual à metade de AC. A mediana AM parte o quadrilátero APMS em dois triângulos, APM e AMS.",
+    "formulas": [
+     "Menelaus: (AR/RB) · (BM/MC) · (CS/SA) = 1",
+     "mesma altura: razão das áreas = razão das bases",
+     "área(APMS) = área(APM) + área(AMS)"
+    ],
+    "simbolos": [
+     [
+      "m(AB)",
+      "medida do segmento AB"
+     ],
+     [
+      "Menelaus",
+      "se uma reta corta os três lados de um triângulo (ou seus prolongamentos), o produto das três razões em que ela os divide é 1"
+     ],
+     [
+      "AM",
+      "mediana: liga A ao ponto médio de BC e divide ABC em duas metades de mesma área"
+     ]
+    ]
+   },
+   "pista": "Trace a mediana AM e descubra que fração de AB é AP e que fração de AC é AS.",
+   "passos": [
+    {
+     "faz": "Marque as medidas de R e Q",
+     "conta": "AR = 2 · AB, RB = AB | AQ = (3 · AC)/2, CQ = AC/2",
+     "porque": "AB = BR com R ≠ A põe B no meio de AR. AC = 2 · CQ com Q fora do segmento AC põe Q além de C, a meia medida de AC.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Menelaus na reta R, M, S",
+     "conta": "(AR/RB) · (BM/MC) · (CS/SA) = 1 → 2 · 1 · (CS/SA) = 1 → CS/SA = 1/2 → AS = (2 · AC)/3",
+     "porque": "A reta RM corta o prolongamento de AB em R, BC em M e AC em S.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Menelaus na reta Q, M, P",
+     "conta": "(AP/PB) · (BM/MC) · (CQ/QA) = 1 → (AP/PB) · 1 · (1/3) = 1 → AP/PB = 3 → AP = (3 · AB)/4",
+     "porque": "CQ/QA = (AC/2)/((3 · AC)/2) = 1/3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as duas partes do quadrilátero",
+     "conta": "área(ABM) = área(AMC) = 24/2 = 12 → área(APM) = (3/4) · 12 = 9 | área(AMS) = (2/3) · 12 = 8 → 9 + 8 = 17",
+     "porque": "APM e ABM têm o vértice M e bases sobre AB; AMS e AMC têm o vértice M e bases sobre AC.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "área(APMS) = 17 → alternativa C",
+     "porque": "O quadrilátero é a soma exata dos dois triângulos separados pela mediana.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 17",
+   "checagem": "Pelo que sobra: PB é 1/4 de AB, então o triângulo PBM tem 12/4 = 3; SC é 1/3 de AC, então o triângulo SMC tem 12/3 = 4. APMS = 24 − 3 − 4 = 17.",
+   "erradas": {
+    "A": "15 não confere: os pedaços que sobram, PBM e SMC, teriam de somar 24 − 15 = 9, mas valem 3 + 4 = 7.",
+    "B": "16 não confere: PBM e SMC teriam de somar 24 − 16 = 8, mas valem 3 + 4 = 7.",
+    "D": "18 não confere: PBM e SMC teriam de somar 24 − 18 = 6, mas valem 3 + 4 = 7.",
+    "E": "19 não confere: PBM e SMC teriam de somar 24 − 19 = 5, mas valem 3 + 4 = 7."
+   },
+   "armadilha": "Q fica além de C, e não sobre AC: por isso CQ/QA vale 1/3, e AP é 3/4 de AB, não a metade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área do quadrilátero APMS num triângulo de área 24.",
+    "chave": "Menelaus dá AS = 2/3 de AC e AP = 3/4 de AB; com a mediana, APMS = 9 + 8 = 17.",
+    "cuidado": "Leia onde ficam R e Q: R além de B, Q além de C."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas",
+    "ideia": "Com A = (0; 0), B = (4; 0) e C = (0; 12) (área 24), sai M = (2; 6), S = (0; 8), P = (3; 0), e a área de APMS pelas coordenadas é 17."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "AR/RB = 2 | CQ/QA = 1/3",
+    "nota": "posição de R e de Q"
+   },
+   {
+    "linha": "2 · 1 · (CS/SA) = 1 → AS = (2 · AC)/3",
+    "nota": "Menelaus na reta RMS"
+   },
+   {
+    "linha": "(AP/PB) · 1 · (1/3) = 1 → AP = (3 · AB)/4",
+    "nota": "Menelaus na reta QMP"
+   },
+   {
+    "linha": "área(APM) = (3/4) · 12 = 9",
+    "nota": "metade ABM tem 12"
+   },
+   {
+    "linha": "área(AMS) = (2/3) · 12 = 8",
+    "nota": "metade AMC tem 12"
+   },
+   {
+    "linha": "9 + 8 = 17",
+    "nota": "área de APMS"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ },
+ "P9fb593b0": {
+  "n": "39",
+  "conceito": "Seno e cosseno do arco dobro a partir da tangente do arco.",
+  "equivocos": {
+   "B": "M10.4:usou-o-arco-simples",
+   "C": "M10.4:esqueceu-uma-parcela",
+   "D": "M10.4:cosseno-do-dobro-errado",
+   "E": "M10.4:sinal-trocado-no-cosseno-do-dobro"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Chame θ = arctg(4/3): é o ângulo agudo com tg θ = 4/3, o do triângulo 3, 4, 5. Então sen θ = 4/5 e cos θ = 3/5. A questão pede o arco dobro, 2θ, e não θ: use as fórmulas de arco duplo.",
+    "formulas": [
+     "sen 2θ = 2·sen θ·cos θ",
+     "cos 2θ = cos²θ − sen²θ"
+    ],
+    "simbolos": [
+     [
+      "arctg(4/3)",
+      "o ângulo entre −π/2 e π/2 cuja tangente é 4/3"
+     ],
+     [
+      "θ",
+      "nome dado a arctg(4/3)"
+     ]
+    ]
+   },
+   "pista": "Dê um nome a arctg(4/3) e desenhe o triângulo retângulo dele.",
+   "passos": [
+    {
+     "faz": "Monte o triângulo de θ = arctg(4/3)",
+     "conta": "tg θ = 4/3 → catetos 4 e 3, hipotenusa 5 → sen θ = 4/5 | cos θ = 3/5",
+     "porque": "A hipotenusa vem de √(4² + 3²) = 5, e θ é agudo porque 4/3 > 0.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o cosseno do dobro",
+     "conta": "cos 2θ = (3/5)² − (4/5)² → cos 2θ = 9/25 − 16/25 = −7/25",
+     "porque": "Cosseno do dobro é o quadrado do cosseno menos o quadrado do seno. Sai negativo porque 2θ passa de 90°.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o seno do dobro",
+     "conta": "sen 2θ = 2 · 4/5 · 3/5 → sen 2θ = 24/25",
+     "porque": "Seno do dobro é duas vezes seno vezes cosseno.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some e marque",
+     "conta": "−7/25 + 24/25 = 17/25 → alternativa A",
+     "porque": "Mesmo denominador: −7 + 24 = 17.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 17/25",
+   "checagem": "Pelas fórmulas em tangente, com t = 4/3: cos 2θ = (1 − t²)/(1 + t²) = (−7/9)/(25/9) = −7/25 e sen 2θ = 2t/(1 + t²) = (8/3)/(25/9) = 24/25. Soma 17/25 de novo.",
+   "erradas": {
+    "B": "B, 4/5, é sen θ: usou o ângulo θ em vez do dobro 2θ.",
+    "C": "C, 24/25, é só sen 2θ: esqueceu de somar cos 2θ = −7/25.",
+    "D": "D não confere: com sen 2θ = 24/25, precisaria cos 2θ = 4/25, mas (3/5)² − (4/5)² = −7/25.",
+    "E": "E sai do sinal trocado no cosseno do dobro: sen²θ − cos²θ = 7/25, e 7/25 + 24/25 = 31/25."
+   },
+   "armadilha": "cos 2θ é cos²θ − sen²θ e dá negativo (−7/25); trocar a ordem ou esquecer o sinal leva a 31/25.",
+   "alerta": "",
+   "essencial": {
+    "pede": "cos(2 arctg 4/3) + sen(2 arctg 4/3).",
+    "chave": "Triângulo 3, 4, 5: cos 2θ = −7/25 e sen 2θ = 24/25, soma 17/25.",
+    "cuidado": "A conta é do arco dobro; o cosseno do dobro sai negativo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fórmulas em tangente",
+    "ideia": "cos 2θ = (1 − t²)/(1 + t²) e sen 2θ = 2t/(1 + t²) com t = 4/3 dão −7/25 e 24/25 direto."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "θ = arctg(4/3) → sen θ = 4/5, cos θ = 3/5",
+    "nota": "triângulo 3, 4, 5"
+   },
+   {
+    "linha": "cos 2θ = 9/25 − 16/25 = −7/25",
+    "nota": "cos² menos sen²"
+   },
+   {
+    "linha": "sen 2θ = 2 · 4/5 · 3/5 = 24/25",
+    "nota": "duas vezes seno vezes cosseno"
+   },
+   {
+    "linha": "−7/25 + 24/25 = 17/25",
+    "nota": "soma"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ },
+ "P69300310": {
+  "n": "44",
+  "conceito": "Relação de Euler e contagem de arestas pelas faces para decidir que tipos de face um poliedro pode ter.",
+  "equivocos": {
+   "A": "M11.5:faces-de-cada-tipo-acima-do-total",
+   "B": "M11.5:faces-de-cada-tipo-acima-do-total",
+   "C": "M11.5:numero-de-faces-nao-inteiro",
+   "E": "M11.5:faces-de-cada-tipo-acima-do-total"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Com V e A dados, a relação de Euler dá o número de faces. Depois conte as arestas pelas faces: cada aresta está em exatamente duas faces, então a soma dos lados de todas as faces é 2A. Com a faces de m lados e b faces de n lados, saem duas equações; cada alternativa é testada vendo se dá b inteiro e no máximo igual ao total de faces.",
+    "formulas": [
+     "V − A + F = 2",
+     "soma dos lados de todas as faces = 2A"
+    ],
+    "simbolos": [
+     [
+      "V",
+      "número de vértices"
+     ],
+     [
+      "A",
+      "número de arestas"
+     ],
+     [
+      "F",
+      "número de faces"
+     ],
+     [
+      "a",
+      "quantidade de faces com m arestas"
+     ],
+     [
+      "b",
+      "quantidade de faces com n arestas"
+     ]
+    ]
+   },
+   "pista": "Ache primeiro quantas faces o poliedro tem e depois some os lados de todas as faces.",
+   "passos": [
+    {
+     "faz": "Ache o número de faces por Euler",
+     "conta": "V − A + F = 2 → 24 − 36 + F = 2 → F = 14",
+     "porque": "A relação de Euler vale para todo poliedro convexo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as arestas pelas faces",
+     "conta": "a + b = 14 | m·a + n·b = 2 · 36 = 72",
+     "porque": "Cada aresta é lado de duas faces, então somar os lados de todas as faces conta cada aresta duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Fixe m = 3 e isole b",
+     "conta": "3·(14 − b) + n·b = 72 → 42 + (n − 3)·b = 72 → (n − 3)·b = 30",
+     "porque": "As alternativas A a D têm m = 3; com a = 14 − b, tudo depende de n.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste cada valor de n",
+     "conta": "n = 4 → b = 30 > 14 | n = 5 → b = 15 > 14 | n = 7 → b = 30/4 = 7,5 | n = 8 → b = 30/5 = 6, a = 8",
+     "porque": "b tem de ser inteiro e caber nas 14 faces. Só n = 8 serve: 8 triângulos e 6 octógonos.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Confirme que esse poliedro existe",
+     "conta": "cubo truncado: 8 triângulos + 6 octógonos | V = 24, A = 36, 3 faces por vértice → alternativa D",
+     "porque": "Cortar os oito cantos de um cubo dá exatamente esse poliedro convexo, com três faces em cada vértice.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — é possível que m = 3 e n = 8",
+   "checagem": "Conte pelos vértices: cada vértice tem 3 arestas e cada aresta tem 2 vértices, então 3 × 24 = 2A dá A = 36, coerente. No cubo truncado, 8 × 3 + 6 × 8 = 72 = 2 × 36 e 8 + 6 = 14 faces. Fecha.",
+   "erradas": {
+    "A": "m = 3 e n = 4 não confere: (4 − 3)·b = 30 dá b = 30 faces quadradas, mais que as 14 faces do poliedro.",
+    "B": "m = 3 e n = 5 não confere: (5 − 3)·b = 30 dá b = 15 faces pentagonais, mais que as 14 faces.",
+    "C": "m = 3 e n = 7 não confere: (7 − 3)·b = 30 dá b = 7,5, e número de faces tem de ser inteiro.",
+    "E": "m = 4 e n = 5 não confere: 4·(14 − b) + 5b = 72 dá b = 16, mais que as 14 faces."
+   },
+   "armadilha": "Euler sozinho não basta: é a soma dos lados das faces, igual a 2A, que decide quais pares (m, n) são possíveis.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual par de tipos de face é compatível com um poliedro convexo de 24 vértices e 36 arestas.",
+    "chave": "F = 14 por Euler; com m = 3, (n − 3)·b = 30 só tem solução válida em n = 8 (b = 6), o cubo truncado.",
+    "cuidado": "O número de faces de cada tipo tem de ser inteiro e caber no total de faces."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lembrar o sólido",
+    "ideia": "Cortar os cantos de um cubo (cubo truncado) dá 8 triângulos e 6 octógonos, 24 vértices e 36 arestas: o par m = 3, n = 8 aparece direto."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "24 − 36 + F = 2 → F = 14",
+    "nota": "relação de Euler"
+   },
+   {
+    "linha": "a + b = 14 ; m·a + n·b = 72",
+    "nota": "soma dos lados = 2A"
+   },
+   {
+    "linha": "3·(14 − b) + n·b = 72 → (n − 3)·b = 30",
+    "nota": "m = 3, a = 14 − b"
+   },
+   {
+    "linha": "n = 8 → b = 30/5 = 6 ; a = 8",
+    "nota": "único caso inteiro e até 14 faces"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ },
+ "P48cddac5": {
+  "n": "40",
+  "conceito": "Princípio das casas dos pombos: agrupar os elementos em pares de produto 256 e achar o maior subconjunto sem par.",
+  "equivocos": {
+   "A": "M13.9:esqueceu-o-elemento-isolado",
+   "C": "M13.9:nao-buscou-o-minimo",
+   "D": "M13.9:nao-buscou-o-minimo",
+   "E": "M13.9:nao-buscou-o-minimo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Todos os elementos são potências de 2: 2⁰, 2¹, ..., 2⁸. O produto 2^a · 2^b é 256 = 2⁸ quando a + b = 8. Separe os elementos em grupos: cada par que dá 256 é uma 'casa', e o 16 = 2⁴ fica sozinho, porque precisaria de outro 16. O maior subconjunto SEM par pega no máximo um elemento de cada casa; o menor n que obriga um par é esse máximo mais 1.",
+    "formulas": [
+     "2^a · 2^b = 2^(a + b)",
+     "256 = 2⁸ → a + b = 8",
+     "menor n que obriga um par = (maior subconjunto sem par) + 1"
+    ],
+    "simbolos": [
+     [
+      "n",
+      "tamanho do subconjunto"
+     ],
+     [
+      "casas dos pombos",
+      "se há mais objetos que caixas, alguma caixa recebe dois"
+     ],
+     [
+      "par",
+      "dois elementos diferentes do subconjunto"
+     ]
+    ]
+   },
+   "pista": "Escreva cada elemento como potência de 2 e junte os que se completam até 2⁸.",
+   "passos": [
+    {
+     "faz": "Forme as casas",
+     "conta": "{1, 256} | {2, 128} | {4, 64} | {8, 32} | {16}",
+     "porque": "Os expoentes que somam 8 são 0 e 8, 1 e 7, 2 e 6, 3 e 5. O 16 = 2⁴ só faria 256 com outro 16, e um subconjunto não repete elemento.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte o maior subconjunto sem par",
+     "conta": "{1, 2, 4, 8, 16} → maior produto 8 · 16 = 128 < 256",
+     "porque": "Um elemento de cada uma das 5 casas não forma par nenhum: com 5 elementos ainda dá para fugir do 256.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique as casas dos pombos",
+     "conta": "5 casas e 6 elementos → 6 − 5 = 1 casa com dois",
+     "porque": "Com 6 elementos, duas escolhas caem na mesma casa. Não pode ser a casa do 16 (ela tem um elemento só), então é um dos pares de produto 256.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua o menor n",
+     "conta": "máximo sem par = 5 → n = 5 + 1 = 6 → alternativa B",
+     "porque": "Com 5 há subconjunto sem par; com 6 o par é obrigatório. O menor n é 6.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — n = 6",
+   "checagem": "Teste os vizinhos: com n = 5 o conjunto {16, 32, 64, 128, 256} também escapa (o menor produto é 16 · 32 = 512, acima de 256, e 256 só sai de pares que somam expoente 8). Então 5 não basta; e 6 é o primeiro que força o par.",
+   "erradas": {
+    "A": "n = 5 não serve: o subconjunto {1, 2, 4, 8, 16} tem 5 elementos e nenhum par com produto 256 (o maior é 8 · 16 = 128).",
+    "C": "n = 7 garante o par, mas não é o menor: com 6 elementos o par já é obrigatório.",
+    "D": "n = 8 garante o par, mas não é o menor: 6 elementos já obrigam o produto 256.",
+    "E": "n = 9 é o conjunto inteiro, que tem o par 1 · 256; mas a pergunta é o MENOR n, e 6 já basta."
+   },
+   "armadilha": "O 16 não faz par consigo mesmo: são 5 casas, não 4, e por isso o subconjunto sem par chega a 5 elementos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor tamanho de subconjunto de A que obriga a existência de dois elementos com produto 256.",
+    "chave": "Pares de expoentes que somam 8 mais o 16 isolado formam 5 casas; 5 elementos ainda escapam, 6 não.",
+    "cuidado": "Não conte o 16 como par de si mesmo e lembre que a pergunta é o menor n, não um n que funcione."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pelos expoentes",
+    "ideia": "Troque A por {0, 1, ..., 8} e procure pares com soma 8: os 4 pares mais o 4 sozinho dão 5 casas, e n = 6."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "{1, 256} | {2, 128} | {4, 64} | {8, 32} | {16}",
+    "nota": "5 casas: expoentes que somam 8"
+   },
+   {
+    "linha": "{1, 2, 4, 8, 16}: 8 · 16 = 128 < 256",
+    "nota": "5 elementos sem par"
+   },
+   {
+    "linha": "6 elementos em 5 casas → 6 − 5 = 1 casa com dois",
+    "nota": "casas dos pombos"
+   },
+   {
+    "linha": "n = 5 + 1 = 6",
+    "nota": "menor n que obriga o par"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ },
+ "Pab4dcb68": {
+  "n": "42",
+  "conceito": "Relações de Girard com raízes em PG: escrever as raízes como a/q, a, aq e dividir duas relações para achar o termo do meio.",
+  "equivocos": {
+   "A": "M16.1:erro-nas-relacoes-de-girard",
+   "B": "M16.1:erro-nas-relacoes-de-girard",
+   "D": "M16.1:erro-nas-relacoes-de-girard",
+   "E": "M16.1:erro-nas-relacoes-de-girard"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Raízes em progressão geométrica se escrevem a/q, a e aq. As relações de Girard dão a soma, a soma dos produtos dois a dois e o produto. A soma e a soma dos produtos têm o mesmo fator (1/q + 1 + q); dividindo uma pela outra, esse fator some e sobra a. O produto, a³, dá k.",
+    "formulas": [
+     "x³ + bx² + cx + d: soma = −b; produtos 2 a 2 = c; produto = −d",
+     "raízes em PG: a/q, a, aq"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes a razão q"
+     ],
+     [
+      "q",
+      "razão da PG"
+     ],
+     [
+      "a",
+      "termo do meio da PG"
+     ],
+     [
+      "Girard",
+      "relações entre coeficientes e raízes"
+     ]
+    ]
+   },
+   "pista": "Escreva a soma e a soma dos produtos dois a dois com as raízes a/q, a, aq. Que fator as duas têm em comum?",
+   "passos": [
+    {
+     "faz": "Escreva as relações de Girard",
+     "conta": "soma: a · (1/q + 1 + q) = −3 | produtos 2 a 2: a² · (1/q + 1 + q) = −6 | produto: a³ = −k",
+     "porque": "(a/q)·a + (a/q)·aq + a·aq = a²/q + a² + a²q, que tem o mesmo fator da soma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida as duas primeiras relações",
+     "conta": "(a² · (1/q + 1 + q))/(a · (1/q + 1 + q)) = (−6)/(−3) → a = 2",
+     "porque": "O fator (1/q + 1 + q) se cancela e um a de cima cancela com o de baixo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o produto para achar k",
+     "conta": "a³ = −k → 2³ = −k → k = −8",
+     "porque": "O produto das raízes de x³ + … + k é −k.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o valor à alternativa",
+     "conta": "k = −8 → alternativa C",
+     "porque": "É o valor de k que põe as raízes em PG.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — −8",
+   "checagem": "Com k = −8, p(x) = x³ + 3x² − 6x − 8 = (x − 2)(x + 1)(x + 4): raízes −4, 2 e −1, que formam a PG de razão −1/2 (−4 · (−1/2) = 2; 2 · (−1/2) = −1). Fecha.",
+   "erradas": {
+    "A": "A não confere: o termo do meio da PG, 2, tem de ser raiz, mas p(2) = 8 + 12 − 12 − 18 = −10 ≠ 0.",
+    "B": "B não confere: com k = −16, p(2) = 8 − 16 = −8 ≠ 0; 2 não é raiz.",
+    "D": "D não confere: com k = −2, p(2) = 8 − 2 = 6 ≠ 0.",
+    "E": "E não confere: com k = −1, p(2) = 8 − 1 = 7 ≠ 0."
+   },
+   "armadilha": "Procurar a PG nas raízes em ordem de tamanho: o termo do meio é 2, mas a PG é −4, 2, −1, com razão negativa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O k que põe as raízes de x³ + 3x² − 6x + k em PG.",
+    "chave": "Dividindo produtos 2 a 2 pela soma: a = (−6)/(−3) = 2; a³ = −k, k = −8.",
+    "cuidado": "O produto das raízes do cúbico mônico é −k, não k."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "raiz do meio",
+    "ideia": "Achado a = 2, basta impor p(2) = 0: 8 + 12 − 12 + k = 0, k = −8."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "raízes: a/q, a, aq",
+    "nota": "forma da PG"
+   },
+   {
+    "linha": "a · (1/q + 1 + q) = −3",
+    "nota": "soma das raízes"
+   },
+   {
+    "linha": "a² · (1/q + 1 + q) = −6",
+    "nota": "soma dos produtos 2 a 2"
+   },
+   {
+    "linha": "a = (−6)/(−3) = 2",
+    "nota": "divide e cancela o fator comum"
+   },
+   {
+    "linha": "a³ = −k → 8 = −k → k = −8",
+    "nota": "produto das raízes"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ },
+ "P08bd1f74": {
+  "n": "46",
+  "conceito": "Mostrar que a e b têm o mesmo módulo, reduzir a^m = b^m a (a/b)^m = 1 e achar o menor m pelo argumento de a/b.",
+  "equivocos": {
+   "A": "M16.2:parou-em-meia-volta",
+   "B": "M16.2:errou-o-argumento",
+   "C": "M16.2:errou-o-argumento",
+   "E": "M16.2:nao-comparou-os-modulos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "a^m = b^m com b ≠ 0 é o mesmo que (a/b)^m = 1. Para isso, o módulo de a/b tem de ser 1, e o argumento vezes m tem de dar um múltiplo de 2π. Então calcule os módulos e o quociente a/b na forma trigonométrica.",
+    "formulas": [
+     "|x + yi| = √(x² + y²)",
+     "a/b = (a · b̄)/|b|²",
+     "(cos θ + i sen θ)^m = cos(mθ) + i sen(mθ) (De Moivre)"
+    ],
+    "simbolos": [
+     [
+      "b̄",
+      "conjugado de b: troca o sinal da parte imaginária"
+     ],
+     [
+      "ℕ",
+      "números naturais"
+     ],
+     [
+      "cis θ",
+      "abreviação de cos θ + i sen θ"
+     ]
+    ]
+   },
+   "pista": "Compare os módulos de a e b antes de qualquer potência; depois divida um pelo outro.",
+   "passos": [
+    {
+     "faz": "Calcule os dois módulos",
+     "conta": "|a|² = 1² + (3√3)² = 1 + 27 = 28 | |b|² = (2√3)² + 4² = 12 + 16 = 28",
+     "porque": "Módulos iguais tornam possível a igualdade a^m = b^m; sem isso, os módulos das potências nunca bateriam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o quociente a/b",
+     "conta": "a/b = ((1 + 3√3i)(2√3 − 4i))/28 → (2√3 − 4i + 18i + 12√3)/28 → (14√3 + 14i)/28 = √3/2 + i/2",
+     "porque": "Multiplicar em cima e embaixo pelo conjugado de b deixa o denominador real, igual a |b|² = 28. Note que 3√3i · (−4i) = +12√3, porque i² = −1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Leia o argumento de a/b",
+     "conta": "√3/2 + i/2 = cos(π/6) + i sen(π/6)",
+     "porque": "Cosseno √3/2 e seno 1/2 correspondem a 30°, ou π/6.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o menor m",
+     "conta": "(a/b)^m = 1 → m · π/6 = 2kπ → m = 12k → menor m = 12",
+     "porque": "Pela fórmula de De Moivre, o argumento é multiplicado por m; volta a 1 só quando m · π/6 é múltiplo de 2π.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Marque a alternativa",
+     "conta": "m = 12 → alternativa D",
+     "porque": "12 é o menor natural positivo com (a/b)^m = 1.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 12.",
+   "checagem": "Por outro caminho, eleve ao cubo: a^3 = −80 − 72√3i e b^3 = −72√3 + 80i, e i · b^3 = −80 − 72√3i = a^3, então (a/b)^3 = i (é cis(π/2)). Logo (a/b)^12 = i^4 = 1, e (a/b)^6 = i^2 = −1, o que derruba o 6.",
+   "erradas": {
+    "A": "A sai de parar em meia volta: 6 · π/6 = π, e (a/b)^6 = −1, ou seja, a^6 = −b^6, não b^6.",
+    "B": "B não confere: 8 · π/6 = 4π/3, e (a/b)^8 = −1/2 − (√3/2)i, diferente de 1.",
+    "C": "C não confere: 10 · π/6 = 5π/3, e (a/b)^10 = 1/2 − (√3/2)i, diferente de 1.",
+    "E": "E é falsa: os módulos são iguais (√28) e m = 12 satisfaz a igualdade."
+   },
+   "armadilha": "Tentar elevar a e b às potências separadamente; dividir um pelo outro transforma tudo numa raiz da unidade.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O menor natural m com a^m = b^m.",
+    "chave": "|a| = |b| = √28 e a/b = cis(π/6); (a/b)^m = 1 pede m · π/6 múltiplo de 2π: m = 12.",
+    "cuidado": "Em 3√3i · (−4i), i² = −1 deixa o termo positivo: +12√3."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "argumentos separados",
+    "ideia": "a = √28 · cis(α) e b = √28 · cis(β); a^m = b^m pede m(α − β) múltiplo de 2π, e α − β = π/6 (tan α = 3√3 e tan β = 2/√3), logo m = 12."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "|a|² = 1 + 27 = 28  e  |b|² = 12 + 16 = 28",
+    "nota": "módulos iguais"
+   },
+   {
+    "linha": "a/b = ((1 + 3√3i)(2√3 − 4i))/28",
+    "nota": "multiplicar pelo conjugado"
+   },
+   {
+    "linha": "a/b = (14√3 + 14i)/28 = √3/2 + i/2",
+    "nota": "simplificar por 14"
+   },
+   {
+    "linha": "a/b = cis(π/6) → m · π/6 = 2kπ",
+    "nota": "De Moivre"
+   },
+   {
+    "linha": "m = 12k → m = 12",
+    "nota": "menor natural"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0007"
+  }
+ }
+}

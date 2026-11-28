@@ -1,0 +1,1083 @@
+{
+ "Pac99a64f": {
+  "n": "6",
+  "conceito": "Usar a recorrência de Fibonacci repetidas vezes para escrever um termo distante em função de dois termos seguidos.",
+  "equivocos": {
+   "A": "M07.4:parou-no-primeiro-termo",
+   "B": "M07.4:coeficientes-trocados",
+   "C": "M07.4:coeficientes-trocados",
+   "E": "M07.4:coeficientes-trocados"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A regra diz que cada termo é a soma dos dois anteriores. Para chegar a f(n + 5), vá subindo um termo por vez e, a cada degrau, substitua os termos já escritos em função de f(n + 1) e f(n). Os coeficientes que aparecem são os próprios números de Fibonacci.",
+    "formulas": [
+     "f(n + 2) = f(n + 1) + f(n)",
+     "cada termo novo = soma dos dois anteriores"
+    ],
+    "simbolos": [
+     [
+      "f(n)",
+      "o termo da posição n da sequência 1, 1, 2, 3, 5, 8, ..."
+     ],
+     [
+      "N",
+      "números naturais 1, 2, 3, ..."
+     ]
+    ]
+   },
+   "pista": "Comece escrevendo f(n + 2) e f(n + 3) só com f(n + 1) e f(n); depois continue subindo.",
+   "passos": [
+    {
+     "faz": "Escreva f(n + 2) e f(n + 3)",
+     "conta": "f(n + 2) = f(n + 1) + f(n) → f(n + 3) = f(n + 2) + f(n + 1) = 2f(n + 1) + f(n)",
+     "porque": "f(n + 3) é a soma dos dois anteriores; troque f(n + 2) pelo que já foi escrito e junte os f(n + 1).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Suba para f(n + 4)",
+     "conta": "f(n + 4) = f(n + 3) + f(n + 2) = [2f(n + 1) + f(n)] + [f(n + 1) + f(n)] = 3f(n + 1) + 2f(n)",
+     "porque": "Mesma regra: soma das duas linhas anteriores, coeficiente com coeficiente.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Suba para f(n + 5)",
+     "conta": "f(n + 5) = f(n + 4) + f(n + 3) = [3f(n + 1) + 2f(n)] + [2f(n + 1) + f(n)] = 5f(n + 1) + 3f(n)",
+     "porque": "Somando as duas expressões anteriores, os f(n + 1) dão 3 + 2 = 5 e os f(n) dão 2 + 1 = 3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "f(n + 5) = 5f(n + 1) + 3f(n) → alternativa D",
+     "porque": "A pergunta é f(n + 5) em função de f(n + 1) e f(n), exatamente a expressão obtida.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — f(n + 5) = 5f(n + 1) + 3f(n)",
+   "checagem": "Teste com n = 1: f(6) = 8 e 5f(2) + 3f(1) = 5 + 3 = 8. Com n = 2: f(7) = 13 e 5f(3) + 3f(2) = 10 + 3 = 13. Fecha nos dois.",
+   "erradas": {
+    "A": "Quem marca A aplica a regra uma vez só e para em f(n + 2) = f(n + 1) + f(n). Faltam três degraus até f(n + 5). Com n = 1 dá 2, mas f(6) = 8.",
+    "B": "Quem marca B para em f(n + 3), que é 2f(n + 1) + f(n), e ainda inverte os coeficientes. Faltam dois degraus até f(n + 5). Com n = 1 dá 3, mas f(6) = 8.",
+    "C": "Quem marca C chega a f(n + 4) = 3f(n + 1) + 2f(n), mas inverte os coeficientes e ainda fica um degrau antes de f(n + 5). Com n = 1 dá 5, mas f(6) = 8.",
+    "E": "Quem marca E sobe um degrau a mais: f(n + 6) = 8f(n + 1) + 5f(n), e ainda inverte os coeficientes. Com n = 1 dá 5 + 8 = 13, mas f(6) = 8."
+   },
+   "armadilha": "Cada degrau tem de somar as DUAS expressões anteriores; somar só uma ou trocar os coeficientes leva às erradas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "f(n + 5) escrito com f(n + 1) e f(n), na sequência de Fibonacci.",
+    "chave": "Subir um termo por vez: 2f(n+1) + f(n), 3f(n+1) + 2f(n), 5f(n+1) + 3f(n).",
+    "cuidado": "Teste a expressão com n = 1: tem de dar f(6) = 8."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "caso particular",
+    "ideia": "Com n = 1, f(6) = 8 e f(2) = f(1) = 1: a expressão certa tem coeficientes somando 8, só D (5 + 3)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(n + 2) = f(n + 1) + f(n)",
+    "nota": "regra dada"
+   },
+   {
+    "linha": "f(n + 3) = 2f(n + 1) + f(n)",
+    "nota": "soma das duas anteriores"
+   },
+   {
+    "linha": "f(n + 4) = 3f(n + 1) + 2f(n)",
+    "nota": "soma das duas anteriores"
+   },
+   {
+    "linha": "f(n + 5) = 5f(n + 1) + 3f(n)",
+    "nota": "soma das duas anteriores"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
+ },
+ "P465499f1": {
+  "n": "46",
+  "conceito": "Teorema de Pitágoras no triângulo MVU para achar o raio e somar segmentos na semirreta.",
+  "equivocos": {
+   "A": "M09.1:cateto-errado",
+   "B": "M09.1:subtraiu-quadrados",
+   "D": "M09.1:cateto-errado",
+   "E": "M09.1:metade-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O raio MU é a hipotenusa do triângulo retângulo MVU, com catetos MV (metade do lado) e VU (o lado inteiro). Depois, R está na semirreta QV a uma distância MU de M, então QR = QM + MR.",
+    "formulas": [
+     "hipotenusa² = cateto² + cateto²",
+     "QR = QM + MR, com MR = raio"
+    ],
+    "simbolos": [
+     [
+      "PUVQ",
+      "quadrado de lado 2"
+     ],
+     [
+      "M",
+      "ponto médio de QV"
+     ],
+     [
+      "semirreta QV",
+      "começa em Q e segue além de V"
+     ]
+    ]
+   },
+   "pista": "Olhe o triângulo formado por M, V e U: ele tem um ângulo reto em V.",
+   "passos": [
+    {
+     "faz": "Leia os catetos do triângulo MVU",
+     "conta": "MV = 2/2 = 1 | VU = 2",
+     "porque": "M divide QV ao meio e VU é lado do quadrado.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Aplique Pitágoras",
+     "conta": "MU² = 1² + 2² → MU² = 5 → MU = √5",
+     "porque": "O ângulo em V é reto, então MU é a hipotenusa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os pedaços de QR",
+     "conta": "QR = QM + MR → QR = 1 + √5",
+     "porque": "R está na circunferência de centro M, então MR é raio, igual a MU = √5.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "√5 e 1 + √5 → alternativa C",
+     "porque": "A questão pede o raio e o segmento QR, nessa ordem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — √5 e 1 + √5",
+   "checagem": "Ordem de grandeza: √5 ≈ 2,24 fica entre o lado (2) e a diagonal do quadrado (√8 ≈ 2,83), como deve ser para MU. E QR ≈ 3,24 passa de QV = 2, coerente com R estar depois de V na figura.",
+   "erradas": {
+    "A": "√2 e 1 + √2 sai de usar 1 nos dois catetos: √(1² + 1²) = √2. O cateto VU é o lado inteiro, 2.",
+    "B": "√3 e 1 + √3 sai de subtrair os quadrados: √(2² − 1²) = √3. MU é hipotenusa, então se soma.",
+    "D": "√2 e 1/2 + √2 sai de dois erros: catetos 1 e 1 no raio e QM = 1/2. QM é metade de 2, ou seja, 1.",
+    "E": "√5 e 1/2 + √5 acerta o raio, mas toma QM = 1/2. M é o meio de QV, que mede 2, então QM = 1."
+   },
+   "armadilha": "O cateto VU é o lado inteiro do quadrado (2), e só MV é a metade (1).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A medida do raio MU e do segmento QR.",
+    "chave": "MU² = 1² + 2² = 5, então MU = √5; QR = QM + MR = 1 + √5.",
+    "cuidado": "QM é metade do lado 2, isto é, 1, e o raio entra somado em QR."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "coordenadas",
+    "ideia": "Com Q = (0, 0), M = (1, 0) e U = (2, 2): MU = √(1 + 4) = √5 e R = (1 + √5, 0)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "MV = 2/2 = 1",
+    "nota": "M é meio de QV"
+   },
+   {
+    "linha": "MU² = 1² + 2² = 5",
+    "nota": "Pitágoras em MVU"
+   },
+   {
+    "linha": "MU = √5",
+    "nota": "raiz dos dois lados"
+   },
+   {
+    "linha": "QR = 1 + √5",
+    "nota": "QM mais o raio MR"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
+ },
+ "Pb139a0d2": {
+  "n": "44",
+  "conceito": "Comparar cos x com a aproximação P(x) = 1 − x²/2 em [−π, π]: valor em π/2, imagem de cada função e amplitude (variação entre máximo e mínimo) de cada gráfico.",
+  "equivocos": {
+   "A": "M10.5:leu-grafico-errado",
+   "C": "M10.5:imagem-igual-por-semelhanca-local",
+   "D": "M10.5:imagem-igual-por-semelhanca-local",
+   "E": "M10.5:imagem-igual-por-semelhanca-local"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A figura 1 é o cosseno (ondulação entre −1 e 1) e a figura 2 é a parábola P, que desce até perto de −π. Julgue cada afirmativa calculando os valores nos pontos e as imagens no intervalo. Nesta questão a banca trata a amplitude como a distância entre o valor máximo e o mínimo do gráfico.",
+    "formulas": [
+     "P(x) = 1 − x²/2 (2! = 2)",
+     "imagem de P em [−π, π] = [P(π), P(0)]",
+     "amplitude considerada = valor máximo − valor mínimo"
+    ],
+    "simbolos": [
+     [
+      "2!",
+      "fatorial de 2: 2 · 1 = 2"
+     ],
+     [
+      "P",
+      "polinômio que aproxima o cosseno perto de x = 0"
+     ],
+     [
+      "imagem",
+      "conjunto dos valores que a função assume"
+     ],
+     [
+      "[−π, π]",
+      "intervalo de −π até π, com as pontas"
+     ]
+    ]
+   },
+   "pista": "Comece pela I: calcule P(π/2) com π ≈ 3,14 e compare com cos(π/2).",
+   "passos": [
+    {
+     "faz": "Calcule P(π/2) e compare",
+     "conta": "P(π/2) = 1 − (π/2)²/2 = 1 − π²/8 ≈ −0,23 ; cos(π/2) = 0 → −0,23 < 0",
+     "porque": "A parábola já ficou abaixo do eixo em π/2, onde o cosseno vale zero: I é correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a imagem de P",
+     "conta": "P(0) = 1 ; P(π) = 1 − π²/2 ≈ −3,93 → imagem de P = [1 − π²/2, 1]",
+     "porque": "P é máximo em x = 0 e mínimo nas pontas ±π. O cosseno, no mesmo intervalo, vai de −1 a 1: as imagens diferem, e III é incorreta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Meça a amplitude do cosseno (figura 1)",
+     "conta": "máx − mín = 1 − (−1) = 2",
+     "porque": "O cosseno oscila entre −1 e 1, e a figura 1 tem forma de pulso de onda. Medida como a distância entre máximo e mínimo, a amplitude é 2: IV é correta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Meça a amplitude da parábola (figura 2)",
+     "conta": "máx − mín = 1 − (1 − π²/2) = π²/2 ≈ 4,93 → ≠ 0",
+     "porque": "O gráfico de P sobe e desce bastante, então essa amplitude não é zero: II é incorreta.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte os julgamentos",
+     "conta": "I C ; II I ; III I ; IV C → alternativa B",
+     "porque": "Sobram as afirmativas I e IV.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — Somente as afirmativas I e IV são corretas.",
+   "checagem": "Confira a I pela figura: em x = π/2 ≈ 1,57 o cosseno já cruzou o eixo, mas a parábola cruza antes, em x = √2 ≈ 1,41; depois desse ponto P é negativo, logo P(π/2) < 0 = cos(π/2).",
+   "erradas": {
+    "A": "Aceita a II: a parábola da figura 2 vai de cerca de −3,93 até 1, uma variação de π²/2 ≈ 4,93, não 0. Deixa de fora a IV.",
+    "C": "Aceita a III: a imagem de P é [1 − π²/2, 1] ≈ [−3,93; 1], e a do cosseno é [−1, 1]. Deixa de fora a I, que é correta.",
+    "D": "Aceita II e III: a variação da parábola é π²/2 ≈ 4,93, não 0, e P desce até ≈ −3,93, abaixo do −1 do cosseno.",
+    "E": "Aceita II e III e rejeita a I, que é correta: P(π/2) = 1 − π²/8 ≈ −0,23, menor que cos(π/2) = 0."
+   },
+   "armadilha": "Achar que P e cosseno têm a mesma imagem porque se parecem perto de zero: nas pontas, P desce até cerca de −3,93.",
+   "alerta": "Amplitude: num cosseno de valores entre −1 e 1, os livros costumam chamar de amplitude a metade da variação, que dá 1. Mas o gabarito oficial é B, com a IV correta: a banca considerou a amplitude como a distância entre o valor máximo e o mínimo, que dá 2 (como na amplitude da estatística, máximo menos mínimo). A resolução segue esse critério. As outras três afirmativas não dependem dele.",
+   "essencial": {
+    "pede": "Quais afirmativas sobre cos x e P(x) = 1 − x²/2 em [−π, π] são corretas.",
+    "chave": "P(π/2) ≈ −0,23 < 0; imagem de P = [1 − π²/2, 1] ≠ [−1, 1]; o cosseno vai de −1 a 1.",
+    "cuidado": "Calcule P nas pontas ±π: a parábola desce muito mais que o cosseno."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "por eliminação",
+    "ideia": "III é falsa (P chega a ≈ −3,93) e cai C, D e E; II é falsa (P varia ≈ 4,93) e cai A; sobra B."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(π/2) = 1 − π²/8 ≈ −0,23",
+    "nota": "valor da parábola em π/2"
+   },
+   {
+    "linha": "−0,23 < cos(π/2) = 0",
+    "nota": "I correta"
+   },
+   {
+    "linha": "P(π) = 1 − π²/2 ≈ −3,93",
+    "nota": "mínimo de P no intervalo"
+   },
+   {
+    "linha": "[−3,93; 1] ≠ [−1, 1]",
+    "nota": "III incorreta"
+   },
+   {
+    "linha": "1 − (−1) = 2",
+    "nota": "variação do cosseno: IV correta"
+   },
+   {
+    "linha": "1 − (1 − π²/2) = π²/2 ≈ 4,93",
+    "nota": "variação de P: II incorreta"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0002"
+  }
+ },
+ "Pda67addc": {
+  "n": "34",
+  "conceito": "Compor uma função por partes várias vezes e achar o ciclo do valor exato.",
+  "equivocos": {
+   "A": "M05.5:usou-o-valor-aproximado",
+   "B": "M05.5:errou-o-ramo-da-funcao",
+   "C": "M05.5:usou-o-valor-aproximado",
+   "D": "M05.5:errou-a-paridade-das-aplicacoes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Não use 0,333: o texto avisa que a aproximação estraga o resultado. Com o valor exato 1/3, a função B alterna entre dois valores, 1/3 e 2/3. Basta saber se dez aplicações são um número par ou ímpar.",
+    "formulas": [
+     "B(x) = 2x se 0 ≤ x ≤ 1/2",
+     "B(x) = 2x − 1 se 1/2 < x ≤ 1"
+    ],
+    "simbolos": [
+     [
+      "B ∘ B",
+      "aplicar B duas vezes seguidas"
+     ],
+     [
+      "F",
+      "B aplicada dez vezes seguidas"
+     ]
+    ]
+   },
+   "pista": "Calcule B(1/3) e depois aplique B ao resultado; observe o que acontece.",
+   "passos": [
+    {
+     "faz": "Aplique B a 1/3",
+     "conta": "1/3 ≤ 1/2 → B(1/3) = 2 × 1/3 = 2/3",
+     "porque": "1/3 está na primeira faixa, então B dobra o valor.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Aplique B a 2/3",
+     "conta": "2/3 > 1/2 → B(2/3) = 2 × 2/3 − 1 = 1/3",
+     "porque": "2/3 está na segunda faixa. O resultado voltou a 1/3: o ciclo tem dois valores.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Use o ciclo nas dez aplicações",
+     "conta": "1/3 → 2/3 → 1/3 → ... ; 10 = 2 × 5 → F(1/3) = 1/3",
+     "porque": "Cada duas aplicações voltam ao início; dez aplicações são cinco voltas completas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "F(1/3) = 1/3 → alternativa E",
+     "porque": "O valor exato não se afasta de 1/3, ao contrário do aproximado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — 1/3",
+   "checagem": "Por outro caminho: para 1/4 < x ≤ 1/2, B(B(x)) = 2 × 2x − 1 = 4x − 1. Em x = 1/3 dá 4/3 − 1 = 1/3, então duas aplicações devolvem 1/3, e dez também.",
+   "erradas": {
+    "A": "0,340 não confere: B leva fração de denominador 3 em fração de denominador 3 (2 × 1/3 = 2/3; 2 × 2/3 − 1 = 1/3), então F(1/3) só pode ser 1/3 ou 2/3.",
+    "B": "1/2 não confere: só chega a 1/2 quem parte de 1/4 ou de 3/4, e o ciclo de 1/3 passa apenas por 1/3 e 2/3.",
+    "C": "Quem marca C lê F(0,333) = 0,992 como \"quase 1\" e conclui que o valor exato é 1. Mas 0,992 é só efeito da aproximação. Com 1/3 exato, B alterna entre 1/3 e 2/3 e nunca chega a 1.",
+    "D": "0,668 não confere: mesmo com um número ímpar de aplicações o resultado seria 2/3 = 0,666..., não 0,668."
+   },
+   "armadilha": "Usar 0,333 no lugar de 1/3: a cada aplicação a pequena diferença dobra, e depois de dez vezes F(0,333) = 0,992, longe de F(1/3) = 1/3.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de B aplicada dez vezes a 1/3.",
+    "chave": "B(1/3) = 2/3 e B(2/3) = 1/3: ciclo de período 2, e dez é par.",
+    "cuidado": "Trabalhe com a fração exata; arredondar faz o erro dobrar a cada aplicação."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ponto fixo de B ∘ B",
+    "ideia": "Para 1/4 < x ≤ 1/2, B(B(x)) = 4x − 1; resolver 4x − 1 = x dá x = 1/3, então 1/3 volta a si mesmo a cada duas aplicações."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "B(1/3) = 2 × 1/3 → 2/3",
+    "nota": "1/3 ≤ 1/2: dobra"
+   },
+   {
+    "linha": "B(2/3) = 2 × 2/3 − 1 → 1/3",
+    "nota": "2/3 > 1/2: dobra e tira 1"
+   },
+   {
+    "linha": "10 = 2 × 5",
+    "nota": "cinco voltas do ciclo"
+   },
+   {
+    "linha": "F(1/3) = 1/3",
+    "nota": "alternativa E"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
+ },
+ "Pd6097ed2": {
+  "n": "49",
+  "conceito": "Isolar n numa equação exponencial de financiamento e escrever a solução como logaritmo na base j.",
+  "equivocos": {
+   "A": "M06.4:base-do-log-errada",
+   "B": "M06.4:logaritmando-negativo",
+   "C": "M06.4:trocou-j-menos-1-por-j-mais-1",
+   "D": "M06.4:sinal-trocado-ao-mudar-de-lado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Quitar a dívida é fazer D(n) = 0. O n está no expoente de j em dois termos: o trabalho é juntar tudo que tem j^n de um lado e isolar j^n. Depois, por definição, n é o logaritmo na base j do número que j^n vale.",
+    "formulas": [
+     "D(n) = 0 ⇔ C · j^n = P · (j^n − 1)/(j − 1)",
+     "j^n = k ⇔ n = log_j k"
+    ],
+    "simbolos": [
+     [
+      "C",
+      "valor emprestado"
+     ],
+     [
+      "P",
+      "valor de cada parcela"
+     ],
+     [
+      "j",
+      "fator mensal, maior que 1"
+     ],
+     [
+      "n",
+      "número de parcelas"
+     ],
+     [
+      "log_j",
+      "logaritmo na base j"
+     ]
+    ]
+   },
+   "pista": "Elimine o denominador multiplicando tudo por (j − 1) e coloque j^n em evidência.",
+   "passos": [
+    {
+     "faz": "Iguale o saldo a zero",
+     "conta": "C · j^n − P · (j^n − 1)/(j − 1) = 0 → C · j^n = P · (j^n − 1)/(j − 1)",
+     "porque": "Quitar a dívida é saldo devedor zero.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire o denominador",
+     "conta": "C · j^n = P · (j^n − 1)/(j − 1) → C · (j − 1) · j^n = P · j^n − P",
+     "porque": "O (j − 1) que divide passa multiplicando para o outro lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ponha j^n em evidência",
+     "conta": "P = P · j^n − C · (j − 1) · j^n → P = j^n · (P − C · (j − 1))",
+     "porque": "Os termos com j^n vão para um lado e o P sozinho para o outro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole j^n e aplique o log",
+     "conta": "j^n = P/(P − C · (j − 1)) → n = log_j (P/(P − C · (j − 1)))",
+     "porque": "Pela condição C · j − C < P, o denominador P − C · (j − 1) é positivo, então o logaritmo existe.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "n = log_j (P/(P − C · (j − 1))) → alternativa E",
+     "porque": "Base j e fração exatamente como na E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — n = logj [P/(P − C · (j − 1))], o logaritmo na base j de P/(P − C · (j − 1)).",
+   "checagem": "Teste com números: C = 100, j = 1,1 e P = 20 dão n = log_1,1 (20/10) ≈ 7,27, e D(7,27) = 100 · 1,1^n − 20 · (1,1^n − 1)/0,1 = 0. Fecha.",
+   "erradas": {
+    "A": "Quem marca A chega certo a j^n = P/(P − C · (j − 1)), mas usa log na base C. Para tirar o n do expoente, a base do log tem de ser a base da potência: j.",
+    "B": "B não confere: −P/(P − C · (j − 1)) é negativo, porque P − C · (j − 1) > 0; não existe log de número negativo.",
+    "C": "Quem marca C troca j − 1 por j + 1 ao isolar j^n. O fator que multiplica C vem do denominador j − 1 do enunciado. Com j + 1, a fração fica sempre negativa (como P < C, o denominador P − C · (j + 1) é negativo), e não existe log de número negativo.",
+    "D": "D sai de trocar o sinal ao mover o termo: P · j^n + C · (j − 1) · j^n = P. A fração fica menor que 1 e daria n negativo."
+   },
+   "armadilha": "Ao mover C · (j − 1) · j^n para o lado do P · j^n, o sinal troca: fica P − C · (j − 1), não P + C · (j − 1).",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de parcelas n que zera o saldo devedor.",
+    "chave": "Isolar j^n: j^n · (P − C(j − 1)) = P, logo n = log_j [P/(P − C(j − 1))].",
+    "cuidado": "Sinal ao trocar de lado e base do log igual à base da potência (j)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "A base tem de ser j (sai A e B); a fração tem de ser maior que 1 para n > 0 com j > 1, o que só ocorre com P − C · (j − 1) no denominador (sai C e D)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C · j^n = P · (j^n − 1)/(j − 1)",
+    "nota": "D(n) = 0"
+   },
+   {
+    "linha": "C · (j − 1) · j^n = P · j^n − P",
+    "nota": "(j − 1) passa multiplicando"
+   },
+   {
+    "linha": "P = j^n · (P − C · (j − 1))",
+    "nota": "j^n em evidência"
+   },
+   {
+    "linha": "j^n = P/(P − C · (j − 1))",
+    "nota": "isolar j^n"
+   },
+   {
+    "linha": "n = log_j (P/(P − C · (j − 1)))",
+    "nota": "definição de log"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0001"
+  }
+ },
+ "P02cbda16": {
+  "n": "33",
+  "conceito": "Questão interdisciplinar: problema da indução em Hume, contrapositiva da inclusão de conjuntos e probabilidade condicional.",
+  "equivocos": {
+   "A": "M17.1:inducao-tomada-por-deducao",
+   "B": "M17.1:contrapositiva-negada",
+   "D": "M17.1:contrapositiva-negada",
+   "E": "M13.5:condicionais-iguais-sem-igualar-as-probabilidades"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "São três afirmações sobre Hume, que o próprio trecho ajuda a julgar, e duas de Matemática. Na inclusão, todo azul é vermelho; logo, quem não é vermelho não pode ser azul (contrapositiva). Na probabilidade, escreva as duas condicionais com a mesma intersecção no numerador e iguale.",
+    "formulas": [
+     "A ⊂ V: x ∈ A ⇒ x ∈ V ; contrapositiva: x ∉ V ⇒ x ∉ A",
+     "P(A | B) = P(A ∩ B)/P(B) ; P(B | A) = P(A ∩ B)/P(A)"
+    ],
+    "simbolos": [
+     [
+      "⊂",
+      "está contido: todo elemento de A também está em V"
+     ],
+     [
+      "∈, ∉",
+      "pertence, não pertence"
+     ],
+     [
+      "⇒",
+      "se ... então"
+     ],
+     [
+      "P(A | B)",
+      "probabilidade de A dado que B ocorreu"
+     ],
+     [
+      "A ∩ B",
+      "evento em que A e B ocorrem juntos"
+     ],
+     [
+      "falibilista",
+      "que admite que a conclusão tirada da experiência pode falhar"
+     ]
+    ]
+   },
+   "pista": "Comece pelas duas afirmações de Matemática: elas já deixam só duas alternativas.",
+   "passos": [
+    {
+     "faz": "Julgue as afirmações sobre Hume pelo texto",
+     "conta": "\"tentar provar a última conjectura, por argumentos prováveis [...] consiste, certamente, em girar num círculo\" → 1.ª V | 2.ª F | 3.ª F",
+     "porque": "A conclusão experimental depende de supor que o futuro se parece com o passado, e isso não se prova: a inferência causal pode falhar (falibilista), não tem fundamento lógico-racional, e a probabilidade não a justifica, porque usá-la seria girar em círculo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Julgue a 4.ª pela contrapositiva",
+     "conta": "A ⊂ V: x ∈ A ⇒ x ∈ V → x ∉ V ⇒ x ∉ A → 4.ª V",
+     "porque": "Se todo azul é vermelho, um número que não é vermelho não pode ser azul. É a contrapositiva, que vale sempre que vale a original.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Julgue a 5.ª igualando as condicionais",
+     "conta": "P(A ∩ B)/P(B) = P(A ∩ B)/P(A) → P(B) = P(A) → 5.ª F",
+     "porque": "Os numeradores são iguais e não nulos; frações iguais com mesmo numerador têm denominadores iguais. Então P(B) > P(A) é falso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a sequência e ligue à alternativa",
+     "conta": "V, F, F, V, F → alternativa C",
+     "porque": "De cima para baixo, só a alternativa C traz exatamente essa sequência.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — V, F, F, V, F",
+   "checagem": "Teste a 5.ª com um caso: num dado, A = {1, 2} e B = {2, 3}. P(A | B) = 1/2 e P(B | A) = 1/2, iguais, e P(A) = P(B) = 1/3, sem B maior que A. E as duas de Matemática (V na 4.ª, F na 5.ª) já deixam só A ou C; a 2.ª decide.",
+   "erradas": {
+    "A": "A marca V na 2.ª, mas o trecho diz que provar a conjectura por argumentos prováveis é \"girar num círculo\": Hume nega um fundamento lógico-racional à inferência causal.",
+    "B": "B erra a 2.ª (Hume nega o fundamento racional) e a 4.ª: de A ⊂ V segue x ∉ V ⇒ x ∉ A, então a 4.ª é V, não F.",
+    "D": "Quem marca D lê Hume como racionalista, como se a razão ou a probabilidade provassem a causa. O trecho chama isso de \"girar num círculo\". Na 4.ª, A está dentro de V: quem não é vermelho não pode ser azul.",
+    "E": "E marca V na 5.ª, mas P(A ∩ B)/P(B) = P(A ∩ B)/P(A) obriga P(A) = P(B); então P(B) > P(A) é F. Erra também a 1.ª, a 3.ª e a 4.ª (nega a contrapositiva, que é V)."
+   },
+   "armadilha": "Na 5.ª, condicionais iguais parecem sugerir eventos de pesos diferentes; com a mesma intersecção no numerador, elas forçam P(A) = P(B).",
+   "alerta": "Questão interdisciplinar (Filosofia e Matemática): as três primeiras afirmações são sobre Hume e se julgam pelo trecho citado; as duas últimas são de lógica e probabilidade.",
+   "essencial": {
+    "pede": "A sequência de V e F para três afirmações sobre Hume e duas de Matemática.",
+    "chave": "Hume: a inferência causal não tem prova racional (V, F, F); contrapositiva da inclusão é V; condicionais iguais dão P(A) = P(B), logo F.",
+    "cuidado": "Na contrapositiva, nega-se e inverte-se: vale não vermelho ⇒ não azul; já não azul ⇒ não vermelho não vale."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "Comece pela Matemática: 4.ª V e 5.ª F deixam só A e C; a 2.ª, que o trecho de Hume derruba (\"girar num círculo\"), separa as duas e fica C."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x ∈ A ⇒ x ∈ V",
+    "nota": "A ⊂ V"
+   },
+   {
+    "linha": "x ∉ V ⇒ x ∉ A",
+    "nota": "contrapositiva: 4.ª é V"
+   },
+   {
+    "linha": "P(A ∩ B)/P(B) = P(A ∩ B)/P(A)",
+    "nota": "condicionais iguais"
+   },
+   {
+    "linha": "P(B) = P(A)",
+    "nota": "mesmo numerador, mesmo denominador: 5.ª é F"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
+ },
+ "P7b88a782": {
+  "n": "36",
+  "conceito": "Probabilidade de um evento impossível: descobrir que nenhum resultado do sorteio atende à condição.",
+  "equivocos": {
+   "B": "M13.4:supos-caso-favoravel-inexistente",
+   "C": "M13.4:supos-caso-favoravel-inexistente",
+   "D": "M13.4:supos-caso-favoravel-inexistente",
+   "E": "M13.4:supos-caso-favoravel-inexistente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Antes de contar casos, descubra onde x pode cair. Cada d é um algarismo de 0 a 9, então x é sempre um número da forma 3,d1d2d3d4: no mínimo 3,0000 e no máximo 3,9999. A pergunta é se algum desses números fica a mais de 9/10 de π. Se nenhum fica, o evento é impossível e a probabilidade é zero.",
+    "formulas": [
+     "x = 3 + d1/10 + d2/100 + d3/1000 + d4/10000 = 3,d1d2d3d4",
+     "ε(x) = |x − π| é a distância entre x e π",
+     "probabilidade = casos favoráveis ÷ casos possíveis (10^4 sequências)"
+    ],
+    "simbolos": [
+     [
+      "d1, d2, d3, d4",
+      "algarismos sorteados no dado de dez faces, de 0 a 9"
+     ],
+     [
+      "ε(x)",
+      "erro da aproximação: a distância entre x e π"
+     ],
+     [
+      "|x − π|",
+      "módulo: a distância, sempre positiva"
+     ],
+     [
+      "10^4",
+      "número de sequências possíveis de quatro lançamentos: 10 × 10 × 10 × 10"
+     ]
+    ]
+   },
+   "pista": "Antes de pensar em probabilidade, ache o menor e o maior valor que x pode assumir.",
+   "passos": [
+    {
+     "faz": "Ache o intervalo de x",
+     "conta": "x mínimo = 3 + 0/10 + 0/100 + 0/1000 + 0/10000 = 3 ; x máximo = 3 + 9/10 + 9/100 + 9/1000 + 9/10000 = 3,9999",
+     "porque": "Os d só valem de 0 a 9, então cada um preenche uma casa decimal. x vai de 3,0000 a 3,9999.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o maior erro possível",
+     "conta": "3,9999 − 3,1415926... = 0,8583... ; 3,1415926... − 3 = 0,1415926...",
+     "porque": "Como π está dentro do intervalo, o erro é máximo numa das pontas. A ponta de cima, 3,9999, é a mais distante.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com 9/10",
+     "conta": "0,8583... < 0,9 → ε(x) < 9/10 para todo x",
+     "porque": "Mesmo no pior caso o erro não passa de 0,86. Nenhuma das 10^4 sequências tem erro maior que 0,9.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "casos favoráveis = 0 → P = 0/(10^4) → alternativa A",
+     "porque": "Zero casos favoráveis em 10^4 possíveis dá probabilidade zero: o evento é impossível.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 0/(10^4), ou seja, probabilidade zero",
+   "checagem": "Resolva a desigualdade direto: |x − π| > 0,9 exige x < π − 0,9 ≈ 2,2416 ou x > π + 0,9 ≈ 4,0416. Os valores de x ficam todos entre 3 e 3,9999, longe das duas faixas. Nenhum x serve.",
+   "erradas": {
+    "B": "1/(10^4) não confere: exigiria uma sequência com erro acima de 0,9, mas a mais distante de π, x = 3,9999, tem erro 0,8583.",
+    "C": "2/(10^4) não confere: as duas sequências mais distantes de π, 3,9999 e 3,9998, têm erros 0,8583 e 0,8582, ambos abaixo de 0,9.",
+    "D": "3/(10^4) não confere: o x mais baixo, 3,0000, tem erro 0,1416, e o mais alto, 3,9999, tem 0,8583. Nenhum dos 10^4 passa de 0,9.",
+    "E": "4/(10^4) não confere: todo x fica entre 3 e 3,9999, e para o erro passar de 0,9 o x teria de ser maior que 4,0416 ou menor que 2,2416."
+   },
+   "armadilha": "O enunciado cria clima de sorteio e contagem, mas a condição ε(x) > 9/10 é impossível: x nunca sai do intervalo de 3 a 3,9999.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de o número x gerado pelos quatro lançamentos ficar a mais de 9/10 de π.",
+    "chave": "x vai de 3 a 3,9999, e o maior erro possível é 3,9999 − π ≈ 0,858, menor que 0,9.",
+    "cuidado": "Delimite os valores possíveis de x antes de contar casos: aqui não há caso favorável."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "evento complementar",
+    "ideia": "ε(x) ≤ 0,9 vale para as 10^4 sequências, então P(ε > 0,9) = 1 − 10^4/10^4 = 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x mínimo = 3,0000",
+    "nota": "todos os d iguais a 0"
+   },
+   {
+    "linha": "x máximo = 3,9999",
+    "nota": "todos os d iguais a 9"
+   },
+   {
+    "linha": "3,9999 − 3,14159... = 0,8583...",
+    "nota": "maior distância até π"
+   },
+   {
+    "linha": "0,8583 < 0,9 → P = 0/(10^4)",
+    "nota": "nenhum caso favorável"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
+ },
+ "Pc4ee2de7": {
+  "n": "37",
+  "conceito": "Julgar afirmativas sobre a travessia de Alcuíno: deslocamento, probabilidade de uma viagem com a cabra, distância percorrida pela cabra e raiz real de x² + L = 0.",
+  "equivocos": {
+   "A": "M17.1:esqueceu-a-volta-da-cabra",
+   "B": "M17.1:esqueceu-volta-da-cabra-e-raiz-real-de-quadrado-negativo",
+   "C": "M17.1:raiz-real-de-quadrado-negativo",
+   "E": "M17.1:deslocamento-como-distancia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada \"viagem\" da solução é uma ida e, nas três primeiras, uma volta. Deslocamento compara só o ponto de partida com o de chegada; distância percorrida soma todas as travessias. A probabilidade é viagens com a cabra ÷ total de viagens. Na IV, L > 0.",
+    "formulas": [
+     "deslocamento = posição final − posição inicial",
+     "distância = soma das travessias",
+     "probabilidade = casos favoráveis ÷ casos possíveis"
+    ],
+    "simbolos": [
+     [
+      "L",
+      "largura do rio, L > 0"
+     ],
+     [
+      "deslocamento",
+      "distância em linha reta entre o ponto de partida e o de chegada"
+     ],
+     [
+      "distância percorrida",
+      "soma de todos os trechos andados, idas e voltas"
+     ]
+    ]
+   },
+   "pista": "Faça uma linha por viagem com quem vai e quem volta, e só depois julgue as afirmativas.",
+   "passos": [
+    {
+     "faz": "Monte a lista das viagens",
+     "conta": "1: vai cabra, volta só | 2: vai lobo, volta cabra | 3: vai repolho, volta só | 4: vai cabra",
+     "porque": "Tudo o que as afirmativas pedem sai dessa lista.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Julgue o deslocamento do homem (I)",
+     "conta": "início: margem de partida → fim: margem oposta → deslocamento = L",
+     "porque": "Ele cruzou o rio 7 vezes, mas o deslocamento só compara o começo com o fim. I verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as viagens com a cabra (II)",
+     "conta": "cabra nas viagens 1, 2 e 4 → 3/4 = 75%",
+     "porque": "Na 2ª viagem ela é transportada na volta. II verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some as travessias da cabra (III)",
+     "conta": "ida (1ª) + volta (2ª) + ida (4ª) → L + L + L = 3L",
+     "porque": "Ela cruza o rio três vezes. III verdadeira.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a equação (IV)",
+     "conta": "x² + L = 0 → x² = −L < 0",
+     "porque": "Nenhum número real ao quadrado é negativo. IV falsa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Junte os julgamentos",
+     "conta": "I V ; II V ; III V ; IV F → alternativa D",
+     "porque": "Só a IV cai.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — Somente as afirmativas I, II e III são corretas.",
+   "checagem": "Pelas travessias do homem: ele cruza 4 vezes indo e 3 voltando, 7 cruzamentos. Como o número é ímpar, ele termina na margem oposta, a uma distância L do início, e o deslocamento confirma I. Para a IV, o discriminante 0² − 4 · 1 · L = −4L é negativo.",
+   "erradas": {
+    "A": "A deixa de fora a III, que é verdadeira: a cabra cruza o rio na 1ª viagem, volta na 2ª e cruza de novo na 4ª, 3L.",
+    "B": "Quem marca B acha que x² + L = 0 tem raiz real. Mas x² = −L é negativo, pois L > 0, e nenhum quadrado real é negativo. Faltou também contar a volta da cabra na 2ª viagem: são 3 de 4 viagens (75%) e 3L.",
+    "C": "C inclui a IV, falsa (x² = −L < 0) e deixa de fora a I: o homem termina na margem oposta, deslocamento L.",
+    "E": "E inclui a IV, falsa, e deixa de fora a I, trocando deslocamento por distância: o homem anda 7L, mas o deslocamento é L."
+   },
+   "armadilha": "Confundir deslocamento com distância percorrida: o homem anda 7L, mas o deslocamento é só L.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quais das quatro afirmativas sobre a travessia de Alcuíno são corretas.",
+    "chave": "Lista das viagens: deslocamento L, cabra em 3 de 4 viagens, cabra percorre 3L; x² = −L não tem raiz real.",
+    "cuidado": "Deslocamento compara início e fim; distância soma tudo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "estado das margens",
+    "ideia": "Marque, depois de cada uma das 7 travessias, onde está a cabra: chega à outra margem na 1ª, volta na 2ª ida-e-volta e só fica de vez na 4ª, três cruzamentos (3L)."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "deslocamento do homem = L",
+    "nota": "I: começa numa margem e termina na outra"
+   },
+   {
+    "linha": "3/4 = 75%",
+    "nota": "II: cabra nas viagens 1, 2 e 4"
+   },
+   {
+    "linha": "L + L + L = 3L",
+    "nota": "III: travessias da cabra"
+   },
+   {
+    "linha": "x² = −L < 0",
+    "nota": "IV: sem raiz real"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0003"
+  }
+ },
+ "P81eae4ef": {
+  "n": "52",
+  "conceito": "Ler um mapa com incidência e óbitos por estado e testar cada alternativa com ordenação e somas.",
+  "equivocos": {
+   "A": "M14.5:aceitou-palavra-absoluta",
+   "B": "M14.5:generalizou-a-partir-de-dois-estados",
+   "D": "M14.5:confundiu-incidencia-com-obitos",
+   "E": "M14.5:inverteu-a-comparacao"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada estado traz dois números: a incidência (casos por 100 mil habitantes, o número de cima) e o número de óbitos (o de baixo, com +). Os estados escuros têm mais de 300 casos por 100 mil; os claros, menos. \"Maior incidência\" se decide pelo número de cima; \"mais óbitos\", pelo de baixo.",
+    "formulas": [
+     "incidência = casos por 100 mil habitantes"
+    ],
+    "simbolos": [
+     [
+      "incidência",
+      "casos para cada 100 mil habitantes; compara estados de populações diferentes"
+     ],
+     [
+      "óbito",
+      "morte"
+     ],
+     [
+      "DF",
+      "Distrito Federal"
+     ]
+    ]
+   },
+   "pista": "Faça a lista das maiores incidências e, separada, a das maiores quantidades de óbitos; depois teste as alternativas.",
+   "passos": [
+    {
+     "faz": "Ordene as maiores incidências",
+     "conta": "DF: 8267 > MG: 5682 > PR: 3417 > ES: 2994 > GO: 2714",
+     "porque": "Distrito Federal, Minas Gerais e Paraná são os três primeiros entre os 16 com mais de 300 casos, como afirma C.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ordene os maiores números de óbitos (B)",
+     "conta": "SP: 415 > MG: 291 > DF: 288 > PR: 202",
+     "porque": "O Paraná é o 3º em incidência mas o 4º em óbitos, e São Paulo, 1º em óbitos, não está entre os 3 de maior incidência. B é falsa.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Some os óbitos dos 11 estados claros (D)",
+     "conta": "0 + 2 + 3 + 4 + 1 + 3 + 3 + 3 + 3 + 6 + 2 = 30 → 30 < 55 (BA)",
+     "porque": "RR, AM, PA, MA, CE, PB, PE, AL, SE, PI e RO somam 30 mortes, menos que as 55 da Bahia. D é falsa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os óbitos de Sul e Sudeste (E)",
+     "conta": "Sul 410 + Sudeste 845 → 1255",
+     "porque": "Sul: 202 + 113 + 95 = 410; Sudeste: 291 + 415 + 20 + 119 = 845 (parcelas no quadro).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Compare com o Centro-Oeste (E)",
+     "conta": "1255 > 446",
+     "porque": "O Centro-Oeste soma 288 + 133 + 11 + 14 = 446: Sul e Sudeste juntos têm muito MAIS óbitos. E é falsa.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Descarte A e conclua",
+     "conta": "A: \"única ferramenta\" → falsa | C → correta",
+     "porque": "O controle da dengue depende também do combate ao mosquito transmissor (eliminar criadouros de água parada); a vacina não é a única ferramenta.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — Paraná, Minas Gerais e Distrito Federal têm as maiores incidências de dengue entre os estados com mais de 300 casos por 100 mil habitantes.",
+   "checagem": "Confira a contagem de estados: 16 escuros (o título diz \"Dezesseis unidades federativas\") e 11 claros, total 27. Entre os 16 escuros, só DF, MG e PR passam de 3000 casos por 100 mil.",
+   "erradas": {
+    "A": "A é falsa pelo \"única ferramenta\": o combate ao mosquito Aedes aegypti também controla a doença, e vacinação baixa não acaba com ela.",
+    "B": "Quem marca B vê MG (291) e DF (288) entre os maiores óbitos e supõe o mesmo para o PR. Mas o PR tem 202, e SP, com incidência de só 2087, tem 415, o maior de todos.",
+    "D": "Quem marca D soma os números de cima dos 11 estados claros (cerca de 2000) e compara com os 1125 da Bahia. Isso é incidência. Os óbitos, embaixo, somam 30, contra 55 da Bahia.",
+    "E": "E inverte a comparação: Sul e Sudeste somam 1255 óbitos, contra 446 do Centro-Oeste."
+   },
+   "armadilha": "Confundir incidência (casos por 100 mil, número de cima) com número de óbitos (número de baixo): o estado com mais mortes não é o de maior incidência.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre o mapa da dengue (incidência e óbitos) é correta.",
+    "chave": "Separar os dois números de cada estado e comparar cada um na sua lista.",
+    "cuidado": "Incidência é taxa por habitante; óbitos são quantidade absoluta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "E cai porque só SP (415) já quase iguala o Centro-Oeste inteiro (446); D cai somando os óbitos dos 11 claros: 30 < 55 da Bahia; B cai por SP; A cai pelo \"única\"."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "DF 8267 > MG 5682 > PR 3417",
+    "nota": "as três maiores incidências: C"
+   },
+   {
+    "linha": "SP 415 > MG 291 > DF 288",
+    "nota": "os três maiores óbitos: B falsa"
+   },
+   {
+    "linha": "0 + 2 + 3 + 4 + 1 + 3 + 3 + 3 + 3 + 6 + 2 = 30",
+    "nota": "óbitos dos 11 estados claros"
+   },
+   {
+    "linha": "30 < 55",
+    "nota": "D falsa"
+   },
+   {
+    "linha": "Sul: 202 + 113 + 95 = 410",
+    "nota": "PR, SC e RS"
+   },
+   {
+    "linha": "Sudeste: 291 + 415 + 20 + 119 = 845",
+    "nota": "MG, SP, ES e RJ"
+   },
+   {
+    "linha": "CO: 288 + 133 + 11 + 14 = 446",
+    "nota": "DF, GO, MT e MS"
+   },
+   {
+    "linha": "410 + 845 = 1255 > 446",
+    "nota": "E falsa"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-20",
+   "lote": "mat-pend-0004"
+  }
+ }
+}

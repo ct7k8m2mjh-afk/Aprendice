@@ -1,0 +1,644 @@
+{
+ "P67be3a8b": {
+  "n": "42",
+  "conceito": "Função afim por dois pontos lidos no gráfico de barras e extrapolação.",
+  "equivocos": {
+   "A": "M05.1:valor-que-nao-fecha",
+   "B": "M05.1:valor-que-nao-fecha",
+   "D": "M05.1:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Se o crescimento for linear a partir dos dias 7 e 8, o aumento diário é constante e igual à diferença entre esses dois dias. Do dia 8 ao dia 13 são 5 dias.",
+    "formulas": [
+     "aumento diário = casos(8) − casos(7)",
+     "casos(13) = casos(8) + 5 · aumento"
+    ],
+    "simbolos": []
+   },
+   "pista": "Leia as barras de 07/abr e 08/abr e calcule o aumento de um dia.",
+   "passos": [
+    {
+     "faz": "Leia o gráfico",
+     "conta": "07/abr: 1 082 | 08/abr: 1 434",
+     "porque": "São os dois dias que definem a reta.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o aumento por dia",
+     "conta": "1 434 − 1 082 = 352",
+     "porque": "Linear: aumento igual todo dia.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Projete até o dia 13",
+     "conta": "1 434 + 5 · 352 = 1 434 + 1 760 = 3 194",
+     "porque": "Do dia 8 ao dia 13 são 5 dias.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "3 194 → alternativa C",
+     "porque": "Valor pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 3194",
+   "checagem": "Partindo do dia 7: 1 082 + 6 · 352 = 1 082 + 2 112 = 3 194. Mesmo valor.",
+   "erradas": {
+    "A": "3012 não confere: 3 012 − 1 434 = 1 578, que não é múltiplo de 352 (daria 4,48 dias).",
+    "B": "3106 não confere: 3 106 − 1 434 = 1 672 = 4,75 · 352, não um número inteiro de dias.",
+    "D": "3262 não confere: 3 262 − 1 434 = 1 828 ≈ 5,19 · 352, não um número inteiro de dias."
+   },
+   "armadilha": "Do dia 8 ao 13 são 5 dias, não 6; e o valor real do dia 13 no gráfico (2 807) não é o pedido.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O número de casos em 13 de abril no modelo linear.",
+    "chave": "Aumento 352 por dia; 1 434 + 5 · 352 = 3 194.",
+    "cuidado": "Conte os intervalos de dias: 13 − 8 = 5."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "lei da função",
+    "ideia": "c(d) = 1 082 + 352 · (d − 7); c(13) = 1 082 + 352 · 6 = 3 194."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1434 − 1082 = 352",
+    "nota": "aumento por dia"
+   },
+   {
+    "linha": "13 − 8 = 5",
+    "nota": "dias de projeção"
+   },
+   {
+    "linha": "1434 + 5 · 352 = 3194",
+    "nota": "casos em 13/abr"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0053"
+  }
+ },
+ "P9d00c7b3": {
+  "n": "39",
+  "conceito": "Achar o máximo de D(t) = 2 − cos(...) fazendo o cosseno valer −1.",
+  "equivocos": {
+   "A": "M10.5:ignorou-o-sinal-de-menos",
+   "B": "M10.5:nao-achou-o-extremo",
+   "D": "M10.5:nao-achou-o-extremo"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O cosseno entra com sinal de menos: quanto menor o cosseno, maior D. O menor valor do cosseno é −1, e isso acontece quando o ângulo é π. Basta achar o mês t que faz o ângulo valer π e conferir que ele está no 1.º semestre.",
+    "formulas": [
+     "−1 ≤ cos x ≤ 1",
+     "cos x = −1 quando x = π (na primeira volta)"
+    ],
+    "simbolos": [
+     [
+      "D(t)",
+      "número de doações, em milhares, no mês t"
+     ],
+     [
+      "t",
+      "mês: 1 é janeiro e 12 é dezembro"
+     ]
+    ]
+   },
+   "pista": "Pense no sinal de menos na frente do cosseno: que valor do cosseno deixa D maior?",
+   "passos": [
+    {
+     "faz": "Descubra o cosseno que maximiza D",
+     "conta": "D = 2 − cos(...) → D máx com cos(...) = −1 → D = 2 + 1 = 3",
+     "porque": "Subtrair um número negativo aumenta o resultado; o mais negativo que o cosseno chega é −1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale o ângulo a π",
+     "conta": "(π/3)(t − 2) = π → t − 2 = 3 → t = 5",
+     "porque": "O cosseno vale −1 no ângulo π. Dividindo os dois lados por π/3 sobra t − 2 = 3, e o 2 passa somando.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Confira no semestre",
+     "conta": "t: 1 a 6 → D: 1,5 | 1,0 | 1,5 | 2,5 | 3,0 | 2,5",
+     "porque": "Calculando os seis meses, o maior valor é 3 mil doações, em t = 5, dentro do 1.º semestre.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Traduza o número do mês",
+     "conta": "t = 5 → maio → alternativa C",
+     "porque": "Pela convenção do enunciado, t = 1 é janeiro, então t = 5 é maio.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — maio",
+   "checagem": "O período é 2π/(π/3) = 6 meses, e o mínimo acontece em t = 2 (cos 0 = 1, D = 1). O máximo vem meio período depois: 2 + 3 = 5. Fecha com maio.",
+   "erradas": {
+    "A": "Fevereiro (t = 2) dá o ângulo 0, cos 0 = 1 e D = 2 − 1 = 1: é o mês de MENOS doações, não de mais.",
+    "B": "Março (t = 3) dá cos(π/3) = 0,5 e D = 1,5 mil, abaixo dos 3 mil de maio.",
+    "D": "Junho (t = 6) dá cos(4π/3) = −0,5 e D = 2,5 mil, abaixo dos 3 mil de maio."
+   },
+   "armadilha": "Procurar o cosseno igual a 1 para o máximo, esquecendo o sinal de menos na frente: isso leva ao mês de menor doação, fevereiro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O mês do 1.º semestre com mais doações.",
+    "chave": "D é máximo quando cos = −1: (π/3)(t − 2) = π, t = 5 (maio).",
+    "cuidado": "O menos na frente do cosseno inverte: cosseno mínimo dá D máximo."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "tabela dos meses",
+    "ideia": "Calcule D de t = 1 a t = 6 (1,5; 1,0; 1,5; 2,5; 3,0; 2,5) e escolha o maior: t = 5, maio."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "D = 2 − cos((π/3)(t − 2))",
+    "nota": "a função dada"
+   },
+   {
+    "linha": "cos = −1 → D = 2 + 1 = 3",
+    "nota": "menor cosseno, maior D"
+   },
+   {
+    "linha": "(π/3)(t − 2) = π",
+    "nota": "ângulo em que cos = −1"
+   },
+   {
+    "linha": "t − 2 = 3",
+    "nota": "divide por π/3"
+   },
+   {
+    "linha": "t = 5 → maio",
+    "nota": "o 2 passa somando"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ },
+ "Pd7d16141": {
+  "n": "37",
+  "conceito": "Volume de prisma menos volume de duas pirâmides com bases nas bases do prisma e vértices no centro.",
+  "equivocos": {
+   "A": "M11.3:radical-trocado",
+   "B": "M11.3:respondeu-o-volume-retirado",
+   "C": "M11.3:radical-trocado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Das duas áreas dadas saem o lado da base e a altura do prisma: o lado é a raiz da área da base, e a face lateral é um retângulo de lado da base por altura. As duas pirâmides têm como base as bases quadradas do prisma e se encontram no centro, então cada uma tem metade da altura dele. O volume pedido é o do prisma menos o das duas pirâmides.",
+    "formulas": [
+     "prisma: V = área da base × altura",
+     "pirâmide: V = (área da base × altura) ÷ 3"
+    ],
+    "simbolos": [
+     [
+      "ℓ",
+      "lado do quadrado da base"
+     ],
+     [
+      "H",
+      "altura do prisma"
+     ]
+    ]
+   },
+   "pista": "Tire o lado e a altura do prisma das duas áreas antes de pensar em volume.",
+   "passos": [
+    {
+     "faz": "Ache o lado da base",
+     "conta": "ℓ² = 3 → ℓ = √3 cm",
+     "porque": "A base é um quadrado de área 3 cm².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a altura do prisma",
+     "conta": "√3 × H = 6 → H = 6/√3 = 2√3 cm",
+     "porque": "A face lateral é um retângulo de lados ℓ e H; racionalize: 6√3 ÷ 3 = 2√3.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o volume do prisma",
+     "conta": "V = 3 × 2√3 = 6√3 cm³",
+     "porque": "Área da base vezes altura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o volume das duas pirâmides",
+     "conta": "altura de cada = 2√3/2 = √3 → 2 × (3 × √3)/3 = 2√3 cm³",
+     "porque": "Os vértices se encontram no centro, então cada pirâmide tem metade da altura do prisma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Subtraia",
+     "conta": "6√3 − 2√3 = 4√3 cm³",
+     "porque": "O pedido é o espaço dentro do prisma e fora das pirâmides.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 4√3 cm³",
+   "checagem": "As duas pirâmides juntas têm a mesma base e alturas que somam H, então valem 1/3 do prisma; sobra 2/3 de 6√3 = 4√3 cm³. Em decimal: 10,39 − 3,46 = 6,93 ≈ 4√3.",
+   "erradas": {
+    "A": "2√2 não confere: com ℓ = √3 e H = 2√3, todo volume da figura é múltiplo de √3; √2 não aparece em conta nenhuma.",
+    "B": "2√3 sai de responder o volume dentro das pirâmides: 2 × (3 × √3)/3 = 2√3. O pedido é o que fica fora delas.",
+    "C": "4√2 não confere: os volumes da figura são múltiplos de √3 (prisma 6√3, pirâmides 2√3); √2 não aparece."
+   },
+   "armadilha": "Responder o volume das pirâmides (2√3) em vez do espaço fora delas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O volume do prisma que fica fora das duas pirâmides.",
+    "chave": "ℓ = √3, H = 2√3: prisma 6√3, pirâmides 2√3, sobra 4√3.",
+    "cuidado": "Cada pirâmide tem metade da altura do prisma, e o pedido é o que sobra."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fração do prisma",
+    "ideia": "As duas pirâmides juntas são 1/3 do prisma; fora delas fica 2/3 × 6√3 = 4√3 cm³."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "ℓ² = 3 → ℓ = √3",
+    "nota": "lado da base"
+   },
+   {
+    "linha": "√3 × H = 6 → H = 2√3",
+    "nota": "altura do prisma"
+   },
+   {
+    "linha": "3 × 2√3 = 6√3",
+    "nota": "volume do prisma"
+   },
+   {
+    "linha": "2 × (3 × √3)/3 = 2√3",
+    "nota": "duas pirâmides"
+   },
+   {
+    "linha": "6√3 − 2√3 = 4√3",
+    "nota": "o que sobra"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0064"
+  }
+ },
+ "Pcbf316d8": {
+  "n": "40",
+  "conceito": "Número de arestas e de vértices do icosaedro regular pela contagem das faces e pela relação de Euler.",
+  "equivocos": {
+   "A": "M11.5:resultado-negativo-impossivel",
+   "C": "M11.5:arestas-erradas",
+   "D": "M11.5:arestas-erradas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A figura do vírus só ilustra; o que importa é o icosaedro regular, com 20 faces triangulares. Cada aresta é lado de duas faces, então os lados somados contam cada aresta duas vezes. Com F e A, a relação de Euler dá V.",
+    "formulas": [
+     "A = (soma dos lados de todas as faces)/2",
+     "V − A + F = 2 (relação de Euler)"
+    ],
+    "simbolos": [
+     [
+      "V",
+      "número de vértices"
+     ],
+     [
+      "A",
+      "número de arestas"
+     ],
+     [
+      "F",
+      "número de faces"
+     ],
+     [
+      "icosaedro",
+      "poliedro de 20 faces"
+     ]
+    ]
+   },
+   "pista": "Comece pelas arestas: quantos lados têm as 20 faces juntas, e quantas faces dividem cada aresta?",
+   "passos": [
+    {
+     "faz": "Conte as arestas",
+     "conta": "A = (20 · 3)/2 = 60/2 = 30",
+     "porque": "São 20 triângulos com 3 lados cada; cada aresta é lado de duas faces.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache os vértices por Euler",
+     "conta": "V − 30 + 20 = 2 → V = 2 + 30 − 20 → V = 12",
+     "porque": "O icosaedro é convexo, então vale V − A + F = 2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua na expressão",
+     "conta": "3V + 5A = 3 · 12 + 5 · 30 = 36 + 150 = 186",
+     "porque": "Troque cada letra pelo número que você achou.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "186 → alternativa B",
+     "porque": "É o valor de 3V + 5A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 186",
+   "checagem": "Conte os vértices de outro jeito: no icosaedro regular, em cada vértice se encontram 5 triângulos, então V = (20 · 3)/5 = 12. Bate com Euler.",
+   "erradas": {
+    "A": "−174 não confere: V e A são quantidades positivas, então 3V + 5A só pode ser positivo.",
+    "C": "221 não confere: com V = 12, exigiria 5A = 221 − 36 = 185, ou A = 37; o icosaedro tem 30 arestas.",
+    "D": "236 não confere: com V = 12, exigiria 5A = 236 − 36 = 200, ou A = 40; o icosaedro tem 30 arestas."
+   },
+   "armadilha": "Esquecer de dividir por 2 a soma dos lados: 60 é o total de lados das faces, não o número de arestas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de 3V + 5A para o icosaedro regular.",
+    "chave": "A = 60/2 = 30; V = 2 + 30 − 20 = 12; 3 · 12 + 5 · 30 = 186.",
+    "cuidado": "Cada aresta pertence a duas faces: divida a soma dos lados por 2."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "vértices pelas faces",
+    "ideia": "Cinco triângulos em cada vértice: V = 60/5 = 12, A = 60/2 = 30, e 36 + 150 = 186."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "A = (20 · 3)/2 = 30",
+    "nota": "cada aresta em duas faces"
+   },
+   {
+    "linha": "V − 30 + 20 = 2 → V = 12",
+    "nota": "relação de Euler"
+   },
+   {
+    "linha": "3 · 12 + 5 · 30 = 36 + 150 = 186",
+    "nota": "substituição"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0064"
+  }
+ },
+ "Pc9fcc516": {
+  "n": "38",
+  "conceito": "Contagem por etapas: médicos com funções distintas (arranjo) e enfermeiros e atendentes sem função (combinação).",
+  "equivocos": {
+   "B": "M13.3:combinacao-no-lugar-de-arranjo",
+   "C": "M13.3:produto-de-etapas-errado",
+   "D": "M13.3:esqueceu-uma-etapa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Os dois médicos não são iguais na equipe: um vai para a UTI e outro para o pronto-socorro, então trocar os dois dá outra equipe e a ordem importa. Enfermeiros e atendentes não têm função própria: aí a ordem não importa. As três escolhas são independentes e se multiplicam.",
+    "formulas": [
+     "função diferente para cada escolhido: arranjo, n × (n − 1) × ...",
+     "sem função: combinação, C(n, k)",
+     "\"e\" entre etapas: multiplique"
+    ],
+    "simbolos": [
+     [
+      "C(n, k)",
+      "combinação: número de grupos de k elementos escolhidos entre n, sem importar a ordem"
+     ],
+     [
+      "arranjo",
+      "escolha em que a ordem (ou a função) dos escolhidos importa"
+     ]
+    ]
+   },
+   "pista": "Pergunte, para cada grupo, se trocar duas pessoas de lugar muda a equipe.",
+   "passos": [
+    {
+     "faz": "Escolha os médicos com função",
+     "conta": "UTI: 5 | pronto-socorro: 4 → 5 × 4 = 20",
+     "porque": "Escolhido o da UTI, sobram 4 para o pronto-socorro; trocar os dois muda a equipe.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha os 3 enfermeiros",
+     "conta": "C(4, 3) = 4",
+     "porque": "Três de quatro, sem função: é o mesmo que escolher o que fica de fora.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escolha os 2 atendentes",
+     "conta": "C(4, 2) = (4 × 3)/2 → 6",
+     "porque": "Dois de quatro, sem ordem.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique as etapas",
+     "conta": "20 × 4 × 6 = 480",
+     "porque": "Cada dupla de médicos combina com cada trio de enfermeiros e cada par de atendentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "480 → alternativa A",
+     "porque": "O diretor pode formar 480 equipes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 480",
+   "checagem": "Pelo caminho sem função: C(5, 2) = 10 pares de médicos, e cada par pode ser distribuído de 2 maneiras entre UTI e pronto-socorro, 10 × 2 = 20; 20 × 4 × 6 = 480. Fecha.",
+   "erradas": {
+    "B": "240 sai de escolher os médicos como par sem função: C(5, 2) × C(4, 3) × C(4, 2) = 10 × 4 × 6 = 240, ignorando que UTI e pronto-socorro são postos diferentes.",
+    "C": "140 não confere: as etapas valem 20, 4 e 6, com produto 480; nem tirando nem trocando uma etapa se chega a 140, já que 480/140 ≈ 3,43 não é inteiro.",
+    "D": "120 sai de esquecer os enfermeiros: 20 × 6 = 120, sem multiplicar pelas 4 escolhas de 3 enfermeiros."
+   },
+   "armadilha": "A frase \"um médico para a UTI e outro para o pronto-socorro\" torna a ordem dos médicos importante: tratar como par simples divide o total por 2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantas equipes de 2 médicos (com postos distintos), 3 enfermeiros e 2 atendentes.",
+    "chave": "5 × 4 × C(4, 3) × C(4, 2) = 20 × 4 × 6 = 480.",
+    "cuidado": "Médicos com postos diferentes: a ordem conta."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "par e distribuição",
+    "ideia": "C(5, 2) = 10 pares × 2 jeitos de pôr na UTI e no pronto-socorro = 20, depois × 4 × 6"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "5 × 4 = 20",
+    "nota": "médico da UTI e do pronto-socorro"
+   },
+   {
+    "linha": "C(4, 3) = 4",
+    "nota": "trios de enfermeiros"
+   },
+   {
+    "linha": "C(4, 2) = (4 × 3)/2 = 6",
+    "nota": "pares de atendentes"
+   },
+   {
+    "linha": "20 × 4 × 6 = 480",
+    "nota": "as etapas se multiplicam"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
+ },
+ "P503c943e": {
+  "n": "41",
+  "conceito": "Montar o diagrama de três conjuntos, achar o total pesquisado e a região só caminhada.",
+  "equivocos": {
+   "B": "M13.6:esqueceu-a-intersecao-tripla",
+   "C": "M13.6:usou-o-conjunto-inteiro-em-vez-do-so",
+   "D": "M13.6:valor-sem-teste-de-consistencia"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O total de pessoas não é dado: ele sai da união das três atividades mais as 26 que não praticam nenhuma. Os números das duplas (\"pedalam e caminham\") incluem os 4 que fazem as três, então comece pelo centro do diagrama. A pergunta é só caminhada: tire de 68 quem também pedala ou nada.",
+    "formulas": [
+     "união = P + C + N − (P e C) − (P e N) − (C e N) + (as três)",
+     "só C = C − (C e N) − (P e C) + (as três)"
+    ],
+    "simbolos": [
+     [
+      "P, C, N",
+      "pedalam, caminham, nadam"
+     ],
+     [
+      "só C",
+      "caminha e não pedala nem nada"
+     ]
+    ]
+   },
+   "pista": "Comece pelo centro do diagrama, os 4 que fazem as três, e lembre que o sorteio é entre todos os entrevistados, inclusive os 26.",
+   "passos": [
+    {
+     "faz": "Ache quantos praticam alguma",
+     "conta": "42 + 68 + 46 − 8 − 6 − 12 + 4 = 134",
+     "porque": "Somar as três atividades conta duas vezes quem faz duas; tirando as duplas, os 4 das três somem por completo e voltam com o + 4.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os que não praticam nenhuma",
+     "conta": "134 + 26 = 160",
+     "porque": "O espaço amostral são todos os entrevistados.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Separe quem só caminha",
+     "conta": "68 − 6 − 12 + 4 = 54",
+     "porque": "Os 6 e os 12 incluem os 4 das três atividades; ao tirar os dois grupos, os 4 saem duas vezes, então se devolve uma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pelo total",
+     "conta": "54/160 = 27/80 = 0,3375 ≈ 34%",
+     "porque": "Casos favoráveis sobre os 160 possíveis.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "≈ 34% → alternativa A",
+     "porque": "33,75% arredonda para 34%.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — aproximadamente 34%",
+   "checagem": "Some todas as regiões: só P = 42 − 8 − 12 + 4 = 26, só N = 46 − 8 − 6 + 4 = 36, só C = 54, só P e N = 4, só N e C = 2, só P e C = 8, as três = 4, nenhuma = 26. 26 + 36 + 54 + 4 + 2 + 8 + 4 + 26 = 160: fecha.",
+   "erradas": {
+    "B": "36% sai de esquecer de tirar os 4 das três atividades: 68 − (6 − 4) − (12 − 4) = 58, e 58/160 = 36,25% ≈ 36%. Os 4 também nadam e pedalam.",
+    "C": "42% sai de usar todos os que caminham: 68/160 = 42,5% ≈ 42%. A pergunta é apenas caminhada.",
+    "D": "48% não confere: 48% de 160 dá 76,8 pessoas, mais do que os 68 que caminham ao todo."
+   },
+   "armadilha": "Os 6 e os 12 incluem os 4 que fazem as três: tire os dois grupos e devolva os 4 uma vez.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de sortear alguém que pratica apenas caminhada.",
+    "chave": "Total 134 + 26 = 160; só C = 68 − 6 − 12 + 4 = 54; 54/160 ≈ 34%.",
+    "cuidado": "Inclua os 26 no total e corrija os 4 das três atividades."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "diagrama pelo centro",
+    "ideia": "Centro 4; C e N só 6 − 4 = 2; P e C só 12 − 4 = 8; só C = 68 − 4 − 2 − 8 = 54; 54/160 ≈ 34%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "42 + 68 + 46 − 8 − 6 − 12 + 4 = 134",
+    "nota": "praticam alguma"
+   },
+   {
+    "linha": "134 + 26 = 160",
+    "nota": "total de entrevistados"
+   },
+   {
+    "linha": "só C = 68 − 6 − 12 + 4 = 54",
+    "nota": "tirar as duplas e devolver o centro"
+   },
+   {
+    "linha": "54/160 = 0,3375 ≈ 34%",
+    "nota": "favoráveis sobre o total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0069"
+  }
+ }
+}

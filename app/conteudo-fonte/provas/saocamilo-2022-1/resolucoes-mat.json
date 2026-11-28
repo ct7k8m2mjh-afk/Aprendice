@@ -1,0 +1,594 @@
+{
+ "P18e9e4df": {
+  "n": "36",
+  "conceito": "Usar a taxa total como média ponderada das taxas de homens e mulheres para achar a fatia de cada sexo e depois a taxa que falta.",
+  "equivocos": {
+   "B": "M03.1:total-nao-e-media-ponderada",
+   "C": "M03.1:total-nao-e-media-ponderada",
+   "D": "M03.1:total-nao-e-media-ponderada",
+   "E": "M03.1:total-nao-e-media-ponderada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A taxa total de fumantes é uma média ponderada: cada sexo pesa pela fatia que ocupa na população adulta. Os dados de 1989 servem só para descobrir esses pesos; a questão diz que eles não mudaram em 2019.",
+    "formulas": [
+     "total = h · (taxa dos homens) + (1 − h) · (taxa das mulheres)"
+    ],
+    "simbolos": [
+     [
+      "h",
+      "fração de homens na população adulta"
+     ],
+     [
+      "média ponderada",
+      "média em que cada valor pesa conforme o tamanho do seu grupo"
+     ]
+    ]
+   },
+   "pista": "Use a linha de 1989, que está completa, para descobrir quanto da população é de homens.",
+   "passos": [
+    {
+     "faz": "Monte a média de 1989",
+     "conta": "35 = 43h + 27(1 − h)",
+     "porque": "O total de 35% mistura 43% dos homens e 27% das mulheres, cada um com o seu peso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache a fração de homens",
+     "conta": "35 = 27 + 16h → 8 = 16h → h = 8/16 = 0,5",
+     "porque": "O 27 passa subtraindo e o 16 passa dividindo: metade da população adulta é de homens.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a média de 2019",
+     "conta": "13 = 0,5 · 16 + 0,5 · x → 13 = 8 + 0,5x",
+     "porque": "Os pesos são os mesmos de 1989, como manda o enunciado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole x",
+     "conta": "0,5x = 5 → x = 5/0,5 = 10",
+     "porque": "O 8 passa subtraindo e o 0,5 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "x = 10 → 10%",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 10%.",
+   "checagem": "Com pesos iguais, o total é a média simples: (16 + 10)/2 = 13. Fecha com a tabela.",
+   "erradas": {
+    "B": "B não confere: com 8%, o total seria 0,5 · 16 + 0,5 · 8 = 12%, e não 13%.",
+    "C": "C não confere: com 6%, o total seria 0,5 · 16 + 0,5 · 6 = 11%.",
+    "D": "D não confere: com 9%, o total seria 0,5 · 16 + 0,5 · 9 = 12,5%.",
+    "E": "E não confere: com 7%, o total seria 0,5 · 16 + 0,5 · 7 = 11,5%."
+   },
+   "armadilha": "O total não é a soma nem a diferença das taxas: é uma média ponderada, e o peso de cada sexo sai de 1989.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a taxa de mulheres fumantes em 2019",
+    "chave": "total = média ponderada, com pesos tirados de 1989",
+    "cuidado": "não somar nem subtrair taxas de grupos diferentes"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "média simples",
+    "ideia": "35 é exatamente a média de 43 e 27, logo os grupos têm o mesmo tamanho; então 13 é a média de 16 e x, e x = 2 · 13 − 16 = 10."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "35 = 43h + 27(1 − h)",
+    "nota": "média ponderada de 1989"
+   },
+   {
+    "linha": "8 = 16h → h = 0,5",
+    "nota": "o 27 passa subtraindo, o 16 dividindo"
+   },
+   {
+    "linha": "13 = 0,5 · 16 + 0,5x",
+    "nota": "mesmos pesos em 2019"
+   },
+   {
+    "linha": "0,5x = 5 → x = 10",
+    "nota": "o 8 passa subtraindo, o 0,5 dividindo"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ },
+ "Pbb68969f": {
+  "n": "37",
+  "conceito": "Calcular 'pelo menos uma vitória' em 3 partidas pelo evento complementar: 1 menos a chance de não vencer nenhuma.",
+  "equivocos": {
+   "A": "M13.6:nao-usou-complementar",
+   "B": "M13.6:pelo-menos-lido-como-no-maximo",
+   "C": "M13.6:nao-usou-complementar",
+   "E": "M13.6:nao-usou-complementar"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Pelo menos uma\" junta muitos casos (1, 2 ou 3 vitórias). É bem mais rápido calcular o contrário, nenhuma vitória, e tirar de 1. Não vencer inclui perder e empatar: a chance é 100% − 40% = 60% em cada partida.",
+    "formulas": [
+     "P(pelo menos uma) = 1 − P(nenhuma)",
+     "partidas independentes: as probabilidades se multiplicam"
+    ],
+    "simbolos": [
+     [
+      "evento complementar",
+      "o contrário do evento; as duas chances somam 1"
+     ],
+     [
+      "independentes",
+      "o resultado de uma partida não muda a chance da outra"
+     ]
+    ]
+   },
+   "pista": "Qual é o contrário de \"vencer pelo menos uma\"?",
+   "passos": [
+    {
+     "faz": "Ache o contrário do evento",
+     "conta": "pelo menos uma vitória × nenhuma vitória",
+     "porque": "Os dois juntos cobrem todos os casos, então somam 1.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache a chance de não vencer uma partida",
+     "conta": "1 − 0,4 = 0,6",
+     "porque": "Não vencer é perder ou empatar: tudo menos os 40%.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Multiplique para as 3 partidas",
+     "conta": "P(nenhuma) = 0,6 · 0,6 · 0,6 = 0,216",
+     "porque": "As partidas são independentes, então as chances se multiplicam.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire de 1",
+     "conta": "1 − 0,216 = 0,784 = 78,4%",
+     "porque": "O que sobra é a chance de pelo menos uma vitória.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "78,4%",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 78,4%.",
+   "checagem": "Somando os casos: 1 vitória 3 · 0,4 · 0,36 = 0,432; 2 vitórias 3 · 0,16 · 0,6 = 0,288; 3 vitórias 0,064. Total 0,784.",
+   "erradas": {
+    "A": "A não confere: 40,2% está próximo da chance de uma única partida, mas com 3 partidas a chance de vencer alguma tem de ser maior que 40%; o valor certo é 78,4%.",
+    "B": "B sai de calcular \"no máximo uma\" vitória: 0,216 + 0,432 = 0,648.",
+    "C": "C não confere: é menor que 40%, a chance de vencer só a primeira partida; com 3 tentativas a chance não pode diminuir.",
+    "E": "E não confere: os casos de 1, 2 e 3 vitórias somam 0,432 + 0,288 + 0,064 = 0,784, não 0,526."
+   },
+   "armadilha": "\"Pelo menos uma\" não é \"exatamente uma\" nem \"no máximo uma\": o caminho seguro é 1 − P(nenhuma).",
+   "alerta": "",
+   "essencial": {
+    "pede": "a chance de A vencer ao menos uma de 3 partidas",
+    "chave": "1 − P(nenhuma) = 1 − 0,6³",
+    "cuidado": "não vencer inclui empatar; use 1 − 0,4"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "somar os casos",
+    "ideia": "P(1) + P(2) + P(3) = 0,432 + 0,288 + 0,064 = 0,784."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "P(não vencer) = 1 − 0,4 = 0,6",
+    "nota": "complementar de uma partida"
+   },
+   {
+    "linha": "P(nenhuma) = 0,6³ = 0,216",
+    "nota": "3 partidas independentes"
+   },
+   {
+    "linha": "P(pelo menos uma) = 1 − 0,216 = 0,784",
+    "nota": "complementar do total"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ },
+ "P4a4657e6": {
+  "n": "38",
+  "conceito": "Achar os pontos de corte entre reta horizontal e parábola e o vértice para calcular a área do triângulo.",
+  "equivocos": {
+   "A": "M12.5:usou-meia-base",
+   "B": "M12.5:parou-na-altura",
+   "D": "M12.5:altura-ate-o-eixo-x",
+   "E": "M12.5:parou-na-base"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A reta y = −12 é horizontal: os pontos A e B ficam na mesma altura, e a base AB é só a distância entre os x deles. A altura do triângulo é a distância vertical do vértice C até essa reta.",
+    "formulas": [
+     "área do triângulo = base · altura/2",
+     "x do vértice = −b/(2a)"
+    ],
+    "simbolos": [
+     [
+      "vértice",
+      "ponto mais alto da parábola (a < 0, boca para baixo)"
+     ],
+     [
+      "interseção",
+      "ponto que está nas duas curvas ao mesmo tempo"
+     ]
+    ]
+   },
+   "pista": "Iguale as duas equações para achar os x de A e B.",
+   "passos": [
+    {
+     "faz": "Iguale reta e parábola",
+     "conta": "−x² + 6x − 5 = −12 → x² − 6x − 7 = 0",
+     "porque": "No ponto de encontro, as duas curvas têm o mesmo y.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva a equação",
+     "conta": "(x − 7)(x + 1) = 0 → x = 7 ou x = −1",
+     "porque": "Dois números com produto −7 e soma 6: 7 e −1.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a base AB",
+     "conta": "AB = 7 − (−1) = 8",
+     "porque": "A e B estão na mesma reta horizontal; basta subtrair os x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o vértice e a altura",
+     "conta": "x = −6/(2 · (−1)) = 3 → y = −9 + 18 − 5 = 4 → altura = 4 − (−12) = 16",
+     "porque": "A altura vai do vértice, em y = 4, até a reta, em y = −12.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área",
+     "conta": "(8 · 16)/2 = 64",
+     "porque": "É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 64.",
+   "checagem": "Pela simetria, o eixo x = 3 fica no meio de −1 e 7 (média 3): confirma o x do vértice. Dividindo o triângulo em dois triângulos retângulos de catetos 4 e 16: 2 · (4 · 16)/2 = 64.",
+   "erradas": {
+    "A": "A sai de usar a meia-base: (4 · 16)/2 = 32, com 4 = 7 − 3, a distância do eixo até um dos pontos.",
+    "B": "B sai de parar na altura: 4 − (−12) = 16.",
+    "D": "D sai de parar no y do vértice, 4.",
+    "E": "E sai de parar na base: 7 − (−1) = 8."
+   },
+   "armadilha": "A altura não é o y do vértice (4): é a distância dele até a reta y = −12, que dá 16.",
+   "alerta": "",
+   "essencial": {
+    "pede": "a área do triângulo formado pelos cortes e pelo vértice",
+    "chave": "base = distância entre os x; altura = yv − (−12)",
+    "cuidado": "medir a altura até a reta, não até o eixo x"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "determinante",
+    "ideia": "Com A(−1, −12), B(7, −12) e C(3, 4), a área pela fórmula das coordenadas é |det|/2 = 128/2 = 64."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "−x² + 6x − 5 = −12",
+    "nota": "igualar reta e parábola"
+   },
+   {
+    "linha": "x² − 6x − 7 = 0",
+    "nota": "o −12 passa somando; trocar sinais"
+   },
+   {
+    "linha": "x = 7 ou x = −1 → AB = 8",
+    "nota": "raízes e base"
+   },
+   {
+    "linha": "xv = 3 → yv = 4 → h = 4 − (−12) = 16",
+    "nota": "vértice e altura"
+   },
+   {
+    "linha": "A = (8 · 16)/2 = 64",
+    "nota": "área"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ },
+ "Paf1ffdc2": {
+  "n": "39",
+  "conceito": "Ler a meia-vida no gráfico e contar quantas meias-vidas levam a quantidade a 0,1% do inicial.",
+  "equivocos": {
+   "B": "M06.5:leu-o-grafico-perto-de-zero",
+   "C": "M06.5:contou-meias-vidas-a-menos",
+   "D": "M06.5:contou-meias-vidas-a-mais",
+   "E": "M06.5:contou-meias-vidas-a-menos"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Não dá para ler 0,1% no gráfico, mas dá para ler a meia-vida: a curva passa por 50% em 13 horas e por 25% em 26 horas. A cada meia-vida a quantidade cai pela metade, então basta contar quantas metades levam de 100% a 0,1%. O truque é 2¹⁰ = 1 024 ≈ 1 000.",
+    "formulas": [
+     "depois de n meias-vidas: fração restante = 1/2ⁿ",
+     "tempo = n · (meia-vida)"
+    ],
+    "simbolos": [
+     [
+      "meia-vida",
+      "tempo para a quantidade de núcleos radioativos cair pela metade"
+     ],
+     [
+      "0,1%",
+      "1/1 000 do inicial"
+     ]
+    ]
+   },
+   "pista": "Leia no gráfico o tempo em que a curva chega a 50%.",
+   "passos": [
+    {
+     "faz": "Leia a meia-vida",
+     "conta": "100% → 50% em 13 h; 50% → 25% em 26 h",
+     "porque": "A cada 13 horas a quantidade cai pela metade.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escreva 0,1% como fração",
+     "conta": "0,1% = 0,1/100 = 1/1 000",
+     "porque": "É a fração do inicial que deve restar.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte as meias-vidas",
+     "conta": "1/2ⁿ = 1/1 000 → 2ⁿ = 1 000 → 2¹⁰ = 1 024 → n ≈ 10",
+     "porque": "Dez metades seguidas dividem por 1 024, quase 1 000.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta em horas",
+     "conta": "10 · 13 h = 130 h",
+     "porque": "Cada meia-vida vale 13 horas.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "≈ 130 h",
+     "porque": "É a alternativa A.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — aproximadamente 130 horas.",
+   "checagem": "Volte do resultado: em 130 h sobram 100% ÷ 1 024 ≈ 0,098%, praticamente 0,1%. Em 117 h (9 meias-vidas) ainda sobrariam cerca de 0,2%.",
+   "erradas": {
+    "B": "B não confere: em 91 h (7 meias-vidas) ainda resta 100% ÷ 128 ≈ 0,78%, bem acima de 0,1%.",
+    "C": "C sai de usar 8 meias-vidas: 8 · 13 = 104 h, quando ainda resta 100% ÷ 256 ≈ 0,39%.",
+    "D": "D não confere: em 143 h (11 meias-vidas) resta só 100% ÷ 2 048 ≈ 0,05%, já abaixo de 0,1%.",
+    "E": "E sai de usar 9 meias-vidas: 9 · 13 = 117 h, quando ainda resta 100% ÷ 512 ≈ 0,2%."
+   },
+   "armadilha": "Tentar ler 0,1% direto no gráfico (a curva já parece zero) em vez de contar meias-vidas.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o tempo até restar 0,1% dos núcleos",
+    "chave": "meia-vida de 13 h e 2¹⁰ ≈ 1 000",
+    "cuidado": "contar as metades a partir de 100%, sem errar por uma"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "logaritmo",
+    "ideia": "n = log 1 000/log 2 = 3/0,301 ≈ 9,97; t ≈ 9,97 · 13 ≈ 129,6 h."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "meia-vida = 13 h",
+    "nota": "leitura do gráfico"
+   },
+   {
+    "linha": "0,1% = 1/1 000",
+    "nota": "fração que resta"
+   },
+   {
+    "linha": "2ⁿ = 1 000 → n ≈ 10",
+    "nota": "2¹⁰ = 1 024"
+   },
+   {
+    "linha": "t = 10 · 13 = 130 h",
+    "nota": "tempo total"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ },
+ "P54d06672": {
+  "n": "40",
+  "conceito": "Usar o triângulo retângulo formado pelo centro, o ponto de tangência e o encontro das retas: o raio é perpendicular à tangente.",
+  "equivocos": {
+   "A": "M10.1:razao-trigonometrica-errada",
+   "B": "M10.1:confundiu-distancia-com-raio",
+   "D": "M10.1:razao-trigonometrica-errada",
+   "E": "M10.1:razao-trigonometrica-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O raio que vai até o ponto de tangência é perpendicular à reta tangente: isso forma um triângulo retângulo. A hipotenusa vai do centro até o ponto P onde r e s se cruzam, e mede raio + 6. Como r e s são perpendiculares, o ângulo em P dentro desse triângulo é 90° − θ, e o seno dele é o cosseno de θ.",
+    "formulas": [
+     "sen(90° − θ) = cos θ",
+     "sen = cateto oposto/hipotenusa"
+    ],
+    "simbolos": [
+     [
+      "R",
+      "raio da circunferência"
+     ],
+     [
+      "P",
+      "ponto onde r e s se cruzam"
+     ],
+     [
+      "T",
+      "ponto de tangência"
+     ],
+     [
+      "θ",
+      "ângulo entre a tangente e a reta s"
+     ]
+    ]
+   },
+   "pista": "Ligue o centro ao ponto de tangência e procure o ângulo reto.",
+   "passos": [
+    {
+     "faz": "Monte o triângulo retângulo",
+     "conta": "centro O, tangência T, encontro P → ângulo reto em T",
+     "porque": "O raio OT é perpendicular à tangente em T.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Meça a hipotenusa",
+     "conta": "OP = R + 6",
+     "porque": "De O até a borda da circunferência é R; da borda até s, 6 cm (figura).",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o ângulo em P",
+     "conta": "ângulo OPT = 90° − θ → sen(90° − θ) = cos θ = 5/7",
+     "porque": "r ⊥ s: o ângulo entre r e a tangente completa θ até 90°.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Monte e resolva a equação",
+     "conta": "R/(R + 6) = 5/7 → 7R = 5(R + 6) → 7R = 5R + 30 → 2R = 30 → R = 15",
+     "porque": "Multiplicação cruzada; o 5R passa subtraindo e o 2 passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "R = 15 cm",
+     "porque": "É a alternativa C.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 15 cm.",
+   "checagem": "Substitua: 15/(15 + 6) = 15/21 = 5/7. Confere com o cos θ dado.",
+   "erradas": {
+    "A": "A não confere: 9/(9 + 6) = 9/15 = 3/5, e não 5/7.",
+    "B": "B sai de copiar a distância de 6 cm como se fosse o raio; teste: 6/12 = 1/2 ≠ 5/7.",
+    "D": "D não confere: 12/(12 + 6) = 2/3 ≠ 5/7.",
+    "E": "E não confere: 18/(18 + 6) = 3/4 ≠ 5/7."
+   },
+   "armadilha": "θ não está dentro do triângulo retângulo: o ângulo em P é 90° − θ, e por isso o cosseno de θ vira o seno dele.",
+   "alerta": "",
+   "essencial": {
+    "pede": "o raio da circunferência",
+    "chave": "raio ⊥ tangente; R/(R + 6) = cos θ",
+    "cuidado": "a hipotenusa é R + 6, e não 6"
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar alternativas",
+    "ideia": "Teste R/(R + 6) = 5/7 em cada alternativa: só 15/21 dá 5/7."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "OP = R + 6",
+    "nota": "hipotenusa"
+   },
+   {
+    "linha": "R/(R + 6) = 5/7",
+    "nota": "sen(90° − θ) = cos θ"
+   },
+   {
+    "linha": "7R = 5R + 30",
+    "nota": "multiplicação cruzada"
+   },
+   {
+    "linha": "2R = 30 → R = 15",
+    "nota": "o 5R passa subtraindo, o 2 dividindo"
+   }
+  ],
+  "visual": {
+   "cabe": false,
+   "tipo": "nenhum",
+   "porque": "O quadro já mostra a conta inteira, linha por linha.",
+   "roteiro": ""
+  },
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-27",
+   "lote": "mat-0083"
+  }
+ }
+}

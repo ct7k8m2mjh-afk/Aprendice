@@ -1,0 +1,583 @@
+{
+ "P6d351d55": {
+  "n": "45",
+  "conceito": "Calcular a área real a partir de pixels de satélite e a escala a partir do tamanho mínimo representável no mapa.",
+  "equivocos": {
+   "A": "G01.2:errou-um-zero-na-escala",
+   "B": "G01.2:dividiu-por-cem-para-hectare",
+   "D": "G01.2:errou-um-zero-na-escala"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada pixel de uma imagem de 30 m de resolução representa um quadrado de 30 m × 30 m no terreno. A área total é o número de pixels vezes a área de um pixel. A escala sai de outra ideia: um pixel (30 m reais) tem de virar o menor quadrado do mapa, de 0,2 mm de lado. Escala é razão entre medidas lineares na mesma unidade.",
+    "formulas": [
+     "área de 1 pixel = lado × lado",
+     "denominador da escala = medida real ÷ medida no mapa (mesma unidade)",
+     "1 ha = 10.000 m²; 1 km² = 1.000.000 m²; 1 m = 1.000 mm"
+    ],
+    "simbolos": [
+     [
+      "pixel",
+      "menor quadradinho da imagem; cada um registra um único valor"
+     ],
+     [
+      "resolução espacial",
+      "tamanho, no terreno, do lado de um pixel"
+     ],
+     [
+      "ha",
+      "hectare, igual a 10.000 m²"
+     ]
+    ]
+   },
+   "pista": "Faça duas contas separadas: primeiro a área com os pixels; depois a escala comparando 30 m com 0,2 mm, na mesma unidade.",
+   "passos": [
+    {
+     "faz": "Separe os dados",
+     "conta": "pixel: \"30 metros\" | área desmatada: \"257 pixels\" | menor área no mapa: \"0,2 mm x 0,2 mm\"",
+     "porque": "A pergunta pede duas coisas, nesta ordem: a área real e a escala.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule a área de um pixel",
+     "conta": "30 m × 30 m = 900 m²",
+     "porque": "A resolução de 30 m é o lado do quadrado no terreno; área é lado vezes lado.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a área desmatada",
+     "conta": "257 × 900 m² = 231.300 m² = 23,13 ha = 0,2313 km²",
+     "porque": "Divida por 10.000 para hectare e por 1.000.000 para km². As alternativas A, C e D trazem essa mesma área, só em unidades diferentes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule a escala",
+     "conta": "30 m = 30.000 mm → 30.000 mm ÷ 0,2 mm = 150.000 → 1:150.000",
+     "porque": "O lado de um pixel no terreno (30 m) tem de caber no lado do menor quadrado do mapa (0,2 mm). É a escala que decide entre A, C e D.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "23,13 ha e 1:150.000 = alternativa C",
+     "porque": "É a única com a área e a escala certas ao mesmo tempo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 23,13 ha de área desmatada, mapeada na escala 1:150.000.",
+   "checagem": "Faça o caminho de volta: em 1:150.000, 0,2 mm no mapa valem 0,2 × 150.000 = 30.000 mm = 30 m, exatamente o lado de um pixel. A escala fecha com a resolução da imagem.",
+   "erradas": {
+    "A": "A tem a área certa (231.300 m²), mas a escala não confere: em 1:1.500.000, um pixel de 30 m ocuparia 30.000 ÷ 1.500.000 = 0,02 mm, dez vezes menos que os 0,2 mm pedidos.",
+    "B": "B sai de dividir 231.300 m² por 100 em vez de 10.000: 2.313. O certo é 23,13 ha. A escala também não confere: 1:1.150.000 deixaria o pixel com cerca de 0,026 mm.",
+    "D": "D tem a área certa em km² (0,2313 km²), mas a mesma escala errada da A: 1:1.500.000 encolhe o pixel para 0,02 mm, não 0,2 mm."
+   },
+   "armadilha": "Três alternativas trazem a área certa em unidades diferentes; quem para na área não percebe que a escala é que decide.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A área real de 257 pixels de 30 m e a escala em que um pixel vira 0,2 mm.",
+    "chave": "257 × 900 m² = 23,13 ha; 30.000 mm ÷ 0,2 mm = 150.000.",
+    "cuidado": "Converta metros para milímetros antes de dividir, e m² para ha dividindo por 10.000."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0045"
+  }
+ },
+ "P586af87f": {
+  "n": "46",
+  "conceito": "Relacionar as chuvas de verão no Sudeste à Zona de Convergência do Atlântico Sul e à Massa Equatorial Continental.",
+  "equivocos": {
+   "A": "G03.2:trocou-zcas-por-zcit",
+   "B": "G03.2:equatorial-atlantica-como-seca",
+   "D": "G03.2:tropical-continental-como-umida"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "As chuvas fortes do verão no Sudeste, que se estendem até março, vêm de uma faixa de nuvens que liga a Amazônia ao Sudeste e ao Atlântico: a Zona de Convergência do Atlântico Sul (ZCAS). A umidade dessa faixa vem da Massa Equatorial Continental, quente e úmida, que se expande no verão. A ZCIT fica perto do equador e não chega ao Sudeste.",
+    "formulas": [
+     "ZCAS: faixa de nuvens Amazônia → Sudeste → Atlântico, na primavera e no verão",
+     "ZCIT: faixa de baixa pressão perto do equador (norte do Brasil)",
+     "mEc: quente e úmida; mEa: quente e úmida; mTc: quente e seca"
+    ],
+    "simbolos": [
+     [
+      "ZCAS",
+      "Zona de Convergência do Atlântico Sul: faixa de nebulosidade e chuva que vai da Amazônia ao Sudeste e ao oceano"
+     ],
+     [
+      "ZCIT",
+      "Zona de Convergência Intertropical: encontro dos alísios perto do equador, com muita chuva"
+     ],
+     [
+      "mEc",
+      "Massa Equatorial Continental, formada sobre a Amazônia"
+     ],
+     [
+      "sistema meteorológico",
+      "conjunto de condições da atmosfera que organiza o tempo numa região"
+     ]
+    ]
+   },
+   "pista": "São dois pedidos ao mesmo tempo: a massa de ar e o sistema. Confira primeiro qual zona de convergência chega ao Sudeste.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "“o sistema meteorológico e a principal massa de ar” das chuvas no Sudeste em março",
+     "porque": "A alternativa certa precisa acertar as duas coisas; basta uma errada para cair.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Escolha o sistema",
+     "conta": "Sudeste no verão → ZCAS | ZCIT fica perto do equador",
+     "porque": "A ZCAS é a faixa de nuvens que liga a Amazônia ao Sudeste; a ZCIT atua no norte do país e não alcança o Sudeste.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Escolha a massa de ar",
+     "conta": "mEc: quente e úmida, expande-se no verão",
+     "porque": "A umidade que alimenta a ZCAS vem da Amazônia, região de origem da Equatorial Continental.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine pelas características",
+     "conta": "A e D: ZCIT | B: mEa “quente e seca” | D: mTc “quente e úmida”",
+     "porque": "A e D usam o sistema errado; B e D ainda trocam a umidade das massas.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "mEc quente e úmida + ZCAS = alternativa C",
+     "porque": "É a única que acerta a massa e o sistema.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — Massa Equatorial Continental, quente e úmida, associada à Zona de Convergência do Atlântico Sul.",
+   "checagem": "Pense no caminho da umidade: ela sai da floresta amazônica e desce em diagonal até o Sudeste. Massa de origem amazônica (Equatorial Continental) e faixa que corre para o Atlântico Sul (ZCAS) fecham esse mesmo caminho.",
+   "erradas": {
+    "A": "A acerta a massa, mas erra o sistema: a ZCIT atua perto do equador, no norte do Brasil, e não explica as chuvas do Sudeste.",
+    "B": "B erra a massa: a Equatorial Atlântica é quente e úmida, não seca, e a chuva do Sudeste no verão vem da umidade amazônica.",
+    "D": "D erra as duas: a Tropical Continental é quente e seca, e a ZCIT não chega ao Sudeste."
+   },
+   "armadilha": "Trocar ZCAS por ZCIT, que também é uma zona de convergência com muita chuva, mas fica perto do equador.",
+   "alerta": "A alternativa C traz o erro de digitação “Masse” no lugar de “Massa”; não muda o sentido.",
+   "essencial": {
+    "pede": "O sistema e a massa de ar das chuvas de março no Sudeste.",
+    "chave": "ZCAS alimentada pela umidade da Massa Equatorial Continental.",
+    "cuidado": "ZCIT é do norte do Brasil; Tropical Continental é seca."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0047"
+  }
+ },
+ "Pe1756c07": {
+  "n": "48",
+  "conceito": "Julgar afirmações sobre as florestas tropicais e seu papel no clima e no ciclo da água.",
+  "equivocos": {
+   "A": "G05.3:floresta-atenua-deserto",
+   "B": "G05.3:floresta-atenua-deserto",
+   "C": "G05.3:umidade-ate-altas-latitudes"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em questão de itens com pares de alternativas, achar os itens falsos costuma bastar. As florestas equatoriais têm árvores altas e copas densas, chuva abundante e grandes rios; pela evapotranspiração, elas devolvem umidade à atmosfera e ajudam a regular o clima. O que não se sustenta é ligá-las ao clima dos desertos ou levar a umidade delas até as altas latitudes, perto dos polos.",
+    "formulas": [
+     "clima equatorial: quente e muito chuvoso",
+     "floresta → evapotranspiração → umidade e chuva em outras regiões",
+     "item falso elimina todas as alternativas que o contêm"
+    ],
+    "simbolos": [
+     [
+      "evapotranspiração",
+      "água que volta à atmosfera pela evaporação do solo e pela transpiração das plantas"
+     ],
+     [
+      "altas latitudes",
+      "regiões próximas aos polos"
+     ],
+     [
+      "médias latitudes",
+      "faixa entre os trópicos e os círculos polares"
+     ]
+    ]
+   },
+   "pista": "Procure os itens que estendem o efeito da floresta a lugares muito distantes dela.",
+   "passos": [
+    {
+     "faz": "Julgue o item I",
+     "conta": "\"ajudando a atenuar as elevadas temperaturas das regiões desérticas do planeta\"",
+     "porque": "Não há relação entre a área ocupada pela floresta equatorial e a temperatura dos desertos, que dependem da própria latitude e da circulação do ar seco. Item falso: caem A e B.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Julgue o item III",
+     "conta": "\"o que contribui para a distribuição de umidade para as médias e altas latitudes\"",
+     "porque": "A umidade da floresta pode chegar a outras regiões, mas não às altas latitudes, perto dos polos. Item falso: cai C.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Confira os itens que sobram",
+     "conta": "II → grande porte e alta densidade foliar | IV → grandes rios, ciclo da água, água doce",
+     "porque": "Floresta alta e densa e grandes rios são marcas da floresta equatorial; os dois itens a ligam à regulação do clima e da água.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "II e IV = alternativa D",
+     "porque": "É o único par sem item falso.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — II e IV.",
+   "checagem": "Confira IV sozinho: a Amazônia abriga a maior bacia hidrográfica do mundo, e floresta, chuva e rios formam um mesmo ciclo. Como IV é verdadeiro e só B e D o têm, e B traz o falso I, fica D.",
+   "erradas": {
+    "A": "Inclui o item I, que liga a floresta equatorial à temperatura dos desertos, relação que não existe.",
+    "B": "Acerta o IV, mas inclui o item I, falso.",
+    "C": "Inclui o item III, que leva a umidade da floresta até as altas latitudes, perto dos polos, onde ela não chega."
+   },
+   "armadilha": "Aceitar o item III por soar verdadeiro (a floresta exporta umidade), sem notar o exagero \"altas latitudes\".",
+   "alerta": "O item II atribui a regulação do clima à \"maior capacidade térmica\" da vegetação; o mecanismo mais citado nos livros é a evapotranspiração. A banca considerou o item correto, e a questão se resolve com segurança eliminando I e III.",
+   "essencial": {
+    "pede": "Os itens corretos sobre florestas tropicais e clima.",
+    "chave": "Elimine I (desertos) e III (altas latitudes); sobra II e IV.",
+    "cuidado": "Desconfie de item que estende o efeito da floresta a lugares muito distantes."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0050"
+  }
+ },
+ "P41e9e8d0": {
+  "n": "44",
+  "conceito": "Reconhecer os fatores naturais que favorecem a agricultura no Matopiba: relevo plano e clima tropical com verão chuvoso e inverno seco.",
+  "equivocos": {
+   "B": "G08.3:irrigacao-como-fator-do-matopiba",
+   "C": "G03.3:cerrado-com-chuva-o-ano-todo",
+   "D": "G03.2:massa-unica-chuva-nacional"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O comando pede fatores NATURAIS para a aptidão agrícola. A agricultura mecanizada de grãos precisa de terreno plano, onde a máquina trabalha, e de chuva na época do plantio. O Matopiba tem chapadas planas do Cerrado e clima tropical típico: verão chuvoso e inverno seco, o mesmo regime do Centro-Oeste.",
+    "formulas": [
+     "relevo plano → mecanização",
+     "clima tropical típico: verão chuvoso, inverno seco",
+     "ZCIT: atua sobre a faixa equatorial e o norte do Nordeste"
+    ],
+    "simbolos": [
+     [
+      "Matopiba",
+      "área de expansão agrícola em partes do Maranhão, Tocantins, Piauí e Bahia"
+     ],
+     [
+      "ZCIT",
+      "Zona de Convergência Intertropical, faixa de baixa pressão e chuvas perto do equador"
+     ],
+     [
+      "Massa Equatorial Atlântica",
+      "massa de ar quente e úmida formada sobre o Atlântico na faixa equatorial"
+     ],
+     [
+      "chapada",
+      "planalto de topo plano, típico do Cerrado"
+     ]
+    ]
+   },
+   "pista": "Leia o comando: são fatores naturais. Pense no que uma lavoura mecanizada de grãos precisa do terreno e do clima.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"fatores condicionantes naturais para a considerável aptidão da região para atividades agrícolas\"",
+     "porque": "Pede condições da natureza (relevo, clima), não infraestrutura ou política.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Lembre o que a lavoura de grãos exige",
+     "conta": "grãos e fibras em larga escala → máquina (relevo plano) + chuva na safra (verão chuvoso)",
+     "porque": "A produção do Matopiba é de soja, milho e algodão mecanizados, como diz o texto (\"grãos e fibras\").",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine os fatores de chuva errados",
+     "conta": "C: \"precipitação satisfatória ao longo de todo o ano\" | D: massa que traz \"a maior parte das chuvas em todo território nacional\"",
+     "porque": "O Cerrado tem inverno seco, sem chuva o ano todo; e nenhuma massa de ar responde pela maior parte das chuvas do país inteiro.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Elimine o fator de irrigação",
+     "conta": "B: \"proximidade com grandes rios\" → \"agricultura irrigada\"",
+     "porque": "A aptidão do Matopiba vem das chapadas planas com chuva de verão; a irrigação não é o fator que explica a região como um todo.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "relevo plano + verão chuvoso e inverno seco = A",
+     "porque": "São os dois fatores naturais que permitem a mecanização e o calendário de safra semelhante ao do Centro-Oeste.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — relevo quase todo plano e clima tropical com verão chuvoso e inverno seco, semelhante ao do Centro-Oeste.",
+   "checagem": "Compare com o Centro-Oeste, a fronteira agrícola anterior: lá a soja também cresceu sobre chapadas planas do Cerrado com chuva de verão. O Matopiba repete essas condições, o que confirma a A.",
+   "erradas": {
+    "B": "B não confere com o que se pede: a aptidão do Matopiba vem de chapadas planas e da chuva de verão, não de irrigação; o texto fala de \"grãos e fibras\" em larga escala, típicos de lavoura de chuva.",
+    "C": "C erra o clima: o Cerrado do Matopiba tem inverno seco, não chuva \"ao longo de todo o ano\"; isso é o clima equatorial da Amazônia.",
+    "D": "D generaliza demais: nenhuma massa de ar é responsável pela maior parte das chuvas \"em todo território nacional\"; as chuvas do país vêm de massas e sistemas diferentes em cada região."
+   },
+   "armadilha": "Escolher água abundante o ano todo (C) como vantagem, quando o Cerrado tem inverno seco e a vantagem real é relevo plano com verão chuvoso.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os fatores naturais que dão aptidão agrícola ao Matopiba.",
+    "chave": "Relevo plano para máquinas e clima tropical com verão chuvoso e inverno seco.",
+    "cuidado": "O Cerrado não tem chuva o ano todo: tem estação seca no inverno."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0055"
+  }
+ },
+ "P98294e92": {
+  "n": "43",
+  "conceito": "Explicar a localização do Canal de Suez pela geologia do Mar Vermelho e sua função de rota entre o Atlântico Norte e o Índico.",
+  "equivocos": {
+   "A": "G09.6:golfo-persico-no-lugar-do-mar-vermelho",
+   "C": "G09.6:golfo-persico-e-funcao-militar",
+   "D": "G09.6:inverteu-efeito-da-rota-na-pirataria"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O Canal de Suez liga o Mar Mediterrâneo ao Mar Vermelho, cortando o istmo de Suez, no Egito. O Mar Vermelho é um mar estreito e comprido que se abriu com a separação das placas Africana e Arábica, um limite divergente; esse mar chega perto do Mediterrâneo e deixa entre os dois só uma faixa estreita de terra, onde o canal foi aberto. Pelo Mediterrâneo se chega ao Atlântico Norte (Gibraltar); pelo Mar Vermelho, ao Índico.",
+    "formulas": [
+     "Canal de Suez: Mar Mediterrâneo ↔ Mar Vermelho",
+     "Mediterrâneo → Gibraltar → Atlântico Norte | Mar Vermelho → Índico",
+     "limite divergente: placas se afastam e abrem um rifte (Mar Vermelho)"
+    ],
+    "simbolos": [
+     [
+      "limite divergente",
+      "fronteira em que duas placas tectônicas se afastam"
+     ],
+     [
+      "placa tectônica",
+      "bloco rígido da crosta que se move sobre o manto"
+     ],
+     [
+      "istmo",
+      "faixa estreita de terra entre duas massas de água"
+     ],
+     [
+      "rifte",
+      "fenda alongada aberta pelo afastamento de placas"
+     ],
+     [
+      "OTAN",
+      "Organização do Tratado do Atlântico Norte, aliança militar ocidental"
+     ]
+    ]
+   },
+   "pista": "Antes de ler as alternativas, lembre quais dois mares o Canal de Suez liga; algumas alternativas erram já nisso.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"Acerca dos fatores condicionantes de sua construção, sua importância na geopolítica e no comércio marítimo mundial, assinale a alternativa correta\"",
+     "porque": "A certa precisa acertar a geografia física (por que ali) e a função da rota; um erro em qualquer parte derruba a alternativa.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Fixe os mares que o canal liga",
+     "conta": "Canal de Suez: Mediterrâneo (ao norte) ↔ Mar Vermelho (ao sul)",
+     "porque": "O canal não chega ao Golfo Pérsico, que fica do outro lado da Península Arábica. A e C já erram aqui.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Avalie a explicação geológica",
+     "conta": "placa Africana ← limite divergente → placa Arábica = abertura do Mar Vermelho",
+     "porque": "O afastamento das placas abriu o Mar Vermelho, que avança até perto do Mediterrâneo; sobrou só o istmo estreito de Suez para cortar.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste a rota e a pirataria",
+     "conta": "Atlântico Norte → Mediterrâneo → Suez → Mar Vermelho → Índico",
+     "porque": "A rota por Suez liga os dois oceanos e passa pelo Golfo de Áden, junto à Somália; não foge dos piratas somalis, como diz a D.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "limite divergente Arábica × Africana + rota Atlântico Norte ↔ Índico = alternativa B",
+     "porque": "É a única que acerta o fator físico e a função do canal.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a construção foi condicionada pelo limite divergente entre as placas Arábica e Africana, e o canal é uma rota importante entre o Atlântico Norte e o Índico.",
+   "checagem": "Siga um navio da Europa à Ásia no mapa mental: sai do Atlântico Norte, entra no Mediterrâneo por Gibraltar, atravessa Suez, desce o Mar Vermelho e sai no Índico. Em nenhum momento passa pelo Golfo Pérsico, e passa ao lado da Somália.",
+   "erradas": {
+    "A": "A erra a geografia: o canal liga o Mediterrâneo, ao norte, ao Mar Vermelho, ao sul; o Golfo Pérsico fica do outro lado da Península Arábica.",
+    "C": "C erra duas vezes: o canal fica entre o Mediterrâneo e o Mar Vermelho, não o Golfo Pérsico; e o texto destaca o comércio entre Europa e Ásia, não uma rota da OTAN.",
+    "D": "D inverte o efeito: a rota por Suez passa pelo Golfo de Áden, perto da Somália, onde agem os piratas; quem contorna a África é que se afasta dessa área."
+   },
+   "armadilha": "Trocar o Mar Vermelho pelo Golfo Pérsico, por associar o Oriente Médio ao petróleo do Golfo.",
+   "alerta": "A expressão \"condicionada graças ao limite divergente\" é forte, mas defensável: o canal foi aberto pela engenharia, e a geologia explica por que ali basta cortar um istmo estreito, já que o Mar Vermelho, aberto pelo afastamento das placas Africana e Arábica, chega perto do Mediterrâneo. As outras três têm erro de localização ou de efeito, então a oficial prevalece.",
+   "essencial": {
+    "pede": "O fator físico e a importância comercial do Canal de Suez.",
+    "chave": "O canal liga Mediterrâneo e Mar Vermelho, mar aberto pelo limite divergente das placas Africana e Arábica, e une Atlântico Norte e Índico.",
+    "cuidado": "Suez não chega ao Golfo Pérsico e não afasta os navios da Somália."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação pela localização",
+    "ideia": "A e C põem o Golfo Pérsico no lugar do Mar Vermelho e D inverte a pirataria; sobra B."
+   }
+  ],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0056"
+  }
+ },
+ "P737c9570": {
+  "n": "47",
+  "conceito": "Disputa pelo Mar da China Meridional: recursos minerais (hidrocarbonetos), rota marítima vital e militarização chinesa das ilhas.",
+  "equivocos": {
+   "A": "G10.7:fator-parcial-como-explicacao",
+   "C": "G10.8:erra-localizacao-regional",
+   "D": "G10.7:assume-soberania-em-disputa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O Mar da China Meridional é disputado por China, Vietnã, Filipinas, Malásia e outros vizinhos, com os Estados Unidos atentos à livre navegação. Três motivos explicam o acirramento: reservas de petróleo e gás no subsolo marinho, a passagem de uma enorme parte do comércio marítimo mundial e a construção chinesa de ilhas artificiais com instalações militares. A resposta certa precisa reunir características da área e razões da disputa.",
+    "formulas": [
+     "recursos (petróleo e gás) + rota comercial + militarização = disputa",
+     "quem controla as ilhas amplia a área marítima que pode explorar"
+    ],
+    "simbolos": [
+     [
+      "Ásia Pacífico",
+      "região formada pela Ásia oriental, pelo Sudeste Asiático e pelas ilhas do Pacífico"
+     ],
+     [
+      "Mar da China Meridional",
+      "mar entre o sul da China, o Vietnã, as Filipinas, a Malásia e Bornéu"
+     ],
+     [
+      "águas territoriais",
+      "faixa de mar sob soberania de um país"
+     ],
+     [
+      "bases militares",
+      "instalações das forças armadas; a China as construiu sobre recifes e ilhas artificiais"
+     ]
+    ]
+   },
+   "pista": "O comando pede duas coisas: características da área e razões da disputa. Procure a alternativa que traga as duas sem nenhuma afirmação falsa.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"características dessa área, bem como razões que justificam a referida disputa\"",
+     "porque": "Não basta um fator verdadeiro: a alternativa tem de explicar por que a área é disputada.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize os atores no enunciado",
+     "conta": "\"disputas entre China, países vizinhos e, principalmente, os Estados Unidos\" | \"disputas de ilhas\"",
+     "porque": "O texto põe a China no centro e fala em ilhas, o que aponta para a ocupação e militarização das ilhas pela China.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Elimine as que erram a geografia",
+     "conta": "C: proximidade com o \"maior mercado consumidor localizado na Europa\"",
+     "porque": "A Europa fica do outro lado da Eurásia; a área não é próxima dela.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Elimine as parciais ou tendenciosas",
+     "conta": "A: pesca + \"a principal rota de comércio entre Europa e Ásia\" | D: bases \"em águas territoriais chinesas\"",
+     "porque": "A deixa de fora recursos minerais e militarização; D trata como chinesas águas que estão justamente em disputa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "reservas minerais + rota do comércio marítimo mundial + bases militares chinesas → alternativa B",
+     "porque": "A B reúne as três razões centrais do acirramento descrito no enunciado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a área tem grandes reservas de recursos minerais, é uma das principais rotas do comércio marítimo mundial e recebeu bases militares construídas pela China.",
+   "checagem": "Pergunte por que os Estados Unidos entram na disputa sem ter litoral ali: o interesse deles é a livre navegação numa rota vital do comércio mundial e a contenção da presença militar chinesa. São dois dos elementos que só a B reúne.",
+   "erradas": {
+    "A": "A cita a pesca, fator real, mas reduz a área a \"a principal rota de comércio entre Europa e Ásia\" e deixa de fora os recursos minerais e as bases chinesas, que são o centro do acirramento.",
+    "C": "C fala em proximidade com o \"maior mercado consumidor localizado na Europa\". O Mar da China Meridional fica no Sudeste Asiático, longe da Europa; a alternativa erra a localização.",
+    "D": "D chama de \"águas territoriais chinesas\" áreas cuja soberania está em disputa; em 2016 um tribunal arbitral rejeitou a reivindicação chinesa no caso aberto pelas Filipinas. E a militarização que marca a crise é a chinesa."
+   },
+   "armadilha": "Escolher a alternativa com um fator verdadeiro (a pesca) em vez da que reúne as razões centrais da disputa: recursos, rota e militarização.",
+   "alerta": "A alternativa A tem elementos reais (pesca, passagem do comércio entre Europa e Ásia leste). A banca a considera errada por ser parcial e absoluta (\"a principal rota\") e por omitir os recursos minerais e a militarização, que a B traz; a B é a resposta mais completa ao comando.",
+   "essencial": {
+    "pede": "As características do Mar da China Meridional e as razões da disputa pela área.",
+    "chave": "Recursos minerais no subsolo, rota vital do comércio marítimo e ilhas militarizadas pela China.",
+    "cuidado": "Não aceite como chinesas águas que estão em disputa, nem uma alternativa com só um fator."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "atores do enunciado",
+    "ideia": "O enunciado põe China e EUA no centro; só a B nomeia a ação chinesa (bases) e o interesse global (rota de comércio)."
+   }
+  ],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0057"
+  }
+ }
+}

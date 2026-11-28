@@ -1,0 +1,3423 @@
+{
+ "d463edb8": {
+  "antes": {
+   "texto": "Na base 10 cada casa vale 1, 10, 100, 1 000 e assim por diante. Na base 2 as casas valem 1, 2, 4, 8, 16, 32 e vão dobrando. Escrever um número na base 2 é decidir quais dessas casas você usa (marca 1) e quais não usa (marca 0). Cada casa pode ser usada uma vez só.",
+   "formulas": [
+    "valor das casas na base 2: 2⁰ = 1, 2¹ = 2, 2² = 4, 2³ = 8, 2⁴ = 16, 2⁵ = 32, 2⁶ = 64, 2⁷ = 128, 2⁸ = 256, 2⁹ = 512, 2¹⁰ = 1 024",
+    "número = soma das potências de 2 escolhidas",
+    "algarismo de cada casa: 1 (usei essa potência) ou 0 (não usei)"
+   ],
+   "simbolos": [
+    [
+     "2⁷",
+     "2 multiplicado por si mesmo 7 vezes: 2 × 2 × 2 × 2 × 2 × 2 × 2 = 128"
+    ],
+    [
+     "2⁰",
+     "qualquer número elevado a 0 vale 1, então 2⁰ = 1"
+    ],
+    [
+     "(174)₂",
+     "o número 174 escrito na base 2; o 2 pequeno embaixo avisa qual é a base"
+    ],
+    [
+     "resto",
+     "o que sobra numa divisão que não é exata: em 9 ÷ 2 o quociente é 4 e o resto é 1, porque 9 = 2 × 4 + 1"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Monte a régua das potências de 2",
+    "conta": "2⁰ = 1; 2¹ = 2; 2² = 4; 2³ = 8; 2⁴ = 16; 2⁵ = 32; 2⁶ = 64; 2⁷ = 128; 2⁸ = 256; 2⁹ = 512; 2¹⁰ = 1 024; 2¹¹ = 2 048",
+    "porque": "Cada casa da base 2 vale o dobro da anterior. 2 048 já passa de 2 023, então a maior casa que cabe é 1 024 = 2¹⁰. Isso já avisa que a resposta vai ter 11 algarismos: de 2¹⁰ até 2⁰.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Tire a maior potência que cabe, uma de cada vez",
+    "conta": "2 023 − 1 024 = 999; 999 − 512 = 487; 487 − 256 = 231; 231 − 128 = 103; 103 − 64 = 39; 39 − 32 = 7",
+    "porque": "Se uma potência cabe no que sobrou, use: todas as menores juntas não chegam a ela.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Continue até chegar a zero",
+    "conta": "7 − 4 = 3; 3 − 2 = 1; 1 − 1 = 0",
+    "porque": "Sobraram 7 = 4 + 2 + 1. Chegar a zero garante que nada ficou de fora.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Veja quais casas ficaram de fora",
+    "conta": "2 023 = 1 024 + 512 + 256 + 128 + 64 + 32 + 4 + 2 + 1",
+    "porque": "Nessa soma não aparecem 16 nem 8, isto é, 2⁴ e 2³. Essas duas casas recebem o algarismo 0; todas as outras recebem 1.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Escreva os algarismos de 2¹⁰ até 2⁰",
+    "conta": "1 1 1 1 1 1 0 0 1 1 1 → 11111100111",
+    "porque": "O enunciado pede em ordem decrescente das potências: primeiro o coeficiente de 2¹⁰, por último o de 2⁰. Os dois zeros ficam nas casas de 2⁴ e 2³.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa A — 11111100111 (onze algarismos, correspondendo a 2¹⁰ + 2⁹ + 2⁸ + 2⁷ + 2⁶ + 2⁵ + 2² + 2¹ + 2⁰)",
+  "checagem": "Some de volta: 1 024 + 512 = 1 536; + 256 = 1 792; + 128 = 1 920; + 64 = 1 984; + 32 = 2 016; + 4 + 2 + 1 = 2 023. Segunda conferência, de graça: 2 023 é ímpar, e o único algarismo ímpar da base 2 é o 1 da casa 2⁰ — então a resposta tem de terminar em 1. A termina em 1; a alternativa E termina em 0 e já cai fora por aqui.",
+  "erradas": {
+   "B": "11100111111 vale 1 855, não 2 023: é a resposta lida de trás para frente. Nas divisões por 2 o primeiro resto é o da casa 2⁰; anotá-los na ordem em que saem dá essa sequência.",
+   "C": "10111100111 vale 1 511: tem 0 na casa de 2⁹, ou seja, pulou o 512 na régua. É o erro de quem tira 1 024 de 2 023, fica com 999 e vai direto para 256, esquecendo que 512 ainda cabe em 999. Confira a falta: 1 511 + 512 = 2 023.",
+   "D": "11011100111 vale 1 767: tem 0 na casa de 2⁸, isto é, deixou o 256 de fora. Depois de 2 023 − 1 024 − 512 = 487, o 256 cabe em 487 e foi ignorado. Confira: 1 767 + 256 = 2 023.",
+   "E": "11100111110 vale 1 854: é a mesma inversão de ordem da alternativa B e, por cima, perde o último resto — termina em 0, o que descreveria um número par. Como 2 023 é ímpar, nenhuma resposta correta pode terminar em 0."
+  },
+  "armadilha": "Os restos das divisões sucessivas por 2 saem na ordem contrária à da escrita: a alternativa B é o espelho exato da resposta, e é nela que cai quem não inverte a sequência no fim.",
+  "essencial": {
+   "pede": "O número 2 023 escrito no sistema binário (base 2).",
+   "chave": "Tirar de 2 023 a maior potência de 2 que cabe, até zerar; 1 nas usadas e 0 nas outras.",
+   "cuidado": "Escrever os algarismos de 2¹⁰ até 2⁰; a alternativa B é a resposta lida de trás para frente."
+  }
+ },
+ "8196566b": {
+  "antes": {
+   "texto": "Cada país exige a mesma conta: quantidade de moeda × quanto vale a moeda em reais. Depois os três resultados são somados. O perigo está na soma: os três aparecem com potências de 10 diferentes (10¹², 10¹³ e 10¹¹), e só se somam parcelas que estejam na MESMA potência de 10.",
+   "formulas": [
+    "orçamento em reais = quantidade na moeda × valor da moeda em reais",
+    "multiplicar: multiplique as mantissas e some os expoentes",
+    "somar: deixe as três parcelas na mesma potência de 10 e some só as mantissas"
+   ],
+   "simbolos": [
+    [
+     "4,1 × 10¹²",
+     "4,1 trilhões: 4 100 000 000 000 — o expoente 12 manda a vírgula 12 casas para a direita"
+    ],
+    [
+     "US$",
+     "dólar, a moeda do país 1"
+    ],
+    [
+     "¥",
+     "iene, a moeda do país 2"
+    ],
+    [
+     "€",
+     "euro, a moeda do país 3"
+    ],
+    [
+     "⋅",
+     "o ponto no meio das alternativas significa multiplicação: 1,489 ⋅ 10¹⁴ é o mesmo que 1,489 × 10¹⁴"
+    ],
+    [
+     "notação científica",
+     "jeito de escrever números muito grandes ou muito pequenos: um número entre 1 e 10 multiplicado por uma potência de 10, como 4,1 × 10¹²"
+    ],
+    [
+     "mantissa",
+     "o número que fica na frente do '× 10' na notação científica: em 4,1 × 10¹² a mantissa é 4,1"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "País 1: multiplique pela cotação",
+    "conta": "4,1 × 10¹² × 5,20 → 21,32 × 10¹² → 2,132 × 10¹³ reais",
+    "porque": "4,1 × 5,2 = 21,32, e a potência não muda na multiplicação (5,20 não tem potência de 10). Para arrumar a mantissa, a vírgula anda uma casa para a esquerda e o expoente sobe de 12 para 13.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "País 2: multiplique pela cotação",
+    "conta": "2,2 × 10¹³ × 0,04 = 0,088 × 10¹³ reais",
+    "porque": "0,04 são quatro centésimos: 2,2 × 4 = 8,8 e divide-se por 100, dando 0,088. Repare que a quantidade é enorme, mas a moeda vale pouco, e por isso essa parcela fica pequena.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "País 3: multiplique e alinhe na mesma potência",
+    "conta": "7,2 × 10¹¹ × 5,50 → 39,6 × 10¹¹ → 0,396 × 10¹³ reais",
+    "porque": "7,2 × 5,5 = 39,6. Para sair de 10¹¹ e chegar a 10¹³, o expoente sobe duas unidades, então a vírgula tem de andar duas casas para a esquerda: 39,6 → 0,396.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Some as três parcelas já alinhadas",
+    "conta": "2,132 + 0,088 + 0,396 = 2,616 → 2,616 × 10¹³ reais",
+    "porque": "Com as três na mesma potência de 10, soma-se só a mantissa e repete-se o 10¹³, do mesmo jeito que 2 dúzias + 1 dúzia = 3 dúzias.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E — 2,616 × 10¹³ reais (cerca de 26 trilhões de reais)",
+  "checagem": "Estimativa por cima, sem notação científica: o país 1 tem 4,1 trilhões de dólares a cerca de 5 reais, logo uns 21 trilhões; o país 3 tem 720 bilhões de euros a cerca de 5,5 reais, logo uns 4 trilhões; o país 2 tem 22 trilhões de ienes a 4 centavos, logo menos de 1 trilhão. Total: 21 + 4 + 1 ≈ 26 trilhões = 2,6 × 10¹³. Isso já descarta qualquer alternativa na casa de 10¹⁴ (100 trilhões).",
+  "erradas": {
+   "C": "6,100 ⋅ 10¹³ sai de multiplicar só as mantissas pelas cotações (4,1 × 5,20 = 21,32; 2,2 × 0,04 = 0,088; 7,2 × 5,50 = 39,6), somar 21,32 + 0,088 + 39,6 = 61,008 e pôr 10¹² no fim: 61,008 × 10¹² ≈ 6,1 × 10¹³. Mas o país 2 está em 10¹³ e o país 3 em 10¹¹; só se somam mantissas na mesma potência.",
+   "A": "1,489 ⋅ 10¹⁴ sai do mesmo erro da C, lendo ainda 0,04 como 40: 2,2 × 40 = 88, e 21,32 + 88 + 39,6 = 148,92, com 10¹² no fim: 1,489 × 10¹⁴.",
+   "B": "1,004 ⋅ 10¹⁴ não confere: são uns 100 trilhões de reais, quase quatro vezes a soma certa. Só o país 1 dá 2,132 × 10¹³ (21 trilhões), e os outros dois juntos somam 0,484 × 10¹³ (menos de 5 trilhões).",
+   "D": "5,232 · 10¹³ não confere: é o dobro exato da soma certa (2 × 2,616 = 5,232), e nenhuma conversão dos três orçamentos dobra o total: 2,132 + 0,088 + 0,396 = 2,616, em 10¹³."
+  },
+  "armadilha": "A tabela mistura quantidades grandes com moedas fracas: o país 2 tem o maior expoente (10¹³) e a menor cotação (0,04), e o país 3 tem o menor expoente (10¹¹) com a maior cotação (5,50). Quem soma antes de alinhar as potências dá peso errado justamente a essas duas linhas.",
+  "essencial": {
+   "pede": "A soma dos três orçamentos de saúde, já convertidos para reais.",
+   "chave": "Converter cada orçamento pela cotação e alinhar tudo em 10¹³ antes de somar as mantissas.",
+   "cuidado": "Somar mantissas de potências diferentes dá peso errado aos países 2 e 3."
+  }
+ },
+ "P107f227": {
+  "antes": {
+   "texto": "Dobrar é o mesmo que multiplicar por 2 várias vezes seguidas. Se você começa com 1 folha e, a cada rodada, acrescenta tantas folhas quantas já estão ali, a pilha dobra de tamanho a cada rodada. Depois de muitas rodadas isso vira uma potência de 2, e não uma soma. Ordem de grandeza quer dizer só a casa de tamanho: não interessa se dá 400 km ou 430 km, interessa que é a casa das centenas de quilômetros.",
+   "formulas": [
+    "número de folhas depois de n operações = 2 elevado a (n − 1)",
+    "altura da pilha = número de folhas × espessura de uma folha",
+    "1 km = 1 000 m = 1 000 000 mm"
+   ],
+   "simbolos": [
+    [
+     "2³²",
+     "o número 2 multiplicado por ele mesmo 32 vezes"
+    ],
+    [
+     "ordem de grandeza",
+     "a casa de tamanho do número, usada para comparar coisas sem precisar do valor exato"
+    ],
+    [
+     "≈",
+     "aproximadamente igual a"
+    ]
+   ]
+  },
+  "pista": "Escreva quantas folhas existem depois de 1, 2, 3 e 4 operações antes de pular para 33 — o padrão aparece sozinho. Quando chegar na potência de 2, troque 2¹⁰ por 1 000 para conseguir fazer a conta de cabeça. Deixe a conversão de milímetro para quilômetro para o fim.",
+  "passos": [
+   {
+    "faz": "Conte as folhas nas primeiras operações",
+    "conta": "1 → 2 → 4 → 8 → 16",
+    "porque": "Na 1.ª operação entra 1 folha. Em cada operação seguinte entram tantas quantas já existem, ou seja, o total sempre dobra.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva o total depois de 33 operações",
+    "conta": "2³² → 2² × (2¹⁰)³ → ≈ 4 × (10³)³ → 4 × 10⁹ folhas",
+    "porque": "São 33 operações, mas a primeira só coloca a folha inicial: dobra 32 vezes. Como 2¹⁰ = 1 024 ≈ 1 000, troque cada 2¹⁰ por 10³ (o valor exato é 4 294 967 296).",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Transforme folhas em altura",
+    "conta": "0,1 mm × 4 × 10⁹ → 4 × 10⁸ mm",
+    "porque": "Cada folha entra com a mesma espessura na pilha, então a altura é a espessura multiplicada pelo número de folhas.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Passe de milímetro para quilômetro",
+    "conta": "4 × 10⁸/10⁶ → 4 × 10² → 400 km",
+    "porque": "1 km tem 1 000 m e cada metro tem 1 000 mm, então 1 km = 1 000 000 mm = 10⁶ mm. Com o valor exato de 2³², dá 429,5 km.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Compare com as cinco opções",
+    "conta": "poste ≈ 10 m; prédio de 30 andares ≈ 90 m; Av. Paulista ≈ 2,8 km; São Paulo → Rio ≈ 430 km; diâmetro da Terra ≈ 12 700 km",
+    "porque": "Ordem de grandeza é comparação. Cerca de 400 km está na casa das centenas de quilômetros, e a única distância dessa casa na lista é São Paulo–Rio de Janeiro.",
+    "tipo": "comparar"
+   }
+  ],
+  "resposta": "Alternativa D — cerca de 430 km, a ordem de grandeza da distância da cidade de São Paulo à cidade do Rio de Janeiro",
+  "checagem": "Dá para refazer tudo só com potências de 10: como 2¹⁰ = 1 024 ≈ 10³, então 2³² = 2² × (2¹⁰)³ ≈ 4 × 10⁹. Multiplicando pela espessura: 0,1 × 4 × 10⁹ = 4 × 10⁸ mm = 400 km. O valor exato (429 km) e essa estimativa (400 km) caem na mesma casa, o que confirma a escolha.",
+  "erradas": {
+   "A": "Um poste tem cerca de 10 m. A pilha tem 2³² folhas × 0,1 mm ≈ 4,3 × 10⁸ mm, ou cerca de 430 km.",
+   "B": "Um prédio de 30 andares tem cerca de 90 m. A pilha tem 2³² folhas × 0,1 mm ≈ 4,3 × 10⁸ mm, ou cerca de 430 km.",
+   "C": "C não confere: a Av. Paulista tem cerca de 2,8 km, umas 150 vezes menos que os 430 km da pilha.",
+   "E": "E não confere: o diâmetro da Terra é cerca de 12 700 km, umas 30 vezes os 430 km da pilha; nem usando 2³³ por engano (cerca de 860 km) se chega lá."
+  },
+  "armadilha": "A pilha dobra a cada operação: o total é uma potência de 2 (2³² folhas), não uma soma; e de milímetro para quilômetro divide-se por 1 000 000, não por 1 000.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "A ordem de grandeza da altura da pilha depois de 33 operações.",
+   "chave": "O total dobra a cada operação: 2³² folhas; multiplicar por 0,1 mm e converter para km.",
+   "cuidado": "São 33 operações mas só 32 duplicações; e de mm para km divide-se por um milhão."
+  }
+ },
+ "P3828446": {
+  "antes": {
+   "texto": "Densidade é massa dividida por volume. Se dois corpos têm a mesma massa, aquele que ocupa menos volume é o mais denso. Como aqui os dois corpos são esferas de mesma massa, comparar as densidades é a mesma coisa que comparar os volumes, só que de cabeça para baixo: quem tem volume menor tem densidade maior. E o volume de uma esfera depende do raio elevado ao cubo, então uma diferença de raio vira uma diferença muito maior de volume. Ordem de grandeza é só a potência de dez mais próxima do resultado.",
+   "formulas": [
+    "densidade: d = M ÷ V",
+    "volume da esfera: V = (4 ÷ 3) π R³",
+    "com massas iguais: d₁ ÷ d₂ = V₂ ÷ V₁ = (R₂ ÷ R₁)³"
+   ],
+   "simbolos": [
+    [
+     "R(Sc)",
+     "raio de Schwarzschild: o raio do buraco negro, dado por 2GM ÷ c²"
+    ],
+    [
+     "R(Sol)",
+     "raio do Sol, fornecido como 10⁹ m"
+    ],
+    [
+     "G",
+     "constante da gravitação universal, fornecida como 10⁻¹⁰ N·m² ÷ kg²"
+    ],
+    [
+     "c",
+     "velocidade da luz, fornecida como 3 × 10⁸ m/s"
+    ],
+    [
+     "ordem de grandeza",
+     "a potência de dez que melhor representa o tamanho do número"
+    ]
+   ]
+  },
+  "pista": "Não calcule as duas densidades separadamente. Como a massa é a mesma nos dois casos, o (4 ÷ 3)π e o M somem quando você divide uma densidade pela outra, e sobra só a razão dos raios elevada ao cubo. Então o trabalho se resume a dois passos: achar o raio do buraco negro pela fórmula dada e dividir o raio do Sol por ele.",
+  "passos": [
+   {
+    "faz": "Monte a razão das densidades sem fazer contas ainda",
+    "conta": "d_BN/d_Sol → (M/V_BN)/(M/V_Sol) → V_Sol/V_BN",
+    "porque": "BN é o buraco negro. O enunciado manda considerar o buraco negro com massa igual à massa solar. Então o M de cima e o M de baixo são o mesmo número e se cancelam. Dividir fração por fração é multiplicar pelo inverso, por isso os volumes trocam de andar: sobra o volume do Sol dividido pelo volume do buraco negro.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Troque os volumes pelos raios",
+    "conta": "V_Sol/V_BN → R_Sol³/R_Sc³ → (R_Sol/R_Sc)³",
+    "porque": "As duas são esferas, pelo 'Note e adote', com V = 4/3 π R³. O fator 4/3 π aparece igual em cima e embaixo e se cancela. Fica só raio ao cubo dividido por raio ao cubo, que é o mesmo que a razão dos raios elevada ao cubo.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule o raio de Schwarzschild",
+    "conta": "R(Sc) = 2GM/c² → (2 × 10⁻¹⁰ × 2 × 10³⁰)/(3 × 10⁸)² → (4 × 10²⁰)/(9 × 10¹⁶) → 4/9 × 10⁴ → ≈ 4,4 × 10³ m",
+    "porque": "É só substituir na fórmula dada. No numerador, 2 × 2 = 4 e 10⁻¹⁰ × 10³⁰ = 10²⁰, porque ao multiplicar potências de mesma base somam-se os expoentes: −10 + 30 = 20. No denominador, elevar 3 × 10⁸ ao quadrado dá 3² = 9 e 10⁸ × 10⁸ = 10¹⁶. Dividindo as potências, subtraem-se os expoentes: 20 − 16 = 4.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Divida o raio do Sol pelo raio do buraco negro",
+    "conta": "R_Sol/R_Sc → 10⁹/(4/9 × 10⁴) → 9/4 × 10⁵ → 2,25 × 10⁵",
+    "porque": "Dividir por uma fração é multiplicar pelo inverso dela, por isso 4/9 vira 9/4. Nas potências, 10⁹/10⁴ = 10⁹⁻⁴ = 10⁵. O resultado diz que o Sol tem raio cerca de 225 000 vezes maior que o do buraco negro.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Eleve ao cubo e leia a ordem de grandeza",
+    "conta": "(2,25 × 10⁵)³ → 2,25³ × 10¹⁵ → ≈ 11,4 × 10¹⁵ → ≈ 1,14 × 10¹⁶",
+    "porque": "Ao elevar um produto ao cubo, cada fator vai ao cubo: 2,25 × 2,25 × 2,25 ≈ 11,4 e (10⁵)³ = 10¹⁵, porque elevar potência a potência multiplica os expoentes. Reescrevendo 11,4 × 10¹⁵ como 1,14 × 10¹⁶ (vírgula uma casa para a esquerda, expoente mais 1), a potência de dez mais próxima é 10¹⁶.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D — ordem de grandeza 10¹⁶ (o buraco negro é cerca de dez quatrilhões de vezes mais denso que o Sol)",
+  "checagem": "Confira por arredondamento grosseiro, sem calculadora. O raio do buraco negro deu cerca de 4 000 m, isto é 4 × 10³ m, e o do Sol é 10⁹ m. A razão é aproximadamente 10⁹ ÷ (4 × 10³), cerca de 2,5 × 10⁵. Elevar 2,5 ao cubo dá aproximadamente 15,6, e (10⁵)³ = 10¹⁵, então o resultado fica em torno de 1,6 × 10¹⁶. Mesmo mudando um pouco os arredondamentos, a potência de dez continua 10¹⁶ — o resultado não chega perto de 10¹⁰ nem de 10²².",
+  "erradas": {
+   "A": "10⁻² não confere: inverter a razão (Sol sobre buraco negro) daria 10⁻¹⁶, não 10⁻². E com a mesma massa num raio muito menor, o buraco negro é mais denso, então a razão tem de ser maior que 1.",
+   "B": "O 10⁴ é a ordem de grandeza do raio de Schwarzschild sozinho, pois R(Sc) = 4/9 × 10⁴ m. Quem marca B parou no passo 3, entregando o raio em vez de seguir até a razão das densidades.",
+   "C": "10¹⁰ sai de elevar a razão dos raios ao quadrado em vez de ao cubo: (2,25 × 10⁵)² ≈ 5 × 10¹⁰, mais perto de 10¹⁰ que das outras opções. É usar área (raio²) no lugar de volume (raio³).",
+   "E": "10²² não confere: a conta só gera 10⁵ (razão dos raios), cerca de 10¹⁰ (ao quadrado) e 10¹⁶ (ao cubo, o certo). Para 10²² faltaria mais um fator de um milhão."
+  },
+  "armadilha": "A razão de densidades com massas iguais é a razão inversa dos volumes, e volume de esfera vai com o cubo do raio — quem usa só a razão dos raios, ou o quadrado dela, erra a potência de dez.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "A ordem de grandeza da razão entre a densidade do buraco negro e a do Sol.",
+   "chave": "Com massas iguais, a razão das densidades é a razão dos raios ao cubo: (R(Sol) ÷ R(Sc))³.",
+   "cuidado": "Volume de esfera vai com o cubo do raio; usar o raio ou o quadrado dele erra a potência de dez."
+  }
+ },
+ "7c57323e": {
+  "antes": {
+   "texto": "'Dezoito vezes mais longe' compara a distância de hoje com a de antes: hoje = 18 × antiga. O que a Lua efetivamente percorreu não é 18 vezes a distância antiga, e sim a diferença entre as duas. Com velocidade constante, o que ela percorreu também é velocidade × tempo — e é igualando essas duas formas de dizer a mesma coisa que a distância antiga aparece.",
+   "formulas": [
+    "distância percorrida = velocidade × tempo",
+    "hoje = 18d e antes = d, então o afastamento é 18d − d = 17d",
+    "1 km = 1 000 m = 100 000 cm = 10⁵ cm"
+   ],
+   "simbolos": [
+    [
+     "d",
+     "o nome que vamos dar à distância antiga, que é justamente o que a questão pede"
+    ],
+    [
+     "4,5 × 10⁹ anos",
+     "4,5 bilhões de anos"
+    ],
+    [
+     "cm/ano",
+     "centímetros por ano: quantos centímetros a Lua se afasta em cada ano"
+    ],
+    [
+     "10⁵",
+     "100 000, o 1 seguido de 5 zeros"
+    ],
+    [
+     "mantissa",
+     "o número que fica na frente do '× 10' na notação científica: em 4,5 × 10⁹ a mantissa é 4,5"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Dê nome às duas distâncias e ache o afastamento",
+    "conta": "antiga = d; hoje = 18d; afastamento = 18d − d = 17d",
+    "porque": "Estar 18 vezes mais longe significa que a distância de hoje é 18 vezes a antiga. O caminho percorrido é a diferença entre as duas, e 18d − 1d = 17d (não 18d).",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule quanto ela andou, em centímetros",
+    "conta": "3,78 cm/ano × 4,5 × 10⁹ anos → 17,01 × 10⁹ → 1,701 × 10¹⁰ cm",
+    "porque": "O enunciado manda supor velocidade constante, então distância = velocidade × tempo: 3,78 × 4,5 = 17,01, e a potência 10⁹ acompanha. Depois a vírgula anda uma casa e o expoente sobe para 10.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Converta de centímetros para quilômetros",
+    "conta": "1,701 × 10¹⁰/10⁵ → 1,701 × 10⁵ km",
+    "porque": "1 km = 1 000 m e 1 m = 100 cm, então 1 km = 1 000 × 100 = 100 000 cm = 10⁵ cm. Dividir por 10⁵ subtrai 5 do expoente: 10 − 5 = 5.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Use que esse caminho vale 17d",
+    "conta": "17d = 1,701 × 10⁵ → d = (1,701 × 10⁵)/17 → d ≈ 1,0006 × 10⁴ km",
+    "porque": "O número que você calculou é o afastamento, que no passo 1 ficou igual a 17d. O 17 que multiplica o d passa para o outro lado dividindo.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Arredonde para o formato pedido",
+    "conta": "1,0006 × 10⁴ ≈ 1,0 × 10⁴ km",
+    "porque": "O enunciado pede o valor aproximado, e todas as alternativas têm mantissa 1,0: a decisão é só sobre o expoente.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa A — aproximadamente 1,0 × 10⁴ km (cerca de 10 000 km)",
+  "checagem": "Volte pelo outro lado: se d = 1,0 × 10⁴ km, o afastamento previsto é 17 × 1,0 × 10⁴ = 1,7 × 10⁵ km, que é exatamente o 1,701 × 10⁵ km obtido pela velocidade. (Não estranhe que 18d = 1,8 × 10⁵ km fique longe da distância real da Lua hoje, perto de 3,8 × 10⁵ km: a hipótese de velocidade constante é uma simplificação imposta pelo próprio enunciado.)",
+  "erradas": {
+   "B": "1,0 × 10⁵ é parar no afastamento total. O 1,701 × 10⁵ km é o quanto a Lua andou, não a distância de 4,5 bilhões de anos atrás; falta dividir por 17 para separar o d.",
+   "C": "1,0 × 10⁶ sai de usar 1 km = 1 000 cm (o certo é 10⁵ cm): 1,701 × 10¹⁰/10³ = 1,701 × 10⁷ km e, dividindo por 17, 1,0 × 10⁶.",
+   "D": "1,0 × 10⁷ vem de usar 1 km = 100 cm, misturando a conversão do metro (1 m = 100 cm) com a do quilômetro: 1,701 × 10¹⁰ ÷ 10² = 1,701 × 10⁸ km e, dividindo por 17, 1,0 × 10⁷.",
+   "E": "1,0 × 10⁸ junta os dois erros de uma vez: usa 1 km = 100 cm (chegando a 1,701 × 10⁸) e ainda esquece de dividir por 17, entregando o afastamento em vez da distância antiga."
+  },
+  "armadilha": "A conversão é de centímetro para quilômetro: 1 km = 10⁵ cm, não 10³ nem 10². (O caminho percorrido é 17d, não 18d, mas isso não muda a ordem de grandeza.)",
+  "essencial": {
+   "pede": "A distância da Lua à Terra, em km, há 4,5 bilhões de anos.",
+   "chave": "O afastamento é 18d − d = 17d; igualá-lo a velocidade × tempo em km e dividir por 17.",
+   "cuidado": "18 vezes mais longe dá 17d de caminho, não 18d; e 1 km = 10⁵ cm, não 10³."
+  }
+ },
+ "4c8a0383": {
+  "antes": {
+   "texto": "Classificar 16 equipes em ordem, sem empate, é o mesmo que enfileirar 16 coisas: 16 opções para o 1.º lugar, 15 para o 2.º, 14 para o 3.º e assim por diante — isso é 16!. Esse número é gigante, mas a questão não quer o valor exato: quer só a casa de potência de 10 em que ele cai. E para descobrir a casa de um número existe uma ferramenta: o logaritmo decimal, que devolve o expoente de 10.",
+   "formulas": [
+    "número de ordens de n equipes = n! = n × (n − 1) × ... × 2 × 1",
+    "log de produto: log (a × b) = log a + log b",
+    "log de potência: log 2⁴ = 4 × log 2"
+   ],
+   "simbolos": [
+    [
+     "16!",
+     "fatorial de 16: 16 × 15 × 14 × ... × 2 × 1"
+    ],
+    [
+     "log N",
+     "logaritmo decimal: o expoente que falta em '10 elevado a quanto dá N' (log 1 000 = 3, porque 10³ = 1 000)"
+    ],
+    [
+     "log 15!",
+     "o logaritmo do fatorial de 15, que o enunciado já entrega valendo 12"
+    ],
+    [
+     "ordem de grandeza",
+     "a potência de 10 que diz o tamanho do número: 10⁶ é milhão, 10⁹ bilhão, 10¹² trilhão, 10¹⁵ quatrilhão, 10¹⁸ quintilhão"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Conte de quantas formas as 16 equipes podem ser ordenadas",
+    "conta": "16 × 15 × 14 × ... × 2 × 1 = 16!",
+    "porque": "Para o 1.º lugar há 16 candidatas; escolhida ela, sobram 15 para o 2.º, 14 para o 3.º, e assim até o fim. Como as regras proíbem empate, cada ordem diferente é uma classificação diferente.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Quebre o fatorial para usar o dado do enunciado",
+    "conta": "16! = 16 × 15!",
+    "porque": "15! já é 15 × 14 × ... × 1, então para chegar a 16! basta multiplicar por 16. É de 15! que o enunciado deu o logaritmo.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Aplique o logaritmo nos dois lados",
+    "conta": "log 16! = log 16 + log 15!",
+    "porque": "O logaritmo de um produto é a soma dos logaritmos. Isso troca uma multiplicação gigante por uma soma pequena.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule log 16 usando log 2",
+    "conta": "log 16 = log 2⁴ = 4 × log 2 = 4 × 0,3 = 1,2",
+    "porque": "16 = 2 × 2 × 2 × 2 = 2⁴, e no logaritmo de uma potência o expoente vai para a frente: multiplica-se por 4 (o expoente), e não por 16.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Some e volte da potência",
+    "conta": "log 16! = 1,2 + 12 → 13,2 → 16! = 10^(13,2) → 10^(1,2) × 10¹² → ≈ 16 × 10¹²",
+    "porque": "Um expoente 13,2 pode ser separado em 1,2 + 12. E 10^(1,2) é justamente o 16 do passo anterior, porque foi de onde o 1,2 saiu.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Traduza a potência em nome de escala",
+    "conta": "16 × 10¹² = 16 000 000 000 000",
+    "porque": "10⁶ é milhão, 10⁹ é bilhão, 10¹² é trilhão e 10¹⁵ é quatrilhão. 16 × 10¹² são dezesseis trilhões: mesmo passando de 10¹³, continua trilhão até chegar a 10¹⁵.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E — trilhões (16! ≈ 16 × 10¹², cerca de dezesseis trilhões de classificações possíveis)",
+  "checagem": "Estimativa sem logaritmo, usando um fatorial conhecido: 10! = 3 628 800, uns 3,6 × 10⁶. Para ir de 10! a 16! falta multiplicar por 11 × 12 × 13 × 14 × 15 × 16 = 5 765 760, uns 5,8 × 10⁶. Multiplicando: 3,6 × 5,8 ≈ 21 e 10⁶ × 10⁶ = 10¹², ou seja, cerca de 21 × 10¹² — dezenas de trilhões, confirmando a casa de 10¹³.",
+  "erradas": {
+   "A": "'bilhões' sai de subtrair em vez de somar os logaritmos: 12 − 1,2 = 10,8, e 10 elevado a 10,8 ≈ 6 × 10¹⁰, uns 63 bilhões. Bilhão é 10⁹, três zeros abaixo do trilhão, e a conta certa soma os logs porque 16! é um produto.",
+   "B": "'quatrilhões' sai de calcular log 2⁴ como 16 × log 2 = 16 × 0,3 = 4,8, usando o próprio 16 em vez do expoente 4. Com isso log 16! = 12 + 4,8 = 16,8 e o número viraria 6 × 10¹⁶, que é a casa dos quatrilhões (10¹⁵).",
+   "C": "'quintilhões' sai de permitir repetição: quem conta 16 possibilidades para cada uma das 16 posições calcula 16 elevado a 16, cujo log é 16 × 1,2 = 19,2, dando 1,6 × 10¹⁹ — a casa dos quintilhões (10¹⁸). Mas uma mesma equipe não pode ocupar dois lugares, por isso o número de opções cai de 16 para 15, 14, e assim por diante.",
+   "D": "Milhões são a casa de 10⁶, a de 10! = 3 628 800. Com os dados, log 16! = log 15! + 4 · log 2 = 12 + 1,2 = 13,2: a casa é 10¹³, trilhões."
+  },
+  "armadilha": "O enunciado dá log 15!, e não log 16!: o pulo é escrever 16! = 16 × 15! e lembrar que log 2⁴ = 4 × log 2 — quatro vezes 0,3, e não dezesseis vezes.",
+  "essencial": {
+   "pede": "A ordem de grandeza do número de classificações possíveis das 16 equipes.",
+   "chave": "O total é 16! = 16 × 15!; somando os logs, log 16 = 1,2 e log 15! = 12 dão 13,2.",
+   "cuidado": "log 2⁴ = 4 × log 2, não 16 × log 2; e logaritmo de produto soma, não subtrai."
+  }
+ },
+ "e0cedb17": {
+  "antes": {
+   "texto": "Os nomes das unidades escondem potências de 10. Um milionésimo é dividir por 1 000 000, que são 6 zeros: 10⁻⁶. Um bilionésimo é dividir por 1 000 000 000, que são 9 zeros: 10⁻⁹. Quando o enunciado diz 'um bilionésimo de um bilionésimo', ele está multiplicando as duas coisas — e multiplicar potências de 10 é somar os expoentes.",
+   "formulas": [
+    "um milionésimo = 10⁻⁶ = 1 ÷ 1 000 000",
+    "um bilionésimo = 10⁻⁹ = 1 ÷ 1 000 000 000",
+    "multiplicar potências de 10: somam-se os expoentes (10⁻⁶ × 10⁻⁹ = 10⁻¹⁵); dividir: subtraem-se (10⁻¹⁵ ÷ 10⁻¹⁸ = 10³)"
+   ],
+   "simbolos": [
+    [
+     "10⁻⁹",
+     "expoente negativo quer dizer divisão: 10⁻⁹ = 1 ÷ 10⁹ = 0,000000001"
+    ],
+    [
+     "as",
+     "atossegundo, uma das unidades de tempo do enunciado"
+    ],
+    [
+     "fs",
+     "femtossegundo, a outra unidade de tempo do enunciado"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Traduza os dois nomes em potências de 10",
+    "conta": "um milionésimo = 10⁻⁶; um bilionésimo = 10⁻⁹",
+    "porque": "Milhão é 1 seguido de 6 zeros e bilhão é 1 seguido de 9 zeros. Dividir por eles dá expoente negativo com esse mesmo número de zeros.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva o atossegundo em segundos",
+    "conta": "1 as = 10⁻⁹ × 10⁻⁹ s = 10⁻¹⁸ s",
+    "porque": "'Um bilionésimo de um bilionésimo' é um bilionésimo multiplicado por um bilionésimo. Ao multiplicar potências de 10 somam-se os expoentes: −9 + (−9) = −18.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva o femtossegundo em segundos",
+    "conta": "1 fs = 10⁻⁶ × 10⁻⁹ s = 10⁻¹⁵ s",
+    "porque": "Mesmo raciocínio: 'um milionésimo de um bilionésimo' é 10⁻⁶ × 10⁻⁹, e −6 + (−9) = −15.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Veja quantos atossegundos cabem em um femtossegundo",
+    "conta": "10⁻¹⁵/10⁻¹⁸ = 10³ = 1 000 → 1 fs = 1 000 as",
+    "porque": "Ao dividir potências de 10, subtrai-se o expoente de baixo: −15 − (−18) = 3. O atossegundo é a unidade menor, então cabem muitos dele em um femtossegundo.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Converta os 200 femtossegundos",
+    "conta": "200 × 1 000 = 200 000 as",
+    "porque": "Cada um dos 200 femtossegundos vale 1 000 atossegundos; trocar para uma unidade menor sempre aumenta o número.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C — 200 000 atossegundos (duzentos mil)",
+  "checagem": "Mesmo resultado por outro caminho, sem calcular a razão entre as unidades: 200 fs = 200 × 10⁻¹⁵ s = 2 × 10⁻¹³ s; dividindo pelo tamanho de 1 as, 2 × 10⁻¹³ ÷ 10⁻¹⁸ = 2 × 10⁵ = 200 000. Conferência de bom senso: como o atossegundo é menor que o femtossegundo, a resposta tem de ser um número maior que 200.",
+  "erradas": {
+   "A": "A não confere: 2 000 = 200 × 10 exigiria 1 fs = 10 as. Mas 1 fs = 10⁻¹⁵ s e 1 as = 10⁻¹⁸ s, então 1 fs = 1 000 as e 200 fs = 200 000 as.",
+   "B": "B não confere: 20 000 = 200 × 100 exigiria 1 fs = 100 as. Como 10⁻¹⁵/10⁻¹⁸ = 10³, 1 fs = 1 000 as.",
+   "D": "D não confere: 2 000 000 = 200 × 10 000 exigiria 1 fs = 10 000 as. Como 10⁻¹⁵/10⁻¹⁸ = 10³, 1 fs = 1 000 as.",
+   "E": "E não confere: 20 000 000 = 200 × 100 000 exigiria 1 fs = 100 000 as. Como 10⁻¹⁵/10⁻¹⁸ = 10³, 1 fs = 1 000 as."
+  },
+  "armadilha": "Tudo depende de um único número: quantos zeros tem um bilhão (nove). As cinco alternativas estão espaçadas de 10 em 10 justamente para pegar quem erra um zero na contagem.",
+  "essencial": {
+   "pede": "O tempo de 200 femtossegundos expresso em atossegundos.",
+   "chave": "Escrever as duas unidades como potências de 10 do segundo: 1 fs vale 1 000 as.",
+   "cuidado": "Bilhão tem nove zeros (10⁹); errar um zero muda a resposta por um fator 10."
+  }
+ },
+ "E5938146": {
+  "enun": "A massa de um átomo de hidrogênio é 1,79 × 10⁻²⁴ g e a massa de um átomo de oxigênio é 2,66 × 10⁻²³ g. Uma molécula de água é formada por dois átomos de hidrogênio e um átomo de oxigênio. A massa de 10¹⁰ moléculas de água é igual a",
+  "alts": {
+   "A": "3,846 × 10⁻¹⁴ g.",
+   "B": "3,018 × 10⁻¹⁵ g.",
+   "C": "3,846 × 10⁻¹⁵ g.",
+   "D": "3,018 × 10⁻¹³ g.",
+   "E": "3,846 × 10⁻¹³ g."
+  },
+  "figura": false,
+  "antes": {
+   "texto": "Um número como 1,79 × 10⁻²⁴ está escrito em notação científica: é 1,79 multiplicado por 10 elevado a −24, ou seja, um número pequeníssimo. Para somar dois números escritos assim, os dois precisam estar com a MESMA potência de 10; só aí se somam os números da frente. Quando a vírgula do número da frente anda uma casa para a esquerda, o expoente sobe uma unidade para compensar — e quando ela anda para a direita, o expoente desce. Na multiplicação de potências de 10, os expoentes se somam.",
+   "formulas": [
+    "massa de 1 molécula de água = 2 × (massa do hidrogênio) + 1 × (massa do oxigênio)",
+    "só dá para somar com o mesmo expoente: a × 10⁻²³ + b × 10⁻²³ = (a + b) × 10⁻²³",
+    "10⁻²³ × 10¹⁰ = 10⁻¹³ (na multiplicação, os expoentes se somam: −23 + 10 = −13)"
+   ],
+   "simbolos": [
+    [
+     "10⁻²⁴",
+     "10 elevado a −24: o número 1 dividido por 10 vinte e quatro vezes seguidas"
+    ],
+    [
+     "10¹⁰",
+     "10 elevado a 10: o número 1 seguido de dez zeros, ou seja, 10 000 000 000"
+    ],
+    [
+     "×",
+     "sinal de multiplicação"
+    ],
+    [
+     "g",
+     "grama, a unidade de massa usada aqui"
+    ]
+   ]
+  },
+  "pista": "Não comece multiplicando por 10¹⁰. Ache primeiro a massa de UMA molécula de água, somando os três átomos: dois de hidrogênio e um de oxigênio. Para conseguir somar, deixe os dois valores com a mesma potência de 10 — a de expoente maior, 10⁻²³, é a mais confortável.",
+  "passos": [
+   {
+    "faz": "Monte a massa de uma molécula de água",
+    "conta": "massa de 1 molécula = 2 × 1,79 × 10⁻²⁴ g + 1 × 2,66 × 10⁻²³ g",
+    "porque": "A molécula de água tem dois átomos de hidrogênio e um de oxigênio. A massa dela é a soma das massas dos átomos que a formam, e o hidrogênio entra duas vezes justamente porque são dois átomos.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Deixe os dois valores com a mesma potência de 10",
+    "conta": "2 × 1,79 × 10⁻²⁴ = 3,58 × 10⁻²⁴ = 0,358 × 10⁻²³",
+    "porque": "Passando a vírgula uma casa para a esquerda (3,58 vira 0,358), o número da frente fica 10 vezes menor, então o expoente tem de subir uma unidade (de −24 para −23) para o valor continuar o mesmo. É a mesma massa, com outra roupa.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Some as duas massas",
+    "conta": "0,358 × 10⁻²³ g + 2,66 × 10⁻²³ g = 3,018 × 10⁻²³ g",
+    "porque": "Agora os dois têm 10⁻²³, então dá para somar só os números da frente: 0,358 + 2,66 = 3,018. A potência 10⁻²³ fica como está, igual a somar 358 gramas com 2 660 gramas e manter a unidade grama.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique pela quantidade de moléculas",
+    "conta": "3,018 × 10⁻²³ g × 10¹⁰ = 3,018 × 10⁻¹³ g",
+    "porque": "São 10¹⁰ moléculas iguais, então a massa total é 10¹⁰ vezes a massa de uma. Multiplicando potências de mesma base, os expoentes se somam: −23 + 10 = −13. O número da frente, 3,018, não muda.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D — 3,018 × 10⁻¹³ g",
+  "checagem": "Confira pela ordem de grandeza. O oxigênio sozinho já pesa 2,66 × 10⁻²³ g e os dois hidrogênios juntos pesam cerca de 0,36 × 10⁻²³ g, então uma molécula tem de ficar pouco acima de 2,66 × 10⁻²³ g — e 3,018 × 10⁻²³ g está aí. Depois, multiplicar por 10¹⁰ obriga o expoente a subir exatamente 10 unidades: de −23 para −13.",
+  "erradas": {
+   "A": "A sai de igualar os expoentes andando a vírgula para o lado errado: 2,66 × 10⁻²³ virou 0,266 × 10⁻²⁴. Daí (3,58 + 0,266) × 10⁻²⁴ = 3,846 × 10⁻²⁴, e × 10¹⁰ dá 3,846 × 10⁻¹⁴. O certo é 26,6 × 10⁻²⁴.",
+   "B": "B sai de arrumar a notação para o lado errado: a soma certa, 30,18 × 10⁻²⁴, virou 3,018 × 10⁻²⁵ (o certo é 3,018 × 10⁻²³). Daí × 10¹⁰ dá 3,018 × 10⁻¹⁵.",
+   "C": "C não confere: o 3,846 vem do erro da A (3,58 + 0,266), mas daí sai 3,846 × 10⁻²⁴ × 10¹⁰ = 3,846 × 10⁻¹⁴, não 10⁻¹⁵. O certo é 3,018 × 10⁻²³ × 10¹⁰ = 3,018 × 10⁻¹³ g.",
+   "E": "E não confere: o expoente −13 está certo, mas o número da frente não. Com os dois em 10⁻²³, 0,358 + 2,66 = 3,018, e não 3,846."
+  },
+  "armadilha": "Para somar, os dois valores precisam da mesma potência de 10, e a vírgula tem de andar para o lado certo: 3,58 × 10⁻²⁴ = 0,358 × 10⁻²³.",
+  "alerta": "",
+  "essencial": {
+   "pede": "A massa, em gramas, de 10¹⁰ moléculas de água (2 átomos de H e 1 de O).",
+   "chave": "Somar 2 H + 1 O na mesma potência de 10 (10⁻²³) e só então multiplicar por 10¹⁰.",
+   "cuidado": "Igualar os expoentes andando a vírgula para o lado certo; o hidrogênio entra duas vezes."
+  }
+ },
+ "Ea958e98": {
+  "enun": "Considere que um sinal, que viaje a velocidade da luz (300 000 km/s) leve 10 anos-luz para ir da Terra até seu destino final. Adotando-se a aproximação de que 1 ano-luz corresponde a 9,45 trilhões de quilômetros, o tempo que esse sinal leva da Terra até seu destino final, em horas, é de",
+  "alts": {
+   "A": "7,56 × 10⁵.",
+   "B": "1,82 × 10⁵.",
+   "C": "5,67 × 10⁵.",
+   "D": "8,75 × 10⁴.",
+   "E": "3,71 × 10⁵."
+  },
+  "figura": false,
+  "antes": {
+   "texto": "Ano-luz não é tempo, é distância: é o quanto a luz anda em um ano. O enunciado já entrega essa distância em quilômetros, então a questão vira uma conta de velocidade: tempo é distância dividida pela velocidade. Um trilhão é 1 000 000 000 000, ou seja, 10¹² (o 1 seguido de doze zeros), e notação científica é só o jeito de escrever esses números grandes como um número entre 1 e 10 multiplicado por uma potência de 10. Guarde desde já o pedido do enunciado: a resposta tem de sair em horas, e a divisão vai entregar segundos, porque a velocidade está em quilômetros por segundo.",
+   "formulas": [
+    "tempo = distância ÷ velocidade",
+    "1 trilhão = 1 000 000 000 000 = 10¹²",
+    "1 hora = 60 × 60 = 3 600 segundos"
+   ],
+   "simbolos": [
+    [
+     "km/s",
+     "quilômetros por segundo: quantos quilômetros o sinal anda a cada segundo"
+    ],
+    [
+     "ano-luz",
+     "distância (não tempo): o caminho que a luz percorre em um ano"
+    ],
+    [
+     "10¹³",
+     "potência de 10: o 1 seguido de treze zeros, ou seja, dez trilhões"
+    ],
+    [
+     "notação científica",
+     "escrever um número grande como um valor entre 1 e 10 vezes uma potência de 10, por exemplo 9,45 × 10¹³"
+    ]
+   ]
+  },
+  "pista": "Faça em três blocos separados: primeiro a distância total em quilômetros, depois o tempo em segundos, e só no fim a troca de segundos para horas. Não tente fazer tudo numa linha só.",
+  "passos": [
+   {
+    "faz": "Ache a distância total em quilômetros",
+    "conta": "10 × 9,45 trilhões = 94,5 trilhões = 9,45 × 10¹³ km",
+    "porque": "São 10 anos-luz e cada ano-luz vale 9,45 trilhões de quilômetros, então multiplicam-se os dois. Para escrever em notação científica: 94,5 trilhões é 94,5 × 10¹², e andando uma casa com a vírgula fica 9,45 × 10¹³.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Divida a distância pela velocidade",
+    "conta": "(9,45 × 10¹³)/(3 × 10⁵) = 3,15 × 10⁸ s",
+    "porque": "Tempo é distância dividida por velocidade. Divida em duas partes: 9,45/3 = 3,15 e, nas potências de 10, subtraem-se os expoentes: 13 − 5 = 8. Como a velocidade está em km por segundo, o resultado sai em segundos.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Converta os segundos em horas",
+    "conta": "(3,15 × 10⁸)/(3,6 × 10³) = 0,875 × 10⁵ → 0,875 × 10⁵ = 8,75 × 10⁴ h",
+    "porque": "1 hora = 60 × 60 = 3 600 s = 3,6 × 10³ s. De novo em duas partes: 3,15/3,6 = 0,875 e 8 − 3 = 5. Como 0,875 é menor que 1, a vírgula anda uma casa para a direita e o expoente cai para 4.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Confira a forma da resposta",
+    "conta": "8,75 × 10⁴ h = 87 500 h",
+    "porque": "Notação científica pede um número entre 1 e 10 na frente. 8,75 está nessa faixa, então 8,75 × 10⁴ é a forma final, e por extenso são 87 500 horas.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D — 8,75 × 10⁴ horas, ou seja, 87 500 horas",
+  "checagem": "Pense no significado: a luz leva exatamente 10 anos para vencer 10 anos-luz. Então basta transformar 10 anos em horas: 10 × 365 × 24 = 87 600 horas. Deu praticamente o mesmo 87 500 (a diferença vem do arredondamento de 9,45 trilhões), o que confirma a ordem de grandeza e o expoente 10⁴.",
+  "erradas": {
+   "A": "A não confere: o tempo é 3,15 × 10⁸ s e 1 h = 3 600 s, então (3,15 × 10⁸)/3 600 = 8,75 × 10⁴ h. 7,56 × 10⁵ é mais de 8 vezes isso.",
+   "B": "B não confere: (3,15 × 10⁸)/3 600 = 8,75 × 10⁴ h. 1,82 × 10⁵ é cerca do dobro disso.",
+   "C": "C não confere: parar nos minutos dá (3,15 × 10⁸)/60 = 5,25 × 10⁶ min, não 5,67 × 10⁵. Dividindo por 60 de novo: 8,75 × 10⁴ h.",
+   "E": "E não confere: de segundo para hora divide-se por 3 600, e (3,15 × 10⁸)/3 600 = 8,75 × 10⁴ h. 3,71 × 10⁵ é mais de 4 vezes isso."
+  },
+  "armadilha": "Dividir a distância pela velocidade dá o tempo em segundos, não em horas: ainda falta dividir por 3 600, e o expoente cai de 10⁵ para 10⁴.",
+  "alerta": "",
+  "essencial": {
+   "pede": "O tempo, em horas, que a luz leva para percorrer 10 anos-luz.",
+   "chave": "Distância ÷ velocidade dá segundos; depois dividir por 3 600 para chegar a horas.",
+   "cuidado": "3,15 ÷ 3,6 = 0,875 é menor que 1: ao ajustar a vírgula, 0,875 × 10⁵ vira 8,75 × 10⁴, e o expoente cai para 4."
+  }
+ },
+ "ca0b2984": {
+  "antes": {
+   "texto": "A estrada é um retângulo: área = largura × comprimento. Se você sabe a área total que as cigarras cobrem e sabe a largura, o comprimento sai por divisão. O cuidado é de unidade: a área de cada cigarra vem em metros quadrados e a resposta é pedida em quilômetros, então o comprimento aparece primeiro em metros e só no fim vira quilômetro.",
+   "formulas": [
+    "área do retângulo = largura × comprimento",
+    "comprimento = área ÷ largura",
+    "30 bilhões = 30 000 000 000 = 3 × 10¹⁰ e 1 km = 1 000 m"
+   ],
+   "simbolos": [
+    [
+     "m²",
+     "metro quadrado: a área de um quadrado de 1 m de lado"
+    ],
+    [
+     "7 × 10⁻⁴ m²",
+     "0,0007 m² — o expoente −4 manda a vírgula andar 4 casas para a esquerda"
+    ],
+    [
+     "N",
+     "o nome que o enunciado dá ao comprimento da estrada, em quilômetros"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Escreva a quantidade de cigarras em potência de 10",
+    "conta": "30 bilhões = 30 000 000 000 = 30 × 10⁹ = 3 × 10¹⁰ cigarras",
+    "porque": "Bilhão é 1 seguido de 9 zeros. Trinta bilhões têm um zero a mais: 10 zeros no total, por isso 3 × 10¹⁰. Esse é o número em que a questão mais derruba gente.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule a área total coberta pelas cigarras",
+    "conta": "3 × 10¹⁰ × 7 × 10⁻⁴ = 21 × 10⁶ = 2,1 × 10⁷ m²",
+    "porque": "O enunciado diz que elas ficam lado a lado, sem sobrepor, então as áreas apenas se somam: área total = número de cigarras × área de uma. Multiplicando, 3 × 7 = 21 e os expoentes se somam: 10 + (−4) = 6.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ache o comprimento em metros",
+    "conta": "(2,1 × 10⁷)/10 = 2,1 × 10⁶ m",
+    "porque": "Como área = largura × comprimento, o comprimento é a área dividida pela largura, 10 m. Dividir por 10 baixa o expoente em uma unidade.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Passe o comprimento para quilômetros",
+    "conta": "(2,1 × 10⁶)/1 000 = 2,1 × 10³ = 2 100 km",
+    "porque": "1 km = 1 000 m, então dividir por 10³ subtrai 3 do expoente: 6 − 3 = 3. Como as cigarras ocupam a estrada totalmente, o valor é exato — o 'menor valor de N' só avisa que não se deve arredondar para cima.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D — N = 2 100 km (dois mil e cem quilômetros de estrada)",
+  "checagem": "Caminho diferente, pensando por quilômetro de estrada: em 1 m² cabem 1 ÷ 0,0007 ≈ 1 430 cigarras; 1 km de estrada com 10 m de largura tem 10 000 m², ou seja, cerca de 14 milhões de cigarras por quilômetro. Dividindo a população: 30 000 000 000 ÷ 14 000 000 ≈ 2 100 km.",
+  "erradas": {
+   "A": "A sai de misturar unidades: a área 2,1 × 10⁷ m² = 21 km², dividida pela largura ainda em metros, 21/10 = 2,1. Com a largura em km (0,01 km): 21/0,01 = 2 100 km.",
+   "B": "B sai de parar na área: 2,1 × 10⁷ m² = 21 km². Isso é área, não comprimento; falta dividir pela largura de 10 m (0,01 km): 21/0,01 = 2 100 km.",
+   "C": "210 vem de escrever 30 bilhões com um zero a menos, 3 × 10⁹ em vez de 3 × 10¹⁰: 3 × 10⁹ × 7 × 10⁻⁴ = 2,1 × 10⁶ m²; dividido por 10, dá 2,1 × 10⁵ m; dividido por 1 000, dá 210 km. Repare que trinta bilhões têm 10 zeros, não 9.",
+   "E": "E sai de esquecer a largura: a área 2,1 × 10⁷ m² dividida só por 1 000 dá (2,1 × 10⁷)/1 000 = 21 000, tratando m² como metro de comprimento. Falta dividir pelos 10 m de largura."
+  },
+  "armadilha": "As cinco alternativas são o mesmo 2,1 com zeros a mais ou a menos. O que decide é escrever 30 bilhões como 3 × 10¹⁰ e fazer as duas divisões: por 10 (a largura) e por 1 000 (metro para quilômetro).",
+  "essencial": {
+   "pede": "Quantos quilômetros de estrada de 10 m de largura 30 bilhões de cigarras ocupam.",
+   "chave": "Área total ÷ largura dá o comprimento em metros; depois dividir por 1 000 para km.",
+   "cuidado": "30 bilhões é 3 × 10¹⁰ (dez zeros) e a largura de 10 m precisa entrar na conta."
+  }
+ },
+ "ac24dc12": {
+  "antes": {
+   "texto": "O prefixo G (giga) quer dizer 10⁹, isto é, um bilhão de vezes. Ele aparece duas vezes nesta questão: no Gtep dos dados e no GWh da resposta. O tep é uma unidade de energia e o enunciado já entrega a ponte: 1 tep = 1,2 × 10⁷ Wh. Como a pergunta é a diferença entre dois consumos, subtraia primeiro e converta uma vez só.",
+   "formulas": [
+    "prefixo G (giga) = 10⁹ = 1 000 000 000",
+    "1 tep = 1,2 × 10⁷ Wh (dado do enunciado)",
+    "para passar de Wh para GWh, divide-se por 10⁹"
+   ],
+   "simbolos": [
+    [
+     "Gtep",
+     "giga tonelada equivalente de petróleo: 10⁹ tep"
+    ],
+    [
+     "Wh",
+     "watt-hora, uma medida de energia"
+    ],
+    [
+     "GWh",
+     "gigawatt-hora: 10⁹ Wh, ou seja, um bilhão de watt-hora"
+    ],
+    [
+     "1,2 × 10⁷",
+     "12 000 000 — o expoente 7 manda a vírgula andar 7 casas para a direita"
+    ],
+    [
+     "mantissa",
+     "o número que fica na frente do '× 10' na notação científica: em 1,2 × 10⁷ a mantissa é 1,2"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Subtraia os dois consumos",
+    "conta": "10,3 − 3,3 = 7,0 Gtep",
+    "porque": "Os dois valores já estão na mesma unidade (Gtep), então dá para subtrair direto, sem converter nada ainda. Convertendo depois da subtração, você faz a conversão uma única vez.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Troque o prefixo G por 10⁹",
+    "conta": "7,0 Gtep = 7,0 × 10⁹ tep",
+    "porque": "Giga significa multiplicar por um bilhão. A equivalência do enunciado vale para 1 tep, então é preciso saber de quantos tep se trata.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Use a equivalência para chegar a Wh",
+    "conta": "7,0 × 10⁹ × 1,2 × 10⁷ = 8,4 × 10¹⁶ Wh",
+    "porque": "Multiplicam-se os números da frente (7,0 × 1,2 = 8,4) e somam-se os expoentes (9 + 7 = 16). Esse número está em watt-hora, que ainda não é o que a questão pede.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Volte de Wh para GWh",
+    "conta": "(8,4 × 10¹⁶)/10⁹ = 8,4 × 10⁷ GWh",
+    "porque": "1 GWh = 10⁹ Wh, então o número fica menor: dividir por 10⁹ subtrai 9 do expoente, 16 − 9 = 7.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C — 8,4 × 10⁷ GWh (84 milhões de gigawatt-hora)",
+  "checagem": "Mesmo resultado por um atalho que nunca passa por Wh: converta primeiro a unidade, 1 tep = 1,2 × 10⁷ Wh = 1,2 × 10⁻² GWh (ou seja, 0,012 GWh); depois multiplique pela quantidade: 7 × 10⁹ × 1,2 × 10⁻² = 8,4 × 10⁷ GWh. Dois caminhos diferentes chegando ao mesmo expoente 7.",
+  "erradas": {
+   "A": "A não confere: fica 10⁴ vezes abaixo do certo. A diferença é 7 × 10⁹ tep × 1,2 × 10⁷ Wh = 8,4 × 10¹⁶ Wh; dividindo por 10⁹, 8,4 × 10⁷ GWh.",
+   "B": "8,4 × 10⁵ fica 10² vezes abaixo do certo. Em Wh a diferença é 8,4 × 10¹⁶; passar para GWh é dividir só por 10⁹, o que dá 8,4 × 10⁷.",
+   "D": "D não confere: 8,4 × 10⁹ GWh seriam 8,4 × 10¹⁸ Wh, 100 vezes mais que os 8,4 × 10¹⁶ Wh da conta (7 × 10⁹ × 1,2 × 10⁷).",
+   "E": "E não confere: 8,4 × 10¹¹ GWh seriam 8,4 × 10²⁰ Wh, 10⁴ vezes mais que os 8,4 × 10¹⁶ Wh da conta."
+  },
+  "armadilha": "O 8,4 é o mesmo nas cinco alternativas: a questão testa se você desconta exatamente nove zeros (10⁹) ao passar de Wh para GWh.",
+  "essencial": {
+   "pede": "A diferença de energia entre os dois tipos de transporte, em GWh.",
+   "chave": "Subtrair em Gtep, converter a Wh com 1,2 × 10⁷ e dividir por 10⁹ para chegar a GWh.",
+   "cuidado": "Giga são nove zeros; a mantissa 8,4 é igual em todas as alternativas e só o expoente decide."
+  }
+ },
+ "P6707c42": {
+  "antes": {
+   "texto": "Um número primo é um número inteiro maior que 1 que tem exatamente dois divisores: o 1 e ele mesmo. Dividir um primo por qualquer outro número sempre deixa resto. Aqui você não precisa provar nada: a questão pede a única frase correta entre cinco. Para derrubar uma frase do tipo “todo número tal é assim”, é suficiente achar um único número que desobedece a ela.",
+   "formulas": [
+    "primo: exatamente 2 divisores positivos, o 1 e ele mesmo",
+    "para testar se N é primo, divida N por 2, 3, 5, 7, 11, 13... enquanto o divisor ao quadrado não passar de N"
+   ],
+   "simbolos": [
+    [
+     "contraexemplo",
+     "um único caso que desobedece a frase e, com isso, prova que ela é falsa"
+    ],
+    [
+     "2ⁿ (2 elevado a n)",
+     "o 2 multiplicado por ele mesmo n vezes: 2¹ = 2, 2² = 4, 2³ = 8, 2⁴ = 16"
+    ],
+    [
+     "n ∈ ℕ",
+     "lê-se “n pertence aos naturais”: n é um número natural, ou seja, 0, 1, 2, 3, 4, ..."
+    ]
+   ]
+  },
+  "pista": "Não tente provar as cinco frases. Em quatro delas você só precisa achar um número que desobedece. Comece pela letra A pensando no menor primo de todos, e deixe a letra D por último, porque nela você vai precisar listar os números de 25 a 35.",
+  "passos": [
+   {
+    "faz": "Derrube a letra A com o número 2",
+    "conta": "divisores de 2: 1 e 2 → 2 é par e primo",
+    "porque": "O 2 é par e mesmo assim é primo, porque ter exatamente dois divisores é a definição de primo. Um único número fora da regra já torna falsa a frase “todos os primos são ímpares”.",
+    "tipo": "eliminar"
+   },
+   {
+    "faz": "Derrube a letra B mostrando que os primos não acabam",
+    "conta": "2 × 3 × 5 × 7 × 11 × 13 + 1 = 30 031",
+    "porque": "30 031 deixa resto 1 na divisão por cada primo da lista, então tem um fator primo fora dela. Isso vale para qualquer lista, mesmo com 7 trilhões de primos: os primos não acabam.",
+    "tipo": "eliminar"
+   },
+   {
+    "faz": "Derrube a letra C testando n = 3",
+    "conta": "2³ + 1 = 8 + 1 = 9 e 9 = 3 × 3",
+    "porque": "A frase diz “todo número da forma 2ⁿ + 1”. Com n = 3 ela produz 9, que tem três divisores (1, 3 e 9) e por isso não é primo. Um caso contrário derruba o “todo”.",
+    "tipo": "eliminar"
+   },
+   {
+    "faz": "Teste a letra D listando os números entre 24 e 36",
+    "conta": "25 = 5 × 5 ; 26 par ; 27 = 3 × 9 ; 28 par ; 29 primo ; 30 par ; 31 primo ; 32 par ; 33 = 3 × 11 ; 34 par ; 35 = 5 × 7",
+    "porque": "“Entre 24 e 36” quer dizer de 25 até 35, sem contar as pontas. Sobraram exatamente 29 e 31. Para ter certeza de que esses dois são primos, testam-se 2, 3 e 5 (nenhum divide) e para-se por aí: o próximo divisor a testar seria 7, e 7 × 7 = 49 já passa de 35, então não há mais divisor possível.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Derrube a letra E fatorando o 143",
+    "conta": "143 ÷ 11 = 13, ou seja, 143 = 11 × 13",
+    "porque": "O 143 tem quatro divisores (1, 11, 13 e 143), então não é primo. Ele engana porque passa nos testes fáceis: não é par, não termina em 0 nem em 5, e 1 + 4 + 3 = 8 não é múltiplo de 3.",
+    "tipo": "eliminar"
+   }
+  ],
+  "resposta": "Alternativa D — entre 24 e 36 existem somente 2 números primos, que são 29 e 31.",
+  "checagem": "Conte de outro jeito, por eliminação: na lista de 25 a 35, risque os pares (26, 28, 30, 32, 34), os múltiplos de 3 (27, 30, 33) e os múltiplos de 5 (25, 35). Sobram 29 e 31 — dois números, como diz a alternativa D. Repare ainda que 29 e 31 são primos gêmeos, com o 30 no meio.",
+  "erradas": {
+   "A": "Quem raciocina “número par é divisível por 2, logo nenhum par pode ser primo” esquece o próprio 2: ele é par e tem exatamente dois divisores, 1 e 2, então é primo. O 2 é o único primo par — e é justamente esse número que aparece na camiseta de um dos personagens da tira.",
+   "B": "7 trilhões é um número tão grande que parece um teto seguro. Mas qualquer teto é falso: pegue todos os primos até certo ponto, multiplique-os e some 1; o número que aparece não é divisível por nenhum deles, então existe primo fora da lista. Os primos são infinitos.",
+   "C": "Quem testa só n = 1, n = 2 e n = 4 vê 2¹ + 1 = 3, 2² + 1 = 5 e 2⁴ + 1 = 17, todos primos, e generaliza. Faltou testar n = 3: 2³ + 1 = 9, e 9 = 3 × 3 não é primo.",
+   "E": "O 143 passa nos três testes rápidos (não é par, não termina em 0 nem em 5, e a soma dos algarismos 1 + 4 + 3 = 8 não é múltiplo de 3), então parece primo. Quem para nesses três testes marca E. Faltou dividir por 11 e por 13: 11 × 13 = 143."
+  },
+  "armadilha": "Dois números enganam nesta questão: o 2, que é par e primo ao mesmo tempo e derruba a letra A, e o 143, que parece primo porque escapa dos testes de 2, 3 e 5, mas é 11 × 13.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "Qual afirmação sobre números primos é verdadeira.",
+   "chave": "Achar um contraexemplo para A, B, C e E e listar os números de 25 a 35 para testar D.",
+   "cuidado": "O 2 é primo e par; o 143 parece primo, mas é 11 × 13; 2ⁿ + 1 falha em n = 3."
+  }
+ },
+ "P5fdfcdb": {
+  "antes": {
+   "texto": "Número primo é o número maior que 1 que só pode ser dividido por 1 e por ele mesmo. Os primeiros são 2, 3, 5, 7, 11, 13. O enunciado inventa uma operação nova, chamada primorial, e já explica o que ela faz: multiplicar todos os primos de 2 até n. Então aqui você não precisa de nenhuma fórmula de fora; precisa saber listar primos e multiplicar.",
+   "formulas": [
+    "n# = produto de todos os números primos menores que ou iguais a n",
+    "6# = 2 × 3 × 5 = 30"
+   ],
+   "simbolos": [
+    [
+     "n#",
+     "primorial de n: o resultado de multiplicar todos os números primos que são menores que ou iguais a n"
+    ],
+    [
+     "≤",
+     "menor que ou igual a"
+    ]
+   ]
+  },
+  "pista": "Não tente adivinhar o n certo de cara. Vá construindo a lista de primos em ordem (2, 3, 5, 7, 11...) e multiplicando um de cada vez, anotando cada resultado parcial. Pare na primeira vez que o produto passar de 2 000.",
+  "passos": [
+   {
+    "faz": "Liste os primos em ordem",
+    "conta": "2, 3, 5, 7, 11, 13, ...",
+    "porque": "O primorial só usa primos. Os números 4, 6, 8, 9 e 10 ficam de fora porque têm outros divisores além de 1 e deles mesmos: 4 = 2 × 2, 9 = 3 × 3.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Multiplique acumulando, primo por primo",
+    "conta": "2# = 2 → 3# = 2 × 3 = 6",
+    "porque": "Cada primorial novo é o primorial anterior multiplicado pelo próximo primo. Assim você reaproveita a conta em vez de recomeçar do zero a cada vez.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Continue até ultrapassar 2 000",
+    "conta": "6 × 5 = 30 → 30 × 7 = 210 → 210 × 11 = 2 310",
+    "porque": "Esses três resultados são 5#, 7# e 11#. Como cada passo multiplica por um número maior que 1, a sequência só cresce. Por isso a primeira vez que ela passa de 2 000 já dá o menor valor possível.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Confirme que o primorial anterior não serve",
+    "conta": "210 < 2 000 < 2 310",
+    "porque": "210 é o maior primorial que ainda fica abaixo de 2 000, e entre 210 e 2 310 não existe nenhum outro primorial. Logo 2 310 é mesmo o menor que passa de 2 000.",
+    "tipo": "comparar"
+   }
+  ],
+  "resposta": "Alternativa C — 2 310, que é o primorial de 11 (2 × 3 × 5 × 7 × 11)",
+  "checagem": "Teste os divisores. Um primorial de 11 tem de ser divisível por 2, 3, 5, 7 e 11 ao mesmo tempo. 2 310 é par, termina em 0 (logo é múltiplo de 5), a soma dos algarismos 2 + 3 + 1 + 0 = 6 é múltiplo de 3, 2 310 ÷ 7 = 330 e 330 ÷ 11 = 30. Fecha tudo.",
+  "erradas": {
+   "A": "2 300 não tem o fator 3 (2 + 3 + 0 + 0 = 5), e todo primorial a partir de 3# tem. O menor acima de 2 000 é 11# = 2 310.",
+   "B": "2 305 é ímpar, e todo primorial tem o fator 2. Como 7# = 210, o menor acima de 2 000 é 11# = 2 310.",
+   "D": "2 312 não termina em 0 nem em 5, e todo primorial a partir de 5# tem o fator 5. O menor acima de 2 000 é 11# = 2 310.",
+   "E": "2 322 não termina em 0 nem em 5, e todo primorial a partir de 5# tem o fator 5. O menor acima de 2 000 é 11# = 2 310."
+  },
+  "armadilha": "Achar que n# multiplica todos os números de 2 até n. Ele multiplica só os primos, e por isso vários valores diferentes de n dão o mesmo primorial: 7#, 8#, 9# e 10# valem todos 210.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "O menor primorial (produto dos primos até n) maior que 2 000.",
+   "chave": "Multiplicar os primos em ordem, acumulando, até o produto passar de 2 000.",
+   "cuidado": "O primorial multiplica só os primos, não todos os números até n; vários n dão o mesmo valor."
+  }
+ },
+ "4b7f4c04": {
+  "antes": {
+   "texto": "Rastrear um fluxograma é fazer o papel do computador: anotar o valor de cada variável e refazer a conta a cada volta, sem pular nenhuma e sem adiantar. Aqui há três variáveis, m, n e i, e o i serve só para contar voltas de um tipo. A operação que aparece é o resto da divisão: o que sobra quando se divide um número por outro.",
+   "formulas": [
+    "m mod n = resto da divisão de m por n",
+    "em cada volta muda só o que a seta manda mudar; as outras variáveis ficam com o valor anterior"
+   ],
+   "simbolos": [
+    [
+     "m mod n",
+     "o resto da divisão de m por n: 32 mod 7 = 4, porque 32 = 7 × 4 + 4"
+    ],
+    [
+     "i",
+     "um contador: variável que soma 1 cada vez que o fluxograma passa por um caminho específico"
+    ],
+    [
+     "≥",
+     "maior ou igual a"
+    ],
+    [
+     "→",
+     "passagem de uma volta para a seguinte"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Anote os valores de partida e os dois caminhos do teste",
+    "conta": "m = 32 ; n = 7 ; i = 0",
+    "porque": "Do Início vai direto para m = m mod n e depois para \"m = 0?\": sim, acaba; não, soma 3 no m, 1 no n e 1 no i. Em seguida \"m ≥ n?\": sim, volta ao resto; não, soma de novo. O i só muda na caixa dos aumentos.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Faça as três primeiras voltas",
+    "conta": "m = 32 mod 7 = 4 ; 4 = 0? não → m = 7, n = 8, i = 1 ; 7 ≥ 8? não → m = 10, n = 9, i = 2",
+    "porque": "Siga as setas do desenho: depois do resto vem \"m = 0?\"; depois dos aumentos vem \"m ≥ n?\". O i só ganha 1 na caixa dos aumentos.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Continue até m e n empatarem",
+    "conta": "10 ≥ 9? sim → m = 10 mod 9 = 1 ; 1 = 0? não → m = 4, n = 10, i = 3 ; 4 ≥ 10? não → m = 7, n = 11, i = 4 ; 7 ≥ 11? não → m = 10, n = 12, i = 5 ; 10 ≥ 12? não → m = 13, n = 13, i = 6",
+    "porque": "Nas voltas dos aumentos o m cresce de 3 em 3 e o n de 1 em 1, então eles se aproximam até ficarem iguais. Nesse trecho o i subiu de 2 para 6, uma unidade por passagem nos aumentos.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Resolva a volta final",
+    "conta": "13 ≥ 13? sim → m = 13 mod 13 = 0 ; 0 = 0? sim → Fim",
+    "porque": "Com m igual a n o teste manda para o resto, e 13 = 13 × 1 + 0, resto 0. O caminho do resto não mexe no i, e \"m = 0? sim\" encerra o fluxograma.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Leia o valor final do contador",
+    "conta": "i = 6",
+    "porque": "Com m = 0 o fluxograma encerra. O último valor registrado no i é 6, que é o número de voltas em que o teste deu falso.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C — o valor final de i é 6.",
+  "checagem": "Conte por outro lado: o i só sobe nas voltas falsas, e exatamente nessas voltas o n também sobe de 1 em 1. O n saiu de 7 e terminou em 13, então houve 13 − 7 = 6 voltas falsas, ou seja, i = 6. Nenhuma tabela precisa ser relida.",
+  "erradas": {
+   "A": "Vem de somar 1 também na volta final, aquela em que m vira 0 e o fluxograma para. Nessa volta o caminho percorrido é o do resto (m = 13 mod 13), e esse caminho não mexe no contador.",
+   "B": "Vem de tratar as voltas do resto como se também contassem: às 6 voltas falsas somam-se as duas voltas em que o resto foi calculado antes do fim, 32 mod 7 e 10 mod 9. Essas duas voltas mudam o m e não o i.",
+   "D": "Vem de interromper o rastreamento quando o m repete um valor já visto — ele volta a valer 7 quando n = 11, e nesse ponto i = 4 — achando que o fluxograma entrou em repetição sem fim. Não entrou: o n continua crescendo e o empate m = n = 13 chega.",
+   "E": "Vem de parar uma volta antes do fim, na linha m = 10, n = 12, i = 5, esquecendo a última volta falsa que ainda falta, a que leva a m = 13, n = 13 e i = 6, antes do resto final."
+  },
+  "armadilha": "Nem toda volta soma 1 no contador. O i só cresce no caminho do teste falso; nas voltas em que se calcula o resto ele fica parado, inclusive na última, que é a que encerra o fluxograma.",
+  "essencial": {
+   "pede": "O valor final de i ao término do fluxograma.",
+   "chave": "Rastrear m, n e i volta a volta; o i só sobe na caixa dos aumentos, nas voltas em que o teste dá 'não'.",
+   "cuidado": "A última volta, m = 13 mod 13 = 0, só calcula o resto e não soma 1 em i."
+  }
+ },
+ "Pb462d0a": {
+  "antes": {
+   "texto": "Esta questão inventa uma função na hora e já te ensina o que ela faz: E(n) conta quantos números menores do que n não têm nenhum divisor em comum com n além do 1. Você não precisa conhecer essa função de antes. Precisa só saber o que é máximo divisor comum e saber reconhecer um número primo. A chave é esta: se n é primo, nenhum número menor que ele o divide, então todos os n − 1 números anteriores contam.",
+   "formulas": [
+    "E(n) = quantidade de números de 1 até n − 1 cujo mdc com n é igual a 1",
+    "se p é primo, então E(p) = p − 1"
+   ],
+   "simbolos": [
+    [
+     "mdc",
+     "máximo divisor comum — o maior número que divide os dois ao mesmo tempo sem deixar resto"
+    ],
+    [
+     "mdc igual a 1",
+     "os dois números não têm nenhum divisor em comum a não ser o 1; dizemos que eles são primos entre si"
+    ],
+    [
+     "número primo",
+     "número maior que 1 que só pode ser dividido por 1 e por ele mesmo: 2, 3, 5, 7, 11, 13, 17, 19, 23"
+    ],
+    [
+     "E(n)",
+     "a função definida no próprio enunciado, chamada função de Euler"
+    ]
+   ]
+  },
+  "pista": "Antes de sair contando de 1 em 1 seis vezes, olhe quais dos números de 20 a 25 são primos. Para um número primo, nenhum número menor do que ele consegue dividi-lo. Pense no que isso faz com a contagem.",
+  "passos": [
+   {
+    "faz": "Procure o primo entre 20 e 25",
+    "conta": "20 = 2 × 10 ; 21 = 3 × 7 ; 22 = 2 × 11 ; 24 = 2 × 12 ; 25 = 5 × 5 ; 23 é primo",
+    "porque": "23 não é divisível por 2, 3 nem 5 (e 5 × 5 = 25 já passa de 23), então é primo.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Calcule E(23)",
+    "conta": "E(23) = 23 − 1 = 22",
+    "porque": "Como 23 é primo, nenhum número de 1 a 22 tem divisor comum com ele: todos os 22 contam.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule os outros cinco para comparar",
+    "conta": "E(20) = 19 − 9 − 2 = 8 ; E(21) = 20 − 6 − 2 = 12 ; E(22) = 21 − 10 − 1 = 10 ; E(24) = 23 − 11 − 4 = 8 ; E(25) = 24 − 4 = 20",
+    "porque": "Dos n − 1 números menores, tire os que têm fator comum com n, sem contar nenhum duas vezes. Em 21: os 6 múltiplos de 3 e os 2 de 7 (7 e 14). Em 24: os 11 pares e os múltiplos ímpares de 3 (3, 9, 15, 21).",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Compare os seis valores e escolha o maior",
+    "conta": "E(23) = 22 ; E(25) = 20 ; E(21) = 12 ; E(22) = 10 ; E(20) = E(24) = 8 → o maior é 22",
+    "porque": "A pergunta é o valor máximo de E(n), não o n que o produz.",
+    "tipo": "comparar"
+   }
+  ],
+  "resposta": "Alternativa C — 22 (o máximo acontece em n = 23, com E(23) = 22)",
+  "checagem": "Existe um teto para cada E(n): como só existem n − 1 números menores do que n, nunca se pode passar de n − 1. O teto de 25 é 24 e o de 24 é 23, mas esses dois números têm divisores de sobra (2, 3 e 5), então ficam bem abaixo do teto. Já 23, por ser primo, alcança o próprio teto, 22. E 22 é maior que qualquer valor que 24 e 25 conseguem atingir de fato (8 e 20).",
+  "erradas": {
+   "A": "A sai de usar a regra do primo em n = 20: 20 − 1 = 19. Mas 20 = 2 × 2 × 5 não é primo e E(20) = 8. O máximo é E(23) = 22.",
+   "B": "Esse é exatamente E(25) = 20. Cai aqui quem supõe que o maior n da faixa dá o maior E: dos 24 números menores que 25, apenas os múltiplos de 5 (5, 10, 15 e 20) têm divisor em comum, e 24 − 4 = 20. O número é certo, mas é o máximo do n errado: em n = 23 sai 22, que é maior.",
+   "D": "Aplicar a regra do primo, E(n) = n − 1, no maior n da faixa: 25 − 1 = 24. Só que 25 = 5 × 5 não é primo, e os quatro múltiplos de 5 abaixo dele estragam a contagem, derrubando o resultado de 24 para 20.",
+   "E": "Responder com o próprio n em vez da contagem: contar de 1 até 25 incluindo o 25. O enunciado pede números menores do que n, então o 25 não pode entrar, e para n primo o máximo possível já seria n − 1."
+  },
+  "armadilha": "Achar que o maior n da faixa dá o maior E(n); só um primo chega ao teto n − 1, e o único primo de 20 a 25 é 23.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "O maior valor de E(n) para n de 20 a 25.",
+   "chave": "Só um primo alcança o teto n − 1; o único primo da faixa é 23, com E(23) = 22.",
+   "cuidado": "Não pegue o maior n: 25 não é primo e E(25) = 20."
+  }
+ },
+ "Pe1791cf": {
+  "antes": {
+   "texto": "Um paralelepípedo reto retângulo é simplesmente uma caixa de cantos retos. Encher essa caixa com cubinhos todos iguais só funciona se a aresta do cubinho couber um número inteiro de vezes em cada uma das três medidas da caixa. Ou seja: a aresta tem de ser um divisor comum de 60, de 24 e de 18 ao mesmo tempo. E usar poucos cubos é a mesma coisa que usar cubos grandes, então você vai procurar o maior divisor comum dos três números.",
+   "formulas": [
+    "volume da caixa = comprimento × largura × altura",
+    "volume do cubo = aresta × aresta × aresta = a³",
+    "quantidade de cubos = volume da caixa ÷ volume do cubo"
+   ],
+   "simbolos": [
+    [
+     "MDC",
+     "máximo divisor comum — o maior número que divide dois ou mais números deixando resto zero"
+    ],
+    [
+     "a³",
+     "a elevado ao cubo, ou seja a × a × a"
+    ],
+    [
+     "cm³",
+     "centímetro cúbico, a unidade de volume: o espaço ocupado por um cubinho de 1 cm de aresta"
+    ]
+   ]
+  },
+  "pista": "Chame a aresta do cubinho de a. Antes de qualquer conta, responda: quanto maior for a, mais cubos ou menos cubos você precisa? Depois pergunte quais valores de a fazem o cubinho caber certinho nas três medidas, sem sobrar pedaço nem precisar cortar.",
+  "passos": [
+   {
+    "faz": "Traduza a frase menor quantidade possível",
+    "conta": "",
+    "porque": "O volume da caixa é sempre o mesmo. Se cada cubo for maior, cabem menos cubos lá dentro. Então pedir a menor quantidade de cubos é pedir o maior cubo possível. Essa troca é o coração da questão.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Descubra quais arestas são possíveis",
+    "conta": "60 = 2² × 3 × 5     24 = 2³ × 3     18 = 2 × 3²",
+    "porque": "Para preencher sem sobra, a aresta a tem de dividir 60, 24 e 18 exatamente. Quebrando cada número em fatores primos, dá para ver o que os três têm em comum: um fator 2 e um fator 3.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Tome o maior divisor comum como aresta",
+    "conta": "a = MDC (60; 24; 18) = 2 × 3 = 6 cm",
+    "porque": "O 2 aparece nos três (o 18 só tem um 2, então só vale um 2) e o 3 aparece nos três (o 60 e o 24 só têm um 3, então só vale um 3). O 5 não está em todos. Logo o maior divisor comum é 6.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte os cubos em cada medida",
+    "conta": "60/6 = 10 ; 24/6 = 4 ; 18/6 = 3 → 10 × 4 × 3 = 120 cubos",
+    "porque": "Em cada medida cabem medida/aresta cubos em fila; o total é o produto das três fileiras.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E — 120 cubos, cada um com 6 cm de aresta",
+  "checagem": "Conte por camadas, sem usar volume: ao longo dos 60 cm cabem 60 ÷ 6 = 10 cubos; ao longo dos 24 cm cabem 24 ÷ 6 = 4; ao longo dos 18 cm cabem 18 ÷ 6 = 3. Multiplicando as três contagens: 10 × 4 × 3 = 120. Os dois caminhos dão o mesmo número, e todas as divisões deram inteiro, o que confirma que o cubo de 6 cm encaixa sem sobra.",
+  "erradas": {
+   "A": "60 cubos teriam (60 × 24 × 18)/60 = 25 920/60 = 432 cm³ cada, e 432 não é cubo perfeito (7³ = 343, 8³ = 512). Com aresta 6, são 10 × 4 × 3 = 120.",
+   "B": "B sai de trocar MDC por MMC: MMC(60, 24, 18) = 360, e o volume da caixa, 60 × 24 × 18 = 25 920, dividido por 360 dá 72. Mas a aresta tem de dividir as três medidas, e 360 cm nem cabe na caixa.",
+   "C": "Usa aresta 6 nas duas primeiras medidas e divide o 18 por 9, chegando a 10 × 4 × 2 = 80. O 9 divide o 18, mas não divide 60 nem 24 — a aresta tem de servir para as três medidas ao mesmo tempo.",
+   "D": "96 cubos teriam (60 × 24 × 18)/96 = 25 920/96 = 270 cm³ cada, e 270 não é cubo perfeito. Com aresta 6 = MDC(60, 24, 18), são 10 × 4 × 3 = 120."
+  },
+  "armadilha": "Menos cubos quer dizer cubos maiores, e o maior cubo que encaixa nas três medidas é dado pelo MDC — não pelo MMC, que é o erro de quem confunde os dois nomes.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "O menor número de cubos idênticos de aresta natural que formam o bloco de 60 × 24 × 18 cm.",
+   "chave": "Menos cubos pede o maior cubo: aresta = MDC(60; 24; 18) = 6 cm; depois dividir os volumes.",
+   "cuidado": "É MDC, não MMC; a aresta tem de dividir as três medidas ao mesmo tempo, não só duas."
+  }
+ },
+ "72fdc10b": {
+  "antes": {
+   "texto": "1a79b não é uma multiplicação. São os cinco algarismos de um número, nessa ordem: 1, depois o algarismo escondido a, depois 7, depois 9, e por último o algarismo b. Cada letra pode valer de 0 a 9, o que daria 100 pares para testar um por um. Os critérios de divisibilidade cortam esses 100 casos em poucos.",
+   "formulas": [
+    "divisível por 15 = divisível por 3 e por 5 ao mesmo tempo",
+    "divisível por 5: o último algarismo é 0 ou 5",
+    "divisível por 3: a soma dos algarismos é múltiplo de 3"
+   ],
+   "simbolos": [
+    [
+     "1a79b",
+     "um número de cinco algarismos; a e b são algarismos escondidos, cada um podendo ser 0, 1, 2, ... até 9"
+    ],
+    [
+     "N",
+     "a quantidade de números que servem — é isso que a questão pede, e não quais são eles"
+    ],
+    [
+     "múltiplo de 3",
+     "número que cai na tabuada do 3: 3, 6, 9, 12, 15, 18, ...; dizer que um número é múltiplo de 3 é o mesmo que dizer que a divisão dele por 3 não deixa resto"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Quebre o 15 em dois critérios",
+    "conta": "15 = 3 × 5",
+    "porque": "O 3 e o 5 não têm fator comum além do 1. Quando isso acontece, ser divisível pelo produto é o mesmo que ser divisível pelos dois separadamente. Então o número tem de passar nos dois testes de uma vez.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Use o critério do 5 para fechar o b",
+    "conta": "b = 0 ou b = 5",
+    "porque": "O critério do 5 olha somente o algarismo das unidades, que aqui é o b. De 0 a 9, só o 0 e o 5 servem. Sobraram dois casos a estudar separadamente.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva a soma dos algarismos",
+    "conta": "1 + a + 7 + 9 + b = 17 + a + b",
+    "porque": "O critério do 3 não olha o número, olha a soma dos seus algarismos. Somando os algarismos já conhecidos (1 + 7 + 9 = 17), sobra 17 + a + b.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Resolva o caso b = 0",
+    "conta": "17 + a múltiplo de 3 → a = 1 (soma 18), a = 4 (soma 21), a = 7 (soma 24)",
+    "porque": "Com a indo de 0 a 9, a soma 17 + a varia de 17 até 26. Os múltiplos de 3 nesse trecho são 18, 21 e 24, que correspondem a três valores de a.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Resolva o caso b = 5",
+    "conta": "17 + a + 5 = 22 + a múltiplo de 3 → a = 2 (soma 24), a = 5 (soma 27), a = 8 (soma 30)",
+    "porque": "Agora a soma varia de 22 até 31. Os múltiplos de 3 nesse trecho são 24, 27 e 30, que correspondem a outros três valores de a.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Some os dois casos",
+    "conta": "N = 3 + 3 = 6",
+    "porque": "Os casos b = 0 e b = 5 não se misturam, porque um número não termina em 0 e em 5 ao mesmo tempo. Então as quantidades se somam. Os seis números são 11 790, 14 790, 17 790, 12 795, 15 795 e 18 795.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D — 6 números.",
+  "checagem": "Pegue um número de cada caso e divida por 15 para ver se fecha exato: 11 790 ÷ 15 = 786 e 18 795 ÷ 15 = 1 253. Outro sinal de coerência: dentro de cada caso os valores de a andam de 3 em 3 (1, 4, 7 e depois 2, 5, 8), que é o esperado quando a condição é sobre múltiplos de 3.",
+  "erradas": {
+   "A": "15 é o divisor do enunciado, não uma contagem. O b só pode ser 0 ou 5, e cada um aceita 3 valores de a: 2 × 3 = 6 números.",
+   "B": "B sai de juntar os 6 valores de a (1, 4, 7, 2, 5, 8) e multiplicar pelas 2 opções de b: 6 × 2 = 12. Mas a = 1, 4, 7 só servem com b = 0 e a = 2, 5, 8 só com b = 5: são 3 + 3 = 6.",
+   "C": "9 não confere. O critério do 5 deixa só b = 0 ou b = 5, e cada um aceita 3 valores de a: 2 × 3 = 6.",
+   "E": "Vem de parar no critério do 5: contam-se as duas opções de b (0 e 5) e esquece-se que, com o b fixado, ainda sobram três valores de a que fazem a soma dos algarismos ser múltipla de 3."
+  },
+  "armadilha": "A pergunta é quantos, não quais. E as duas condições se combinam: o critério do 5 escolhe o b, mas é o critério do 3 que multiplica por 3 o número de respostas.",
+  "essencial": {
+   "pede": "Quantos números 1a79b, de cinco algarismos, são divisíveis por 15.",
+   "chave": "Divisível por 15 é por 3 e por 5: b vale 0 ou 5 e, para cada b, a soma 17 + a + b deixa 3 valores de a.",
+   "cuidado": "Os casos b = 0 e b = 5 se somam sem se repetir; dobrar ou multiplicar 3 × 3 erra a contagem."
+  }
+ },
+ "10a1dc7e": {
+  "antes": {
+   "texto": "Uma escala '12 × 36' não é uma multiplicação. É um jeito de escrever: o funcionário trabalha 12 horas seguidas e depois descansa 36 horas seguidas. O que se repete, de novo e de novo, é o pacote inteiro trabalho + descanso. Esse pacote é o ciclo do funcionário, e é o tamanho do ciclo que interessa aqui.",
+   "formulas": [
+    "ciclo = horas de trabalho + horas de descanso",
+    "um dia = 24 h",
+    "MMC: fatore cada número em primos e pegue o maior expoente de cada primo"
+   ],
+   "simbolos": [
+    [
+     "12 × 36",
+     "escala de trabalho: 12 horas trabalhando e depois 36 horas de descanso; aqui o × não é multiplicação"
+    ],
+    [
+     "MMC",
+     "mínimo múltiplo comum — o menor número que é múltiplo de todos eles ao mesmo tempo"
+    ],
+    [
+     "número primo",
+     "número maior que 1 que só é divisível por 1 e por ele mesmo: 2, 3, 5, 7, 11, 13, 17, ..."
+    ],
+    [
+     "2⁴",
+     "o 2 multiplicado por si mesmo 4 vezes: 2 × 2 × 2 × 2 = 16"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Ache o ciclo de cada funcionário",
+    "conta": "12 + 36 = 48 h ; 18 + 36 = 54 h ; 24 + 48 = 72 h",
+    "porque": "O funcionário só volta a começar o trabalho depois de trabalhar E descansar. Então o que se repete é a soma das duas partes, não a jornada sozinha.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Entenda o que é 'começar juntos de novo'",
+    "conta": "primeiro: 48, 96, 144, 192, ... ; segundo: 54, 108, 162, ... ; terceiro: 72, 144, 216, ... → a primeira hora que aparece nas três listas é o MMC (48, 54, 72)",
+    "porque": "Eles só recomeçam juntos numa hora que esteja nas três listas; a primeira hora assim é o MMC dos três ciclos.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Fatore os três ciclos em primos",
+    "conta": "48 = 2⁴ × 3 ; 54 = 2 × 3³ ; 72 = 2³ × 3²",
+    "porque": "Fatorar é reescrever o número só como multiplicação de primos. Com os primos à vista, o MMC sai sem precisar listar múltiplos até achar o encontro.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte o MMC pegando o maior expoente de cada primo",
+    "conta": "MMC = 2⁴ × 3³ = 16 × 27 = 432 h",
+    "porque": "Para ser múltiplo de 48, o número precisa conter os 2⁴ do 48. Para ser múltiplo de 54, precisa conter os 3³ do 54. Pegar o maior expoente de cada primo garante as duas coisas e nada além disso, ou seja, dá o menor número que serve.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Troque horas por dias",
+    "conta": "432 ÷ 24 = 18 dias",
+    "porque": "A pergunta é em dias e um dia tem 24 h. Dividir por 24 é contar quantos blocos de 24 h cabem dentro das 432 h.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D — 18 dias, que são 432 horas.",
+  "checagem": "Confira se os três fecham conta exata em 432 h: 432 ÷ 48 = 9 ciclos do primeiro, 432 ÷ 54 = 8 ciclos do segundo e 432 ÷ 72 = 6 ciclos do terceiro. Três divisões sem sobra: é o sinal de que, na hora 432, os três estão começando um ciclo novo.",
+  "erradas": {
+   "A": "A usa o 54, o ciclo do segundo funcionário em horas, como se fosse a resposta em dias. Os três só recomeçam juntos no MMC(48, 54, 72) = 432 h = 18 dias.",
+   "B": "Vem de achar as 432 h certas e dividir pelas 12 h da jornada do primeiro em vez das 24 h do dia: 432 ÷ 12 = 36. A passagem de hora para dia usa sempre o 24.",
+   "C": "24 dias são 576 h, e 576 não é múltiplo de 54 (576 ÷ 54 ≈ 10,7): o segundo funcionário está no meio do ciclo. O primeiro encontro é em 432 h.",
+   "E": "Vem de tirar o MMC só de 48 e 72 e esquecer o 54: MMC(48, 72) = 144 h e 144 ÷ 24 = 6 dias. Mas na hora 144 o segundo funcionário está no meio do ciclo, porque 144 ÷ 54 ≈ 2,67 não é divisão exata."
+  },
+  "armadilha": "A escala 12 × 36 convida a usar só o 12 ou só o 36; o número que manda é a soma 48, porque é o pacote trabalho + descanso que se repete.",
+  "essencial": {
+   "pede": "Depois de quantos dias os três funcionários voltam a começar o trabalho juntos.",
+   "chave": "O que se repete é trabalho + descanso: ciclos de 48, 54 e 72 h; o MMC é 432 h.",
+   "cuidado": "Usar só o 12 ou só o 36 da escala; e passar de horas a dias dividindo por 24, não por 12."
+  }
+ },
+ "P038cd4b": {
+  "antes": {
+   "texto": "A frase \"candidatos por vaga\" é uma divisão disfarçada: pega o total de pessoas inscritas e divide pelo número de vagas. Como é uma média, ela pode dar número quebrado, mesmo não existindo meio candidato. O detalhe que decide a questão: abrir vagas novas não traz nem tira candidatos. O total de inscritos já está fechado desde que as inscrições terminaram.",
+   "formulas": [
+    "candidatos por vaga = total de candidatos ÷ número de vagas",
+    "total de candidatos = candidatos por vaga × número de vagas"
+   ],
+   "simbolos": [
+    [
+     "÷",
+     "sinal de divisão"
+    ],
+    [
+     "15,5 candidatos por vaga",
+     "é uma média; o número quebrado vem de uma divisão, não de meio candidato de verdade"
+    ]
+   ]
+  },
+  "pista": "O enunciado te dá a divisão já feita (15,5) e o divisor (120 vagas). Para descobrir quantas pessoas se inscreveram, desfaça a divisão antes de qualquer outra coisa.",
+  "passos": [
+   {
+    "faz": "Volte ao total de candidatos",
+    "conta": "15,5 × 120 = 1 860",
+    "porque": "15,5 candidatos por vaga vezes 120 vagas devolve o total de inscritos.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Some as vagas novas",
+    "conta": "120 + 30 = 150",
+    "porque": "Só o número de vagas muda; os candidatos continuam os mesmos.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Refaça a divisão com as vagas novas",
+    "conta": "1 860 ÷ 150 = 12,4",
+    "porque": "Candidatos por vaga é candidatos divididos por vagas, agora 150 vagas.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C — 12,4 candidatos por vaga",
+  "checagem": "Multiplique de volta: 12,4 × 150 = 1 860, exatamente o total de inscritos do começo. E o sentido bate: o mesmo bolo de candidatos dividido entre mais vagas tem de dar menos candidatos por vaga, então o resultado precisa ser menor que 15,5.",
+  "erradas": {
+   "A": "Somou as 30 vagas também ao total de candidatos, como se cada vaga nova trouxesse um inscrito: 1 860 + 30 = 1 890 e 1 890 ÷ 150 = 12,6.",
+   "B": "Descontou 30 do total de candidatos, imaginando que as 30 vagas novas \"tiraram\" 30 pessoas da fila: 1 860 − 30 = 1 830 e 1 830 ÷ 150 = 12,2.",
+   "D": "Arredondou 15,5 para 15 antes de multiplicar, perdendo 60 candidatos: 15 × 120 = 1 800 e 1 800 ÷ 150 = 12,0.",
+   "E": "11,8 não confere: os candidatos são 15,5 × 120 = 1 860, e 1 860 ÷ 150 = 12,4."
+  },
+  "armadilha": "Achar que abrir mais vagas muda o número de candidatos. O total de inscritos está congelado; só o divisor da conta aumenta.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "Candidatos por vaga depois que o número de vagas aumenta.",
+   "chave": "Desfaça a divisão para achar os 1 860 inscritos e divida pelas 150 vagas novas.",
+   "cuidado": "Abrir vagas não muda o total de inscritos; só o divisor da conta aumenta."
+  }
+ },
+ "Ecacd283": {
+  "enun": "Uma fábrica de sorvetes vendeu, em certa manhã, 200 litros de sorvete de chocolate e 320 litros de sorvete de baunilha. Na tarde do mesmo dia, o total de litros vendidos desses dois sabores superou o total vendido pela manhã em 110 litros, de maneira que, nessa tarde, a razão entre os números de litros de sorvete de chocolate e de baunilha vendidos foi igual a 2/5. O número de litros de sorvete de baunilha vendido nessa tarde foi igual a",
+  "alts": {
+   "A": "490.",
+   "B": "570.",
+   "C": "530.",
+   "D": "610.",
+   "E": "450."
+  },
+  "figura": false,
+  "antes": {
+   "texto": "Quando o enunciado diz que a razão entre duas quantidades é 2/5, ele está dizendo o seguinte: para cada 2 litros de chocolate existem 5 litros de baunilha. O jeito mais seguro de usar isso é pensar em partes iguais: o chocolate ocupa 2 partes e a baunilha ocupa 5 partes, todas do mesmo tamanho. Chame esse tamanho de k, assim o chocolate é 2k, a baunilha é 5k e o total é 7k. A outra ideia necessária é mais simples: superar um total em 110 litros significa somar 110 a esse total.",
+   "formulas": [
+    "razão entre chocolate e baunilha igual a 2/5 significa chocolate = 2k e baunilha = 5k",
+    "total = 2k + 5k = 7k",
+    "baunilha = 5 × k"
+   ],
+   "simbolos": [
+    [
+     "razão 2/5 (dois para cinco)",
+     "para cada 2 litros de chocolate há 5 litros de baunilha"
+    ],
+    [
+     "k",
+     "o tamanho de uma parte, em litros; é o número que multiplica o 2 e o 5"
+    ]
+   ]
+  },
+  "pista": "Primeiro descubra quantos litros foram vendidos na tarde: é a manhã inteira mais 110. Depois pense nessa tarde como um bolo cortado em 2 + 5 = 7 fatias do mesmo tamanho e chame de k o tamanho de uma fatia.",
+  "passos": [
+   {
+    "faz": "Some o que foi vendido pela manhã",
+    "conta": "200 + 320 = 520 L",
+    "porque": "Manhã: 200 L de chocolate mais 320 L de baunilha.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ache o total vendido na tarde",
+    "conta": "520 + 110 = 630 L",
+    "porque": "Superar em 110 L é vender 110 L a mais que os 520 L da manhã.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Corte os 630 litros em 7 partes iguais",
+    "conta": "2k + 5k = 7k = 630 → k = 630 ÷ 7 = 90 L",
+    "porque": "A razão 2/5 diz que o chocolate vale 2 partes e a baunilha vale 5 partes, todas do mesmo tamanho k. Juntas, essas 7 partes têm de dar exatamente o total da tarde, que são 630 L.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Pegue as 5 partes que são da baunilha",
+    "conta": "5 × 90 = 450 L",
+    "porque": "A pergunta é só sobre a baunilha, que fica com 5 das 7 partes, e cada parte vale 90 L. O chocolate ficaria com 2 × 90 = 180 L.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E — 450 litros de sorvete de baunilha (e 180 litros de chocolate)",
+  "checagem": "Volte com os dois valores achados e teste as duas exigências do enunciado: 180 + 450 = 630, que é mesmo o total da tarde; e 180 ÷ 450 = 0,4, que é igual a 2 ÷ 5 = 0,4. As duas condições batem ao mesmo tempo.",
+  "erradas": {
+   "A": "Com 490 L de baunilha, sobram 630 − 490 = 140 L de chocolate à tarde, e 140 : 490 = 2 : 7, não 2 : 5.",
+   "B": "Com 570 L de baunilha, sobram 630 − 570 = 60 L de chocolate à tarde, e 60 : 570 = 2 : 19, não 2 : 5.",
+   "C": "Com 530 L de baunilha, sobram 630 − 530 = 100 L de chocolate à tarde, e 100 : 530 = 10 : 53, longe de 2 : 5.",
+   "D": "Parou no meio do caminho e somou no lugar errado: achou o tamanho da parte, k = 90, e fez 520 + 90 = 610 em vez de multiplicar 90 por 5. O k sozinho é uma fatia; a baunilha são cinco delas."
+  },
+  "armadilha": "A razão 2/5 vale para a tarde, não para a manhã. É preciso atualizar o total para 630 litros antes de dividir em partes; quem aplica a razão sobre os 520 litros da manhã já começa errado.",
+  "alerta": "",
+  "essencial": {
+   "pede": "Litros de sorvete de baunilha vendidos na tarde.",
+   "chave": "Total da tarde: 520 + 110 = 630 L, repartido em 2 + 5 = 7 partes iguais de 90 L.",
+   "cuidado": "A razão 2/5 vale para a tarde, não para a manhã: atualize o total antes de dividir em partes."
+  }
+ },
+ "a49f1684": {
+  "antes": {
+   "texto": "Medir salário 'em salários mínimos' é só trocar a unidade: divide-se o valor em reais pelo salário mínimo da época. Mil reais, com mínimo de 465 reais, são 1 000 ÷ 465 salários mínimos. Depois vem a segunda parte da questão, que é de leitura: os dados de 2009 vêm em três faixas que não se sobrepõem, e cada alternativa fala de 'até' ou de 'acima de' um limite. Somar as faixas certas é o que decide a resposta.",
+   "formulas": [
+    "valor em salários mínimos = valor em reais ÷ salário mínimo",
+    "'acima de um limite' = soma das faixas que ficam acima dele",
+    "as três faixas somam 100 %"
+   ],
+   "simbolos": [
+    [
+     "%",
+     "por cento: 84 % quer dizer 84 de cada 100 jogadores"
+    ],
+    [
+     "até X",
+     "inclui todos os valores que não passam de X"
+    ],
+    [
+     "acima de X",
+     "exclui o X e tudo o que está abaixo dele"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Converta os limites em salários mínimos",
+    "conta": "1 000/465 ≈ 2,15 → 9 000/465 ≈ 19,35",
+    "porque": "Um mínimo valia 465 reais; quantos mínimos cabem é dividir por 465.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Reescreva as faixas de 2009",
+    "conta": "84 % até 2,15 ; 13 % entre 2,15 e 19,35 ; 3 % acima de 19,35",
+    "porque": "Só o nome dos limites muda; as porcentagens são as mesmas.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Some as faixas de cada leitura",
+    "conta": "acima de 2,15: 13 % + 3 % = 16 % → até 19,35: 84 % + 13 % = 97 %",
+    "porque": "'Acima de' soma as faixas de cima; 'até' soma as de baixo.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Compare com as alternativas",
+    "conta": "16 % acima de 2,15 → alternativa B",
+    "porque": "É a única que junta o valor certo com o limite e a preposição certos.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B — 16 % recebiam acima de 2,15 salários mínimos.",
+  "checagem": "Confira pelo complemento: se 16 % recebem acima de 2,15 salários mínimos, então 100 % − 16 % = 84 % recebem até 2,15 — que é exatamente a faixa dos que recebem até 1 000 reais no texto. E a conversão também se confirma de volta: 2,15 × 465 ≈ 1 000 reais.",
+  "erradas": {
+   "A": "Troca 'até' por 'acima de' no limite de cima. Os 97 %, que são 84 % + 13 %, correspondem a quem recebe até 19,35 salários mínimos. Acima de 19,35 estão apenas 3 %.",
+   "C": "Acerta o valor 16 %, que é 13 % + 3 %, mas prende esse valor ao limite errado. Esses 16 % são os que recebem acima de 2,15 salários mínimos; até 19,35 salários mínimos estão 97 %.",
+   "D": "Usa os 3 % com o sentido invertido. Os 3 % são os que recebem acima de 9 000 reais, ou seja, acima de 19,35 salários mínimos, e não até esse valor — faixa que reúne 97 % dos jogadores.",
+   "E": "Soma 84 % + 13 % = 97 % corretamente, mas cola o resultado no limite de baixo. Até 2,15 salários mínimos estão 84 % ; os 97 % correspondem a até 19,35 salários mínimos."
+  },
+  "armadilha": "'Até' e 'acima de' decidem quais faixas somar: as alternativas grudam 16 % e 97 % nos limites errados.",
+  "alerta": "A alternativa d) sai impressa na própria prova como ',3% recebiam até 19,35 salários mínimos': falta o algarismo antes da vírgula, e ela deve ser lida como 3 %, a faixa dos que recebem acima de 9 000 reais. Isso não muda o gabarito oficial, que é B.",
+  "essencial": {
+   "pede": "Qual afirmação sobre os salários de 2009 está certa, com os limites expressos em salários mínimos.",
+   "chave": "Divida 1 000 e 9 000 por 465 (2,15 e 19,35) e some faixas vizinhas conforme 'até' ou 'acima de'.",
+   "cuidado": "Os números 16 % e 97 % aparecem colados nos limites errados; 'até' e 'acima de' decidem quais faixas somam."
+  }
+ },
+ "ef1a1d02": {
+  "antes": {
+   "texto": "Razão 2:3 não quer dizer '2 litros e 3 litros'. Quer dizer que o total foi cortado em pedaços do mesmo tamanho: 2 pedaços são de uma coisa e 3 são da outra, 5 pedaços no total. Quando você descobre quanto vale 1 pedaço, descobre as duas quantidades de verdade. Para a razão nova, você escreve a situação final como uma fração e iguala à razão pedida.",
+   "formulas": [
+    "número de partes = soma dos termos da razão (2 + 3 = 5)",
+    "valor de 1 parte = total/número de partes",
+    "a/b = c/d → a × d = b × c (multiplicação em cruz)"
+   ],
+   "simbolos": [
+    [
+     "2:3 (razão)",
+     "para cada 2 unidades da primeira coisa existem 3 da segunda; a ordem em que os nomes aparecem no texto manda na ordem dos números"
+    ],
+    [
+     "N",
+     "a letra que representa o que a questão pede: o número de litros de álcool a acrescentar"
+    ],
+    [
+     "→",
+     "'leva a', 'então'"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Divida o total em partes iguais",
+    "conta": "2 + 3 = 5 partes; 50 ÷ 5 = 10 L em cada parte",
+    "porque": "A razão 2:3 não dá quantidades, dá proporção. O que ela garante é que os 50 L cabem em 5 partes do mesmo tamanho: 2 delas de gasolina e 3 de álcool.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ache as duas quantidades de hoje",
+    "conta": "gasolina = 2 × 10 = 20 L; álcool = 3 × 10 = 30 L",
+    "porque": "Cada parte vale 10 L, então multiplique esse valor pelo número de partes de cada combustível. Confirmando que nada se perdeu: 20 + 30 = 50 L, o que o tanque tem.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva como fica depois do acréscimo",
+    "conta": "gasolina = 20 L (não muda); álcool = 30 + N",
+    "porque": "O enunciado só acrescenta álcool. Então a gasolina continua 20 L e a única coisa que cresce é o álcool, que passa de 30 L para 30 + N litros.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte a equação da razão nova",
+    "conta": "20/(30 + N) = 1/3",
+    "porque": "'Razão de gasolina e álcool, nessa ordem, igual a 1:3' manda pôr a gasolina em cima e o álcool embaixo, e esse quociente tem de valer um terço.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique em cruz e isole N",
+    "conta": "3 × 20 = 1 × (30 + N) → 60 = 30 + N → N = 60 − 30 = 30 → alternativa C",
+    "porque": "A multiplicação em cruz tira as frações; depois o 30 passa para o outro lado subtraindo.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C — N = 30 litros de álcool",
+  "checagem": "Substitua de volta: com N = 30 o álcool fica 30 + 30 = 60 L e a gasolina continua 20 L; 60 ÷ 20 = 3, ou seja 20 : 60 é mesmo 1 : 3. Dá para conferir por outro caminho também: na razão final 1:3 a gasolina é 1 parte de 1 + 3 = 4 partes; como a gasolina é 20 L, o tanque final tem 4 × 20 = 80 L, e 80 − 50 = 30 L foi o que entrou.",
+  "erradas": {
+   "A": "Lê 1:3 como 'a gasolina é 1 terço do total'. Aí o tanque final teria 3 × 20 = 60 L e o acréscimo seria 60 − 50 = 10 L. Mas 1:3 significa 1 parte contra 3 partes, isto é 1 de 4 do total. Testando o 10: o álcool ficaria 40 L e 20 : 40 é 1 : 2, não 1 : 3.",
+   "B": "20 L é a gasolina que já está no tanque, não o acréscimo. Com 20 L de álcool a mais, ficam 20 : 50 = 2 : 5, e não 1 : 3.",
+   "D": "Acha certo que o álcool final tem de ser 3 × 20 = 60 L, mas subtrai o número errado: faz 60 − 20 (a gasolina) em vez de 60 − 30 (o álcool que já estava lá). Testando o 40: o álcool ficaria 70 L e 20 : 70 é 2 : 7.",
+   "E": "Divide os 50 L em dois pedaços iguais (25 L e 25 L) em vez de usar a razão 2:3. Com 25 L de gasolina o álcool final teria de ser 3 × 25 = 75 L, logo 75 − 25 = 50 L de acréscimo. Mas a gasolina não é 25 L, é 20 L."
+  },
+  "armadilha": "'Nessa ordem' manda em tudo: 1:3 é um de gasolina para três de álcool, e é 1 parte de 4 do total, não 1 terço.",
+  "essencial": {
+   "pede": "Litros de álcool a acrescentar para a razão gasolina : álcool passar de 2:3 para 1:3.",
+   "chave": "A gasolina fica em 20 L e o álcool vira 30 + N; a nova razão dá 20/(30 + N) = 1/3.",
+   "cuidado": "'Nessa ordem' manda: 1:3 é gasolina para álcool, e a gasolina é 1 parte de 4 do total, não 1 terço."
+  }
+ },
+ "P7a272fd": {
+  "antes": {
+   "texto": "Duas grandezas são proporcionais quando uma é sempre igual à outra multiplicada por um mesmo número fixo. O enunciado diz que o consumo de calorias é proporcional à área da superfície do corpo: se a área ficar 2 vezes maior, o consumo também fica 2 vezes maior. Então o caminho é achar a área do animal agora, achar a área quando a massa dobrar, e ver quantas vezes a área cresceu. Quem entrega essas duas áreas é o gráfico, não uma fórmula.",
+   "formulas": [
+    "C = k × A (consumo = número fixo × área)",
+    "C₂/C₁ = A₂/A₁"
+   ],
+   "simbolos": [
+    [
+     "C",
+     "consumo calórico diário, medido em kcal (quilocaloria, a unidade de energia dos alimentos)"
+    ],
+    [
+     "A",
+     "área superficial do corpo, medida em m² (metro quadrado)"
+    ],
+    [
+     "k",
+     "constante de proporcionalidade: o número fixo que multiplica a área para dar o consumo"
+    ],
+    [
+     "A₁ e A₂",
+     "a área no primeiro caso (massa 3,5 kg) e no segundo caso (massa dobrada)"
+    ]
+   ]
+  },
+  "pista": "Marque no eixo horizontal a massa 3,5 kg e suba até a curva: anote a área. Depois faça o mesmo com o dobro da massa, 7 kg. No fim, não compare as massas uma com a outra — compare as duas áreas.",
+  "passos": [
+   {
+    "faz": "Leia no gráfico a área da massa de 3,5 kg",
+    "conta": "A₁ ≈ 0,14 m²",
+    "porque": "Em 3,5 kg (entre 3 e 4) suba até a curva e leia no eixo vertical. O consumo com essa área é o dado: 250 kcal.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Dobre a massa e leia a nova área",
+    "conta": "2 × 3,5 kg = 7 kg → A₂ ≈ 0,22 m²",
+    "porque": "Dobrar é multiplicar por 2. Em 7 kg a curva passa na primeira linha fina acima de 0,2, isto é, 0,22 m² (cada linha fina vale 0,02). Repare no que acabou de acontecer: a área NÃO dobrou, porque 2 × 0,14 = 0,28 e a leitura deu 0,22.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Monte a proporção entre consumo e área",
+    "conta": "C₂/250 = 0,22/0,14",
+    "porque": "Como C = k × A nos dois casos, dividir um pelo outro cancela o k: C₂/C₁ = A₂/A₁.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Calcule quantas vezes a área cresceu",
+    "conta": "0,22/0,14 ≈ 1,571",
+    "porque": "Esse número é o fator de crescimento: a área nova é 1,571 vez a área antiga. Como o consumo acompanha a área, ele cresce no mesmo fator.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique o consumo antigo por esse fator",
+    "conta": "250 × 1,571 ≈ 392,9 → ≈ 390 kcal → alternativa D",
+    "porque": "O consumo novo é o antigo vezes o fator da área; 392,9 é aproximadamente 390.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D — aproximadamente 390 kcal por dia",
+  "checagem": "Dá para conferir sem dividir. Metade de 0,14 é 0,07, então 1,5 × 0,14 = 0,21. Como a área nova (0,22) é um pouquinho maior que 0,21, o consumo tem de ser um pouquinho maior que 1,5 × 250 = 375 kcal — e bem menor que o dobro, 500 kcal. Só 390 cabe nessa faixa.",
+  "erradas": {
+   "A": "130 kcal seria menos que os 250 iniciais, mas a área cresce de 0,14 para 0,22 m². O consumo vai a 250 × 0,22 ÷ 0,14 ≈ 393 kcal.",
+   "B": "250 kcal manteria a área fixa. O gráfico mostra a área indo de 0,14 para 0,22 m², e 250 × 0,22 ÷ 0,14 ≈ 393 kcal.",
+   "C": "310 kcal exigiria razão de áreas 1,24. Pelo gráfico ela é 0,22 ÷ 0,14 ≈ 1,57, e 250 × 1,57 ≈ 393 kcal.",
+   "E": "Dobrou o consumo junto com a massa: 2 × 250 = 500. É a pegadinha central da questão. O consumo é proporcional à ÁREA, e a área não dobra quando a massa dobra: ela vai de 0,14 m² para 0,22 m², um crescimento de 1,57 vez, não de 2 vezes."
+  },
+  "armadilha": "Dobrar a massa não dobra a área: a curva do gráfico vai ficando mais deitada, e por isso o consumo cresce só cerca de 1,57 vez.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "Novo consumo diário de energia quando a massa dobra, lendo as duas áreas no gráfico.",
+   "chave": "Consumo é proporcional à área: C₂/250 = A₂/A₁, com A₁ ≈ 0,14 e A₂ ≈ 0,22 lidas no gráfico.",
+   "cuidado": "Dobrar a massa não dobra a área: o consumo cresce cerca de 1,57 vez, e não 2 vezes."
+  }
+ },
+ "E04f8565": {
+  "antes": {
+   "texto": "Duas grandezas são diretamente proporcionais quando uma é sempre o mesmo número de vezes a outra: se o comprimento dobra, a frequência dobra junto. Aqui o enunciado diz que a extensão de cada palavra é diretamente proporcional à frequência dela nas canções. Então basta descobrir quantas vezes a palavra 'mundo' é mais comprida que a palavra 'azul' e multiplicar a frequência do 'azul' por esse mesmo número.",
+   "formulas": [
+    "diretamente proporcional: frequência ÷ comprimento dá sempre o mesmo valor",
+    "1 cm corresponde a 1,5 %, então x cm correspondem a x × 1,5 %"
+   ],
+   "simbolos": [
+    [
+     "%",
+     "por cento: a cada 100 canções, em quantas a palavra aparece"
+    ],
+    [
+     "cm",
+     "centímetro"
+    ],
+    [
+     "diretamente proporcional",
+     "quando uma grandeza dobra, a outra dobra junto; quando uma triplica, a outra triplica"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Leia a régua da figura",
+    "conta": "azul = 1 cm ; trecho seguinte = 3,5 cm",
+    "porque": "A barra sob 'mundo' vai da primeira à última letra e está partida em dois trechos: 1 cm, o tamanho de 'azul', e 3,5 cm.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Some os dois pedaços da barra",
+    "conta": "1 + 3,5 = 4,5 cm",
+    "porque": "A barra inteira é a palavra 'mundo'; como 'azul' mede 1 cm, 'mundo' é 4,5 vezes mais comprida.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Aplique a proporção às frequências",
+    "conta": "frequência de 'mundo' = 4,5 × 1,5 %",
+    "porque": "Comprimento e frequência são diretamente proporcionais: 4,5 vezes mais comprida, 4,5 vezes mais frequente.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Faça a multiplicação em duas partes",
+    "conta": "4 × 1,5 = 6 → 0,5 × 1,5 = 0,75 → 6 + 0,75 = 6,75 % → alternativa D",
+    "porque": "Quebrar o 4,5 em 4 mais 0,5 evita erro de vírgula.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D — 6,75 % das canções",
+  "checagem": "Faça o caminho de volta. Se 4,5 cm correspondem a 6,75 %, então 1 cm corresponde a 6,75 ÷ 4,5 = 1,5 %, que é exatamente o valor que o enunciado deu para 'azul'. Outro conferidor rápido: 'mundo' é um pouco menos que 5 vezes 'azul', e 5 × 1,5 % = 7,5 %, então a resposta tem que ser um pouco abaixo de 7,5 %.",
+  "erradas": {
+   "A": "Usa só o trecho destacado da régua: 3,5 × 1,5 % = 5,25 %. Mas o 3,5 é apenas o pedaço que sobra depois do tamanho do 'azul'; a palavra 'mundo' inteira mede 1 + 3,5 = 4,5 cm.",
+   "B": "2,75 % pediria uma palavra de 2,75 ÷ 1,5 ≈ 1,83 cm. 'Mundo' mede 1 + 3,5 = 4,5 cm, o que dá 4,5 × 1,5 % = 6,75 %.",
+   "C": "7,00 % não confere: pediria 'mundo' com 7/1,5 ≈ 4,67 cm, e a barra mede 1 + 3,5 = 4,5 cm.",
+   "E": "3,00 % não confere: pediria 'mundo' com 2 cm, o dobro de 'azul'; a barra mede 1 + 3,5 = 4,5 cm, e 4,5 × 1,5 % = 6,75 %."
+  },
+  "armadilha": "A régua marca 1 e 3,5 em pedaços separados: o trecho de 1 cm faz parte da palavra 'mundo' e precisa entrar na soma.",
+  "essencial": {
+   "pede": "A frequência da palavra 'mundo' nas canções, sabendo que 'azul' aparece em 1,5%.",
+   "chave": "Somar os dois trechos da barra (1 + 3,5 = 4,5 cm) e multiplicar por 1,5%, pois 'azul' mede 1 cm.",
+   "cuidado": "O 3,5 é só parte da palavra: o trecho de 1 cm também é de 'mundo' e entra na soma."
+  }
+ },
+ "E109d981": {
+  "antes": {
+   "texto": "A questão define viabilidade como a porcentagem de células vivas dentro do total observado, e o total observado é vivas mais mortas. Dizer que a viabilidade é 40 % é dizer que vivas divididas por (vivas mais mortas) dá 0,4. Essa única equação amarra V e M numa proporção fixa. Como os dois têm que ser números inteiros, o truque é escrever os dois como múltiplos de um mesmo inteiro k e depois contar quantos valores de k cabem nos limites dados.",
+   "formulas": [
+    "V ÷ (V + M) = 0,4",
+    "dessa igualdade sai M = 1,5 × V, ou seja, V = 2k e M = 3k",
+    "quantidade de inteiros de a até b = b − a + 1"
+   ],
+   "simbolos": [
+    [
+     "V",
+     "número de células vivas"
+    ],
+    [
+     "M",
+     "número de células mortas"
+    ],
+    [
+     "(V, M)",
+     "par ordenado: a dupla de valores; cada dupla diferente conta como uma possibilidade"
+    ],
+    [
+     "k",
+     "número inteiro auxiliar, inventado para gerar todos os pares de uma vez só"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Escreva os 40 % como equação",
+    "conta": "V/(V + M) = 0,4",
+    "porque": "Viabilidade é a porcentagem de vivas no total observado, e o total é vivas mais mortas: o denominador é V + M.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Isole a relação entre V e M",
+    "conta": "V = 0,4 × (V + M) → V − 0,4V = 0,4M → 0,6V = 0,4M → M = 1,5 × V",
+    "porque": "O denominador passa multiplicando; juntando os termos com V, as mortas são sempre uma vez e meia as vivas.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Force os dois a serem inteiros",
+    "conta": "V = 2k e M = 3k, com k inteiro",
+    "porque": "M = 1,5 × V só dá número inteiro quando V é par. Escrevendo V = 2k, sai M = 1,5 × 2k = 3k. Assim, cada valor inteiro de k gera exatamente um par (V, M) válido, e todos os pares válidos aparecem desse jeito.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Use a condição 'mais do que 70 células vivas'",
+    "conta": "2k > 70 → k > 35 → k ≥ 36",
+    "porque": "Mais do que 70 exclui o próprio 70. Como k é inteiro, o primeiro valor depois de 35 é 36, que dá V = 72.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Use o limite de 1 200 células",
+    "conta": "V + M = 2k + 3k = 5k ≤ 1 200 → k ≤ 1 200/5 → k ≤ 240",
+    "porque": "Ao pé da letra o teto seria só das mortas: 3k ≤ 1 200 dá k ≤ 400 e 365 pares, que não está nas alternativas. O gabarito aplica o teto ao total observado (vivas + mortas): 5k ≤ 1 200. O maior k é 240 (V = 480, M = 720).",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte os inteiros de 36 até 240",
+    "conta": "240 − 36 + 1 = 205",
+    "porque": "A subtração 240 − 36 conta os passos de um número até o outro, não os números. Somar 1 inclui o próprio 36 na contagem. Cada k desses gera um par (V, M) diferente, então há 205 pares.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C — 205 pares ordenados (V, M)",
+  "checagem": "Teste as duas pontas. Com k = 36: V = 72 e M = 108, total 180, e 72 ÷ 180 = 0,4, com 72 maior que 70 — vale. Com k = 240: V = 480 e M = 720, total 1 200, e 480 ÷ 1 200 = 0,4 — vale, no limite. Um k a menos (35) daria V = 70, que não é 'mais do que 70'; um k a mais (241) daria total 1 205, acima do teto.",
+  "erradas": {
+   "A": "206 é o que sai se você começar a contagem em k = 35, isto é, aceitar V = 70. O enunciado pede mais do que 70 células vivas, então o 70 fica de fora e o primeiro k válido é 36.",
+   "B": "204 é 240 − 36, a subtração sem o +1. Essa conta mede quantos passos existem de 36 até 240, mas a pergunta é quantos números existem nesse intervalo, e aí o próprio 36 precisa ser contado.",
+   "D": "207 sai de esticar as duas pontas ao mesmo tempo: contar de 35 até 241, ou seja, 241 − 35 + 1 = 207. Isso aceita um par com V = 70 (que o enunciado proíbe) e outro com 1 205 células (acima do teto).",
+   "E": "208 é a mesma contagem de D com mais um valor indevido na ponta de baixo (de 34 até 241 dá 241 − 34 + 1 = 208). Cada valor a mais nas pontas quebra uma das duas condições do enunciado."
+  },
+  "armadilha": "'Mais do que 70' deixa o 70 de fora, e contar os inteiros de 36 a 240 exige somar 1. Atenção: o gabarito aplica o teto de 1 200 ao total de células (vivas + mortas); só com as mortas daria 365, fora das alternativas.",
+  "alerta": "Há uma divergência de leitura no enunciado, e ela é importante. A condição 3 diz, ao pé da letra, 'não há mais do que 1 200 células MORTAS no total', o que daria 3k ≤ 1 200, ou seja, k ≤ 400 e, com k de 36 a 400, 365 pares — resultado que não aparece em nenhuma alternativa. O valor 205 do gabarito oficial só aparece se o teto de 1 200 for aplicado ao TOTAL de células observadas (vivas mais mortas), isto é, 5k ≤ 1 200 e k ≤ 240. A resolução acima segue a leitura do gabarito oficial, que é C. Se esta questão cair de novo, vale sublinhar a quem o limite de 1 200 se refere antes de contar.",
+  "essencial": {
+   "pede": "Contar os pares (V, M) inteiros que respeitam os 40 % de células vivas e os dois limites do enunciado.",
+   "chave": "40 % vira M = 1,5 × V, logo V = 2k e M = 3k; conte os valores de k entre 36 e 240.",
+   "cuidado": "Divergência registrada: o gabarito aplica o teto de 1 200 ao total, e não só às mortas. 'Mais de 70' exclui o 70."
+  }
+ },
+ "d6e49c70": {
+  "antes": {
+   "texto": "A fórmula do índice não compara salários sozinhos: compara massas de rendimento, isto é, quantidade de pessoas vezes rendimento médio. Os rendimentos de 2013 estão no gráfico que a prova dá antes da questão 3. O 1 da fórmula transforma 'quanto as mulheres recebem em relação aos homens' em 'quanto falta para a igualdade'.",
+   "formulas": [
+    "CDRS = 1 − (M × RM)/(H × RH)",
+    "(M × RM)/(H × RH) = (M/H) × (RM/RH)"
+   ],
+   "simbolos": [
+    [
+     "CDRS",
+     "nome que a própria questão inventa: Coeficiente de Desigualdade do Rendimento entre os Sexos; 0 significa nenhuma desigualdade e 1 significa desigualdade plena"
+    ],
+    [
+     "M e H",
+     "número de mulheres e número de homens da região"
+    ],
+    [
+     "RM e RH",
+     "média mensal dos rendimentos das mulheres e a dos homens"
+    ],
+    [
+     "≈",
+     "aproximadamente igual a"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Separe a parte das pessoas",
+    "conta": "M/H = 1 200 000/1 000 000 = 1,2",
+    "porque": "(M × RM)/(H × RH) = (M/H) × (RM/RH). Separar deixa números pequenos: há 1,2 mulher para cada homem.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Leia no gráfico os rendimentos de 2013",
+    "conta": "RM = 1 410 e RH = 2 022",
+    "porque": "A pergunta é sobre 2013, então entram os rendimentos médios mensais desse ano, do gráfico que a prova dá antes da questão 3.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Compare os dois rendimentos",
+    "conta": "RM/RH = 1 410/2 022 ≈ 0,697",
+    "porque": "A mulher recebe, em média, cerca de 70 % do que recebe o homem.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Junte com a parte das pessoas",
+    "conta": "1,2 × 0,697 ≈ 0,837",
+    "porque": "É o valor de (M × RM)/(H × RH): a massa de rendimento das mulheres é cerca de 0,837 da dos homens.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Aplique a fórmula do índice",
+    "conta": "CDRS = 1 − 0,837 ≈ 0,163 → CDRS ≈ 0,16 → alternativa B",
+    "porque": "O 1 representa a igualdade plena; o que falta para chegar a ela é o CDRS.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B — CDRS ≈ 0,16",
+  "checagem": "Estimativa de cabeça, sem lápis: a mulher recebe cerca de 0,7 do que o homem recebe e há 1,2 mulher por homem; 0,7 × 1,2 = 0,84, então falta 0,16 para fechar em 1. O resultado também passa no teste de sentido que o próprio enunciado dá: o CDRS tem de ficar entre 0 e 1 e, havendo desigualdade mas não plena, perto de 0.",
+  "erradas": {
+   "A": "0,12 exigiria (M × RM)/(H × RH) = 0,88. Com os dados de 2013 ela vale 1,2 × 0,697 ≈ 0,837, e o CDRS fica em 0,163.",
+   "C": "0,20 exigiria RM/RH ≈ 0,67, para a razão total dar 1,2 × 0,67 ≈ 0,80. O valor de 2013 é 1 410/2 022 ≈ 0,697.",
+   "D": "0,24 exigiria (M × RM)/(H × RH) = 0,76. Ela vale 1,2 × 0,697 ≈ 0,837, mais que isso, então o CDRS é menor.",
+   "E": "E sai de ignorar as quantidades de pessoas e usar só os rendimentos: 1 − 1 410/2 022 ≈ 0,30, e a mais próxima é 0,28. A fórmula pede M × RM e H × RH."
+  },
+  "armadilha": "A fórmula compara massas de rendimento (quantidade de pessoas × rendimento médio); esquecer o 1,2 que vem das mulheres quase dobra o resultado.",
+  "essencial": {
+   "pede": "O valor aproximado do CDRS da região metropolitana de BH em 2013.",
+   "chave": "Separar em (M ÷ H) × (RM ÷ RH): 1,2 vezes a razão das médias de rendimento, e subtrair o produto de 1.",
+   "cuidado": "Usar só RM ÷ RH ignora o 1,2 das pessoas e leva a 0,28; arredondar grosso no meio da conta troca a 2.ª casa."
+  },
+  "alerta": "A imagem desta questão não mostra o gráfico que a prova dá antes da questão 3 (rendimento médio mensal na região metropolitana de BH, 2010 a 2013). Em 2013: mulheres R$ 1 410 e homens R$ 2 022 (os mesmos do boletim PED-RMBH do DIEESE, 2014). Com a média dos quatro anos o resultado seria 0,151, mesma letra."
+ },
+ "857e13da": {
+  "antes": {
+   "texto": "Razão entre duas quantidades é a divisão de uma pela outra. Quando a razão vale 3/8, isso não diz quantos cortes houve: diz que o número de crianças, dividido pelo de adultos, dá 0,375. Nesta questão a razão vale para os DOIS dias somados, então primeiro você escreve os totais e só depois usa a razão. E tem um detalhe que decide a questão: os 128 cortes do domingo se repartem entre crianças e adultos.",
+   "formulas": [
+    "razão = número de cima ÷ número de baixo",
+    "a ÷ b = 3 ÷ 8  →  8 × a = 3 × b (multiplicação em cruz)",
+    "adultos do domingo = 128 − (crianças do domingo)"
+   ],
+   "simbolos": [
+    [
+     "C",
+     "a letra que representa o que a questão pede: o número de crianças atendidas no domingo"
+    ],
+    [
+     "3/8 (razão)",
+     "para cada 3 cortes feitos em crianças há 8 cortes feitos em adultos"
+    ],
+    [
+     "→",
+     "'leva a', 'então'"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Dê nome ao que você não sabe",
+    "conta": "crianças no domingo = C; adultos no domingo = 128 − C",
+    "porque": "O domingo teve 128 cortes no total, divididos entre os dois grupos. Se C foram em crianças, o que sobrou dos 128 foi em adultos. Uma criança a mais no domingo é um adulto a menos.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Monte os totais dos dois dias",
+    "conta": "crianças = 47 + C; adultos = 144 + (128 − C) = 272 − C",
+    "porque": "A razão é 'nesses dois dias': entram os totais de sábado e domingo.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva a razão pedida",
+    "conta": "(47 + C)/(272 − C) = 3/8",
+    "porque": "Crianças em cima e adultos embaixo, nessa ordem, como diz o enunciado.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique em cruz",
+    "conta": "8 × (47 + C) = 3 × (272 − C) → 376 + 8C = 816 − 3C",
+    "porque": "Multiplicar em cruz elimina as frações; o número de fora multiplica cada termo do parêntese.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Junte os C de um lado e resolva",
+    "conta": "8C + 3C = 816 − 376 → 11C = 440 → C = 440/11 = 40 → alternativa C",
+    "porque": "O − 3C passa para a esquerda somando e o 376 passa para a direita subtraindo.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C — 40 crianças tiveram o cabelo cortado no domingo",
+  "checagem": "Substitua: crianças = 47 + 40 = 87 e adultos = 272 − 40 = 232; 87 ÷ 232 = 0,375, que é 3 ÷ 8. Vale conhecer o caminho das partes, que confirma por outro lado: o total de cortes nos dois dias é 47 + 144 + 128 = 319, e na razão 3:8 isso se divide em 3 + 8 = 11 partes iguais de 319 ÷ 11 = 29 cortes; as crianças são 3 × 29 = 87, logo no domingo foram 87 − 47 = 40.",
+  "erradas": {
+   "A": "Com 25 crianças no domingo, elas somam 47 + 25 = 72 e os adultos 144 + 103 = 247. 72 ÷ 247 ≈ 0,29, não 3/8 = 0,375.",
+   "B": "Divide os 128 cortes do domingo pela metade, supondo meio a meio entre crianças e adultos, e nem usa a razão 3/8. Teste: com 64, as crianças somam 111 e os adultos 208, e 111 ÷ 208 ≈ 0,53, bem acima de 0,375.",
+   "D": "Divide os 128 cortes do domingo pelo 8 da razão (128 ÷ 8 = 16), como se o 8 fosse um número de grupos dentro do domingo. A razão 3/8 compara os totais dos dois dias, não reparte o domingo. Teste: com 16, as crianças somam 63 e os adultos 256, e 63 ÷ 256 ≈ 0,25.",
+   "E": "Com 31 crianças no domingo, elas somam 47 + 31 = 78 e os adultos 144 + 97 = 241. 78 ÷ 241 ≈ 0,32, não 3/8 = 0,375."
+  },
+  "armadilha": "Os 128 cortes do domingo se repartem entre crianças e adultos, então os adultos do domingo são 128 − C e não 128.",
+  "essencial": {
+   "pede": "Quantas crianças tiveram o cabelo cortado no domingo.",
+   "chave": "Domingo: C crianças e 128 − C adultos; somar ao sábado: (47 + C) ÷ (272 − C) = 3/8.",
+   "cuidado": "Os 128 cortes do domingo se repartem entre os dois grupos: os adultos são 128 − C, não 128."
+  }
+ },
+ "P15f5be1": {
+  "antes": {
+   "texto": "A cotação diz quantos reais são precisos para comprar 1 dólar. O Índice Big Mac compara o preço do mesmo sanduíche nos dois países: se ele custa menos reais do que a conversão pela cotação oficial indicaria, o real está barato demais, ou seja, desvalorizado. Para medir isso em porcentagem, você compara o preço que o sanduíche deveria ter (pela cotação) com o preço que ele realmente tem. Porcentagem é sempre uma divisão pelo valor de referência, e aqui a referência é o preço esperado.",
+   "formulas": [
+    "preço esperado em reais = preço em dólares × cotação",
+    "desvalorização = (preço esperado − preço real) ÷ preço esperado",
+    "forma decimal × 100 = forma em porcentagem"
+   ],
+   "simbolos": [
+    [
+     "R$",
+     "real, a moeda brasileira"
+    ],
+    [
+     "US$",
+     "dólar, a moeda dos Estados Unidos"
+    ],
+    [
+     "cotação de 3,85 reais por dólar",
+     "para comprar 1 dólar são precisos 3,85 reais"
+    ]
+   ]
+  },
+  "pista": "Calcule primeiro quantos reais o sanduíche americano custaria se você simplesmente convertesse os 5,51 dólares pela cotação oficial. Depois compare esse valor com os 16,90 reais que ele custa aqui.",
+  "passos": [
+   {
+    "faz": "Converta o preço americano para reais pela cotação oficial",
+    "conta": "5,51 × 3,85 = 21,2135",
+    "porque": "A cotação diz que cada dólar vale 3,85 reais. Então 5,51 dólares valem 5,51 vezes 3,85 reais. Esse é o preço que o sanduíche teria no Brasil se as duas moedas estivessem em equilíbrio.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Compare com o preço brasileiro de verdade",
+    "conta": "21,2135 − 16,90 = 4,3135",
+    "porque": "O sanduíche sai 4,3135 reais mais barato aqui do que a conversão oficial previa. É exatamente essa folga que o enunciado chama de desvalorização da moeda brasileira.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Divida a diferença pelo valor de referência",
+    "conta": "4,3135/21,2135 ≈ 0,2033",
+    "porque": "A referência é o preço esperado, 21,2135, porque é dele que se mede o afastamento.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva o resultado em porcentagem",
+    "conta": "0,2033 × 100 = 20,33 % ≈ 20 %",
+    "porque": "Multiplicar por 100 troca a forma decimal pela forma em porcentagem. O enunciado pede o valor aproximado, e 20,33 % arredonda para 20 %.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa A — a moeda brasileira estava desvalorizada em aproximadamente 20 % (vinte por cento).",
+  "checagem": "Faça por outro caminho: ache a cotação implícita no preço do sanduíche, 16,90 ÷ 5,51 = 3,07 reais por dólar. Compare com a cotação real: 3,07 ÷ 3,85 = 0,80, isto é, o real está valendo 80 % do que precisaria valer. Falta 20 % para chegar lá. Mesmo resultado por uma conta diferente.",
+  "erradas": {
+   "B": "Lê a diferença em reais como se já fosse porcentagem: 21,21 − 16,90 ≈ 4,31, “uns 5 %”. Falta dividir pela referência: 4,31 ÷ 21,21 ≈ 0,20, isto é, 20 %.",
+   "C": "C sai de arredondar cedo o preço esperado: 5,51 × 3,85 vira 20 reais, e (20 − 16,90)/20 = 3,10/20 = 0,155, cerca de 15 %. Esse arredondamento tira quase 5 pontos percentuais (20,3 % vira 15,5 %).",
+   "D": "Trocar a referência da porcentagem: dividir a diferença pelo preço real em vez do preço esperado, 4,3135 ÷ 16,90 = 0,2553, cerca de 25 %. Essa conta responde outra pergunta (quanto o preço esperado é maior que o real).",
+   "E": "10 % não confere com a conta feita com os dados. O certo: 5,51 × 3,85 ≈ R$ 21,21 e (21,21 − 16,90) ÷ 21,21 ≈ 0,20, isto é, 20 %."
+  },
+  "armadilha": "A porcentagem se mede em cima do preço esperado pela cotação oficial (21,21), e não em cima do preço que o sanduíche tem no Brasil (16,90); trocar a referência leva direto ao 25 %.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "Em quanto a moeda brasileira estava desvalorizada em relação ao dólar, em porcentagem aproximada.",
+   "chave": "Converta o preço americano pela cotação (21,21) e meça a diferença sobre esse preço esperado.",
+   "cuidado": "A referência é o preço esperado, 21,21, e não os 16,90; trocar a referência leva ao 25 %."
+  }
+ },
+ "997a85b7": {
+  "antes": {
+   "texto": "Quando duas quantidades estão numa razão, o truque das partes economiza muito trabalho: razão 2/9 quer dizer 2 pedaços iguais de um lado e 9 pedaços iguais do outro, então o problema inteiro passa a caber em uma letra só, o tamanho do pedaço, em vez de duas. O segundo cuidado é o significado de transferir: as 15 seringas não desaparecem, elas saem de um grupo e entram no outro, e o total do estoque continua o mesmo. O terceiro é ler a pergunta: ela pede o estoque do início, que é a soma dos dois grupos.",
+   "formulas": [
+    "não utilizadas ÷ utilizadas = 2 ÷ 9  →  não utilizadas = 2k e utilizadas = 9k",
+    "total do início = 2k + 9k = 11k",
+    "depois da troca: (2k + 15) ÷ (9k − 15) = 1 ÷ 3"
+   ],
+   "simbolos": [
+    [
+     "2/9 (razão)",
+     "para cada 2 seringas não utilizadas havia 9 utilizadas no fim do dia"
+    ],
+    [
+     "k",
+     "o tamanho de uma parte da razão, isto é quantas seringas vale 1 pedaço"
+    ],
+    [
+     "1/3",
+     "a razão nova: uma seringa não utilizada para cada três utilizadas"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Escreva os dois grupos em partes iguais",
+    "conta": "não utilizadas = 2k; utilizadas = 9k; total = 2k + 9k = 11k",
+    "porque": "A razão 2/9 diz que o estoque do início se divide em 2 + 9 = 11 partes do mesmo tamanho, 2 de seringas não usadas e 9 de usadas. Chamando o tamanho da parte de k, qualquer par escrito assim já respeita a razão, e sobra uma única incógnita.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Mova as 15 seringas de um grupo para o outro",
+    "conta": "não utilizadas = 2k + 15; utilizadas = 9k − 15",
+    "porque": "'Se 15 das seringas utilizadas não tivessem sido usadas' tira 15 do grupo das utilizadas e põe essas mesmas 15 no grupo das não utilizadas. Nenhuma seringa entra nem sai do laboratório, por isso o total continua 11k.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte a equação da nova razão",
+    "conta": "(2k + 15)/(9k − 15) = 1/3",
+    "porque": "Na situação imaginada, não utilizadas em cima e utilizadas embaixo, mesma ordem da primeira razão, valem 1/3.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Multiplique em cruz e ache k",
+    "conta": "3 × (2k + 15) = 1 × (9k − 15) → 6k + 45 = 9k − 15 → 45 + 15 = 9k − 6k → 60 = 3k → k = 20",
+    "porque": "Multiplicar em cruz elimina as duas frações de uma vez. Depois junte os k de um lado e os números do outro: cada parte da razão vale 20 seringas.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Volte para o que a pergunta pede",
+    "conta": "total do início = 11k = 11 × 20 = 220 → alternativa A",
+    "porque": "A pergunta é o total do início (as 11 partes), não as 180 utilizadas.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa A — 220 seringas descartáveis no início do dia",
+  "checagem": "Teste as duas condições com os números: no fim do dia havia 40 não utilizadas e 180 utilizadas, 40 + 180 = 220, e 40 ÷ 180 = 2 ÷ 9 porque 40 = 2 × 20 e 180 = 9 × 20; na situação imaginada, 40 + 15 = 55 e 180 − 15 = 165, e 165 = 3 × 55. Há ainda um filtro rápido que descarta quatro alternativas sem resolver nada: o total tem de caber em 11 partes iguais, logo tem de ser múltiplo de 11 — e entre 180, 190, 200, 210 e 220, só 220 é (11 × 20).",
+  "erradas": {
+   "B": "É o número de seringas utilizadas (9k = 180), não o total do estoque. Quem acha k = 20 e para no grupo maior cai aqui. Repare que 180 não é múltiplo de 11 (180 ÷ 11 ≈ 16,4), então nem poderia se dividir na razão 2:9.",
+   "C": "190 não serve: o total é 2k + 9k = 11k, múltiplo de 11, e 190 ÷ 11 ≈ 17,3. Com k = 20, o total é 220.",
+   "D": "200 não serve: o total é 11k, múltiplo de 11, e 200 ÷ 11 ≈ 18,2. Com 180 utilizadas, sobrariam 20, e 20 ÷ 180 = 1/9, não 2/9.",
+   "E": "210 não serve: o total é 11k, múltiplo de 11, e 210 ÷ 11 ≈ 19,1. Com k = 20, o total é 220."
+  },
+  "armadilha": "As 15 seringas mudam os dois lados da razão ao mesmo tempo, e a pergunta é o total do início, não o número de seringas utilizadas.",
+  "essencial": {
+   "pede": "O total de seringas disponíveis no início do dia.",
+   "chave": "Partes 2k e 9k; passar 15 de usadas para não usadas dá (2k + 15) ÷ (9k − 15) = 1/3, e k = 20.",
+   "cuidado": "As 15 seringas mudam os dois lados da razão, e a pergunta é o total (11k), não as 180 utilizadas."
+  }
+ },
+ "1c51501c": {
+  "antes": {
+   "texto": "'Para cada 4 azuis há 5 brancas' é uma razão: a cada bloco de 4 azuis vem um bloco de 5 brancas. O problema dá duas razões que se encaixam pela cor branca, mas em uma delas a branca aparece como 5 e na outra como 7. Para juntar as três cores numa proporção só, é preciso primeiro fazer a branca valer o mesmo número nas duas. Depois disso, a diferença de 140 esferas revela o tamanho real de cada bloco.",
+   "formulas": [
+    "azuis : brancas = 4 : 5 e brancas : cinzas = 7 : 11",
+    "para juntar as duas, iguale o termo comum usando o MMC de 5 e 7",
+    "diferença dada = (número maior de partes − número menor de partes) × k"
+   ],
+   "simbolos": [
+    [
+     "a : b",
+     "a razão entre a e b, isto é, quantos a existem para cada b"
+    ],
+    [
+     "k",
+     "o tamanho real de cada parte da proporção; multiplicando as partes por k saem as quantidades verdadeiras"
+    ],
+    [
+     "MMC",
+     "mínimo múltiplo comum — o menor número que é múltiplo dos dois ao mesmo tempo"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Iguale a quantidade de brancas nas duas razões",
+    "conta": "azuis : brancas = 4 : 5, multiplicando por 7 → 28 : 35 ; brancas : cinzas = 7 : 11, multiplicando por 5 → 35 : 55",
+    "porque": "O MMC de 5 e 7 é 35. Multiplicar os dois termos de uma razão pelo mesmo número não muda a razão: 4 para 5 é a mesma coisa que 28 para 35. Com as brancas valendo 35 nas duas, elas podem ser encaixadas numa proporção única.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte a proporção das três cores",
+    "conta": "azuis : brancas : cinzas = 28 : 35 : 55 → 28k azuis, 35k brancas e 55k cinzas",
+    "porque": "Agora as três cores estão na mesma escala. O k é o tamanho real de cada parte: ainda não se sabe quanto ele vale, e é o dado dos 140 que vai revelá-lo.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Use a diferença entre cinzas e brancas",
+    "conta": "55k − 35k = 20k = 140 → k = 140 ÷ 20 = 7",
+    "porque": "'As cinzas superam as brancas em 140' significa cinzas menos brancas igual a 140. Na proporção essa diferença vale 20 partes, então 20 partes correspondem a 140 esferas e cada parte vale 7 esferas.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule a diferença pedida",
+    "conta": "55k − 28k = 27k = 27 × 7 = 189",
+    "porque": "'As cinzas superam as azuis em' pede cinzas menos azuis, que na proporção são 55 partes menos 28 partes, ou seja, 27 partes. Com cada parte valendo 7 esferas, são 27 × 7 esferas.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa A — as cinzas superam as azuis em 189 esferas.",
+  "checagem": "Monte as quantidades reais e confira as três informações do enunciado: azuis = 28 × 7 = 196, brancas = 35 × 7 = 245 e cinzas = 55 × 7 = 385. A razão 4 para 5 confere (196 ÷ 4 = 49 e 245 ÷ 5 = 49), a razão 7 para 11 confere (245 ÷ 7 = 35 e 385 ÷ 11 = 35) e a diferença dada confere (385 − 245 = 140). Por fim, 385 − 196 = 189.",
+  "erradas": {
+   "B": "158 não confere: a diferença entre cinzas e azuis vale 55 − 28 = 27 partes, e 158 não é múltiplo de 27 (27 × 5 = 135, 27 × 6 = 162).",
+   "C": "168 não confere: não é múltiplo de 27 (27 × 6 = 162, 27 × 7 = 189). Com k = 7, a diferença é 27 × 7 = 189.",
+   "D": "169 não serve: a diferença entre cinzas e azuis vale 55 − 28 = 27 partes, e 169 não é múltiplo de 27 (27 × 6 = 162; 27 × 7 = 189).",
+   "E": "179 não serve: a diferença entre cinzas e azuis vale 27 partes, e 179 não é múltiplo de 27. Com k = 7, são 385 − 196 = 189."
+  },
+  "armadilha": "As brancas aparecem como 5 numa razão e como 7 na outra. Juntar 4 : 5 com 7 : 11 sem antes igualar esse termo comum cria uma proporção que não existe, e o 140 passa a ser dividido pelo número errado de partes.",
+  "essencial": {
+   "pede": "Diferença entre cinzas e azuis, dadas duas razões e a diferença entre cinzas e brancas.",
+   "chave": "Iguale as brancas nas duas razões (35): 28 : 35 : 55. As 20 partes de diferença valem 140.",
+   "cuidado": "Juntar 4 : 5 com 7 : 11 sem igualar as brancas divide o 140 pelo número errado de partes."
+  }
+ },
+ "Pdfe312a": {
+  "antes": {
+   "texto": "O gráfico não mostra porcentagem: ele mostra uma razão, isto é, uma divisão entre dois números — quantas matrículas há na rede privada para cada matrícula na rede pública. A pergunta, porém, vem em porcentagem do total. Então o primeiro trabalho não é contar barras: é traduzir a porcentagem pedida para o mesmo idioma do gráfico, descobrindo a partir de qual valor da razão a rede privada atinge 60 % do total. Só depois disso a contagem faz sentido.",
+   "formulas": [
+    "razão do gráfico = privada ÷ pública",
+    "condição pedida: privada ≥ 0,60 × (privada + pública)",
+    "porcentagem: 60 % = 60 ÷ 100 = 0,60"
+   ],
+   "simbolos": [
+    [
+     "razão",
+     "o resultado de uma divisão, aqui privada dividida por pública"
+    ],
+    [
+     "≥",
+     "maior ou igual a"
+    ],
+    [
+     "%",
+     "por cento, isto é, dividido por 100"
+    ],
+    [
+     "x",
+     "número de matrículas na rede privada, numa unidade da Federação"
+    ],
+    [
+     "y",
+     "número de matrículas na rede pública, nessa mesma unidade"
+    ]
+   ]
+  },
+  "pista": "Chame de x as matrículas na rede privada e de y as da rede pública. Escreva com letras a frase 'a privada é 60 % ou mais do total' e, no fim, tente deixar sozinha a divisão x ÷ y, que é justamente o que o gráfico mede. O número que aparecer do outro lado é a linha de corte que você vai procurar no eixo vertical.",
+  "passos": [
+   {
+    "faz": "Traduza a condição do enunciado para uma desigualdade",
+    "conta": "x ≥ 0,60 (x + y)",
+    "porque": "O total de matrículas de uma unidade da Federação é privada mais pública, isto é, x + y, porque o enunciado garante que a rede se distribui apenas em privada ou pública. Dizer que a privada representa 60 % ou mais do total é dizer que x é maior ou igual a 60 % desse total. E 60 % de um número é 0,60 vezes esse número.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Desenvolva e junte os termos com x",
+    "conta": "x ≥ 0,60x + 0,60y  →  x − 0,60x ≥ 0,60y  →  0,40x ≥ 0,60y",
+    "porque": "Distribuindo o 0,60 pelos dois termos do parêntese, o x aparece dos dois lados. Passando 0,60x para a esquerda (subtraindo 0,60x dos dois lados), sobra 1x − 0,60x = 0,40x de um lado e 0,60y do outro.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Isole a razão privada/pública",
+    "conta": "x/y ≥ 0,60/0,40 = 1,5",
+    "porque": "Dividindo os dois lados por 0,40 e depois por y (as duas quantidades são positivas, então o sinal de desigualdade não vira), fica a razão x/y de um lado e 0,60/0,40 do outro. E 0,60/0,40 é o mesmo que 60/40, que simplificado dá 3/2 = 1,5. Ou seja: a condição '60 % ou mais do total é privada' equivale a 'a razão do gráfico vale 1,5 ou mais'.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte as barras com 1,5 ou mais",
+    "conta": "SP 3,5 · RO 2,7 · DF 2,2 · ES 2,0 · SC 2,0 · RJ 1,9 · GO 1,8 · BA 1,6 · CE 1,6 · MG 1,6 · PE 1,6 · RS 1,5 → 12 unidades → alternativa E",
+    "porque": "As barras estão em ordem decrescente: pare na primeira abaixo de 1,5 (PR, 1,4). O RS, com 1,5, entra, porque é '60 % ou mais'. As outras 15 ficam abaixo: 12 + 15 = 27.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E — 12 unidades da Federação",
+  "checagem": "Teste a linha de corte num caso concreto. Em uma unidade com razão exatamente 1,5, tome 150 matrículas privadas e 100 públicas: o total é 250, e 150 ÷ 250 = 0,60, isto é, 60 % de privadas. Então 1,5 é mesmo o ponto exato em que a condição começa a valer. Agora teste logo abaixo: com razão 1,4, tome 140 e 100, total 240, e 140 ÷ 240 ≈ 0,583, ou seja, 58,3 %, que não chega a 60 %. Confere que o PR, com 1,4, fica de fora e a contagem para no RS.",
+  "erradas": {
+   "A": "10 não confere: 60 % na rede privada equivale a razão ≥ 0,60/0,40 = 1,5, e há 12 barras assim, de SP até RS.",
+   "B": "O 13 sai de incluir o PR, com razão 1,4, por arredondar 1,4 para 1,5 ou por usar o sinal errado, contando 'mais que 1,4' em vez de 'pelo menos 1,5'. Como mostra a checagem, 1,4 corresponde a cerca de 58 % de matrículas privadas, abaixo dos 60 % exigidos.",
+   "C": "O 7 é o número de barras com razão maior ou igual a 1,8 (de SP até GO). Aparece em quem usa como corte o valor 1,8, que é a linha horizontal do 'Brasil 1,8' desenhada no gráfico, confundindo a média nacional com a condição pedida pela questão.",
+   "D": "D sai de contar as barras acima de 1,0 (19 unidades, de SP até PA): isso é 'a privada é maior que a pública', mais de 50 %, e não 60 % ou mais."
+  },
+  "armadilha": "O eixo do gráfico traz razão, não porcentagem: os 60 % pedidos correspondem à razão 1,5, e não ao 0,6 nem ao 1,0 que a pessoa instintivamente procura no eixo vertical.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "Quantas unidades da Federação têm 60 % ou mais das matrículas na rede privada.",
+   "chave": "Privada ≥ 60 % do total equivale à razão privada ÷ pública ≥ 1,5; conte as barras nessa faixa.",
+   "cuidado": "O eixo mostra razão, não porcentagem: 60 % é a razão 1,5, e o RS, com exatamente 1,5, entra."
+  }
+ },
+ "04f6d0ad": {
+  "antes": {
+   "texto": "'Mortes a cada 100 mil pessoas' é uma taxa: ela diz quantas mortes aparecem em cada grupo de 100 000 habitantes. Taxa é uma proporção, e proporção se resolve com regra de três. O que a questão quer é a porcentagem de infectados, e para calcular porcentagem é preciso ter o total da população — que não está na tabela e tem de ser descoberto a partir da taxa.",
+   "formulas": [
+    "taxa por 100 mil: B ÷ 100 000 = A ÷ população",
+    "população = 100 000 × A ÷ B",
+    "porcentagem de infectados = (casos ÷ população) × 100 %"
+   ],
+   "simbolos": [
+    [
+     "A",
+     "o número de mortes registradas na Mauritânia"
+    ],
+    [
+     "B",
+     "a taxa de mortes a cada 100 mil habitantes"
+    ],
+    [
+     "C",
+     "o número de casos de infecção registrados"
+    ],
+    [
+     "%",
+     "por cento: uma parte em cada 100 do total"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Identifique as três letras da tabela",
+    "conta": "A = mortes ; B = mortes a cada 100 mil habitantes ; C = casos de infecção",
+    "porque": "São esses os três dados fornecidos. A pergunta usa dois deles para a porcentagem (os casos e a população) e usa o par A e B apenas para descobrir o tamanho da população.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Transforme a taxa em proporção",
+    "conta": "B mortes em 100 000 habitantes; A mortes em X habitantes → B/100 000 = A/X",
+    "porque": "A taxa B é B mortes em cada 100 000 habitantes; com A mortes, a população X segue a mesma proporção.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Isole a população",
+    "conta": "B/100 000 = A/X → B · X = 100 000 · A → X = (100 000 · A)/B",
+    "porque": "Multiplique em cruz e passe o B dividindo. Mais mortes com a mesma taxa significa país mais populoso: A em cima, B embaixo.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva a porcentagem de infectados",
+    "conta": "porcentagem = C/X × 100 %",
+    "porque": "Porcentagem é a parte (os casos, C) sobre o total (a população, X), vezes 100.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Substitua a população e simplifique",
+    "conta": "C/X × 100 → C/((100 000 · A)/B) × 100 → (B · C)/(100 000 · A) × 100 → (B · C)/(1 000 · A) % → alternativa D",
+    "porque": "Dividir por uma fração é multiplicar pelo inverso: o B sobe. O 100 da porcentagem corta dois zeros do 100 000.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D — (B · C)/(1 000 · A) %",
+  "checagem": "Teste a expressão com números fáceis. Se a taxa é B = 10 mortes a cada 100 mil e houve A = 5 mortes, a população é 100 000 × 5 ÷ 10 = 50 000 habitantes. Com C = 500 casos, a porcentagem direta é 500 ÷ 50 000 × 100 = 1 %. Pela expressão encontrada: 10 × 500 ÷ (1 000 × 5) = 5 000 ÷ 5 000 = 1 %. Os dois caminhos batem.",
+  "erradas": {
+   "A": "A põe as mortes multiplicando e esquece o × 100 da porcentagem. A população é (100 000 · A)/B, então o A termina embaixo. Com a tabela, A daria cerca de 7,6 %.",
+   "B": "B sai de multiplicar pela taxa em vez de dividir: população = 100 000 · A · B, e C/(100 000 · A · B) × 100 = C/(1 000 · A · B). Para as mesmas mortes, taxa maior significa população menor: o B vai para cima.",
+   "C": "C repete o erro de B na população e ainda soma as mortes aos casos (A + C). A parte da porcentagem é só C: os mortos já estão entre os casos.",
+   "E": "E põe o A multiplicando em cima. Com a mesma taxa, mais mortes significa população maior e porcentagem menor: o A tem de ficar embaixo."
+  },
+  "armadilha": "A população não está na tabela e é ela que serve de total na porcentagem. O número de mortes entra na conta apenas para revelar essa população, e por isso termina no denominador, dividindo, e não multiplicando.",
+  "essencial": {
+   "pede": "Expressão da porcentagem de infectados na população, usando A, B e C da tabela.",
+   "chave": "A taxa B por 100 mil dá a população X = 100 000 × A ÷ B; a porcentagem é (C ÷ X) × 100 %.",
+   "cuidado": "As mortes A só servem para achar a população e ficam no denominador, dividindo, e não multiplicando."
+  }
+ },
+ "907bcd2a": {
+  "antes": {
+   "texto": "'Para cada 20 veículos pela principal, 7 pela secundária' é uma razão, não uma contagem: pode ter sido 20 e 7, 200 e 70, 2 000 e 700. Para trabalhar com isso, escreva 20k e 7k, em que k é o fator que você não conhece. O segundo ponto é onde cada informação vale: a razão 20:7 vale só na primeira metade do dia, e a razão 4 vale para o dia inteiro, somando as duas metades. Essa diferença é a questão toda.",
+   "formulas": [
+    "'para cada 20 ... 7 ...'  →  20k e 7k",
+    "razão do dia = (20k + 20 000) ÷ (7k + 1 200) = 4",
+    "total da 1.ª metade = 20k + 7k = 27k"
+   ],
+   "simbolos": [
+    [
+     "20:7",
+     "para cada 20 veículos que saíram pela estrada principal, 7 saíram pela secundária"
+    ],
+    [
+     "k",
+     "o fator que multiplica os dois termos da razão; cada 'rodada' tem 20 veículos na principal e 7 na secundária"
+    ],
+    [
+     "razão igual a 4",
+     "no dia inteiro, a principal recebeu 4 vezes o número de veículos da secundária"
+    ],
+    [
+     "→",
+     "'leva a', 'então'"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Nomeie a primeira metade do dia",
+    "conta": "principal = 20k; secundária = 7k",
+    "porque": "A frase 'para cada 20 ... 7' só informa a proporção. Escrever 20k e 7k garante que a proporção está respeitada qualquer que seja o valor de k, e deixa uma incógnita só.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte os totais do dia inteiro",
+    "conta": "principal = 20k + 20 000; secundária = 7k + 1 200",
+    "porque": "O dia tem duas metades e a razão 4 é do dia. Então cada estrada recebe o que saiu na primeira metade mais o que saiu na segunda.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva a razão do dia e tire a fração",
+    "conta": "(20k + 20 000)/(7k + 1 200) = 4 → 20k + 20 000 = 4 × (7k + 1 200) → 20k + 20 000 = 28k + 4 800",
+    "porque": "O denominador passa multiplicando; o 4 multiplica os dois termos do parêntese.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Resolva a equação em k",
+    "conta": "20 000 − 4 800 = 28k − 20k → 15 200 = 8k → k = 15 200/8 = 1 900",
+    "porque": "Junte os k de um lado e os números do outro.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Responda o que foi pedido",
+    "conta": "total da 1.ª metade = 20k + 7k = 27k = 27 × 1 900 = 51 300 → alternativa C",
+    "porque": "A pergunta é o total das duas estradas na primeira metade, não só os 20k = 38 000 da principal.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C — 51 300 veículos na primeira metade do dia",
+  "checagem": "Teste a razão 4 com k = 1 900: a principal do dia soma 38 000 + 20 000 = 58 000 e a secundária 13 300 + 1 200 = 14 500; 4 × 14 500 = 58 000, bate. Outro caminho: numa razão de 4 para 1, a principal é 4 das 5 partes do total do dia; o total do dia é 51 300 + 21 200 = 72 500, e 4 ÷ 5 de 72 500 = 58 000, que é exatamente a principal.",
+  "erradas": {
+   "A": "54 000 = 27 × 2 000 daria k = 2 000. A razão do dia seria (40 000 + 20 000) ÷ (14 000 + 1 200) ≈ 3,95, não 4.",
+   "B": "56 700 = 27 × 2 100 daria k = 2 100. A razão do dia seria (42 000 + 20 000) ÷ (14 700 + 1 200) ≈ 3,90, não 4.",
+   "D": "48 600 = 27 × 1 800 daria k = 1 800. A razão do dia seria (36 000 + 20 000) ÷ (12 600 + 1 200) ≈ 4,06, não 4.",
+   "E": "59 400 = 27 × 2 200 daria k = 2 200. A razão do dia seria (44 000 + 20 000) ÷ (15 400 + 1 200) ≈ 3,86, não 4."
+  },
+  "armadilha": "A razão 4 vale para o dia inteiro, nunca para a primeira metade, e o que se pede é 27k (as duas estradas), não 20k.",
+  "essencial": {
+   "pede": "Total de veículos que saíram da cidade na primeira metade do dia.",
+   "chave": "Com 20k e 7k na primeira metade, a razão 4 do dia dá 20k + 20 000 = 4 × (7k + 1 200).",
+   "cuidado": "A razão 4 vale para o dia inteiro, não para a primeira metade; o pedido é 27k, as duas estradas."
+  }
+ },
+ "6a5988ad": {
+  "antes": {
+   "texto": "São duas perguntas em uma. A primeira é de leitura de fórmula química: as LETRAS são os elementos químicos e os números pequenos ao lado dizem quantos átomos de cada elemento a molécula tem. A segunda é uma regra de três, e nela só existe uma exigência: as duas massas têm de estar na mesma unidade antes de dividir, porque 180 mg e 9,9 g não se comparam diretamente.",
+   "formulas": [
+    "1 g = 1 000 mg",
+    "n = dose total ÷ dose de uma xícara (nas mesmas unidades)"
+   ],
+   "simbolos": [
+    [
+     "C8H10N4O2",
+     "fórmula da cafeína: C, H, N e O são os elementos; 8, 10, 4 e 2 são as quantidades de átomos de cada um"
+    ],
+    [
+     "mg (miligrama)",
+     "a milésima parte do grama: 1 000 mg = 1 g"
+    ],
+    [
+     "n",
+     "o número de xícaras de café tomadas no dia"
+    ],
+    [
+     "→",
+     "'corresponde a', na regra de três"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Conte os elementos, não os átomos",
+    "conta": "C, H, N, O → 4 elementos químicos",
+    "porque": "As letras são os elementos: carbono, hidrogênio, nitrogênio e oxigênio. Os números contam os átomos de cada um; somá-los (24) dá átomos, não elementos.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Deixe as duas massas na mesma unidade",
+    "conta": "180 mg = 180 ÷ 1 000 = 0,18 g",
+    "porque": "A dose letal está em gramas (9,9 g) e a xícara em miligramas. Como 1 g tem 1 000 mg, passar de mg para g é dividir por 1 000.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte a regra de três",
+    "conta": "0,18 g × n = 9,9 g",
+    "porque": "Cafeína e xícaras crescem juntas (diretamente proporcionais): n xícaras têm 0,18 × n gramas.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Resolva a divisão",
+    "conta": "n = 9,9/0,18 = 990/18 = 55 xícaras",
+    "porque": "Para tirar a vírgula, multiplique em cima e embaixo por 100: 9,9/0,18 é o mesmo que 990/18.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Junte as duas respostas na ordem pedida",
+    "conta": "4 elementos e n = 55 xícaras",
+    "porque": "O enunciado pede 'o número de elementos químicos ... e o valor mínimo de n, respectivamente', ou seja nessa ordem.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa A — 4 elementos químicos e n = 55 xícaras",
+  "checagem": "Volte pela multiplicação: 55 × 180 mg = 9 900 mg, e 9 900 ÷ 1 000 = 9,9 g, exatamente a dose letal. Ordem de grandeza: cada xícara tem menos de 0,2 g e a dose é quase 10 g, então o número de xícaras tem de passar de 50 e ficar longe de 100.",
+  "erradas": {
+   "B": "125 xícaras dariam 125 × 180 mg = 22,5 g, mais que o dobro da dose letal. O mínimo é 9 900 ÷ 180 = 55 xícaras.",
+   "C": "C acerta as 55 xícaras, mas soma os índices (8 + 10 + 4 + 2 = 24): isso conta átomos, não elementos. Elementos são só 4: C, H, N e O.",
+   "D": "D não confere: 24 é a soma dos índices (8 + 10 + 4 + 2), que conta átomos, não elementos; e 125 × 180 mg = 22,5 g, bem mais que a dose letal de 9,9 g.",
+   "E": "E não confere: 24 são os átomos (8 + 10 + 4 + 2), não os elementos; e 160 × 180 mg = 28,8 g, quase três vezes a dose letal de 9,9 g."
+  },
+  "armadilha": "Elemento químico não é átomo: a molécula de cafeína tem 24 átomos, mas apenas 4 elementos diferentes.",
+  "essencial": {
+   "pede": "Número de elementos químicos da cafeína e mínimo de xícaras para atingir a dose letal.",
+   "chave": "Conte as letras da fórmula (4 elementos) e divida 9,9 g por 0,18 g de cafeína por xícara.",
+   "cuidado": "Elemento não é átomo: C8H10N4O2 tem 24 átomos, mas só 4 elementos diferentes."
+  }
+ },
+ "489813f1": {
+  "antes": {
+   "texto": "Converter unidade de tempo é sempre a mesma ideia: escolha uma unidade comum, passe tudo para ela e só então divida pelo tamanho da unidade de destino. Aqui a unidade comum é o dia terrestre. Um ano marciano é o tempo que Marte leva para dar uma volta completa em torno do Sol, e ele vale 687 dias terrestres, quase o dobro do ano terrestre. O outro cuidado é o que o enunciado manda contar: o tempo total desde agora, que inclui a espera e a viagem.",
+   "formulas": [
+    "1 ano terrestre = 365 dias terrestres",
+    "1 ano marciano = 687 dias terrestres",
+    "número de anos marcianos = total de dias terrestres ÷ 687"
+   ],
+   "simbolos": [
+    [
+     "ano marciano",
+     "o tempo de uma volta de Marte em torno do Sol: 687 dias terrestres"
+    ],
+    [
+     "≈",
+     "aproximadamente igual a"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Passe a espera para dias terrestres",
+    "conta": "6 × 365 = 2 190 dias terrestres",
+    "porque": "A viagem está em dias; para somar, a espera também tem de estar em dias. Use 1 ano ≈ 365 dias (os bissextos somam 1 ou 2 dias e não mudam a resposta).",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Some a espera com a viagem",
+    "conta": "2 190 + 210 = 2 400 dias terrestres",
+    "porque": "O tempo pedido vai de agora até a CHEGADA: espera mais viagem.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Converta para anos marcianos",
+    "conta": "2 400 ÷ 687 ≈ 3,49 anos marcianos",
+    "porque": "Cada ano marciano tem 687 dias terrestres: divida por 687.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Arredonde no fim, não no meio",
+    "conta": "3,49 ≈ 3,5",
+    "porque": "O enunciado pede o valor aproximado, e 3,49 está a 0,01 de 3,5 e a 0,49 de 3,0: a alternativa mais próxima é 3,5.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E — aproximadamente 3,5 anos marcianos",
+  "checagem": "Volte multiplicando: 3,5 × 687 = 2 404,5 dias terrestres, praticamente os 2 400 dias que você somou. Por outro caminho: 2 400 dias terrestres são 2 400 ÷ 365 ≈ 6,6 anos terrestres, e como cada ano marciano vale 687 ÷ 365 ≈ 1,88 ano terrestre, 6,6 ÷ 1,88 ≈ 3,5.",
+  "erradas": {
+   "A": "1,5 ano marciano são 1,5 × 687 ≈ 1 030 dias terrestres, menos que os 2 190 dias só de espera. O total é 2 400 ÷ 687 ≈ 3,5.",
+   "B": "2 anos marcianos são 2 × 687 = 1 374 dias terrestres, menos que os 2 190 dias de espera. O total é 2 400 ÷ 687 ≈ 3,5.",
+   "C": "2,5 anos marcianos são 2,5 × 687 ≈ 1 718 dias terrestres, menos que os 2 190 dias de espera. O total é 2 400 ÷ 687 ≈ 3,5.",
+   "D": "Converte só a espera e esquece a viagem: 2 190 ÷ 687 ≈ 3,19, que arredonda para 3,0. Teste: 3 × 687 = 2 061 dias terrestres, ou seja 5,6 anos terrestres, menos do que os 6 anos de espera sozinhos — sinal claro de que faltou somar os 210 dias."
+  },
+  "armadilha": "O tempo pedido começa agora e inclui os 6 anos de espera; e o arredondamento tem de ser o último passo, nunca o primeiro.",
+  "essencial": {
+   "pede": "Tempo até a expedição chegar a Marte, contado a partir de agora, em anos marcianos.",
+   "chave": "Some 6 × 365 + 210 = 2 400 dias terrestres e divida por 687 dias do ano marciano.",
+   "cuidado": "O tempo pedido inclui os 6 anos de espera, e o arredondamento fica para o último passo."
+  }
+ },
+ "e7a3ade5": {
+  "antes": {
+   "texto": "Velocidade média é quantos quilômetros o navio avança em cada hora. Então a distância sai de uma multiplicação, com uma condição: o tempo tem de estar na mesma unidade de tempo da velocidade. Como a velocidade está em km por hora, os 52 dias precisam virar horas. No fim há uma troca de unidade de distância, e aí vale guardar uma referência: a milha náutica é maior que o quilômetro, logo o número de milhas tem de ser menor que o número de quilômetros.",
+   "formulas": [
+    "1 dia = 24 h",
+    "distância = velocidade média × tempo",
+    "milhas náuticas = quilômetros ÷ 1,85"
+   ],
+   "simbolos": [
+    [
+     "km/h",
+     "quilômetros por hora: quantos quilômetros o navio percorre em cada hora"
+    ],
+    [
+     "milha náutica",
+     "unidade de distância usada no mar; cada milha náutica vale cerca de 1,85 km"
+    ],
+    [
+     "≈",
+     "aproximadamente igual a"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Converta o tempo de viagem para horas",
+    "conta": "52 dias × 24 h = 1 248 h",
+    "porque": "A velocidade está em km por hora; cada dia tem 24 h.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule a distância em quilômetros",
+    "conta": "15 km/h × 1 248 h = 18 720 km",
+    "porque": "Distância = velocidade média × tempo.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Troque quilômetros por milhas náuticas",
+    "conta": "18 720 ÷ 1,85 ≈ 10 119 milhas náuticas",
+    "porque": "Cada milha vale 1,85 km: divida por 1,85. A milha é maior que o km, então o número sai menor.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Arredonde para a alternativa",
+    "conta": "10 119 ≈ 10 000",
+    "porque": "O enunciado pede o valor aproximado, e as alternativas estão de mil em mil: 10 119 está a 119 de 10 000 e a 881 de 11 000.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E — aproximadamente 10 000 milhas náuticas",
+  "checagem": "Volte multiplicando: 10 000 × 1,85 = 18 500 km, perto dos 18 720 km calculados (diferença de menos de 2 %). Teste de sentido: dividir por 1,85 corta quase a metade do número, então de 18 720 km tem de sobrar algo em torno de 10 000 milhas, nunca 14 000.",
+  "erradas": {
+   "A": "14 000 milhas × 1,85 = 25 900 km, mas o navio percorreu 15 × 24 × 52 = 18 720 km. Isso dá 18 720 ÷ 1,85 ≈ 10 100 milhas.",
+   "B": "13 000 milhas × 1,85 = 24 050 km, acima dos 18 720 km percorridos (15 km/h × 24 h × 52 dias).",
+   "C": "12 000 milhas × 1,85 = 22 200 km, acima dos 18 720 km percorridos (15 km/h × 24 h × 52 dias).",
+   "D": "11 000 milhas × 1,85 = 20 350 km, ainda acima dos 18 720 km percorridos. A conta certa dá 18 720 ÷ 1,85 ≈ 10 119 milhas."
+  },
+  "armadilha": "A milha náutica é maior que o quilômetro, então o 1,85 entra dividindo; multiplicar daria 34 632, número que nem aparece nas alternativas.",
+  "essencial": {
+   "pede": "Distância percorrida pelo navio na viagem, em milhas náuticas.",
+   "chave": "Distância = 15 km/h × (52 × 24 h) = 18 720 km; depois divida por 1,85 km por milha.",
+   "cuidado": "A milha é maior que o km, então o 1,85 divide; multiplicar daria 34 632, que nem aparece nas alternativas."
+  }
+ },
+ "dec763bd": {
+  "antes": {
+   "texto": "Consumo em km/L responde quantos quilômetros o carro anda com 1 litro. Para achar os litros gastos, divide-se a distância pelo consumo; depois multiplica-se pelo preço do litro para virar dinheiro. Os pedágios entram por fora, somados em reais. Como a divisão entre os cinco amigos é do total, o certo é montar o custo inteiro primeiro e dividir só no final.",
+   "formulas": [
+    "litros gastos = distância ÷ consumo (km ÷ km/L)",
+    "gasto com gasolina = litros × preço do litro",
+    "quanto cada um paga = custo total ÷ 5"
+   ],
+   "simbolos": [
+    [
+     "9 km/L",
+     "nove quilômetros por litro: o carro anda 9 km com 1 litro de gasolina"
+    ],
+    [
+     "R$ 4,50/L",
+     "quatro reais e cinquenta centavos por litro de gasolina"
+    ],
+    [
+     "P1, P2, P3 e P4",
+     "os quatro pedágios do caminho, com os valores dados em reais"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Ache quantos litros o carro consumiu",
+    "conta": "432 km ÷ 9 km/L = 48 L",
+    "porque": "Se cada litro rende 9 km, o número de litros é quantas vezes 9 cabe em 432. Os 432 km já incluem a volta, então essa conta cobre a viagem inteira.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Transforme litros em dinheiro",
+    "conta": "48 L × R$ 4,50 = R$ 216,00",
+    "porque": "Cada litro custa R$ 4,50, então 48 litros custam 48 vezes esse valor. Uma conferência rápida: 48 × 4 = 192 e 48 × 0,50 = 24, e 192 + 24 = 216.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Some os pedágios de um trajeto e dobre",
+    "conta": "10,00 + 2,50 + 4,40 + 2,70 = R$ 19,60 → 2 × 19,60 = R$ 39,20",
+    "porque": "Os quatro valores listados são de um sentido. Como foram pagos na ida e na volta, cada um foi pago duas vezes, e dobrar a soma é o mesmo que somar os oito pagamentos.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte o custo total da viagem",
+    "conta": "216,00 + 39,20 = R$ 255,20",
+    "porque": "O enunciado manda considerar apenas gasolina e pedágios, então o custo a ser rachado é a soma dessas duas parcelas.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Divida igualmente entre os cinco",
+    "conta": "255,20 ÷ 5 = R$ 51,04",
+    "porque": "Cada um paga um quinto do total, isto é, 20 % de R$ 255,20.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D — R$ 51,04 para cada amigo",
+  "checagem": "Faça por pessoa, em duas parcelas: gasolina 216,00 ÷ 5 = R$ 43,20 e pedágios 39,20 ÷ 5 = R$ 7,84; somando, 43,20 + 7,84 = R$ 51,04. Pelo caminho inverso: 5 × 51,04 = R$ 255,20, e 255,20 − 39,20 = R$ 216,00 de gasolina, que valem 216 ÷ 4,50 = 48 L, coerentes com 432 km a 9 km/L.",
+  "erradas": {
+   "A": "R$ 43,20 sai de dividir só a gasolina: 216,00 ÷ 5 = 43,20. Faltam os pedágios de ida e volta, 39,20 ÷ 5 = R$ 7,84 por pessoa.",
+   "B": "R$ 45,24 não confere: 5 × 45,24 = R$ 226,20, só R$ 10,20 acima da gasolina (R$ 216,00); os pedágios de ida e volta somam R$ 39,20. O total certo é R$ 255,20 ÷ 5 = R$ 51,04.",
+   "C": "Conta os pedágios uma vez só, esquecendo que foram pagos também na volta: 216,00 + 19,60 = R$ 235,60 e 235,60 ÷ 5 = R$ 47,12. A diferença até a resposta certa é 19,60 ÷ 5 = R$ 3,92, exatamente uma rodada de pedágios por pessoa.",
+   "E": "R$ 53,08 não confere: 5 × 53,08 = R$ 265,40, o que daria R$ 49,40 de pedágio (265,40 − 216,00); os pedágios de ida e volta somam R$ 39,20. O total certo é R$ 255,20 ÷ 5 = R$ 51,04."
+  },
+  "armadilha": "Os pedágios foram pagos duas vezes, mas a distância de 432 km já é ida e volta: dobrar a distância também é erro.",
+  "essencial": {
+   "pede": "Quanto cada um dos cinco amigos pagou de gasolina e pedágios.",
+   "chave": "Gasolina: 432 ÷ 9 = 48 L a R$ 4,50; pedágios: soma dos quatro × 2. Some tudo e divida por 5.",
+   "cuidado": "Dobre os pedágios (ida e volta), mas não a distância: os 432 km já são ida e volta."
+  }
+ },
+ "0d13158f": {
+  "antes": {
+   "texto": "Autonomia é quanto o carro ainda consegue andar com o combustível que tem. Se o consumo médio é sempre o mesmo, autonomia e combustível são diretamente proporcionais: metade do combustível dá metade dos quilômetros. O marcador das duas figuras é uma barra dividida em 8 quadradinhos iguais, e a parte pintada mostra quanto ainda há no tanque. O caminho seguro é descobrir quantos quilômetros vale UM quadradinho e depois contar quantos quadradinhos estão pintados na figura 2.",
+   "formulas": [
+    "valor de 1 quadradinho = autonomia da figura 1 ÷ número de quadradinhos pintados na figura 1",
+    "autonomia restante = quadradinhos pintados na figura 2 × valor de 1 quadradinho",
+    "regra de três: 6 quadradinhos → 360 km, logo 2,5 quadradinhos → (360 × 2,5) ÷ 6"
+   ],
+   "simbolos": [
+    [
+     "autonomia",
+     "quantos quilômetros o carro ainda pode percorrer com o combustível que está no tanque"
+    ],
+    [
+     "quadradinho do marcador",
+     "cada uma das 8 partes iguais em que a barra está dividida; um tracinho no meio de cada uma marca a metade dela"
+    ],
+    [
+     "proporcionalidade direta",
+     "se uma grandeza cai pela metade, a outra cai pela metade também"
+    ],
+    [
+     "→",
+     "'corresponde a', na regra de três"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Conte os quadradinhos pintados na figura 1",
+    "conta": "6 quadradinhos pintados → 360 km",
+    "porque": "A barra tem 8 quadradinhos iguais e, na figura 1, seis deles estão pintados; os dois últimos ficam brancos. O enunciado diz que nessa situação a autonomia é de 360 km, então são esses 6 quadradinhos que valem os 360 km.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Descubra quanto vale um quadradinho",
+    "conta": "360 ÷ 6 = 60 km por quadradinho",
+    "porque": "Os quadradinhos têm todos o mesmo tamanho e o consumo médio é o mesmo, então cada um corresponde ao mesmo número de quilômetros. Dividir os 360 km pelos 6 quadradinhos pintados dá esse valor.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Conte os quadradinhos pintados na figura 2",
+    "conta": "2 quadradinhos inteiros + meio quadradinho = 2,5 quadradinhos",
+    "porque": "Na figura 2 a pintura cobre dois quadradinhos inteiros e para exatamente no tracinho que marca a metade do terceiro. Por isso são 2,5 quadradinhos, e não 2 nem 3.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Converta quadradinhos em quilômetros",
+    "conta": "2,5 × 60 = 150 km",
+    "porque": "Se cada quadradinho vale 60 km, dois quadradinhos e meio valem duas vezes 60 mais a metade de 60: 120 + 30 = 150 km.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa C — ainda há autonomia de 150 km",
+  "checagem": "Pela regra de três, sem passar pelo valor de um quadradinho: 6 quadradinhos → 360 km, logo 2,5 quadradinhos → (360 × 2,5) ÷ 6 = 900 ÷ 6 = 150 km. Por estimativa: 2,5 é pouco menos da metade de 6, então o resultado tem de ficar pouco abaixo da metade de 360 km, isto é, pouco abaixo de 180 km, e 150 km cumpre isso.",
+  "erradas": {
+   "A": "162,5 km equivalem a 162,5 ÷ 60 ≈ 2,7 quadradinhos. A figura 2 marca 2,5 quadradinhos, e 2,5 × 60 = 150 km.",
+   "B": "112,5 km sai de usar os 8 quadradinhos da barra inteira: 360 ÷ 8 = 45 km e 2,5 × 45 = 112,5 km. Os 360 km valem só pelos 6 quadradinhos pintados na figura 1.",
+   "D": "154 km equivalem a 154 ÷ 60 ≈ 2,57 quadradinhos, que a barra não marca. Ela mostra 2,5 quadradinhos: 2,5 × 60 = 150 km.",
+   "E": "160 km equivalem a 160 ÷ 60 ≈ 2,67 quadradinhos. A figura 2 para na metade do terceiro: 2,5 × 60 = 150 km."
+  },
+  "armadilha": "Os 360 km valem pelos 6 quadradinhos pintados na figura 1, não pelos 8 da barra inteira: a figura 1 não mostra o tanque cheio.",
+  "essencial": {
+   "pede": "Autonomia restante na figura 2, lendo o marcador de combustível.",
+   "chave": "Os 6 quadradinhos pintados na figura 1 valem 360 km, então cada um vale 60 km; a figura 2 tem 2,5.",
+   "cuidado": "Use os 6 quadradinhos pintados da figura 1, e não os 8 da barra: a figura 1 não mostra o tanque cheio."
+  }
+ },
+ "7fa8608d": {
+  "antes": {
+   "texto": "São duas proporções independentes que partem do mesmo dado: as 9 toneladas cortadas num dia. Uma transforma tonelada em energia, a outra transforma tonelada em açúcar. O detalhe que decide a questão é a unidade pedida para a energia: Gcal por HORA, e não Gcal no dia, o que obriga a dividir pelas 12 horas da jornada. O açúcar, ao contrário, é pedido em quilogramas do dia inteiro, sem divisão.",
+   "formulas": [
+    "energia do dia = toneladas × 1,7 Gcal por tonelada",
+    "energia por hora = energia do dia ÷ 12 h",
+    "açúcar do dia = toneladas × 150 kg por tonelada"
+   ],
+   "simbolos": [
+    [
+     "Gcal (gigacaloria)",
+     "uma unidade de energia; 1 Gcal é um bilhão de calorias"
+    ],
+    [
+     "Gcal/h",
+     "gigacalorias por hora: quanta energia é produzida em cada hora de trabalho"
+    ],
+    [
+     "t (tonelada)",
+     "1 000 kg"
+    ],
+    [
+     "≈",
+     "aproximadamente igual a"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Calcule a energia produzida no dia",
+    "conta": "9 t × 1,7 Gcal/t = 15,3 Gcal no dia",
+    "porque": "Cada tonelada gera 1,7 Gcal, e o boia-fria cortou 9 toneladas. É proporção direta: nove vezes a quantidade gera nove vezes a energia.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Passe a energia para Gcal por hora",
+    "conta": "15,3/12 = 1,275 Gcal/h ≈ 1,3 Gcal/h",
+    "porque": "A unidade pedida é Gcal por hora, e a jornada tem 12 horas. Dividir a produção do dia pelas horas trabalhadas dá a produção de cada hora.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule a massa de açúcar do dia",
+    "conta": "9 t × 150 kg/t = 1 350 kg",
+    "porque": "Cada tonelada rende 150 kg de açúcar, então 9 toneladas rendem 9 vezes isso. Aqui não há divisão por 12, porque o que se pede é a massa em quilogramas, não por hora.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte o par na ordem pedida",
+    "conta": "1,3 Gcal/h e 1 350 kg",
+    "porque": "O enunciado pede a produção de energia e a massa de açúcar 'aproximada e respectivamente', ou seja energia primeiro, açúcar depois.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa A — 1,3 Gcal/h de energia e 1 350 kg de açúcar",
+  "checagem": "Volte pelas multiplicações: 1,275 Gcal/h × 12 h = 15,3 Gcal, e 15,3 ÷ 1,7 = 9 t, as toneladas do enunciado; do outro lado, 1 350 kg ÷ 150 kg = 9 t também. Ordem de grandeza do açúcar: 1 350 kg são 1,35 t de açúcar a partir de 9 t de cana, isto é 15 % da massa cortada, o que é coerente com os 150 kg por tonelada.",
+  "erradas": {
+   "B": "Acerta a energia por hora e copia os 150 kg direto do texto, sem multiplicar pelas 9 toneladas do dia. Os 150 kg são o rendimento de UMA tonelada; a jornada cortou nove.",
+   "C": "1,7 é a energia de uma tonelada, sem passar para a jornada: 9 × 1,7 ÷ 12 ≈ 1,3 Gcal/h. E 135 kg é um décimo de 9 × 150 = 1 350 kg.",
+   "D": "Copia os dois números do enunciado, 1,7 e 150, como se fossem a resposta. Eles são os rendimentos de uma tonelada; a questão pergunta pela jornada de 9 toneladas, e ainda por hora no caso da energia.",
+   "E": "E acerta o açúcar (9 × 150 = 1 350 kg), mas 1,7 é a energia de UMA tonelada, não a da jornada por hora: 9 × 1,7 = 15,3 Gcal no dia → 15,3/12 ≈ 1,3 Gcal/h."
+  },
+  "armadilha": "A energia é pedida em Gcal por hora (divide pelas 12 h) e o açúcar em kg do dia (não divide); e nenhum dos dois é o número que já vem escrito no texto.",
+  "alerta": "",
+  "essencial": {
+   "pede": "Energia em Gcal por hora e massa de açúcar em kg que um boia-fria produzia na jornada.",
+   "chave": "Multiplique as 9 t pelos rendimentos por tonelada; divida só a energia pelas 12 h da jornada.",
+   "cuidado": "Energia pede Gcal por hora e açúcar pede kg do dia; o 1,7 e o 150 do texto valem por tonelada."
+  }
+ },
+ "9682e0ac": {
+  "antes": {
+   "texto": "O jeito mais seguro de lidar com trabalho e tempo é transformar o trabalho em ritmo: quanto por cento do serviço a equipe termina em 1 hora. Com o ritmo na mão, qualquer pedaço que falta vira uma divisão. Dobrar o número de pessoas dobra o ritmo e, por isso, corta pela metade o tempo da parte que falta: pessoas e tempo são inversamente proporcionais. Dois detalhes definem a resposta: a pergunta é o tempo TOTAL e meia hora é 30 min.",
+   "formulas": [
+    "ritmo = trabalho feito ÷ tempo gasto (em % por hora)",
+    "dobrar a equipe dobra o ritmo (mais gente, menos tempo)",
+    "tempo que falta = trabalho que falta ÷ ritmo novo"
+   ],
+   "simbolos": [
+    [
+     "%",
+     "por cento: 24 % é 24 pedaços de 100 do jogo todo"
+    ],
+    [
+     "%/h",
+     "por cento por hora: quanto do jogo a equipe entrega em 1 hora de trabalho"
+    ],
+    [
+     "0,5 h",
+     "meia hora, isto é 30 min (e não 50 min)"
+    ],
+    [
+     "→",
+     "'leva a', 'então'"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Ache o ritmo da equipe original",
+    "conta": "24/6 = 4 % por hora",
+    "porque": "24 % em 6 horas: dividir pelo tempo dá quanto a equipe faz em cada hora.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Dobre a equipe e dobre o ritmo",
+    "conta": "2 × 4 % = 8 % por hora",
+    "porque": "Com o dobro de gente no mesmo passo, sai o dobro de jogo por hora.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Veja quanto do jogo ainda falta",
+    "conta": "100 % − 24 % = 76 %",
+    "porque": "Já saíram 24 %; o ritmo novo vale só para o resto.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Calcule o tempo que ainda falta",
+    "conta": "76/8 = 9,5 h",
+    "porque": "A cada hora saem 8 %: 9 h dão 72 %, e os 4 % que sobram são meia hora.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Some o tempo já gasto",
+    "conta": "6 h + 9,5 h = 15,5 h",
+    "porque": "A pergunta é o tempo TOTAL: as 6 h iniciais mais as 9,5 h.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Converta a parte decimal em minutos",
+    "conta": "0,5 × 60 min = 30 min → 15 h 30 min",
+    "porque": "0,5 h é metade de 60 min: 30 min, não 50.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D — 15 h 30 min de tempo total de produção",
+  "checagem": "Some os pedaços de trabalho e veja se fecham 100 %: nas 6 primeiras horas saíram 24 %; nas 9,5 horas seguintes, a 8 % por hora, saem 9,5 × 8 = 76 %; e 24 + 76 = 100 % do jogo. Teste de sentido: sem dobrar a equipe faltariam 76 ÷ 4 = 19 h e o total seria 25 h, então, com a equipe dobrada, o total tinha de cair para algo bem abaixo disso.",
+  "erradas": {
+   "A": "Calcula certo o tempo que ainda falta (9,5 h = 9 h 30 min) e entrega esse valor, esquecendo de somar as 6 horas já trabalhadas. A alternativa está ali exatamente para esse esquecimento: a pergunta é o tempo total de produção.",
+   "B": "Faz o mesmo esquecimento da letra A e ainda lê o 0,5 de 9,5 h como 50 minutos. Meia hora é 30 min, porque 0,5 × 60 = 30; 9 h 50 min seriam 9,83 h.",
+   "C": "Divide o jogo inteiro pelo ritmo novo: 100 % ÷ 8 % por hora = 12,5 h, ou 12 h 30 min. Isso supõe que a equipe esteve dobrada desde o começo, mas os primeiros 24 % saíram no ritmo antigo, de 4 % por hora.",
+   "E": "Chega às 15,5 h corretas e escorrega na conversão, lendo 0,5 h como 50 min. O total verdadeiro é 15 h 30 min; 15 h 50 min corresponderiam a 15,83 h, isto é 20 minutos de trabalho que não existem na conta."
+  },
+  "armadilha": "A questão cobra duas coisas que o aluno apressado perde: somar as 6 horas já gastas e lembrar que 0,5 h é 30 min, não 50 min.",
+  "essencial": {
+   "pede": "Tempo total de produção do jogo, com a equipe dobrada depois das 6 primeiras horas.",
+   "chave": "Ritmo de 4 % por hora vira 8 % por hora; faltam 76 %, que levam 9,5 h. Some as 6 h já gastas.",
+   "cuidado": "Some as 6 h já gastas e converta 0,5 h em 30 min, e não em 50 min."
+  }
+ },
+ "2c968302": {
+  "antes": {
+   "texto": "Escala de mapa é uma receita de tradução entre o papel e o mundo real. Quando você lê 1:25 000 000, isso quer dizer: cada 1 unidade medida no mapa vale 25 000 000 unidades iguais no terreno. A unidade é a mesma dos dois lados, ou seja, se você mediu em centímetros o resultado também sai em centímetros. Só depois de ter o número em centímetros é que você troca para quilômetros.",
+   "formulas": [
+    "distância real = distância no mapa × denominador da escala",
+    "1 km = 1 000 m e 1 m = 100 cm, logo 1 km = 100 000 cm",
+    "de cm para km: divide por 100 000"
+   ],
+   "simbolos": [
+    [
+     "1:25 000 000",
+     "escala: 1 cm medido no mapa corresponde a 25 000 000 cm no terreno"
+    ],
+    [
+     "cm",
+     "centímetro"
+    ],
+    [
+     "km",
+     "quilômetro, que vale 1 000 metros"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Leia em voz alta o que a escala diz",
+    "conta": "1 cm no mapa = 25 000 000 cm reais",
+    "porque": "No 1:n, o 1 é a medida no papel e o n é a medida no terreno, na mesma unidade.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Multiplique pela medida do mapa",
+    "conta": "10 × 25 000 000 = 250 000 000 cm",
+    "porque": "Cada centímetro do mapa vale 25 000 000 cm; dez centímetros valem dez vezes isso.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte a ponte de cm para km",
+    "conta": "1 km = 1 000 m = 1 000 × 100 cm → 1 km = 100 000 cm",
+    "porque": "São cinco zeros: é esse detalhe que decide a questão.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Converta o resultado",
+    "conta": "250 000 000/100 000 = 2 500 km",
+    "porque": "Dividir pelos centímetros que cabem em 1 km dá quantos quilômetros há ali. 2 500 km: alternativa B.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B — 2 500 km (dois mil e quinhentos quilômetros)",
+  "checagem": "Caminho diferente: 25 000 000 cm são 250 km, ou seja, 1 cm desse mapa vale 250 km. Então 10 cm valem 10 × 250 = 2 500 km. A ordem de grandeza fecha: o Brasil tem cerca de 4 000 km de ponta a ponta, e as duas cidades estão em regiões diferentes do país.",
+  "erradas": {
+   "A": "Chega aos 2 500 km certos e dobra, pensando em ida e volta: 2 500 × 2 = 5 000. A pergunta é só o trajeto de São Paulo até Fortaleza, um percurso único.",
+   "C": "1 000 km dariam 100 km por centímetro, escala 1 : 10 000 000. Em 1 : 25 000 000, cada centímetro vale 250 km, e 10 cm valem 2 500 km.",
+   "D": "500 km dariam 50 km por centímetro, escala 1 : 5 000 000. Em 1 : 25 000 000, 10 cm valem 10 × 250 = 2 500 km.",
+   "E": "Vem de errar a conversão final: dividir os 250 000 000 cm por 1 000 000 em vez de 100 000, o que dá 250. Como 1 km tem 100 000 cm e não 1 000 000 cm, o erro é de um fator 10."
+  },
+  "armadilha": "Errar os zeros na passagem de centímetro para quilômetro: 1 km tem 100 000 cm (cinco zeros); com 1 000 000, a conta dá 250 km (alternativa E).",
+  "essencial": {
+   "pede": "Distância real em linha reta entre São Paulo e Fortaleza, em km, a partir da escala e dos 10 cm.",
+   "chave": "Multiplique 10 cm por 25 000 000 e divida o resultado por 100 000 cm por quilômetro.",
+   "cuidado": "A conversão decide a questão: 1 km tem cinco zeros em centímetros (100 000)."
+  }
+ },
+ "P9c5f235": {
+  "antes": {
+   "texto": "Escala de mapa é uma comparação entre duas distâncias: a medida feita no papel e a medida de verdade no terreno. Escrever 1:200.000 quer dizer que 1 unidade medida no mapa corresponde a 200 000 unidades iguais no mundo real. Para comparar as duas distâncias, elas precisam estar na mesma unidade. Por isso esta questão é, quase toda ela, conversão de unidade.",
+   "formulas": [
+    "escala = distância no mapa ÷ distância real (as duas na mesma unidade)",
+    "1 km = 1 000 m e 1 m = 100 cm, então 1 km = 100 000 cm"
+   ],
+   "simbolos": [
+    [
+     "1:200.000 (lê-se ‘um para duzentos mil’)",
+     "cada 1 cm medido no mapa corresponde a 200 000 cm de verdade no terreno"
+    ],
+    [
+     "km (quilômetro)",
+     "mil metros"
+    ],
+    [
+     "cm (centímetro)",
+     "a centésima parte do metro"
+    ]
+   ]
+  },
+  "pista": "Antes de dividir qualquer coisa, transforme os 40 km em centímetros. Enquanto um número estiver em centímetro e o outro em quilômetro, a divisão entre eles não significa nada.",
+  "passos": [
+   {
+    "faz": "Passe os 40 km para metros",
+    "conta": "40 × 1 000 = 40 000 m",
+    "porque": "Cada quilômetro tem 1 000 metros. Multiplicar por 1 000 não aumenta a distância: só troca a unidade em que ela está escrita.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Passe os metros para centímetros",
+    "conta": "40 000 × 100 = 4 000 000 cm",
+    "porque": "Cada metro tem 100 centímetros. Agora as duas distâncias da questão (20 cm e 4 000 000 cm) estão na mesma unidade e podem ser comparadas.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte a razão mapa dividido por real",
+    "conta": "escala = 20/4 000 000",
+    "porque": "Escala é exatamente essa comparação. Como as duas medidas estão em centímetro, a unidade se cancela e sobra um número puro.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Simplifique até o numerador virar 1",
+    "conta": "20/4 000 000 → 1/200 000",
+    "porque": "Divida em cima e embaixo por 20: a escala se escreve com 1 na frente, e dividir os dois termos pelo mesmo número não muda a razão.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva no formato de escala",
+    "conta": "1/200 000 → 1:200.000",
+    "porque": "A barra da fração vira os dois pontos da escala. É a alternativa B.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B — escala 1:200.000, ou seja, cada 1 cm no mapa vale 200 000 cm (2 km) no terreno",
+  "checagem": "Faça o caminho contrário. Se 20 cm no mapa valem 40 km, então 1 cm vale 40 ÷ 20 = 2 km. E 2 km = 2 × 100 000 = 200 000 cm. Chega na mesma escala 1:200.000 por outro caminho.",
+  "erradas": {
+   "A": "Quem usa 1 km = 10 000 cm (um zero a menos) acha 40 km = 400 000 cm e faz 20 ÷ 400 000 = 1/20 000.",
+   "C": "Quem percebe que 1 cm vale 2 km mas converte 2 km como se fossem 2 000 000 cm (tratando 1 km como 1 000 000 cm) escreve 1:2.000.000.",
+   "D": "1:2.200.000 não confere: nessa escala, 20 cm seriam 20 × 2 200 000 = 44 000 000 cm = 440 km, e não 40 km.",
+   "E": "Quem aplica a conversão de metro para centímetro duas vezes (multiplica os 200 000 por mais 100 no fim, como se ainda faltasse passar de metro para centímetro) chega a 1:20.000.000."
+  },
+  "armadilha": "Dividir 20 por 40 direto, sem passar tudo para a mesma unidade: a conta sai redonda, mas compara centímetro com quilômetro.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "Escala numérica do mapa, com 20 cm no mapa para 40 km reais.",
+   "chave": "Passe 40 km para 4 000 000 cm e simplifique 20 ÷ 4 000 000 até o numerador virar 1.",
+   "cuidado": "Dividir 20 por 40 direto compara cm com km; ponha as duas medidas em centímetros antes."
+  }
+ },
+ "d2ec15d7": {
+  "antes": {
+   "texto": "Aqui o caminho é o inverso do mais comum: você já tem as duas distâncias e precisa descobrir a escala. Escala é a razão, isto é, a divisão entre a medida no desenho e a medida real, com as duas escritas na MESMA unidade. Escrever 1:n significa que o mapa é n vezes menor que a realidade. Por isso o primeiro trabalho é passar os quilômetros para centímetros.",
+   "formulas": [
+    "escala = medida no mapa ÷ medida real (mesma unidade nas duas)",
+    "1 km = 1 000 m e 1 m = 100 cm, logo 1 km = 100 000 cm",
+    "escala 1:n significa 1 cm no mapa para n cm reais"
+   ],
+   "simbolos": [
+    [
+     "1:n",
+     "escala: 1 unidade no mapa para n unidades iguais no terreno"
+    ],
+    [
+     "km",
+     "quilômetro"
+    ],
+    [
+     "cm",
+     "centímetro"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Reduza ao caso de 1 cm de mapa",
+    "conta": "1 500/50 = 30 → 1 cm no mapa = 30 km",
+    "porque": "Se 50 cm representam 1 500 km, cada centímetro representa uma fatia igual do trajeto. Dividir o real pelo número de centímetros entrega essa fatia.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Escreva 1 km em centímetros",
+    "conta": "1 km = 1 000 m = 1 000 × 100 cm → 1 km = 100 000 cm",
+    "porque": "A escala só pode comparar duas medidas se elas estiverem na mesma unidade, e essa igualdade é a ponte entre as duas.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Converta os 30 km",
+    "conta": "30 × 100 000 = 3 000 000 cm",
+    "porque": "Cada quilômetro vale 100 000 cm, portanto trinta quilômetros valem trinta vezes isso.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte a razão da escala",
+    "conta": "1 cm : 3 000 000 cm → 1 : 3 000 000",
+    "porque": "Com o lado do mapa reduzido a 1 cm, o outro lado já é o denominador da escala. É a alternativa D.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa D — escala 1:3 000 000 (1 cm no mapa vale 3 000 000 cm reais, ou seja, 30 km)",
+  "checagem": "Volte pelo caminho contrário, partindo da escala: 50 × 3 000 000 = 150 000 000 cm. Dividindo por 100 000 dá 1 500 km, exatamente a distância do enunciado.",
+  "erradas": {
+   "A": "Converte os 30 usando só o 'vezes 100' que leva metro a centímetro: 30 × 100 = 3 000. Essa conta transformaria 30 metros em centímetros, não 30 quilômetros.",
+   "B": "Para na conversão de quilômetro para metro: 30 km = 30 000 m, e escreve 30 000 como se já fosse centímetros. Faltou a última multiplicação por 100.",
+   "C": "Usa 1 km = 10 000 cm, com um zero a menos: 30 × 10 000 = 300 000. O valor certo é 1 km = 100 000 cm.",
+   "E": "Usa 1 km = 1 000 000 cm, com um zero a mais: 30 × 1 000 000 = 30 000 000. O certo é 1 km = 100 000 cm."
+  },
+  "armadilha": "As cinco alternativas diferem só no número de zeros: a questão cobra a conversão de quilômetro para centímetro (1 km = 100 000 cm).",
+  "essencial": {
+   "pede": "Escala numérica do mapa, dadas a distância real e a distância no mapa.",
+   "chave": "1 cm do mapa vale 30 km; com 1 km = 100 000 cm, esses 30 km são 3 000 000 cm.",
+   "cuidado": "As alternativas diferem só na quantidade de zeros: 1 km tem 100 000 cm."
+  }
+ },
+ "Pe8d7ee0": {
+  "antes": {
+   "texto": "Esta questão é de regra de três disfarçada, e tem duas etapas bem separadas. Primeiro você descobre quanta massa de potássio existe dentro de uma tonelada de silvinita. Depois você pergunta quantos litros de água do mar seriam necessários para reunir essa mesma massa. Para as duas etapas conversarem, tudo precisa estar na mesma unidade de massa: gramas.",
+   "formulas": [
+    "1 tonelada = 1 000 kg = 1 000 000 g",
+    "massa da parte = porcentagem (em forma decimal) × massa total",
+    "volume = massa ÷ concentração"
+   ],
+   "simbolos": [
+    [
+     "t (tonelada)",
+     "unidade de massa que vale 1 000 quilogramas, ou seja, 1 000 000 de gramas"
+    ],
+    [
+     "% (por cento)",
+     "partes em cada 100; 8 % em massa quer dizer 8 g de potássio em cada 100 g de silvinita"
+    ],
+    [
+     "g/L (gramas por litro)",
+     "quantos gramas da substância existem dissolvidos em cada litro de água"
+    ]
+   ]
+  },
+  "pista": "Não comece dividindo. Comece convertendo: escreva a tonelada em gramas, porque a concentração da água do mar está dada em gramas por litro. Só depois pergunte: se cada litro carrega 0,4 g, quantos litros preciso juntar para chegar na massa que você achou?",
+  "passos": [
+   {
+    "faz": "Escreva a tonelada em gramas",
+    "conta": "1 t = 1 000 kg = 1 000 × 1 000 g = 1 000 000 g",
+    "porque": "A concentração da água do mar está em gramas por litro; a massa de potássio precisa estar em gramas também.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Tire os 8 % de íons potássio dessa massa",
+    "conta": "0,08 × 1 000 000 g = 80 000 g",
+    "porque": "\"8 % em massa\": de cada 100 g de silvinita, 8 g são íons potássio. 8 % = 0,08.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Traduza a concentração da água do mar em palavras",
+    "conta": "0,4 g de íons potássio em cada 1 L de água do mar",
+    "porque": "g/L quer dizer gramas por litro: cada litro de água do mar traz 0,4 g de potássio.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Descubra quantos litros juntam 80 000 g",
+    "conta": "80 000/0,4 → 800 000/4 → 200 000 L",
+    "porque": "O número de litros é a massa dividida pelos 0,4 g de cada litro. Multiplicar em cima e embaixo por 10 tira a vírgula. 200 000 L: alternativa B.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B — 200 000 L (duzentos mil litros de água do mar).",
+  "checagem": "Faça o caminho de volta: 200 000 L × 0,4 g/L = 80 000 g, que é exatamente a massa de potássio contida em uma tonelada de silvinita. Vale também o teste de ordem de grandeza: 0,4 g por litro é menos de meio grama por litro, então para reunir 80 000 g são necessários mais litros do que 80 000 — por isso 200 L, 2 000 L e 20 000 L são pequenos demais.",
+  "erradas": {
+   "A": "2 000 000 L sai de dividir por 0,04 em vez de 0,4, uma casa decimal a mais: 80 000/0,04 = 2 000 000.",
+   "C": "Trata a tonelada como se fosse 1 000 g. Aí os 8 % dão 0,08 × 1 000 = 80 g, e 80 ÷ 0,4 = 200 L. O erro está na conversão, não na divisão.",
+   "D": "Divide por 40 em vez de 0,4, deslocando a vírgula para o lado errado: 80 000 ÷ 40 = 2 000 L.",
+   "E": "Divide por 4 em vez de 0,4, isto é, ignora a vírgula da concentração: 80 000 ÷ 4 = 20 000 L."
+  },
+  "armadilha": "Uma tonelada tem 1 000 000 g, e não 1 000 g: com 1 000 g, a conta dá 200 L (alternativa C).",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "Volume de água do mar com a mesma massa de íons potássio de 1 tonelada de silvinita.",
+   "chave": "1 t = 1 000 000 g; 8 % disso é a massa de potássio, e se divide pelos 0,4 g por litro.",
+   "cuidado": "Uma tonelada tem 1 000 000 g, e não 1 000 g; dividir por 0,4 aumenta o número, não diminui."
+  }
+ },
+ "P94a70dc": {
+  "antes": {
+   "texto": "Escala é uma comparação: quantas vezes o objeto real é maior que o modelo. Escala 1 : N quer dizer que 1 cm do modelo corresponde a N cm de verdade. Para fazer essa comparação, as duas medidas precisam estar na MESMA unidade. Aqui o modelo é a bola de isopor (raio 12 cm) e o real é a Terra (volta de 40 000 km), então o primeiro movimento é passar quilômetro para centímetro.",
+   "formulas": [
+    "escala = medida no modelo ÷ medida real (as duas na mesma unidade)",
+    "C = 2 × π × R (comprimento da circunferência, a partir do raio)",
+    "1 km = 1 000 m = 100 000 cm"
+   ],
+   "simbolos": [
+    [
+     "escala 1 : N",
+     "1 cm medido no modelo vale N cm no objeto real"
+    ],
+    [
+     "π (pi)",
+     "número fixo, aproximadamente 3,14, que aparece sempre que se liga raio e volta de um círculo"
+    ],
+    [
+     "R",
+     "raio — distância do centro até a borda"
+    ],
+    [
+     "C",
+     "circunferência — o comprimento da volta inteira"
+    ]
+   ]
+  },
+  "pista": "Compare coisas do mesmo tipo: volta com volta, ou raio com raio. E antes de dividir qualquer coisa, transforme os 40 000 km em centímetros, porque o dado da bola está em centímetros.",
+  "passos": [
+   {
+    "faz": "Passe a volta da Terra para centímetros",
+    "conta": "40 000 km × 100 000 cm/km = 4 000 000 000 cm = 4 × 10⁹ cm",
+    "porque": "1 km tem 1 000 m e 1 m tem 100 cm, logo 1 km = 100 000 cm. Sem essa conversão você estaria dividindo quilômetro por centímetro, e as unidades não se cancelam.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Ache a volta da bola de isopor",
+    "conta": "C = 2 × 3,14 × 12 cm = 75,36 cm",
+    "porque": "O enunciado deu o raio da bola e a volta da Terra. Para comparar volta com volta, falta a volta da bola, e ela sai de C = 2 × π × R.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Divida o modelo pelo real",
+    "conta": "75,36/4 000 000 000 → 1/53 078 556",
+    "porque": "Isso é a própria definição de escala. O resultado não tem unidade: cm dividido por cm se cancela, sobra só o número de vezes.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Escreva na forma 1 : N",
+    "conta": "escala ≈ 1 : 53 075 000",
+    "porque": "O enunciado pede a escala aproximada: 53 078 556 fica bem perto de 53 075 000, e nenhuma outra alternativa tem essa ordem de grandeza.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E — escala aproximada 1 : 53 075 000 (1 cm na bola vale cerca de 53 milhões de centímetros, isto é, cerca de 530 km)",
+  "checagem": "Pelo diâmetro, que é um caminho diferente: a Terra tem cerca de 12 700 km de diâmetro, ou seja, 1,27 × 10⁹ cm; a bola tem 24 cm de diâmetro. 1,27 × 10⁹ ÷ 24 ≈ 5,3 × 10⁷, de novo cerca de 53 milhões. A ordem de grandeza confirma: dezenas de milhões, não centenas nem milhares.",
+  "erradas": {
+   "A": "6 369 sai de 40 000 ÷ 6,28: é o raio da Terra em km, não uma escala. Faltou passar para cm e dividir pelos 12 cm da bola.",
+   "B": "Multiplicou em vez de dividir e não converteu nada: 40 000 × 12 = 480 000. Escala é razão (divisão), nunca produto.",
+   "C": "530 sai de 40 000 ÷ 75,36: dividiu km por cm. São 530 km por cm da bola; com as duas medidas em cm, a escala é 100 000 vezes maior.",
+   "D": "3 333 sai de 40 000 ÷ 12: comparou a volta da Terra com o raio da bola, e km com cm."
+  },
+  "armadilha": "Comparar quilômetro com centímetro. A conversão 1 km = 100 000 cm é exatamente o que separa a alternativa C (1 : 530) da resposta certa (1 : 53 075 000).",
+  "alerta": "Com π = 3,14 a conta fecha em 1 : 53 078 556 e, com π = 3,1416, em 1 : 53 051 524; a alternativa traz 1 : 53 075 000, um valor arredondado. O enunciado pede a escala aproximada, e nenhuma outra alternativa fica perto dessa ordem de grandeza, então o gabarito E está correto.",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "Escala numérica de um globo de 12 cm de raio, para uma Terra de circunferência 40 000 km.",
+   "chave": "Compare circunferência com circunferência: 75,36 cm da bola contra 4 × 10⁹ cm da Terra.",
+   "cuidado": "Não divida km por cm: a conversão 1 km = 100 000 cm separa o 1 : 530 da escala certa."
+  }
+ },
+ "55993f82": {
+  "antes": {
+   "texto": "Perímetro é o comprimento da linha que dá a volta completa na figura, somando todos os lados do contorno. Num contorno fechado só com cantos de 90°, tudo o que a linha anda para a direita ela desfaz andando para a esquerda, e tudo o que ela desce ela desfaz subindo. Por isso a volta completa vale duas vezes a soma dos trechos horizontais de um sentido mais duas vezes a soma dos trechos verticais de um sentido, mesmo quando o contorno tem recortes. O desenho está reduzido, e a própria questão dá a tradução: 0,2 cm na planta valem 1 m de verdade.",
+   "formulas": [
+    "perímetro de contorno com cantos de 90° = 2 × (soma dos trechos horizontais de um sentido + soma dos trechos verticais de um sentido)",
+    "0,2 cm na planta = 1 m real",
+    "medida real em metros = medida da planta em cm ÷ 0,2"
+   ],
+   "simbolos": [
+    [
+     "1:500",
+     "escala: 1 cm na planta vale 500 cm reais, o que equivale a 0,2 cm na planta por 1 m real"
+    ],
+    [
+     "perímetro",
+     "soma de todos os lados do contorno, a volta completa"
+    ],
+    [
+     "m",
+     "metro"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Leia as medidas da planta",
+    "conta": "lado esquerdo: 24,4 cm; para a direita: 10,5 cm e 11,9 cm",
+    "porque": "Todos os cantos são retos. O lado de baixo é mais largo que o de cima: vai do canto esquerdo até a ponta do trecho de 11,9 cm.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Some meia volta do contorno",
+    "conta": "24,4 + 10,5 + 11,9 = 46,8 cm",
+    "porque": "É a subida inteira (24,4 cm) mais tudo o que anda para a direita (10,5 + 11,9 = 22,4 cm).",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Dobre para fechar a volta",
+    "conta": "2 × 46,8 = 93,6 cm",
+    "porque": "Os trechos verticais da direita, juntos, descem os mesmos 24,4 cm. O degrau e o lado de baixo, juntos, voltam os mesmos 22,4 cm para a esquerda.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Traga a escala para a conta",
+    "conta": "0,2 cm na planta correspondem a 1 m real",
+    "porque": "A questão entrega essa equivalência pronta. Ela diz qual pedacinho de papel representa 1 metro da construção.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Converta o perímetro para metros",
+    "conta": "93,6/0,2 = 468 m → alternativa E",
+    "porque": "Dividir pelo tamanho que 1 m ocupa no papel dá quantos metros cabem nos 93,6 cm desenhados.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E — 468,0 m",
+  "checagem": "Use o outro lado da escala: 1:500 quer dizer que o real é 500 vezes o desenho. Então 93,6 × 500 = 46 800 cm, e 46 800 ÷ 100 = 468 m, porque 1 m = 100 cm. Dois caminhos independentes, o mesmo número.",
+  "erradas": {
+   "A": "Multiplica por 0,2 em vez de dividir: 93,6 × 0,2 = 18,72, que arredonda para 18,7. Multiplicar por 0,2 encolhe de novo um desenho que já estava reduzido, e a construção ficaria com menos de 19 m de volta inteira.",
+   "B": "Para na soma das três medidas, sem dar a volta completa e sem converter: 24,4 + 10,5 + 11,9 = 46,8. Esse valor é metade do contorno do desenho, e ainda em centímetros.",
+   "C": "Calcula certo o perímetro do desenho, 93,6 cm, e entrega esse número. O enunciado pede o perímetro da construção em metros, portanto falta aplicar a escala.",
+   "D": "Troca o 0,2 cm por 0,5 cm, lendo o 500 da escala como 0,5: 93,6 ÷ 0,5 = 187,2. A conversão correta está escrita no próprio enunciado: 1 m real equivale a 0,2 cm na planta."
+  },
+  "armadilha": "As duas etapas intermediárias (46,8 e 93,6) estão plantadas como alternativas, então quem para antes de converter encontra o próprio número na lista e se sente seguro.",
+  "essencial": {
+   "pede": "Perímetro real da construção, em metros, lendo as medidas da planta na escala 1:500.",
+   "chave": "O perímetro no papel é 2 × 46,8 = 93,6 cm; divida por 0,2 cm, o tamanho de 1 m na planta.",
+   "cuidado": "46,8 e 93,6 aparecem entre as alternativas; só o valor já convertido para metros responde."
+  },
+  "pista": "Com todos os cantos retos, o que a linha anda para a direita ela volta para a esquerda: some meia volta e dobre. Só depois use a escala."
+ },
+ "P108887f": {
+  "antes": {
+   "texto": "Grandeza é qualquer coisa que a gente mede. Aqui são duas: o tamanho do público de games e o tamanho do mercado de games. Quando uma cresce e a outra cresce junto, dizemos que elas são diretamente proporcionais. Quando uma cresce e a outra diminui, elas são inversamente proporcionais. Esta questão não tem conta: ela só pede o nome do comportamento descrito na frase em inglês.",
+   "formulas": [
+    "proporcionalidade direta: y = k × x (k é um número fixo e positivo)",
+    "proporcionalidade inversa: y = k ÷ x"
+   ],
+   "simbolos": [
+    [
+     "grandeza",
+     "qualquer coisa que pode ser medida e comparada: público, dinheiro, tempo, tamanho de mercado"
+    ],
+    [
+     "k (constante de proporcionalidade)",
+     "o número fixo que liga uma grandeza à outra e não muda"
+    ],
+    [
+     "audience / market",
+     "público / mercado, em inglês"
+    ],
+    [
+     "bigger",
+     "maior: é o comparativo de big (grande)"
+    ]
+   ]
+  },
+  "pista": "Traduza a frase ao pé da letra e repare no sentido das duas variações: quando o público aumenta, o mercado aumenta ou diminui? Depois é só achar o nome disso.",
+  "passos": [
+   {
+    "faz": "Traduza a frase do enunciado",
+    "conta": "\"The bigger the audience, the bigger the market\" = quanto maior o público, maior o mercado",
+    "porque": "A palavra bigger aparece duas vezes, e nas duas significa maior.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Veja para que lado cada grandeza anda",
+    "conta": "público maior → mercado maior",
+    "porque": "A frase repete a mesma ideia de aumento nas duas metades. Então as duas grandezas andam no mesmo sentido: se uma sobe, a outra sobe.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Compare com os dois nomes possíveis",
+    "conta": "direta: y = k × x        inversa: y = k/x",
+    "porque": "Na proporcionalidade direta, dobrar x dobra y, porque y é sempre o mesmo número k vezes x. Na inversa, dobrar x corta y pela metade, porque o x está embaixo da divisão.",
+    "tipo": "comparar"
+   },
+   {
+    "faz": "Escolha o nome de crescer junto",
+    "conta": "",
+    "porque": "Duas grandezas que crescem juntas, na mesma direção, é a definição de proporcionalidade direta. Nenhuma das outras palavras das alternativas descreve isso.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa B — proporcionalidade direta entre duas grandezas (público e mercado crescem juntos).",
+  "checagem": "Invente números só para sentir. Se o público vai de 10 milhões para 20 milhões e o mercado também dobra, a divisão mercado ÷ público continua dando o mesmo valor. Razão que não muda é a marca da proporcionalidade direta. Se fosse inversa, dobrar o público teria de cortar o mercado pela metade, que é o contrário do que a frase diz.",
+  "erradas": {
+   "A": "Proporcionalidade inversa seria 'quanto maior o público, menor o mercado'. A frase diz bigger nas duas metades: as grandezas crescem juntas.",
+   "C": "A frase não fala de elementos comuns a dois conjuntos. Ela liga o tamanho do público ao tamanho do mercado.",
+   "D": "Decrescimento contraria a frase, que fala em crescer junto (bigger … bigger). E nada nela indica um expoente 2.",
+   "E": "Decrescimento contraria a frase, que fala em crescer junto (bigger … bigger). E nada nela indica um ritmo exponencial."
+  },
+  "armadilha": "A frase está em inglês e usa o comparativo duas vezes; quem lê rápido troca o segundo maior por menor e marca proporcionalidade inversa.",
+  "alerta": "",
+  "nota_dif": "",
+  "essencial": {
+   "pede": "Que relação matemática a frase em inglês sobre público e mercado descreve.",
+   "chave": "Público maior e mercado maior: as duas grandezas crescem juntas, o que é proporcionalidade direta.",
+   "cuidado": "Quem troca o segundo 'bigger' por 'smaller' na tradução marca proporcionalidade inversa."
+  }
+ },
+ "7a3db28a": {
+  "antes": {
+   "texto": "Diretamente proporcional quer dizer que, se um valor dobra, o outro dobra. Inversamente proporcional ao quadrado quer dizer que o outro valor entra dividindo e elevado ao quadrado. Juntando as duas frases do enunciado, a resistência é o comprimento dividido pelo diâmetro ao quadrado, tudo multiplicado por um número fixo do material, que vai se cancelar porque o material é o mesmo. O segundo cuidado é traduzir porcentagem em fator: 60 % maior não é 0,60, é 1,60.",
+   "formulas": [
+    "R = k × L ÷ d²",
+    "x % maior corresponde ao fator (1 + x ÷ 100)",
+    "x % menor corresponde ao fator (1 − x ÷ 100)"
+   ],
+   "simbolos": [
+    [
+     "R₁ e R₂",
+     "resistência do fio retirado e resistência do fio novo"
+    ],
+    [
+     "L",
+     "comprimento do fio"
+    ],
+    [
+     "d",
+     "diâmetro da secção transversal do fio"
+    ],
+    [
+     "d²",
+     "o diâmetro multiplicado por ele mesmo"
+    ],
+    [
+     "k",
+     "constante do material, igual nos dois fios, por isso se cancela"
+    ]
+   ]
+  },
+  "passos": [
+   {
+    "faz": "Escreva a lei em símbolos",
+    "conta": "R = k × L/d²",
+    "porque": "Direta no comprimento significa L no numerador. Inversa no quadrado do diâmetro significa d² no denominador. O k guarda o material, que não muda.",
+    "tipo": "localizar"
+   },
+   {
+    "faz": "Traduza as porcentagens em fatores",
+    "conta": "L₂ = 1,60 × L₁ e d₂ = 0,80 × d₁",
+    "porque": "60 % maior é o valor inteiro mais 60 % dele: 1 + 0,60 = 1,60. 20 % menor é o valor inteiro menos 20 % dele: 1 − 0,20 = 0,80.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Monte a resistência do fio novo",
+    "conta": "R₂ = k × (1,60 × L₁)/(0,80 × d₁)²",
+    "porque": "É a mesma lei de antes, com o comprimento e o diâmetro novos no lugar dos antigos. O k continua igual porque o material é o mesmo.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Abra o quadrado com cuidado",
+    "conta": "(0,80 × d₁)² = 0,80² × d₁² = 0,64 × d₁²",
+    "porque": "Elevar um produto ao quadrado eleva cada fator ao quadrado, portanto o 0,80 também vai ao quadrado. Este é o passo que decide a questão.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Separe os números da lei antiga",
+    "conta": "R₂ = k × 1,60 × L₁/(0,64 × d₁²) → R₂ = (1,60/0,64) × k × L₁/d₁² → R₂ = (1,60/0,64) × R₁",
+    "porque": "O que sobra depois de tirar 1,60 e 0,64, k × L₁/d₁², é exatamente a resistência do fio antigo, R₁.",
+    "tipo": "calcular"
+   },
+   {
+    "faz": "Termine a conta",
+    "conta": "1,60/0,64 = 2,5 → R₂ = 2,50 × R₁",
+    "porque": "O fio novo é mais comprido, o que aumenta a resistência, e mais fino, o que aumenta mais ainda, porque o diâmetro entra ao quadrado. O resultado tinha de ser maior que 1.",
+    "tipo": "concluir"
+   }
+  ],
+  "resposta": "Alternativa E — R₂ = 2,50 × R₁ (o fio novo tem duas vezes e meia a resistência do antigo)",
+  "checagem": "Teste com números inventados. Com L₁ = 10 e d₁ = 10: R₁ = k × 10 ÷ 10² = 0,1 × k. O fio novo tem L₂ = 1,60 × 10 = 16 e d₂ = 0,80 × 10 = 8, logo R₂ = k × 16 ÷ 8² = k × 16 ÷ 64 = 0,25 × k. Dividindo, 0,25 ÷ 0,1 = 2,5.",
+  "erradas": {
+   "A": "Pega o 20 % do enunciado e usa como se fosse a própria resposta: R₂ = 0,20 × R₁. Esse 20 % é a redução do diâmetro, não da resistência, e o diâmetro entra dividindo e ao quadrado, o que faz a resistência subir.",
+   "B": "0,30 não confere: R₂/R₁ = 1,60/0,64 = 2,50. O fio ficou mais comprido e mais fino; as duas mudanças aumentam a resistência, então a razão tem de ser maior que 1.",
+   "C": "Usa 0,60 em vez de 1,60 e esquece o quadrado: 0,60/0,80 = 0,75. São dois erros no mesmo passo, porque 60 % maior é fator 1,60 e o diâmetro entra como 0,80² = 0,64.",
+   "D": "1,50 não confere: R₂/R₁ = 1,60/0,80² = 1,60/0,64 = 2,50. Mesmo esquecendo o quadrado, 1,60/0,80 daria 2,00."
+  },
+  "armadilha": "Esquecer de elevar o 0,80 ao quadrado: o diâmetro entra como 0,80² = 0,64, e 1,60/0,64 = 2,50.",
+  "essencial": {
+   "pede": "Relação entre a resistência do fio novo (R₂) e a do fio retirado (R₁).",
+   "chave": "R = k × L ÷ d², com fatores 1,60 no comprimento e 0,80 no diâmetro; R₂ ÷ R₁ = 1,60 ÷ 0,64.",
+   "cuidado": "O 0,80 também vai ao quadrado: dividir por 0,80 dá 2,00, e por 0,64 dá 2,50."
+  }
+ }
+}

@@ -1,0 +1,145 @@
+# Retenção: os momentos que fazem o aluno voltar
+
+Estrategista de retenção, 20/11/2026. Base: `CLAUDE.md`, `PRODUCT.md`, `ferramentas/fabrica/agentes/marketing/RETENCAO.md`,
+`docs/estrategia-revisao.md` (Método Aprendice de Revisão) e o código do site em `app/src` (ramo `app-prototipo-completo`).
+
+**Status:** a coluna "mensagem proposta" já passou pelo redator (21/11/2026: guia de voz, singular e plural, sem
+culpa nem urgência). O revisor de marca (`REVISOR.md`) preencheu a coluna "veredito" em 21/11/2026. Nenhum código foi alterado.
+
+Regras seguidas em todos os rascunhos: só dentro do site; números só os reais do progresso do aluno; sem emoji; sem
+culpa nem cobrança; sem contagem regressiva falsa; sem perda fictícia; sem comparação com outros alunos; curtas.
+Os trechos entre chaves (`{n}`) são números ou nomes tirados dos dados reais, nunca fixos.
+
+---
+
+## 1. O que o site já sabe do aluno (dados reais, onde estão)
+
+| Pergunta | Existe? | Onde (campo exato / função) | Observação | veredito |
+|---|---|---|---|---|
+| Data da prova | sim | `estado.perfil.datasProva[provaId]` ("AAAA-MM-DD"); a próxima: `logica/revisao.ts:proximaProva`, `agendaDe(e).prova` / `.provaId`; dias que faltam: `diasEntre(agora, ag.prova)` | Pedida só no Perfil (`telas/Perfil.tsx:DatasProva`), não nas boas-vindas. `proximaProva` só conta datas **depois de hoje** (no dia da prova, ela some da agenda). | ok (conferido: `proximaProva` ignora datas até hoje) |
+| Provas-alvo | sim | `estado.perfil.provasAlvo` (ids do catálogo; `'enem'`) | Escolhidas nas boas-vindas (padrão: ENEM) e no Perfil. Nome legível: `ui/revisao/AgendaRevisao.tsx:nomeProva`. | ok (conferido: padrão `['enem']` em BoasVindas.tsx:28) |
+| Dias estudados (sequência) | sim, derivado | `logica/inicio.ts:diasDeConstancia(e)` e `logica/estatisticas.ts:semana(e).sequencia` (as duas fazem a mesma conta) | Contam só dias com **resposta a questão** (`materias[m].q[id].tent[].ts`). Flashcards (`materias[m].flash[id].hist[].ts`) não entram. Não existe "pausa". | ok (conferido) |
+| Respostas hoje / ontem / semana | sim | `semana(e).hoje`, `.ontem`, `.semana`, `.dias[7]`; meta: `estado.perfil.meta` | Já aparece no menu lateral (`ui/Casca.tsx`, `.meta-lado`). | ok (conferido) |
+| Data do último acesso | **não existe** | — | Existe `estado.mexidoEm` (última mudança de qualquer tipo, inclusive tema e preferências): não serve. O último **estudo** sai da última tentativa: `logica/estatisticas.ts:atividadeRecente(e, 1)[0].ts` (só questões). `materias[m].sessoes` só tem dados migrados do protótipo: o site novo não grava sessões. | ok (conferido) |
+| Erros pendentes de revisão | sim | Vencidos hoje: `logica/estatisticas.ts:questoesVencidas(mc, s, agora, ag)` (erro com certeza primeiro). Na fila, vencidos ou não: `logica/revisao.ts:filaDe(eq, ag)` não nulo. Por questão: `memoriaDe` (`certeza`, `acertos`, `lapsos`, `vence`). Flashcards vencidos: `resumoMateria(...).flashVencidos`. Conteúdos em slides que voltam hoje: `logica/cicloRevisao.ts:revisoesVencidas(s, agora)`. | Entra na revisão: erro, chute (mesmo certo) ou dica (`revisao.ts:fraca`). Volta amanhã (`emNDias(ts, 1)`). Sai depois de 3 acertos espaçados (`SAIDA`). | ok (conferido: `fraca` = erro, chute ou dica) |
+| Resultado de fim de sessão | sim | Hoje/Escudo: `estado.sessaoHoje.res` (`'a'`/`'e'`), `treinoMisto.resultadoMisto`; Treino geral: `estado.treinoMisto.res`; Treino da matéria: `estado.treino[m].res`; Flashcards: estado local da tela; Simulado: `estado.simuladosFeitos[]` (`acertos`, `total`, `porMateria`, `itens[].ok`); Revisão em slides: `materias[m].revs[sub].hist[]` + `vence`. | "Treine sua evolução" (escada) **não tem tela de fim**: na última questão, "Concluir" volta à lista do conteúdo. | ok (conferido) |
+| Plano do dia | sim | `logica/hoje.ts:planoHoje(...)` → `sessao.length`, `minutosDe(n, segPorQuestao)`, `nItensSessao`, `itens[].vencidas/certeza/esquecidas/novas/faceisErradas`; Escudo TRI: `escudoTri(...)` (`erradas`, `garantidos`) | Montado a partir das provas-alvo × fraqueza × risco de esquecer. | ok (conferido) |
+| Onde parou | sim | `telas/Inicio.tsx:ondeParou(todas, e)` (conteúdo, próxima questão, `prog.feitas/total`) | Já alimenta "Continue de onde parou". | ok (conferido) |
+
+### O que a tela Hoje já mostra hoje (`telas/Hoje.tsx:Hoje`)
+- Título "Hoje" e o subtítulo literal: "O que estudar hoje, na ordem que mais rende: primeiro o que mais cai nas suas provas, onde você mais erra e o que está para esquecer."
+- Bloco da sessão: "{n} questões · cerca de {min} min", "De {k} conteúdos, [começando pelas fáceis erradas do Escudo TRI,] com o seu tempo médio de {x} minutos por questão.", escolha de 15/25/40 min, botão "Começar" (ou "Continuar {i} de {n}" + "Montar de novo").
+- Sem nada: "Nada pendente agora" / "Você não tem questões para revisar nem conteúdos pendentes na sua região. Escolha uma matéria para avançar."
+- Escudo TRI (com ENEM nas provas-alvo), "A ordem de hoje" com os motivos de cada conteúdo ("Errou com certeza", "{n} voltam hoje", "Ainda não estudado", "Cai muito nas suas provas"...) e "Como a ordem é feita".
+- **Não mostra** a data da prova nem quantos dias faltam (isso só aparece na Revisão, `AgendaRevisao`).
+- **Achado importante:** a Hoje não é a porta de entrada. Depois das boas-vindas o aluno cai no Início (`/`); o Início não tem link para Hoje; no celular, a barra de abas (Início, Matérias, Simulados, Revisão, Perfil) não tem Hoje. No celular, a Hoje só se alcança pelo botão "O que estudar hoje" da Revisão. Ver "Sugestões ao dono", item 1.
+
+---
+
+## 2. Os momentos
+
+Coluna "implementação": **já existe — só texto** (troca de texto num elemento que já está na tela) | **pequena** (até
+cerca de 30 linhas, só com dados que já existem; esboço exato) | **sugestão ao dono** (dado novo, lógica grande, e-mail
+ou notificação, mudança de navegação ou de visual, ou decisão dele). Nenhuma "pequena" cria elemento visual novo: o
+texto entra em parágrafos e classes que já existem na mesma tela (`miolo`, `fraco`, `q-antes`, `hj-link`); se o
+revisor achar que alguma muda o visual, ela vira sugestão ao dono (CLAUDE.md: toda mudança visual precisa da permissão
+dele).
+
+### 2.1 Primeira visita (entender o site em 5 segundos)
+
+| momento | onde na tela (arquivo e componente) | situação atual (texto literal) | mensagem proposta (revisada pelo redator) | dado real que alimenta | por que faz voltar | implementação | veredito |
+|---|---|---|---|---|---|---|---|
+| Antes de entrar (login) | `telas/Login.tsx:Login`, `h1.l-titulo`, `p.l-lead`, `.l-faixa` | "Estude com foco em questões reais de vestibulares e evolua em cada matéria." · "Organize seus estudos, pratique questões, entenda suas respostas e acompanhe seu progresso — tudo em um só lugar." · faixa: "Seu próximo avanço começa aqui." · selo: "Estudo organizado, prática constante, progresso real" | Os mesmos textos do TEXTOS.md: selo T66 `Questões reais de prova, com a fonte`; título T67(a) `Estude pelas<br />questões reais das provas <em>e veja onde você erra.</em>` (mantém a quebra e o itálico); linha T68 `Questões do ENEM e dos vestibulares, do básico ao avançado. A correção começa pela letra que você marcou, e o erro volta no dia certo.`; faixa T85 `Cada erro vira revisão.` | Fatos do produto (CLAUDE.md, princípios 1, 2, 5 e a revisão espaçada de `logica/revisao.ts`); nenhum número | Em 5 segundos o aluno entende a diferença (questão real + erro que volta), que é o motivo de abrir o site amanhã em vez de outro | já existe — só texto | ok |
+| Boas-vindas, provas-alvo | `telas/BoasVindas.tsx:BoasVindas`, passo 1, `p.miolo` | "O site prioriza o que essas provas cobram: simulados, sugestões e treinos. Dá para mudar depois no perfil." | O mesmo de TEXTOS.md T104: "O site monta o seu estudo pelo que essas provas cobram e pela região delas. Dá para mudar depois no Perfil." | `perfil.provasAlvo` → `logica/hoje.ts:pesosDasProvas` | Liga a escolha de agora ao plano do dia: o aluno sabe que amanhã já existe um "o que fazer" feito para ele | já existe — só texto | ok |
+| Boas-vindas, data da prova | `telas/BoasVindas.tsx`, passo 2 ("Qual o seu ritmo?") | Não pergunta a data; ela só existe no Perfil (`Perfil.tsx:DatasProva`) | "Quando é a sua prova? Com a data, a revisão passa a contar a partir dela." (campo opcional, botão "Pular") | `perfil.datasProva` (o dado já existe; falta pedir) | Sem data, a agenda não conta a partir da prova (pilar 2) e a véspera nunca é reconhecida | sugestão ao dono (campo novo na tela = mudança visual) | ok |
+| Primeiro Início, sem nenhuma resposta | `telas/Inicio.tsx:Inicio`, `header.in-cab` (`h1` + `p`) | "Vamos avançar nos estudos?" · "Escolha uma matéria ou misture seus conhecimentos." | `p`: "Para começar, a tela Hoje separou 1 questão, cerca de {min} min, pelo que mais cai {no ENEM / nas suas provas / nas provas do banco}." / "Para começar, a tela Hoje separou {n} questões, cerca de {min} min, pelo que mais cai {no ENEM / nas suas provas / nas provas do banco}." Com 0 questões: não mostrar (fica T122). Prioridade do `p`: esta linha > a de volta depois de 3 dias (2.6) > T122. O link "Hoje" no cabeçalho é mudança visual: só com aval do dono; sem ele, a frase vai sem link. | `atividadeRecente(e, 1).length === 0`; `planoHoje(todas, e.materias, { provasAlvo, conj, ag, minutos })` → `sessao.length`, `minutosDe(...)`, `pesos.provas` | O primeiro passo concreto e curto, com tempo real, tira a dúvida "por onde começo" | feito (commit 787fb358) | ok  |
+
+### 2.2 Hoje (entrada do dia: o que fazer e quanto leva)
+
+| momento | onde na tela (arquivo e componente) | situação atual (texto literal) | mensagem proposta (revisada pelo redator) | dado real que alimenta | por que faz voltar | implementação | veredito |
+|---|---|---|---|---|---|---|---|
+| Abrir a Hoje com a data da prova informada | `telas/Hoje.tsx:Hoje`, `.titulo-pag p.sub` | "O que estudar hoje, na ordem que mais rende: primeiro o que mais cai nas suas provas, onde você mais erra e o que está para esquecer." (a data da prova não aparece) | Acrescentar ao fim do `p.sub`: "{ENEM} em {12 de novembro}: falta 1 dia / faltam {n} dias." | `agendaDe(e, agora)` → `ag.prova`, `ag.provaId`; `diasEntre(agora, ag.prova)`; `nomeProva(ag.provaId)` | A conta é real e do aluno (não é contagem regressiva inventada); dá sentido à sessão de hoje | feito (commit b6637fc9) | ok  |
+| Hoje com provas-alvo mas sem data | `telas/Hoje.tsx`, `section.hj-como p` (já tem link `hj-link` para provas-alvo quando não há) | Só aparece link quando não há provas-alvo: "Escolha suas provas-alvo para a ordem seguir o que elas cobram." | "Informe a data da sua prova e a revisão passa a contar a partir dela." (link `hj-link` para `/perfil#datas-prova`) | `alvos.length > 0 && !ag.prova` | Pede o único dado que falta para a agenda do pilar 2, no lugar onde ele faz diferença | feito (commit b6637fc9) | ok (âncora `#datas-prova` existe em Perfil.tsx:151)  |
+| Sessão do dia pronta | `telas/Hoje.tsx`, `h2#hj-ses-tit` + `p` | "{n} questões · cerca de {min} min" · "De {k} conteúdos, [começando pelas fáceis erradas do Escudo TRI,] com o seu tempo médio de {x} minutos por questão." | Manter o título. Linha (só quando `v > 0`, contando só `m.fila && m.vence <= agora`): "Destas, 1 volta hoje na revisão." / "Destas, {v} voltam hoje na revisão." | `plano.sessao`: em cada id, `memoriaDe(e.materias[x.m]?.q[x.id], ag)` com `fila && vence <= agora` (a questão marcada que volta hoje) | Diz por que estas questões, e não outras: o erro de ontem é o primeiro passo de hoje | feito (commit b6637fc9) | ok  |
+| Nada pendente | `telas/Hoje.tsx`, mesmo bloco | "Nada pendente agora" · "Você não tem questões para revisar nem conteúdos pendentes na sua região. Escolha uma matéria para avançar." | O mesmo de TEXTOS.md T166 e T168: "Revisão em dia" · "Nenhuma questão volta hoje e não há conteúdo pendente na sua região. Escolha uma matéria para avançar." | `plano.sessao.length === 0` | Reconhece o trabalho feito sem elogio vazio e aponta o próximo passo | já existe — só texto | ok |
+| Entrada do dia pelo Início | `telas/Inicio.tsx:HoraDeRevisar`, `p.in-sec-sub` | "Transforme seus erros em aprendizado." | Com vencidas: "1 questão volta hoje na revisão." / "{n} questões voltam hoje na revisão." Sem vencidas: "Nenhuma questão volta hoje." | soma de `questoesVencidas(mc, s, agora, agendaDe(e)).length` em `todas` (já calculado por matéria dentro de `HoraDeRevisar`, mas só para as 3 primeiras) | Número real e pequeno no lugar de frase genérica: dá a medida do dia | feito (commit 787fb358) | ok (se implementado, substitui a proposta de TEXTOS.md T151 no mesmo parágrafo)  |
+| Hoje como porta de entrada | Início, menu do celular, fim das boas-vindas | Hoje só no menu lateral; no celular só pelo botão da Revisão | — | — | O "o que fazer e quanto leva" existe, mas o aluno não o encontra | sugestão ao dono (item 1) | ok (sugestão ao dono) |
+
+### 2.3 Fim de sessão (o que melhorou + o próximo passo)
+
+| momento | onde na tela (arquivo e componente) | situação atual (texto literal) | mensagem proposta (revisada pelo redator) | dado real que alimenta | por que faz voltar | implementação | veredito |
+|---|---|---|---|---|---|---|---|
+| Fim da sessão de Hoje / Escudo TRI | `telas/Hoje.tsx:FimSessao` | "Sessão de hoje concluída" · "{ok} de {n} questões certas, em {k} matérias." · "{e} questões erradas voltam amanhã na revisão. Cada resposta já conta na agenda e no domínio de cada conteúdo." | Acrescentar o que melhorou (contando só as que tinham resposta errada antes: `t.slice(0, -1).some((x) => !x.ok)`; com 0, não mostrar): "1 questão que você tinha errado agora está certa." / "{x} questões que você tinha errado agora estão certas." Trocar a última linha por (a mesma de TEXTOS.md T209): "Amanhã, 1 questão volta na revisão." / "Amanhã, {a} questões voltam na revisão." / "Nenhuma questão volta amanhã." | Melhorou: itens com `ses.res[k] === 'a'`, última tentativa certa e alguma tentativa anterior errada (`pegaEstado().materias[m].q[id].tent.slice(0, -1).some((x) => !x.ok)`). Amanhã: `questoesVencidas(mc, s, emNDias(agora, 1) + DIA - 1, ag).length` somado em `todas` (o `todas` já chega em `FimSessao` e não é usado) | Fecha com uma vitória real (o erro que virou acerto) e um compromisso concreto para amanhã, com número | feito (commit b6637fc9) | ok  |
+| Fim do Treino geral (todas as matérias) | `telas/TreinoMisto.tsx:TreinoMisto`, bloco `tm-fim` | "Treino concluído" · "{ok} de {n} questões certas, em {k} matérias." · "Cada resposta já conta no progresso da matéria da questão. Erros e chutes entram na revisão espaçada." | A mesma de TEXTOS.md T405: "Cada resposta conta no progresso da matéria." + "1 erro volta amanhã na revisão." / "{e} erros voltam amanhã na revisão." / "Nenhum erro nesta rodada." | `Object.values(ses.res).filter((v) => v === 'e').length` | O aluno sai sabendo que o erro tem data para voltar, em vez de "entram na revisão" abstrato | feito (commit 48fe3d12) | ok (igual a T405)  |
+| Fim do Treino da matéria | `telas/Treino.tsx`, `resultado-fl` | "Treino concluído" · "{a} de {n} itens certos." · "Erros e chutes entram na revisão espaçada automaticamente." | Texto fixo, o mesmo de TEXTOS.md T392: "Erros e chutes voltam na revisão: as questões amanhã, os flashcards e frases no dia marcado." (sem número: a conta por tipo não cobre "Quase" nem chutes) | nenhum (texto fixo) | Mesmo motivo: o próximo passo tem data | já existe — só texto | ok (igual a T392) |
+| Fim dos flashcards | `telas/Flashcards.tsx`, `resultado-fl` | "Sessão concluída" · contadores Acertei/Quase/Errei · "Os que você errou voltam ainda hoje; os demais, no dia certo da revisão." | Manter. Opcional: "O cartão que você errou volta ainda hoje; os outros, no dia marcado." / "Os {e} cartões que você errou voltam ainda hoje; os outros, no dia marcado." | `res` da tela (`'e'`) | — | já existe — só texto | ok (as duas formas) |
+| Resultado do simulado | `telas/SimuladoResultado.tsx`, `.res-sim` | "{a} de {t} certas · {tempo} · {data}" · "Os erros e as questões em branco já entraram na revisão espaçada." | O mesmo de TEXTOS.md T544: "1 questão entrou na sua revisão (erro ou em branco)." / "{n} questões entraram na sua revisão, entre erros e em branco." / "Nenhum erro e nenhuma questão em branco." (2ª versão: sem "amanhã", que ficava errado ao reabrir pelo Histórico) (botão já existe: "Ir para a revisão") | `f.itens.filter((x) => !x.ok).length` | Transforma o placar (que pode desanimar) em lista curta e datada | feito (commit 6f75e801) | ok  |
+| Fim da revisão em slides | `telas/RevisaoSlides.tsx:Fim` | "Conteúdo firme por enquanto" / "Este conteúdo volta logo" · "Volta {amanhã} ({data}). Acertou a aplicação e lembrou do essencial: o intervalo cresce." | Manter: já tem o que melhorou (números das 3 fases) e o próximo passo com data real | `revs[sub].hist`, `revs[sub].vence` | — | já existe — só texto (nada a mudar) | ok (manter) |
+| Fim do "Treine sua evolução" (escada) | `telas/Questao.tsx` (última questão: "Concluir" → volta a `/m/:m/escada/:sub`) | Não há tela de fim: volta à lista do conteúdo | "{c} de {t} certas neste conteúdo." + "1 volta amanhã na revisão." / "{e} voltam amanhã na revisão." + o próximo passo: "Próximo: nível {intermediário}" ou "Próximo conteúdo: {nome}" | `progressoEscada(qs, s)`, `filaDe` | O momento de maior esforço termina sem fechamento | sugestão ao dono (tela nova) | ok (sugestão ao dono) |
+
+### 2.4 Erro (convite à revisão)
+
+| momento | onde na tela (arquivo e componente) | situação atual (texto literal) | mensagem proposta (revisada pelo redator) | dado real que alimenta | por que faz voltar | implementação | veredito |
+|---|---|---|---|---|---|---|---|
+| Errou uma questão (conteúdo, nível, revisão) | `telas/Questao.tsx:QuestaoTela`, painel `q-lado`, ramo `revelado`, logo acima de `.q-lado-fim` | Cabeçalho da correção (`ui/Resolucao.tsx`): "Você marcou {B}. A resposta é {D}." e "Por que eu errei". Nada diz que a questão volta. (Antes de responder, se já respondeu: "Você já respondeu esta questão {n vezes}; revisão {amanhã}.") | Se o dono aprovar: "Esta questão volta {amanhã} na revisão." Se errou com certeza: "Você marcou com certeza: esta questão vem primeiro na revisão de amanhã." | `f = filaDe(eq, agendaDe(pegaEstado()))` (já calculado na linha `const f = filaDe(...)`, depois de `registraTentativa`); `f.vence` → `emDias(f.vence)`; `f.certeza` | O erro deixa de ser fim e vira encontro marcado; a certeza errada é o caso que mais rende revisar (pilar 3) | sugestão ao dono (decisão da coordenação, 21/11/2026: a correção tem 4 blocos fixos no CLAUDE.md; linha nova depois de responder não será implementada) | ok |
+| Acertou no chute ou com dica | mesmo lugar | "Você acertou" | Se o dono aprovar: no chute, "Acertou no chute: ela volta {amanhã} para você confirmar."; com dica, "Acertou com dica: ela volta {amanhã} para você resolver sem a dica." | `escolha === q.gab && f` (fila não nula = fraca: chute ou dica); `conf === 'chute'`, `pista` | Honesto com o aluno: o acerto por sorte não é tratado como domínio, e ele sabe que vai ter a chance de provar | sugestão ao dono (decisão da coordenação, 21/11/2026: a correção tem 4 blocos fixos no CLAUDE.md; linha nova depois de responder não será implementada) | ok |
+| Erro dentro da sessão de Hoje e do Treino geral | `telas/Treino.tsx:QuestaoInline` (usada por `RodadaQuestoes`) | Igual: correção sem a data de volta | As mesmas duas mensagens acima, se o dono aprovar | `filaDe(pegaEstado().materias[m]?.q[q.id], agendaDe(pegaEstado()))` depois de `confirma` | Mesmo motivo | sugestão ao dono (decisão da coordenação, 21/11/2026: a correção tem 4 blocos fixos no CLAUDE.md; linha nova depois de responder não será implementada) | ok |
+| Revisão vazia | `telas/Revisao.tsx`, `.vazio` | "Nada para revisar hoje" · "Quando você errar, chutar ou usar uma pista, a questão aparece aqui no dia certo." | Manter, só trocando "pista" por "dica": "Nada para revisar hoje" · "Quando você errar, chutar ou usar a dica, a questão aparece aqui no dia certo." (TEXTOS.md, T564) | `totVenc === 0` | — | já existe — só texto (nada a mudar) | ok (igual a T564) |
+
+### 2.5 Sequência de dias
+
+| momento | onde na tela (arquivo e componente) | situação atual (texto literal) | mensagem proposta (revisada pelo redator) | dado real que alimenta | por que faz voltar | implementação | veredito |
+|---|---|---|---|---|---|---|---|
+| Constância no Início | `telas/Inicio.tsx:Desempenho`, `.in-desemp-nums` | "{n} dias de constância" | O mesmo de TEXTOS.md T148: "0 dias seguidos" / "1 dia seguido" / "{n} dias seguidos" | `logica/inicio.ts:diasDeConstancia(e)` | Reconhece o hábito com número real, sem ameaça de perder | já existe — só texto | ok |
+| Contar flashcards na sequência | `logica/inicio.ts:diasDeConstancia` (e `estatisticas.ts:semana` para manter as duas iguais) | Só conta respostas a questões | (mesma mensagem; muda o que conta) | `materias[m].flash[id].hist[].ts` | Pilar 10: a ofensiva conta recuperações (questão, frase, flashcard); quem revisou cartões estudou | feito (commit 787fb358) | ok (só em `diasDeConstancia`; a meta semanal continua contando questões, senão "questões na semana" fica falso)  |
+| Menu lateral (meta) | `ui/Casca.tsx`, `.meta-lado` | "{s} de {meta}" · "meta da semana" · "hoje {h} · ontem {o}" | Manter. Sem aviso de "não perca a sequência" (seria perda fictícia ou cobrança) | `semana(e)`, `perfil.meta` | — | já existe — só texto (nada a mudar) | ok |
+| Pausa sem perder a sequência | — | Não existe | "Pausa marcada. Sua sequência continua quando você voltar." | **dado não existe** (dias de pausa) | Pilar 10: hábito saudável, nenhuma punição | sugestão ao dono (item 4) | ok (sugestão ao dono) |
+
+### 2.6 Volta depois de dias parado (acolher, sem cobrança)
+
+| momento | onde na tela (arquivo e componente) | situação atual (texto literal) | mensagem proposta (revisada pelo redator) | dado real que alimenta | por que faz voltar | implementação | veredito |
+|---|---|---|---|---|---|---|---|
+| Abrir o Início depois de 3 dias ou mais sem estudar | `telas/Inicio.tsx:Inicio`, `header.in-cab p` | "Vamos avançar nos estudos?" · "Escolha uma matéria ou misture seus conhecimentos." | `p` (prioridade: abaixo da linha de primeira visita, acima de T122): "Bom ter você aqui. 1 questão volta hoje na revisão." / "Bom ter você aqui. {n} questões voltam hoje na revisão." / sem vencidas: "Bom ter você aqui. Escolha por onde recomeçar." (sem dizer quantos dias ficou fora; sem link novo no cabeçalho) | Último estudo: maior `ts` entre `materias[*].q[*].tent[*]` e `materias[*].flash[*].hist[*]` (função nova `diasParado` em `logica/inicio.ts`); vencidas: soma de `questoesVencidas` (a mesma da linha "Entrada do dia pelo Início") | Acolhe e reduz o retorno a um passo pequeno e conhecido; não lembra a ausência | feito (commit 787fb358) | ok  |
+| Volta com sessão de Hoje velha | `telas/Hoje.tsx:sessaoAberta` | A sessão de outro dia some sozinha (só vale a do dia: `s.dia === iniDia(agora)`) e a lista é refeita | Nada a dizer: já é o comportamento certo (sem lista acumulada para "pagar") | `sessaoHoje.dia` | Ninguém volta para uma pilha de atraso | já existe — só texto (nada a mudar) | ok (nada a mudar) |
+| Volta com muitas vencidas | `telas/Hoje.tsx`, `p` do bloco da sessão | "De {k} conteúdos, com o seu tempo médio..." | Quando o total que volta passa do que cabe na sessão: "Nem todas as {venc} questões que voltam hoje cabem no tempo escolhido; as outras ficam para os próximos dias." (só aparece com `venc > n`, então `venc` é sempre 2 ou mais) | total vencido (soma de `itens[].vencidas`) > `plano.sessao.length` | Tira o peso do acúmulo sem esconder nada | feito (commit b6637fc9) | ok  |
+
+### 2.7 Véspera de prova
+
+| momento | onde na tela (arquivo e componente) | situação atual (texto literal) | mensagem proposta (revisada pelo redator) | dado real que alimenta | por que faz voltar | implementação | veredito |
+|---|---|---|---|---|---|---|---|
+| Últimos 3 dias antes da prova | `telas/Hoje.tsx:Hoje`, `.titulo-pag p.sub` (mesma linha da data, 2.2) | Nada; a Revisão mostra "{Prova} em {data}" · "Faltam {n} dias..." (`AgendaRevisao`) | Nos últimos 3 dias (`falta` 2 ou 3), acrescentar à linha da data de 2.2 ("{ENEM} em {data}: faltam {n} dias.") só: "Nenhuma revisão fica marcada para depois da véspera." Na véspera (`falta === 1`), a linha da data vira: "{ENEM} é amanhã." | `diasEntre(agora, ag.prova) <= 3`; `logica/revisao.ts:intervalo` garante que nada é marcado depois da véspera | Mensagem calma, verdadeira, que dá permissão para não abrir conteúdo novo; ancora a volta nos dias finais | feito (commit b6637fc9) | ok (conferido em logica/revisao.ts:73-79 e :113: com `falta` 2 ou 3, erro volta amanhã e acerto tem intervalo de no máximo `falta − 1`, então tudo cai até a véspera; só a resposta dada na própria véspera volta no dia da prova, e nesse dia a frase não aparece)  |
+| Dia da prova | `telas/Hoje.tsx`, mesmo lugar | Nada (e `proximaProva` já pula a prova do dia) | "Hoje é dia de {ENEM}. Boa prova." | `perfil.datasProva[id] === data de hoje` para algum `id` de `provasAlvo` (`diaDaData(...) === iniDia(agora)`) | Reconhece o dia sem empurrar estudo | feito (commit b6637fc9) | ok  |
+| Modo véspera de verdade | `logica/hoje.ts:planoHoje` | Não existe | "Modo véspera: só o que você já estudou, em sessão curta." | lógica nova (pilar 10) | Pilar 10 do Método | sugestão ao dono (item 3) | ok (sugestão ao dono) |
+
+---
+
+## 3. Sugestões ao dono
+
+Cada item precisa de decisão do dono porque muda navegação ou visual, cria dado novo ou sai do site.
+
+0. **Linha nova na correção depois de responder (2.4: errou, acertou no chute ou com dica, e o mesmo nas sessões de Hoje e do Treino geral).** Decisão da coordenação (21/11/2026): não será implementada, porque o CLAUDE.md fixa a correção em 4 blocos (Por que eu errei · Resposta correta + a pegadinha · Resolução · Por que as outras estão erradas). As frases ficam prontas em 2.4 caso o dono queira abrir exceção.
+
+1. **Hoje como porta de entrada.** Hoje é a tela que responde "o que faço e quanto leva", mas o aluno não chega nela:
+   o fim das boas-vindas leva ao Início (`BoasVindas.tsx:conclui` → `nav('/')`), o Início não tem link para Hoje e a
+   barra do celular (`ui/Casca.tsx`, `nav.tabs`) não tem Hoje. Opções: (a) um cartão ou link "Hoje" no Início;
+   (b) trocar uma aba do celular por Hoje; (c) terminar as boas-vindas em `/hoje`. É mudança de navegação e de visual.
+2. **Pedir a data da prova nas boas-vindas** (campo opcional no passo "Ritmo", com "Pular"). O dado já existe
+   (`perfil.datasProva`); falta pedir na hora certa. É campo novo na tela.
+3. **Modo véspera** (pilar 10 do Método, fase 5): nos 3 dias antes de cada prova, o plano de Hoje sem questões novas,
+   só erros com certeza e o que já está dominado, sessão mais curta e aviso de sono. É lógica nova em
+   `logica/hoje.ts:planoHoje` (tirar `novas` quando `falta <= 3`) e decisão de conteúdo (o texto do aviso de sono).
+4. **Sequência com pausa** (pilar 10): marcar dias de pausa sem perder a sequência. **Dado não existe**: precisa de um
+   campo novo (por exemplo `pref.pausas: number[]`, dias marcados), com migração (princípio 7) e um botão novo.
+5. **Tela de fim do "Treine sua evolução"**: hoje a última questão da escada volta à lista sem resumo. Uma tela de
+   fim com acertos no conteúdo, o que volta amanhã e o próximo nível fecharia o maior esforço do aluno. Tela nova.
+6. **Registro de estudo por sessão:** `materias[m].sessoes` não é mais gravado pelo site novo (só tem o que veio do
+   protótipo). Para mensagens como "{n} minutos hoje" ou "último acesso", seria preciso voltar a gravar o início e o fim
+   de cada sessão. Dado novo.
+7. **E-mail e notificação ficam fora** até o dono decidir. Se um dia entrarem, os candidatos naturais são "{n} questões
+   voltam hoje" e a véspera de prova, sempre com consentimento expresso e opção de sair (LGPD).
+8. **"O equívoco volta"** (pilar 4): a mensagem "o mesmo erro de raciocínio voltou, agora em outra questão" depende dos
+   códigos de equívoco por alternativa, que a fábrica ainda não marca. **Dado não existe.**
+9. Para o redator (não é decisão do dono, só registro): no login, "Seu próximo avanço começa aqui." e "Estudo
+   organizado, prática constante, progresso real" são frases genéricas, do tipo que o guia de voz proíbe; no Início,
+   "Transforme seus erros em aprendizado." e "Uma nova chance de fixar o conteúdo." também. Os rascunhos acima trocam
+   a primeira e a terceira por números reais.

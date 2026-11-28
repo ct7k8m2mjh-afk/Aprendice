@@ -1,0 +1,597 @@
+{
+ "P245cbf2d": {
+  "n": "31",
+  "conceito": "Potências de 10 com expoentes negativos: fator comum.",
+  "equivocos": {
+   "B": "M01.2:perdeu-o-sinal",
+   "C": "M01.2:errou-o-expoente",
+   "D": "M01.2:errou-o-expoente-e-o-sinal"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A expressão é [10^(−4) − 10^(−9)] / [10^(−13) − 10^(−8)]. Coloque em evidência a menor potência em cima e embaixo, e repare que os parênteses que sobram são opostos.",
+    "formulas": [
+     "10^a · 10^b = 10^(a + b)",
+     "10^a / 10^b = 10^(a − b)"
+    ],
+    "simbolos": []
+   },
+   "pista": "Em cima, ponha 10^(−9) em evidência; embaixo, 10^(−13). O que sobra nos parênteses?",
+   "passos": [
+    {
+     "faz": "Numerador",
+     "conta": "10^(−4) − 10^(−9) = 10^(−9)(10^5 − 1)",
+     "porque": "10^(−9) · 10^5 = 10^(−4).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Denominador",
+     "conta": "10^(−13) − 10^(−8) = 10^(−13)(1 − 10^5)",
+     "porque": "10^(−13) · 10^5 = 10^(−8).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Dividir",
+     "conta": "[10^(−9)/10^(−13)] · [(10^5 − 1)/(1 − 10^5)] = 10^4 · (−1)",
+     "porque": "Os parênteses são opostos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resultado",
+     "conta": "−10 000 → alternativa A",
+     "porque": "10^4 = 10 000 com sinal negativo.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — −10.000",
+   "checagem": "Multiplique numerador e denominador por 10^13: numerador vira 10^9 − 10^4 e denominador 1 − 10^5. Com números: (1 000 000 000 − 10 000)/(1 − 100 000) = 999 990 000/(−99 999) = −10 000, pois 99 999 · 10 000 = 999 990 000. Confere.",
+   "erradas": {
+    "B": "10 000 esquece que os parênteses (10^5 − 1) e (1 − 10^5) são opostos: perde o sinal.",
+    "C": "−100 000 = −10^5: sinal certo, mas a potência errada; −9 − (−13) = 4, então é 10^4.",
+    "D": "100 000 erra a potência (10^5 em vez de 10^4) e o sinal."
+   },
+   "armadilha": "Perder o sinal: o denominador é negativo, porque 10^(−13) é menor que 10^(−8).",
+   "alerta": "",
+   "essencial": {
+    "pede": "Valor da expressão.",
+    "chave": "Evidência: 10^4 · (−1).",
+    "cuidado": "Denominador negativo: 10^(−13) < 10^(−8)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "ordem de grandeza",
+    "ideia": "Em cima, 10^(−9) é desprezível perto de 10^(−4): numerador ≈ 10^(−4). Embaixo, 10^(−13) é desprezível perto de 10^(−8): denominador ≈ −10^(−8). Razão ≈ −10^(−4)/10^(−8) = −10^4, e as contas exatas mostram que é exato."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "10^(−9)(10^5 − 1)",
+    "nota": "numerador"
+   },
+   {
+    "linha": "10^(−13)(1 − 10^5)",
+    "nota": "denominador"
+   },
+   {
+    "linha": "−10^4",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-12",
+   "lote": "mat-0043"
+  }
+ },
+ "P50a71a3b": {
+  "n": "32",
+  "conceito": "Descontos sucessivos.",
+  "equivocos": {
+   "A": "M03.2:sem-origem-identificada",
+   "B": "M03.2:somou-as-porcentagens",
+   "D": "M03.2:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Gastar 20% é ficar com 80%. A segunda despesa é sobre o que sobrou, então multiplica de novo por 0,8.",
+    "formulas": [
+     "sobra = 0,8 · 0,8"
+    ],
+    "simbolos": []
+   },
+   "pista": "Depois do supermercado, quanto sobra? E a farmácia tira 20% de quê?",
+   "passos": [
+    {
+     "faz": "Após supermercado",
+     "conta": "0,8 do valor",
+     "porque": "Gastou 20%.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Após farmácia",
+     "conta": "0,8 · 0,8 = 0,64 → alternativa C",
+     "porque": "20% do que sobrou.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 64%",
+   "checagem": "Com R$ 100: supermercado 20 → sobram 80; farmácia 20% de 80 = 16 → sobram 64. Confere.",
+   "erradas": {
+    "A": "56% exigiria gastar 30% na farmácia (0,56 ÷ 0,8 = 0,7), não 20%.",
+    "B": "60% = 100% − 20% − 20%: tirou os dois 20% do valor inicial.",
+    "D": "66% exigiria gastar só 17,5% na farmácia (0,66 ÷ 0,8 = 0,825), não 20%."
+   },
+   "armadilha": "Subtrair 40% do total, como se os dois gastos fossem sobre o valor inicial.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quanto sobrou.",
+    "chave": "0,8 · 0,8 = 64%.",
+    "cuidado": "O segundo gasto é sobre o que sobrou."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "gastos",
+    "ideia": "Gastou 20% + 20% de 80% = 20% + 16% = 36%; sobrou 64%."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,8 · 0,8 = 0,64",
+    "nota": "Após farmácia"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0049"
+  }
+ },
+ "P92e9764f": {
+  "n": "35",
+  "conceito": "Moldura de largura constante: área total menos área da gravura igual à área da gravura, o que leva a uma equação do 2.º grau.",
+  "equivocos": {
+   "A": "M09.3:somou-4x-em-cada-dimensao",
+   "C": "M09.3:somou-x-uma-vez-so",
+   "D": "M09.3:raiz-que-nao-confere"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A moldura acrescenta x de cada lado, então cada dimensão cresce 2x, não x. A área da moldura é a área do retângulo grande menos a da gravura. Se a moldura tem a mesma área da gravura, o retângulo grande tem o dobro da área da gravura.",
+    "formulas": [
+     "dimensões externas: (30 + 2x) e (20 + 2x)",
+     "área total = 2 × área da gravura"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "largura da moldura, em cm"
+     ]
+    ]
+   },
+   "pista": "Escreva as medidas do retângulo de fora, lembrando que a moldura aparece dos dois lados.",
+   "passos": [
+    {
+     "faz": "Ache a área total exigida",
+     "conta": "área da gravura = 30 · 20 = 600 → área total = 600 + 600 = 1200",
+     "porque": "Moldura e gravura juntas formam o retângulo de fora; se a moldura tem 600 cm², o total é 1 200 cm².",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte a equação do retângulo de fora",
+     "conta": "(30 + 2x)(20 + 2x) = 1200 → 4x² + 100x + 600 = 1200",
+     "porque": "Cada dimensão ganha x de um lado e x do outro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique a equação",
+     "conta": "4x² + 100x − 600 = 0 → x² + 25x − 150 = 0",
+     "porque": "Passe o 1 200 para o outro lado e divida tudo por 4 para ficar com números menores.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva por soma e produto",
+     "conta": "(x + 30)(x − 5) = 0 → x = 5 ou x = −30",
+     "porque": "Procure dois números com produto −150 e soma 25: 30 e −5. Largura negativa não serve.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "x = 5 cm → alternativa B",
+     "porque": "A questão pede a largura x da moldura.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 5 cm",
+   "checagem": "Com x = 5, o retângulo de fora mede 40 cm por 30 cm, área 1 200 cm². Tirando a gravura, a moldura tem 1 200 − 600 = 600 cm², igual à gravura.",
+   "erradas": {
+    "A": "2,5 sai de somar 4x a cada dimensão, contando a largura duas vezes de cada lado: (30 + 4x)(20 + 4x) = 1200 dá x = 2,5.",
+    "C": "10 sai de somar só x a cada dimensão, esquecendo um dos lados: (30 + x)(20 + x) = 1200 dá x = 10. Com a moldura certa, (50)(40) − 600 = 1 400 cm², não 600.",
+    "D": "12,5 não confere: o retângulo de fora mediria 55 por 45, área 2 475 cm², e a moldura teria 1 875 cm², muito mais que 600."
+   },
+   "armadilha": "A moldura cerca a gravura dos dois lados, então cada dimensão aumenta 2x, não x.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A largura x da moldura cuja área é igual à da gravura de 30 cm por 20 cm.",
+    "chave": "(30 + 2x)(20 + 2x) = 1200, que dá x² + 25x − 150 = 0 e x = 5.",
+    "cuidado": "Some 2x a cada dimensão e descarte a raiz negativa."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "testar alternativas",
+    "ideia": "Teste x = 5: (30 + 10)(20 + 10) = 1 200 = 2 × 600, então a moldura tem 600 cm², como a gravura."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "30 · 20 = 600",
+    "nota": "área da gravura"
+   },
+   {
+    "linha": "(30 + 2x)(20 + 2x) = 1200",
+    "nota": "o total é o dobro da gravura"
+   },
+   {
+    "linha": "4x² + 100x + 600 = 1200 → 4x² + 100x − 600 = 0",
+    "nota": "o 1 200 passa para o outro lado"
+   },
+   {
+    "linha": "x² + 25x − 150 = 0",
+    "nota": "divide tudo por 4"
+   },
+   {
+    "linha": "(x + 30)(x − 5) = 0 → x = 5",
+    "nota": "a raiz negativa não serve"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0061"
+  }
+ },
+ "Pbe5e1945": {
+  "n": "33",
+  "conceito": "Probabilidade da união: múltiplos de 2 ou de 3 num intervalo, descontando os múltiplos de 6.",
+  "equivocos": {
+   "A": "M13.4:espaco-amostral-errado",
+   "B": "M13.6:respondeu-o-complementar",
+   "C": "M13.4:espaco-amostral-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "\"Maior que 1 e menor que 15\" exclui o 1 e o 15: o sorteio é entre 2 e 14. \"Múltiplo de 2 ou de 3\" é uma união; os múltiplos de 6 estão nas duas listas e só podem contar uma vez.",
+    "formulas": [
+     "n(2 ou 3) = n(múltiplos de 2) + n(múltiplos de 3) − n(múltiplos de 6)",
+     "probabilidade = casos favoráveis ÷ casos possíveis"
+    ],
+    "simbolos": [
+     [
+      "múltiplo de 6",
+      "número que é múltiplo de 2 e de 3 ao mesmo tempo"
+     ]
+    ]
+   },
+   "pista": "Comece decidindo exatamente quais números podem ser sorteados: o 1 e o 15 entram?",
+   "passos": [
+    {
+     "faz": "Conte os casos possíveis",
+     "conta": "2, 3, …, 14 → 14 − 2 + 1 → 13 números",
+     "porque": "\"Maior que 1\" e \"menor que 15\" são desigualdades estritas: os extremos ficam de fora.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Liste os múltiplos de 2 e de 3",
+     "conta": "de 2: 2, 4, 6, 8, 10, 12, 14 → 7 | de 3: 3, 6, 9, 12 → 4 | de 6: 6, 12 → 2",
+     "porque": "O 6 e o 12 aparecem nas duas listas.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Desconte os repetidos",
+     "conta": "7 + 4 − 2 → 9 favoráveis",
+     "porque": "Sem tirar o 6 e o 12, eles contariam duas vezes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e ligue à alternativa",
+     "conta": "9/13 → alternativa D",
+     "porque": "São 9 favoráveis entre 13 possíveis.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 9/13",
+   "checagem": "Conte o que sobra: entre 2 e 14, não são múltiplos nem de 2 nem de 3 só 5, 7, 11 e 13, ou seja, 4 números. 13 − 4 = 9 favoráveis, o mesmo de antes.",
+   "erradas": {
+    "A": "4/15 junta dois erros: os 4 números que não servem (5, 7, 11, 13) sobre 15, como se o sorteio fosse de 1 a 15.",
+    "B": "4/13 sai de responder o complementar: 5, 7, 11 e 13 são os 4 números que não são múltiplos nem de 2 nem de 3.",
+    "C": "9/15 tem os 9 favoráveis certos, mas divide por 15, como se o 1 e o 15 pudessem ser sorteados. \"Maior que 1 e menor que 15\" deixa só 13 números."
+   },
+   "armadilha": "\"Maior que 1 e menor que 15\" exclui os extremos: são 13 números, não 15.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A chance de um inteiro entre 2 e 14 ser múltiplo de 2 ou de 3.",
+    "chave": "Favoráveis 7 + 4 − 2 = 9 entre 13 possíveis: 9/13.",
+    "cuidado": "Exclua o 1 e o 15 e conte o 6 e o 12 uma vez só."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "listagem direta",
+    "ideia": "favoráveis: 2, 3, 4, 6, 8, 9, 10, 12, 14 → 9 de 13"
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "14 − 2 + 1 = 13",
+    "nota": "números possíveis"
+   },
+   {
+    "linha": "7 + 4 − 2 = 9",
+    "nota": "múltiplos de 2 ou de 3"
+   },
+   {
+    "linha": "(7 + 4 − 2)/13 = 9/13",
+    "nota": "probabilidade"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0068"
+  }
+ },
+ "Pa0e176b0": {
+  "n": "34",
+  "conceito": "Domínio de função com raízes encaixadas: cada radicando de raiz quadrada tem de ser maior ou igual a zero.",
+  "equivocos": {
+   "A": "M04.4:ignorou-a-raiz-de-dentro",
+   "C": "M04.4:ignorou-a-raiz-de-dentro",
+   "D": "M04.4:so-excluiu-o-zero"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Raiz quadrada de número negativo não é real. Aqui há duas raízes, uma dentro da outra, e as duas exigem radicando maior ou igual a zero. A de dentro restringe x; a de fora, que parece difícil, acaba valendo sempre que a de dentro existe.",
+    "formulas": [
+     "√a existe nos reais ⇔ a ≥ 0",
+     "x² ≥ 1 ⇔ |x| ≥ 1",
+     "√(x²) = |x|"
+    ],
+    "simbolos": [
+     [
+      "|x|",
+      "módulo de x: a distância de x até 0, sempre maior ou igual a zero"
+     ],
+     [
+      "∪",
+      "união: junta os dois intervalos"
+     ],
+     [
+      "[ ]  e  ( )",
+      "colchete inclui a ponta; parêntese não inclui"
+     ]
+    ]
+   },
+   "pista": "Comece pela raiz de dentro, √(x² − 1); só depois olhe o radicando da raiz de fora.",
+   "passos": [
+    {
+     "faz": "Exija a raiz de dentro",
+     "conta": "x² − 1 ≥ 0 → x² ≥ 1 → |x| ≥ 1 → x ≤ −1 ou x ≥ 1",
+     "porque": "Sem isso √(x² − 1) nem existe. Todo x entre −1 e 1 cai fora.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Exija a raiz de fora",
+     "conta": "|x| − √(x² − 1) ≥ 0 → |x| ≥ √(x² − 1)",
+     "porque": "O radicando da raiz grande também precisa ser maior ou igual a zero.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Mostre que a raiz de fora vale sempre",
+     "conta": "|x|² ≥ (√(x² − 1))² → x² ≥ x² − 1 → 0 ≥ −1",
+     "porque": "Os dois lados são positivos ou zero, então dá para elevar ao quadrado sem mudar o sentido. O x² se cancela e sobra 0 ≥ −1, sempre verdadeiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte as condições e escolha",
+     "conta": "D = (−∞, −1] ∪ [1, ∞) → alternativa B",
+     "porque": "Só a primeira condição restringe x. Os pontos −1 e 1 entram, porque neles a raiz de dentro vale 0.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — (−∞, −1] ∪ [1, ∞)",
+   "checagem": "Teste três pontos: x = 2 dá 2 − √3 ≈ 0,27 ≥ 0 (existe); x = −1 dá 1 − 0 = 1 (existe); x = 0,5 dá 0,25 − 1 < 0 dentro da raiz interna (não existe). Bate com (−∞, −1] ∪ [1, ∞).",
+   "erradas": {
+    "A": "(−∞, −1] ∪ (0, 1] não confere: x = 0,5 está nesse intervalo, e 0,5² − 1 = −0,75 deixa √(x² − 1) sem valor real.",
+    "C": "[−1, 0) ∪ [1, ∞) não confere: x = −0,5 está nele e dá (−0,5)² − 1 = −0,75 < 0; e x = −2, que funciona (2 − √3 ≈ 0,27), ficou de fora.",
+    "D": "(−∞, 0) ∪ (0, ∞) não confere: inclui x = 0,5, em que x² − 1 = −0,75 e a raiz de dentro não existe."
+   },
+   "armadilha": "A condição que parece difícil, |x| ≥ √(x² − 1), vale sempre; quem se perde nela esquece que o domínio vem da raiz de dentro.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Os valores reais de x para os quais √(|x| − √(x² − 1)) existe.",
+    "chave": "x² − 1 ≥ 0 dá |x| ≥ 1; a condição de fora vira x² ≥ x² − 1, sempre verdadeira.",
+    "cuidado": "Inclua os extremos −1 e 1, onde a raiz de dentro vale zero."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "comparação das raízes",
+    "ideia": "Como x² − 1 < x², sempre que √(x² − 1) existe ela é menor que √(x²) = |x|; então o domínio é só o da raiz de dentro, |x| ≥ 1."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "x² − 1 ≥ 0 → |x| ≥ 1",
+    "nota": "raiz de dentro"
+   },
+   {
+    "linha": "|x| − √(x² − 1) ≥ 0",
+    "nota": "raiz de fora"
+   },
+   {
+    "linha": "x² ≥ x² − 1 → 0 ≥ −1",
+    "nota": "eleva ao quadrado: sempre verdadeiro"
+   },
+   {
+    "linha": "D = (−∞, −1] ∪ [1, ∞)",
+    "nota": "só a raiz de dentro restringe"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
+ },
+ "P0e986e4a": {
+  "n": "36",
+  "conceito": "Propriedades do logaritmo: log de potência, log de 1, log da base e log do quociente.",
+  "equivocos": {
+   "A": "M06.3:log-da-base-tomado-como-zero",
+   "B": "M06.3:numerador-errado",
+   "D": "M06.3:denominador-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada termo do numerador é um logaritmo que se calcula de cabeça: √32 é 2 elevado a 5/2, log de 1 é zero em qualquer base, e log de um número na própria base é 1. No denominador, a diferença de logs de mesma base vira log do quociente. Esse quociente se simplifica pondo √3 em evidência.",
+    "formulas": [
+     "log_b (bⁿ) = n",
+     "log_b 1 = 0",
+     "log_b x − log_b y = log_b (x/y)"
+    ],
+    "simbolos": [
+     [
+      "log_b x",
+      "expoente a que se eleva b para obter x"
+     ],
+     [
+      "√32",
+      "raiz quadrada de 32, igual a 2^(5/2)"
+     ]
+    ]
+   },
+   "pista": "Calcule cada termo do numerador separado; no denominador, junte os dois logs num só.",
+   "passos": [
+    {
+     "faz": "Calcule log₂ √32",
+     "conta": "√32 = 2^(5/2) → log₂ √32 = 5/2",
+     "porque": "32 = 2⁵ e a raiz quadrada é o expoente 1/2, então √32 = 2^(5/2).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os outros dois termos",
+     "conta": "log₃₂ 1 = 0 | log_(1/2) (1/2) = 1",
+     "porque": "Qualquer base elevada a 0 dá 1; e a própria base elevada a 1 dá ela mesma.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some o numerador",
+     "conta": "5/2 − 0 + 1 → 7/2",
+     "porque": "5/2 + 2/2 = 7/2.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Junte o denominador num log só",
+     "conta": "log₃(3 + √3) − log₃(1 + √3) → log₃((3 + √3)/(1 + √3)) → log₃((√3(√3 + 1))/(1 + √3)) → log₃ √3 = 1/2",
+     "porque": "3 = √3 · √3, então 3 + √3 = √3(√3 + 1). O fator (1 + √3) se cancela e sobra √3 = 3^(1/2).",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida e marque",
+     "conta": "(7/2)/(1/2) → 7 → alternativa C",
+     "porque": "Dividir por 1/2 é multiplicar por 2.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 7",
+   "checagem": "Pela calculadora, em decimais: (3 + √3)/(1 + √3) ≈ 4,732/2,732 ≈ 1,732, que é √3; e log₂ √32 = log₂ 5,657 ≈ 2,5. O quociente (2,5 + 1)/0,5 = 7.",
+   "erradas": {
+    "A": "5 sai de tomar log_(1/2) (1/2) como 0, confundindo com log de 1: (5/2 − 0 + 0)/(1/2) = 5.",
+    "B": "6 não confere: com o denominador igual a log₃ √3 = 1/2, o 6 exigiria numerador 3, mas os três termos dão 5/2 − 0 + 1 = 7/2.",
+    "D": "14 não confere: é o dobro de 7 e exigiria denominador 1/4, ou seja, quociente 3^(1/4) ≈ 1,316, mas (3 + √3)/(1 + √3) ≈ 1,732 = √3."
+   },
+   "armadilha": "log_(1/2) (1/2) vale 1, não 0: o log de um número na própria base é sempre 1.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor da fração com logaritmos.",
+    "chave": "Numerador 5/2 − 0 + 1 = 7/2; denominador log₃ √3 = 1/2; resultado 7.",
+    "cuidado": "Distinga log de 1 (vale 0) de log da própria base (vale 1)."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "racionalizar o quociente",
+    "ideia": "Multiplique (3 + √3)/(1 + √3) por (√3 − 1)/(√3 − 1): fica (3√3 − 3 + 3 − √3)/(3 − 1) = 2√3/2 = √3."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "log₂ √32 = log₂ 2^(5/2) = 5/2",
+    "nota": "√32 como potência de 2"
+   },
+   {
+    "linha": "5/2 − 0 + 1 = 7/2",
+    "nota": "log de 1 é 0; log da base é 1"
+   },
+   {
+    "linha": "log₃((3 + √3)/(1 + √3))",
+    "nota": "diferença vira quociente"
+   },
+   {
+    "linha": "(√3(√3 + 1))/(1 + √3) = √3",
+    "nota": "evidência e cancelamento"
+   },
+   {
+    "linha": "log₃ √3 = 1/2",
+    "nota": "√3 = 3^(1/2)"
+   },
+   {
+    "linha": "(7/2)/(1/2) = 7",
+    "nota": "divisão"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
+ }
+}

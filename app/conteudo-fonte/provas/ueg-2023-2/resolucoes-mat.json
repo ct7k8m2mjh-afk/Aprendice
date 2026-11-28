@@ -1,0 +1,1411 @@
+{
+ "Pd80de0e5": {
+  "n": "22",
+  "conceito": "Juros compostos com taxa anual e prazo de meio ano.",
+  "equivocos": {
+   "A": "M03.3:usou-o-ano-inteiro",
+   "B": "M03.3:sem-origem-identificada",
+   "C": "M03.3:juros-simples",
+   "D": "M03.3:sem-origem-identificada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No regime composto, meio ano corresponde ao fator (1,69)^(1/2) = √1,69 = 1,3. O montante é 2 000 · 1,3.",
+    "formulas": [
+     "M = C · (1 + i)^t",
+     "t = 1/2 ano"
+    ],
+    "simbolos": []
+   },
+   "pista": "Quanto vale √1,69?",
+   "passos": [
+    {
+     "faz": "Fator",
+     "conta": "1,69^(1/2) = 1,3",
+     "porque": "Meio ano.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Montante",
+     "conta": "2 000 · 1,3 = 2 600 → alternativa E",
+     "porque": "Valor a pagar.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — R$ 2.600,00",
+   "checagem": "Ano inteiro: 2 600 · 1,3 = 3 380 = 2 000 · 1,69, coerente com a taxa anual. Confere.",
+   "erradas": {
+    "A": "3 380 = 2 000 · 1,69: usou o ano inteiro.",
+    "B": "1,48² ≈ 2,19 ≠ 1,69.",
+    "C": "2 690 = 2 000 · 1,345: juros simples, metade de 69% = 34,5% em seis meses.",
+    "D": "1,115² ≈ 1,24 ≠ 1,69."
+   },
+   "armadilha": "Usar juros simples: metade de 69% = 34,5%, dando 2 690.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Valor a pagar.",
+    "chave": "2 000 · √1,69 = 2 600.",
+    "cuidado": "Composto: meio ano é raiz quadrada."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "taxa semestral",
+    "ideia": "i semestral: (1 + i)² = 1,69 → i = 30%. 2 000 · 1,3 = 2 600."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "√1,69 = 1,3",
+    "nota": "fator"
+   },
+   {
+    "linha": "2 600",
+    "nota": "resposta"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0049"
+  }
+ },
+ "Pc1e95b5b": {
+  "n": "20",
+  "conceito": "Propriedade do logaritmo da potência: raízes viram frações que multiplicam log x.",
+  "equivocos": {
+   "A": "M06.3:indice-como-multiplicador",
+   "B": "M06.3:valor-que-nao-fecha",
+   "C": "M06.3:valor-que-nao-fecha",
+   "E": "M06.3:valor-que-nao-fecha"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada raiz é uma potência de expoente fracionário: √x = x^(1/2), ⁴√x = x^(1/4) e assim por diante. Pela propriedade da potência, cada termo vira uma fração vezes log x. Some as frações.",
+    "formulas": [
+     "log(xᵏ) = k · log x",
+     "ⁿ√x = x^(1/n)"
+    ],
+    "simbolos": [
+     [
+      "log",
+      "logaritmo na base 10"
+     ]
+    ]
+   },
+   "pista": "Escreva cada log como (fração) · log x e ponha log x em evidência.",
+   "passos": [
+    {
+     "faz": "Use a propriedade da potência",
+     "conta": "log x + (1/2)log x + (1/4)log x + (1/8)log x + (1/16)log x = 62",
+     "porque": "log ⁿ√x = (1/n)log x.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some os coeficientes",
+     "conta": "(16 + 8 + 4 + 2 + 1)/16 = 31/16",
+     "porque": "Denominador comum 16.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Resolva",
+     "conta": "31/16 · log x = 62 → log x = 62 · 16/31 = 32",
+     "porque": "62 ÷ 31 = 2 e 2 · 16 = 32.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Responda",
+     "conta": "x = 10³² → alternativa D",
+     "porque": "Log na base 10 igual a 32 significa x = 10³².",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — 10³²",
+   "checagem": "Substitua log x = 32: 32 + 16 + 8 + 4 + 2 = 62. Fecha.",
+   "erradas": {
+    "A": "10² sai de multiplicar log x pela soma dos índices (1 + 2 + 4 + 8 + 16 = 31) em vez das frações: 31 · log x = 62, log x = 2.",
+    "B": "10⁵ não confere: com log x = 5, a soma dá 5 · 31/16 ≈ 9,7, não 62.",
+    "C": "10¹⁶ não confere: com log x = 16, a soma dá 16 + 8 + 4 + 2 + 1 = 31, metade de 62.",
+    "E": "10⁶⁴ não confere: com log x = 64, a soma dá 64 + 32 + 16 + 8 + 4 = 124, o dobro de 62."
+   },
+   "armadilha": "Tratar o índice da raiz como multiplicador: a raiz de índice n DIVIDE o log por n.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de x que satisfaz a equação.",
+    "chave": "Soma dos coeficientes: 31/16; log x = 62 · 16/31 = 32.",
+    "cuidado": "log ⁿ√x = (1/n)log x, nunca n · log x."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "produto num log só",
+    "ideia": "Junte tudo: log(x^(1 + 1/2 + 1/4 + 1/8 + 1/16)) = log(x^(31/16)) = 62, logo x^(31/16) = 10⁶² e x = 10³²."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "(1 + 1/2 + 1/4 + 1/8 + 1/16) · log x = 62",
+    "nota": "log x em evidência"
+   },
+   {
+    "linha": "31/16 · log x = 62",
+    "nota": "soma das frações"
+   },
+   {
+    "linha": "log x = 62 · 16/31 = 32",
+    "nota": "o 31/16 passa invertido"
+   },
+   {
+    "linha": "x = 10³²",
+    "nota": "definição de log"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0051"
+  }
+ },
+ "Pa52ea763": {
+  "n": "25",
+  "conceito": "Ler as características do gráfico de uma quadrática: interceptos, vértice, concavidade e crescimento.",
+  "equivocos": {
+   "B": "M05.2:discriminante-mal-lido",
+   "C": "M05.2:raiz-no-lugar-do-vertice",
+   "D": "M05.2:crescimento-entre-raizes",
+   "E": "M05.2:concavidade-trocada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Cada alternativa testa uma parte do gráfico de f(x) = −x² + x + 6: onde corta o eixo y (x = 0), se corta o eixo x (Δ), o vértice, o crescimento e a concavidade (sinal de a). Teste uma por uma.",
+    "formulas": [
+     "corte no eixo y: (0, c)",
+     "xv = −b/(2a)",
+     "Δ = b² − 4ac"
+    ],
+    "simbolos": [
+     [
+      "eixo das ordenadas",
+      "eixo y"
+     ],
+     [
+      "eixo das abscissas",
+      "eixo x"
+     ],
+     [
+      "Δ",
+      "discriminante: b² − 4ac"
+     ],
+     [
+      "xv",
+      "abscissa do vértice: o x onde a parábola faz a curva"
+     ]
+    ]
+   },
+   "pista": "Comece pelo teste mais rápido: o que acontece com f quando x = 0?",
+   "passos": [
+    {
+     "faz": "Teste a A",
+     "conta": "f(0) = −0 + 0 + 6 = 6 → ponto (0, 6)",
+     "porque": "Em x = 0 todos os termos com x somem e sobra c.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste a B e a C",
+     "conta": "Δ = 1 + 24 = 25 > 0 → raízes −2 e 3 | xv = −1/(2 · (−1)) = 1/2",
+     "porque": "Há duas raízes, então corta o eixo x; e o vértice está em x = 1/2, não em −2.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Teste a D e a E",
+     "conta": "a = −1 < 0 → abre para baixo; cresce só até x = 1/2",
+     "porque": "Em [−2, 3] a função sobe até 1/2 e depois desce.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "só a A é verdadeira",
+     "porque": "O gráfico corta o eixo das ordenadas em (0, 6).",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — intersecta o eixo das ordenadas no ponto (0, 6).",
+   "checagem": "Fatore: −x² + x + 6 = −(x + 2)(x − 3). Em x = 0, −(2)(−3) = 6, o mesmo ponto (0, 6).",
+   "erradas": {
+    "B": "Não confere: Δ = 25 > 0, e o gráfico corta o eixo x em −2 e em 3.",
+    "C": "Sai de confundir uma raiz com o vértice: (−2, 0) é onde o gráfico corta o eixo x; o vértice é (1/2, 25/4).",
+    "D": "Não confere: f(−2) = 0, f(1/2) = 25/4 e f(3) = 0; a função sobe e depois desce no intervalo.",
+    "E": "Não confere: a = −1 < 0, então a parábola abre para baixo."
+   },
+   "armadilha": "Achar que a função cresce entre as raízes: ela sobe só até o vértice, x = 1/2.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual afirmação sobre o gráfico de f(x) = −x² + x + 6 é verdadeira.",
+    "chave": "f(0) = 6: o gráfico corta o eixo y em (0, 6).",
+    "cuidado": "Não confunda raiz com vértice nem esqueça o sinal de a."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "eliminação",
+    "ideia": "a < 0 derruba E e D; Δ > 0 derruba B; xv = 1/2 derruba C."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f(0) = 6 → (0, 6)",
+    "nota": "corte no eixo y"
+   },
+   {
+    "linha": "Δ = 1 + 24 = 25 → x = −2 ou x = 3",
+    "nota": "corta o eixo x"
+   },
+   {
+    "linha": "xv = −1/(2 · (−1)) = 1/2",
+    "nota": "vértice"
+   },
+   {
+    "linha": "a = −1 < 0",
+    "nota": "abre para baixo"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0054"
+  }
+ },
+ "P320e78d7": {
+  "n": "14",
+  "conceito": "Inequação produto: estudar o sinal de f pelo gráfico e o de g pelas raízes.",
+  "equivocos": {
+   "A": "M05.3:so-o-sinal-de-f",
+   "B": "M05.3:so-o-sinal-de-f",
+   "C": "M05.3:quadro-de-sinais-errado",
+   "E": "M05.3:quadro-de-sinais-errado"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "f(x) · g(x) < 0 quer dizer que f e g têm sinais opostos. O sinal de f sai do gráfico (onde está acima ou abaixo do eixo x). O de g sai das raízes de x² − 4x − 5, que é uma parábola para cima.",
+    "formulas": [
+     "produto < 0: sinais opostos",
+     "g(x) = (x − 5)(x + 1)"
+    ],
+    "simbolos": [
+     [
+      "f(x) · g(x) < 0",
+      "produto negativo"
+     ],
+     [
+      "raiz",
+      "ponto em que a função vale zero"
+     ]
+    ]
+   },
+   "pista": "Marque numa reta os zeros de f (do gráfico) e de g (das raízes) e faça o quadro de sinais.",
+   "passos": [
+    {
+     "faz": "Leia o sinal de f",
+     "conta": "f > 0: x < 1 ou 5 < x < 7 | f < 0: 1 < x < 5 ou x > 7",
+     "porque": "O gráfico corta o eixo x em 1, 5 e 7.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ache o sinal de g",
+     "conta": "x² − 4x − 5 = (x − 5)(x + 1) → g < 0 em −1 < x < 5; g > 0 fora",
+     "porque": "Parábola para cima: negativa entre as raízes.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Faça o quadro de sinais",
+     "conta": "x < −1: (+)(+) | −1 a 1: (+)(−) | 1 a 5: (−)(−) | 5 a 7: (+)(+) | x > 7: (−)(+)",
+     "porque": "Produto negativo só onde os sinais são opostos.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Conclua",
+     "conta": "−1 < x < 1 ou x > 7",
+     "porque": "É a alternativa D.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — {x ∈ ℝ | −1 < x < 1 ou x > 7}",
+   "checagem": "Teste um ponto de cada trecho: x = 0 dá f(0) > 0 e g(0) = −5, produto negativo; x = 3 dá f(3) < 0 e g(3) = −8, produto positivo; x = 8 dá f(8) < 0 e g(8) = 27, produto negativo.",
+   "erradas": {
+    "A": "Sai de resolver só f(x) < 0 (1 < x < 5 ou x > 7), sem combinar com o sinal de g.",
+    "B": "Sai de resolver só f(x) > 0 (x < 1 ou 5 < x < 7), sem combinar com o sinal de g.",
+    "C": "Não confere: em x = 6, f(6) > 0 e g(6) = 7 > 0, produto positivo; e em x = −2, f e g são positivos.",
+    "E": "Não confere: em x = 3, f(3) < 0 e g(3) = −8 < 0, produto positivo."
+   },
+   "armadilha": "Olhar só o sinal de f: o produto depende do sinal das duas funções ao mesmo tempo.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A solução de f(x) · g(x) < 0.",
+    "chave": "f troca de sinal em 1, 5 e 7; g em −1 e 5. Sinais opostos em (−1, 1) e x > 7.",
+    "cuidado": "Faça o quadro de sinais com os zeros das duas funções."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste de pontos",
+    "ideia": "Teste x = −2, 0, 3, 6 e 8 nas alternativas: só a D acerta todos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "f: zeros em 1, 5 e 7",
+    "nota": "gráfico"
+   },
+   {
+    "linha": "g = (x − 5)(x + 1): zeros em −1 e 5",
+    "nota": "raízes"
+   },
+   {
+    "linha": "sinais opostos: −1 < x < 1 ou x > 7",
+    "nota": "quadro de sinais"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0055"
+  }
+ },
+ "P51f54bc2": {
+  "n": "16",
+  "conceito": "Cobrança por faixas: somar o excedente de cada faixa com o seu preço.",
+  "equivocos": {
+   "A": "M05.4:faixas-mal-contadas",
+   "B": "M05.4:faixas-mal-contadas",
+   "D": "M05.4:tudo-na-ultima-faixa",
+   "E": "M05.4:esqueceu-a-taxa-fixa"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Até 20 kg paga-se só a taxa de R$ 80,00. Cada quilo acima disso é cobrado pelo preço da faixa em que ele cai: os quilos de 20 a 30 a R$ 11,00 e os de 30 a 40 a R$ 13,00. Não se cobra todo o peso pelo preço da última faixa.",
+    "formulas": [
+     "total = taxa + (kg na faixa 2) × 11 + (kg na faixa 3) × 13"
+    ],
+    "simbolos": [
+     [
+      "faixa",
+      "intervalo de peso com preço próprio por quilo"
+     ],
+     [
+      "excedente",
+      "quilos acima do limite da faixa anterior"
+     ]
+    ]
+   },
+   "pista": "Separe os 35 kg em pedaços: até 20, de 20 a 30 e de 30 a 35.",
+   "passos": [
+    {
+     "faz": "Separe o peso",
+     "conta": "35 kg = 20 + 10 + 5",
+     "porque": "20 kg cobertos pela taxa, 10 kg na faixa 2 e 5 kg na faixa 3.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule cada faixa",
+     "conta": "10 × 11 = 110 | 5 × 13 = 65",
+     "porque": "Cada pedaço com o preço da sua faixa.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Some com a taxa",
+     "conta": "80 + 110 + 65 = 255",
+     "porque": "A taxa de R$ 80,00 vale para qualquer bagagem.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — R$ 255,00",
+   "checagem": "Confira por fora: se todos os 15 kg excedentes custassem R$ 13,00, seriam 80 + 195 = 275; como 10 deles custam R$ 2,00 a menos, 275 − 20 = 255.",
+   "erradas": {
+    "A": "Sai de cobrar só um quilo na faixa 3: 80 + 13 = 93.",
+    "B": "Sai de cobrar um quilo em cada faixa: 80 + 11 + 13 = 104.",
+    "D": "Sai de cobrar os 35 kg inteiros a R$ 13,00: 35 × 13 = 455, sem taxa e sem faixas.",
+    "E": "Sai de esquecer a taxa de R$ 80,00: 110 + 65 = 175."
+   },
+   "armadilha": "Cobrar todo o peso pelo preço da última faixa, ou esquecer a taxa fixa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor pago por uma bagagem de 35 kg.",
+    "chave": "80 + 10 × 11 + 5 × 13 = 255.",
+    "cuidado": "Cada quilo paga o preço da faixa em que cai, e a taxa vale sempre."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "pela diferença",
+    "ideia": "Tudo a R$ 13,00 daria 80 + 15 × 13 = 275; os 10 kg da faixa 2 custam 2 a menos cada: 275 − 20 = 255."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "35 = 20 + 10 + 5",
+    "nota": "faixas"
+   },
+   {
+    "linha": "10 × 11 = 110 | 5 × 13 = 65",
+    "nota": "excedentes"
+   },
+   {
+    "linha": "80 + 110 + 65 = 255",
+    "nota": "total"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0056"
+  }
+ },
+ "Pf2858695": {
+  "n": "24",
+  "conceito": "Número de termos de uma PG pelo termo geral e potências iguais.",
+  "equivocos": {
+   "A": "M07.2:posicao-errada",
+   "B": "M07.2:esqueceu-o-mais-um",
+   "D": "M07.2:posicao-errada",
+   "E": "M07.2:posicao-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A razão é (9/2) ÷ 3 = 3/2. O último termo é o primeiro vezes (3/2) elevado a n − 1. Isole a potência e reconheça 729/64 como (3/2)⁶.",
+    "formulas": [
+     "aₙ = a₁ × qⁿ⁻¹",
+     "729 = 3⁶ e 64 = 2⁶"
+    ],
+    "simbolos": [
+     [
+      "PG",
+      "progressão geométrica: cada termo é o anterior vezes um número fixo"
+     ],
+     [
+      "q",
+      "razão da PG: o número pelo qual se multiplica de um termo para o seguinte"
+     ],
+     [
+      "n",
+      "número de termos"
+     ]
+    ]
+   },
+   "pista": "Ache a razão e escreva o último termo com ela.",
+   "passos": [
+    {
+     "faz": "Ache a razão",
+     "conta": "q = 9/2 ÷ 3 = 3/2",
+     "porque": "Segundo termo dividido pelo primeiro.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Monte o termo geral",
+     "conta": "3 × (3/2)ⁿ⁻¹ = 2187/64",
+     "porque": "Último termo = primeiro × qⁿ⁻¹.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Isole a potência",
+     "conta": "(3/2)ⁿ⁻¹ = 2187/(64 × 3) → (3/2)ⁿ⁻¹ = 729/64",
+     "porque": "O 3 que multiplica passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Iguale os expoentes",
+     "conta": "729/64 = (3/2)⁶ → n − 1 = 6 → n = 6 + 1 = 7",
+     "porque": "3⁶ = 729 e 2⁶ = 64.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 7 termos",
+   "checagem": "Liste: 3, 9/2, 27/4, 81/8, 243/16, 729/32, 2187/64. São 7 termos.",
+   "erradas": {
+    "A": "A não confere: o 5.º termo é 3 × (3/2)⁴ = 243/16, não 2187/64.",
+    "B": "B sai de tomar o expoente 6 como número de termos, esquecendo de somar 1.",
+    "D": "D não confere: o 8.º termo seria 3 × (3/2)⁷ = 6561/128.",
+    "E": "E não confere: o 9.º termo seria 3 × (3/2)⁸ = 19683/256."
+   },
+   "armadilha": "O expoente 6 conta as multiplicações; os termos são 6 + 1 = 7.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos termos tem a PG de 3 a 2187/64.",
+    "chave": "q = 3/2 e (3/2)ⁿ⁻¹ = 729/64 = (3/2)⁶, logo n = 7.",
+    "cuidado": "Some 1 ao expoente."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "listar",
+    "ideia": "Multiplique por 3/2 a partir de 3 até 2187/64 e conte: 7 termos."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "3 × (3/2)ⁿ⁻¹ = 2187/64",
+    "nota": "termo geral"
+   },
+   {
+    "linha": "(3/2)ⁿ⁻¹ = 2187/(64 × 3)",
+    "nota": "o 3 passa dividindo"
+   },
+   {
+    "linha": "(3/2)ⁿ⁻¹ = 729/64",
+    "nota": "simplifica"
+   },
+   {
+    "linha": "(3/2)ⁿ⁻¹ = (3/2)⁶",
+    "nota": "729 = 3⁶ e 64 = 2⁶"
+   },
+   {
+    "linha": "n − 1 = 6",
+    "nota": "iguala expoentes"
+   },
+   {
+    "linha": "n = 6 + 1 = 7",
+    "nota": "o 1 passa somando"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0059"
+  }
+ },
+ "P2e0444dd": {
+  "n": "18",
+  "conceito": "Simplificação de expressão trigonométrica com tangente, secante e cosseno até chegar a 1 + sen θ.",
+  "equivocos": {
+   "A": "M10.4:simplificacao-errada",
+   "C": "M10.4:sinal-trocado-na-subtracao",
+   "D": "M10.4:simplificacao-errada",
+   "E": "M10.4:simplificacao-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Escreva tudo em seno e cosseno: tg θ = sen θ/cos θ e sec θ = 1/cos θ. Separando a fração, a primeira parte dá 1, e o restante sec θ − cos θ vira sen² θ/cos θ. Dividido pela tangente, sobra só sen θ, então não é preciso nem calcular o cosseno.",
+    "formulas": [
+     "tg θ = sen θ ÷ cos θ",
+     "sec θ = 1 ÷ cos θ",
+     "1 − cos² θ = sen² θ"
+    ],
+    "simbolos": [
+     [
+      "sec θ",
+      "secante de θ, o inverso do cosseno"
+     ],
+     [
+      "tg θ",
+      "tangente de θ, seno dividido por cosseno"
+     ]
+    ]
+   },
+   "pista": "Separe a fração em duas: tg θ dividido por tg θ, e o resto dividido por tg θ.",
+   "passos": [
+    {
+     "faz": "Separe a fração",
+     "conta": "(tg θ + sec θ − cos θ)/tg θ → 1 + (sec θ − cos θ)/tg θ",
+     "porque": "tg θ sobre tg θ dá 1; o que sobra fica sobre o mesmo denominador.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Simplifique sec θ − cos θ",
+     "conta": "1/cos θ − cos θ → (1 − cos² θ)/cos θ → sen² θ/cos θ",
+     "porque": "Com denominador comum cos θ, o numerador 1 − cos² θ é sen² θ pela relação fundamental.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida pela tangente",
+     "conta": "(sen² θ/cos θ) · (cos θ/sen θ) → sen θ",
+     "porque": "Dividir por sen θ/cos θ é multiplicar pelo inverso; o cos θ cancela e um sen θ também.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Substitua o seno",
+     "conta": "1 + sen θ = 1 + 1/5 = 6/5",
+     "porque": "A expressão inteira vale 1 + sen θ.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "6/5 → alternativa B",
+     "porque": "É o valor pedido.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 6/5",
+   "checagem": "Conta direta com sen θ = 1/5 e cos θ = √24/5 ≈ 0,9798: tg θ ≈ 0,2041 e sec θ ≈ 1,0206, então (0,2041 + 1,0206 − 0,9798) ÷ 0,2041 ≈ 1,2 = 6/5. Com cos θ negativo o resultado é o mesmo.",
+   "erradas": {
+    "A": "7/5 não confere: a expressão vale 1 + sen θ, e 7/5 exigiria sen θ = 2/5, não 1/5.",
+    "C": "4/5 sai de trocar a ordem na subtração, fazendo cos θ − sec θ: o resto vira −sen θ e a expressão dá 1 − 1/5 = 4/5.",
+    "D": "3/5 não confere: como a expressão é 1 + sen θ, daria sen θ = −2/5, e o seno dado é 1/5.",
+    "E": "2/5 não confere: exigiria 1 + sen θ = 2/5, isto é, sen θ = −3/5, e o seno dado é 1/5."
+   },
+   "armadilha": "Achar que precisa do cosseno (com raiz e sinal): a expressão se reduz a 1 + sen θ.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O valor de (tg θ + sec θ − cos θ)/tg θ com sen θ = 1/5.",
+    "chave": "A expressão é 1 + (sec θ − cos θ)/tg θ = 1 + sen θ = 6/5.",
+    "cuidado": "Mantenha a ordem sec θ − cos θ; invertida, o sinal do seno troca."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "conta direta",
+    "ideia": "Ache cos θ = √24/5 e substitua tudo: a expressão dá 1,2 = 6/5."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "1 + (sec θ − cos θ)/tg θ",
+    "nota": "separou a fração"
+   },
+   {
+    "linha": "sec θ − cos θ = (1 − cos² θ)/cos θ = sen² θ/cos θ",
+    "nota": "denominador comum"
+   },
+   {
+    "linha": "(sen² θ/cos θ) · (cos θ/sen θ) = sen θ",
+    "nota": "dividiu pela tangente"
+   },
+   {
+    "linha": "1 + 1/5 = 6/5",
+    "nota": "substituiu sen θ"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0062"
+  }
+ },
+ "P71d9f870": {
+  "n": "17",
+  "conceito": "Comparar o gasto mensal com etanol e com GNV e achar em quantos meses a economia paga a adaptação.",
+  "equivocos": {
+   "A": "M11.2:prazo-sem-cobrir-o-investimento",
+   "B": "M11.2:confundiu-m3-com-meses",
+   "C": "M11.2:parou-na-economia-mensal",
+   "D": "M11.2:prazo-sem-cobrir-o-investimento"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Primeiro descubra quantos quilômetros a pessoa roda por mês com 52 L de etanol. Depois veja quantos m³ de GNV fariam a mesma distância. A diferença de custo é a economia de cada mês; o investimento dividido por ela dá os meses.",
+    "formulas": [
+     "economia por mês = gasto com etanol − gasto com GNV",
+     "meses = investimento/(economia por mês)"
+    ],
+    "simbolos": [
+     [
+      "GNV",
+      "gás natural veicular, vendido por metro cúbico"
+     ],
+     [
+      "m³",
+      "metro cúbico"
+     ],
+     [
+      "autonomia",
+      "distância que se roda com aquela quantidade de combustível"
+     ]
+    ]
+   },
+   "pista": "Conte quantas vezes os 13 litros cabem nos 52 litros do mês: é o número de \"trechos de 90 km\" que a pessoa roda.",
+   "passos": [
+    {
+     "faz": "Ache quantos trechos de 90 km por mês",
+     "conta": "52/13 = 4 trechos → 4 · 90 = 360 km",
+     "porque": "Cada 13 L de etanol rendem 90 km; 52 L são 4 vezes isso.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache o GNV para a mesma distância",
+     "conta": "4 · 7,5 m³ → 30 m³",
+     "porque": "Cada 7,5 m³ de GNV rendem os mesmos 90 km, e são 4 trechos.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule os dois gastos do mês",
+     "conta": "etanol: 52 · 4,00 = 208 | GNV: 30 · 5,10 = 153",
+     "porque": "Preço por unidade vezes a quantidade de cada combustível.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tire a economia mensal",
+     "conta": "208 − 153 → 55 reais por mês",
+     "porque": "É o que a pessoa deixa de gastar a cada mês com o GNV.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Divida o investimento pela economia",
+     "conta": "4000/55 → 72,7 → 73 meses",
+     "porque": "Em 72 meses a economia ainda não cobre os R$ 4.000,00; no 73.º mês cobre. Alternativa E.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — em 73 meses",
+   "checagem": "Multiplique de volta: 72 · 55 = 3 960 reais, ainda abaixo de 4 000; 73 · 55 = 4 015 reais, já passa. Então 73 meses é o primeiro mês em que compensa.",
+   "erradas": {
+    "A": "24 meses não confere: 24 · 55 = 1 320 reais de economia, muito abaixo dos 4 000 investidos.",
+    "B": "30 meses não confere: 30 · 55 = 1 650 reais. O número 30 é a quantidade de m³ de GNV por mês, não de meses.",
+    "C": "55 sai de parar na economia mensal: 208 − 153 = 55 reais por mês, que ainda precisa dividir os 4 000.",
+    "D": "61 meses não confere: 61 · 55 = 3 355 reais, abaixo dos 4 000 investidos."
+   },
+   "armadilha": "A conta de 208 − 153 dá 55, que é a economia em reais por mês, e não a resposta: ainda falta dividir o investimento por ela.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Em quantos meses a economia com GNV paga os R$ 4.000,00 da adaptação.",
+    "chave": "Mesma distância: 52 L de etanol (R$ 208) ou 30 m³ de GNV (R$ 153); economia de R$ 55 por mês, e 4000/55 ≈ 72,7 → 73 meses.",
+    "cuidado": "Compare os combustíveis para a mesma distância e arredonde para cima: 72 meses ainda não bastam."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "custo por quilômetro",
+    "ideia": "Etanol custa (13 · 4)/90 por km e GNV (7,5 · 5,10)/90 por km; a diferença vezes 360 km dá os mesmos 55 reais por mês."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "52/13 = 4",
+    "nota": "trechos de 90 km por mês"
+   },
+   {
+    "linha": "4 · 7,5 = 30 m³",
+    "nota": "GNV para a mesma distância"
+   },
+   {
+    "linha": "52 · 4,00 = 208",
+    "nota": "gasto com etanol"
+   },
+   {
+    "linha": "30 · 5,10 = 153",
+    "nota": "gasto com GNV"
+   },
+   {
+    "linha": "208 − 153 = 55",
+    "nota": "economia por mês"
+   },
+   {
+    "linha": "4000/55 ≈ 72,7 → 73",
+    "nota": "meses, arredondando para cima"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-13",
+   "lote": "mat-0063"
+  }
+ },
+ "P3a91c62f": {
+  "n": "21",
+  "conceito": "Interseção de circunferência com o eixo y e reta por dois pontos, escolhida pelo sinal da inclinação.",
+  "equivocos": {
+   "A": "M12.2:trocou-coeficientes",
+   "C": "M12.2:coeficiente-linear-errado",
+   "D": "M12.2:reta-nao-passa-pelo-ponto",
+   "E": "M12.2:inclinacao-errada"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "No eixo das ordenadas, x = 0. Substituindo na circunferência, aparecem dois pontos de interseção; a reta por A e por um deles precisa ter coeficiente angular positivo, e essa condição escolhe o ponto certo.",
+    "formulas": [
+     "eixo y: x = 0",
+     "m = Δy/Δx",
+     "y = mx + n"
+    ],
+    "simbolos": [
+     [
+      "Oy",
+      "eixo das ordenadas (eixo y)"
+     ],
+     [
+      "m",
+      "coeficiente angular"
+     ],
+     [
+      "n",
+      "coeficiente linear: onde a reta corta o eixo y"
+     ]
+    ]
+   },
+   "pista": "Faça x = 0 na equação da circunferência e veja quantos pontos aparecem.",
+   "passos": [
+    {
+     "faz": "Faça x = 0 na circunferência",
+     "conta": "0² + y² − 6y = 0 → y(y − 6) = 0 → y = 0 ou y = 6",
+     "porque": "Os pontos do eixo y têm x = 0; o fator comum y separa as duas soluções.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Teste o ponto (0, 0)",
+     "conta": "A(−2, 0) e (0, 0) → m = (0 − 0)/(0 + 2) → m = 0",
+     "porque": "Essa reta é o próprio eixo x, horizontal: inclinação zero, não positiva. Fica descartada.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Use o ponto (0, 6)",
+     "conta": "A(−2, 0) e (0, 6) → m = (6 − 0)/(0 + 2) → m = 6/2 → m = 3",
+     "porque": "Inclinação positiva, como o enunciado exige.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Escreva a equação",
+     "conta": "n = 6 (corta o eixo y em 6) → y = 3x + 6",
+     "porque": "O ponto (0, 6) está no eixo y, então ele já dá o coeficiente linear.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "y = 3x + 6 → alternativa B",
+     "porque": "É a única reta com inclinação positiva por A e por um ponto da circunferência no eixo y.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — y = 3x + 6",
+   "checagem": "Substitua A(−2, 0): 3 · (−2) + 6 = 0. E (0, 6) está na circunferência: 0 + 36 − 36 = 0. A reta passa pelos dois pontos e sobe.",
+   "erradas": {
+    "A": "y = 6x + 3 troca os números: em x = −2 dá −9, não passa por A; e corta o eixo y em 3, fora da circunferência (9 − 18 ≠ 0).",
+    "C": "y = 3x + 2 tem a inclinação certa, mas em x = −2 dá −4: não passa por A(−2, 0).",
+    "D": "y = 2x + 3 não confere: em x = −2 dá −1, não passa por A; e (0, 3) não está na circunferência.",
+    "E": "y = 2x + 6 passa por (0, 6), mas em x = −2 dá 2, não passa por A; a inclinação certa é 6/2 = 3."
+   },
+   "armadilha": "Achar só um ponto no eixo y: a circunferência toca o eixo em (0, 0) e em (0, 6), e é a inclinação positiva que escolhe (0, 6).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A reta de inclinação positiva por A(−2, 0) e por um ponto da circunferência no eixo y.",
+    "chave": "x = 0 dá y = 0 ou 6; com (0, 6), m = 6/2 = 3 e y = 3x + 6.",
+    "cuidado": "Descarte (0, 0): a reta seria horizontal, com inclinação zero."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "teste nas alternativas",
+    "ideia": "Substituindo A(−2, 0) em cada alternativa, só a reta certa dá zero: y = 6x + 3 dá −9, y = 3x + 2 dá −4, y = 2x + 3 dá −1 e y = 2x + 6 dá 2; só y = 3x + 6 dá 0."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "y² − 6y = 0 → y(y − 6) = 0",
+    "nota": "x = 0 na circunferência"
+   },
+   {
+    "linha": "y = 0 ou y = 6",
+    "nota": "pontos (0, 0) e (0, 6)"
+   },
+   {
+    "linha": "m = (6 − 0)/(0 − (−2)) = 6/2 = 3",
+    "nota": "reta por A e (0, 6)"
+   },
+   {
+    "linha": "y = 3x + 6",
+    "nota": "coeficiente linear 6"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0065"
+  }
+ },
+ "P8238a39e": {
+  "n": "23",
+  "conceito": "Calcular probabilidade com espaço amostral contado por combinação: apostas favoráveis sobre o total de pares.",
+  "equivocos": {
+   "A": "M13.4:valor-sem-base",
+   "B": "M13.4:valor-sem-base",
+   "D": "M13.4:contou-ordem-e-repeticao",
+   "E": "M13.4:esqueceu-as-apostas"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O sorteio escolhe dois números entre trinta, e a ordem não importa: o resultado é um par. O espaço amostral é o número de pares possíveis, C(30, 2). Três apostas diferentes cobrem três desses pares, e só um par é sorteado.",
+    "formulas": [
+     "probabilidade = casos favoráveis/casos possíveis",
+     "C(30, 2) = (30 × 29)/2"
+    ],
+    "simbolos": [
+     [
+      "C(30, 2)",
+      "número de pares de números escolhidos entre 30, sem ordem"
+     ]
+    ]
+   },
+   "pista": "Conte primeiro quantos pares de números diferentes existem.",
+   "passos": [
+    {
+     "faz": "Conte os pares possíveis",
+     "conta": "C(30, 2) = (30 × 29)/2 = 870/2 = 435",
+     "porque": "O par {3, 17} é o mesmo que {17, 3}: divide-se por 2 as escolhas em sequência.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Conte os casos favoráveis",
+     "conta": "3 apostas diferentes → 3 pares favoráveis",
+     "porque": "Cada aposta é um par distinto; o apostador ganha se o sorteado for um deles.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Monte e simplifique a probabilidade",
+     "conta": "3/435 → 1/145",
+     "porque": "Favoráveis sobre possíveis; o 3 cancela com o 435 = 3 × 145.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "1/145 → alternativa C",
+     "porque": "É a chance de o par sorteado ser uma das três apostas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa C — 1/145",
+   "checagem": "Pense em uma aposta só: a chance é 1/435. Três apostas diferentes não se sobrepõem, então a chance triplica: 3 × 1/435 = 1/145.",
+   "erradas": {
+    "A": "1/15 não confere: corresponderia a 29 apostas entre 435 pares (435/15 = 29), não a 3.",
+    "B": "1/75 não confere: 435/75 = 5,8 não é inteiro, então 1/75 não é 3 pares sobre 435.",
+    "D": "1/300 sai de contar pares com ordem e com repetição: 30 × 30 = 900 e 3/900 = 1/300. Os dois números são diferentes e a ordem não importa.",
+    "E": "1/900 sai de contar uma aposta só sobre 30 × 30 = 900 resultados, esquecendo as três apostas e contando ordem e repetição."
+   },
+   "armadilha": "O resultado é um par sem ordem: o espaço é C(30, 2) = 435, não 30 × 30.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A probabilidade de ganhar com 3 apostas de 2 números entre 30.",
+    "chave": "Pares possíveis: 435; favoráveis: 3; 3/435 = 1/145.",
+    "cuidado": "Conte pares sem ordem e sem repetir número."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "uma aposta",
+    "ideia": "Uma aposta tem chance 1/435; três apostas diferentes somam 3/435 = 1/145."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "C(30, 2) = 870/2 = 435",
+    "nota": "pares possíveis"
+   },
+   {
+    "linha": "P = 3/435",
+    "nota": "3 apostas favoráveis"
+   },
+   {
+    "linha": "3/435 = 1/145",
+    "nota": "simplifica por 3"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-0067"
+  }
+ },
+ "Pfbc8c54a": {
+  "n": "19",
+  "conceito": "Sistema linear 2×2 montado a partir de porcentagens dos estoques de dois compostos.",
+  "equivocos": {
+   "B": "M04.3:resultado-sem-substituir-no-sistema",
+   "C": "M04.3:respondeu-o-estoque-total",
+   "D": "M04.3:resultado-sem-substituir-no-sistema",
+   "E": "M04.3:resultado-sem-substituir-no-sistema"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Chame de A e B as quantidades disponíveis de cada composto. Cada produto é feito com uma porcentagem desses estoques, e o volume do produto é a soma das partes usadas. Isso dá duas equações. A pergunta não é o estoque B, e sim quanto de B o pedido consome: 50% mais 10% de B.",
+    "formulas": [
+     "P1: 0,1A + 0,5B = 1150",
+     "P2: 0,8A + 0,1B = 1400",
+     "B usado no pedido = 0,5B + 0,1B = 0,6B"
+    ],
+    "simbolos": [
+     [
+      "A, B",
+      "litros disponíveis no mês do composto A e do composto B"
+     ],
+     [
+      "P1, P2",
+      "os dois produtos do pedido"
+     ]
+    ]
+   },
+   "pista": "Escreva o volume de cada produto como soma das porcentagens dos dois compostos e resolva o sistema antes de responder.",
+   "passos": [
+    {
+     "faz": "Monte uma equação para cada produto",
+     "conta": "P1: 0,1A + 0,5B = 1150 | P2: 0,8A + 0,1B = 1400",
+     "porque": "Os 1 150 L de P1 são feitos de 10% de A e 50% de B; os 1 400 L de P2, de 80% de A e 10% de B.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine A multiplicando a 1ª por 8",
+     "conta": "0,8A + 4B = 9200 ; (0,8A + 4B) − (0,8A + 0,1B) = 9200 − 1400 → 3,9B = 7800 → B = 2000",
+     "porque": "Com o mesmo 0,8A nas duas, a subtração faz o A sumir. O 3,9 que multiplica B passa dividindo.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ache A na 1ª equação",
+     "conta": "0,1A + 0,5 · 2000 = 1150 → 0,1A = 150 → A = 1500",
+     "porque": "Não é o que se pede, mas serve para conferir o sistema.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o B usado no pedido",
+     "conta": "0,5B + 0,1B = 0,6 · 2000 → 1200 L",
+     "porque": "O pedido gasta 50% de B em P1 e 10% de B em P2: 60% do estoque de B.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue ao comando",
+     "conta": "B necessário = 1200 L → alternativa A",
+     "porque": "A pergunta é a quantidade de B necessária para o pedido, não o estoque de 2 000 L.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 1200 litros",
+   "checagem": "Reconstrua os produtos: P1 = 10% de 1500 + 50% de 2000 = 150 + 1000 = 1150 L; P2 = 80% de 1500 + 10% de 2000 = 1200 + 200 = 1400 L. Os volumes batem com o pedido.",
+   "erradas": {
+    "B": "1800 não confere: 0,6B = 1800 exigiria B = 3000, e então 0,1A = 1150 − 1500 seria negativo.",
+    "C": "2000 sai de parar no estoque: B = 2000 é o total disponível; o pedido usa só 60% dele, 1200 L.",
+    "D": "600 não confere: 0,6B = 600 dá B = 1000 e A = 6500, e então P2 = 0,8 · 6500 + 0,1 · 1000 = 5300 L, não 1400.",
+    "E": "345 não confere: 0,6B = 345 dá B = 575 e A = 8625, e P2 sairia 0,8 · 8625 + 57,5 = 6957,5 L, não 1400."
+   },
+   "armadilha": "O sistema dá o estoque B = 2000 L, mas o pedido consome só 50% + 10% = 60% dele.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Quantos litros do composto B o pedido de P1 e P2 consome.",
+    "chave": "0,1A + 0,5B = 1150 e 0,8A + 0,1B = 1400 dão B = 2000; o pedido usa 0,6 · 2000 = 1200 L.",
+    "cuidado": "Volte ao comando: a resposta é a parte usada, não o estoque."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "substituição",
+    "ideia": "Da 2ª equação, B = 14000 − 8A; na 1ª, 0,1A + 7000 − 4A = 1150 dá A = 1500 e B = 2000."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "0,1A + 0,5B = 1150 | 0,8A + 0,1B = 1400",
+    "nota": "uma equação por produto"
+   },
+   {
+    "linha": "0,8A + 4B = 9200",
+    "nota": "1ª equação vezes 8"
+   },
+   {
+    "linha": "3,9B = 7800 → B = 2000",
+    "nota": "subtrai a 2ª; o 3,9 passa dividindo"
+   },
+   {
+    "linha": "0,1A = 1150 − 1000 → A = 1500",
+    "nota": "volta na 1ª"
+   },
+   {
+    "linha": "0,6 · 2000 = 1200",
+    "nota": "B usado: 50% + 10%"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
+ },
+ "P8ce7550b": {
+  "n": "26",
+  "conceito": "Lucro com custo fixo e custo variável por peça (modelo afim), calculado mês a mês e comparado com o formato dos gráficos.",
+  "equivocos": {
+   "A": "M05.1:mais-pecas-igual-mais-lucro",
+   "B": "M05.1:ordem-dos-valores-trocada",
+   "C": "M05.1:mais-pecas-igual-mais-lucro",
+   "E": "M05.1:mais-pecas-igual-mais-lucro"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O lucro do mês é o que se vende menos o que se gasta. A venda é quantidade × preço de venda; o custo é C_A (fixo) mais quantidade × preço de custo. Dá para juntar: lucro = quantidade × (venda − custo por peça) − C_A. Com os quatro lucros na mão, compare o sobe e desce com cada gráfico.",
+    "formulas": [
+     "C = C_A + C_V, com C_V = x · (custo por peça)",
+     "lucro = x · (venda por peça − custo por peça) − C_A"
+    ],
+    "simbolos": [
+     [
+      "x",
+      "quantidade de peças produzidas e vendidas no mês"
+     ],
+     [
+      "C_A",
+      "parte fixa do custo (aluguel, telefone)"
+     ],
+     [
+      "C_V",
+      "parte variável do custo: peças × preço de custo por peça"
+     ]
+    ]
+   },
+   "pista": "Calcule o lucro de cada mês e veja só o desenho: de janeiro para fevereiro sobe ou desce? Abril fica acima ou abaixo de janeiro?",
+   "passos": [
+    {
+     "faz": "Calcule o lucro de janeiro e fevereiro",
+     "conta": "jan: 100 · (60 − 30) − 2000 = 3000 − 2000 = 1000 ; fev: 180 · (50 − 35) − 1900 = 2700 − 1900 = 800",
+     "porque": "Cada peça dá a diferença entre venda e custo; do total, sai o custo fixo do mês.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Calcule o lucro de março e abril",
+     "conta": "mar: 200 · (60 − 25) − 2100 = 7000 − 2100 = 4900 ; abr: 150 · (55 − 30) − 2000 = 3750 − 2000 = 1750",
+     "porque": "Mesma conta: margem por peça vezes quantidade, menos C_A.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Descreva o formato do gráfico",
+     "conta": "1000 → 800 → 4900 → 1750 : desce pouco, sobe muito, desce até acima de janeiro",
+     "porque": "O pico é março; fevereiro é o menor valor; abril (1750) fica acima de janeiro (1000).",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Teste os gráficos e escolha",
+     "conta": "a, c, e: sobem de jan para fev (errado) ; b: abril maior que março (errado) ; d: tudo bate → alternativa D",
+     "porque": "Só o gráfico d tem a pequena queda até fevereiro, o pico em março e abril acima de janeiro.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — o gráfico d: queda leve até fevereiro, pico em março e abril acima de janeiro",
+   "checagem": "Calcule pelo caminho longo, venda menos custo total: março vende 200 · 60 = 12000 e gasta 2100 + 200 · 25 = 7100; 12000 − 7100 = 4900. Fevereiro: 180 · 50 = 9000 e 1900 + 180 · 35 = 8200; 9000 − 8200 = 800. Os valores conferem.",
+   "erradas": {
+    "A": "O gráfico a não confere: sobe de janeiro para fevereiro, mas o lucro cai de 1000 para 800; e o pico de março mal passa fevereiro, quando 4900 é mais de seis vezes 800.",
+    "B": "O gráfico b não confere: abril aparece acima de março, mas o lucro cai de 4900 para 1750.",
+    "C": "O gráfico c não confere: sobe de janeiro para fevereiro (o lucro cai de 1000 para 800) e quase não muda de março para abril (cai de 4900 para 1750).",
+    "E": "O gráfico e não confere: sobe de janeiro para fevereiro, quando o lucro cai, e termina abril abaixo de janeiro, quando 1750 é maior que 1000."
+   },
+   "armadilha": "Fevereiro vende mais peças que janeiro, mas lucra menos, porque a margem por peça cai de 30 para 15 reais.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O gráfico que representa o lucro mensal de janeiro a abril.",
+    "chave": "Lucro = peças × (venda − custo por peça) − C_A: 1000, 800, 4900 e 1750.",
+    "cuidado": "Compare o formato inteiro: a queda de janeiro para fevereiro e abril acima de janeiro."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "formato pela margem",
+    "ideia": "Como C_A quase não muda (1900 a 2100), o formato segue peças × margem: 3000, 2700, 7000, 3750, com o mesmo desce, sobe muito, desce."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "jan: 100 · 30 − 2000 = 1000",
+    "nota": "margem 60 − 30 = 30 por peça"
+   },
+   {
+    "linha": "fev: 180 · 15 − 1900 = 800",
+    "nota": "margem 50 − 35 = 15"
+   },
+   {
+    "linha": "mar: 200 · 35 − 2100 = 4900",
+    "nota": "margem 60 − 25 = 35"
+   },
+   {
+    "linha": "abr: 150 · 25 − 2000 = 1750",
+    "nota": "margem 55 − 30 = 25"
+   },
+   {
+    "linha": "1000 → 800 → 4900 → 1750",
+    "nota": "desce, sobe muito, desce: gráfico d"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0004"
+  }
+ },
+ "P53fdf69e": {
+  "n": "15",
+  "conceito": "Volume do cilindro em m³, conversão para litros e cálculo de 98% desse volume.",
+  "equivocos": {
+   "B": "M11.2:volume-do-cilindro-errado",
+   "C": "M11.2:usou-area-lateral-no-lugar-do-volume",
+   "D": "M11.2:area-lateral-sem-desconto",
+   "E": "M11.2:diametro-usado-como-raio"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "A caixa é um cilindro com diâmetro de 2 m, ou seja, raio de 1 m, e altura de 4 m. Calcule o volume total, passe para litros (1 m³ = 1 000 L) e tome 98% dele, porque a boia ocupa o resto. A prova manda usar π = 3,1.",
+    "formulas": [
+     "volume do cilindro = π × r² × h",
+     "1 m³ = 1 000 L",
+     "98% = 0,98"
+    ],
+    "simbolos": [
+     [
+      "r",
+      "raio da base, metade do diâmetro"
+     ],
+     [
+      "h",
+      "altura da caixa"
+     ],
+     [
+      "m³",
+      "metro cúbico"
+     ]
+    ]
+   },
+   "pista": "O dado de 2 metros é o diâmetro. Ache o raio antes de usar a fórmula do volume.",
+   "passos": [
+    {
+     "faz": "Separe raio e altura",
+     "conta": "d = 2 m → r = 2/2 = 1 m | h = 4 m",
+     "porque": "A fórmula usa o raio; o enunciado deu o diâmetro.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Calcule o volume total da caixa",
+     "conta": "V = π · r² · h → V = 3,1 · 1² · 4 → V = 12,4 m³",
+     "porque": "Volume do cilindro é a área do círculo da base vezes a altura.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Converta para litros",
+     "conta": "12,4 m³ × 1 000 = 12 400 L",
+     "porque": "Cada metro cúbico cabe 1 000 litros, e as alternativas estão em litros.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Tome 98% do volume",
+     "conta": "0,98 × 12 400 = 12 152 L",
+     "porque": "A boia ocupa espaço, e o máximo de água é 98% do volume total.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "12 152 L → alternativa A",
+     "porque": "A pergunta é a quantidade máxima de água, já descontada a boia.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — 12.152 litros",
+   "checagem": "Pelo que falta: a boia ocupa 2% de 12 400 L, que são 248 L; 12 400 − 248 = 12 152 L. Fecha.",
+   "erradas": {
+    "B": "18.402 litros não confere: 18 402 ÷ 0,98 = 18 777,6 L, que não é π·r²·h com r = 1 m e h = 4 m (12 400 L) nem com o diâmetro no lugar do raio (49 600 L).",
+    "C": "24.304 litros sai de usar 2·π·r·h, a fórmula da área lateral: 2 × 3,1 × 1 × 4 = 24,8, e 0,98 × 24 800 = 24 304.",
+    "D": "24.800 litros sai da mesma troca de fórmula (2 × 3,1 × 1 × 4 = 24,8 m³) e ainda sem descontar os 2% da boia.",
+    "E": "48.608 litros sai de usar o diâmetro como raio: 3,1 × 2² × 4 = 49,6 m³, e 0,98 × 49 600 = 48 608 L."
+   },
+   "armadilha": "Os 2 m são o diâmetro: com 2 m de raio o volume sai quatro vezes maior.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A quantidade máxima de água, em litros, numa caixa cilíndrica que só pode encher até 98%.",
+    "chave": "V = 3,1 × 1² × 4 = 12,4 m³ = 12 400 L; 98% disso são 12 152 L.",
+    "cuidado": "Raio é metade do diâmetro, e o volume do cilindro é π·r²·h, não 2·π·r·h."
+   }
+  },
+  "caminhos": [
+   {
+    "nome": "fator único",
+    "ideia": "Junte tudo numa conta só: 0,98 × 3,1 × 1² × 4 × 1 000 = 12 152 L."
+   }
+  ],
+  "quadro": [
+   {
+    "linha": "r = 2/2 = 1 m ; h = 4 m",
+    "nota": "raio é a metade do diâmetro"
+   },
+   {
+    "linha": "V = 3,1 · 1² · 4 = 12,4 m³",
+    "nota": "volume do cilindro"
+   },
+   {
+    "linha": "12,4 m³ = 12 400 L",
+    "nota": "1 m³ = 1 000 L"
+   },
+   {
+    "linha": "0,98 · 12 400 = 12 152 L",
+    "nota": "98% do volume"
+   }
+  ],
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "mat-p2-0005"
+  }
+ }
+}

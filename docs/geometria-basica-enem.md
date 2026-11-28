@@ -4,18 +4,18 @@ Pedido do dono (05/11/2026): questões básicas de geometria, 20 de áreas e 20 
 
 ## O que entrou
 - Dois conteúdos novos em Matemática, cada um com escada de 20 degraus (do mais fácil ao mais difícil):
-  - **M08.6 — áreas básicas** (módulo M08, Geometria plana — áreas): retângulo, quadrado, triângulo, trapézio, círculo, conversão de unidades de área (m², cm², hectare), escala de área.
-  - **M11.6 — volumes básicos** (módulo M11, Geometria espacial): paralelepípedo, cubo, cilindro, prisma, capacidade em litros, escala de volume.
+  - **M08.6 — áreas de figuras simples, unidades e escala** (nome no site desde 20/11/2026; antes "áreas básicas") (módulo M08, Geometria plana — áreas): retângulo, quadrado, triângulo, trapézio, círculo, conversão de unidades de área (m², cm², hectare), escala de área.
+  - **M11.6 — volume, capacidade em litros e escala** (nome no site desde 20/11/2026; antes "volumes básicos") (módulo M11, Geometria espacial): paralelepípedo, cubo, cilindro, prisma, capacidade em litros, escala de volume.
 - Todas são **questões de prova** do ENEM (2º dia, caderno 7 azul), com print fiel recortado do PDF oficial do INEP a 300 dpi e gabarito oficial do INEP. Campo `url` = PDF oficial.
 - Cada uma tem resolução completa em `app-atual/mat/res/M08.6.json` e `M11.6.json`, com explicação de todas as alternativas erradas.
-- Cartões de teoria novos em `teoria.M08.cartoes` e `teoria.M11.cartoes` (sub M08.6 e M11.6). Ícones 3D novos: `design/icones_real/foto3d/cenas/M08.6.py` (piso de ladrilhos com trena) e `M11.6.py` (bloco 3 × 2 × 2 de cubinhos).
+- Cartões de teoria novos em `teoria.M08.cartoes` e `teoria.M11.cartoes` (sub M08.6 e M11.6). Ícones 3D novos: `design/icones_real/foto3d/cenas/M08.6.py` (piso de ladrilhos com trena) e `M11.6.py` (bloco 3 × 2 × 2 de cubinhos) — só no protótipo; no site, subtema não tem ícone (pontinho na cor da matéria, `docs/icones/ONDE-USAR.md`).
 
 ## Revisão
 Escrita por 4 agentes (lotes de 10); Lente A (fatos: cada questão resolvida de novo sem olhar a resolução, toda conta em Python, transcrição contra o print); Lente B (utilidade e estilo); Lente A de novo em tudo que a Lente B mudou. Nenhuma divergência de gabarito. Material e scripts em `docs/historico/geometria-basica/`.
 
 ## Lista
 
-### M08.6 — Áreas básicas
+### M08.6 — Áreas de figuras simples, unidades e escala
 
 | Degrau | Prova | Questão | Gabarito | id | O que cobra |
 |---|---|---|---|---|---|
@@ -40,7 +40,7 @@ Escrita por 4 agentes (lotes de 10); Lente A (fatos: cada questão resolvida de 
 | 19 | ENEM 2012 | 160 | B | `007e3626` | Área de região composta dividida em triângulos (base no segmento AC, altura até B ou D) e custo proporcional à área de cada material. |
 | 20 | ENEM 2015 | 165 | B | `eba0e6af` | Área de setor circular como fração do círculo (60° é 1/6 da volta) e uma inequação com resposta em número natural. |
 
-### M11.6 — Volumes básicos
+### M11.6 — Volume, capacidade em litros e escala
 
 | Degrau | Prova | Questão | Gabarito | id | O que cobra |
 |---|---|---|---|---|---|

@@ -1,0 +1,738 @@
+{
+ "Pfefc3f6a": {
+  "n": "45",
+  "conceito": "Ler no mapa os fusos horários brasileiros (UTC−3, −4 e −5) de cinco pontos e converter a hora oficial.",
+  "equivocos": {
+   "A": "G01.3:fuso-com-sinal-trocado",
+   "C": "G01.3:fuso-de-meia-hora-inexistente",
+   "D": "G01.3:fuso-de-meia-hora-inexistente",
+   "E": "G01.3:fuso-de-meia-hora-inexistente"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O Brasil continental tem três fusos legais: UTC−3 (a hora de Brasília, maior parte do país), UTC−4 (Amazonas em quase todo o estado, Rondônia, Roraima, Mato Grosso e Mato Grosso do Sul) e UTC−5 (Acre e oeste do Amazonas). No mapa, a mancha escura cobre os estados do fuso −4 do Centro-Oeste e da Amazônia ocidental e os países vizinhos no mesmo fuso, como a Bolívia. Cada fuso para oeste atrasa o relógio em 1 h inteira.",
+    "formulas": [
+     "fuso a oeste: relógio 1 h atrasado",
+     "fusos legais do Brasil continental: −3, −4, −5 (horas inteiras)"
+    ],
+    "simbolos": [
+     [
+      "fuso horário",
+      "faixa da Terra em que vale a mesma hora oficial"
+     ],
+     [
+      "UTC/GMT",
+      "hora de Greenwich (0°), a referência dos fusos; UTC−3 = 3 h atrás dela"
+     ],
+     [
+      "fuso legal",
+      "fuso adaptado às fronteiras dos estados, definido por lei"
+     ]
+    ]
+   },
+   "pista": "Localize o estado de cada ponto e veja em qual mancha do mapa ele está antes de mexer na hora.",
+   "passos": [
+    {
+     "faz": "Localize cada ponto",
+     "conta": "1: Bahia | 2: Goiás | 3: Mato Grosso (área escura) | 4: Bolívia (área escura, a oeste de Rondônia) | 5: Acre",
+     "porque": "O fuso depende da área em que o ponto cai: no mapa, a mancha escura cobre os estados do fuso −4 do Centro-Oeste e da Amazônia ocidental, e os países vizinhos no mesmo fuso; a Bolívia também está em UTC−4.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Classifique os fusos",
+     "conta": "1 e 2: UTC−3 | 3 e 4: UTC−4 | 5: UTC−5",
+     "porque": "Bahia e Goiás seguem a hora de Brasília; Mato Grosso e a área escura, 1 h a menos; o Acre, 2 h a menos.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Converta a hora",
+     "conta": "ponto 1 = 13h → 2: 13h | 3: 12h | 4: 12h | 5: 11h",
+     "porque": "Cada fuso para oeste tira 1 h do relógio.",
+     "tipo": "calcular"
+    },
+    {
+     "faz": "Elimine as meias horas",
+     "conta": "C, D e E têm 30 min",
+     "porque": "Os fusos legais do Brasil diferem em horas inteiras, e o ponto 2 está no mesmo fuso do ponto 1.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "13h, 12h, 12h e 11h = alternativa B",
+     "porque": "Só a B atrasa o relógio indo para oeste, de hora em hora.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — 13h, 12h, 12h e 11h.",
+   "checagem": "Confira pelo sentido: o ponto 1 é o mais a leste e os pontos 4 e 5 são os mais a oeste. Indo para oeste a hora só pode cair, e é o que acontece em B (13h, 12h, 12h, 11h).",
+   "erradas": {
+    "A": "A sai de trocar o sentido: soma 1 h a cada fuso para oeste (13h, 14h, 14h, 15h). Indo para oeste o relógio atrasa.",
+    "C": "C não confere: põe 13h30 no ponto 3, mas os fusos legais do Brasil diferem em horas inteiras, e indo para oeste a hora diminui.",
+    "D": "D não confere: dá 13h30 ao ponto 2, que fica em Goiás, no mesmo fuso da Bahia (ponto 1); lá também são 13h.",
+    "E": "E não confere: dá 12h30 ao ponto 2, que está no mesmo fuso do ponto 1, e usa meia hora, que nenhum fuso brasileiro tem."
+   },
+   "armadilha": "Somar horas indo para oeste (A) ou inventar meias horas entre fusos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "As horas oficiais dos pontos 2 a 5 quando são 13h no ponto 1.",
+    "chave": "−3 (BA, GO), −4 (MT e Bolívia, na mancha escura), −5 (AC): 13h, 12h, 12h, 11h.",
+    "cuidado": "Para oeste, o relógio atrasa de hora em hora."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0044"
+  }
+ },
+ "P60124c6d": {
+  "n": "37",
+  "conceito": "Definir anticiclone como centro de alta pressão, com ar descendente e tempo estável.",
+  "equivocos": {
+   "B": "G03.2:trocou-anticiclone-por-ciclone",
+   "C": "G03.2:anticiclone-com-nebulosidade",
+   "D": "G03.2:descreveu-ciclone-tropical",
+   "E": "G03.2:anticiclone-como-tempestade"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Ciclone e anticiclone são opostos. Ciclone é centro de baixa pressão: o ar converge, sobe, forma nuvens e chuva, e o tempo fica instável. Anticiclone é centro de alta pressão: o ar desce e se espalha para fora, o que dificulta a formação de nuvens e deixa o tempo estável e seco. O prefixo \"anti\" já diz tudo: é o contrário do ciclone.",
+    "formulas": [
+     "ciclone: baixa pressão → ar sobe → nuvens, chuva, instabilidade",
+     "anticiclone: alta pressão → ar desce → tempo estável e seco",
+     "o vento sai da alta pressão e vai para a baixa"
+    ],
+    "simbolos": [
+     [
+      "anticiclone",
+      "centro de alta pressão atmosférica, com ar descendente e divergente"
+     ],
+     [
+      "ciclone",
+      "centro de baixa pressão, com ar convergente e ascendente"
+     ],
+     [
+      "instabilidade",
+      "condição em que o ar sobe e forma nuvens e chuva"
+     ]
+    ]
+   },
+   "pista": "Comece pelo prefixo \"anti\": o anticiclone é o contrário de quê? Depois lembre se o ciclone é de alta ou de baixa pressão.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"anticiclone é uma região atmosférica\"",
+     "porque": "O comando pede a definição. A alternativa certa precisa descrever o anticiclone, não o ciclone.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Lembre a regra da pressão",
+     "conta": "ciclone = baixa pressão | anticiclone = alta pressão",
+     "porque": "No anticiclone o ar desce e se espalha; por isso ele é marcado por alta pressão. É o que a A diz.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine o que descreve o ciclone",
+     "conta": "B: instabilidade | D: formado nos oceanos tropicais por ventos quentes | E: tempestades marítimas",
+     "porque": "Instabilidade, formação sobre oceano tropical quente e tempestades são marcas do ciclone (baixa pressão), o fenômeno oposto. O sentido do giro não decide: ele depende do hemisfério.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Elimine a restrição aos polos",
+     "conta": "C: \"nebulosidade e nevascas\" nos polos",
+     "porque": "Anticiclone dificulta nuvens, e não é exclusivo dos polos: há anticiclones também nas latitudes subtropicais.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "alta pressão = alternativa A",
+     "porque": "É a única que dá a característica que define o anticiclone.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — uma região caracterizada por altas pressões.",
+   "checagem": "Siga o vento: ele sai da alta pressão para a baixa. No anticiclone o ar desce e se espalha para fora, sem subir para formar nuvens; isso só fecha com alta pressão e tempo estável, o contrário da B.",
+   "erradas": {
+    "B": "Inverte: o anticiclone traz estabilidade, porque o ar desce e não forma nuvens. Instabilidade é marca do ciclone (baixa pressão).",
+    "C": "Anticiclone dificulta a formação de nuvens, então não combina com nebulosidade e nevascas. E não existe só nos polos: há anticiclones subtropicais.",
+    "D": "Descreve um ciclone tropical: nasce sobre oceano quente e é de baixa pressão. O giro não prova nada: no Hemisfério Sul o anticiclone gira no sentido anti-horário, e no Norte, o ciclone.",
+    "E": "Tempestades marítimas catastróficas vêm de ciclones (como os furacões), não de anticiclones, que trazem tempo estável."
+   },
+   "armadilha": "Trocar ciclone (baixa pressão, chuva) por anticiclone (alta pressão, tempo estável).",
+   "alerta": "",
+   "essencial": {
+    "pede": "A definição de anticiclone.",
+    "chave": "Anticiclone é centro de alta pressão: o ar desce e o tempo fica estável.",
+    "cuidado": "Instabilidade, chuva e tempestade são do ciclone, não do anticiclone."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0047"
+  }
+ },
+ "P46176ce5": {
+  "n": "44",
+  "conceito": "Reconhecer a função ecológica dos manguezais como berçários da vida marinha.",
+  "equivocos": {
+   "A": "G05.1:mangue-causa-inundacao",
+   "B": "G05.1:mangue-elimina-oxigenio",
+   "C": "G05.1:mangue-causa-erosao",
+   "D": "G05.1:mangue-retira-materia-organica"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O manguezal é um ecossistema costeiro de águas salobras, na foz dos rios, onde a água doce encontra o mar. Suas raízes emaranhadas e a lama rica em matéria orgânica dão abrigo e comida para filhotes de peixes, caranguejos e camarões. Por isso o manguezal é chamado de berçário da vida marinha. As raízes também seguram o sedimento e protegem a costa da erosão.",
+    "formulas": [
+     "manguezal: água salobra + lama rica em matéria orgânica + raízes que abrigam filhotes → berçário",
+     "raízes seguram o sedimento → menos erosão costeira"
+    ],
+    "simbolos": [
+     [
+      "manguezal",
+      "ecossistema costeiro de água salobra, com árvores adaptadas à lama e à variação das marés"
+     ],
+     [
+      "estuário",
+      "trecho final do rio, onde a água doce se mistura com a do mar"
+     ],
+     [
+      "ressurgência",
+      "subida de águas profundas, frias e ricas em nutrientes até a superfície do oceano"
+     ],
+     [
+      "água salobra",
+      "mistura de água doce e salgada"
+     ]
+    ]
+   },
+   "pista": "Pense no que acontece com os filhotes de peixe e de caranguejo entre as raízes do mangue.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"a importância desses ecossistemas para as vidas marinha e terrestre, já que eles\"",
+     "porque": "Pede-se um benefício do manguezal para a vida. Alternativas que descrevem dano não servem.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Lembre a função principal do manguezal",
+     "conta": "raízes + lama rica em matéria orgânica → abrigo e alimento para filhotes",
+     "porque": "Muitas espécies se reproduzem ou crescem no mangue antes de ir para o mar aberto: é o berçário.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine as que descrevem dano",
+     "conta": "A: gera inundações | B: elimina oxigênio | C: reforça a erosão | D: elimina espécies",
+     "porque": "Todas atribuem ao manguezal efeitos prejudiciais que ele não tem, e a C inverte o papel dele, que é segurar a costa.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "berçário natural das espécies = alternativa E",
+     "porque": "É a única alternativa que dá uma importância real para a vida marinha.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — Os manguezais são berçários naturais das espécies locais e abrigam também espécies de outros ecossistemas do litoral.",
+   "checagem": "Releia o comando contra a alternativa: o dia foi criado para reforçar a importância dos manguezais. Só faz sentido escolher um benefício, e E é o único benefício da lista.",
+   "erradas": {
+    "A": "Inventa um dano: o manguezal é que é alagado pelas marés; ele não gera inundações litorâneas.",
+    "B": "Não confere: o manguezal não elimina o oxigênio das águas, e a ressurgência é um fenômeno de correntes oceânicas, não algo que o mangue evite.",
+    "C": "Inverte: as raízes do mangue seguram o sedimento e reduzem a erosão costeira, em vez de reforçá-la.",
+    "D": "Inverte: o manguezal acumula e fornece matéria orgânica, base da cadeia alimentar; não elimina espécies de peixes."
+   },
+   "armadilha": "Ser atraído por termos técnicos (ressurgência, estuário, matéria orgânica) em alternativas que descrevem efeitos falsos ou invertidos.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Por que os manguezais são importantes para a vida.",
+    "chave": "Raízes e lama rica em matéria orgânica fazem do mangue um berçário de espécies.",
+    "cuidado": "Desconfie de alternativas que atribuem ao ecossistema protegido um efeito destrutivo."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0049"
+  }
+ },
+ "P772bc208": {
+  "n": "43",
+  "conceito": "Mudança da capital para Brasília (1960) e a transformação do antigo Distrito Federal no estado da Guanabara.",
+  "equivocos": {
+   "A": "G11.1:inventa-categoria-cidade-autonoma",
+   "B": "G11.1:confunde-estado-com-supranacional",
+   "C": "G11.1:confunde-status-juridico-com-hierarquia-urbana",
+   "D": "G11.1:confunde-estado-da-guanabara-com-regiao-metropolitana"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Em 1960 a capital federal foi transferida para Brasília, e a cidade do Rio de Janeiro deixou de ser Distrito Federal. Em vez de ser incorporada ao estado vizinho, a cidade virou ela própria um estado: o estado da Guanabara, uma unidade da federação, que existiu até a fusão com o estado do Rio de Janeiro, em 1975.",
+    "formulas": [
+     "até 1960: cidade do Rio = Distrito Federal (capital)",
+     "1960: capital vai para Brasília; o Rio vira estado da Guanabara",
+     "1975: fusão da Guanabara com o estado do Rio de Janeiro"
+    ],
+    "simbolos": [
+     [
+      "unidade da federação",
+      "cada estado ou o Distrito Federal que compõe a República Federativa"
+     ],
+     [
+      "Distrito Federal",
+      "unidade da federação que abriga a capital do país"
+     ],
+     [
+      "sui generis",
+      "único no seu gênero, sem igual"
+     ],
+     [
+      "supranacional",
+      "acima dos Estados nacionais, como uma organização que reúne vários países"
+     ]
+    ]
+   },
+   "pista": "A pergunta é jurídica, não de hierarquia urbana. Pense em que tipo de unidade política a cidade se tornou ao deixar de ser capital.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "“A solução jurídico-administrativa encontrada para compensar a relativa perda do protagonismo”",
+     "porque": "Pede a condição política e jurídica que a cidade recebeu em 1960, não uma classificação de geografia urbana.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize o contexto",
+     "conta": "“Em 1960, um novo Distrito Federal foi definido no país”",
+     "porque": "Com a capital em Brasília, a cidade do Rio deixou de ser o Distrito Federal e precisava de novo enquadramento na federação.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Lembre a solução adotada",
+     "conta": "antigo Distrito Federal → estado da Guanabara (1960)",
+     "porque": "A cidade virou um estado, com governo próprio: passou a ser uma unidade da federação.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine as que não são condição jurídica",
+     "conta": "metrópole nacional = classificação de hierarquia urbana | região metropolitana = conjunto de municípios | cidade autônoma e estado supranacional = não são categorias da federação brasileira",
+     "porque": "Só \"unidade da federação\" é uma condição política que a lei podia dar à cidade.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "estado da Guanabara = unidade da federação = alternativa E",
+     "porque": "A cidade passou a ser um estado.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa E — unidade da federação (o estado da Guanabara).",
+   "checagem": "Confira pelo desfecho histórico: em 1975 houve a fusão da Guanabara com o estado do Rio de Janeiro. Só se funde um estado com outro se ele for, de fato, uma unidade da federação.",
+   "erradas": {
+    "A": "\"Cidade autônoma\" não é categoria da federação brasileira. Em 1960 a cidade passou a ser um estado, a Guanabara.",
+    "B": "Supranacional é o que fica acima dos Estados nacionais, como um bloco de países. Não cabe para uma cidade dentro do Brasil.",
+    "C": "Metrópole nacional é classificação da hierarquia urbana, que mede a influência da cidade; não é condição jurídica criada por lei em 1960.",
+    "D": "Região metropolitana é um conjunto de municípios integrados, e as regiões metropolitanas brasileiras só foram instituídas por lei federal nos anos 1970."
+   },
+   "armadilha": "Marcar metrópole nacional, termo de geografia urbana, quando o comando pede uma solução jurídico-administrativa.",
+   "alerta": "",
+   "essencial": {
+    "pede": "A condição político-institucional dada à cidade do Rio em 1960, ao deixar de ser capital.",
+    "chave": "O antigo Distrito Federal virou o estado da Guanabara, uma unidade da federação.",
+    "cuidado": "Separe condição jurídica (estado) de classificação urbana (metrópole)."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-0053"
+  }
+ },
+ "P7145495d": {
+  "n": "36",
+  "conceito": "Ler uma anamorfose geográfica: o tamanho de cada país é proporcional ao valor do dado, e os maiores (China, Índia, Paquistão, Bangladesh, Nigéria) revelam a população.",
+  "equivocos": {
+   "A": "G01.6:anamorfose-lida-como-economia",
+   "C": "G01.6:anamorfose-lida-como-poder-militar",
+   "D": "G01.6:anamorfose-lida-como-economia",
+   "E": "G01.6:anamorfose-sem-testar-paises"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Na anamorfose, o país deixa de ter o tamanho real e passa a ter área proporcional ao dado representado. Por isso a pergunta se resolve olhando quais países incharam e quais encolheram. China e Índia gigantes, com Paquistão, Bangladesh, Nigéria e Indonésia grandes, e Canadá, Austrália e Rússia quase sumidos: esse é o padrão da população.",
+    "formulas": [
+     "anamorfose: área do país proporcional ao valor do dado, não à superfície real",
+     "país inchado = valor alto; país encolhido = valor baixo"
+    ],
+    "simbolos": [
+     [
+      "anamorfose",
+      "mapa que deforma as áreas dos países para que fiquem proporcionais a um dado (população, PIB, emissões)"
+     ],
+     [
+      "cartograma",
+      "representação que mostra um dado sobre a forma dos territórios"
+     ],
+     [
+      "commodities",
+      "produtos primários padronizados vendidos em grande volume no mercado mundial, como soja, petróleo e minério"
+     ]
+    ]
+   },
+   "pista": "Procure no cartograma os países que ficaram muito maiores do que são de verdade e pergunte o que eles têm em comum.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"Considerando-se as propriedades das projeções cartográficas por anamorfose geográfica, o cartograma apresentado representa a\"",
+     "porque": "Pede-se qual dado o cartograma mede. Na anamorfose a área é proporcional ao dado, então o dado se descobre pelos tamanhos.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Veja quem inchou e quem encolheu",
+     "conta": "inchados: China, Índia, Paquistão, Bangladesh, Nigéria, Indonésia | encolhidos: Canadá, Austrália, Rússia",
+     "porque": "Bangladesh fica enorme sendo pequeno em superfície, e o Canadá quase desaparece sendo imenso: o critério não é a área real.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Teste os dados econômicos e militares",
+     "conta": "Nigéria, Bangladesh e Paquistão grandes × Japão e Alemanha pequenos",
+     "porque": "Em exportação ou riqueza industrial, Japão e Alemanha estariam entre os maiores; Nigéria e Bangladesh não têm armas nucleares e mesmo assim estão grandes.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o padrão ao dado",
+     "conta": "países mais populosos = maiores áreas no cartograma → população total",
+     "porque": "Os países que mais incharam são justamente os mais populosos do mundo, e os de grande território com pouca gente encolheram.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa B — a população total dos países.",
+   "checagem": "Compare o Brasil com o Canadá: o Canadá tem superfície maior que a do Brasil, mas no cartograma está bem menor. O Brasil tem muito mais habitantes que o Canadá, o que só se explica se o mapa mede população.",
+   "erradas": {
+    "A": "Não confere: num mapa de exportação de commodities a Austrália, o Canadá e a Rússia, grandes exportadores de minério, petróleo e grãos, estariam grandes, e no cartograma quase somem.",
+    "C": "Não confere: Nigéria, Bangladesh, Indonésia e Brasil aparecem grandes e não têm armas nucleares; num mapa desse dado eles praticamente sumiriam.",
+    "D": "Não confere: na riqueza industrial, Japão e Alemanha estariam entre os maiores; no cartograma eles ficam bem menores que Bangladesh e Nigéria.",
+    "E": "Não confere: Bangladesh e Paquistão aparecem entre os maiores, sem serem destaque mundial em energias renováveis, enquanto o Canadá, grande gerador hidrelétrico, quase some."
+   },
+   "armadilha": "Ler o cartograma pela área real ou associar China e Estados Unidos grandes à economia, sem notar que Bangladesh e Nigéria, pobres e pequenos, também incharam.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Qual dado o cartograma por anamorfose representa.",
+    "chave": "Na anamorfose a área é proporcional ao dado; China, Índia, Bangladesh e Nigéria inchados indicam população.",
+    "cuidado": "Confira os países pobres e populosos: são eles que separam população de dados econômicos."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-p2-0001"
+  }
+ },
+ "P156a4afd": {
+  "n": "40",
+  "conceito": "Identificar as sementes transgênicas como o ponto polêmico do uso da biotecnologia na agricultura.",
+  "equivocos": {
+   "A": "G08.3:biocida-como-biotecnologia",
+   "B": "G08.3:prefixo-bio-como-biotecnologia",
+   "C": "G08.3:biomassa-como-biotecnologia-agricola",
+   "E": "G08.3:vacina-como-centro-da-polemica"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Biotecnologia agrícola é a manipulação de seres vivos, sobretudo do material genético, para obter plantas e animais com novas características. Seu produto mais conhecido e mais discutido são os transgênicos (organismos geneticamente modificados), como soja e milho resistentes a herbicidas ou a pragas. O debate envolve possíveis efeitos sobre a saúde e o ambiente e a dependência dos agricultores em relação às empresas que detêm as patentes das sementes.",
+    "formulas": [
+     "biotecnologia agrícola → edição genética de seres vivos → transgênicos",
+     "biocida = produto químico que mata organismos (agrotóxico), não é biotecnologia"
+    ],
+    "simbolos": [
+     [
+      "biotecnologia",
+      "uso de seres vivos ou do seu material genético para produzir bens ou novas características"
+     ],
+     [
+      "transgênico (OGM)",
+      "organismo que recebeu gene de outra espécie em laboratório"
+     ],
+     [
+      "biocida",
+      "substância química que elimina organismos, como inseticidas e herbicidas"
+     ],
+     [
+      "biodegradação",
+      "decomposição de materiais por microrganismos"
+     ]
+    ]
+   },
+   "pista": "Antes de escolher, separe o que é biotecnologia (mexer no ser vivo) do que só tem o prefixo bio no nome.",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"um ponto polêmico das discussões diz respeito ao uso de\"",
+     "porque": "Pede-se uma prática que seja ao mesmo tempo biotecnologia agrícola e alvo de polêmica sobre consequências para a população.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize o tema do texto",
+     "conta": "\"O uso de biotecnologia na agricultura é um dos avanços mais expressivos da ciência nos últimos 40 anos\"",
+     "porque": "O recorte é a biotecnologia aplicada à agricultura; a resposta tem de ser uma aplicação dela no cultivo.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Descarte o que não é biotecnologia agrícola",
+     "conta": "biocidas: química | biodegradação: decomposição | biomassa: energia | vacinas: pecuária",
+     "porque": "O prefixo bio engana: biocida é veneno químico, biodegradação é processo natural, biomassa é fonte de energia e vacina não está no centro do debate agrícola.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à aplicação polêmica",
+     "conta": "biotecnologia na agricultura + polêmica → sementes geneticamente modificadas",
+     "porque": "Os transgênicos são a aplicação central da biotecnologia no campo e a mais debatida pelos riscos discutidos e pelo controle das patentes.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — o uso de sementes geneticamente modificadas.",
+   "checagem": "Pense na exigência de rotular alimentos transgênicos no Brasil: ela nasceu justamente do debate público sobre a segurança dessa tecnologia, o que confirma que as sementes modificadas são o ponto polêmico.",
+   "erradas": {
+    "A": "Biocidas são agrotóxicos, produtos químicos, também polêmicos, mas não são biotecnologia: o comando parte do \"uso de biotecnologia na agricultura\".",
+    "B": "Biodegradação é a decomposição de materiais por microrganismos, um processo e não uma prática agrícola de biotecnologia em debate.",
+    "C": "Energia por biomassa é uma fonte de energia (lenha, bagaço, biogás), assunto de matriz energética, e não a biotecnologia aplicada ao cultivo.",
+    "E": "Vacinas para o rebanho são usadas há muito tempo na pecuária e não são o ponto central da polêmica sobre biotecnologia na agricultura descrito no texto."
+   },
+   "armadilha": "Cair no prefixo \"bio\": biocida, biodegradação e biomassa soam como biotecnologia, mas só a semente modificada é manipulação genética de um ser vivo cultivado.",
+   "alerta": "",
+   "essencial": {
+    "pede": "O ponto polêmico do uso da biotecnologia na agricultura.",
+    "chave": "A biotecnologia agrícola mais debatida são os transgênicos.",
+    "cuidado": "Agrotóxico (biocida) é química, não biotecnologia, mesmo sendo polêmico."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-p2-0001"
+  }
+ },
+ "P7f8aa74a": {
+  "n": "38",
+  "conceito": "Entender a lógica dos portos hub: concentrar cargas e grandes porta-contêineres em poucas paradas por região.",
+  "equivocos": {
+   "A": "G09.6:hub-amplia-escalas",
+   "B": "G09.6:hub-desconcentra-rotas",
+   "C": "G09.6:hub-como-arma-contra-concorrentes",
+   "E": "G09.6:hub-reduz-tamanho-dos-navios"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "Porto hub é um porto concentrador: recebe os grandes navios de linhas internacionais, e dele as cargas seguem em navios menores para portos regionais. A ideia é que o navio gigante pare poucas vezes, em poucos portos, e carregue e descarregue muito de uma vez, o que barateia o frete por contêiner.",
+    "formulas": [
+     "hub: concentra cargas e linhas → poucos portos recebem os maiores navios",
+     "navio maior + menos paradas → custo menor por contêiner"
+    ],
+    "simbolos": [
+     [
+      "hub",
+      "palavra inglesa para centro ou eixo; aqui, porto concentrador de cargas e de rotas"
+     ],
+     [
+      "porta-contêineres",
+      "navio feito para transportar contêineres, caixas metálicas padronizadas"
+     ],
+     [
+      "escala",
+      "parada de um navio num porto; também pode significar alcance ou amplitude"
+     ]
+    ]
+   },
+   "pista": "Releia a definição que o próprio enunciado dá: \"nós\" concentradores. O que um ponto concentrador faz com as paradas dos navios?",
+   "passos": [
+    {
+     "faz": "Traduza o que se pede",
+     "conta": "\"Dentre os principais objetivos dos portos “hub”, destaca-se a\"",
+     "porque": "Pede-se o objetivo desse tipo de porto, que o enunciado já define.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Localize a definição no enunciado",
+     "conta": "\"Esses portos consistem em “nós” concentradores de cargas e de linhas de navegação.\"",
+     "porque": "A palavra-chave é concentrar: o objetivo tem de ir na direção de concentrar, não de espalhar.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Ligue concentração a navios grandes",
+     "conta": "concentrar cargas → navios maiores → uma parada por região",
+     "porque": "Com a carga reunida num só porto, compensa usar navios enormes que param pouco e movimentam muito de cada vez.",
+     "tipo": "comparar"
+    },
+    {
+     "faz": "Elimine as que contrariam a concentração",
+     "conta": "A: genérica | rotas desconcentradas | navios menores | eliminar concorrentes",
+     "porque": "B e E vão no sentido oposto da concentração; A é genérica e não traz a concentração de cargas; C atribui ao porto um objetivo que não é logístico.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue o resultado à alternativa",
+     "conta": "grandes porta-contêineres + parada única por região = alternativa D",
+     "porque": "É a única que traduz a ideia de \"nó concentrador\".",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa D — elevar a presença de grandes porta-contêineres, carregados e descarregados em uma única parada por região.",
+   "checagem": "Pense no contrário: se o objetivo fosse ter navios menores e mais paradas, não haveria por que concentrar cargas num só porto. A concentração só faz sentido com navios grandes e poucas escalas, como diz a D.",
+   "erradas": {
+    "A": "É genérica: fala em ampliar as escalas e a competitividade, mas não traz o que define o hub no enunciado, concentrar cargas e linhas num nó que recebe grandes navios, como faz a D.",
+    "B": "Inverte: o enunciado define o hub como concentrador de linhas; ele concentra as rotas, não as desconcentra.",
+    "C": "Não confere: o hub é uma escolha de logística para reduzir custo, não um meio de eliminar concorrentes estrangeiros.",
+    "E": "Inverte o tamanho: o hub existe para receber navios maiores, e não para reduzir o tamanho deles."
+   },
+   "armadilha": "Ficar com uma alternativa genérica que soa positiva (competitividade, eficiência) em vez da que traduz a definição do enunciado: \"nós\" concentradores de cargas e de linhas de navegação.",
+   "alerta": "Na A, \"escalas\" pode ser lida como paradas do navio ou como alcance das operações. Na leitura de paradas, a A contraria o hub, que reduz as paradas dos grandes navios; na leitura de alcance, ela é genérica e não traz a concentração de cargas que define o hub. Nas duas leituras, a D é a resposta.",
+   "essencial": {
+    "pede": "O objetivo principal dos portos do tipo hub.",
+    "chave": "Concentrar cargas para que grandes porta-contêineres parem uma só vez por região.",
+    "cuidado": "Hub concentra: desconfie das alternativas que falam em espalhar rotas, multiplicar escalas ou diminuir navios."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-p2-0001"
+  }
+ },
+ "P96614baa": {
+  "n": "41",
+  "conceito": "Reconhecer as práticas ESG (ambiental, social e governança) como preparo das empresas para os riscos climáticos.",
+  "equivocos": {
+   "B": "G12.2:governanca-como-corte-de-cargos",
+   "C": "G12.2:contraria-responsabilidade-social",
+   "D": "G12.2:sustentabilidade-como-retrocesso",
+   "E": "G12.2:fosseis-como-pratica-sustentavel"
+  },
+  "resolucao": {
+   "antes": {
+    "texto": "O enunciado descreve as práticas conhecidas pela sigla ESG: meio ambiente, responsabilidade social e governança. Empresas que as adotam medem e reduzem seus impactos e riscos, inclusive os ligados ao clima, como eventos extremos e regras mais duras sobre emissões. Por isso ficam mais preparadas para emergências climáticas.",
+    "formulas": [
+     "ESG = ambiental + social + governança",
+     "práticas sustentáveis → menos emissões e mais preparo para riscos climáticos"
+    ],
+    "simbolos": [
+     [
+      "ESG",
+      "sigla em inglês para práticas ambientais, sociais e de governança das empresas"
+     ],
+     [
+      "governança",
+      "o modo como a empresa é dirigida e fiscalizada: transparência, ética, prestação de contas"
+     ],
+     [
+      "emergência climática",
+      "situação de risco causada pela mudança do clima, como secas, enchentes e ondas de calor"
+     ]
+    ]
+   },
+   "pista": "Pergunte qual risco uma empresa reduz quando adota práticas ambientais.",
+   "passos": [
+    {
+     "faz": "Localize o que as práticas incluem",
+     "conta": "\"Práticas Sustentáveis de Meio Ambiente, Responsabilidade Social e Governança Democrática\"",
+     "porque": "A primeira dimensão é ambiental: a empresa passa a controlar emissões, uso de recursos e riscos ligados ao clima.",
+     "tipo": "localizar"
+    },
+    {
+     "faz": "Elimine o que não decorre dessas práticas",
+     "conta": "B: eliminar gerências | C: reduzir salários | D: voltar ao tradicional | E: combustíveis fósseis",
+     "porque": "Nenhuma dessas é uma prática ambiental, social ou de governança; a E vai contra a dimensão ambiental, que busca reduzir o uso de fósseis.",
+     "tipo": "eliminar"
+    },
+    {
+     "faz": "Ligue à alternativa",
+     "conta": "práticas ambientais + gestão de riscos = preparo para emergências climáticas = alternativa A",
+     "porque": "Só a A decorre da dimensão ambiental das práticas descritas.",
+     "tipo": "concluir"
+    }
+   ],
+   "resposta": "Alternativa A — prepara as empresas para atuarem diante de emergências climáticas atuais e futuras.",
+   "checagem": "Teste o oposto: uma empresa sem práticas ambientais fica mais exposta a enchentes, secas, falta de água e novas regras sobre emissões. As práticas do enunciado reduzem justamente essa exposição.",
+   "erradas": {
+    "B": "Eliminar cargos de gerência não faz parte das práticas; governança trata de transparência e controle da gestão, não de extinguir a gerência.",
+    "C": "Reduzir salários contraria a responsabilidade social, que é uma das três dimensões citadas no enunciado.",
+    "D": "As práticas são apresentadas como algo novo, buscado por quem quer se destacar no mercado; não um retorno às dinâmicas tradicionais do trabalho.",
+    "E": "Contraria a dimensão ambiental: práticas sustentáveis buscam reduzir o uso de combustíveis fósseis, não aprimorar o seu uso."
+   },
+   "armadilha": "A E soa técnica (\"eficazes\"), mas reforça a dependência dos combustíveis fósseis, o contrário de uma prática sustentável.",
+   "alerta": "",
+   "essencial": {
+    "pede": "Para que as práticas ambientais, sociais e de governança preparam as empresas.",
+    "chave": "A dimensão ambiental reduz emissões e riscos, preparando a empresa para emergências climáticas.",
+    "cuidado": "Confira se a alternativa combina com as três dimensões; reduzir salários fere a social, fósseis ferem a ambiental."
+   }
+  },
+  "caminhos": [],
+  "quadro": null,
+  "visual": null,
+  "fontes": [],
+  "aprovada": true,
+  "revisao": {
+   "lentes": [
+    "resolvedor-autoconferencia",
+    "conferente-fatos-e-didatica"
+   ],
+   "data": "2026-11-19",
+   "lote": "geo-p2-0005"
+  }
+ }
+}
