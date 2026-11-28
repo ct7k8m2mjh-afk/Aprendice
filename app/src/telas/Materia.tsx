@@ -241,12 +241,17 @@ export function Materia() {
           <div key={a.id} className="area-g">
             <div className="area-cab" title={a.resumo || undefined}><h2>{a.nome}</h2></div>
             <div className="area-lista">
-              {a.mods.map((mid) => {
-                const mod = mc.conteudo.modulos.find((x) => x.id === mid);
+              {/* ordem decrescente de conteúdos dentro da área (dono, 28/11/2026); empate mantém a ordem do programa */}
+              {a.mods
+                .map((mid, i) => {
+                  const mod = mc.conteudo.modulos.find((x) => x.id === mid);
+                  return { mid, i, mod, nCont: mod ? mod.subs.filter((x) => mc.porSub.get(x.id)?.length).length : 0 };
+                })
+                .sort((x, y) => y.nCont - x.nCont || x.i - y.i)
+                .map(({ mid, mod, nCont }) => {
                 if (!mod) return null;
                 // critério único de contagem (filtraTema), o mesmo do tema; quantidade de questões só nos conteúdos (CLAUDE.md)
                 const p = progressoEscada(questoesDoTema(mc, mid, rg.conj), s);
-                const nCont = mod.subs.filter((x) => mc.porSub.get(x.id)?.length).length;
                 const v = p.total ? p.feitas / p.total : 0;
                 return (
                   <Link key={mid} to={`/m/${m}/tema/${mid}`} className="area-tema">

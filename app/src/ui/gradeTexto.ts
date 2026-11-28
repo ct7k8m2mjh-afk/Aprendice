@@ -28,6 +28,39 @@ function fundoVisual(el: HTMLElement): number {
   return x.getBoundingClientRect().bottom;
 }
 
+/** Navegador sem `text-box` (Firefox, Chrome antigo): o corte da caixa no topo das maiúsculas e na base da última linha é
+ * medido aqui. `--gt-a` (o que sobra acima das maiúsculas) desconta do padding-top (grade-texto.css) e `baixoSobra` (o que
+ * sobra abaixo da base) é descontado ao medir a folga do bloco seguinte, para o texto ficar onde ficaria com o corte. */
+export const SEM_TRIM = typeof CSS === 'undefined' || !CSS.supports?.('text-box', 'trim-both cap alphabetic');
+const baixoSobra = new WeakMap<Element, number>();
+
+function marcaSonda(el: HTMLElement, noFim: boolean): number {
+  const s = document.createElement('span');
+  s.style.cssText = 'display:inline-block;width:0;height:0;vertical-align:baseline';
+  if (noFim) el.appendChild(s); else el.insertBefore(s, el.firstChild);
+  const y = s.getBoundingClientRect().top;
+  s.remove();
+  return y;
+}
+
+function medeCorte(el: HTMLElement) {
+  if (!el.firstChild) return;
+  const cs = getComputedStyle(el);
+  const r = el.getBoundingClientRect();
+  if (!r.height) return;
+  const cap = document.createElement('span');
+  cap.style.cssText = 'position:absolute;visibility:hidden;width:0;height:1cap';
+  el.appendChild(cap);
+  const capH = cap.getBoundingClientRect().height;
+  cap.remove();
+  const topoConteudo = r.top + parseFloat(cs.borderTopWidth) + parseFloat(cs.paddingTop);
+  const baseConteudo = r.bottom - parseFloat(cs.borderBottomWidth) - parseFloat(cs.paddingBottom);
+  const a = marcaSonda(el, false) - topoConteudo - capH;
+  const b = baseConteudo - marcaSonda(el, true);
+  el.style.setProperty('--gt-a', `${Math.max(0, a).toFixed(2)}px`);
+  baixoSobra.set(el, Math.max(0, b));
+}
+
 function alinha() {
   if (!document.documentElement.classList.contains('grade-texto')) return;
   // volta tudo ao original antes de medir (tela nova, largura nova)
@@ -36,6 +69,7 @@ function alinha() {
   const cont = document.querySelector<HTMLElement>('.conteudo');
   if (!cont) return;
   const marcados = Array.from(cont.querySelectorAll<HTMLElement>(`${SELETOR_TITULO}, ${SELETOR_TEXTO}`));
+  if (SEM_TRIM) for (const m of marcados) medeCorte(m);
   const alvos = new Set<HTMLElement>();
   for (const f of Array.from(cont.querySelectorAll<HTMLElement>(SELETOR_BLOCOS))) alvos.add(f);
   for (const m of marcados) {
@@ -71,9 +105,9 @@ function alinha() {
       const resto = (((r.top - origem) % passo) + passo) % passo;
       if (resto < 0.5 || resto > passo - 0.5) break;
       const ant = el.previousElementSibling as HTMLElement | null;
-      const base = ant ? fundoVisual(ant) : pai.getBoundingClientRect().top + parseFloat(pcs.paddingTop) + parseFloat(pcs.borderTopWidth);
+      const base = ant ? fundoVisual(ant) - (baixoSobra.get(ant) ?? 0) : pai.getBoundingClientRect().top + parseFloat(pcs.paddingTop) + parseFloat(pcs.borderTopWidth);
       const folga = r.top - base;
-      const delta = folga - resto >= folgaMin && (ehTexto || comecaPorTitulo || resto < passo - resto) ? -resto : passo - resto;
+      const delta = folga - resto >= folgaMin - 0.5 && (ehTexto || comecaPorTitulo || resto < passo - resto) ? -resto : passo - resto;
       guarda(el);
       if (fluxo && ant) {
         // no fluxo de bloco as margens se somam pelo maior (colapso): zera a de baixo do anterior e põe o espaço todo aqui
@@ -91,6 +125,7 @@ function alinha() {
 
 export function iniciaGradeTexto() {
   document.documentElement.classList.add('grade-texto');
+  if (SEM_TRIM) document.documentElement.classList.add('gt-sem-trim');
   let pedido = 0;
   const agenda = () => { if (!pedido) pedido = requestAnimationFrame(() => { pedido = 0; alinha(); }); };
   const raiz = document.getElementById('raiz');

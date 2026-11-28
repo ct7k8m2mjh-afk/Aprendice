@@ -77,3 +77,16 @@ html.grade-texto .titulo-pag > h1:has(+ .sub) { flex-basis: 100%; }
 html.grade-texto .vazio:not(.conteudo) { padding: var(--gt-passo) 20px; }
 html.grade-texto .conteudo.vazio { padding-left: var(--pag-x); padding-right: var(--pag-x); padding-bottom: var(--gt-passo); }
 html.grade-texto .vazio .btn { margin-top: var(--gt-meio); }
+
+/* ---- navegador sem `text-box` (Firefox, Chrome antigo; dono, 28/11/2026: "muito espaço entre os textos"): ui/gradeTexto.ts
+   mede o que sobra acima das maiúsculas (--gt-a) e desconta do padding-top, para a base das letras cair na mesma linha ---- */
+html.grade-texto.gt-sem-trim :is(.titulo-pag h1, .tema-cab h1, .pag-estreita > .secao:not(.bloco, .tp-bloco) > .sec-tit, .in-cab h1, .in-mats > .in-sec-tit, .conteudo > .secao:not(.bloco, .tp-bloco) > .sec-tit, .vazio h3, .hj-como h2,
+  .conteudo > .mat-cab .tit-mat) { padding-top: calc(var(--gt-passo) - 1cap - var(--gt-a, 0px)); }
+html.grade-texto.gt-sem-trim :is(.titulo-pag .sub, .tema-cab .sub, .conteudo > .migalhas, .pag-estreita > .migalhas, .in-cab p, .fr-frase, .vazio p, .hj-como p, .conteudo > p.fraco) {
+  padding-top: max(0px, calc(var(--gt-meio) - 1cap - var(--gt-a, 0px)));
+}
+
+/* texto de apoio logo abaixo do título: um pouco mais afastado (dono, 28/11/2026: "o texto pequeno está muito colado ao
+   maior, deve ir minimamente mais para baixo"): 6 px a mais no topo da caixa (o topo continua na linha) */
+html.grade-texto.grade-texto :is(.titulo-pag .sub, .tema-cab .sub, .in-cab p) { padding-top: calc(var(--gt-meio) - 1cap + 6px); }
+html.grade-texto.grade-texto.gt-sem-trim :is(.titulo-pag .sub, .tema-cab .sub, .in-cab p) { padding-top: max(0px, calc(var(--gt-meio) - 1cap - var(--gt-a, 0px) + 6px)); }

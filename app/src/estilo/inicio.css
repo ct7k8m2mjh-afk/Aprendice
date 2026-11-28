@@ -247,7 +247,10 @@
    (3:1 da largura, entre 150 e 300 px); a arte é posta a partir de --H, então não deforma quando a faixa fica mais larga. */
 .capa-mat-env { container-type: inline-size; margin: 0 0 18px; }
 .capa-mat { --H: clamp(120px, 33.333cqw, 300px); position: relative; display: flex; align-items: center; min-height: var(--H); padding: 20px 28px;
-  border-radius: var(--r-dest); overflow: hidden; background: color-mix(in srgb, var(--s) 45%, var(--folha)); } /* mais leve: dono, 22/11 */
+  border-radius: var(--r-dest); overflow: hidden;
+  /* degradê na cor da matéria, claro atrás do título e mais forte atrás da arte, para a arte não sumir no fundo
+     (dono, 28/11/2026: "Ideia 1, degradê A"; antes: véu liso de 45% de --s, 22/11) */
+  background: linear-gradient(100deg, color-mix(in srgb, var(--p) 10%, var(--folha)) 0%, color-mix(in srgb, var(--p) 18%, var(--folha)) 45%, color-mix(in srgb, var(--p) 34%, var(--folha)) 100%); }
 [data-theme='dark'] .capa-mat { background: radial-gradient(120% 160% at 0% 0%, color-mix(in srgb, var(--s) 22%, var(--folha)), color-mix(in srgb, var(--s) 12%, var(--folha)) 70%);
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--p) 22%, transparent); } /* escuro quase neutro: o título na cor da matéria precisa saltar (dono, 22/11) */
 .capa-mat { --Ha: var(--H); }
