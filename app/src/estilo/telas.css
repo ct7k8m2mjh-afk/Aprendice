@@ -727,13 +727,51 @@ kbd { font: 600 12.5px var(--fonte); border: 1px solid var(--borda2); border-bot
 .area-lista { grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); }
 .area-tema { max-width: none; }
 @media (max-width: 900px) { .area-lista { grid-template-columns: minmax(0, 1fr); } }
-/* temas separados e do mesmo tamanho (dono, 28/11/2026: "separe as linhas e organize o tamanho"): cada tema é uma caixa
-   com contorno, todas da mesma altura na linha; o nome ocupa sempre a altura de duas linhas, então a barra e a contagem
-   ficam na mesma altura em todos os temas */
-.area-lista { gap: 12px 16px; margin-top: 10px; }
-.area-tema { border: 1px solid color-mix(in srgb, var(--linha) 85%, transparent); background: color-mix(in srgb, var(--folha) 70%, var(--papel)); height: 100%; }
-.at-txt b { min-height: 2.6em; display: flex; align-items: flex-end; }
-@media (max-width: 700px) { .area-lista { gap: 8px; } .at-txt b { min-height: 0; } }
+/* cada área numa caixa branca própria, com os seus temas juntos lado a lado (dono, 28/11/2026: "separe as linhas" e "os que
+   fazem parte de um subtema ficam na mesma barra e caixa branca"): a folha única vira uma pilha de caixas, uma por área;
+   dentro da caixa, os temas sem contorno. O nome ocupa sempre a altura de duas linhas no computador, então barra e
+   contagem ficam na mesma altura em toda a linha */
+.bloco-areas { background: none; border: 0; box-shadow: none; padding: 0; display: grid; gap: 16px; }
+.area-g { padding: 18px 28px 14px; border-radius: var(--r-bloco); background: var(--folha); border: 1px solid var(--linha); box-shadow: var(--sombra-folha); }
+.area-g + .area-g { margin-top: 0; border-top: 1px solid var(--linha); }
+/* a caixa termina onde terminam os temas da área (dono, 28/11/2026), cantos arredondados; colunas medidas em Materia.tsx
+   (BlocoAreas) para terem a mesma largura em todas as áreas */
+@media (min-width: 901px) {
+  .bloco-areas.medido .area-g { justify-self: start; width: max-content; max-width: 100%; }
+  .bloco-areas.medido .area-lista { grid-template-columns: repeat(var(--n), var(--colw)); }
+  /* colunas estreitas (área com muitos temas em tela menor): o tema vira um cartão em pé — ícone e círculo em cima,
+     nome e contagem embaixo com a largura toda; o nome ocupa sempre duas linhas, para as contagens ficarem alinhadas */
+  .bloco-areas.estreito .area-lista { align-items: start; }
+  .bloco-areas.estreito .area-tema { grid-template-columns: 52px minmax(0, 1fr) 44px; grid-template-rows: auto auto; gap: 8px 10px; padding: 10px 8px; align-items: center; align-content: start; height: auto; }
+  .bloco-areas.estreito .area-tema > :first-child { grid-column: 1; grid-row: 1; width: 52px !important; height: 52px !important; }
+  .bloco-areas.estreito .area-tema .ic3d { width: 52px !important; height: 52px !important; }
+  .bloco-areas.estreito .area-tema .at-anel { grid-column: 3; grid-row: 1; }
+  .bloco-areas.estreito .area-tema .at-txt { grid-column: 1 / -1; grid-row: 2; }
+  .bloco-areas.estreito .at-anel > span { width: 44px !important; height: 44px !important; }
+  .bloco-areas.estreito .at-anel svg { width: 44px; height: 44px; }
+  .bloco-areas.estreito .area-tema .at-txt b { font-size: 16px; }
+}
+/* celular (dono, 28/11/2026: "poupar a quantidade de rolagens"): linhas compactas, ícone 44, círculo 38 */
+@media (max-width: 700px) {
+  .bloco-areas { gap: 10px; }
+  .area-g { padding: 12px 12px 6px; }
+  .area-cab { margin-bottom: 2px; }
+  .area-lista { gap: 0; }
+  .bloco-areas .area-tema { grid-template-columns: 44px minmax(0, 1fr) 38px; gap: 10px; padding: 6px 2px; }
+  .area-tema .ic3d { width: 44px !important; height: 44px !important; }
+  .at-txt { gap: 0; }
+  .area-tema .at-txt b { font-size: 15px; line-height: 1.25; }
+  .area-tema .at-txt small { font-size: 12.5px; line-height: 1.35; }
+  .at-anel > span { width: 38px !important; height: 38px !important; }
+  .at-anel svg { width: 38px; height: 38px; }
+  .at-anel .num { font-size: 11px !important; }
+}
+/* sem barra: nome e contagem centrados na altura do ícone; o % fica dentro de um círculo de progresso (dono, 28/11/2026) */
+.area-tema { grid-template-columns: 72px minmax(0, 1fr) 52px; }
+.at-txt { justify-content: center; gap: 4px; }
+.at-anel { display: grid; place-items: center; color: var(--t-texto); }
+.at-anel .num { font-size: 13px !important; }
+@media (max-width: 700px) { .area-g { border-radius: var(--r); } }
 
 /* proteção contra falha de desenho (ui/Protecao.tsx; revisão de 19/11/2026): o aviso ocupa o lugar do pedaço que falhou */
 .protecao { padding: 20px 22px; border-radius: var(--r-dest); }

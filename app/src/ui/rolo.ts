@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type RefObject } from 'react';
 
 /**
  * Faixa com rolagem lateral (faixa de temas da matéria, a compacta de tema/escada/flashcards, e "Suas matérias" do Início).
+ * - pontas sem ciclo ("Suas matérias" do Início): com mouse, a roda sobre a faixa fica travada no fim (dono, 28/11/2026);
  * - bordas: se há conteúdo escondido à esquerda (e) e à direita (d), para as setas e a máscara;
  * - roda do mouse (pedido do dono, 06/11/2026): girar para baixo anda para a direita;
  * - ciclo infinito no computador (pedido do dono, 27/11/2026): com mouse (hover + ponteiro fino) e a faixa maior que a tela,
@@ -84,7 +85,9 @@ export function useRoloHorizontal(chave: unknown, opc: { semCiclo?: boolean } = 
         const { salto, alvo: al } = passoCiclico(r.scrollLeft, base, passo, v, max);
         pula(r, salto); base += salto; fim = al;
       } else {
-        if ((passo < 0 && base <= 0) || (passo > 0 && base >= max - 1)) return;
+        // nas pontas, com mouse, a roda fica travada enquanto o cursor estiver sobre a faixa: a página não rola
+        // (dono, 28/11/2026); tirando o cursor da faixa, a roda volta a rolar a página. Toque e trackpad lateral seguem o padrão.
+        if ((passo < 0 && base <= 0) || (passo > 0 && base >= max - 1)) { if (temMouse()) ev.preventDefault(); return; }
         fim = Math.max(0, Math.min(max, base + passo));
       }
       ev.preventDefault();

@@ -1,7 +1,7 @@
 import { useRegiao } from '../ui/FiltroRegiao';
 import { filtraTema, questoesTreinoGeral } from '../logica/regiao';
 import { Link, useParams } from 'react-router-dom';
-import { useEffect, useLayoutEffect, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { urlCapa, useMateria, type MateriaCarregada } from '../dados/conteudo';
 import { CAIXA_CAPA } from '../dados/capas';
 import { MATERIAS, ORDEM_MENU, materia as infoMateria } from '../dados/materias';
@@ -236,9 +236,9 @@ export function Materia() {
       </div>
       )}
 
-      <section className="bloco-areas" aria-label="Temas por área">
+      <BlocoAreas maxN={Math.max(1, ...mc.conteudo.areas.map((a) => a.mods.length))}>
         {mc.conteudo.areas.map((a) => (
-          <div key={a.id} className="area-g">
+          <div key={a.id} className="area-g" style={{ '--n': a.mods.length } as CSSProperties}>
             <div className="area-cab" title={a.resumo || undefined}><h2>{a.nome}</h2></div>
             <div className="area-lista">
               {/* ordem decrescente de conteúdos dentro da área (dono, 28/11/2026); empate mantém a ordem do programa */}
@@ -258,19 +258,53 @@ export function Materia() {
                     <IcTema m={m} tema={mid} tam={72} />
                     <span className="at-txt">
                       <b>{mod.nome}</b>
-                      <Barra valor={v} rotulo={`Progresso em ${mod.nome}`} />
-                      <small className="num">{nCont ? plural(nCont, 'conteúdo', 'conteúdos') : 'Em preparação'}</small>
+                      {/* "N conteúdos" saiu (dono, 28/11/2026: "esta informação não precisa"); só o aviso de tema vazio fica */}
+                      {!nCont && <small>Em preparação</small>}
                     </span>
-                    <span className="at-pc num">{Math.round(v * 100)}%</span>
+                    {/* progresso num círculo com a porcentagem, no lugar da barra (dono, 28/11/2026) */}
+                    <span className="at-anel" role="img" aria-label={`Progresso em ${mod.nome}: ${Math.round(v * 100)}%`}>
+                      <Anel valor={v} tam={52} espessura={5}>{Math.round(v * 100)}%</Anel>
+                    </span>
                   </Link>
                 );
               })}
             </div>
           </div>
         ))}
-      </section>
+      </BlocoAreas>
     </div>
   );
+}
+
+/** Temas por área (dono, 28/11/2026): cada área numa caixa branca que termina onde terminam os seus temas. As colunas
+ * têm a mesma largura em todas as áreas (mín. 340 px, como antes): aqui se mede quantas cabem na largura e a largura de
+ * cada uma, e o CSS usa `--cols` e `--colw` para a caixa de cada área ter só as colunas dos temas dela. */
+export const COL_MIN = 340, COL_MAX = 250, COL_GAP = 24, AREA_PAD = 28;
+/** Todos os temas de uma área na mesma linha (dono, 28/11/2026: "na mesma linha"): as colunas têm a largura de antes
+ * (mín. 340 px) quando cabem; se a área maior não couber, todas encolhem por igual até a área maior caber numa linha. */
+export function colunasAreas(largura: number, maxN: number): { colw: number } {
+  const util = largura - 2 * AREA_PAD - 2; // padding e borda da caixa
+  const cols = Math.max(1, Math.floor((util + COL_GAP) / (COL_MIN + COL_GAP)));
+  const normal = (util - (cols - 1) * COL_GAP) / cols;
+  const n = Math.max(1, maxN);
+  const cabe = (util - (n - 1) * COL_GAP) / n;
+  // colunas estreitas (dono, 28/11/2026: "diminua a largura"): no máximo COL_MAX, tema em pé (ícone e círculo em cima)
+  return { colw: Math.floor(Math.min(normal, cabe, COL_MAX) * 100) / 100 };
+}
+
+function BlocoAreas({ maxN, children }: { maxN: number; children: ReactNode }) {
+  const ref = useRef<HTMLElement>(null);
+  const [colw, setColw] = useState<number | null>(null);
+  useLayoutEffect(() => {
+    const el = ref.current; if (!el) return;
+    const mede = () => setColw(colunasAreas(el.clientWidth, maxN).colw);
+    mede();
+    const ro = new ResizeObserver(mede); ro.observe(el);
+    return () => ro.disconnect();
+  }, [maxN]);
+  const estilo = colw ? ({ '--colw': `${colw}px` } as CSSProperties) : undefined;
+  const cls = 'bloco-areas' + (colw ? ' medido' : '') + (colw ? ' estreito' : '');
+  return <section ref={ref} className={cls} style={estilo} aria-label="Temas por área">{children}</section>;
 }
 
 /** quantas questões, frases e flashcards a matéria tem para o treino geral (na região do aluno) */

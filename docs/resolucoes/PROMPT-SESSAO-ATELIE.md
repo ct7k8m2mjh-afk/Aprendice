@@ -41,6 +41,8 @@ técnico (ele não programa). Nunca use send_message para outras sessões.
 ## 2. O que você pode fazer sem perguntar e o que precisa de permissão
 **Regra do dono (11/11/2026): toda mudança visual precisa da permissão dele ANTES.**
 
+**Celular poupa rolagem (regra do dono, 28/11/2026):** no celular, tudo é dimensionado de forma proporcional e visível para caber o máximo possível por tela (mais de um item por tela, ícones, textos e espaços menores que no computador), para o aluno rolar o mínimo. Vale para todas as telas e para tudo o que for feito daqui em diante.
+
 **Regra do dono (27/11/2026), vale acima de tudo nesta seção:** para **toda e qualquer alteração** (visual, de texto,
 de escrita ou bug), antes de mudar o repositório, mostre ao dono um **print de antes e um print de depois** (o "depois"
 feito no site local, sem gravar nada no ramo) e diga em poucas linhas como planeja fazer. **Só com a autorização dele**
